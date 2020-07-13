@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemIngotSteel>(count: 25);
+            inputItems.Add<ItemIngotSteel>(count: 15);
             inputItems.Add<ItemIngotCopper>(count: 10);
-            inputItems.Add<ItemRubberVulcanized>(count: 3);
+            inputItems.Add<ItemRubberVulcanized>(count: 5);
 
             outputItems.Add<ItemMachinePistol>();
         }

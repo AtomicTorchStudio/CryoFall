@@ -21,8 +21,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((1, 2), (-1, 0), CollisionGroups.Default)
-                .AddShapeRectangle((1, 2), (2, 0),  CollisionGroups.Default);
+                .AddShapeRectangle((0.75, 2), (-0.75, 0), CollisionGroups.Default)
+                .AddShapeRectangle((0.75, 2), (2, 0),     CollisionGroups.Default);
         }
     }
 }

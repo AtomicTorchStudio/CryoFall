@@ -193,6 +193,9 @@ Złoże żelaza
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
 Małe złoże pragmium
 
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@ErrorCannotBuild_PragmiumSourceTooCloseOnPvE:
+Zbyt blisko źródła pragmium.
+
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
 Źródło pragmium
 
@@ -246,9 +249,6 @@ Zbiornik
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Te strukturę uszkodzisz bronią lub narzędziem.
-
-Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-Brak opisu.
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 Brak opisu ulepszenia.
@@ -383,6 +383,9 @@ Marzysz o własnym muzeum lub chcesz pochwalić się swoimi trofeami? Teraz moż
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 Witryna
 
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCaseLarge@Name:
+Duża gablota
+
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Opancerzony sejf, którego nie imają się nawet najsilniejsze materiały wybuchowe. Trudny do wytworzenia, ale zabezpieczy wszystkie kosztowności.
 
@@ -467,6 +470,12 @@ Marnowanie tego cennego kryształu na dekoracje pokazuje twoje bogactwo.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Posąg z pragmium
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Description:
+Prosty stołek pasujący do prostego pomieszczenia.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Name:
+Stołek
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
 Prosty stół w starym, europejskim stylu.
 
@@ -513,7 +522,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Drzwi drewniane
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-Duża stalowa brama, która z powodzeniem służy jako główne wejście do bazy.
+Duża stalowa brama, która z powodzeniem posłuży jako główne wejście do bazy.
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 Stalowa brama
@@ -740,6 +749,12 @@ Przekształca dowolną materię organiczną w kompost stanowiący doskonały naw
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Kompostownik
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Description:
+Ten zakład pozwala na oczyszczanie oleju mineralnego i uzyskiwanie lżejszych węglowodorów, a w szczególności benzyny.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Name:
+Zakład oczyszczania oleju
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Umożliwia wydobywanie ropy naftowej ze zbiornika podziemnego lub bezpośrednio ze źródła ropy (co jest bardziej wydajne).
 
@@ -772,6 +787,15 @@ Prosty zbiornik gromadzący niewielkie ilości wody. Z jakiegoś powodu nie spra
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Zbiornik na wodę
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@ErrorBuildingAllowedOnlyInDesert:
+Tę budowle można postawić tylko w środowisku pustynnym.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Description:
+Ta budowla może pobierać wodę bezpośrednio z powietrza dzięki zjawisku kondensacji i zastosowaniu specjalnych środków osuszających. W przeciwieństwie do konwencjonalnych sposobów pozyskiwania wody proces ten jest powolny i nieefektywny, ale pozwala otrzymywać wodę nawet na pustyni.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Name:
+Skraplacz wody z atmosfery
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
 Pompa elektryczna do szybkiego poboru wody ze zbiornika podziemnego.
@@ -818,6 +842,15 @@ Może ładować dowolny przenośny sprzęt elektroniczny, np. bank zasilania czy
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 Stacja ładowania
 
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStationAdvanced@Name:
+Zaawansowana stacja ładująca
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Description:
+Automatycznie podlewa sąsiednie działki rolne w regularnych odstępach czasu.
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
+Zraszacz wodny
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Wymaganych więcej elementów.
 
@@ -832,6 +865,12 @@ Najpierw usuń przedmiot z gniazda wyjściowego.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Nie można naprawić
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
+Masz szczęście![br]W pełni naprawiono: {0}!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Title:
+Naprawa idealna!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
 Doskonały do majsterkowania przy różnych przedmiotach i naprawiania ich.
@@ -850,6 +889,9 @@ Zautomatyzowana platforma do produkcji pojazdów. Na podstawie danego schematu p
 
 Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
 Fabryka samochodów
+
+Scripts/StaticObjects/Structures/Misc/Base/SprinklerWateringRequestResult@ErrorNotEnoughWater:
+Za mało wody w zraszaczu.
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Pozwala na magazynowanie energii elektrycznej wytwarzanej przez generatory.
@@ -1084,72 +1126,69 @@ Trzcina cukrowa
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
 Ciernisty krzew
 
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-Drzewo bananowe
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-Brzoza
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-Cis krótkolistny
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-Kaktus
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-Uschłe drzewo
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-Uschłe drzewo
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-Uschłe drzewo
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-Durian
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-Przewrócone drzewo
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-Dąb
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-Palma
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Świerk
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Sosna
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-Topola
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-Kauczukowiec
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-Omszały pieniek
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-Pniak
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-Omszały pniak
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-Pniak
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-Drzewo bagienne
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-Drzewo tropikalne
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-Wierzba
-
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Zetnij drzewo siekierą.
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
+Uschłe drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
+Uschłe drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:
+Przewrócone drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeSnagMossy@Name:
+Omszały pieniek
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStump@Name:
+Pniak
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpMossy@Name:
+Omszały pniak
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpWithTwig@Name:
+Pniak
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBirch@Name:
+Brzoza
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBrevifolia@Name:
+Cis krótkolistny
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeOak@Name:
+Dąb
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePalm@Name:
+Palma
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePine@Name:
+Świerk
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePineBoreal@Name:
+Sosna
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePoplar@Name:
+Topola
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeSwamp@Name:
+Drzewo bagienne
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeTropical@Name:
+Drzewo tropikalne
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeWillow@Name:
+Wierzba
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeBanana@Name:
+Drzewo bananowe
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeCactus@Name:
+Kaktus
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeDurian@Name:
+Durian
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeRubber@Name:
+Kauczukowiec
 

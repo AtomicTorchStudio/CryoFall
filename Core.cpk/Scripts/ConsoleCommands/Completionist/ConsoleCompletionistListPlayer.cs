@@ -24,6 +24,7 @@
             Append("Food", completionistData.ListFood);
             Append("Mobs", completionistData.ListMobs);
             Append("Loot", completionistData.ListLoot);
+            AppendFish("Fish", completionistData.ListFish);
 
             return sb.ToString();
 
@@ -35,6 +36,21 @@
                 {
                     sb.Append("* ")
                       .AppendLine(entry.Prototype.ShortId);
+                }
+
+                sb.AppendLine();
+            }
+
+            void AppendFish(string key, NetworkSyncList<DataEntryCompletionistFish> entries)
+            {
+                sb.Append(key)
+                  .AppendLine(":");
+                foreach (var entry in entries)
+                {
+                    sb.Append("* ")
+                      .Append(entry.Prototype.ShortId)
+                      .Append(" weight ")
+                      .AppendLine(entry.MaxSizeValue.ToString("F2"));
                 }
 
                 sb.AppendLine();

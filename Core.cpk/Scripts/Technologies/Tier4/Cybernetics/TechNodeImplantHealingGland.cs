@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantHealingGland : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantHealingGland : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

@@ -19,16 +19,15 @@
 
         public override float WaterRestore => 15;
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectHealthyFood>(intensity: 0.05);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrink;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            data.Character.ServerAddStatusEffect<StatusEffectHealthyFood>(intensity: 0.05);
-
-            base.ServerOnEat(data);
         }
     }
 }

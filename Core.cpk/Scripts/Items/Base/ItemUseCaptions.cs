@@ -2,6 +2,9 @@
 {
     public static class ItemUseCaptions
     {
+        // Cut the fish.
+        public const string Cut = "Cut";
+
         public const string Decrypt = "Decrypt";
 
         public const string Drink = "Drink";

@@ -17,9 +17,10 @@
         public static void ClientOnCannotInteract(
             IWorldObject worldObject,
             string message,
-            bool isOutOfRange = false)
+            bool isOutOfRange = false,
+            double? hideDelay = null)
         {
-            ShowOn(worldObject, message);
+            ShowOn(worldObject, message, hideDelay);
 
             var soundKey = isOutOfRange
                                ? ObjectSound.InteractOutOfRange
@@ -34,7 +35,9 @@
             lastControl = null;
         }
 
-        public static void ShowOn(IWorldObject worldObject, string message)
+        public static void ShowOn(IWorldObject worldObject, 
+                                  string message, 
+                                  double? hideDelay = null)
         {
             if (Api.IsServer)
             {
@@ -58,7 +61,7 @@
                 positionOffset: positionOffset,
                 isFocusable: false);
 
-            lastControl.componentAttachedControl.Destroy(delay: TimeoutSeconds);
+            lastControl.componentAttachedControl.Destroy(delay: hideDelay ?? TimeoutSeconds);
         }
 
         public void Setup(string message)

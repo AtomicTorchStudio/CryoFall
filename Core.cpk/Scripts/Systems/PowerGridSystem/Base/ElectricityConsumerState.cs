@@ -4,8 +4,8 @@
     {
         PowerOff = 0,
 
-        PowerOffOutage = 1,
+        PowerOnIdle = 1,
 
-        PowerOn = 128
+        PowerOnActive = 128
     }
 }

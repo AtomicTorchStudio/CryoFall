@@ -25,6 +25,15 @@ Bessere Anbaumethoden ermöglichen es dir, deine landwirtschaftliche Effizienz z
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Landwirtschaft
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Chance auf Behalten des Köders
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Deine Kenntnis von verschiedenen Fischarten mitsamt ihrer Gewohnheiten beeinflusst deinen Angelerfolg.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Angeln
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Chance auf Mehrertrag
 
@@ -100,23 +109,29 @@ Erhöht deine Überlebenschancen durch das Verbessern deiner maximalen Gesundhei
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Überleben
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Chance auf Setzlinge
+
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Chance auf zusätzliche Setzlinge
+
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Training und ein besseres Berufsverständnis erhöhen deine Geschwindigkeit beim Fällen von Bäumen.
+
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Holzschlag
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
 Chance auf Mehrertrag
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Chance für den Erhalt von Edelsteinen
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-Eine bessere Kenntnis von Mineralvorkommen erhöht deine Abbaugeschwindigkeit, deinen Ertrag und die Chance auf seltene Ressourcen. Nur im Zusammenhang mit einer Spitzhacke gültig.
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+Eine bessere Kenntnis von Mineralvorkommen erhöht deine Abbaugeschwindigkeit, deinen Ertrag und die Chance auf seltene Ressourcen.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Bergbau
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-Training und eine bessere Fachkenntnis erhöhen deine Holzfällgeschwindigkeit. Nur im Zusammenhang mit einer Axt gültig.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Holzfällerei
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Prospektion
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Bessere Baufähigkeiten verbessern deine Konstruktionsgeschwindigkeit. Anwendbar auf alle Aufgaben (bauen, reparieren), die mithilfe eines Werkzeugkoffers durchgeführt werden.
@@ -130,9 +145,18 @@ Die Herstellung immer komplexerer Gegenstände und das Verständnis ihres Aufbau
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Herstellung
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Chance auf vollständige Reparatur
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Ermöglicht die Reparatur und Wartung verschiedener Gegenstände und Geräte. Gilt für Arbeiten an der Bastelwerkbank.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Wartung
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+Die Fähigkeit, diverse Fahrzeuge mitsamt ihrer Ausrüstung korrekt und effizient zu benutzen. Gilt für alle Fahrzeugtypen.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Fahrzeuge
 

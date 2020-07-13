@@ -16,15 +16,12 @@
             defense.Set(
                 impact: 0.50,
                 kinetic: 0.35,
+                explosion: 0.35,
                 heat: 0.30,
                 cold: 0.20,
                 chemical: 0.30,
-                electrical: 0.45,
                 radiation: 0.25,
-                psi: 0);
-
-            // normal value override, we don't want it to be affected by armor multiplier later
-            defense.Psi = 0.20 / defense.Multiplier;
+                psi: 0.0);
         }
     }
 }

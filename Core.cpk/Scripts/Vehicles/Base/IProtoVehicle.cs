@@ -24,8 +24,6 @@
 
         string Description { get; }
 
-        uint EnergyMax { get; }
-
         ushort EnergyUsePerSecondIdle { get; }
 
         ushort EnergyUsePerSecondMoving { get; }
@@ -108,5 +106,7 @@
         bool SharedPlayerHasRequiredItemsToBuild(ICharacter character, bool allowIfAdmin = true);
 
         bool SharedPlayerHasRequiredItemsToRepair(ICharacter character, bool allowIfAdmin = true);
+
+        void ServerRefreshEnergyMax(IDynamicWorldObject vehicle);
     }
 }

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeStrengthBoostSmall : TechNode<TechGroupMedicine>
+    public class TechNodeStrengthBoostSmall : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {

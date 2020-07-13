@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodePaperCartridge : TechNode<TechGroupOffense>
+    public class TechNodePaperCartridge : TechNode<TechGroupOffenseT1>
     {
         protected override void PrepareTechNode(Config config)
         {

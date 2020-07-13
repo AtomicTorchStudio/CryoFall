@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
     using AtomicTorch.CBND.CoreMod.Items.Devices;
+    using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Equipment.ApartSuit;
     using AtomicTorch.CBND.CoreMod.Items.Equipment.Hazmat;
@@ -33,17 +34,18 @@
         {
             DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
             DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
+            DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
 
             // common loot
             droplist.Add(nestedList: new DropItemsList(outputs: 1, outputsRandom: 1)
                                      // resources
                                      .Add<ItemToxin>(count: 5,        countRandom: 5,  weight: 1)
-                                     .Add<ItemAcidSulfuric>(count: 2, countRandom: 3,  weight: 1)
-                                     .Add<ItemAcidNitric>(count: 2,   countRandom: 3,  weight: 1)
+                                     .Add<ItemAcidSulfuric>(count: 3, countRandom: 2,  weight: 1)
+                                     .Add<ItemAcidNitric>(count: 3,   countRandom: 2,  weight: 1)
                                      .Add<ItemAramidFiber>(count: 5,  countRandom: 5,  weight: 1 / 2.0)
-                                     .Add<ItemPlastic>(count: 3,      countRandom: 3,  weight: 1)
+                                     .Add<ItemPlastic>(count: 3,      countRandom: 2,  weight: 1)
                                      .Add<ItemIngotLithium>(count: 2, countRandom: 3,  weight: 1 / 2.0)
-                                     .Add<ItemOreLithium>(count: 10,  countRandom: 20, weight: 1 / 2.0));
+                                     .Add<ItemOreLithium>(count: 10,  countRandom: 10, weight: 1 / 2.0));
 
             // rare loot
             droplist.Add(nestedList: new DropItemsList(outputs: 1)
@@ -57,7 +59,12 @@
                                      .Add<ItemBatteryHeavyDuty>(count: 1,  countRandom: 2, weight: 1 / 10.0)
                                      .Add<ItemPowerCell>(count: 1,         countRandom: 1, weight: 1 / 10.0)
                                      // equipment
-                                     .Add<ItemRespirator>(count: 1, weight: 1 / 25.0)
+                                     .Add<ItemHelmetRespirator>(count: 1, weight: 1 / 25.0)
+                                     // drones
+                                     .Add<ItemDroneIndustrialStandard>(count: 1, weight: 1 / 20.0, condition: T3Specialized)
+                                     .Add<ItemDroneControlStandard>(count: 1,    weight: 1 / 30.0, condition: T3Specialized)
+                                     .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1 / 30.0, condition: T4Specialized)
+                                     .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 50.0, condition: T4Specialized)
                                      // devices
                                      .Add<ItemPowerBankStandard>(count: 1, weight: 1 / 50.0)
                                      .Add<ItemPowerBankLarge>(count: 1,    weight: 1 / 100.0));

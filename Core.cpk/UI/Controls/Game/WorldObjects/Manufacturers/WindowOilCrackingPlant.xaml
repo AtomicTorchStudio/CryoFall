@@ -1,0 +1,152 @@
+﻿<manufacturers:WindowOilCrackingPlantBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.WindowOilCrackingPlant"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowOilCrackingPlant, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator">
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
+
+                <Grid Margin="0,0,10,0" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Center">
+                        <!-- Text: Mineral oil -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidMineralOil}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,-13,0,0" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ItemsContainerControl
+                                Container="{Binding ViewModelManufacturingStateMineralOil.ContainerInput}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                DesignTimeSlotsCount="1" />
+                            <core:ValueBarControl
+                                Value="{Binding ViewModelManufacturingStateMineralOil.CraftingProgressPercents}"
+                                Foreground="{StaticResource LiquidBrushMineralOil}"
+                                Margin="0,0,-6,0"
+                                Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Control Grid.Row="1" Template="{StaticResource ControlTemplateArrow}" Margin="3" />
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <!-- Text: Empty -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
+                        <controls:ItemsContainerControl
+                            Container="{Binding ViewModelManufacturingStateMineralOil.ContainerOutput}"
+                            MaxWidth="100"
+                            DesignTimeSlotsCount="1" />
+                    </StackPanel>
+                </Grid>
+
+                <!-- Mineral oil bar -->
+                <StackPanel Orientation="Vertical" Margin="15,0" VerticalAlignment="Bottom">
+                    <Rectangle Fill="{StaticResource LiquidIconMineralOil}"
+                               HorizontalAlignment="Center"
+                               Width="18"
+                               Height="24"
+                               Margin="0,0,0,1" />
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelLiquidStateMineralOil.Amount}"
+                        MaxValue="{Binding ViewModelLiquidStateMineralOil.Capacity}"
+                        Foreground="{StaticResource LiquidBrushMineralOil}"
+                        Style="{StaticResource LiquidBigValueBar}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10,90,10,0">
+                    <Control Template="{StaticResource ControlTemplateArrow}" Width="46" Height="46">
+                        <Control.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </Control.LayoutTransform>
+                    </Control>
+
+                    <Canvas
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,0">
+                        <fuelBurningIndicator:FuelBurningIndicator
+                            Visibility="{Binding IsManufacturingActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                            FuelIcon="{StaticResource IconElectricity}"
+                            FuelColor="{StaticResource ColorElectricity}"
+                            Canvas.Top="24" />
+                    </Canvas>
+                </StackPanel>
+
+                <!-- Gasoline bar -->
+                <StackPanel Orientation="Vertical" Margin="10,0" VerticalAlignment="Bottom">
+                    <Rectangle Fill="{StaticResource LiquidIconGasoline}"
+                               HorizontalAlignment="Center"
+                               Width="18"
+                               Height="24"
+                               Margin="0,0,0,1" />
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelLiquidStateProcessedGasoline.Amount}"
+                        MaxValue="{Binding ViewModelLiquidStateProcessedGasoline.Capacity}"
+                        Foreground="{StaticResource LiquidBrushGasoline}"
+                        Style="{StaticResource LiquidBigValueBar}" />
+                </StackPanel>
+
+                <!-- Gasoline input/output slots -->
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <!-- Text: Empty -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0,-13,0,0" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <controls:ItemsContainerControl
+                            Container="{Binding ViewModelManufacturingStateProcessedGasoline.ContainerInput}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            DesignTimeSlotsCount="1" />
+                        <core:ValueBarControl
+                            Value="{Binding ViewModelManufacturingStateProcessedGasoline.CraftingProgressPercents}"
+                            Foreground="{StaticResource LiquidBrushGasoline}"
+                            Margin="0,0,-6,0"
+                            Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
+                    </StackPanel>
+
+                    <Control Template="{StaticResource ControlTemplateArrow}" Margin="3" />
+
+                    <!-- Text: Gasoline -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidGasoline}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0" />
+                    <controls:ItemsContainerControl
+                        Container="{Binding ViewModelManufacturingStateProcessedGasoline.ContainerOutput}"
+                        MaxWidth="100"
+                        DesignTimeSlotsCount="1" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </core:WindowMenuWithInventory>
+</manufacturers:WindowOilCrackingPlantBase>

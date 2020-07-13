@@ -14,30 +14,31 @@
 
         public override double CharacterAnimationAimingRecoilPower => 1.2;
 
-        public override string Description => "Revolver-type grenade launcher. Ideal for assault missions or when fighting against heavily armored targets.";
+        public override string Description =>
+            "Revolver-type grenade launcher. Ideal for assault missions or when fighting against heavily armored targets.";
 
         public override uint DurabilityMax => 120;
+
+        public override double FireInterval => 1; // 1 second
 
         public override string Name => "Multiple grenade launcher";
 
         public override double ReadyDelayDuration => 3;
 
-        public override double FireInterval => 1; // 1 second
-
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
-            description.Set(MuzzleFlashPresets.PrimitiveRifle)
+            description.Set(MuzzleFlashPresets.GrenadeLauncher)
                        .Set(textureScreenOffset: (20, 11));
         }
 
         protected override void PrepareProtoGrenadeLauncher(out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos)
         {
-            compatibleAmmoProtos = GetAmmoOfType<IAmmoGrenade>();
+            compatibleAmmoProtos = GetAmmoOfType<IAmmoGrenadeForGrenadeLauncher>();
         }
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedMusket;
+            return WeaponsSoundPresets.WeaponGrenadeLauncher;
         }
     }
 }

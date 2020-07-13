@@ -11,6 +11,8 @@
     {
         public override string Description => "High power large-caliber handgun cartridge.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => ".50 SH ammo";
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)

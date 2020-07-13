@@ -100,6 +100,12 @@
             skeleton.SetMixDuration("Torch",  0.25f);
             skeleton.SetMixDuration("Torch2", 0.15f);
 
+            skeleton.SetMixDuration("Fishing_In", 0.1f);
+            skeleton.SetMixDuration("Fishing_Out", 0.1f);
+
+            // instant transition from death to idle animation
+            skeleton.SetMixDuration("Idle", "Death", secondsMixAB: 0.2f, secondsMixBA: 0);
+
             // setup attack animations
             {
                 var mixIn = 0.033333f;
@@ -136,6 +142,9 @@
                 skeleton.SetMixDuration(startName,      minMix);
                 skeleton.SetMixDuration(startAbortName, minMix);
                 skeleton.SetMixDuration("Idle",         startName,      minMix);
+                // in theory there should be no mixing but we have to apply some
+                // as end state of the movement start animation is not always perfectly matching
+                // the start state of the movement animation 
                 skeleton.SetMixDuration(startName,      primaryName,    minMix);
                 skeleton.SetMixDuration(startName,      startAbortName, minMix);
                 skeleton.SetMixDuration(startAbortName, "Idle",         minMix);

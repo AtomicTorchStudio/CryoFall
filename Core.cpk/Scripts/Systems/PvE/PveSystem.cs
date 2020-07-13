@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -60,7 +61,7 @@
             }
 
             serverIsPvE = ServerRates.Get("PvE",
-                                          defaultValue: 0,
+                                          defaultValue: Api.IsEditor ? 0 : 1,
                                           description:
                                           @"PvP / PvE mode switch.
                               Set it to 1 to make this server PvE-only. Otherwise it will default to PvP.
@@ -154,6 +155,14 @@
                 NotificationColor.Bad);
         }
 
+        public static void ClientShowNotificationActionForbidden()
+        {
+            NotificationSystem.ClientShowNotification(
+                CoreStrings.Notification_ActionForbidden,
+                Notification_StuffBelongsToAnotherPlayer_Message,
+                color: NotificationColor.Bad);
+        }
+
         public static bool SharedAllowPvPDamage(ICharacter characterA, ICharacter characterB)
         {
             if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
@@ -168,7 +177,7 @@
                    && SharedIsDuelModeEnabled(characterB);
         }
 
-        public static bool SharedIsAllowStructureDamage(
+        public static bool SharedIsAllowStaticObjectDamage(
             ICharacter character,
             IStaticWorldObject targetObject,
             bool showClientNotification)
@@ -176,6 +185,13 @@
             if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
             {
                 return true;
+            }
+
+            if (!WorldObjectClaimSystem.SharedIsAllowInteraction(character,
+                                                                 targetObject,
+                                                                 showClientNotification))
+            {
+                return false;
             }
 
             var protoWorldObject = targetObject.ProtoWorldObject;
@@ -251,8 +267,8 @@
 
                 if (WorldObjectOwnersSystem.SharedIsOwner(weaponCache.Character, targetObject))
                 {
-                    // vehicle owner can always damage it
-                    return true;
+                    // vehicle damage by vehicle owner is disabled in PvE
+                    return false;
                 }
 
                 if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob
@@ -306,8 +322,19 @@
             IStaticWorldObject worldObject,
             bool writeToLog)
         {
-            if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: true)
-                || LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+            if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: true))
+            {
+                return true;
+            }
+
+            if (!WorldObjectClaimSystem.SharedIsAllowInteraction(character,
+                                                                 worldObject,
+                                                                 showClientNotification: writeToLog))
+            {
+                return false;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
@@ -348,14 +375,6 @@
             {
                 Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
             }
-        }
-
-        private static void ClientShowNotificationActionForbidden()
-        {
-            NotificationSystem.ClientShowNotification(
-                CoreStrings.Notification_ActionForbidden,
-                Notification_StuffBelongsToAnotherPlayer_Message,
-                color: NotificationColor.Bad);
         }
 
         private static void ClientShowNotificationCannotDamagePlayersAndStructures()

@@ -48,6 +48,9 @@ Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 Выбор на панели предметов
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+Выбор на панели предметов (обратный)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 Колесико мыши
 

@@ -1,4 +1,118 @@
-﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+﻿Scripts/Technologies/Base/TechGroupsLocalization@CanningDescription:
+Создание консервированной еды, которая хранится очень долгое время.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CanningName:
+Консервирование
+
+Scripts/Technologies/Base/TechGroupsLocalization@ChemistryDescription:
+Работа с различными химическими веществами и реакциями.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ChemistryName:
+Химия
+
+Scripts/Technologies/Base/TechGroupsLocalization@CommerceDescription:
+Работа с валютами и торговыми системами. Позволяет чеканить и перерабатывать монеты, а также строить автоматические торговые станции.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CommerceName:
+Торговля
+
+Scripts/Technologies/Base/TechGroupsLocalization@ConstructionDescription:
+Чертежи для разных типов строений и укреплений, чтобы построить и расширять базу.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ConstructionName:
+Строительство
+
+Scripts/Technologies/Base/TechGroupsLocalization@CookingDescription:
+Содержит некоторое количество рецептов, которые позволят готовить более питательную пищу различных видов.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CookingName:
+Готовка
+
+Scripts/Technologies/Base/TechGroupsLocalization@CyberneticsDescription:
+Изготовление и применение кибернетических и биологических имплантов.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CyberneticsName:
+Кибернетика
+
+Scripts/Technologies/Base/TechGroupsLocalization@DecorationsDescription:
+Создание интересных декоративных предметов для украшения вашего дома или базы.
+
+Scripts/Technologies/Base/TechGroupsLocalization@DecorationsName:
+Украшения
+
+Scripts/Technologies/Base/TechGroupsLocalization@DefenseDescription:
+Чертежи для различных типов брони и дополнительного оборонительного и инженерного оборудования.
+
+Scripts/Technologies/Base/TechGroupsLocalization@DefenseName:
+Защита
+
+Scripts/Technologies/Base/TechGroupsLocalization@ElectricityDescription:
+Различная электрическая инфраструктура: от генераторов и энергонакопителей до индустриальных машин.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ElectricityName:
+Электричество
+
+Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
+Энергетическое оружие — это новый технологический скачок в будущее по сравнению с обычным вооружением.
+
+Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
+Энергетическое оружие
+
+Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
+Подготовка семян для посадки, изготовление удобрений и различные фермерские технологии.
+
+Scripts/Technologies/Base/TechGroupsLocalization@FarmingName:
+Фермерство
+
+Scripts/Technologies/Base/TechGroupsLocalization@FishingDescription:
+Удочки, наживка и все, что может понадобиться для рыбной ловли.
+
+Scripts/Technologies/Base/TechGroupsLocalization@FishingName:
+Рыбная ловля
+
+Scripts/Technologies/Base/TechGroupsLocalization@IndustryDescription:
+Индустриальные технологии, связанные с обработкой ресурсов и производством, а также различные индустриальные и технологические инструменты.
+
+Scripts/Technologies/Base/TechGroupsLocalization@IndustryName:
+Производство
+
+Scripts/Technologies/Base/TechGroupsLocalization@JewelryDescription:
+Работа с драгоценными металлами и камнями.
+
+Scripts/Technologies/Base/TechGroupsLocalization@JewelryName:
+Ювелирное дело
+
+Scripts/Technologies/Base/TechGroupsLocalization@MedicineDescription:
+Изготовление различных медицинских средств и приборов.
+
+Scripts/Technologies/Base/TechGroupsLocalization@MedicineName:
+Медицина
+
+Scripts/Technologies/Base/TechGroupsLocalization@OffenseDescription:
+Создание различных видов оружия и типов патронов, а также других технологий нападения, устройств и снаряжения.
+
+Scripts/Technologies/Base/TechGroupsLocalization@OffenseName:
+Атака
+
+Scripts/Technologies/Base/TechGroupsLocalization@RecreationDescription:
+Приготовление алкогольных напитков и тому подобных стимулирующих веществ.
+
+Scripts/Technologies/Base/TechGroupsLocalization@RecreationName:
+Стимуляторы
+
+Scripts/Technologies/Base/TechGroupsLocalization@VehiclesDescription:
+Технологии, необходимые для постройки различного транспорта и изготовления запчастей.
+
+Scripts/Technologies/Base/TechGroupsLocalization@VehiclesName:
+Транспорт
+
+Scripts/Technologies/Base/TechGroupsLocalization@XenoGeologyDescription:
+Технологии, необходимые для использования ресурсов из недр других планет (таких, как эта).
+
+Scripts/Technologies/Base/TechGroupsLocalization@XenoGeologyName:
+Ксеногеология
+
+Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
 Требуется: {0} с {1}% исследованных технологий.
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
@@ -19,53 +133,14 @@ Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Требуется открытая технология: {0}
 
-Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
-Содержит чертежи всех основных построек и позволяет заложить простую базу.
-
-Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
-Строительство
-
 Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
 Базовые постройки
-
-Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
-Содержит некоторое количество рецептов по приготовлению более питательной пищи.
-
-Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
-Готовка
-
-Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
-Чертежи базовых видов одежды и брони.
-
-Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
-Защита
-
-Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
-Костяная броня
-
-Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
-Плетеная броня
 
 Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
 Тканевая броня
 
-Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
-Деревянная броня
-
-Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
-Подготовка семян к посадке, изготовление удобрений и многое другое.
-
-Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
-Фермерство
-
 Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
 Основы фермерства
-
-Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
-Все базовые промышленные технологии, необходимые для обработки ресурсов и производства.
-
-Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
-Производство
 
 Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
 Стекло
@@ -76,110 +151,23 @@ Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 Выплавка
 
-Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
-Чертежи примитивного оружия.
-
-Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
-Атака
-
-Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
-Работа с разнообразными химическими соединениями и реакциями.
-
-Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
-Химия
-
-Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
-Более сложные постройки с широкими спектром применения.
-
-Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
-Строительство 2
-
-Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+Scripts/Technologies/Tier2/Construction/TechNodeStoneConstructions@Name:
 Строительство из камня
 
-Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
-Более сложные кулинарные рецепты для приготовления новых видов блюд.
-
-Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
-Готовка 2
-
-Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
-Почему бы не сделать ваш интерьер более привлекательным?
-
-Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
-Украшения
-
-Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
-Улучшенные технологии защиты предоставляют чертежи более качественной брони.
-
-Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
-Защита 2
-
-Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
-Меховая броня
-
-Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+Scripts/Technologies/Tier2/Defense/TechNodeFurHeadgear@Name:
 Меховые головные уборы
 
-Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
-Кожаная броня
-
-Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+Scripts/Technologies/Tier2/Defense/TechNodeLeatherHeadgear@Name:
 Кожаные головные уборы
 
-Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
-Стеганая броня
-
-Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+Scripts/Technologies/Tier2/Defense/TechNodeQuiltedHeadgear@Name:
 Стеганые головные уборы
 
-Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
-Базовое электрооборудование.
-
-Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
-Электричество
-
-Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
-Сложные технологии фермерства открывают доступ к разнообразным посевам и более эффективным удобрениям.
-
-Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
-Фермерство 2
-
-Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
-Продвинутые промышленные технологии, необходимые для обработки ресурсов и производства.
-
-Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
-Производство 2
-
-Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+Scripts/Technologies/Tier2/Industry/TechNodeSteelSmelting@Name:
 Выплавка стали
 
-Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+Scripts/Technologies/Tier2/Industry/TechNodeSteelTools@Name:
 Стальные инструменты
-
-Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
-Изготовление различных медицинских средств.
-
-Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
-Медицина
-
-Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
-Улучшенные средства нападения, в том числе более мощное вооружение и боеприпасы.
-
-Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
-Атака 2
-
-Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
-Работа с разнообразными сложными химическими компонентами и реакциями.
-
-Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
-Химия 2
-
-Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
-Работа с валютами и торговыми системами. Позволяет чеканить и перерабатывать монеты, а также строить автоматические торговые станции.
-
-Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
-Торговля
 
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
 Чеканка монет
@@ -187,174 +175,21 @@ Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
 Переработка монет
 
-Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
-Продвинутое строительство.
-
-Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
-Строительство 3
-
-Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+Scripts/Technologies/Tier3/Construction/TechNodeBrickConstructions@Name:
 Строительство из кирпича
 
-Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
-Очень сложные рецепты изысканных блюд для настоящих гурманов.
-
-Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
-Готовка 3
-
-Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
-Усовершенствуйте свое окружение еще больше!
-
-Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
-Украшения 2
-
-Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
-Улучшенные технологии защиты.
-
-Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
-Защита 3
-
-Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
-Металлическая броня
-
-Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+Scripts/Technologies/Tier3/Defense/TechNodeMetalHeadgear@Name:
 Металлические шлемы
 
-Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
-Военная броня
-
-Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+Scripts/Technologies/Tier3/Defense/TechNodeMilitaryHeadgear@Name:
 Военный шлем
 
-Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
-Продвинутое электрооборудование.
-
-Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
-Электричество 2
-
-Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
-Улучшенное фермерское хозяйство и широкий выбор растений для посева.
-
-Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
-Фермерство 3
-
-Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
-Улучшенные промышленные технологии, необходимые для более сложной обработки ресурсов и производства.
-
-Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
-Производство 3
-
-Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
-Обеспечивает более широкий выбор передовых медицинских средств.
-
-Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
-Медицина 2
-
-Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
-Усовершенствованные технологии нападения, в том числе полностью автоматическое оружие и более разнообразные боеприпасы.
-
-Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
-Атака 3
-
-Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
-Приготовление алкогольных напитков и тому подобных стимулирующих веществ.
-
-Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
-Стимуляторы
-
-Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
-Технологии, необходимые для постройки различного транспорта.
-
-Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
-Транспорт
-
-Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
-Технологии, необходимые для разработки недр.
-
-Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
-Ксеногеология
-
-Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
-Производство консервированной еды, которая хранится очень долго.
-
-Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
-Консервирование
-
-Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
-Передовые химические процессы и сложные реакции.
-
-Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
-Химия 3
-
-Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
-Высокотехнологичные постройки.
-
-Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
-Строительство 4
-
-Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+Scripts/Technologies/Tier4/Construction/TechNodeConcreteConstructions@Name:
 Бетонные постройки
 
-Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
-Строительство из стали
-
-Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
-Изготовление и применение кибернетических и биологических имплантов.
-
-Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
-Кибернетика
-
-Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
-Передовые технологии защиты.
-
-Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
-Защита 4
-
-Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
-Штурмовая броня
-
-Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
+Scripts/Technologies/Tier4/Defense/TechNodeAssaultHeadgear@Name:
 Штурмовой шлем
 
-Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
-Высокотехнологичное электрооборудование.
-
-Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
-Электричество 3
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
-Энергетическое оружие — это новый технологический скачок в будущее по сравнению с обычным вооружением.
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
-Энергетическое оружие
-
-Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
-Передовые промышленные технологии, необходимые для самых сложных производственных процессов.
-
-Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
-Производство 4
-
-Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
-Работа с драгоценными металлами и камнями.
-
-Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
-Ювелирное дело
-
-Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
-Разработка и применение самых современных медицинских технологий.
-
-Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
-Медицина 3
-
-Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
-Передовые технологии наступления, позволяющие добиться максимальной эффективности от обычного вооружения.
-
-Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
-Атака 4
-
-Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
-Продвинутая боевая техника и транспорт.
-
-Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
-Транспорт 2
+Scripts/Technologies/Tier5/Construction/TechNodeSteelConstructions@Name:
+Строительство из стали
 

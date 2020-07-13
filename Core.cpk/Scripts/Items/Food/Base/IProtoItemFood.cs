@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
+    using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
 
     public interface IProtoItemFood
@@ -7,6 +9,8 @@
           IProtoItemUsableFromContainer,
           IProtoItemWithFreshness
     {
+        IReadOnlyList<EffectAction> Effects { get; }
+
         float FoodRestore { get; }
 
         float HealthRestore { get; }

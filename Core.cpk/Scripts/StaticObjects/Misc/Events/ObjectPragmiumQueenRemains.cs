@@ -16,7 +16,9 @@
 
     public class ObjectPragmiumQueenRemains
         : ProtoObjectMineral
-            <ObjectPragmiumQueenRemains.PrivateState, StaticObjectPublicState, DefaultMineralClientState>
+            <ObjectPragmiumQueenRemains.PrivateState,
+                StaticObjectPublicState,
+                DefaultMineralClientState>
     {
         // The remains destruction will be postponed on this duration
         // if it cannot be destroy because there are characters observing it.
@@ -28,6 +30,10 @@
             = TimeSpan.FromMinutes(30).TotalSeconds;
 
         private TextureResource[] textures;
+
+        public override bool IsAllowDroneMining => false;
+
+        public override bool IsAllowQuickMining => false;
 
         public override string Name => "Pragmium Queen remains";
 
@@ -69,24 +75,24 @@
         {
             config.Stage1
                   .Add<ItemOrePragmium>(count: 2, countRandom: 1)
-                  .Add<ItemGoldNugget>(count: 2, countRandom: 1)
-                  .Add<ItemOreLithium>(count: 5, countRandom: 1);
+                  .Add<ItemGoldNugget>(count: 2,  countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage2
                   .Add<ItemOrePragmium>(count: 2, countRandom: 1)
-                  .Add<ItemGoldNugget>(count: 2, countRandom: 1)
-                  .Add<ItemOreLithium>(count: 5, countRandom: 1);
+                  .Add<ItemGoldNugget>(count: 2,  countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage3
                   .Add<ItemOrePragmium>(count: 2, countRandom: 1)
-                  .Add<ItemGoldNugget>(count: 2, countRandom: 1)
-                  .Add<ItemOreLithium>(count: 5, countRandom: 1);
+                  .Add<ItemGoldNugget>(count: 2,  countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage4
                   .Add<ItemPragmiumHeart>(count: 1)
                   .Add<ItemOrePragmium>(count: 3, countRandom: 1)
                   .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
-                  .Add<ItemOreLithium>(count: 5, countRandom: 2);
+                  .Add<ItemOreLithium>(count: 5,  countRandom: 2);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

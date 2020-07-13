@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `Na zaznaczony obszar mapy spadły kosmiczne śmieci.
 [br]Biegnij tam i zdobądź rzadkie przedmioty!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} – pokonano przez:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Postęp: {0}/{1}
 

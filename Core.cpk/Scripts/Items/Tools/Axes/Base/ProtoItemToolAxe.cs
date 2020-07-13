@@ -39,11 +39,6 @@
 
         public abstract double DamageToTree { get; }
 
-        public virtual double ServerGetDamageToTree(IStaticWorldObject targetObject)
-        {
-            return this.DamageToTree;
-        }
-
         public override ITextureResource Icon { get; }
 
         public virtual double RangeMax => 1;
@@ -51,6 +46,11 @@
         protected sealed override ProtoSkillWeapons WeaponSkill => null;
 
         protected override TextureResource WeaponTextureResource { get; }
+
+        public virtual double ServerGetDamageToTree(IStaticWorldObject targetObject)
+        {
+            return this.DamageToTree;
+        }
 
         protected override void PrepareProtoWeapon(
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,

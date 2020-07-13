@@ -15,12 +15,17 @@
         public const string Notification_CreatureDiscovered_MessageFormat
             = "Killed for the first time.";
 
+        public const string Notification_FishDiscovered_MessageFormat
+            = "Caught for the first time.";
+
         public const string Notification_FoodDiscovered_MessageFormat
             = "Consumed for the first time.";
 
         // Related to "Pry open" action on the loot containers and the "Searching" skill.
         public const string Notification_LootDiscovered_MessageFormat
             = "Found for the first time.";
+
+        private static Dictionary<IProtoEntity, ViewDataEntryFishCompletionist> allFishEntries;
 
         private static Dictionary<IProtoEntity, ViewDataEntryCompletionist> allFoodEntries;
 
@@ -61,20 +66,34 @@
                                                             commandClaimReward));
             }
 
-            this.EntriesFood = new ViewModelCompletionistPage(
+            if (allFishEntries is null)
+            {
+                allFishEntries = CompletionistSystem.CompletionistAllFish.ToDictionary(
+                    proto => (IProtoEntity)proto,
+                    proto => new ViewDataEntryFishCompletionist(proto,
+                                                                commandClaimReward));
+            }
+
+            this.EntriesFood = new ViewModelCompletionistPageDefault(
                 allFoodEntries,
                 columnsCount: 4,
                 iconSize: 74,
                 entriesPendingCountChanged: this.EntriesPendingCountChangedHandler);
 
-            this.EntriesMobs = new ViewModelCompletionistPage(
+            this.EntriesMobs = new ViewModelCompletionistPageDefault(
                 allMobEntries,
                 columnsCount: 3,
                 iconSize: 111,
                 entriesPendingCountChanged: this.EntriesPendingCountChangedHandler);
 
-            this.EntriesLoot = new ViewModelCompletionistPage(
+            this.EntriesLoot = new ViewModelCompletionistPageDefault(
                 allLootEntries,
+                columnsCount: 3,
+                iconSize: 111,
+                entriesPendingCountChanged: this.EntriesPendingCountChangedHandler);
+
+            this.EntriesFish = new ViewModelCompletionistPageFish(
+                allFishEntries,
                 columnsCount: 3,
                 iconSize: 111,
                 entriesPendingCountChanged: this.EntriesPendingCountChangedHandler);
@@ -96,11 +115,13 @@
         public static ViewModelWindowCompletionist Instance { get; }
             = new ViewModelWindowCompletionist();
 
-        public ViewModelCompletionistPage EntriesFood { get; }
+        public ViewModelCompletionistPageFish EntriesFish { get; }
 
-        public ViewModelCompletionistPage EntriesLoot { get; }
+        public ViewModelCompletionistPageDefault EntriesFood { get; }
 
-        public ViewModelCompletionistPage EntriesMobs { get; }
+        public ViewModelCompletionistPageDefault EntriesLoot { get; }
+
+        public ViewModelCompletionistPageDefault EntriesMobs { get; }
 
         public bool HasPendingEntries { get; private set; }
 
@@ -121,6 +142,7 @@
             this.EntriesFood.Source = data.ListFood;
             this.EntriesMobs.Source = data.ListMobs;
             this.EntriesLoot.Source = data.ListLoot;
+            this.EntriesFish.Source = data.ListFish;
         }
 
         protected override void DisposeViewModel()
@@ -137,7 +159,8 @@
         {
             this.TotalPendingEntries = this.EntriesFood.PendingEntriesCount
                                        + this.EntriesMobs.PendingEntriesCount
-                                       + this.EntriesLoot.PendingEntriesCount;
+                                       + this.EntriesLoot.PendingEntriesCount
+                                       + this.EntriesFish.PendingEntriesCount;
             this.HasPendingEntries = this.TotalPendingEntries > 0;
         }
     }

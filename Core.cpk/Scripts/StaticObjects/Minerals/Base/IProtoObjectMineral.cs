@@ -6,6 +6,10 @@
     {
         ReadOnlyMineralDropItemsConfig DropItemsConfig { get; }
 
+        bool IsAllowDroneMining { get; }
+
+        bool IsAllowQuickMining { get; }
+
         byte SharedCalculateDamageStage(float structurePoints);
     }
 }

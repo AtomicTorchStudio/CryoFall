@@ -1,12 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -35,6 +38,8 @@
         }
 
         public override bool CanBeSelectedInVehicle => true;
+
+        public IReadOnlyList<EffectAction> Effects { get; private set; }
 
         public virtual float FoodRestore => 0;
 
@@ -67,6 +72,26 @@
             return false;
         }
 
+        protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
+        {
+            base.ClientTooltipCreateControlsInternal(item, controls);
+
+            if (this.Effects.Count > 0)
+            {
+                controls.Add(ItemTooltipInfoEffectActionsControl.Create(this.Effects));
+            }
+        }
+
+        protected virtual void PrepareEffects(EffectActionsList effects)
+        {
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.AltClickToUseItem);
+        }
+
         protected virtual void PrepareProtoItemMedical()
         {
         }
@@ -75,6 +100,11 @@
         {
             base.PrepareProtoItemWithFreshness();
             this.PrepareProtoItemMedical();
+
+            var effects = new EffectActionsList();
+            this.PrepareEffects(effects);
+            this.Effects = effects.ToReadOnly();
+            ;
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
@@ -115,6 +145,11 @@
             if (this.WaterRestore != 0)
             {
                 currentStats.ServerSetWaterCurrent(currentStats.WaterCurrent + this.WaterRestore);
+            }
+
+            foreach (var effect in this.Effects)
+            {
+                effect.Execute(new EffectActionContext(character));
             }
         }
 

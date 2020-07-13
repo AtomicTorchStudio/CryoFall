@@ -25,6 +25,15 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 农业
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+保留鱼饵几率
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+你对各种鱼类的知识代表了你成功钓鱼的几率。
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+钓鱼
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 获得额外产出概率
 
@@ -100,23 +109,29 @@ Scripts/Skills/Skills/Personal/SkillSurvival@Description:
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 生存
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-获得额外产量概率
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+获得树苗的几率
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-挖矿时找到宝石概率
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+额外树苗几率
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-更好地了解矿藏会增加您的挖掘速度，产量和寻找稀有资源的机会。仅在您使用镐时适用。
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+对此职业更好的训练与理解让你提高了伐木速度。
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-采掘
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-更好的训练和对这一专业的理解可以提高您的木材切割速度。仅在您使用斧头时适用。
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
 伐木
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
+获得额外物品几率
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
+找到宝石几率
+
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+更好地了解矿藏会增加您的挖掘速度，产量和寻找稀有资源的机会。
+
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+探矿
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 更好的建筑技能可以提高施工速度。适用于使用工具箱执行的所有任务（建造，修复）。
@@ -130,9 +145,18 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 制造
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+完全修复物品的几率
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 可以修复和维护各种物品和设备。 适用于在修补桌进行的工作。
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 维护
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+驾驶各类载具及高效使用载具装备的能力。对所有类型的载具生效。
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+载具
 

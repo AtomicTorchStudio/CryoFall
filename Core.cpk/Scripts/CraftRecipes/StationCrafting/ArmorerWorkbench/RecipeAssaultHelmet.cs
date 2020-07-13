@@ -20,8 +20,8 @@
             duration = CraftingDuration.Long;
 
             inputItems.Add<ItemIngotSteel>(count: 10);
-            inputItems.Add<ItemAramidFiber>(count: 20);
-            inputItems.Add<ItemBallisticPlate>(count: 2);
+            inputItems.Add<ItemAramidFiber>(count: 30);
+            inputItems.Add<ItemBallisticPlate>(count: 3);
 
             outputItems.Add<ItemAssaultHelmet>();
         }

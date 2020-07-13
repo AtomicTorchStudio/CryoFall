@@ -23,10 +23,10 @@
             inputItems.Add<ItemSalt>(count: 25);
             inputItems.Add<ItemOreLithium>(count: 25);
             inputItems.Add<ItemAsh>(count: 25);
-            inputItems.Add<ItemCanisterMineralOil>(count: 5);
+            inputItems.Add<ItemCanisterMineralOil>(count: 10);
 
             outputItems.Add<ItemComponentsIndustrialChemicals>(count: 25);
-            outputItems.Add<ItemCanisterEmpty>(count: 5);
+            outputItems.Add<ItemCanisterEmpty>(count: 10);
         }
     }
 }

@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationStatueGold : ProtoObjectDecoration
+    public class ObjectDecorationStatueGold : ProtoObjectDecoration
     {
         public override string Description =>
             "True demonstration of your wealth. Only the richest of the rich can afford to build something like this.";

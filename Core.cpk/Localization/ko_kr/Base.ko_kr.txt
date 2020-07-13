@@ -55,62 +55,74 @@ Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Scripts/Base/Stats/StatName@SearchingSpeed:
 탐색 속도
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-대미지 보너스
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 대미지 보너스
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-대미지 보너스
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+특별 효과 확률
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-대미지 보너스
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+내구도 감소 속도
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+재장전 소요 시간
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 대미지 보너스
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 특별 효과 확률
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-특별 효과 확률
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-특별 효과 확률
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-특별 효과 확률
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-특별 효과 확률
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-내구도 감소 속도
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-내구도 감소 속도
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-내구도 감소 속도
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-내구도 감소 속도
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 내구도 감소 속도
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 재장전 소요 시간
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 재장전 소요 시간
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+내구도 감소 속도
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 에너지 소모량
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-재장전 소요 시간
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+무기 대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+무기 내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+무기 재장전 시간
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+무기 특수 효과 발동률
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+내구도 감소 속도
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 재장전 소요 시간
@@ -192,4 +204,13 @@ Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 약물 독성
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+낚시 지식 레벨
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+낚시 성공률
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+연료 소모량
 

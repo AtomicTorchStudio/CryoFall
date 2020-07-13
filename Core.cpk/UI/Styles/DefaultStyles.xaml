@@ -246,6 +246,9 @@
     <SolidColorBrush x:Key="WidgetBorderBrush" Color="{StaticResource WidgetBorderColor}" />
     <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="#B4000000" />
 
+    <SolidColorBrush x:Key="BrushCanInteract" Color="#FFFFCC00" />
+    <SolidColorBrush x:Key="BrushCannotInteract" Color="#FFBBBBBB" />
+
     <Style TargetType="{x:Type core:WidgetPanel}" BasedOn="{StaticResource {x:Type UserControl}}">
         <Setter Property="WidgetBackground" Value="{StaticResource WidgetBackgroundBrush}" />
     </Style>
@@ -279,7 +282,8 @@
     </LinearGradientBrush>
 
     <!-- Apply default font settings for all root elements -->
-    <Style x:Key="DefaultStyleForRoot" TargetType="{x:Type UserControl}" BasedOn="{StaticResource {x:Type UserControl}}">
+    <Style x:Key="DefaultStyleForRoot" TargetType="{x:Type UserControl}"
+           BasedOn="{StaticResource {x:Type UserControl}}">
         <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
@@ -289,19 +293,22 @@
 
     <!-- Label style -->
     <Style TargetType="{x:Type Label}">
-      <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground"
                 Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}}" />
         <Setter Property="Padding" Value="0" />
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="Label">
-            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
-              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
-            </Border>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- Hyperlink style -->
@@ -603,6 +610,7 @@
     </Style>
 
     <Style x:Key="SmallButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Foreground" Value="#CCFFFFFF" />
         <Setter Property="Background" Value="#66666666" />
         <Setter Property="BorderBrush" Value="{x:Null}" />
@@ -1012,7 +1020,8 @@
                                               VisibilityBackgroundImage="Collapsed" />
 
                             <Border BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid x:Name="ContentChromeGrid" Margin="{TemplateBinding Padding}"
+                                <Grid x:Name="ContentChromeGrid" 
+                                      Margin="{TemplateBinding Padding}"
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                       RenderTransformOrigin="0.5,0.5">
@@ -1028,6 +1037,12 @@
                                     <ContentPresenter KeyboardNavigation.TabNavigation="Cycle" />
                                 </Grid>
                             </Border>
+
+                            <Canvas HorizontalAlignment="Right"
+                                    Margin="0,0,-6,0">
+                                <StackPanel x:Name="ExtensionsPanel"
+                                            Orientation="Vertical" />
+                            </Canvas>
                         </Grid>
                     </ContentControl>
                 </ControlTemplate>
@@ -1501,10 +1516,10 @@
                             PopupAnimation="None">
                             <Grid x:Name="DropDown" MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder" 
-                                        Margin="0,1,0,0" 
+                                <Border x:Name="DropDownBorder"
+                                        Margin="0,1,0,0"
                                         BorderThickness="1"
-                                        BorderBrush="{StaticResource BrushColorAlt5}" 
+                                        BorderBrush="{StaticResource BrushColorAlt5}"
                                         CornerRadius="1">
                                     <Border.Background>
                                         <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.975" />
@@ -1712,7 +1727,7 @@
                 <ItemsPresenter Margin="{TemplateBinding Padding}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </ScrollViewer>
-            <Border x:Name="Border" 
+            <Border x:Name="Border"
                     Background="{x:Null}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     BorderBrush="{TemplateBinding BorderBrush}" />
@@ -2454,7 +2469,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Width" Value="Auto" />
-        <Setter Property="Height" Value="15" />
+        <Setter Property="Height" Value="20" />
         <Setter Property="Interval" Value="50" />
         <Setter Property="Focusable" Value="false" />
         <Setter Property="IsTabStop" Value="false" />
@@ -2478,6 +2493,7 @@
                         <ContentControl.Background>
                             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                 <GradientStop Color="#FF000000" />
+                                <GradientStop Color="#DD000000" Offset="0.33" />
                                 <GradientStop Color="#00000000" Offset="1" />
                             </LinearGradientBrush>
                         </ContentControl.Background>
@@ -2756,15 +2772,21 @@
                 TileMode="None"
                 Stretch="Fill" />
 
+    <ImageBrush x:Key="ResistanceBarBackgroundBrightImageTexture"
+                ImageSource="/UI/Images/Menus/Equipment/DamageResistanceBarBackgroundBright.png"
+                TileMode="None"
+                Stretch="Fill" />
+
     <Style x:Key="DefenseStatBarStyle" TargetType="{x:Type core:ValueBarControl}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="PositionsCount" Value="40" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Width" Value="182" />
+        <Setter Property="Width" Value="214" />
         <Setter Property="Height" Value="18" />
         <Setter Property="Background" Value="{StaticResource ResistanceBarBackgroundImageTexture}" />
-        <Setter Property="Padding" Value="0" />
+        <Setter Property="Padding" Value="32,0,0,0" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="MaxValue" Value="1" />
         <Setter Property="IsValueInterpolated" Value="True" />
         <Setter Property="ValueInterpolationRate" Value="15" />
@@ -2776,14 +2798,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
-                    <ContentControl UseLayoutRounding="True">
+                    <ContentControl UseLayoutRounding="True"
+                                    Background="Transparent">
                         <Grid x:Name="LayoutRoot"
                               Background="{TemplateBinding Background}"
-                              UseLayoutRounding="True">
-                            <ContentPresenter
-                                Margin="{TemplateBinding Padding}"
-                                HorizontalAlignment="Left"
-                                UseLayoutRounding="True" />
+                              Margin="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" />
                         </Grid>
                     </ContentControl>
                 </ControlTemplate>
@@ -2797,6 +2817,55 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="TooltipStatBarStyle" TargetType="{x:Type core:ValueBarControl}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="PositionsCount" Value="40" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Height" Value="13" />
+        <Setter Property="Background" Value="{StaticResource ResistanceBarBackgroundBrightImageTexture}" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="MaxValue" Value="1" />
+        <Setter Property="IsValueInterpolated" Value="True" />
+        <Setter Property="ValueInterpolationRate" Value="15" />
+        <Setter Property="InterpolationMaxDifferenceFraction" Value="1" />
+        <Setter Property="InterpolationMinDifferenceFraction" Value="0.025" />
+        <Setter Property="IsDisplayLabel" Value="False" />
+        <Setter Property="IsDisplayPercents" Value="False" />
+        <Setter Property="IsDisplayTooltip" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
+                    <ContentControl UseLayoutRounding="True"
+                                    Background="Transparent">
+                        <Grid x:Name="LayoutRoot"
+                              Background="{TemplateBinding Background}"
+                              Margin="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" />
+                        </Grid>
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DefaultContentTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Fill="{StaticResource ResistanceBarForegroundImageTexture}"
+                               UseLayoutRounding="False" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TooltipStatTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Margin" Value="0,1" />
     </Style>
 
     <LinearGradientBrush x:Key="BrushHorizontalSeparator" Opacity="1" StartPoint="0,0.5" EndPoint="1,0.5">
@@ -2859,25 +2928,35 @@
     <Style x:Key="WorldObjectValueBarControlStyle" TargetType="{x:Type core:ValueBarControl}">
         <!-- Always interpolate -->
         <Setter Property="InterpolationMaxDifferenceFraction" Value="1" />
+        <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="MaxWidth" Value="100" />
-        <Setter Property="MaxHeight" Value="8" />
-        <Setter Property="Padding" Value="1.5,1.5" />
+        <Setter Property="MaxWidth" Value="120" />
+        <Setter Property="MaxHeight" Value="10" />
+        <Setter Property="Padding" Value="1.5" />
         <Setter Property="IsDisplayLabel" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
-                    <Grid x:Name="LayoutRoot">
+                    <Grid x:Name="LayoutRoot"
+                          UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                        <!-- Outer (dark) border -->
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding Background}"
+                                CornerRadius="2.5"
+                                Margin="-0.5" />
+
+                        <!-- Inner (bright) border -->
                         <Border x:Name="Border"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="2" />
 
-                        <ContentPresenter HorizontalAlignment="Left"
-                                          Margin="{TemplateBinding Padding}" />
+                        <ContentPresenter Margin="{TemplateBinding Padding}" />
 
-                        <Border Margin="{TemplateBinding Padding}" CornerRadius="1">
+                        <!-- Shadow gradient overlay -->
+                        <Border Margin="{TemplateBinding Padding}" 
+                                CornerRadius="1">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.15">
                                     <GradientStop Color="Transparent" Offset="0" />
@@ -3092,6 +3171,42 @@
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Width" Value="14" />
         <Setter Property="Height" Value="14" />
+        <Setter Property="FontSize" Value="9.5" />
+        <Setter Property="Margin" Value="2,0,0,0" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}"
+                          UseLayoutRounding="False">
+                        <Ellipse Width="{TemplateBinding Width}"
+                                 Height="{TemplateBinding Height}"
+                                 Fill="{StaticResource BrushColorAlt3}"
+                                 UseLayoutRounding="False" />
+                        <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                        <TextBlock Text="i"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource BrushColorAlt7}"
+                                   UseLayoutRounding="False"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontFamily="{StaticResource DigitsFontFamily}"
+                                   TextAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   noesis:Text.Stroke="Black"
+                                   noesis:Text.StrokeThickness="1"
+                                   Margin="0,-2,0,0" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ControlInfoQuestionPointStyle" TargetType="Control">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Width" Value="14" />
+        <Setter Property="Height" Value="14" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Margin" Value="2,0,0,0" />
         <Setter Property="UseLayoutRounding" Value="False" />
@@ -3202,6 +3317,26 @@
     <Geometry x:Key="IconGeometryMouseInputLeftButton">M 31.269883,93.104623 C 50.511411,100.7182 70.161692,103.69417 88.32662,104.09861 V 7.347515 C 58.987098,9.1679055 31.269883,23.728716 31.269883,53.829485 Z</Geometry>
     <Geometry x:Key="IconGeometryMouseInputRightButton">M 187.28084,93.104623 C 168.0393,100.7182 148.38901,103.69417 130.22407,104.09861 V 7.347515 c 29.33954,1.8203905 57.05677,16.381201 57.05677,46.48197 z</Geometry>
 
-    <Geometry x:Key="IconGeometrySupporterBadge">M 0.03515625 1096.3125 L 0.03515625 1102.7754 L 9.7617188 1102.7754 L 9.7617188 1096.3125 L 0.03515625 1096.3125 z M 12.910156 1096.3125 L 12.910156 1102.7754 L 22.638672 1102.7754 L 22.638672 1096.3125 L 12.910156 1096.3125 z M 11.337891 1100.9316 C 10.546722 1100.9316 8.4779593 1107.5604 7.8378906 1108.0254 C 7.1978223 1108.4905 0.25229687 1108.4096 0.0078125 1109.1621 C -0.23667187 1109.9145 5.4293456 1113.9331 5.6738281 1114.6855 C 5.9183122 1115.438 3.6958692 1122.0174 4.3359375 1122.4824 C 4.9760062 1122.9475 10.546722 1118.8008 11.337891 1118.8008 C 12.129059 1118.8008 17.701729 1122.9475 18.341797 1122.4824 C 18.981866 1122.0174 16.75942 1115.438 17.003906 1114.6855 C 17.248391 1113.9331 22.914404 1109.9145 22.669922 1109.1621 C 22.425437 1108.4096 15.479912 1108.4905 14.839844 1108.0254 C 14.199775 1107.5604 12.129059 1100.9316 11.337891 1100.9316 z </Geometry>
+    <Geometry x:Key="IconGeometrySupporterBadge">M 0.03515625 1096.3125 L 0.03515625 1102.7754 L 9.7617188 1102.7754 L 9.7617188 1096.3125 L 0.03515625 1096.3125 z M 12.910156 1096.3125 L 12.910156 1102.7754 L 22.638672 1102.7754 L 22.638672 1096.3125 L 12.910156 1096.3125 z M 11.337891 1100.9316 C 10.546722 1100.9316 8.4779593 1107.5604 7.8378906 1108.0254 C 7.1978223 1108.4905 0.25229687 1108.4096 0.0078125 1109.1621 C -0.23667187 1109.9145 5.4293456 1113.9331 5.6738281 1114.6855 C 5.9183122 1115.438 3.6958692 1122.0174 4.3359375 1122.4824 C 4.9760062 1122.9475 10.546722 1118.8008 11.337891 1118.8008 C 12.129059 1118.8008 17.701729 1122.9475 18.341797 1122.4824 C 18.981866 1122.0174 16.75942 1115.438 17.003906 1114.6855 C 17.248391 1113.9331 22.914404 1109.9145 22.669922 1109.1621 C 22.425437 1108.4096 15.479912 1108.4905 14.839844 1108.0254 C 14.199775 1107.5604 12.129059 1100.9316 11.337891 1100.9316 z</Geometry>
+
+    <Geometry x:Key="IconGeometryFridgeSnowflake">m 35.37978,210.52267 v 10.7735 l -8.09459,-4.67982 -4.10931,7.09414 12.2039,7.06934 v 15.8998 l -13.70872,-7.92096 -0.0248,-14.16348 -8.20208,0.0165 0.0165,9.40925 L 4.10104,228.61352 0,235.71593 l 9.33483,5.39088 -8.10287,4.66328 4.08451,7.11068 12.22871,-7.03626 13.75833,7.94576 -13.70872,7.9127 -12.27832,-7.06107 -4.08451,7.11068 8.15248,4.69635 -9.35964,5.39916 4.10104,7.10241 9.33484,-5.39089 -0.0165,9.35137 8.20208,0.0165 0.0248,-14.1056 13.75833,-7.9375 v 15.82539 l -12.25351,7.10241 4.10931,7.09414 8.1442,-4.71289 V 297 h 8.20209 v -10.77351 l 8.09459,4.67982 4.10931,-7.09414 -12.2039,-7.06933 v -15.89981 l 13.70872,7.92096 0.0248,14.16348 8.20208,-0.0165 -0.0165,-9.40924 9.35964,5.40742 4.10104,-7.10241 -9.33483,-5.39089 8.10286,-4.66328 -4.0845,-7.11067 -12.22044,7.03626 -13.76661,-7.94577 13.717,-7.92096 12.27005,7.06933 4.0845,-7.11067 -8.15247,-4.69636 9.35964,-5.39915 -4.10105,-7.10241 -9.33483,5.39089 0.0165,-9.35137 -8.20208,-0.0165 -0.0248,14.1056 -13.75833,7.9375 V 230.8129 l 12.25351,-7.10241 -4.10931,-7.09414 -8.1442,4.71289 v -10.80657 z</Geometry>
+
+    <Style x:Key="LandClaimBoundTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+        <Setter Property="Foreground" Value="#DDCCCCCC" />
+        <Setter Property="noesis:Text.Stroke" Value="#DD000000" />
+        <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+    </Style>
+
+    <ImageSource x:Key="ImageSourceDamageTypeImpact">/UI/Images/Icons/Damage/icon_damage_impact.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypeKinetic">/UI/Images/Icons/Damage/icon_damage_kinetic.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypeExplosion">/UI/Images/Icons/Damage/icon_damage_explosion.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypeHeat">/UI/Images/Icons/Damage/icon_damage_heat.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypeCold">/UI/Images/Icons/Damage/icon_damage_cold.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypeChemical">/UI/Images/Icons/Damage/icon_damage_chemical.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypeRadiation">/UI/Images/Icons/Damage/icon_damage_radiation.png</ImageSource>
+    <ImageSource x:Key="ImageSourceDamageTypePsi">/UI/Images/Icons/Damage/icon_damage_psi.png</ImageSource>
 
 </ResourceDictionary>

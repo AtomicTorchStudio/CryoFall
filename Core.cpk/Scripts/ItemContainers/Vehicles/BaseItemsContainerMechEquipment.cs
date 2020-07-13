@@ -3,6 +3,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Items;
 
     public abstract class BaseItemsContainerMechEquipment : ProtoItemsContainer
@@ -10,6 +11,8 @@
         public abstract byte AmmoSlotsCount { get; }
 
         public byte TotalSlotsCount => (byte)(this.WeaponSlotsCount + this.AmmoSlotsCount);
+
+        public abstract VehicleWeaponHardpoint WeaponHardpointName { get; }
 
         public abstract byte WeaponSlotsCount { get; }
 
@@ -69,14 +72,29 @@
             return allowedSlotsIds[0];
         }
 
-        private byte[] GetAllowedSlotsIds(IProtoItem protoItem)
+        protected virtual byte[] GetAllowedSlotsIds(IProtoItem protoItem)
         {
-            return protoItem switch
+            switch (protoItem)
             {
-                IProtoItemWeaponForMech _ => ByteSequence(0,                     this.WeaponSlotsCount),
-                IProtoItemAmmo _          => ByteSequence(this.WeaponSlotsCount, this.TotalSlotsCount),
-                _                         => null
-            };
+                // allow only weapons for current hardpoint type
+                case IProtoItemVehicleWeapon p
+                    when p.WeaponHardpoint == this.WeaponHardpointName:
+                    return ByteSequence(0, this.WeaponSlotsCount);
+
+                case IProtoItemWeapon _:
+                    // cannot equip any other weapon
+                    return null;
+
+                case IAmmoArrow _:
+                    // no arrows in the mech for sure
+                    return null;
+
+                case IProtoItemAmmo _:
+                    return ByteSequence(this.WeaponSlotsCount, this.TotalSlotsCount);
+
+                default:
+                    return null;
+            }
 
             static byte[] ByteSequence(byte fromInclusive, byte toExclusive)
             {

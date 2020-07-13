@@ -1,4 +1,118 @@
-﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+﻿Scripts/Technologies/Base/TechGroupsLocalization@CanningDescription:
+Création de nourriture en conserve capable de se garder très longtemps.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CanningName:
+Conserves
+
+Scripts/Technologies/Base/TechGroupsLocalization@ChemistryDescription:
+Comment travailler avec divers composés et réactifs chimiques.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ChemistryName:
+Chimie
+
+Scripts/Technologies/Base/TechGroupsLocalization@CommerceDescription:
+Tout ce qui concerne la monnaie et qui permet de faciliter le commerce. Permet la frappe et le recyclage de pièces, ainsi que la construction de postes de négoce automatisés.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CommerceName:
+Commerce
+
+Scripts/Technologies/Base/TechGroupsLocalization@ConstructionDescription:
+Schémas de construction de différents types de bâtiments et fortifications pour développer et étendre votre base.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ConstructionName:
+Construction
+
+Scripts/Technologies/Base/TechGroupsLocalization@CookingDescription:
+Des recettes permettant la préparation de divers types d'aliments de qualité.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CookingName:
+Cuisine
+
+Scripts/Technologies/Base/TechGroupsLocalization@CyberneticsDescription:
+Création et installation d'implants cybernétiques et biologiques.
+
+Scripts/Technologies/Base/TechGroupsLocalization@CyberneticsName:
+Cybernétique
+
+Scripts/Technologies/Base/TechGroupsLocalization@DecorationsDescription:
+Création d'objets décoratifs intéressants à placer dans votre maison ou votre base.
+
+Scripts/Technologies/Base/TechGroupsLocalization@DecorationsName:
+Décorations
+
+Scripts/Technologies/Base/TechGroupsLocalization@DefenseDescription:
+Schémas de construction de différents types d'armures et autres équipements de défense ou utilitaires.
+
+Scripts/Technologies/Base/TechGroupsLocalization@DefenseName:
+Défense
+
+Scripts/Technologies/Base/TechGroupsLocalization@ElectricityDescription:
+Diverses structures électriques, allant des générateurs et accumulateurs d'énergie aux différentes machines industrielles.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ElectricityName:
+Électricité
+
+Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
+Les armes à énergie représentent un nouveau bond technologique par rapport aux armes à feu conventionnelles.
+
+Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
+Armes à énergie
+
+Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
+Tout sur la préparation des graines pour les semis, l'utilisation des engrais et les différentes techniques d'agriculture.
+
+Scripts/Technologies/Base/TechGroupsLocalization@FarmingName:
+Agriculture
+
+Scripts/Technologies/Base/TechGroupsLocalization@FishingDescription:
+Cannes à pêche, appâts, et tout ce dont vous avez besoin pour pêcher.
+
+Scripts/Technologies/Base/TechGroupsLocalization@FishingName:
+Pêche
+
+Scripts/Technologies/Base/TechGroupsLocalization@IndustryDescription:
+Technologies industrielles liées à la fabrication et au traitement des ressources, ainsi qu'à l'élaboration de divers outils industriels et technologiques.
+
+Scripts/Technologies/Base/TechGroupsLocalization@IndustryName:
+Industrie
+
+Scripts/Technologies/Base/TechGroupsLocalization@JewelryDescription:
+Travail des pierres et des métaux précieux.
+
+Scripts/Technologies/Base/TechGroupsLocalization@JewelryName:
+Joaillerie
+
+Scripts/Technologies/Base/TechGroupsLocalization@MedicineDescription:
+Création de diverses fournitures de soins et appareils médicaux.
+
+Scripts/Technologies/Base/TechGroupsLocalization@MedicineName:
+Médecine
+
+Scripts/Technologies/Base/TechGroupsLocalization@OffenseDescription:
+Création d'armes et de munitions, ainsi que de diverses technologies, appareils et équipements offensifs.
+
+Scripts/Technologies/Base/TechGroupsLocalization@OffenseName:
+Attaque
+
+Scripts/Technologies/Base/TechGroupsLocalization@RecreationDescription:
+Brassage des boissons alcoolisées, et autres produits de même nature.
+
+Scripts/Technologies/Base/TechGroupsLocalization@RecreationName:
+Détente
+
+Scripts/Technologies/Base/TechGroupsLocalization@VehiclesDescription:
+Technologies nécessaires à la construction d'une variété de véhicules et la fabrication de pièces de rechange.
+
+Scripts/Technologies/Base/TechGroupsLocalization@VehiclesName:
+Véhicules
+
+Scripts/Technologies/Base/TechGroupsLocalization@XenoGeologyDescription:
+Les technologies nécessaires à l'exploitation des ressources de mondes extra-terrestres.
+
+Scripts/Technologies/Base/TechGroupsLocalization@XenoGeologyName:
+Xénogéologie
+
+Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
 Nécessite {0} avec {1}% des technologies recherchées.
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
@@ -19,53 +133,14 @@ Indisponible pendant {0} après un effacement de serveur (veuillez patienter {1}
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Déverrouillage de technologie requis : {0}
 
-Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
-Contient les schémas de tous les bâtiments de base et permet d'établir une base simple.
-
-Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
-Construction
-
 Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
 Construction de base
-
-Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
-Contient quelques recettes permettant de produire de meilleurs aliments.
-
-Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
-Cuisine
-
-Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
-Schémas pour vêtements et armures de base.
-
-Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
-Défense
-
-Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
-Armure d'os
-
-Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
-Armure tressée
 
 Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
 Armure en tissu
 
-Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
-Armure en bois
-
-Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
-Préparation des graines pour le semis, engrais de base, etc.
-
-Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
-Agriculture
-
 Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
 Agriculture de base
-
-Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
-Toutes les technologies industrielles de base nécessaires pour assurer la production et la fabrication.
-
-Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
-Industrie
 
 Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
 Travail du verre
@@ -76,110 +151,23 @@ Outils en fer
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 Fonte
 
-Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
-Schémas pour des armes primitives.
-
-Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
-Attaque
-
-Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
-Comment travailler avec divers composés et réactifs chimiques.
-
-Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
-Chimie
-
-Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
-Des structures plus complexes, aux applications plus larges.
-
-Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
-Construction 2
-
-Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+Scripts/Technologies/Tier2/Construction/TechNodeStoneConstructions@Name:
 Constructions de pierre
 
-Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
-Des recettes plus sophistiquées, pour de nouveaux plats plus variés.
-
-Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
-Cuisine 2
-
-Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
-Pourquoi ne pas rendre votre environnement plus agréable ?
-
-Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
-Décorations
-
-Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
-Des technologies de protection améliorées permettant de créer de meilleures armures.
-
-Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
-Défense 2
-
-Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
-Armure en fourrure
-
-Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+Scripts/Technologies/Tier2/Defense/TechNodeFurHeadgear@Name:
 Coiffe en fourrure
 
-Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
-Armure en cuir
-
-Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+Scripts/Technologies/Tier2/Defense/TechNodeLeatherHeadgear@Name:
 Coiffe en cuir
 
-Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
-Armure rembourrée
-
-Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+Scripts/Technologies/Tier2/Defense/TechNodeQuiltedHeadgear@Name:
 Coiffe rembourrée
 
-Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
-Infrastructure électrique de base.
-
-Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
-Électricité
-
-Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
-Des techniques agricoles complexes pour travailler avec plus de plantes et avec de meilleurs engrais.
-
-Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
-Agriculture 2
-
-Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
-Des technologies industrielles améliorées donnant accès à de nouvelles procédures et applications industrielles.
-
-Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
-Industrie 2
-
-Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+Scripts/Technologies/Tier2/Industry/TechNodeSteelSmelting@Name:
 Fonte de l'acier
 
-Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+Scripts/Technologies/Tier2/Industry/TechNodeSteelTools@Name:
 Outils en acier
-
-Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
-La création de diverses fournitures médicales.
-
-Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
-Médecine
-
-Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
-Des instruments offensifs plus évolués, comme de meilleures armes à feu et des munitions plus puissantes.
-
-Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
-Attaque 2
-
-Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
-Travail avec des composés et des réactifs chimiques plus complexes.
-
-Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
-Chimie 2
-
-Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
-Tout ce qui concerne la monnaie et qui permet de faciliter le commerce. Permet la frappe et le recyclage de pièces, ainsi que la construction de troc-o-matiques.
-
-Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
-Commerce
 
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
 Frappe de monnaie
@@ -187,174 +175,21 @@ Frappe de monnaie
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
 Recyclage de pièces de monnaie
 
-Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
-Les constructions évoluées.
-
-Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
-Construction 3
-
-Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+Scripts/Technologies/Tier3/Construction/TechNodeBrickConstructions@Name:
 Constructions en briques
 
-Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
-Des recettes encore plus complexes pour les véritables amateurs de nourriture de qualité.
-
-Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
-Cuisine 3
-
-Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
-Personnalisez encore plus votre environnement !
-
-Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
-Décorations 2
-
-Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
-Des technologies de protection évoluées.
-
-Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
-Défense 3
-
-Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
-Armure en métal
-
-Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+Scripts/Technologies/Tier3/Defense/TechNodeMetalHeadgear@Name:
 Coiffe en métal
 
-Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
-Armure militaire
-
-Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+Scripts/Technologies/Tier3/Defense/TechNodeMilitaryHeadgear@Name:
 Coiffe militaire
 
-Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
-Infrastructure électrique évoluée.
-
-Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
-Électricité 2
-
-Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
-Des techniques agricoles évoluées, et un accès à une plus grande variété de cultures.
-
-Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
-Agriculture 3
-
-Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
-Des technologies industrielles évoluées donnant accès à de nouvelles procédures et applications industrielles.
-
-Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
-Industrie 3
-
-Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
-Permet de produire une plus large sélection de fournitures médicales.
-
-Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
-Médecine 2
-
-Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
-Des technologies offensives hautement évoluées, comprenant des armes automatiques et des munitions très variées.
-
-Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
-Attaque 3
-
-Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
-Le brassage de boissons alcoolisées, et autres choses de même nature.
-
-Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
-Loisirs
-
-Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
-Technologies nécessaires à la construction d'un certain nombre de véhicules.
-
-Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
-Véhicules
-
-Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
-Les technologies nécessaires à l'exploitation des ressources de mondes extra-terrestres.
-
-Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
-Xénogéologie
-
-Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
-Création de nourriture en conserve capable de se garder très longtemps.
-
-Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
-Conserves
-
-Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
-Les processus chimiques évolués et les réactions complexes.
-
-Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
-Chimie 3
-
-Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
-Les constructions high-tech.
-
-Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
-Construction 4
-
-Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+Scripts/Technologies/Tier4/Construction/TechNodeConcreteConstructions@Name:
 Constructions en ciment
 
-Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+Scripts/Technologies/Tier4/Defense/TechNodeAssaultHeadgear@Name:
+Coiffe d'assaut
+
+Scripts/Technologies/Tier5/Construction/TechNodeSteelConstructions@Name:
 Constructions en acier
-
-Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
-La création et l'intégration d'implants cybernétiques et biologiques.
-
-Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
-Cybernétique
-
-Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
-Les technologies de protection high-tech.
-
-Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
-Défense 4
-
-Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
-Armure d'assaut
-
-Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
-Armure d'assaut
-
-Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
-Infrastructure électrique high-tech.
-
-Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
-Électricité 3
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
-Les armes à énergie représentent un nouveau bond technologique depuis les armes à feu conventionnelles.
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
-Armes à énergie
-
-Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
-Les technologies industrielles high-tech, qui ouvrent l'accès aux procédures technologiques les plus complexes.
-
-Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
-Industrie 4
-
-Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
-Le travail de précision avec les pierres et les métaux précieux.
-
-Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
-Joaillerie
-
-Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
-Le développement et l'utilisation des technologies médicales les plus sophistiquées.
-
-Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
-Médecine 3
-
-Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
-Des technologies offensives high-tech, qui poussent les armes à feu conventionnelles au maximum de leur potentiel.
-
-Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
-Attaque 4
-
-Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
-Véhicules de combat et de transport évolués.
-
-Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
-Véhicules 2
 

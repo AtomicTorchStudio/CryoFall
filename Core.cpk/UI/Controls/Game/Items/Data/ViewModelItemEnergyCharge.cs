@@ -8,11 +8,14 @@
 
     public class ViewModelItemEnergyCharge : BaseViewModel
     {
-        private static readonly Brush BrushGreen = new SolidColorBrush(Color.FromArgb(0xFF, 0x20, 0xC0, 0x20));
+        private static readonly Brush BrushGreen
+            = new SolidColorBrush(Color.FromArgb(0xFF, 0x20, 0xC0, 0x20));
 
-        private static readonly Brush BrushRed = new SolidColorBrush(Color.FromArgb(0xFF, 0xE0, 0x10, 0x10));
+        private static readonly Brush BrushRed
+            = new SolidColorBrush(Color.FromArgb(0xFF, 0xE0, 0x10, 0x10));
 
-        private static readonly Brush BrushYellow = new SolidColorBrush(Color.FromArgb(0xFF, 0xE0, 0xE0, 0x10));
+        private static readonly Brush BrushYellow
+            = new SolidColorBrush(Color.FromArgb(0xFF, 0xE0, 0xE0, 0x10));
 
         private IItem item;
 
@@ -56,7 +59,7 @@
             }
         }
 
-        public string LabelFormat => "{0:F0}/{1:F0} " + CoreStrings.EnergyUnitAbbreviation;
+        public string LabelFormat => "{0:N0}/{1:N0} " + CoreStrings.EnergyUnitAbbreviation;
 
         public static Brush GetBrush(double charge, double capacity)
         {

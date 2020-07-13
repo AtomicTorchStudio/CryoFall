@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class TileSwamp : ProtoTile
+    public class TileSwamp : ProtoTile, IProtoTileWellAllowed
     {
         private static readonly TextureResource GroundTextureOverlay
             = new TextureResource("Terrain/Swamp/TileSwamp1.jpg",
@@ -25,6 +25,8 @@
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Mud;
 
         public override bool IsRestrictingConstruction => false;
+
+        public bool IsStaleWellWater => true;
 
         public override TileKind Kind => TileKind.Solid;
 

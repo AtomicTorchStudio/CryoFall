@@ -25,6 +25,8 @@
         private static readonly List<IStaticWorldObject> TempList
             = new List<IStaticWorldObject>(capacity: 100000);
 
+        private static IProtoObjectStructure[] ServerDecayingProtoStructures;
+
         public override string Name => "Structure decay system";
 
         /// <summary>
@@ -87,8 +89,6 @@
                 name: "System." + this.ShortId);
         }
 
-        private static IProtoObjectStructure[] ServerDecayingProtoStructures;
-
         private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime, double deltaTime)
         {
             if (worldObject.IsDestroyed)
@@ -138,7 +138,7 @@
                 {
                     protoStructure.EnumerateGameObjectsWithSpread(TempList, deltaTime, frameNumber, frameRate);
                 }
-                
+
                 var objectsDecayedCount = 0;
                 foreach (var worldObject in TempList)
                 {

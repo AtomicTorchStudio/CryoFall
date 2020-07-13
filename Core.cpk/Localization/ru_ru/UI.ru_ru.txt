@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 Построить
 
+UI/CoreStrings@Action_Relocate:
+Переместить
+
 UI/CoreStrings@Action_Repair:
 Починить
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+Совместимое оружие:
+
+UI/CoreStrings@AutosaveNotification_Completed:
+Сохранение завершено!
+
+UI/CoreStrings@AutosaveNotification_Content1:
+На сервере будет произведено плановое сохранение мира.
+
+UI/CoreStrings@AutosaveNotification_Content2:
+Возможна небольшая задержка.
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+Сохранение начнется через: {0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+Сохранение...
+
+UI/CoreStrings@AutosaveNotification_Title:
+Сохранение сервера
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Уничтожится через
@@ -174,6 +198,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Эта постройка накапливает электроэнергию.
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+После постройки это строение нельзя будет переместить.
+
 UI/CoreStrings@Copy:
 Копировать
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 Нет значка
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-Выберите значок
+Щелкните здесь предметом, чтобы поместить картинку на ящик.
+
+UI/CoreStrings@DamageType_Chemical:
+Химический
+
+UI/CoreStrings@DamageType_Cold:
+Холод
+
+UI/CoreStrings@DamageType_Explosion:
+Взрыв
+
+UI/CoreStrings@DamageType_Heat:
+Перегрев
+
+UI/CoreStrings@DamageType_Impact:
+Удар
+
+UI/CoreStrings@DamageType_Kinetic:
+Кинетический
+
+UI/CoreStrings@DamageType_Psi:
+Пси-воздействие
+
+UI/CoreStrings@DamageType_Radiation:
+Радиация
 
 UI/CoreStrings@Defense_Format_Chemical:
 Защита от химикатов: {0}
@@ -216,8 +267,8 @@ UI/CoreStrings@Defense_Format_Chemical:
 UI/CoreStrings@Defense_Format_Cold:
 Защита от холода: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-Защита от электричества: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+Защита от взрыва: {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 Защита от перегрева: {0}
@@ -274,6 +325,12 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Месторождение на поверхности (быстрая добыча)
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+Использовать предмет ({0})?
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+Дроны под одновременным контролем:
+
 UI/CoreStrings@Duration_Instant:
 Мгновенно
 
@@ -289,11 +346,26 @@ UI/CoreStrings@Duration_VeryQuick:
 UI/CoreStrings@Duration_VerySlow:
 Очень медленно
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+Дает эффекты:
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+Снимает эффекты:
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 Эн.
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 Эн./с
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+Вам нужно нанести хотя бы {0}% от всего урона, чтобы рассчитывать на награду в этом событии. Удачи в следующий раз!
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+Недостаточно урона
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+Вы нанесли {0}% от всего урона! Ваша доля добычи: {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Официальный сервер Discord для CryoFall (только на английском)
@@ -403,6 +475,12 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Требуется
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+Испортится через: {0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+никогда
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 Горячие клавиши
 
@@ -426,6 +504,12 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Результат
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+Буфер
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+Ранг {0}
 
 UI/CoreStrings@LearningPoints:
 Очки технологий
@@ -596,6 +680,12 @@ UI/CoreStrings@MenuServers_PublicGUID:
 
 UI/CoreStrings@MenuServers_ServersCount:
 Серверы
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+Этот сервер создан членом сообщества. Разработчики не имеют контроля над этим сервером и не гарантируют, что игра на нем будет приятной. На сервере могут быть изменены настройки с целью сделать игру намного сложнее или проще. Ответственность за модерацию и поддержку несет создатель сервера.
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+СООБЩЕСТВО
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 Рекомендуемые серверы обычно имеют высокую репутацию и обеспечивают качественную игру, как и официальные серверы. Однако эти серверы по-прежнему управляются сообществом.
@@ -824,6 +914,24 @@ UI/CoreStrings@Performance_VRAMUsage:
 UI/CoreStrings@PleaseWait:
 Пожалуйста, подождите...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+Этот потребитель энергии [b]не подключен[/b] к электросети.
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+Эта постройка будет работать, пока уровни электроэнергии не упадут до порогового значения ([b]{0}%[/b]).
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+Этот энергопотребитель [b]подключен[/b] к электросети.
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+Уровни электроэнергии в электросети ниже порогового значения отключения ([b]{0}%[/b]).[br]Эта постройка включится автоматически, когда уровень электроэнергии поднимется выше порогового значения [b]запуска[/b] ([b]{1}%[/b]).
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+Уровни электроэнергии в электросети ниже порогового значения запуска ([b]{0}%[/b]).[br]Эта постройка включится автоматически, когда уровень электроэнергии поднимется выше него.
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+Этот энергопотребитель [b]не активен[/b].
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 Не подключено к электросети.
 
@@ -890,6 +998,48 @@ UI/CoreStrings@PowerGridState_Status_Nominal:
 UI/CoreStrings@PowerGridState_Storages:
 Накопители:
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+Этот электрогенератор [b]не подключен[/b] к электросети.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+Это строение будет генерировать энергию, пока не достигнет порогового значения отключения ([b]{0}%[/b]).
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+Этот электрогенератор [b]подключен[/b] к электросети.
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+Уровни электроэнергии в электросети выше порогового значения отключения ([b]{0}%[/b]).[br]Этот генератор включится автоматически, когда уровень электроэнергии опустится ниже порогового значения [b]запуска[/b] ([b]{1}%[/b]).
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+Уровни электроэнергии в электросети выше порогового значения запуска ([b]{0}%[/b]).[br]Этот генератор включится автоматически, когда уровень электроэнергии опустится ниже него.
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+Этот электрогенератор [b]не активен[/b].
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+Подключить к электросети
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+Отключить от электросети
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+Управление питанием
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+Уровень электросети
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+Выключение:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+Запуск:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+Пороги электроэнергии
+
+UI/CoreStrings@Protection_Name:
+Защита:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Получить
 
@@ -932,6 +1082,129 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 Вайп
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+Вы не можете совершить это действие на базе с активным щитом.
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+Активация щита займет {0} (задержка активации).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+Активация щита займет {0} (задержка активации + оставшееся время восстановления).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+С текущим уровнем заряда активный щит обеспечит защиту на {0}.
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+Задержка активации:
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+Активировать щит
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+Деактивировать щит
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+Перезарядить щит
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+Активация щита на вашей базе отменена из-за рейд-блокировки.
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+Невозможно активировать щит во время рейд-блокировки.
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+Восстановление:
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(восстановление: {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+Текущий заряд щита:
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+При отключении активного или активирующегося щита запустится счетчик восстановления ({0}). Во время восстановления щит нельзя будет активировать снова.
+
+UI/CoreStrings@ShieldProtection_Description_1:
+Щит защищает вашу базу, пока вы находитесь далеко или вне сети.
+
+UI/CoreStrings@ShieldProtection_Description_2:
+Стены и двери на базе с активным щитом неуязвимы для любого урона.
+
+UI/CoreStrings@ShieldProtection_Description_3:
+Брокировка: никто не может входить или выходить с базы с активным щитом (все двери заблокированы).
+
+UI/CoreStrings@ShieldProtection_Description_4:
+Перед активацией щит следует зарядить электроэнергией.
+
+UI/CoreStrings@ShieldProtection_Description_5:
+Активация щита занимает некоторое время.
+
+UI/CoreStrings@ShieldProtection_Description_6:
+Отключенные щиты нельзя включить моментально.
+
+UI/CoreStrings@ShieldProtection_Description_7:
+Активный щит ограничивает использование набора инструментов и лома.
+
+UI/CoreStrings@ShieldProtection_Description_8:
+Щит нельзя зарядить, пока он активен. Сначала его нужно отключить.
+
+UI/CoreStrings@ShieldProtection_Description_9:
+Если база атакована (началась рейд-блокировка) во время активации щита, то активация будет отменена и начнется восстановление щита.
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+Активировать щит?
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+Отключить этот щит?
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+Блокировка: эта дверь заблокирована активной защитой щита.
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+Эта точка контроля находится под активной защитой щита.
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+Предполагаемая длительность:
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+Макс. длительность:
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+Щит будет активирован через {0}, если активация не будет прервана (например, отменена хозяином или прервана рейдерами, применяющими рейд-блокировку).
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+На этой базе активируется защита щитом
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+На этой базе активирована защита щитом, которая может продлиться до {0}.
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]Вы можете деактивировать щит сейчас (щелкните здесь).[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+На этой базе активирована защита щитом
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+На этой базе активирована защита щитом. Стенам и дверям невозможно нанести урон. Невозможно применить рейд-блокировку.
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+Перезарядить до:
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+Статус щита:
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+Активация
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+Активен
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+Не активен
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+Щит защиты от рейдов доступен для точек контроля более высокого ранга. Улучшите эту точку контроля как можно скорее, чтобы получить доступ к этой функции.
+
 UI/CoreStrings@Skill:
 Навык
 
@@ -967,6 +1240,9 @@ UI/CoreStrings@SupporterPack_Description:
 `Набор поддержки — это коллекция приятных бонусов для тех, кто хочет поддержать разработчиков CryoFall. В знак благодарности в чате игры будет отображаться особый значок фаната.
 [br][br]Набор не дает никаких преимуществ в игре и приобретается по желанию. Он включает полный саундтрек игры, концепт-арты, игровые изображения высокого разрешения, значок чата и др. Дополнительные предметы будут добавлены в Набор поддержки на этапе раннего доступа.
 [br][br]Мы искренне благодарим вас за поддержку!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 Очки технологий: {0}
@@ -1009,6 +1285,9 @@ UI/CoreStrings@Technology:
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Поиск...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 Название
@@ -1082,6 +1361,9 @@ UI/CoreStrings@TitlePowerGrid:
 UI/CoreStrings@TitleSafeStorage:
 Сейф
 
+UI/CoreStrings@TitleShieldProtection:
+Щ.И.Т.
+
 UI/CoreStrings@TitleStructurePoints:
 ОЗ постройки
 
@@ -1115,6 +1397,9 @@ UI/CoreStrings@Vehicle_EnergyLevel:
 UI/CoreStrings@Vehicle_Enter:
 Использовать
 
+UI/CoreStrings@Vehicle_FuelCells:
+Топливные ячейки
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 Броня {1:F0}/{2:F0} ({0}%)
 
@@ -1129,6 +1414,9 @@ UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 Оружие
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+Оружие ({0} держатель)
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 Это оружие может использоваться только при установке на меха.
@@ -1174,8 +1462,53 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 Открытые чертежи
 
+UI/CoreStrings@Victory:
+Победа!
+
+UI/CoreStrings@Weapon_Accuracy:
+Точность
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+Максимум патронов
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+Бронебойность
+
+UI/CoreStrings@Weapon_AttackRate:
+Скорость атаки
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 Совместимые боеприпасы:
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+Текущие патроны:
+
+UI/CoreStrings@Weapon_Damage:
+Урон
+
+UI/CoreStrings@Weapon_DamageType:
+Тип урона
+
+UI/CoreStrings@Weapon_FireRate:
+Темп стрельбы
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+Одиночный выстрел
+
+UI/CoreStrings@Weapon_Range:
+Дальность
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+Скорость перезарядки
+
+UI/CoreStrings@Weapon_Spread:
+Разброс
+
+UI/CoreStrings@Weapon_StoppingPower:
+Убойная сила
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+Характеристики ниже показаны для оружия с референсной амуницией ({0}).
 
 UI/CoreStrings@Window_Tab_Main:
 Главное
@@ -1191,14 +1524,26 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Случайно
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+Лучшая длина: {0} см
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+Лучший вес: {0} кг
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 Принять
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+Новый рекорд!
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 Прогресс:
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Существа
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+Рыба
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 Еда
@@ -1429,6 +1774,12 @@ UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
 UI/CoreStrings@WindowSocial_TotalPlayers:
 Всего игроков
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+Полить сейчас
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+Следующий полив через: [b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 Создать новую учетную запись AtomicTorch
 
@@ -1609,6 +1960,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]Торговая станция (ваша)[/b]
 [br]Эта торговая станция принадлежит вам.`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+Этот объект контролируется другим игроком.
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+Вы не сможете взаимодействовать с ним до окончания срока контроля.
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+Контроль спадет через: {0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+Объект под контролем
+
 UI/CoreStrings@Yes:
 Да
 
@@ -1639,6 +2002,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Убито впервые.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+Поймана впервые.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 Употреблено впервые.
@@ -1788,7 +2154,7 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 Цвет волос
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 Тон кожи
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
@@ -1875,6 +2241,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]Вы можете увеличить задержку ветшания, [b]улучшив[/b] любую точку контроля до более высокого уровня.
 [br]Задержка ветшания всей базы определяется точкой контроля [b]самого высокого[/b] уровня.`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+только в PvP
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Нет топлива
 
@@ -1934,6 +2303,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Ti
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 Для развития торговли с другими игроками чеканьте монеты и стройте полностью автоматизированные торговые станции.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Рыбная ловля
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Используйте разные виды наживки и ловите разнообразную пресноводную и морскую рыбу. Попробуйте побить собственные рекорды и соревнуйтесь с другими игроками.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 Кибернетические импланты

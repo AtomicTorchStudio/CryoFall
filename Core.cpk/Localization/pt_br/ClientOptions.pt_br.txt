@@ -48,6 +48,9 @@ Zoom da câmera
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 Seleção de item da barra de acesso
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+Seleção de item da barra de acesso (reversa)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 Usar a roda de rolagem para
 

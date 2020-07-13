@@ -26,15 +26,13 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public abstract class ProtoObjectPlant
         <TPrivateState,
          TPublicState,
          TClientState>
-        : ProtoObjectGatherableVegetation
-          <TPrivateState,
-              TPublicState,
-              TClientState>,
+        : ProtoObjectGatherableVegetation<TPrivateState, TPublicState, TClientState>,
           IProtoObjectPlant
         where TPrivateState : PlantPrivateState, new()
         where TPublicState : PlantPublicState, new()
@@ -127,18 +125,38 @@
             return character.SharedGetFinalStatMultiplier(StatName.FarmingTasksSpeed);
         }
 
+        public bool ServerCanBeWatered(IStaticWorldObject worldObjectPlant)
+        {
+            var plantPrivateState = GetPrivateState(worldObjectPlant);
+            var plantPublicState = GetPublicState(worldObjectPlant);
+            if ((plantPrivateState.ProducedHarvestsCount == this.NumberOfHarvests
+                 && this.NumberOfHarvests > 0)
+                || plantPublicState.IsSpoiled)
+            {
+                return false;
+            }
+
+            return this.ServerGetWateringFraction(worldObjectPlant) < 1;
+        }
+
+        public double ServerGetWateringFraction(IStaticWorldObject worldObjectPlant)
+        {
+            var privateState = GetPrivateState(worldObjectPlant);
+            return ServerTimersSystem.SharedGetTimeRemainingFraction(
+                privateState.ServerTimeWateringEnds,
+                privateState.LastWateringDuration,
+                out _);
+        }
+
         public void ServerOnWatered(
-            ICharacter byCharacter,
             IStaticWorldObject worldObjectPlant,
-            double wateringDuration)
+            double wateringDuration,
+            [CanBeNull] ICharacter byCharacter = null)
         {
             var privateState = GetPrivateState(worldObjectPlant);
             var publicState = GetPublicState(worldObjectPlant);
 
-            var previousWateringFraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
-                privateState.ServerTimeWateringEnds,
-                privateState.LastWateringDuration,
-                out _);
+            var previousWateringFraction = this.ServerGetWateringFraction(worldObjectPlant);
 
             privateState.LastWateringDuration = wateringDuration;
             if (wateringDuration < double.MaxValue)
@@ -435,6 +453,11 @@
             }
         }
 
+        protected override void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)
+        {
+            // don't apply claim on farm plants
+        }
+
         protected override bool ServerTryGatherByCharacter(ICharacter who, IStaticWorldObject vegetationObject)
         {
             var publicState = GetPublicState(vegetationObject);
@@ -447,12 +470,11 @@
             }
             else // spoiled plant
             {
-                var result = this.SpoiledGatherDroplist.TryDropToCharacterOrGround(who,
-                                                                                   who.TilePosition,
-                                                                                   new DropItemContext(
-                                                                                       who,
-                                                                                       vegetationObject),
-                                                                                   out var groundItemsContainer);
+                var result = this.SpoiledGatherDroplist.TryDropToCharacterOrGround(
+                    who,
+                    who.TilePosition,
+                    new DropItemContext(who, vegetationObject),
+                    out var groundItemsContainer);
                 if (result.TotalCreatedCount == 0)
                 {
                     result.Rollback();
@@ -487,18 +509,6 @@
             base.ServerUpdate(data);
         }
 
-        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
-        {
-            if (base.SharedIsAllowedObjectToInteractThrough(worldObject))
-            {
-                return true;
-            }
-
-            // allow to interact through farm objects (plot, pot, etc) and other plants
-            var proto = worldObject.ProtoWorldObject;
-            return proto is IProtoObjectFarm || proto is IProtoObjectPlant;
-        }
-
         protected override void SharedProcessCreatedPhysics(CreatePhysicsData data)
         {
             base.SharedProcessCreatedPhysics(data);
@@ -518,23 +528,17 @@
         private static void ClientAddPlantRenderingOffsetFromFarm(Tile tile, IComponentSpriteRenderer renderer)
         {
             var protoFarmObject = CommonGetFarmObjectProto(tile);
-            if (protoFarmObject == null)
+            if (protoFarmObject is null)
             {
                 // no farm
                 return;
             }
 
             var drawOffset = protoFarmObject.PlacedPlantPositionOffset;
-            if (drawOffset == Vector2D.Zero)
+            if (drawOffset != Vector2D.Zero)
             {
-                // no draw offset for this farm
-                return;
+                renderer.PositionOffset += drawOffset;
             }
-
-            // apply draw offset
-            renderer.PositionOffset += drawOffset;
-            // fix draw order
-            renderer.DrawOrderOffsetY -= drawOffset.Y;
         }
 
         private static double ServerCalculateGrowthSpeedMultiplier(

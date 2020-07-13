@@ -6,10 +6,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -94,6 +95,18 @@
                 hairBehind = hairBase + "Behind.png";
             }
 
+            string skinTone = null;
+            if (!string.IsNullOrEmpty(style.SkinToneId))
+            {
+                skinTone = SharedCharacterFaceStylesProvider.GetSkinToneFilePath(style.SkinToneId);
+            }
+
+            string hairColor = null;
+            if (!string.IsNullOrEmpty(style.HairColorId))
+            {
+                hairColor = SharedCharacterFaceStylesProvider.HairColorRootFolderPath + $"{style.HairColorId}" + ".png";
+            }
+
             string helmetFront = null, helmetBehind = null;
             if (protoItemHeadEquipment != null)
             {
@@ -105,7 +118,7 @@
                     out helmetFront,
                     out helmetBehind);
 
-                if (helmetFront == null)
+                if (helmetFront is null)
                 {
                     throw new Exception("Helmet attachment is not available for " + protoItemHeadEquipment);
                 }
@@ -117,15 +130,31 @@
             List<ComposeLayer> layers;
             if (isHeadVisible)
             {
+                var faceLayer = await CreateFaceTexture(
+                                    request,
+                                    renderingTag,
+                                    customTextureSize,
+                                    new List<ComposeLayer>()
+                                    {
+                                        new ComposeLayer(faceShapePath,  spriteQualityOffset),
+                                        new ComposeLayer(faceTopPath,    spriteQualityOffset),
+                                        new ComposeLayer(faceBottomPath, spriteQualityOffset)
+                                    },
+                                    skinTone);
+
+                var (layerHair, layerHairBehind) = await GetHairLayers(request,
+                                                                       hair,
+                                                                       hairBehind,
+                                                                       hairColor,
+                                                                       spriteQualityOffset);
+
                 layers = new List<ComposeLayer>()
                 {
-                    new ComposeLayer(helmetBehind,   spriteQualityOffset),
-                    new ComposeLayer(hairBehind,     spriteQualityOffset),
-                    new ComposeLayer(faceShapePath,  spriteQualityOffset),
-                    new ComposeLayer(faceTopPath,    spriteQualityOffset),
-                    new ComposeLayer(faceBottomPath, spriteQualityOffset),
-                    new ComposeLayer(hair,           spriteQualityOffset),
-                    new ComposeLayer(helmetFront,    spriteQualityOffset)
+                    new ComposeLayer(helmetBehind, spriteQualityOffset),
+                    layerHairBehind,
+                    faceLayer,
+                    layerHair,
+                    new ComposeLayer(helmetFront, spriteQualityOffset)
                 };
             }
             else // if head is not visible (defined by head equipment item)
@@ -137,10 +166,7 @@
                 };
             }
 
-            // load only those layers which had the according file
-            layers.RemoveAll(
-                t => t.TextureResource == null
-                     || !IsFileExists(t.TextureResource.FullPath));
+            RemoveMissingLayers(layers);
 
             if (layers.Count == 0)
             {
@@ -150,50 +176,12 @@
 
             // load all the layers data
             var resultTextureSize = await PrepareLayers(request, layers);
-
             if (customTextureSize.HasValue)
             {
                 resultTextureSize = customTextureSize.Value;
             }
 
-            var referencePivotPos = new Vector2Ushort(
-                (ushort)(resultTextureSize.X / 2),
-                (ushort)(resultTextureSize.Y / 2));
-
-            // create camera and render texture
-            var renderTexture = Rendering.CreateRenderTexture(renderingTag, resultTextureSize.X, resultTextureSize.Y);
-            var cameraObject = Api.Client.Scene.CreateSceneObject(renderingTag);
-            var camera = Rendering.CreateCamera(cameraObject,
-                                                renderingTag,
-                                                drawOrder: -100);
-            camera.RenderTarget = renderTexture;
-            camera.SetOrthographicProjection(resultTextureSize.X, resultTextureSize.Y);
-
-            // create and prepare renderer for each layer
-            foreach (var layer in layers)
-            {
-                var pivotPos = layer.PivotPos;
-                var offsetX = referencePivotPos.X - pivotPos.X;
-                var offsetY = pivotPos.Y - referencePivotPos.Y;
-                var offset = (offsetX, offsetY);
-
-                Rendering.CreateSpriteRenderer(
-                    cameraObject,
-                    layer.TextureResource,
-                    positionOffset: offset,
-                    // draw down
-                    spritePivotPoint: (0, 1),
-                    renderingTag: renderingTag);
-            }
-
-            // ReSharper disable once CoVariantArrayConversion
-            request.ChangeDependencies(layers.Select(l => l.TextureResource).ToArray());
-
-            await camera.DrawAsync();
-            cameraObject.Destroy();
-
-            request.ThrowIfCancelled();
-
+            var renderTexture = await DrawAndDisposeLayers(request, resultTextureSize, renderingTag, layers);
             var generatedTexture = await renderTexture.SaveToTexture(
                                        isTransparent: true,
                                        qualityScaleCoef: Rendering.CalculateCurrentQualityScaleCoefWithOffset(
@@ -203,26 +191,179 @@
             return generatedTexture;
         }
 
-        private static void GetHeadEquipmentSprites(
-            IItem itemHeadEquipment,
-            IProtoItemEquipmentHead protoHelmet,
-            bool isMale,
-            bool isFrontFace,
-            SkeletonResource skeletonResource,
-            out string helmetFront,
-            out string helmetBehind)
+        private static async Task<ComposeLayer> CreateFaceTexture(
+            ProceduralTextureRequest request,
+            string renderingTag,
+            Vector2Ushort? customTextureSize,
+            List<ComposeLayer> layers,
+            string skinToneTextureFilePath)
         {
-            protoHelmet.ClientGetHeadSlotSprites(
-                itemHeadEquipment,
-                isMale,
-                skeletonResource,
-                isFrontFace,
-                out helmetFront,
-                out helmetBehind);
-
-            if (helmetFront == null)
+            RemoveMissingLayers(layers);
+            if (layers.Count == 0)
             {
-                throw new Exception("Helmet attachment is not available for " + protoHelmet);
+                return new ComposeLayer(TextureResource.NoTexture);
+            }
+
+            var resultTextureSize = await PrepareLayers(request, layers);
+            if (customTextureSize.HasValue)
+            {
+                resultTextureSize = customTextureSize.Value;
+            }
+
+            var renderTexture = await DrawAndDisposeLayers(request,
+                                                           resultTextureSize,
+                                                           renderingTag,
+                                                           layers);
+
+            request.ThrowIfCancelled();
+
+            if (skinToneTextureFilePath is null)
+            {
+                return new ComposeLayer(renderTexture);
+            }
+
+            var colorizedRenderTexture = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,
+                                                                                                     renderTexture,
+                                                                                                     skinToneTextureFilePath);
+            renderTexture.Dispose();
+            return new ComposeLayer(colorizedRenderTexture);
+        }
+
+        private static async Task<IRenderTarget2D> DrawAndDisposeLayers(
+            ProceduralTextureRequest request,
+            Vector2Ushort resultTextureSize,
+            string renderingTag,
+            List<ComposeLayer> layers)
+        {
+            try
+            {
+                var referencePivotPos = new Vector2Ushort(
+                    (ushort)(resultTextureSize.X / 2),
+                    (ushort)(resultTextureSize.Y / 2));
+
+                // create camera and render texture
+                var renderTexture =
+                    Rendering.CreateRenderTexture(renderingTag, resultTextureSize.X, resultTextureSize.Y);
+                var cameraObject = Api.Client.Scene.CreateSceneObject(renderingTag);
+                var camera = Rendering.CreateCamera(cameraObject,
+                                                    renderingTag,
+                                                    drawOrder: -100);
+                camera.RenderTarget = renderTexture;
+                camera.SetOrthographicProjection(resultTextureSize.X, resultTextureSize.Y);
+
+                // create and prepare renderer for each layer
+                foreach (var layer in layers)
+                {
+                    var pivotPos = layer.PivotPos ?? Vector2F.Zero;
+                    var offsetX = referencePivotPos.X - pivotPos.X;
+                    var offsetY = pivotPos.Y - referencePivotPos.Y;
+                    var offset = (offsetX, offsetY);
+
+                    Rendering.CreateSpriteRenderer(
+                        cameraObject,
+                        layer.TextureResource,
+                        positionOffset: offset,
+                        // draw down
+                        spritePivotPoint: (0, 1),
+                        renderingTag: renderingTag);
+                }
+
+                // ReSharper disable once CoVariantArrayConversion
+                request.ChangeDependencies(layers.Select(l => l.TextureResource)
+                                                 .OfType<TextureResource>()
+                                                 .ToArray());
+
+                await camera.DrawAsync();
+                cameraObject.Destroy();
+
+                request.ThrowIfCancelled();
+                return renderTexture;
+            }
+            finally
+            {
+                foreach (var layer in layers)
+                {
+                    if (layer.TextureResource is IRenderTarget2D renderTarget2D)
+                    {
+                        renderTarget2D.Dispose();
+                    }
+                }
+            }
+        }
+
+        private static async Task<(ComposeLayer layerHair, ComposeLayer layerHairBehind)> GetHairLayers(
+            ProceduralTextureRequest request,
+            string hair,
+            string hairBehind,
+            string hairColor,
+            sbyte spriteQualityOffset)
+        {
+            if (hairColor is null)
+            {
+                // no colorization required
+                return (new ComposeLayer(hair,       spriteQualityOffset),
+                        new ComposeLayer(hairBehind, spriteQualityOffset));
+            }
+
+            // try to colorize the hair
+            var layerHairTask = ComposeLayer(hair);
+            var layerHairBehindTask = ComposeLayer(hairBehind);
+
+            await Task.WhenAll(layerHairTask, layerHairBehindTask);
+            return (layerHairTask.Result, layerHairBehindTask.Result);
+
+            async Task<ComposeLayer> ComposeLayer(string filePath)
+            {
+                if (filePath is null
+                    || !IsFileExists(filePath))
+                {
+                    return new ComposeLayer(filePath, spriteQualityOffset);
+                }
+
+                var textureResource = new TextureResource(filePath, 
+                                                          isProvidesMagentaPixelPosition: true,
+                                                          qualityOffset: spriteQualityOffset);
+                var renderTarget2D = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,
+                                                                                                 textureResource,
+                                                                                                 hairColor);
+                var pivotPos = await Rendering.GetTextureSizeWithMagentaPixelPosition(textureResource);
+                return new ComposeLayer(renderTarget2D,
+                                        (pivotPos.MagentaPixelPosition.X,
+                                         pivotPos.MagentaPixelPosition.Y));
+            }
+        }
+
+        private static Task<SizeWithMagentaPixelPosition> GetTextureSizeWithMagentaPixelPosition(
+            ComposeLayer layer)
+        {
+            switch (layer.TextureResource)
+            {
+                case TextureResource textureResource:
+                    return Rendering.GetTextureSizeWithMagentaPixelPosition(
+                        textureResource).AsTask();
+
+                case IGeneratedTexture2D generatedTexture2D:
+                {
+                    var textureSize = new Vector2Ushort((ushort)generatedTexture2D.Width,
+                                                        (ushort)generatedTexture2D.Height);
+                    return Task.FromResult(
+                        new SizeWithMagentaPixelPosition(
+                            textureSize,
+                            layer.PivotPos ?? (textureSize.X / 2, textureSize.Y / 2)));
+                }
+
+                case IRenderTarget2D renderTarget2D:
+                {
+                    var textureSize = new Vector2Ushort((ushort)renderTarget2D.Width,
+                                                        (ushort)renderTarget2D.Height);
+                    return Task.FromResult(
+                        new SizeWithMagentaPixelPosition(
+                            textureSize,
+                            layer.PivotPos ?? (textureSize.X / 2, textureSize.Y / 2)));
+                }
+
+                default:
+                    throw new NotImplementedException();
             }
         }
 
@@ -230,21 +371,22 @@
             ProceduralTextureRequest request,
             List<ComposeLayer> spritesToCombine)
         {
-            var textureDataTasks = spritesToCombine.Select(
-                                                       t => Rendering
-                                                           .GetTextureSizeWithMagentaPixelPosition(t.TextureResource))
-                                                   .ToList();
-
-            foreach (var textureDataTask in textureDataTasks)
+            var textureDataTasks = new Task<SizeWithMagentaPixelPosition>[spritesToCombine.Count];
+            for (var index = 0; index < spritesToCombine.Count; index++)
             {
-                await textureDataTask;
-                request.ThrowIfCancelled();
+                var layer = spritesToCombine[index];
+                var task = GetTextureSizeWithMagentaPixelPosition(layer);
+                textureDataTasks[index] = task;
             }
 
-            var extendX = 0f;
-            var extendY = 0f;
+            await Task.WhenAll(textureDataTasks);
 
-            for (var index = 0; index < textureDataTasks.Count; index++)
+            request.ThrowIfCancelled();
+
+            var extendX = 0.0;
+            var extendY = 0.0;
+
+            for (var index = 0; index < textureDataTasks.Length; index++)
             {
                 var result = textureDataTasks[index].Result;
                 var pivotPos = result.MagentaPixelPosition;
@@ -265,16 +407,32 @@
                 }
             }
 
-            var resultTextureSize = new Vector2Ushort((ushort)Math.Floor(extendX * 2),
-                                                      (ushort)Math.Floor(extendY * 2));
-            return resultTextureSize;
+            return new Vector2Ushort((ushort)Math.Floor(extendX * 2),
+                                     (ushort)Math.Floor(extendY * 2));
+        }
+
+        private static void RemoveMissingLayers(List<ComposeLayer> layers)
+        {
+            layers.RemoveAll(IsMissing);
+
+            static bool IsMissing(ComposeLayer layer)
+            {
+                var textureResource = layer.TextureResource;
+                if (textureResource is null)
+                {
+                    return true;
+                }
+
+                return textureResource is TextureResource textureFileResource
+                       && !IsFileExists(textureFileResource.FullPath);
+            }
         }
 
         private struct ComposeLayer
         {
-            public readonly TextureResource TextureResource;
+            public readonly ITextureResource TextureResource;
 
-            public Vector2F PivotPos;
+            public Vector2F? PivotPos;
 
             public ComposeLayer(string path, sbyte spriteQualityOffset)
             {
@@ -284,7 +442,13 @@
                                                isProvidesMagentaPixelPosition: true,
                                                qualityOffset: spriteQualityOffset)
                                            : null;
-                this.PivotPos = Vector2F.Zero;
+                this.PivotPos = default;
+            }
+
+            public ComposeLayer(ITextureResource textureResource, Vector2F? pivotPos = default)
+            {
+                this.TextureResource = textureResource;
+                this.PivotPos = pivotPos;
             }
         }
     }

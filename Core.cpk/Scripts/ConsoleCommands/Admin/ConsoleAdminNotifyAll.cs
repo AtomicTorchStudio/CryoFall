@@ -17,11 +17,11 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         public override string Name => "admin.notifyAll";
 
-        public string Execute(string message)
+        public string Execute(string messageInQuotes)
         {
             ConsoleAdminNotifyAllSystem.Instance.CallClient(
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
-                _ => _.ClientRemote_ShowNotification(message));
+                _ => _.ClientRemote_ShowNotification(messageInQuotes));
             return null;
         }
 

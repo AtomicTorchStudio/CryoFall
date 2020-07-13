@@ -10,15 +10,12 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
 
     public class ViewModelHotbarItemWeaponOverlayControl : BaseViewModel
     {
         private readonly Action ammoChangedCallback;
 
         private readonly WeaponState weaponState;
-
-        private ITextureResource ammoIconResource;
 
         private IItem item;
 
@@ -28,7 +25,14 @@
         {
             this.ammoChangedCallback = ammoChangedCallback;
             this.weaponState = ClientCurrentCharacterHelper.PrivateState.WeaponState;
-            
+
+            ClientCurrentCharacterContainersHelper.ContainersItemsReset += this.ContainersItemsResetHandler;
+            ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged += this.ItemAddedOrRemovedOrCountChangedHandler;
+
+            ClientCurrentCharacterVehicleContainersHelper.ContainersItemsReset += this.ContainersItemsResetHandler;
+            ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged += this.ItemAddedOrRemovedOrCountChangedHandler;
+
+
             if (this.weaponState is null)
             {
                 return;
@@ -42,28 +46,9 @@
 
         public ushort AmmoCountMax { get; set; } = 20;
 
-        public Brush AmmoIcon { get; set; }
+        public Brush AmmoIcon => Client.UI.GetTextureBrush(this.protoItemAmmo?.Icon);
 
-        public ITextureResource AmmoIconResource
-        {
-            get => this.ammoIconResource;
-            set
-            {
-                if (this.ammoIconResource == value)
-                {
-                    return;
-                }
-
-                this.ammoIconResource = value;
-                if (value == null)
-                {
-                    this.AmmoIcon = null;
-                    return;
-                }
-
-                this.AmmoIcon = Client.UI.GetTextureBrush(this.ammoIconResource);
-            }
-        }
+        public int AmmoTotalAvailable { get; private set; }
 
         public bool IsReloading { get; private set; }
 
@@ -119,21 +104,31 @@
                 }
 
                 this.protoItemAmmo = value;
-                this.AmmoIconResource = value?.Icon;
 
                 this.NotifyThisPropertyChanged();
+                this.NotifyPropertyChanged(nameof(this.AmmoIcon));
                 this.ammoChangedCallback?.Invoke();
+
+                this.RefreshAmmoTotalAvailable();
             }
         }
 
-        public double ReloadDurationSeconds { get; private set; }
+        //public double ReloadDurationSeconds { get; private set; }
 
         public Visibility VisibilityAmmoOverlay { get; private set; }
 
-        public double WeaponSwitchDurationSeconds { get; private set; }
+        //public double WeaponSwitchDurationSeconds { get; private set; }
+
+        public double WeaponReadyCountdownDuration { get; private set; }
 
         protected override void DisposeViewModel()
         {
+            ClientCurrentCharacterContainersHelper.ContainersItemsReset -= this.ContainersItemsResetHandler;
+            ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged -= this.ItemAddedOrRemovedOrCountChangedHandler;
+
+            ClientCurrentCharacterVehicleContainersHelper.ContainersItemsReset -= this.ContainersItemsResetHandler;
+            ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged -= this.ItemAddedOrRemovedOrCountChangedHandler;
+
             if (this.weaponState != null)
             {
                 this.weaponState.ClientWeaponReloadingStateChanged -= this.WeaponReloadingStateChangedHandler;
@@ -145,16 +140,7 @@
 
         private void ActiveWeaponChangedHandler()
         {
-            if (this.item != this.weaponState.ItemWeapon)
-            {
-                // stop any countdown animation
-                this.WeaponSwitchDurationSeconds = 0;
-                return;
-            }
-
-            // assign twice in order to reset the animated countdown
-            this.WeaponSwitchDurationSeconds = 0;
-            this.WeaponSwitchDurationSeconds = this.weaponState.CooldownSecondsRemains;
+            this.RefreshReloadOrWeaponSwitchDurationSeconds();
         }
 
         private void AmmoCountChanged(ushort ammoCount)
@@ -162,9 +148,61 @@
             this.AmmoCountCurrent = ammoCount;
         }
 
+        private void ContainersItemsResetHandler()
+        {
+            this.RefreshAmmoTotalAvailable();
+        }
+
         private void CurrentProtoItemAmmoChanged(IProtoItemAmmo currentProtoItemAmmo)
         {
             this.UpdateCurrentProtoItem();
+        }
+
+        private void ItemAddedOrRemovedOrCountChangedHandler(IItem item)
+        {
+            if (ReferenceEquals(item.ProtoItem, this.protoItemAmmo))
+            {
+                this.RefreshAmmoTotalAvailable();
+            }
+        }
+
+        private void RefreshAmmoTotalAvailable()
+        {
+            if (this.protoItemAmmo is null)
+            {
+                this.AmmoTotalAvailable = 0;
+            }
+            else
+            {
+                this.AmmoTotalAvailable = WeaponAmmoSystem.SharedGetTotalAvailableAmmo(
+                    this.protoItemAmmo,
+                    Client.Characters.CurrentPlayerCharacter);
+            }
+        }
+
+        private void RefreshReloadOrWeaponSwitchDurationSeconds()
+        {
+            if (this.item != this.weaponState.ItemWeapon)
+            {
+                // stop any countdown animation
+                this.WeaponReadyCountdownDuration = 0;
+                return;
+            }
+
+            var reloadingState = this.weaponState.WeaponReloadingState;
+            var weaponSwitchDurationSeconds = this.weaponState.CooldownSecondsRemains;
+
+            var reloadDurationSeconds = reloadingState is null
+                                        || !ReferenceEquals(reloadingState.Item, this.item)
+                                            ? 0
+                                            : reloadingState.SecondsToReloadRemains;
+
+            this.IsReloading = reloadDurationSeconds > 0;
+
+            // assign twice in order to reset the animated countdown
+            this.WeaponReadyCountdownDuration = 0;
+            this.WeaponReadyCountdownDuration = Math.Max(weaponSwitchDurationSeconds,
+                                                         reloadDurationSeconds);
         }
 
         private void UpdateCurrentProtoItem()
@@ -184,22 +222,7 @@
 
         private void UpdateWeaponReloadingState()
         {
-            var reloadingState = this.weaponState.WeaponReloadingState;
-            if (reloadingState == null
-                || reloadingState.Item != this.item)
-            {
-                this.ReloadDurationSeconds = 0;
-            }
-            else
-            {
-                // assign twice in order to reset the animated countdown
-                this.ReloadDurationSeconds = 0;
-                this.ReloadDurationSeconds = reloadingState.SecondsToReloadRemains;
-            }
-
-            this.IsReloading = reloadingState != null
-                               && reloadingState.Item == this.item;
-
+            this.RefreshReloadOrWeaponSwitchDurationSeconds();
             this.UpdateCurrentProtoItem();
         }
 

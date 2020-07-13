@@ -46,6 +46,8 @@
 
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
+        public abstract bool ConsolidateNotifications { get; }
+
         public abstract string Description { get; }
 
         public abstract TimeSpan EventDuration { get; }
@@ -63,8 +65,6 @@
         public override string ShortId { get; }
 
         public IReadOnlyList<BaseTriggerConfig> Triggers { get; private set; }
-
-        public abstract bool ConsolidateNotifications { get; }
 
         public virtual bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -140,6 +140,63 @@
             }
 
             return false;
+        }
+
+        protected (TimeSpan from, TimeSpan to) ServerGetIntervalForThisEvent(
+            (TimeSpan from, TimeSpan to) defaultInterval)
+        {
+            var rateKey = "EventInterval." + this.ShortId;
+            var rateDefaultValue = defaultInterval.from != defaultInterval.to
+                                       ? defaultInterval.from.TotalHours.ToString("0.0#")
+                                         + "-"
+                                         + defaultInterval.to.TotalHours.ToString("0.0#")
+                                       : defaultInterval.from.TotalHours.ToString("0.0#");
+            var rateDescription = $"{this.Name} world event interval (in hours).";
+
+            var configIntervalString = ServerRates.Get(key: rateKey,
+                                                       defaultValue: rateDefaultValue,
+                                                       description: rateDescription);
+
+            if (string.Equals(configIntervalString, rateDefaultValue, StringComparison.Ordinal))
+            {
+                return defaultInterval;
+            }
+
+            // try parse the interval
+            try
+            {
+                TimeSpan from, to;
+
+                if (configIntervalString.IndexOf("-", StringComparison.Ordinal) > 0)
+                {
+                    // parse range
+                    var split = configIntervalString.Split('-');
+                    from = TimeSpan.FromHours(double.Parse(split[0]));
+                    to = TimeSpan.FromHours(double.Parse(split[1]));
+                }
+                else
+                {
+                    // parse single value
+                    from = to = TimeSpan.FromHours(double.Parse(configIntervalString));
+                }
+
+                if (from.TotalSeconds <= 0
+                    || to.TotalSeconds <= 0
+                    || to < from)
+                {
+                    throw new Exception("Incorrect time interval for: " + rateKey);
+                }
+
+                return (from, to);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+                ServerRates.Reset(key: rateKey,
+                                  defaultValue: rateDefaultValue,
+                                  description: rateDescription);
+                return defaultInterval;
+            }
         }
 
         protected sealed override void ServerInitialize(ServerInitializeData data)

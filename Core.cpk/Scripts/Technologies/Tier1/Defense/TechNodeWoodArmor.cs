@@ -3,16 +3,13 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
-    public class TechNodeWoodArmor : TechNode<TechGroupDefense>
+    public class TechNodeWoodArmor : TechNode<TechGroupDefenseT1>
     {
-        public override string Name => "Wooden armor";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeWoodChestplate>()
+                  .AddRecipe<RecipeWoodArmor>()
                   .AddRecipe<RecipeWoodHelmet>()
-                  .AddRecipe<RecipeWoodPants>()
                   .AddStructure<ObjectArmorerWorkbench>();
 
             config.SetRequiredNode<TechNodeGlueFromBones>();

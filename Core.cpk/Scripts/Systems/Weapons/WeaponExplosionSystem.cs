@@ -19,6 +19,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -80,9 +81,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                                          weaponFinalCache,
                                          damageOnlyDynamicObjects: true,
                                          isDamageThroughObstacles: false,
-                                         callbackCalculateDamageCoefByDistanceForStaticObjects: 
+                                         callbackCalculateDamageCoefByDistanceForStaticObjects:
                                          callbackCalculateDamageCoefByDistanceForStaticObjects,
-                                         callbackCalculateDamageCoefByDistanceForDynamicObjects: 
+                                         callbackCalculateDamageCoefByDistanceForDynamicObjects:
                                          callbackCalculateDamageCoefByDistanceForDynamicObjects);
 
             void ProcessExplosionDirection(int xOffset, int yOffset)
@@ -397,17 +398,15 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     }
                 }
 
-                yield return (damagedObject, offsetIndex);
-
-                if (damagedObject is null)
+                if (damagedObject is null
+                    && offsetIndex > damageDistanceFullDamage)
                 {
                     // no wall or door there
-                    if (offsetIndex > damageDistanceFullDamage)
-                    {
-                        // stop damage propagation
-                        yield break;
-                    }
+                    // stop damage propagation
+                    yield break;
                 }
+
+                yield return (damagedObject, offsetIndex);
             }
         }
 
@@ -456,8 +455,10 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     protoWorldObject,
                     worldObjectPosition,
                     projectilesCount: 1,
-                    objectMaterial,
-                    hasTrace: false);
+                    objectMaterial: objectMaterial,
+                    randomizeHitPointOffset: true,
+                    randomRotation: true,
+                    drawOrder: DrawOrder.Light);
             }
 
             static Vector2D CalculateWorldObjectPosition(IWorldObject worldObject, WeaponHitData hitData)
@@ -475,24 +476,21 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
         {
             switch (worldObject)
             {
-                case ICharacter character:
-                    // find the closest character position inside the explosion area by checking its hitbox
-                    var closestCharacterPosition = character.PhysicsBody.ClampPointInside(fromPosition,
+                case IDynamicWorldObject dynamicWorldObject:
+                    // find the closest dynamicObject position inside the explosion area by checking its hitbox
+                    var closestPosition = dynamicWorldObject.PhysicsBody.ClampPointInside(fromPosition,
                                                                                           CollisionGroups.HitboxRanged,
                                                                                           out var isSuccess);
                     if (!isSuccess)
                     {
-                        closestCharacterPosition = character.Position;
+                        closestPosition = dynamicWorldObject.Position;
                     }
 
                     // visualize the closest character position
                     //SharedEditorPhysicsDebugger.ServerSendDebugPhysicsTesting(
                     //    new PointShape(closestCharacterPosition, CollisionGroups.HitboxRanged));
 
-                    return fromPosition.DistanceTo(closestCharacterPosition);
-
-                case IDynamicWorldObject dynamicWorldObject:
-                    return fromPosition.DistanceTo(dynamicWorldObject.Position);
+                    return fromPosition.DistanceTo(closestPosition);
 
                 case IStaticWorldObject staticWorldObject:
                     var minDistance = double.MaxValue;

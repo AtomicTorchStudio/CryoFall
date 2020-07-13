@@ -14,7 +14,7 @@
     {
         private readonly Action callbackRefresh;
 
-        private Color color = Colors.White;
+        private Color color;
 
         private bool isDebug;
 

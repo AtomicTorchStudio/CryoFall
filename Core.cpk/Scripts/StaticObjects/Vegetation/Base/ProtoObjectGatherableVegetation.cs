@@ -163,13 +163,14 @@
                                                                         out var groundItemsContainer);
             if (result.TotalCreatedCount == 0)
             {
-                result.Rollback();
                 return false;
             }
 
             // even if at least one item is gathered it should pass
             // otherwise we will have an issue with berries and other stuff which cannot be rollback easily
             Logger.Info(vegetationObject + " was gathered", who);
+
+            result.RemoveEntriesNotOwnedByCharacter(who);
             NotificationSystem.ServerSendItemsNotification(
                 who,
                 result,

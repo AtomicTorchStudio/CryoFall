@@ -19,7 +19,7 @@
 
         public const string NotificationShutdown_Title = "Shutdown";
 
-        private HUDNotificationControl notification;
+        private HudNotificationControl notification;
 
         private string shutdownReasonMessage;
 
@@ -94,7 +94,7 @@
                 return;
             }
 
-            this.notification.SetMessage(this.GetShutdownMessage());
+            this.notification.Message = this.GetShutdownMessage();
             ClientTimersSystem.AddAction(1, this.UpdateMessage);
         }
     }

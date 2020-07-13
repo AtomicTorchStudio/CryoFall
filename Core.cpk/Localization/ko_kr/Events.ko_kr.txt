@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `우주 쓰레기가 지도에 강조 표시된 부분에 떨어졌습니다.
 [br]값어치 있는 고물을 얻고 싶다면, 빨리 달리세요!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0}을/를 처치한 플레이어:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 진척도: {0}/{1}
 

@@ -164,6 +164,21 @@
             set => this.SetValue(ZIndexOffsetProperty, value);
         }
 
+        public void AddExtensionControl(Control controlToInject)
+        {
+            var firstChild = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
+            var panel = firstChild.FindName<Panel>("ExtensionsPanel");
+
+            if (panel.Children.Count > 0)
+            {
+                // not the first element, so add a margin
+                controlToInject.Margin = new Thickness(0, 6, 0, 0);
+            }
+
+            controlToInject.HorizontalAlignment = HorizontalAlignment.Left;
+            panel.Children.Add(controlToInject);
+        }
+
         public void Close(DialogResult dialogResult)
         {
             if (IsDesignTime)

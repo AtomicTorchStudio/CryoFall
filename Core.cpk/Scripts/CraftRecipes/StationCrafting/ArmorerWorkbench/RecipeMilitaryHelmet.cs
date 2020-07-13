@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 20);
             inputItems.Add<ItemThread>(count: 25);
-            inputItems.Add<ItemTarpaulin>(count: 15);
+            inputItems.Add<ItemTarpaulin>(count: 20);
             inputItems.Add<ItemGlue>(count: 3);
 
             outputItems.Add<ItemMilitaryHelmet>();

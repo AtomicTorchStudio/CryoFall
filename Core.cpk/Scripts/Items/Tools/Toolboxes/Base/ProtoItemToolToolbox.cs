@@ -71,7 +71,14 @@
 
         protected override void ClientItemUseStart(ClientItemData data)
         {
-            ConstructionSystem.ClientTryStartAction();
+            ConstructionSystem.ClientTryStartAction(allowReplacingCurrentConstructionAction: true);
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.ClickToRepairOrBuild);
+            hints.Add(ItemHints.ClickToMove);
         }
 
         protected sealed override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

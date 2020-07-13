@@ -18,7 +18,7 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemOreLithium>(count: 5);
+            inputItems.Add<ItemOreLithium>(count: 10);
 
             outputItems.Add<ItemIngotLithium>(count: 1);
         }

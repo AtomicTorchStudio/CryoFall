@@ -46,7 +46,7 @@
                     return true; // not a power consumer - always on
                 }
 
-                return this.publicStatePowerConsumer.ElectricityConsumerState == ElectricityConsumerState.PowerOn;
+                return this.publicStatePowerConsumer.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive;
             }
         }
 

@@ -25,17 +25,15 @@
 
         public override float WaterRestore => 3; // doesn't hydrate much, because of alcohol
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectDrunk>(intensity: 0.25);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrinkAlcohol;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            // 2.5 minutes (so you need 5 bottles to be hammered)
-            data.Character.ServerAddStatusEffect<StatusEffectDrunk>(intensity: 0.25);
-
-            base.ServerOnEat(data);
         }
     }
 }

@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
-    public class TechNodeChemicalLab : TechNode<TechGroupChemistry>
+    public class TechNodeChemicalLab : TechNode<TechGroupChemistryT2>
     {
         protected override void PrepareTechNode(Config config)
         {

@@ -28,11 +28,9 @@
             // this resource is not spawned on the world init
             triggers
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(
-                         intervalFrom: TimeSpan.FromMinutes(50),
-                         intervalTo: TimeSpan.FromMinutes(70)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(30)));
 
-            var presetPragmiumSource = spawnList.CreatePreset(interval: 130, padding: 2, useSectorDensity: false)
+            var presetPragmiumSource = spawnList.CreatePreset(interval: 183, padding: 2, useSectorDensity: false)
                                                 .Add<ObjectMineralPragmiumSource>()
                                                 .SetCustomPaddingWithSelf(79);
 

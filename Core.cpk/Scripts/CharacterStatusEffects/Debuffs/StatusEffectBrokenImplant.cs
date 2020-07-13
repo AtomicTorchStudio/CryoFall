@@ -54,7 +54,6 @@
 
         protected override void ServerUpdate(StatusEffectData data)
         {
-            base.ServerUpdate(data);
             var hasBrokenImplant = ServerHasBrokenImplant(data.Character);
             data.Intensity = hasBrokenImplant ? 1 : 0;
         }

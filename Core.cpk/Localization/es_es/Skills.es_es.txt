@@ -25,6 +25,15 @@ Contar con mejores técnicas agrícolas te permite aumentar la eficacia de la gr
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Agricultura
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Probabilidad de ahorrar cebo
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Tu conocimiento sobre diferentes especies de peces y sus hábitos determinará tu capacidad para tener éxito mientras pescas.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Pesca
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Probabilidad de obtener más recursos
 
@@ -100,23 +109,29 @@ Aumenta la probabilidad de supervivencia al mejorar el máximo de salud, comida,
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Supervivencia
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Probabilidad de obtener retoños
+
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Probabilidad de retoños adicionales
+
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Un mejor entendimiento y comprensión de esta profesión mejorará tu velocidad de tala.
+
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Tala
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
 Probabilidad de obtener más recursos
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Probabilidad de encontrar gemas al extraer minerales
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-Un mayor conocimiento de los depósitos de minerales te permite aumentar la velocidad de excavación, la cantidad de recursos obtenidos y la probabilidad de encontrar recursos raros. Solo se aplica al usar un pico.
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+Un mayor conocimiento de los depósitos de minerales te permite aumentar la velocidad de excavación, la cantidad de recursos obtenidos y la probabilidad de encontrar recursos raros.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Minería
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-A medida que entrenes y vayas comprendiendo mejor esta profesión, irás también mejorando tu velocidad de tala. Solo se aplica cuando estás usando un hacha.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Tala
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Prospección
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Cuanta más habilidad de construcción tengas, más rápido construirás cosas. Esto se aplica a todas las tareas (construcción, reparación) que se llevan a cabo con una caja de herramientas.
@@ -130,9 +145,18 @@ Fabricar objetos cada vez más complejos y entender su estructura es una gran fo
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Fabricación
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Probabilidad de reparar el objeto completamente
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Te permite reparar y mantener diferentes objetos y equipo. Se aplica a los trabajos realizados en una mesa de manitas.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Mantenimiento
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+La capacidad para usar diversos tipos de vehículo y emplear su equipamiento de forma correcta y efectiva. Se aplica a todos los tipos de vehículo.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Vehículos
 

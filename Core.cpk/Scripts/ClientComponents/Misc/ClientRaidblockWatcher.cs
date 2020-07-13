@@ -21,7 +21,7 @@
         public const string Notification_Title =
             "This base is under raid block";
 
-        private static HUDNotificationControl currentNotification;
+        private static HudNotificationControl currentNotification;
 
         public static bool IsNearOrInsideBaseUnderRaidblock => !(currentNotification is null);
 
@@ -64,7 +64,7 @@
             if (currentNotification != null
                 && !currentNotification.IsHiding)
             {
-                currentNotification.SetMessage(text);
+                currentNotification.Message = text;
                 return;
             }
 
@@ -88,7 +88,6 @@
         {
             public override void ClientInitialize()
             {
-                base.ClientInitialize();
                 ClientTimersSystem.AddAction(delaySeconds: 1, Update);
             }
         }

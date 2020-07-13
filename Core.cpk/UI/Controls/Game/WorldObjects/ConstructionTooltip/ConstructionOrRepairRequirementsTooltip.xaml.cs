@@ -1,9 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip
 {
     using System.Windows;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -12,11 +12,11 @@
 
     public partial class ConstructionOrRepairRequirementsTooltip : BaseUserControl
     {
-        public static readonly DependencyProperty TextBrushProperty
-            = DependencyProperty.Register(nameof(TextBrush),
-                                          typeof(Brush),
-                                          typeof(ConstructionOrRepairRequirementsTooltip),
-                                          new PropertyMetadata(default(Brush)));
+        public static readonly DependencyProperty CanInteractProperty =
+            DependencyProperty.Register(nameof(CanInteract),
+                                        typeof(bool),
+                                        typeof(ConstructionOrRepairRequirementsTooltip),
+                                        new PropertyMetadata(default(bool)));
 
         private ConstructionSitePublicState constructionSitePublicState;
 
@@ -24,14 +24,10 @@
 
         private BaseViewModelConstructionRequirementsTooltip viewModel;
 
-        static ConstructionOrRepairRequirementsTooltip()
+        public bool CanInteract
         {
-        }
-
-        public Brush TextBrush
-        {
-            get => (Brush)this.GetValue(TextBrushProperty);
-            set => this.SetValue(TextBrushProperty, value);
+            get => (bool)this.GetValue(CanInteractProperty);
+            set => this.SetValue(CanInteractProperty, value);
         }
 
         public IStaticWorldObject WorldObject { get; private set; }
@@ -103,14 +99,10 @@
 
         private void Update()
         {
-            var canInteract = this.WorldObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
+            this.CanInteract = ConstructionSystem.SharedCheckCanInteract(
                 Api.Client.Characters.CurrentPlayerCharacter,
                 this.WorldObject,
                 writeToLog: false);
-
-            this.TextBrush = canInteract
-                                 ? InteractionTooltip.TextBrushCanInteract
-                                 : InteractionTooltip.TextBrushCannotInteract;
         }
     }
 }

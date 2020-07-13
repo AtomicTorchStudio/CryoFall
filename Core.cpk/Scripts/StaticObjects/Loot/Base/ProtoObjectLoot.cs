@@ -198,7 +198,10 @@
             }
 
             var lootDroplist = this.ServerGetLootDroplist(worldObject);
-            var result = lootDroplist.TryDropToCharacter(character, new DropItemContext(character, worldObject));
+            var result = lootDroplist.TryDropToCharacterOrGround(character,
+                                                                 worldObject.TilePosition,
+                                                                 new DropItemContext(character, worldObject),
+                                                                 groundContainer: out _);
             if (!result.IsEverythingCreated)
             {
                 // cannot create all the drop items
@@ -217,6 +220,8 @@
             // destroy object after success pickup
             Server.World.DestroyObject(worldObject);
 
+            // do not report those items that were dropped on the ground instead of player's containers
+            result.RemoveEntriesNotOwnedByCharacter(character);
             return result;
         }
     }

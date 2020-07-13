@@ -6,6 +6,9 @@
 
     public class QuestBuildAPermanentBase : ProtoQuest
     {
+        public const string HintStructureRelocation =
+            "To [b]relocate[/b] an existing structure—select a [b]toolbox[/b] and use it on the structure. Please note that some structures are unmovable.";
+
         public override string Description =>
             @"Understanding how to protect your base is very important! If you don't do it right, you can be easily raided by more cunning survivors.
               [br]
@@ -27,15 +30,19 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
                 .Add(TaskHaveTechNode.Require<TechNodeLandClaimT1>())
-                .Add(TaskBuildStructure.Require<ObjectLandClaimT1>());
+                .Add(TaskBuildStructure.Require<ObjectLandClaimT1>())
+                .Add(TaskRelocateAnyStructure.Require());
 
             prerequisites
                 .Add<QuestCraftAndEquipClothArmor>()
                 .Add<QuestPerformBasicActions>();
+
+            hints
+                .Add(HintStructureRelocation);
         }
     }
 }

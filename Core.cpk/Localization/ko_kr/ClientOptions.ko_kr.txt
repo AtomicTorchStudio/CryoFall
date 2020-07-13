@@ -50,6 +50,9 @@ Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 아이템 단축막대
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+아이템 단축막대 (역순)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 스크롤 휠
 

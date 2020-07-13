@@ -4,6 +4,8 @@
 
     public class WeaponFireTracePreset
     {
+        public readonly bool DrawHitSparksAsLight;
+
         public readonly IReadOnlyWeaponHitSparksPreset HitSparksPreset;
 
         public readonly double TraceEndFadeOutExponent;
@@ -30,7 +32,8 @@
             int traceStartOffsetPixels,
             double traceStartScaleSpeedExponent = 1.0,
             double traceEndFadeOutExponent = 1.0,
-            bool useScreenBlending = false)
+            bool useScreenBlending = false,
+            bool? drawHitSparksAsLight = null)
         {
             this.TraceTexture = traceTexturePath != null
                                     ? new TextureResource(traceTexturePath, isTransparent: true)
@@ -48,6 +51,8 @@
             this.TraceMinDistance = this.TraceWorldLength * 0.5;
 
             this.UseScreenBlending = useScreenBlending;
+
+            this.DrawHitSparksAsLight = drawHitSparksAsLight ?? this.HasTrace;
         }
 
         public bool HasTrace => !(this.TraceTexture is null);

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeCigarCheap : TechNode<TechGroupRecreation>
+    public class TechNodeCigarCheap : TechNode<TechGroupRecreationT3>
     {
         protected override void PrepareTechNode(Config config)
         {

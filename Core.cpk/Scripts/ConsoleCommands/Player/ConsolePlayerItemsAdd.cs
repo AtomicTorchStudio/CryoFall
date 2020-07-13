@@ -18,7 +18,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         public string Execute(IProtoItem item, ushort count = 1, [CurrentCharacterIfNull] ICharacter player = null)
         {
-            var createItemResult = Server.Items.CreateItem(player, item, count);
+            var createItemResult = Server.Items.CreateItem(item, player, count);
             return $"{createItemResult.TotalCreatedCount} item(s) of type {item.Name} added to {player}.";
         }
     }

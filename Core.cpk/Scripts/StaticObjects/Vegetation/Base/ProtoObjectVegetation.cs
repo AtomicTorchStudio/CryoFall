@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Drones;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
@@ -9,6 +10,8 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -121,6 +124,17 @@
             //Logger.WriteDev(
             //    $"Vegetation growth stage set: {worldObject} growthStage={growthStage} nextStageDuration={duration:F2}s");
             this.ServerOnGrowthStageUpdated(worldObject, privateState, publicState);
+        }
+
+        public double SharedGetGrowthProgress(IWorldObject worldObject)
+        {
+            if (this.GrowthStagesCount <= 0)
+            {
+                return 1;
+            }
+
+            var publicState = GetPublicState((IStaticWorldObject)worldObject);
+            return publicState.GrowthStage / (double)this.GrowthStagesCount;
         }
 
         protected virtual byte CalculateGrowthStagesCount()
@@ -289,54 +303,88 @@
         {
         }
 
+        protected override void ServerOnStaticObjectDamageApplied(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            float previousStructurePoints,
+            float currentStructurePoints)
+        {
+            var character = weaponCache.Character;
+            if (character != null
+                && !(weaponCache.ProtoWeapon is IProtoItemWeaponRanged)
+                && WorldObjectClaimSystem.SharedIsEnabled)
+            {
+                this.ServerTryClaimObject(targetObject, character);
+            }
+
+            base.ServerOnStaticObjectDamageApplied(weaponCache,
+                                                   targetObject,
+                                                   previousStructurePoints,
+                                                   currentStructurePoints);
+        }
+
         protected override void ServerOnStaticObjectDestroyedByCharacter(
             ICharacter byCharacter,
-            IProtoItemWeapon byWeaponProto,
+            WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject)
         {
-            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, byWeaponProto, targetObject);
+            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, weaponCache, targetObject);
 
             // drop chance and gained experience depends on the vegetation growth stage
-            var growthProgressFraction = this.GrowthStagesCount > 0
-                                             ? GetPublicState(targetObject).GrowthStage / (double)this.GrowthStagesCount
-                                             : 1;
-
+            var growthProgressFraction = this.SharedGetGrowthProgress(targetObject);
             growthProgressFraction = MathHelper.Clamp(growthProgressFraction, 0.1, 1);
 
             try
             {
-                var dropItemContext = new DropItemContext(byCharacter, targetObject);
-                if (byWeaponProto is IProtoItemWeaponMelee)
+                var dropItemsList = this.DroplistOnDestroy;
+                var dropItemContext = new DropItemContext(byCharacter,
+                                                          targetObject,
+                                                          weaponCache.ProtoWeapon,
+                                                          weaponCache.ProtoExplosive);
+
+                var objectDrone = weaponCache.Drone;
+                if (objectDrone != null)
+                {
+                    // drop resources into the internal storage of the drone
+                    var storageItemsContainer = ((IProtoDrone)objectDrone.ProtoGameObject)
+                        .ServerGetStorageItemsContainer(objectDrone);
+                    dropItemsList.TryDropToContainer(storageItemsContainer,
+                                                     dropItemContext,
+                                                     probabilityMultiplier: growthProgressFraction);
+                }
+                else if (weaponCache.ProtoWeapon is IProtoItemWeaponMelee)
                 {
                     // a melee weapon - try drop items to character
-                    var result = this.DroplistOnDestroy.TryDropToCharacter(
+                    var result = dropItemsList.TryDropToCharacterOrGround(
                         byCharacter,
+                        targetObject.TilePosition,
                         dropItemContext,
+                        groundContainer: out _,
                         probabilityMultiplier: growthProgressFraction);
-                    if (result.IsEverythingCreated)
+                    if (result.TotalCreatedCount > 0)
                     {
                         NotificationSystem.ServerSendItemsNotification(byCharacter, result);
-                        return;
                     }
-
-                    result.Rollback();
                 }
-
-                // not a melee weapon or cannot drop to character - drop on the ground only
-                this.DroplistOnDestroy.TryDropToGround(
-                    targetObject.TilePosition,
-                    dropItemContext,
-                    probabilityMultiplier: growthProgressFraction,
-                    groundContainer: out _);
+                else
+                {
+                    // not a melee weapon or cannot drop to character - drop on the ground only
+                    dropItemsList.TryDropToGround(
+                        targetObject.TilePosition,
+                        dropItemContext,
+                        probabilityMultiplier: growthProgressFraction,
+                        groundContainer: out _);
+                }
             }
             finally
             {
-                if (byWeaponProto is IProtoItemToolWoodcutting)
+                if (weaponCache.ProtoWeapon is IProtoItemToolWoodcutting)
                 {
-                    // add experience proportional to the tree structure points (effectively - for the time spent on woodcutting)
-                    var exp = SkillWoodcutting.ExperienceAddPerStructurePoint;
+                    // add experience proportional to the vegetation structure points
+                    // (effectively - for the time spent on woodcutting)
+                    var exp = SkillLumbering.ExperienceAddPerStructurePoint;
                     exp *= this.StructurePointsMax * growthProgressFraction;
-                    byCharacter?.ServerAddSkillExperience<SkillWoodcutting>(exp);
+                    byCharacter?.ServerAddSkillExperience<SkillLumbering>(exp);
                 }
             }
         }
@@ -378,6 +426,39 @@
 
             // increase growth stage
             this.ServerSetGrowthStage(data.GameObject, (byte)(publicState.GrowthStage + 1));
+        }
+
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IStaticWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
+        {
+            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            if (damage <= 0)
+            {
+                return damage;
+            }
+
+            return damage * this.SharedGetDamageMultiplierByGrowthProgress(targetObject);
+        }
+
+        /// <summary>
+        /// Not fully grown trees should be cut faster (linearly proportional to their growth progress).
+        /// </summary>
+        protected double SharedGetDamageMultiplierByGrowthProgress(IStaticWorldObject targetObject)
+        {
+            var growthProgressFraction = this.SharedGetGrowthProgress(targetObject);
+            growthProgressFraction = MathHelper.Clamp(growthProgressFraction, 0.25, 1);
+            return 1 / growthProgressFraction;
+        }
+
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            return true;
         }
     }
 }

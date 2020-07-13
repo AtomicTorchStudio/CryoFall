@@ -8,6 +8,8 @@
         public override string Description =>
             "Simple stone-tipped arrow. Can't go simpler than that.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => "Stone-tipped arrow";
 
         protected override void PrepareDamageDescription(

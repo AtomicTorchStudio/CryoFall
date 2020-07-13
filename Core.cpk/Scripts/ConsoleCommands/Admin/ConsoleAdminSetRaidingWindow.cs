@@ -24,7 +24,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
                 duration = 24;
             }
 
-            var window = new TimeInterval(fromHour - UTC,
+            var window = new DayTimeInterval(fromHour - UTC,
                                           fromHour - UTC + duration);
             RaidingProtectionSystem.ServerSetRaidingWindow(window);
             return "Server raiding window set. Please check Politics/Diplomacy menu!";

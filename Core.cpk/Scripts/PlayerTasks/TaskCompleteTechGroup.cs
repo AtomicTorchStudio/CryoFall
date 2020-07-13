@@ -21,7 +21,7 @@
         public TechGroup TechGroup { get; }
 
         protected override string AutoDescription
-            => string.Format(DescriptionFormat, this.TechGroup.Name);
+            => string.Format(DescriptionFormat, this.TechGroup.NameWithTierName);
 
         public static TaskCompleteTechGroup Require<TTechGroup>()
             where TTechGroup : TechGroup, new()

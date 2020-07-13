@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantArtificialRetina : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantArtificialRetina : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

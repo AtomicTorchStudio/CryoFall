@@ -75,7 +75,7 @@
                 return;
             }
 
-            var newSelectedSlotId = SelectedSlotId + indexDelta;
+            var newSelectedSlotId = (SelectedSlotId ?? 0) + indexDelta;
             var slotsCount = ContainerHotbar.SlotsCount;
             while (newSelectedSlotId < 0)
             {

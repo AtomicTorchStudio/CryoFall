@@ -26,11 +26,7 @@
         public override ushort EnergyUsePerSecondMoving => 300;
 
         public override BaseItemsContainerMechEquipment EquipmentItemsContainerType
-            => Api.GetProtoEntity<ContainerMechEquipmentSkipper>();
-
-        public override bool IsPlayersHotbarAndEquipmentItemsAllowed => false;
-
-        public override double MaxDistanceToInteract => 1;
+            => Api.GetProtoEntity<ContainerMechEquipmentManul>();
 
         public override string Name => "Manul";
 
@@ -39,8 +35,6 @@
         public override double PhysicsBodyFriction => 10;
 
         public override double StatMoveSpeed => 2.0;
-
-        public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
         public override float StructurePointsMax => 600;
 
@@ -51,10 +45,10 @@
             defense.Set(
                 impact: 0.60,
                 kinetic: 0.60,
+                explosion: 0.40,
                 heat: 0.50,
-                cold: 0.15,
-                chemical: 0.70,
-                electrical: 0.40,
+                cold: 0.50,
+                chemical: 1.00,
                 radiation: 0.0,
                 psi: 0.0);
         }
@@ -104,7 +98,7 @@
                 armorPiercingCoef: 0.25,
                 finalDamageMultiplier: 1,
                 rangeMax: damageRadius,
-                damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
+                damageDistribution: new DamageDistribution(DamageType.Explosion, 1));
         }
 
         protected override void PrepareProtoVehicleLightConfig(ItemLightConfig lightConfig)

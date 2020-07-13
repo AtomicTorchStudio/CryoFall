@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -65,7 +66,7 @@
                   ? new Dictionary<ICharacter, CharacterUnstuckRequest>()
                   : null;
 
-        private static HUDNotificationControl ClientCurrentUnstuckNotification;
+        private static HudNotificationControl ClientCurrentUnstuckNotification;
 
         public override string Name => "Character unstuck system";
 
@@ -104,11 +105,21 @@
                 size: (2, 2));
 
             LandClaimSystem.SharedGetAreasInBounds(bounds, tempAreas, addGracePadding: false);
-            if (tempAreas.AsList().Any(LandClaimSystem.SharedIsAreaUnderRaid))
+            foreach (var area in tempAreas.AsList())
             {
-                Logger.Info("Cannot unstuck when located in an area under raid", character);
-                LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
-                return false;
+                if (LandClaimSystem.SharedIsAreaUnderRaid(area))
+                {
+                    Logger.Info("Cannot unstuck when located in an area under raid", character);
+                    LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
+                    return false;
+                }
+
+                if (LandClaimShieldProtectionSystem.SharedIsAreaUnderShieldProtection(area))
+                {
+                    Logger.Info("Cannot unstuck when located in an area under shield protection", character);
+                    LandClaimShieldProtectionSystem.SharedSendNotificationActionForbiddenUnderShieldProtection(character);
+                    return false;
+                }
             }
 
             return true;
@@ -183,7 +194,7 @@
             }
             else
             {
-                ClientCurrentUnstuckNotification.SetMessage(message);
+                ClientCurrentUnstuckNotification.Message = message;
             }
         }
 

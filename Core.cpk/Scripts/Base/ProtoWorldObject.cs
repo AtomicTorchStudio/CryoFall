@@ -282,7 +282,8 @@
             }
 
             bool isInsideInteractionArea;
-            if (worldObject.PhysicsBody.HasShapes)
+            if (worldObject.PhysicsBody.HasShapes
+                && worldObject.PhysicsBody.HasAnyShapeCollidingWithGroup(CollisionGroups.ClickArea))
             {
                 // check that the world object is inside the interaction area of the character
                 using var objectsInCharacterInteractionArea
@@ -290,14 +291,25 @@
                         character,
                         writeToLog,
                         requiredCollisionGroup);
-                isInsideInteractionArea = objectsInCharacterInteractionArea?
-                                          .AsList()
-                                          .Any(t => t.PhysicsBody.AssociatedWorldObject == worldObject)
-                                          ?? false;
+
+                isInsideInteractionArea = false;
+                if (objectsInCharacterInteractionArea != null)
+                {
+                    foreach (var t in objectsInCharacterInteractionArea.AsList())
+                    {
+                        if (!ReferenceEquals(worldObject, t.PhysicsBody.AssociatedWorldObject))
+                        {
+                            continue;
+                        }
+
+                        isInsideInteractionArea = true;
+                        break;
+                    }
+                }
             }
             else if (worldObject.ProtoWorldObject is IProtoStaticWorldObject protoStaticWorldObject)
             {
-                // the world object doesn't have physics shapes
+                // the world object doesn't have click area collision shapes
                 // check this object tile by tile
                 // ensure at least one tile of this object is inside the character interaction area
                 // ensure there is direct line of sight between player character and this tile

@@ -193,6 +193,9 @@ Eisenvorkommen
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
 Kleine Pragmiumader
 
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@ErrorCannotBuild_PragmiumSourceTooCloseOnPvE:
+Zu nah an einer Pragmiumquelle.
+
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
 Pragmiumquelle
 
@@ -246,9 +249,6 @@ Zisterne
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Verwende eine Waffe oder ein Werkzeug, um diese Struktur zu beschädigen.
-
-Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-Keine Beschreibung.
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 Keine Beschreibung der Erweiterung.
@@ -383,6 +383,9 @@ Du wolltest schon immer ein Museum eröffnen oder all die Trophäen zur Schau st
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 Vitrine
 
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCaseLarge@Name:
+Große Vitrine
+
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Schwer gepanzerter Tresor, der sogar den stärksten Explosionen standhalten kann. Nicht einfach in der Herstellung, garantiert jedoch die Sicherheit deiner Wertsachen.
 
@@ -467,6 +470,12 @@ Dieses kostbare Kristall zu rein ästhetischen Zwecken zu verschwenden, ist eine
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Pragmiumstatue
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Description:
+Ein einfacher Hocker für ein einfaches Zimmer.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Name:
+Hocker
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
 Einfacher Tisch im alteuropäischen Stil.
 
@@ -513,7 +522,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Holztür
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-Großes Stahltor, das sich gut als Haupteingang deiner Basis verwendet lässt.
+Großes Stahltor, das bequem als Haupteingang deiner Basis herhalten kann. Tore werden zudem für große Fahrzeuge benötigt.
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 Stahltor
@@ -740,6 +749,12 @@ Kann zum Kompostieren jedweden organischen Materials verwendet werden. Im Wesent
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Kompostbox
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Description:
+Diese Anlage ermöglicht das chemische Cracking von Erdöl in leichtere Kohlenwasserstoffe und erzeugt so Benzin.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Name:
+Öl-Cracking-Anlage
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Ermöglicht das Extrahieren von Erdöl aus einem unterirdischen Reservoir oder direkt aus einer Ölquelle für höhere Effizienz.
 
@@ -772,6 +787,15 @@ Einfacher Wasserkollektor, der kleine Mengen von Wasser sammelt. Funktioniert au
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Wasserkollektor
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@ErrorBuildingAllowedOnlyInDesert:
+Dieses Gebäude kannst du nur in der Wüste bauen.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Description:
+Mithilfe von Kondensation und Trockenmitteln kann dieses Gebäude Wasser direkt aus der Umgebungsluft extrahieren. Im Gegensatz zu herkömmlichen Methoden der Wassergewinnung ist dieser Prozess langwierig und ineffizient, funktioniert jedoch sogar in der Wüste.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Name:
+Atmosphärischer Wassererzeuger
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
 Verwendet eine elekronische Pumpe zum schnellen Extrahieren von Wasser aus einem unterirdischen Reservoir.
@@ -818,6 +842,15 @@ Kann zum Aufladen jeglicher tragbarer elektronischer Geräte, wie z.B. einer Pow
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 Ladestation
 
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStationAdvanced@Name:
+Erweiterte Ladestation
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Description:
+Bewässert angrenzende Nutzflächen automatisch und in regelmäßigen Abständen.
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
+Sprinkleranlage
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Mehr Komponenten benötigt.
 
@@ -832,6 +865,12 @@ Gegenstand zunächst aus dem Ausgabe-Slot entfernen.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Keine Reparatur möglich
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
+Glück gehabt![br]{0} vollständig repariert!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Title:
+Perfekte Reparatur!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
 Diese Werkbank eignet sich besonders gut zum Basteln oder Reparieren verschiedener Gegenstände.
@@ -850,6 +889,9 @@ Automatisierte Plattform zur Montage von Fahrzeugen. Kann zur Fertigung jedes Fa
 
 Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
 Fahrzeugmontagebucht
+
+Scripts/StaticObjects/Structures/Misc/Base/SprinklerWateringRequestResult@ErrorNotEnoughWater:
+Nicht genug Wasser in der Sprinkleranlage.
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Ermöglicht das Speichern von Strom aus Generatoren für den späteren Gebrauch innerhalb der Basis.
@@ -1085,72 +1127,69 @@ Zuckerrohr
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
 Dornenstrauch
 
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-Bananenbaum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-Birke
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-Eibe
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-Kaktus
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-Abgestorbener Baum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-Abgestorbener Baum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-Abgestorbener Baum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-Durianbaum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-Umgestürzter Baum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-Eiche
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-Palme
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Fichte
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Kiefer
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-Pappel
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-Gummibaum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-Moosiger Stumpf
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-Baumstumpf
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-Moosiger Baumstumpf
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-Baumstumpf
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-Sumpfbaum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-Tropischer Baum
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-Weide
-
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Verwende eine Axt, um diesen Baum zu fällen.
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
+Toter Baum
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
+Toter Baum
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:
+Umgestürzter Baum
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeSnagMossy@Name:
+Moosiger Stumpf
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStump@Name:
+Baumstumpf
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpMossy@Name:
+Moosiger Baumstumpf
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpWithTwig@Name:
+Baumstumpf
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBirch@Name:
+Birke
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBrevifolia@Name:
+Eibe
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeOak@Name:
+Eiche
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePalm@Name:
+Palme
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePine@Name:
+Fichte
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePineBoreal@Name:
+Kiefer
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePoplar@Name:
+Pappel
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeSwamp@Name:
+Sumpfbaum
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeTropical@Name:
+Tropischer Baum
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeWillow@Name:
+Weide
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeBanana@Name:
+Bananenbaum
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeCactus@Name:
+Kaktus
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeDurian@Name:
+Durianbaum
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeRubber@Name:
+Gummibaum
 

@@ -1,11 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
-    using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.BottleRefillSystem;
-    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
@@ -80,6 +79,13 @@
         {
             // try to refill
             BottleRefillSystem.Instance.ClientTryStartAction();
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.FillWithWater);
+            hints.Add(ItemHints.FillWithSaltyWater);
         }
     }
 }

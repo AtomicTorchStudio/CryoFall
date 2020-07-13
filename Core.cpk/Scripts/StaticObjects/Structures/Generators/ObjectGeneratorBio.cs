@@ -14,6 +14,10 @@
     {
         public override byte ContainerInputSlotsCount => 1;
 
+        public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 99,
+                                               shutdownPercent: 100);
+
         public override string Description =>
             "Decomposes organic matter into methane gas, which is used to produce small amounts of electrical energy. Not suitable as the primary source of electricity.";
 
@@ -25,7 +29,7 @@
 
         public override ushort OrganicCapacity => 500;
 
-        public override double OrganicDecreasePerSecondWhenActive => 0.125;
+        public override double OrganicDecreasePerSecondWhenActive => 0.1;
 
         public override float StructurePointsMax => 3000;
 
@@ -97,14 +101,15 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
+
             build.AddStageRequiredItem<ItemWire>(count: 4);
-            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
-            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
+            build.AddStageRequiredItem<ItemGlassRaw>(count: 2);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
-            repair.AddStageRequiredItem<ItemWire>(count: 1);
-            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            repair.AddStageRequiredItem<ItemWire>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

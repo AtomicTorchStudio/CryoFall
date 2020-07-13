@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -14,6 +15,9 @@
             "Heavily armored safe that can withstand even the most powerful explosives. Not easy to make, but it can certainly ensure the safety of your valuables.";
 
         public override bool HasOwnersList => true;
+
+        public override bool IsRelocatable
+            => PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
 
         public override byte ItemsSlotsCount => 32;
 
@@ -51,12 +55,12 @@
             category = GetCategory<StructureCategoryStorage>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
             build.AddStageRequiredItem<ItemComponentsMechanical>(count: 2);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
         }
 

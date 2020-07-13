@@ -6,13 +6,15 @@
 
     public class ObjectConstructionSite : ProtoObjectConstructionSite
     {
+        public override string Description => string.Empty;
+
         public override string Name => "Construction site";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        protected override bool IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
+        protected override bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
             ConstructionSitePublicState publicState)
         {
             return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject;

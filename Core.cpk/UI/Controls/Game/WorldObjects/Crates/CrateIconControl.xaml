@@ -9,12 +9,16 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelCrateIconControl, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
 
     <Button Style="{StaticResource SmallButtonStyle}"
             Padding="3"
-            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.CrateIconControl_SelectIcon}"
             Command="{Binding CommandOpenCrateIconSelectorWindow}">
+        <base:ToolTipServiceExtend.ToolTip>
+            <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.CrateIconControl_SelectIcon}" />
+        </base:ToolTipServiceExtend.ToolTip>
+
         <Grid>
             <Rectangle Fill="{Binding IconPlaceholder}"
                        Width="38"

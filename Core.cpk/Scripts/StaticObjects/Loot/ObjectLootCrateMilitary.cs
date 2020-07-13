@@ -36,6 +36,7 @@
         {
             DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
             DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
+            DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
 
             // common loot
             droplist.Add(nestedList:
@@ -56,10 +57,11 @@
                              .Add<ItemAmmo300ArmorPiercing>(count: 5,  countRandom: 10, weight: 1 / 10.0)
                              .Add<ItemAmmo300Incendiary>(count: 5,     countRandom: 10, weight: 1 / 10.0)
                              .Add<ItemAmmoGrenadeHE>(count: 2,         countRandom: 3,  weight: 1 / 15.0)
+                             .Add<ItemAmmoGrenadeIncendiary>(count: 2, countRandom: 3,  weight: 1 / 15.0)
                              .Add<ItemAmmo50SH>(count: 5,              countRandom: 10, weight: 1 / 5.0)
                              // trash ammo
-                             .Add<ItemAmmo10mmBlank>(count: 5,      countRandom: 10, weight: 1 / 15.0)
-                             .Add<ItemAmmo12gaSaltCharge>(count: 5, countRandom: 10, weight: 1 / 15.0));
+                             .Add<ItemAmmo10mmBlank>(count: 5,         countRandom: 10, weight: 1 / 15.0)
+                             .Add<ItemAmmo12gaSaltCharge>(count: 5,    countRandom: 10, weight: 1 / 15.0));
 
             // rare loot
             droplist.Add(probability: 1 / 10.0,
@@ -76,14 +78,13 @@
                              .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
                              .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
                              .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
+                             .Add<ItemGrenadeLauncher>(weight: 1 / 4.0,   condition: T3Specialized)
                              .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
-                             // equipment - require at least reaching T3 timegate to start spawning it here
-                             .Add<ItemMilitaryHelmet>(weight: 1 / 4.0, condition: T3Specialized)
-                             .Add<ItemMilitaryJacket>(weight: 1 / 4.0, condition: T3Specialized)
-                             .Add<ItemMilitaryPants>(weight: 1 / 4.0,  condition: T3Specialized)
-                             .Add<ItemAssaultHelmet>(weight: 1 / 10.0, condition: T3Specialized)
-                             .Add<ItemAssaultJacket>(weight: 1 / 10.0, condition: T3Specialized)
-                             .Add<ItemAssaultPants>(weight: 1 / 10.0,  condition: T3Specialized)
+                             // equipment
+                             .Add<ItemMilitaryHelmet>(weight: 1 / 4.0,    condition: T3Specialized)
+                             .Add<ItemMilitaryArmor>(weight: 1 / 4.0,     condition: T3Specialized)
+                             .Add<ItemAssaultHelmet>(weight: 1 / 10.0,    condition: T4Specialized)
+                             .Add<ItemAssaultArmor>(weight: 1 / 10.0,     condition: T4Specialized)
                              // misc stuff for soldiers use :)
                              .Add<ItemCigarNormal>(count: 3,        countRandom: 2, weight: 1 / 5.0)
                              .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)

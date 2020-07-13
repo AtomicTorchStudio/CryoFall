@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
@@ -18,7 +19,7 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
                 .Add(TaskCraftRecipe.RequireHandRecipe<RecipeTorch>())

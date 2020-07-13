@@ -186,10 +186,10 @@
 
         protected override void ServerOnStaticObjectDestroyedByCharacter(
             ICharacter byCharacter,
-            IProtoItemWeapon byWeaponProto,
+            WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject)
         {
-            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, byWeaponProto, targetObject);
+            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, weaponCache, targetObject);
             this.ServerOnExtractorDestroyedForDeposit(targetObject);
         }
 

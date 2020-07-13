@@ -88,6 +88,12 @@ Basit taş uçlu ok. Bundan basiti de olmaz.
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 Taş uçlu ok
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+Gelişmiş etkili menzili bulunan özel parça tesirli el bombası. Temas sonrası geniş bir bölgedeki her şeye hasar verir.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+Parça tesirli el bombası
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 İsabet ettikten sonra hedefi dondurmak için sıvı helyum karışımlı pragmium parçaları yayan el bombası.
 
@@ -111,6 +117,69 @@ Temel ateşli silah mühimmatı. Yalnızca zayıf hedefler için uygun, fakat ü
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 Kağıt kovan
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+Yüksek patlayıcı top mermileri araç zırhına karşı oldukça etkilidir.
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+Top mermisi
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+Bu eşyayı çabuk kullanmak veya tüketmek için Alt tuşuna basılı tutarken eşyanın üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+Sökmek istediğin herhangi bir eşyanın üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+Hasar görmemiş bir yapıyı hareket ettirmek için üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+Bir kuyuyu veya su toplayıcıyı suyla doldurmak için üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+Tamir etmek veya inşa etmek için herhangi bir yapının üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+Herhangi bir çiftlik bitkisini sulamak için üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+Fileto balık KULLAN etkleşimiyle çıkarılabilir (yani her eşyada olduğu gibi)
+
+Scripts/Items/Base/ItemHints@DroneControl:
+Envanterindeki veya araç çubuğundaki dronlara bu dron kontrolü ile talimat verilebilir.
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+Bir talimat verirken Shift tuşuna basılı tutmak bütün dronlarını yakında bulunan, seçilen tipteki nesneleri toplamaya gönderir.
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+Dronlar direkt olarak kullanılamaz. Bu dron envanterindeyken kontrol aygıtı kullanarak talimat ver.
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+Kullanılabilmesi için aygıt yuvalarından birinde bulunmalı.
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+Gübreler, araç çubuğundan seçilip bir bitkinin üstüne tıklanarak kullanılabilir.
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+Şişeyi tuzlu suyla doldurmak için araç çubuğundaki şişeyi seçtikten sonra deniz suyunun üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+Temiz suyla doldurmak için bir kuyunun veya su toplayıcının içine yerleştir.
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+Yakıt hücreleri farklı araçlara enerji sağlamak için kullanılır.
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+Implantlar sadece tıbbi istasyonda kurulabilir.
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+Bu eşya kullanılan güç bankalarından enerji alır.
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+Bu silah sadece araç [b]{0}[/b] sabit noktasına kurulup kullanılabilir.
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+Kes
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 Şifre çöz
@@ -160,23 +229,41 @@ Standart çift yönlü taşınabilir güç kaynağı. Hareket halindeyken kullan
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Standart taşınabilir güç kaynağı
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+Gelişmiş dron uzaktan kumandası
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+Otomatik dronları yönetmek ve talimat vermek için özel uzaktan kumanda gereklidir.
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+Dron uzaktan kumandası
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+Endüstriyel dronun gelişmiş versiyonu çeşitli geliştirmelerin yanı sıra hızlandırılmış madencilik ve yüksek menzil de sunar.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+Gelişmiş endüstriyel dron
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+Hızlı kaynak kazanımı için standart endüstriyel dron kullanılabilir.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+Endüstriyel dron
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Savaş ve çevresel koruma arasında ideal bir denge sunan gelişmiş çevresel koruma zırhı.
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T zırhı
 
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+Bu özel saldırı zırhı diğer bölgelerden fedakârlık yapmadan düşman ateşine karşı mükemmel korunma sağlar.
+
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Saldırı zırhı
+
 Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
 Saldırı zırhı kaskı
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
-Bu özel saldırı zırhı, diğer kullanım amaçlarından ödün vermeden düşman ateşine karşı inanılmaz bir koruma sağlar.
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-Saldırı zırhı ceketi
-
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-Saldırı zırhı pantolonu
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 Kask ışığı kuşanılmadı
@@ -205,26 +292,23 @@ Kask ışığını etkinleştirmek için lütfen bu eşyayı kuşan ve [{0}] tu�
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 Düğme ayarlanmadı
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Kemik zırh, fiyatı göz önüne alındığında iyi bir koruma sağlar ve ilk zamanlar için oldukça kullanışlı olabilir.
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Kemik zırh
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 Kapalı kemik kask
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 Boynuzlu kemik kask
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-Kemik zırh, fiyatı göz önüne alındığında iyi bir koruma sağlar ve ilk zamanlar için oldukça kullanışlıdır.
-
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-Kemik ceket
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-Kemik pantolon
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
 Süslü bir kıyafet sayılmaz, fakat başınız sıkıştığında sizi koruyabilir. En yakın alternatiflerinden daha iyi bir çevresel koruma sağlar.
 
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-Örgü göğüs zırhı
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Örgü zırh
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Örgü kask
@@ -232,50 +316,38 @@ Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 Geçici lambalı kask
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-Örgü pantolon
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+Herhangi bir koruma sağlamaz. Belki bir sivrisineği durdurabilir?
 
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-Bez şapka
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-Bez pantolon
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
-Herhangi bir koruma sağlamaz. Belki bir sivrisineği durdurabilir.
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 Bez gömlek
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
-Başlangıç için uygun bir zırh; özellikle soğuğa karşı iyi bir koruma sağlar. Çok pahalı değil ve rahat.
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Bez şapka
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
+Başlangıç için uygun bir zırh; özellikle soğuğa karşı iyi bir koruma sağlar. Çok pahalı değil ve rahat!
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
 Kürk manto
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 Kuyruklu kürk şapka
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 Kazak şapkası
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 Rus şapkası
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-Kürk pantolon
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 Gösterişli altın giysi. Yalnızca gerçek hükümdarlara yakışır.
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-Altın göğüs zırhı
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Altın zırh
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 Altın taç
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-Altın pantolon
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Kullananları bir çok çevresel tehlikeye karşı koruyan özel tasarım kıyafet. Bütünlüğünü hızlı bir şekilde kaybedeceği için savaşta kullanılmamalıdır.
@@ -283,29 +355,26 @@ Kullananları bir çok çevresel tehlikeye karşı koruyan özel tasarım kıyaf
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 Tehlikeli madde zırhı
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
-Kovboy şapkası
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
-Pilot şapkası
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
-Korsan şapkası
-
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
 Deri zırh iyi bir genel koruma sağlar ve gelişimin ilk aşamaları için idealdir.
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-Deri ceket
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Deri zırh
 
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-Deri pantolon
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
+Kovboy şapkası
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
+Pilot şapkası
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
+Korsan şapkası
+
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
 Metal zırh, fiziksel saldırıları karşı büyük bir koruma sağlar, fakat çevresel tehlikelere karşı neredeyse etkisizdir.
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-Metal göğüs zırhı
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Metal zırh
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Kapalı metal kask
@@ -313,20 +382,14 @@ Kapalı metal kask
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 Metal kurukafa kaskı
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-Metal ayak zırhı
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Bu zırhın yapımında kullanılan gelişmiş malzemeler onu küçük ve temel silahlara karşı ideal bir koruma haline getiriyor.
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Askerî zırh
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Askeri kask
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-Bu zırhın yapımında kullanılan gelişmiş malzemeler onu küçük ve temel silahlara karşı ideal bir koruma haline getiriyor.
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-Askeri ceket
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-Askeri pantolon
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Taşınabilir ışık kaynağı sunarak ellerinizin serbest kalması sağlayan kullanışlı bir kask. Tek kullanımlık pil gerektirir.
@@ -340,56 +403,56 @@ Geceleri neredeyse mükemmel bir şekilde görmenizi sağlayan hafif taktik kask
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 Gece görüş gözlüğü
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+Geceleri mükemmel görüş sağlayan gece görüşlü taktik miğferin geliştirilmiş versiyonu. Tek kullanımlık pil gerektirir.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+Gelişmiş gece görüşü
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+Radyoaktif partikülleri ve zararlı gazları filtreleyen basit solunum cihazı. Başka bir koruma sağlamaz.
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+Solunum cihazı
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 Baret, kafaya gelen darbelere, molozlara ve elektrik çarpmalarına karşı temel bir koruma sağlar.
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 Baret
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-Radyoaktif partikülleri ve zararlı gazları filtreleyen basit solunum cihazı. Başka bir koruma sağlamaz.
-
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-Solunum cihazı
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
 Yapısal temelinde ince metal plakalara yerleştirilen pragmium kafes bulunan deneysel zırh. Çok hafif ve dayanıklı.
 
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 Pragmium zırh
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
 Her türlü çevresel ve fiziksel hasara karşı şaşırtıcı derecede iyi bir koruma sağlayan kalın pamuklu dolgulu kumaş.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-Dolgulu manto
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Kapitone zırh
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 Dolgulu şapka
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-Dolgulu kask
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+Kapitone yastıklı miğfer
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-Dolgulu pantolon
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
 Nihai savunma. Bu savaş zırhı seni üstüne gelen her şeye karşı korur ama mobiliteyi düşürür.
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 Süper ağır zırh
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
 Gereksinimler icatların anasıdır. Hiç rahat değil, fakat ilk başlarda iyi bir koruma sağlar.
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-Ahşap göğüs zırhı
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Ahşap zırh
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 Ahşap kask
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-Ahşap pantolon
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 Tek seferde büyük miktarda mineral çıkarmak için özel olarak tasarlanmış patlayıcı. Çıkarılacak mineralin yanına yerleştirilmelidir.
@@ -414,6 +477,78 @@ Aynı anda birden fazla duvar ve kapı katmanına zarar vermek için pragmiumun 
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 Titreşim bombası
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+Parça yemler aslında küçük balık parçalarıdır, bu da onları avcı büyük balıkları yakalamak için ideal kılar.
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+Parça yem
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+Küçük tatlı su balıklarını yakalamak için ideal ucuz ve basit yem.
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+Böcek yemi
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+Boilie'ler çeşitli farklı malzemeleri birleştiren özel bir yemdir. Birçok balık için uygundur.
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+Boilie yemi
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+Bu olta her türlü suda balık yakalamak için kullanılabilir. Yem gerektirir.
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+Olta
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+Yeni yakalanan balıklar pişirilmeden önce temizlenmelidir.
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+Levrek
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+Çipura
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+Sazan
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+Kedibalığı
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+Kefal
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+Grunt
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+Uskumru
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+Mahi-mahi
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+Kömür balığı
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+Balon balığı
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+Turnabalığı
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+Horoz balığı
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+Somon
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+Sardalya
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+Alabalık
 
 Scripts/Items/Food/ItemBanana@Description:
 Muzlara maymunlar da ulaşabilir fakat yıldızlara yalnızca insanlar ulaşabilir.
@@ -643,6 +778,27 @@ Kızarmış ya da haşlanmış, ne olursa olsun lezzetli. Çiğ olarak yemek gı
 Scripts/Items/Food/ItemEggsRaw@Name:
 Hayvan yumurtası
 
+Scripts/Items/Food/ItemFishDried@Description:
+Kurutulmuş ve tuzlanmış balık, birayla harika gider. Uzun süre bozulmadan saklanabilir.
+
+Scripts/Items/Food/ItemFishDried@Name:
+Kurutulmuş balık
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+Kaliteli balık fileto, pişirmek için harika bir ürün.
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+Kırmızı balık fileto
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+Beyaz balık fileto
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+Çok yumuşak ve sulu fırında pişmiş balık fileto.
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+Kızarmış balık
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 Bu eti pişirmek onu biraz daha az iğrenç kıldı... Ama yemeye karar verirsen kusmaya hazır ol.
 
@@ -751,6 +907,12 @@ Tatlı ve acı tropik meyve. Çiğ yenebilir veya bazı yemeklerde kullanılabil
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+Kutsal savaş bugün bile sürüyor...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+Ananaslı pizza
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 Olduğu gibi de yenebilir, daha karışık bir yemeğe de katılabilir.
 
@@ -775,6 +937,12 @@ Karışık sebze salatası. Çok sağlıklı ve şaşırtıcı şekilde doyurucu
 Scripts/Items/Food/ItemSaladVegetable@Name:
 Sebze salatası
 
+Scripts/Items/Food/ItemSalami@Description:
+Özel hazırlanmış et ve baharatlarla yapılmış tütsülenmiş sosis.
+
+Scripts/Items/Food/ItemSalami@Name:
+Salam
+
 Scripts/Items/Food/ItemSandwich@Description:
 Yumuşak bir ekmek, sulu bir et ve sebzelerle birlikte tam bir klasik!
 
@@ -793,6 +961,18 @@ Beyaz ve lezzetli. Çeşitli yemeklerde kullanılabilir. Çiğ yemek mümkün fa
 Scripts/Items/Food/ItemSugar@Name:
 Şeker
 
+Scripts/Items/Food/ItemSushi@Description:
+Çiğ balık ve baharatlarla süslenmiş pirinç. Basit ama unutulmaz bir tadı var.
+
+Scripts/Items/Food/ItemSushi@Name:
+Suşi
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+Etle dolu, özel soslu ve biraz da sebzeli çıtır tortilla kabuğu.
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+Taco con carne
+
 Scripts/Items/Food/ItemTequila@Description:
 Çölde bulunan bitkilerden damıtılan güzel bir likör.
 
@@ -810,6 +990,12 @@ Domatesin aslında bir sebze değil de meyve olduğunu biliyor muydun?
 
 Scripts/Items/Food/ItemTomato@Name:
 Domates
+
+Scripts/Items/Food/ItemUkha@Description:
+Geleneksel balık ve sebze bulunan et suyu çorba.
+
+Scripts/Items/Food/ItemUkha@Name:
+Ukha
 
 Scripts/Items/Food/ItemVodka@Description:
 Tanrıların ateşli sıvısı. Sorumsuzca kullanmanın sonuçları olur,  çok fazla içmeyin. Aynı zamanda seni sustacaktır ve hayır, radyasyona karşı koruma sağlamıyor.
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 Boş konserveler
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-Boş metal bidon. Uçucu sıvıları saklamak için kullanılabilir.
+Patlayıcı sıvıları saklamak için kullanılabilir.
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 Boş bidon
@@ -1091,6 +1277,24 @@ Yüksek performanslı silahlar için özel olarak üretilmiş ve şekillendirilm
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 Formüle barut
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+Çeşitli araçlara enerji vermesi için kullanılan boş yakıt hücresi. Öncelikle doldurulmalıdır.
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+Boş yakıt hücresi
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+Standart sıvı yakıtla doldurulmuş yakıt hücresi. Ucuzdur ama fazla dayanmaz.
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+Benzin yakıt hücresi
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+Sıvı pragmimum ile dolu yakıt hücresi. Aşırı uzun süre dayanır.
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+Pragmium yakıt hücresi
+
 Scripts/Items/Generic/ItemFur@Description:
 Kürk. Sıcak tutan kış kıyafetlerinin yapımında kullanılabilir.
 
@@ -1192,12 +1396,6 @@ Yüksek miktarda karbon içeren endüstriyel çelik.
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Çelik külçe
-
-Scripts/Items/Generic/ItemLeaf@Description:
-Yaprak... Muhtemelen bir ağaçtan geldi.
-
-Scripts/Items/Generic/ItemLeaf@Name:
-Yaprak
 
 Scripts/Items/Generic/ItemLeather@Description:
 Hayvan derisi. Zırh yapımı için kullanışlı olabilir.
@@ -1565,6 +1763,12 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Nanofiber deri implantı
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+Yapay kemik ve kafatası geliştirmeleri. Kullanıcının sersemlemesini ve kemik kırılmasını engeller.
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+İçiskeletsel güçlendirme implantı
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 Vücutta kontrol dışı mutasyon saptanmadı.
 
@@ -1714,6 +1918,20 @@ Scripts/Items/Medical/ItemNeuralEnhancer@Description:
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 Nöral güçlendirici
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`Lütfen dikkat: bu eşya sık sık kullanılamaz.
+[br]Şu an kullanırsanız tekrar kullanmak için {0} kadar beklemeniz gerekir.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`Bu eşyayı kısa süre önce kullandınız.
+[br]Bu eşyayı tekrar kullanmadan önce lütfen {0} kadar süre bekleyiniz.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+Kullanıldıktan sonra bütün teknoloji bilgisini tamamen sıfırlar ve harcanmış bir Eğitim Puanlarını yeniden harcayabilmen için geri döndürür. Sık sık kullanılamaz.
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+Sinir rekombinatörü
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 Ağrı kesici, ağrıları tamamen ortadan kaldırır ve etki süresi boyunca oluşabilecek ağrıları engeller.
@@ -1940,6 +2158,12 @@ Taş kazma maden yataklarını kazmak için kullanılabilir.
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Taş kazma
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+Bu sensör sayesinde büyük uzaklıklarda bile büyük pragmium kristallerinin eşsiz psionik ayak izlerini tespit etmek mümkündür.
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+Pragmium sensörü
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Yapılarını inşa etmen veya tamir etmen için alet çantası gereklidir. Kuşandığına ve seçili olduğuna emin ol.
 
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 Tabanca
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-Lazer tabanca kızılötesi spektrumda güçlü bir yüksek enerjili ışık yayarak hedefi yakar.
+Lazer silahı hedefi yakmak için gereken yüksek enerjili ışığı hızla üretir.
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 Lazer tabanca
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-Lazer tüfek kızılötesi spektrumda hızlı bir yüksek enerjili ışık yayarak hedefi yakar. Daha çok enerji tüketimi karşılığında lazer tabancaya göre daha hızlı ateşleme olanağı sunar.
+Lazer tüfek kızılötesi spektrumda güçlü bir yüksek enerjili ışık yayarak hedefi yakar. Lazer tabancaya göre daha yüksek menzil olanağı sunar.
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 Lazer tüfek
@@ -2173,4 +2397,16 @@ Mekanize savaş zırhlarında kullanılması için yapılmış hafif otomatik to
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 Hafif otomatik top
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+Ağır zırhlı hedeflere karşı ideal olan, yüksek patlayıcı mermiler kullanan ağır top.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+Top
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+Hedefe hasar vermek için hızlandırılmış tanecik mermileri kullanın ağır top.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+Enerji topu
 

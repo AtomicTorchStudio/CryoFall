@@ -27,6 +27,15 @@
 
         public override float WaterRestore => 30;
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                // adds food poisoning unless you have artificial stomach
+                .WillAddEffect<StatusEffectNausea>(intensity: 0.50,
+                                                   condition: context => !context.Character.SharedHasPerk(
+                                                                             StatName.PerkEatSpoiledFood));
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrink;
@@ -34,16 +43,7 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            var character = data.Character;
-
-            ItemBottleEmpty.ServerSpawnEmptyBottle(character);
-
-            // 100% chance to get food poisoning unless you have artificial stomach
-            if (!character.SharedHasPerk(StatName.PerkEatSpoiledFood))
-            {
-                character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 0.5); // 5 minutes
-            }
-
+            ItemBottleEmpty.ServerSpawnEmptyBottle(data.Character);
             base.ServerOnEat(data);
         }
     }

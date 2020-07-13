@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -28,8 +29,6 @@
         /// </summary>
         double AmmoReloadDuration { get; }
 
-        double ArmorPiercingMultiplier { get; }
-
         bool CanDamageStructures { get; }
 
         string CharacterAnimationAimingName { get; }
@@ -46,6 +45,8 @@
         double DamageApplyDelay { get; }
 
         double DamageMultiplier { get; }
+
+        DamageStatsComparisonPreset DamageStatsComparisonPreset { get; }
 
         /// <summary>
         /// Duration of firing animation in seconds.
@@ -73,12 +74,14 @@
 
         DamageDescription OverrideDamageDescription { get; }
 
-        double RangeMultipier { get; }
+        double RangeMultiplier { get; }
 
         /// <summary>
         /// Delay (in seconds) when selecting this weapon in hotbar.
         /// </summary>
         double ReadyDelayDuration { get; }
+
+        IProtoItemAmmo ReferenceAmmoProto { get; }
 
         /// <summary>
         /// Sound preset defining hit sounds upon various materials.
@@ -97,10 +100,13 @@
 
         ITextureResource WeaponTextureResource { get; }
 
+        float ShotVolumeMultiplier { get; }
+
         void ClientOnFireModChanged(bool isFiring, uint shotsDone);
 
         void ClientOnWeaponHitOrTrace(
             ICharacter firingCharacter,
+            Vector2D worldPositionSource,
             IProtoItemWeapon protoWeapon,
             IProtoItemAmmo protoAmmo,
             IProtoCharacter protoCharacter,
@@ -108,6 +114,15 @@
             IReadOnlyList<WeaponHitData> hitObjects,
             in Vector2D endPosition,
             bool endsWithHit);
+
+        void ClientOnWeaponShot(ICharacter character);
+
+        void ClientPlayWeaponHitSound(
+            [CanBeNull] IWorldObject hitWorldObject,
+            IProtoWorldObject protoWorldObject,
+            WeaponFireScatterPreset fireScatterPreset,
+            ObjectMaterial objectMaterial,
+            Vector2D worldObjectPosition);
 
         string GetCharacterAnimationNameFire(ICharacter character);
 
@@ -133,14 +148,5 @@
         void SharedOnWeaponAmmoChanged(IItem item, ushort ammoCount);
 
         double SharedUpdateAndGetFirePatternCurrentSpreadAngleDeg(WeaponState weaponState);
-
-        void ClientOnWeaponShot(ICharacter character);
-
-        void ClientPlayWeaponHitSound(
-            [CanBeNull] IWorldObject hitWorldObject,
-            IProtoWorldObject protoWorldObject,
-            WeaponFireScatterPreset fireScatterPreset,
-            ObjectMaterial objectMaterial,
-            Vector2D worldObjectPosition);
     }
 }

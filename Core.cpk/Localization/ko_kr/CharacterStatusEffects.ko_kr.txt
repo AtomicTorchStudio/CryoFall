@@ -172,6 +172,9 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 약물 남용
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+페레도진 투여가 끝날 때까지 기다려주세요.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 현재 지혈제의 효과로, 새로운 출혈 부상으로부터 받는 고통이 감소합니다.
 

@@ -100,11 +100,6 @@
 
             if (IsClient)
             {
-                // simply call this method to display a client notification only!
-                PveSystem.SharedIsAllowVehicleDamage(weaponCache,
-                                                     (IDynamicWorldObject)targetObject,
-                                                     showClientNotification: true);
-
                 damageApplied = 0;
                 return true;
             }

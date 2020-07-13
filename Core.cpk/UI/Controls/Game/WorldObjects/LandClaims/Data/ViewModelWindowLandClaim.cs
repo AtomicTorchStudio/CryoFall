@@ -13,6 +13,8 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection.Data;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -42,11 +44,15 @@
               [br]You can increase the decay delay by [b]upgrading[/b] any of the land claims to a higher tier.
               [br]The decay delay of the entire base is based on the [b]highest[/b] tier land claim building.";
 
+        public const string DestructionTimeoutOnlyInPvP = "only in PvP";
+
         private readonly IStaticWorldObject landClaimWorldObject;
 
         private readonly LandClaimAreaPrivateState privateState;
 
         private readonly IProtoObjectLandClaim protoObjectLandClaim;
+
+        private bool isSafeStorageTabSelected;
 
         public ViewModelWindowLandClaim(
             IStaticWorldObject landClaimWorldObject,
@@ -97,6 +103,9 @@
                 += this.SafeItemsSlotsCapacityChangedHandler;
 
             this.RequestDecayInfoTextAsync();
+
+            this.ViewModelShieldProtectionControl = new ViewModelShieldProtectionControl(
+                LandClaimSystem.SharedGetLandClaimAreasGroup(area));
         }
 
         public BaseCommand CommandConfirmLandClaimDecayMessage
@@ -117,10 +126,11 @@
 
         public bool IsSafeStorageAvailable => ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity > 0;
 
-        public bool IsSafeStorageCapacityExceeded => this.ViewModelItemsContainerExchange.Container.SlotsCount
-                                                     > ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity;
+        public bool IsSafeStorageCapacityExceeded =>
+            this.ViewModelSafeStorageItemsContainerExchange.Container.SlotsCount
+            > ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity;
 
-        public ViewModelItemsContainerExchange ViewModelItemsContainerExchange { get; set; }
+        public Action OnActiveTabChanged { get; set; }
 
         public ViewModelWorldObjectOwnersEditor ViewModelOwnersEditor { get; }
 
@@ -130,7 +140,26 @@
 
         public ViewModelProtoLandClaimInfo ViewModelProtoLandClaimInfoUpgrade { get; }
 
+        public ViewModelItemsContainerExchange ViewModelSafeStorageItemsContainerExchange { get; set; }
+
+        public ViewModelShieldProtectionControl ViewModelShieldProtectionControl { get; }
+
         public ViewModelStructureUpgrade ViewModelStructureUpgrade { get; }
+
+        public bool IsSafeStorageTabSelected
+        {
+            get => this.isSafeStorageTabSelected;
+            set { 
+                if (this.isSafeStorageTabSelected == value)
+                {
+                    return;
+                }
+
+                this.isSafeStorageTabSelected = value;
+                this.NotifyThisPropertyChanged();
+                this.OnActiveTabChanged();
+            }
+        }
 
         protected override void DisposeViewModel()
         {
@@ -143,19 +172,19 @@
 
         private void DisposeViewModelItemsContainerExchange()
         {
-            var viewModel = this.ViewModelItemsContainerExchange;
+            var viewModel = this.ViewModelSafeStorageItemsContainerExchange;
             if (viewModel == null)
             {
                 return;
             }
 
-            this.ViewModelItemsContainerExchange = null;
+            this.ViewModelSafeStorageItemsContainerExchange = null;
 
-            viewModel.Container.SlotsCountChanged
-                -= this.SafeStorageSlotsChangedHandler;
-
-            viewModel.Container.ItemsReset
-                -= this.SafeStorageSlotsChangedHandler;
+            var container = viewModel.Container;
+            container.SlotsCountChanged -= this.SafeStorageSlotsChangedHandler;
+            container.ItemsReset -= this.SafeStorageSlotsChangedHandler;
+            container.ItemAdded -= this.SafeStorageItemAddedHandler;
+            container.ItemCountChanged -= this.SafeStorageItemCountChangedHandler;
 
             viewModel.Dispose();
         }
@@ -192,19 +221,19 @@
             // setup safe storage
             this.DisposeViewModelItemsContainerExchange();
 
-            this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(
-                    areasGroupPrivateState.ItemsContainer,
+            this.ViewModelSafeStorageItemsContainerExchange = new ViewModelItemsContainerExchange(
+                    areasGroupPrivateState.ItemsContainerSafeStorage,
                     callbackTakeAllItemsSuccess: () => { },
                     enableShortcuts: this.IsSafeStorageAvailable)
                 {
                     IsContainerTitleVisible = false,
                 };
 
-            this.ViewModelItemsContainerExchange.Container.SlotsCountChanged
-                += this.SafeStorageSlotsChangedHandler;
-
-            this.ViewModelItemsContainerExchange.Container.ItemsReset
-                += this.SafeStorageSlotsChangedHandler;
+            var container = this.ViewModelSafeStorageItemsContainerExchange.Container;
+            container.SlotsCountChanged += this.SafeStorageSlotsChangedHandler;
+            container.ItemsReset += this.SafeStorageSlotsChangedHandler;
+            container.ItemAdded += this.SafeStorageItemAddedHandler;
+            container.ItemCountChanged += this.SafeStorageItemCountChangedHandler;
         }
 
         private async void RequestDecayInfoTextAsync()
@@ -229,7 +258,7 @@
             var text = string.Format(DecayInfoFormat,
                                      decayDelayDurationText,
                                      decayDurationText,
-                                     destructionTimeout);
+                                     destructionTimeout ?? DestructionTimeoutOnlyInPvP);
 
             if (result.IsFounderDemoPlayer)
             {
@@ -242,6 +271,19 @@
         private void SafeItemsSlotsCapacityChangedHandler()
         {
             this.RefreshSafeStorageAndPowerGrid();
+        }
+
+        private void SafeStorageItemAddedHandler(IItem item)
+        {
+            this.IsSafeStorageTabSelected = true;
+        }
+
+        private void SafeStorageItemCountChangedHandler(IItem item, ushort previousCount, ushort currentCount)
+        {
+            if (currentCount > previousCount)
+            {
+                this.IsSafeStorageTabSelected = true;
+            }
         }
 
         private void SafeStorageSlotsChangedHandler()

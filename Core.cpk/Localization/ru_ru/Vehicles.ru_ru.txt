@@ -10,6 +10,12 @@ Scripts/Vehicles/VehicleHoverboardMk2@Description:
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Ховерборд Мк2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Тяжелая механизированная осадная броня. Гарантирует непревзойденную защиту и невероятную огневую мощь благодаря держателю для крупнокалиберного оружия, однако отличается низкой скоростью передвижения.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Бегемот
+
 Scripts/Vehicles/VehicleMechManul@Description:
 Средний вариант механизированной боевой брони. Обладает значительными оборонительными возможностями и грузоподъемностью без ущерба для других функций.
 
@@ -48,4 +54,10 @@ Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Поместите транспорт на платформу для сборки, чтобы починить его.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+Обычный
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+Большой
 

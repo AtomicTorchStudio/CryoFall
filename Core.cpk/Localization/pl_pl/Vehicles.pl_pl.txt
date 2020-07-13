@@ -10,14 +10,20 @@ Ciężka deska antygrawitacyjna; bardziej trwała, szybsza i zwrotna, ale droga 
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Deska antygrawitacyjna wer. 2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Ciężki, oblężniczy, mechaniczny pancerz bojowy. Oferuje nadzwyczajny poziom ochrony i niewiarygodną siłę ognia dzięki dużym węzłom uzbrojenia. Zapewnia stosunkowo niską prędkość ruchu.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Behemot
+
 Scripts/Vehicles/VehicleMechManul@Description:
-Średnia mechaniczna zbroja bojowa zapewniająca znaczną ochronę i pozwalająca przenosić duże ładunki bez kompromisów w innych aspektach.
+Średni mechaniczny pancerz bojowy zapewniający znaczną ochronę i pozwalający przenosić duże ładunki bez kompromisów w innych aspektach.
 
 Scripts/Vehicles/VehicleMechManul@Name:
 Manul
 
 Scripts/Vehicles/VehicleMechSkipper@Description:
-Lekka mechaniczna zbroja bojowa, charakteryzująca się stosunkowo dużą prędkością, a jednocześnie zapewniająca dobrą ochronę i siłę ognia.
+Lekki mechaniczny pancerz bojowy, charakteryzujący się stosunkowo dużą prędkością, a jednocześnie zapewniający dobrą ochronę i siłę ognia.
 
 Scripts/Vehicles/VehicleMechSkipper@Name:
 Szyper
@@ -48,4 +54,10 @@ Nie trzeba naprawiać.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Wstaw pojazd do fabryki, aby go naprawić.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+Normalny
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+Duży
 

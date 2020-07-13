@@ -4,8 +4,6 @@
 #blacklist
 
 abortion
-alla
-allah
 alligator bait
 alligatorbait
 anal
@@ -412,7 +410,8 @@ palesimian
 pearlnecklace
 pecker
 peckerwood
-pedo*
+pedoph*
+pedof*
 pee
 peehole
 peni5*

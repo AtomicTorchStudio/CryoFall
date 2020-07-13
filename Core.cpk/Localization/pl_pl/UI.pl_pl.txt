@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 Buduj
 
+UI/CoreStrings@Action_Relocate:
+Przenieś
+
 UI/CoreStrings@Action_Repair:
 Napraw
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+Zgodna broń:
+
+UI/CoreStrings@AutosaveNotification_Completed:
+Zapis zakończony!
+
+UI/CoreStrings@AutosaveNotification_Content1:
+Serwer będzie regularnie zapisywał stan świata.
+
+UI/CoreStrings@AutosaveNotification_Content2:
+Przewidywane jest nieznaczne opóźnienie.
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+Zapisywanie za: {0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+Trwa zapisywanie...
+
+UI/CoreStrings@AutosaveNotification_Title:
+Migawka serwera
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Zniszczenie:
@@ -174,6 +198,9 @@ Ta struktura wytwarza elektryczność.
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Ta struktura magazynuje elektryczność.
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+Tej konstrukcji nie można przenieść po wybudowaniu.
+
 UI/CoreStrings@Copy:
 Kopiuj
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 Brak ikony
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-Wybierz ikonę
+Kliknij tutaj z przedmiotem, aby umieścić ikonę na skrzynce.
+
+UI/CoreStrings@DamageType_Chemical:
+Chemiczne
+
+UI/CoreStrings@DamageType_Cold:
+Zimno
+
+UI/CoreStrings@DamageType_Explosion:
+Wybuch
+
+UI/CoreStrings@DamageType_Heat:
+Ciepło
+
+UI/CoreStrings@DamageType_Impact:
+Uderzenie
+
+UI/CoreStrings@DamageType_Kinetic:
+Kinetyczne
+
+UI/CoreStrings@DamageType_Psi:
+Psi
+
+UI/CoreStrings@DamageType_Radiation:
+Promieniowanie
 
 UI/CoreStrings@Defense_Format_Chemical:
 Ochrona chemiczna: {0}
@@ -216,8 +267,8 @@ Ochrona chemiczna: {0}
 UI/CoreStrings@Defense_Format_Cold:
 Ochrona przed zimnem: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-Ochrona przed elektrycznością: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+Ochrona przeciwwybuchowa: {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 Ochrona przed przegrzaniem: {0}
@@ -274,6 +325,12 @@ Głębokie złoże (mały urobek, nieskończone)
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Złoże powierzchniowe (duży urobek)
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+Czy na pewno użyć: {0}?
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+Jednocześnie sterowane drony
+
 UI/CoreStrings@Duration_Instant:
 Natychmiast
 
@@ -289,11 +346,26 @@ Bardzo szybko
 UI/CoreStrings@Duration_VerySlow:
 Bardzo powoli
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+Dodaje efekty:
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+Usuwa efekty:
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 JE
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 JE/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+Musisz zadać co najmniej {0}% obrażeń łącznie, aby otrzymać nagrodę w tym wydarzeniu. Powodzenia następnym razem!
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+Niewystarczające obrażenia
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+Zadano {0}% obrażeń łącznie! Twój łup: {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Oficjalny serwer Discord CryoFall (tylko w języku angielskim)
@@ -403,6 +475,12 @@ Dodaj implant do zainstalowania
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Wymaga
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+Zepsucie za: {0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+nigdy
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 Skróty
 
@@ -426,6 +504,12 @@ Użyj
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Wynik
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+Bufor
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+Poziom {0}
 
 UI/CoreStrings@LearningPoints:
 Punkty technologii
@@ -597,6 +681,12 @@ Publiczny GUID
 UI/CoreStrings@MenuServers_ServersCount:
 Serwery
 
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+Ten serwer jest hostowany przez członka społeczności. Twórcy nie mają kontroli nad tym serwerem i nie gwarantują, że będziesz się tutaj dobrze bawić. Na serwerze mogły zostać wprowadzone modyfikacje znacznie ułatwiające lub utrudniające grę. Właściciel serwera jest odpowiedzialny za jego moderowanie i obsługę.
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+SPOŁECZNOŚĆ
+
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 Promowane serwery zazwyczaj zapewniają wysoką jakość usług, podobnie jak serwery oficjalne. Jednak serwery te są nadal udostępniane przez społeczność.
 
@@ -669,15 +759,13 @@ Ping (średni)
 
 UI/CoreStrings@Network_PingAverage_SeverityRed:
 `Bardzo wysoka wartość ping podczas połączenia internetowego z serwerem.
-[br]Niektóre działania w grze (które wymagają odpowiedzi ze strony serwera)
-będą trwać znacznie dłużej.
+[br]Niektóre działania w grze (które wymagają odpowiedzi ze strony serwera) będą trwać znacznie dłużej.
 [br]Przykładowo: twoje ataki mogą nie trafiać celu z powodu znacznych opóźnień względem serwera.
 [br]Często będzie występować pasmowanie lub nagłe ruchy postaci.`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
 `Stosunkowo wysoka wartość ping podczas połączenia internetowego z serwerem.
-[br]Niektóre działania w grze (które wymagają odpowiedzi ze strony serwera)
-będą trwać dłużej.
+[br]Niektóre działania w grze (które wymagają odpowiedzi ze strony serwera) będą trwać dłużej.
 [br]Przykładowo: twoje ataki mogą nie trafiać celu z powodu opóźnień względem serwera.
 [br]Może występować pasmowanie lub nagłe ruchy postaci.`
 
@@ -826,6 +914,26 @@ Wykorzystanie VRAM
 UI/CoreStrings@PleaseWait:
 Proszę czekać...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+Ten odbiornik energii [b]nie jest podłączony[/b] do sieci energetycznej.
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+Ta struktura będzie działać tak długo, aż poziom mocy spadnie poniżej progu wyłączenia ([b]{0}%[/b]).
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+Ten odbiornik energii jest [b]podłączony[/b] do sieci energetycznej.
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`Poziom mocy w sieci energetycznej jest poniżej progu wyłączenia ([b]{0}%[/b]).
+[br]Ta struktura uaktywnia się automatycznie, gdy poziom mocy wzrośnie powyżej progu [b]rozruchu[/b] ([b]{1}%[/b]).`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`Poziom mocy w sieci energetycznej jest poniżej progu rozruchu ([b]{0}%[/b]).
+[br]Ta struktura uaktywnia się automatycznie, gdy poziom mocy wzrośnie powyżej tego progu.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+Ten odbiornik energii jest [b]bezczynny[/b].
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 Nie można połączyć z siecią energetyczną.
 
@@ -892,6 +1000,50 @@ Normalny
 UI/CoreStrings@PowerGridState_Storages:
 Magazynowanie:
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+Ten generator [b]nie jest podłączony[/b] do sieci energetycznej.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+Ta struktura będzie wytwarzać energię do momentu osiągnięcia progu wyłączenia ([b]{0}%[/b]).
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+Ten generator jest [b]podłączony[/b] do sieci energetycznej.
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`Poziom mocy w sieci energetycznej powyżej progu wyłączenia ([b]{0}%[/b]).
+[br]Ten generator włącza się automatycznie, gdy poziom mocy spadnie poniżej progu [b]rozruchu[/b] ([b]{1}%[/b]).`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`Poziom mocy w sieci energetycznej powyżej progu rozruchu ([b]{0}%[/b]).
+[br]Ten generator włączy się automatycznie, gdy poziom mocy spadnie poniżej tej wartości.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+Ten generator jest [b]bezczynny[/b].
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+Podłącz do sieci energetycznej
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+Odłącz od sieci energetycznej
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+Kontrola mocy
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+Poziom sieci energetycznej
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+Wyłączenie:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+Uruchomienie:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+Progi poziomu mocy
+
+UI/CoreStrings@Protection_Name:
+Ochrona:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Odbierz
 
@@ -934,6 +1086,129 @@ Gracze
 UI/CoreStrings@ServerWipedDate:
 Czyszczenie
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+Nie można wykonać tej czynności w bazie chronionej tarczą.
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+Aktywacja tarczy zajmie {0} (opóźnienie aktywacji).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+Aktywacja tarczy zajmie {0} (opóźnienie aktywacji plus pozostały czas odnowienia).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+Przy aktualnym ładunku, aktywna tarcza może zapewnić ochronę do: {0}.
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+Opóźnienie aktywacji:
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+Aktywuj tarczę
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+Dezaktywuj tarczę
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+Naładuj tarczę
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+Aktywacja tarczy bazy została anulowana z powodu blokady najazdów.
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+Nie można aktywować tarczy, gdy obowiązuje blokada najazdów.
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+Czas odnowienia:
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(Czas odnowienia {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+Aktualne naładowanie tarczy:
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+Dezaktywacja aktywnej lub aktywującej się tarczy powoduje włączenie licznika czasu odnowienia ({0}). W tym okresie nie można ponownie aktywować tarczy.
+
+UI/CoreStrings@ShieldProtection_Description_1:
+Tarcza chroni bazę podczas nieobecności lub w trybie offline.
+
+UI/CoreStrings@ShieldProtection_Description_2:
+Gdy włączona jest tarcza, drzwi i ściany bazy są odporne na wszelkie uszkodzenia.
+
+UI/CoreStrings@ShieldProtection_Description_3:
+Blokada: nikt nie może wejść do bazy ani wyjść z niej, gdy działa tarcza (wszystkie drzwi są zablokowane).
+
+UI/CoreStrings@ShieldProtection_Description_4:
+Przed uruchomieniem tarczy należy ją naładować prądem.
+
+UI/CoreStrings@ShieldProtection_Description_5:
+Aktywacja tarczy zajmuje chwilę.
+
+UI/CoreStrings@ShieldProtection_Description_6:
+Zdezaktywowanych tarcz nie można natychmiast aktywować ponownie.
+
+UI/CoreStrings@ShieldProtection_Description_7:
+Aktywna tarcza ogranicza korzystanie ze skrzynki z narzędziami i łomu.
+
+UI/CoreStrings@ShieldProtection_Description_8:
+Tarczy nie można ładować, gdy jest aktywna – najpierw należy ją dezaktywować.
+
+UI/CoreStrings@ShieldProtection_Description_9:
+Jeśli baza zostanie zaatakowana (uruchomiona blokada najazdów) podczas aktywacji tarczy, aktywowanie tarczy zostanie anulowane i włączony zostanie licznik czasu odnowienia.
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+Czy na pewno aktywować tarczę?
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+Czy na pewno dezaktywować tarczę?
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+Blokada: te drzwi są zablokowane przez aktywną tarczę.
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+Ta działka jest chroniona aktywną tarczą.
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+Szacowany czas:
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+Maks. czas:
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+Osłona będzie aktywna za {0}, o ile operacja nie zostanie przerwana (np. anulowana przez właściciela bazy lub przerwana przez najeźdźców z blokadą najazdów).
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+W tej bazie aktywowana jest tarcza
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+Ta baza jest chroniona tarczą, która może działać nawet przez: {0}.
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]Możesz dezaktywować tarczę (kliknij tutaj).[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+Ta baza jest chroniona tarczą
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+Ta baza jest chroniona. Nie można uszkodzić żadnej ze ścian ani drzwi. Nie można aktywować blokady najazdów.
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+Naładuj do:
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+Status sieci:
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+Aktywowanie
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+Aktywna
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+Nieaktywna
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+Ochrona przed najazdem w trybie offline jest dostępna dla działek na wyższych poziomach. Jak najszybciej ulepsz działkę, aby odblokować tę funkcję.
+
 UI/CoreStrings@Skill:
 Umiejętność
 
@@ -969,6 +1244,9 @@ UI/CoreStrings@SupporterPack_Description:
 `Pakiet fana to zestaw dodatków dla osób, które chcą wspierać twórców CryoFall. W dowód uznania przy ich awatarach na czacie wyświetlana będzie specjalną odznaka.
 [br][br]Pakiet nie daje żadnych korzyści w grze i jego zakup jest całkowicie opcjonalny. Zestaw zawiera pełną ścieżkę dźwiękową do gry, grafiki koncepcyjne, grafiki z gry w wysokiej rozdzielczości, odznakę na czat, itp. Więcej niespodzianek zostanie dodanych do Pakietu fana w okresie Wczesnego dostępu.
 [br][br]Bardzo dziękujemy Ci za wsparcie!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 Punkty technologii: {0}
@@ -1011,6 +1289,9 @@ Technologia
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Wyszukaj...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 Nazwa
@@ -1084,6 +1365,9 @@ Sieć energetyczna
 UI/CoreStrings@TitleSafeStorage:
 Przechowywanie
 
+UI/CoreStrings@TitleShieldProtection:
+T.A.R.C.Z.A.
+
 UI/CoreStrings@TitleStructurePoints:
 Punkty struktury
 
@@ -1117,8 +1401,11 @@ Poziom energii
 UI/CoreStrings@Vehicle_Enter:
 Wejdź
 
+UI/CoreStrings@Vehicle_FuelCells:
+Ogniwa paliwowe
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
-Zbroja {1:F0}/{2:F0} ({0}%)
+Pancerz {1:F0}/{2:F0} ({0}%)
 
 UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
 Energia {0}%
@@ -1131,6 +1418,9 @@ Prawa ręka
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 Broń
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+Broń (węzeł uzbrojenia: {0})
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 Ta broń działa tylko po zamontowaniu na mechu.
@@ -1176,8 +1466,53 @@ Schematy
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 Schematy odblokowane
 
+UI/CoreStrings@Victory:
+Zwycięstwo!
+
+UI/CoreStrings@Weapon_Accuracy:
+Celność
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+Pojemność magazynka
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+Przebijanie pancerza
+
+UI/CoreStrings@Weapon_AttackRate:
+Wartość ataku
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 Amunicja:
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+Aktualna amunicja:
+
+UI/CoreStrings@Weapon_Damage:
+Obrażenia
+
+UI/CoreStrings@Weapon_DamageType:
+Typ obrażeń
+
+UI/CoreStrings@Weapon_FireRate:
+Szybkostrzelność
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+Pojedynczy strzał
+
+UI/CoreStrings@Weapon_Range:
+Zasięg
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+Szybkość przeładowania
+
+UI/CoreStrings@Weapon_Spread:
+Rozrzut
+
+UI/CoreStrings@Weapon_StoppingPower:
+Siła zatrzymania
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+Poniższe statystyki są wyświetlane dla broni z amunicją wzorcową ({0}).
 
 UI/CoreStrings@Window_Tab_Main:
 Główna
@@ -1193,14 +1528,26 @@ Przykłady:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Wylosuj
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+Największa długość: {0} cm
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+Największa waga: {0} kg
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 Akceptuj
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+Nowy rekord!
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 Postęp:
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Stwory
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+Ryba
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 Żywność
@@ -1406,7 +1753,7 @@ UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 Odkryte umiejętności
 
 UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
-Aby naprawić {0}% zbroi, potrzebujesz:
+Aby naprawić {0}% pancerza, potrzebujesz:
 
 UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
 Ładunek
@@ -1431,6 +1778,12 @@ Gracze online
 
 UI/CoreStrings@WindowSocial_TotalPlayers:
 Gracze ogółem
+
+UI/CoreStrings@WindowSprinker_WaterNow:
+Woda
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+Następna próba podlewania za: [b]{0}[/b]
 
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 Utwórz nowe konto AtomicTorch
@@ -1612,17 +1965,29 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]Stacja handlowa (twoja)[/b]
 [br]Jesteś właścicielem tej stacji handlowej.`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+Ten obiekt jest własnością innego gracza.
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+Nie można z nim wchodzić w interakcję do czasu wygaśnięcia własności.
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+Własność wygaśnie na: {0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+Przedmiot zawłaszczony
+
 UI/CoreStrings@Yes:
 Tak
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Połączone
@@ -1642,6 +2007,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Pierwsza śmierć.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+Pierwsze złapanie.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 Pierwsze spożycie.
@@ -1791,8 +2159,8 @@ Włosy
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 Kolor włosów
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
-Kolor skóry
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
+Odcień skóry
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Góra
@@ -1870,14 +2238,16 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]i w końcu znikną, aby nie zaśmiecać mapy.
 [br]
 [br]Ta struktura zacznie się rozpadać za: [b]{0}[/b].
-[br]Następnie w ciągu [b]{1}[/b] będzie niszczeć, a po tym czasie zostanie
-[br]uruchomiony licznik zniszczenia ([b]{2}[/b]).
+[br]Następnie w ciągu [b]{1}[/b] będzie niszczeć, a po tym czasie zostanie [br]uruchomiony licznik zniszczenia ([b]{2}[/b]).
 [br]
 [br]Aby uniknąć rozpadu, odwiedzaj bazę raz na [b]{0}[/b]
 [br](dowolny gracz na tej liście dostępowej może zresetować licznik rozpadu).
 [br]
 [br]Można opóźnić rozpad, [b]ulepszając[/b] posiadane działki do wyższego poziomu.
 [br]Opóźnienie rozpadu całej bazy jest zależne od [b]najwyższego[/b] poziomu posiadanej działki.`
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+tylko w PvP
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Brak paliwa
@@ -1939,6 +2309,12 @@ Gospodarka
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 Wybijaj monety i buduj w pełni zautomatyzowane stacje handlowe, aby łatwiej handlować z innymi ocalałymi.
 
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Wędkarstwo
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Używaj rozmaitych przynęt i złów różne ryby słodkowodne i słonowodne. Bij swoje rekordy i konkuruj z innymi graczami.
+
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 Implanty cybernetyczne
 
@@ -1991,7 +2367,9 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_T
 Na koniec
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
-Nie zapominajcie, że gra CryoFall jest nadal tworzona i planujemy wiele ulepszeń i zmian. Niemniej już teraz to kawał solidnej gry, która da Wam mnóstwo zabawy![br][br] Zawsze jesteśmy dostępni na Discordzie i naszych forach, więc wpadnijcie się przywitać! :)[br][br] W razie problemów lub jeśli będziecie chcieli zgłosić problem lub błąd, z przyjemnością Wam pomożemy!
+`Nie zapominajcie, że gra CryoFall jest nadal tworzona i planujemy wiele ulepszeń i zmian. Niemniej już teraz to kawał solidnej gry, która da Wam mnóstwo zabawy![br][br]
+Zawsze jesteśmy dostępni na Discordzie i naszych forach, więc wpadnijcie się przywitać! :)[br][br]
+W razie problemów lub jeśli będziecie chcieli zgłosić problem lub błąd, z przyjemnością Wam pomożemy!`
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 Rozpocznij grę

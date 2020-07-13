@@ -8,6 +8,8 @@
         public override string Description =>
             "Simple 8mm non-jacketed rounds. Uses simple materials and manufacturing techniques, which leaves precision and power quite low.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => "8mm standard ammo";
 
         protected override void PrepareDamageDescription(

@@ -22,7 +22,7 @@
 
         public ICharacter CurrentCharacter { get; set; }
 
-        public float Electrical { get; private set; }
+        public float Explosion { get; private set; }
 
         public float Heat { get; private set; }
 
@@ -91,7 +91,7 @@
             var finalStatsCache = this.privateState.FinalStatsCache;
             this.Chemical = (float)finalStatsCache[StatName.DefenseChemical];
             this.Cold = (float)finalStatsCache[StatName.DefenseCold];
-            this.Electrical = (float)finalStatsCache[StatName.DefenseElectrical];
+            this.Explosion = (float)finalStatsCache[StatName.DefenseExplosion];
             this.Heat = (float)finalStatsCache[StatName.DefenseHeat];
             this.Kinetic = (float)finalStatsCache[StatName.DefenseKinetic];
             this.Impact = (float)finalStatsCache[StatName.DefenseImpact];

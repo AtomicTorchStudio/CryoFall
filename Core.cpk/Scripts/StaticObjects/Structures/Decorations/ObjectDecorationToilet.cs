@@ -6,9 +6,10 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationToilet : ProtoObjectDecoration
+    public class ObjectDecorationToilet : ProtoObjectDecoration
     {
-        public override string Description => "Make sure to put this in a separate and well-ventilated room for maximum privacy.";
+        public override string Description =>
+            "Make sure to put this in a separate and well-ventilated room for maximum privacy.";
 
         public override string Name => "Toilet";
 
@@ -33,7 +34,7 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemClay>(count: 10);
-            build.AddStageRequiredItem<ItemCement>(count: 5);
+            build.AddStageRequiredItem<ItemCement>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

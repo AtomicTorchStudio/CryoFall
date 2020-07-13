@@ -12,7 +12,7 @@
             = new DefenseDescription().Set(
                                           chemical: 0,
                                           cold: 0,
-                                          electrical: 0,
+                                          explosion: 0,
                                           heat: 0,
                                           impact: 0,
                                           kinetic: 0,
@@ -27,7 +27,7 @@
             = new DefenseDescription().Set(
                                           chemical: 0.33,
                                           cold: 0.33,
-                                          electrical: 0.33,
+                                          explosion: 0.33,
                                           heat: 0.33,
                                           impact: 0.33,
                                           kinetic: 0.33,
@@ -42,7 +42,7 @@
             = new DefenseDescription().Set(
                                           chemical: 0.66,
                                           cold: 0.66,
-                                          electrical: 0.66,
+                                          explosion: 0.66,
                                           heat: 0.66,
                                           impact: 0.66,
                                           kinetic: 0.66,
@@ -57,7 +57,7 @@
             = new DefenseDescription().Set(
                                           chemical: 1.0,
                                           cold: 1.0,
-                                          electrical: 1.0,
+                                          explosion: 1.0,
                                           heat: 1.0,
                                           impact: 1.0,
                                           kinetic: 1.0,
@@ -73,7 +73,7 @@
             = new DefenseDescription().Set(
                                           chemical: 2.0,
                                           cold: 2.0,
-                                          electrical: 2.0,
+                                          explosion: 2.0,
                                           heat: 2.0,
                                           impact: 2.0,
                                           kinetic: 2.0,
@@ -89,7 +89,7 @@
             = new DefenseDescription().Set(
                                           chemical: 5,
                                           cold: 5,
-                                          electrical: 5,
+                                          explosion: 5,
                                           heat: 5,
                                           impact: 5,
                                           kinetic: 5,
@@ -104,7 +104,7 @@
             = new DefenseDescription().Set(
                                           chemical: Max,
                                           cold: Max,
-                                          electrical: Max,
+                                          explosion: Max,
                                           heat: Max,
                                           impact: Max,
                                           kinetic: Max,

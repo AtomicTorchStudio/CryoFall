@@ -1,4 +1,7 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
+﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+＜1分
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
 日
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:

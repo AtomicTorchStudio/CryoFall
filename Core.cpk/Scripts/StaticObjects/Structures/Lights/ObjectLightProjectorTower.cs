@@ -15,7 +15,7 @@
 
     public class ObjectLightProjectorTower
         : ProtoObjectLightElectrical
-            <ObjectLightPrivateState,
+            <ObjectLightWithElectricityPrivateState,
                 ObjectLightWithElectricityPublicState,
                 ObjectLightProjectorTower.ClientState>
     {
@@ -27,7 +27,7 @@
         public override string Description =>
             "Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 0.5;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.2;
 
         public override Color LightColor => LightColors.ElectricCold;
 
@@ -99,13 +99,13 @@
             category = GetCategory<StructureCategoryElectricity>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemGlassRaw>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
             build.AddStageRequiredItem<ItemWire>(count: 5);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemGlassRaw>(count: 5);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
         }
@@ -125,10 +125,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeCircle(radius: 0.25, center: (0.5, 0.45))
-                .AddShapeRectangle(size: (0.45, 0.4), offset: (0.275, 0.75), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.4, 0.2),  offset: (0.3, 0.95),   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3),   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 0.6), offset: (0.1, 0.1))
+                .AddShapeRectangle(size: (0.5, 1.0), offset: (0.25, 0.3), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.5, 0.3), offset: (0.25, 0.95), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3), group: CollisionGroups.ClickArea);
         }
 
         public class ClientState : ObjectLightClientState

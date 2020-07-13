@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemComponentsPharmaceutical>(count: 5);
+            inputItems.Add<ItemCharcoal>(count: 10);
+            inputItems.Add<ItemSlime>(count: 5);
             inputItems.Add<ItemHerbPurple>(count: 1);
-            inputItems.Add<ItemToxin>(count: 2);
 
             outputItems.Add<ItemAntiToxin>(count: 1);
         }

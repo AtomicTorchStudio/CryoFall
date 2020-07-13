@@ -38,12 +38,10 @@
             var fromState = GetPrivateState(areasGroupFrom);
             var toState = GetPrivateState(areasGroupTo);
 
-            PowerGrid.ServerOnPowerGridMerged(fromState.PowerGrid, toState.PowerGrid);
-
-            var fromContainer = fromState.ItemsContainer;
+            var fromContainer = fromState.ItemsContainerSafeStorage;
             if (fromContainer.OccupiedSlotsCount != 0)
             {
-                var toContainer = toState.ItemsContainer;
+                var toContainer = toState.ItemsContainerSafeStorage;
                 Server.Items.TryMoveAllItems(fromContainer, toContainer, onlyToExistingStacks: true);
 
                 var slotsNeeded = fromContainer.OccupiedSlotsCount;
@@ -103,26 +101,24 @@
 
         protected override void ServerInitialize(ServerInitializeData data)
         {
-            base.ServerInitialize(data);
-
-            var itemsContainer = data.PrivateState.ItemsContainer;
+            var itemsContainerSafeStorage = data.PrivateState.ItemsContainerSafeStorage;
             var safeStorageCapacity = ItemsContainerLandClaimSafeStorage.ServerSafeItemsSlotsCapacity;
 
-            if (itemsContainer != null)
+            if (itemsContainerSafeStorage is null)
+            {
+                itemsContainerSafeStorage = Server.Items.CreateContainer<ItemsContainerLandClaimSafeStorage>(
+                    owner: data.GameObject,
+                    slotsCount: safeStorageCapacity);
+
+                data.PrivateState.ItemsContainerSafeStorage = itemsContainerSafeStorage;
+            }
+            else
             {
                 // container already created - update slots count
-                Server.Items.SetSlotsCount(itemsContainer,
-                                           slotsCount: Math.Max(
-                                               itemsContainer.SlotsCount,
-                                               safeStorageCapacity));
-                return;
+                Server.Items.SetSlotsCount(itemsContainerSafeStorage,
+                                           slotsCount: Math.Max(itemsContainerSafeStorage.SlotsCount,
+                                                                safeStorageCapacity));
             }
-
-            itemsContainer = Server.Items.CreateContainer<ItemsContainerLandClaimSafeStorage>(
-                owner: data.GameObject,
-                slotsCount: safeStorageCapacity);
-
-            data.PrivateState.ItemsContainer = itemsContainer;
         }
     }
 }

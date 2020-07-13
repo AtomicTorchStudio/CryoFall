@@ -4,7 +4,7 @@
 
     public abstract class ProtoItemCanisterWithLiquid : ProtoItemGeneric, IProtoItemLiquidStorage
     {
-        public virtual ushort Capacity => 20;
+        public virtual ushort Capacity => 10;
 
         public abstract LiquidType LiquidType { get; }
 

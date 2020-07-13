@@ -208,6 +208,11 @@
             return new ConsoleCommandData(consoleCommand, arguments, (byte)argumentIndexForSuggestion);
         }
 
+        public void ServerOnConsoleCommandError(ICharacter byCharacter, string exceptionMessage)
+        {
+            this.CallClient(byCharacter, _ => _.ClientRemote_ConsoleCommandError(exceptionMessage));
+        }
+
         protected override void PrepareSystem()
         {
             // populate commands
@@ -428,12 +433,23 @@
             return suggestions ?? EmptySuggestionsArray;
         }
 
+        private void ClientRemote_ConsoleCommandError(string message)
+        {
+            Logger.Warning($"Server console command error:{Environment.NewLine}{message}");
+
+            NotificationSystem.ClientShowNotification(
+                "Console command error",
+                message.Replace("\n", "[br]"),
+                NotificationColor.Bad,
+                writeToLog: false);
+        }
+
         private void ClientRemote_ConsoleCommandResult(string commandName, string result)
         {
             Logger.Important($"Server console command result:{Environment.NewLine}{result}");
 
             NotificationSystem.ClientShowNotification(
-                "Command executed: " + commandName,
+                "Console command executed: " + commandName,
                 result.Replace("\n", "[br]"),
                 NotificationColor.Neutral,
                 writeToLog: false);

@@ -144,8 +144,10 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
-                             intervalFrom: TimeSpan.FromHours(3),
-                             intervalTo: TimeSpan.FromHours(6)));
+                                 this.ServerGetIntervalForThisEvent(defaultInterval:
+                                                                    (from: TimeSpan.FromHours(3),
+                                                                     to: TimeSpan.FromHours(6)))
+                             ));
 
             // 5 meteorites
             for (var index = 0; index < 7; index++)

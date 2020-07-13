@@ -18,9 +18,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemMulch>(count: 10);
             inputItems.Add<ItemPotassiumNitrate>(count: 25);
             inputItems.Add<ItemAsh>(count: 25);
+            inputItems.Add<ItemMulch>(count: 5);
 
             outputItems.Add<ItemFertilizer>(count: 5);
         }

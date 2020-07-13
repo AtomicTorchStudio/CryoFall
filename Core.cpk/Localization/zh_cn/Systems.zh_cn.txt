@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 站在水或井边附近装满瓶子。
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+无法开采！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+已经派出一架无人机！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`无人机无法返回到你的位置，因此被关闭。
+[br]你可以在其最后运作的位置地上找到它。`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+无人机关闭
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+无人机被摧毁
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+此装置无法同时操控{0}个以上的无人机。
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+无法控制更多无人机
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+没有无人机可以发射！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+没有可以开采的东西！
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 没有装备移动电源。
 
@@ -127,6 +155,21 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 无法拆除
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+你的物品栏中缺少鱼饵。
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+没有鱼饵
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+无法在此钓鱼
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+鱼脱钩了！
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+太迟了...鱼跑掉了。
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 你的{0}已经破损并且永远消失了。
 
@@ -166,6 +209,9 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCa
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 与另一个玩家占领的区域相交
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+与另一个正处于护盾保护状态下的领地交接。请先移除那里的护盾。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `你用完了你的占领土地限额。
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 尚无成熟作物
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-服务器：世界备份将于{0}秒后开始。
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-服务器：世界备份完成！
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 您已被此服务器管理员禁止使用此服务器

@@ -16,7 +16,7 @@
 
         public double RequiredGroupRequiredNodesUnlockedPercent => this.requirement.GroupNodesUnlockedPercent;
 
-        public string RequiredGroupTitle => this.requirement.Group.Name;
+        public string RequiredGroupTitle => this.requirement.Group.NameWithTierName;
 
         protected override void DisposeViewModel()
         {

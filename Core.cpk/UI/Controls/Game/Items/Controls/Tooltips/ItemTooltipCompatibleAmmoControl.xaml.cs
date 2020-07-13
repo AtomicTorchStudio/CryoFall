@@ -8,7 +8,7 @@
     {
         private IProtoItemWeapon protoItemWeapon;
 
-        private ViewModelItemCompatibleAmmo viewModel;
+        private ViewModelItemTooltipCompatibleAmmoControl viewModel;
 
         public static ItemTooltipCompatibleAmmoControl Create(IProtoItemWeapon protoItemWeapon)
         {
@@ -17,7 +17,7 @@
 
         protected override void OnLoaded()
         {
-            this.DataContext = this.viewModel = new ViewModelItemCompatibleAmmo(this.protoItemWeapon);
+            this.DataContext = this.viewModel = new ViewModelItemTooltipCompatibleAmmoControl(this.protoItemWeapon);
         }
 
         protected override void OnUnloaded()

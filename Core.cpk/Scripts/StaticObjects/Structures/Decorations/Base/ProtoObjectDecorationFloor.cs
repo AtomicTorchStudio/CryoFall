@@ -16,6 +16,8 @@
                 c => !c.Tile.StaticObjects.Any(
                          o => o.ProtoStaticWorldObject is ProtoObjectDecorationFloor));
 
+        public override bool IsRelocatable => true;
+
         // it's technically a floor decoration but we don't have a special object kind for it
         // floor works fine
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
@@ -41,7 +43,8 @@
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
                 .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
-                .Add(LandClaimSystem.ValidatorNoRaid);
+                .Add(LandClaimSystem.ValidatorNoRaid)
+                .Add(LandClaimSystem.ValidatorNoShieldProtection);
 
             this.PrepareFloorDecorationConstructionConfig(build, repair);
         }

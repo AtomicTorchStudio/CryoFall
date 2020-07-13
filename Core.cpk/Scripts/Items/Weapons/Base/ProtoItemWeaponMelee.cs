@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
@@ -41,6 +42,9 @@
         public override CollisionGroup CollisionGroup => CollisionGroups.HitboxMelee;
 
         public override double DamageApplyDelay => 0.075;
+
+        public override DamageStatsComparisonPreset DamageStatsComparisonPreset
+            => DamageStatsComparisonPresets.PresetMelee;
 
         public virtual double DurabilityDecreaseMultiplierWhenHittingBuildings => 10.0;
 

@@ -18,10 +18,10 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemSand>(count: 20);
+            inputItems.Add<ItemSand>(count: 10);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 1);
 
-            outputItems.Add<ItemHygroscopicGranules>(count: 10);
+            outputItems.Add<ItemHygroscopicGranules>(count: 25);
         }
     }
 }

@@ -30,6 +30,8 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public override bool IsRelocatable => true;
+
         public override string Name => "Trash can";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
@@ -109,6 +111,8 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedLand);
+
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;

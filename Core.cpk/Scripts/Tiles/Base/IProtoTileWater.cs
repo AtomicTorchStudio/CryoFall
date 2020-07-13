@@ -8,6 +8,8 @@
     {
         IProtoTileWater BridgeProtoTile { get; }
 
+        bool IsFishingAllowed { get; }
+
         TextureResource UnderwaterGroundTextureAtlas { get; }
 
         RenderingMaterial ClientGetWaterBlendMaterial(ClientTileBlendHelper.BlendLayer blendLayer);

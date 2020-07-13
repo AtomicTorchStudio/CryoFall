@@ -3,16 +3,13 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
-    public class TechNodeBraidedArmor : TechNode<TechGroupDefense>
+    public class TechNodeBraidedArmor : TechNode<TechGroupDefenseT1>
     {
-        public override string Name => "Braided armor";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeBraidedChestplate>()
+                  .AddRecipe<RecipeBraidedArmor>()
                   .AddRecipe<RecipeBraidedHelmet>()
-                  .AddRecipe<RecipeBraidedPants>()
                   .AddStructure<ObjectArmorerWorkbench>();
 
             config.SetRequiredNode<TechNodeGlueFromBones>();

@@ -1,10 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives.Bombs
 {
     using System;
+    using System.Windows;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -19,6 +23,22 @@
         // max damage radius to deliver damage to static objects
         // (see method ServerCalculateDamageCoefByDistance)
         private const int DamageRadiusMax = 7;
+
+        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintBorderBrushRed
+            = new Lazy<SolidColorBrush>(
+                () => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x00, 0x00)));        
+        
+        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintFillBrushRed
+            = new Lazy<SolidColorBrush>(
+                () => new SolidColorBrush(Color.FromArgb(0x22, 0xEE, 0x00, 0x00)));
+
+        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintBorderBrushYellow
+            = new Lazy<SolidColorBrush>(
+                () => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x99, 0x00)));     
+        
+        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintFillBrushYellow
+            = new Lazy<SolidColorBrush>(
+                () => new SolidColorBrush(Color.FromArgb(0x22, 0xEE, 0x99, 0x00)));
 
         public override double DamageRadius => DamageRadiusMax;
 
@@ -94,8 +114,7 @@
                 foreach (var (_, offsetIndex) in
                     WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
                         positionEpicenter: positionEpicenter,
-                        damageDistanceFullDamage:
-                        DamageRadiusFullDamage,
+                        damageDistanceFullDamage: DamageRadiusFullDamage,
                         damageDistanceMax: DamageRadiusMax,
                         Api.Client.World,
                         xOffset,
@@ -107,6 +126,67 @@
                             position: positionEpicenter + (offsetIndex * xOffset, offsetIndex * yOffset),
                             explosionPresetNode,
                             volume: 0));
+                }
+            }
+        }
+
+        protected override void ClientSetupExplosionBlueprint(Tile tile, IClientBlueprint blueprint)
+        {
+            ProcessExplosionDirection(-1, 0);  // left
+            ProcessExplosionDirection(0,  1);  // top
+            ProcessExplosionDirection(1,  0);  // right
+            ProcessExplosionDirection(0,  -1); // bottom
+
+            void ProcessExplosionDirection(int xOffset, int yOffset)
+            {
+                foreach (var (_, offsetIndex) in
+                    WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
+                        positionEpicenter: tile.Position.ToVector2D(),
+                        damageDistanceFullDamage: DamageRadiusFullDamage,
+                        damageDistanceMax: DamageRadiusMax,
+                        Api.Client.World,
+                        xOffset,
+                        yOffset))
+                {
+                    var rectangle = new Rectangle()
+                    {
+                        Width = 1 * ScriptingConstants.TileSizeVirtualPixels - 10,
+                        Height = 1 * ScriptingConstants.TileSizeVirtualPixels - 10,
+                        StrokeThickness = 4
+                    };
+
+                    if (offsetIndex <= DamageRadiusFullDamage)
+                    {
+                        rectangle.Stroke = ExplosionBlueprintBorderBrushRed.Value;
+                        rectangle.Fill = ExplosionBlueprintFillBrushRed.Value;
+                    }
+                    else
+                    {
+                        switch (offsetIndex)
+                        {
+                            case 5:
+                            case 6:
+                            case 7:
+                                rectangle.Stroke = ExplosionBlueprintBorderBrushYellow.Value;
+                                rectangle.Fill = ExplosionBlueprintFillBrushYellow.Value;
+                                break;
+
+                            default:
+                                throw new Exception("Should be impossible");
+                        }
+                    }
+
+                    // workaround for NoesisGUI
+                    rectangle.SetValue(Shape.StrokeDashArrayProperty, "2,1");
+
+                    Api.Client.UI.AttachControl(
+                        blueprint.SceneObject,
+                        positionOffset: this.Layout.Center
+                                        + (offsetIndex * xOffset,
+                                           offsetIndex * yOffset),
+                        uiElement: rectangle,
+                        isFocusable: false,
+                        isScaleWithCameraZoom: true);
                 }
             }
         }

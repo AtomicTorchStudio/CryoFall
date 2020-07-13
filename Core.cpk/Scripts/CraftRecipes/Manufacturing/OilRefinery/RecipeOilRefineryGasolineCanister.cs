@@ -12,8 +12,7 @@
 
         protected override TimeSpan CraftDuration => CraftingDuration.Instant;
 
-        protected override LiquidContainerState GetLiquidState(
-            ObjectOilRefineryPrivateState privateState)
+        protected override LiquidContainerState GetLiquidState(ProtoObjectOilRefinery.PrivateState privateState)
         {
             return privateState.LiquidStateGasoline;
         }

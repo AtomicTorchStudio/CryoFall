@@ -1,26 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
 
   <PropertyGroup>
     <OutputPath>.temp\bin\</OutputPath>
     <BaseIntermediateOutputPath>.temp\obj\</BaseIntermediateOutputPath>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
     <LangVersion>8.0</LangVersion>
+    <Configurations>Debug;Debug_LibsAsProjects</Configurations>
   </PropertyGroup>
 
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />  
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk.WindowsDesktop" />  
 
   <PropertyGroup>    
     <EnableDefaultItems>false</EnableDefaultItems>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-
-    <!--workaround for https://github.com/dotnet/standard/issues/504-->
-    <!--also https://github.com/dotnet/standard/issues/552 -->
-    <_HasReferenceToSystemRuntime>true</_HasReferenceToSystemRuntime>
-
-    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-
+    
     <OutputType>Library</OutputType>    
     <!-- Suppress output DLL/PDB - commented out (because we're using project references and this will broke building dependent projects) -->
     <!-- <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>-->
@@ -34,79 +30,15 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_LibsAsProjects|AnyCPU'" />
-
-  <PropertyGroup>
-    <DefineCommonManagedCapabilities>false</DefineCommonManagedCapabilities>
-  </PropertyGroup>
-
-  <!-- Redefine common managed capabilites (because we've disabled them above in DefineCommonManagedCapabilities) -->
-  <ItemGroup>
-    <ProjectCapability Include="UseFileGlobs"/>
-
-    <!-- DependenciesTree capability lights up a Dependencies tree node and it's sub node providers-->
-    <ProjectCapability Include="DependenciesTree" />
-    <!-- Commented out: we don't need debugger launch profiles -->
-    <!-- <ProjectCapability Include="LaunchProfiles" /> -->
-    <ProjectCapability Include="NoGeneralDependentFileIcon"/>
-
-    <!--
-          List of capabilities below is adding back common capabilities defined in imported targets.
-          We disabled them with the property DefineCommonCapabilities=false to get rid of default
-          References capability, but everything else we want back.
-        -->
-    <ProjectCapability Include="AssemblyReferences;                              
-                                ProjectReferences;
-                                PackageReferences;
-                                SharedProjectReferences;                              
-                                OutputGroups;
-                                AllTargetOutputGroups;
-                                VisualStudioWellKnownOutputGroups;
-                                SingleFileGenerators;
-                                SourceItemsFromImports;
-                                UserSourceItems;
-                                LanguageService;
-                                AppSettings" />
-
-    <!-- Reference Manager capabilities -->
-    <ProjectCapability Include="ReferenceManagerAssemblies;
-                                ReferenceManagerBrowse;
-                                ReferenceManagerProjects;
-                                ReferenceManagerSharedProjects" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectCapability Include="AtomicTorch.GameEngine.ModProject" />
-    <ProjectCapability Include="DynamicDependentFile" />
-    <ProjectCapability Include="WindowsXaml;WindowsXamlPage;WindowsXamlCodeBehind;WindowsXamlResourceDictionary;WindowsXamlUserControl" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- This is a workaround for issue described in https://github.com/Microsoft/VSProjectSystem/issues/261
-         I'm very not sure about this hack but so far it works properly to us -->
-    <PropertyPageSchema Include="$(ManagedXamlResourcesDirectory)ProjectItemsSchema.xaml" />
-
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)Rules\ProjectItemsSchema.xaml" />
-
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)Rules\Page.xaml">
-      <Context>File;BrowseObject</Context>
-    </PropertyPageSchema>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="WindowsBase" />
+  <ItemGroup>   
     <!-- Please note - these package references should be added as dependencies to NuGet specification -->
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
-    <PackageReference Include="Microsoft.SDK.Expression.Blend" Version="1.0.0" />    
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>
 
   <Choose>  
@@ -139,22 +71,14 @@
     
   <!-- Items include -->
   <ItemGroup>
-    <None Remove="**\*.*" />
-    <Content Remove="**\*.*" />
-    <Page Remove="**\*.*" />
-    <Compile Remove="**\*.*" />
-
     <None Include="**\*.*" Exclude="*.*;.*\**;packages\**;LibsGameApi\**;**\*.cs;**\*.xaml;**\*.json" />
     <None Include="License.txt" />
     <None Include="Header.xml" />       
 
-    <Compile Include="**\*.cs" Exclude=".*\**;.*\.temp\**;" />
-    <Page Include="**\*.xaml" Exclude=".*\**">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="**\*.cs" Exclude=".*\**" />
+    <Page Include="**\*.xaml" Exclude=".*\**" />
   </ItemGroup>    
     
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk.WindowsDesktop" />
 
 </Project>

@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationGoldPileLarge : ProtoObjectDecoration
+    public class ObjectDecorationGoldPileLarge : ProtoObjectDecoration
     {
         public override string Description => "Impressive gold pile. Put this in your vault to keep it safe!";
 

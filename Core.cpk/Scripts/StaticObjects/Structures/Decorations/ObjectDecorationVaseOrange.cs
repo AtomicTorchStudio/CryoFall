@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationVaseOrange : ProtoObjectDecoration
+    public class ObjectDecorationVaseOrange : ProtoObjectDecoration
     {
         public override string Description => "Highly valuable decorative vase.";
 

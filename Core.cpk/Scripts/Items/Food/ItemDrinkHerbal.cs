@@ -26,16 +26,15 @@
 
         public override float WaterRestore => 30;
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.05);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrinkCan;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            data.Character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(0.05); // removes 15 sec of toxins
-
-            base.ServerOnEat(data);
         }
     }
 }

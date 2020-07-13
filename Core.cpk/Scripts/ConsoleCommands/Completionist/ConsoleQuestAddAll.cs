@@ -34,6 +34,12 @@
                 completionistData.ServerTryClaimReward(protoLoot);
             }
 
+            foreach (var protoFish in CompletionistSystem.CompletionistAllFish)
+            {
+                completionistData.ServerOnFishCaught(protoFish, 1);
+                completionistData.ServerTryClaimReward(protoFish);
+            }
+
             return null;
         }
     }

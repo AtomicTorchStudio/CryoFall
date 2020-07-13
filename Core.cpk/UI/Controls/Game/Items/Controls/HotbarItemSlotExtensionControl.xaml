@@ -22,7 +22,10 @@
                         Background="{StaticResource WidgetBackgroundImageTexture}" />
                 <Border CornerRadius="3,3,0,0"
                         Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
-                <ContentPresenter Content="{Binding SlotContent, ElementName=UserControl}" />
+                <Border CornerRadius="3,3,0,0"
+                        ClipToBounds="True">
+                    <ContentPresenter Content="{Binding SlotContent, ElementName=UserControl}" />
+                </Border>
             </Grid>
         </Border>
     </Canvas>

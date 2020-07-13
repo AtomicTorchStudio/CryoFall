@@ -1,21 +1,19 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
-    using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Data.State;
 
     public abstract class ProtoObjectOilRefinery
         : ProtoObjectManufacturer<
-            ObjectOilRefineryPrivateState,
+            ProtoObjectOilRefinery.PrivateState,
             ObjectManufacturerPublicState,
             StaticObjectClientState>
     {
@@ -51,7 +49,7 @@
         public abstract double LiquidMineralOilProductionPerSecond { get; }
 
         /// <summary>
-        /// Raw petroleump consumption amount per second.
+        /// Raw petroleum consumption amount per second.
         /// </summary>
         public abstract double LiquidRawPetroleumConsumptionPerSecond { get; }
 
@@ -92,10 +90,7 @@
 
             return new ManufacturingConfig(
                 this,
-                recipes: new List<Recipe>
-                {
-                    GetProtoEntity<RecipeOilRefineryEmptyCanisterFromPetroleumCanister>()
-                },
+                recipes: new[] { GetProtoEntity<RecipeOilRefineryEmptyCanisterFromPetroleumCanister>() },
                 recipesForByproducts,
                 isProduceByproducts: this.IsFuelProduceByproducts,
                 isAutoSelectRecipe: this.IsAutoSelectRecipe);
@@ -107,20 +102,14 @@
 
             this.ManufacturingConfigGasoline = new ManufacturingConfig(
                 this,
-                recipes: new List<Recipe>
-                {
-                    GetProtoEntity<RecipeOilRefineryGasolineCanister>()
-                },
+                recipes: new[] { GetProtoEntity<RecipeOilRefineryGasolineCanister>() },
                 recipesForByproducts: null,
                 isProduceByproducts: false,
                 isAutoSelectRecipe: true);
 
             this.ManufacturingConfigMineralOil = new ManufacturingConfig(
                 this,
-                recipes: new List<Recipe>
-                {
-                    GetProtoEntity<RecipeOilRefineryMineralOilCanister>()
-                },
+                recipes: new[] { GetProtoEntity<RecipeOilRefineryMineralOilCanister>() },
                 recipesForByproducts: null,
                 isProduceByproducts: false,
                 isAutoSelectRecipe: true);
@@ -151,20 +140,9 @@
             var privateState = data.PrivateState;
 
             // create liquid states
-            if (privateState.LiquidStateRawPetroleum == null)
-            {
-                privateState.LiquidStateRawPetroleum = new LiquidContainerState();
-            }
-
-            if (privateState.LiquidStateGasoline == null)
-            {
-                privateState.LiquidStateGasoline = new LiquidContainerState();
-            }
-
-            if (privateState.LiquidStateMineralOil == null)
-            {
-                privateState.LiquidStateMineralOil = new LiquidContainerState();
-            }
+            privateState.LiquidStateRawPetroleum ??= new LiquidContainerState();
+            privateState.LiquidStateGasoline ??= new LiquidContainerState();
+            privateState.LiquidStateMineralOil ??= new LiquidContainerState();
 
             // setup manufacturing state for gasoline
             var manufacturingStateProcessedGasoline = privateState.ManufacturingStateGasoline;
@@ -259,7 +237,7 @@
             // Active only if electricity state is on and has active recipe.
             var isActive = false;
             var publicState = data.PublicState;
-            if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+            if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
             {
                 isActive = isNeedElectricityNow;
             }
@@ -318,6 +296,27 @@
             // progress crafting queues for processed liquids (craft canisters with according liquids)
             ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateProcessedGasoline,   deltaTime);
             ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateProcessedMineralOil, deltaTime);
+        }
+
+        public class PrivateState : ObjectManufacturerPrivateState
+        {
+            [TempOnly]
+            public bool IsLiquidStatesChanged { get; set; }
+
+            [SyncToClient]
+            public LiquidContainerState LiquidStateGasoline { get; set; }
+
+            [SyncToClient]
+            public LiquidContainerState LiquidStateMineralOil { get; set; }
+
+            [SyncToClient]
+            public LiquidContainerState LiquidStateRawPetroleum { get; set; }
+
+            [SyncToClient]
+            public ManufacturingState ManufacturingStateGasoline { get; set; }
+
+            [SyncToClient]
+            public ManufacturingState ManufacturingStateMineralOil { get; set; }
         }
     }
 }

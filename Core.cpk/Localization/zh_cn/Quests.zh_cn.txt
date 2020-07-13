@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 光源
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+要[b]搬迁[/b]现有建筑—选择一个 [b]工具箱[/b]并对建筑使用。 请注意，一些建筑是不可移动的。
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `学会如何保护你的基地是非常重要的！如果没有正确的方法，很容易就会被其他狡猾的幸存者袭击劫掠。
 [br]
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 制作一把刀并杀死任何生物
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-装备更好的胸甲
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+装备更好的护甲
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 装备更好的头盔
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-装备更好的护腿
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 是时候获得更好的防护了。
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 使用撬棍进行拆解
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-普拉格是一种稀有外星材料，最为尖端的科技都会使用到它。尝试找到一些普拉格。
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*]小心！ 采集普拉格矿是非常危险的。
-[*]大型普拉格矿点通常可以在沙漠发现，而小型矿点，常常可以在火山附近发现。`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-获得普拉格矿!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-开采盐矿
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-某些资源，如石油和锂，是开发先进技术的必要素材。了解如何获得它们是极为重要的。
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] 你可以在[u]寒林[/u]中发现石油果。使用它们可以让你获得少量石油。
-[*] 你可以在开采一般盐矿时获得[u]锂盐[/u]。
-[*] 你可以在沙漠中的[u]盐原[/u]找到大量盐矿。
-[*] 学习[u]外星科技[/u]让你可以能以工业规模制取这些资源。`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-高级资源的获取
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 工业和建筑的进步需要硬科学，尤其是化学方面的基础。
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 掌握技术 - 第二部分
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+不同类型的[b]发电机[/b]，例如蒸汽机、太阳能发电机和发动机，都可以用来生产电能。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+在与任何储能建筑互动或在你的领地范围内时，你可以看到[b]电网详细信息[/b]。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+电气设备必须在领地[b]内[/b]才能正常工作。 在领地范围外建造任何电气设备都是毫无意义的。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+电能储存在[b]蓄电[/b]设施之中以备不时之需。提高你基地中的电力储存量是一个不错的选择。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+你可以自定义基地里每个电力消耗或生产建筑的[u]启动和关闭[/u]电力[b]阈值[/b]。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+数个相连的占领区域将使用 [b]同一个电网[/b]。
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 为基地建立电网是提升效率的重要步骤。 有许多高级建筑需要电力才能运转。
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] 电器只有在[b]占领区域内[/b]才能生效。在占领区域外间建造电器是没有任何意义的。
-[*] [b]储电[/b]设施可以储藏电力，以备不时之需。提高基地的电力容量是个不错的选择。
-[*] 不同的[b]发电装置[/b]，例如蒸汽发电机，太阳能发电机和汽油发电机都能产生电能。
-[*] 如果[u]电力不足[/u]，你的基地就会陷入[b]断电[/b]，此时你必须手动恢复电力。
-[*] 你可以通过与储电设施互动来查看[b]电网详情[/b]。
-[*] 数个连接的占领区域可以共享单一电网。`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 建立电网
@@ -520,6 +505,27 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 掠夺一些容器
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+用“使用”动作来获得鱼肉。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+你的[b]钓鱼技能[/b]将决定你钓上鱼的种类以及钓鱼的成功率。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+你可以在淡水和咸水中钓到不同的鱼类。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+钓一条鱼
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+将鱼做成鱼肉
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+钓鱼不仅是休闲的好办法，更是获取食物的手段。去试试钓鱼吧！
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+钓鱼！
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 是时候狩猎了！这次来打更危险的动物。
 
@@ -540,4 +546,53 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 狩猎大师 - 第五部分
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+普拉格是一种稀有外星材料，最为尖端的科技都会使用到它。尝试找到一些普拉格。
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*]小心！ 采集普拉格矿是非常危险的。
+[*]大型普拉格矿点通常可以在沙漠发现，而小型矿点，常常可以在火山附近发现。`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+获得普拉格矿!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+开采盐矿
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+某些资源，如石油和锂，是开发先进技术的必要素材。了解如何获得它们是极为重要的。
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] 你可以在[u]寒林[/u]中发现石油果。使用它们可以让你获得少量石油。
+[*] 你可以在开采一般盐矿时获得[u]锂盐[/u]。
+[*] 你可以在沙漠中的[u]盐原[/u]找到大量盐矿。
+[*] 学习[u]外星科技[/u]让你可以能以工业规模制取这些资源。`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+高级资源的获取
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+使用[b]遥控器[/b]对无人机发出命令。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+无人机不仅可以用于[b]开采矿物[/b]，也可以用于[b]砍伐树木[/b]。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+无人机必须在你的[b]物品栏[/b]或[b]快捷栏[/b]中才能接受命令。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+手动开采矿物砍伐树木十分繁琐，所以你应该尽可能快的切换到无人机工作模式。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+无人机开采
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+你应该随基地扩张[u]不断扩大电能储量[/u]，以确保有 [u]足够的多余电能[/u]。
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+现在你已经为电网打下了坚实的基础，可以用更多的设备来拓展它，让你的生活更加便利。
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+电网的更多用处
 

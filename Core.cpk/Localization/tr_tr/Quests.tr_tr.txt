@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Işık kaynakları
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+Mevcut bir yapıyı [b]yeniden konumlandırmak[/b] için bir [b]alet çantası[/b] seç ve onu yapı üstünde kullan. Lütfen bazı yapıların hareket ettirilemeyeceğini aklında bulundur.
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `Üssünü nasıl koruyacağını bilmen çok önemlidir! Doğru yapılmazsa, diğer oyuncular üssüne baskın yapabilir.
 [br]
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Bir bıçak üret ve bir yaratığı öldür
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Daha iyi bir göğüslük giy
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+Daha iyi bir zırh giy
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 Daha iyi bir miğfer giy
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Daha iyi bir bacak zırhı giy
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Daha iyi koruma sağlama vakti geldi.
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Yıkım için levye kullan
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-Pragmium, en gelişmiş teknolojiler için kullanılan nadir ve yabancı bir mineraldir. Biraz bulup elde etmeye çalış.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] Dikkat! Pragmium madenciliği çok tehlikelidir.
-[*] Büyük pragmium kuleleri yaygın olarak çöllerde bulunabilirken küçük olanlar genelde yanardağ çevrelerinde bulunur.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-Pragmium elde et!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Tuz minerali kaz
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-Gaz yağı ve lityum gibi bazı kaynaklar ileri seviye teknoloji için şarttır. Onları elde etmeyi öğrenmek çok önemlidir.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] Oilpod meyvelerini [u]boreal ormanında[/u] her yerde bulabilirsin. Onları kullanman ufak seviyede gaz yağı çıkarmanı sağlar.
-[*] Sıradan tuz madenlerini çıkarken [u]lityum tuzu[/u] elde edebilirsin.
-[*] Tuz madenlerini çöldeki [u]tuzlu bölgelerde[/u] bulabilirsin.
-[*] [u]Zenojeoloji[/u]yi öğrenmek bu kaynakları elde konusunda endüstriyel boyutta yöntemler sunar.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-Gelişmiş kaynak edinme
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Sanayi ve inşaatta ilerlemek için başta kimya olmak üzere pozitif bilimlerde temel bilgi gerekir.
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Teknolojilerde usta olmak - ikinci kısım
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+Buhar, güneş ve motor gibi farklı türdeki [b]jeneratörler[/b], birlikte elektrik enerjisi üretmek için kullanılabilirler.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+Alan tutucun içindeki herhangi bir enerji depolama binasıyla etkileşime girerken [b]deetaylı şebeke bilgisini[/b] görebilirsin.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+Elektrikli aygıtlar yalnızca alan tutucu bölgesinin [b]içindeyken[/b] çalışırlar. Alan tutucu bölgesinin dışına elektrikli aygıt kurmanın anlamı yoktur.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+Elektrik enerjisi ihtiyaç olduğunda kullanılması için [b]enerji deposu[/b] binalarında depolanır. Üsteki genel enerji kapasiteni yükseltmek iyi bir fikirdir.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+Her enerji tüketici ve jeneratör için özel [u]başlama ve durma[/u] enerji [b]yüzdesi[/b] belirleyebilirsin.generator.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+Birden fazla bağlantılı alan tutucu bölgeleri [b]tek bir enerji şekebesi[/b] gibi davranırlar.
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 Üssünde bir güç şebekesi inşa etmen verimliliği artırmak için önemli bir adımdır. Çalışmak için elektrik gerektiren birçok gelişmiş yapı vardır.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] Elektrikli cihazlar sadece alan tutucu bölgenin [b]içinde[/b] çalışır. Alan tutucu bölgenin dışına herhangi bir elektrikli cihaz kurmak anlamsızdır.
-[*] Elektrik enerjisi [b]güç deposu[/b] binalarında, daha sonra gerektiğinde kullanılmak üzere depolanır. Üssün genel enerji kapasitesini yükseltmek iyi bir fikirdir.
-[*] Buhar, güneş ve motor gibi farklı türde [b]jeneratörler[/b] birlikte elektrik gücü üretmek için kullanılabilirler.
-[*] Eğer depondaki elektrik gücü [u]yeterli değilse[/u] üssün [b]karartma[/b] moduna girer ve gücü bizzat geri getirmen gerekir.
-[*] Güç deposuyla etkileşime girerken veya alan tutucunda [b]detaylı şebeke bilgisini[/b] görebilirsin.
-[*] Birden fazla bağlı alan tutucu bölgeleri [b]tek bir güç şebekesi[/b] rolü üstlenir.`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 Güç şebekesi kur
@@ -520,6 +505,27 @@ Eski harabeleri keşfet
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 Konteyner yağmala
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+Balık [u]fileto[/u] yakalanan balıktan [b]kullan[/b] tuşu ile [u]çıkarılabilir[/u] (yani her eşyayı kullanırken olduğu gibi).
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+[b]Balıkçılık yeteneğin[/b] yakalayabileceğin balık çeşidi ve genel başarın üstünde büyük rol oynar.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+[u]Tuzlu[/u] ve [u]tatlı[/u] sularda farklı türde balıklar yakalayabilirsin.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+Herhangi bir balık yakala
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+Herhangi bir balığın filetosunu çıkar
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+Balıkçılık sadece iyi bir vakit geçirme aracı değil, aynı zamanda iyi bir yiyecek bulma yoludur. Biraz balık tutmayı dene!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+Balıkçılık!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Daha fazla avlanma vakti! Bu sefer daha tehlikeli hayvanlarla.
 
@@ -540,4 +546,53 @@ Usta avcı - dördüncü kısım
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 Usta avcı - beşinci kısım
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+Pragmium, en gelişmiş teknolojiler için kullanılan nadir ve yabancı bir mineraldir. Biraz bulup elde etmeye çalış.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] Dikkat! Pragmium madenciliği çok tehlikelidir.
+[*] Büyük pragmium kuleleri yaygın olarak çöllerde bulunabilirken küçük olanlar genelde yanardağ çevrelerinde bulunur.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+Pragmium elde et!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Tuz minerali kaz
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+Gaz yağı ve lityum gibi bazı kaynaklar ileri seviye teknoloji için şarttır. Onları elde etmeyi öğrenmek çok önemlidir.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Oilpod meyvelerini [u]boreal ormanında[/u] her yerde bulabilirsin. Onları kullanman ufak seviyede gaz yağı çıkarmanı sağlar.
+[*] Sıradan tuz madenlerini çıkarken [u]lityum tuzu[/u] elde edebilirsin.
+[*] Tuz madenlerini çöldeki [u]tuzlu bölgelerde[/u] bulabilirsin.
+[*] [u]Zenojeoloji[/u]yi öğrenmek bu kaynakları elde konusunda endüstriyel boyutta yöntemler sunar.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+Gelişmiş kaynak edinme
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+Dronlara talimat vermek için [b]kontrol kumandasını[/b] kullan.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+Dronlar yalnızca [b]madencilik[/b] için değil [b]ağaç devirmek[/b] için de kullanılabilir.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+Dronlara talimat verebilmek için dronların [b]envanterinde[/b] veya [b]araç çubuğunda[/b] olması gerekir.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+Elle maden kazmak ve ağaç kesmek çok yorucudur, bu yüzden fırsat bulur bulmaz otomatik dronlara geçiş yapmalısın.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+Dron madenciliği
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+Her zaman [u]yeterli fazlalığın[/u] olduğundan emin olmak için üssün büyüdükçe [u]enerji depolama kapasiteni artırmak[/u] iyi bir fikirdir.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+Enerji şebeken için sağlam bir temele sahip olduğuna göre hayatını daha kolay kılmak için bunu kullanışlı yapılarla genişletmek iyi bir fikir olabilir.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+Enerji şebekesi için başka kullanımlar
 

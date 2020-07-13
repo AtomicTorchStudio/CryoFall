@@ -27,10 +27,10 @@
         {
             category = GetCategory<StructureCategoryStorage>();
 
-            build.StagesCount = 1;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 100);
-            build.AddStageRequiredItem<ItemRope>(count: 5);
+            build.AddStageRequiredItem<ItemPlanks>(count: 20);
+            build.AddStageRequiredItem<ItemRope>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

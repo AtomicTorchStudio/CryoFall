@@ -12,6 +12,8 @@
             ICharacter character,
             bool logErrors);
 
+        bool Check(ConstructionTileRequirements.Context context, out string errorMessage);
+
         ConstructionTileRequirements Clone();
     }
 }

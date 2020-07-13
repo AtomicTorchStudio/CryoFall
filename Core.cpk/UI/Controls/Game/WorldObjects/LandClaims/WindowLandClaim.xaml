@@ -14,7 +14,8 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowLandClaim, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid">
+    xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid"
+    xmlns:shieldProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection">
 
     <landClaims:WindowLandClaimBase.Resources>
         <Style x:Key="TextBlockTitleStyle" TargetType="TextBlock">
@@ -91,12 +92,13 @@
             </Grid>
 
             <TabControl
+                x:Name="TabControl"
                 Visibility="{Binding IsLandClaimDecayInfoConfirmed, Converter={StaticResource BoolToVisibilityConverter}}"
                 Style="{StaticResource TabControlCompactStyle}">
 
                 <!-- Text: Main -->
                 <TabItem Header="{x:Static loc:CoreStrings.Window_Tab_Main}">
-                    <Grid Margin="5,0">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.69*" />
                             <ColumnDefinition Width="30" />
@@ -161,7 +163,7 @@
 
                                 <!-- Item requirements display -->
                                 <Border Grid.Row="3"
-                                        Padding="5"
+                                        Padding="2"
                                         CornerRadius="3"
                                         BorderThickness="1"
                                         HorizontalAlignment="Center"
@@ -187,6 +189,7 @@
                                                 <TextBlock Grid.Row="0"
                                                            Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingTitleRequiredItems}"
                                                            FontSize="10"
+                                                           Margin="0,-2,0,0"
                                                            FontWeight="Bold"
                                                            Foreground="{StaticResource BrushColor6}"
                                                            HorizontalAlignment="Center" />
@@ -259,7 +262,8 @@
 
                 <!-- Text: Safe storage -->
                 <TabItem Header="{x:Static loc:CoreStrings.TitleSafeStorage}"
-                         Visibility="{Binding IsSafeStorageAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                         Visibility="{Binding IsSafeStorageAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
+                         IsSelected="{Binding IsSafeStorageTabSelected, Mode=TwoWay}">
                     <Grid VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           MaxHeight="234">
@@ -318,11 +322,15 @@
                             Foreground="{StaticResource BrushColor7}"
                             Margin="0,-4,0,4" />
 
-
                         <controls:ItemsContainerExchangeControl Grid.Row="3"
-                                                                DataContext="{Binding ViewModelItemsContainerExchange}"
+                                                                DataContext="{Binding ViewModelSafeStorageItemsContainerExchange}"
                                                                 Margin="0,-8,0,0" />
                     </Grid>
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.TitleShieldProtection}"
+                         Visibility="{Binding ViewModelShieldProtectionControl.IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <shieldProtection:ShieldProtectionControl DataContext="{Binding ViewModelShieldProtectionControl}" />
                 </TabItem>
 
                 <TabItem Header="{x:Static loc:CoreStrings.TitlePowerGrid}">

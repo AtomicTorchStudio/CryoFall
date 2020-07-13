@@ -20,11 +20,10 @@
 
         public override float WaterRestore => 5;
 
-        protected override void ServerOnEat(ItemEatData data)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.4);
-
-            base.ServerOnEat(data);
+            effects
+                .WillAddEffect<StatusEffectHeartyFood>(intensity: 0.40);
         }
     }
 }

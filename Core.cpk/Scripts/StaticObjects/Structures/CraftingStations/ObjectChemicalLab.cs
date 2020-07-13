@@ -28,8 +28,8 @@
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
-            layout.Setup("###",
-                         "###");
+            layout.Setup("##",
+                         "##");
         }
 
         protected override void PrepareConstructionConfig(
@@ -55,16 +55,15 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((3, 0.75),  offset: (0, 1))
-                .AddShapeRectangle((1.1, 1),   offset: (0, 0))
-                .AddShapeRectangle((1.1, 1),   offset: (1.9, 0))
-                .AddShapeRectangle((3, 0.75),  offset: (0, 1),     group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1.1, 1),   offset: (0, 0),     group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1.1, 1),   offset: (1.9, 0),   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((2.8, 0.3), offset: (0.1, 1.9), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((3, 1.25),  offset: (0, 1),     group: CollisionGroups.ClickArea)
-                .AddShapeRectangle((1.1, 1),   offset: (0, 0),     group: CollisionGroups.ClickArea)
-                .AddShapeRectangle((1.1, 1),   offset: (1.9, 0),   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((2, 1.2), offset: (0, 0.4))
+                .AddShapeRectangle((0.7, 0.3), offset: (0, 0.1))
+                .AddShapeRectangle((0.7, 0.3), offset: (1.3, 0.1))
+
+                .AddShapeRectangle((1.9, 1.3), offset: (0.05, 0.4), group: CollisionGroups.HitboxMelee)
+
+                .AddShapeRectangle((1.9, 0.4), offset: (0.05, 1.5), group: CollisionGroups.HitboxRanged)
+
+                .AddShapeRectangle((2, 1.2), offset: (0, 0.4), group: CollisionGroups.ClickArea);
         }
     }
 }

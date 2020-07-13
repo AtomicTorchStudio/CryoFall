@@ -272,7 +272,7 @@
         {
             NotificationSystem.ClientShowNotification(Notification_VehiclesInGarage_Title,
                                                       Notification_VehiclesInGarage_Description,
-                                                      icon: Api.GetProtoEntity<TechGroupVehicles>().Icon)
+                                                      icon: Api.GetProtoEntity<TechGroupVehiclesT3>().Icon)
                               .HideAfterDelay(delaySeconds: 60);
         }
 

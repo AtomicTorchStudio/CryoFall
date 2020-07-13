@@ -71,18 +71,19 @@
 
             StructuresLandClaimDecayDelayDurationMultiplier = ServerRates.Get(
                 "StructuresLandClaimDecayDelayDurationMultiplier",
-                defaultValue: 1.0,
+                defaultValue: 5.0,
                 @"Time multiplier before an abandoned land claim (or base) will start decaying.
                   For example, the default decay delay for the land claims (T1) is 32 hours,
-                  but with 2.0 multiplier it will be increased to 64 hours (for T1).");
+                  but with 2.0 multiplier it will be increased to 64 hours (for T1).
+                  To ensure that your server will not have unexpected decay the default multiplier here is 5.0.
+                  If you wish to use the decay duration exactly as it's defined in the land claims, set 1.0.");
 
             StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers = ServerRates.Get(
                 "StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers",
                 defaultValue: 0.5,
-                @"(for demo players only)
-                  Time multiplier before an abandoned land claim (or base) will start decaying.
-                  For example, the default decay delay for the land claims (T1) is 32 hours,
-                  but with 2.0 multiplier it will be increased to 64 hours (for T1).");
+                @"If you host just a simple community server, please ignore this setting.
+                  (it's for demo players only, applies ONLY to the official and featured servers,
+                   as demo players cannot connect to any other community servers)");
 
             if (StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers
                 > StructuresLandClaimDecayDelayDurationMultiplier)
@@ -113,7 +114,9 @@
 
             DepositsSpawnClaimingCooldownDuration = ServerRates.Get(
                 "DepositsSpawnClaimingCooldownDuration",
-                defaultValue: 20 * 60, // 20 minutes,
+                defaultValue: Api.IsEditor
+                                  ? 0
+                                  : 20 * 60, // 20 minutes,
                 @"Delay in seconds before the spawned resource deposit could be claimed on a PvP server.
                   The notification about the spawned resource is displayed with this timer.
                   30 minutes by default (1800 seconds).

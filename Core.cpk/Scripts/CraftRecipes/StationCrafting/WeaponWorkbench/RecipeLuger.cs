@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemIngotIron>(count: 20);
+            inputItems.Add<ItemIngotIron>(count: 12);
             inputItems.Add<ItemIngotCopper>(count: 10);
 
             outputItems.Add<ItemLuger>();

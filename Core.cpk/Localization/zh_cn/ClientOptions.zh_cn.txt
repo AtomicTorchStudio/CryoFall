@@ -48,6 +48,9 @@ Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 工具栏物品选择
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+快捷栏物品选取（反转）
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 使用滚轮
 

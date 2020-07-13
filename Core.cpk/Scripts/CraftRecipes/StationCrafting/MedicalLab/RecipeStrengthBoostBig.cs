@@ -20,8 +20,8 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemCoffeeBeans>(count: 20);
-            inputItems.Add<ItemToxin>(count: 20);
+            inputItems.Add<ItemCoffeeBeans>(count: 10);
+            inputItems.Add<ItemToxin>(count: 10);
             inputItems.Add<ItemHerbRed>(count: 2);
             inputItems.Add<ItemBottleWater>(count: 1);
 

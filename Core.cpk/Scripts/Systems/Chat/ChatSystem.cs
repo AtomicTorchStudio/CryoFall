@@ -273,8 +273,9 @@
             return chatRoomHolder;
         }
 
-        private static void ClientPlayerJoinedOrLeftHandler(string name, bool isOnline)
+        private static void ClientPlayerJoinedOrLeftHandler(OnlinePlayersSystem.Entry entry, bool isOnline)
         {
+            var name = entry.Name;
             if (name == Client.Characters.CurrentPlayerCharacter.Name
                 || sharedGlobalChatRoomHolder is null)
             {
@@ -554,7 +555,7 @@
             public override void ClientInitialize()
             {
                 ClientChatBlockList.Initialize();
-                OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved += ClientPlayerJoinedOrLeftHandler;
+                OnlinePlayersSystem.ClientPlayerAddedOrRemoved += ClientPlayerJoinedOrLeftHandler;
                 Client.Characters.CurrentPlayerCharacterChanged += Refresh;
 
                 Refresh();

@@ -17,6 +17,9 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
+    /// <summary>
+    /// It's a raiding window/hours system for PvP server. Server owner could configure hours when every day raiding is possible.
+    /// </summary>
     public class RaidingProtectionSystem : ProtoSystem<RaidingProtectionSystem>
     {
         public const string Notification_CannotDamageUnderRaidingProtection_Message =
@@ -35,13 +38,13 @@
 
         public static bool ClientIsRaidingWindowEnabled => ClientRaidingWindowUTC.DurationHours < 24;
 
-        public static TimeInterval ClientRaidingWindowUTC { get; private set; }
-            = new TimeInterval(0, 24);
+        public static DayTimeInterval ClientRaidingWindowUTC { get; private set; }
+            = new DayTimeInterval(0, 24);
 
         public static bool ServerIsRaidingWindowEnabled => ServerRaidingWindowUTC.DurationHours < 24;
 
-        public static TimeInterval ServerRaidingWindowUTC { get; private set; }
-            = new TimeInterval(0, 24);
+        public static DayTimeInterval ServerRaidingWindowUTC { get; private set; }
+            = new DayTimeInterval(0, 24);
 
         public static bool SharedIsRaidingWindowNow
         {
@@ -122,13 +125,13 @@
                                 _ => _.ClientRemote_ShowNotificationRaidingNotAvailableNow());
         }
 
-        public static void ServerSetRaidingWindow(TimeInterval newWindowUTC)
+        public static void ServerSetRaidingWindow(DayTimeInterval newWindowUTC)
         {
             if (newWindowUTC.DurationHours <= 0
                 || newWindowUTC.DurationHours > 24)
             {
                 // full day raiding - disable raiding protection
-                newWindowUTC = new TimeInterval(fromHour: newWindowUTC.FromHour,
+                newWindowUTC = new DayTimeInterval(fromHour: newWindowUTC.FromHour,
                                                 toHour: newWindowUTC.FromHour + 24);
             }
 
@@ -291,11 +294,11 @@
             }
         }
 
-        private void ClientRemote_RaidingWindowInfo(TimeInterval gameTimeInterval)
+        private void ClientRemote_RaidingWindowInfo(DayTimeInterval gameDayTimeInterval)
         {
-            Logger.Important($"Received raiding window: {gameTimeInterval} (UTC time)");
+            Logger.Important($"Received raiding window: {gameDayTimeInterval} (UTC time)");
 
-            ClientRaidingWindowUTC = gameTimeInterval;
+            ClientRaidingWindowUTC = gameDayTimeInterval;
             if (ClientRaidingWindowChanged != null)
             {
                 Api.SafeInvoke(ClientRaidingWindowChanged);
@@ -335,7 +338,7 @@
             {
                 if (Server.Database.TryGet(nameof(RaidingProtectionSystem),
                                            DatabaseKeyRaidingWindowUTC,
-                                           out TimeInterval window))
+                                           out DayTimeInterval window))
                 {
                     ServerRaidingWindowUTC = window;
                     Logger.Important($"Loaded raiding window: {ServerRaidingWindowUTC} (UTC time)");
@@ -343,7 +346,7 @@
                 else
                 {
                     // no raiding window - unrestricted raiding hours
-                    ServerRaidingWindowUTC = new TimeInterval(0, 24);
+                    ServerRaidingWindowUTC = new DayTimeInterval(0, 24);
                 }
             }
         }

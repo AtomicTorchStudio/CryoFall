@@ -20,12 +20,10 @@
 
         public override string Name => "Anti-radiation";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // remove radiation
-            character.ServerRemoveStatusEffectIntensity<StatusEffectRadiationPoisoning>(intensityToRemove: 0.3);
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillRemoveEffect<StatusEffectRadiationPoisoning>(intensityToRemove: 0.30);
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

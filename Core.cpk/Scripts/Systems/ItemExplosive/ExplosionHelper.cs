@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.ItemExplosive
 {
+    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
@@ -18,6 +19,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -201,21 +203,32 @@
                         var tilePosition = (Vector2Ushort)(epicenterPosition - protoObjectCharredGround.Layout.Center);
                         var canSpawnCharredGround = true;
 
-                        // remove existing charred ground objects at the same tile
-                        foreach (var staticWorldObject in Shared.WrapInTempList(
-                                                                    Server.World.GetTile(tilePosition).StaticObjects)
-                                                                .EnumerateAndDispose())
+                        var tile = Server.World.GetTile(tilePosition);
+                        if (tile.ProtoTile.Kind != TileKind.Solid
+                            || tile.EightNeighborTiles.Any(t => t.ProtoTile.Kind != TileKind.Solid))
                         {
-                            switch (staticWorldObject.ProtoStaticWorldObject)
-                            {
-                                case ProtoObjectCharredGround _:
-                                    Server.World.DestroyObject(staticWorldObject);
-                                    break;
+                            // allow charred ground only on solid ground
+                            canSpawnCharredGround = false;
+                        }
 
-                                case IProtoObjectDeposit _:
-                                    // don't show charred ground over resource deposits (it looks wrong)
-                                    canSpawnCharredGround = false;
-                                    break;
+                        if (canSpawnCharredGround)
+                        {
+                            // remove existing charred ground objects at the same tile
+                            foreach (var staticWorldObject in Shared.WrapInTempList(
+                                                                        tile.StaticObjects)
+                                                                    .EnumerateAndDispose())
+                            {
+                                switch (staticWorldObject.ProtoStaticWorldObject)
+                                {
+                                    case ProtoObjectCharredGround _:
+                                        Server.World.DestroyObject(staticWorldObject);
+                                        break;
+
+                                    case IProtoObjectDeposit _:
+                                        // don't show charred ground over resource deposits (it looks wrong)
+                                        canSpawnCharredGround = false;
+                                        break;
+                                }
                             }
                         }
 

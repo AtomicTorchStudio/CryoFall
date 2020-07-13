@@ -1,0 +1,117 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.WindowPowerThresholdsConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowPowerThresholdsConfiguration}">
+
+    <core:GameWindow x:Name="GameWindow"
+                     FocusOnControl="{Binding ElementName=ButtonCancel}"
+                     CloseByEscapeKey="True"
+                     Padding="10"
+                     Width="280">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="LineHeight" Value="12" />
+                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerLevelThresholds_Title}"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource WindowTitleForeground}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10" />
+
+            <TextBlock Grid.Row="1"
+                       Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerLevelThresholds_Startup}"
+                       Margin="15,0,0,-8" />
+
+            <TextBlock Grid.Row="1"
+                       HorizontalAlignment="Right"
+                       Text="{Binding StartupPercentText}"
+                       Margin="0,0,15,-8" />
+
+            <Slider Grid.Row="2"
+                    Value="{Binding StartupPercent}"
+                    Minimum="0"
+                    Maximum="100" />
+
+            <TextBlock Grid.Row="3"
+                       Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerLevelThresholds_Shutdown}"
+                       Margin="15,0,0,-8" />
+
+            <TextBlock Grid.Row="3"
+                       HorizontalAlignment="Right"
+                       Text="{Binding ShutdownPercentText}"
+                       Margin="0,0,15,-8" />
+
+            <Slider Grid.Row="4"
+                    Value="{Binding ShutdownPercent}"
+                    Minimum="0"
+                    Maximum="100" />
+
+            <Grid Grid.Row="5"
+                  Margin="0,5,0,0"
+                  HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!-- Text: Save -->
+                <Button Grid.Column="0"
+                        Content="{x:Static loc:CoreStrings.Button_Save}"
+                        Focusable="False"
+                        Command="{Binding CommandSave}"
+                        Padding="0"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch" />
+
+                <!-- Text: Reset -->
+                <Button Grid.Column="2"
+                        Content="{x:Static loc:CoreStrings.Button_Reset}"
+                        Focusable="False"
+                        Command="{Binding CommandReset}"
+                        Padding="0"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch" />
+
+                <!-- Text: Cancel -->
+                <Button Grid.Column="4"
+                        Content="{x:Static loc:CoreStrings.Button_Cancel}"
+                        Focusable="False"
+                        x:Name="ButtonCancel"
+                        Command="{Binding CommandCancel}"
+                        Padding="0"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch" />
+            </Grid>
+
+        </Grid>
+    </core:GameWindow>
+
+</core:BaseUserControlWithWindow>

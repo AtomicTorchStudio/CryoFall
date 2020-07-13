@@ -22,11 +22,11 @@
         {
             build.StagesCount = 1;
             //build.StageDurationSeconds = BuildDuration.Short; <-- irrelevant here
-            build.AddStageRequiredItem<ItemCement>(count: 5);
+            build.AddStageRequiredItem<ItemCement>(count: 1);
 
             repair.StagesCount = 1;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemCement>(count: 2);
+            repair.AddStageRequiredItem<ItemCement>(count: 1);
         }
     }
 }

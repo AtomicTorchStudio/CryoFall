@@ -7,19 +7,20 @@
 
     public class ObjectRechargingStation : ProtoObjectRechargingStation
     {
-        public override byte ContainerInputSlotsCount => 4;
+        public override byte ContainerInputSlotsCount => 3;
 
         public override string Description =>
             "Can be used to recharge any portable electronic equipment such as a powerbank or flashlight.";
 
-        public override double ElectricityChargePerSecondWhenActive =>
-            16; // when there are 4 slots it means that each slow will get 16/4 = 4 EU/s
+        public override bool IsRelocatable => true;
 
         public override string Name => "Recharging station";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
+
+        public override double RechargePerSecondPerSlot => 4;
 
         public override float StructurePointsMax => 2000;
 
@@ -32,17 +33,16 @@
         {
             category = GetCategory<StructureCategoryElectricity>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemWire>(count: 5);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemWire>(count: 2);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

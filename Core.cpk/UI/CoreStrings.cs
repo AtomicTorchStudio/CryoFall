@@ -8,8 +8,27 @@
         // this tooltip is displayed when hovering over a structure to build
         public const string Action_Build = "Build";
 
+        // this tooltip is displayed when hovering over a structure that could be relocated
+        public const string Action_Relocate = "Relocate";
+
         // this tooltip is displayed when hovering over a structure to repair
         public const string Action_Repair = "Repair";
+
+        public const string Ammo_CompatibleWeapons = "Compatible weapons:";
+
+        public const string AutosaveNotification_Completed = "Save completed!";
+
+        public const string AutosaveNotification_Content1 =
+            "The server will perform a regular world save.";
+
+        public const string AutosaveNotification_Content2 =
+            "A short lag is expected.";
+
+        public const string AutosaveNotification_DelayRemains_Format = "Save will run in: {0}";
+
+        public const string AutosaveNotification_Saving = "Saving...";
+
+        public const string AutosaveNotification_Title = "Server snapshot";
 
         public const string BrokenObjectLandClaimTooltip_TitleDestroyCountdown = "Destroyed in";
 
@@ -152,6 +171,10 @@
 
         public const string ConstructionMetaInfo_ElectricityPowerStorage = "This structure stores electricity.";
 
+        // an info message for a structure that cannot be relocated in the base once it's built
+        public const string ConstructionMetaInfo_Unmovable =
+            "This structure is unmovable once built.";
+
         // used like in "copy-paste"
         public const string Copy = "Copy";
 
@@ -183,13 +206,29 @@
 
         public const string CrateIconControl_NoIcon = "No icon";
 
-        public const string CrateIconControl_SelectIcon = "Pick an icon";
+        public const string CrateIconControl_SelectIcon = "Click here with an item to put an icon on the crate.";
+
+        public const string DamageType_Chemical = "Chemical";
+
+        public const string DamageType_Cold = "Cold";
+
+        public const string DamageType_Explosion = "Explosion";
+
+        public const string DamageType_Heat = "Heat";
+
+        public const string DamageType_Impact = "Impact";
+
+        public const string DamageType_Kinetic = "Kinetic";
+
+        public const string DamageType_Psi = "Psi";
+
+        public const string DamageType_Radiation = "Radiation";
 
         public const string Defense_Format_Chemical = "Chemical protection: {0}";
 
         public const string Defense_Format_Cold = "Cold protection: {0}";
 
-        public const string Defense_Format_Electrical = "Electrical protection: {0}";
+        public const string Defense_Format_Explosion = "Explosion protection: {0}";
 
         public const string Defense_Format_Heat = "Heat protection: {0}";
 
@@ -236,6 +275,13 @@
 
         public const string DepositCapacityStats_TitleLimited = "Surface deposit (high yield)";
 
+        public const string Dialog_AreYouSureWantToUse_Format =
+            "Are you sure want to use {0}?";
+
+        // Max number of simultaneously controlled drones by a remote control device.
+        public const string DroneControl_MaxSimultaneouslyControlledDrones =
+            "Simultaneously controlled drones";
+
         public const string Duration_Instant = "Instant";
 
         public const string Duration_Quick = "Quick";
@@ -246,9 +292,22 @@
 
         public const string Duration_VerySlow = "Very slow";
 
+        public const string EffectActionDescription_AddsEffects = "Adds effects:";
+
+        public const string EffectActionDescription_RemovesEffects = "Removes effects:";
+
         public const string EnergyUnitAbbreviation = "EU";
 
         public const string EnergyUnitPerSecondAbbreviation = "EU/s";
+
+        public const string EventDamage_FailureMessage_Format =
+            "You need to deal at least {0}% total damage to be eligible for a reward in this event. Good luck next time!";
+
+        public const string EventDamage_FailureTitle_Format =
+            "Not enough damage";
+
+        public const string EventDamage_SuccessMessage_Format =
+            "You dealt {0}% total damage! Your share of the loot is {1}/{2}.";
 
         public const string Extras_DiscordTooltip = "Official CryoFall Discord server (English only)";
 
@@ -324,6 +383,11 @@
         // used as, for example: "Implant requires: 5 biomaterial"
         public const string ImplantSlotOnStation_Requirement = "Requires";
 
+        public const string Item_SpoiledIn_Format = "Spoiled in: {0}";
+
+        // as part of "Spoiled in: never"
+        public const string Item_SpoiledIn_Never = "never";
+
         public const string ItemsContainer_Button_DisplayShortcuts = "Shortcuts";
 
         public const string ItemsContainer_Button_MatchDown = "Match Down";
@@ -340,6 +404,10 @@
         public const string ItemsContainer_TitleInput = "Input";
 
         public const string ItemsContainer_TitleOutput = "Output";
+
+        public const string LandClaimPlacementDisplayHelper_LabelBuffer = "Buffer";
+
+        public const string LandClaimPlacementDisplayHelper_LabelTier_Format = "Tier {0}";
 
         public const string LearningPoints = "Learning points";
 
@@ -461,6 +529,11 @@
 
         // displayed as: "Servers: 15"
         public const string MenuServers_ServersCount = "Servers";
+
+        public const string MenuServers_ServerTag_Community_Description =
+            "This server is hosted by a community member. The developers have no control over this server and don't guarantee that you will have a good experience there. The server might have customized rates making the game much easier or harder. The server owner is responsible for its moderation and support.";
+
+        public const string MenuServers_ServerTag_Community_Title = "COMMUNITY";
 
         public const string MenuServers_ServerTag_Featured_Description =
             "Featured servers usually have a reputation for providing a high-quality experience, similar to official servers. However, these servers are still hosted by the community.";
@@ -653,10 +726,30 @@
 
         public const string PleaseWait = "Please wait...";
 
+        public const string PowerConsumerState_PowerOff_Title =
+            "This power consumer is [b]not connected[/b] to the power grid.";
+
+        public const string PowerConsumerState_PowerOn_Description_Format =
+            "This structure will keep working until the power level drops below the shutdown threshold ([b]{0}%[/b]).";
+
+        public const string PowerConsumerState_PowerOn_Title =
+            "This power consumer is [b]connected[/b] to the power grid.";
+
+        public const string PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format =
+            @"The power level in the power grid is below the shutdown threshold ([b]{0}%[/b]).
+              [br]This structure will activate automatically when the power level rises above the [b]startup[/b] threshold ([b]{1}%[/b]).";
+
+        public const string PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format =
+            @"The power level in the power grid is below the startup threshold ([b]{0}%[/b]).
+              [br]This structure will activate automatically when the power level rises above it.";
+
+        public const string PowerConsumerState_PowerOnIdle_Title = "This power consumer is [b]idle[/b].";
+
         public const string PowerGrid_NotConnectedMessage = "Not connected to the power grid.";
 
         public const string PowerGridState_ActiveFormat = "(active {0})";
 
+        // not used anymore
         public const string PowerGridState_Button_RestorePower = "Restore power";
 
         public const string PowerGridState_Capacity = "Capacity:";
@@ -682,8 +775,10 @@
 
         public const string PowerGridState_GridSize = "Grid size:";
 
+        // not used anymore
         public const string PowerGridState_GridStatus = "Grid status:";
 
+        // not used anymore
         public const string PowerGridState_MaxDefenseConsumption = "Max defense consumption:";
 
         public const string PowerGridState_MaxGeneration = "Max generation:";
@@ -692,11 +787,48 @@
 
         public const string PowerGridState_PowerGridInformation = "Power grid information";
 
+        // not used anymore
         public const string PowerGridState_Status_Blackout = "Blackout";
 
+        // not used anymore
         public const string PowerGridState_Status_Nominal = "Nominal";
 
         public const string PowerGridState_Storages = "Storages:";
+
+        public const string PowerProducerState_PowerOff_Title =
+            "This power generator is [b]not connected[/b] to the power grid.";
+
+        public const string PowerProducerState_PowerOn_Description_Format =
+            "This structure will keep generating power until the shutdown threshold ([b]{0}%[/b]) is reached.";
+
+        public const string PowerProducerState_PowerOn_Title =
+            "This power generator is [b]connected[/b] to the power grid.";
+
+        public const string PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format =
+            @"The power level in the power grid is above the shutdown threshold ([b]{0}%[/b]).
+              [br]This generator will activate automatically when the power level drops below the [b]startup[/b] ([b]{1}%[/b]) threshold.";
+
+        public const string PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format =
+            @"The power level in the power grid is above the startup threshold ([b]{0}%[/b]).
+              [br]This generator will activate automatically when the power level drops below it.";
+
+        public const string PowerProducerState_PowerOnIdle_Title = "This power generator is [b]idle[/b].";
+
+        public const string PowerSwitchControl_Button_ConnectFromPowerGrid = "Connect to power grid";
+
+        public const string PowerSwitchControl_Button_DisconnectFromPowerGrid = "Disconnect from power grid";
+
+        public const string PowerSwitchControl_Title_PowerControl = "Power control";
+
+        public const string PowerSwitchControl_Title_PowerGridLevel = "Power grid level";
+
+        public const string PowerSwitchControl_Title_PowerLevelThresholds_Shutdown = "Shutdown:";
+
+        public const string PowerSwitchControl_Title_PowerLevelThresholds_Startup = "Startup:";
+
+        public const string PowerSwitchControl_Title_PowerLevelThresholds_Title = "Power level thresholds";
+
+        public const string Protection_Name = "Protection:";
 
         public const string Quest_Button_ClaimReward = "Claim";
 
@@ -728,6 +860,115 @@
         public const string ServerPlayersCount = "Players";
 
         public const string ServerWipedDate = "Wiped";
+
+        public const string ShieldProtection_ActionRestrictedBaseUnderShieldProtection =
+            "You cannot perform this action on a base under shield protection.";
+
+        public const string ShieldProtection_ActivationConfirmation_DelayDuration_Format =
+            "Activating the shield will take {0} (activation delay).";
+
+        public const string ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format =
+            "Activating the shield will take {0} (activation delay plus the remaining cooldown).";
+
+        public const string ShieldProtection_ActivationConfirmation_ProtectionDuration_Format =
+            "With the current charge, the active shield can provide protection for up to {0}.";
+
+        public const string ShieldProtection_ActivationDelay = "Activation delay:";
+
+        public const string ShieldProtection_Button_ActivateShield = "Activate shield";
+
+        public const string ShieldProtection_Button_DeactivateShield = "Deactivate shield";
+
+        public const string ShieldProtection_Button_RechargeShield = "Recharge shield";
+
+        public const string ShieldProtection_CancelledActivationDueToRaidBlock =
+            "Shield activation cancelled for your base due to the raid block.";
+
+        public const string ShieldProtection_CannotActivateDuringRaidBlock =
+            "Cannot activate the shield during the raid block.";
+
+        public const string ShieldProtection_CooldownDuration = "Cooldown:";
+
+        public const string ShieldProtection_CooldownRemains_Format = "(cooldown {0})";
+
+        public const string ShieldProtection_CurrentShieldCharge = "Current shield charge:";
+
+        public const string ShieldProtection_DeactivationNotes_Format =
+            "Deactivating an active or activating shield will start a cooldown ({0}). During the cooldown the shield cannot be activated again.";
+
+        public const string ShieldProtection_Description_1 =
+            "Shield protects your base while you are away or offline.";
+
+        public const string ShieldProtection_Description_2 =
+            "Under shield protection the base doors and walls are immune to any damage.";
+
+        public const string ShieldProtection_Description_3 =
+            "Lockdown: nobody can enter or leave the base under shield protection (all doors are blocked).";
+
+        public const string ShieldProtection_Description_4 =
+            "Before activating the shield it must be recharged with electricity.";
+
+        public const string ShieldProtection_Description_5 =
+            "Activating the shield takes some time.";
+
+        public const string ShieldProtection_Description_6 =
+            "Deactivated shields cannot be reactivated immediately.";
+
+        public const string ShieldProtection_Description_7 =
+            "Active shield restricts the use of toolbox and crowbar.";
+
+        public const string ShieldProtection_Description_8 =
+            "Shield cannot be recharged while it is active—it must be deactivated first.";
+
+        public const string ShieldProtection_Description_9 =
+            "If the base is attacked (raid block started) during the shield activation, shield activation will cancel and activation cooldown will start.";
+
+        public const string ShieldProtection_Dialog_ConfirmActivation =
+            "Are you sure you want to activate the shield?";
+
+        public const string ShieldProtection_Dialog_ConfirmDeactivation =
+            "Are you sure you want to deactivate the shield?";
+
+        public const string ShieldProtection_DoorBlockedByShield =
+            "Lockdown: this door is blocked by active shield protection.";
+
+        public const string ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection =
+            "This land claim is under an active shield protection.";
+
+        public const string ShieldProtection_EstimatedDuration = "Estimated duration:";
+
+        public const string ShieldProtection_MaxDuration = "Max duration:";
+
+        public const string ShieldProtection_NotificationBaseActivatingShield_Message_Format =
+            "Shield will become active in {0} unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).";
+
+        public const string ShieldProtection_NotificationBaseActivatingShield_Title =
+            "This base is activating shield protection";
+
+        public const string ShieldProtection_NotificationBaseUnderShield_Message_Format =
+            "This base is under shield protection, which can continue for up to {0}.";
+
+        public const string ShieldProtection_NotificationBaseUnderShield_MessageOwner =
+            "[u]You can deactivate the shield now (click here).[/u]";
+
+        public const string ShieldProtection_NotificationBaseUnderShield_Title =
+            "This base is under shield protection";
+
+        public const string ShieldProtection_NotificationProtected_Message
+            = "This base is under shield protection. No damage can be inflicted to any of the walls or doors. Cannot activate the raid block.";
+
+        public const string ShieldProtection_RechargeTo = "Recharge to:";
+
+        public const string ShieldProtection_ShieldStatus = "Shield status:";
+
+        public const string ShieldProtection_Status_Activating = "Activating";
+
+        public const string ShieldProtection_Status_Active = "Active";
+
+        public const string ShieldProtection_Status_Inactive = "Inactive";
+
+        public const string ShieldProtection_UpgradeToUnlock =
+            "Offline raiding protection shield is available for higher tiers of the land claim building. Upgrade this claim as soon as possible to unlock this feature.";
 
         public const string Skill = "Skill";
 
@@ -761,6 +1002,9 @@
   [br][br]The pack doesn't provide any advantage in the game and is purely optional. It includes the game's complete soundtrack, concept art, high resolution game art, chat badge, etc. More items will be added to the Supporter Pack during the Early Access period.
   [br][br]Thank you from the bottom of our hearts for your support!";
 
+        // Displayed like "Vehicles (Tier III)"
+        public const string TechGroup_NameWithTier_Format = "{0} ({1})";
+
         public const string TechGroupTooltip_LearningPointsFormat = "Learning points: {0}";
 
         public const string TechGroupTooltip_Requirements = "Requirements";
@@ -788,6 +1032,9 @@
         public const string Technology = "Technology";
 
         public const string TextBoxSearchPlaceholder = "Search...";
+
+        // used in case when the game needs to display a text like: "(item requires something)"
+        public const string TextInParenthesisFormat = "({0})";
 
         public const string Title = "Title";
 
@@ -838,6 +1085,8 @@
 
         public const string TitleSafeStorage = "Safe storage";
 
+        public const string TitleShieldProtection = "S.H.I.E.L.D.";
+
         public const string TitleStructurePoints = "Structure points";
 
         public const string TradingStationResources_ThisLotIsDisabled = "This lot is disabled";
@@ -862,6 +1111,8 @@
 
         public const string Vehicle_Enter = "Enter";
 
+        public const string Vehicle_FuelCells = "Fuel cells";
+
         public const string Vehicle_Hotbar_ArmorValueFormat = "Armor {1:F0}/{2:F0} ({0}%)";
 
         public const string Vehicle_Hotbar_EnergyPercentFormat = "Energy {0}%";
@@ -871,6 +1122,8 @@
         public const string Vehicle_Mech_ItemSlot_RightArm = "Right arm";
 
         public const string Vehicle_Mech_ItemSlot_Weapon = "Weapon";
+
+        public const string Vehicle_Mech_ItemSlot_WeaponHardpoint_Format = "Weapon ({0} hardpoint)";
 
         public const string Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech =
             "This weapon can be used only when installed on a mech.";
@@ -905,7 +1158,42 @@
 
         public const string VehiclesAssemblyList_TitleSchematicsUnlocked = "Schematics unlocked";
 
+        // victory in an event such as boss fight or base defense
+        public const string Victory = "Victory!";
+
+        public const string Weapon_Accuracy = "Accuracy";
+
+        public const string Weapon_AmmoCapacity = "Ammo capacity";
+
+        public const string Weapon_ArmorPiercingCoefficient = "Armor piercing";
+
+        // it's the same as "Fire rate" but for melee weapons only
+        public const string Weapon_AttackRate = "Attack rate";
+
         public const string Weapon_CompatibleAmmo = "Compatible ammo:";
+
+        public const string Weapon_CurrentAmmo = "Current ammo:";
+
+        public const string Weapon_Damage = "Damage";
+
+        public const string Weapon_DamageType = "Damage type";
+
+        // please note that this is only for ranged weapons
+        public const string Weapon_FireRate = "Fire rate";
+
+        // for weapons that don't have a fire rate
+        public const string Weapon_FireRate_SingleShot = "Single shot";
+
+        public const string Weapon_Range = "Range";
+
+        public const string Weapon_ReloadSpeed = "Reload speed";
+
+        public const string Weapon_Spread = "Spread";
+
+        public const string Weapon_StoppingPower = "Stopping power";
+
+        public const string Weapon_Tooltip_ReferenceAmmo_Format =
+            "Stats below are displayed for weapon with a reference ammo ({0}).";
 
         public const string Window_Tab_Main = "Main";
 
@@ -919,12 +1207,20 @@
 
         public const string WindowCharacterStyleCustomization_Button_Randomize = "Random";
 
+        public const string WindowCompletionist_BestFishLength_Format = "Best length: {0} cm";
+
+        public const string WindowCompletionist_BestFishWeight_Format = "Best weight: {0} kg";
+
         // Accept/claim/receive the reward.
         public const string WindowCompletionist_ButtonAccept = "Accept";
+
+        public const string WindowCompletionist_Notification_FishNewRecord = "New record!";
 
         public const string WindowCompletionist_ProgressLabel = "Progress:";
 
         public const string WindowCompletionist_TabCreatures = "Creatures";
+
+        public const string WindowCompletionist_TabFish = "Fish";
 
         public const string WindowCompletionist_TabFood = "Food";
 
@@ -1109,6 +1405,10 @@
 
         public const string WindowSocial_TotalPlayers = "Total players";
 
+        public const string WindowSprinker_WaterNow = "Water now";
+
+        public const string WindowSprinkler_NextWateringIn_Format = "Next watering attempt in: [b]{0}[/b]";
+
         public const string WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount =
             "Create new AtomicTorch account";
 
@@ -1261,6 +1561,14 @@
         public const string WorldMapMarkTradingTerminal_Own_Tooltip =
             @"[b]Trading station (yours)[/b]
               [br]You own this trading station.";
+
+        public const string WorldObjectClaim_Description = "This object is claimed by another player.";
+
+        public const string WorldObjectClaim_Description2 = "You cannot interact with it until the claim expires.";
+
+        public const string WorldObjectClaim_ExpiresIn_Format = "The claim will expire in: {0}";
+
+        public const string WorldObjectClaim_Title = "Object claimed";
 
         public const string Yes = "Yes";
     }

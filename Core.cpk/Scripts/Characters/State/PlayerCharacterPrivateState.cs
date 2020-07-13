@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Achievements;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDroneControl;
     using AtomicTorch.CBND.CoreMod.Systems.Completionist;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
@@ -24,10 +25,10 @@
         private IStaticWorldObject currentBedObject;
 
         [SyncToClient]
-        public PlayerCharacterCompletionistData CompletionistData { get; private set; }
+        public PlayerCharacterAchievements Achievements { get; private set; }
 
         [SyncToClient]
-        public PlayerCharacterAchievements Achievements { get; private set; }
+        public PlayerCharacterCompletionistData CompletionistData { get; private set; }
 
         [SyncToClient]
         public IItemsContainer ContainerHand { get; private set; }
@@ -49,13 +50,6 @@
         // Please note - this is not a SyncToClient property, it's processed simultaneously on the client and server.
         // Other clients doesn't receive this data. They receive snapshot of this data in the character public state.
         public IActionState CurrentActionState { get; private set; }
-
-        /// <summary>
-        /// This is an AFK Mode flag which is activated when player is inactive for a while.
-        /// </summary>
-        [SyncToClient]
-        [TempOnly]
-        public bool IsIdle { get; set; }
 
         /// <summary>
         /// Please note - this is not synchronized to the client.
@@ -80,6 +74,9 @@
         public Vector2Ushort? CurrentBedObjectPosition { get; set; }
 
         [SyncToClient]
+        public ILogicObject DroneController { get; private set; }
+
+        [SyncToClient]
         public NetworkSyncList<DroppedLootInfo> DroppedLootLocations { get; private set; }
 
         [TempOnly]
@@ -87,6 +84,13 @@
 
         [SyncToClient]
         public bool IsDespawned { get; set; }
+
+        /// <summary>
+        /// This is an AFK Mode flag which is activated when player is inactive for a while.
+        /// </summary>
+        [SyncToClient]
+        [TempOnly]
+        public bool IsIdle { get; set; }
 
         public Vector2Ushort LastDeathPosition { get; set; }
 
@@ -184,6 +188,11 @@
             if (this.CompletionistData == null)
             {
                 this.CompletionistData = new PlayerCharacterCompletionistData();
+            }
+
+            if (this.DroneController is null)
+            {
+                this.DroneController = CharacterDroneControlSystem.ServerCreateCharacterDroneController();
             }
 
             if (this.ServerLastActiveTime <= 0)

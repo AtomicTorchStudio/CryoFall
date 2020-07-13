@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeFirelog : TechNode<TechGroupChemistry>
+    public class TechNodeFirelog : TechNode<TechGroupChemistryT2>
     {
         protected override void PrepareTechNode(Config config)
         {

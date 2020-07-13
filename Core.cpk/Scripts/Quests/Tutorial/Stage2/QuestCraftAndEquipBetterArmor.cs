@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
@@ -8,11 +9,9 @@
 
     public class QuestCraftAndEquipBetterArmor : ProtoQuest
     {
-        public const string EquipAnyChestplate = "Equip better chestplate";
+        public const string EquipAnyArmor = "Equip better armor";
 
         public const string EquipAnyHelmet = "Equip better helmet";
-
-        public const string EquipAnyLegsProtection = "Equip better leg armor";
 
         public override string Description =>
             "It is time to get some better protection.";
@@ -25,33 +24,26 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             var headEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentHead>()
-                                              .Where(i => !(i is ItemClothHat))
+                                              .Where(i => !(i is ItemClothHelmet))
                                               .ToList();
 
-            var chestEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentChest>()
-                                               .Where(i => !(i is ItemClothShirt))
+            var chestEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentArmor>()
+                                               .Where(i => !(i is ItemClothArmor))
                                                .ToList();
 
-            var legsEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentLegs>()
-                                              .Where(i => !(i is ItemClothPants))
-                                              .ToList();
             tasks
                 .Add(TaskBuildStructure.Require<ObjectArmorerWorkbench>())
                 // suggest wood helmet but require any head item except the cloth one
                 .Add(TaskHaveItemEquipped.Require(
                          headEquipmentExceptCloth,
                          EquipAnyHelmet))
-                // suggest wood chestplate but require any chest item except the cloth one
+                // suggest wood armor but require any armor item except the cloth one
                 .Add(TaskHaveItemEquipped.Require(
                          chestEquipmentExceptCloth,
-                         EquipAnyChestplate))
-                // suggest wood pants but require any legs item except the cloth one
-                .Add(TaskHaveItemEquipped.Require(
-                         legsEquipmentExceptCloth,
-                         EquipAnyLegsProtection));
+                         EquipAnyArmor));
 
             prerequisites
                 .Add<QuestExploreBiomes1>();

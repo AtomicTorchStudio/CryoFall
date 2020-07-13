@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
@@ -193,18 +192,6 @@
                                                                            == t.PhysicsBody.AssociatedWorldObject);
                             });
 
-        /// <summary>
-        /// Checks if there is no static objects in the tile.
-        /// </summary>
-        public static readonly Validator ValidatorNoPhysicsBodyStatic
-            = new Validator(ErrorNoFreeSpace,
-                            c => !TileHasAnyPhysicsObjectsWhere(
-                                     c.Tile,
-                                     t => t.PhysicsBody.IsStatic
-                                          // allow destroyed walls physics in the tile
-                                          && !(t.PhysicsBody.AssociatedWorldObject
-                                                ?.ProtoWorldObject is ObjectWallDestroyed)));
-
         public static readonly Validator ValidatorNoStaticObjectsExceptFloor
             = new Validator(ErrorNoFreeSpace,
                             c => c.Tile.StaticObjects.All(
@@ -292,8 +279,6 @@
                                       .Clone()
                                       .Add(ValidatorNoFarmPlot)
                                       .Add(ValidatorNoStaticObjectsExceptFloor)
-                                      // ensure no physical objects (static/dynamic) at tile
-                                      .Add(ValidatorNoPhysicsBodyStatic)
                                       .AddClientOnly(ValidatorClientOnlyNoCurrentPlayer)
                                       .Add(ValidatorNoPhysicsBodyDynamic);
 
@@ -303,7 +288,8 @@
                                                         .Add(ValidatorNoNpcsAround)
                                                         .Add(ValidatorNoPlayersNearby)
                                                         .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
-                                                        .Add(LandClaimSystem.ValidatorNoRaid);
+                                                        .Add(LandClaimSystem.ValidatorNoRaid)
+                                                        .Add(LandClaimSystem.ValidatorNoShieldProtection);
 
             DefaultForPlayerStructures = DefaultForStaticObjects
                                          .Clone()
@@ -311,7 +297,8 @@
                                          .Add(ValidatorNoNpcsAround)
                                          .Add(ValidatorNoPlayersNearby)
                                          .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
-                                         .Add(LandClaimSystem.ValidatorNoRaid);
+                                         .Add(LandClaimSystem.ValidatorNoRaid)
+                                         .Add(LandClaimSystem.ValidatorNoShieldProtection);
         }
 
         public ConstructionTileRequirements(ConstructionTileRequirements toClone)
@@ -388,6 +375,16 @@
             return this.Add((ConstructionTileRequirements)existingRequirements);
         }
 
+        public ConstructionTileRequirements AddClientOnly(Validator validator)
+        {
+            if (Api.IsClient)
+            {
+                this.Add(validator);
+            }
+
+            return this;
+        }
+
         public bool Check(
             IProtoStaticWorldObject proto,
             Vector2Ushort startTilePosition,
@@ -399,7 +396,6 @@
                 var tile = WorldService.GetTile(startTilePosition.X + tileOffset.X,
                                                 startTilePosition.Y + tileOffset.Y,
                                                 logOutOfBounds: false);
-                var context = new Context(tile, character, proto, tileOffset);
                 string errorMessage;
 
                 if (tile.IsOutOfBounds)
@@ -408,6 +404,7 @@
                 }
                 else
                 {
+                    var context = new Context(tile, character, proto, tileOffset);
                     if (this.Check(context, out errorMessage))
                     {
                         // valid tile
@@ -465,16 +462,6 @@
         public ConstructionTileRequirements Clone()
         {
             return new ConstructionTileRequirements(this);
-        }
-
-        private ConstructionTileRequirements AddClientOnly(Validator validator)
-        {
-            if (Api.IsClient)
-            {
-                this.Add(validator);
-            }
-
-            return this;
         }
 
         public struct Context

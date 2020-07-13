@@ -20,7 +20,7 @@
             duration = CraftingDuration.Long;
 
             inputItems.Add<ItemIngotIron>(count: 15);
-            inputItems.Add<ItemIngotCopper>(count: 10);
+            inputItems.Add<ItemIngotCopper>(count: 5);
             inputItems.Add<ItemPlanks>(count: 75);
 
             outputItems.Add<ItemShotgunDoublebarreled>();

@@ -88,6 +88,12 @@ Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 Стрела с каменным наконечником
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+Специальная осколочная граната с расширенным радиусом действия. При контакте наносит урон по большой площади.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+Осколочная граната
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 Граната особого назначения, которая при ударе распыляет жидкий гелий с частицами прагмия, чтобы заморозить цель.
 
@@ -111,6 +117,69 @@ Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 Бумажные патроны
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+Фугасные артиллерийские снаряды очень эффективны против бронированного транспорта.
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+Артиллерийский снаряд
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+Щелкните по этому предмету, удерживая клавишу Alt, чтобы быстро использовать или употребить его.
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+Щелкните по любой постройке, чтобы разобрать ее.
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+Щелкните по неповрежденной постройке, чтобы переместить ее.
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+Щелкните по колодцу или водосборнику, чтобы наполнить водой.
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+Щелкните по любой постройке, чтобы починить или построить.
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+Щелкните по любому сельскохозяйственному растению, чтобы полить его.
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+Рыбное филе можно добыть с помощью действия ИСПОЛЬЗОВАТЬ (т.е. так же, как использовать предмет).
+
+Scripts/Items/Base/ItemHints@DroneControl:
+С помощью этого пульта управления вы можете отдавать команды дронам из вашего инвентаря и на панели предметов.
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+Удерживая клавишу Shift при отдаче приказа, вы отправите всех своих дронов на добычу предметов выбранного типа в округе.
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+Дроны нельзя использовать напрямую. Используйте пульт управления, чтобы отдавать приказы этому дрону, пока он у вас в инвентаре.
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+Для работы должен находиться в одной из ячеек для приборов.
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+Вы можете использовать удобрение, выбрав его на панели предметов и щелкнув по растению.
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+Выберите бутылку на панели предметов и щелкните по морской воде в море, чтобы наполнить ее соленой водой.
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+Поместите в колодец или водосборник, чтобы наполнить чистой водой.
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+Топливные ячейки используются для питания различного транспорта.
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+Импланты можно устанавливать только на медицинских станциях.
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+Этот предмет получает энергию от экипированных аккумуляторов.
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+Это оружие можно установить и использовать только в особом держателе транспорта ([b]{0}[/b]).
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+Порезать
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 Расшифровать
@@ -160,23 +229,41 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Стандартный аккумулятор
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+Улучшенный пульт управления дроном
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+Специальный пульт управления, необходимый для управления автоматическими дронами.
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+Пульт управления дроном
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+Улучшенная версия индустриального дрона с увеличенной скоростью добычи и радиусом, а также другими преимуществами.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+Улучшенный индустриальный дрон
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+Стандартный индустриальный дрон используется для быстрой добычи ресурсов.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+Индустриальный дрон
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Улучшенная броня для агрессивной окружающей среды, идеальна для защиты в бою и для ношения во вредной среде.
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 Броня A.P.A.R.T.
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
-Штурмовой шлем
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
 Специальная штурмовая броня, обеспечивающая надежную защиту от вражеского огня, не в ущерб другим своим качествам.
 
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-Штурмовая куртка
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Штурмовая броня
 
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-Штурмовые штаны
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Штурмовой шлем
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 Налобный фонарь не надет
@@ -205,26 +292,23 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKe
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 кнопка не задана
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Костяная броня дает неплохую защиту, имея невысокую стоимость, и может быть полезна на начальном этапе.
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Костяная броня
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 Закрытый костяной шлем
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 Рогатый костяной шлем
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-Костяная броня дает неплохую защиту, имея невысокую стоимость, и может быть полезна на начальном этапе.
-
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-Костяная куртка
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-Костяные штаны
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
 Не самый привлекательный наряд, зато он спасет вас в трудную минуту. Защищает от окружающей среды лучше, чем ближайшие альтернативы.
 
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-Плетеный доспех
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Плетеная броня
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Плетеный шлем
@@ -232,50 +316,38 @@ Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 Импровизированный шлем с фонарем
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-Плетеные штаны
-
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-Тканевая шапка
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-Тканевые штаны
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
 На самом деле не дает никакой защиты. Может, хотя бы спасает от комаров?
 
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 Тканевая рубашка
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Тканевая шапка
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
 Неплохая защита на раннем этапе, особенно хорошо укрывает от холода. И недорогая, и удобная!
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
 Дубленка
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 Меховая шапка с хвостом
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 Папаха
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 Шапка-ушанка
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-Меховые штаны
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 Роскошное золотое убранство. Для истинных правителей.
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-Золотой доспех
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Золотая броня
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 Золотая корона
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-Золотые штаны
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Специально разработанный костюм, защищающий от всех видов агрессивной окружающей среды. Не стоит использовать в бою, так как он быстро потеряет герметичность.
@@ -283,29 +355,26 @@ Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 Костюм химзащиты
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
-Ковбойская шляпа
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
-Шлем пилота
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
-Пиратская шляпа
-
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
 Кожаная броня дает хорошую общую защиту и незаменима на ранних этапах исследований.
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-Кожаная куртка
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Кожаная броня
 
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-Кожаные штаны
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
+Ковбойская шляпа
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
+Шлем пилота
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
+Пиратская шляпа
+
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
 Металлическая броня хорошо защищает от физических атак, но почти бесполезна против агрессивной окружающей среды.
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-Металлический доспех
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Металлическая броня
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Закрытый металлический шлем
@@ -313,20 +382,14 @@ Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 Металлический шлем с черепом
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-Металлические поножи
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Эта броня изготовлена из усовершенствованных материалов, поэтому она прекрасно защищает от стрелкового оружия малого калибра и других не высокотехнологичных видов оружия.
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Военная броня
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Армейский шлем
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-Эта броня изготовлена из усовершенствованных материалов, поэтому она прекрасно защищает от стрелкового оружия малого калибра и других не высокотехнологичных видов оружия.
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-Армейская куртка
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-Армейские штаны
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Удобный шлем с портативным источником света, который освобождает руки. Требуются одноразовые батарейки.
@@ -340,56 +403,56 @@ Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 Прибор ночного видения
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+Улучшенная версия тактического шлема ночного видения, который позволяет прекрасно видеть ночью. Требуются одноразовые батарейки.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+Улучшенный шлем ночного видения
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+Простой респиратор, защищающий от радиоактивных частиц и опасных газов. И больше ни от чего.
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+Респиратор
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 Каска защищает голову от простых ударов, обломков, электрошока и других опасностей.
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 Каска
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-Простой респиратор, защищающий от радиоактивных частиц и опасных газов. И больше ни от чего.
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+Экспериментальная броня, состоящая из прагмиевой кристаллической решётки на основе из тонких металлических пластин. Очень легкая и долговечная.
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-Респиратор
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-Экспериментальная броня, состоящая из прагмиевой кристаллической решетки на основе из тонких металлических пластин. Очень легкая и долговечная.
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 Прагмиевая броня
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
 Плотная подбитая ткань, которая на удивление неплохо защищает от всех видов урона и воздействий окружающей среды.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-Стеганка
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Стеганая броня
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 Стеганая шапка
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-Стеганый шлем
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+Стеганый подбитый шлем
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-Стеганые поножи
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
 Самая лучшая защита. Эта боевая броня защитит вас от любых опасностей, однако ваша скорость передвижения будет ограничена.
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 Сверхтяжелая броня
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
 Голь на выдумки хитра. Не самый удобный предмет облачения, зато неплохо защищающий на ранних этапах.
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-Деревянный доспех
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Деревянная броня
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 Деревянный шлем
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-Деревянная защита ног
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 Специальное взрывное устройство, которое при первом же применении помогает добыть большое количество минералов. Необходимо установить рядом с месторождением минералов.
@@ -414,6 +477,78 @@ Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 Резонансная бомба
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+Нарезанная на куски небольшая рыба, идеально подходящая для ловли крупной хищной рыбы.
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+Резаная наживка
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+Простая и дешевая наживка, идеальная для ловли небольшой пресноводной рыбы.
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+Наживка из насекомых
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+Бойлы - это специально изготовленная наживка, в составе которой много различных ингредиентов, поэтому она подходит почти для всех видов рыб.
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+Протеиновые бойлы
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+Этой удочкой можно ловить рыбу в любых водоемах. Требуется наживка.
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+Удочка
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+Свежепойманную рыбу нужно почистить, прежде чем использовать в кулинарии.
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+Окунь
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+Лещ
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+Карп
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+Сом
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+Сиг
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+Ворчун
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+Скумбрия
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+Корифена
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+Сайда
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+Иглобрюх
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+Щука
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+Ставрида
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+Лосось
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+Сардина
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+Форель
 
 Scripts/Items/Food/ItemBanana@Description:
 Любая обезьяна может достать банан, но только люди могут достичь звезд.
@@ -643,6 +778,27 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 Scripts/Items/Food/ItemEggsRaw@Name:
 Яйца животных
 
+Scripts/Items/Food/ItemFishDried@Description:
+Высушенная соленая рыба отлично подходит под пиво. Прекрасно хранится и долго не портится.
+
+Scripts/Items/Food/ItemFishDried@Name:
+Сушеная рыба
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+Рыбное филе высокого качества, отличный кулинарный ингредиент.
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+Филе красной рыбы
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+Филе белой рыбы
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+Очень нежное и сочное рыбное филе, запеченное в духовке.
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+Запеченная рыба
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 В готовом виде это мясо кажется чуть менее отвратительным... Но если вы решили его отведать, вас может стошнить.
 
@@ -751,6 +907,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 Scripts/Items/Food/ItemPineapple@Name:
 Ананас
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+Холивар продолжается и по сей день...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+Пицца с ананасом
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 Можно есть в чистом виде или готовить его в составе других, более сложных блюд.
 
@@ -775,6 +937,12 @@ Scripts/Items/Food/ItemSaladVegetable@Description:
 Scripts/Items/Food/ItemSaladVegetable@Name:
 Овощной салат
 
+Scripts/Items/Food/ItemSalami@Description:
+Вяленая колбаса из приготовленного особым образом мяса и специй.
+
+Scripts/Items/Food/ItemSalami@Name:
+Салями
+
 Scripts/Items/Food/ItemSandwich@Description:
 Мягкий хлеб, сочное мясо и овощи — классическое сочетание!
 
@@ -793,6 +961,18 @@ Scripts/Items/Food/ItemSugar@Description:
 Scripts/Items/Food/ItemSugar@Name:
 Сахар
 
+Scripts/Items/Food/ItemSushi@Description:
+Рис, накрытый сырой рыбой со специями. Простой, но незабываемый вкус.
+
+Scripts/Items/Food/ItemSushi@Name:
+Суши
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+Хрустящая тортилья с начинкой из мяса, особого соуса и овощей.
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+Тако
+
 Scripts/Items/Food/ItemTequila@Description:
 Отличный ликер, приготовленный из встречающихся в пустыне растений.
 
@@ -810,6 +990,12 @@ Scripts/Items/Food/ItemTomato@Description:
 
 Scripts/Items/Food/ItemTomato@Name:
 Помидор
+
+Scripts/Items/Food/ItemUkha@Description:
+Прозрачный рыбный суп с овощами в традиционном стиле.
+
+Scripts/Items/Food/ItemUkha@Name:
+Уха
 
 Scripts/Items/Food/ItemVodka@Description:
 Огненный напиток богов. Чрезмерное употребление ведет к печальным последствиям, так что знайте меру. А еще водка вызывает обезвоживание. И нет, она не защищает от радиации.
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 Пустые консервные банки
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-Пустая металлическая канистра. В ней можно хранить летучие жидкости.
+Можно использовать для хранения летучих жидкостей.
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 Пустая канистра
@@ -1091,6 +1277,24 @@ Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 Формулированный порох
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+Пустая топливная ячейка, использующаяся для питания различного транспорта. Но сначала ее нужно наполнить.
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+Пустая топливная ячейка
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+Топливная ячейка, наполненная стандартным жидким топливом. Дешевая, но работает не очень долго.
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+Топливная ячейка с бензином
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+Топливная ячейка с жидким прагмием. Действует очень долгое время.
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+Прагмиевая топливная ячейка
+
 Scripts/Items/Generic/ItemFur@Description:
 Мех животных. Из него можно сшить теплую зимнюю одежду.
 
@@ -1192,12 +1396,6 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Стальной слиток
-
-Scripts/Items/Generic/ItemLeaf@Description:
-Лист... Наверное, он упал с дерева.
-
-Scripts/Items/Generic/ItemLeaf@Name:
-Лист
 
 Scripts/Items/Generic/ItemLeather@Description:
 Кожа животного. Из нее можно сделать кожаную броню.
@@ -1565,6 +1763,12 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Имплант нановолокон под кожей
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+Искусственные усилители костей и черепной коробки. Защищают от оглушения и переломов.
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+Имплант эндоскелетного укрепления
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 На теле не обнаружено бесконтрольных мутаций.
 
@@ -1714,6 +1918,20 @@ Scripts/Items/Medical/ItemNeuralEnhancer@Description:
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 Нейронный усилитель
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`Внимание: этот предмет нельзя использовать часто.
+[br]Если вы используете его сейчас, то не сможете использовать снова в течение {0}.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`Вы недавно использовали этот предмет.
+[br]Пожалуйста, подождите {0} до следующего использования.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+При использовании полностью стирает знания о всех технологиях и возвращает все потраченные очки технологий, чтобы их можно было перераспределить. Нельзя использовать часто.
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+Нейронный рекомбинатор
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 Обезболивающее средство полностью снимает и предотвращает любую боль на время своего действия.
@@ -1940,6 +2158,12 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Каменная кирка
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+Этот сенсор позволяет искать большие прагмиевые кристаллы, улавливая их уникальные псионические следы, даже на больших расстояниях.
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+Прагмиевый сенсор
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Набор инструментов необходим для строительства или починки любой постройки. Убедитесь, что он надет и выбран.
 
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 Пистолет
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-Лазерный пистолет, сжигающий цель мощным импульсом света, в основном в инфракрасном спектре.
+Лазерный пистолет стреляет быстрыми импульсами высокоэнергетического света, который сжигает цель.
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 Лазерный пистолет
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-Лазерная винтовка, сжигающая цель мощным импульсом света, в основном в инфракрасном спектре. Скорострельность ее намного выше, чем у лазерного пистолета, за счет повышенного энергопотребления.
+Лазерная винтовка, сжигающая цель мощным импульсом света, в основном в инфракрасном спектре. Радиус атаки ее намного выше, чем у лазерного пистолета.
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 Лазерная винтовка
@@ -2173,4 +2397,16 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 Легкая автоматическая пушка
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+Специальная тяжелая артиллерийская пушка использует фугасные снаряды, которые идеальны против тяжело армированных целей.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+Артиллерийская пушка
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+Тяжелая пушка, которая использует последовательные заряды ускоренных частиц, чтобы нанести урон цели.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+Энергетическая пушка
 

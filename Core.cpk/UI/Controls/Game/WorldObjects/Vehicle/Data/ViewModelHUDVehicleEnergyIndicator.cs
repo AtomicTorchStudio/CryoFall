@@ -30,7 +30,7 @@
 
         public Brush Icon
             => Api.Client.UI.GetTextureBrush(
-                Api.GetProtoEntity<ItemReactorCorePragmium>().Icon);
+                Api.GetProtoEntity<ItemFuelCellEmpty>().Icon);
 
         public Visibility IndicatorVisibility { get; private set; }
 

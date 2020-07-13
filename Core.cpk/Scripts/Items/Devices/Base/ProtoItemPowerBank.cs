@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem;
@@ -26,18 +27,22 @@
             base.ClientCreateItemSlotOverlayControls(item, controls);
         }
 
-        public override void ClientTooltipCreateControls(IItem item, List<Control> controls)
-        {
-            controls.Add(ItemTooltipInfoEnergyChargeControl.Create(item));
-            base.ClientTooltipCreateControls(item, controls);
-        }
-
         public override void ServerOnDestroy(IItem gameObject)
         {
             // try to redistribute remaining energy to other energy bank devices
             var energyRemains = GetPrivateState(gameObject).EnergyCharge;
             CharacterEnergySystem.ServerAddEnergyCharge(gameObject.Container,
                                                         energyRemains);
+        }
+
+        protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
+        {
+            if (item != null)
+            {
+                controls.Add(ItemTooltipInfoEnergyChargeControl.Create(item));
+            }
+
+            base.ClientTooltipCreateControlsInternal(item, controls);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

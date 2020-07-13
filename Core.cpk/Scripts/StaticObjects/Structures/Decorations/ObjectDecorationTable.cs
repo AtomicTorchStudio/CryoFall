@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationTable : ProtoObjectDecoration
+    public class ObjectDecorationTable : ProtoObjectDecoration
     {
         public override string Description => "Simple table in old European style.";
 

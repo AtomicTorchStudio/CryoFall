@@ -99,11 +99,12 @@
 
             foreach (var layoutTileOffset in layout.TileOffsets)
             {
-                this.AddSpriteRenderer(layoutTileOffset);
+                var componentSpriteRenderer = this.AddSpriteRenderer(layoutTileOffset);
+                componentSpriteRenderer.IsEnabled = this.isEnabled;
             }
         }
 
-        private void AddSpriteRenderer(Vector2Int offset)
+        private IComponentSpriteRenderer AddSpriteRenderer(Vector2Int offset)
         {
             var spriteRenderer = Api.Client.Rendering.CreateSpriteRenderer(
                 this.sceneObjectRoot,
@@ -112,6 +113,7 @@
                 positionOffset: offset.ToVector2D());
             spriteRenderer.RenderingMaterial = renderingMaterial;
             this.spriteRenderers.Add(spriteRenderer);
+            return spriteRenderer;
         }
     }
 }

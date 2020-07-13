@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeIronTools : TechNode<TechGroupIndustry>
+    public class TechNodeIronTools : TechNode<TechGroupIndustryT1>
     {
         public override string Name => "Iron tools";
 

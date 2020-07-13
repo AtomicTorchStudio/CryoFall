@@ -59,13 +59,14 @@
             this.componentAttachedUIElement = null;
 
             var actionState = this.privateState.CurrentActionState;
-            if (actionState == null)
+            if (actionState is null
+                || !actionState.IsDisplayingProgress)
             {
                 return;
             }
 
             var targetWorldObject = actionState.TargetWorldObject;
-            if (targetWorldObject == null)
+            if (targetWorldObject is null)
             {
                 // display over the character
                 targetWorldObject = (IWorldObject)this.privateState.GameObject;
@@ -98,7 +99,7 @@
 
         private void Setup()
         {
-            if (this.privateState == null)
+            if (this.privateState is null)
             {
                 return;
             }

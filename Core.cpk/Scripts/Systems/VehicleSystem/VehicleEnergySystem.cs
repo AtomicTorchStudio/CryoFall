@@ -1,11 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleSystem
 {
     using System;
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -19,12 +17,6 @@
     public class VehicleEnergySystem : ProtoSystem<VehicleEnergySystem>
     {
         public override string Name => "Vehicle energy system";
-
-        public static uint ClientCalculateCurrentVehicleTotalEnergyCapacity()
-        {
-            var currentVehicle = ClientCurrentCharacterHelper.Character.SharedGetCurrentVehicle();
-            return SharedCalculateTotalEnergyCapacity(currentVehicle);
-        }
 
         public static uint ClientCalculateCurrentVehicleTotalEnergyCharge()
         {
@@ -41,20 +33,15 @@
             return ServerDeductEnergyChargeInternal(vehicle, requiredEnergyAmount);
         }
 
-        public static uint SharedCalculateTotalEnergyCapacity(IDynamicWorldObject vehicle)
-        {
-            return ((IProtoVehicle)vehicle.ProtoGameObject).EnergyMax;
-        }
-
         public static uint SharedCalculateTotalEnergyCharge(IDynamicWorldObject vehicle)
         {
-            using var tempItemsList = SharedGetTempListReactorsForVehicle(vehicle);
+            using var tempItemsList = SharedGetTempListFuelItemsForVehicle(vehicle);
             return SharedCalculateTotalEnergyCharge(tempItemsList);
         }
 
         public static bool SharedHasEnergyCharge(IDynamicWorldObject vehicle, uint energyRequired)
         {
-            using var tempItemsList = SharedGetTempListReactorsForVehicle(vehicle);
+            using var tempItemsList = SharedGetTempListFuelItemsForVehicle(vehicle);
             return SharedHasEnergyCharge(tempItemsList, energyRequired);
         }
 
@@ -66,7 +53,7 @@
                 return true;
             }
 
-            using var tempItemsList = SharedGetTempListReactorsForVehicle(vehicle);
+            using var tempItemsList = SharedGetTempListFuelItemsForVehicle(vehicle);
             if (tempItemsList.Count == 0)
             {
                 // there are no battery packs equipped
@@ -126,16 +113,16 @@
             return itemPowerBank.GetPrivateState<ItemWithDurabilityPrivateState>();
         }
 
-        private static ITempList<IItem> SharedGetTempListReactorsForVehicle(IDynamicWorldObject vehicle)
+        private static ITempList<IItem> SharedGetTempListFuelItemsForVehicle(IDynamicWorldObject vehicle)
         {
             var result = Api.Shared.GetTempList<IItem>();
             var list = result.AsList();
             var fuelItemsContainer = vehicle.GetPrivateState<VehiclePrivateState>().FuelItemsContainer;
 
-            // collect ordered list of reactor cores
+            // collect ordered list of fuel cell items (assume all items in the fuel container are fuel cells)
             foreach (var item in fuelItemsContainer.Items)
             {
-                if (!(item.ProtoItem is ItemReactorCorePragmium))
+                if (!(item.ProtoItem is IProtoItemWithDurability))
                 {
                     continue;
                 }

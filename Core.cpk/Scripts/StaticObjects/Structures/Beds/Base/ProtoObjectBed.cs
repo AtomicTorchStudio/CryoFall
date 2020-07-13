@@ -46,6 +46,8 @@
         public const string NotificationBedClaimedSuccessfully
             = "This bed is now set as your active respawn point.";
 
+        public override bool IsRelocatable => true;
+
         public abstract double RespawnCooldownDurationSeconds { get; }
 
         public override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)

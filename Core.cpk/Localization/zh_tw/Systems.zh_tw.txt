@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 站在水或井邊附近裝滿瓶子。
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+無法開採！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+已經派出一架無人機！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`無人機無法返回到你的位置，因此被關閉。
+[br]你可以在其最後運作的位置地上找到它。`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+無人機關閉
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+無人機被摧毀
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+此裝置無法同時操控{0}個以上的無人機。
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+無法控制更多無人機
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+沒有無人機可以發射！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+沒有可以開採的東西！
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 沒有裝備移動電源。
 
@@ -12,7 +40,7 @@ Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUs
 
 Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
 `看起來你已經AFK了一段時間。
- [br]渴望和饑餓降低暫停。`
+[br]渴望和饑餓降低暫停。`
 
 Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
 允許聊天，製造或使用消耗品。
@@ -127,6 +155,21 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 無法拆除
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+你的物品欄中缺少魚餌。
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+沒有魚餌
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+無法在此釣魚
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+魚脫鉤了！
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+太遲了...魚跑掉了。
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 你的{0}已經破損並且永遠消失了。
 
@@ -166,6 +209,9 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCa
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 與另一個玩家佔領的區域相交
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+與另一個正處於護盾保護狀態下的領地交接。請先移除那裡的護盾。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `你用完了你的佔領土地限額。
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 尚無成熟作物
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-伺服器：世界備份將於{0}秒後開始。
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-伺服器：世界備份完成！
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 您已被此伺服器管理員禁止使用此伺服器

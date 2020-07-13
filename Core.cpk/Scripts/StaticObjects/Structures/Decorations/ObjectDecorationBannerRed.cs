@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    internal class ObjectDecorationBannerRed : ProtoObjectDecoration
+    public class ObjectDecorationBannerRed : ProtoObjectDecoration
     {
         public override string Description =>
             "Whatever this banner symbolizes—it looks cool!";

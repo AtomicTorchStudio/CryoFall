@@ -48,6 +48,9 @@ Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 スロットアイテム選択
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+スロットアイテム選択（逆順）
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 スクロールホイール使用
 
@@ -73,7 +76,7 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 スクリーンショットの解像度
 
 Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
-遅延提示
+ツールチップ表示ラグ
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UIスケール
@@ -100,7 +103,7 @@ Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
 垂直同期（推奨）
 
 Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
-画面リフレッシュ率
+画面リフレッシュレート
 
 Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
 無制限（負荷が非常に高い）

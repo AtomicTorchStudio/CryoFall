@@ -1,10 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemAntiToxinPreExposure : ProtoItemMedical
     {
@@ -15,16 +13,11 @@
 
         public override string Name => "Toxin prevention aid";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // remove toxins
-            character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(
-                intensityToRemove: 0.1); // removes a little bit as a bonus
-
-            //add toxin protection
-            character.ServerAddStatusEffect<StatusEffectProtectionToxins>(intensity: 0.5); // 5 minutes
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.10) // remove toxins
+                .WillAddEffect<StatusEffectProtectionToxins>(intensity: 0.50); // add toxin protection
         }
     }
 }

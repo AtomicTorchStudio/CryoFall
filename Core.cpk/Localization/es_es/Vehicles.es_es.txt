@@ -10,6 +10,12 @@ Variante pesada de un diseño de plataforma gravitatoria. Es más resistente y o
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Aerodeslizador v2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Armadura de combate mecanizada y orientada a los asedios. Ofrece una protección sin igual y una potencia de fuego increíble gracias a su gran enganche para armamento pesado. Eso sí, su velocidad de movimiento es relativamente lenta.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Mastodonte
+
 Scripts/Vehicles/VehicleMechManul@Description:
 Diseño medio de armadura de combate mecanizada. Potencia sustancialmente las capacidades defensivas y la capacidad de transporte masivo, pero sin necesidad de sacrificar otros aspectos.
 
@@ -48,4 +54,10 @@ No se necesitan reparaciones.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Lleva el vehículo a la plataforma de montaje de vehículos para repararlo.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+Normal
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+Grande
 

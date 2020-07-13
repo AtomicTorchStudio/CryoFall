@@ -10,7 +10,7 @@
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public class BottleRefillAction
-        : ActionSystemState<
+        : BaseSystemActionState<
             BottleRefillSystem,
             BottleRefillRequest,
             BottleRefillAction,

@@ -42,6 +42,8 @@
         /// </summary>
         public abstract GroundSoundMaterial GroundSoundMaterial { get; }
 
+        public override bool IsRepeatPlacement => true;
+
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
         public sealed override double ObstacleBlockDamageCoef => 0;
@@ -155,7 +157,8 @@
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
                 .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
-                .Add(LandClaimSystem.ValidatorNoRaid);
+                .Add(LandClaimSystem.ValidatorNoRaid)
+                .Add(LandClaimSystem.ValidatorNoShieldProtection);
 
             build.StagesCount = 1;
             this.PrepareFloorConstructionConfig(build, repair);

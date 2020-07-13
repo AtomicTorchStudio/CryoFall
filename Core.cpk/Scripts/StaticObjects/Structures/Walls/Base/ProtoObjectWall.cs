@@ -25,6 +25,8 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : ObjectWallClientState, new()
     {
+        public override bool IsRepeatPlacement => true;
+
         // do not update walls on the server
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 

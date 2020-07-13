@@ -8,8 +8,9 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -161,7 +162,7 @@
         protected override void OnEnable()
         {
             this.inputContext = ClientInputContext.Start(nameof(ClientComponentObjectInteractionHelper))
-                                                  .HandleAll(this.Update);
+                                                  .HandleAll(Update);
         }
 
         private static void SetCurrentMouseOverObject(IWorldObject value)
@@ -188,7 +189,8 @@
 
             if (MouseOverObject is null
                 // cannot interact while on vehicle
-                || ClientCurrentCharacterHelper.Character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle != null)
+                || ClientCurrentCharacterHelper.Character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle
+                != null)
             {
                 ClientCursorSystem.CurrentCursorId = CursorId.Default;
                 InteractionTooltip.Hide();
@@ -216,7 +218,7 @@
                 }
             }
 
-            var canInteract = MouseOverObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
+            var canInteract = MouseOverObject.ProtoWorldObject.SharedCanInteract(
                 Client.Characters.CurrentPlayerCharacter,
                 value,
                 writeToLog: false);
@@ -251,7 +253,7 @@
             }
         }
 
-        private void Update()
+        private static void Update()
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             if (character is null)
@@ -289,6 +291,15 @@
                     // second try to find by default collider
                     mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.Default);
                 }
+            }
+
+            if (mouseOverObjectCandidate != null
+                && (ConstructionPlacementSystem.IsInObjectPlacementMode
+                    || ConstructionRelocationSystem.IsInObjectPlacementMode)
+                && !(mouseOverObjectCandidate.ProtoGameObject is ProtoObjectConstructionSite))
+            {
+                // cannot observe already built structures while in placement selection mode
+                mouseOverObjectCandidate = null;
             }
 
             SetCurrentMouseOverObject(mouseOverObjectCandidate);

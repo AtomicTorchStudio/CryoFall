@@ -13,7 +13,7 @@
         public override string Description =>
             "Electric floor lamp. Produces extremely powerful white light that can easily illuminate even a large room.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.1;
 
         public override Color LightColor => LightColors.ElectricCold;
 

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -40,7 +41,7 @@
 
         public override bool RequireEquipmentTextures => false;
 
-        protected override double DefenseMultiplier { get; } = 0;
+        protected override double DefenseMultiplier => 0;
 
         public override void ServerOnItemDamaged(IItem item, double damageApplied)
         {
@@ -76,6 +77,12 @@
         protected sealed override void PrepareDefense(DefenseDescription defense)
         {
             // no defenses
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.EquipIntoDeviceSlots);
         }
 
         protected override byte[] SharedGetCompatibleContainerSlotsIds()

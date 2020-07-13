@@ -20,20 +20,20 @@
 
         public override string Name => "Splint";
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                // adds splinted leg status effect when player has a broken leg status effect
+                .WillAddEffect<StatusEffectSplintedLeg>(
+                    condition: context => context.Character.SharedHasStatusEffect<StatusEffectBrokenLeg>(),
+                    isHidden: true)
+                // and remove broken leg
+                .WillRemoveEffect<StatusEffectBrokenLeg>();
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemMedicalBandage;
-        }
-
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
-        {
-            // remove broken leg
-            character.ServerRemoveStatusEffectIntensity<StatusEffectBrokenLeg>(intensityToRemove: 1);
-
-            //add splinted leg
-            character.ServerAddStatusEffect<StatusEffectSplintedLeg>(intensity: 1);
-
-            base.ServerOnUse(character, currentStats);
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

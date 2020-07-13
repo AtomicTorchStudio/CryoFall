@@ -48,6 +48,9 @@ Kamerazoom
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 Hotbar-Auswahl
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+Hotbar-Auswahl (invertiert)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 Benutze Mausrad für
 

@@ -111,13 +111,13 @@
             category = GetCategory<StructureCategoryElectricity>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemWire>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             build.AddStageRequiredItem<ItemIngotLithium>(count: 1);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemWire>(count: 5);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
         }

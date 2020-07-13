@@ -2,12 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeLaserRapier1 : TechNode<TechGroupEnergyWeapons>
+    public class TechNodeLaserRapier1 : TechNode<TechGroupEnergyWeaponsT4>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeRapierLaserWhite>();
+                  .AddRecipe<RecipeRapierLaserWhite>()
+                  .AddRecipe<RecipeRapierLaserPurple>()
+                  .AddRecipe<RecipeRapierLaserYellow>();
 
             config.SetRequiredNode<TechNodeLaserPistol>();
         }

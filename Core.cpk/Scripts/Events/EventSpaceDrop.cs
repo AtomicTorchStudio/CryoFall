@@ -145,8 +145,10 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
-                             intervalFrom: TimeSpan.FromHours(3),
-                             intervalTo: TimeSpan.FromHours(6)));
+                                 this.ServerGetIntervalForThisEvent(defaultInterval:
+                                                                    (from: TimeSpan.FromHours(3),
+                                                                     to: TimeSpan.FromHours(6)))
+                             ));
 
             // 3 debris
             for (var i = 0; i < 3; i++)

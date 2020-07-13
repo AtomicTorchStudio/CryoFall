@@ -42,6 +42,8 @@
 
         public override bool IsFuelProduceByproducts => false;
 
+        public override bool IsRelocatable => true;
+
         public abstract ushort LiquidCapacity { get; }
 
         public override double ServerUpdateIntervalSeconds => 0.5;
@@ -73,7 +75,7 @@
                 TextureResource.NoTexture,
                 spritePivotPoint: (0.5, 0.5));
             spriterRendererLiquidType.Scale = 2;
-            this.ClientSetupLiquidTypeSpriteRenderer(spriterRendererLiquidType);
+            this.ClientSetupLiquidTypeSpriteRenderer(data.GameObject, spriterRendererLiquidType);
 
             var publicState = data.PublicState;
             publicState.ClientSubscribe(
@@ -101,9 +103,11 @@
                     this.ManufacturingConfig));
         }
 
-        protected virtual void ClientSetupLiquidTypeSpriteRenderer(IComponentSpriteRenderer renderer)
+        protected virtual void ClientSetupLiquidTypeSpriteRenderer(
+            IStaticWorldObject worldObject,
+            IComponentSpriteRenderer renderer)
         {
-            var offsetY = 0.475;
+            var offsetY = 0.475 + GetClientState(worldObject).Renderer.DrawOrderOffsetY;
             renderer.PositionOffset = (0.5, y: offsetY);
             renderer.DrawOrderOffsetY = -offsetY;
         }
@@ -111,6 +115,7 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
+            renderer.PositionOffset += (0, 0.35);
             renderer.DrawOrderOffsetY = 0.35;
         }
 
@@ -130,11 +135,12 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var yOffset = 0.35;
             data.PhysicsBody
-                .AddShapeRectangle((0.8, 0.5), offset: (0.1, 0))
-                .AddShapeRectangle((0.7, 1),   offset: (0.15, 0),    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((0.7, 0.2), offset: (0.15, 0.85), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((0.7, 1),   offset: (0.15, 0),    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.8, 0.5), offset: (0.1, yOffset))
+                .AddShapeRectangle((0.7, 1),   offset: (0.15, yOffset),    group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.7, 0.2), offset: (0.15, yOffset + 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.7, 1),   offset: (0.15, yOffset),    group: CollisionGroups.ClickArea);
         }
 
         private void ServerRemote_Drain(IStaticWorldObject worldObject)

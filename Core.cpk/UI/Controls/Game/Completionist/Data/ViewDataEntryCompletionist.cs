@@ -4,6 +4,7 @@
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data;
@@ -46,9 +47,10 @@
         public string NotificationMessageFormat
             => this.Prototype switch
             {
+                IProtoItemFish _     => ViewModelWindowCompletionist.Notification_FishDiscovered_MessageFormat,
                 IProtoItem _         => ViewModelWindowCompletionist.Notification_FoodDiscovered_MessageFormat,
                 IProtoCharacterMob _ => ViewModelWindowCompletionist.Notification_CreatureDiscovered_MessageFormat,
-                IProtoObjectLoot _ => ViewModelWindowCompletionist.Notification_LootDiscovered_MessageFormat,
+                IProtoObjectLoot _   => ViewModelWindowCompletionist.Notification_LootDiscovered_MessageFormat,
                 _                    => throw new Exception("Unknown prototype: " + this.Prototype)
             };
 

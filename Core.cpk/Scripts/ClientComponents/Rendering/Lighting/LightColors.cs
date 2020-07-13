@@ -26,7 +26,11 @@
 
         public static readonly Color WeaponFireMuzzleFlashFirearm = Color.FromRgb(0xFF, 0xDE, 0x80);
 
-        public static readonly Color WeaponFireMuzzleFlashLaser = Color.FromRgb(0xFF, 0x22, 0x22);
+        public static readonly Color WeaponFireMuzzleFlashLaserRed = Color.FromRgb(0xFF, 0x22, 0x22);
+
+        public static readonly Color WeaponFireMuzzleFlashLaserBlue = Color.FromRgb(0x22, 0x55, 0xFF);
+
+        public static readonly Color LaserMining = Color.FromRgb(0xBB, 0x44, 0xFF);
 
         public static readonly Color WeaponFireMuzzleFlashPlasma = Color.FromRgb(0xAA, 0xFF, 0xDD);
 

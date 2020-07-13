@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 ボトルに水を入れるには、水の近くに立つかボトルを井戸に入れてください。
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+それは採掘できません！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+既にドローンを送りました！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`ドローンはあなたの元に戻ることができず、無効化されています。
+[br]ドローンは最後の場所の地面にあります。`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+ドローン無効化
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+ドローンが破壊されました
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+この装置では、{0}機以上のドローンを同時に制御することはできません。
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+これ以上ドローンを制御できません
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+発進できるドローンがありません！
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+採掘対象がありません！
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 補助バッテリーが装備されていません。
 
@@ -18,7 +46,7 @@ Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_
 チャット、製作、消耗品の使用は許可されています。
 
 Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
-それ以外の操作をすると、AFKモードは無効になります。
+それ以外の操作をすると、AFKモードは解除されます。
 
 Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
 AFKモード
@@ -127,6 +155,21 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 解体できません
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+釣りに使うエサがインベントリにありません。
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+餌なし
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+ここでは釣りはできません
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+魚がバレた！
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+遅かった…魚を逃がしてしまった
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 {0}が壊れ、永遠に消えました。
 
@@ -166,6 +209,9 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCa
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 他の所有地との干渉
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+シールド保護が発動中の別の所有地と交差しています。まずはそこのシールドを停止してください。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `割り当てられた所有地数を使い果たしました。
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 まだ収穫できる作物がありません
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-サーバー：{0}秒後にワールドバックアップが開始されます。
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-サーバー：ワールドバックアップが完了しました。
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 運営者によって、このサーバーへの参加を禁止されています。

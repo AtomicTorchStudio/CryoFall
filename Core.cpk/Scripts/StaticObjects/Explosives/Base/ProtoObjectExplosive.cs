@@ -1,11 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives
 {
     using System;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -30,6 +33,21 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintBorderBrush
+            = new Lazy<SolidColorBrush>(
+                () => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x44, 0x00)));
+
+        protected static readonly Lazy<RadialGradientBrush> ExplosionBlueprintFillBrush
+            = new Lazy<RadialGradientBrush>(
+                () => new RadialGradientBrush()
+                {
+                    GradientStops = new GradientStopCollection()
+                    {
+                        new GradientStop() { Color = Color.FromArgb(0x20, 0xEE, 0x44, 0x00), Offset = 1 },
+                        new GradientStop() { Color = Color.FromArgb(0x3C, 0xEE, 0x44, 0x00), Offset = 0 }
+                    }
+                });
+
         private DamageDescription damageDescriptionCharacters;
 
         public abstract double DamageRadius { get; }
@@ -59,6 +77,12 @@
         public virtual float VolumeExplosion => 1;
 
         protected ExplosionPreset ExplosionPreset { get; private set; }
+
+        public sealed override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
+        {
+            base.ClientSetupBlueprint(tile, blueprint);
+            this.ClientSetupExplosionBlueprint(tile, blueprint);
+        }
 
         public virtual double ServerCalculateDamageCoefByDistanceForDynamicObjects(double distance)
         {
@@ -96,9 +120,9 @@
             var explosiveDefensePenetrationCoef = this.StructureDefensePenetrationCoef;
             explosiveDefensePenetrationCoef = MathHelper.Clamp(explosiveDefensePenetrationCoef, 0, 1);
 
-            if (!PveSystem.SharedIsAllowStructureDamage(byCharacter,
-                                                        targetStaticWorldObject,
-                                                        showClientNotification: false))
+            if (!PveSystem.SharedIsAllowStaticObjectDamage(byCharacter,
+                                                           targetStaticWorldObject,
+                                                           showClientNotification: false))
             {
                 return 0;
             }
@@ -180,6 +204,31 @@
             ExplosionHelper.ClientExplode(position: position + this.Layout.Center,
                                           this.ExplosionPreset,
                                           this.VolumeExplosion);
+        }
+
+        protected virtual void ClientSetupExplosionBlueprint(Tile tile, IClientBlueprint blueprint)
+        {
+            var bounds = this.Layout.Bounds;
+            var sizeX = bounds.MaxX - bounds.MinX + 2 * this.DamageRadius - 1;
+            var sizeY = bounds.MaxY - bounds.MinY + 2 * this.DamageRadius - 1;
+            var ellipse = new Ellipse()
+            {
+                Width = sizeX * ScriptingConstants.TileSizeVirtualPixels,
+                Height = sizeY * ScriptingConstants.TileSizeVirtualPixels,
+                Fill = ExplosionBlueprintFillBrush.Value,
+                Stroke = ExplosionBlueprintBorderBrush.Value,
+                StrokeThickness = 4
+            };
+
+            // workaround for NoesisGUI
+            ellipse.SetValue(Shape.StrokeDashArrayProperty, "5,2.5");
+
+            Api.Client.UI.AttachControl(
+                blueprint.SceneObject,
+                positionOffset: this.Layout.Center,
+                uiElement: ellipse,
+                isFocusable: false,
+                isScaleWithCameraZoom: true);
         }
 
         protected abstract void PrepareDamageDescriptionCharacters(
@@ -274,8 +323,8 @@
                 isDamageThroughObstacles: this.IsDamageThroughObstacles,
                 callbackCalculateDamageCoefByDistanceForStaticObjects:
                 this.ServerCalculateDamageCoefByDistanceForStaticObjects,
-                callbackCalculateDamageCoefByDistanceForDynamicObjects:
-                ServerCalculateDamageCoefByDistanceForDynamicObjects);
+                callbackCalculateDamageCoefByDistanceForDynamicObjects: this
+                    .ServerCalculateDamageCoefByDistanceForDynamicObjects);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -339,13 +388,15 @@
                                                   width: 2 * explosionRadius,
                                                   height: 2 * explosionRadius);
 
-                    if (RaidingProtectionSystem.SharedCanRaid(bounds, showClientNotification: false))
+                    if (RaidingProtectionSystem.SharedCanRaid(bounds,
+                                                              showClientNotification: false))
                     {
+                        // try activate the raidblock
                         LandClaimSystem.ServerOnRaid(bounds, character);
                     }
                     else
                     {
-                        // Raiding is not possible now.
+                        // Raiding is not possible now due to raiding window
                         // Find if there is any land claim and in that case notify nearby players
                         // that the damage to objects there were not applied.
                         if (LandClaimSystem.SharedIsLandClaimedByAnyone(bounds))

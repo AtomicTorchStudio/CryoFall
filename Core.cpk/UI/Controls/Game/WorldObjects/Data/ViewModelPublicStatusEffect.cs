@@ -30,6 +30,8 @@
 
         public Brush Icon => Api.Client.UI.GetTextureBrush(this.protoStatusEffect.Icon);
 
+        public string Title => this.protoStatusEffect.Name;
+
         public static Brush GetBrush(StatusEffectKind kind)
         {
             switch (kind)

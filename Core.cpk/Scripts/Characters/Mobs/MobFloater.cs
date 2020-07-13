@@ -53,7 +53,7 @@
 
             // primary loot
             lootDroplist
-                .Add<ItemInsectMeatRaw>(count: 3, countRandom: 1)
+                .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
                 .Add<ItemSlime>(count: 10,        countRandom: 10)
                 .Add<ItemToxin>(count: 5,         countRandom: 5)
                 .Add<ItemSalt>(count: 5,          countRandom: 5)

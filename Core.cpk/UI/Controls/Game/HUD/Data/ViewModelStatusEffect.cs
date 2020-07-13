@@ -207,7 +207,7 @@
         private void UpdateIntensity()
         {
             var intensity = this.publicState.Intensity;
-            var percent = (byte)Math.Round(intensity * 100, MidpointRounding.AwayFromZero);
+            var percent = (byte)Math.Ceiling(intensity * 100);
             this.IntensityPercent = percent;
 
             var wasVisible = this.Visibility == Visibility.Visible;

@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
 
     public class GatheringActionState
-        : ActionSystemState<
+        : BaseSystemActionState<
             GatheringSystem,
             WorldActionRequest,
             GatheringActionState,

@@ -22,12 +22,12 @@
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 2000;
+        public override float StructurePointsMax => 400;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.PositionOffset += (0, 0.4);
+            renderer.PositionOffset += (0, 0.35);
             renderer.DrawOrderOffsetY = 0.2;
         }
 

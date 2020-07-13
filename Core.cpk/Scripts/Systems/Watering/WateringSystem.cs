@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
@@ -44,17 +43,14 @@
             IProtoObjectPlant protoPlant,
             double proposedWateringDuration)
         {
-            var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
-            var plantPublicState = objectPlant.GetPublicState<PlantPublicState>();
-            if ((plantPrivateState.ProducedHarvestsCount == protoPlant.NumberOfHarvests
-                 && protoPlant.NumberOfHarvests > 0)
-                || plantPublicState.IsSpoiled)
+            if (!protoPlant.ServerCanBeWatered((IStaticWorldObject)objectPlant))
             {
                 // no need to water the plant
                 Instance.CallClient(character, _ => _.ClientRemote_CannotWaterLastHarvestOrRotten(protoItem));
                 return false;
             }
 
+            var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
             if (plantPrivateState.ServerTimeWateringEnds >= double.MaxValue
                 || (proposedWateringDuration < double.MaxValue
                     && (plantPrivateState.ServerTimeWateringEnds
@@ -104,9 +100,9 @@
 
             if (IsServer)
             {
-                protoPlant.ServerOnWatered(character,
-                                           worldObject,
-                                           wateringDuration: protoWateringCan.WateringDuration.TotalSeconds);
+                protoPlant.ServerOnWatered(worldObject,
+                                           wateringDuration: protoWateringCan.WateringDuration.TotalSeconds,
+                                           byCharacter: character);
             }
 
             protoWateringCan.SharedOnWatered(itemWateringCan, worldObject);

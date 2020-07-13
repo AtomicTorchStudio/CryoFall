@@ -55,6 +55,11 @@
                 }
 
                 this.SpriteRenderer.IsEnabled = this.isEnabled = value;
+
+                if (!this.isEnabled)
+                {
+                    Reset();
+                }
             }
         }
 

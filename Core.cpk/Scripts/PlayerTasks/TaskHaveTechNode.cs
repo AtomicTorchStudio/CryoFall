@@ -24,7 +24,7 @@
         protected override string AutoDescription
             => string.Format(DescriptionFormat,
                              this.TechNode.Name,
-                             this.TechNode.Group.Name);
+                             this.TechNode.Group.NameWithTierName);
 
         public static TaskHaveTechNode Require<TTechNode>()
             where TTechNode : TechNode, new()

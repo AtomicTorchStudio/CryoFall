@@ -3,6 +3,12 @@
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
+    //
+    //  !!!
+    // TODO: move this file into the correct folder, when new localization system based on namespaces is complete !!!!!
+    //  !!!
+    //
+
     public class QuestMasterHunter5 : ProtoQuest
     {
         // since there is nothing new to write the text and hints will be the same
@@ -12,9 +18,9 @@
 
         public override string Name => "Master hunter—part five";
 
-        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
+        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage4;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
                 .Add(TaskKill.Require<MobBurrower>(count: 1))
@@ -23,8 +29,8 @@
                 .Add(TaskKill.Require<MobScorpion>(count: 1));
 
             prerequisites
-                .Add<QuestMasterHunter4>()
-                .Add<QuestAdvancedResourcesAcquisition>();
+                .Add<QuestAdvancedResourcesAcquisition>()
+                .Add<QuestPowerGrid2>();
         }
     }
 }

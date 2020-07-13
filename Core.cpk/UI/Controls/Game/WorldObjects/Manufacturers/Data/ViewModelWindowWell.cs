@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data
 {
+    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelWindowWell : ViewModelWindowManufacturer
@@ -31,6 +33,9 @@
         }
 
         public BaseCommand CommandDrink { get; }
+
+        public string SlotEmptyBottleTitle
+            => Api.GetProtoEntity<ItemBottleEmpty>().Name;
 
         public ViewModelLiquidContainerState ViewModelLiquidContainerState { get; }
 

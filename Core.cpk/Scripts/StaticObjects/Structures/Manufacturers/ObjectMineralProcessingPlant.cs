@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -19,6 +20,10 @@
         public override byte ContainerInputSlotsCount => 8;
 
         public override byte ContainerOutputSlotsCount => 8;
+
+        public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 30,
+                                               shutdownPercent: 20);
 
         public override string Description =>
             "This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.";

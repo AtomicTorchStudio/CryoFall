@@ -60,6 +60,8 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public override bool IsRelocatable => true;
+
         public abstract Color LightColor { get; }
 
         public abstract double LightSize { get; }

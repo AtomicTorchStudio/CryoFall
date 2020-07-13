@@ -21,9 +21,11 @@
 
         public override float StructurePointsMax => 10000;
 
-        protected override void ClientSetupLiquidTypeSpriteRenderer(IComponentSpriteRenderer renderer)
+        protected override void ClientSetupLiquidTypeSpriteRenderer(
+            IStaticWorldObject worldObject,
+            IComponentSpriteRenderer renderer)
         {
-            var offsetY = 1.15;
+            var offsetY = 1.15 + GetClientState(worldObject).Renderer.DrawOrderOffsetY;
             renderer.PositionOffset = (1.02, y: offsetY);
             renderer.DrawOrderOffsetY = -offsetY;
         }
@@ -46,7 +48,7 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemCement>(count: 10);
+            build.AddStageRequiredItem<ItemCement>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
@@ -60,11 +62,15 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var yOffset = 0.35;
+
             data.PhysicsBody
-                .AddShapeRectangle(size: (2.0, 1.0),  offset: (0.0, 0.1))
-                .AddShapeRectangle(size: (1.6, 1.5),  offset: (0.2, 0.2),  group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (1.4, 0.45), offset: (0.3, 0.95), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1.6, 1.5),  offset: (0.2, 0.2),  group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (2.0, 1.0), offset: (0.0, yOffset + 0.1))
+                .AddShapeRectangle(size: (1.6, 1.5), offset: (0.2, yOffset + 0.2), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.4, 0.45),
+                                   offset: (0.3, yOffset + 0.95),
+                                   group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1.6, 1.5), offset: (0.2, yOffset + 0.2), group: CollisionGroups.ClickArea);
         }
     }
 }

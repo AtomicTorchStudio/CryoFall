@@ -11,7 +11,7 @@
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public class WateringCanRefillActionState
-        : ActionSystemState<
+        : BaseSystemActionState<
             WateringCanRefillSystem,
             WateringCanRefillRequest,
             WateringCanRefillActionState,

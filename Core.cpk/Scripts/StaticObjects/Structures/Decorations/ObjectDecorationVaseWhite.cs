@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations
 {
-    internal class ObjectDecorationVaseWhite : ObjectDecorationVaseOrange
+    public class ObjectDecorationVaseWhite : ObjectDecorationVaseOrange
     {
         // inherited from ObjectDecorationVaseOrange
     }

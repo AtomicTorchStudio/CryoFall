@@ -409,18 +409,19 @@
                 byte level = 1,
                 FuncBonusAtLevel formulaValueBonus = null,
                 FuncBonusAtLevel formulaPercentBonus = null,
-                double valueBonus = 0d,
-                double percentBonus = 0d)
+                double valueBonus = 0,
+                double percentBonus = 0,
+                bool displayTotalValue = false)
             {
                 this.statEffects.Add(
                     new StatEffect(
                         statName,
-                        customDescription: null,
                         level,
                         formulaValueBonus,
                         formulaPercentBonus,
                         valueBonus,
-                        percentBonus));
+                        percentBonus,
+                        displayTotalValue));
             }
 
             public IReadOnlyList<FlagEffect> GetFlagEffects()

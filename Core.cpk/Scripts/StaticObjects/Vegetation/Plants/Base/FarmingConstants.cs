@@ -4,7 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants
 
     public static class FarmingConstants
     {
-        public const double WateringGrowthSpeedMultiplier = 4.0;
+        public const double WateringGrowthSpeedMultiplier = 2.0;
 
         public static readonly double FarmPlantsGrowthSpeedMultiplier
             = ServerRates.Get(

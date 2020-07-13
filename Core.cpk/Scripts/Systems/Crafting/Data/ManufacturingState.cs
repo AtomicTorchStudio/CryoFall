@@ -16,9 +16,8 @@
         {
             var itemsService = Api.Server.Items;
             var containerInput = itemsService.CreateContainer(worldObject, containerInputSlotsCount);
-            var containerOutput = itemsService.CreateContainer<ItemsContainerOutput>(
-                worldObject,
-                containerOutputSlotsCount);
+            var containerOutput = itemsService.CreateContainer<ItemsContainerOutput>(worldObject,
+                                                                                     containerOutputSlotsCount);
             this.CraftingQueue = new ManufacturingCraftingQueue(containerInput, containerOutput);
         }
 

@@ -16,15 +16,14 @@
     IsHitTestVisible="False"
     d:DataContext="{d:DesignInstance data:ViewModelBrokenObjectLandClaimTooltip, IsDesignTimeCreatable=True}"
     Visibility="{Binding Visibility}"
-    Margin="0,-8,0,0" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
     <base:BaseUserControl.Resources>
         <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColorRed6}" />
             <Setter Property="FontWeight" Value="Bold" />
-        </Style>
-
-        <Style x:Key="BarTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="noesis:Text.Stroke" Value="#99000000" />
@@ -38,27 +37,30 @@
         CornerRadius="3">
 
         <StackPanel Orientation="Vertical">
-            <ContentControl Foreground="#FFFF9900" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                    <!-- Text: Destroyed in -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.BrokenObjectLandClaimTooltip_TitleDestroyCountdown}"
-                               Style="{StaticResource BarTextStyle}" />
-                    <TextBlock Text=": "
-                               Style="{StaticResource BarTextStyle}" />
-                    <TextBlock Text="{Binding DestroyTimeText}"
-                               Style="{StaticResource BarTextStyle}" />
-                </StackPanel>
-            </ContentControl>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="2">
+                <!-- Text: Destroyed in -->
+                <TextBlock Text="{x:Static loc:CoreStrings.BrokenObjectLandClaimTooltip_TitleDestroyCountdown}" />
+                <TextBlock Text=": " />
+                <TextBlock Text="{Binding DestroyTimeText}" />
+            </StackPanel>
 
             <core:ValueBarControl
-                Background="#88331900"
-                BorderBrush="#CCBB6600"
-                BarBrush="#CCFF9900"
                 MaxValue="100"
                 Value="{Binding DestroyTimeoutEndsTimePercent}"
                 Style="{StaticResource WorldObjectValueBarControlStyle}"
-                HorizontalAlignment="Center" />
+                HorizontalAlignment="Center">
+                <core:ValueBarControl.BarBrush>
+                    <SolidColorBrush Color="{StaticResource ColorRed6}" Opacity="0.8" />
+                </core:ValueBarControl.BarBrush>
+                <core:ValueBarControl.BorderBrush>
+                    <SolidColorBrush Color="{StaticResource ColorRed5}" Opacity="0.8" />
+                </core:ValueBarControl.BorderBrush>
+                <core:ValueBarControl.Background>
+                    <SolidColorBrush Color="{StaticResource ColorRed0}" Opacity="0.8" />
+                </core:ValueBarControl.Background>
+            </core:ValueBarControl>
         </StackPanel>
 
     </Border>

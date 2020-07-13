@@ -19,7 +19,7 @@
 
         public override bool IsShortRaidblockOnHit => true;
 
-        public override ushort LandClaimSize => 16;
+        public override ushort LandClaimSize => 14;
 
         public override byte LandClaimTier => 1;
 
@@ -28,6 +28,11 @@
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
+
+        // no shield protection in T1 as there are is no electricity until T2
+        public override double ShieldProtectionDuration => 0;
+
+        public override double ShieldProtectionTotalElectricityCost => 0;
 
         public override float StructurePointsMax => 2000;
 

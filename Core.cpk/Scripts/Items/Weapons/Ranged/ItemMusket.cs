@@ -31,7 +31,7 @@
 
         public override string Name => "Musket";
 
-        public override double RangeMultipier => 1.1;
+        public override double RangeMultiplier => 1.1;
 
         public override double SpecialEffectProbability => 0.3;
 

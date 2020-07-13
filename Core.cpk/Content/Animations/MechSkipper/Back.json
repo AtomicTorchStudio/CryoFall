@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "IRaAoApd+8baT9wCcDN3AKH446c", "spine": "3.7.94", "width": 77.26, "height": 136.76 },
+"skeleton": { "hash": "Jvzn5lRB5EyGp4oiTz8cVR6QK2Y", "spine": "3.7.94", "width": 77.26, "height": 136.76 },
 "bones": [
 	{ "name": "root", "rotation": 0.05, "scaleX": 0.068, "scaleY": 0.068 },
 	{ "name": "Pelvis", "parent": "root", "length": 177.4, "rotation": 86.08, "x": -3.68, "y": 599.72 },
@@ -260,7 +260,8 @@
 	}
 },
 "events": {
-	"Footstep": {}
+	"Footstep": {},
+	"MovementStart": {}
 },
 "animations": {
 	"AttackMeleeHorizontal": {
@@ -1082,7 +1083,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -1306,6 +1309,7 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},
@@ -1748,7 +1752,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -1968,7 +1974,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -2191,14 +2199,10 @@
 				"scale": [
 					{ "time": 0, "x": 1, "y": 1 }
 				]
-			},
-			"root": {
-				"scale": [
-					{ "time": 0.3333, "x": 1, "y": 1 }
-				]
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},
@@ -2662,14 +2666,10 @@
 				"scale": [
 					{ "time": 0, "x": 1, "y": 1 }
 				]
-			},
-			"root": {
-				"scale": [
-					{ "time": 0.3333, "x": 1, "y": 1 }
-				]
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},
@@ -3180,7 +3180,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -3407,6 +3409,7 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},

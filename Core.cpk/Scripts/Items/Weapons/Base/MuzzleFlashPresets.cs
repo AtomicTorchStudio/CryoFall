@@ -16,13 +16,33 @@
                 LightScreenOffsetRelativeToTexture = (20, 0)
             };
 
-        // Energy weapons
-        public static readonly IMuzzleFlashDescriptionReadOnly EnergyLaserWeapon
+        public static readonly IMuzzleFlashDescriptionReadOnly Artillery
             = Default.Clone()
-                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasLaser,
+                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasArtillery,
+                          lightPower: 30,
+                          lightDurationSeconds: 12 / 60.0,
+                          textureAnimationDurationSeconds: 12 / 60.0);
+
+        public static readonly IMuzzleFlashDescriptionReadOnly EnergyLaserWeaponBlue
+            = Default.Clone()
+                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasLaserBlue,
                           lightDurationSeconds: 6 / 60.0,
                           lightPower: 10,
-                          lightColor: LightColors.WeaponFireMuzzleFlashLaser);
+                          lightColor: LightColors.WeaponFireMuzzleFlashLaserBlue);
+
+        // Energy weapons
+        public static readonly IMuzzleFlashDescriptionReadOnly EnergyLaserWeaponRed
+            = Default.Clone()
+                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasLaserRed,
+                          lightDurationSeconds: 6 / 60.0,
+                          lightPower: 10,
+                          lightColor: LightColors.WeaponFireMuzzleFlashLaserRed);
+
+        public static readonly IMuzzleFlashDescriptionReadOnly EnergyLaserWeaponRedLarge
+            = EnergyLaserWeaponRed.Clone()
+                                  .Set(textureScale: 1.5,
+                                       lightDurationSeconds: 12 / 60.0,
+                                       lightPower: 12);
 
         public static readonly IMuzzleFlashDescriptionReadOnly EnergyPlasmaWeapon
             = Default.Clone()
@@ -30,6 +50,12 @@
                           lightDurationSeconds: 6 / 60.0,
                           lightPower: 12,
                           lightColor: LightColors.WeaponFireMuzzleFlashPlasma);
+
+        public static readonly IMuzzleFlashDescriptionReadOnly GrenadeLauncher
+            = Default.Clone()
+                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasSmokeLarge,
+                          textureAnimationDurationSeconds: 12 / 60.0,
+                          lightPower: 10);
 
         // Modern weapons
         public static readonly IMuzzleFlashDescriptionReadOnly ModernHandgun

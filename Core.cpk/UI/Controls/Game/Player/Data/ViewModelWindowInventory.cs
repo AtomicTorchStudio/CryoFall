@@ -132,7 +132,7 @@
 
         private void RefreshVisibilityHeadAndLegsSlots()
         {
-            var chestItem = this.ContainerEquipment.GetItemAtSlot((byte)EquipmentType.Chest);
+            var chestItem = this.ContainerEquipment.GetItemAtSlot((byte)EquipmentType.Armor);
             var hasFullBodyArmor = chestItem != null
                                    && chestItem.ProtoGameObject is IProtoItemEquipment protoEquipment
                                    && protoEquipment.EquipmentType == EquipmentType.FullBody;

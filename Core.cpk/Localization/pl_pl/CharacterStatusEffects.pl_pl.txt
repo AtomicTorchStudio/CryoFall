@@ -172,6 +172,9 @@ W krótkim czasie spożywasz zbyt wiele leków. Odczekaj chwilę albo nie będzi
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Przedawkowanie leków
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+Poczekaj na zakończenie podawania perazyny.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 Jesteś pod wpływem leku hemostatycznego, który redukuje negatywny wpływ nowych krwawiących ran.
 

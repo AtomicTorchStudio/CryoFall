@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 Ponte cerca del agua para rellenar la botella, o bien métela en un pozo.
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+¡No puedes extraer ahí!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+¡Ya has enviado un dron a ese lugar!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`El dron no puede regresar y ha sido desactivado.
+[br]Podrás encontrarlo en el suelo en su última ubicación conocida.`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+Dron desactivado
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+Dron destruido
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+No puedes controlar a más de {0} drones a la vez con este dispositivo.
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+No puedes controlar más drones
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+¡No tienes drones que lanzar!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+¡Ahí no hay nada que extraer!
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 No tienes baterías equipadas.
 
@@ -127,6 +155,21 @@ No se puede añadir la nueva receta
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 No se puede desmantelar
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+No tenes ningún cebo en el inventario que puedas usar para pescar.
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+No tienes cebos
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+No se puede pescar aquí
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+¡El pez ha logrado escabullirse del anzuelo!
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+Demasiado tarde... Has dejado que se te escapase el pez
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 Tu {0} se ha roto y no podrás volver a usarlo.
 
@@ -166,6 +209,9 @@ Construir o mejorar este terreno adjudicado provocará que la combinación de al
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Se cruza con otro terreno adjudicado
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+Se cruza con otro terreno adjudicado que está bajo la protección de un escudo activo. Es preciso desactivar dicho escudo antes de nada.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `Ya has usado todos los terrenos adjudicados que puedes tener.
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Aún no hay nada que cosechar
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-SERVIDOR: Dentro de {0} segundos se procederá a hacer una copia de seguridad del mundo.
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-SERVIDOR: ¡Se ha completado la copia de seguridad del mundo!
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 El operador del servidor te ha expulsado del mismo

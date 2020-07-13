@@ -10,6 +10,7 @@
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
     xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:electricityRequirements="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ElectricityRequirements"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
 
@@ -23,10 +24,11 @@
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
                                   d:DataContext="{d:DesignInstance data:ViewModelWindowObjectVehicle, IsDesignTimeCreatable=True}">
-        <TabControl Margin="10,5"
+        <TabControl x:Name="TabControl"
+                    Margin="10,5"
                     Style="{StaticResource TabControlCompactStyle}">
-            <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabVehicleTitle}">
-                     <!--IsSelected="{Binding IsFuelContainerActive, Mode=TwoWay}">-->
+            <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabVehicleTitle}"
+                     IsSelected="{Binding IsVehicleTabActive, Mode=TwoWay}">
                 <Grid Margin="0,7,0,0"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Center">
@@ -70,7 +72,7 @@
                                                   Padding="2"
                                                   IsDisplayLabel="False"
                                                   IsDisplayTooltip="True"
-                                                  TooltipFormat="{}{1:F0}/{2:F0} ({0}%)"
+                                                  TooltipFormat="{}{1:N0}/{2:N0} ({0}%)"
                                                   BorderBrush="#BBBBD0EE"
                                                   BorderThickness="1">
                                 <!-- bar -->
@@ -163,23 +165,8 @@
 
                                             <Border VerticalAlignment="Center"
                                                     Margin="7,2,2,0">
-                                                <StackPanel Orientation="Vertical">
-                                                    <Rectangle Fill="{StaticResource IconElectricity}"
-                                                               Width="20"
-                                                               Height="20"
-                                                               HorizontalAlignment="Center"
-                                                               Stretch="Uniform"
-                                                               UseLayoutRounding="True" />
-
-                                                    <TextBlock Text="{Binding RepairRequiredElectricityAmount}"
-                                                               Foreground="#FFFFEE00"
-                                                               HorizontalAlignment="Center"
-                                                               FontSize="12"
-                                                               LineHeight="10"
-                                                               FontWeight="Bold"
-                                                               FontFamily="{StaticResource DigitsFontFamily}"
-                                                               TextWrapping="NoWrap" />
-                                                </StackPanel>
+                                                <electricityRequirements:ElectricityRequirementsControl
+                                                    RequiredElectricityAmount="{Binding RepairRequiredElectricityAmount}" />
                                             </Border>
                                         </StackPanel>
                                     </StackPanel>
@@ -240,6 +227,7 @@
                                                   Padding="2"
                                                   IsDisplayLabel="False"
                                                   IsDisplayTooltip="True"
+                                                  TooltipFormat="{}{1:N0}/{2:N0} ({0}%)"
                                                   BorderBrush="#BB22AAFF"
                                                   BorderThickness="1">
                                 <!-- bar -->
@@ -301,7 +289,7 @@
 
                             <TextBlock Grid.Row="3"
                                        Grid.Column="0"
-                                       Text="{x:Static loc:CoreStrings.Vehicle_ReactorCores}"
+                                       Text="{x:Static loc:CoreStrings.Vehicle_FuelCells}"
                                        Style="{StaticResource TextBlockVehicleMenuCaption}" />
 
                             <controls:ItemsContainerControl Grid.Row="4"
@@ -316,7 +304,8 @@
 
             <!-- Text: Cargo -->
             <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabCargo_Title}"
-                     Visibility="{Binding HasCargoItemsContainer, Converter={StaticResource BoolToVisibilityConverter}}">
+                     Visibility="{Binding HasCargoItemsContainer, Converter={StaticResource BoolToVisibilityConverter}}"
+                     IsSelected="{Binding IsCargoTabActive, Mode=TwoWay}">
                 <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}"
                                                         Margin="0,-7,0,0" />
             </TabItem>

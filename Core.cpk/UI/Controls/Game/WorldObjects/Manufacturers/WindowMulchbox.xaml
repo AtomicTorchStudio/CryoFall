@@ -8,6 +8,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowMulchbox, IsDesignTimeCreatable=True}">
@@ -20,10 +21,19 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
 
-                <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                DesignTimeSlotsCount="1" />
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+                    <!-- Text: Input -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0" />
+                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                    MaxWidth="100"
+                                                    HorizontalAlignment="Center"
+                                                    DesignTimeSlotsCount="1" />
+                </StackPanel>
 
                 <core:ValueBarControl
                     Value="{Binding OrganicAmount}"
@@ -32,20 +42,29 @@
                     Style="{StaticResource LiquidMediumValueBar}"
                     Foreground="{StaticResource BrushOrganic}" />
 
-                <Grid
-                    Visibility="{Binding ViewModelManufacturingState.SelectedRecipe, ConverterParameter={StaticResource BoolToVisibilityConverter}}"
-                    Margin="-6,0,0,0">
-                    <core:ValueBarControl
-                        Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
-                        Style="{StaticResource ItemSlotCraftingProgressVerticalBar}"
-                        Foreground="{StaticResource BrushOrganic}" />
-                </Grid>
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+                    <!-- Text: Output -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0" />
 
-                <controls:ItemsContainerControl
-                    Container="{Binding ViewModelManufacturingState.ContainerOutput}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    DesignTimeSlotsCount="1" />
+                    <StackPanel Orientation="Horizontal">
+                        <core:ValueBarControl
+                            Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                            Style="{StaticResource ItemSlotCraftingProgressVerticalBar}"
+                            Foreground="{StaticResource BrushOrganic}"
+                            Visibility="{Binding ViewModelManufacturingState.SelectedRecipe, ConverterParameter={StaticResource BoolToVisibilityConverter}}"
+                            Margin="-6,-1,0,0" />
+                        <controls:ItemsContainerControl
+                            Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                            MaxWidth="100"
+                            HorizontalAlignment="Center"
+                            DesignTimeSlotsCount="1" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
 
         </StackPanel>

@@ -54,7 +54,7 @@
                 string.Format(NotificationSpendLearningPointsReminder, points),
                 icon: NotificationIcon,
                 onClick: Menu.Open<WindowTechnologies>);
-            notification.HideAfterDelay(60);
+            notification.HideAfterDelay(delaySeconds: 60);
 
             notification.SetupAutoHideChecker(
                 // hide when menu is opened

@@ -23,11 +23,20 @@
     {
         public abstract byte ContainerInputSlotsCount { get; }
 
-        public abstract double ElectricityChargePerSecondWhenActive { get; }
+        public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 20,
+                                               shutdownPercent: 10);
 
-        public double ElectricityConsumptionPerSecondWhenActive => this.ContainerInputSlotsCount;
+        public double ElectricityConsumptionPerSecondWhenActive { get; private set; }
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
+
+        public override bool IsRelocatable => true;
+
+        /// <summary>
+        /// Recharging speed in EU/s (per slot).
+        /// </summary>
+        public abstract double RechargePerSecondPerSlot { get; }
 
         public override double ServerUpdateIntervalSeconds => 5;
 
@@ -63,6 +72,18 @@
         {
         }
 
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -80,6 +101,20 @@
         {
             return WindowRechargingStation.Open(
                 new ViewModelWindowRechargingStation(privateState));
+        }
+
+        protected virtual void PrepareProtoObjectRechargingStation()
+        {
+        }
+
+        protected sealed override void PrepareProtoStaticWorldObject()
+        {
+            base.PrepareProtoStaticWorldObject();
+
+            this.ElectricityConsumptionPerSecondWhenActive =
+                this.RechargePerSecondPerSlot * this.ContainerInputSlotsCount;
+
+            this.PrepareProtoObjectRechargingStation();
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -109,7 +144,7 @@
         {
             base.ServerUpdate(data);
 
-            if (data.PublicState.ElectricityConsumerState != ElectricityConsumerState.PowerOn)
+            if (data.PublicState.ElectricityConsumerState != ElectricityConsumerState.PowerOnActive)
             {
                 return;
             }
@@ -185,9 +220,7 @@
             }
 
             // recharge this item
-            var deltaCharge = this.ElectricityChargePerSecondWhenActive
-                              * deltaTime
-                              / this.ContainerInputSlotsCount;
+            var deltaCharge = deltaTime * this.RechargePerSecondPerSlot;
             fuelConfig.SharedOnRefilled(item,
                                         newFuelAmount: privateState.FuelAmount + deltaCharge,
                                         serverNotifyClients: true);
@@ -209,19 +242,24 @@
             }
 
             // recharge this power bank
-            var deltaCharge = this.ElectricityChargePerSecondWhenActive
-                              * deltaTime
-                              / this.ContainerInputSlotsCount;
+            var deltaCharge = deltaTime * this.RechargePerSecondPerSlot;
             charge += deltaCharge;
             charge = Math.Min(charge, capacity);
 
             itemPrivateState.EnergyCharge = charge;
         }
 
-        public class PrivateState : StructurePrivateState
+        public class PrivateState : StructurePrivateState, IObjectElectricityStructurePrivateState
         {
             [SyncToClient]
+            public ElectricityThresholdsPreset ElectricityThresholds { get; set; }
+
+            [SyncToClient]
             public IItemsContainer ItemsContainer { get; set; }
+
+            [SyncToClient]
+            [TempOnly]
+            public byte PowerGridChargePercent { get; set; }
         }
     }
 }

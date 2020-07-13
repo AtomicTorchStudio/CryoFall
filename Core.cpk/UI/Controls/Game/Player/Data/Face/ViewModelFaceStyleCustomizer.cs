@@ -17,7 +17,7 @@
 
         public const string TitleHairColor = "Hair color";
 
-        public const string TitleSkinColor = "Skin tone";
+        public const string TitleSkinTone = "Skin tone";
 
         // face top part title
         public const string TitleTop = "Top";
@@ -31,6 +31,10 @@
         private readonly ViewModelCharacterStyleSetting settingFace;
 
         private readonly ViewModelCharacterStyleSetting settingHair;
+
+        private readonly ViewModelCharacterStyleSetting settingHairColor;
+
+        private readonly ViewModelCharacterStyleSetting settingSkinTone;
 
         private readonly ViewModelCharacterStyleSetting settingTop;
 
@@ -80,11 +84,25 @@
                 maxValue: this.faceStylesProvider.GetHairCount() - 1,
                 valueChangedCallback: this.SettingValueChangedCallback);
 
-            this.StyleSettings = new ObservableCollection<ViewModelCharacterStyleSetting>();
-            this.StyleSettings.Add(this.settingFace);
-            this.StyleSettings.Add(this.settingTop);
-            this.StyleSettings.Add(this.settingBottom);
-            this.StyleSettings.Add(this.settingHair);
+            this.settingSkinTone = new ViewModelCharacterStyleSetting(
+                TitleSkinTone,
+                maxValue: this.faceStylesProvider.GetSkinToneCount() - 1,
+                valueChangedCallback: this.SettingValueChangedCallback);
+
+            this.settingHairColor = new ViewModelCharacterStyleSetting(
+                TitleHairColor,
+                maxValue: this.faceStylesProvider.GetHairColorCount() - 1,
+                valueChangedCallback: this.SettingValueChangedCallback);
+
+            this.StyleSettings = new ObservableCollection<ViewModelCharacterStyleSetting>
+            {
+                this.settingFace,
+                this.settingSkinTone,
+                this.settingTop,
+                this.settingHair,
+                this.settingBottom,
+                this.settingHairColor
+            };
         }
 
         public CharacterHumanFaceStyle CurrentStyle
@@ -101,12 +119,14 @@
                 this.currentStyle = value;
 
                 this.isHandlersSuppressed = true;
-                this.settingHair.Value = this.faceStylesProvider.GetHairStyleIndex(value.HairId);
                 var face = this.faceStylesProvider.GetFace(value.FaceId);
                 this.settingFace.Value = face.Index;
                 this.UpdateSettingsViewModels();
                 this.settingTop.Value = (ushort)Array.IndexOf(face.TopIds,       value.TopId);
                 this.settingBottom.Value = (ushort)Array.IndexOf(face.BottomIds, value.BottomId);
+                this.settingHair.Value = this.faceStylesProvider.GetHairStyleIndex(value.HairId);
+                this.settingSkinTone.Value = this.faceStylesProvider.GetSkinToneIndex(value.SkinToneId);
+                this.settingHairColor.Value = this.faceStylesProvider.GetHairColorIndex(value.HairColorId);
                 this.isHandlersSuppressed = false;
 
                 this.onStyleSet(this);
@@ -128,13 +148,22 @@
             var topIndex = this.settingTop.Value;
             var bottomIndex = this.settingBottom.Value;
             var hairIndex = this.settingHair.Value;
+            var skinToneIndex = this.settingSkinTone.Value;
+            var hairColorIndex = this.settingHairColor.Value;
 
             var face = this.faceStylesProvider.GetFace((ushort)faceIndex);
             var topId = face.TopIds[topIndex];
             var bottomId = face.BottomIds[bottomIndex];
             var hairId = this.faceStylesProvider.GetHairStyleByIndex((ushort)hairIndex);
+            var skinToneId = this.faceStylesProvider.GetSkinToneByIndex((ushort)skinToneIndex);
+            var hairColorId = this.faceStylesProvider.GetHairColorByIndex((ushort)hairColorIndex);
 
-            this.CurrentStyle = new CharacterHumanFaceStyle(face.Id, topId, bottomId, hairId);
+            this.CurrentStyle = new CharacterHumanFaceStyle(face.Id,
+                                                            topId,
+                                                            bottomId,
+                                                            hairId,
+                                                            skinToneId,
+                                                            hairColorId);
         }
 
         private void SettingFaceValueChangedCallback()

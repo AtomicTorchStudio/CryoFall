@@ -6,7 +6,7 @@
 
         public double Cold;
 
-        public double Electrical;
+        public double Explosion;
 
         public double Heat;
 
@@ -23,7 +23,7 @@
         public DefenseDescription Set(
             double chemical,
             double cold,
-            double electrical,
+            double explosion,
             double heat,
             double impact,
             double kinetic,
@@ -32,7 +32,7 @@
         {
             this.Chemical = chemical;
             this.Cold = cold;
-            this.Electrical = electrical;
+            this.Explosion = explosion;
             this.Heat = heat;
             this.Impact = impact;
             this.Kinetic = kinetic;
@@ -47,7 +47,7 @@
             this.Multiplier = 1;
             this.Chemical = d.Chemical;
             this.Cold = d.Cold;
-            this.Electrical = d.Electrical;
+            this.Explosion = d.Explosion;
             this.Heat = d.Heat;
             this.Impact = d.Impact;
             this.Kinetic = d.Kinetic;

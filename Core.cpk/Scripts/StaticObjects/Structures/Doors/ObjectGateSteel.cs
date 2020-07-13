@@ -32,7 +32,7 @@
         }
 
         public override string Description =>
-            "Large steel gate that could be conveniently used as the main entrance to your base.";
+            "Large steel gate that could be conveniently used as the main entrance to your base. Gates are also necessary for large vehicles.";
 
         public override int DoorSizeTiles => 2;
 
@@ -57,13 +57,13 @@
             category = GetCategory<StructureCategoryBuildings>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 6);
+            build.AddStageRequiredItem<ItemCement>(count: 5);
             build.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
-            build.AddStageRequiredItem<ItemCement>(count: 25);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
         }
 

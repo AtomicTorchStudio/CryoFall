@@ -193,6 +193,9 @@ Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
 Прагмий
 
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@ErrorCannotBuild_PragmiumSourceTooCloseOnPvE:
+Слишком близко к источнику прагмия.
+
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
 Источник прагмия
 
@@ -246,9 +249,6 @@ Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Используйте оружие или инструменты, чтобы повредить эту постройку.
-
-Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-Нет описания.
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 Нет описания улучшения.
@@ -383,6 +383,9 @@ Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 Музейный стенд
 
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCaseLarge@Name:
+Большой музейный стенд
+
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Тяжелый бронированный сейф, который уцелеет даже при очень сильном взрыве. Его сложно изготовить, зато ваши ценности останутся в сохранности.
 
@@ -467,6 +470,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Desc
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Прагмиевая статуя
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Description:
+Простой табурет для простой комнаты.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Name:
+Табурет
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
 Простой стол в старинном европейском стиле.
 
@@ -513,7 +522,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Деревянная дверь
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-Большие стальные ворота, которые можно использовать в качестве главного входа на вашу базу.
+Большие стальные ворота, которые можно использовать в качестве главного входа на вашу базу. Ворота также необходимы для крупного транспорта.
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 Стальные ворота
@@ -740,6 +749,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Ящик с перегноем
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Description:
+Эта установка позволяет производить химический крекинг минерального масла в более легкий углеводород для производства бензина.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Name:
+Установка по крекингу нефти
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Позволяет максимально эффективно извлекать нефть из подземного источника или из месторождения нефти.
 
@@ -772,6 +787,15 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Водосборник
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@ErrorBuildingAllowedOnlyInDesert:
+Эту постройку можно возвести только в пустынной местности.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Description:
+Эта установка может извлекать воду напрямую из воздушной среды посредством конденсации и специальных осушителей. В отличие от традиционных способов добычи воды, этот процесс медленный и малоэффективный, но работает даже в пустыне.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Name:
+Конденсатор атмосферной воды
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
 Выкачивает воду из подземного источника с помощью электрического насоса.
@@ -818,6 +842,15 @@ Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 Зарядная станция
 
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStationAdvanced@Name:
+Улучшенная станция подзарядки
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Description:
+Автоматически поливает прилегающие фермерские участки с регулярными интервалами.
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
+Разбрызгиватель
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Требуется больше компонентов.
 
@@ -832,6 +865,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Невозможно починить
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
+Вам повезло![br]Вы полностью починили предмет: {0}!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Title:
+Идеальный ремонт!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
 Рабочая станция, предназначенная для починки и отладки различных предметов.
@@ -850,6 +889,9 @@ Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
 
 Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
 Платформа для сборки транспорта
+
+Scripts/StaticObjects/Structures/Misc/Base/SprinklerWateringRequestResult@ErrorNotEnoughWater:
+Недостаточно воды в разбрызгивателе.
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Позволяет накапливать электроэнергию, производимую генераторами на базе.
@@ -1085,72 +1127,69 @@ Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
 Колючий куст
 
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-Банановая пальма
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-Береза
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-Юкка
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-Кактус
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-Засохшее дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-Засохшее дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-Засохшее дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-Дуриан
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-Упавшее дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-Дуб
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-Пальма
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Ель
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Сосна
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-Тополь
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-Каучуковое дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-Замшелая коряга
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-Пенек
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-Замшелый пень
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-Пенек
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-Болотное дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-Тропическое дерево
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-Ива
-
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Чтобы срубить это дерево, используйте топор.
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
+Засохшее дерево
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
+Засохшее дерево
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:
+Упавшее дерево
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeSnagMossy@Name:
+Замшелая коряга
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStump@Name:
+Пенек
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpMossy@Name:
+Замшелый пень
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpWithTwig@Name:
+Пенек
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBirch@Name:
+Береза
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBrevifolia@Name:
+Юкка
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeOak@Name:
+Дуб
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePalm@Name:
+Пальма
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePine@Name:
+Ель
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePineBoreal@Name:
+Сосна
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePoplar@Name:
+Тополь
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeSwamp@Name:
+Болотное дерево
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeTropical@Name:
+Тропическое дерево
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeWillow@Name:
+Ива
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeBanana@Name:
+Банановая пальма
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeCactus@Name:
+Кактус
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeDurian@Name:
+Дуриан
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeRubber@Name:
+Каучуковое дерево
 

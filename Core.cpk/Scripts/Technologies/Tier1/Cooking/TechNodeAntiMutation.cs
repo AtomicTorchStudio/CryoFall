@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeAntiMutation : TechNode<TechGroupCooking>
+    public class TechNodeAntiMutation : TechNode<TechGroupCookingT1>
     {
         protected override void PrepareTechNode(Config config)
         {

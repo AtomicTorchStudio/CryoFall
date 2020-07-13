@@ -21,20 +21,16 @@
 
         public override ushort OrganicValue => 5;
 
-        protected override void ServerOnEat(ItemEatData data)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            var character = data.Character;
-
             // shouldn't be eaten raw
-            // 100% chance to get food poisoning unless you have artificial stomach
-            if (!character.SharedHasPerk(StatName.PerkEatSpoiledFood))
-            {
-                character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 0.5); // half duration
-            }
-
-            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.2); // short intoxication
-
-            base.ServerOnEat(data);
+            effects
+                // adds toxins
+                .WillAddEffect<StatusEffectToxins>(intensity: 0.20)
+                // adds food poisoning unless you have artificial stomach
+                .WillAddEffect<StatusEffectNausea>(intensity: 0.50,
+                                                   condition: context => !context.Character.SharedHasPerk(
+                                                                             StatName.PerkEatSpoiledFood));
         }
     }
 }

@@ -384,7 +384,7 @@
            TargetType="{x:Type core:ValueBarControl}"
            BasedOn="{StaticResource VerticalBar}">
         <Setter Property="IsDisplayTooltip" Value="True" />
-        <Setter Property="TooltipFormat" Value=" {1:F1}% " />
+        <Setter Property="TooltipFormat" Value=" {1:F0}% " />
     </Style>
 
     <Style x:Key="LiquidBigValueBar"
@@ -393,7 +393,7 @@
         <Setter Property="Width" Value="212" />
         <Setter Property="Height" Value="24" />
         <Setter Property="IsDisplayTooltip" Value="True" />
-        <Setter Property="TooltipFormat" Value=" {1:F1} / {2:F1} " />
+        <Setter Property="TooltipFormat" Value=" {1:N0} / {2:N0} " />
     </Style>
 
     <Style x:Key="LiquidMediumValueBar"

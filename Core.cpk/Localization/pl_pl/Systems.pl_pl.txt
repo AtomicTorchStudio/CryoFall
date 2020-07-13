@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 Aby napełnić butelkę, stań w pobliżu wody lub zanurz ją w studni.
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+Nie można wydobyć!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+Dron już został tam wysłany!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`Dron nie może wrócić i został zdezaktywowany.
+[br]Znajdziesz go na ziemi w ostatniej jego lokalizacji.`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+Dron zdezaktywowany
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+Dron zniszczony
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+Tym urządzeniem możesz sterować maks. {0} dronami jednocześnie.
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+Nie można sterować większą liczbą dronów
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+Brak dronów do odpalenia!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+Brak zasobów do wydobycia!
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 Brak wyposażonych banków zasilania.
 
@@ -127,6 +155,21 @@ Nie można dodać nowego przepisu
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Nie można wyburzyć
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+W ekwipunku nie masz żadnej przynęty, którą można wykorzystać do wędkowania.
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+Brak przynęty
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+Tam nie można łowić
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+Ryba uciekła z haczyka!
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+Za późno... Ryba uciekła
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 {0} ulega uszkodzeniu. Nie można odzyskać.
 
@@ -166,6 +209,9 @@ Budowanie/modyfikowanie na tej działce spowoduje powstanie połączonego obszar
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Przecina się z inną posiadaną działką
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+Przecina się z inną działką, która jest aktywnie chroniona tarczą. Wyłącz tam najpierw tarczę.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `Masz już maksymalną liczbę działek.
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Nic do zebrania
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-SERWER: Tworzenie kopii świata zaczynie się za {0} s.
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-SERWER: Utworzono kopię zapasową świata!
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 Operator zablokował cię na tym serwerze

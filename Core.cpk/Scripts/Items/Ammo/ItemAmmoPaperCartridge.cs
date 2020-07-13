@@ -8,6 +8,8 @@
         public override string Description =>
             "Basic firearm ammunition. Suitable only against weaker targets, but cheap and easy to produce.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => "Paper cartridge";
 
         protected override void PrepareDamageDescription(

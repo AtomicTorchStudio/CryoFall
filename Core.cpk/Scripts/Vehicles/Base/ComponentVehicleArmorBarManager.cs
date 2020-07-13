@@ -121,10 +121,9 @@
             this.componentHealthbar = Api.Client.UI.AttachControl(
                 this.vehicle,
                 structurePointsBarControl,
-                positionOffset:
-                protoVehicle.SharedGetObjectCenterWorldOffset(
-                    this.vehicle)
-                + (0, 0.55),
+                positionOffset: protoVehicle.SharedGetObjectCenterWorldOffset(
+                                    this.vehicle)
+                                + (0, 0.545),
                 isFocusable: false);
         }
 

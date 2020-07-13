@@ -11,6 +11,10 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
+            new Entry("A27—Total Overhaul Update",
+                      new DateTime(2020, month: 7, day: 16),
+                      "Updates/A27.jpg"),
+
             new Entry("A26—Pragmium War Update",
                       new DateTime(2020, month: 4, day: 22),
                       "Updates/A26.jpg"),
@@ -51,9 +55,12 @@
                 this.Title = title;
                 this.TextureImagePath = textureImagePath;
                 this.Date = date.ToString("MMMM yyyy", CultureInfo.CurrentUICulture);
+                this.DateValue = date;
             }
 
             public string Date { get; }
+
+            public DateTime DateValue { get; }
 
             public TextureBrush Image
                 => Api.Client.UI.GetTextureBrush(new TextureResource(this.TextureImagePath));

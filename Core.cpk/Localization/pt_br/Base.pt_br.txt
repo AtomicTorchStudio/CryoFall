@@ -55,62 +55,74 @@ Velocidade de crescimento de plantas
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Velocidade de procura
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-Bônus de dano
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 Bônus de dano
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-Bônus de dano
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Chance de efeito especial
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-Bônus de dano
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Taxa de degradação
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Tempo de recarga
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Bônus de dano
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 Chance de efeito especial
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-Chance de efeito especial
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-Chance de efeito especial
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-Chance de efeito especial
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-Chance de efeito especial
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-Taxa de degradação
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-Taxa de degradação
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-Taxa de degradação
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-Taxa de degradação
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 Taxa de degradação
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 Tempo de recarga
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Bônus de dano
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Chance de efeito especial
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Taxa de degradação
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Tempo de recarga
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Bônus de dano
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Chance de efeito especial
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Taxa de degradação
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 Consumo de energia
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-Tempo de recarga
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+Bônus de dano da arma
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+Taxa de degradação da arma
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+Tempo de recarga da arma
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+Chance de efeito especial da arma
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Bônus de dano
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Chance de efeito especial
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Taxa de degradação
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Tempo de recarga
@@ -192,4 +204,13 @@ Espaços da fila de produção
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 Toxicidade dos remédios
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+Nível de conhecimento de pesca
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+Pesca bem sucedida
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+Consumo de combustível
 

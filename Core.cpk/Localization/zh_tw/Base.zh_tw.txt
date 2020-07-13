@@ -55,62 +55,74 @@ Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Scripts/Base/Stats/StatName@SearchingSpeed:
 搜索速度
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-傷害加成
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 傷害加成
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-傷害加成
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+特效觸發概率
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-傷害加成
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+磨損率
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+裝彈時間
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 傷害加成
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 特效觸發概率
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-特效觸發概率
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-特效觸發概率
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-特效觸發概率
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-特效觸發概率
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-磨損率
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-磨損率
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-磨損率
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-磨損率
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 磨損率
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 裝彈時間
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+傷害加成
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+特效觸發概率
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+磨損率
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 裝彈時間
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+傷害加成
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+特效觸發概率
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+磨損率
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 能量消耗
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-裝彈時間
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+武器傷害加成
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+武器磨損率
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+武器裝彈時間
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+武器特效觸發概率
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+傷害加成
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+特效觸發概率
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+磨損率
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 裝彈時間
@@ -192,4 +204,13 @@ Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 藥物毒性
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+釣魚知識等級
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+釣魚成功
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+燃料消耗
 

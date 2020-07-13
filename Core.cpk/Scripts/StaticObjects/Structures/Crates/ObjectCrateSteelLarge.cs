@@ -25,7 +25,7 @@
 
         public override double StructureExplosiveDefenseCoef => 0.25;
 
-        public override float StructurePointsMax => 18000;
+        public override float StructurePointsMax => 1500;
 
         protected override Vector2D ItemIconOffset => (1, base.ItemIconOffset.Y);
 

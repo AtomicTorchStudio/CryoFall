@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -29,6 +30,10 @@
         public override byte ContainerInputSlotsCount => 8;
 
         public override byte ContainerOutputSlotsCount => 4;
+
+        public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 30,
+                                               shutdownPercent: 20);
 
         public override string Description =>
             "Uses electricity and induction heating method for faster smelting and resource processing.";
@@ -122,8 +127,8 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemWire>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            build.AddStageRequiredItem<ItemWire>(count: 4);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 

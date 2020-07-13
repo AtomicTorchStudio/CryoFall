@@ -44,6 +44,10 @@
 
         public abstract byte ContainerOutputSlotsCount { get; }
 
+        public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 20,
+                                               shutdownPercent: 10);
+
         public virtual double ElectricityConsumptionPerSecondWhenActive => 0;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
@@ -51,6 +55,8 @@
         public abstract bool IsAutoSelectRecipe { get; }
 
         public abstract bool IsFuelProduceByproducts { get; }
+
+        public override bool IsRelocatable => true;
 
         public ManufacturingConfig ManufacturingConfig { get; private set; }
 
@@ -74,6 +80,16 @@
             return GetPublicState(worldObject).IsActive
                        ? 1
                        : 0;
+        }
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
         }
 
         BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
@@ -345,7 +361,7 @@
                     // Consuming electricity.
                     // Active only if electricity state is on and has active recipe.
                     var publicState = data.PublicState;
-                    if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+                    if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
                     {
                         isActive = hasActiveRecipe
                                    && !manufacturingState.CraftingQueue.IsContainerOutputFull;

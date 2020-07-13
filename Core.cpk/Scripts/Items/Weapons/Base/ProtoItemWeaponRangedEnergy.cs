@@ -64,6 +64,12 @@
             return CharacterEnergySystem.ServerDeductEnergyCharge(character, requiredEnergyAmount);
         }
 
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.UsesPowerBanks);
+        }
+
         protected sealed override void PrepareProtoWeaponRanged(
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,
             ref DamageDescription overrideDamageDescription)

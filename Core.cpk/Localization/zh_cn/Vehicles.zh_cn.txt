@@ -10,6 +10,12 @@ Scripts/Vehicles/VehicleHoverboardMk2@Description:
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 悬浮板MK2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+攻城用重型战斗护甲。提供无与伦比的防护和火力，但相对来说移动较慢。
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+巨兽
+
 Scripts/Vehicles/VehicleMechManul@Description:
 为战斗装甲设计的介质。在不牺牲其他性能的情况下极大的提升防御力并给予大量收纳空间。
 
@@ -48,4 +54,10 @@ Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 请把载具带到载具港来修复它。
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+普通
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+大
 

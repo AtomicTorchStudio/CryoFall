@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes.DryingCabinet;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeTobaccoProcessing : TechNode<TechGroupRecreation>
+    public class TechNodeTobaccoProcessing : TechNode<TechGroupRecreationT3>
     {
         protected override void PrepareTechNode(Config config)
         {

@@ -12,7 +12,7 @@
 
     public abstract class ProtoObjectGeneratorSolar
         : ProtoObjectGenerator
-            <StructurePrivateState,
+            <ObjectGeneratorPrivateState,
                 ObjectGeneratorSolarPublicState,
                 StaticObjectClientState>
     {

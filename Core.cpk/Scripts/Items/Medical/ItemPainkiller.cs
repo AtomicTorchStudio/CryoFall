@@ -1,11 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemPainkiller : ProtoItemMedical
     {
@@ -16,20 +14,16 @@
 
         public override string Name => "Painkiller";
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillRemoveEffect<StatusEffectPain>()                        // removes all pain
+                .WillAddEffect<StatusEffectProtectionPain>(intensity: 0.50); // adds pain blocking
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemMedicalTablets;
-        }
-
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
-        {
-            // remove all pain
-            character.ServerRemoveStatusEffectIntensity<StatusEffectPain>(intensityToRemove: 1);
-
-            // add pain blocking
-            character.ServerAddStatusEffect<StatusEffectProtectionPain>(intensity: 0.5); // 5 minutes
-
-            base.ServerOnUse(character, currentStats);
         }
     }
 }

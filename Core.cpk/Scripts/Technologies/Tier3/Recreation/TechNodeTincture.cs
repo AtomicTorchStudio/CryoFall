@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes.FermentationBarrel;
 
-    public class TechNodeTincture : TechNode<TechGroupRecreation>
+    public class TechNodeTincture : TechNode<TechGroupRecreationT3>
     {
         protected override void PrepareTechNode(Config config)
         {

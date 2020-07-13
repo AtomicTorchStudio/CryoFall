@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `Des débris spatiaux sont tombés dans la zone en surbrillance sur la carte.
 [br]Précipitez-vous afin de récupérer de précieux composants !`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} - Créature vaincue par :
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Progression : {0}/{1}
 

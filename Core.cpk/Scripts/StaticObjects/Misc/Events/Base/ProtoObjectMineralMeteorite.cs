@@ -18,6 +18,10 @@
                 ObjectMineralMeteoritePublicState,
                 DefaultMineralClientState>
     {
+        public override bool IsAllowDroneMining => false;
+
+        public override bool IsAllowQuickMining => false;
+
         public abstract double ServerCooldownDuration { get; }
 
         protected override bool CanFlipSprite => true;

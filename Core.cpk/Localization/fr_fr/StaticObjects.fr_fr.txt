@@ -193,6 +193,9 @@ Gisement de fer
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
 Petit nodule de pragmium
 
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@ErrorCannotBuild_PragmiumSourceTooCloseOnPvE:
+Trop proche d'une source de pragmium.
+
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
 Source de pragmium
 
@@ -246,9 +249,6 @@ Citerne
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Utilisez une arme ou un outil pour endommager cette structure.
-
-Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-Pas de description.
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 Pas de description d'amélioration.
@@ -383,6 +383,9 @@ Vous avez toujours rêvé d'ouvrir un musée, ou d'exposer les trophées que vou
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 Vitrine
 
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCaseLarge@Name:
+Grande vitrine
+
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Un coffre lourdement blindé, capable de résister aux explosifs les plus puissants. Pas facile à fabriquer, mais il vous permettra de mettre à l'abri vos biens les plus précieux.
 
@@ -467,6 +470,12 @@ Gaspiller ces cristaux précieux à des fins esthétiques est un bon moyen de pr
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Statue en pragmium
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Description:
+Un tabouret rudimentaire pour une pièce rudimentaire.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Name:
+Tabouret
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
 Une table simple de style classique européen.
 
@@ -513,7 +522,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Porte en bois
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-Une large porte en acier, qui pourrait très bien convenir en tant qu'entrée principale de votre base.
+Un large portail en acier pouvant être utilisé pour l'entrée principale de votre base. Ces portails sont également nécessaires pour faire passer les grands véhicules.
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 Porte en acier
@@ -740,6 +749,12 @@ Peut être utilisé pour convertir tout type de matière organique en compost, u
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Boîte à compost
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Description:
+Cette usine permet de craquer les molécules de pétrole minéral en éléments plus petits, produisant ainsi de l'essence.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Name:
+Usine de craquage du pétrole
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Permet d'extraire du pétrole brut d'un réservoir souterrain ou directement d'une nappe de pétrole pour plus d'efficacité.
 
@@ -772,6 +787,15 @@ Un simple collecteur d'eau, conçu pour récolter de petites quantités d'eau. N
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Collecteur d'eau
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@ErrorBuildingAllowedOnlyInDesert:
+Vous ne pouvez construire cette structure que dans les environnements de type désertique.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Description:
+Cette structure permet d'extraire de l'eau directement de l'air ambiant par un procédé de condensation et l'utilisation de dessiccateurs spéciaux. Comparativement aux moyens conventionnels d'obtenir de l'eau, ce procédé est lent et peu efficace, mais il fonctionne même dans le désert.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Name:
+Condensateur d'eau atmosphérique
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
 Utilise une pompe électrique pour extraire rapidement l'eau des réservoirs souterrains.
@@ -818,6 +842,15 @@ Peut être utilisée pour recharger tout équipement électronique portable comm
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 Station de recharge
 
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStationAdvanced@Name:
+Station de recharge améliorée
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Description:
+Arrose automatiquement les emplacements de ferme adjacents à intervalles réguliers.
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
+Arrosage automatique
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 D'autres composants sont nécessaires.
 
@@ -832,6 +865,12 @@ Enlevez d'abord l'objet de l'emplacement de sortie.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Réparation impossible.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
+Vous avez eu de la chance ![br]{0} est comme neuf !
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Title:
+Réparation parfaite !
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
 Cette station de travail est pratique pour bricoler ou réparer divers objets.
@@ -850,6 +889,9 @@ Plate-forme automatisée pour l'assemblage de véhicules. Peut être utilisée p
 
 Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
 Atelier de montage de véhicules
+
+Scripts/StaticObjects/Structures/Misc/Base/SprinklerWateringRequestResult@ErrorNotEnoughWater:
+Pas assez d'eau pour l'arrosage automatique.
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Permet de stocker l'électricité produite par vos générateurs de la base pour une utilisation ultérieure.
@@ -1084,72 +1126,69 @@ Canne à sucre
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
 Buisson épineux
 
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-Bananier
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-Bouleau
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-If
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-Cactus
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-Arbre mort
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-Arbre mort
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-Arbre mort
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-Durian
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-Arbre tombé
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-Chêne
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-Palmier
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Épicéa
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Pin
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-Peuplier
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-Hévéa
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-Arbre mort
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-Souche
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-Souche moussue
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-Souche
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-Palétuvier
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-Arbre tropical
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-Saule pleureur
-
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Utilisez une hache pour couper cet arbre.
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
+Arbre mort
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
+Arbre mort
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:
+Arbre tombé
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeSnagMossy@Name:
+Bois mort moussu
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStump@Name:
+Souche
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpMossy@Name:
+Souche moussue
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpWithTwig@Name:
+Souche
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBirch@Name:
+Bouleau
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBrevifolia@Name:
+If
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeOak@Name:
+Chêne
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePalm@Name:
+Palmier
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePine@Name:
+Épicéa
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePineBoreal@Name:
+Pin
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePoplar@Name:
+Peuplier
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeSwamp@Name:
+Palétuvier
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeTropical@Name:
+Arbre tropical
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeWillow@Name:
+Saule pleureur
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeBanana@Name:
+Bananier
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeCactus@Name:
+Cactus
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeDurian@Name:
+Durian
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeRubber@Name:
+Hévéa
 

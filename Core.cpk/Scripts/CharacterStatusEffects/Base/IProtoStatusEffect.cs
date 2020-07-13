@@ -13,6 +13,8 @@
 
         bool IsIntensityPercentVisible { get; }
 
+        bool IsPublic { get; }
+
         bool IsRemovedOnRespawn { get; }
 
         StatusEffectKind Kind { get; }

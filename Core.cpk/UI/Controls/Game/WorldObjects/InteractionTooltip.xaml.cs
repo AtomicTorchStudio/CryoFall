@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects
 {
     using System.Windows;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -12,17 +11,11 @@
 
     public partial class InteractionTooltip : BaseUserControl
     {
-        public static readonly DependencyProperty TextBrushProperty =
-            DependencyProperty.Register("TextBrush",
-                                        typeof(Brush),
+        public static readonly DependencyProperty CanInteractProperty =
+            DependencyProperty.Register(nameof(CanInteract),
+                                        typeof(bool),
                                         typeof(InteractionTooltip),
-                                        new PropertyMetadata(default(Brush)));
-
-        public static readonly Brush TextBrushCanInteract =
-            new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xCC, 0x00));
-
-        public static readonly Brush TextBrushCannotInteract =
-            new SolidColorBrush(Color.FromArgb(0xFF, 0xBB, 0xBB, 0xBB));
+                                        new PropertyMetadata(default(bool)));
 
         private static bool? lastCanInteract;
 
@@ -34,10 +27,10 @@
 
         private ClientInputContext clientInputContext;
 
-        public Brush TextBrush
+        public bool CanInteract
         {
-            get => (Brush)this.GetValue(TextBrushProperty);
-            set => this.SetValue(TextBrushProperty, value);
+            get => (bool)this.GetValue(CanInteractProperty);
+            set => this.SetValue(CanInteractProperty, value);
         }
 
         public static void Hide()
@@ -83,7 +76,7 @@
                     break;
             }
 
-            positionOffset += (0, 1.025);
+            positionOffset += (0, 1.125);
 
             lastTooltip = new InteractionTooltip();
             lastTooltip.Setup(message, canInteract);
@@ -98,9 +91,7 @@
         public void Setup(string message, bool canInteract)
         {
             this.DataContext = message;
-            this.TextBrush = canInteract
-                                 ? TextBrushCanInteract
-                                 : TextBrushCannotInteract;
+            this.CanInteract = canInteract;
         }
 
         protected override void InitControl()

@@ -9,7 +9,6 @@
         public static void OnSoundEvent(Vector2D soundWorldPosition, bool isPartyMember)
         {
             var viewBounds = Api.Client.Rendering.WorldCameraCurrentViewWorldBounds;
-
             if (viewBounds.Contains(soundWorldPosition))
             {
                 // no sound cue necessary

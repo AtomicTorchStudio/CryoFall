@@ -93,7 +93,7 @@
         /// </summary>
         private class ClientComponentSoundEffect : ClientComponent
         {
-            private const float Volume = 0.15f;
+            private const float Volume = 0.05f;
 
             private static readonly IAudioClientService Audio = Api.Client.Audio;
 

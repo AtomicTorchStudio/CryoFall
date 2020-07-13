@@ -17,11 +17,11 @@
             // add 10% protection against everything except psi and radiation
             var protection = 0.1;
             effects.AddValue(this, StatName.DefenseImpact, protection)
-                   .AddValue(this, StatName.DefenseKinetic,    protection)
-                   .AddValue(this, StatName.DefenseHeat,       protection)
-                   .AddValue(this, StatName.DefenseCold,       protection)
-                   .AddValue(this, StatName.DefenseChemical,   protection)
-                   .AddValue(this, StatName.DefenseElectrical, protection);
+                   .AddValue(this, StatName.DefenseKinetic,   protection)
+                   .AddValue(this, StatName.DefenseExplosion, protection)
+                   .AddValue(this, StatName.DefenseHeat,      protection)
+                   .AddValue(this, StatName.DefenseCold,      protection)
+                   .AddValue(this, StatName.DefenseChemical,  protection);
         }
     }
 }

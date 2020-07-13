@@ -16,22 +16,25 @@
         <ScaleTransform CenterX="0.5" ScaleX="-1" />
     </base:BaseUserControl.LayoutTransform>
 
-    <StackPanel Orientation="Horizontal">
-        <StackPanel.Resources>
+    <Grid>
+        <Grid.Resources>
             <Style x:Key="PathStyle" TargetType="Path">
                 <Setter Property="Stroke" Value="Black" />
                 <Setter Property="StrokeThickness" Value="1.5" />
                 <Setter Property="Stretch" Value="Uniform" />
             </Style>
-        </StackPanel.Resources>
+        </Grid.Resources>
 
-        <Path Data="{StaticResource IconGeometryPathPowerOn}"
-              Style="{StaticResource PathStyle}"
-              Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}}"
-              Fill="{StaticResource BrushElectricity}"
-              Width="32"
-              Height="32"
-              Margin="3" />
+        <ContentControl
+            Visibility="{Binding IsPowerOutage, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+            <Path Data="{StaticResource IconGeometryPathPowerOn}"
+                  Style="{StaticResource PathStyle}"
+                  Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}}"
+                  Fill="{StaticResource BrushElectricity}"
+                  Width="32"
+                  Height="32"
+                  Margin="3" />
+        </ContentControl>
 
         <Path Data="{StaticResource IconGeometryPathPowerOff}"
               Style="{StaticResource PathStyle}"
@@ -47,6 +50,6 @@
               Width="38"
               Height="38" />
 
-    </StackPanel>
+    </Grid>
 
 </base:BaseUserControl>

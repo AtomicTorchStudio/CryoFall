@@ -11,7 +11,12 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
         public override string Alias => "ban";
 
         public override string Description =>
-            "Adds a player name into the blacklist.";
+            @"Adds a player name into the blacklist.
+              Players from this list cannot connect to the game server
+              (unless a player is an admin or moderator).
+              Please note: there is also a whitelist that is intended
+              to work in an opposite way by allowing access only to those players
+              that are listed in a whitelist while everyone else is not allowed.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 

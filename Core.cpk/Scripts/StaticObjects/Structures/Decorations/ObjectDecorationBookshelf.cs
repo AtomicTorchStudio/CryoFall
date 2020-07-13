@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationBookshelf : ProtoObjectDecoration
+    public class ObjectDecorationBookshelf : ProtoObjectDecoration
     {
         public override string Description => "What room is complete without a bookshelf?";
 
@@ -43,9 +43,9 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((0.5, 0.4), offset: (0.25, 0.3))
-                .AddShapeRectangle((0.5, 0.4), offset: (0.25, 0.9), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((0.5, 0.3), offset: (0.25, 1.0), group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle((0.9, 0.5), offset: (0.05, 0.3))
+                .AddShapeRectangle((0.9, 0.6), offset: (0.05, 0.7), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.9, 0.35), offset: (0.05, 1.0), group: CollisionGroups.HitboxRanged);
         }
     }
 }

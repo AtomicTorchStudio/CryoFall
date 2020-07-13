@@ -20,7 +20,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
                 onlyOnline: false,
                 exceptSpectators: false))
             {
-                Server.Items.CreateItem(player, item, count);
+                Server.Items.CreateItem(item, player, count);
                 playersProcessed++;
             }
 

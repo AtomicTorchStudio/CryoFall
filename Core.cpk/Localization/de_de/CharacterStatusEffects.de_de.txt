@@ -172,6 +172,9 @@ Du hast in zu kurzer Zeit zu viel Medizin zu dir genommen. Gedulde dich ein weni
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Übermäßiger Gebrauch von Medizin
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+Bitte warte, bis die Peredozin-Anwendung abgeschlossen ist.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 Du befindest dich derzeit unter dem Einfluss blutstillender Medizin, die den Schweregrad jeder erhaltenen blutenden Wunde vermindert.
 

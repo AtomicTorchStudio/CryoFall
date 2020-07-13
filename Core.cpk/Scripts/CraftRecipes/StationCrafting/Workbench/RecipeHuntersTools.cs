@@ -20,7 +20,7 @@
             duration = CraftingDuration.Short;
 
             inputItems.Add<ItemIngotIron>(count: 5);
-            inputItems.Add<ItemLeather>(count: 5);
+            inputItems.Add<ItemLeather>(count: 3);
 
             outputItems.Add<ItemHuntersTools>();
         }

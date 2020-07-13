@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
+    using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -9,9 +11,15 @@
 
     public interface IProtoItemAmmo : IProtoItem
     {
+        IReadOnlyList<IProtoItemWeapon> CompatibleWeaponProtos { get; }
+
         DamageDescription DamageDescription { get; }
 
+        DamageStatsComparisonPreset DamageStatsComparisonPreset { get; }
+
         WeaponFireTracePreset FireTracePreset { get; }
+
+        bool IsReferenceAmmo { get; }
 
         bool IsSuppressWeaponSpecialEffect { get; }
 
@@ -22,9 +30,10 @@
         void ClientOnObjectHit(
             WeaponFinalCache weaponCache,
             IWorldObject damagedObject,
-            double damage,
             WeaponHitData hitData,
             ref bool isDamageStop);
+
+        void PrepareRegisterCompatibleWeapon(IProtoItemWeapon protoItemWeapon);
 
         void ServerOnMiss(WeaponFinalCache weaponCache, Vector2D endPosition);
 

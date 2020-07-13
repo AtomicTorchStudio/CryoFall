@@ -19,7 +19,7 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemIngotCopper>(count: 5);
-            inputItems.Add<ItemPlastic>(count: 4);
+            inputItems.Add<ItemPlastic>(count: 3);
             inputItems.Add<ItemIngotLithium>(count: 2);
 
             outputItems.Add<ItemPowerCell>(count: 1);

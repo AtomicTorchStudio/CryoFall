@@ -4,23 +4,25 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Drones;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using JetBrains.Annotations;
 
     public abstract class ProtoObjectMineral
         <TPrivateState,
@@ -42,6 +44,10 @@
         public override double ClientUpdateIntervalSeconds => 0.5;
 
         public ReadOnlyMineralDropItemsConfig DropItemsConfig { get; private set; }
+
+        public virtual bool IsAllowDroneMining => true;
+
+        public virtual bool IsAllowQuickMining => true;
 
         public override StaticObjectKind Kind => StaticObjectKind.NaturalObject;
 
@@ -103,7 +109,7 @@
 
             gameObject.ClientSceneObject
                       .AddComponent<ClientComponentObjectMineralStageWatcher>()
-                      .Setup(gameObject, data.PublicState, this.ClientOnRockDestroyStageChanged);
+                      .Setup(gameObject, data.PublicState, this.ClientOnMineralStageChanged);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -160,13 +166,6 @@
             {
                 var previousDamageStage = this.SharedCalculateDamageStage(previousStructurePoints);
                 var currentDamageStage = this.SharedCalculateDamageStage(currentStructurePoints);
-
-                if (currentDamageStage == this.DamageStagesCount)
-                {
-                    // do not apply this method for last damage stage - processing will be done at ServerOnStaticObjectDestroyed() instead.
-                    currentDamageStage--;
-                }
-
                 var deltaDamageStages = currentDamageStage - previousDamageStage;
 
                 if (deltaDamageStages <= 0)
@@ -176,36 +175,30 @@
                 }
 
                 // damage stage increased!
-                for (var damageStage = previousDamageStage + 1; damageStage <= currentDamageStage; damageStage++)
+                for (var damageStage = previousDamageStage + 1;
+                     damageStage <= currentDamageStage;
+                     damageStage++)
                 {
                     // spawn items for damage stage
-                    this.ServerOnDamageStageIncreased(
-                        weaponCache.Character,
-                        weaponCache.ProtoWeapon,
-                        targetObject,
-                        damageStage);
+                    this.ServerOnMineralStageMined(weaponCache,
+                                                   targetObject,
+                                                   damageStage);
                 }
             }
             finally
             {
+                if ((weaponCache.ProtoWeapon is IProtoItemToolMining
+                     || weaponCache.ProtoExplosive is ObjectBombMining)
+                    && WorldObjectClaimSystem.SharedIsEnabled)
+                {
+                    this.ServerTryClaimObject(targetObject, weaponCache.Character);
+                }
+
                 base.ServerOnStaticObjectDamageApplied(weaponCache,
                                                        targetObject,
                                                        previousStructurePoints,
                                                        currentStructurePoints);
             }
-        }
-
-        protected override void ServerOnStaticObjectDestroyedByCharacter(
-            ICharacter byCharacter,
-            IProtoItemWeapon byWeaponProto,
-            IStaticWorldObject targetObject)
-        {
-            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, byWeaponProto, targetObject);
-            // it will spawn the drop items
-            this.ServerOnDamageStageIncreased(byCharacter,
-                                              byWeaponProto,
-                                              targetObject,
-                                              damageStage: this.DamageStagesCount);
         }
 
         protected override double SharedCalculateDamageByWeapon(
@@ -214,6 +207,14 @@
             IStaticWorldObject targetObject,
             out double obstacleBlockDamageCoef)
         {
+            if (!PveSystem.SharedIsAllowStaticObjectDamage(weaponCache.Character,
+                                                           targetObject,
+                                                           showClientNotification: false))
+            {
+                obstacleBlockDamageCoef = 0;
+                return 0;
+            }
+
             if (weaponCache.ProtoWeapon is IProtoItemToolMining protoItemToolMining)
             {
                 // mining mineral with a mining device
@@ -221,8 +222,7 @@
                 obstacleBlockDamageCoef = 1;
 
                 // get damage multiplier ("mining speed")
-                var damageMultiplier = weaponCache.Character
-                                                  .SharedGetFinalStatMultiplier(StatName.MiningSpeed);
+                var damageMultiplier = weaponCache.CharacterFinalStatsCache.GetMultiplier(StatName.MiningSpeed);
 
                 return protoItemToolMining.ServerGetDamageToMineral(targetObject)
                        * damageMultiplier
@@ -259,7 +259,7 @@
                 .AddShapeLineSegment(point1: (0.5, 0.2), point2: (0.5, 0.85), group: CollisionGroups.HitboxRanged);
         }
 
-        private void ClientOnRockDestroyStageChanged(IStaticWorldObject mineralObject)
+        private void ClientOnMineralStageChanged(IStaticWorldObject mineralObject)
         {
             var publicState = GetPublicState(mineralObject);
             var structurePoints = publicState.StructurePointsCurrent;
@@ -274,12 +274,14 @@
             renderer.TextureResource = this.ClientGetTextureResource(mineralObject, publicState);
         }
 
-        private void ServerOnDamageStageIncreased(
-            [CanBeNull] ICharacter byCharacter,
-            IProtoItemWeapon byWeaponProto,
+        private void ServerOnMineralStageMined(
+            WeaponFinalCache weaponCache,
             IStaticWorldObject mineralObject,
             int damageStage)
         {
+            var byCharacter = weaponCache.Character;
+            var byWeaponProto = weaponCache.ProtoWeapon;
+
             Logger.Info(
                 $"{mineralObject} current damage stage changed to {damageStage}. Dropping items for that stage",
                 byCharacter);
@@ -287,35 +289,47 @@
             try
             {
                 var dropItemsList = this.DropItemsConfig.GetForStage(damageStage);
-                var dropItemContext = new DropItemContext(byCharacter, mineralObject, byWeaponProto);
+                var dropItemContext = new DropItemContext(byCharacter,
+                                                          mineralObject,
+                                                          byWeaponProto,
+                                                          weaponCache.ProtoExplosive);
 
-                if (byWeaponProto is IProtoItemWeaponMelee)
+                var objectDrone = weaponCache.Drone;
+                if (objectDrone != null)
                 {
-                    var result = dropItemsList.TryDropToCharacter(byCharacter, dropItemContext);
-                    if (result.IsEverythingCreated)
-                    {
-                        NotificationSystem.ServerSendItemsNotification(
-                            byCharacter,
-                            result);
-                        return;
-                    }
-
-                    result.Rollback();
+                    // drop resources into the internal storage of the drone
+                    var storageItemsContainer = ((IProtoDrone)objectDrone.ProtoGameObject)
+                        .ServerGetStorageItemsContainer(objectDrone);
+                    dropItemsList.TryDropToContainer(storageItemsContainer, dropItemContext);
                 }
-
-                // not a melee weapon or cannot drop to the character inventory - drop on the ground only
-                dropItemsList.TryDropToGround(mineralObject.TilePosition,
-                                              dropItemContext,
-                                              out _);
+                else if (byWeaponProto is IProtoItemWeaponMelee)
+                {
+                    var result = dropItemsList.TryDropToCharacterOrGround(byCharacter,
+                                                                          mineralObject.TilePosition,
+                                                                          dropItemContext,
+                                                                          groundContainer: out _);
+                    if (result.TotalCreatedCount > 0)
+                    {
+                        NotificationSystem.ServerSendItemsNotification(byCharacter, result);
+                    }
+                }
+                else
+                {
+                    // not a melee weapon or cannot drop to the character inventory - drop on the ground only
+                    dropItemsList.TryDropToGround(mineralObject.TilePosition,
+                                                  dropItemContext,
+                                                  out _);
+                }
             }
             finally
             {
-                if (byWeaponProto is IProtoItemToolMining)
+                if (byWeaponProto is IProtoItemToolMining
+                    || weaponCache.ProtoExplosive is ObjectBombMining)
                 {
                     // add experience proportional to the mineral structure points (effectively - for the time spent on mining)
-                    var exp = SkillMining.ExperienceAddPerStructurePoint;
+                    var exp = SkillProspecting.ExperienceAddPerStructurePoint;
                     exp *= this.StructurePointsMax / this.DamageStagesCount;
-                    byCharacter?.ServerAddSkillExperience<SkillMining>(exp);
+                    byCharacter?.ServerAddSkillExperience<SkillProspecting>(exp);
                 }
             }
         }

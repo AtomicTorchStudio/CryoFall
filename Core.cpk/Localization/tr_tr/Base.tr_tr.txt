@@ -55,62 +55,74 @@ Bitkilerin büyüme hızı
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Arama hızı
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-Hasar bonusu
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 Hasar bonusu
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-Hasar bonusu
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Özel etki şansı
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-Hasar bonusu
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Aşınma oranı
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Yeniden doldurma süresi
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Hasar bonusu
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 Özel etki şansı
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-Özel etki şansı
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-Özel etki şansı
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-Özel etki şansı
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-Özel etki şansı
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-Aşınma oranı
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-Aşınma oranı
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-Aşınma oranı
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-Aşınma oranı
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 Aşınma oranı
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 Yeniden doldurma süresi
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Aşınma oranı
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Yeniden doldurma süresi
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Aşınma oranı
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 Enerji tüketimi
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-Yeniden doldurma süresi
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+Silah hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+Silah bozulma oranı
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+Şarjör doldurma süresi
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+Silah özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Aşınma oranı
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Yeniden doldurma süresi
@@ -192,4 +204,13 @@ Zanaatkârlık sırası boyutu
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 İlaç zehirlenmesi
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+Balıkçılık bilgi düzeyi
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+Balıkçılık başarısı
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+Yakıt tüketimi
 

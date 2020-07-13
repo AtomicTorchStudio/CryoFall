@@ -7,11 +7,16 @@
 
     public class ViewModelPlayerEntry : BaseViewModel, IComparable<ViewModelPlayerEntry>, IComparable
     {
-        public ViewModelPlayerEntry(string name)
+        public ViewModelPlayerEntry(string name, string clanTag)
             : base(isAutoDisposeFields: false)
         {
             this.Name = name;
+            this.ClanTag = string.IsNullOrEmpty(clanTag)
+                               ? null
+                               : clanTag;
         }
+
+        public string ClanTag { get; }
 
         public BaseCommand CommandToggleBlock
             => new ActionCommand(() => ClientChatBlockList.SetBlockStatus(this.Name,

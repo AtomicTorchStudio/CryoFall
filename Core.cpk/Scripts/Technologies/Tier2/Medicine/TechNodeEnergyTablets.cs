@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeEnergyTablets : TechNode<TechGroupMedicine>
+    public class TechNodeEnergyTablets : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {

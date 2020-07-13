@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectCookingTable>();
 
-            craftDuration = CraftingDuration.Long;
+            craftDuration = CraftingDuration.Medium;
 
             inputItems.Add<ItemMilk>(count: 2);
 

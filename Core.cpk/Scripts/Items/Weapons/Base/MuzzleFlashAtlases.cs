@@ -5,11 +5,31 @@
     internal static class MuzzleFlashAtlases
     {
         /// <summary>
-        /// Used for laser weapons.
+        /// Used for artillery cannot equipped on a mech.
         /// </summary>
-        public static readonly TextureAtlasResource AtlasLaser
+        public static readonly TextureAtlasResource AtlasArtillery
             = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasLaser",
+                "FX/MuzzleFlash/AtlasArtillery",
+                columns: 6,
+                rows: 2,
+                isTransparent: true);
+
+        /// <summary>
+        /// Used for blue laser weapons.
+        /// </summary>
+        public static readonly TextureAtlasResource AtlasLaserBlue
+            = new TextureAtlasResource(
+                "FX/MuzzleFlash/AtlasLaserBlue",
+                columns: 6,
+                rows: 2,
+                isTransparent: true);
+
+        /// <summary>
+        /// Used for red laser weapons.
+        /// </summary>
+        public static readonly TextureAtlasResource AtlasLaserRed
+            = new TextureAtlasResource(
+                "FX/MuzzleFlash/AtlasLaserRed",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);

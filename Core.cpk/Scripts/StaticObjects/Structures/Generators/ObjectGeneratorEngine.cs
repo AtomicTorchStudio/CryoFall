@@ -21,12 +21,16 @@
 
         public override byte ContainerOutputSlotsCount => 1;
 
+        public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 90,
+                                               shutdownPercent: 100);
+
         public override string Description =>
             "This large generator uses gasoline fuel to produce electrical energy.";
 
-        public override double LiquidCapacity => 100;
+        public override double LiquidCapacity => 50;
 
-        public override double LiquidConsumptionAmountPerSecond => 0.4;
+        public override double LiquidConsumptionAmountPerSecond => 0.2;
 
         public override LiquidType LiquidType => LiquidType.Gasoline;
 
@@ -108,7 +112,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemWire>(count: 15);
+            build.AddStageRequiredItem<ItemWire>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 2);
 

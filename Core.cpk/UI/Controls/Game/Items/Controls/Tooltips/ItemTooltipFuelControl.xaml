@@ -12,7 +12,7 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemFuel, IsDesignTimeCreatable=True}"
     VerticalAlignment="Bottom"
-    Margin="0,0,3,3"
+    Margin="0,0,0,3"
     UseLayoutRounding="False"
     Opacity="0.7">
     <StackPanel Orientation="Horizontal">

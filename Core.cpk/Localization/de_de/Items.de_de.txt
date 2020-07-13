@@ -88,6 +88,12 @@ Einfacher Pfeil mit Steinspitze. Einfacher geht es kaum.
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 Pfeil mit Steinspitze
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+Spezielle Splittergranate mit einer erhöhten effektiven Reichweite. Beschädigt weitläufig alles im Umkreis des Einschlags.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+Splittergranate
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 Spezialgranate, die beim Einschlag flüssiges und mit Pragmiumpartikeln versetztes Helium freisetzt und ein Ziel so gefrieren lässt.
 
@@ -111,6 +117,69 @@ Herkömmliche Schusswaffenmunition. Geeignet nur für schwächere Ziele, jedoch 
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 Papierpatrone
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+Hochexplosive Geschosse sind sehr wirksam gegen Fahrzeugpanzerung.
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+Artilleriegeschoss
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+Klicke auf diesen Gegenstand, während du die Alt-Taste gedrückt hältst, um diesen schnell zu benutzen oder zu verzehren.
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+Klicke auf ein beliebiges Gebäude, um es einzureißen.
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+Klicke auf ein unbeschädigtes Gebäude, um es zu verschieben.
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+Klicke auf einen Brunnen oder Wasserkollektor, um sie mit Wasser zu füllen.
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+Klicke auf ein beliebiges Gebäude, um es zu reparieren oder zu bauen.
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+Klicke auf eine beliebige Nutzpflanze, um diese zu bewässern.
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+Fischfilet kann mithilfe der BENUTZEN-Aktion (siehe jeden anderen benutzbaren Gegenstand) gewonnen werden.
+
+Scripts/Items/Base/ItemHints@DroneControl:
+Drohnen aus deinem Inventar oder deiner Hotbar können mit dieser Drohnensteuerung kontrolliert werden.
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+Wenn du die Umschalttaste gedrückt hältst, während du einen Befehl erteilst, werden all deine Drohnen zum Abbau sich in der Nähe befindlicher Gegenstände des ausgewählten Typs geschickt.
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+Drohnen können nicht direkt verwendet werden. Benutze ein Steuergerät, um diese Drohne zu kontrollieren, während sie sich in deinem Inventar befindet.
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+Muss in einem der Geräte-Slots ausgerüstet sein, um zu funktionieren.
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+Düngemittel können verwendet werden, indem du sie in der Hotbar auswählst und danach auf eine Pflanze klickst.
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+Wähle eine Flasche in der Hotbar aus und klicke auf Meerwasser innerhalb der Welt, um sie mit Salzwasser zu füllen.
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+In einem Brunnen oder Wasserkollektor platzieren, um sauberes Wasser zu erhalten.
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+Brennstoffzellen werden zum Antrieb verschiedener Fahrzeuge benutzt.
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+Implantate können nur in der Krankenstation installiert werden.
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+Dieser Gegenstand bezieht Strom aus den ausgerüsteten Powerbanks.
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+Diese Waffe lässt sich nur an einer Fahrzeug-Außenlaststation ([b]{0}[/b]) installieren und benutzen.
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+Schneiden
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 Entschlüsseln
@@ -160,23 +229,41 @@ Gewöhnliche bidirektionale Powerbank. Speichert Energie für die bequeme Nutzun
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Gewöhnliche Powerbank
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+Hochentwickelte Drohnen-Fernsteuerung
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+Spezielle Fernbedienung zum Steuern und Befehlen von automatisierten Drohnen.
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+Drohnen-Fernsteuerung
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+Hochentwickelte Version der Industriedrohne, die eine höhere Abbaugeschwindigkeit und -reichweite sowie andere Verbesserungen bietet.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+Hochentwickelte Industriedrohne
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+Standardisierte, industrielle Drohne, die zur schnellen Ressourcengewinnung gedacht ist.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+Industriedrohne
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Hochentwickelte Umgebungsschutzrüstung, die eine ideale Kombination aus Verteidigung und Abwehr bietet.
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T. Anzug
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
-Sturmrüstungshelm
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
 Diese spezielle Sturmrüstung bietet erstaunlich guten Schutz gegen feindlichen Beschuss, ohne dabei Kompromisse einzugehen.
 
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-Sturmrüstungsjacke
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Sturmrüstung
 
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-Sturmrüstungshose
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Sturmrüstungshelm
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 Kein Helmlicht ausgerüstet
@@ -205,26 +292,23 @@ Um das Helmlicht einzuschalten, rüste den Helm bitte aus und drücke die [{0}] 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 Taste nicht festgelegt
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Bedenkt man einmal den Preis, bietet Knochenrüstung ausreichenden Schutz und kann sich schon früh als nützlich erweisen.
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Knochenrüstung
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 Geschlossener Knochenhelm
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 Gehörnter Knochenhelm
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-Bedenkt man einmal den Preis, bietet Knochenrüstung ausreichenden Schutz und könnte sich schon früh als nützlich erweisen.
-
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-Knochenjacke
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-Knochenhose
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
 Nicht gerade ein Hingucker, könnte sich aber im Notfall als nützlich erweisen. Bietet besseren Schutz gegen Umwelteinflüsse als vergleichbare Alternativen.
 
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-Geflochtener Brustpanzer
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Geflochtene Rüstung
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Geflochtener Helm
@@ -232,50 +316,38 @@ Geflochtener Helm
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 Behelfsmäßiger Grubenhelm
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-Geflochtene Hose
-
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-Stoffmütze
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-Stoffhose
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
 Bietet keinen wirklichen Schutz. Könnte vielleicht eine Mücke abwehren?
 
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 Stoffshirt
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Stoffmütze
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
 Eine passable Anfängerrüstung, die besonders gut gegen Kälte schützt. Nicht sonderlich teuer und bequem noch dazu!
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
-Pelzjacke
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Pelzmantel
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 Pelzmütze mit Fellschwanz
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 Kosakenmütze
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 Uschanka
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-Pelzhose
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 Luxuriöse, goldene Gewänder. Eines wahren Herrschers würdig.
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-Goldener Brustpanzer
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Goldene Rüstung
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 Goldene Krone
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-Goldene Hose
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Ein speziell entwickelter Anzug, der seinen Träger vor den meisten Umweltgefahren schützt. Aufgrund seiner empfindlichen Beschaffenheit für den Kampf ungeeignet.
@@ -283,29 +355,26 @@ Ein speziell entwickelter Anzug, der seinen Träger vor den meisten Umweltgefahr
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 Schutzanzug
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
-Cowboyhut
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
-Pilotenkappe
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
-Piratenhut
-
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
 Lederrüstung bietet einen guten Rundumschutz und ist ein ideales Stück Ausrüstung für Einsteiger.
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-Lederjacke
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Lederrüstung
 
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-Lederhose
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
+Cowboyhut
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
+Pilotenkappe
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
+Piratenhut
+
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
 Metallrüstung bietet hervorragenden Schutz vor körperlichen Angriffen, schützt jedoch kaum vor Umweltgefahren.
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-Metallbrustpanzer
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Metallrüstung
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Geschlossener Metallhelm
@@ -313,20 +382,14 @@ Geschlossener Metallhelm
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 Totenkopfhelm aus Metall
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-Metallbeinschienen
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Die hochentwickelten Materialien, die bei der Herstellung dieser Rüstung benutzt wurden, bieten idealen Schutz gegen Handfeuer- und andere herkömmliche Waffen.
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Militärrüstung
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Militärhelm
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-Die hochentwickelten Materialien, die bei der Herstellung dieser Rüstung benutzt wurden, bieten idealen Schutz gegen Handfeuer- und andere herkömmliche Waffen.
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-Militärjacke
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-Militärhose
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Ein bequemer Helm, der mit einer tragbaren Lichtquelle ausgestattet ist, die die Hände freihält. Benötigt Einwegbatterien.
@@ -340,56 +403,56 @@ Leichter taktischer Helm, der mit einer speziellen Nachtsichtbrille ausgestattet
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 Nachtsicht
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+Verbesserte Version des taktischen Nachtsichthelms, der eine perfekte Sicht im Dunkeln ermöglicht. Benötigt Einwegbatterien.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+Erweiterte Nachtsicht
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+Standardmäßige Atemschutzmaske, die radioaktive Partikel und schädliche Gase aus der Luft filtert. Bietet keinerlei anderen Schutz.
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+Atemschutzmaske
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 Sicherheitshelme schützen den Kopf vor Stößen, Geröll, Stromschlägen und anderen grundlegenden Gefahren.
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 Sicherheitshelm
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-Standardmäßige Atemschutzmaske, die radioaktive Partikel und schädliche Gase aus der Luft filtert. Bietet keinerlei anderen Schutz.
-
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-Atemschutzmaske
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
 Experimentelle Rüstung, die ein in dünne Metallplatten eingebettetes Pragmiumgitter als strukturelle Basis benutzt. Sehr leicht und langlebig.
 
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 Pragmiumrüstung
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
 Dick gepolsterter Stoff, der einen überraschend hohen Grad an Schutz vor allen gängigen Schadensarten und Umwelteinflüssen bietet.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-Steppmantel
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Gesteppte Rüstung
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 Gesteppter Hut
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-Gesteppter Helm
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+Gesteppter Polsterhelm
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-Gesteppte Hose
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
 Die ultimative Verteidigung. Diese Kampfrüstung schützt gegen alles, was sich dir in den Weg stellt, schränkt dabei jedoch deine Beweglichkeit ein.
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 Superschwere Rüstung
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
 Not macht erfinderisch. Nicht sonderlich bequem, bietet jedoch schon früh passablen Schutz.
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-Hölzerne Brustplatte
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Holzrüstung
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 Hölzerner Helm
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-Hölzerne Hose
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 Ein spezieller Sprengsatz, der dazu gedacht ist, eine große Menge an Mineralien auf einmal freizulegen. Muss neben einem Mineralvorkommen platziert werden.
@@ -414,6 +477,78 @@ Eine spezielle Bombe, die sich die einzigartigen Eigenschaften von Pragmium zunu
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 Resonanzbombe
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+Fetzenköder bestehen aus den Stücken kleinerer Fische und eignen sich ideal zum Fangen großer Raubfische.
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+Fetzenköder
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+Günstige und einfache Köder, ideal zum Fang kleiner Süßwasserfische.
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+Insektenköder
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+Boilies bestehen aus einer speziellen Ködermischung, die viele verschiedene Zutaten enthält und so für die meisten Fischarten geeignet ist.
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+Boilie-Köder
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+Diese Angelrute eignet sich gut zum Fischfang, ganz gleich in welchem Gewässer. Benötigt einen Köder.
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+Angelrute
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+Frisch gefangener Fisch muss zunächst gesäubert werden, bevor man ihn zum Kochen verwenden kann.
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+Barsch
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+Brasse
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+Karpfen
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+Wels
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+Döbel
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+Grunzer
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+Makrele
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+Goldmakrele
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+Pollack
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+Kugelfisch
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+Hecht
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+Stachelmakrele
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+Lachs
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+Sardine
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+Forelle
 
 Scripts/Items/Food/ItemBanana@Description:
 Jeder Affe kann nach einer Banane greifen, aber nur Menschen greifen nach den Sternen.
@@ -643,6 +778,27 @@ Schmackhaft, ganz gleich ob gebraten oder gekocht. Sollten jedoch nicht roh verz
 Scripts/Items/Food/ItemEggsRaw@Name:
 Tiereier
 
+Scripts/Items/Food/ItemFishDried@Description:
+Getrockneter und gesalzener Fisch, passt gut zu Bier. Lange haltbar, ohne zu verderben.
+
+Scripts/Items/Food/ItemFishDried@Name:
+Trockenfisch
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+Hochwertiges Fischfilet, eignet sich gut als Kochzutat.
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+Rotes Fischfilet
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+Weißes Fischfilet
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+Sehr zartes und saftiges, im Ofen gebackenes Fischfilet.
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+Bratfisch
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 In gekochter Form ist dieses Fleisch etwas weniger eklig ... Stell dich jedoch darauf ein, dich eventuell übergeben zu müssen, wenn du es tatsächlich zu dir nehmen möchtest.
 
@@ -751,6 +907,12 @@ Eine süßsaure Tropenfrucht, die roh verzehrt oder als Zutat in diversen Gerich
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+Der Heilige Krieg dauert noch bis zum heutigen Tag an ...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+Pizza Hawaii
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 Zum sofortigen Verzehr oder als Teil einer komplexeren Mahlzeit.
 
@@ -775,6 +937,12 @@ Gemischter Gemüsesalat. Sehr gesund und erstaunlich sättigend!
 Scripts/Items/Food/ItemSaladVegetable@Name:
 Gemüsesalat
 
+Scripts/Items/Food/ItemSalami@Description:
+Geräucherte Wurst aus speziell zubereitetem Fleisch und diversen Gewürzen.
+
+Scripts/Items/Food/ItemSalami@Name:
+Salami
+
 Scripts/Items/Food/ItemSandwich@Description:
 Die Mischung aus weichem Brot, saftigem Fleisch und Gemüse ist ein echter Klassiker!
 
@@ -793,6 +961,18 @@ Süß und weiß. Findet in einer Vielzahl von Lebensmitteln Anwendung. Kann roh 
 Scripts/Items/Food/ItemSugar@Name:
 Zucker
 
+Scripts/Items/Food/ItemSushi@Description:
+Mit rohem Fisch und Gewürzen garnierter Reis. Einfach, aber unvergesslich im Geschmack.
+
+Scripts/Items/Food/ItemSushi@Name:
+Sushi
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+Ein mit Fleisch, Spezialsoße und ein wenig Gemüse gefüllter knuspriger Tortilla.
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+Taco con Carne
+
 Scripts/Items/Food/ItemTequila@Description:
 Guter Schnaps, der aus Wüstenpflanzen destilliert wird.
 
@@ -810,6 +990,12 @@ Wusstest du, dass Tomaten eigentlich Früchte und kein Gemüse sind?
 
 Scripts/Items/Food/ItemTomato@Name:
 Tomate
+
+Scripts/Items/Food/ItemUkha@Description:
+Klare Suppe mit Fisch und Gemüse, traditionell zubereitet.
+
+Scripts/Items/Food/ItemUkha@Name:
+Ucha
 
 Scripts/Items/Food/ItemVodka@Description:
 Der feurige Trank der Götter. Missbrauch zieht Konsequenzen nach sich, also konsumiere nicht zu viel davon. Zudem entzieht er dir Wasser. Und nein, gegen Strahlung ist er auch keine große Hilfe.
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 Leere Dosen
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-Leerer Metallkanister. Dient zur Aufbewahrung leichtflüchtiger Flüssigkeiten.
+Kann zur Aufbewahrung flüchtiger Flüssigkeiten verwendet werden.
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 Leerer Kanister
@@ -1091,6 +1277,24 @@ Speziell angemischtes Cellulosenitratgranulat für Hochleistungsfeuerwaffen.
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 Schießpulvermischung
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+Eine leere Brennstoffzelle, die verschiedene Fahrzeuge antreibt. Muss zunächst aufgefüllt werden.
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+Leere Brennstoffzelle
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+Eine mit herkömmlichen Flüssigkraftstoff gefüllte Brennstoffzelle. Günstig, jedoch nicht sehr ergiebig.
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+Benzinbrennstoffzelle
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+Eine mit flüssigem Pragmium gefüllte Brennstoffzelle. Extrem ergiebig.
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+Pragmiumbrennstoffzelle
+
 Scripts/Items/Generic/ItemFur@Description:
 Tierfell. Könnte als Basis für warme Winterkleidung dienen.
 
@@ -1192,12 +1396,6 @@ Qualitativ hochwertiger Stahl mit hohem Kohlenstoffgehalt.
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Stahlbarren
-
-Scripts/Items/Generic/ItemLeaf@Description:
-Ein Blatt ... Stammt wohl von einem Baum.
-
-Scripts/Items/Generic/ItemLeaf@Name:
-Blatt
 
 Scripts/Items/Generic/ItemLeather@Description:
 Tierleder. Könnte bei der Herstellung von Lederrüstung nützlich sein.
@@ -1565,6 +1763,12 @@ Dieses spezielle Nanofasermaterial kann in die untere Hautschicht implantiert we
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Nanofaser-Hautimplantat
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+Skelettverstärkung durch künstliche (Schädel-)Knochen. Verhindert, dass der Benutzer benommen wird oder Knochenbrüche erleidet.
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+Verstärktes Endoskelett-Implantat
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 Keine unkontrollierten Mutationen im Körper vorhanden.
 
@@ -1714,6 +1918,20 @@ Dieser einmal verwendbare Neurale Verstärker enthält vorprogrammierte Nanomasc
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 Neuraler Verstärker
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`Bitte beachte: Dieser Gegenstand kann nicht oft benutzt werden.
+[br]Wenn du ihn jetzt benutzt, kannst du ihn erst nach {0} wieder benutzen.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`Du hast diesen Gegenstand erst kürzlich benutzt.
+[br]Bitte warte {0}, bis du diesen Gegenstand erneut benutzen kannst.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+Löscht das gesamte bestehende Wissen aller Technologien und erstattet alle bereits investierten Lernpunkte, sodass diese neu verteilt werden können. Kann nicht oft benutzt werden.
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+Neuraler Rekombinator
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 Schmerzmittel können verwendet werden, um Schmerzen vollständig zu lindern und ihr Auftreten für die Dauer ihrer Wirkung zu verhindern.
@@ -1940,6 +2158,12 @@ Spitzhacke aus Stein, die zum Abbauen von Bodenschätzen verwendet werden kann.
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Spitzhacke aus Stein
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+Dieser Sensor ermöglicht es, nach großen Pragmiumkristallen zu suchen, indem ihre einzigartigen psionischen Muster auch aus großer Entfernung geortet werden.
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+Pragmiumsensor
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Der Werkzeugkoffer wird zum Bauen oder Reparieren deiner Gebäudekonstruktionen benötigt. Stelle sicher, dass du ihn ausgerüstet und ausgewählt hast.
 
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 Handfeuerwaffe
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-Die Laserpistole sendet kurze, hochenergetische und größtenteils im Infrarotspektrum erfolgende Lichtimpulse, die ihr Ziel verbrennen.
+Die Laserpistole sendet schnelle und hochenergetische Lichtimpulse aus, die ihr Ziel verbrennen.
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 Laserpistole
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-Das Lasergewehr sendet kurze, hochenergetische und größtenteils im Infrarotspektrum erfolgende Lichtimpulse, die ihr Ziel verbrennen. Bietet eine sehr viel höhere Feuerrate als die Laserpistole, verbraucht dabei jedoch mehr Energie.
+Das Lasergewehr sendet starke, hochenergetische und größtenteils im Infrarotspektrum erfolgende Lichtimpulse aus, die ihr Ziel verbrennen. Bietet eine sehr viel höhere Reichweite als die Laserpistole.
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 Lasergewehr
@@ -2173,4 +2397,16 @@ Leichte Autokanone entwickelt für montierte Außenlaststationen auf mechanisier
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 Leichte Autokanone
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+Spezielle schwere Artilleriekanone, die hochexplosive Geschosse verwendet, welche ideal für schwergepanzerte Ziele geeignet sind.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+Artilleriekanone
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+Schwere Kanone, die kohärente Ladungen beschleunigter Teilchen abfeuert, um das Ziel zu beschädigen.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+Energiekanone
 

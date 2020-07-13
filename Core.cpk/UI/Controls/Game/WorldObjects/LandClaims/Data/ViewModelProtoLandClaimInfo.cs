@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction.Data;
 
@@ -19,8 +20,10 @@
             => this.protoObjectLandClaim.LandClaimSize;
 
         public string CurrentStructureLandClaimDestructionTimeout
-            => ClientTimeFormatHelper.FormatTimeDuration(this.protoObjectLandClaim.DestructionTimeout,
-                                                         trimRemainder: true);
+            => PveSystem.SharedIsPve(false)
+                   ? null
+                   : ClientTimeFormatHelper.FormatTimeDuration(this.protoObjectLandClaim.DestructionTimeout,
+                                                               trimRemainder: true);
 
         public int CurrentStructureLevel
         {

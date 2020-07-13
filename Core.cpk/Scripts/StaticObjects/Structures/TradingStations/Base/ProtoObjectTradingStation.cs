@@ -47,6 +47,8 @@
         public bool IsAutoEnterPrivateScopeOnInteraction =>
             false; // we manually add player to the private scope if she is owner
 
+        public override bool IsRelocatable => true;
+
         public abstract byte LotsCount { get; }
 
         public abstract byte StockItemsContainerSlotsCount { get; }

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantNanoFiberSkin : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantNanoFiberSkin : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

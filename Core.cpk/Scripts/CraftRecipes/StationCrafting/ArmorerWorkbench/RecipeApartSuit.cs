@@ -23,7 +23,7 @@
             inputItems.Add<ItemAramidFiber>(count: 40);
             inputItems.Add<ItemTarpaulin>(count: 50);
             inputItems.Add<ItemBallisticPlate>(count: 2);
-            inputItems.Add<ItemComponentsElectronic>(count: 10);
+            inputItems.Add<ItemComponentsElectronic>(count: 20);
 
             outputItems.Add<ItemApartSuit>();
         }

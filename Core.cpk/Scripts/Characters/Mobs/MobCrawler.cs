@@ -42,8 +42,9 @@
             skeleton = GetProtoEntity<SkeletonCrawler>();
 
             // primary loot
-            lootDroplist.Add(nestedList: new DropItemsList(outputs: 2)
-                                         .Add<ItemInsectMeatRaw>(count: 1)
+            lootDroplist
+                .Add<ItemInsectMeatRaw>(count: 1)
+                .Add(nestedList: new DropItemsList(outputs: 1)
                                          .Add<ItemToxin>(count: 1)
                                          .Add<ItemBones>(count: 1)
                                          .Add<ItemSlime>(count: 1));

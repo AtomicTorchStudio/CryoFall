@@ -32,6 +32,8 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        private string cachedHints;
+
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         protected ProtoQuest()
         {
@@ -65,7 +67,7 @@
 
         public abstract string Description { get; }
 
-        public abstract string Hints { get; }
+        public virtual string Hints => null;
 
         public ITextureResource Icon { get; }
 
@@ -79,12 +81,20 @@
 
         public IReadOnlyList<IPlayerTask> Tasks { get; private set; }
 
+        string IProtoQuest.Hints => this.cachedHints;
+
         protected sealed override void PrepareProto()
         {
             var tasks = new TasksList();
             var prerequisites = new QuestsList();
 
-            this.PrepareQuest(prerequisites, tasks);
+            var tempHints = HintsList.GetTempList();
+            if (!string.IsNullOrEmpty(this.Hints))
+            {
+                tempHints.Add(this.Hints);
+            }
+
+            this.PrepareQuest(prerequisites, tasks, tempHints);
 
             Api.Assert(tasks.Count >= 1,           "At least one task required for a quest");
             Api.Assert(tasks.Count <= 256,         "Max 256 tasks per quest");
@@ -97,9 +107,12 @@
 
             this.Tasks = tasks;
             this.Prerequisites = prerequisites;
+
+            this.cachedHints = tempHints.ToString();
+            tempHints.Clear();
         }
 
-        protected abstract void PrepareQuest(QuestsList prerequisites, TasksList tasks);
+        protected abstract void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints);
 
         protected class QuestsList : List<IProtoQuest>, IReadOnlyQuestsList
         {

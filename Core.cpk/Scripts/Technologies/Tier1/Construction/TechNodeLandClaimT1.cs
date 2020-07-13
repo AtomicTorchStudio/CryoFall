@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
 
-    public class TechNodeLandClaimT1 : TechNode<TechGroupConstruction>
+    public class TechNodeLandClaimT1 : TechNode<TechGroupConstructionT1>
     {
         protected override void PrepareTechNode(Config config)
         {

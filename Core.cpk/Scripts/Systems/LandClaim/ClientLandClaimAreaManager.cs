@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public static class ClientLandClaimAreaManager
     {
@@ -45,11 +46,12 @@
                               .HandleAll(
                                   () =>
                                   {
-                                      var isDisplayed = ClientInputManager.IsButtonHeld(GameButton.DisplayLandClaim)
-                                                        || Api.Client.Input.IsKeyHeld(InputKey.Alt,
-                                                                                      evenIfHandled: true)
-                                                        || ConstructionPlacementSystem
-                                                            .IsObjectPlacementComponentEnabled;
+                                      var isDisplayed =
+                                          ClientInputManager.IsButtonHeld(GameButton.DisplayLandClaim)
+                                          || Api.Client.Input.IsKeyHeld(InputKey.Alt,
+                                                                        evenIfHandled: true)
+                                          || ConstructionPlacementSystem.IsInObjectPlacementMode
+                                          || ConstructionRelocationSystem.IsInObjectPlacementMode;
 
                                       if (isDisplayed)
                                       {
@@ -153,6 +155,19 @@
 
             RemoveArea(area);
             AddArea(area);
+        }
+
+        public static void AddBlueprintRenderer(Vector2Ushort tilePosition, 
+                                                IProtoObjectLandClaim protoObjectLandClaim)
+        {
+            RendererManagerGraceAreas.RegisterBlueprint(tilePosition, protoObjectLandClaim);
+            RendererManagerOwnedByPlayer.RegisterBlueprint(tilePosition, protoObjectLandClaim);
+        }
+
+        public static void RemoveBlueprintRenderer()
+        {
+            RendererManagerGraceAreas.UnregisterBlueprint();
+            RendererManagerOwnedByPlayer.UnregisterBlueprint();
         }
     }
 }

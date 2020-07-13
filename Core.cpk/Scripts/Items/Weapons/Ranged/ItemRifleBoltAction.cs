@@ -27,7 +27,7 @@
 
         public override string Name => "Bolt-action rifle";
 
-        public override double RangeMultipier => 1.3; // significantly higher range
+        public override double RangeMultiplier => 1.3; // significantly higher range
 
         public override double SpecialEffectProbability => 0.2;
 

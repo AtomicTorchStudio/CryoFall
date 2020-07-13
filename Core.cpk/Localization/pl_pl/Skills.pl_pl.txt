@@ -25,6 +25,15 @@ Lepsze sposoby uprawy roli pozwalają na zwiększenie wydajności upraw, tempa w
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Rolnictwo
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Szansa na ocalenie przynęty
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Twoja wiedza o różnych gatunkach ryb i ich zwyczajach przekłada się na lepsze wyniki podczas wędkowania.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Wędkarstwo
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Szansa na dodatkowe zbiory
 
@@ -100,23 +109,29 @@ Maksymalizuje szanse na przetrwanie, zwiększając liczbę punktów zdrowia, ży
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Przetrwanie
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Szansa na zdobycie sadzonek
+
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Szansa na dodatkowe sadzonki
+
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Poznanie technik drwali przyspiesza ścinanie drzew.
+
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Drwalstwo
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
 Szansa na dodatkowe zbiory
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Szansa na znalezienie kamieni szlachetnych podczas wydobycia
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-Dobra znajomość geologii i złóż minerałów zwiększa szybkość wydobycia, ilość wydobytych materiałów i szanse na znalezienie rzadkich zasobów. Działa tylko podczas używania kilofu.
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+Dobra znajomość geologii i złóż minerałów zwiększa szybkość wydobycia, ilość wydobywanych materiałów i szanse na znalezienie rzadkich zasobów. Działa tylko podczas używania kilofu.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Wydobycie
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-Zapoznanie się z technikami drwali przyspiesza ścinanie drzew. Działa tylko podczas używania siekiery.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Drwalnictwo
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Poszukiwanie
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Rozwinięte umiejętności budowlane pozwalają szybciej stawiać budowle. Działa w przypadku wszystkich zadań (budowanie, naprawa) wykonywanych z użyciem skrzynki z narzędziami.
@@ -130,9 +145,18 @@ Tworzenie skomplikowanych przedmiotów i rozumienie ich działania pozwala zrozu
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Wytwarzanie
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Szansa na pełną naprawę przedmiotu
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Umożliwia naprawianie i konserwowanie ekwipunku oraz sprzętów przy stole majsterkowicza.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Konserwacja
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+Umiejętność sprawnego pilotowania różnych pojazdów i używania ich wyposażenia. Ma zastosowanie do wszystkich typów pojazdów.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Pojazdy
 

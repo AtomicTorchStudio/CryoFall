@@ -11,6 +11,10 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class SharedCharacterFaceStylesProvider
     {
+        public const string HairColorRootFolderPath = ContentPaths.Textures + "Characters/HairColors/";
+
+        public const string SkinTonesRootFolderPath = ContentPaths.Textures + "Characters/SkinTones/";
+
         private const string FacesRootFolderPath = ContentPaths.Textures + "Characters/Faces/";
 
         private const string HairRootFolderPath = ContentPaths.Textures + "Characters/Hair/";
@@ -24,7 +28,11 @@
 
         private IReadOnlyDictionary<string, FaceFolder> allFaceFolders;
 
+        private IList<string> allHairColorFiles;
+
         private IList<string> allHairFolders;
+
+        private IList<string> allSkinToneFiles;
 
         private bool isInitialized;
 
@@ -50,6 +58,11 @@
             return provider;
         }
 
+        public static string GetSkinToneFilePath(string skinToneId)
+        {
+            return SkinTonesRootFolderPath + $"{skinToneId}" + ".png";
+        }
+
         public CharacterHumanFaceStyle GenerateRandomFace()
         {
             this.EnsureInitialized();
@@ -57,7 +70,15 @@
             var topId = face.TopIds.TakeByRandom();
             var bottomId = face.BottomIds.TakeByRandom();
             var hairStyle = this.allHairFolders.TakeByRandom();
-            return new CharacterHumanFaceStyle(face.Id, topId, bottomId, hairStyle);
+            var skinToneId = this.allSkinToneFiles.TakeByRandom();
+            var hairColorId = this.allHairColorFiles.TakeByRandom();
+
+            return new CharacterHumanFaceStyle(face.Id,
+                                               topId,
+                                               bottomId,
+                                               hairStyle,
+                                               skinToneId,
+                                               hairColorId);
         }
 
         public FaceFolder GetFace(string faceId)
@@ -78,6 +99,24 @@
             return (ushort)this.allFaceFolders.Count;
         }
 
+        public string GetHairColorByIndex(ushort skinToneId)
+        {
+            this.EnsureInitialized();
+            return this.allHairColorFiles[skinToneId];
+        }
+
+        public ushort GetHairColorCount()
+        {
+            this.EnsureInitialized();
+            return (ushort)this.allHairColorFiles.Count;
+        }
+
+        public ushort GetHairColorIndex(string skinToneName)
+        {
+            this.EnsureInitialized();
+            return (ushort)this.allHairColorFiles.IndexOf(skinToneName);
+        }
+
         public ushort GetHairCount()
         {
             this.EnsureInitialized();
@@ -94,6 +133,24 @@
         {
             this.EnsureInitialized();
             return (ushort)this.allHairFolders.IndexOf(hairStyleName);
+        }
+
+        public string GetSkinToneByIndex(ushort skinToneId)
+        {
+            this.EnsureInitialized();
+            return this.allSkinToneFiles[skinToneId];
+        }
+
+        public ushort GetSkinToneCount()
+        {
+            this.EnsureInitialized();
+            return (ushort)this.allSkinToneFiles.Count;
+        }
+
+        public ushort GetSkinToneIndex(string skinToneName)
+        {
+            this.EnsureInitialized();
+            return (ushort)this.allSkinToneFiles.IndexOf(skinToneName);
         }
 
         private void EnsureInitialized()
@@ -113,6 +170,24 @@
             if (allFacesFolders.Count == 0)
             {
                 throw new Exception("There must be at least one face variant at " + this.facesFolderPath);
+            }
+
+            {
+                using var tempList = sharedApi.GetFilePathsInFolder(SkinTonesRootFolderPath,
+                                                                    includeSubfolders: false,
+                                                                    withoutExtensions: true,
+                                                                    stripFolderPathFromFilePaths: true);
+                this.allSkinToneFiles = tempList.AsList().ToList();
+                this.allSkinToneFiles.Insert(0, null);
+            }
+
+            {
+                using var tempList = sharedApi.GetFilePathsInFolder(HairColorRootFolderPath,
+                                                                    includeSubfolders: false,
+                                                                    withoutExtensions: true,
+                                                                    stripFolderPathFromFilePaths: true);
+                this.allHairColorFiles = tempList.AsList().ToList();
+                this.allHairColorFiles.Insert(0, null);
             }
 
             var allFacePresets = new Dictionary<string, FaceFolder>();

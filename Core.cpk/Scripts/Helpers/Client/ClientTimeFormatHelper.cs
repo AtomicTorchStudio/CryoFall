@@ -7,6 +7,9 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public static class ClientTimeFormatHelper
     {
+        // Could be translated as "less than one minute" but please note that the game is displaying "2m" before that and then this "<1m" so it makes sense to keep it short.
+        public const string LessThanOneMinute = "<1m";
+
         // suffix for days
         public const string SuffixDays = "d";
 
@@ -24,7 +27,10 @@
         /// </summary>
         /// <param name="timeRemainingSeconds"></param>
         /// <returns>Formatted time.</returns>
-        public static string FormatTimeDuration(double timeRemainingSeconds, bool roundSeconds = true)
+        public static string FormatTimeDuration(
+            double timeRemainingSeconds,
+            bool roundSeconds = true,
+            bool appendSeconds = true)
         {
             if (timeRemainingSeconds == double.MaxValue)
             {
@@ -32,13 +38,15 @@
             }
 
             return FormatTimeDuration(time: TimeSpan.FromSeconds(timeRemainingSeconds),
-                                      roundSeconds: roundSeconds);
+                                      roundSeconds: roundSeconds,
+                                      appendSeconds: appendSeconds);
         }
 
         public static string FormatTimeDuration(
             TimeSpan time,
             bool trimRemainder = false,
-            bool roundSeconds = true)
+            bool roundSeconds = true,
+            bool appendSeconds = true)
         {
             var sb = new StringBuilder();
             var hasPreviousValue = false;
@@ -73,9 +81,16 @@
 
             TryAppend(time.Minutes, SuffixMinutes);
 
-            if (trimRemainder
-                && time.Seconds == 0)
+            if (!appendSeconds
+                || (trimRemainder
+                    && time.Seconds == 0))
             {
+                if (!appendSeconds
+                    && sb.Length == 0)
+                {
+                    return LessThanOneMinute;
+                }
+
                 return sb.ToString();
             }
 

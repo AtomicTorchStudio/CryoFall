@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
 
@@ -13,13 +14,17 @@
 
         public DropItemContext(
             ICharacter character,
-            IStaticWorldObject staticWorldObject,
-            IProtoItemWeapon byWeaponProto = null)
+            IStaticWorldObject staticWorldObject = null,
+            IProtoItemWeapon byWeaponProto = null,
+            IProtoExplosive byExplosiveProto = null)
         {
             this.ByWeaponProto = byWeaponProto;
+            this.ByExplosiveProto = byExplosiveProto;
             this.character = character;
             this.staticWorldObject = staticWorldObject;
         }
+
+        public IProtoExplosive ByExplosiveProto { get; }
 
         public IProtoItemWeapon ByWeaponProto { get; }
 
@@ -29,6 +34,8 @@
                    "Spawning in non-character context - there is no Character property provided to the context");
 
         public bool HasCharacter => this.character != null;
+
+        public bool HasStaticWorldObject => this.staticWorldObject != null;
 
         public IStaticWorldObject StaticWorldObject
             => this.staticWorldObject

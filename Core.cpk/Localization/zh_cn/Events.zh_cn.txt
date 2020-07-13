@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `太空残骸已落在高亮地区。
 [br]快去收集罕见的废料!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0}已被击败，击杀者：
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 进度：{0}/{1}
 

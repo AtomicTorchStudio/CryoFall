@@ -18,8 +18,6 @@
 
         public override ushort EnergyUsePerSecondMoving => 50;
 
-        public override double EngineSoundVolume => 0.4;
-
         public override Color LightColor => LightColors.Flashlight.WithAlpha(0x88);
 
         public override Size2F LightLogicalSize => 10;
@@ -47,7 +45,9 @@
         public override double VehicleWorldHeight => 0.5;
 
         protected override SoundResource EngineSoundResource { get; }
-            = new SoundResource("Objects/Vehicles/Hoverboard/Process1");
+            = new SoundResource("Objects/Vehicles/Hoverboard/Engine1");
+
+        protected override double EngineSoundVolume => 0.4;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
@@ -70,8 +70,7 @@
                 .Add<ItemComponentsElectronic>(10);
 
             repairStageRequiredItems
-                .Add<ItemIngotSteel>(5)
-                .Add<ItemComponentsElectronic>(1);
+                .Add<ItemIngotSteel>(5);
 
             repairStagesCount = 5;
         }

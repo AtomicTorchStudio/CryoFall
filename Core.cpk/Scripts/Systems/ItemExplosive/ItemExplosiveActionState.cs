@@ -8,7 +8,7 @@
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ItemExplosiveActionState
-        : ActionSystemState<
+        : BaseSystemActionState<
             ItemExplosiveSystem,
             ItemExplosiveRequest,
             ItemExplosiveActionState,

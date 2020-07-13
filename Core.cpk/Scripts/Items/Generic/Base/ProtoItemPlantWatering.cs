@@ -122,9 +122,9 @@
             // apply watering
             ServerItemUseObserver.NotifyItemUsed(character, item);
             Server.Items.SetCount(item, item.Count - 1);
-            protoPlant.ServerOnWatered(character,
-                                       objectPlant,
-                                       wateringDuration: this.WateringDuration);
+            protoPlant.ServerOnWatered(objectPlant,
+                                       wateringDuration: this.WateringDuration,
+                                       byCharacter: character);
 
             // notify client
             Logger.Important($"Watering applied: {this} to {objectPlant}");

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeToxinFromSlime : TechNode<TechGroupMedicine>
+    public class TechNodeToxinFromSlime : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {

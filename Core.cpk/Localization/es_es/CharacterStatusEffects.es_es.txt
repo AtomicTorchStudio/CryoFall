@@ -172,6 +172,9 @@ Has usado demasiados medicamentos en un período de tiempo muy breve. No abuses 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Abuso de medicamentos
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+Espera hasta que se termine de aplicar el Peredozin.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 Estás bajo los efectos de un medicamento hemostático, lo cual reduce la gravedad de todas las hemorragias que te produzcan.
 

@@ -18,7 +18,7 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
+            inputItems.Add<ItemComponentsIndustrialChemicals>(count: 3);
 
             outputItems.Add<ItemSolvent>(count: 25);
         }

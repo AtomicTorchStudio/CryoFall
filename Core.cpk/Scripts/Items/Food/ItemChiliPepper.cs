@@ -21,17 +21,15 @@
 
         public override ushort OrganicValue => 3;
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectPain>(intensity: 0.30); // add pain effect
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodFruit;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            // 100% chance to get pain effect
-            data.Character.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.30); // 30 seconds
-
-            base.ServerOnEat(data);
         }
 
         protected override bool SharedCanEat(ItemEatData data)

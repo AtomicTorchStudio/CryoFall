@@ -21,11 +21,10 @@
 
         public override float StaminaRestore => 25;
 
-        protected override void ServerOnEat(ItemEatData data)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.2);
-
-            base.ServerOnEat(data);
+            effects
+                .WillAddEffect<StatusEffectSavoryFood>(intensity: 0.20);
         }
     }
 }

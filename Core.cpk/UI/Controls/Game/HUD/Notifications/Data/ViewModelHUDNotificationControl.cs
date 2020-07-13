@@ -8,11 +8,11 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public class ViewModelHUDNotificationControl : BaseViewModel
+    public class ViewModelHudNotificationControl : BaseViewModel
     {
         private float requiredHeight;
 
-        public ViewModelHUDNotificationControl(
+        public ViewModelHudNotificationControl(
             string title,
             string message,
             Brush brushBackground,
@@ -43,7 +43,7 @@
         }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        public ViewModelHUDNotificationControl()
+        public ViewModelHudNotificationControl()
             : this(
                 title: "Test title",
                 message: "Test notification message.",
@@ -86,9 +86,9 @@
             }
         }
 
-        public string Title { get; }
+        public string Title { get; set; }
 
-        public bool IsSame(ViewModelHUDNotificationControl other)
+        public bool IsSame(ViewModelHudNotificationControl other)
         {
             return string.Equals(this.Title,      other.Title,   StringComparison.Ordinal)
                    && string.Equals(this.Message, other.Message, StringComparison.Ordinal)

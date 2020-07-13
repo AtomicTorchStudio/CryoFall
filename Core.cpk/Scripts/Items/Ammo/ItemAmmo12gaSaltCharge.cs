@@ -11,6 +11,8 @@
         public override string Description =>
             "These shells are filled with coarse salt and are primarily designed to scare intruders and thieves, rather than for actual combat. They do very little damage, but if you get hit...the pain will be unthinkable.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override bool IsSuppressWeaponSpecialEffect => true;
 
         public override string Name => "12-gauge salt charge";

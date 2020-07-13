@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
@@ -24,7 +25,7 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             // minerals without stone (as it has a separate requirement)
             var listMinerals = Api.FindProtoEntities<IProtoObjectMineral>();

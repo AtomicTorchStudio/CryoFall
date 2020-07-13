@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeFlintlockPistol : TechNode<TechGroupOffense>
+    public class TechNodeFlintlockPistol : TechNode<TechGroupOffenseT1>
     {
         protected override void PrepareTechNode(Config config)
         {

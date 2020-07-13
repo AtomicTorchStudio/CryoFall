@@ -32,7 +32,7 @@
             // droplist for stage 1
             config.Stage1
                   .Add<ItemSand>(count: 5,       countRandom: 0)
-                  .Add<ItemSand>(countRandom: 1, condition: SkillMining.ConditionAdditionalYield);
+                  .Add<ItemSand>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield);
 
             // droplist for stages 2 and 3 - reuse droplist from stage 1
             config.Stage2.Add(config.Stage1);
@@ -40,13 +40,13 @@
 
             // droplist for stage 4
             config.Stage4.Add<ItemSand>(count: 10, countRandom: 0)
-                  .Add<ItemSand>(countRandom: 5, condition: SkillMining.ConditionAdditionalYield)
+                  .Add<ItemSand>(countRandom: 5, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget
                       >(count: 1, countRandom: 3, probability: 1 / 100.0); // lower chance, since it's easy to mine
 
             // drop gemstones
             config.Stage4
-                  .Add(condition: SkillMining.ConditionDropGemstones,
+                  .Add(condition: SkillProspecting.ConditionDropGemstones,
                        probability: 1 / 1000.0,
                        nestedList: new DropItemsList(outputs: 1)
                                    .Add<ItemGemDiamond>()

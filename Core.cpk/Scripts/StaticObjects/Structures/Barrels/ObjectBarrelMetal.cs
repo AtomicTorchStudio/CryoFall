@@ -28,13 +28,13 @@
         {
             category = GetCategory<StructureCategoryStorage>();
 
-            build.StagesCount = 1;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotIron>(count: 30);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

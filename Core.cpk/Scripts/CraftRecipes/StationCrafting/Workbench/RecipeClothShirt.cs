@@ -22,7 +22,7 @@
 
             inputItems.Add<ItemThread>(count: 3);
 
-            outputItems.Add<ItemClothShirt>();
+            outputItems.Add<ItemClothArmor>();
         }
     }
 }

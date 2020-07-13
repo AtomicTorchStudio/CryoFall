@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations;
 
-    public class TechNodeDecorationGoldPileMedium : TechNode<TechGroupJewelry>
+    public class TechNodeDecorationGoldPileMedium : TechNode<TechGroupJewelryT4>
     {
         protected override void PrepareTechNode(Config config)
         {

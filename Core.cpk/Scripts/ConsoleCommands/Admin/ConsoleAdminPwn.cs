@@ -6,10 +6,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
-    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
@@ -59,7 +57,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
             CreateItem(player, GetProtoEntity<ItemBombModern>(),       10);
             CreateItem(player, GetProtoEntity<ItemPlanks>(),           200);
             CreateItem(player, GetProtoEntity<ItemCanisterGasoline>(), 100);
-            CreateItem(player, GetProtoEntity<ItemReactorCorePragmium>(), 1);
+            CreateItem(player, GetProtoEntity<ItemFuelCellPragmium>(), 2);
 
             // Equipment items
             //Server.Items.CreateItem<ItemClothShirt>(container: containerEquipment, slotId: (byte?)EquipmentType.Chest);
@@ -90,7 +88,11 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
                 result.Rollback();
             }
 
-            Server.Items.CreateItem(player, item, count == 0 ? item.MaxItemsPerStack : count);
+            Server.Items.CreateItem(item,
+                                    player,
+                                    count: count == 0
+                                               ? item.MaxItemsPerStack
+                                               : count);
         }
     }
 }

@@ -25,6 +25,15 @@ Daha iyi tarım teknolojileri, tarım etkisini, bitki büyüme hızını, olgunl
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Tarım
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Yemi kurtarma şansı
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Farklı balık türleri ve onların alışkanlıkları hakkındaki bilgilerin balıkçılıkta başarılı olma şansını gösterir.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Balıkçılık
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Ek ürün alma ihtimali
 
@@ -100,23 +109,29 @@ Maksimum canını, yiyeceğini, suyunu ve enerji rezervlerini geliştirerek haya
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Hayatta kalma
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Fidan elde etme şansı
+
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Fazladan fidan şansı
+
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Bu işte daha iyi eğitim alman ve bu işi daha iyi anlaman odun kesme hızını geliştirir.
+
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Kerestecilik
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
 Ek ürün alma ihtimali
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Maden çıkarırken değerli taş bulma ihtimali
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-Maden yataklarını bilmek, kazı hızını, kazancını ve nadir kaynaklar bulma şansını arttırır. Sadece kazma kullanırken geçerlidir.
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+Maden yataklarını bilmek, kazı hızını, kazancını ve nadir kaynaklar bulma şansını arttırır.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Maden çıkarma
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-Daha iyi çalışma ve mesleği anlamak odun kesme hızını arttırır. Sadece balta kullanırken geçerlidir.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Odun kesme
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Maden Arama
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Daha iyi inşa etme yetenekleri, inşaat hızını arttırır. Alet çantasıyla yapılan tüm görevlerde (inşa ve tamir etmek) geçerlidir.
@@ -130,9 +145,18 @@ Daha karmaşık eşyalar üretmek ve yapılarını anlamak, bu dünyanın teknol
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Üretim
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Eşyayı tamamen onarma ihtimali
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Farklı eşyaları ve ekipmanları onarmanı ve bakım yapmanı sağlar. Tamir masasında yapılacak işlerde kullanılır.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Bakım
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+Çeşitli araçları kullanma ve onların ekipmanlarını verimli, doğru kullanma yeteneği. Her araç tipi için geçerlidir.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Araçlar
 

@@ -25,6 +25,15 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 農業
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+餌を節約するチャンス
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+様々な魚種とその習性についての知識は、釣りが成功する能力を表しています。
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+釣り
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 追加作物獲得チャンス
 
@@ -100,23 +109,29 @@ Scripts/Skills/Skills/Personal/SkillSurvival@Description:
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 サバイバル
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-追加鉱物獲得チャンス
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+苗木を手に入れるチャンス
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-採掘時宝石獲得チャンス
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+追加の苗木獲得チャンス
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-鉱床に関する知識をつけると、発掘速度、採掘量が向上し、貴重な資源を見つける可能性が高まります。つるはしを使用しているときのみ適用されます。
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+この職業についての知識とトレーニングを積むことにより、伐採速度が向上します。
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-採掘
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+製材
 
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-伐採についてのトレーニングと理解を深めることにより伐採速度が向上します。斧を使用しているときのみ適用されます。
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
+追加の鉱物獲得チャンス
 
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-伐採
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
+採掘時に宝石を獲得するチャンス
+
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+鉱床の知識を深めることで、発掘速度、採掘量が向上し、希少資源の発見のチャンスが高まります。
+
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+探鉱
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 より良い建築技術は建築速度を向上させます。工具箱を使用して実行される全てのタスク（建築、修理）に適用されます。
@@ -130,9 +145,18 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 製作
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+アイテムを完全に修理するチャンス
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 アイテムや設備を修理したりメンテナンスできるうようになります。職人の作業台で行う作業に適用されます。
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 メンテナンス
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+様々な乗り物を操縦し、付属装備を正しく効果的に使用する能力。全ての乗り物に適用されます。
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+乗り物
 

@@ -2,7 +2,7 @@
 {
     public class ItemBoneHelmetClosed : ProtoItemEquipmentHead
     {
-        public override string Description => GetProtoEntity<ItemBoneJacket>().Description;
+        public override string Description => GetProtoEntity<ItemBoneArmor>().Description;
 
         public override uint DurabilityMax => 500;
 
@@ -14,13 +14,13 @@
         {
             defense.Set(
                 impact: 0.45,
-                kinetic: 0.3,
-                heat: 0.2,
-                cold: 0.2,
-                chemical: 0.1,
-                electrical: 0.15,
-                radiation: 0.1,
-                psi: 0);
+                kinetic: 0.30,
+                explosion: 0.25,
+                heat: 0.20,
+                cold: 0.20,
+                chemical: 0.10,
+                radiation: 0.10,
+                psi: 0.0);
         }
     }
 }

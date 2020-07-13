@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotCopper>(count: 3);
             inputItems.Add<ItemPaper>(count: 10);
-            inputItems.Add<ItemBlackpowder>(count: 40);
+            inputItems.Add<ItemBlackpowder>(count: 30);
 
             outputItems.Add<ItemAmmo12gaBuckshot>(count: 10);
         }

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeNitrocellulosePowder : TechNode<TechGroupChemistry>
+    public class TechNodeNitrocellulosePowder : TechNode<TechGroupChemistryT2>
     {
         protected override void PrepareTechNode(Config config)
         {

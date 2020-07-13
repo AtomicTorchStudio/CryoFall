@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.GameEngine.Common.Extensions;
@@ -51,23 +50,21 @@
         {
             get
             {
-                var text = this.protoItem.Name;
+                var text = "\u2022\u00A0"; // bullet point
+                text += this.protoItem.Name.Replace(" ", "\u00A0");
 
                 this.CheckIsTechAvailable(out var techNodeUnlockRequired);
                 if (techNodeUnlockRequired != null)
                 {
-                    var groupName = techNodeUnlockRequired.Group.Name;
+                    var groupName = techNodeUnlockRequired.Group.NameWithTierName;
                     // replace spaces with non-breaking space char
                     groupName = groupName.Replace(" ", "\u00A0");
-
-                    text += this.protoItem.Name == techNodeUnlockRequired.Name
-                                ? $" ({groupName})"
-                                : $" ({techNodeUnlockRequired.Name}/{groupName})";
+                    text += " —\u00A0" + groupName;
                 }
 
                 if (this.hasNextEntry)
                 {
-                    text += ", ";
+                    text += Environment.NewLine;
                 }
 
                 return text;
@@ -83,11 +80,11 @@
             }
 
             var character = ClientCurrentCharacterHelper.Character;
-            if (CreativeModeSystem.SharedIsInCreativeMode(character))
-            {
-                techNodeUnlockRequired = null;
-                return true;
-            }
+            //if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            //{
+            //    techNodeUnlockRequired = null;
+            //    return true;
+            //}
 
             if (this.protoItem is IProtoItemWithReferenceTech protoItemWithDefaultRecipe
                 && protoItemWithDefaultRecipe.ReferenceTech != null)

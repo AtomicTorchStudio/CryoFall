@@ -1,5 +1,5 @@
 ﻿<base:BaseUserControl
-    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications.HUDNotificationControl"
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications.HudNotificationControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +9,7 @@
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance data:ViewModelHUDNotificationControl, d:IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance data:ViewModelHudNotificationControl, d:IsDesignTimeCreatable=True}"
     Focusable="True">
     <base:BaseUserControl.Resources>
 
@@ -24,6 +24,7 @@
             <DoubleAnimation Storyboard.TargetProperty="Height"
                              From="0" 
                              To="{Binding RequiredHeight}"
+                             FillBehavior="Stop"
                              Duration="0:0:0.175" />
         </Storyboard>
 
@@ -40,6 +41,7 @@
             <DoubleAnimation Storyboard.TargetProperty="Height"
                              From="{Binding RequiredHeight}"
                              To="0"
+                             FillBehavior="Stop"
                              Duration="0:0:0.175" />
         </Storyboard>
 

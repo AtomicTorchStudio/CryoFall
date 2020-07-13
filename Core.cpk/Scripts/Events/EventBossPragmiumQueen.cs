@@ -25,12 +25,12 @@
         static EventBossPragmiumQueen()
         {
             ServerEventDelayHours = ServerRates.Get(
-                "BossEventDelayHoursPragmiumQueen",
+                "EventDelay.BossPragmiumQueen",
                 defaultValue: 48.0,
                 @"This hours value determines when the Pragmium Queen boss will start spawning for the first time.                  
                   Please note: for PvP server this value will be substituted by time-gating setting
-                  for T3 specialized tech if it's larger than this value (as there is no viable way
-                  for players to defeat the boss until T3 weapons becomes available).");
+                  for T4 specialized tech if it's larger than this value (as there is no viable way
+                  for players to defeat the boss until T4 weapons becomes available).");
         }
 
         public override ushort AreaRadius => 37;
@@ -67,11 +67,11 @@
                 if (!PveSystem.ServerIsPvE)
                 {
                     // in PvP spawn Pragmium Queen not earlier than
-                    // T3 specialized tech (containing the necessary weapons) becomes available
+                    // T4 specialized tech (containing the necessary weapons) becomes available
                     delayHoursSinceWipe = Math.Max(
                         delayHoursSinceWipe,
                         // convert seconds to hours
-                        TechConstants.PvpTechTimeGameTier3Specialized / 3600);
+                        TechConstants.PvpTechTimeGameTier4Specialized / 3600);
                 }
 
                 if (Server.Game.HoursSinceWorldCreation < delayHoursSinceWipe)
@@ -106,8 +106,10 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
-                             intervalFrom: TimeSpan.FromHours(7),
-                             intervalTo: TimeSpan.FromHours(9)));
+                                 this.ServerGetIntervalForThisEvent(defaultInterval:
+                                                                    (from: TimeSpan.FromHours(7),
+                                                                     to: TimeSpan.FromHours(9)))
+                             ));
 
             spawnPreset.Add(Api.GetProtoEntity<MobPragmiumQueen>());
         }

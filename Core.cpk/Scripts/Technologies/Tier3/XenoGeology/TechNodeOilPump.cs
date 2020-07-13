@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeOilPump : TechNode<TechGroupXenogeology>
+    public class TechNodeOilPump : TechNode<TechGroupXenogeologyT3>
     {
         protected override void PrepareTechNode(Config config)
         {

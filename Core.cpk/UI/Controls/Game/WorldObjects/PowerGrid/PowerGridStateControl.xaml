@@ -36,6 +36,11 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="LineHeight" Value="13" />
         </Style>
+
+        <Style x:Key="TextBlockValue" TargetType="TextBlock"
+               BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
+        </Style>
     </ui:BaseUserControl.Resources>
 
     <Grid>
@@ -78,11 +83,13 @@
             <StackPanel Grid.Row="1"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding NumberLandClaims}" />
+                <TextBlock Text="{Binding NumberLandClaims}"
+                           Style="{StaticResource TextBlockValue}" />
                 <TextBlock Text=" " />
                 <TextBlock
-                    Text="{Binding EfficiencyPercent, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}'}" />
-                <Control Style="{StaticResource ControlInfoPointStyle}"
+                    Text="{Binding EfficiencyPercent, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}'}"
+                    Style="{StaticResource TextBlockValue}" />
+                <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
                          Margin="2,0,0,-2"
                          Width="12"
                          Height="12"
@@ -104,10 +111,13 @@
             <StackPanel Grid.Row="2"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding NumberProducers}" />
-                <TextBlock Text=" " />
+                <TextBlock Text="{Binding NumberProducers}"
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text=" "
+                           Style="{StaticResource TextBlockValue}" />
                 <TextBlock
-                    Text="{Binding NumberProducersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}" />
+                    Text="{Binding NumberProducersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}"
+                    Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
 
@@ -119,10 +129,13 @@
             <StackPanel Grid.Row="3"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding NumberConsumers}" />
-                <TextBlock Text=" " />
+                <TextBlock Text="{Binding NumberConsumers}"
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text=" "
+                           Style="{StaticResource TextBlockValue}" />
                 <TextBlock
-                    Text="{Binding NumberConsumersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}" />
+                    Text="{Binding NumberConsumersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}"
+                    Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
 
@@ -133,50 +146,8 @@
 
             <TextBlock Grid.Row="4"
                        Grid.Column="2"
-                       Text="{Binding NumberStorages}" />
-
-
-            <!-- Text: Grid status: -->
-            <TextBlock Grid.Row="5"
-                       Grid.Column="0"
-                       Text="{x:Static loc:CoreStrings.PowerGridState_GridStatus}" />
-
-            <Grid Grid.Row="5"
-                  Grid.Column="2">
-                <!-- Text: Nominal -->
-                <TextBlock Text="{x:Static loc:CoreStrings.PowerGridState_Status_Nominal}"
-                           Visibility="{Binding IsBlackout, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
-                <!-- Text: Power outage -->
-                <TextBlock Text="{x:Static loc:CoreStrings.PowerGridState_Status_Blackout}"
-                           Foreground="{StaticResource BrushColorRed6}"
-                           Visibility="{Binding IsBlackout, Converter={StaticResource BoolToVisibilityConverter}}" />
-            </Grid>
-
-            <!-- Text: Restore power -->
-            <Button Grid.Row="6"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Command="{Binding CommandRestorePower}"
-                    Visibility="{Binding IsBlackout, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Style="{StaticResource DefaultButtonStyle}"
-                    Padding="7,5"
-                    Margin="0,4,0,0"
-                    MaxWidth="180"
-                    MinHeight="0"
-                    MinWidth="0"
-                    Focusable="False">
-                <Button.Content>
-                    <TextBlock Text="{x:Static loc:CoreStrings.PowerGridState_Button_RestorePower}"
-                               TextWrapping="Wrap"
-                               FontSize="13"
-                               LineHeight="13"
-                               LineStackingStrategy="BlockLineHeight"
-                               Foreground="{StaticResource ButtonForeground}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               TextAlignment="Center" />
-                </Button.Content>
-            </Button>
+                       Text="{Binding NumberStorages}"
+                       Style="{StaticResource TextBlockValue}" />
         </Grid>
 
         <Control Grid.Column="1"
@@ -186,7 +157,6 @@
               VerticalAlignment="Top"
               HorizontalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -224,7 +194,7 @@
                     BorderThickness="1"
                     Margin="0"
                     HorizontalAlignment="Stretch"
-                    MinWidth="110"
+                    MinWidth="120"
                     Height="13"
                     Padding="1"
                     IsDisplayTooltip="False"
@@ -240,17 +210,6 @@
                                         CornerRadius="2" />
                                 <ContentPresenter Margin="{TemplateBinding Padding}"
                                                   HorizontalAlignment="Left" />
-                                <TextBlock x:Name="TextBlockValueDisplay"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Text="100%"
-                                           Foreground="{StaticResource BrushColor7}"
-                                           FontSize="10"
-                                           FontWeight="Bold"
-                                           FontFamily="{StaticResource DigitsFontFamily}"
-                                           noesis:Text.Stroke="#AA000000"
-                                           noesis:Text.StrokeThickness="1.5"
-                                           Margin="0,-0.25,0,0" />
                             </Grid>
                         </ControlTemplate>
                     </core:ValueBarControl.Template>
@@ -260,14 +219,14 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Margin="5,-1,0,0">
+                            Margin="0,-1,0,0">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Left" />
-                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontSize" Value="11.5" />
                             <Setter Property="TextWrapping" Value="WrapWithOverflow" />
                             <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="LineHeight" Value="12" />
+                            <Setter Property="LineHeight" Value="11.5" />
                             <Setter Property="Foreground" Value="White" />
                             <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
                             <Setter Property="noesis:Text.StrokeThickness" Value="1.5" />
@@ -275,9 +234,9 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <TextBlock Text="{Binding ElectricityAmount, StringFormat={}{0:F0}}" />
+                    <TextBlock Text="{Binding ElectricityAmount, StringFormat={}{0:N0}}" />
                     <TextBlock Text="/" />
-                    <TextBlock Text="{Binding ElectricityCapacity, StringFormat={}{0:F0}}" />
+                    <TextBlock Text="{Binding ElectricityCapacity, StringFormat={}{0:N0}}" />
                     <TextBlock Text=" " />
                     <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitAbbreviation}" />
                 </StackPanel>
@@ -304,9 +263,12 @@
             <StackPanel Grid.Row="3"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding ElectricityProductionCurrent, StringFormat={}{0:0.##}}" />
-                <TextBlock Text=" " />
-                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}" />
+                <TextBlock Text="{Binding ElectricityProductionCurrent, StringFormat={}{0:0.##}}"
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text=" "
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}"
+                           Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
 
@@ -318,9 +280,12 @@
             <StackPanel Grid.Row="4"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding ElectricityProductionTotalAvailable, StringFormat={}{0:0.##}}" />
-                <TextBlock Text=" " />
-                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}" />
+                <TextBlock Text="{Binding ElectricityProductionTotalAvailable, StringFormat={}{0:0.##}}"
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text=" "
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}"
+                           Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
 
@@ -332,37 +297,28 @@
             <StackPanel Grid.Row="5"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding ElectricityConsumptionCurrent, StringFormat={}{0:0.##}}" />
-                <TextBlock Text=" " />
-                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}" />
+                <TextBlock Text="{Binding ElectricityConsumptionCurrent, StringFormat={}{0:0.##}}"
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text=" "
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}"
+                           Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
-
-            <!-- Text: Max defense consumption: -->
+            <!-- Text: Max total consumption: -->
             <TextBlock Grid.Row="6"
                        Grid.Column="0"
-                       Text="{x:Static loc:CoreStrings.PowerGridState_MaxDefenseConsumption}" />
+                       Text="{x:Static loc:CoreStrings.PowerGridState_MaxTotalConsumption}" />
 
             <StackPanel Grid.Row="6"
                         Grid.Column="2"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding ElectricityConsumptionTotalDemandCriticalOnly, StringFormat={}{0:0.##}}" />
-                <TextBlock Text=" " />
-                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}" />
-            </StackPanel>
-
-
-            <!-- Text: Max total consumption: -->
-            <TextBlock Grid.Row="7"
-                       Grid.Column="0"
-                       Text="{x:Static loc:CoreStrings.PowerGridState_MaxTotalConsumption}" />
-
-            <StackPanel Grid.Row="7"
-                        Grid.Column="2"
-                        Orientation="Horizontal">
-                <TextBlock Text="{Binding ElectricityConsumptionTotalDemand, StringFormat={}{0:0.##}}" />
-                <TextBlock Text=" " />
-                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}" />
+                <TextBlock Text="{Binding ElectricityConsumptionTotalDemand, StringFormat={}{0:0.##}}"
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text=" "
+                           Style="{StaticResource TextBlockValue}" />
+                <TextBlock Text="{x:Static loc:CoreStrings.EnergyUnitPerSecondAbbreviation}"
+                           Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
         </Grid>

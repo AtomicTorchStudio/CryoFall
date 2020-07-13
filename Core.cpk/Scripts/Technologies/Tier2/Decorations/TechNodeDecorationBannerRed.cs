@@ -2,14 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations;
 
-    public class TechNodeDecorationBannerRed : TechNode<TechGroupDecorations>
+    public class TechNodeDecorationBannerRed : TechNode<TechGroupDecorationsT2>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddStructure<ObjectDecorationBannerRed>();
 
-            config.SetRequiredNode<TechNodeSignWood>();
+            config.SetRequiredNode<TechNodeDisplayCase>();
         }
     }
 }

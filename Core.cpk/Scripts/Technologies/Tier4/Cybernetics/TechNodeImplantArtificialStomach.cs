@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantArtificialStomach : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantArtificialStomach : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

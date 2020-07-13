@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationGoldPileMedium : ProtoObjectDecoration
+    public class ObjectDecorationGoldPileMedium : ProtoObjectDecoration
     {
         public override string Description => GetProtoEntity<ObjectDecorationGoldPileLarge>().Description;
 

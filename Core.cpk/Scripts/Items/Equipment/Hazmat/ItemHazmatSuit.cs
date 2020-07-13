@@ -22,10 +22,10 @@
             defense.Set(
                 impact: 0.15,
                 kinetic: 0.10,
+                explosion: 0.05,
                 heat: 0.50,
-                cold: 0.50,
-                chemical: 1.0,
-                electrical: 1.0,
+                cold: 0.40,
+                chemical: 1.00,
                 radiation: 0.85,
                 psi: 0.40);
         }

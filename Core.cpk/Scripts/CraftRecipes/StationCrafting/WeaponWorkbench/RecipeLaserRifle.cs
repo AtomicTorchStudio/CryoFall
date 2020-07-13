@@ -21,7 +21,8 @@
 
             inputItems.Add<ItemIngotCopper>(count: 120);
             inputItems.Add<ItemPlastic>(count: 40);
-            inputItems.Add<ItemComponentsOptical>(count: 25);
+            inputItems.Add<ItemComponentsOptical>(count: 20);
+            inputItems.Add<ItemComponentsHighTech>(count: 5);
             inputItems.Add<ItemPowerCell>(count: 1);
 
             outputItems.Add<ItemLaserRifle>();

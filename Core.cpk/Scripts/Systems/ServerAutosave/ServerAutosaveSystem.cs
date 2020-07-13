@@ -2,89 +2,106 @@ namespace AtomicTorch.CBND.CoreMod.Systems.ServerAutosave
 {
     using System;
     using System.Threading.Tasks;
-    using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
 
     /// <summary>
-    /// Do regular saves in dedicated server mode.
+    /// This system will perform regular world saves in dedicated server mode.
     /// </summary>
-    public static class ServerAutosaveSystem
+    public class ServerAutosaveSystem : ProtoSystem<ServerAutosaveSystem>
     {
-        public const string NotificationWorldBackupAnnouncement
-            = "SERVER: World backup is starting in {0} seconds.";
-
-        public const string NotificationWorldBackupComplete
-            = "SERVER: World backup is complete!";
-
         private const int AutosavegameIntervalMinutesMax = 120;
 
         private const int AutosavegameIntervalMinutesMin = 1;
 
-        private const int SaveDelaySeconds = 10;
+        private const double SaveDelaySeconds = 10;
 
         private static readonly IGameServerService ServerGame = Api.IsServer
                                                                     ? Api.Server.Game
                                                                     : null;
 
-        private static uint framesBetweenAutoSaves;
+        private static uint serverFramesBetweenAutoSaves;
 
-        private static bool isSavingNow;
+        private static bool serverIsSavingNow;
 
-        private static uint nextAutoSaveFrameNumber;
+        private static uint serverNextAutoSaveFrameNumber;
+
+        public static event Action ClientSaveFinished;
+
+        public static event Action<double> ClientSaveScheduled;
 
         /// <summary>
-        /// Determines whether the autosave system should broadcast a service chat message notifying about the savegame creation.
+        /// Determines whether the autosave system should send a client notifications about the autosaves.
         /// </summary>
-        public static bool IsAnnouncingSavegameCreation { get; set; } = true;
+        public static bool ServerIsAnnouncingSavegameCreation { get; set; } = true;
 
-        private static async void ExecuteAutosave()
+        [NotLocalizable]
+        public override string Name => "Saver autosave system";
+
+        public async void ServerExecuteAutosave()
         {
-            if (isSavingNow)
+            if (serverIsSavingNow)
             {
                 return;
             }
 
             try
             {
-                isSavingNow = true;
+                serverIsSavingNow = true;
 
-                if (IsAnnouncingSavegameCreation)
+                if (ServerIsAnnouncingSavegameCreation)
                 {
-                    ChatSystem.ServerSendGlobalServiceMessage(
-                        string.Format(NotificationWorldBackupAnnouncement, SaveDelaySeconds));
+                    var scheduledTime = SaveDelaySeconds + ServerGame.FrameTime;
+
+                    Instance.CallClient(
+                        Api.Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
+                        _ => _.ClientRemote_ServerSaveAnnouncement(scheduledTime));
                     await Task.Delay(TimeSpan.FromSeconds(SaveDelaySeconds));
                 }
 
                 await Api.Server.World.ServerSaveGamegameAsync();
 
-                if (IsAnnouncingSavegameCreation)
+                if (ServerIsAnnouncingSavegameCreation)
                 {
-                    ChatSystem.ServerSendGlobalServiceMessage(NotificationWorldBackupComplete);
+                    Instance.CallClient(
+                        Api.Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
+                        _ => _.ClientRemote_ServerSaveFinished());
                 }
             }
             finally
             {
-                isSavingNow = false;
+                serverIsSavingNow = false;
             }
         }
 
         private static void SetNextAutoSaveFrameNumber()
         {
-            nextAutoSaveFrameNumber = ServerGame.FrameNumber
-                                      + framesBetweenAutoSaves;
+            serverNextAutoSaveFrameNumber = ServerGame.FrameNumber
+                                            + serverFramesBetweenAutoSaves;
         }
 
-        private static void Update()
+        private void ClientRemote_ServerSaveAnnouncement(double scheduledTime)
         {
-            if (ServerGame.FrameNumber < nextAutoSaveFrameNumber)
+            ClientSaveScheduled?.Invoke(scheduledTime);
+        }
+
+        private void ClientRemote_ServerSaveFinished()
+        {
+            ClientSaveFinished?.Invoke();
+        }
+
+        private void Update()
+        {
+            if (ServerGame.FrameNumber < serverNextAutoSaveFrameNumber)
             {
                 return;
             }
 
             SetNextAutoSaveFrameNumber();
-            ExecuteAutosave();
+            this.ServerExecuteAutosave();
         }
 
         private class Bootstrapper : BaseBootstrapper
@@ -109,12 +126,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.ServerAutosave
                 Server.Core.AutosaveOnQuit = true;
                 Api.Logger.Important($"Server auto-save enabled. Interval: {autosaveIntervalMinutes} minutes");
 
-                framesBetweenAutoSaves = 60
-                                         * autosaveIntervalMinutes
-                                         * ServerGame.FrameRate;
+                serverFramesBetweenAutoSaves = 60
+                                               * autosaveIntervalMinutes
+                                               * ServerGame.FrameRate;
 
                 SetNextAutoSaveFrameNumber();
-                TriggerEveryFrame.ServerRegister(Update, "Autosave manager");
+                TriggerEveryFrame.ServerRegister(Instance.Update, "Autosave manager");
             }
         }
     }

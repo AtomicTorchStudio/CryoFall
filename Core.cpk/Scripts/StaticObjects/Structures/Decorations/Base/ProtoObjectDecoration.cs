@@ -6,6 +6,8 @@
     {
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
+        public override bool IsRelocatable => true;
+
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         protected sealed override void PrepareConstructionConfig(

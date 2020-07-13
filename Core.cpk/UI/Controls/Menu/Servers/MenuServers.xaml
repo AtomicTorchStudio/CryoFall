@@ -8,7 +8,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
     xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="600"
     Width="950"
@@ -89,7 +89,7 @@
                                Fill="{Binding Icon}" />
 
                     <Grid Grid.Column="1"
-                          Margin="7,-12,5,0"
+                          Margin="7,-12,-20,0"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -100,21 +100,31 @@
                         <TextBlock Text="{Binding Title}"
                                    Style="{StaticResource TextBlockServerTitleStyle}" />
 
-                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Control Template="{StaticResource BlockOfficialMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Vertical"
+                                    Margin="0,0,0,-8"
+                                    VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Control Template="{StaticResource BlockCommunityMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+                            </StackPanel>
 
-                            <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <StackPanel Orientation="Horizontal">
+                                <Control Template="{StaticResource BlockOfficialMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                            <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                            <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                            <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                                <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
 
@@ -175,7 +185,7 @@
                              SelectedItem="{Binding SelectedServer}"
                              Visibility="{Binding ListNotEmptyVisibility}"
                              ItemContainerStyle="{StaticResource ServersListBoxContainerStyle}"
-                             ItemTemplate="{StaticResource ServerInfoEntryItemTemplateMenuServers}" 
+                             ItemTemplate="{StaticResource ServerInfoEntryItemTemplateMenuServers}"
                              Margin="-5,-3,-5,0" />
 
                     <StackPanel Grid.Row="1"

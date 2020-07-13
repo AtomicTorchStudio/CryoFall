@@ -77,7 +77,7 @@ Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm毒素弾
 
 Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
-改良型の鉄の矢。火縄銃ほど威力はありませんが、非常に簡単に作れます。
+改良型の鉄の矢。火器ほど威力はありませんが、非常に簡単に作れます。
 
 Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
 鉄の矢
@@ -87,6 +87,12 @@ Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
 
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 石の矢
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+有効範囲の広い特殊なフラググレネード。着弾時に広範囲のものにダメージを与えます。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+フラググレネード
 
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 着弾時にプラグミウム粒子を染み込ませた液体ヘリウムを飛散させ、標的を凍結させる特殊な目的のグレネード。
@@ -111,6 +117,69 @@ Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 紙薬莢
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+高火力の砲弾は車両装甲に対して高い効果を発揮します。
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+砲弾
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+このアイテムをAltキーを押しながらクリックすると、素早く使用したり、消費したりできます。
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+構造物をクリックすると解体できます。
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+破損していない構造物をクリックすると移動できます。
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+井戸か集水器をクリックすると水を補充できます。
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+構造物をクリックすると修理または建築できます。
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+農場の植物をクリックすると水やりができます。
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+魚の切り身は、「使用」アクションで作成できます（つまり、アイテム使用と同じ操作です）。
+
+Scripts/Items/Base/ItemHints@DroneControl:
+インベントリやアイテムスロットからのドローンは、このドローンコントローラーを使って命令を下すことができます。
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+Shiftキーを押しながら命令を下すと、選択した物と同じ種類のオブジェクトを全て周辺で採掘するよう、全てのドローンに即座に送信します。
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+ドローンを直接使用することはできません。インベントリにあれば、コントロール装置を使ってこのドローンに命令を下せます。
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+動作させるにはいずれかのデバイススロットに装着してください。
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+肥料をやるには、アイテムスロットで選択して植物をクリックしてください。
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+塩水を補充するには、アイテムスロットでボトルを選択し、海水をクリックしてください。
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+きれいな水を補充するには、井戸か集水器の中に置いてください。
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+燃料電池は、さまざまな乗り物の動力源として使用されます。
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+インプラントは医療ステーション内にしか設置できません。
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+このアイテムは、補助バッテリーを装着して電力を供給する必要があります。
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+この武器は、乗り物の[b]{0}[/b]ハードポイントにのみ装着して使用することができます。
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+切る
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 復号化
@@ -160,23 +229,41 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 標準補助バッテリー
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+高級ドローンコントローラー
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+自動化ドローンの操作や命令を出すために必要な特殊コントローラー。
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+ドローンコントローラー
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+産業ドローンの高級バージョンは、採掘速度や射程距離向上など様々な点が改善されています。
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+高級産業ドローン
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+標準産業ドローンは、迅速な資源獲得のために使用できます。
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+産業ドローン
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 戦闘と環境防御の理想的な組み合わせを提供する高度な環境防御装甲。
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T.スーツ
 
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+この特殊なアサルトアーマーは、他の部分で妥協することなく、敵の攻撃に対して驚くほどの防御力を発揮します。
+
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+アサルトアーマー
+
 Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
 アサルトアーマー・ヘルメット
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
-この特殊なアサルトアーマーは、妥協することなく、敵の砲火に対して驚くべき防御力を提供します。
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-アサルトアーマー・ジャケット
-
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-アサルトアーマー・パンツ
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 ヘッドライトなし
@@ -205,26 +292,23 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKe
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 ボタンが設定されていません
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+骨の防具は、その価格に見合う防御力を提供し、序盤では非常に役に立ちます。
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+骨の防具
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 骨のヘルメット
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 角のヘルメット
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-骨の防具は、その価格に相応な防御力を提供し、序盤では非常に役に立ちます。
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+派手な装いではありませんが、ピンチの時には守ってくれます。優れた環境防御を提供します。
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-骨のジャケット
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-骨のパンツ
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
-最も贅沢な装いではありませんが、あなたをピンチから守ることができます。優れた環境防御を提供します。
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-編組鎧
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+編組の防具
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 編組ヘルメット
@@ -232,50 +316,38 @@ Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 臨時ランプヘルメット
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-編組パンツ
-
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-布の帽子
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-布のパンツ
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
 実質的な防御力はありません。蚊を避けるくらいならできるかも？
 
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 布のシャツ
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
-それなりの防具。寒さをしのぐには適しています。高価でないうえに快適です！
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+布の帽子
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
+初期の防具としてはまともで、特に寒さをしのぐには適しています。高価でない上に快適です！
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
 毛皮のコート
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 尻尾付きの毛皮の帽子
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 コサック帽子
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 ウシャンカ帽子
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-毛皮のパンツ
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 豪華な黄金の服装。真の支配者にふさわしい。
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-黄金の鎧
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+黄金の防具
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 黄金の冠
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-黄金のパンツ
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 危険な環境から身体を守ってくれる特別設計のスーツ。少しでも傷がつくと気密性を失ってしまうため、戦闘での使用は避けましょう。
@@ -283,29 +355,26 @@ Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 防護服
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+革の防具は全体的に優れた防御力を提供し、序盤ステージに最適です。
+
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+革の防具
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
 カウボーイハット
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
 パイロット帽
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
 パイレーツハット
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
-革の防具は全体的に優れた防御力を提供し、開拓し始めたばかりの序盤ステージにおいて理想的です。
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+金属の防具は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-革のジャケット
-
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-革のパンツ
-
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
-メタル防具は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
-
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-メタルの鎧
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+金属の防具
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 密閉型メタルヘルメット
@@ -313,20 +382,14 @@ Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 メタルスカルヘルメット
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-メタルレッグアーマー
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+この防具の製造には高度な材料が使用されており、小型武器やその他の一般的な武器に対して理想的な防御力を発揮します。
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+ミリタリー防具
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 ミリタリーヘルメット
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-この防具の製造には高度な材料が使用されており、小型武器やその他の一般的な武器に対して理想的な防御力を発揮します。
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-ミリタリージャケット
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-ミリタリーパンツ
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 携帯用の照明を提供し、両手を自由に使うことができる便利なヘルメット。電池が必要です。
@@ -340,56 +403,56 @@ Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 ナイトビジョン
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+夜間の視界を完璧に確保できるナイトビジョン対応タクティカルヘルメットの改良版。乾電池が必要です。
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+高級ナイトビジョン
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+放射性粒子や有害ガスをろ過できる基本的な防毒マスク。他の保護機能はありません。
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+防毒マスク
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 安全ヘルメットは、衝撃、破片、感電、その他の危険から頭部を防御するための一般的な手段です。
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 安全ヘルメット
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-放射性粒子や有害ガスを除去することができる一般的な防毒マスク。他の防御は一切提供しません。
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+プラグミウム格子を構造的に薄い金属板に組み込んだ実験的な防具。非常に軽く、耐久性に優れています。
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-防毒マスク
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+プラグミウムアーマー
 
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-プラグミウム格子を構造的に薄い金属板に組み込んだ試験用防具。とても軽くて丈夫。
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+あらゆる種類のダメージや周辺環境から十分なレベルの防御力を提供する厚手のパッド入り生地。
 
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
-プラグアーマー
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+キルトの防具
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
-あらゆる種類の損傷や環境への影響から驚くほどまともなレベルの防御を提供する厚いパッド入り生地。
-
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-キルトのコート
-
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 キルトの帽子
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-キルトのヘルメット
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+キルトパッド入りヘルメット
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-キルトのパンツ
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+最強の防具。この戦闘アーマーはあらゆるダメージから守ってくれますが、その代償として機動力が低下します。
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-最強のガード。この戦闘アーマーは君をあらゆるダメージから守れることができるが、一部の機動性を失わせます。
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 スーパーヘビーアーマー
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
-必要は発明の母！まったく快適ではありませんが、初期段階でかなりまともな防御力を提供してくれます。
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+必要性は発明の母である！まったく快適ではありませんが、初期段階ではかなりまともな防御力を提供してくれます。
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-木の鎧
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+ウッドアーマー
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 木のヘルメット
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-木のパンツ
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 大量の鉱物を一度に掘削するように設計された特別な爆発装置。発掘する鉱物の隣に設置する必要があります。
@@ -414,6 +477,78 @@ Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 共鳴爆弾
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+切り身餌は小魚の断片で、大型の捕食魚を狙うのに適しています。
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+切り身餌
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+安くて簡単な餌で、小型の淡水魚を釣るのに最適です。
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+虫の餌
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+ボイリーは様々な食材を組み合わせた特殊な練り餌で、ほとんどの魚種に適しています。
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+ボイリー餌
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+あらゆる水域で魚を釣ることができる釣竿です。エサが必要です。
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+釣竿
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+獲れたての魚は、料理に使う前にまずきれいにしなければなりません。
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+バス
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+鯛
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+コイ
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+ナマズ
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+ウグイ
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+イサキ
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+サバ
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+シイラ
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+スケトウダラ
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+フグ
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+パイク
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+ルースターフィッシュ
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+サーモン
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+イワシ
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+マス
 
 Scripts/Items/Food/ItemBanana@Description:
 バナナを手に入れるのは猿でもできますが、星を手に入れられるのは人間だけです。
@@ -643,6 +778,27 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 Scripts/Items/Food/ItemEggsRaw@Name:
 動物の卵
 
+Scripts/Items/Food/ItemFishDried@Description:
+干物はビールにぴったり。長時間腐ることなく保存が可能です。
+
+Scripts/Items/Food/ItemFishDried@Name:
+干物
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+高品質の魚の切り身。料理に最適な食材です。
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+赤身魚の切り身
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+白身魚の切り身
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+とても柔らかくてジューシーな魚の切り身のオーブン焼。
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+焼き魚
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 調理してしまえば気持ち悪さは減るかもしれませんが…食べるなら心して食べるように。
 
@@ -751,6 +907,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 Scripts/Items/Food/ItemPineapple@Name:
 パイナップル
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+聖戦は現在に至るまで続いている……
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+パイナップルピザ
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 そのまま食べてもいいし、料理の材料に使ってもいいです。
 
@@ -775,6 +937,12 @@ Scripts/Items/Food/ItemSaladVegetable@Description:
 Scripts/Items/Food/ItemSaladVegetable@Name:
 野菜サラダ
 
+Scripts/Items/Food/ItemSalami@Description:
+特製の加工肉とスパイスを使った生ソーセージ。
+
+Scripts/Items/Food/ItemSalami@Name:
+サラミ
+
 Scripts/Items/Food/ItemSandwich@Description:
 やわらかいパン、ジューシーな肉、野菜が一体となった超定番！
 
@@ -793,6 +961,18 @@ Scripts/Items/Food/ItemSugar@Description:
 Scripts/Items/Food/ItemSugar@Name:
 砂糖
 
+Scripts/Items/Food/ItemSushi@Description:
+生魚と香辛料をトッピングしたご飯。シンプルだけど、忘れられない味。
+
+Scripts/Items/Food/ItemSushi@Name:
+寿司
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+サクサクのトルティーヤに肉と特製ソース、そして少しの野菜が入っています。
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+肉入りタコス
+
 Scripts/Items/Food/ItemTequila@Description:
 砂漠で見つかった植物から蒸留した美しいお酒。
 
@@ -810,6 +990,12 @@ Scripts/Items/Food/ItemTomato@Description:
 
 Scripts/Items/Food/ItemTomato@Name:
 トマト
+
+Scripts/Items/Food/ItemUkha@Description:
+魚と野菜が入ったロシア料理のスープ。
+
+Scripts/Items/Food/ItemUkha@Name:
+ウハー
 
 Scripts/Items/Food/ItemVodka@Description:
 神々の燃えるような液体。飲みすぎの結果は明らかです。あなたをぐったりさせることでしょう。放射能…？防げるわけない！
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 空き缶
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-空の金属製容器。揮発性の液体を保管するのに使われます。
+揮発性の液体を保管するために使われます。
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 空の容器
@@ -1091,6 +1277,24 @@ Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 配合火薬
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+様々な乗り物の動力源として使われる空の燃料電池。最初に充填する必要があります。
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+空の燃料電池
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+標準的な液体燃料を充填した燃料電池。安いですが、長持ちしません。
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+ガソリン燃料電池
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+液体プラグミウムを充填した燃料電池。非常に長持ちします。
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+プラグミウム燃料電池
+
 Scripts/Items/Generic/ItemFur@Description:
 動物の毛皮。暖かい冬服を作るのに便利でしょう。
 
@@ -1191,13 +1395,7 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 炭素含有量の高い工業用の鋼。
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
-スチールインゴット
-
-Scripts/Items/Generic/ItemLeaf@Description:
-葉っぱ…おそらく木の葉でしょう。
-
-Scripts/Items/Generic/ItemLeaf@Name:
-葉
+鋼のインゴット
 
 Scripts/Items/Generic/ItemLeather@Description:
 動物の革。革防具の製作に役立ちます。
@@ -1230,7 +1428,7 @@ Scripts/Items/Generic/ItemOilpod@Description:
 食用に適さない特殊な遺伝子組み換え植物の果実。高濃度の石油製品とその派生品が含まれています。
 
 Scripts/Items/Generic/ItemOilpod@Name:
-オイルポッドフルーツ
+オイルポッドの実
 
 Scripts/Items/Generic/ItemOreCopper@Description:
 溶かして純銅を精製することができます。
@@ -1565,6 +1763,12 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 ナノファイバー皮膚インプラント
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+補強された人工骨。使用者の目まいや骨折を防ぎます。
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+骨格内補強インプラント
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 体内で突然変異は検出されませんでした。
 
@@ -1714,6 +1918,20 @@ Scripts/Items/Medical/ItemNeuralEnhancer@Description:
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 神経増強剤
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`注意：このアイテムは頻繁に使用することができません。
+[br]今使用すると、{0}の間使えなくなります。`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`最近このアイテムを使用しました。
+[br]再び使えるようになるまで{0}お待ちください。`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+使用すると、全ての技術知識が完全にクリアされて、使用した学習ポイントが全て返却され、技術の再構築が可能になります。頻繁に使用することはできません。
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+神経組換装置
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 鎮痛剤を使用すると、その効果が持続している間、痛みを完全に取り除き、防ぐことができます。
@@ -1940,6 +2158,12 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 石のつるはし
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+このセンサーを使用することで、大きなプラグミウム結晶が持つ独特のサイオニック負荷を検出し、遠く離れた場所からでもプラグミウムの検出が可能になります。
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+プラグミウムセンサー
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 工具箱は持ち物を修理したり建築する際に不可欠です。選択および装備されていることを確認しましょう。
 
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 拳銃
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-レーザーピストルは、主に赤外線スペクトルの高エネルギーの光を放射し、標的を燃やします。
+レーザーピストルは、高エネルギー光線を放出して標的を燃やします。
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 レーザーピストル
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-レーザーライフルは、主に赤外線スペクトルの高エネルギーの光を素早く放射し、標的を燃やします。レーザーピストルよりも多くエネルギーを消費し、はるかに高い発射速度を誇ります。
+レーザーライフルは、赤外線スペクトルの強力な高エネルギー光線を放出して標的を燃やします。レーザーピストルよりもはるかに長い射程距離を誇ります。
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 レーザーライフル
@@ -2173,4 +2397,16 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 軽機関砲
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+重装甲の標的に最適な高火力砲弾を使用する特殊重キャノン砲。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+キャノン砲
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+加速粒子のコヒーレント共鳴励起を利用して標的にダメージを与える重キャノン砲。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+エネルギー砲
 

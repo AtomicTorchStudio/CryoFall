@@ -8,6 +8,8 @@
         public override string Description =>
             "Special 10mm blank ammo. Can be used for military exercises or to scare away intruders.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override bool IsSuppressWeaponSpecialEffect => true;
 
         public override string Name => "10mm blank ammo";

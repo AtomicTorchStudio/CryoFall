@@ -193,6 +193,9 @@ Depósito de hierro
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
 Nodo de pragmio pequeño
 
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@ErrorCannotBuild_PragmiumSourceTooCloseOnPvE:
+Demasiado cerca de una fuente de pragmio.
+
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
 Fuente de pragmio
 
@@ -247,9 +250,6 @@ Cisterna
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Usa un arma o una herramienta para dañar esta estructura.
 
-Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-Sin descripción.
-
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 No hay descripción de la mejora.
 
@@ -279,7 +279,7 @@ Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherP
 La cama está ubicada en el terreno adjudicado de otro jugador.
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
-Esta ama es tuya
+Esta cama es tuya
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
 Esta cama le pertenece a[br]{0}
@@ -383,6 +383,9 @@ Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 Vitrina
 
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCaseLarge@Name:
+Vitrina grande
+
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Caja fuerte muy blindada que puede soportar incluso las explosiones más potentes. No es fácil de fabricar, pero te asegura que tus objetos valiosos estarán a salvo.
 
@@ -467,6 +470,12 @@ Qué mejor forma de demostrar tu riqueza que malgastando este cristal tan valios
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Estatua de pragmio
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Description:
+Un taburete sencillo para una habitación sencilla.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Name:
+Taburete
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
 Una sencilla mesa de estilo europeo clásico.
 
@@ -513,7 +522,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Puerta de madera
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-Una gran puerta de acero que podrías usar como entrada principal de tu base.
+Una gran puerta de acero que podrías usar como entrada principal de tu base. Estas puertas también son necesarias para vehículos grandes.
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 Puerta de acero
@@ -740,6 +749,12 @@ Se puede usar para convertir cualquier materia orgánica en mantillo. Básicamen
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Caja de mantillo
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Description:
+Esta planta permite el craqueo químico de combustibles minerales para convertirlos en hidrocarburos más ligeros que producen gasolina.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Name:
+Planta de craqueo de combustible
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Permite la extracción de petróleo crudo de una reserva subterránea o directamente de una filtración de petróleo, lo cual aumenta su eficacia.
 
@@ -772,6 +787,15 @@ Recolector de agua sencillo, diseñado para recoger pequeñas cantidades de agua
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Recolector de agua
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@ErrorBuildingAllowedOnlyInDesert:
+Esta estructura tan solo se puede construir en entornos desérticos.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Description:
+Gracias a la condensación y al uso de desecantes, esta estructura puede extraer agua directamente del aire. A diferencia de otras formas convencionales de obtener agua, el proceso es lento e ineficiente; no obstante, funciona incluso en el desierto.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Name:
+Condensador de agua atmosférica
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
 Usa una bomba eléctrica para extraer con rapidez el agua de la reserva subterránea.
@@ -818,6 +842,15 @@ Se puede usar para recargar cualquier equipo electrónico portátil, tales como 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 Estación de recarga
 
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStationAdvanced@Name:
+Estación de carga avanzada
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Description:
+Riega automáticamente, a intervalos regulares, los terrenos de granja adyacentes.
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
+Aspersor
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Se necesitan más componentes.
 
@@ -832,6 +865,12 @@ Antes de nada, quita el objeto de la ranura de resultado.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 No se puede reparar
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
+¡Has tenido suerte![br]¡Se ha reparado completamente: {0}!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Title:
+¡Una reparación perfecta!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
 Esta mesa de trabajo es especialmente útil para reparar distintos objetos o trastear con ellos.
@@ -850,6 +889,9 @@ Plataforma automatizada para montaje de vehículos. Se puede usar para fabricar 
 
 Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
 Plataforma de montaje de vehículos
+
+Scripts/StaticObjects/Structures/Misc/Base/SprinklerWateringRequestResult@ErrorNotEnoughWater:
+No hay suficiente agua en el aspersor.
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Permite almacenar, para usarla posteriormente, la energía eléctrica que producen los generadores de la base.
@@ -1085,72 +1127,69 @@ Caña de azúcar
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
 Arbusto espinoso
 
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-Plátano
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-Abedul
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-Árbol de Josué
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-Cactus
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-Árbol muerto
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-Árbol muerto
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-Árbol muerto
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-Durio
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-Árbol caído
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-Roble
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-Palmera
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Abeto
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Pino
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-Álamo
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-Árbol del caucho
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-Saliente musgoso
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-Tocón de árbol
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-Tocón musgoso
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-Tocón de árbol
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-Árbol de pantano
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-Árbol tropical
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-Sauce
-
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Usa un hacha para talar este árbol.
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
+Árbol muerto
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
+Árbol muerto
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:
+Árbol caído
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeSnagMossy@Name:
+Saliente musgoso
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStump@Name:
+Tocón de árbol
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpMossy@Name:
+Tocón musgoso
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpWithTwig@Name:
+Tocón de árbol
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBirch@Name:
+Abedul
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBrevifolia@Name:
+Árbol de Josué
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeOak@Name:
+Roble
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePalm@Name:
+Palmera
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePine@Name:
+Abeto
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePineBoreal@Name:
+Pino
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePoplar@Name:
+Álamo
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeSwamp@Name:
+Árbol de pantano
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeTropical@Name:
+Árbol tropical
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeWillow@Name:
+Sauce
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeBanana@Name:
+Plátano
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeCactus@Name:
+Cactus
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeDurian@Name:
+Durio
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeRubber@Name:
+Árbol del caucho
 

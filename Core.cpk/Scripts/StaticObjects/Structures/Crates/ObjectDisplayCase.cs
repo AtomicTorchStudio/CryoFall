@@ -1,16 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
 {
     using System;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectDisplayCase : ProtoObjectDisplayCase
     {
@@ -29,6 +28,8 @@
 
         public override bool HasOwnersList => true;
 
+        public override byte ItemsSlotsCount => 1;
+
         public override string Name => "Display case";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Glass;
@@ -39,7 +40,13 @@
 
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
+            base.ClientSetupBlueprint(tile, blueprint);
             blueprint.SpriteRenderer.TextureResource = this.Icon;
+        }
+
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+        {
+            return base.SharedGetObjectCenterWorldOffset(worldObject) + (0, 0.275);
         }
 
         protected override ITextureResource ClientCreateIcon()
@@ -53,54 +60,20 @@
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
-            var worldObject = data.GameObject;
-            var clientState = data.ClientState;
-            var itemsContainer = data.PublicState.ItemsContainer;
-
             // create sprite renderer for back part
-            Client.Rendering.CreateSpriteRenderer(
-                      worldObject,
-                      this.textureResourceBack)
-                  .DrawOrderOffsetY = 0.1;
+            var backRenderer = Client.Rendering.CreateSpriteRenderer(
+                data.GameObject,
+                this.textureResourceBack);
+            this.ClientSetupRenderer(backRenderer);
 
-            // create sprite renderer for item
-            var rendererShowcaseItem = Client.Rendering.CreateSpriteRenderer(
-                worldObject,
-                TextureResource.NoTexture,
-                positionOffset: (0.5, 1),
-                spritePivotPoint: (0.5, 0.5));
-            rendererShowcaseItem.DrawOrderOffsetY = -0.9;
-
-            void RefreshShowcaseItem()
-            {
-                var showcasedItem = itemsContainer.Items.FirstOrDefault();
-                rendererShowcaseItem.TextureResource = showcasedItem?.ProtoItem.GroundIcon;
-                var isEnabled = showcasedItem != null;
-                rendererShowcaseItem.IsEnabled = isEnabled;
-                if (!isEnabled)
-                {
-                    // no item to showcase
-                    return;
-                }
-
-                rendererShowcaseItem.Scale = 0.35 * showcasedItem.ProtoItem.GroundIconScale;
-                // hack to make front renderer displayed on top of item renderer
-                clientState.Renderer.IsEnabled = false;
-                clientState.Renderer.IsEnabled = true;
-            }
-
-            ((IClientItemsContainer)itemsContainer).StateHashChanged += RefreshShowcaseItem;
-
-            // create default sprite renderer (top part) and other base stuff
             base.ClientInitialize(data);
-
-            RefreshShowcaseItem();
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY = 0.1;
+            renderer.PositionOffset += (0, 0.2);
         }
 
         protected override void PrepareConstructionConfig(
@@ -132,11 +105,12 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var yOffset = 0.2;
             data.PhysicsBody
-                .AddShapeRectangle(size: (0.8, 0.35), offset: (0.1, 0.1))
-                .AddShapeRectangle(size: (0.8, 1.5),  offset: (0.1, 0),   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 0.4),  offset: (0.1, 0.9), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.8, 1.5),  offset: (0.1, 0),   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.8, 0.35), offset: (0.1, yOffset + 0.1))
+                .AddShapeRectangle((0.8, 1.5),  offset: (0.1, yOffset),       group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.8, 0.4),  offset: (0.1, yOffset + 0.9), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.8, 1.5),  offset: (0.1, yOffset),       group: CollisionGroups.ClickArea);
         }
     }
 }

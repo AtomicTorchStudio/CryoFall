@@ -20,7 +20,7 @@
             duration = CraftingDuration.Long;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 25);
-            inputItems.Add<ItemIngotCopper>(count: 20);
+            inputItems.Add<ItemIngotCopper>(count: 10);
             inputItems.Add<ItemVialBiomaterial>(count: 10);
 
             outputItems.Add<ItemImplantMetabolismModulator>(count: 1);

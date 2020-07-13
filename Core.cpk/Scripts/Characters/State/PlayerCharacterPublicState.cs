@@ -144,8 +144,29 @@
 
         public void SharedSetSelectedItem(IItem item)
         {
+            if (ReferenceEquals(this.SelectedItem, item))
+            {
+                return;
+            }
+
+            var character = (ICharacter)this.GameObject;
+            if (Api.IsServer)
+            {
+                this.SelectedItem?.ProtoItem.ServerItemHotbarSelectionChanged(this.SelectedItem, 
+                                                                              character,
+                                                                              isSelected: false);
+            }
+
             this.SelectedItem = item;
-            this.SelectedItemWeaponProto = item?.ProtoItem as IProtoItemWeapon;
+
+            if (Api.IsServer)
+            {
+                this.SelectedItem?.ProtoItem.ServerItemHotbarSelectionChanged(this.SelectedItem, 
+                                                                              character, 
+                                                                              isSelected: true);
+            }
+
+            this.SelectedItemWeaponProto = this.SelectedItem?.ProtoItem as IProtoItemWeapon;
         }
 
         private static void ServerPlayerCharacterOnlineStateChanged(ICharacter playerCharacter, bool isOnline)

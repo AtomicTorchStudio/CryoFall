@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators;
 
-    public class TechNodeGeneratorBio : TechNode<TechGroupElectricity>
+    public class TechNodeGeneratorBio : TechNode<TechGroupElectricityT2>
     {
         protected override void PrepareTechNode(Config config)
         {

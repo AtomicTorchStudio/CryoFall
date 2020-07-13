@@ -6,6 +6,8 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -107,6 +109,11 @@
         public virtual bool IsPrimary => false;
 
         public ushort LearningPointsPrice { get; private set; }
+
+        public string NameWithTierName
+            => string.Format(CoreStrings.TechGroup_NameWithTier_Format,
+                             this.Name,
+                             ViewModelTechTier.GetTierText(this.Tier));
 
         public IReadOnlyList<TechNode> Nodes { get; private set; }
 
@@ -213,15 +220,14 @@
                                                                  .ToList()
                                       : new TechNode[0];
 
-                Api.SafeInvoke(techGroup.NodesChanged);
-
                 var rootNodes = new List<TechNode>();
-                foreach (var protoTechNode in techGroup.Nodes)
+                foreach (var node in techGroup.Nodes)
                 {
-                    if (protoTechNode.RequiredNode == null
-                        || !protoTechNode.RequiredNode.IsAvailable)
+                    node.SharedResetCachedLearningPointsPrice();
+
+                    if (node.IsRootNode)
                     {
-                        rootNodes.Add(protoTechNode);
+                        rootNodes.Add(node);
                     }
                 }
 
@@ -241,6 +247,8 @@
                 }
 
                 techGroup.GroupRequirements = requirements;
+
+                Api.SafeInvoke(techGroup.NodesChanged);
             }
 
             AvailableTechGroups = allTechGroups.Where(t => t.IsAvailable).ToArray();
@@ -254,24 +262,25 @@
                     return;
                 }
 
-                switch (techGroup.Tier)
+                if (techGroup.IsPrimary)
                 {
-                    case TechTier.Tier3:
-                        techGroup.TimeGatePvP = techGroup.IsPrimary
-                                                    ? TechConstants.PvpTechTimeGameTier3Basic
-                                                    : TechConstants.PvpTechTimeGameTier3Specialized;
-                        break;
-
-                    case TechTier.Tier4:
-                    case TechTier.Tier5:
-                        techGroup.TimeGatePvP = techGroup.IsPrimary
-                                                    ? TechConstants.PvpTechTimeGameTier4Basic
-                                                    : TechConstants.PvpTechTimeGameTier4Specialized;
-                        break;
-
-                    default:
-                        techGroup.TimeGatePvP = 0;
-                        break;
+                    techGroup.TimeGatePvP = techGroup.Tier switch
+                    {
+                        TechTier.Tier3 => TechConstants.PvpTechTimeGameTier3Basic,
+                        TechTier.Tier4 => TechConstants.PvpTechTimeGameTier4Basic,
+                        TechTier.Tier5 => TechConstants.PvpTechTimeGameTier5Basic,
+                        _              => 0
+                    };
+                }
+                else
+                {
+                    techGroup.TimeGatePvP = techGroup.Tier switch
+                    {
+                        TechTier.Tier3 => TechConstants.PvpTechTimeGameTier3Specialized,
+                        TechTier.Tier4 => TechConstants.PvpTechTimeGameTier4Specialized,
+                        TechTier.Tier5 => TechConstants.PvpTechTimeGameTier5Specialized,
+                        _              => 0
+                    };
                 }
             }
         }

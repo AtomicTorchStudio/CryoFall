@@ -17,16 +17,15 @@
 
         public override ushort OrganicValue => 3;
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectSavoryFood>(intensity: 0.15);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFood;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.15);
-
-            base.ServerOnEat(data);
         }
     }
 }

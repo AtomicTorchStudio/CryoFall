@@ -92,7 +92,7 @@
                 worldObject,
                 scaleMultiplier: (float)scaleMultiplier);
 
-            if (rendererShadow == null)
+            if (rendererShadow is null)
             {
                 return null;
             }
@@ -369,7 +369,7 @@
                 {
                     switch (item.ProtoItem)
                     {
-                        case IProtoItemEquipmentChest chest:
+                        case IProtoItemEquipmentArmor chest:
                             soundPresetCharacter = chest.SoundPresetMovementOverride;
                             break;
 
@@ -495,9 +495,9 @@
                 // try get movement sound preset override
                 foreach (var item in character.SharedGetPlayerContainerEquipment().Items)
                 {
-                    if (item.ProtoItem is IProtoItemEquipmentLegs protoItemEquipmentLegs)
+                    if (item.ProtoItem is IProtoItemEquipmentArmor protoItemEquipmentArmor)
                     {
-                        soundPresetMovement = protoItemEquipmentLegs.SoundPresetFootstepsOverride;
+                        soundPresetMovement = protoItemEquipmentArmor.SoundPresetFootstepsOverride;
                         break;
                     }
                 }

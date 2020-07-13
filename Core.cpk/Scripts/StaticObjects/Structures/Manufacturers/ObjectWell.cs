@@ -28,6 +28,8 @@
         public override string Description =>
             "Provides inexhaustible source of fresh water. Now you won't ever die from thirst. Doesn't really work in deserts and other rocky places, for some reason...";
 
+        public override bool IsRelocatable => false;
+
         public override string Name => "Well";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
@@ -38,7 +40,7 @@
 
         public override double WaterCapacity => 50;
 
-        public override double WaterProductionAmountPerSecond => 0.2;
+        public override double WaterProductionAmountPerSecond => 0.25;
 
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
@@ -87,11 +89,11 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 10);
+            build.AddStageRequiredItem<ItemStone>(count: 12);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 2);
+            repair.AddStageRequiredItem<ItemStone>(count: 3);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

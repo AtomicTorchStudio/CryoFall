@@ -1,7 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
-    using AtomicTorch.CBND.CoreMod.CraftRecipes;
-    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier4.Cybernetics;
     using AtomicTorch.CBND.GameApi.Scripting;

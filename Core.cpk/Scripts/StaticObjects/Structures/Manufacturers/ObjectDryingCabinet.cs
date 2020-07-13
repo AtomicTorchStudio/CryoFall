@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectDryingCabinet : ProtoObjectManufacturer
     {
@@ -28,6 +29,13 @@
 
         public override float StructurePointsMax => 1200;
 
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.PositionOffset += (0, 0.35);
+            renderer.DrawOrderOffsetY = 0.25;
+        }
+
         protected override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
@@ -49,11 +57,12 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var offsetY = 0.4;
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.5),    offset: (0, 0))
-                .AddShapeRectangle(size: (0.9, 1.2),  offset: (0.05, 0),   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 0.25), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.9, 1.5),  offset: (0.05, 0),   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((1, 0.475),  offset: (0, offsetY))
+                .AddShapeRectangle((0.9, 1.2),  offset: (0.05, offsetY),       group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.8, 0.25), offset: (0.1, offsetY + 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.9, 1.5),  offset: (0.05, offsetY),       group: CollisionGroups.ClickArea);
         }
     }
 }

@@ -222,10 +222,12 @@
                 new WeaponHitData(hitPosition: hitPosition),
                 hitWorldObject: null,
                 protoWorldObject: null,
-                endTilePosition.ToVector2D(),
-                1,
-                ObjectMaterial.Wood,
-                hasTrace: true);
+                worldObjectPosition: endTilePosition.ToVector2D(),
+                projectilesCount: 1,
+                objectMaterial: ObjectMaterial.Wood,
+                randomizeHitPointOffset: false,
+                randomRotation: false,
+                drawOrder: DrawOrder.Light);
         }
 
         private void ServerCreateDroppedArrow(WeaponFinalCache weaponCache, Vector2D endPosition)
@@ -256,7 +258,7 @@
                         // compensate for the server rate to ensure that
                         // it doesn't affect the number of arrows spawned
                         probabilityMultiplier: 1.0 / DropItemsList.DropListItemsCountMultiplier,
-                        context: default,
+                        context: new DropItemContext(weaponCache.Character),
                         out _);
 
                     if (!result.IsEverythingCreated)

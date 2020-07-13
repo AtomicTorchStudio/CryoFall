@@ -22,7 +22,7 @@
         /// </summary>
         public abstract double ExperienceAddedPerShot { get; }
 
-        public sealed override bool IsSharingLearningPointsWithPartyMembers => true;
+        public override bool IsSharingLearningPointsWithPartyMembers => true;
 
         public abstract StatName StatNameDamageBonusMultiplier { get; }
 

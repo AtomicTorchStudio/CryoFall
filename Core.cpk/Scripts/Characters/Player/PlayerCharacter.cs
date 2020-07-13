@@ -394,6 +394,10 @@
                                StatName.TinkerTableBonus,
                                SkillMaintenance.BaseTinkerTableBonus);
 
+            effects.AddPercent(this,
+                               StatName.FishingSuccess,
+                               SkillFishing.BaseFishCatchChancePercents);
+
             if (LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease > 0)
             {
                 effects.AddValue(this,

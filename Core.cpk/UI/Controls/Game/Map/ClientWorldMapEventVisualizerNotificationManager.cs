@@ -57,7 +57,7 @@
 
             private readonly List<ILogicObject> activeEvents = new List<ILogicObject>();
 
-            private HUDNotificationControl notification;
+            private HudNotificationControl notification;
 
             public ConsolidatedEventNotification(IProtoEvent protoEvent)
             {
@@ -148,7 +148,7 @@
                     return;
                 }
 
-                this.notification.SetMessage(this.GetUpdatedEventNotificationText(timeRemains));
+                this.notification.Message = this.GetUpdatedEventNotificationText(timeRemains);
 
                 // schedule recursive update in a second
                 ClientTimersSystem.AddAction(1, this.RefreshNotification);
@@ -156,9 +156,8 @@
 
             private void RemoveNotification(bool quick)
             {
-                this.notification.SetMessage(
-                    this.GetUpdatedEventNotificationText(
-                        this.CalculateEventTimeRemains()));
+                this.notification.Message = this.GetUpdatedEventNotificationText(
+                    this.CalculateEventTimeRemains());
 
                 if (quick)
                 {

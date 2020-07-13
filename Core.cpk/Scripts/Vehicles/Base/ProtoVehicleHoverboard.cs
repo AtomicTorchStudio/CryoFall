@@ -31,8 +31,6 @@
     {
         public override byte CargoItemsSlotsCount => 0;
 
-        public abstract double EngineSoundVolume { get; }
-
         public override bool IsHealthbarDisplayedWhenPiloted => false;
 
         public override bool IsHeavyVehicle => false;
@@ -64,6 +62,8 @@
         public abstract TextureResource TextureResourceHoverboardLight { get; }
 
         protected abstract SoundResource EngineSoundResource { get; }
+
+        protected abstract double EngineSoundVolume { get; }
 
         public override void ServerOnPilotDamage(
             WeaponFinalCache weaponCache,
@@ -154,9 +154,9 @@
                 .Setup(vehicle,
                        lightSourceActiveEngine,
                        textureResourceHoverboard: this.TextureResourceHoverboard,
-                       textureResourceLight: this.TextureResourceHoverboardLight);
-            componentHoverboardVisualManager.MaxVelocity = this.StatMoveSpeed;
-
+                       textureResourceLight: this.TextureResourceHoverboardLight,
+                       this.StatMoveSpeed);
+            
             var componentHoverboardSoundEmitter = HoverboardEngineSoundEmittersManager.CreateSoundEmitter(
                 vehicle,
                 this.EngineSoundResource,

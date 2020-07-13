@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 İnşa et
 
+UI/CoreStrings@Action_Relocate:
+Konumlandır
+
 UI/CoreStrings@Action_Repair:
 Tamir et
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+Uyumlu silahlar:
+
+UI/CoreStrings@AutosaveNotification_Completed:
+Kayıt tamamlandı!
+
+UI/CoreStrings@AutosaveNotification_Content1:
+Sunucu normal dünya kaydı uygulayacak.
+
+UI/CoreStrings@AutosaveNotification_Content2:
+Kısa bir gecikme bekleniyor.
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+Kayıt şu sürede devreye girecek: {0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+Kaydediliyor...
+
+UI/CoreStrings@AutosaveNotification_Title:
+Sunucu anlık görüntü
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Yok edildi
@@ -174,6 +198,9 @@ Bu yapı elektrik üretir.
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Bu yapı elektrik depolar.
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+Bu yapı inşa edildikten sonra yeniden konumlandırılamaz.
+
 UI/CoreStrings@Copy:
 Kopya
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 İkon yok
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-Bir ikon seçin
+Kutuya bir ikon koymak için bir eşyayla buraya tıkla.
+
+UI/CoreStrings@DamageType_Chemical:
+Kimyasal
+
+UI/CoreStrings@DamageType_Cold:
+Soğuk
+
+UI/CoreStrings@DamageType_Explosion:
+Patlama
+
+UI/CoreStrings@DamageType_Heat:
+Isı
+
+UI/CoreStrings@DamageType_Impact:
+Etki
+
+UI/CoreStrings@DamageType_Kinetic:
+Kinetik
+
+UI/CoreStrings@DamageType_Psi:
+Psi
+
+UI/CoreStrings@DamageType_Radiation:
+Radyasyon
 
 UI/CoreStrings@Defense_Format_Chemical:
 Kimyasal koruma: {0}
@@ -216,8 +267,8 @@ Kimyasal koruma: {0}
 UI/CoreStrings@Defense_Format_Cold:
 Soğuktan koruma: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-Elektriksel koruma: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+Patlama koruması: {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 Isı koruması: {0}
@@ -274,6 +325,12 @@ Derin yatak (düşük verim, sonsuz)
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Yüzey yatağı (yüksek verim)
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+{0} kullanmak istediğine emin misin?
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+Aynı anda kullanılan dronlar
+
 UI/CoreStrings@Duration_Instant:
 Anında
 
@@ -289,11 +346,26 @@ UI/CoreStrings@Duration_VeryQuick:
 UI/CoreStrings@Duration_VerySlow:
 Çok yavaş
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+Şu etkileri sağlar:
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+Şu etkileri kaldırır:
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 EB
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EB/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+Bu etkinlikte ödül alabilmeye uygun olmak için en azından {0}% toplam hasar vermen gerekir. Bir dahakine iyi şanslar!
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+Yeterli hasar yok
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+Toplamda {0}% hasar verdin. Yağmadan payın {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Resmî CryoFall Discord sunucusu (Sadece İngilizce)
@@ -403,6 +475,12 @@ Yüklemek için bir implant yerleştir
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Gereksinimler
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+Bozulma süresi: {0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+asla
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 Kısayollar
 
@@ -426,6 +504,12 @@ Giriş
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Çıkış
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+Tampon
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+Kademe {0}
 
 UI/CoreStrings@LearningPoints:
 Eğitim puanları
@@ -596,6 +680,12 @@ Ortak GUID
 
 UI/CoreStrings@MenuServers_ServersCount:
 Sunucular
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+Bu sunucuya bir topluluk üyesi ev sahipliği yapıyor. Geliştiricilerin bu sunucu üstünde bir kontrolü yok ve burada iyi bir tecrübe yaşayacağınızı garanti etmiyorlar. Bu sunucuda oyunu kolaylaştıracak veya zorlaştıracak özel oranlar olabilir. Moderasyon ve destekten sunucunun sahibi sorumludur.
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+TOPLULUK
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 Özellikli sunucular genelde resmî sunuculara benzer şekilde yüksek kalitede tecrübe sunmalarıyla bilinirler. Ama bu sunuculara hâlâ topluluk ev sahipliği yapar.
@@ -826,6 +916,26 @@ VRAM kullanımı
 UI/CoreStrings@PleaseWait:
 Lütfen bekleyin…
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+Bu enerji tüketici enerji şebekesine [b]bağlı değil[/b].
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+Bu yapı enerji seviyesi kapanma yüzdesi ([b]{0}%[/b]) noktasının altına düşene dek çalışmaya devam edecek.
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+Bu enerji tüketici enerji şebekesine [b]bağlı[/b].
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`Enerji şebekesindeki enerji seviyesi kapanma yüzdesi ([b]{0}%[/b]) altında.
+[br]Bu yapı enerji seviyesi [b]başlangıç[/b] yüzdesi ([b]{1}%[/b]) üstüne çıktığında otomatik olarak aktif olacaktır.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`Bu enerji şebekesindeki enerji seviyesi başlangıç yüzdesi ([b]{0}%[/b]) noktasından düşük.
+[br]Bu yapı enerji seviyesi başlangıç yüzdesi üstüne çıkınca otomatik olarak aktif olacaktır.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+Bu enerji tüketici [b]boşta[/b].
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 Güç şebekesine bağlı değil.
 
@@ -892,6 +1002,50 @@ Nominal
 UI/CoreStrings@PowerGridState_Storages:
 Depolar:
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+Bu enerji jeneratörü enerji şebekesine [b]bağlı değil[/b].
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+Bu yapı kapanma yüzdesi ([b]{0}%[/b]) noktasına erişilene dek enerji üretmeye devam edecektir.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+Bu enerji jeneratörü enerji şebekesine [b]bağlı[/b].
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`Enerji şebekesindeki enerji seviyesi kapanma yüzdesi ([b]{0}%[/b]) üstünde.
+[br]Bu jeneratör enerji seviyesi [b]başlangıç[/b] yüzdesi ([b]{1}%[/b]) altına düştüğünde otomatik olarak aktif olacaktır.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`Enerji şebekesindeki enerji seviyesi başlangıç yüzdesi ([b]{0}%[/b]) üstünde.
+[br]Bu jeneratör enerji seviyesi başlangıç yüzdesinin altına düştüğünde otomatik olarak aktif olacak.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+Bu enerji jeneratörü [b]boşta[/b].
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+Enerji şebekesine bağla
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+Enerji şebekesinden kopar
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+Enerji kontrolü
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+Enerji şebeke seviyesi
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+Kapanma:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+Başlama:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+Enerji seviyesi yüzdeleri
+
+UI/CoreStrings@Protection_Name:
+Korunma:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Al
 
@@ -934,6 +1088,129 @@ Oyuncular
 UI/CoreStrings@ServerWipedDate:
 Temizlendi
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+Kalkan koruması altındaki bir üste bunu kullanamazsın.
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+Kalkanı aktif etmek {0} kadar sürecek (aktivasyon gecikmesi).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+Kalkanı aktif etmek {0} kadar sürecek (aktivasyon gecikmesi artı hâlihazırdaki sıfırlanma süresi).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+Mevcut enerjiyle aktif kalkan {0} kadar koruma sunabilir.
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+Aktivasyon gecikmesi:
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+Kalkanı aktif et
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+Kalkanı kapat
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+Kalkanı yeniden şarj et
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+Baskın engellemesi sebebiyle üssün için olan kalkan aktivasyonu iptal edildi.
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+Baskın engellemesi esnasında kalkanı aktif edemezsin.
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+Yeniden Kullanma:
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(yeniden kullanma {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+Mevcut kalkan şarjı:
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+Aktif bir kalkanı kapatmak ve bir kalkanı aktif etmek yeniden kullanma süresini başlatır ({0}). Yeniden kullanma süresi içinde kalkan yeniden aktif edilemez.
+
+UI/CoreStrings@ShieldProtection_Description_1:
+Sen uzaktayken veya çevrimdışıyken kalkan üssünü korur.
+
+UI/CoreStrings@ShieldProtection_Description_2:
+Kalkan koruması altındayken üs kapıları ve duvarları hasar almaz.
+
+UI/CoreStrings@ShieldProtection_Description_3:
+Kilit: kalkan koruması altındaki üsse kimse giremez ve çıkamaz (tüm kapılar blokludur).
+
+UI/CoreStrings@ShieldProtection_Description_4:
+Kalkan aktif edilmeden önce elektrikle yeniden şarj edilmelidir.
+
+UI/CoreStrings@ShieldProtection_Description_5:
+Kalkanı aktif etmek biraz zaman alır.
+
+UI/CoreStrings@ShieldProtection_Description_6:
+Kapatılan kalkanlar hemen aktif edilemez.
+
+UI/CoreStrings@ShieldProtection_Description_7:
+Aktif kalkan alet kutusu ve levye kullanımını kısıtlar.
+
+UI/CoreStrings@ShieldProtection_Description_8:
+Kalkan aktifken şarj edilemez - önce kapatılması gerekir.
+
+UI/CoreStrings@ShieldProtection_Description_9:
+Üs kalkan aktivasyonu sırasında (baskın engelleme açık) saldırıya uğrarsa kalkan aktivasyonu iptal olacak ve aktivasyon yeniden kullanma süresi başlayacak.
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+Kalkanı aktif etmek istediğine emin misin?
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+Kalkanı kapatmak istediğine emin misin?
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+Kilit: bu kapı aktif kalkan koruması tarafından bloklanmıştır.
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+Bu alan tutucu aktif bir kalkan koruması altındadır.
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+Tahmini süre:
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+Maks süre:
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+Kalkan bir müdahale olmazsa {0} süre içinde aktif olacak (müdahaleler üs sahibinin iptal etmesi veya baskın engelleme uygulayan yağmacılar tarafından engellenmesi olabilir).
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+Bu üs kalkan korumasını aktif ediyor
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+Bu üs kalkan koruması altında ve {0} kadar sürecek.
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]Kalkanı artık kapatabilirsin (buraya tıklayarak).[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+Bu üs kalkan koruması altındadır
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+Bu üs kalkan koruması altındadır. Kapılara veya duvarlara hasar verilemez. Baskın engelleme aktif edilemez.
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+Şuna şarj et:
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+Kalkan durumu:
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+Aktif ediliyor
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+Aktif
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+Aktif değil
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+Çevrimdışı baskın koruma kalkanı alan tutucu binasının yüksek kademeleri için uygundur. Bu özelliği açmak için alan tutucuyu mümkün olduğunda kısa sürede geliştir.
+
 UI/CoreStrings@Skill:
 Yetenek
 
@@ -969,6 +1246,9 @@ UI/CoreStrings@SupporterPack_Description:
 `Destekçi Paketi, CryoFall geliştiricilerini desteklemek için ek bir adım atmak isteyenlere verilen ekstra eşyalar koleksiyonudur. Minnettarlığımızın bir göstergesi olarak, oyun sohbetinde, özel destekçi rozeti görünecektir.
 [br][br]Paket, oyun içinde herhangi bir avantaj sağlamaz ve tamamen opsiyoneldir. Oyunun tam müziklerini, sanat eserlerini, yüksek çözünürlüklü oyun sanat eserlerini, sohbet rozetini vs. içerir. Erken Erişim süresi boyunca ekstra Destekçi Paketi eşyaları eklenecektir.
 [br][br]Desteğiniz için yürekten teşekkür ederiz!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 Eğitim puanları: {0}
@@ -1011,6 +1291,9 @@ Teknoloji
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Araştır…
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 Unvan
@@ -1084,6 +1367,9 @@ Güç şebekesi
 UI/CoreStrings@TitleSafeStorage:
 Güvenli depo
 
+UI/CoreStrings@TitleShieldProtection:
+K.A.L.K.A.N.
+
 UI/CoreStrings@TitleStructurePoints:
 Yapı puanları
 
@@ -1117,6 +1403,9 @@ Enerji seviyesi
 UI/CoreStrings@Vehicle_Enter:
 Gir
 
+UI/CoreStrings@Vehicle_FuelCells:
+Yakıt hücreleri
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 Zırh {1:F0}/{2:F0}({0}%)
 
@@ -1131,6 +1420,9 @@ Sağ kol
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 Silah
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+Weapon ({0} sabit nokta)
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 Bu silah sadece bir makine üstüne monte edilince kullanılabilir.
@@ -1176,8 +1468,53 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 Açılan şematikler
 
+UI/CoreStrings@Victory:
+Zafer!
+
+UI/CoreStrings@Weapon_Accuracy:
+İsabetlilik
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+Cephane kapasitesi
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+Zırh delme
+
+UI/CoreStrings@Weapon_AttackRate:
+Saldırı oranı
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 Uyumlu cephane:
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+Mevcut cephane:
+
+UI/CoreStrings@Weapon_Damage:
+Hasar
+
+UI/CoreStrings@Weapon_DamageType:
+Hasar tipi
+
+UI/CoreStrings@Weapon_FireRate:
+Ateş oranı
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+Tek mermi
+
+UI/CoreStrings@Weapon_Range:
+Menzil
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+Doldurma hızı
+
+UI/CoreStrings@Weapon_Spread:
+Yayılma
+
+UI/CoreStrings@Weapon_StoppingPower:
+Durdurma gücü
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+Aşağı istatistikler referans cephane ({0}) baz alınarak gösterilmektedir.
 
 UI/CoreStrings@Window_Tab_Main:
 Ana
@@ -1193,14 +1530,26 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Rastgele
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+En iyi uzunluk: {0} cm
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+En iyi kilo: {0} kg
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 Kabul et
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+Yeni rekor!
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 İlerleme:
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Yaratıklar
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+Balık
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 Yiyecek
@@ -1432,6 +1781,12 @@ UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
 UI/CoreStrings@WindowSocial_TotalPlayers:
 Toplam oyuncu saıyıs
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+Hemen sula
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+Sonraki sulama teşebbüsü: [b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 AtomicTorch hesabı yarat
 
@@ -1612,6 +1967,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]Ticaret istasyonu (senin)[/b]
 [br]Bu ticaret istasyonunun sahibi sensin`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+Bu nesne başka bir kullanıcı tarafından sahiplenildi.
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+Sahiplenme süresi geçene kadar etkileşime geçemezsin.
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+Bu sahiplenmenin dolma süresi: {0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+Nesne sahiplenildi
+
 UI/CoreStrings@Yes:
 Evet
 
@@ -1642,6 +2009,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 İlk kez öldürüldü.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+İlk kez tutuldu.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 İlk kez tüketildi.
@@ -1791,8 +2161,8 @@ Saç
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 Saç rengi
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
-Cilt rengi
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
+Cilt tonu
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Üst
@@ -1878,6 +2248,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]Çürüme geciktirmesini herhangi bir alan tutucusunu daha üst aşamaya [b]yükselterek[/b] artırabilirsin.
 [br]Bütün üssün çürüme gecikmesi [b]en yüksek[/b] aşamadaki alan tutucu binasına göre düzenlenir.`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+sadece PvP'de
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Yakıt yok
 
@@ -1937,6 +2310,12 @@ Ekonomi
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 Para bas ve diğer hayatta kalanlarla ticaret yapabilmek için tamamen otomatik ticaret istasyonları kur.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Balıkçılık
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Farklı türde yemler kullanarak çeşitli tatlı su ve tuzlu su balıkları tut. Rekorunu kırmaya çalış ve başkalarıyla rekabet et.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 Sibernetik implantlar

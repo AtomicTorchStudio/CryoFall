@@ -10,6 +10,12 @@ Scripts/Vehicles/VehicleHoverboardMk2@Description:
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 호버보드 Mk2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+중공성 기계화 전투 장갑. 타의 추종을 불허하는 보호 기능과 대형 장착대를 통한 놀라운 화력을 제공해주지만, 이동 속도가 비교적 느립니다.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+베히모스
+
 Scripts/Vehicles/VehicleMechManul@Description:
 기계화된 전투 장갑의 중형 디자인. 상당한 방어력과 큰 화물 수송력을 자랑합니다.
 
@@ -47,5 +53,11 @@ Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
 수리가 필요하지 않습니다.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
-탈것을 수리하려면 탈것을 차량 조립대로 가져가십시오.
+탈것을 수리하려면 탈것을 탈것 조립대로 가져가십시오.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+중형
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+대형
 

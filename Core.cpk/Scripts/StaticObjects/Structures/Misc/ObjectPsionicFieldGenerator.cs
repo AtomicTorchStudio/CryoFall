@@ -16,16 +16,20 @@
 
     public class ObjectPsionicFieldGenerator
         : ProtoObjectStructure
-          <StructurePrivateState,
+          <ObjectPsionicFieldGenerator.PrivateState,
               StaticObjectElectricityConsumerPublicState,
               StaticObjectClientState>,
           IProtoObjectPsiSource,
-          IProtoObjectElectricityConsumerCritical
+          IProtoObjectElectricityConsumer
     {
         private static readonly SoundResource SoundResourceActive
             = new SoundResource("Objects/Structures/ObjectPsionicFieldGenerator/Active");
 
         private ITextureAtlasResource textureAtlasActive;
+
+        public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 1,
+                                               shutdownPercent: 0);
 
         public override string Description =>
             "Defensive structure that projects psionic field of high intensity while active.";
@@ -33,6 +37,8 @@
         public double ElectricityConsumptionPerSecondWhenActive => 1;
 
         public override string InteractionTooltipText => InteractionTooltipTexts.TogglePower;
+
+        public override bool IsRelocatable => false;
 
         public override string Name => "Psionic field generator";
 
@@ -52,7 +58,19 @@
         {
             var publicState = GetPublicState((IStaticWorldObject)worldObject);
             return publicState.ElectricityConsumerState
-                   == ElectricityConsumerState.PowerOn;
+                   == ElectricityConsumerState.PowerOnActive;
+        }
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -94,7 +112,7 @@
             void RefreshActiveState()
             {
                 var isActive = publicState.ElectricityConsumerState
-                               == ElectricityConsumerState.PowerOn;
+                               == ElectricityConsumerState.PowerOnActive;
                 componentAnimator.IsEnabled = isActive;
                 soundEmitter.IsEnabled = isActive;
 
@@ -113,7 +131,7 @@
             // toggle power
             await PowerGridSystem.ClientSetPowerMode(
                 isOn: data.PublicState.ElectricityConsumerState
-                      != ElectricityConsumerState.PowerOn,
+                      != ElectricityConsumerState.PowerOnActive,
                 data.GameObject);
         }
 
@@ -135,15 +153,15 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemPlastic>(count: 5);
             build.AddStageRequiredItem<ItemOrePragmium>(count: 5);
+            build.AddStageRequiredItem<ItemPlastic>(count: 2);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            repair.AddStageRequiredItem<ItemPlastic>(count: 2);
             repair.AddStageRequiredItem<ItemOrePragmium>(count: 2);
+            repair.AddStageRequiredItem<ItemPlastic>(count: 1);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
@@ -164,6 +182,16 @@
                 .AddShapeRectangle(size: (0.8, 0.5),  offset: (0.1, 0.75),  group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (0.8, 0.25), offset: (0.1, 0.95),  group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle(size: (0.9, 1.17), offset: (0.05, 0.15), group: CollisionGroups.ClickArea);
+        }
+
+        public class PrivateState : StructurePrivateState, IObjectElectricityStructurePrivateState
+        {
+            [SyncToClient]
+            public ElectricityThresholdsPreset ElectricityThresholds { get; set; }
+
+            [SyncToClient]
+            [TempOnly]
+            public byte PowerGridChargePercent { get; set; }
         }
     }
 }

@@ -40,7 +40,7 @@
 
         public const double FuelBurningSpeedMultiplier = 0.5;
 
-        private const int MinDistanceBetweenExtractors = 11;
+        private const int MinDistanceBetweenExtractors = 9;
 
         protected static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDepletedDeposit
             = new ConstructionTileRequirements.Validator(
@@ -76,6 +76,8 @@
         public override bool IsAutoSelectRecipe => true;
 
         public override bool IsFuelProduceByproducts => false;
+
+        public override bool IsRelocatable => false;
 
         public abstract double LiquidCapacity { get; }
 
@@ -381,7 +383,7 @@
                     // Consuming electricity.
                     // Active only if electricity state is on and has active recipe.
                     var publicState = data.PublicState;
-                    if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+                    if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
                     {
                         isActive = !isFull;
                     }

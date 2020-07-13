@@ -10,6 +10,12 @@ Schwere Variante des Gravi-Plattform-Designs. Langlebiger mit besserer Geschwind
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Hoverboard MK2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Mechanisierte Kampfrüstung ausgelegt auf schwere Belagerung. Bietet durch seine große Außenlaststation unübertroffenen Schutz und unglaubliche Feuerkraft, ist jedoch relativ träge in der Mobilität.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Behemoth
+
 Scripts/Vehicles/VehicleMechManul@Description:
 Mittleres Design einer mechanisierten Kampfrüstung. Besticht durch eine hohe Verteidigungs- und Frachtkapazität, ohne dabei auf anderen Arealen Abstriche machen zu müssen.
 
@@ -48,4 +54,10 @@ Keine Reparatur erforderlich.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Bitte bring dein Fahrzeug zu einer Montagebucht, um es zu reparieren.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+normal
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+groß
 

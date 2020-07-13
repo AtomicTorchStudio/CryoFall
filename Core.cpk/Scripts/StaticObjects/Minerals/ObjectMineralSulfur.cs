@@ -15,7 +15,7 @@
 
         protected override void PrepareProtoMineral(MineralDropItemsConfig config)
         {
-            var conditionAdditionalYield = SkillMining.ConditionAdditionalYield;
+            var conditionAdditionalYield = SkillProspecting.ConditionAdditionalYield;
 
             // droplist for stage 1
             config.Stage1
@@ -36,7 +36,7 @@
 
             // drop gemstones
             config.Stage4
-                  .Add(condition: SkillMining.ConditionDropGemstones,
+                  .Add(condition: SkillProspecting.ConditionDropGemstones,
                        probability: 1 / 1000.0,
                        nestedList: new DropItemsList(outputs: 1)
                                    .Add<ItemGemDiamond>()

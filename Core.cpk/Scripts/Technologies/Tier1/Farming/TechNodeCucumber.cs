@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeCucumber : TechNode<TechGroupFarming>
+    public class TechNodeCucumber : TechNode<TechGroupFarmingT1>
     {
         protected override void PrepareTechNode(Config config)
         {

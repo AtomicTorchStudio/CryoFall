@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelPowerGridState : BaseViewModel
     {
@@ -53,11 +52,6 @@
                 this);
 
             state.ClientSubscribe(
-                _ => _.ElectricityConsumptionTotalDemandCriticalOnly,
-                _ => this.NotifyPropertyChanged(nameof(this.ElectricityConsumptionTotalDemandCriticalOnly)),
-                this);
-
-            state.ClientSubscribe(
                 _ => _.ElectricityProductionCurrent,
                 _ =>
                 {
@@ -95,14 +89,7 @@
                 _ => _.NumberStorages,
                 _ => this.NotifyPropertyChanged(nameof(this.NumberStorages)),
                 this);
-
-            state.ClientSubscribe(
-                _ => _.IsBlackout,
-                _ => this.NotifyPropertyChanged(nameof(this.IsBlackout)),
-                this);
         }
-
-        public BaseCommand CommandRestorePower => new ActionCommand(this.ExecuteCommandRestorePower);
 
         public string DepletedInText
         {
@@ -138,14 +125,9 @@
 
         public double ElectricityConsumptionTotalDemand => this.state.ElectricityConsumptionTotalDemand;
 
-        public double ElectricityConsumptionTotalDemandCriticalOnly =>
-            this.state.ElectricityConsumptionTotalDemandCriticalOnly;
-
         public double ElectricityProductionCurrent => this.state.ElectricityProductionCurrent;
 
         public double ElectricityProductionTotalAvailable => this.state.ElectricityProductionTotalAvailable;
-
-        public bool IsBlackout => this.state.IsBlackout;
 
         public ushort NumberConsumers => this.state.NumberConsumers;
 
@@ -158,10 +140,5 @@
         public ushort NumberProducersActive => this.state.NumberProducersActive;
 
         public ushort NumberStorages => this.state.NumberStorages;
-
-        private void ExecuteCommandRestorePower()
-        {
-            PowerGridSystem.ClientRestorePower(this.state);
-        }
     }
 }

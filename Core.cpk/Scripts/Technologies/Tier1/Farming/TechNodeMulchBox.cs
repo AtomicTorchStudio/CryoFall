@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeMulchBox : TechNode<TechGroupFarming>
+    public class TechNodeMulchBox : TechNode<TechGroupFarmingT1>
     {
         protected override void PrepareTechNode(Config config)
         {

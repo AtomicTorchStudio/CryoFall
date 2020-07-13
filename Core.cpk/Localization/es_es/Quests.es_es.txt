@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Fuentes de luz
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+Para [b]reubicar[/b] una estructura ya existente, selecciona una [b]caja de herramientas[/b] y úsala en la estructura. Ten en cuenta que algunas estructuras no se pueden mover.
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `¡Es muy importante que sepas cómo proteger tu base! Si no lo haces bien, los supervivientes más avispados podrían saquearte con facilidad.
 [br]
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Fabrica un cuchillo y mata a cualquier criatura
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equipa un peto de mejor calidad
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+Equipa una armadura de mejor calidad
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 Equipa un casco de mejor calidad
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equipa una pernera metálica de mejor calidad
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Va siendo hora de conseguir una mejor protección.
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Usa la palanca para desmantelar
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-El pragmio es un extraño mineral alienígena que se necesita para la mayoría de tecnologías avanzadas. Intenta conseguir un poco.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] ¡Ten cuidado! La extracción de pragmio es muy peligrosa.
-[*] Los capiteles de pragmio son muy comunes en el desierto, mientras que los nodos pequeños se suelen encontrar cerca de volcanes.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-¡Consigue pragmio!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Extrae sales minerales
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-Las tecnologías avanzadas requieren ciertos recursos, tales como el petróleo o el litio. Por eso mismo, es de vital importancia saber la forma de conseguirlos.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] Encontrarás abundantes frutos de vaina de petróleo en el [u]bosque boreal[/u]. Podrás usarlos para extraer pequeñas cantidades de petróleo.
-[*] Puedes conseguir [u]sales de litio[/u] al excavar sales minerales normales.
-[*] Encontrarás sales minerales en las [u]salinas[/u] del desierto.
-[*] Aprender [u]Xenogeología[/u] te ofrecerá métodos industriales para conseguir estos recursos.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-Adquisición de recursos avanzados
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Los avances en industria y construcción requieren unos férreos conocimientos científicos, sobre todo de química.
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Dominio de tecnologías, parte 2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+Se pueden usar distintos tipos de [b]generadores[/b] para producir energía eléctrica, tales como generadores de vapor, solares o de motor.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+Podrás ver [b]información detallada de la red[/b] al interactuar con cualquier edificio de almacenamiento de energía o en tu terreno adjudicado.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+Los dispositivos electrónicos tan solo funcionarán si están [b]dentro[/b] del terreno adjudicado. No sirve de nada construir dispositivos eléctricos fuera de dicha zona.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+La energía eléctrica se guarda en edificios de [b]almacenamiento de energía[/b] para que puedas usarla cuando la necesites. Es buena idea aumentar la capacidad de energía general de la base.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+Puedes configurar [b]umbrales[/b] de energía en todos los generadores y objetos que consuman energía. Te servirán para determinar cuándo se [u]inician y apagan[/u].
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+Si hay varios terrenos adjudicados conectados, estos se comportarán como una [b]misma red eléctrica[/b].
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 Montar una red eléctrica en tu base es un paso importante de cara a obtener una mayor eficiencia. Hay muchas estructuras avanzadas que necesitan electricidad para funcionar.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] Los dispositivos eléctricos solo funcionan cuando están [b]dentro[/b] de la zona de terreno adjudicado. No sirve de nada construir dispositivos eléctricos fuera de la zona de terreno adjudicado.
-[*] La energía eléctrica se almacena en edificios de [b]almacenamiento de energía[/b], para poder usarla cuando sea necesaria. Es recomendable aumentar la capacidad energética general de la base.
-[*] Hay distintos tipos de [b]generadores[/b], tales como los de vapor, solares o motores, que se podrán usar para producir electricidad.
-[*] Si [u]no tienes suficiente[/u] electricidad almacenada, la base sufrirá un [b]apagón[/b] y tendrás que restaurar la energía manualmente.
-[*] Al interactuar con el almacenamiento de energía de tu terreno adjudicado, podrás ver una [b]ventana de información detallada[/b].
-[*] Si conectas varias zonas de terreno adjudicado, se comportarán como [b]una única red eléctrica[/b].`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 Establece una red eléctrica
@@ -520,6 +505,27 @@ Explora las ruinas antiguas
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 Saquea unos contenedores
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+Los [u]filetes[/u] de pescado se pueden [u]obtener[/u] a partir de los peces que hayas pescado. Bastará con que utilices la acción [b]Usar[/b] (igual que al usar cualquier objeto).
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+Tu [b]habilidad para pescar[/b] influye mucho en el tipo de peces que puedes pescar y en tus probabilidades de éxito.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+Los peces que puedes pescar son diferentes en agua [u]salada[/u] y en agua [u]dulce[/u].
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+Pesca cualquier pez
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+Filetea cualquier pez
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+Pescar no solo es un buen pasatiempo, sino que también es una gran forma de conseguir más comida. ¡Prueba a pescar algún pez!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+¡Pesca!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 ¡Va siendo hora de volver a cazar! Aunque esta vez iremos a por animales más peligrosos.
 
@@ -540,4 +546,53 @@ Dominio de la caza, parte 4
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 Dominio de la caza, parte 5
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+El pragmio es un extraño mineral alienígena que se necesita para la mayoría de tecnologías avanzadas. Intenta conseguir un poco.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] ¡Ten cuidado! La extracción de pragmio es muy peligrosa.
+[*] Los capiteles de pragmio son muy comunes en el desierto, mientras que los nodos pequeños se suelen encontrar cerca de volcanes.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+¡Consigue pragmio!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Extrae sales minerales
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+Las tecnologías avanzadas requieren ciertos recursos, tales como el petróleo o el litio. Por eso mismo, es de vital importancia saber la forma de conseguirlos.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Encontrarás abundantes frutos de vaina de petróleo en el [u]bosque boreal[/u]. Podrás usarlos para extraer pequeñas cantidades de petróleo.
+[*] Puedes conseguir [u]sales de litio[/u] al excavar sales minerales normales.
+[*] Encontrarás sales minerales en las [u]salinas[/u] del desierto.
+[*] Aprender [u]Xenogeología[/u] te ofrecerá métodos industriales para conseguir estos recursos.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+Adquisición de recursos avanzados
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+Usa el [b]mando[/b] para dar órdenes a los drones.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+Además de para [b]extraer minerales[/b], los drones también se pueden usar para [b]talar árboles[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+Para poder darles órdenes, es preciso que los drones estén en tu [b]inventario[/b] o en la [b]barra de acceso rápido[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+Extraer minerales y talar árboles a mano es una labor tediosa, así que es recomendable delegar esas tareas a los drones automatizados tan pronto como puedas.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+Minería con drones
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+Suele ser buena idea [u]ampliar la capacidad de almacenamiento de energía[/u] a medida que tu base crece. De este modo, te aseguras de tener siempre [u]energía suficiente[/u].
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+Ahora que ya tienes unas bases férreas para tu red eléctrica, quizás sea buena idea ampliarla con más estructuras útiles que te hagan la vida más fácil.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+Más usos para la red eléctrica
 

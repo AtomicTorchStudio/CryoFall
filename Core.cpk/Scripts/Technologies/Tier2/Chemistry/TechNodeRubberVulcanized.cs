@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeRubberVulcanized : TechNode<TechGroupChemistry>
+    public class TechNodeRubberVulcanized : TechNode<TechGroupChemistryT2>
     {
         protected override void PrepareTechNode(Config config)
         {

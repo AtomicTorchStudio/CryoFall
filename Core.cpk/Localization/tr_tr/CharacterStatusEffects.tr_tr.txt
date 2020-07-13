@@ -172,6 +172,9 @@ Kısa sürede çok fazla ilaç kullandın. Biraz ara ver, yoksa bunun sağlığ�
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Aşırı ilaç kullanımı
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+Peredozin uygulaması bitene dek lütfen bekle.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 Şu anda kanama yaralarını iyileştiren hemostatik ilacın etkisi altındasın.
 

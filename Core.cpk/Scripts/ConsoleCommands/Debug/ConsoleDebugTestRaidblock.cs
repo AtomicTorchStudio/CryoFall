@@ -7,7 +7,7 @@
 
     public class ConsoleDebugTestRaidblock : BaseConsoleCommand
     {
-        public override string Description => "Test server raid block—tries to enable it for the base.";
+        public override string Description => "Enable raid block for the base.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 

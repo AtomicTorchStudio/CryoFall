@@ -55,62 +55,74 @@ Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Scripts/Base/Stats/StatName@SearchingSpeed:
 探索速度
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-ダメージボーナス
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 ダメージボーナス
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-ダメージボーナス
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+特殊効果発動確率
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-ダメージボーナス
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+劣化率
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+リロード速度
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 ダメージボーナス
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 特殊効果発動確率
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-特殊効果発動確率
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-特殊効果発動確率
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-特殊効果発動確率
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-特殊効果発動確率
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-劣化率
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-劣化率
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-劣化率
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-劣化率
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 劣化率
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 リロード速度
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+ダメージボーナス
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+特殊効果発動確率
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+劣化率
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 リロード速度
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+ダメージボーナス
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+特殊効果発動確率
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+劣化率
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 エネルギー消費量
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-リロード速度
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+武器ダメージボーナス
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+武器劣化率
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+武器リロード時間
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+武器特殊効果発動確率
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+ダメージボーナス
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+特殊効果発動確率
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+劣化率
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 リロード速度
@@ -192,4 +204,13 @@ Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 薬物毒性
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+釣り知識レベル
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+釣り成功率
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+燃料消費量
 

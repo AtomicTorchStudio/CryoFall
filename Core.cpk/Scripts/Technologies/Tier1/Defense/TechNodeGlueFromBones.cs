@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeGlueFromBones : TechNode<TechGroupDefense>
+    public class TechNodeGlueFromBones : TechNode<TechGroupDefenseT1>
     {
         protected override void PrepareTechNode(Config config)
         {

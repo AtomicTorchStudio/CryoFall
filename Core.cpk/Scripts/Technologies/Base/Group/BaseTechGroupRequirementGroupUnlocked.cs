@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.UI;
 
     public abstract class BaseTechGroupRequirementGroupUnlocked
         : BaseTechGroupRequirement
@@ -36,7 +37,7 @@
                     this.GroupNodesUnlockedPercent))
             {
                 errorMessage = string.Format(DescriptionFormat,
-                                             this.Group.Name,
+                                             this.Group.NameWithTierName,
                                              (int)Math.Round(this.GroupNodesUnlockedPercent * 100,
                                                              MidpointRounding.AwayFromZero));
                 return false;

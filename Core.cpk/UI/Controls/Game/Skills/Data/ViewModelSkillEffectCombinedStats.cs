@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills.Data
 {
     using System.Windows;
+    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -10,10 +12,13 @@
 
         private readonly StatEffect[] effects;
 
-        public ViewModelSkillEffectCombinedStats(StatEffect[] effects, byte maxLevel) : base(
+        private readonly IProtoSkill skill;
+
+        public ViewModelSkillEffectCombinedStats(IProtoSkill skill, StatEffect[] effects, byte maxLevel) : base(
             level: 0,
             maxLevel: maxLevel)
         {
+            this.skill = skill;
             this.effects = effects;
         }
 
@@ -62,24 +67,51 @@
             this.IsActive = true;
             this.Visibility = Visibility.Visible;
 
-            var text = new AutoStringBuilder(this.effects[0].Description);
-            text.Append(" ");
-            ViewModelSkillEffectStat.FormatBonusText(text, totalValueBonusNow, totalPercentBonusNow);
+            var firstEffect = this.effects[0];
+            var displayTotalValue = firstEffect.DisplayTotalValue;
 
-            if (totalValueBonusNextLevel != totalValueBonusNow
-                || totalPercentBonusNextLevel != totalPercentBonusNow)
+            var sb = new AutoStringBuilder(firstEffect.Description);
+            sb.Append(" ");
+
+            double globalValue = 0,
+                   globalPercentValue = 0;
+
+            if (displayTotalValue)
             {
-                text.Append(" (")
-                    .Append(NextLevelPrefix)
-                    .Append(" ");
-
-                ViewModelSkillEffectStat.FormatBonusText(text,
-                                                         totalValueBonusNextLevel,
-                                                         totalPercentBonusNextLevel);
-                text.Append(")");
+                var statName = firstEffect.StatName;
+                var cache = ClientCurrentCharacterHelper.Character.SharedGetFinalStatsCache();
+                foreach (var statEntry in cache.Sources.List)
+                {
+                    if (statEntry.StatName == statName
+                        && !ReferenceEquals(statEntry.Source, this.skill))
+                    {
+                        globalValue += statEntry.Value;
+                        globalPercentValue += statEntry.Percent;
+                    }
+                }
             }
 
-            this.Description = text;
+            ViewModelSkillEffectStat.FormatBonusText(sb,
+                                                     globalValue + totalValueBonusNow,
+                                                     globalPercentValue + totalPercentBonusNow,
+                                                     canDisplayPositiveSign: !displayTotalValue);
+
+            if (hasNextLevel
+                && (totalValueBonusNextLevel != totalValueBonusNow
+                    || totalPercentBonusNextLevel != totalPercentBonusNow))
+            {
+                sb.Append(" (")
+                  .Append(NextLevelPrefix)
+                  .Append(" ");
+
+                ViewModelSkillEffectStat.FormatBonusText(sb,
+                                                         globalValue + totalValueBonusNextLevel,
+                                                         globalPercentValue + totalPercentBonusNextLevel,
+                                                         canDisplayPositiveSign: !displayTotalValue);
+                sb.Append(")");
+            }
+
+            this.Description = sb;
         }
     }
 }

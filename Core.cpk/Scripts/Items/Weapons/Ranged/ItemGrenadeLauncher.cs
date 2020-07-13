@@ -19,19 +19,21 @@
 
         public override uint DurabilityMax => 100;
 
+        public override double FireInterval => 0; // can fire as soon as reloaded
+
         public override string Name => "Grenade launcher";
 
         public override double ReadyDelayDuration => 2;
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
-            description.Set(MuzzleFlashPresets.PrimitiveRifle)
+            description.Set(MuzzleFlashPresets.GrenadeLauncher)
                        .Set(textureScreenOffset: (20, 11));
         }
 
         protected override void PrepareProtoGrenadeLauncher(out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos)
         {
-            compatibleAmmoProtos = GetAmmoOfType<IAmmoGrenade>();
+            compatibleAmmoProtos = GetAmmoOfType<IAmmoGrenadeForGrenadeLauncher>();
         }
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()

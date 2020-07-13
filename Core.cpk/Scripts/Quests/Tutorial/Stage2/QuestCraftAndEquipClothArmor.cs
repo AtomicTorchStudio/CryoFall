@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
@@ -18,22 +19,18 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
                 .Add(TaskHaveTechNode.Require<TechNodeClothArmor>())
                 // suggest cloth hat but require any head item
                 .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentHead>(
                          string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemClothHat>().Name)))
-                // suggest cloth shirt but require any chest item
-                .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentChest>(
+                                       Api.GetProtoEntity<ItemClothHelmet>().Name)))
+                // suggest cloth armor but require any armor item
+                .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentArmor>(
                          string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemClothShirt>().Name)))
-                // suggest cloth pants but require any legs item
-                .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentLegs>(
-                         string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemClothPants>().Name)));
+                                       Api.GetProtoEntity<ItemClothArmor>().Name)));
 
             prerequisites
                 .Add<QuestUnlockAndBuildWorkbench>();

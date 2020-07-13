@@ -15,6 +15,8 @@
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Mud;
 
+        public override bool IsFishingAllowed => false;
+
         public override string Name => "Lava";
 
         // used for blending only (if lava on the same height level which is not intended)

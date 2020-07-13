@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
@@ -42,13 +43,14 @@
 
         public override CollisionGroup CollisionGroup => CollisionGroups.HitboxRanged;
 
+        public override DamageStatsComparisonPreset DamageStatsComparisonPreset
+            => DamageStatsComparisonPresets.PresetRangedExceptGrenades;
+
         /// <summary>
         /// Ranged weapon don't have fire animation. It uses recoil animation instead.
         /// <see cref="CharacterAnimationAimingRecoilDuration" />.
         /// </summary>
         public override double FireAnimationDuration => 0;
-
-        public override double FireInterval => 0.5;
 
         public override double FirePatternCooldownDuration => this.FireInterval + 0.4;
 

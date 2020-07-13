@@ -20,7 +20,7 @@
             duration = CraftingDuration.Long;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 50);
-            inputItems.Add<ItemOrePragmium>(count: 25);
+            inputItems.Add<ItemOrePragmium>(count: 50);
             inputItems.Add<ItemIngotSteel>(count: 50);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 50);
 

@@ -2,7 +2,7 @@
 興奮剤を使用しました。スタミナの回復速度が上がります。
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
-エネルギーラッシュ
+エナジーラッシュ
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
 強力な回復薬を使用し、失われた体力を急速に取り戻しています。
@@ -149,10 +149,10 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
 壊れた装備
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
-魚のようにものすごい勢いで飲んでいます。吐く気がするのも当然です…
+ものすごい勢いで飲んでいましたね。吐き気がするのも当然です…
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
-ずっと酒を飲んでいます…
+飲み過ぎたようです…
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
 酔い
@@ -171,6 +171,9 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 薬の乱用
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+ペレドジンの申請が終わるまでお待ちください。
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 現在止血薬の効果で、新しい出血負傷の痛みを軽減しています。

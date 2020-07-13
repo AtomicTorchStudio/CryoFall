@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 광원
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+기존의 구조물을 [b]재배치[/b]하려면, [b]공구함[/b]을 선택한 뒤, 구조물에 사용하세요. 일부 구조물을 이동할 수 없다는 점에 유의해주세요.
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `기지를 보호하는 방법을 제대로 알아야 합니다! 그렇지 않으면, 교활한 생존자들이 쉽게 공격해 올 수 있기 때문이죠.
 [br]
@@ -211,7 +214,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
 `[*] 농작물의 생장 속도를 높일 수 있는 가장 좋은 방법은 규칙적으로 물을 주는 것입니다. 물을 주는 데는 오직 물만 필요합니다.
-[*] 물 수집기 또는 우물에서 물뿌리개에 물을 채울 수 있습니다. 물뿌리개를 선택한 후, 단축막대에서 물 수집기를 마우스 왼쪽 버튼으로 눌러보세요.
+[*] 집수기 또는 우물에서 물뿌리개에 물을 채울 수 있습니다. 물뿌리개를 선택한 후, 단축막대에서 물 수집기를 마우스 왼쪽 버튼으로 눌러보세요.
 [*] 비료를 만들려면, 유기물(농작물, 상한 음식 등.)을 땅에 떨어뜨린 후, 부패될 때까지 기다리세요.
 [*] 비료는 쉽게 구할 수 있으며 천역 성분으로 만들어졌습니다. 비료를 사용하면 식물의 생장 속도가 빨라집니다.`
 
@@ -225,8 +228,8 @@ Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
 `[*] 아무 [b]해변 또는 호숫가[/b]에서나 [b]모래[/b]를 거의 무제한으로 쉽게 찾을 수 있습니다.
 [*] [b]재[/b]는 나무, 특히 잔가지를 태운 후에 찾을 수 있습니다.
 [*] 물은 여러 제조법에서 사용되기 때문에 필요할 때를 위해 항상 충분한 양을 저장해 두어야 합니다.
-[*] 물 수집기 대신 호수의 물을 끓여서 정화시킨 후, 마시거나 무언가를 만들 때 사용할 수 있습니다.
-[*] 우물은 단순한 물 수집기보다 훨씬 좋습니다.
+[*] 집수기 대신 호수의 물을 끓여서 정화시킨 후, 마시거나 무언가를 만들 때 사용할 수 있습니다.
+[*] 우물은 단순한 집수기보다 훨씬 좋습니다.
 [*] 소금을 추출하려면 바닷물을 끓여야 합니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 칼을 만들고 아무 생명체나 처치하기
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
 더 좋은 갑옷을 장착해주세요
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 더 좋은 헬멧을 장착해주세요
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-더 좋은 다리 갑옷을 장착해주세요
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 더 나은 방어 수단에 대해 알아볼 시간입니다.
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 쇠지렛대를 사용하여 해체하기
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-프라그뮴은 가장 높은 수준의 기술에 필요한 외계 광물입니다. 프라그뮴 몇 개를 찾아서 얻어보세요.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] 경고! 프라그뮴 채굴은 매우 위험합니다.
-[*] 대형 프라그뮴 첨탑은 주로 사막에서 발견되며, 소형 프라그뮴 덩어리는 화산 근처에서 발견되는 경우가 많습니다.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-프라그뮴 획득하기!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-소금 광물 채굴하기
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-원유와 리튬 같은 특정 자원은 첨단 기술에 필요합니다. 따라서 해당 자원을 얻는 방법을 배우는 것은 매우 중요합니다.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] [u]아한대 숲[/u] 어디에서나 석유꼬투리 열매를 찾을 수 있습니다. 이 열매에서는 소량의 원유를 추출할 수 있습니다.
-[*] 일반 소금 광물을 채굴할 때 [u]리튬 소금[/u]도 얻을 수 있습니다.
-[*] 사막의 [u]소금 평지[/u]에서 소금 광물을 찾을 수 있습니다.
-[*] [u]외계지질학[/u]을 학습하면 이러한 자원을 얻을 수 있는 공업 수준의 방법을 배우게 됩니다.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-고급 자원 획득
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 공업 건설 분야를 발전시키려면 어려운 과학, 특히 화학의 기반을 잘 닦아야 합니다.
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 기술 숙달하기-제2부
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+증기와 태양광, 엔진과 같은 다양한 유형의 [b]발전기[/b]를 함께 사용하여 전력을 생산할 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+전기 저장소 건물과 상호 작용할 때나 토지 점유소에서 [b]상세한 전력망 정보[/b]를 볼 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+전기 장치는 토지 점유 구역 [b]내[/b]에서만 작동합니다. 토지 점유 구역 바깥에 전기 장치를 설치하는 것은 무의미한 행동입니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+전기 에너지는 [b]전기 저장소[/b] 건물에 저장되어 필요할 때 편리하게 사용할 수 있습니다. 기지 전체의 에너지 용량을 늘리는 것이 좋습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+모든 전기 소비 장치와 발전기의 [u]가동 및 정지[/u] 전력 [b]임계치[/b]를 설정할 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+연결된 다수의 토지 점유 구역은 [b]단일 전력망[/b]으로 간주됩니다.
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 기지에 전력망을 까는 것은 효율성을 증대시키기 위한 중요한 단계입니다. 작동하려면 전기가 필요한 발전된 구조물들이 많이 있습니다.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] 전기 장치는 토지 점유 구역 [b]내[/b]에 있을 때만 작동합니다. 토지 점구 구역 밖에 전기 장치를 설치하는 것은 무의미합니다.
-[*] 전기 에너지는 필요할 때 간편하게 사용할 수 있도록  [b]전기 저장소[/b]에 축적됩니다. 기지의 총 에너지 용량을 늘리는 것이 좋습니다.
-[*] 증기, 태양열, 엔진과 같은 다양한 유형의 [b]발전기[/b]로 전기를 생산할 수 있습니다.
-[*] 축적된 전기가 [u]부족[/u]해지면 [b]정전[/b] 모드로 전환되고, 수동으로 전기를 복구해야 합니다.
-[*] 전기 저장소나 토지 점유소에서 [b]자세한 전력망 정보[/b]를 볼 수 있습니다.
-[*] 연결된 수개의 토지 점유 구역은 [b]하나의 전력망[/b]으로 간주됩니다.`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 전력망 깔기
@@ -520,6 +505,27 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 컨테이너 약탈하기
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+생선[u]살[/u]은 (아이템 사용과 같은) [b]행동[/b]으로 잡은 물고기로부터 [u]얻을[/u] 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+[b]낚시 스킬[/b]은 잡을 수 있는 물고기의 종류와 전반적인 낚시 성공률에 큰 영향을 미칩니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+[u]바다[/u]와 [u]민물[/u]에서 다른 개체의 물고기를 잡을 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+아무 물고기나 잡기
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+물고기를 손질하여 생선살로 만들기
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+낚시는 좋은 취미일 뿐만 아니라 음식을 얻을 수 있는 좋은 방법입니다. 물고기 몇 마리를 잡아보세요!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+낚시!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 사냥을 더 해볼 시간입니다! 이번에는 더 위험한 동물들을 상대해봅시다.
 
@@ -540,4 +546,53 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 사냥 숙달하기-제5부
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+프라그뮴은 가장 높은 수준의 기술에 필요한 외계 광물입니다. 프라그뮴 몇 개를 찾아서 얻어보세요.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] 경고! 프라그뮴 채굴은 매우 위험합니다.
+[*] 대형 프라그뮴 첨탑은 주로 사막에서 발견되며, 소형 프라그뮴 덩어리는 화산 근처에서 발견되는 경우가 많습니다.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+프라그뮴 획득하기!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+소금 광물 채굴하기
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+원유와 리튬 같은 특정 자원은 첨단 기술에 필요합니다. 따라서 해당 자원을 얻는 방법을 배우는 것은 매우 중요합니다.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] [u]아한대 숲[/u] 어디에서나 석유꼬투리 열매를 찾을 수 있습니다. 이 열매에서는 소량의 원유를 추출할 수 있습니다.
+[*] 일반 소금 광물을 채굴할 때 [u]리튬 소금[/u]도 얻을 수 있습니다.
+[*] 사막의 [u]소금 평지[/u]에서 소금 광물을 찾을 수 있습니다.
+[*] [u]외계지질학[/u]을 학습하면 이러한 자원을 얻을 수 있는 공업 수준의 방법을 배우게 됩니다.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+고급 자원 획득
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+드론에 명령을 내리려면 [b]조종기[/b]를 사용하세요.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+드론은 [b]광물 채굴[/b]뿐만 아니라 [b]벌목[/b]에도 사용할 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+명령을 내리기 위해서는 반드시 [b]인벤토리[/b]나 [b]단축막대에[/b] 드론이 있어야 합니다.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+광물 채굴이나 벌목을 직접하는 것은 지루한 일입니다. 그러니 가능한 한 빨리 자동 드론이 그런 일들을 하도록 해야 합니다.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+드론 채굴
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+기지가 성장해감에 따라 항상 [u]충분할 정도[/u]로 [u]전기 저장소 용량을 확대[/u]하는 것이 좋습니다.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+이제 전력망의 기반이 탄탄해졌으니, 유용한 구조물로 전력망을 확장하여 더욱 편리한 생활을 누려보세요.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+전력망 더 많이 이용하기
 

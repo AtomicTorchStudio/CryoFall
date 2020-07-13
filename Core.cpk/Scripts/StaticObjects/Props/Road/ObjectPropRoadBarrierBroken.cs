@@ -25,7 +25,6 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.PositionOffset = (0.85, 0.6);
-            //renderer.DrawOrder = DrawOrder.Floor;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)

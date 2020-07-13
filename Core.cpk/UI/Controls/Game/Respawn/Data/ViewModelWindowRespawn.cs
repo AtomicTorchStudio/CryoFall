@@ -171,6 +171,7 @@
             if (PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false))
             {
                 this.Message = CoreStrings.WindowRespawn_MessagePvE;
+                this.IsRegularDeath = true;
                 return;
             }
 

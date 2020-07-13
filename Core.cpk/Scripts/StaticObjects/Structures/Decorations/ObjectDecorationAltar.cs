@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationAltar : ProtoObjectDecoration
+    public class ObjectDecorationAltar : ProtoObjectDecoration
     {
         public override string Description =>
             "Eastern-style altar for putting incense in.";

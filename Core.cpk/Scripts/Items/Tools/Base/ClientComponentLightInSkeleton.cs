@@ -20,15 +20,19 @@
         {
         }
 
+        public bool IsPrimary { get; private set; }
+
         public BaseClientComponentLightSource LightSource => this.lightSource;
 
         public void Setup(
             IComponentSkeleton skeletonRenderer,
             IReadOnlyItemLightConfig lightConfig,
             BaseClientComponentLightSource lightSource,
-            string skeletonSlotName)
+            string skeletonSlotName,
+            bool isPrimaryLight)
         {
             this.skeletonSlotName = skeletonSlotName;
+            this.IsPrimary = isPrimaryLight;
 
             this.lightConfig = lightConfig;
             this.skeletonRenderer = skeletonRenderer;

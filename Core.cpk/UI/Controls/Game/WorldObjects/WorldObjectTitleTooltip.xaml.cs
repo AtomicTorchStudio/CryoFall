@@ -22,7 +22,7 @@
             Hide();
 
             var positionOffset = worldObject.ProtoWorldObject.SharedGetObjectCenterWorldOffset(worldObject)
-                                 + (0, 1.18);
+                                 + (0, 1.28);
 
             lastControl = new WorldObjectTitleTooltip();
             lastControl.Setup(message);

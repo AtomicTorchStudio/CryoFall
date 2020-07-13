@@ -12,7 +12,7 @@
             // calculate final values (apply multiplier)
             this.Chemical = multiplier * d.Chemical;
             this.Cold = multiplier * d.Cold;
-            this.Electrical = multiplier * d.Electrical;
+            this.Explosion = multiplier * d.Explosion;
             this.Heat = multiplier * d.Heat;
             this.Impact = multiplier * d.Impact;
             this.Kinetic = multiplier * d.Kinetic;
@@ -24,7 +24,7 @@
 
         public double Cold { get; }
 
-        public double Electrical { get; }
+        public double Explosion { get; }
 
         public double Heat { get; }
 
@@ -43,14 +43,14 @@
 
         public void FillEffects(IProtoEntity prototype, BaseStatsDictionary effects, double maximumDefensePercent = 1)
         {
-            Add(StatName.DefenseImpact,     this.Impact);
-            Add(StatName.DefenseKinetic,    this.Kinetic);
-            Add(StatName.DefenseHeat,       this.Heat);
-            Add(StatName.DefenseCold,       this.Cold);
-            Add(StatName.DefenseChemical,   this.Chemical);
-            Add(StatName.DefenseElectrical, this.Electrical);
-            Add(StatName.DefenseRadiation,  this.Radiation);
-            Add(StatName.DefensePsi,        this.Psi);
+            Add(StatName.DefenseImpact,    this.Impact);
+            Add(StatName.DefenseKinetic,   this.Kinetic);
+            Add(StatName.DefenseExplosion, this.Explosion);
+            Add(StatName.DefenseHeat,      this.Heat);
+            Add(StatName.DefenseCold,      this.Cold);
+            Add(StatName.DefenseChemical,  this.Chemical);
+            Add(StatName.DefenseRadiation, this.Radiation);
+            Add(StatName.DefensePsi,       this.Psi);
 
             void Add(StatName statName, double defensePercent)
             {

@@ -313,7 +313,7 @@
                                         <!-- Text: Primary technologies -->
                                         <TextBlock
                                             Text="{x:Static loc:CoreStrings.WindowTechnologies_TitlePrimaryTechnologies}" />
-                                        <Control Style="{StaticResource ControlInfoPointStyle}"
+                                        <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
                                                  Margin="2,0,0,1"
                                                  Width="12"
                                                  Height="12"
@@ -345,7 +345,7 @@
                                         <!-- Text: Specialized technologies -->
                                         <TextBlock
                                             Text="{x:Static loc:CoreStrings.WindowTechnologies_TitleSpecializedTechnologies}" />
-                                        <Control Style="{StaticResource ControlInfoPointStyle}"
+                                        <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
                                                  Margin="2,0,0,1"
                                                  Width="12"
                                                  Height="12"
@@ -454,7 +454,7 @@
                         <TextBlock Text=": " Style="{StaticResource TextSmall}" />
                     </StackPanel>
                     <TextBlock Text="{Binding LearningPoints}" Style="{StaticResource TextBig}" />
-                    <Control Style="{StaticResource ControlInfoPointStyle}"
+                    <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
                              Margin="2,0,0,0"
                              Width="12"
                              Height="12"

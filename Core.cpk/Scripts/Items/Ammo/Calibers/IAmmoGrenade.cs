@@ -1,20 +1,17 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
-    using AtomicTorch.CBND.GameApi.Data.Weapons;
 
-    public interface IAmmoGrenade : IProtoItemAmmo, IProtoExplosive
+    /// <summary>
+    /// Basic interface for both grenades for grenade launchers
+    /// and for cannon shells (IAmmoCannonShell) such as used in mechs.
+    /// </summary>
+    public interface IAmmoGrenade : IProtoItemAmmo, IProtoExplosive, IAmmoWithCustomWeaponCacheDamageDescription
     {
-        DamageDescription DamageDescriptionCharacters { get; }
-
         double DamageRadius { get; }
 
         ExplosionPreset ExplosionPreset { get; }
 
         double FireRangeMax { get; }
-
-        double StructureDamage { get; }
-
-        double StructureDefensePenetrationCoef { get; }
     }
 }

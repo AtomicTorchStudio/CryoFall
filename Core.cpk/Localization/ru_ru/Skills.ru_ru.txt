@@ -25,6 +25,15 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Фермерство
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Шанс сохранить наживку
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Ваши познания о разных видах рыб и их повадках отражают вашу способность успешно ловить рыбу.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Рыбная ловля
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Шанс собрать больше
 
@@ -100,23 +109,29 @@ Scripts/Skills/Skills/Personal/SkillSurvival@Description:
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Выживаемость
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-Шанс добыть больше минералов
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Шанс получить саженцы
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Шанс дополнительных саженцев
+
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Лучшая подготовка и понимание этой профессии позволят вам рубить деревья быстрее.
+
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Рубка леса
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
+Шанс получить дополнительный минерал
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Шанс найти самородки при добыче минералов
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-Чем больше вы знаете о месторождениях, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы. Действует только при использовании кирки.
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+Чем больше вы знаете о месторождениях, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Добыча минералов
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-Опытный и понимающий лесоруб быстрее рубит деревья. Действует только при использовании топора.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Рубка леса
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Старательство
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Высокий уровень строительного навыка помогает строить быстрее. Действует для всех задач (строительства и ремонта), где используется набор инструментов.
@@ -130,9 +145,18 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Крафтинг
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Шанс полностью починить предмет
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Позволяет ремонтировать и настраивать различные предметы и оборудование. Относится к работам, выполняемым на столе мастера.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Отладка
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+Способность управлять различным транспортом, а также правильно и эффективно использовать его оборудование. Применимо ко всем типам транспорта.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Транспорт
 

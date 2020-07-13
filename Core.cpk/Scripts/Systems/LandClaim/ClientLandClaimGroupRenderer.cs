@@ -18,8 +18,6 @@
         private readonly List<ILogicObject> areas
             = new List<ILogicObject>();
 
-        private readonly ILogicObject areasGroup;
-
         private readonly Func<IComponentSpriteRenderer> callbackGetRendererFromCache;
 
         private readonly Action<IComponentSpriteRenderer> callbackReturnRendererToCache;
@@ -31,6 +29,10 @@
         private readonly List<IComponentSpriteRenderer> renderers
             = new List<IComponentSpriteRenderer>();
 
+        private IProtoObjectLandClaim blueprintProtoObjectLandClaim;
+
+        private Vector2Ushort? blueprintTilePosition;
+
         private RectangleInt? cachedGroupBounds;
 
         private bool isDisplayOverlays;
@@ -38,20 +40,16 @@
         private bool isVisible;
 
         public ClientLandClaimGroupRenderer(
-            ILogicObject areasGroup,
             RenderingMaterial material,
             bool isGraceAreaRenderer,
             Func<IComponentSpriteRenderer> callbackGetRendererFromCache,
             Action<IComponentSpriteRenderer> callbackReturnRendererToCache)
         {
-            this.areasGroup = areasGroup;
             this.material = material;
             this.isGraceAreaRenderer = isGraceAreaRenderer;
             this.callbackGetRendererFromCache = callbackGetRendererFromCache;
             this.callbackReturnRendererToCache = callbackReturnRendererToCache;
         }
-
-        public ILogicObject AreasGroup => this.areasGroup;
 
         public RectangleInt Bounds
         {
@@ -122,15 +120,17 @@
             return material;
         }
 
-        public bool ContainsArea(ILogicObject area)
-        {
-            return this.areas.Contains(area);
-        }
-
         public void RegisterArea(ILogicObject area)
         {
             this.areas.Add(area);
             this.cachedGroupBounds = null;
+            this.DestroyRenderers();
+        }
+
+        public void RegisterBlueprint(Vector2Ushort tilePosition, IProtoObjectLandClaim protoObjectLandClaim)
+        {
+            this.blueprintTilePosition = tilePosition;
+            this.blueprintProtoObjectLandClaim = protoObjectLandClaim;
             this.DestroyRenderers();
         }
 
@@ -141,10 +141,52 @@
             this.DestroyRenderers();
         }
 
+        public void UnregisterBlueprint()
+        {
+            this.blueprintTilePosition = null;
+            this.blueprintProtoObjectLandClaim = null;
+            this.DestroyRenderers();
+        }
+
         private RectangleInt CalculateBounds()
         {
-            return LandClaimSystem.SharedGetLandClaimGroupsBoundingArea(this.areasGroup,
-                                                                        addGraceAreaPadding: true);
+            // TODO: redo this completely as currently it will cause a lot of unnecessary quadtree nesting
+            // and also break the optimization of rendering
+            return new RectangleInt(0,
+                                    0,
+                                    ushort.MaxValue / 2 - 100,
+                                    ushort.MaxValue / 2 - 100);
+
+            var hasBounds = false;
+            ushort minX = ushort.MaxValue,
+                   minY = ushort.MaxValue,
+                   maxX = 0,
+                   maxY = 0;
+
+            foreach (var area in this.areas)
+            {
+                var areaPublicState = LandClaimArea.GetPublicState(area);
+
+                hasBounds = true;
+                var bounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
+                bounds = bounds.Inflate(areaPublicState.ProtoObjectLandClaim
+                                                       .LandClaimGraceAreaPaddingSizeOneDirection);
+
+                minX = Math.Min(minX, (ushort)Math.Min(bounds.X,                 ushort.MaxValue));
+                minY = Math.Min(minY, (ushort)Math.Min(bounds.Y,                 ushort.MaxValue));
+                maxX = Math.Max(maxX, (ushort)Math.Min(bounds.X + bounds.Width,  ushort.MaxValue));
+                maxY = Math.Max(maxY, (ushort)Math.Min(bounds.Y + bounds.Height, ushort.MaxValue));
+            }
+
+            if (!hasBounds)
+            {
+                return default;
+            }
+
+            return new RectangleInt(x: minX,
+                                    y: minY,
+                                    width: maxX - minX,
+                                    height: maxY - minY);
         }
 
         private void CreateRenderers()
@@ -166,28 +208,6 @@
                 CreateUnifiedRenderers();
             }
 
-            void CreateSeparateAreaRenderer(ILogicObject area)
-            {
-                var publicState = LandClaimArea.GetPublicState(area);
-                var position = publicState.LandClaimCenterTilePosition;
-                var protoObjectLandClaim = publicState.ProtoObjectLandClaim;
-                int size = protoObjectLandClaim.LandClaimSize;
-                if (this.isGraceAreaRenderer)
-                {
-                    size += 2 * protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection;
-                }
-
-                position = new Vector2Ushort((ushort)Math.Max(0, position.X - size / 2),
-                                             (ushort)Math.Max(0, position.Y - size / 2));
-
-                var renderer = this.callbackGetRendererFromCache();
-                renderer.RenderingMaterial = this.material;
-                renderer.Scale = size;
-                renderer.PositionOffset = position.ToVector2D();
-                this.renderers.Add(renderer);
-                renderer.IsEnabled = true;
-            }
-
             void CreateUnifiedRenderers()
             {
                 // create and fill quad tree with all areas
@@ -200,21 +220,19 @@
 
                 foreach (var area in this.areas)
                 {
+                    var publicState = LandClaimArea.GetPublicState(area);
+                    var protoObjectLandClaim = publicState.ProtoObjectLandClaim;
                     var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
-                    if (this.isGraceAreaRenderer)
-                    {
-                        var publicState = LandClaimArea.GetPublicState(area);
-                        areaBounds = areaBounds.Inflate(publicState.ProtoObjectLandClaim
-                                                                   .LandClaimGraceAreaPaddingSizeOneDirection);
-                    }
+                    FillArea(areaBounds, protoObjectLandClaim);
+                }
 
-                    var areaBoundsRight = (ushort)areaBounds.Right;
-                    var areaBoundsTop = (ushort)areaBounds.Top;
-                    for (var x = (ushort)areaBounds.Left; x < areaBoundsRight; x++)
-                    for (var y = (ushort)areaBounds.Bottom; y < areaBoundsTop; y++)
-                    {
-                        quadTree.SetFilledPosition((x, y));
-                    }
+                if (this.blueprintTilePosition.HasValue)
+                {
+                    var areaBounds = LandClaimSystem.SharedCalculateLandClaimAreaBounds(
+                        this.blueprintTilePosition.Value,
+                        this.blueprintProtoObjectLandClaim.LandClaimSize);
+
+                    FillArea(areaBounds, this.blueprintProtoObjectLandClaim);
                 }
 
                 if (this.isGraceAreaRenderer)
@@ -223,10 +241,23 @@
                     foreach (var area in this.areas)
                     {
                         var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
-                        var areaBoundsRight = (ushort)areaBounds.Right;
-                        var areaBoundsTop = (ushort)areaBounds.Top;
-                        for (var x = (ushort)areaBounds.Left; x < areaBoundsRight; x++)
-                        for (var y = (ushort)areaBounds.Bottom; y < areaBoundsTop; y++)
+                        ResetFilledPositions(areaBounds);
+                    }
+
+                    if (this.blueprintTilePosition.HasValue)
+                    {
+                        var areaBounds = LandClaimSystem.SharedCalculateLandClaimAreaBounds(
+                            this.blueprintTilePosition.Value,
+                            this.blueprintProtoObjectLandClaim.LandClaimSize);
+                        ResetFilledPositions(areaBounds);
+                    }
+
+                    void ResetFilledPositions(RectangleInt rectangleInt)
+                    {
+                        var areaBoundsRight = (ushort)rectangleInt.Right;
+                        var areaBoundsTop = (ushort)rectangleInt.Top;
+                        for (var x = (ushort)rectangleInt.Left; x < areaBoundsRight; x++)
+                        for (var y = (ushort)rectangleInt.Bottom; y < areaBoundsTop; y++)
                         {
                             quadTree.ResetFilledPosition((x, y));
                         }
@@ -255,6 +286,56 @@
                 }
 
                 //Api.Logger.Dev("Preparing areas group for rendering is done! Used renderers number: " + this.renderers.Count);
+
+                void FillArea(RectangleInt areaBounds, IProtoObjectLandClaim protoObjectLandClaim)
+                {
+                    if (this.isGraceAreaRenderer)
+                    {
+                        areaBounds = areaBounds.Inflate(protoObjectLandClaim
+                                                            .LandClaimGraceAreaPaddingSizeOneDirection);
+                    }
+
+                    var areaBoundsRight = (ushort)areaBounds.Right;
+                    var areaBoundsTop = (ushort)areaBounds.Top;
+                    for (var x = (ushort)areaBounds.Left; x < areaBoundsRight; x++)
+                    for (var y = (ushort)areaBounds.Bottom; y < areaBoundsTop; y++)
+                    {
+                        quadTree.SetFilledPosition((x, y));
+                    }
+                }
+            }
+
+            void CreateSeparateAreaRenderer(ILogicObject area)
+            {
+                var publicState = LandClaimArea.GetPublicState(area);
+                CreateSeparateRenderer(publicState.ProtoObjectLandClaim,
+                                       publicState.LandClaimCenterTilePosition);
+
+                if (this.blueprintTilePosition.HasValue)
+                {
+                    CreateSeparateRenderer(this.blueprintProtoObjectLandClaim,
+                                           this.blueprintTilePosition.Value);
+                }
+
+                void CreateSeparateRenderer(IProtoObjectLandClaim protoObjectLandClaim, Vector2Ushort position)
+                {
+                    int size = protoObjectLandClaim.LandClaimSize;
+                    if (this.isGraceAreaRenderer)
+                    {
+                        var padding = protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection;
+                        size += 2 * padding;
+                    }
+
+                    position = new Vector2Ushort((ushort)Math.Max(0, position.X - size / 2),
+                                                 (ushort)Math.Max(0, position.Y - size / 2));
+
+                    var renderer = this.callbackGetRendererFromCache();
+                    renderer.RenderingMaterial = this.material;
+                    renderer.Scale = size;
+                    renderer.PositionOffset = position.ToVector2D();
+                    this.renderers.Add(renderer);
+                    renderer.IsEnabled = true;
+                }
             }
         }
 

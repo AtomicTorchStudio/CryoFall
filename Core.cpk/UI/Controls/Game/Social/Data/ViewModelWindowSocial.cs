@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data
 {
-    using System;
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
@@ -11,8 +10,6 @@
 
     public class ViewModelWindowSocial : BaseViewModel
     {
-        private static readonly StringComparer PlayerNameComparer = StringComparer.OrdinalIgnoreCase;
-
         private bool isActive;
 
         public bool IsActive
@@ -27,7 +24,8 @@
 
                 if (this.isActive)
                 {
-                    OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved -= this.OnPlayerAddedOrRemovedHandler;
+                    OnlinePlayersSystem.ClientPlayerAddedOrRemoved -= this.PlayerAddedOrRemovedHandler;
+                    OnlinePlayersSystem.ClientOnlinePlayerClanTagChanged -= this.OnlinePlayerClanTagChangedHandler;
                     OnlinePlayersSystem.ClientTotalServerPlayersCountChanged -= this.TotalPlayersCountChangedHandler;
                     ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
                 }
@@ -43,7 +41,8 @@
                     return;
                 }
 
-                OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved += this.OnPlayerAddedOrRemovedHandler;
+                OnlinePlayersSystem.ClientPlayerAddedOrRemoved += this.PlayerAddedOrRemovedHandler;
+                OnlinePlayersSystem.ClientOnlinePlayerClanTagChanged += this.OnlinePlayerClanTagChangedHandler;
                 OnlinePlayersSystem.ClientTotalServerPlayersCountChanged += this.TotalPlayersCountChangedHandler;
                 ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
 
@@ -61,12 +60,12 @@
                 //}
 
                 var list = onlinePlayers
-                           .ExceptOne(currentCharacterName)
+                           .ExceptOne(new OnlinePlayersSystem.Entry(currentCharacterName, null))
                            .ToList();
-                list.Sort(PlayerNameComparer);
+                list.Sort(OnlinePlayersSystem.Entry.CompareWithTag);
 
                 this.PlayersOnline = new SuperObservableCollection<ViewModelPlayerEntry>(
-                    list.Select(name => new ViewModelPlayerEntry(name))
+                    list.Select(entry => new ViewModelPlayerEntry(entry.Name, entry.ClanTag))
                         .ToList());
 
                 this.NotifyPropertyChanged(nameof(this.PlayersOnlineCount));
@@ -108,9 +107,15 @@
             }
         }
 
-        private void OnPlayerAddedOrRemovedHandler(string name, bool isOnline)
+        private void OnlinePlayerClanTagChangedHandler(OnlinePlayersSystem.Entry entry)
         {
-            if (Client.Characters.CurrentPlayerCharacter?.Name == name)
+            this.PlayerAddedOrRemovedHandler(entry, isOnline: false);
+            this.PlayerAddedOrRemovedHandler(entry, isOnline: true);
+        }
+
+        private void PlayerAddedOrRemovedHandler(OnlinePlayersSystem.Entry entry, bool isOnline)
+        {
+            if (Client.Characters.CurrentPlayerCharacter?.Name == entry.Name)
             {
                 return;
             }
@@ -121,22 +126,24 @@
                 if (isOnline)
                 {
                     // player went online - try to insert the entry (ordered by player name)
-                    var comparer = PlayerNameComparer;
                     for (var index = 0; index < list.Count; index++)
                     {
                         var vm = list[index];
-                        if (comparer.Compare(vm.Name, name) <= 0)
+                        if (OnlinePlayersSystem.Entry.CompareWithTag(
+                                new OnlinePlayersSystem.Entry(vm.Name, vm.ClanTag),
+                                entry)
+                            <= 0)
                         {
                             continue;
                         }
 
                         // found a location to insert this entry
-                        list.Insert(index, new ViewModelPlayerEntry(name));
+                        list.Insert(index, new ViewModelPlayerEntry(entry.Name, entry.ClanTag));
                         return;
                     }
 
                     // add a new entry to the end
-                    list.Add(new ViewModelPlayerEntry(name));
+                    list.Add(new ViewModelPlayerEntry(entry.Name, entry.ClanTag));
                 }
                 else
                 {
@@ -144,7 +151,7 @@
                     for (var index = 0; index < list.Count; index++)
                     {
                         var vm = list[index];
-                        if (vm.Name != name)
+                        if (vm.Name != entry.Name)
                         {
                             continue;
                         }

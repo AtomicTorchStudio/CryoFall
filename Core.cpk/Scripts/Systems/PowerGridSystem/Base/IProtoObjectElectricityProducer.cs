@@ -5,7 +5,13 @@
 
     public interface IProtoObjectElectricityProducer : IProtoObjectStructure
     {
+        ElectricityThresholdsPreset DefaultGenerationElectricityThresholds { get; }
+
         int GenerationOrder { get; set; }
+
+        IObjectElectricityStructurePrivateState GetPrivateState(IStaticWorldObject worldObject);
+
+        IObjectElectricityProducerPublicState GetPublicState(IStaticWorldObject worldObject);
 
         void SharedGetElectricityProduction(
             IStaticWorldObject worldObject,

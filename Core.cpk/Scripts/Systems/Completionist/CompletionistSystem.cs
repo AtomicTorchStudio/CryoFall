@@ -5,9 +5,11 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.FishingSystem;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -17,6 +19,8 @@
 
     public class CompletionistSystem : ProtoSystem<CompletionistSystem>
     {
+        public static IReadOnlyCollection<IProtoItemFish> CompletionistAllFish { get; private set; }
+
         public static IReadOnlyCollection<IProtoItemFood> CompletionistAllFood { get; private set; }
 
         public static IReadOnlyCollection<IProtoObjectLoot> CompletionistAllLoot { get; private set; }
@@ -44,11 +48,15 @@
                 Api.FindProtoEntities<IProtoObjectLoot>()
                    .Where(p => p.IsAvailableInCompletionist));
 
+            CompletionistAllFish = new HashSet<IProtoItemFish>(
+                Api.FindProtoEntities<IProtoItemFish>());
+
             if (IsServer)
             {
                 ServerItemUseObserver.ItemUsed += ServerItemUsedHandler;
                 ServerCharacterDeathMechanic.CharacterKilled += ServerCharacterKilledHandler;
                 ServerLootEventHelper.LootReceived += ServerLootReceivedHandler;
+                FishingSystem.ServerFishCaught += ServerFishCaughtHandler;
             }
         }
 
@@ -90,6 +98,17 @@
 
             SharedGetCompletionistData(character)
                 .ServerOnLootReceived(protoObjectLoot);
+        }
+
+        private static void ServerFishCaughtHandler(ICharacter character, IItem itemFish, float sizeValue)
+        {
+            if (character.IsNpc)
+            {
+                return;
+            }
+
+            SharedGetCompletionistData(character)
+                .ServerOnFishCaught((IProtoItemFish)itemFish.ProtoItem, sizeValue);
         }
 
         private static PlayerCharacterCompletionistData SharedGetCompletionistData(ICharacter character)

@@ -26,7 +26,7 @@ Scripts/Characters/Mobs/MobFloater@Name:
 フローター
 
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
-ミツアナグマ
+ラーテル
 
 Scripts/Characters/Mobs/MobHyena@Name:
 ハイエナ

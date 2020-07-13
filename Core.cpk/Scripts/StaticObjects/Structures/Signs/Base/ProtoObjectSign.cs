@@ -44,6 +44,8 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public override bool IsRelocatable => true;
+
         public void ClientSetSignText(IStaticWorldObject worldObjectSign, string signText)
         {
             signText = signText?.Trim();

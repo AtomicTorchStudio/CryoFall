@@ -1,0 +1,129 @@
+﻿<worldObjects:WindowSprinklerBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WindowSprinkler"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:electricityRequirements="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ElectricityRequirements"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowSprinkler, IsDesignTimeCreatable=True}">
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center">
+                <Rectangle Fill="{StaticResource LiquidIconWater}"
+                           Width="18"
+                           Height="18"
+                           Margin="0,0,0,1"
+                           HorizontalAlignment="Center" />
+
+                <StackPanel Orientation="Horizontal">
+                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    DesignTimeSlotsCount="1" />
+
+                    <core:ValueBarControl
+                        Value="{Binding WaterAmount}"
+                        MaxValue="{Binding WaterCapacity}"
+                        Margin="20,0"
+                        Style="{StaticResource LiquidMediumValueBar}"
+                        Foreground="{StaticResource LiquidBrushWater}" />
+
+                    <controls:ItemsContainerControl
+                        Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        DesignTimeSlotsCount="1" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom">
+                <!-- Text: Next watering attempt in: {0} -->
+                <core:FormattedTextBlock
+                    Content="{Binding NextWateringInText}"
+                    FontFamily="{StaticResource CondensedFontFamily}"
+                    FontWeight="Normal"
+                    FontSize="12"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,5" />
+
+                <Button
+                    Command="{Binding CommandWaterNow}"
+                    IsEnabled="{Binding CanTryWateringNow}"
+                    Focusable="False"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    FontSize="13"
+                    Padding="10,3">
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowSprinker_WaterNow}"
+                                   VerticalAlignment="Center" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="2,0,0,0">
+                            <Rectangle Fill="{StaticResource IconElectricity}"
+                                       Width="20"
+                                       Height="20"
+                                       HorizontalAlignment="Center"
+                                       Stretch="Uniform"
+                                       UseLayoutRounding="True" />
+
+                            <TextBlock Text="{Binding ElectricityConsumptionPerWatering}"
+                                       Foreground="#FFFFEE00"
+                                       HorizontalAlignment="Center"
+                                       FontSize="12"
+                                       FontWeight="Bold"
+                                       FontFamily="{StaticResource DigitsFontFamily}"
+                                       TextWrapping="NoWrap"
+                                       VerticalAlignment="Center"
+                                       noesis:Text.Stroke="#BB000000"
+                                       noesis:Text.StrokeThickness="1" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="3,0,0,0">
+                            <Rectangle Fill="{StaticResource LiquidIconWater}"
+                                       Width="20"
+                                       Height="20"
+                                       HorizontalAlignment="Center"
+                                       Stretch="Uniform"
+                                       UseLayoutRounding="True" />
+
+                            <TextBlock Text="{Binding WaterConsumptionPerWatering}"
+                                       Foreground="#FF0FB7FA"
+                                       HorizontalAlignment="Center"
+                                       FontSize="12"
+                                       FontWeight="Bold"
+                                       FontFamily="{StaticResource DigitsFontFamily}"
+                                       TextWrapping="NoWrap"
+                                       VerticalAlignment="Center"
+                                       noesis:Text.Stroke="#BB000000"
+                                       noesis:Text.StrokeThickness="1"
+                                       Margin="-1,0,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </core:WindowMenuWithInventory>
+</worldObjects:WindowSprinklerBase>

@@ -375,7 +375,7 @@
                 return;
             }
 
-            // allow to use vehicle even if there is only min energy - to consume it and release reactor cores
+            // allow to use vehicle even if there is only min energy - to consume it and empty the fuel cell
             if (!VehicleEnergySystem.SharedHasEnergyCharge(vehicle, 1))
                 //Math.Min(protoVehicle.EnergyUsePerSecondIdle,
                 //         protoVehicle.EnergyUsePerSecondMoving)))

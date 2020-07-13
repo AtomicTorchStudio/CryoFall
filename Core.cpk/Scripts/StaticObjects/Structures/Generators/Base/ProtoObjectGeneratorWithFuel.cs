@@ -22,11 +22,15 @@
         where TPublicState : ObjectManufacturerPublicState, IObjectElectricityProducerPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public abstract ElectricityThresholdsPreset DefaultGenerationElectricityThresholds { get; }
+
         public int GenerationOrder { get; set; }
 
         public override bool IsAutoSelectRecipe => true;
 
         public override bool IsFuelProduceByproducts => false;
+
+        public override bool IsRelocatable => true;
 
         public abstract double LiquidCapacity { get; }
 
@@ -40,6 +44,16 @@
             IStaticWorldObject worldObject,
             out double currentProduction,
             out double maxProduction);
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityProducer.GetPrivateState(IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityProducerPublicState IProtoObjectElectricityProducer.GetPublicState(IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

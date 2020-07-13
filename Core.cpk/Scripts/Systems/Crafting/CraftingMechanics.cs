@@ -1,16 +1,20 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Logging;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -255,19 +259,19 @@
             Recipe recipe,
             IItemsContainerProvider inputContainers,
             ushort countToCraft,
-            bool isAdminMode)
+            bool isCreativeMode)
         {
-            var itemsService = Api.Server.Items;
             foreach (var inputItem in recipe.InputItems)
             {
                 var countToDestroy = (ushort)(inputItem.Count * countToCraft);
-                var inputItemType = inputItem.ProtoItem;
+                var inputItemProto = inputItem.ProtoItem;
 
-                if (isAdminMode)
+                if (isCreativeMode)
                 {
                     // destroy only available count
-                    var availableCount =
-                        inputContainers.Sum(c => c.Items.Where(i => i.ProtoItem == inputItemType).Sum(i => i.Count));
+                    var availableCount = inputContainers.Sum(
+                        c => c.Items.Where(i => ReferenceEquals(i.ProtoItem, inputItemProto))
+                              .Sum(i => i.Count));
                     if (availableCount == 0)
                     {
                         // nothing to destroy
@@ -281,9 +285,9 @@
                     }
                 }
 
-                itemsService.DestroyItemsOfType(
+                ServerDestroyItemsOfType(
                     inputContainers,
-                    inputItemType,
+                    inputItemProto,
                     countToDestroy,
                     out _);
             }
@@ -293,7 +297,7 @@
             CraftingQueue craftingQueue,
             Recipe recipe,
             ushort countToCraft,
-            bool isAdminMode)
+            bool isCreativeMode)
         {
             switch (recipe.RecipeType)
             {
@@ -310,8 +314,84 @@
                     ServerDestroyInputItems(recipe,
                                             new AggregatedItemsContainers(craftingQueue.InputContainersArray),
                                             countToCraft,
-                                            isAdminMode);
+                                            isCreativeMode);
                     break;
+            }
+        }
+
+        private static void ServerDestroyItemsOfType(
+            IItemsContainerProvider containers,
+            IProtoItem protoItem,
+            uint countToDestroy,
+            out uint destroyedCount)
+        {
+            var serverItemsService = Api.Server.Items;
+            if (!(protoItem is IProtoItemWithFreshness))
+            {
+                // for items without freshness use the default approach
+                serverItemsService.DestroyItemsOfType(containers,
+                                                      protoItem,
+                                                      countToDestroy,
+                                                      out destroyedCount);
+                return;
+            }
+
+            // for items with freshness, gather all the available items and then sort them by freshness
+            // prefer items with lower freshness first
+            destroyedCount = 0;
+
+            using var tempAllItemsOfType = Api.Shared.GetTempList<IItem>();
+            var allItemsOfType = tempAllItemsOfType.AsList();
+
+            foreach (var itemsContainer in containers)
+            {
+                foreach (var item in itemsContainer.Items)
+                {
+                    if (ReferenceEquals(item.ProtoItem, protoItem))
+                    {
+                        allItemsOfType.Add(item);
+                    }
+                }
+            }
+
+            SortItems(protoItem, allItemsOfType);
+
+            // loop from the slot with lowest freshness to the slow with the higher freshness
+            // (if the freshness it the same, it should go right-to-left unless we got a sorting issue)
+            for (var index = allItemsOfType.Count - 1; index >= 0; index--)
+            {
+                var item = allItemsOfType[index];
+                if (item.Count >= countToDestroy)
+                {
+                    // remove full remained count
+                    destroyedCount += countToDestroy;
+                    serverItemsService.SetCount(item, (ushort)(item.Count - countToDestroy));
+                    countToDestroy = 0;
+                    return;
+                }
+
+                // remove as much as we can
+                destroyedCount += item.Count;
+                countToDestroy -= item.Count;
+                serverItemsService.DestroyItem(item);
+            }
+
+            if (destroyedCount != countToDestroy)
+            {
+                Api.Logger.Error(
+                    $"Cannot remove all required to remove count. Containers {containers.GetJoinedString()}, item type {protoItem}, count destroyed {destroyedCount}, count to destroy remains {countToDestroy - destroyedCount}");
+            }
+
+            static void SortItems(IProtoItem protoItem, List<IItem> items)
+            {
+                if (!(protoItem is IProtoItemWithFreshness protoItemWithFreshness)
+                    || protoItemWithFreshness.FreshnessMaxValue == 0)
+                {
+                    return;
+                }
+
+                // sort by freshness
+                items.Sort(ItemFreshnessSystem.SharedCompareFreshnessReverse);
             }
         }
 
@@ -348,7 +428,7 @@
                     recipe,
                     new AggregatedItemsContainers(craftingQueue.InputContainersArray),
                     countToCraft: 1,
-                    isAdminMode: false);
+                    isCreativeMode: false);
             }
 
             Api.SafeInvoke(() => ServerNonManufacturingRecipeCrafted?.Invoke(queueItem));

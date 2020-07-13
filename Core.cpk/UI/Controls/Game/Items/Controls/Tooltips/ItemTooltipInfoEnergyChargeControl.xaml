@@ -12,9 +12,11 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemEnergyCharge, IsDesignTimeCreatable=True}"
     VerticalAlignment="Bottom"
-    Margin="0,0,3,3"
+    Margin="0,0,0,3"
     UseLayoutRounding="False"
-    Opacity="0.7" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    Opacity="0.7"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
     <StackPanel Orientation="Horizontal">
         <!-- Text: Charge -->
         <TextBlock Text="{x:Static loc:CoreStrings.TitleEnergyCharge}"

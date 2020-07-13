@@ -12,57 +12,79 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemFreshness, IsDesignTimeCreatable=True}"
     VerticalAlignment="Bottom"
-    Margin="0,0,3,3"
+    Margin="0,0,0,3"
     UseLayoutRounding="False"
-    Opacity="0.7" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
-    <StackPanel Orientation="Horizontal">
-        <!-- Text: Freshness -->
-        <TextBlock Text="{x:Static loc:CoreStrings.TitleFreshness}"
-                   FontSize="11"
-                   FontWeight="Bold"
-                   Margin="0,-0.5,4,0" />
+    Opacity="0.7"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
-        <core:ValueBarControl
-            Value="{Binding FreshnessCurrent}"
-            MaxValue="{Binding FreshnessMax}"
-            Background="Transparent"
-            BorderBrush="{Binding Brush}"
-            BorderThickness="1"
-            Margin="0"
-            Width="100"
-            Height="13"
-            Padding="1"
-            IsDisplayTooltip="False"
-            IsDisplayLabel="True"
-            IsDisplayPercents="True">
-            <!-- Uncomment to see actual freshness number -->
-            <!--IsDisplayPercents="False"
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <!-- Text: Freshness -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TitleFreshness}"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,-0.5,4,0" />
+
+            <core:ValueBarControl
+                Value="{Binding FreshnessCurrent}"
+                MaxValue="{Binding FreshnessMax}"
+                Background="Transparent"
+                BorderBrush="{Binding Brush}"
+                BorderThickness="1"
+                Margin="0"
+                Width="100"
+                Height="13"
+                Padding="1"
+                IsDisplayTooltip="False"
+                IsDisplayLabel="True"
+                IsDisplayPercents="True">
+                <!-- Uncomment to see actual freshness number -->
+                <!--IsDisplayPercents="False"
             LabelFormat="{}{0:N0}/{1:N0}"-->
-            <core:ValueBarControl.Template>
-                <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
-                    <Grid x:Name="LayoutRoot">
-                        <Border x:Name="Border"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="2" />
-                        <ContentPresenter Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="Left" />
-                        <TextBlock x:Name="TextBlockValueDisplay"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Text="100%"
-                                   Foreground="{StaticResource BrushColor7}"
-                                   FontSize="10"
-                                   FontWeight="Bold"
-                                   FontFamily="{StaticResource DigitsFontFamily}"
-                                   noesis:Text.Stroke="#AA000000"
-                                   noesis:Text.StrokeThickness="1.5"
-                                   Margin="0,-0.25,0,0" />
-                    </Grid>
-                </ControlTemplate>
-            </core:ValueBarControl.Template>
-            <Border Background="{Binding Brush}" CornerRadius="1" />
-        </core:ValueBarControl>
+                <core:ValueBarControl.Template>
+                    <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
+                        <Grid x:Name="LayoutRoot">
+                            <Border x:Name="Border"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="2" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Left" />
+                            <TextBlock x:Name="TextBlockValueDisplay"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="100%"
+                                       Foreground="{StaticResource BrushColor7}"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       FontFamily="{StaticResource DigitsFontFamily}"
+                                       noesis:Text.Stroke="#AA000000"
+                                       noesis:Text.StrokeThickness="1.5"
+                                       Margin="0,-0.25,0,0" />
+                        </Grid>
+                    </ControlTemplate>
+                </core:ValueBarControl.Template>
+                <Border Background="{Binding Brush}" CornerRadius="1" />
+            </core:ValueBarControl>
+        </StackPanel>
+
+        <!-- Spoil/lifetime info -->
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,3,0,0">
+            <TextBlock Text="{Binding SpoilsInText}"
+                       FontSize="11"
+                       FontWeight="Bold" />
+
+            <Path Visibility="{Binding IsRefrigerated, Converter={StaticResource BoolToVisibilityConverter}}"
+                  Data="{StaticResource IconGeometryFridgeSnowflake}"
+                  Fill="{StaticResource BrushColorAlt7}"
+                  Height="12"
+                  Width="12"
+                  Stretch="Uniform"
+                  VerticalAlignment="Center"
+                  Margin="2,2,0,0" />
+        </StackPanel>
     </StackPanel>
+
 </base:BaseUserControl>

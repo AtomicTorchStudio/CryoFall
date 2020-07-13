@@ -14,9 +14,6 @@
     {
         private static readonly IRenderingClientService RenderingService = Api.Client.Rendering;
 
-        private readonly Dictionary<ILogicObject, ClientLandClaimGroupRenderer> areasGroupRenderers
-            = new Dictionary<ILogicObject, ClientLandClaimGroupRenderer>();
-
         private readonly Stack<IComponentSpriteRenderer> cacheRenderers
             = new Stack<IComponentSpriteRenderer>(
                 capacity: 512); // initial capacity is a bit large as we need a lot of renderers
@@ -33,6 +30,8 @@
 
         private readonly IClientSceneObject sceneObject;
 
+        private ClientLandClaimGroupRenderer groupRenderer;
+
         private bool isDisplayOverlays;
 
         private bool isEnabled;
@@ -47,7 +46,7 @@
             this.isGraceAreaRenderer = isGraceAreaRenderer;
 
             this.material = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
-            this.material.EffectParameters.Set("Color", zoneColor);
+            this.material.EffectParameters.Set("Color",     zoneColor);
             this.material.EffectParameters.Set("IsFlipped", isFlippedTexture);
 
             this.sceneObject = Api.Client.Scene.CreateSceneObject(nameof(ClientLandClaimGroupsRendererManager)
@@ -97,10 +96,13 @@
                     return;
                 }
 
-                foreach (var groupRenderer in this.areasGroupRenderers)
+                if (this.groupRenderer is null)
                 {
-                    groupRenderer.Value.IsVisible = false;
+                    return;
                 }
+
+                this.groupRenderer.IsDisplayOverlays = false;
+                this.groupRenderer.IsVisible = false;
             }
         }
 
@@ -119,50 +121,43 @@
                 return;
             }
 
-            if (!this.areasGroupRenderers.TryGetValue(areasGroup, out var groupRenderer))
-            {
-                groupRenderer = new ClientLandClaimGroupRenderer(areasGroup,
-                                                                 this.material,
-                                                                 this.isGraceAreaRenderer,
-                                                                 this.callbackGetRendererFromCache,
-                                                                 this.callbackReturnRendererToCache);
-                this.areasGroupRenderers[areasGroup] = groupRenderer;
-            }
+            this.EnsureGroupRendererCreated();
+            this.groupRenderer.RegisterArea(area);
+            this.ForceUpdate();
+        }
 
-            groupRenderer.RegisterArea(area);
+        public void RegisterBlueprint(
+            Vector2Ushort tilePosition,
+            IProtoObjectLandClaim protoObjectLandClaim)
+        {
+            this.EnsureGroupRendererCreated();
+            this.groupRenderer.RegisterBlueprint(tilePosition, protoObjectLandClaim);
             this.ForceUpdate();
         }
 
         public void Reset()
         {
-            this.DestroyAllRenderers();
-        }
-
-        public void UnregisterArea(ILogicObject area)
-        {
-            ClientLandClaimGroupRenderer groupRenderer = null;
-            foreach (var areasGroupRenderer in this.areasGroupRenderers.Values)
-            {
-                if (!areasGroupRenderer.ContainsArea(area))
-                {
-                    continue;
-                }
-
-                groupRenderer = areasGroupRenderer;
-                break;
-            }
-
-            if (groupRenderer == null)
+            if (this.groupRenderer is null)
             {
                 return;
             }
 
-            groupRenderer.UnregisterArea(area);
+            this.groupRenderer.IsVisible = false;
+            this.groupRenderer = null;
+        }
 
-            if (groupRenderer.IsEmpty)
+        public void UnregisterArea(ILogicObject area)
+        {
+            if (this.groupRenderer is null)
             {
-                groupRenderer.IsVisible = false;
-                this.areasGroupRenderers.Remove(groupRenderer.AreasGroup);
+                return;
+            }
+
+            this.groupRenderer.UnregisterArea(area);
+            if (this.groupRenderer.IsEmpty)
+            {
+                this.groupRenderer.IsVisible = false;
+                this.groupRenderer = null;
             }
 
             this.ForceUpdate();
@@ -175,36 +170,29 @@
             return areasGroupBounds.Intersects(cameraBounds);
         }
 
-        private void DestroyAllRenderers()
+        private void EnsureGroupRendererCreated()
         {
-            if (this.areasGroupRenderers.Count == 0)
+            if (this.groupRenderer is null)
             {
-                return;
+                this.groupRenderer = new ClientLandClaimGroupRenderer(this.material,
+                                                                      this.isGraceAreaRenderer,
+                                                                      this.callbackGetRendererFromCache,
+                                                                      this.callbackReturnRendererToCache);
             }
-
-            foreach (var pair in this.areasGroupRenderers)
-            {
-                pair.Value.IsVisible = false;
-            }
-
-            this.areasGroupRenderers.Clear();
         }
 
         private void ForceUpdate()
         {
-            if (!this.isEnabled)
+            if (!this.isEnabled
+                || this.groupRenderer is null)
             {
                 return;
             }
 
             var cameraBounds = GetCameraBounds();
-            foreach (var pair in this.areasGroupRenderers)
-            {
-                var groupRenderer = pair.Value;
-                groupRenderer.IsDisplayOverlays = this.isDisplayOverlays;
-                groupRenderer.IsVisible = IsWithinVisibilityBounds(areasGroupBounds: groupRenderer.Bounds,
-                                                                   cameraBounds);
-            }
+            this.groupRenderer.IsDisplayOverlays = this.isDisplayOverlays;
+            this.groupRenderer.IsVisible = IsWithinVisibilityBounds(areasGroupBounds: this.groupRenderer.Bounds,
+                                                                    cameraBounds);
 
             static RectangleInt GetCameraBounds()
             {
@@ -244,6 +232,12 @@
             ClientTimersSystem.AddAction(delaySeconds: 0.5,
                                          this.UpdateByTimer);
 
+            this.ForceUpdate();
+        }
+
+        public void UnregisterBlueprint()
+        {
+            this.groupRenderer?.UnregisterBlueprint();
             this.ForceUpdate();
         }
     }

@@ -46,11 +46,11 @@
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 5;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotIron>(count: 2);
 
             repair.StagesCount = 5;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
         }
     }

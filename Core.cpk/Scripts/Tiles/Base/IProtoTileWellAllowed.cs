@@ -4,5 +4,6 @@
 
     internal interface IProtoTileWellAllowed : IProtoTile
     {
+        public bool IsStaleWellWater { get; }
     }
 }

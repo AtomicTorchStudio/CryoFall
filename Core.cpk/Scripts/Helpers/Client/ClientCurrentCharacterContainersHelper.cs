@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Helpers.Client
 {
     using System;
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -11,13 +10,14 @@
     {
         private static ICharacter currentCharacter;
 
-        private static List<IClientItemsContainer> subscribedContainers;
+        private static IClientItemsContainer[] subscribedContainers
+            = Array.Empty<IClientItemsContainer>();
 
         public static event Action ContainersItemsReset;
 
         public static event Action<IItem> ItemAddedOrRemovedOrCountChanged;
 
-        private static List<IClientItemsContainer> SubscribedContainers
+        private static IClientItemsContainer[] SubscribedContainers
         {
             get => subscribedContainers;
             set
@@ -65,7 +65,7 @@
             currentCharacter = newCurrentCharacter;
 
             var character = Api.Client.Characters.CurrentPlayerCharacter;
-            SubscribedContainers = new List<IClientItemsContainer>()
+            SubscribedContainers = new[]
             {
                 (IClientItemsContainer)character.SharedGetPlayerContainerInventory(),
                 (IClientItemsContainer)character.SharedGetPlayerContainerHotbar()
@@ -82,7 +82,7 @@
             }
 
             currentCharacter = null;
-            SubscribedContainers = new List<IClientItemsContainer>(capacity: 0);
+            SubscribedContainers = Array.Empty<IClientItemsContainer>();
             ContainersItemsReset?.Invoke();
         }
 

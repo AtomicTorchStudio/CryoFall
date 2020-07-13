@@ -44,9 +44,9 @@
             // droplist for stage 1
             config.Stage1
                   .Add<ItemOreCopperConcentrate>(count: 5,       countRandom: 0)
-                  .Add<ItemOreCopperConcentrate>(countRandom: 2, condition: SkillMining.ConditionAdditionalYield)
+                  .Add<ItemOreCopperConcentrate>(countRandom: 2, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemOreIronConcentrate>(count: 5,         countRandom: 0)
-                  .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillMining.ConditionAdditionalYield)
+                  .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 1);
 
             // droplist for stages 2 and 3 - reuse droplist from stage 1
@@ -56,11 +56,11 @@
             // droplist for stage 4
             config.Stage4
                   .Add<ItemOreCopperConcentrate>(count: 10,      countRandom: 0)
-                  .Add<ItemOreCopperConcentrate>(countRandom: 2, condition: SkillMining.ConditionAdditionalYield)
+                  .Add<ItemOreCopperConcentrate>(countRandom: 2, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemOreIronConcentrate>(count: 10,        countRandom: 0)
-                  .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillMining.ConditionAdditionalYield)
+                  .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 2)
-                  .Add<ItemGoldNugget>(countRandom: 1, condition: SkillMining.ConditionAdditionalYield);
+                  .Add<ItemGoldNugget>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

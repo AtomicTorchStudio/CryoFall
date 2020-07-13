@@ -51,6 +51,8 @@
 
         public bool IsCompleted { get; private set; }
 
+        public virtual bool IsDisplayingProgress => true;
+
         public double ProgressPercents
         {
             get => this.progressPercents;
@@ -131,7 +133,8 @@
             }
             finally
             {
-                if (Api.IsClient)
+                if (Api.IsClient
+                    && this.TargetWorldObject != null)
                 {
                     ClientTimersSystem.AddAction(
                         delaySeconds:

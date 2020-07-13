@@ -7,9 +7,10 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationFoldingScreen : ProtoObjectDecoration
+    public class ObjectDecorationFoldingScreen : ProtoObjectDecoration
     {
-        public override string Description => "Folding screen with a classical depiction of a tiger, like in the old tale.";
+        public override string Description =>
+            "Folding screen with a classical depiction of a tiger, like in the old tale.";
 
         public override string Name => "Folding screen";
 
@@ -39,13 +40,13 @@
         {
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 10);
+            build.AddStageRequiredItem<ItemPlanks>(count: 5);
             build.AddStageRequiredItem<ItemPaper>(count: 5);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
-            repair.AddStageRequiredItem<ItemPaper>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 3);
+            repair.AddStageRequiredItem<ItemPaper>(count: 3);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

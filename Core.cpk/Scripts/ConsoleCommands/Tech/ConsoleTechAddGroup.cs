@@ -19,7 +19,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
         {
             var technologies = player.SharedGetTechnologies();
             technologies.ServerAddGroup(group);
-            return $"{player} tech group {group.Name} added.";
+            return $"{player} tech group {group.NameWithTierName} added.";
         }
     }
 }

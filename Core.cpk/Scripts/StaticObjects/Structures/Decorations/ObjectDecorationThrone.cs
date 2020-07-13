@@ -6,9 +6,10 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationThrone : ProtoObjectDecoration
+    public class ObjectDecorationThrone : ProtoObjectDecoration
     {
-        public override string Description => "Royal throne ideal for your main audience chamber. Let the peasants know who's the boss.";
+        public override string Description =>
+            "Royal throne ideal for your main audience chamber. Let the peasants know who's the boss.";
 
         public override string Name => "Throne";
 

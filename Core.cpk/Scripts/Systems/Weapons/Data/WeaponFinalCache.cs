@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using JetBrains.Annotations;
 
     public class WeaponFinalCache
@@ -36,9 +37,12 @@
             [CanBeNull] IProtoItemWeapon protoWeapon,
             [CanBeNull] IProtoItemAmmo protoAmmo,
             DamageDescription damageDescription,
-            IProtoExplosive protoExplosive = null)
+            IProtoExplosive protoExplosive = null,
+            IDynamicWorldObject objectDrone = null)
         {
             this.Character = character;
+            this.CharacterFinalStatsCache = characterFinalStatsCache;
+            this.Drone = objectDrone;
             this.Weapon = weapon;
             this.ProtoWeapon = (IProtoItemWeapon)weapon?.ProtoItem ?? protoWeapon;
             this.ProtoAmmo = protoAmmo;
@@ -65,7 +69,7 @@
             for (var index = 0; index < damageDistributionsCount; index++)
             {
                 var source = descriptionDamages[index];
-                var statName = this.GetProportionStatName(source.DamageType);
+                var statName = GetProportionStatName(source.DamageType);
                 var resultDamageProportion = source.Proportion + characterFinalStatsCache[statName];
                 if (resultDamageProportion <= 0)
                 {
@@ -96,12 +100,11 @@
                 this.DamageValue *= characterFinalStatsCache.GetMultiplier(statName);
             }
 
-            this.RangeMax = damageDescription.RangeMax * (protoWeapon?.RangeMultipier ?? 1.0)
+            this.RangeMax = damageDescription.RangeMax * (protoWeapon?.RangeMultiplier ?? 1.0)
                             + characterFinalStatsCache[StatName.AttackRangeMax];
 
             var armorPiercingCoef = (1 + characterFinalStatsCache[StatName.AttackArmorPiercingMultiplier])
                                     * (damageDescription.ArmorPiercingCoef
-                                       * (protoWeapon?.ArmorPiercingMultiplier ?? 1.0)
                                        + characterFinalStatsCache[StatName.AttackArmorPiercingValue]);
 
             this.InvertedArmorPiercingCoef = 1 - armorPiercingCoef;
@@ -118,9 +121,9 @@
 
             this.SpecialEffectProbability = probability;
 
-            this.FireScatterPreset = protoAmmo?.OverrideFireScatterPreset 
-                                   ?? protoWeapon?.FireScatterPreset
-                                   ?? default;
+            this.FireScatterPreset = protoAmmo?.OverrideFireScatterPreset
+                                     ?? protoWeapon?.FireScatterPreset
+                                     ?? default;
             var shotsPerFire = this.FireScatterPreset.ProjectileAngleOffets.Length;
             if (shotsPerFire > 1)
             {
@@ -133,43 +136,30 @@
 
         public ICharacter Character { get; }
 
-        public WeaponFireScatterPreset FireScatterPreset { get; }
+        public FinalStatsCache CharacterFinalStatsCache { get; }
 
-        public double SpecialEffectProbability { get; }
+        public IDynamicWorldObject Drone { get; }
+
+        public WeaponFireScatterPreset FireScatterPreset { get; }
 
         public IProtoItemAmmo ProtoAmmo { get; }
 
-        private StatName GetProportionStatName(DamageType damageType)
+        public double SpecialEffectProbability { get; }
+
+        private static StatName GetProportionStatName(DamageType damageType)
         {
-            switch (damageType)
+            return damageType switch
             {
-                case DamageType.Impact:
-                    return StatName.DamageProportionImpact;
-
-                case DamageType.Kinetic:
-                    return StatName.DamageProportionKinetic;
-
-                case DamageType.Heat:
-                    return StatName.DamageProportionHeat;
-
-                case DamageType.Cold:
-                    return StatName.DamageProportionCold;
-
-                case DamageType.Chemical:
-                    return StatName.DamageProportionChemical;
-
-                case DamageType.Electrical:
-                    return StatName.DamageProportionElectrical;
-
-                case DamageType.Radiation:
-                    return StatName.DamageProportionRadiation;
-
-                case DamageType.Psi:
-                    return StatName.DamageProportionPsi;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null);
-            }
+                DamageType.Impact    => StatName.DamageProportionImpact,
+                DamageType.Kinetic   => StatName.DamageProportionKinetic,
+                DamageType.Explosion => StatName.DamageProportionExplosion,
+                DamageType.Heat      => StatName.DamageProportionHeat,
+                DamageType.Cold      => StatName.DamageProportionCold,
+                DamageType.Chemical  => StatName.DamageProportionChemical,
+                DamageType.Radiation => StatName.DamageProportionRadiation,
+                DamageType.Psi       => StatName.DamageProportionPsi,
+                _                    => throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null)
+            };
         }
     }
 }

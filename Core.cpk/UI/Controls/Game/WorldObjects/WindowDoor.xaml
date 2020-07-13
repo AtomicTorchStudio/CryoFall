@@ -11,13 +11,17 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowDoor, IsDesignTimeCreatable=True}"
     FontFamily="{StaticResource CondensedFontFamily}"
-    FontWeight="Bold">
+    FontWeight="Bold" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
         <Grid HorizontalAlignment="Center"
               VerticalAlignment="Center">
-            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="PrimaryGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="36" />
@@ -35,6 +39,23 @@
                                                                  Grid.Column="2"
                                                                  VerticalAlignment="Center" />
             </Grid>
+
+            <!-- Text: Lockdown: the door is blocked by active shield protection. -->
+            <Canvas Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    Width="{Binding ActualWidth, ElementName=PrimaryGrid}">
+                <Grid Width="{Binding ActualWidth, ElementName=PrimaryGrid}"
+                      Canvas.Top="20">
+                <TextBlock
+                    Visibility="{Binding IsBlockedByShield, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Text="{x:Static loc:CoreStrings.ShieldProtection_DoorBlockedByShield}"
+                    Foreground="{StaticResource BrushColorRed6}"
+                    FontSize="13"
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    HorizontalAlignment="Center" />
+                </Grid>
+            </Canvas>
         </Grid>
 
     </core:WindowMenuWithInventory>

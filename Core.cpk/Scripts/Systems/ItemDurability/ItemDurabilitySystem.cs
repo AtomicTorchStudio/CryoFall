@@ -125,7 +125,7 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]
-        private void ClientRemote_ItemBroke(IProtoItem protoItem)
+        public void ClientRemote_ItemBroke(IProtoItem protoItem)
         {
             NotificationSystem.ClientShowNotification(
                 NotificationItemBroke_Title,
@@ -134,7 +134,8 @@
                 icon: protoItem.Icon,
                 playSound: false);
 
-            protoItem.SharedGetItemSoundPreset().PlaySound(ItemSound.Broken);
+            protoItem.SharedGetItemSoundPreset()
+                     .PlaySound(ItemSound.Broken);
         }
     }
 }

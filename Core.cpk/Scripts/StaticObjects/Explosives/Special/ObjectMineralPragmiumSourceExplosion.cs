@@ -7,6 +7,8 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -17,7 +19,11 @@
     /// Pragmium Source on destruction spawns this object which explodes
     /// after a short delay and annihilate everything in a large radius.
     /// </summary>
-    public class ObjectMineralPragmiumSourceExplosion : ProtoObjectExplosive
+    public class ObjectMineralPragmiumSourceExplosion
+        : ProtoObjectExplosive
+            <ObjectExplosivePrivateState,
+                ObjectMineralPragmiumSourceExplosion.PublicState,
+                StaticObjectClientState>
     {
         public const int ExplosionDamageRadius = 13;
 
@@ -43,10 +49,12 @@
         {
             var tilePosition = gameObject.TilePosition;
 
+            var byCharacter = GetPublicState(gameObject).ExplodedByCharacter;
+
             // spawn Pragmium nodes on explosion (right after the damage is dealt to all the objects there)
             ServerTimersSystem.AddAction(
                 delaySeconds: this.ExplosionPreset.ServerDamageApplyDelay * 1.01,
-                () => ObjectMineralPragmiumSource.ServerOnExplode(tilePosition, this.DamageRadius));
+                () => ObjectMineralPragmiumSource.ServerOnExplode(tilePosition, this.DamageRadius, byCharacter));
 
             base.ServerOnDestroy(gameObject);
         }
@@ -177,6 +185,12 @@
                                                               worldDistanceMax: (float)(intensity * shakesDistanceMax));
 
             ClientTimersSystem.AddAction(shakesInterval, () => this.ClientAddShakes(component));
+        }
+
+        public class PublicState : StaticObjectPublicState
+        {
+            [TempOnly]
+            public ICharacter ExplodedByCharacter { get; set; }
         }
     }
 }

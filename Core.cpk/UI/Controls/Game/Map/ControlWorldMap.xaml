@@ -9,8 +9,7 @@
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:map="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map"
     x:Name="UserControl"
     Focusable="False"
@@ -151,16 +150,16 @@
                     </VisualStateManager.VisualStateGroups>
 
                     <i:Interaction.Triggers>
-                        <ei:DataTrigger
+                        <i:DataTrigger
                             Binding="{Binding IsFullOpacityNow, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type map:ControlWorldMap}}}"
                             Value="True">
-                            <ei:GoToStateAction StateName="FullOpacity" />
-                        </ei:DataTrigger>
-                        <ei:DataTrigger
+                            <i:GoToStateAction StateName="FullOpacity" />
+                        </i:DataTrigger>
+                        <i:DataTrigger
                             Binding="{Binding IsFullOpacityNow, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type map:ControlWorldMap}}}"
                             Value="False">
-                            <ei:GoToStateAction StateName="SemiTransparent" />
-                        </ei:DataTrigger>
+                            <i:GoToStateAction StateName="SemiTransparent" />
+                        </i:DataTrigger>
                     </i:Interaction.Triggers>
 
                 </Grid>

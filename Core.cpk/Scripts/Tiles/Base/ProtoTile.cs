@@ -92,6 +92,8 @@
         /// </summary>
         public ITextureResource EditorIconTexture { get; private set; }
 
+        public virtual double FishingKnowledgeLevelIncrease => 0;
+
         public abstract GroundSoundMaterial GroundSoundMaterial { get; }
 
         public virtual bool IsRestrictingConstruction => false;

@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesClient;
 
     public class TechnologiesSystem : ProtoSystem<TechnologiesSystem>
     {
@@ -97,37 +96,7 @@
                 ServerResetTechTreeAndRefundLearningPoints(technologies);
             }
 
-            foreach (var techGroup in FindProtoEntities<TechGroup>())
-            {
-                if (techGroup.GroupRequirements.Count > 0)
-                {
-                    continue;
-                }
-
-                // add free group
-                technologies.ServerAddGroup(techGroup);
-
-                foreach (var techNode in techGroup.RootNodes)
-                {
-                    ProcessNode(techNode);
-                }
-            }
-
-            void ProcessNode(TechNode techNode)
-            {
-                if (techNode.LearningPointsPrice > 0)
-                {
-                    return;
-                }
-
-                // add free node
-                technologies.ServerAddNode(techNode);
-
-                foreach (var dependentNode in techNode.DependentNodes)
-                {
-                    ProcessNode(dependentNode);
-                }
-            }
+            ServerEnsureFreeTechGroupsUnlocked(technologies);
         }
 
         public static void ServerResetTechTreeAndRefundLearningPoints(PlayerCharacterTechnologies technologies)
@@ -149,6 +118,8 @@
 
             technologies.ServerRefundLearningPoints(lpToRefund);
             technologies.IsTechTreeChanged = true;
+
+            ServerEnsureFreeTechGroupsUnlocked(technologies);
         }
 
         public static void ServerUnlockGroup(ICharacter character, TechGroup techGroup)
@@ -158,6 +129,11 @@
             technologies.ServerRemoveLearningPoints(techGroup.LearningPointsPrice);
             technologies.ServerAddGroup(techGroup);
             technologies.IsTechTreeChanged = false;
+
+            foreach (var rootNode in techGroup.RootNodes)
+            {
+                technologies.ServerAddNode(rootNode);
+            }
         }
 
         public static void ServerUnlockNode(ICharacter character, TechNode techNode)
@@ -169,17 +145,38 @@
             technologies.IsTechTreeChanged = false;
         }
 
+        /// <summary>
+        /// This method ensures that free tech groups are added automatically.
+        /// </summary>
+        private static void ServerEnsureFreeTechGroupsUnlocked(PlayerCharacterTechnologies technologies)
+        {
+            foreach (var techGroup in TechGroup.AvailableTechGroups)
+            {
+                if (techGroup.LearningPointsPrice > 0
+                    || techGroup.GroupRequirements.Count > 0)
+                {
+                    continue;
+                }
+
+                technologies.ServerAddGroup(techGroup);
+            }
+        }
+
         private (double LearningPointsGainMultiplier,
             double TimeGameTier3Basic,
             double TimeGameTier3Specialized,
             double TimeGameTier4Basic,
-            double TimeGameTier4Specialized) ServerRemote_RequestTechRates()
+            double TimeGameTier4Specialized,
+            double TimeGameTier5Basic,
+            double TimeGameTier5Specialized) ServerRemote_RequestTechRates()
         {
             return (TechConstants.ServerLearningPointsGainMultiplier,
                     TechConstants.PvpTechTimeGameTier3Basic,
                     TechConstants.PvpTechTimeGameTier3Specialized,
                     TechConstants.PvpTechTimeGameTier4Basic,
-                    TechConstants.PvpTechTimeGameTier4Specialized);
+                    TechConstants.PvpTechTimeGameTier4Specialized,
+                    TechConstants.PvpTechTimeGameTier5Basic,
+                    TechConstants.PvpTechTimeGameTier5Specialized);
         }
 
         private void ServerRemote_UnlockGroup(TechGroup techGroup)
@@ -213,7 +210,9 @@
                     TechConstants.ClientSetPvpTechTimeGame(rates.TimeGameTier3Basic,
                                                            rates.TimeGameTier3Specialized,
                                                            rates.TimeGameTier4Basic,
-                                                           rates.TimeGameTier4Specialized);
+                                                           rates.TimeGameTier4Specialized,
+                                                           rates.TimeGameTier5Basic,
+                                                           rates.TimeGameTier5Specialized);
                 }
             }
         }

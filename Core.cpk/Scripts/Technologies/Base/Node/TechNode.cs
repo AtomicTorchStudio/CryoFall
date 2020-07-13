@@ -25,6 +25,8 @@
         protected static readonly TextureResource IconPlaceholder
             = new TextureResource("Technologies/TempNodeIcon.png");
 
+        private ushort? cachedLearningPointsPrice;
+
         private List<TechNode> dependentNodes;
 
         private Lazy<byte> lazyHierarchyLevel;
@@ -87,7 +89,17 @@
             }
         }
 
-        public ushort LearningPointsPrice { get; private set; }
+        public bool IsRootNode => this.RequiredNode is null
+                                  || !this.RequiredNode.IsAvailable;
+
+        public ushort LearningPointsPrice
+        {
+            get
+            {
+                this.cachedLearningPointsPrice ??= this.CalculateLearningPointsPrice();
+                return this.cachedLearningPointsPrice.Value;
+            }
+        }
 
         public override string Name => this.NodeEffects[0].ShortDescription;
 
@@ -137,6 +149,11 @@
             return true;
         }
 
+        public void SharedResetCachedLearningPointsPrice()
+        {
+            this.cachedLearningPointsPrice = null;
+        }
+
         public void SharedValidateCanUnlock(ICharacter character)
         {
             if (!this.SharedCanUnlock(character, out var error))
@@ -181,8 +198,6 @@
                 effect.PrepareEffect(this);
             }
 
-            this.LearningPointsPrice = this.CalculateLearningPointsPrice();
-
             this.lazyHierarchyLevel = new Lazy<byte>(
                 () =>
                 {
@@ -221,6 +236,12 @@
 
         private ushort CalculateLearningPointsPrice()
         {
+            if (this.IsRootNode
+                && this.Group.LearningPointsPrice > 0)
+            {
+                return 0;
+            }
+
             var price = TechConstants.LearningPointsPriceBase
                         * TechConstants.TierNodePriceMultiplier[(byte)this.Group.Tier - 1]
                         * this.Group.GroupNodesUnlockPriceMultiplier

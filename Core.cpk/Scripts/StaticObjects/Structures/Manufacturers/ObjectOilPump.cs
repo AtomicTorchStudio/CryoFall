@@ -32,9 +32,9 @@
         public override string Description =>
             "Allows extraction of petroleum oil from underground reservoir or directly from an oil seep for increased efficiency.";
 
-        public override double LiquidCapacity => 100;
+        public override double LiquidCapacity => 10;
 
-        public override double LiquidProductionAmountPerSecond => 0.1;
+        public override double LiquidProductionAmountPerSecond => 0.05;
 
         public override string Name => "Oil pump";
 
@@ -99,13 +99,13 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemPlanks>(count: 10);
-            build.AddStageRequiredItem<ItemCement>(count: 5);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemCement>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemPlanks>(count: 10);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

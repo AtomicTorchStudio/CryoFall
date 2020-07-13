@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantMetabolismModulator : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantMetabolismModulator : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

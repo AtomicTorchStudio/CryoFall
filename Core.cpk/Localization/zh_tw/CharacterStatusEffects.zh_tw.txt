@@ -172,6 +172,9 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 藥物濫用
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+請等待申請完成。
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 你當前正處在止血藥的效果下，所有出血傷口的流血程度將會減弱。
 

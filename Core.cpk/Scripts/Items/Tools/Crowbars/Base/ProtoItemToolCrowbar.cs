@@ -66,6 +66,12 @@
             DeconstructionSystem.ClientTryStartAction();
         }
 
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.ClickToDisasseble);
+        }
+
         protected abstract ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetCrowbar();
 
         protected sealed override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

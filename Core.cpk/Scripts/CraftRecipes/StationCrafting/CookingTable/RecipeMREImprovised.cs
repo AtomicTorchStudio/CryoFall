@@ -19,7 +19,6 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemLeaf>(count: 5);
             inputItems.Add<ItemMeatCharred>(count: 1);
             inputItems.Add<ItemRoastedMushrooms>(count: 1);
             inputItems.Add<ItemSalt>(count: 1);

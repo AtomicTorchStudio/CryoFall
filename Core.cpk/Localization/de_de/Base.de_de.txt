@@ -55,62 +55,74 @@ Wachstumsgeschwindigkeit von Pflanzen
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Suchgeschwindigkeit
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-Schadensbonus
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 Schadensbonus
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-Schadensbonus
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-Schadensbonus
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Abnutzungsrate
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Nachladezeit
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Schadensbonus
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 Chance auf Spezialeffekt
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-Chance auf Spezialeffekt
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-Chance auf Spezialeffekt
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-Chance auf Spezialeffekt
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-Chance auf Spezialeffekt
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-Abnutzungsrate
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-Abnutzungsrate
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-Abnutzungsrate
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-Abnutzungsrate
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 Abnutzungsrate
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 Nachladezeit
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Abnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Nachladezeit
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Abnutzungsrate
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 Energieverbrauch
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-Nachladezeit
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+Waffenschadensbonus
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+Waffenabnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+Waffennachladedauer
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+Chance auf Waffenspezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Abnutzungsrate
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Nachladezeit
@@ -192,4 +204,13 @@ Werkstattwarteschlangen-Slots
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 Medikamententoxizität
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+Angelkenntnisse
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+Angelerfolg
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+Kraftstoffverbrauch
 

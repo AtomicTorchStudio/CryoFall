@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Vehicles;
 
-    public class TechNodeHoverboardMk1 : TechNode<TechGroupVehicles>
+    public class TechNodeHoverboardMk1 : TechNode<TechGroupVehiclesT3>
     {
         protected override void PrepareTechNode(Config config)
         {

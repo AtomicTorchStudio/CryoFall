@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantATPEnergyExtractor : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantATPEnergyExtractor : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

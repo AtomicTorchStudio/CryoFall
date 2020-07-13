@@ -5,12 +5,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
+    using AtomicTorch.CBND.CoreMod.Items.Drones;
+    using AtomicTorch.CBND.CoreMod.Items.Fishing;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
-    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
@@ -31,6 +32,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
             rBasic,
 
             // weapons & ammo / prefix "w"
+            wT1,
+
             w8mm,
 
             w10mm,
@@ -53,7 +56,11 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
 
             iImplants,
 
-            iFarming
+            iFarming,
+
+            iFishing,
+
+            iDrones
         }
 
         public override string Alias => "kit";
@@ -82,6 +89,15 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemFibers>();
                     CreateItem<ItemRope>();
                     return "Added basic resources.";
+
+                case KitCategory.wT1:
+                    CreateItem<ItemCrossbow>();
+                    CreateItem<ItemFlintlockPistol>();
+                    CreateItem<ItemMusket>();
+                    CreateItem<ItemAmmoArrowIron>();
+                    CreateItem<ItemAmmoArrowStone>();
+                    CreateItem<ItemAmmoPaperCartridge>();
+                    return "Added T1 arms and ammo.";
 
                 case KitCategory.w8mm:
                     CreateItem<ItemLuger>();
@@ -124,6 +140,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemAmmoGrenadeHE>();
                     CreateItem<ItemAmmoGrenadeIncendiary>();
                     CreateItem<ItemAmmoGrenadeFreeze>();
+                    CreateItem<ItemAmmoGrenadeFragmentation>();
                     return "Added grenade launchers and ammo.";
 
                 case KitCategory.wEnergy:
@@ -203,7 +220,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemSeedsTobacco>();
                     CreateItem<ItemSeedsTomato>();
                     CreateItem<ItemSeedsWheat>();
-                    return "Added implants and related items.";
+                    return "Added farming-related items.";
+
+                case KitCategory.iFishing:
+                    CreateItem<ItemFishingRod>();
+                    CreateItem<ItemFishingBaitFish>();
+                    CreateItem<ItemFishingBaitInsect>();
+                    CreateItem<ItemFishingBaitMix>();
+                    return "Added fishing-related items.";
 
                 case KitCategory.tToolsAll:
                     CreateItem<ItemAxeStone>();
@@ -219,6 +243,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemCrowbar>();
                     return "Added all basic tools.";
 
+                case KitCategory.iDrones:
+                    CreateItem<ItemDroneControlStandard>();
+                    CreateItem<ItemDroneControlAdvanced>();
+                    CreateItem<ItemDroneIndustrialStandard>(amount: 3);
+                    CreateItem<ItemDroneIndustrialAdvanced>(amount: 3);
+                    return "Added drone-related items.";
+
                 default:
                     return "Incorrect argument given.";
             }
@@ -231,7 +262,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                              ? item.MaxItemsPerStack
                              : amount;
 
-                Server.Items.CreateItem(player, item, amount);
+                Server.Items.CreateItem(item, player, amount);
             }
         }
     }

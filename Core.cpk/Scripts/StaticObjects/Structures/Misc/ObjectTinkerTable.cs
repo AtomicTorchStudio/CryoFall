@@ -22,6 +22,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -43,6 +44,10 @@
 
         public const string ErrorTitle = "Cannot repair";
 
+        public const string Notification_PerfectRepair_Format = "You were lucky![br]{0} repaired completely!";
+
+        public const string Notification_PerfectRepair_Title = "Perfect repair!";
+
         private static ObjectTinkerTable instance;
 
         private static readonly Lazy<IReadOnlyList<ProtoItemWithCount>> LazyRequiredRepairComponentItems
@@ -55,6 +60,8 @@
             "This work station is especially convenient to tinker with or repair different items.";
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
+
+        public override bool IsRelocatable => true;
 
         public override string Name => "Tinker table";
 
@@ -273,6 +280,16 @@
             return true;
         }
 
+        private void ClientRemote_ItemRepairedCompletely(IProtoItem protoItem)
+        {
+            var skill = Api.GetProtoEntity<SkillMaintenance>();
+            NotificationSystem.ClientShowNotification(
+                Notification_PerfectRepair_Title,
+                string.Format(Notification_PerfectRepair_Format, protoItem.Name),
+                NotificationColor.Good,
+                skill.Icon);
+        }
+
         private void ServerRemote_Repair()
         {
             var character = ServerRemoteContext.Character;
@@ -301,7 +318,9 @@
             var resultDurabilityFraction = SharedCalculateResultDurabilityFraction(inputItem1, inputItem2, character);
 
             // break the second input item (it will force spawning ammo in this slot if it's a loaded weapon)
-            ItemDurabilitySystem.ServerModifyDurability(inputItem2, -(double)resultItemProto.DurabilityMax, roundUp: false);
+            ItemDurabilitySystem.ServerModifyDurability(inputItem2,
+                                                        -(double)resultItemProto.DurabilityMax,
+                                                        roundUp: false);
             if (!inputItem2.IsDestroyed)
             {
                 // ensure the second input item is destroyed
@@ -313,6 +332,17 @@
                                         out _);
 
             var resultItemPrivateState = inputItem1.GetPrivateState<IItemWithDurabilityPrivateState>();
+
+            if (resultDurabilityFraction < 1
+                && character.SharedHasSkillFlag(SkillMaintenance.Flags.ChanceToRepairCompletely)
+                && RandomHelper.RollWithProbability(0.05))
+            {
+                // 5% chance to repair item completely rolled successfully
+                resultDurabilityFraction = 1;
+                this.CallClient(character,
+                                _ => _.ClientRemote_ItemRepairedCompletely(inputItem1.ProtoItem));
+            }
+
             resultItemPrivateState.DurabilityCurrent = (uint)Math.Round(
                 resultDurabilityFraction * resultItemProto.DurabilityMax,
                 MidpointRounding.AwayFromZero);

@@ -5,22 +5,19 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.GameEngine.Common.Extensions;
 
-    public struct StatEffect : ISkillEffect
+    public readonly struct StatEffect : ISkillEffect
     {
         public StatEffect(
             StatName statName,
-            string customDescription,
             byte level,
             FuncBonusAtLevel formulaValueBonus,
             FuncBonusAtLevel formulaPercentBonus,
             double valueBonus,
-            double percentBonus)
+            double percentBonus,
+            bool displayTotalValue)
         {
             this.StatName = statName;
             this.Level = level;
-            this.Description = customDescription
-                               ?? statName.GetAttribute<DescriptionAttribute>()?.Description
-                               ?? throw new Exception("There is no [Description] attribute for stat " + statName);
 
             if (formulaValueBonus == null
                 && formulaPercentBonus == null
@@ -35,9 +32,14 @@
             this.FormulaPercentBonus = formulaPercentBonus;
             this.ValueBonus = valueBonus;
             this.PercentBonus = percentBonus;
+            this.DisplayTotalValue = displayTotalValue;
         }
 
-        public string Description { get; }
+        public string Description
+            => this.StatName.GetAttribute<DescriptionAttribute>()?.Description
+               ?? this.StatName.ToString();
+
+        public bool DisplayTotalValue { get; }
 
         /// <summary>
         /// Required level for the effect to take action.

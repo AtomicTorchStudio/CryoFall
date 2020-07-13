@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -107,6 +109,14 @@
         protected virtual void ClientFillSlotAttachmentSources(ITempList<string> folders)
         {
             folders.Add("Characters/Equipment/" + this.ShortId);
+        }
+
+        protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
+        {
+            base.ClientTooltipCreateControlsInternal(item, controls);
+
+            controls.Add(
+                ItemTooltipArmorStats.Create(this));
         }
 
         protected abstract void PrepareDefense(DefenseDescription defense);

@@ -18,10 +18,6 @@
             this.RefreshRecipe();
         }
 
-        public ViewModelControlRecipeBreakdown()
-        {
-        }
-
         // ReSharper disable once ConvertToAutoProperty
         [ViewModelNotAutoDisposeField]
         public IViewModelWithRecipe InheritedViewModel

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeAcidSulfuric : TechNode<TechGroupChemistry>
+    public class TechNodeAcidSulfuric : TechNode<TechGroupChemistryT2>
     {
         protected override void PrepareTechNode(Config config)
         {

@@ -1,9 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemPsiPreExposure : ProtoItemMedical
     {
@@ -14,12 +12,10 @@
 
         public override string Name => "Psi blocker";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // add psi protection
-            character.ServerAddStatusEffect<StatusEffectProtectionPsi>(intensity: 0.5); // 5 minutes
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillAddEffect<StatusEffectProtectionPsi>(intensity: 0.50); // add psi protection
         }
     }
 }

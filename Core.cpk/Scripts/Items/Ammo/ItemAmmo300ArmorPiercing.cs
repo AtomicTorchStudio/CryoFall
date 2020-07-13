@@ -12,6 +12,8 @@
         public override string Description =>
             "Heavy anti-material .300 rounds with armor-piercing capabilities.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => ".300 armor-piercing ammo";
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)

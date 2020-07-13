@@ -50,15 +50,40 @@
                 traceSpriteWidthPixels: 363,
                 traceStartOffsetPixels: -10);
 
-        public static readonly WeaponFireTracePreset Laser
+        // beam without a projectile texture
+        public static readonly WeaponFireTracePreset LaserBeamRed
             = new WeaponFireTracePreset(
-                traceTexturePath: "FX/WeaponTraces/TraceLaser",
-                hitSparksPreset: WeaponHitSparksPresets.Laser,
-                traceSpeed: 22,
+                traceTexturePath: null,
+                hitSparksPreset: WeaponHitSparksPresets.LaserRed,
+                // not used
+                traceSpeed: 1,
+                traceSpriteWidthPixels: 1,
+                traceStartScaleSpeedExponent: 0,
+                traceStartOffsetPixels: 0,
+                useScreenBlending: true,
+                drawHitSparksAsLight: true);
+
+        public static readonly WeaponFireTracePreset LaserBlue
+            = new WeaponFireTracePreset(
+                traceTexturePath: "FX/WeaponTraces/TraceLaserBlue",
+                hitSparksPreset: WeaponHitSparksPresets.LaserBlue,
+                traceSpeed: 25,
                 traceSpriteWidthPixels: 363,
                 traceStartScaleSpeedExponent: 0.5,
                 traceStartOffsetPixels: -10,
-                useScreenBlending: true);
+                useScreenBlending: true,
+                drawHitSparksAsLight: true);
+
+        public static readonly WeaponFireTracePreset LaserRed
+            = new WeaponFireTracePreset(
+                traceTexturePath: "FX/WeaponTraces/TraceLaserRed",
+                hitSparksPreset: WeaponHitSparksPresets.LaserRed,
+                traceSpeed: 30,
+                traceSpriteWidthPixels: 363,
+                traceStartScaleSpeedExponent: 0.5,
+                traceStartOffsetPixels: -10,
+                useScreenBlending: true,
+                drawHitSparksAsLight: true);
 
         public static readonly WeaponFireTracePreset MeleeWeapon
             = new WeaponFireTracePreset(
@@ -110,6 +135,7 @@
                 traceSpriteWidthPixels: 235,
                 traceStartScaleSpeedExponent: 0.5,
                 traceStartOffsetPixels: -10,
-                useScreenBlending: true);
+                useScreenBlending: true,
+                drawHitSparksAsLight: true);
     }
 }

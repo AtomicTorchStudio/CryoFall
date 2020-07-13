@@ -64,8 +64,7 @@
                 {
                     case EquipmentType.FullBody:
                     case EquipmentType.Head:
-                    case EquipmentType.Chest:
-                    case EquipmentType.Legs:
+                    case EquipmentType.Armor:
                         // consider these equipment item types for the durability check
                         break;
 

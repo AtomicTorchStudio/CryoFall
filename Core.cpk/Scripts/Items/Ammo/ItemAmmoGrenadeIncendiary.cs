@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
-    public class ItemAmmoGrenadeIncendiary : ProtoItemGrenade
+    public class ItemAmmoGrenadeIncendiary : ProtoItemGrenade, IAmmoGrenadeForGrenadeLauncher
     {
         public override double DamageRadius => 2.1;
 
@@ -16,6 +16,8 @@
             "Special incendiary grenade that inflicts heavy thermal damage upon impact.";
 
         public override double FireRangeMax => 8;
+
+        public override bool IsReferenceAmmo => false;
 
         public override ushort MaxItemsPerStack => ItemStackSize.Small;
 
@@ -30,14 +32,16 @@
             damageValue = 90;
             armorPiercingCoef = 0.1;
             finalDamageMultiplier = 1;
-            damageDistribution.Set(DamageType.Heat, 1);
+
+            damageDistribution.Set(DamageType.Explosion, 0.6)
+                              .Set(DamageType.Heat, 0.4);
         }
 
         protected override void PrepareDamageDescriptionStructures(
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            damageValue = 400;
+            damageValue = 300;
             defencePenetrationCoef = 0;
         }
 

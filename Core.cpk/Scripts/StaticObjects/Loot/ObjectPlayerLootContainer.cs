@@ -577,7 +577,7 @@
                                   string.Format(NotificationCurrentPlayerItemsBeingLooted_Message, name),
                                   NotificationColor.Bad,
                                   this.DefaultTexture)
-                              .HideAfterDelay(10 * 60);
+                              .HideAfterDelay(delaySeconds: 10 * 60);
         }
 
         public class ObjectPlayerLootContainerPrivateState : StructurePrivateState

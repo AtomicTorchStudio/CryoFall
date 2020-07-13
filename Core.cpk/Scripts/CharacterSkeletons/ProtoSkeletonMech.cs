@@ -60,6 +60,8 @@
 
         public override double WorldScale => 0.15;
 
+        protected abstract float AnimationVerticalMovemementSpeedMultiplier { get; }
+
         protected override RangeDouble FootstepsPitchVariationRange { get; }
             = new RangeDouble(0.98, 1.02);
 
@@ -95,7 +97,7 @@
             DisableMix("RunSide");
             DisableMix("RunSideBackward");
 
-            var verticalSpeedMultiplier = 1.1f; // 1.25f;
+            var verticalSpeedMultiplier = this.AnimationVerticalMovemementSpeedMultiplier;
             skeleton.SetAnimationDefaultSpeed("RunUp",        verticalSpeedMultiplier);
             skeleton.SetAnimationDefaultSpeed("RunUpStart",   verticalSpeedMultiplier);
             skeleton.SetAnimationDefaultSpeed("RunDown",      verticalSpeedMultiplier);
@@ -109,7 +111,7 @@
                 skeleton.SetMixDuration(startName,      minMix);
                 skeleton.SetMixDuration(startAbortName, minMix);
                 skeleton.SetMixDuration("Idle",         startName,      minMix);
-                skeleton.SetMixDuration(startName,      primaryName,    minMix);
+                skeleton.SetMixDuration(startName,      primaryName,    0);
                 skeleton.SetMixDuration(startName,      startAbortName, minMix);
                 skeleton.SetMixDuration(startAbortName, "Idle",         minMix);
 

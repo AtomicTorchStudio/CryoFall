@@ -25,7 +25,7 @@
 
         public override double WaterCapacity => 25;
 
-        public override double WaterProductionAmountPerSecond => 0.05;
+        public override double WaterProductionAmountPerSecond => 0.1;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

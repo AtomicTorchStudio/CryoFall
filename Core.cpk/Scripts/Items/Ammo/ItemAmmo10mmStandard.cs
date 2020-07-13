@@ -8,6 +8,8 @@
         public override string Description =>
             "Universal 10mm rounds designed for general use against a variety of possible targets.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => "10mm standard ammo";
 
         protected override void PrepareDamageDescription(

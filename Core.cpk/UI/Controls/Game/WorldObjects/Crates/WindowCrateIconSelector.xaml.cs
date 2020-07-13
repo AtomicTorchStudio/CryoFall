@@ -8,6 +8,8 @@
 
     public partial class WindowCrateIconSelector : BaseUserControlWithWindow
     {
+        private static WindowCrateIconSelector Instance;
+
         private readonly IReadOnlyCollection<IItem> existingItems;
 
         private readonly IProtoEntity selectedProtoEntity;
@@ -26,9 +28,14 @@
 
         public ViewModelWindowCrateIconSelector ViewModel => this.viewModel;
 
+        public static void CloseWindowIfOpened()
+        {
+            Instance?.CloseWindow();
+        }
+
         protected override void OnLoaded()
         {
-            base.OnLoaded();
+            Instance = this;
             this.DataContext = this.viewModel =
                                    new ViewModelWindowCrateIconSelector(
                                        this.selectedProtoEntity,
@@ -39,7 +46,11 @@
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
+            if (ReferenceEquals(this, Instance))
+            {
+                Instance = null;
+            }
+
             this.DataContext = null;
             this.viewModel.Dispose();
             this.viewModel = null;

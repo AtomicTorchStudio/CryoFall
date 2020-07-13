@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 Bauen
 
+UI/CoreStrings@Action_Relocate:
+Verschieben
+
 UI/CoreStrings@Action_Repair:
 Reparieren
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+Kompatible Waffen:
+
+UI/CoreStrings@AutosaveNotification_Completed:
+Speichern abgeschlossen!
+
+UI/CoreStrings@AutosaveNotification_Content1:
+Der Server führt regulär einen Speicherstand der Welt durch.
+
+UI/CoreStrings@AutosaveNotification_Content2:
+Ein kurzer Lag ist zu erwarten.
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+Speichert in: {0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+Speichert ...
+
+UI/CoreStrings@AutosaveNotification_Title:
+Server-Snapshot
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Zerstört in
@@ -174,6 +198,9 @@ Diese Konstruktion erzeugt Strom.
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Diese Konstruktion speichert Strom.
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+Dieses Gebäude kann nach dem Bau nicht mehr verschoben werden.
+
 UI/CoreStrings@Copy:
 Kopieren
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 Kein Icon
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-Wähle ein Icon
+Klicke mit einem Gegenstand hierhin, um diese Kiste mit einem Icon zu versehen.
+
+UI/CoreStrings@DamageType_Chemical:
+Chemisch
+
+UI/CoreStrings@DamageType_Cold:
+Kälte
+
+UI/CoreStrings@DamageType_Explosion:
+Explosion
+
+UI/CoreStrings@DamageType_Heat:
+Hitze
+
+UI/CoreStrings@DamageType_Impact:
+Aufschlag
+
+UI/CoreStrings@DamageType_Kinetic:
+Kinetisch
+
+UI/CoreStrings@DamageType_Psi:
+PSI
+
+UI/CoreStrings@DamageType_Radiation:
+Strahlung
 
 UI/CoreStrings@Defense_Format_Chemical:
 Chemischer Schutz: {0}
@@ -216,8 +267,8 @@ Chemischer Schutz: {0}
 UI/CoreStrings@Defense_Format_Cold:
 Kälteschutz: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-Elektrischer Schutz: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+Schutz vor Explosionen: {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 Hitzeschutz: {0}
@@ -274,6 +325,12 @@ Tiefenvorkommen (kleiner Ertrag, unendlich)
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Oberflächenvorkommen (hoher Ertrag)
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+Möchtest du {0} wirklich benutzen?
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+Simultan gesteuerte Drohnen
+
 UI/CoreStrings@Duration_Instant:
 Sofort
 
@@ -289,11 +346,26 @@ Sehr schnell
 UI/CoreStrings@Duration_VerySlow:
 Sehr langsam
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+Fügt Effekte hinzu:
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+Entfernt Effekte:
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 EE
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EE/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+Du musst mindestens {0}% Gesamtschaden verursachen, um eine Belohnung für dieses Event zu erhalten. Viel Erfolg beim nächsten Mal!
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+Nicht genug Schaden
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+Du hast {0}% Gesamtschaden verursacht! Dein Beuteanteil ist {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Offizieller CryoFall Discord-Server (nur auf Englisch)
@@ -403,6 +475,12 @@ Implantat zum Installieren platzieren
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Erfordert
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+Verdorben in: {0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+nie
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 Schnelltasten
 
@@ -426,6 +504,12 @@ Eingabe
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Ausgabe
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+Puffer
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+Rang {0}
 
 UI/CoreStrings@LearningPoints:
 Lernpunkte
@@ -596,6 +680,12 @@ Public GUID
 
 UI/CoreStrings@MenuServers_ServersCount:
 Server
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+Dieser Server wird von einem Community-Mitglied gehostet. Die Entwickler besitzen keinen Einfluss auf diesen Server und können nicht garantieren, dass du dort gute Erfahrungen sammelst. Es kann sein, dass der Server individuell angepasste Eigenschaften besitzt, die das Spiel entweder viel einfacher oder schwerer gestalten. Der Besitzer des Servers ist für Moderation und Support selbst verantwortlich.
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+COMMUNITY
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 Vorgestellte Server genießen für gewöhnlich den Ruf, eine ähnlich qualitativ hochwertige Spielerfahrung wie auch die offiziellen Server zu bieten. Diese Server werden jedoch von der Community gehostet.
@@ -824,6 +914,26 @@ VRAM-Auslastung
 UI/CoreStrings@PleaseWait:
 Bitte warten ...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+Dieser Stromverbraucher ist [b]nicht[/b] mit dem Stromnetz [b]verbunden[/b].
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+Dieses Gebäude arbeitet solange, bis der Leistungspegel unter den Endgrenzwert ([b]{0}%[/b]) sinkt.
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+Dieser Stromverbraucher ist mit dem Stromnetz [b]verbunden[/b].
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`Der Leistungspegel innerhalb des Stromnetzes befindet sich unter dem Endgrenzwert ([b]{0}%[/b]).
+[br]Dieses Gebäude wird automatisch aktiviert, sobald der Leistungspegel über den [b]Startgrenzwert[/b] ([b]{1}%[/b]) steigt.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`Der Leistungspegel innerhalb des Stromnetzes befindet sich unter dem Startgrenzwert ([b]{0}%[/b]).
+[br]Dieses Gebäude wird automatisch aktiviert, sobald der Leistungspegel darüber steigt.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+Dieser Stromverbraucher ist [b]außer Betrieb[/b].
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 Nicht mit dem Stromnetz verbunden.
 
@@ -890,6 +1000,50 @@ Nominal
 UI/CoreStrings@PowerGridState_Storages:
 Speicher:
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+Dieser Stromgenerator ist [b]nicht[/b] mit dem Stromnetz [b]verbunden[/b].
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+Dieses Gebäude erzeugt solange Strom, bis der Endgrenzwert ([b]{0}%[/b]) erreicht ist.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+Dieser Stromgenerator ist mit dem Stromnetz [b]verbunden[/b].
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`Der Leistungspegel innerhalb des Stromnetzes befindet sich über dem Endgrenzwert ([b]{0}%[/b]).
+[br]Dieser Generator wird automatisch aktiviert, sobald der Leistungspegel unter den [b]Startgrenzwert[/b] ([b]{1}%[/b]) sinkt.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`Der Leistungspegel innerhalb des Stromnetzes befindet sich über dem Startgrenzwert ([b]{0}%[/b]).
+[br]Dieser Generator wird automatisch aktiviert, sobald der Leistungspegel darunter sinkt.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+Dieser Stromgenerator ist [b]außer Betrieb[/b].
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+Mit Stromnetz verbinden
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+Vom Stromnetz trennen
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+Leistungssteuerung
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+Stromnetzpegel
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+Stopp:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+Start:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+Leistungspegel-Grenzwerte
+
+UI/CoreStrings@Protection_Name:
+Schutz:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Annehmen
 
@@ -932,6 +1086,129 @@ Spieler
 UI/CoreStrings@ServerWipedDate:
 Letzter Wipe
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+Diese Aktion kann auf einer durch ein Schild geschützten Basis nicht ausgeführt werden.
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+Eine Aktivierung des Schilds benötigt {0} (Aktiv.-Verzögerung).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+Eine Aktivierung des Schilds benötigt {0} (Aktiv.-Verzögerung plus verbleibender Abklingzeit).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+Mit der aktuellen Ladung schützt das aktive Schild bis zu {0}.
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+Aktiv.-Verzögerung:
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+Schild aktivieren
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+Schild deaktivieren
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+Schild aufladen
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+Schildaktivierung deiner Basis wegen Raidblock unterbrochen.
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+Schild kann während des Raidblocks nicht aktiviert werden.
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+Abklingzeit:
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(Abklingzeit {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+Aktuelle Schildladung:
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+Ein aktives oder aktivierendes Schild zu deaktivieren, leitet eine Abklingzeit ({0}) ein. Während dieser Abklingzeit kann das Schild nicht erneut aktiviert werden.
+
+UI/CoreStrings@ShieldProtection_Description_1:
+Ein Schild schützt deine Basis, während du weg oder offline bist.
+
+UI/CoreStrings@ShieldProtection_Description_2:
+Unter einem aktiven Schutzschild sind alle Türen und Wände einer Basis gegen jeglichen Schaden immun.
+
+UI/CoreStrings@ShieldProtection_Description_3:
+Blockade: Niemand kann die Basis betreten oder verlassen, wenn das Schutzschild aktiviert ist (alle Türen sind blockiert).
+
+UI/CoreStrings@ShieldProtection_Description_4:
+Vor der Aktivierung muss das Schild mit Strom aufgeladen werden.
+
+UI/CoreStrings@ShieldProtection_Description_5:
+Ein Schild zu aktivieren, dauert einige Zeit.
+
+UI/CoreStrings@ShieldProtection_Description_6:
+Deaktivierte Schilde können nicht sofort reaktiviert werden.
+
+UI/CoreStrings@ShieldProtection_Description_7:
+Ein aktives Schild schränkt die Benutzung von Werkzeugkoffer und Brechstange ein.
+
+UI/CoreStrings@ShieldProtection_Description_8:
+Das Schild kann nicht aufgeladen werden, während es aktiv ist – zunächst muss es deaktiviert werden.
+
+UI/CoreStrings@ShieldProtection_Description_9:
+Wenn die Basis während der Schildaktivierung angegriffen wird (gestarteter Raidblock), wird der Vorgang abgebrochen und eine Abklingzeit eingeleitet.
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+Bist du sicher, dass du das Schild aktivieren möchtest?
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+Bist du sicher, dass du das Schild deaktivieren möchtest?
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+Blockade: Diese Tür ist durch ein aktives Schutzschild blockiert.
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+Dieser Land Claim ist durch ein aktives Schild geschützt.
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+Geschätzte Dauer:
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+Max. Dauer:
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+Dieses Schild aktiviert sich in {0}, sofern der Vorgang nicht abgebrochen wird (beispielsweise durch den Besitzer der Basis oder indem Angreifer den Vorgang durch einen Raidblock unterbrechen).
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+Diese Basis aktiviert gerade ein Schutzschild
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+Diese Basis ist durch ein Schild geschützt, und dies noch bis zu {0}.
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]Du kannst das Schild jetzt deaktivieren (hier klicken).[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+Diese Basis ist durch ein Schild geschützt
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+Diese Basis ist durch ein Schild geschützt. Weder Wände noch Türen können beschädigt werden. Der Raidblock kann nicht aktiviert werden.
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+Aufladen auf:
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+Schildstatus:
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+Wird aktiviert
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+Aktiv
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+Inaktiv
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+Das Offline-Raid-Schutzschild steht Land Claim-Gebäuden höherer Ränge zur Verfügung. Erweitere diesen Claim so bald wie möglich, um diese Funktion freizuschalten.
+
 UI/CoreStrings@Skill:
 Fähigkeit
 
@@ -967,6 +1244,9 @@ UI/CoreStrings@SupporterPack_Description:
 `Das Supporter Paket ist eine Sammlung von Bonus-Goodies für all diejenigen, die die Entwickler von CryoFall zusätzlich unterstützen möchten. Als Zeichen der Wertschätzung zeigt das Spiel im Chat ein spezielles Supporter Abzeichen an.
 [br][br]Das Paket bietet keinen Vorteil innerhalb des Spiels und ist rein optional. Darin enthalten sind der komplette Soundtrack des Spiels, Concept Art, hochauflösende Art aus dem Spiel, ein Chat-Abzeichen etc. Dem Supporter Paket werden während des Early-Access-Zeitraums weitere Extras hinzugefügt.
 [br][br]Wir danken dir aus tiefstem Herzen für deine Unterstützung!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 Lernpunkte: {0}
@@ -1009,6 +1289,9 @@ Technologie
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Suche ...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 Titel
@@ -1082,6 +1365,9 @@ Stromnetz
 UI/CoreStrings@TitleSafeStorage:
 Sichere Aufbewahrung
 
+UI/CoreStrings@TitleShieldProtection:
+S.H.I.E.L.D.
+
 UI/CoreStrings@TitleStructurePoints:
 Strukturpunkte
 
@@ -1115,6 +1401,9 @@ Energielevel
 UI/CoreStrings@Vehicle_Enter:
 Einsteigen
 
+UI/CoreStrings@Vehicle_FuelCells:
+Brennstoffzellen
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 Panzerung: {1:F0}/{2:F0} ({0}%)
 
@@ -1129,6 +1418,9 @@ Rechter Arm
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 Waffe
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+Waffe (Außenlaststation, {0})
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 Diese Waffe kann nur benutzt werden, wenn sie in einem Mech installiert ist.
@@ -1174,8 +1466,53 @@ Baupläne
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 Freigeschaltete Baupläne
 
+UI/CoreStrings@Victory:
+Erfolg!
+
+UI/CoreStrings@Weapon_Accuracy:
+Präzision
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+Mun.-Kapazität
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+Panzerbrechend
+
+UI/CoreStrings@Weapon_AttackRate:
+Angriffsrate
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 Kompatible Munition:
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+Aktuelle Munition:
+
+UI/CoreStrings@Weapon_Damage:
+Schaden
+
+UI/CoreStrings@Weapon_DamageType:
+Schadenstyp
+
+UI/CoreStrings@Weapon_FireRate:
+Feuerrate
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+Einzellader
+
+UI/CoreStrings@Weapon_Range:
+Reichweite
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+Nachladegeschw.
+
+UI/CoreStrings@Weapon_Spread:
+Streuung
+
+UI/CoreStrings@Weapon_StoppingPower:
+Bremskraft
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+Die unten dargestellten Stats gelten für Referenzmunition ({0}).
 
 UI/CoreStrings@Window_Tab_Main:
 Primär
@@ -1191,14 +1528,26 @@ Beispiele:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Zufällig
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+Beste Länge: {0} kg
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+Bestes Gewicht: {0} kg
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 Akzeptieren
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+Neuer Rekord!
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 Fortschritt:
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Kreaturen
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+Fisch
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 Nahrung
@@ -1430,6 +1779,12 @@ Spieler online
 UI/CoreStrings@WindowSocial_TotalPlayers:
 Spieler insgesamt
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+Jetzt wässern
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+Nächster Bewässerungsversuch in: [b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 Neues AtomicTorch Nutzerkonto erstellen
 
@@ -1610,6 +1965,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]Handelsstation (deine)[/b]
 [br]Diese Handelsstation gehört dir.`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+Dieses Objekt wird von einem anderen Spieler beansprucht.
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+Du kannst damit nicht interagieren, bis der Anspruch erlischt.
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+Der Anspruch erlischt in: {0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+Objekt beansprucht
+
 UI/CoreStrings@Yes:
 Ja
 
@@ -1640,6 +2007,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Zum ersten Mal getötet.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+Zum ersten Mal gefangen.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 Zum ersten Mal verzehrt.
@@ -1789,7 +2159,7 @@ Haare
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 Haarfarbe
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 Hautfarbe
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
@@ -1876,6 +2246,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]Du kannst die Zeit bis zum Einsetzen des Verfalls erhöhen, indem du einen deiner Land Claims auf einen höheren Rang [b]erweiterst[/b].
 [br]Die Verzögerung des Verfalls der gesamten Basis orientiert sich am Land Claim-Gebäude mit dem [b]höchsten[/b] Rang.`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+nur in PvP
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Kein Brennstoff
 
@@ -1935,6 +2308,12 @@ Wirtschaft
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 Präge Münzen und baue vollautomatische Handelsstationen, um mit anderen Überlebenden Handel zu treiben.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Angeln
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Verwende verschiedene Arten von Ködern, um so eine Vielzahl von Süß- und Salzwasserfischen zu fangen. Versuche deine eigenen Rekorde zu übertrumpfen und messe dich mit anderen Spielern.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 Kybernetische Implantate

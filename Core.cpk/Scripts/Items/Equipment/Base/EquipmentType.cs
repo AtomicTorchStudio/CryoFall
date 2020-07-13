@@ -4,12 +4,11 @@
     {
         Head = 0,
 
-        Chest = 1,
+        Armor = 1,
 
-        Legs = 2,
-
-        // two implants (next commented code is intentional)
-        Implant = 3,
+        // three implants (next commented code is intentional)
+        Implant = 2,
+        //Implant = 3,
         //Implant = 4,
 
         // five device items
@@ -19,7 +18,7 @@
         //Device = 8,
         //Device = 9,
 
-        // special case (Head+Chest+Legs)
+        // special case (Head+Armor)
         FullBody = 100
     }
 }

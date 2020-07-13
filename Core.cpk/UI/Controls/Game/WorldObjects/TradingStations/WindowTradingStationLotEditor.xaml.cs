@@ -6,6 +6,8 @@
 
     public partial class WindowTradingStationLotEditor : BaseUserControlWithWindow
     {
+        private static WindowTradingStationLotEditor Instance;
+
         private readonly TradingStationLot lot;
 
         private ViewModelTradingStationLotEditor viewModel;
@@ -21,9 +23,14 @@
 
         public ViewModelTradingStationLotEditor ViewModel => this.viewModel;
 
+        public static void CloseWindowIfOpened()
+        {
+            Instance?.CloseWindow();
+        }
+
         protected override void OnLoaded()
         {
-            base.OnLoaded();
+            Instance = this;
             this.DataContext = this.viewModel =
                                    new ViewModelTradingStationLotEditor(
                                        this.lot,
@@ -33,7 +40,11 @@
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
+            if (ReferenceEquals(this, Instance))
+            {
+                Instance = null;
+            }
+
             this.DataContext = null;
             this.viewModel.Dispose();
             this.viewModel = null;

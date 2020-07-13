@@ -6,6 +6,6 @@
 
         public override string Name => "Slime";
 
-        ushort IProtoItemOrganic.OrganicValue => 1;
+        public ushort OrganicValue => 1;
     }
 }

@@ -51,12 +51,12 @@
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 5;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
 
             repair.StagesCount = 5;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             repair.AddStageRequiredItem<ItemPlastic>(count: 1);
         }

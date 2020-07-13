@@ -7,8 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data"
     xmlns:noesisGuiExtensions="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
@@ -191,18 +190,18 @@
         </Grid>
 
         <i:Interaction.Triggers>
-            <ei:DataTrigger
+            <i:DataTrigger
                 Binding="{Binding IsMouseOverIncludingHidden}"
                 Value="True">
-                <ei:GoToStateAction StateName="Visible" TargetName="PanelControls" />
-                <ei:GoToStateAction StateName="CoordinatesVisible" TargetName="TextBlockCoordinates" />
-            </ei:DataTrigger>
-            <ei:DataTrigger
+                <i:GoToStateAction StateName="Visible" TargetName="PanelControls" />
+                <i:GoToStateAction StateName="CoordinatesVisible" TargetName="TextBlockCoordinates" />
+            </i:DataTrigger>
+            <i:DataTrigger
                 Binding="{Binding IsMouseOverIncludingHidden}"
                 Value="False">
-                <ei:GoToStateAction StateName="Collapsed" TargetName="PanelControls" />
-                <ei:GoToStateAction StateName="CoordinatesCollapsed" TargetName="TextBlockCoordinates" />
-            </ei:DataTrigger>
+                <i:GoToStateAction StateName="Collapsed" TargetName="PanelControls" />
+                <i:GoToStateAction StateName="CoordinatesCollapsed" TargetName="TextBlockCoordinates" />
+            </i:DataTrigger>
         </i:Interaction.Triggers>
 
     </Grid>

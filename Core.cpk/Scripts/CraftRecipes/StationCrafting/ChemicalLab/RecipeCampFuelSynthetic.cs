@@ -19,16 +19,17 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemCanisterGasoline>(count: 3);
-            inputItems.Add<ItemCanisterMineralOil>(count: 1);
+            inputItems.Add<ItemCanisterPetroleum>(count: 2);
+            inputItems.Add<ItemAcidNitric>(count: 1);
 
             outputItems.Add<ItemCampFuel>(count: 5);
-            outputItems.Add<ItemCanisterEmpty>(count: 4);
+            outputItems.Add<ItemCanisterEmpty>(count: 2);
+            outputItems.Add<ItemBottleEmpty>(count: 1);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",
                 primaryIcon: GetItem<ItemCampFuel>().Icon,
-                secondaryIcon: GetItem<ItemCanisterGasoline>().Icon);
+                secondaryIcon: GetItem<ItemCanisterPetroleum>().Icon);
         }
     }
 }

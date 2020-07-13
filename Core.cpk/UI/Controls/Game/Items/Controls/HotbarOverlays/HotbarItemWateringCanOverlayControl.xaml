@@ -24,12 +24,14 @@
                 </Style>
             </Grid.Resources>
 
-            <Rectangle Fill="{StaticResource LiquidIconWater}" HorizontalAlignment="Stretch"
+            <Rectangle Fill="{StaticResource LiquidIconWater}"
+                       HorizontalAlignment="Stretch"
                        VerticalAlignment="Top"
                        Width="22"
                        Height="22" />
 
-            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+            <Grid VerticalAlignment="Bottom"
+                  HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />

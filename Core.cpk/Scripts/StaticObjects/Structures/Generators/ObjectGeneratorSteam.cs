@@ -44,6 +44,10 @@
 
         public override byte ContainerOutputSlotsCount => 1;
 
+        public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 90,
+                                               shutdownPercent: 100);
+
         public override string Description =>
             "This generator uses hot steam to drive a turbine and produce electricity. Takes time to boil water until it reaches its maximum output.";
 
@@ -159,7 +163,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemWire>(count: 5);
+            build.AddStageRequiredItem<ItemWire>(count: 4);
             build.AddStageRequiredItem<ItemIngotIron>(count: 2);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 

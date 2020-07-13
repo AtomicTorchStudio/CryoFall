@@ -32,20 +32,20 @@
 
         public override string Name => "Peredozin";
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                // removes any overdose instantly
+                .WillRemoveEffect<StatusEffectMedicineOveruse>()
+                // this effect prevents player from quickly putting armor back
+                .WillAddEffect<StatusEffectPeredozinApplication>(isHidden: true)
+                // this effect will prevent usage more than once in 10 minutes
+                .WillAddEffect<StatusEffectAnalBlockage>();
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemMedicalTablets;
-        }
-
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
-        {
-            // decrease overdose level
-            character.ServerRemoveStatusEffectIntensity<StatusEffectMedicineOveruse>(intensityToRemove: 1);
-
-            // prevent usage more than once in 10 minutes
-            character.ServerAddStatusEffect<StatusEffectAnalBlockage>(intensity: 1);
-
-            base.ServerOnUse(character, currentStats);
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
@@ -81,7 +81,7 @@
             }
 
             // does the player have pants equipped?
-            if (ItemsContainerCharacterEquipment.HasLegsOrFullBodyEquipment(character))
+            if (ItemsContainerCharacterEquipment.HasArmorOrFullBodyEquipment(character))
             {
                 if (IsClient)
                 {

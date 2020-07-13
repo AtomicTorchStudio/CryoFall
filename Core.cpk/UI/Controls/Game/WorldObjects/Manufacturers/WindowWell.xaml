@@ -14,19 +14,30 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center">
 
             <Rectangle Fill="{StaticResource LiquidIconWater}"
                        HorizontalAlignment="Center"
                        Width="18"
                        Height="18"
-                       Margin="6,0,0,1" />
+                       Margin="0,0,-4,1" />
 
             <StackPanel Orientation="Horizontal">
-                <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
-                                                HorizontalAlignment="Left" MaxWidth="100"
-                                                VerticalAlignment="Center"
-                                                DesignTimeSlotsCount="1" />
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+                    <!-- Text: Empty bottle -->
+                    <TextBlock Text="{Binding SlotEmptyBottleTitle}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0" />
+                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                    MaxWidth="100"
+                                                    HorizontalAlignment="Center"
+                                                    DesignTimeSlotsCount="1" />
+                </StackPanel>
 
                 <!-- The bottles are filled quickly so no need to display the progress -->
                 <!--<core:ValueBarControl
@@ -42,12 +53,19 @@
                     Margin="20,0"
                     Style="{StaticResource LiquidMediumValueBar}" />
 
-                <!--<TextBlock Text="Output" Style="{StaticResource TextBlockStyleCraftingCaption}" />-->
-                <controls:ItemsContainerControl
-                    Container="{Binding ViewModelManufacturingState.ContainerOutput}"
-                    HorizontalAlignment="Left" MaxWidth="100"
-                    VerticalAlignment="Center"
-                    DesignTimeSlotsCount="1" />
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+                    <!-- Text: Output -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0" />
+                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                                                    MaxWidth="100"
+                                                    HorizontalAlignment="Center"
+                                                    DesignTimeSlotsCount="1" />
+                </StackPanel>
             </StackPanel>
 
             <!-- Text: Drink -->

@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -46,12 +45,13 @@
         // its durability further as it's very fragile anyway.
         public override double DurabilityDecreaseMultiplierWhenHittingBuildings => 1;
 
-        public override uint DurabilityMax => 60;
+        public override uint DurabilityMax => 150;
 
         public override string Name => "Pragmium hatchet";
 
         public override void ClientOnWeaponHitOrTrace(
             ICharacter firingCharacter,
+            Vector2D worldPositionSource,
             IProtoItemWeapon protoWeapon,
             IProtoItemAmmo protoAmmo,
             IProtoCharacter protoCharacter,
@@ -164,12 +164,11 @@
         {
             switch (protoWorldObject)
             {
-                case ObjectPragmiumQueenRemains _:
-                case ObjectMeteorite _:
-                    return false;
-
-                case IProtoObjectMineral _:
                 case IProtoObjectTree _:
+                    return true;
+
+                case IProtoObjectMineral protoMineral
+                    when protoMineral.IsAllowQuickMining:
                     return true;
 
                 default:

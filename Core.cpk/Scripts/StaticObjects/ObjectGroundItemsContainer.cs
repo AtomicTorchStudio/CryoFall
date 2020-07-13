@@ -13,12 +13,14 @@
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Windows;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -32,8 +34,10 @@
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public sealed class ObjectGroundItemsContainer
-        : ProtoWorldObject<IStaticWorldObject, ObjectGroundItemsContainer.PrivateState,
-              ObjectGroundItemsContainer.PublicState, EmptyClientState>,
+        : ProtoWorldObject<IStaticWorldObject,
+              ObjectGroundItemsContainer.PrivateState,
+              ObjectGroundItemsContainer.PublicState,
+              EmptyClientState>,
           IProtoWorldObjectCustomInteractionCursor,
           IInteractableProtoWorldObject
     {
@@ -48,7 +52,7 @@
 
         private const double ClickAreaRadius = 0.45;
 
-        private const int SlotsCount = 4;
+        private const byte DefaultMaxSlotsCount = 4;
 
         public static readonly TextureResource TextureResourceSack
             = new TextureResource("StaticObjects/Loot/ObjectSack");
@@ -56,6 +60,10 @@
         private static readonly IItemsServerService ServerItemsService = IsServer ? Server.Items : null;
 
         private static ObjectGroundItemsContainer instance;
+
+        private readonly IConstructionTileRequirementsReadOnly tileRequirements
+            = new ConstructionTileRequirements()
+                .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor);
 
         public ObjectGroundItemsContainer()
         {
@@ -88,11 +96,6 @@
         public double StructureExplosiveDefenseCoef => 0;
 
         public float StructurePointsMax => 100;
-
-        public IConstructionTileRequirementsReadOnly TileRequirements { get; }
-            = new ConstructionTileRequirements()
-              .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
-              .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic);
 
         public BoundsInt ViewBounds { get; } = StaticObjectLayout.DefaultOneTileLayout.Bounds;
 
@@ -343,6 +346,13 @@
             publicState.DestroyAtTime = timeNow + destroyTimeoutSeconds;
         }
 
+        public static void ServerTrimSlotsNumber(IItemsContainer itemsContainer)
+        {
+            Server.Items.SetSlotsCount(itemsContainer,
+                                       Math.Max(DefaultMaxSlotsCount,
+                                                itemsContainer.OccupiedSlotsCount));
+        }
+
         public static IItemsContainer ServerTryDropOnGroundContainerContent(Tile tile, IItemsContainer otherContainer)
         {
             var otherContainerOccupiedSlotsCount = otherContainer.OccupiedSlotsCount;
@@ -441,7 +451,7 @@
 
         public bool CheckTileRequirements(Vector2Ushort startTilePosition, ICharacter character, bool logErrors)
         {
-            return this.TileRequirements.Check(this, startTilePosition, null, logErrors);
+            return this.tileRequirements.Check(this, startTilePosition, null, logErrors);
         }
 
         public override string ClientGetTitle(IWorldObject worldObject)
@@ -470,6 +480,11 @@
             return isCanInteract
                        ? CursorId.PickupPossible
                        : CursorId.PickupImpossible;
+        }
+
+        public StaticObjectLayoutReadOnly GetLayout(IStaticWorldObject worldObject)
+        {
+            return this.Layout;
         }
 
         public IStaticWorldObject ServerRemote_DropItemOnGround(
@@ -563,7 +578,8 @@
                 return false;
             }
 
-            if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog))
+            if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
+                || !WorldObjectClaimSystem.SharedIsAllowInteraction(character, worldObject, writeToLog))
             {
                 return false;
             }
@@ -651,11 +667,13 @@
             {
                 // create container
                 publicState.ItemsContainer
-                    = ServerItemsService.CreateContainer<ItemsContainerPublic>(data.GameObject, slotsCount: SlotsCount);
+                    = ServerItemsService.CreateContainer<ItemsContainerPublic>(
+                        data.GameObject,
+                        slotsCount: DefaultMaxSlotsCount);
             }
-            else if (publicState.ItemsContainer.SlotsCount < SlotsCount)
+            else if (publicState.ItemsContainer.SlotsCount < DefaultMaxSlotsCount)
             {
-                ServerItemsService.SetSlotsCount(publicState.ItemsContainer, slotsCount: SlotsCount);
+                ServerItemsService.SetSlotsCount(publicState.ItemsContainer, slotsCount: DefaultMaxSlotsCount);
             }
         }
 
@@ -727,7 +745,7 @@
                 .AddShapeCircle(
                     radius: ClickAreaRadius,
                     center: (0.5, 0.5),
-                    group: CollisionGroups.ClickArea);
+                    @group: CollisionGroups.ClickArea);
         }
 
         private static void ClientOpenContainerExchangeUI(IStaticWorldObject objectGroundContainer)
@@ -775,10 +793,10 @@
                 .ClampInside(characterCenter);
 
             obstaclesOnTheWay = ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
-                                                              physicsSpace,
-                                                              worldObjectCenter,
-                                                              worldObjectPointClosestToCharacter,
-                                                              sendDebugEvents: false);
+                                                                              physicsSpace,
+                                                                              worldObjectCenter,
+                                                                              worldObjectPointClosestToCharacter,
+                                                                              sendDebugEvents: false);
 
             return !obstaclesOnTheWay;
         }
@@ -822,7 +840,7 @@
             public ICharacter ServerLastInteractCharacter { get; set; } // this property is not synchronized
         }
 
-        public class PublicState : BasePublicState
+        public class PublicState : BasePublicState, IWorldObjectPublicStateWithClaim
         {
             [SyncToClient]
             public double DestroyAtTime { get; set; }
@@ -831,6 +849,10 @@
             public IItemsContainer ItemsContainer { get; set; }
 
             public int? ItemsContainerLastHash { get; set; }
+
+            [SyncToClient]
+            [TempOnly]
+            public ILogicObject WorldObjectClaim { get; set; }
         }
     }
 }

@@ -21,7 +21,8 @@
                    Grid.Column="2"
                    Width="96"
                    Height="96"
-                   UseLayoutRounding="True" />
+                   UseLayoutRounding="True"
+                   VerticalAlignment="Top" />
 
         <StackPanel Grid.Column="0"
                     Orientation="Vertical">
@@ -32,7 +33,10 @@
 
             <TextBlock Text="{Binding Description}"
                        TextWrapping="Wrap"
-                       FontSize="12" />
+                       FontSize="12"
+                       LineHeight="14"
+                       LineStackingStrategy="BlockLineHeight"
+                       Margin="0,1,0,0" />
 
             <ItemsControl Visibility="{Binding InfoControls, Converter={StaticResource NullToVisibilityConverter}}"
                           ItemsSource="{Binding InfoControls}"

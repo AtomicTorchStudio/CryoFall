@@ -21,12 +21,12 @@
                      Height="{StaticResource GameMenuStandardWindowHeight}"
                      FocusOnControl="{Binding ElementName=GameWindow}"
                      Padding="0">
-        <Grid>
+        <Grid VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Rectangle Fill="{Binding PreviewImage}"
@@ -41,21 +41,23 @@
                 <!-- Text: Male -->
                 <RadioButton Content="{x:Static loc:CoreStrings.Gender_Male}"
                              IsChecked="{Binding IsMale}"
+                             Focusable="False"
                              Margin="0,0,5,0" />
                 <!-- Text: Female -->
                 <RadioButton Content="{x:Static loc:CoreStrings.Gender_Female}"
                              IsChecked="{Binding IsFemale, Mode=OneWay}"
+                             Focusable="False"
                              Margin="5,0,0,0" />
             </StackPanel>
 
-            <ContentControl Grid.Row="2" 
+            <ContentControl Grid.Row="2"
                             FontSize="12"
                             Foreground="{StaticResource BrushColorLabelForeground}">
                 <ItemsControl ItemsSource="{Binding CurrentFaceStyleCustomizer.StyleSettings}"
                               HorizontalAlignment="Center">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel />
+                            <UniformGrid Columns="2" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
@@ -119,7 +121,11 @@
                 </ItemsControl>
             </ContentControl>
 
-            <StackPanel Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Grid.Row="3" 
+                        Orientation="Vertical" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="0,20,0,0">
                 <!-- Text: Random -->
                 <Button Content="{x:Static loc:CoreStrings.WindowCharacterStyleCustomization_Button_Randomize}"
                         Command="{Binding CommandRandom}"

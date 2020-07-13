@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -28,12 +29,12 @@
 
         public const string NotificationUseStationToRemoveImplant_Title = "Cannot remove";
 
-        public static bool HasLegsOrFullBodyEquipment(ICharacter character)
+        public static bool HasArmorOrFullBodyEquipment(ICharacter character)
         {
             var container = character.SharedGetPlayerContainerEquipment();
             return container.Items.Any(
                 item => item.ProtoItem is IProtoItemEquipment eq
-                        && (eq.EquipmentType == EquipmentType.Legs
+                        && (eq.EquipmentType == EquipmentType.Armor
                             || eq.EquipmentType == EquipmentType.FullBody));
         }
 
@@ -53,9 +54,20 @@
 
             var slotIdValue = (EquipmentType)context.SlotId.Value;
             var itemEquipmentType = protoItemEquipment.EquipmentType;
+
+            if (!context.IsExploratoryCheck
+                && (itemEquipmentType == EquipmentType.Armor
+                    || itemEquipmentType == EquipmentType.FullBody)
+                && !StatusEffectPeredozinApplication.SharedCheckCanEquipArmor(context.Container.OwnerAsCharacter,
+                                                                   clientShowNotification: true))
+            {
+                // don't allow equipping armor while peredozin is applying
+                return false;
+            }
+
             if (itemEquipmentType == EquipmentType.FullBody)
             {
-                if (slotIdValue != EquipmentType.Chest)
+                if (slotIdValue != EquipmentType.Armor)
                 {
                     // cannot place full body armor in another slots
                     return false;
@@ -68,11 +80,10 @@
                 }
 
                 // It's actual operation, perform more checks!
-                // Need to verify that head and legs are empty slots
-                // Please note: can equip full body when there is chest armor - will swap items.
+                // Need to verify that head is an empty slot
+                // Please note: can equip full body when there is an armor without the head item - will swap items.
                 var container = context.Container;
-                if (IsSlotEmpty(container,    EquipmentType.Head)
-                    && IsSlotEmpty(container, EquipmentType.Legs))
+                if (IsSlotEmpty(container, EquipmentType.Head))
                 {
                     // can place here
                     return true;
@@ -124,11 +135,10 @@
             }
 
             if (!context.IsExploratoryCheck
-                && (itemEquipmentType == EquipmentType.Head
-                    || itemEquipmentType == EquipmentType.Legs))
+                && itemEquipmentType == EquipmentType.Head)
             {
-                // Regular equipment - can equip head or legs ONLY if there are no full body armor.
-                // Please note: can equip chest even if there is full body armor - will swap items.
+                // Regular equipment - can equip head ONLY if there is no full body armor.
+                // Please note: can equip regular armor (without the helmet) even if there is full body armor - will swap items.
                 if (IsHasFullBodyArmor(context.Container))
                 {
                     // has full body armor - cannot equip this item

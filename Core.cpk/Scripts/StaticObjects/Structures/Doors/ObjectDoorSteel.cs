@@ -50,13 +50,13 @@
             category = GetCategory<StructureCategoryBuildings>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
+            build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            build.AddStageRequiredItem<ItemCement>(count: 3);
             build.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
-            build.AddStageRequiredItem<ItemCement>(count: 15);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
         }
 

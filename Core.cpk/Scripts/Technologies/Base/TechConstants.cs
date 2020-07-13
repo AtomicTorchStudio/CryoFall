@@ -9,7 +9,7 @@
     {
         public const double LearningPointsPriceBase = 10;
 
-        public const TechTier MaxTier = TechTier.Tier4;
+        public const TechTier MaxTier = TechTier.Tier5;
 
         public const TechTier MinTier = TechTier.Tier1;
 
@@ -32,11 +32,13 @@
                 // tier 1 (unlocked by default)
                 0,
                 // tier 2
-                10.0,
+                5.0,
                 // tier 3
-                20.0,
+                10.0,
                 // tier 4
-                40.0
+                15.0,
+                // tier 5
+                20.0
             };
 
         public static readonly double[] TierNodePriceMultiplier =
@@ -47,9 +49,11 @@
                 // tier 2
                 2.0,
                 // tier 3
-                5.0,
+                3.0,
                 // tier 4
-                10.0
+                4.0,
+                // tier 5
+                5.0
             };
 
         // This rate determines the LP rate between skill experience to learning points.
@@ -80,12 +84,12 @@
 
             {
                 var key = "PvpTimeGating";
-                var defaultValue = "24,72,120,168";
+                var defaultValue = "24,72,120,168,216,216";
                 var description =
-                    @"This rate determines the time-gating values for Tier 3-4 technologies on PvP servers.
-                  Please configure a sequence in hours for Tier 3-4 technologies in the following format:
-                  T3 basic, T3 specialized, T4 basic, T4 advanced
-                  If you want to disable time-gating completely please use: 0,0,0,0";
+                    @"This rate determines the time-gating values for Tier 3-5 technologies on PvP servers.
+                  Please configure a sequence in hours for Tier 3-5 technologies in the following format:
+                  T3 basic, T3 specialized, T4 basic, T4 advanced, T5 basic, T5 advanced
+                  If you want to disable time-gating completely please use: 0,0,0,0,0,0";
 
                 var currentValue = ServerRates.Get(key, defaultValue, description);
 
@@ -104,7 +108,7 @@
                 static void ParseTimeGating(string str)
                 {
                     var split = str.Split(',');
-                    if (split.Length != 4)
+                    if (split.Length != 6)
                     {
                         throw new FormatException();
                     }
@@ -113,11 +117,15 @@
                     var durationT3Specialized = int.Parse(split[1]);
                     var durationT4Basic = int.Parse(split[2]);
                     var durationT4Specialized = int.Parse(split[3]);
+                    var durationT5Basic = int.Parse(split[4]);
+                    var durationT5Specialized = int.Parse(split[5]);
 
                     PvpTechTimeGameTier3Basic = durationT3Basic * 60 * 60;
                     PvpTechTimeGameTier3Specialized = durationT3Specialized * 60 * 60;
                     PvpTechTimeGameTier4Basic = durationT4Basic * 60 * 60;
                     PvpTechTimeGameTier4Specialized = durationT4Specialized * 60 * 60;
+                    PvpTechTimeGameTier5Basic = durationT5Basic * 60 * 60;
+                    PvpTechTimeGameTier5Specialized = durationT5Specialized * 60 * 60;
                 }
             }
         }
@@ -137,6 +145,10 @@
 
         public static double PvpTechTimeGameTier4Specialized { get; private set; }
 
+        public static double PvpTechTimeGameTier5Basic { get; private set; }
+
+        public static double PvpTechTimeGameTier5Specialized { get; private set; }
+
         public static void ClientSetLearningPointsGainMultiplier(double rate)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -154,12 +166,16 @@
             double timeGameTier3Basic,
             double timeGameTier3Specialized,
             double timeGameTier4Basic,
-            double timeGameTier4Specialized)
+            double timeGameTier4Specialized,
+            double timeGameTier5Basic,
+            double timeGameTier5Specialized)
         {
             if (PvpTechTimeGameTier3Basic == timeGameTier3Basic
                 && PvpTechTimeGameTier3Specialized == timeGameTier3Specialized
                 && PvpTechTimeGameTier4Basic == timeGameTier4Basic
-                && PvpTechTimeGameTier4Specialized == timeGameTier4Specialized)
+                && PvpTechTimeGameTier4Specialized == timeGameTier4Specialized
+                && PvpTechTimeGameTier5Basic == timeGameTier5Basic
+                && PvpTechTimeGameTier5Specialized == timeGameTier5Specialized)
             {
                 return;
             }
@@ -168,6 +184,8 @@
             PvpTechTimeGameTier3Specialized = timeGameTier3Specialized;
             PvpTechTimeGameTier4Basic = timeGameTier4Basic;
             PvpTechTimeGameTier4Specialized = timeGameTier4Specialized;
+            PvpTechTimeGameTier5Basic = timeGameTier5Basic;
+            PvpTechTimeGameTier5Specialized = timeGameTier5Specialized;
 
             Api.SafeInvoke(ClientPvpTechTimeGameReceivedHandler);
         }

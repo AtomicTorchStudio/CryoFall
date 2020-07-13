@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
 
-    public class TechNodeBasicBuilding : TechNode<TechGroupConstruction>
+    public class TechNodeBasicBuilding : TechNode<TechGroupConstructionT1>
     {
         public override string Name => "Basic building";
 

@@ -45,7 +45,7 @@
 
         public event Action IsOpenedChanged;
 
-        public static bool IsObjectPlacementComponentEnabled => componentObjectPlacementHelper?.IsEnabled ?? false;
+        public static bool IsInObjectPlacementMode => componentObjectPlacementHelper?.IsEnabled ?? false;
 
         public bool IsOpened
         {
@@ -64,6 +64,8 @@
         {
             componentObjectPlacementHelper?.SceneObject.Destroy();
             componentObjectPlacementHelper = null;
+
+            ConstructionRelocationSystem.ClientDisableConstructionRelocation();
         }
 
         public static void ClientToggleConstructionMenu()
@@ -92,9 +94,7 @@
                                                            .AddComponent<ClientComponentObjectPlacementHelper>();
 
                     // repeat placement for held button only for walls, floor and farms
-                    var isRepeatCallbackIfHeld = selectedProtoStructure is IProtoObjectWall
-                                                 || selectedProtoStructure is IProtoObjectFloor
-                                                 || selectedProtoStructure is IProtoObjectFarm;
+                    var isRepeatCallbackIfHeld = selectedProtoStructure.IsRepeatPlacement;
 
                     componentObjectPlacementHelper
                         .Setup(selectedProtoStructure,
@@ -137,7 +137,7 @@
                 return;
             }
 
-            Instance.ServerOnStructurePlaced(structure, byCharacter);
+            Instance.ServerNotifyOnStructurePlacedOrRelocated(structure, byCharacter);
             Api.SafeInvoke(() => ServerStructureBuilt?.Invoke(byCharacter, structure));
         }
 
@@ -149,7 +149,7 @@
         {
         }
 
-        public void ServerOnStructurePlaced(IStaticWorldObject structure, ICharacter byCharacter)
+        public void ServerNotifyOnStructurePlacedOrRelocated(IStaticWorldObject structure, ICharacter byCharacter)
         {
             //// it will return empty list because the object is new!
             // var scopedByPlayers = Server.World.GetScopedByPlayers(structure);
@@ -175,34 +175,6 @@
             ClientToggleConstructionMenu();
         }
 
-        protected virtual IStaticWorldObject ServerCreateConstructionSite(
-            Vector2Ushort tilePosition,
-            IProtoObjectStructure protoStructure,
-            ICharacter byCharacter)
-        {
-            if (protoStructure == null)
-            {
-                throw new ArgumentNullException(nameof(protoStructure));
-            }
-
-            var protoConstructionSite = protoStructure.ConstructionSitePrototype;
-            var constructionSite = Server.World.CreateStaticWorldObject(protoConstructionSite, tilePosition);
-
-            var serverState = ProtoObjectConstructionSite.GetPublicState(constructionSite);
-            serverState.Setup(protoStructure);
-
-            constructionSite.ProtoStaticWorldObject.SharedCreatePhysics(constructionSite);
-
-            Logger.Important("Construction site created: " + constructionSite);
-            protoConstructionSite.ServerOnBuilt(constructionSite, byCharacter);
-            Api.SafeInvoke(() => ServerStructureBuilt?.Invoke(byCharacter, constructionSite));
-            Api.SafeInvoke(() => SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(
-                               constructionSite,
-                               isDestroy: false));
-
-            return constructionSite;
-        }
-
         private static bool ClientCloseConstructionMenu()
         {
             if (Instance.IsOpened)
@@ -213,8 +185,7 @@
             }
 
             // construction window is closed
-            if (componentObjectPlacementHelper != null
-                && componentObjectPlacementHelper.IsEnabled)
+            if (componentObjectPlacementHelper != null)
             {
                 // construction location selector is active - destroy it and don't open the construction menu
                 ClientDisableConstructionPlacement();
@@ -381,6 +352,35 @@
             }
         }
 
+        private IStaticWorldObject ServerCreateConstructionSite(
+            Vector2Ushort tilePosition,
+            IProtoObjectStructure protoStructure,
+            ICharacter byCharacter)
+        {
+            if (protoStructure == null)
+            {
+                throw new ArgumentNullException(nameof(protoStructure));
+            }
+
+            var protoConstructionSite = protoStructure.ConstructionSitePrototype;
+            var constructionSite = Server.World.CreateStaticWorldObject(protoConstructionSite, tilePosition);
+
+            var serverState = ProtoObjectConstructionSite.GetPublicState(constructionSite);
+            serverState.Setup(protoStructure);
+
+            // reinitialize to build proper physics and occupy proper layout
+            constructionSite.ServerRebuildScopeAndPhysics();
+
+            Logger.Important("Construction site created: " + constructionSite);
+            protoConstructionSite.ServerOnBuilt(constructionSite, byCharacter);
+            Api.SafeInvoke(() => ServerStructureBuilt?.Invoke(byCharacter, constructionSite));
+            Api.SafeInvoke(() => SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(
+                               constructionSite,
+                               isDestroy: false));
+
+            return constructionSite;
+        }
+
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
         private void ServerRemote_PlaceStructure(
             IProtoObjectStructure protoStructure,
@@ -443,7 +443,7 @@
                 {
                     // there are multiple construction stages - spawn and setup a construction site
                     var constructionSite = this.ServerCreateConstructionSite(tilePosition, protoStructure, character);
-                    this.ServerOnStructurePlaced(constructionSite, character);
+                    this.ServerNotifyOnStructurePlacedOrRelocated(constructionSite, character);
                     return;
                 }
             }
@@ -456,7 +456,7 @@
                 tilePosition,
                 character);
 
-            this.ServerOnStructurePlaced(structure, character);
+            this.ServerNotifyOnStructurePlacedOrRelocated(structure, character);
             Api.SafeInvoke(() => ServerStructureBuilt?.Invoke(character, structure));
         }
     }

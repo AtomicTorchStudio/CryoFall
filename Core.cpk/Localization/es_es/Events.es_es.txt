@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `Ha caído basura espacial en la zona destacada del mapa.
 [br]¡Ve rápido para conseguir basura valiosa!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} ha sucumbido ante:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Progreso: {0}/{1}
 

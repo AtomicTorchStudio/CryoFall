@@ -14,6 +14,8 @@
             => this.bridgeProtoTile
                    ??= Api.GetProtoEntity<TileWaterLakeBridge>();
 
+        public override bool IsFishingAllowed => true;
+
         public override string Name => "Water (lake)";
 
         public override TextureResource UnderwaterGroundTextureAtlas { get; }
@@ -31,7 +33,7 @@
 
         protected override float WaterAmplitude => 0.025f;
 
-        protected override Color WaterColor => Color.FromArgb(192, 44, 102, 102);
+        protected override Color WaterColor => Color.FromArgb(230, 44, 102, 102);
 
         protected override void PrepareProtoTile(Settings settings)
         {

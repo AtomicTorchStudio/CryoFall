@@ -4,9 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ItemMeatRaw : ProtoItemFood
     {
@@ -25,18 +23,13 @@
 
         public override float StaminaRestore => -100;
 
-        protected override void ServerOnEat(ItemEatData data)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            var character = data.Character;
-
-            // 50% chance to get food poisoning unless you have artificial stomach
-            if (!character.SharedHasPerk(StatName.PerkEatSpoiledFood)
-                && RandomHelper.RollWithProbability(0.5))
-            {
-                character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 0.75); // 7.5 minutes
-            }
-
-            base.ServerOnEat(data);
+            effects
+                // adds food poisoning unless you have artificial stomach
+                .WillAddEffect<StatusEffectNausea>(intensity: 0.50,
+                                                   condition: context => !context.Character.SharedHasPerk(
+                                                                             StatName.PerkEatSpoiledFood));
         }
     }
 }

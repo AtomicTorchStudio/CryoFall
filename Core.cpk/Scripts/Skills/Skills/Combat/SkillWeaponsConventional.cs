@@ -7,9 +7,9 @@
         public override string Description =>
             "Gaining more experience with all conventional firearms makes you accustomed to all of their nuances and enables you to use any of them more effectively.";
 
-        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
+        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.25;
 
-        public override double ExperienceAddedPerDamageDoneMultiplier => 0.75;
+        public override double ExperienceAddedPerDamageDoneMultiplier => 1.0;
 
         /// <summary>
         /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.

@@ -18,7 +18,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <controls:RequiredItemsPanelControl Grid.Row="0" MaxWidth="340"
+            <controls:RequiredItemsPanelControl Grid.Row="0" 
+                                                MaxWidth="340"
                                                 Items="{Binding InputItems}"
                                                 CountMultiplier="{Binding CountToCraft}"
                                                 MinSlotsCount="8"

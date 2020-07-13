@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationSkull : ProtoObjectDecoration
+    public class ObjectDecorationSkull : ProtoObjectDecoration
     {
         public override string Description =>
             "Show your enemies that you aren't joking around. No trespassing will be tolerated!";

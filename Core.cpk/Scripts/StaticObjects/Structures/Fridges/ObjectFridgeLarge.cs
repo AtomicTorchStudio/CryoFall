@@ -11,7 +11,7 @@
         public override string Description =>
             "Convenient way to store large amounts of perishable food. Fridge will keep it fresh much longer.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.1;
 
         public override double FreshnessDurationMultiplier => 12;
 
@@ -31,6 +31,7 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY = 0.2;
+            renderer.PositionOffset += (0, 0.25);
         }
 
         protected override void PrepareConstructionConfig(
@@ -56,18 +57,12 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var yOffset = 0.25;
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.75),
-                                   offset: (0, 0))
-                .AddShapeRectangle(size: (1, 1.35),
-                                   offset: (0, 0),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.9, 0.3),
-                                   offset: (0.05, 0.85),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1, 1.95),
-                                   offset: (0, 0),
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((1, 0.6),   offset: (0, yOffset))
+                .AddShapeRectangle((1, 1.35),  offset: (0, yOffset),           group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.9, 0.3), offset: (0.05, yOffset + 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1, 1.95),  offset: (0, yOffset),           group: CollisionGroups.ClickArea);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
 
-    public class TechNodeVehicleAssemblyBay : TechNode<TechGroupVehicles>
+    public class TechNodeVehicleAssemblyBay : TechNode<TechGroupVehiclesT3>
     {
         protected override void PrepareTechNode(Config config)
         {

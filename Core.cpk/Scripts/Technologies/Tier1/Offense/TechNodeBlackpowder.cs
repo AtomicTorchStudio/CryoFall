@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
-    public class TechNodeBlackpowder : TechNode<TechGroupOffense>
+    public class TechNodeBlackpowder : TechNode<TechGroupOffenseT1>
     {
         protected override void PrepareTechNode(Config config)
         {

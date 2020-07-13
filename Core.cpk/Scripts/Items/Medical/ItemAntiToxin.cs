@@ -20,12 +20,10 @@
 
         public override string Name => "Anti-toxin";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // remove toxins
-            character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.4);
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.40);
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

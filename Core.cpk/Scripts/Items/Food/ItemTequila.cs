@@ -22,17 +22,15 @@
 
         public override float WaterRestore => -5; // dehydrates
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectDrunk>(intensity: 0.40);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrinkAlcohol;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            // 4 minutes
-            data.Character.ServerAddStatusEffect<StatusEffectDrunk>(intensity: 0.4);
-
-            base.ServerOnEat(data);
         }
     }
 }

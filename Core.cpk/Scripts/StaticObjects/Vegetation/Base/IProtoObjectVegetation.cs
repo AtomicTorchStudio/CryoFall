@@ -25,5 +25,7 @@
         void ServerSetGrowthProgress(IStaticWorldObject worldObject, double progress);
 
         void ServerSetGrowthStage(IStaticWorldObject worldObject, byte growthStage);
+
+        double SharedGetGrowthProgress(IWorldObject worldObject);
     }
 }

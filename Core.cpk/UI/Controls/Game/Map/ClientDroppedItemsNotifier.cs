@@ -19,8 +19,8 @@
 
         public const string NotificationItemsDropped_Title = "Your items were dropped";
 
-        private static readonly Dictionary<DroppedLootInfo, HUDNotificationControl> Notifications
-            = new Dictionary<DroppedLootInfo, HUDNotificationControl>();
+        private static readonly Dictionary<DroppedLootInfo, HudNotificationControl> Notifications
+            = new Dictionary<DroppedLootInfo, HudNotificationControl>();
 
         private static NetworkSyncList<DroppedLootInfo> droppedItemsLocations;
 
@@ -111,7 +111,7 @@
             Notifications[droppedLootInfo] = notification;
         }
 
-        private static void UpdateNotification(DroppedLootInfo mark, HUDNotificationControl notification)
+        private static void UpdateNotification(DroppedLootInfo mark, HudNotificationControl notification)
         {
             if (notification.IsHiding)
             {
@@ -125,7 +125,7 @@
                 return;
             }
 
-            notification.SetMessage(GetNotificationText(mark));
+            notification.Message = GetNotificationText(mark);
 
             // schedule recursive update in a second
             ClientTimersSystem.AddAction(

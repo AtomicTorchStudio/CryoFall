@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -168,9 +169,10 @@
 
         private static void PlayerLoginHook(string playerName, out string errorMessage)
         {
-            if (ServerOperatorSystem.ServerIsOperator(playerName))
+            if (ServerOperatorSystem.ServerIsOperator(playerName)
+                || ServerModeratorSystem.ServerIsModerator(playerName))
             {
-                // operators cannot be banned, blocked or kicked
+                // operators/moderators cannot be blocked or kicked
                 errorMessage = null;
                 return;
             }

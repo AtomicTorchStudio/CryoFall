@@ -23,6 +23,8 @@
 
         public abstract bool IsDrawingPlantShadow { get; }
 
+        public override bool IsRepeatPlacement => true;
+
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
         public override double ObstacleBlockDamageCoef => 0;
@@ -87,6 +89,11 @@
 
         protected sealed override void ServerUpdate(ServerUpdateData data)
         {
+        }
+
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            return true;
         }
     }
 }

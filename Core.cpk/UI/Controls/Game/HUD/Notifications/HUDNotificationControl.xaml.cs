@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications
 {
     using System;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
@@ -13,11 +14,13 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public partial class HUDNotificationControl : BaseUserControl
+    public partial class HudNotificationControl : BaseUserControl, IHudNotificationControl
     {
         public Action CallbackOnRightClickHide;
 
         public SoundResource soundToPlay;
+
+        private Border outerBorder;
 
         private Border root;
 
@@ -27,13 +30,45 @@
 
         private Storyboard storyboardShow;
 
-        private ViewModelHUDNotificationControl viewModel;
+        private ViewModelHudNotificationControl viewModel;
 
         public bool IsAutoHide { get; private set; }
 
         public bool IsHiding { get; private set; }
 
-        public static HUDNotificationControl Create(
+        public string Message
+        {
+            get => this.viewModel?.Message;
+            set
+            {
+                if (this.viewModel is null
+                    || string.Equals(this.viewModel.Message, value, StringComparison.Ordinal))
+                {
+                    return;
+                }
+
+                this.viewModel.Message = value;
+                this.ResetNotificationSize();
+            }
+        }
+
+        public string Title
+        {
+            get => this.viewModel?.Title;
+            set
+            {
+                if (this.viewModel is null
+                    || string.Equals(this.viewModel.Title, value, StringComparison.Ordinal))
+                {
+                    return;
+                }
+
+                this.viewModel.Title = value;
+                this.ResetNotificationSize();
+            }
+        }
+
+        public static HudNotificationControl Create(
             string title,
             string message,
             Brush brushBackground,
@@ -47,9 +82,9 @@
                                 ? Api.Client.UI.GetTextureBrush(icon)
                                 : null;
 
-            return new HUDNotificationControl()
+            return new HudNotificationControl()
             {
-                viewModel = new ViewModelHUDNotificationControl(
+                viewModel = new ViewModelHudNotificationControl(
                     title,
                     message,
                     brushBackground,
@@ -96,17 +131,10 @@
                 () => this.Hide(quick: false));
         }
 
-        public bool IsSame(HUDNotificationControl other)
+        public bool IsSame(IHudNotificationControl other)
         {
-            return this.viewModel.IsSame(other.viewModel);
-        }
-
-        public void SetMessage(string message)
-        {
-            if (this.viewModel != null)
-            {
-                this.viewModel.Message = message;
-            }
+            return other is HudNotificationControl otherControl
+                   && this.viewModel.IsSame(otherControl.viewModel);
         }
 
         public void SetupAutoHideChecker(Func<bool> checker)
@@ -120,21 +148,21 @@
         {
             if (IsDesignTime)
             {
-                this.viewModel = new ViewModelHUDNotificationControl();
+                this.viewModel = new ViewModelHudNotificationControl();
                 return;
             }
 
             this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
             this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
             this.storyboardFadeOut = this.GetResource<Storyboard>("StoryboardFadeOut");
+            this.outerBorder = this.GetByName<Border>("OuterBorder");
             this.root = this.GetByName<Border>("Border");
             this.DataContext = this.viewModel;
         }
 
         protected override void OnLoaded()
         {
-            this.UpdateLayout();
-            this.viewModel.RequiredHeight = (float)this.ActualHeight;
+            this.ResetNotificationSize();
 
             if (IsDesignTime)
             {
@@ -187,6 +215,15 @@
             parent?.Children.Remove(this);
         }
 
+        private void ResetNotificationSize()
+        {
+            this.UpdateLayout();
+            this.root.Measure(new Size(this.outerBorder.ActualWidth, 1000));
+            this.viewModel.RequiredHeight = (float)(this.root.DesiredSize.Height
+                                                    + this.outerBorder.Padding.Top
+                                                    + this.outerBorder.Padding.Bottom);
+        }
+
         private void RootMouseButtonLeftHandler(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
@@ -225,9 +262,9 @@
         {
             private Func<bool> checker;
 
-            private HUDNotificationControl control;
+            private HudNotificationControl control;
 
-            public void Setup(HUDNotificationControl control, Func<bool> checker)
+            public void Setup(HudNotificationControl control, Func<bool> checker)
             {
                 this.control = control;
                 this.checker = checker;

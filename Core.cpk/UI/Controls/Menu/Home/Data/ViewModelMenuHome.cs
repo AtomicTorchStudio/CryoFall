@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.UpdatesHistory;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.FeaturesSlideshow;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
@@ -79,11 +81,13 @@
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
 
-        public string UpdateReleaseDateText => new DateTime(2020, month: 4, day: 22)
-                                               .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
-                                               .ToUpperInvariant();
+        public string UpdateReleaseDateText => UpdatesHistoryEntries.Entries.FirstOrDefault()?
+                                                                    .DateValue
+                                                                    .ToString("MMMM yyyy",
+                                                                              CultureInfo.CurrentUICulture)
+                                                                    .ToUpperInvariant();
 
-        public string UpdateTitle => "A26—Pragmium War Update";
+        public string UpdateTitle => UpdatesHistoryEntries.Entries.FirstOrDefault()?.Title;
 
         protected override void DisposeViewModel()
         {

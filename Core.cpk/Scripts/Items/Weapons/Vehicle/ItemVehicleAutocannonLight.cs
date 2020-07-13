@@ -6,11 +6,12 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
-    public class ItemVehicleAutocannonLight : ProtoItemWeaponRanged, IProtoItemWeaponForMech
+    public class ItemVehicleAutocannonLight : ProtoItemVehicleWeaponRanged
     {
         public override ushort AmmoCapacity => 100;
 
@@ -41,11 +42,15 @@
 
         public override string Name => "Light autocannon";
 
+        public override double ReadyDelayDuration => 0;
+
         public override double SpecialEffectProbability => 0.1;
 
         public override string WeaponAttachmentName => "TurretLeft";
 
-        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsHeavy>();
+        public override VehicleWeaponHardpoint WeaponHardpoint => VehicleWeaponHardpoint.Normal;
+
+        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillVehicles>();
 
         public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {

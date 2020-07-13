@@ -67,6 +67,8 @@
 
         public static event Action<ICharacter> ServerCharacterJoinedOrLeftParty;
 
+        public static event Action<ILogicObject> ServerPartyClanTagChanged;
+
         public enum InvitationAcceptResult : byte
         {
             Unknown = 0,
@@ -209,6 +211,7 @@
             return party;
         }
 
+        [CanBeNull]
         public static ILogicObject ServerGetParty(ICharacter character)
         {
             return ServerCharacterPartyDictionary.Find(character);
@@ -410,6 +413,9 @@
 
                 PlayerCharacter.GetPublicState(member).ClanTag = clanTag;
             }
+
+            Api.SafeInvoke(
+                () => ServerPartyClanTagChanged?.Invoke(party));
 
             return true;
         }

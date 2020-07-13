@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -113,6 +114,10 @@
         public override byte ContainerInputSlotsCount => 1;
 
         public override byte ContainerOutputSlotsCount => 1;
+
+        public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 30,
+                                               shutdownPercent: 20);
 
         protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {

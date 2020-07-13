@@ -135,12 +135,12 @@
                 .Add(ConstructionTileRequirements.ValidatorNoFarmPlot)
                 .Add(ConstructionTileRequirements.ValidatorNoFloor)
                 .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
-                .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic)
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
                 .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
-                .Add(LandClaimSystem.ValidatorNoRaid);
+                .Add(LandClaimSystem.ValidatorNoRaid)
+                .Add(LandClaimSystem.ValidatorNoShieldProtection);
 
             this.PrepareFarmPlotConstructionConfig(tileRequirements, build, repair);
         }

@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 Şişeyi doldurmak için suya yakın dur ya da şişeyi kuyuya sok.
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+Bunu kazamazsın!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+Oraya zaten dron gönderdin!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`Dron sana dönemiyor ve kapatılmış durumda.
+[br]Son konumunda yerde bulabilirsin.`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+Dron kapatıldı
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+Dron yok edildi
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+Bu aygıtla aynı anda {0} sayısının üstünde dron kontrol edemezsin.
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+Daha fazla dron kontrol edemezsin
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+Atılacak dron yok!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+Burada kazılacak maden yok!
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 Taşınabilir şarj kuşanılmadı.
 
@@ -127,6 +155,21 @@ Yeni tarif eklenemez
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Yıkım yapılamaz
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+Envanterinde balıkçılık için kullanılabilecek yem yok.
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+Yem yok
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+Burada balıkçılık yapamazsın
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+Balık oltadan kaçmayı başardı!
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+Çok geç... balığın kaçmasına izin verdin
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 {0} çöktü ve tamamen yok oldu.
 
@@ -167,6 +210,9 @@ Bu alan tutucuyu inşa etmek/geliştirmek, üsteki mümkün kapasiteyi aşan bir
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Başka bir alan tutucuyla kesişiyor
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+Aktif kalkan koruması altındaki bir başka alan tutucu bölgesiyle kesişiyor. Önce oradaki kalkanı etkisiz hâle getir.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `Sana tahsis edilen alan tutucuları harcadın.
@@ -325,12 +371,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Henüz toplayacak bir şey yok
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-SUNUCU: Dünya yedeklemesi {0} saniye sonra başlayacak.
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-SUNUCU: Dünya yedeklemesi tamamlandı!
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 Sunucu operatörü tarafından bu sunucudan atıldın

@@ -20,6 +20,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
@@ -68,6 +69,9 @@
 
         public const string ErrorCannotBuild_IntersectingWithAnotherLandClaim =
             "Intersecting with another land claim area";
+
+        public const string ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection =
+            "Intersecting with another land claim area that is under active shield protection. Disable the shield there first.";
 
         public const string ErrorCannotBuild_LandClaimAmountLimitExceeded =
             @"You've used up your allotted number of land claims.
@@ -190,28 +194,28 @@
                           : ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed,
                 cacheTheErrorMessageFuncResult: false,
                 function: context =>
-                {
-                    var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
-                    {
-                        return true;
-                    }
+                          {
+                              var forCharacter = context.CharacterBuilder;
+                              if (forCharacter == null)
+                              {
+                                  return true;
+                              }
 
-                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
-                    {
-                        return true;
-                    }
+                              if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                              {
+                                  return true;
+                              }
 
-                    if (!PveSystem.SharedIsPve(false))
-                    {
-                        // in PvP only check whether the land is not claimed by another player
-                        return ValidatorIsOwnedOrFreeLand.Function.Invoke(context);
-                    }
+                              if (!PveSystem.SharedIsPve(false))
+                              {
+                                  // in PvP only check whether the land is not claimed by another player
+                                  return ValidatorIsOwnedOrFreeLand.Function.Invoke(context);
+                              }
 
-                    return SharedIsOwnedLand(context.Tile.Position,
-                                             forCharacter,
-                                             out _);
-                });
+                              return SharedIsOwnedLand(context.Tile.Position,
+                                                       forCharacter,
+                                                       out _);
+                          });
 
         public static readonly ConstructionTileRequirements.Validator ValidatorNoRaid
             = new ConstructionTileRequirements.Validator(
@@ -220,11 +224,6 @@
                 {
                     var forCharacter = context.CharacterBuilder;
                     if (forCharacter == null)
-                    {
-                        return true;
-                    }
-
-                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
                     {
                         return true;
                     }
@@ -243,6 +242,38 @@
                         if (SharedIsAreaUnderRaid(area))
                         {
                             // cannot build - there is an area under raid   
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorNoShieldProtection
+            = new ConstructionTileRequirements.Validator(
+                CoreStrings.ShieldProtection_ActionRestrictedBaseUnderShieldProtection,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    var position = context.Tile.Position;
+                    foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(position))
+                    {
+                        var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
+                        if (!areaBounds.Contains(position))
+                        {
+                            continue;
+                        }
+
+                        // only server and client owning the area has the private state of the area
+                        // to check whether it's under raid or not
+                        if (LandClaimShieldProtectionSystem.SharedIsAreaUnderShieldProtection(area))
+                        {
+                            // cannot build - there is an area under shield protection
                             return false;
                         }
                     }
@@ -280,6 +311,73 @@
                                                                       centerTilePosition,
                                                                       forCharacter);
                 });
+        
+        public static readonly ConstructionTileRequirements.Validator ValidatorNewLandClaimNoLandClaimIntersectionsWithShieldProtection
+            = new ConstructionTileRequirements.Validator(
+                ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    var protoObjectLandClaim = (IProtoObjectLandClaim)context.ProtoStaticObjectToBuild;
+                    if (context.TileOffset
+                        != SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, protoObjectLandClaim))
+                    {
+                        // we don't check offset tiles
+                        // as the land claim area calculated from the center tile of the land claim object
+                        return true;
+                    }
+
+                    var centerTilePosition = context.Tile.Position;
+                    return SharedCheckCanPlaceOrUpgradeLandClaimThereConsideringShieldProtection(protoObjectLandClaim, 
+                                                                                                 centerTilePosition,
+                                                                                                 forCharacter);
+                });
+
+        public static bool SharedCheckCanPlaceOrUpgradeLandClaimThereConsideringShieldProtection(
+            IProtoObjectLandClaim newProtoObjectLandClaim,
+            Vector2Ushort landClaimCenterTilePosition,
+            ICharacter forCharacter)
+        {
+            var newAreaBounds = SharedCalculateLandClaimAreaBounds(
+                landClaimCenterTilePosition,
+                (ushort)(newProtoObjectLandClaim.LandClaimSize + 2));
+
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(newAreaBounds))
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding: false);
+                if (!areaBounds.IntersectsLoose(newAreaBounds))
+                {
+                    // there is no area (even with the padding/grace area)
+                    continue;
+                }
+
+                if (!SharedIsOwnedArea(area, forCharacter))
+                {
+                    // the area is not owned - it will be checked by another validator
+                    continue;
+                }
+
+                var areasGroup = SharedGetLandClaimAreasGroup(area);
+                if (LandClaimShieldProtectionSystem.SharedGetShieldPublicStatus(areasGroup)
+                    == ShieldProtectionStatus.Active)
+                {
+                    // intersecting with a land claim area that is under active shield
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public static readonly ConstructionTileRequirements.Validator
             ValidatorNewLandClaimSafeStorageCapacityNotExceeded
@@ -632,6 +730,10 @@
             = new Lazy<ushort>(() => Api.FindProtoEntities<IProtoObjectLandClaim>()
                                         .Max(l => l.LandClaimSize));
 
+        public static readonly Lazy<ushort> MinLandClaimSize
+            = new Lazy<ushort>(() => Api.FindProtoEntities<IProtoObjectLandClaim>()
+                                        .Min(l => l.LandClaimSize));
+
         public static readonly Lazy<ushort> MaxLandClaimSizeWithGraceArea
             = new Lazy<ushort>(() => (ushort)(MaxLandClaimSize.Value + MinPaddingSizeOneDirection * 2));
 
@@ -742,11 +844,15 @@
             [CanBeNull] ILogicObject areasGroupFrom,
             [CanBeNull] ILogicObject areasGroupTo);
 
+        public delegate void ServerMergeDelegate(ILogicObject areasGroupFrom, ILogicObject areasGroupTo);
+
         public static event ServerLandClaimsGroupChangedDelegate ServerAreasGroupChanged;
 
         public static event Action<ILogicObject> ServerAreasGroupCreated;
 
         public static event Action<ILogicObject> ServerAreasGroupDestroyed;
+
+        public static event ServerMergeDelegate ServerBaseMerge;
 
         public static event DelegateServerObjectLandClaimDestroyed ServerObjectLandClaimDestroyed;
 
@@ -757,6 +863,18 @@
         public static Task<LandClaimsGroupDecayInfo> ClientGetDecayInfoText(IStaticWorldObject landClaimWorldObject)
         {
             return Instance.CallServer(_ => _.ServerRemote_GetDecayInfo(landClaimWorldObject));
+        }
+
+        public static IEnumerable<ILogicObject> ClientGetKnownAreasForGroup(ILogicObject areasGroup)
+        {
+            foreach (var area in sharedLandClaimAreas)
+            {
+                if (ReferenceEquals(areasGroup,
+                                    LandClaimArea.GetPublicState(area).LandClaimAreasGroup))
+                {
+                    yield return area;
+                }
+            }
         }
 
         public static bool ClientIsOwnedArea(ILogicObject area)
@@ -857,7 +975,7 @@
             var totalOccupiedSlotsCount = 0;
             foreach (var areasGroup in tempListGroups.AsList())
             {
-                totalOccupiedSlotsCount += LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainer
+                totalOccupiedSlotsCount += LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainerSafeStorage
                                                               .OccupiedSlotsCount;
             }
 
@@ -1043,9 +1161,10 @@
                 return;
             }
 
-            if (!RaidingProtectionSystem.SharedCanRaid(bounds, showClientNotification: false))
+            if (!RaidingProtectionSystem.SharedCanRaid(bounds, showClientNotification: false)
+                || !LandClaimShieldProtectionSystem.SharedCanActivateRaidblock(bounds, showClientNotification: false))
             {
-                // raiding is not possible now
+                // raid block is not possible now
                 return;
             }
 
@@ -1085,6 +1204,20 @@
                 {
                     SharedGetPlayerOwnedAreas(player).Add(area);
                 }
+            }
+        }
+
+        public static void ServerResetRaidblock(RectangleInt bounds)
+        {
+            using var tempList = Api.Shared.GetTempList<ILogicObject>();
+            SharedGetAreasInBounds(bounds, tempList, addGracePadding: false);
+
+            foreach (var area in tempList.AsList())
+            {
+                var areaPublicState = LandClaimArea.GetPublicState(area);
+                var areasGroup = areaPublicState.LandClaimAreasGroup;
+                var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+                areasGroupPublicState.LastRaidTime = null;
             }
         }
 
@@ -1187,8 +1320,8 @@
             // Even though the area's group didn't change,
             // we need to notify power system so it will rebuild power grid for the area's group.
             Api.SafeInvoke(() => ServerAreasGroupChanged?.Invoke(area,
-                                                                 areaPublicState.LandClaimAreasGroup,
-                                                                 null));
+                                                                 null,
+                                                                 areaPublicState.LandClaimAreasGroup));
 
             return upgradedObject;
         }
@@ -1196,14 +1329,14 @@
         public static RectangleInt SharedCalculateLandClaimAreaBounds(Vector2Ushort centerTilePosition, ushort size)
         {
             var pos = centerTilePosition;
-            var halfSize = size / 2.0;
+            var halfSize = size / 2;
 
             var start = new Vector2Ushort(
-                (ushort)Math.Max(Math.Ceiling(pos.X - halfSize), 0),
-                (ushort)Math.Max(Math.Ceiling(pos.Y - halfSize), 0));
+                (ushort)Math.Max(pos.X - halfSize, 0),
+                (ushort)Math.Max(pos.Y - halfSize, 0));
 
-            var endX = Math.Min(Math.Ceiling(pos.X + halfSize), ushort.MaxValue);
-            var endY = Math.Min(Math.Ceiling(pos.Y + halfSize), ushort.MaxValue);
+            var endX = Math.Min(pos.X + halfSize, ushort.MaxValue);
+            var endY = Math.Min(pos.Y + halfSize, ushort.MaxValue);
 
             var calculatedSize = new Vector2Ushort((ushort)(endX - start.X),
                                                    (ushort)(endY - start.Y));
@@ -1328,7 +1461,9 @@
 
             var newAreaBounds = SharedCalculateLandClaimAreaBounds(
                 landClaimCenterTilePosition,
-                newProtoObjectLandClaim.LandClaimWithGraceAreaSize);
+                (ushort)(newProtoObjectLandClaim.LandClaimWithGraceAreaSize
+                         // reduce the outer bounds as it's the buffer area
+                         - MinPaddingSizeOneDirection * 2));
 
             foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(newAreaBounds))
             {
@@ -1363,7 +1498,9 @@
 
             var newAreaBounds = SharedCalculateLandClaimAreaBounds(
                 landClaimCenterTilePosition,
-                newProtoObjectLandClaim.LandClaimWithGraceAreaSize);
+                (ushort)(newProtoObjectLandClaim.LandClaimWithGraceAreaSize
+                         // reduce the outer bounds as it's the buffer area
+                         - MinPaddingSizeOneDirection * 2));
 
             foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(newAreaBounds))
             {
@@ -1733,16 +1870,16 @@
         public static bool SharedIsPositionInsideOwnedOrFreeArea(
             Vector2Ushort tilePosition,
             ICharacter who,
-            bool addGracePadding = false)
+            bool addGracePaddingWithoutBuffer = false)
         {
             var foundAnyAreas = false;
             foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(tilePosition))
             {
-                var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding);
-                if (addGracePadding)
+                var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePaddingWithoutBuffer);
+                if (addGracePaddingWithoutBuffer)
                 {
-                    // remove the border cases (touching with the land claim grace area)
-                    areaBounds = areaBounds.Inflate(-1);
+                    // remove the border cases (touching with the land claim grace area and buffer)
+                    areaBounds = areaBounds.Inflate(-1 - MinPaddingSizeOneDirection);
                 }
 
                 if (!areaBounds.Contains(tilePosition))
@@ -1806,12 +1943,12 @@
         {
             if (IsClient)
             {
-                Instance.ClientRemote_ShowNotificationCannotUnstuckUnderRaidblock();
+                Instance.ClientRemote_ShowNotificationActionForbiddenUnderRaidblock();
             }
             else
             {
                 Instance.CallClient(character,
-                                    _ => _.ClientRemote_ShowNotificationCannotUnstuckUnderRaidblock());
+                                    _ => _.ClientRemote_ShowNotificationActionForbiddenUnderRaidblock());
             }
         }
 
@@ -1907,6 +2044,7 @@
                     continue;
                 }
 
+                Api.SafeInvoke(() => ServerBaseMerge?.Invoke(areasGroup, otherAreasGroup));
                 LandClaimAreasGroup.ServerOnBaseMerged(areasGroup, otherAreasGroup);
                 // that's correct! we return here as the base might be merged only with a single other base
                 return;
@@ -1916,7 +2054,7 @@
         private static void ServerDropItems(IStaticWorldObject landClaimStructure, ILogicObject areasGroup)
         {
             // try drop items from the safe storage
-            var itemsContainer = LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainer;
+            var itemsContainer = LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainerSafeStorage;
             if (itemsContainer.OccupiedSlotsCount == 0)
             {
                 // no items to drop
@@ -2247,7 +2385,7 @@
             ClientLandClaimAreaManager.OnLandOwnerStateChanged(area, isOwned);
         }
 
-        private void ClientRemote_ShowNotificationCannotUnstuckUnderRaidblock()
+        private void ClientRemote_ShowNotificationActionForbiddenUnderRaidblock()
         {
             NotificationSystem.ClientShowNotification(
                 CoreStrings.Notification_ActionForbidden,

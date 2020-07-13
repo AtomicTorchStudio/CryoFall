@@ -12,9 +12,15 @@
         : ProtoSystem<TSystem>
         where TSystem : ProtoActionSystem<TSystem, TActionRequest, TActionState, TPublicActionState>, new()
         where TActionRequest : IActionRequest
-        where TActionState : ActionSystemState<TSystem, TActionRequest, TActionState, TPublicActionState>
+        where TActionState : BaseSystemActionState<TSystem, TActionRequest, TActionState, TPublicActionState>
         where TPublicActionState : BasePublicActionState, new()
     {
+        public void ClientSendAbortAction(TActionRequest request)
+        {
+            Logger.Info("Sending action abort request: " + request);
+            this.CallServer(_ => _.ServerRemote_AbortAction(request));
+        }
+
         public bool ClientTryAbortAction()
         {
             var privateState = ClientCurrentCharacterHelper.PrivateState;
@@ -246,6 +252,7 @@
             if (IsClient
                 && !state.IsCancelledByServer)
             {
+                Logger.Info("Sending action abort request: " + request);
                 Instance.CallServer(_ => _.ServerRemote_AbortAction(request));
             }
             else if (IsServer

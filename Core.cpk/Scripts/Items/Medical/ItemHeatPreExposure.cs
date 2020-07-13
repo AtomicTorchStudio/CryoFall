@@ -1,9 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemHeatPreExposure : ProtoItemMedical
     {
@@ -14,12 +12,10 @@
 
         public override string Name => "Heat-resistant gel";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            //add heat protection
-            character.ServerAddStatusEffect<StatusEffectProtectionHeat>(intensity: 0.5); // 5 minutes
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillAddEffect<StatusEffectProtectionHeat>(intensity: 0.50); //add heat protection
         }
     }
 }

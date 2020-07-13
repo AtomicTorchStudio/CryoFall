@@ -16,7 +16,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class WeaponAmmoSystem : ProtoSystem<WeaponAmmoSystem>
     {
@@ -29,14 +28,14 @@
         public static void ClientTryAbortReloading()
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;
-            if (character == null)
+            if (character is null)
             {
                 return;
             }
 
             var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
             var weaponReloadingState = weaponState.WeaponReloadingState;
-            if (weaponReloadingState == null)
+            if (weaponReloadingState is null)
             {
                 return;
             }
@@ -53,7 +52,7 @@
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
 
             var itemWeapon = currentWeaponState.ItemWeapon;
-            if (itemWeapon == null)
+            if (itemWeapon is null)
             {
                 // no active weapon to reload
                 return;
@@ -107,11 +106,11 @@
             IProtoItemAmmo selectedProtoItemAmmo = null;
 
             var currentReloadingState = currentWeaponState.WeaponReloadingState;
-            if (currentReloadingState == null)
+            if (currentReloadingState is null)
             {
                 // don't have reloading state - find ammo item matching current weapon ammo type
                 var currentProtoItemAmmo = itemPrivateState.CurrentProtoItemAmmo;
-                if (currentProtoItemAmmo == null)
+                if (currentProtoItemAmmo is null)
                 {
                     // no ammo selected in weapon
                     selectedProtoItemAmmo = SharedFindNextAmmoGroup(protoWeapon.CompatibleAmmoProtos,
@@ -257,7 +256,7 @@
             var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
 
             var item = weaponState.ItemWeapon;
-            if (item == null)
+            if (item is null)
             {
                 // no active weapon to reload
                 return;
@@ -295,7 +294,7 @@
 
             // don't have reloading state - find ammo item matching current weapon ammo type
             var currentProtoItemAmmo = itemPrivateState.CurrentProtoItemAmmo;
-            if (currentProtoItemAmmo == null)
+            if (currentProtoItemAmmo is null)
             {
                 // no ammo selected in weapon 
                 return;
@@ -339,11 +338,23 @@
             }
         }
 
+        public static int SharedGetTotalAvailableAmmo(IProtoItemAmmo protoItemAmmo, ICharacter character)
+        {
+            int result = 0;
+            foreach (var container in SharedGetTargetContainersForCharacterAmmo(character,
+                                                                                isForAmmoUnloading: false))
+            {
+                result += container.CountItemsOfType(protoItemAmmo);
+            }
+
+            return result;
+        }
+
         public static void SharedTryAbortReloading(ICharacter character, IItem weapon)
         {
             var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
             var weaponReloadingState = weaponState.WeaponReloadingState;
-            if (weaponReloadingState == null)
+            if (weaponReloadingState is null)
             {
                 return;
             }
@@ -370,7 +381,7 @@
         public static void SharedUpdateReloading(WeaponState weaponState, ICharacter character, double deltaTime)
         {
             var reloadingState = weaponState.WeaponReloadingState;
-            if (reloadingState == null)
+            if (reloadingState is null)
             {
                 return;
             }
@@ -482,35 +493,30 @@
         {
             var compatibleAmmoProtos = protoWeapon.CompatibleAmmoProtos;
 
-            IEnumerable<IItem> allItems = null;
-            var currentVehicle = character.SharedGetCurrentVehicle();
-            if (currentVehicle != null
-                && !((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
+            using var allItems = Api.Shared.GetTempList<IItem>();
+            foreach (var container in SharedGetTargetContainersForCharacterAmmo(character, isForAmmoUnloading: false))
             {
-                // select items from the vehicle equipment container
-                allItems = currentVehicle.GetPrivateState<VehicleMechPrivateState>()
-                                         .EquipmentItemsContainer.Items;
-            }
-
-            if (allItems == null)
-            {
-                // select items from player's inventory
-                var containerInventory = character.SharedGetPlayerContainerInventory();
-                var containerHotbar = character.SharedGetPlayerContainerHotbar();
-                allItems = containerInventory.Items.Concat(containerHotbar.Items);
+                foreach (var item in container.Items)
+                {
+                    if (compatibleAmmoProtos.Contains(item.ProtoItem))
+                    {
+                        allItems.Add(item);
+                    }
+                }
             }
 
             return allItems
-                   .Where(i => compatibleAmmoProtos.Contains(i.ProtoGameObject))
+                   .AsList()
                    .GroupBy(a => (IProtoItemAmmo)a.ProtoItem)
                    .ToList();
         }
 
-        private static IEnumerable<IItemsContainer> SharedGetTargetContainersForAmmoUnloading(ICharacter character)
+        private static IEnumerable<IItemsContainer> SharedGetTargetContainersForCharacterAmmo(
+            ICharacter character,
+            bool isForAmmoUnloading)
         {
-            IEnumerable<IItemsContainer> targetContainers = Array.Empty<IItemsContainer>();
             var currentVehicle = character.SharedGetCurrentVehicle();
-            if (currentVehicle == null
+            if (currentVehicle is null
                 || ((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
             {
                 // no vehicle — use only character's containers
@@ -520,15 +526,19 @@
             }
 
             // select items from the vehicle equipment container
-            targetContainers = targetContainers.Append(currentVehicle
-                                                       .GetPrivateState<VehicleMechPrivateState>()
-                                                       .EquipmentItemsContainer);
+            var targetContainers = new List<IItemsContainer>();
+            targetContainers.Add(currentVehicle
+                                 .GetPrivateState<VehicleMechPrivateState>()
+                                 .EquipmentItemsContainer);
 
-            // append character's containers
-            targetContainers = targetContainers.Concat(
-                character.ProtoCharacter.SharedEnumerateAllContainers(
-                    character,
-                    includeEquipmentContainer: false));
+            if (isForAmmoUnloading)
+            {
+                // append character's containers
+                targetContainers.AddRange(character.ProtoCharacter.SharedEnumerateAllContainers(
+                                              character,
+                                              includeEquipmentContainer: false));
+            }
+
             return targetContainers;
         }
 
@@ -563,7 +573,8 @@
                     // unload current ammo
                     if (IsServer)
                     {
-                        var targetContainers = SharedGetTargetContainersForAmmoUnloading(character);
+                        var targetContainers =
+                            SharedGetTargetContainersForCharacterAmmo(character, isForAmmoUnloading: true);
                         var result = Server.Items.CreateItem(
                             protoItem: currentProtoItemAmmo,
                             new AggregatedItemsContainers(targetContainers),
@@ -578,11 +589,10 @@
                             var groundContainer = ObjectGroundItemsContainer
                                 .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
 
-                            if (groundContainer == null)
+                            if (groundContainer is null)
                             {
                                 // cannot unload current ammo to the ground - no free space around character
-                                Instance.CallClient(character,
-                                                    _ => _.ClientRemote_NoSpaceForUnloadedAmmo(currentProtoItemAmmo));
+                                NotificationSystem.ServerSendNotificationNoSpaceInInventory(character);
                                 return;
                             }
 
@@ -595,9 +605,7 @@
                             {
                                 // cannot unload current ammo to the ground - no space in ground containers near the character
                                 result.Rollback();
-                                Instance.CallClient(character,
-                                                    _ => _.ClientRemote_NoSpaceForUnloadedAmmo(
-                                                        currentProtoItemAmmo));
+                                NotificationSystem.ServerSendNotificationNoSpaceInInventory(character);
                                 return;
                             }
 
@@ -626,8 +634,8 @@
                 }
             }
             else // if ammoCount == 0
-            if (selectedProtoItemAmmo == null
-                && currentProtoItemAmmo == null)
+            if (selectedProtoItemAmmo is null
+                && currentProtoItemAmmo is null)
             {
                 Logger.Info(
                     $"Weapon reloading cancelled: {itemWeapon} - already unloaded ({weaponAmmoCount}/{weaponAmmoCapacity})",
@@ -640,7 +648,7 @@
                 var selectedAmmoGroup = SharedGetCompatibleAmmoGroups(character, itemWeaponProto)
                     .FirstOrDefault(g => g.Key == selectedProtoItemAmmo);
 
-                if (selectedAmmoGroup == null)
+                if (selectedAmmoGroup is null)
                 {
                     Logger.Warning(
                         $"Weapon reloading impossible: {itemWeapon} - no ammo of the required type ({selectedProtoItemAmmo})",
@@ -653,14 +661,7 @@
                 foreach (var request in ammoItems)
                 {
                     var itemAmmo = request.Item;
-                    if (itemAmmo.ProtoItem != selectedProtoItemAmmo)
-                    {
-                        Logger.Error(
-                            "Trying to load multiple ammo types in one reloading: "
-                            + ammoItems.Select(a => a.Item.ProtoItem).GetJoinedString(),
-                            character);
-                        break;
-                    }
+                    Api.Assert(itemAmmo.ProtoItem == selectedProtoItemAmmo, "Sanity check");
 
                     int ammoToSubstract;
 
@@ -787,14 +788,6 @@
             return result;
         }
 
-        private void ClientRemote_NoSpaceForUnloadedAmmo(IProtoItemAmmo protoAmmo)
-        {
-            NotificationSystem.ClientShowNotification("Cannot unload",
-                                                      "No space for unloaded ammo in inventory",
-                                                      NotificationColor.Bad,
-                                                      protoAmmo.Icon);
-        }
-
         [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 30, keyArgIndex: 0)]
         private void ClientRemote_OnOtherCharacterReloaded(ICharacter character, IProtoItemWeapon protoWeapon)
         {
@@ -824,7 +817,7 @@
             PlayerCharacter.SharedForceRefreshCurrentItem(character);
 
             var itemWeapon = args.Item;
-            if (itemWeapon == null)
+            if (itemWeapon is null)
             {
                 throw new Exception("Item not found.");
             }
@@ -855,7 +848,7 @@
             var privateState = itemWeapon.GetPrivateState<WeaponPrivateState>();
 
             var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
-            if (weaponState == null
+            if (weaponState is null
                 || weaponState.ItemWeapon != itemWeapon)
             {
                 throw new Exception(
@@ -866,7 +859,7 @@
             var ammoCurrent = privateState.AmmoCount;
             var ammoMax = itemProto.AmmoCapacity;
 
-            if (weaponState.WeaponReloadingState == null
+            if (weaponState.WeaponReloadingState is null
                 && ammoCurrent == ammoMax
                 && privateState.CurrentProtoItemAmmo == selectedProtoItemAmmo)
             {

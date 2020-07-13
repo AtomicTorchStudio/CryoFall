@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeLithiumOreExtractor : TechNode<TechGroupXenogeology>
+    public class TechNodeLithiumOreExtractor : TechNode<TechGroupXenogeologyT3>
     {
         protected override void PrepareTechNode(Config config)
         {

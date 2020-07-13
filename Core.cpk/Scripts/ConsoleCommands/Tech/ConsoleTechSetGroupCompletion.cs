@@ -42,7 +42,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
             if (nodesToAddCount <= 0)
             {
                 return
-                    $"{player} tech group {techGroup.Name} cannot be added - there are not enough nodes for {completionPercent:F2} completion percent.";
+                    $"{player} tech group {techGroup.NameWithTierName} cannot be added - there are not enough nodes for {completionPercent:F2} completion percent.";
             }
 
             var nodesToAdd = techGroup.Nodes;
@@ -54,7 +54,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
                 technologies.ServerAddNode(nodeToAdd);
             }
 
-            return $"{player} tech group {techGroup.Name} added.";
+            return $"{player} tech group {techGroup.NameWithTierName} added.";
         }
     }
 }

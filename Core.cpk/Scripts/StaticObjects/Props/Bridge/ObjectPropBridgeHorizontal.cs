@@ -45,8 +45,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2, 1), (0, -1), CollisionGroups.Default)
-                .AddShapeRectangle((2, 1), (0, 2),  CollisionGroups.Default);
+                .AddShapeRectangle((2, 0.7),    (0, 2),       CollisionGroups.Default)
+                .AddShapeRectangle((0.7, 0.95), (0.65, 2),    CollisionGroups.Default)
+                .AddShapeRectangle((2, 1),      (0, -1),      CollisionGroups.Default)
+                .AddShapeRectangle((0.7, 1.4),  (0.65, -1.4), CollisionGroups.Default);
         }
     }
 }

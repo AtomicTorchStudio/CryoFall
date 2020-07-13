@@ -18,7 +18,7 @@
 
         public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(32);
 
-        public override ushort LandClaimSize => 20;
+        public override ushort LandClaimSize => 18;
 
         public override byte LandClaimTier => 3;
 
@@ -27,6 +27,10 @@
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
+
+        public override double ShieldProtectionDuration => 28 * 60 * 60; // 28 hours
+
+        public override double ShieldProtectionTotalElectricityCost => 5000;
 
         public override float StructurePointsMax => 36000;
 

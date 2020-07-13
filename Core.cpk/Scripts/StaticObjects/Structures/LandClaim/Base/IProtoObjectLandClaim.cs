@@ -19,6 +19,10 @@
 
         ushort LandClaimWithGraceAreaSize { get; }
 
+        double ShieldProtectionDuration { get; }
+
+        double ShieldProtectionTotalElectricityCost { get; }
+
         void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim upgradeStructure);
 
         bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner);

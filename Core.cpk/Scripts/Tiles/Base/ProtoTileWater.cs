@@ -42,6 +42,8 @@
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Liquid;
 
+        public abstract bool IsFishingAllowed { get; }
+
         public sealed override TileKind Kind => TileKind.Water;
 
         public abstract TextureResource UnderwaterGroundTextureAtlas { get; }

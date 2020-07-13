@@ -33,9 +33,9 @@
         // do not change, see electricity math model
         public override double ElectricityConsumptionPerSecondWhenActive => 2;
 
-        public override double LiquidCapacity => 100;
+        public override double LiquidCapacity => 10;
 
-        public override double LiquidProductionAmountPerSecond => 0.2;
+        public override double LiquidProductionAmountPerSecond => 0.1;
 
         public override string Name => "Advanced oil pump";
 
@@ -82,15 +82,15 @@
             category = GetCategory<StructureCategoryIndustry>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemCement>(count: 10);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.StageDurationSeconds = BuildDuration.Long;
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            build.AddStageRequiredItem<ItemCement>(count: 5);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Medium;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.StageDurationSeconds = BuildDuration.Long;
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

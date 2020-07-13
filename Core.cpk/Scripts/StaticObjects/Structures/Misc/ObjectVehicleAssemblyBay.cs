@@ -12,12 +12,13 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectVehicleAssemblyBay : ProtoObjectVehicleAssemblyBay
     {
+        private static readonly Vector2Ushort CombinedTextureSize = (512, 572);
+
         private static readonly TextureResource TextureResourceConsole
             = new TextureResource("StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay_Console");
 
@@ -31,6 +32,8 @@
 
         public override string Description =>
             "Automated platform for vehicle assembly. Can be used to manufacture any vehicle, given a particular schematic.";
+
+        public override bool IsRelocatable => true;
 
         public override string Name => "Vehicle assembly bay";
 
@@ -51,11 +54,8 @@
             var renderer = blueprint.SpriteRenderer;
             renderer.TextureResource = this.Icon;
             renderer.PositionOffset = WorldPositionOffset;
-            // set custom size (don't use auto scaling)
-            renderer.Scale = null;
-            var qualityScaleCoef = Api.Client.Rendering.CalculateCurrentQualityScaleCoefWithOffset(0);
-            renderer.Size = (512 * 0.5 / qualityScaleCoef, 
-                             572 * 0.5 / qualityScaleCoef);
+            renderer.Size = (CombinedTextureSize.X * 0.5,
+                             CombinedTextureSize.Y * 0.5);
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -89,7 +89,7 @@
                 "Composed " + this.Id,
                 isTransparent: true,
                 isUseCache: true,
-                customSize: (512, 572),
+                customSize: CombinedTextureSize,
                 textureResourcesWithOffsets: new[]
                 {
                     new TextureResourceWithOffset(TextureResourcePlatform,
@@ -130,14 +130,14 @@
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemCement>(count: 10);
+            build.StageDurationSeconds = BuildDuration.Long;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemCement>(count: 2);
             build.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
-            
+
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
+            repair.StageDurationSeconds = BuildDuration.Long;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
             repair.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
             repair.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);

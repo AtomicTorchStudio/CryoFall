@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeLaserPistol : TechNode<TechGroupEnergyWeapons>
+    public class TechNodeLaserPistol : TechNode<TechGroupEnergyWeaponsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

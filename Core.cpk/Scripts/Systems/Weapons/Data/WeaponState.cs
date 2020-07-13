@@ -146,8 +146,7 @@
 
         private void SharedOnWeaponChanged()
         {
-            var readySecondsRemains = Math.Max(this.CooldownSecondsRemains,
-                                               this.ProtoWeapon?.ReadyDelayDuration ?? 0);
+            var readySecondsRemains = this.ProtoWeapon?.ReadyDelayDuration ?? 0;
             readySecondsRemains = Api.Shared.RoundDurationByServerFrameDuration(readySecondsRemains);
             this.CooldownSecondsRemains = this.ReadySecondsRemains = readySecondsRemains;
 

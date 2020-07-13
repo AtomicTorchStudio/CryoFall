@@ -5,7 +5,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Documents;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientLanguages;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -137,7 +136,7 @@
 
                                     modeIsItalic = false;
                                     break;
-                                
+
                                 case "s":
                                     yield return TryBuildRun();
 

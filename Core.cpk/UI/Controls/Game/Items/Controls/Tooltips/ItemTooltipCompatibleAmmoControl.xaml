@@ -9,9 +9,9 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data:ViewModelItemCompatibleAmmo, IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance data:ViewModelItemTooltipCompatibleAmmoControl, IsDesignTimeCreatable=True}"
     UseLayoutRounding="False"
-    Opacity="0.8">
+    Opacity="0.7">
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{x:Static loc:CoreStrings.Weapon_CompatibleAmmo}"
                    FontSize="11"
@@ -24,12 +24,13 @@
                         <!-- Bullet point -->
                         <Ellipse Width="4"
                                  Height="4"
-                                 Fill="{StaticResource BrushColor5}"
+                                 Fill="{StaticResource BrushColor7}"
+                                 Opacity="0.7"
                                  VerticalAlignment="Center"
                                  Margin="0,0,2,-1" />
                         <TextBlock Text="{Binding Name}"
                                    TextWrapping="Wrap"
-                                   Foreground="{StaticResource BrushColor6}"
+                                   Foreground="{StaticResource BrushColor7}"
                                    FontSize="10" />
                     </StackPanel>
                 </DataTemplate>

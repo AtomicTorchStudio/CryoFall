@@ -2,17 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeBoneArmor : TechNode<TechGroupDefense>
+    public class TechNodeBoneArmor : TechNode<TechGroupDefenseT1>
     {
-        public override string Name => "Bone armor";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeBoneJacket>()
+                  .AddRecipe<RecipeBoneArmor>()
                   .AddRecipe<RecipeBoneHelmetHorned>()
-                  .AddRecipe<RecipeBoneHelmetClosed>()
-                  .AddRecipe<RecipeBonePants>();
+                  .AddRecipe<RecipeBoneHelmetClosed>();
 
             config.SetRequiredNode<TechNodeWoodArmor>();
         }

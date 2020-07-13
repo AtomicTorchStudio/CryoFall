@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeSmelting : TechNode<TechGroupIndustry>
+    public class TechNodeSmelting : TechNode<TechGroupIndustryT1>
     {
         public override string Name => "Smelting";
 

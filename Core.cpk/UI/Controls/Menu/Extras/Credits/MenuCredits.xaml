@@ -262,7 +262,7 @@
                 <TextBlock Style="{StaticResource Name}"
                            LineHeight="12.5">
                     Amatic SC, Oswald, Roboto,
-                    <LineBreak />Source Han Sans, Ubuntu Mono
+                    <LineBreak />Source Han Sans, Ubuntu Mono,
                     <LineBreak />Twemoji Mozilla
                 </TextBlock>
 

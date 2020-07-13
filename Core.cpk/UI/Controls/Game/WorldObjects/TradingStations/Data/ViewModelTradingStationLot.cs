@@ -98,6 +98,12 @@
 
         public IProtoItem ProtoItem => this.lot.ProtoItem;
 
+        protected override void DisposeViewModel()
+        {
+            WindowTradingStationLotEditor.CloseWindowIfOpened();
+            base.DisposeViewModel();
+        }
+
         private void ExecuteCommandBuy()
         {
             TradingStationsSystem.ClientRequestExecuteTrade(

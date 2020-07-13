@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationSofa : ProtoObjectDecoration
+    public class ObjectDecorationSofa : ProtoObjectDecoration
     {
         public override string Description => "Soft and comfortable, perfect for the living room.";
 

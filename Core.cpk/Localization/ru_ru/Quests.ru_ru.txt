@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Источники света
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+Чтобы [b]переместить[/b] существующую постройку, выберите [b]набор инструментов[/b] и используйте его на постройке. Обратите внимание, что некоторые постройки передвинуть невозможно.
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `Очень важно знать, как правильно защищать свою базу! Если этого не сделать, вас ограбят более ушлые выжившие.
 [br]
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Изготовить нож и убить любого зверя
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Надеть нагрудный доспех более высокого качества
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+Надеть броню более высокого качества
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 Надеть шлем более высокого качества
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Надеть поножи более высокого качества
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Пора обзавестись защитой получше.
@@ -422,31 +422,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Используйте лом для разборки
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-Прагмий — это редкий инопланетный минерал, необходимый для большинства продвинутых технологий. Попробуйте добыть немного.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] Будьте осторожны! Добыча прагмия — это опасное дело.
-[*] Крупные прагмиевые источники обычно находятся в пустыне, а небольшие месторождения образуются около вулканов.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-Добудьте прагмий!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Добыть соль
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-Некоторые ресурсы, такие как нефть и литий, необходимы для продвинутых технологий. Крайне важно научиться их добывать.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] Вы можете собирать ягоды нефтяники в [u]северном лесу[/u]. Из них можно добыть небольшое количество нефти.
-[*] Разрабатывая обычное месторождение соли, вы можете получить [u]литиевую соль[/u].
-[*] Можно отыскать соль в [u]солончаках[/u] посреди пустыни.
-[*]Изучение [u]ксеногеологии[/u] позволит добывать эти ресурсы в промышленных масштабах.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-Продвинутая добыча ресурсов
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Изучение точных наук, особенно химии, помогает добиться успехов в производстве и строительстве.
 
@@ -475,16 +450,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Изучение технологий: часть вторая
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+Вы можете использовать вместе разные типы [b]генераторов[/b], такие как паровой, солнечный и бензиновый, чтобы производить электроэнергию.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+Вы можете посмотреть [b]подробную информацию о сети[/b] при взаимодействии с любым энергонакопителем или в вашей точке контроля.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+Электроприборы работают только, когда они находятся [b]внутри[/b] вашей зоны контроля. Строительство электроприборов вне зоны контроля не имеет смысла.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+Электроэнергия хранится в постройках-[b]энергонакопителях[/b] для удобного использования по необходимости. Рекомендуется увеличивать общую энергоемкость вашей базы.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+Вы можете настроить собственные [b]пороговые значения[/b] для [u]запуска и отключения[/u] на каждом потребителе и генераторе электроэнергии.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+Несколько соединенных между собой зон контроля являются [b]одной общей электросетью[/b].
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 Создание электросети на базе — важный шаг к повышению эффективности. Электричество необходимо для работы многих продвинутых построек.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] Электрические постройки работают, только когда они находятся [b]внутри[/b] зоны контроля. Бессмысленно размещать электрические постройки вне зоны контроля.
-[*] Электроэнергия хранится в [b]энергонакопителях[/b], это удобно для дальнейшего использования. Повышение энергоемкости вашей базы принесет вам несомненную пользу.
-[*] Для производства электроэнергии можно использовать различные виды [b]генераторов[/b], например паровой, солнечный, бензиновый.
-[*] Если накопленной электроэнергии [u]не хватит[/u], на базе произойдет [b]отключение электричества[/b] и вам придется вручную восстановить подачу электроэнергии.
-[*] [b]Подробную информацию об электросети[/b] можно увидеть при взаимодействии с энергонакопителем или точкой контроля.
-[*] Соседние зоны контроля будут работать как [b]единая электросеть[/b].`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 Создать электросеть
@@ -519,6 +504,27 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 Обыщите несколько контейнеров
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+Рыбное [u]филе[/u] можно [u]добыть[/u] с пойманной рыбы с помощью действия [b]использовать[/b] (т. е. так же, как использовать предмет).
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+[b]Навык рыбной ловли[/b] играет большую роль в том, какие виды рыб вы можете поймать и в вашем успехе в целом.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+В водоемах с [u]соленой[/u] и [u]пресной[/u] водой можно поймать разные виды рыб.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+Поймать любую рыбу
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+Добыть филе любой рыбы
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+Рыбалка - это не только приятное времяпрепровождение, но и отличный шанс добыть пищу. Попробуйте поймать рыбу!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+Рыбалка!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Пора снова отправляться на охоту! На этот раз ваша цель — опасные животные.
 
@@ -539,4 +545,53 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 Мастерство охотника: часть пятая
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+Прагмий — это редкий инопланетный минерал, необходимый для большинства продвинутых технологий. Попробуйте добыть немного.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] Будьте осторожны! Добыча прагмия — это опасное дело.
+[*] Крупные прагмиевые источники обычно находятся в пустыне, а небольшие месторождения образуются около вулканов.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+Добудьте прагмий!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Добыть соль
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+Некоторые ресурсы, такие как нефть и литий, необходимы для продвинутых технологий. Крайне важно научиться их добывать.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Вы можете собирать ягоды нефтяники в [u]северном лесу[/u]. Из них можно добыть небольшое количество нефти.
+[*] Разрабатывая обычное месторождение соли, вы можете получить [u]литиевую соль[/u].
+[*] Можно отыскать соль в [u]солончаках[/u] посреди пустыни.
+[*]Изучение [u]ксеногеологии[/u] позволит добывать эти ресурсы в промышленных масштабах.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+Продвинутая добыча ресурсов
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+Используйте [b]пульт управления[/b], чтобы отдавать команды дронам.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+Дроны можно использовать не только для [b]добычи минералов[/b], но и для того, чтобы [b]рубить деревья[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+Чтобы вы могли отдавать приказы дронам, они должны находиться в [b]инвентаре[/b] или на [b]панели предметов[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+Добывать минералы и рубить деревья утомительно, поэтому стоит при первой же возможности привлечь к этой работе дронов.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+Добыча дроном
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+Рекомендуется [u]увеличивать энергоемкость вашей базы[/u] по мере того, как она растет, чтобы у вас всегда был [u]запас электроэнергии[/u].
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+Теперь, когда у вас есть мощная база для вашей электросети, стоит заняться ее расширением с помощью полезных построек, которые облегчат вам жизнь.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+Дополнительное использование электросети
 

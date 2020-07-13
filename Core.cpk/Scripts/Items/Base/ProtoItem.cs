@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -21,6 +21,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Base class for item types with specific generics parameters for states.
@@ -77,6 +78,8 @@
         /// Text description.
         /// </summary>
         public abstract string Description { get; }
+
+        public IReadOnlyList<string> DescriptionHints { get; private set; }
 
         public virtual ITextureResource GroundIcon => this.Icon;
 
@@ -196,26 +199,27 @@
             this.SoundPresetItem.PlaySound(ItemSound.Pick);
         }
 
-        public virtual void ClientTooltipCreateControls(IItem item, List<Control> controls)
+        public void ClientTooltipCreateControls([CanBeNull] IItem item, List<UIElement> controls)
         {
-            if (this is IProtoItemWithFuel protoItemWithFuel
-                && protoItemWithFuel.ItemFuelConfig.FuelCapacity > 0)
+            this.ClientTooltipCreateControlsInternal(item, controls);
+
+            if (this.DescriptionHints.Count == 0)
             {
-                controls.Add(ItemTooltipFuelControl.Create(item));
+                return;
             }
 
-            if (this is IProtoItemWithDurability protoItemWithDurability
-                && protoItemWithDurability.DurabilityMax > 0)
+            controls.Add(new Control() { Height = 5 }); // padding before the hints
+            foreach (var hint in this.DescriptionHints)
             {
-                controls.Add(ItemTooltipInfoDurabilityControl.Create(item));
+                controls.Add(new ItemTooltipHintControl() { Text = hint });
             }
+        }
 
-            if (this is IProtoItemWeapon protoItemWeapon
-                && protoItemWeapon.CompatibleAmmoProtos.Count > 0)
-            {
-                controls.Add(ItemTooltipCurrentAmmoControl.Create(item));
-                controls.Add(ItemTooltipCompatibleAmmoControl.Create(protoItemWeapon));
-            }
+        public virtual void ServerItemHotbarSelectionChanged(
+            IItem item,
+            ICharacter character,
+            bool isSelected)
+        {
         }
 
         public virtual void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
@@ -332,6 +336,27 @@
                                            pitch: RandomHelper.Range(0.95f, 1.05f));
         }
 
+        protected virtual void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
+        {
+            if (item != null
+                && this is IProtoItemWithFuel protoItemWithFuel
+                && protoItemWithFuel.ItemFuelConfig.FuelCapacity > 0)
+            {
+                controls.Add(ItemTooltipFuelControl.Create(item));
+            }
+
+            if (item != null
+                && this is IProtoItemWithDurability protoItemWithDurability
+                && protoItemWithDurability.DurabilityMax > 0)
+            {
+                controls.Add(ItemTooltipInfoDurabilityControl.Create(item));
+            }
+        }
+
+        protected virtual void PrepareHints(List<string> hints)
+        {
+        }
+
         /// <summary>
         /// Prepares prototype - invoked after all scripts are loaded, so you can access other scripting
         /// entities by using <see cref="ProtoEntity.GetProtoEntity{TProtoEntity}" /> and
@@ -346,6 +371,10 @@
                                 || type.HasOverride(nameof(ClientItemUseFinish), isPublic: false);
 
             this.SoundPresetItem = this.PrepareSoundPresetItem();
+
+            var hints = new List<string>();
+            this.PrepareHints(hints);
+            this.DescriptionHints = hints;
 
             this.PrepareProtoItem();
         }

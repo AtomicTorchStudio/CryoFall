@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeStove : TechNode<TechGroupCooking>
+    public class TechNodeStove : TechNode<TechGroupCookingT1>
     {
         protected override void PrepareTechNode(Config config)
         {

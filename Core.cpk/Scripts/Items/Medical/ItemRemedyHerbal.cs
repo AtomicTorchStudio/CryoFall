@@ -1,11 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemRemedyHerbal : ProtoItemMedical
     {
@@ -18,15 +16,11 @@
 
         public override string Name => "Herbal remedy";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // adds health regeneration
-            character.ServerAddStatusEffect<StatusEffectHealingSlow>(intensity: 0.30); // 30 seconds
-
-            // removes nausea
-            character.ServerRemoveStatusEffectIntensity<StatusEffectNausea>(intensityToRemove: 1);
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.30) // adds health regeneration
+                .WillRemoveEffect<StatusEffectNausea>();                 // removes nausea
         }
     }
 }

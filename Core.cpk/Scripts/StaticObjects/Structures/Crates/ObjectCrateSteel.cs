@@ -22,12 +22,12 @@
 
         public override double StructureExplosiveDefenseCoef => 0.25;
 
-        public override float StructurePointsMax => 12000;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.PositionOffset += (0, 0.4);
+            renderer.PositionOffset += (0, 0.365);
             renderer.DrawOrderOffsetY = 0.2;
         }
 

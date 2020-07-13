@@ -17,6 +17,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -33,15 +34,15 @@
     public class ObjectMineralPragmiumSource
         : ProtoObjectMineral
           <ObjectMineralPragmiumSource.PrivateState,
-              StaticObjectPublicState,
+              ObjectMineralPragmiumSource.PublicState,
               DefaultMineralClientState>,
           IProtoObjectPsiSource
     {
+        public const string ErrorCannotBuild_PragmiumSourceTooCloseOnPvE =
+            "Too close to a pragmium source.";
+
         // How many nodes the game server should spawn when pragmium Source is destroyed.
         private const int DestroySpawnNodeCount = 9;
-
-        private const string ErrorCannotBuild_PragmiumSourceTooCloseOnPvE =
-            "Too close to a pragmium source[br](PvE-only restriction).";
 
         private const int MobDespawnDistance = 10;
 
@@ -98,7 +99,7 @@
                     foreach (var objectPragmiumSource in pragmiumSources)
                     {
                         if (position.TileSqrDistanceTo(objectPragmiumSource.TilePosition)
-                            <= 16 * 16) // this value is derived from half distance of the max land claim size
+                            <= 5 + LandClaimSystem.MaxLandClaimSize.Value / 2)
                         {
                             // too close to a pragmium source
                             return false;
@@ -118,6 +119,8 @@
         private static readonly Lazy<ObjectMineralPragmiumNode> ProtoNodeLazy
             = new Lazy<ObjectMineralPragmiumNode>(
                 GetProtoEntity<ObjectMineralPragmiumNode>);
+
+        public override bool IsAllowDroneMining => false;
 
         // we don't want to see any decals under it
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
@@ -142,28 +145,65 @@
                                                                        maxX: 6,
                                                                        maxY: 4);
 
+        public static void ServerTryClaimPragmiumCluster(IStaticWorldObject objectPragmiumSource, ICharacter character)
+        {
+            if (!WorldObjectClaimSystem.SharedIsEnabled)
+            {
+                return;
+            }
+
+            WorldObjectClaimSystem.ServerTryClaim(objectPragmiumSource,
+                                                  character,
+                                                  WorldObjectClaimDuration.PragmiumSourceCluster);
+
+            // claim neighbor nodes
+            var neighborTiles = objectPragmiumSource.OccupiedTiles
+                                                    .SelectMany(t => t.EightNeighborTiles)
+                                                    .Distinct()
+                                                    .ToList();
+
+            foreach (var neighborTile in neighborTiles)
+            foreach (var otherObject in neighborTile.StaticObjects)
+            {
+                if (otherObject.ProtoStaticWorldObject is ObjectMineralPragmiumNode)
+                {
+                    WorldObjectClaimSystem.ServerTryClaim(otherObject,
+                                                          character,
+                                                          WorldObjectClaimDuration.PragmiumSourceCluster);
+                }
+            }
+        }
+
         public void ServerForceUpdate(IStaticWorldObject worldObject, double deltaTime)
         {
             var publicState = GetPublicState(worldObject);
+            if (Server.World.IsObservedByAnyPlayer(worldObject))
+            {
+                publicState.LastTimeObservedByAnyPlayer = Api.Server.Game.FrameTime;
+                return;
+            }
+
+            if (Api.Server.Game.FrameTime - publicState.LastTimeObservedByAnyPlayer
+                < 10 * 60)
+            {
+                // was observed less than 10 minutes ago by a player, pause the decay and respawn
+                return;
+            }
 
             // process decay
             var damage = this.StructurePointsMax * deltaTime / LifetimeTotalDurationSeconds;
             var newStructurePoints = (float)(publicState.StructurePointsCurrent - damage);
             if (newStructurePoints <= 0)
             {
-                // decayed completely - destroy
-                publicState.StructurePointsCurrent = newStructurePoints = 0;
-                this.ServerOnStaticObjectZeroStructurePoints(null, null, worldObject);
+                publicState.StructurePointsCurrent = 0;
+                ServerOnMineralPragmiumSourceDecayed(worldObject);
                 return;
             }
 
             publicState.StructurePointsCurrent = newStructurePoints;
 
-            if (!Server.World.IsObservedByAnyPlayer(worldObject))
-            {
-                ServerTrySpawnNodes(worldObject);
-                ServerTrySpawnMobs(worldObject);
-            }
+            ServerTrySpawnNodesAround(worldObject);
+            ServerTrySpawnMobs(worldObject);
         }
 
         public bool ServerIsPsiSourceActive(IWorldObject worldObject)
@@ -221,7 +261,8 @@
         /// </summary>
         internal static void ServerOnExplode(
             Vector2Ushort epicenterPosition,
-            double explosionRadius)
+            double explosionRadius,
+            ICharacter byCharacter)
         {
             // let's spawn scattered pragmium nodes around the explosion site 
             var countToSpawnRemains = DestroySpawnNodeCount;
@@ -254,7 +295,7 @@
                     (ushort)(epicenterPosition.Y + distance * Math.Sin(angle)));
 
                 // try spawn a pragmium node
-                if (ServerTrySpawnNode(spawnPosition))
+                if (ServerTrySpawnNode(spawnPosition, pveTagForCharacter: byCharacter))
                 {
                     // spawned successfully!
                     countToSpawnRemains--;
@@ -262,9 +303,7 @@
             }
         }
 
-        protected override ITextureResource ClientGetTextureResource(
-            IStaticWorldObject gameObject,
-            StaticObjectPublicState publicState)
+        protected override ITextureResource ClientGetTextureResource(IStaticWorldObject gameObject, PublicState state)
         {
             return this.DefaultTexture;
         }
@@ -322,7 +361,7 @@
                         return;
                     }
 
-                    ServerTrySpawnNodes(worldObject);
+                    ServerTrySpawnNodesAround(worldObject);
                     ServerTrySpawnMobs(worldObject);
                 });
         }
@@ -337,7 +376,10 @@
 
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
 
-            Server.World.CreateStaticWorldObject<ObjectMineralPragmiumSourceExplosion>(tilePosition);
+            var objectExplosion = Server.World.CreateStaticWorldObject
+                <ObjectMineralPragmiumSourceExplosion>(tilePosition);
+            ObjectMineralPragmiumSourceExplosion.GetPublicState(objectExplosion)
+                                                .ExplodedByCharacter = byCharacter;
 
             ServerTimersSystem.AddAction(
                 Api.GetProtoEntity<ObjectMineralPragmiumSourceExplosion>().ExplosionDelay.TotalSeconds,
@@ -354,6 +396,11 @@
                         }
                     }
                 });
+        }
+
+        protected override void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)
+        {
+            ServerTryClaimPragmiumCluster(targetObject, character);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -388,6 +435,52 @@
             ClientComponentCameraScreenShakes.AddRandomShakes(duration: shakesDuration,
                                                               worldDistanceMin: -shakesDistanceMin,
                                                               worldDistanceMax: shakesDistanceMax);
+        }
+
+        private static void ServerOnMineralPragmiumSourceDecayed(IStaticWorldObject worldObject)
+        {
+            try
+            {
+                // remove all the small nodes around
+                var neighborTiles = worldObject.OccupiedTiles
+                                               .SelectMany(t => t.EightNeighborTiles)
+                                               .Distinct()
+                                               .ToList();
+
+                using var tempNodesToDestroy = Api.Shared.GetTempList<IStaticWorldObject>();
+                foreach (var neighborTile in neighborTiles)
+                {
+                    foreach (var otherObject in neighborTile.StaticObjects)
+                    {
+                        if (otherObject.ProtoStaticWorldObject is ObjectMineralPragmiumNode)
+                        {
+                            tempNodesToDestroy.Add(otherObject);
+                        }
+                    }
+                }
+
+                foreach (var nodeObject in tempNodesToDestroy.AsList())
+                {
+                    Server.World.DestroyObject(nodeObject);
+                }
+
+                // kill all spawned mobs
+                foreach (var character in Api.Shared.WrapInTempList(GetPrivateState(worldObject).MobsList)
+                                             .EnumerateAndDispose())
+                {
+                    if (!character.IsDestroyed)
+                    {
+                        character.GetPublicState<ICharacterPublicState>()
+                                 .CurrentStats
+                                 .ServerSetHealthCurrent(0);
+                    }
+                }
+            }
+            finally
+            {
+                // remove the pragmium source from the world without an explosion
+                Server.World.DestroyObject(worldObject);
+            }
         }
 
         private static void ServerTrySpawnMobs(IStaticWorldObject worldObject)
@@ -447,7 +540,7 @@
                                                           maxAttempts: 200);
         }
 
-        private static bool ServerTrySpawnNode(Vector2Ushort spawnPosition)
+        private static bool ServerTrySpawnNode(Vector2Ushort spawnPosition, ICharacter pveTagForCharacter)
         {
             var protoNode = ProtoNodeLazy.Value;
             if (!protoNode.CheckTileRequirements(spawnPosition,
@@ -466,10 +559,15 @@
             // make this node to despawn automatically when there is no pragmium source nearby
             ObjectMineralPragmiumNode.ServerRestartDestroyTimer(
                 ObjectMineralPragmiumNode.GetPrivateState(node));
+
+            WorldObjectClaimSystem.ServerTryClaim(node,
+                                                  pveTagForCharacter,
+                                                  WorldObjectClaimDuration.PragmiumSourceCluster);
+
             return true;
         }
 
-        private static void ServerTrySpawnNodes(IStaticWorldObject worldObject)
+        private static void ServerTrySpawnNodesAround(IStaticWorldObject worldObject)
         {
             // calculate how many nodes are nearby
             var nodesAroundCount = 0;
@@ -498,6 +596,14 @@
 
             // spawn node(s) nearby
             var countToSpawn = NodesCountLimit - nodesAroundCount;
+            if (countToSpawn <= 0)
+            {
+                return;
+            }
+
+            var tag = GetPublicState(worldObject).WorldObjectClaim;
+            var pveTagForCharacter = WorldObjectClaimSystem.ServerGetCharacterByClaim(tag);
+
             var attempts = neighborTiles.Count * 4;
             countToSpawn = Math.Min(countToSpawn, ServerSpawnNodesMaxCountPerIteration);
 
@@ -510,7 +616,7 @@
                     continue;
                 }
 
-                if (!ServerTrySpawnNode(neighborTile.Position))
+                if (!ServerTrySpawnNode(neighborTile.Position, pveTagForCharacter))
                 {
                     // cannot spawn there
                     continue;
@@ -536,7 +642,13 @@
         public class PrivateState : BasePrivateState
         {
             [TempOnly]
-            public List<ICharacter> MobsList { get; set; } = new List<ICharacter>();
+            public List<ICharacter> MobsList { get; } = new List<ICharacter>();
+        }
+
+        public class PublicState : StaticObjectPublicState
+        {
+            [TempOnly]
+            public double LastTimeObservedByAnyPlayer { get; set; }
         }
     }
 }

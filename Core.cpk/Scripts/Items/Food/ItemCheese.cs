@@ -16,11 +16,10 @@
 
         public override ushort OrganicValue => 5;
 
-        protected override void ServerOnEat(ItemEatData data)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.1);
-
-            base.ServerOnEat(data);
+            effects
+                .WillAddEffect<StatusEffectSavoryFood>(intensity: 0.10);
         }
     }
 }

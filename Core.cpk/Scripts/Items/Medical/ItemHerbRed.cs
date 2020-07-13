@@ -1,12 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemHerbRed : ProtoItemMedical, IProtoItemOrganic
     {
@@ -23,12 +21,11 @@
 
         public override float StaminaRestore => 50;
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.1);
-            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.1);
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillAddEffect<StatusEffectEnergyRush>(intensity: 0.10)
+                .WillAddEffect<StatusEffectToxins>(intensity: 0.10);
         }
     }
 }

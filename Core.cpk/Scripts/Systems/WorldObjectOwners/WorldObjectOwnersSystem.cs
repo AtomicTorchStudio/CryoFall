@@ -5,9 +5,9 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -289,7 +289,11 @@
 
         private string ServerRemote_SetOwners(IWorldObject worldObject, List<string> newOwners)
         {
-            if (newOwners.Count > LandClaimSystemConstants.SharedLandClaimOwnersMax)
+            var maxOwners = worldObject.ProtoGameObject is IProtoObjectDoor
+                                ? StructureConstants.SharedDoorOwnersMax
+                                : byte.MaxValue;
+            
+            if (newOwners.Count > maxOwners)
             {
                 return DialogCannotSetOwners_AccessListSizeLimitExceeded;
             }

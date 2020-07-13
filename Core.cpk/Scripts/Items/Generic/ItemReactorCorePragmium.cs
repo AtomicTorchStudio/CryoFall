@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.GameApi.Data.Items;
 
+    // This item is no longer used after to introduction of fuel cells, but we're planning to restore it.
     public class ItemReactorCorePragmium : ProtoItemWithDurability
     {
         public const uint EnergyCapacity = 360_000;

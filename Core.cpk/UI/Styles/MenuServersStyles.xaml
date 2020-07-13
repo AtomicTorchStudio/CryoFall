@@ -8,7 +8,8 @@
                     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                     mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
                     xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-                    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers">
+                    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
+                    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="DefaultStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -32,11 +33,12 @@
 
     <Style x:Key="TextBlockServerTitleStyle"
            TargetType="{x:Type TextBlock}">
+        <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
@@ -69,16 +71,33 @@
     </Style>
 
     <Style x:Key="LaberBorderStyle" TargetType="Border">
-        <Setter Property="Margin" Value="4,2,0,0" />
+        <Setter Property="Margin" Value="3,3,0,0" />
         <Setter Property="Padding" Value="3,1" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="CornerRadius" Value="2" />
+        <!-- Bug in NoesisGUI https://www.noesisengine.com/bugs/view.php?id=1686 -->
+        <!--<Setter Property="CornerRadius" Value="0" />-->
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="7"
+                                  ShadowDepth="0"
+                                  Opacity="0.75"
+                                  Color="Black" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="TextBlockTagStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontSize" Value="9" />
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="1.5"
+                                  ShadowDepth="1"
+                                  Direction="-45"
+                                  Color="Black" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="TextBlockTagTooltipStyle" TargetType="TextBlock">
@@ -86,68 +105,123 @@
         <Setter Property="MaxWidth" Value="300" />
     </Style>
 
+    <ControlTemplate x:Key="BlockCommunityMultiplayerServerTemplate">
+        <Border Style="{StaticResource LaberBorderStyle}">
+            <!-- Text: COMMUNITY -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FF999922" Offset="0" />
+                        <GradientStop Color="#FF666611" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Community_Title}"
+                       Style="{StaticResource TextBlockTagStyle}" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Community_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
+        </Border>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="BlockFeaturedMultiplayerServerTemplate">
-        <Border Background="#FF777711" Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource LaberBorderStyle}">
             <!-- Text: FEATURED -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FF448844" Offset="0" />
+                        <GradientStop Color="#FF336633" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Title}"
-                       Style="{StaticResource TextBlockTagStyle}">
-                <ui:ToolTipServiceExtend.ToolTip>
-                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Description}"
-                               Style="{StaticResource TextBlockTagTooltipStyle}" />
-                </ui:ToolTipServiceExtend.ToolTip>
-            </TextBlock>
+                       Style="{StaticResource TextBlockTagStyle}" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockOfficialMultiplayerServerTemplate">
-        <Border Background="#FF336633" Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource LaberBorderStyle}">
             <!-- Text: OFFICIAL -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FF448844" Offset="0" />
+                        <GradientStop Color="#FF336633" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Title}"
-                       Style="{StaticResource TextBlockTagStyle}">
-                <ui:ToolTipServiceExtend.ToolTip>
-                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Description}"
-                               Style="{StaticResource TextBlockTagTooltipStyle}" />
-                </ui:ToolTipServiceExtend.ToolTip>
-            </TextBlock>
+                       Style="{StaticResource TextBlockTagStyle}" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockModdedMultiplayerServerTemplate">
-        <Border Background="#FF771177" Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource LaberBorderStyle}">
             <!-- Text: MODDED -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FF992299" Offset="0" />
+                        <GradientStop Color="#FF771177" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Title}"
-                       Style="{StaticResource TextBlockTagStyle}">
-                <ui:ToolTipServiceExtend.ToolTip>
-                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Description}"
-                               Style="{StaticResource TextBlockTagTooltipStyle}" />
-                </ui:ToolTipServiceExtend.ToolTip>
-            </TextBlock>
+                       Style="{StaticResource TextBlockTagStyle}" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockPvPMultiplayerServerTemplate">
-        <Border Background="#FF990000" Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource LaberBorderStyle}">
             <!-- Text: PvP -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FFBB0000" Offset="0" />
+                        <GradientStop Color="#FF880000" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Title}"
-                       Style="{StaticResource TextBlockTagStyle}">
-                <ui:ToolTipServiceExtend.ToolTip>
-                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Description}"
-                               Style="{StaticResource TextBlockTagTooltipStyle}" />
-                </ui:ToolTipServiceExtend.ToolTip>
-            </TextBlock>
+                       Style="{StaticResource TextBlockTagStyle}" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockPvEMultiplayerServerTemplate">
-        <Border Background="#FF0066BB" Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource LaberBorderStyle}">
             <!-- Text: PvE -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FF0077CC" Offset="0" />
+                        <GradientStop Color="#FF0055AA" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Title}"
-                       Style="{StaticResource TextBlockTagStyle}">
-                <ui:ToolTipServiceExtend.ToolTip>
-                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Description}"
-                               Style="{StaticResource TextBlockTagTooltipStyle}" />
-                </ui:ToolTipServiceExtend.ToolTip>
-            </TextBlock>
+                       Style="{StaticResource TextBlockTagStyle}" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 

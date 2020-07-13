@@ -8,6 +8,8 @@
         public override string Description =>
             "Pellets spread out covering higher area and are ideal for smaller biological targets, especially against groups of enemies. Highly ineffective against armored targets.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override string Name => "12-gauge pellets charge";
 
         public override WeaponFireScatterPreset? OverrideFireScatterPreset { get; }

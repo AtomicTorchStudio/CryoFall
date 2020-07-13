@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Fridges
 {
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -16,23 +15,39 @@
               TPublicState,
               TClientState>,
           IProtoObjectElectricityConsumer
-        where TPrivateState : ObjectCratePrivateState, new()
+        where TPrivateState : ElectricalFridgePrivateState, new()
         where TPublicState : ElectricalFridgePublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 1,
+                                               shutdownPercent: 0);
+
         public abstract double ElectricityConsumptionPerSecondWhenActive { get; }
 
         public override double ServerGetCurrentFreshnessDurationMultiplier(IStaticWorldObject worldObject)
         {
             var publicState = GetPublicState(worldObject);
             if (publicState.ElectricityConsumerState
-                != ElectricityConsumerState.PowerOn)
+                != ElectricityConsumerState.PowerOnActive)
             {
                 // no power supplied so no freshness increase
                 return 1;
             }
 
             return this.FreshnessDurationMultiplier;
+        }
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -61,7 +76,7 @@
             void RefreshSoundEmitterState()
             {
                 soundEmitter.IsEnabled = publicState.ElectricityConsumerState
-                                         == ElectricityConsumerState.PowerOn;
+                                         == ElectricityConsumerState.PowerOnActive;
             }
         }
 
@@ -72,7 +87,7 @@
 
     public abstract class ProtoObjectFridgeElectrical
         : ProtoObjectFridgeElectrical<
-            ObjectCratePrivateState,
+            ElectricalFridgePrivateState,
             ElectricalFridgePublicState,
             StaticObjectClientState>
     {

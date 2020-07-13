@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
-    public class ItemAmmoGrenadeHE : ProtoItemGrenade
+    public class ItemAmmoGrenadeHE : ProtoItemGrenade, IAmmoGrenadeForGrenadeLauncher
     {
         public override double DamageRadius => 2.1;
 
@@ -16,6 +16,8 @@
             "Standard high-explosive grenade that damages everything in a small radius at the point of impact.";
 
         public override double FireRangeMax => 8;
+
+        public override bool IsReferenceAmmo => true;
 
         public override ushort MaxItemsPerStack => ItemStackSize.Small;
 
@@ -30,14 +32,15 @@
             damageValue = 90;
             armorPiercingCoef = 0;
             finalDamageMultiplier = 1;
-            damageDistribution.Set(DamageType.Kinetic, 1);
+
+            damageDistribution.Set(DamageType.Explosion, 1.0);
         }
 
         protected override void PrepareDamageDescriptionStructures(
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            damageValue = 400;
+            damageValue = 300;
             defencePenetrationCoef = 0;
         }
 

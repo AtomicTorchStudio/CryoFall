@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `Uzay enkazı haritada vurgulanan noktaya düştü.
 [br]Değerli malzemeler toplamak için koş!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} şu karakterce yenildi:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 İlerleme: {0}/{1}
 

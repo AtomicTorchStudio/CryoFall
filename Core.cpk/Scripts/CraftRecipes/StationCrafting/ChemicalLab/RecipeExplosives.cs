@@ -19,7 +19,7 @@
             duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemNitrocellulosePowder>(count: 20);
-            inputItems.Add<ItemSolvent>(count: 10);
+            inputItems.Add<ItemSolvent>(count: 15);
             inputItems.Add<ItemGlue>(count: 1);
             inputItems.Add<ItemPlastic>(count: 1);
 

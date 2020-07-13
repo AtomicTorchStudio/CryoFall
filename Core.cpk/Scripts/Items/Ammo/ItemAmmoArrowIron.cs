@@ -8,6 +8,8 @@
         public override string Description =>
             "Improved iron-tipped arrow. Still not as good as firearms, but very easy to make.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override string Name => "Iron-tipped arrow";
 
         protected override void PrepareDamageDescription(

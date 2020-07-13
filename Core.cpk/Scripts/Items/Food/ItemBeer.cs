@@ -14,7 +14,7 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
-        // Restores 1 hp, but given that you cannot drink more than a couple of bottles, it cannot be abused.
+        // Restores 1 hp, but given that you cannot drink more than a few of bottles, it cannot be abused
         public override float HealthRestore => 1;
 
         public override string ItemUseCaption => ItemUseCaptions.Drink;
@@ -25,17 +25,15 @@
 
         public override float WaterRestore => 3; // doesn't hydrate much, because of alcohol
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectDrunk>(intensity: 0.20); // adds drunk status effect
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrinkAlcohol;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            // 2 minutes (so you need more than 5 bottles to be hammered)
-            data.Character.ServerAddStatusEffect<StatusEffectDrunk>(intensity: 0.2);
-
-            base.ServerOnEat(data);
         }
     }
 }

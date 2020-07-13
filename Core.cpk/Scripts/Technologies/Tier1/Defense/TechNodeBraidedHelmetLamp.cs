@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeBraidedHelmetLamp : TechNode<TechGroupDefense>
+    public class TechNodeBraidedHelmetLamp : TechNode<TechGroupDefenseT1>
     {
         protected override void PrepareTechNode(Config config)
         {

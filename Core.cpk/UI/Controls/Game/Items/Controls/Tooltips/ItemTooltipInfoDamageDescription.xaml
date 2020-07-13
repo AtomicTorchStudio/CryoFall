@@ -1,0 +1,141 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.ItemTooltipInfoDamageDescription"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelItemTooltipInfoDamageDescription, IsDesignTimeCreatable=True}"
+    VerticalAlignment="Bottom"
+    Margin="0,0,0,3"
+    UseLayoutRounding="False"
+    Opacity="0.7"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data">
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="Margin" Value="0,1" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Text: Damage type -->
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="{x:Static loc:CoreStrings.Weapon_DamageType}" />
+
+        <ItemsControl Grid.Row="0"
+                      Grid.Column="2"
+                      ItemsSource="{Binding DamageProportions}"
+                      Margin="-1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="3"
+                            Background="#BB4B5562"
+                            Margin="3,2,0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding IconImageSource}"
+                                   Width="16"
+                                   Height="16" />
+                            <TextBlock Text="{Binding DamageTypeName}"
+                                       FontFamily="{StaticResource CondensedFontFamily}"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       Margin="1,0,3,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Text: Damage -->
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="{x:Static loc:CoreStrings.Weapon_Damage}" />
+
+        <core:ValueBarControl Grid.Row="1"
+                              Grid.Column="2"
+                              Value="{Binding Damage}"
+                              MaxValue="{Binding DamageMax}"
+                              Style="{StaticResource TooltipStatBarStyle}" />
+
+        <!-- Text: Armor piercing -->
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="{x:Static loc:CoreStrings.Weapon_ArmorPiercingCoefficient}" />
+
+        <core:ValueBarControl Grid.Row="2"
+                              Grid.Column="2"
+                              Value="{Binding ArmorPiercing}"
+                              MaxValue="{Binding ArmorPiercingMax}"
+                              Style="{StaticResource TooltipStatBarStyle}" />
+
+        <!-- Text: Stopping power -->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="{x:Static loc:CoreStrings.Weapon_StoppingPower}"
+                   Visibility="{Binding DisplayStoppingPower, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        <core:ValueBarControl Grid.Row="3"
+                              Grid.Column="2"
+                              Value="{Binding StoppingPower}"
+                              MaxValue="{Binding StoppingPowerMax}"
+                              Style="{StaticResource TooltipStatBarStyle}"
+                              Visibility="{Binding DisplayStoppingPower, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        <!-- Text: Range -->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="{x:Static loc:CoreStrings.Weapon_Range}"
+                   Visibility="{Binding DisplayRange, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        <core:ValueBarControl Grid.Row="4"
+                              Grid.Column="2"
+                              Value="{Binding Range}"
+                              MaxValue="{Binding RangeMax}"
+                              Style="{StaticResource TooltipStatBarStyle}"
+                              Visibility="{Binding DisplayRange, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        <!-- Text: Spread -->
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Text="{x:Static loc:CoreStrings.Weapon_Spread}"
+                   Visibility="{Binding HasSpread, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        <core:ValueBarControl Grid.Row="5"
+                              Grid.Column="2"
+                              Value="{Binding Spread}"
+                              MaxValue="{Binding SpreadMax}"
+                              Style="{StaticResource TooltipStatBarStyle}"
+                              Visibility="{Binding HasSpread, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+    </Grid>
+</base:BaseUserControl>

@@ -193,6 +193,9 @@ Demir yatağı
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
 Küçük pragmium devresi
 
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@ErrorCannotBuild_PragmiumSourceTooCloseOnPvE:
+Pragmium kaynağına çok yakın.
+
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
 Pragmium kaynağı
 
@@ -246,9 +249,6 @@ Su tankı
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Bu yapıya zarar vermek için bir silah veya alet kullan.
-
-Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-Tanım yok.
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 Geliştirme tanımı yok.
@@ -383,6 +383,9 @@ Bir müze açmak veya yıllar boyunca kazandığın andaçları sergilemek mi is
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 Sergileme kutusu
 
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCaseLarge@Name:
+Büyük sunum dolabı
+
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 En güçlü patlayıcılara bile dayanabilen ağır zırhlı kasa. Yapması kolay değil ama değerli eşyalarının güvenliğini sağlayacağı kesin.
 
@@ -467,6 +470,12 @@ Bu değerli kristali sadece estetik bir amaç uğruna harcamak, kişinin zenginl
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Pragmium heykel
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Description:
+Basit bir oda için basit bir tabure.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStool@Name:
+Tabure
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
 Eski Avrupa stilinde basit masa.
 
@@ -513,7 +522,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Ahşap kapı
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-Üssüne giriş olarak kullanılabilecek büyük, çelik kapı.
+Üssüne giriş kapısı olarak kullanılabilecek büyük çelik kapı. Kapılar ayrıca büyük araçlar için de gereklidir.
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 Çelik kapı
@@ -740,6 +749,12 @@ Her türlü organik maddeyi malca çevirmeye yarar. Temelde bir organik gübredi
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Malç kutusu
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Description:
+Bu tesis petrolün kimyasal kırılmasını sağlayarak onun benzin olan hidro karbonlar üretmesini sağlar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilCrackingPlant@Name:
+Petrol kırma tesisi
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Yeraltı rezervinden veya direkt petrol sızıntısından daha yüksek verimlilikle petrol çıkarılmasını sağlar.
 
@@ -772,6 +787,15 @@ Az miktarlarda su toplamak için tasarlanmış basit su toplayıcısı. Nedense 
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Su toplayıcısı
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@ErrorBuildingAllowedOnlyInDesert:
+Bu yapıyı yalnızca çöl bölgelerine kurabilirsin.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Description:
+Bu yapı yoğunlaşma ve özel kurutucular kullanarak ortam havasından su çıkarabilir. Su elde etmenin geleneksel yollarının aksine bu süreç yavaş ve verimsizdir ama çölde bile işe yarar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCondenser@Name:
+Atmosferik su toplayıcı
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
 Elektriksel pompayı yeraltı rezervinden hızlıca su çıkarmak için kullanır.
@@ -818,6 +842,15 @@ Güç kaynağı veya el feneri gibi taşınabilir elektronik aletleri şarj etme
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 Şarj istasyonu
 
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStationAdvanced@Name:
+Gelişmiş yeniden şarj istasyonu
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Description:
+Düzenli aralıklarla bitişik çiftlik noktalarını otomatik olarak sular.
+
+Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
+Sulama sistemi
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Daha fazla bileşen gerek.
 
@@ -832,6 +865,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Tamir edilemez
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
+Şanslıydın![br]{0} tamamen onarıldı!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Title:
+Mükemmel onarım!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
 Bu iş istasyonu özellikle farklı eşyaları kucalamak veya tamir etmek için uygundur.
@@ -850,6 +889,9 @@ Araç toplaması için otomatik plarform. Belli bir şematikten yararlanarak her
 
 Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
 Araç birleştirme sahası
+
+Scripts/StaticObjects/Structures/Misc/Base/SprinklerWateringRequestResult@ErrorNotEnoughWater:
+Sulama sisteminde yeterli su yok.
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Kişinin jeneratörler tarafından üretilen elektrik enerjisini daha sonra kullanmak için üste depolamasını sağlar.
@@ -1084,72 +1126,69 @@ Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
 Dikenli şurup
 
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-Muz ağacı.
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-Huş ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-Porsuk ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-Kaktüs
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-Ölü ağaç
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-Ölü ağaç
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-Ölü ağaç
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-Durian ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-Düşmüş ağaç
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-Meşe ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-Palmiye ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Ladin
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Çam ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-Kavak ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-Kauçuk ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-Yosunlu budak
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-Ağaç kabuğu
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-Yosunlu kök
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-Ağaç kabuğu
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-Bataklık ağacı
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-Tropikal ağaç
-
-Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-Söğüt ağacı
-
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Bu ağacı kesmek için balta kullan.
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
+Ölü ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
+Ölü ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:
+Düşmüş ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeSnagMossy@Name:
+Yosunlu budak
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStump@Name:
+Ağaç kabuğu
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpMossy@Name:
+Yosunlu kök
+
+Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeStumpWithTwig@Name:
+Ağaç kabuğu
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBirch@Name:
+Huş ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeBrevifolia@Name:
+Porsuk ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeOak@Name:
+Meşe ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePalm@Name:
+Palmiye ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePine@Name:
+Ladin
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePineBoreal@Name:
+Çam ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreePoplar@Name:
+Kavak ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeSwamp@Name:
+Bataklık ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeTropical@Name:
+Tropikal ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/Normal/ObjectTreeWillow@Name:
+Söğüt ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeBanana@Name:
+Muz ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeCactus@Name:
+Kaktüs
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeDurian@Name:
+Durian ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Special/ObjectTreeRubber@Name:
+Kauçuk ağacı
 

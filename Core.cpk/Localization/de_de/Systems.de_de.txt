@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 Begebe dich in die Nähe von Wasser oder lege die Flasche in einen Brunnen, um sie aufzufüllen.
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+Kein Abbau möglich!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+Bereits eine Drohne dorthin entsendet!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`Die Drohne kann nicht zu dir zurückkehren und wurde deaktiviert.
+[br]Du kannst sie dort auf dem Boden finden, wo du sie zuletzt gesehen hast.`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+Drohne deaktiviert
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+Drohne zerstört
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+Mit diesem Gerät kannst du nicht mehr als {0} Drohnen gleichzeitig steuern.
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+Weitere Drohnen unmöglich
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+Keine Drohnen zum Starten!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+Dort kein Abbau möglich!
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 Keine Powerbank ausgerüstet.
 
@@ -127,6 +155,21 @@ Neue Rezeptur kann nicht hinzugefügt werden
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Kein Abriss möglich
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+Du hast keinen Angelköder in deinem Inventar.
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+Kein Köder
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+Angeln hier unmöglich
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+Der Fisch ist vom Haken entwischt!
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+Zu spät ... Du hast den Fisch entwischen lassen
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 Dein(e) {0} ist kaputt und ist für immer von dir gegangen.
 
@@ -166,6 +209,9 @@ Ein Bau oder eine Erweiterung dieses Land Claims überschreitet die mögliche Ge
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Überschneidung mit dem Gebiet eines anderen Land Claims
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+Überschneidung mit einem anderen Land Claim-Bereich, der durch ein Schild geschützt wird. Deaktiviere zunächst das dortige Schild.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `Du hast alle dir zugeteilten Land Claims aufgebraucht.
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Noch keine Ernte möglich
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-SERVER: Welt-Backup beginnt in {0} Sekunden.
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-SERVER: Welt-Backup abgeschlossen!
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 Du wurdest vom Serverbetreiber von diesem Server gesperrt

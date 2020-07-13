@@ -19,8 +19,8 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemIngotSteel>(count: 15);
-            inputItems.Add<ItemIngotCopper>(count: 15);
+            inputItems.Add<ItemIngotSteel>(count: 12);
+            inputItems.Add<ItemIngotCopper>(count: 12);
             inputItems.Add<ItemLeather>(count: 5);
             inputItems.Add<ItemRubberVulcanized>(count: 3);
 

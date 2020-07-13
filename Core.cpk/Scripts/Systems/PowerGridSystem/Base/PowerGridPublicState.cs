@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem
 {
+    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -7,6 +8,10 @@
 
     public class PowerGridPublicState : BasePublicState
     {
+        [NonSerialized]
+        public bool ServerNeedToSortCacheConsumers = true;
+
+        [NonSerialized]
         public bool ServerNeedToSortCacheProducers = true;
 
         [SyncToClient]
@@ -30,19 +35,11 @@
 
         [SyncToClient]
         [TempOnly]
-        public double ElectricityConsumptionTotalDemandCriticalOnly { get; set; }
-
-        [SyncToClient]
-        [TempOnly]
         public double ElectricityProductionCurrent { get; set; }
 
         [SyncToClient]
         [TempOnly]
         public double ElectricityProductionTotalAvailable { get; set; }
-
-        [SyncToClient]
-        [TempOnly]
-        public bool IsBlackout { get; set; }
 
         [SyncToClient]
         [TempOnly]

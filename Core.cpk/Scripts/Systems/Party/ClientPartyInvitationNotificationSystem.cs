@@ -28,9 +28,9 @@
         private static readonly TextureResource IconPartyInvitation
             = new TextureResource("Icons/IconPartyInvitation");
 
-        private static readonly Dictionary<string, WeakReference<HUDNotificationControl>>
+        private static readonly Dictionary<string, WeakReference<HudNotificationControl>>
             NotificationsFromInviteeDictionary
-                = new Dictionary<string, WeakReference<HUDNotificationControl>>(StringComparer.Ordinal);
+                = new Dictionary<string, WeakReference<HudNotificationControl>>(StringComparer.Ordinal);
 
         public override string Name => "Party invitations (client) system";
 
@@ -124,7 +124,7 @@
 
                 NotificationsFromInviteeDictionary.Add(
                     name,
-                    new WeakReference<HUDNotificationControl>(control));
+                    new WeakReference<HudNotificationControl>(control));
             }
         }
 

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeOilLamp : TechNode<TechGroupIndustry>
+    public class TechNodeOilLamp : TechNode<TechGroupIndustryT1>
     {
         protected override void PrepareTechNode(Config config)
         {

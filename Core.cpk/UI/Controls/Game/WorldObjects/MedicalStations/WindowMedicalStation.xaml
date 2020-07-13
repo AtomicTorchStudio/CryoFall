@@ -17,9 +17,12 @@
                     VerticalAlignment="Center">
 
             <medicalStations:ImplantSlotOnStationControl DataContext="{Binding ViewModelSlot1}"
-                                                         Margin="0,0,80,0" />
+                                                         Margin="0,0,24,0" />
 
-            <medicalStations:ImplantSlotOnStationControl DataContext="{Binding ViewModelSlot2}" />
+            <medicalStations:ImplantSlotOnStationControl DataContext="{Binding ViewModelSlot2}"
+                                                         Margin="0,0,24,0" />
+
+            <medicalStations:ImplantSlotOnStationControl DataContext="{Binding ViewModelSlot3}" />
 
         </StackPanel>
     </core:WindowMenuWithInventory>

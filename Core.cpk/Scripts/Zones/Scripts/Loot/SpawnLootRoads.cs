@@ -13,8 +13,9 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             spawnList.CreatePreset(interval: 14, padding: 1)
-                     .Add<ObjectLootPileGarbage1>()
-                     .Add<ObjectLootPileGarbage2>()
+                     .Add<ObjectLootPileGarbage1>(weight: 3)
+                     .Add<ObjectLootPileGarbage2>(weight: 3)
+                     .Add<ObjectLootPileGarbage3>(weight: 1)
                      .SetCustomPaddingWithSelf(14);
         }
     }

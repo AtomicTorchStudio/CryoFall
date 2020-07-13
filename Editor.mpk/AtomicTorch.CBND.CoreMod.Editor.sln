@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "AtomicTorch.CBND.CoreMod", "..\Core.cpk\AtomicTorch.CBND.CoreMod.csproj", "{60F67F5B-3F5C-46D4-86CC-41DD997173A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtomicTorch.CBND.CoreMod", "..\Core.cpk\AtomicTorch.CBND.CoreMod.csproj", "{60F67F5B-3F5C-46D4-86CC-41DD997173A6}"
 EndProject
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "AtomicTorch.CBND.CoreMod.Editor", "AtomicTorch.CBND.CoreMod.Editor.csproj", "{4C6E5831-9F87-447A-9994-A23B831F4368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtomicTorch.CBND.CoreMod.Editor", "AtomicTorch.CBND.CoreMod.Editor.csproj", "{4C6E5831-9F87-447A-9994-A23B831F4368}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

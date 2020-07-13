@@ -24,15 +24,15 @@
 
         public override float WaterRestore => 25;
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectEnergyRush>(intensity: 0.40);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrinkCan;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            data.Character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.4); // 3 minutes
-            base.ServerOnEat(data);
         }
     }
 }

@@ -15,7 +15,6 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
             = new HashSet<Type>()
             {
                 typeof(RecipeFibersFromPlastic),
-                typeof(RecipeFibersFromLeaf),
                 typeof(RecipeCoinPennyRecycle),
                 typeof(RecipeCoinShinyRecycle)
             };

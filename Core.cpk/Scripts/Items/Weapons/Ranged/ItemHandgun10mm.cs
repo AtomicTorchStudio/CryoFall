@@ -23,6 +23,8 @@
 
         public override uint DurabilityMax => 250;
 
+        public override double FireInterval => 0.5;
+
         public override string Name => "Handgun";
 
         public override double ReadyDelayDuration => 0.6;

@@ -91,8 +91,7 @@
             return ((ProtoObjectOilRefinery)objectManufacturer.ProtoWorldObject).LiquidCapacityRawPetroleum;
         }
 
-        private static ObjectOilRefineryPrivateState GetPrivateState(
-            IWorldObject objectManufacturer)
+        private static ProtoObjectOilRefinery.PrivateState GetPrivateState(IWorldObject objectManufacturer)
         {
             return ProtoObjectOilRefinery.GetPrivateState(
                 (IStaticWorldObject)objectManufacturer);
@@ -103,7 +102,7 @@
             return this.GetLiquidState(GetPrivateState(objectManufacturer));
         }
 
-        private LiquidContainerState GetLiquidState(ObjectOilRefineryPrivateState privateState)
+        private LiquidContainerState GetLiquidState(ProtoObjectOilRefinery.PrivateState privateState)
         {
             return privateState.LiquidStateRawPetroleum;
         }

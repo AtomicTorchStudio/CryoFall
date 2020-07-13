@@ -2,8 +2,6 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -38,9 +36,6 @@
             technologies.ServerAddLearningPoints(UsageGivesLearningPointsAmount
                                                  * TechConstants.ServerLearningPointsGainMultiplier,
                                                  allowModifyingByStat: false);
-
-            // add pain
-            character.ServerAddStatusEffect<StatusEffectPain>(intensity: 1.0); // max
 
             // notify player
             this.CallClient(character, _ => _.ClientRemote_DisplayUseNotification());

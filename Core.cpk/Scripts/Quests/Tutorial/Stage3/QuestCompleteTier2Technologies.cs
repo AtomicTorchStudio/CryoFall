@@ -1,15 +1,17 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Chemistry;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Construction2;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Cooking2;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Defense2;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Construction;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Cooking;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Defense;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Electricity;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Farming2;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Industry2;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Farming;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Fishing;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Industry;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Medicine;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Offense2;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Offense;
 
     public class QuestCompleteTier2Technologies : ProtoQuest
     {
@@ -25,23 +27,23 @@
         // TODO: revert this back to normal constant for the given level. For now it is set to 250 until we have a decent solution for this quest.
         public override ushort RewardLearningPoints => 250;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
-                .Add(TaskCompleteTechGroup.Require<TechGroupChemistry>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupConstruction2>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupCooking2>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupDefense2>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupFarming2>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupIndustry2>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupElectricity>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupMedicine>())
-                .Add(TaskCompleteTechGroup.Require<TechGroupOffense2>());
+                .Add(TaskCompleteTechGroup.Require<TechGroupChemistryT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupConstructionT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupCookingT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupDefenseT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupFarmingT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupFishingT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupIndustryT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupElectricityT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupMedicineT2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupOffenseT2>());
 
             prerequisites
-                .Add<QuestMasterHunter5>()
-                .Add<QuestExploreBiomes4>()
-                .Add<QuestAcquirePragmium>();
+                .Add<QuestMasterHunter4>()
+                .Add<QuestExploreBiomes4>();
         }
     }
 }

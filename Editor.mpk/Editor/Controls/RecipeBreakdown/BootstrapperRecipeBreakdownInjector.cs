@@ -1,9 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Controls.RecipeBreakdown
 {
     using System.Collections.Generic;
-    using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
@@ -13,12 +11,11 @@
 
     public class BootstrapperRecipeBreakdownInjector : BaseBootstrapper
     {
-        private static readonly Dictionary<Control, Canvas> InjectedControls
-            = new Dictionary<Control, Canvas>();
+        private static readonly Dictionary<Control, Control> InjectedControls
+            = new Dictionary<Control, Control>();
 
         public override void ClientInitialize()
         {
-            base.ClientInitialize();
             CraftingRecipeDetailsControl.ControlLoaded += CraftingRecipeDetailsControlLoadedHandler;
             CraftingRecipeDetailsControl.ControlUnloaded += CraftingRecipeDetailsControlUnloadedHandler;
 
@@ -41,25 +38,14 @@
 
         private static void InjectControl(Control control, IViewModelWithRecipe viewModel)
         {
-            var window = VisualTreeHelperExtension.FindParentOfType(control, typeof(BaseUserControlWithWindow));
-
-            var firstChild = (FrameworkElement)VisualTreeHelper.GetChild(
-                ((BaseUserControlWithWindow)window).Window,
-                0);
-            var grid = firstChild.FindName<Grid>("ContentChromeGrid");
-
-            var canvas = new Canvas
-            {
-                HorizontalAlignment = HorizontalAlignment.Right,
-            };
+            var windowWrapper = VisualTreeHelperExtension.FindParentOfType(control, typeof(BaseUserControlWithWindow));
+            var window = ((BaseUserControlWithWindow)windowWrapper).Window;
 
             var controlRecipeBreakdown = new ControlRecipeBreakdown();
             controlRecipeBreakdown.InheritedViewModel = viewModel;
-            canvas.Children.Add(controlRecipeBreakdown);
-            Canvas.SetLeft(controlRecipeBreakdown, 10);
 
-            grid.Children.Add(canvas);
-            InjectedControls.Add(control, canvas);
+            InjectedControls.Add(control, controlRecipeBreakdown);
+            window.AddExtensionControl(controlRecipeBreakdown);
         }
 
         private static void RemoveControl(Control control)
@@ -69,7 +55,7 @@
                 return;
             }
 
-            ((Grid)canvas.Parent).Children.Remove(canvas);
+            ((Panel)canvas.Parent).Children.Remove(canvas);
             InjectedControls.Remove(control);
         }
 

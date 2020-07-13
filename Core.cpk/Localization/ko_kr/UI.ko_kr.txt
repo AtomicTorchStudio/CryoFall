@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 건설
 
+UI/CoreStrings@Action_Relocate:
+이전
+
 UI/CoreStrings@Action_Repair:
 수리
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+호환되는 무기:
+
+UI/CoreStrings@AutosaveNotification_Completed:
+저장 완료!
+
+UI/CoreStrings@AutosaveNotification_Content1:
+서버가 주기적으로 월드를 저장합니다.
+
+UI/CoreStrings@AutosaveNotification_Content2:
+일시적인 끊김 현상이 발생됩니다.
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+저장까지 남은 시간: {0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+저장 중...
+
+UI/CoreStrings@AutosaveNotification_Title:
+서버 스냅 사진
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 파괴까지 남은 시간:
@@ -174,6 +198,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 이 구조물에는 전기가 저장됩니다.
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+이 구조물은 지어지면 이동시킬 수 없습니다.
+
 UI/CoreStrings@Copy:
 복사
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 아이콘 없음
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-아이콘을 골라주세요
+상자에 넣고 싶은 아이콘이 있다면, 아이템으로 여기를 클릭하세요.
+
+UI/CoreStrings@DamageType_Chemical:
+화학
+
+UI/CoreStrings@DamageType_Cold:
+추위
+
+UI/CoreStrings@DamageType_Explosion:
+폭발
+
+UI/CoreStrings@DamageType_Heat:
+열기
+
+UI/CoreStrings@DamageType_Impact:
+충격
+
+UI/CoreStrings@DamageType_Kinetic:
+물리
+
+UI/CoreStrings@DamageType_Psi:
+초능력
+
+UI/CoreStrings@DamageType_Radiation:
+방사능
 
 UI/CoreStrings@Defense_Format_Chemical:
 화학 물질 보호: {0}
@@ -216,8 +267,8 @@ UI/CoreStrings@Defense_Format_Chemical:
 UI/CoreStrings@Defense_Format_Cold:
 추위 보호: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-전기 보호: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+폭발 보호: {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 열기 보호: {0}
@@ -274,6 +325,12 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 표층 매장지 (높은 생산량)
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+{0}을/를 사용하시겠습니까?
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+동시 조종 가능 드론
+
 UI/CoreStrings@Duration_Instant:
 즉시
 
@@ -289,11 +346,26 @@ UI/CoreStrings@Duration_VeryQuick:
 UI/CoreStrings@Duration_VerySlow:
 아주 느림
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+추가되는 효과:
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+제거되는 효과:
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 EU
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EU/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+이번 이벤트에서 보상을 받으려면 최소한 {0}%의 총 대미지를 입혀야 합니다. 다음 번에는 좀 더 힘내 보세요!
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+대미지가 부족합니다
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+{0}%의 총 대미지를 입혔습니다! 전리품 수령분은 {1}/{2}입니다.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall 공식 디스코드 서버 (영어)
@@ -403,6 +475,12 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 필요
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+부패하기까지 남은 시간：{0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+영구
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 단축키
 
@@ -426,6 +504,12 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 산출
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+완충
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+{0} 단계
 
 UI/CoreStrings@LearningPoints:
 학습 포인트
@@ -596,6 +680,12 @@ UI/CoreStrings@MenuServers_PublicGUID:
 
 UI/CoreStrings@MenuServers_ServersCount:
 서버
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+이 서버는 커뮤니티 구성원에 의해 호스트되고 있습니다. 개발자들은 이 서버를 관리할 수 없으며, 당신이 이곳에서 겪게 될 일이 좋은 경험이 아닐 수도 있습니다. 또한 이 서버는 커스터마이즈되어 원래 게임보다 훨씬 쉽거나 어려울 수도 있습니다. 서버장은 이 서버의 조정과 지원을 책임지고 있습니다.
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+커뮤니티
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 추천 서버는 공식 서버와 비슷한 고품질의 경험을 제공한다는 평을 대개 받고 있습니다. 하지만 여전히 커뮤니티가 호스트하고 있다는 점이 공식 서버와의 차이점입니다.
@@ -824,6 +914,26 @@ VRAM 사용량
 UI/CoreStrings@PleaseWait:
 기다려 주십시오...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+이 전기 소비 장치는 전력망에 [b]연결되어 있지 않습니다[/b].
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+이 구조물은 전력 레벨이 정지 임계치([b]{0}%[/b]) 아래로 내려갈 때까지 계속 가동됩니다.
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+이 전기 소비 장치는 전력망에 [b]연결되어 있습니다[/b].
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`전력망의 전력 레벨이 정지 임계치([b]{0}%[/b])보다 낮습니다.
+[br]이 구조물은 전력 레벨이 [b]가동[/b] 임계치([b]{1}%[/b]) 이상으로 올라가면 자동으로 가동됩니다.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`전력망의 전력 레벨이 가동 임계치([b]{0}%[/b])보다 낮습니다.
+[br]이 구조물은 전력 레벨이 그 이상으로 올라가면 자동으로 가동됩니다.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+이 전기 소비 장치가 [b]가동되지 않고 있습니다[/b].
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 전력망에 연결되지 않았습니다.
 
@@ -890,6 +1000,50 @@ UI/CoreStrings@PowerGridState_Status_Nominal:
 UI/CoreStrings@PowerGridState_Storages:
 저장소
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+이 발전기는 전력망에 [b]연결되어 있지 않습니다[/b].
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+이 구조물은 정치 임계치([b]{0}%[/b])에 도달할 때까지 계속 전기를 생산합니다.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+이 발전기는 전력망에 [b]연결되어 있습니다[/b].
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`전력망의 전력 레벨이 정지 임계치([b]{0}%[/b])보다 높습니다.
+[br]이 발전기는 전력 레벨이 [b]가동[/b] ([b]{1}%[/b]) 임계치 이하로 내려가면 자동으로 가동됩니다.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`전력망의 전력 레벨이 가동 임계치([b]{0}%[/b])보다 높습니다.
+[br]이 발전기는 전력 레벨이 그 이하로 내려가면 자동으로 가동됩니다.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+이 발전기가 [b]가동되지 않고 있습니다[/b].
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+전력망에 연결
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+전력망에서 연결 해제
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+전력 제어
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+전력망 레벨
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+정지:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+가동:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+전력 레벨 임계치
+
+UI/CoreStrings@Protection_Name:
+보호:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 받기
 
@@ -932,6 +1086,129 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 청소
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+실드 보호를 받고 있는 기지에서는 이 작업을 수행할 수 없습니다.
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+실드가 활성화되는 데는 {0}이/가 걸립니다 (활성화 지연).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+실드가 활성화되는 데는 {0}이/가 걸립니다 (활성화 지연에 남은 쿨타임 추가).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+현재의 충전량으로는 실드 보호를 최대 {0}까지 제공받을 수 있습니다.
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+활성화 지연:
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+실드 활성화
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+실드 비활성화
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+실드 충전
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+습격 차단으로 기지에 대한 실드가 취소되었습니다.
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+습격 차단 상태에서는 실드를 활성화할 수 없습니다.
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+쿨타임:
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(쿨타임 {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+현재 실드 충전량:
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+활성화된 실드를 비활성화하면 쿨타임({0})이 시작됩니다. 쿨타임 중에는 실드를 다시 활성화할 수 없습니다.
+
+UI/CoreStrings@ShieldProtection_Description_1:
+실드는 플레이어가 멀리 떠나거나 오프라인 중일 때 기지를 보호해 줍니다.
+
+UI/CoreStrings@ShieldProtection_Description_2:
+실드 보호를 받고 있는 중에는 기지의 문과 벽이 모든 대미지로부터 면역 상태가 됩니다.
+
+UI/CoreStrings@ShieldProtection_Description_3:
+폐쇄: 실드 보호를 받고 있는 중에는 아무도 기지로 들어오거나 나갈 수 없습니다 (모든 문 차단).
+
+UI/CoreStrings@ShieldProtection_Description_4:
+실드를 활성화하기 전에 전기로 충전해야 합니다.
+
+UI/CoreStrings@ShieldProtection_Description_5:
+실드를 활성화하는 데는 약간의 시간이 소요됩니다.
+
+UI/CoreStrings@ShieldProtection_Description_6:
+비활성화된 실드는 바로 재활성화할 수 없습니다.
+
+UI/CoreStrings@ShieldProtection_Description_7:
+실드가 활성화되면, 공구함과 쇠지렛대의 사용이 제한됩니다.
+
+UI/CoreStrings@ShieldProtection_Description_8:
+실드는 활성화된 상태에서는 충전할 수 없습니다. 실드를 먼저 비활성화해야 합니다.
+
+UI/CoreStrings@ShieldProtection_Description_9:
+실드 활성화 상태에서 기지가 공격(습격 차단 시작)받았을 경우, 실드가 취소되고 활성화 쿨타임이 시작됩니다.
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+실드를 활성화하시겠습니까?
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+실드를 비활성화하시겠습니까?
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+폐쇄: 이 문은 실드 보호로 차단되어 있습니다.
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+이 토지 점유소가 실드로 보호받고 있습니다.
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+예상 지속 시간:
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+최대 지속 시간:
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+지장(예: 기지 주인이 취소하거나 습격 방해 상태인 습격자의 방해 등)을 받지 않는 한 실드가 {0} 후에 활성화됩니다. unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+기지가 실드 보호를 활성화하고 있는 상태입니다
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+기지가 실드 보호 상태입니다. 이는 최대 {0}까지 지속됩니다.
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]지금 실드를 비활성화할 수 있습니다 (여기를 클릭하세요).[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+기지가 실드 보호 상태입니다
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+이 기지는 실드 보호 중입니다. 어떤 벽이나 문에도 대미지를 줄 수 없습니다. 습격 차단을 활성화할 수 없습니다.
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+충전량:
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+실드 상태:
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+활성화 중
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+활성화
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+비활성화
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+오프라인 습격 보호 실드를 토지 점유 건물의 높은 단계에 사용할 수 있게 되었습니다. 가능한 한 빨리 건물을 업그레이드하여 이 기능의 잠금을 해제하세요.
+
 UI/CoreStrings@Skill:
 기술
 
@@ -967,6 +1244,9 @@ UI/CoreStrings@SupporterPack_Description:
 `후원자 팩은 CryoFall의 개발자들을 후원하고 싶은 분들께 드리는 보너스 모음집입니다. 구매하신 분들께는 감사의 표시로 게임 내 채팅에 표시될 특별한 후원자 배지를 드립니다.
 [br][br]후원자 팩은 게임 내 아무 혜택을 제공하지 않으며, 완전한 선택 사항입니다. 게임에서 사용된 모든 사운드트랙, 컨셉 아트, 고해상도 게임 아트, 채팅 배지 등이 포함되어 있습니다. 앞서 해보기 기간 동안 더 많은 항목이 후원자 팩에 추가될 예정입니다
 [br][br]여러분들의 후원에 진심으로 감사드립니다!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 학습 포인트: {0}
@@ -1009,6 +1289,9 @@ UI/CoreStrings@Technology:
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 검색...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 제목
@@ -1082,6 +1365,9 @@ UI/CoreStrings@TitlePowerGrid:
 UI/CoreStrings@TitleSafeStorage:
 금고 용량
 
+UI/CoreStrings@TitleShieldProtection:
+실드
+
 UI/CoreStrings@TitleStructurePoints:
 내구도
 
@@ -1115,6 +1401,9 @@ UI/CoreStrings@Vehicle_EnergyLevel:
 UI/CoreStrings@Vehicle_Enter:
 탑승
 
+UI/CoreStrings@Vehicle_FuelCells:
+연료 전지
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 방어력 {1:F0}/{2:F0} ({0}%)
 
@@ -1129,6 +1418,9 @@ UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 무기
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+무기 ({0} 장착대)
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 이 무기는 기계에 설치해야만 사용할 수 있습니다.
@@ -1174,8 +1466,53 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 잠금 해제된 설계도
 
+UI/CoreStrings@Victory:
+승리!
+
+UI/CoreStrings@Weapon_Accuracy:
+명중률
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+탄약 용량
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+장갑 관통력
+
+UI/CoreStrings@Weapon_AttackRate:
+공격 속도
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 호환되는 탄약:
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+현재 탄약:
+
+UI/CoreStrings@Weapon_Damage:
+대미지
+
+UI/CoreStrings@Weapon_DamageType:
+대미지 유형
+
+UI/CoreStrings@Weapon_FireRate:
+발사 속도
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+단발
+
+UI/CoreStrings@Weapon_Range:
+사정 거리
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+재장전 속도
+
+UI/CoreStrings@Weapon_Spread:
+확산력
+
+UI/CoreStrings@Weapon_StoppingPower:
+저지력
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+아래의 통계는 기준 탄약 ({0})을 사용한 무기를 기반으로 산출됩니다.
 
 UI/CoreStrings@Window_Tab_Main:
 주요
@@ -1191,14 +1528,26 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 무작위
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+최고 길이: {0} cm
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+최고 무게: {0} kg
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 수락
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+기록 경신!
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 진척도:
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 생명체
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+물고기
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 식량
@@ -1430,6 +1779,12 @@ UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
 UI/CoreStrings@WindowSocial_TotalPlayers:
 총 플레이어
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+지금 물 주기
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+다음 작동까지 남은 시간: [b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 새로운 AtomicTorch 계정 만들기
 
@@ -1610,6 +1965,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]거래소 (소유)[/b]
 [br]이 거래소를 소유하고 있습니다.`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+해당 오브젝트는 다른 플레이어가 점유하고 있습니다.
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+점유가 끝날 때까지 상호 작용할 수 없습니다.
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+점유 만료까지 남은 시간: {0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+점유되어 있는 오브젝트
+
 UI/CoreStrings@Yes:
 예
 
@@ -1640,6 +2007,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 처음으로 처치하였습니다.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+처음으로 잡았습니다.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 처음으로 섭취하였습니다.
@@ -1738,8 +2108,8 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
 빈손인 상태에서 마우스 왼쪽 버튼으로 아이템 클릭
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
-`슬롯이 비어있는 경우?해당 위치에 아이템 놓기.
-[br]슬롯이 비어있지 않은 경우?아이템 결합 또는 바꾸기.`
+`슬롯이 비어있는 경우—해당 위치에 아이템 놓기.
+[br]슬롯이 비어있지 않은 경우—아이템 결합 또는 바꾸기.`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
 아이템을 선택한 상태에서 마우스 왼쪽 버튼으로 슬롯 클릭
@@ -1757,7 +2127,7 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
 빈손인 상태에서 마우스 오른쪽 버튼으로 아이템 클릭
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
-슬롯이 비어있거나 동일한 아이템 유형이 포함되어 있는 경우?[br]단일 아이템을 손에서 슬롯으로 이동.
+슬롯이 비어있거나 동일한 아이템 유형이 포함되어 있는 경우—[br]단일 아이템을 손에서 슬롯으로 이동.
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
 아이템을 선택한 상태에서 마우스 오른쪽 버튼으로 슬롯 클릭
@@ -1789,8 +2159,8 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 머리카락 색
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
-피부색
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
+피부 색
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 상안
@@ -1876,6 +2246,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]토지 점유소를 상위 단계로 [b]업그레이드[/b]하면 부식 지연 시간이 증가합니다.
 [br]기지 전체의 부식 지연 시간은 [b]최고[/b] 단계의 토지 점유소 건물에 기반합니다.`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+PvP 전용
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 연료 없음
 
@@ -1935,6 +2308,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Ti
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 다른 생존자들과의 거래를 원활히하기 위해 주화를 만들고 완전 자동화된 거래소를 건설하십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+낚시
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+여러 가지 미끼를 사용하여 다양한 민물고기와 바닷물고기를 잡아보세요. 자신의 기록을 경신해 나가면서, 다른 플레이어들과도 경쟁하세요.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 인공두뇌학적 임플란트

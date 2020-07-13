@@ -5,6 +5,8 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelFeaturesSlideshow : BaseViewModel
@@ -25,17 +27,21 @@
         {
             this.inputContext = ClientInputContext
                                 .Start(nameof(ViewModelFeaturesSlideshow))
-                                .HandleAll(callback: () =>
-                                                     {
-                                                         if (this.IsCloseButtonVisible
-                                                             && ClientInputManager.IsButtonDown(
-                                                                 GameButton.CancelOrClose))
-                                                         {
-                                                             this.ExecuteCommandClose();
-                                                         }
+                                .HandleAll(
+                                    () =>
+                                    {
+                                        if (ClientInputManager.IsButtonDown(GameButton.CancelOrClose)
+                                            && (this.IsCloseButtonVisible
+                                                // for debug purposes allow to skip the slideshow
+                                                // in a debug build or when the Shift key is held
+                                                || Api.Shared.IsDebug
+                                                || Api.Client.Input.IsKeyHeld(InputKey.Shift)))
+                                        {
+                                            this.ExecuteCommandClose();
+                                        }
 
-                                                         ClientInputManager.ConsumeAllButtons();
-                                                     });
+                                        ClientInputManager.ConsumeAllButtons();
+                                    });
 
             this.Entries = FeaturesSlideshowEntries
                            .Entries

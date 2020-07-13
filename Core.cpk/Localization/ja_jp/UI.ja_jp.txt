@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 建設
 
+UI/CoreStrings@Action_Relocate:
+移転
+
 UI/CoreStrings@Action_Repair:
 修理
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+適合する武器：
+
+UI/CoreStrings@AutosaveNotification_Completed:
+セーブ完了！
+
+UI/CoreStrings@AutosaveNotification_Content1:
+サーバーが通常のワールドセーブを実施します。
+
+UI/CoreStrings@AutosaveNotification_Content2:
+短いラグが発生する恐れがあります。
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+セーブが実行されるまで：{0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+セーブ中……
+
+UI/CoreStrings@AutosaveNotification_Title:
+サーバーのスナップショット
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 解体までの時間：
@@ -172,7 +196,10 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
 この建物は電気を生産します。
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
-この建物は電気を貯蔵します。
+この建造物は電気を貯蔵します。
+
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+この建造物は一度建てたら動かせません。
 
 UI/CoreStrings@Copy:
 コピー
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 アイコンなし
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-アイコンを選ぶ
+箱にアイコン表示したいアイテムを選んでここをクリックしてください。
+
+UI/CoreStrings@DamageType_Chemical:
+化学
+
+UI/CoreStrings@DamageType_Cold:
+寒冷
+
+UI/CoreStrings@DamageType_Explosion:
+爆発
+
+UI/CoreStrings@DamageType_Heat:
+高熱
+
+UI/CoreStrings@DamageType_Impact:
+衝撃
+
+UI/CoreStrings@DamageType_Kinetic:
+物理
+
+UI/CoreStrings@DamageType_Psi:
+サイオニック
+
+UI/CoreStrings@DamageType_Radiation:
+放射線
 
 UI/CoreStrings@Defense_Format_Chemical:
 耐化学保護：{0}
@@ -216,8 +267,8 @@ UI/CoreStrings@Defense_Format_Chemical:
 UI/CoreStrings@Defense_Format_Cold:
 耐寒保護：{0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-耐電保護：{0}
+UI/CoreStrings@Defense_Format_Explosion:
+耐爆発保護：{0}
 
 UI/CoreStrings@Defense_Format_Heat:
 耐熱保護：{0}
@@ -226,7 +277,7 @@ UI/CoreStrings@Defense_Format_Impact:
 耐衝撃保護：{0}
 
 UI/CoreStrings@Defense_Format_Kinetic:
-耐キネティック保護：{0}
+耐物理保護：{0}
 
 UI/CoreStrings@Defense_Format_Psi:
 耐サイオニック保護：{0}
@@ -274,6 +325,12 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 表層採掘（高効率）
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+本当に{0}を使用してもいいですか？
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+同時に制御可能なドローン数
+
 UI/CoreStrings@Duration_Instant:
 瞬間
 
@@ -289,11 +346,26 @@ UI/CoreStrings@Duration_VeryQuick:
 UI/CoreStrings@Duration_VerySlow:
 とても遅い
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+追加される効果：
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+除去される効果：
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 EU
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EU/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+今回のイベントで報酬を得るためには、最低でも{0}%の総ダメージを与える必要があります。次回また頑張ってください！
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+ダメージ不足
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+{0}%のダメージを与えました！戦利品の取り分は{1}/{2}です。
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFallの公式Discordサーバー(英語のみ)
@@ -403,6 +475,12 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 必要
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+腐敗するまで：{0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+永久
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 ショートカット
 
@@ -426,6 +504,12 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 出力
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+緩衝
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+レベル{0}
 
 UI/CoreStrings@LearningPoints:
 学習ポイント
@@ -596,6 +680,12 @@ UI/CoreStrings@MenuServers_PublicGUID:
 
 UI/CoreStrings@MenuServers_ServersCount:
 サーバー
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+このサーバーはコミュニティメンバーによってホストされています。開発者はこのサーバーを管理しておらず、あなたがこのサーバーで体験するゲーム品質について保証するものではありません。このサーバーでは、ゲームをより簡単にしたり、より難しくしたりするために設定がカスタマイズされている場合があります。サーバーの所有者は、そのサーバーのモデレーションとサポートに責任を負います。
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+コミュニティ
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 オススメのサーバーは、公式サーバと同様に高品質な経験を提供するという評価を得ています。しかし、これらのサーバはコミュニティによってホストされています。
@@ -824,6 +914,26 @@ VRAM使用量
 UI/CoreStrings@PleaseWait:
 お待ちください…
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+この電力消費装置は、送電網に[b]接続されていません[/b]。
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+この装置は、電力レベルが停止しきい値（[b]{0}%[/b]）を下回るまで継続稼働します。
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+この電力消費装置は、送電網に[b]接続されています[/b]。
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`送電網の電力レベルが停止しきい値（[b]{0}%[/b]）を下回っています。
+[br]この装置は、電力レベルが[b]起動[/b]しきい値（[b]{1}%[/b]）以上に上昇すると自動的に起動します。`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`送電網の電力レベルが起動しきい値（[b]{0}%[/b]）を下回っています。
+[br]この装置は、電力レベルがその値以上に上昇すると自動的に起動します。`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+この電力消費装置は[b]一時停止中[/b]です。
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 送電網に接続されていません。
 
@@ -888,7 +998,51 @@ UI/CoreStrings@PowerGridState_Status_Nominal:
 異常なし
 
 UI/CoreStrings@PowerGridState_Storages:
-貯蔵量：
+蓄電量：
+
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+この発電機は送電網に[b]接続されていません[/b]。
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+この装置は、停止しきい値（[b]{0}%[/b]）に達するまで発電を継続します。
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+この発電機は送電網に[b]接続されています[/b]。
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`送電網の電力レベルが停止しきい値（[b]{0}%[/b]）を上回っています。
+[br]この発電機は、電力レベルが[b]起動[/b]しきい値（[b]{1}%[/b]）以下に下がると自動的に起動します。`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`送電網の電力レベルが起動しきい値（[b]{0}%[/b]）を上回っています。
+[br]この発電機は、電力レベルがその値以下に下がると自動的に起動します。`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+この発電機は[b]一時停止中[/b]です。
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+送電網に接続
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+送電網から切断
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+電源制御
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+送電網レベル
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+停止：
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+起動：
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+電力レベルのしきい値
+
+UI/CoreStrings@Protection_Name:
+保護：
 
 UI/CoreStrings@Quest_Button_ClaimReward:
 獲得
@@ -932,6 +1086,129 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 最終ワイプ
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+シールド保護されている拠点では、このアクションを行うことはできません。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+シールドの発動には{0}かかります（発動遅延）。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+シールドの発動には{0}かかります（発動遅延＋残りのクールタイム）。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+現在の充電量では、シールド保護は{0}の間有効化されます。
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+発動遅延：
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+シールド発動
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+シールド解除
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+シールド充電
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+襲撃保護機能により、自分の拠点のシールド発動がキャンセルされました。
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+襲撃保護中にはシールドを発動できません。
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+クールタイム：
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(クールタイム {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+現在のシールド充電量：
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+有効または発動中のシールドを解除すると、クールタイム({0})が始まります。クールタイム中はシールドを再び発動することはできません。
+
+UI/CoreStrings@ShieldProtection_Description_1:
+シールドは、プレイヤーが遠くに離れている間やオフラインの間に拠点を保護します。
+
+UI/CoreStrings@ShieldProtection_Description_2:
+シールド保護下では、拠点の扉と壁はあらゆるダメージを受けないようになります。
+
+UI/CoreStrings@ShieldProtection_Description_3:
+ロックダウン：シールド保護下では誰も基地に出入りできません（全てのドアがブロックされます）。
+
+UI/CoreStrings@ShieldProtection_Description_4:
+シールドを発動する前に、電気を充電する必要があります。
+
+UI/CoreStrings@ShieldProtection_Description_5:
+シールドの発動には一定の時間がかかります。
+
+UI/CoreStrings@ShieldProtection_Description_6:
+解除されたシールドはすぐには再発動できません。
+
+UI/CoreStrings@ShieldProtection_Description_7:
+シールドを発動すると、工具箱とバールの使用が制限されます。
+
+UI/CoreStrings@ShieldProtection_Description_8:
+シールドが発動している間は充電することはできません。まず解除してください。
+
+UI/CoreStrings@ShieldProtection_Description_9:
+シールド発動中に拠点が攻撃を受けた（襲撃保護機能が開始した）場合、シールド発動がキャンセルされ、発動クールタイムが開始されます。
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+本当にシールドを発動してもよろしいですか？
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+本当にシールドを解除してもよろしいですか？
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+ロックダウン：この扉はシールド保護によってブロックされています。
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+この所有地はシールド保護下にあります。
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+推定期間：
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+最大期間：
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+シールドは中断（拠点の所有者によってキャンセルされたり、襲撃者によって襲撃保護が適用された場合）されない限り、{0}で有効化されます。
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+この拠点はシールド保護を発動中です。
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+この拠点はシールド保護下にあり、最大{0}の間継続します。
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]今すぐシールドを解除することができます（ここをクリック）。[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+この拠点はシールド保護発動中
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+この拠点はシールド保護下にあります。壁や扉にダメージを与えることはできません。襲撃保護機能は有効化できません。
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+充電する量：
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+シールド状態：
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+発動中
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+有効
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+無効
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+オフライン中の襲撃保護シールドが、高レベルの所有地標で利用可能になりました。この機能をアンロックするには、できるだけ早くこの所有地をアップグレードしてください。
+
 UI/CoreStrings@Skill:
 スキル
 
@@ -967,6 +1244,9 @@ UI/CoreStrings@SupporterPack_Description:
 `サポーターパックはCryoFallの開発者を支援していただいた方へのボーナスコレクションです。ご購入いただいた方には感謝の気持ちとして、ゲーム内のチャットに表示される特別なスポンサーバッジを差し上げます。
 [br][br]サポーターパックはゲームには何の利点も提供せず、純粋にオプションです。ゲームで使用された全てのサウンドトラック、コンセプトアート、高解像度ゲームアート、チャットバッジなどが含まれています。アーリーアクセス期間中、より多くの項目がサポーターパックに追加される予定です。
 [br][br]皆様のご支援に心より感謝いたします!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 学習ポイント：{0}
@@ -1009,6 +1289,9 @@ UI/CoreStrings@Technology:
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 検索…
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 タイトル
@@ -1082,6 +1365,9 @@ UI/CoreStrings@TitlePowerGrid:
 UI/CoreStrings@TitleSafeStorage:
 収納
 
+UI/CoreStrings@TitleShieldProtection:
+シールド
+
 UI/CoreStrings@TitleStructurePoints:
 建物耐久度
 
@@ -1115,6 +1401,9 @@ UI/CoreStrings@Vehicle_EnergyLevel:
 UI/CoreStrings@Vehicle_Enter:
 乗る
 
+UI/CoreStrings@Vehicle_FuelCells:
+燃料電池
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 防御力 {1:F0}/{2:F0} ({0}%)
 
@@ -1129,6 +1418,9 @@ UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 武器
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+武器 ({0}ハードポイント)
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 この武器は機械に取り付けた場合にのみ使用できます。
@@ -1174,8 +1466,53 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 アンロックした設計図
 
+UI/CoreStrings@Victory:
+勝利！
+
+UI/CoreStrings@Weapon_Accuracy:
+命中率
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+弾薬容量
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+装甲貫通力
+
+UI/CoreStrings@Weapon_AttackRate:
+攻撃速度
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 互換性のある弾薬：
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+現在の弾薬：
+
+UI/CoreStrings@Weapon_Damage:
+ダメージ
+
+UI/CoreStrings@Weapon_DamageType:
+ダメージタイプ
+
+UI/CoreStrings@Weapon_FireRate:
+発射速度
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+単発
+
+UI/CoreStrings@Weapon_Range:
+射程距離
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+リロード速度
+
+UI/CoreStrings@Weapon_Spread:
+拡散力
+
+UI/CoreStrings@Weapon_StoppingPower:
+ストッピングパワー
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+以下の武器性能は基準弾薬（{0}）を使用した場合のものです。
 
 UI/CoreStrings@Window_Tab_Main:
 メイン
@@ -1191,14 +1528,26 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 ランダム
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+最長：{0} cm
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+最重量: {0} kg
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 受諾
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+新記録！
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 進捗度：
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 生物
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+魚
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 食料
@@ -1324,7 +1673,7 @@ UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
 襲撃保護
 
 UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
-この電力貯蔵庫はどの送電網にも接続されていません。
+この蓄電器はどの送電網にも接続されていません。
 
 UI/CoreStrings@WindowQuests_CompletionReward:
 達成報酬
@@ -1348,7 +1697,7 @@ UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
 アンロック済みのクエスト
 
 UI/CoreStrings@WindowRechargingStation_Title:
-再充電
+充電
 
 UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
 ベッドで復活
@@ -1429,6 +1778,12 @@ UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
 
 UI/CoreStrings@WindowSocial_TotalPlayers:
 総プレーヤー
+
+UI/CoreStrings@WindowSprinker_WaterNow:
+注水実行
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+次回の注水まで：[b]{0}[/b]
 
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 新しいAtomicTorchアカウントを作成する
@@ -1610,6 +1965,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]取引ステーション（所有）[/b]
 [br]あなたがこの取引ステーションを所有しています。`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+このオブジェクトは他のプレイヤーが所有しています。
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+所有期限が切れるまではアクセスできません。
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+所有期限が切れるまで：{0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+所有したオブジェクト
+
 UI/CoreStrings@Yes:
 はい
 
@@ -1641,6 +2008,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 初めて殺されました。
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+初めて釣りました。
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 初めて消費しました。
@@ -1790,7 +2160,7 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 髪の色
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 肌の色
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
@@ -1877,6 +2247,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]所有地をより上のレベルに [b]アップグレード[/b]することで、劣化時間を延長することができます。
 [br]すべての拠点の劣化時間はレベルが[b]最も高い[/b]所有物に基づいています。`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+PvPのみ
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 燃料不足
 
@@ -1936,6 +2309,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Ti
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 他の生存者との取引を円滑にするために硬貨を鋳造し、完全自動化された取引ステーションを建設してください。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+釣り
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+様々な餌を使用して、バラエティに富んだ淡水魚や海水魚を釣りましょう。自分の記録を伸ばし、他のプレイヤーと競争しましょう。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 人工生体インプラント

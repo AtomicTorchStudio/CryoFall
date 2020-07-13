@@ -10,6 +10,12 @@ La variante lourde de la plate-forme gravitationnelle. Plus résistante, plus ra
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Hoverboard Mk2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Armure lourde de combat mécanisée, spécialisée dans les situations de siège. Offre une protection inégalée et une puissance de feu considérable grâce à la présence d'un point d'attache large, mais sa vitesse de déplacement est relativement limitée.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Béhémoth
+
 Scripts/Vehicles/VehicleMechManul@Description:
 Armure de combat mécanisée intermédiaire. Offre des mesures de défense substantielles et peut transporter une cargaison importante, sans sacrifier le reste de ses performances.
 
@@ -48,4 +54,10 @@ Réparation non nécessaire.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Veuillez apporter le véhicule à l'atelier de montage de véhicules pour le réparer.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+Normal
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+Large
 

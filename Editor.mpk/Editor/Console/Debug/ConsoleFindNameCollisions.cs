@@ -22,7 +22,9 @@ namespace AtomicTorch.CBND.CoreMod.Editor.Console.Debug
         public string Execute()
         {
             var groups = Api.FindProtoEntities<IProtoEntity>()
-                            .Where(e => !(e is TechNode) && !(e is Recipe))
+                            .Where(e => !(e is TechNode)
+                                        && !(e is TechGroup)
+                                        && !(e is Recipe))
                             .GroupBy(n => n.Name)
                             .OrderBy(g => g.Key)
                             .Where(g => g.Count() > 1)

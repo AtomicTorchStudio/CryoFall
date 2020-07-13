@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -37,24 +36,25 @@
 
         public TechTier Tier { get; }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        public string TierLetter
+        public string Title => GetTierText(this.Tier);
+
+        public static string GetTierLetterOnly(TechTier tier)
         {
-            get
+            return tier switch
             {
-                return this.Tier switch
-                {
-                    TechTier.Tier1 => Tier1Letter,
-                    TechTier.Tier2 => Tier2Letter,
-                    TechTier.Tier3 => Tier3Letter,
-                    TechTier.Tier4 => Tier4Letter,
-                    TechTier.Tier5 => Tier5Letter,
-                    _              => throw new ArgumentOutOfRangeException()
-                };
-            }
+                TechTier.Tier1 => Tier1Letter,
+                TechTier.Tier2 => Tier2Letter,
+                TechTier.Tier3 => Tier3Letter,
+                TechTier.Tier4 => Tier4Letter,
+                TechTier.Tier5 => Tier5Letter,
+                _              => throw new ArgumentOutOfRangeException()
+            };
         }
 
-        public string Title => string.Format(TierTitleFormat, this.TierLetter);
+        public static string GetTierText(TechTier tier)
+        {
+            return string.Format(TierTitleFormat, GetTierLetterOnly(tier));
+        }
 
         protected override void DisposeViewModel()
         {

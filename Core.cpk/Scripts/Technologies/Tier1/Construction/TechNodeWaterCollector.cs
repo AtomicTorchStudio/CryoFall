@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeWaterCollector : TechNode<TechGroupConstruction>
+    public class TechNodeWaterCollector : TechNode<TechGroupConstructionT1>
     {
         protected override void PrepareTechNode(Config config)
         {

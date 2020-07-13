@@ -11,6 +11,8 @@
         public override string Description =>
             "Slugs provide much higher stopping power than pellets and can be used against a variety of possible targets. Due to their high mass, the slugs are quite effective even against well-armored targets.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override string Name => "12-gauge slug ammo";
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
@@ -21,6 +23,7 @@
             }
 
             damagedCharacter.ServerAddStatusEffect<StatusEffectDazed>(
+                // add 0.4 seconds of dazed effect
                 intensity: 0.4 / StatusEffectDazed.MaxDuration);
         }
 

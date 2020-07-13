@@ -24,26 +24,18 @@
 
         public override float WaterRestore => -5; // dehydrates
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectDrunk>(intensity: 0.20)
+                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.25)
+                .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.10)
+                .WillRemoveEffect<StatusEffectRadiationPoisoning>(intensityToRemove: 0.10);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemGeneric;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            // some alcohol
-            data.Character.ServerAddStatusEffect<StatusEffectDrunk>(intensity: 0.2); // 2 minutes
-
-            // adds small health regeneration
-            data.Character.ServerAddStatusEffect<StatusEffectHealingSlow>(intensity: 0.25); // 25 seconds
-
-            // remove toxins
-            data.Character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.1);
-
-            // remove radiation
-            data.Character.ServerRemoveStatusEffectIntensity<StatusEffectRadiationPoisoning>(intensityToRemove: 0.1);
-
-            base.ServerOnEat(data);
         }
     }
 }

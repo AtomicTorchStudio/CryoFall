@@ -172,6 +172,9 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Передозировка
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+Подождите окончания приема передозина.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 Вы приняли кровоостанавливающее лекарство, которое снизит кровоточивость новых ран.
 

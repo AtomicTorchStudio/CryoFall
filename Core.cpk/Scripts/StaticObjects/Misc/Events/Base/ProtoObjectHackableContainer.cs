@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events
 {
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
@@ -24,6 +26,8 @@
               StaticObjectClientState>,
           IProtoObjectHackableContainer
     {
+        public const double SearchSkillExperienceMultiplier = 2;
+
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public abstract double HackingStageDuration { get; }
@@ -73,7 +77,9 @@
             if (dropItemResult.TotalCreatedCount > 0)
             {
                 NotificationSystem.ServerSendItemsNotification(character, dropItemResult);
-                //character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
+                var skillExperienceToAdd = SkillSearching.ExperienceAddWhenSearching
+                                           * SearchSkillExperienceMultiplier;
+                character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
             }
 
             return true;

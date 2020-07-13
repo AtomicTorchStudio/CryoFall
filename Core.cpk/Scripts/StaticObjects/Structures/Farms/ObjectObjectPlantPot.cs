@@ -21,7 +21,7 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
-        public override Vector2D PlacedPlantPositionOffset { get; } = (0, 0.15);
+        public override Vector2D PlacedPlantPositionOffset { get; } = (0, 0.25);
 
         public override float StructurePointsMax => 400;
 
@@ -45,7 +45,9 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
+            renderer.PositionOffset = (renderer.PositionOffset.X, 0.2);
             renderer.DrawOrderOffsetY = 0.33;
+            renderer.Scale = 0.75;
         }
 
         protected override void PrepareFarmConstructionConfig(
@@ -67,8 +69,8 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(
-                    radius: 0.33,
-                    center: (0.5, 0.4))
+                    radius: 0.23,
+                    center: (0.5, 0.46))
                 .AddShapeRectangle(
                     size: (0.8, 0.7),
                     offset: (0.1, 0.1),

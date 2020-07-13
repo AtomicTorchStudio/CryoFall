@@ -20,7 +20,7 @@
             duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemIngotCopper>(count: 2);
-            inputItems.Add<ItemBlackpowder>(count: 20);
+            inputItems.Add<ItemBlackpowder>(count: 15);
 
             outputItems.Add<ItemAmmo8mmStandard>(count: 10);
         }

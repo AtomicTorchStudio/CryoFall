@@ -17,7 +17,7 @@ Scripts/Characters/Mobs/MobCrab@Name:
 Krab
 
 Scripts/Characters/Mobs/MobCrawler@Name:
-Gąsienica
+Pajęczak
 
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Jaszczurka ognista

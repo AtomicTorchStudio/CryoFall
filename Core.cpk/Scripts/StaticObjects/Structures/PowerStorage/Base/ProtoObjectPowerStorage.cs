@@ -24,6 +24,8 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public override bool IsRelocatable => true;
+
         public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
             var privateState = GetPrivateState((IStaticWorldObject)worldObject);

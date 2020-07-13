@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
@@ -30,9 +31,11 @@
             if (targetObject is IStaticWorldObject staticWorldObject
                 && (!RaidingProtectionSystem.SharedCanRaid(staticWorldObject,
                                                            showClientNotification: false)
-                    || !PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
-                                                               staticWorldObject,
-                                                               showClientNotification: false)
+                    || !LandClaimShieldProtectionSystem.SharedCanRaid(staticWorldObject,
+                                                                      showClientNotification: false)
+                    || !PveSystem.SharedIsAllowStaticObjectDamage(weaponCache.Character,
+                                                                  staticWorldObject,
+                                                                  showClientNotification: false)
                     || !NewbieProtectionSystem.SharedIsAllowStructureDamage(weaponCache.Character,
                                                                             staticWorldObject,
                                                                             showClientNotification: false)))
@@ -96,8 +99,8 @@
             }
             else if (damagingCharacter != null
                      && !damagingCharacter.IsNpc
-                     && targetObject.ProtoGameObject 
-                         is IProtoCharacterMob protoCharacterMob 
+                     && targetObject.ProtoGameObject
+                         is IProtoCharacterMob protoCharacterMob
                      && !protoCharacterMob.IsBoss)
             {
                 // apply PvE damage multiplier
@@ -175,6 +178,22 @@
             }
 
             return true;
+        }
+
+        public static StatName SharedGetDefenseStatName(DamageType damageType)
+        {
+            return damageType switch
+            {
+                DamageType.Impact    => StatName.DefenseImpact,
+                DamageType.Kinetic   => StatName.DefenseKinetic,
+                DamageType.Explosion => StatName.DefenseExplosion,
+                DamageType.Heat      => StatName.DefenseHeat,
+                DamageType.Cold      => StatName.DefenseCold,
+                DamageType.Chemical  => StatName.DefenseChemical,
+                DamageType.Radiation => StatName.DefenseRadiation,
+                DamageType.Psi       => StatName.DefensePsi,
+                _                    => throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null)
+            };
         }
 
         public static void SharedTryDamageCharacter(
@@ -329,7 +348,8 @@
             IStaticWorldObject targetStaticWorldObject,
             double damagePreMultiplier)
         {
-            var damage = protoObjectExplosive.ServerCalculateTotalDamageByExplosive(byCharacter, targetStaticWorldObject);
+            var damage =
+                protoObjectExplosive.ServerCalculateTotalDamageByExplosive(byCharacter, targetStaticWorldObject);
             damage *= damagePreMultiplier;
             return damage;
         }
@@ -411,39 +431,6 @@
             // no PvP damage allowed as it's a friendly fire case
             // and friendly fire is completely disabled
             return true;
-        }
-
-        private static StatName SharedGetDefenseStatName(DamageType damageType)
-        {
-            switch (damageType)
-            {
-                case DamageType.Impact:
-                    return StatName.DefenseImpact;
-
-                case DamageType.Kinetic:
-                    return StatName.DefenseKinetic;
-
-                case DamageType.Heat:
-                    return StatName.DefenseHeat;
-
-                case DamageType.Cold:
-                    return StatName.DefenseCold;
-
-                case DamageType.Chemical:
-                    return StatName.DefenseChemical;
-
-                case DamageType.Electrical:
-                    return StatName.DefenseElectrical;
-
-                case DamageType.Radiation:
-                    return StatName.DefenseRadiation;
-
-                case DamageType.Psi:
-                    return StatName.DefensePsi;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null);
-            }
         }
     }
 }

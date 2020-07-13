@@ -26,13 +26,13 @@
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                 Storyboard.TargetName="Ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.01" />
                 <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="2" />
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
                 Storyboard.TargetName="Ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.01" />
                 <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="2" />
@@ -61,12 +61,7 @@
                 </RadialGradientBrush>
             </Ellipse.Fill>
             <Ellipse.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform />
-                    <SkewTransform />
-                    <RotateTransform />
-                    <TranslateTransform />
-                </TransformGroup>
+                <ScaleTransform />
             </Ellipse.RenderTransform>
             <base:ToolTipServiceExtend.ToolTip>
                 <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkRaid_Tooltip}" />

@@ -20,7 +20,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemIngotCopper>(count: 5);
+            inputItems.Add<ItemIngotCopper>(count: 3);
             inputItems.Add<ItemBottleEmpty>(count: 1);
 
             outputItems.Add<ItemOilLamp>();

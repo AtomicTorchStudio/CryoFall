@@ -36,7 +36,7 @@
         /// <inheritdoc />
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; private set; }
 
-        protected override double DefenseMultiplier { get; } = DefaultDefenseMultipliers.Head;
+        protected override double DefenseMultiplier => DefaultDefenseMultipliers.Head;
 
         public virtual void ClientGetHeadSlotSprites(
             IItem item,

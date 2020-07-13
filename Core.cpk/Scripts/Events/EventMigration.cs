@@ -142,8 +142,10 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
-                             intervalFrom: TimeSpan.FromHours(4),
-                             intervalTo: TimeSpan.FromHours(8)));
+                                 this.ServerGetIntervalForThisEvent(defaultInterval:
+                                                                    (from: TimeSpan.FromHours(4),
+                                                                     to: TimeSpan.FromHours(8)))
+                             ));
 
             for (var index = 0; index < 12; index++)
             {

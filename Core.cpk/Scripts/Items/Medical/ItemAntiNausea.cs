@@ -17,21 +17,19 @@
         public override string Description =>
             "This medicine helps to completely remove the symptoms of nausea.";
 
-        public override double MedicalToxicity => 0.1;
+        public override double MedicalToxicity => 0.05;
 
         public override string Name => "Anti-nausea";
+
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillRemoveEffect<StatusEffectNausea>(); // removes nausea
+        }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemMedicalTablets;
-        }
-
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
-        {
-            // remove nausea
-            character.ServerRemoveStatusEffectIntensity<StatusEffectNausea>(intensityToRemove: 1);
-
-            base.ServerOnUse(character, currentStats);
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

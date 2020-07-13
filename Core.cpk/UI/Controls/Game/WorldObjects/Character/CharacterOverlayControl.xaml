@@ -8,8 +8,7 @@
     xmlns:character="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character.Data"
     xmlns:bars="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
@@ -38,10 +37,9 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border
-                        Margin="2.5"
-                        Background="{Binding BackgroundBrush}"
-                        CornerRadius="5">
+                    <Border Margin="2.5"
+                            Background="{Binding BackgroundBrush}"
+                            CornerRadius="5">
 
                         <Rectangle Fill="{Binding Icon}"
                                    UseLayoutRounding="True"
@@ -107,12 +105,12 @@
         </VisualStateManager.VisualStateGroups>
 
         <i:Interaction.Triggers>
-            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
-                <ei:GoToStateAction StateName="Visible" />
-            </ei:DataTrigger>
-            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
-                <ei:GoToStateAction StateName="Collapsed" />
-            </ei:DataTrigger>
+            <i:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
+                <i:GoToStateAction StateName="Visible" />
+            </i:DataTrigger>
+            <i:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
+                <i:GoToStateAction StateName="Collapsed" />
+            </i:DataTrigger>
         </i:Interaction.Triggers>
     </Grid>
 

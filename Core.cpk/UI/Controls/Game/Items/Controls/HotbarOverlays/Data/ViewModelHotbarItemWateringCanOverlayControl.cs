@@ -2,7 +2,6 @@
 {
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.Systems.WateringCanRefill;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -16,11 +15,6 @@
 
         public ViewModelHotbarItemWateringCanOverlayControl()
         {
-            if (IsDesignTime)
-            {
-                return;
-            }
-
             var characterState = ClientCurrentCharacterHelper.PrivateState;
             characterState.ClientSubscribe(
                 _ => _.CurrentActionState,

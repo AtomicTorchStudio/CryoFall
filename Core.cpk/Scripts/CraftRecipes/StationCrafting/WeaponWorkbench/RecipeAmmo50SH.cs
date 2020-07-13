@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 2);
             inputItems.Add<ItemIngotCopper>(count: 3);
-            inputItems.Add<ItemBlackpowder>(count: 50);
+            inputItems.Add<ItemBlackpowder>(count: 40);
 
             outputItems.Add<ItemAmmo50SH>(count: 10);
         }

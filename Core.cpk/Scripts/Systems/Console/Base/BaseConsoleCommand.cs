@@ -12,6 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using JetBrains.Annotations;
 
     // we mark it as used implicitly with members to avoid ReSharper marking "Execute*" methods as not used
@@ -94,6 +95,18 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
                 this.ValidateAndFixArguments(ref arguments, method.Parameters);
 
                 method.Execute(byCharacter, arguments);
+            }
+            catch (ConsoleCommandParsingException exception)
+            {
+                ConsoleCommandsSystem.Instance.ServerOnConsoleCommandError(byCharacter, exception.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Logger.Warning(
+                    $"Error during processing the console command {this.Name} {arguments.GetJoinedString(" ")}: "
+                    + ex.Message,
+                    characterRelated: byCharacter);
             }
             finally
             {
@@ -271,8 +284,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
                 var argument = arguments[index];
                 if (!string.IsNullOrEmpty(argument))
                 {
-                    throw new Exception(
-                        "There is an extra argument which is not required for the console command");
+                    throw new ConsoleCommandParsingException(
+                        "There is an extra argument which is not required for the console command. Please ensure that you're entering the arguments correctly!");
                 }
             }
 

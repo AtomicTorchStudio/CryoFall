@@ -59,6 +59,8 @@
 
         private static readonly Color ColorNeutral = Color.FromRgb(0x33, 0x66, 0x88);
 
+        public static event Action<HudNotificationControl> ClientNotificationDisplayed;
+
         public override string Name => "Notification system";
 
         public static CreateItemResult CalculateItemsResultExceptContainer(
@@ -115,7 +117,7 @@
             }
         }
 
-        public static HUDNotificationControl ClientShowNotification(
+        public static HudNotificationControl ClientShowNotification(
             string title,
             string message = null,
             NotificationColor color = NotificationColor.Neutral,
@@ -130,7 +132,18 @@
             var soundToPlay = playSound
                                   ? GetSound(color)
                                   : null;
-            return HUDNotificationsPanelControl.Show(
+
+            if (writeToLog)
+            {
+                Api.Logger.Important(
+                    string.Format(
+                        "Showing notification:{0}Title: {1}{0}Message: {2}",
+                        Environment.NewLine,
+                        title,
+                        message));
+            }
+
+            var notificationControl = HudNotificationControl.Create(
                 title,
                 message,
                 brushBackground,
@@ -138,8 +151,13 @@
                 icon,
                 onClick,
                 autoHide,
-                soundToPlay,
-                writeToLog);
+                soundToPlay);
+
+            HudNotificationsPanelControl.ShowNotificationControl(notificationControl);
+
+            Api.SafeInvoke(() => ClientNotificationDisplayed?.Invoke(notificationControl));
+
+            return notificationControl;
         }
 
         public static void ClientShowNotificationNoSpaceInInventory()

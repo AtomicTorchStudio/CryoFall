@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationBathtub : ProtoObjectDecoration
+    public class ObjectDecorationBathtub : ProtoObjectDecoration
     {
         public override string Description => "Classical-style bathtub for all your hygienic needs.";
 
@@ -37,11 +37,11 @@
         {
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 4);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 3);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

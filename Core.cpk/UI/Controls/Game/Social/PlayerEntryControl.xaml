@@ -52,6 +52,16 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
+        <Style x:Key="TextBlockPlayerClanTagStyle" TargetType="TextBlock"
+               BasedOn="{StaticResource TextBlockPlayerNameStyle}">
+            <Setter Property="Text" Value="{Binding ClanTag, StringFormat={}[{0}]}" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColor3}" />
+            <Setter Property="TextTrimming" Value="None" />
+            <Setter Property="Margin" Value="0,0,2,0" />
+            <Setter Property="Visibility"
+                    Value="{Binding ClanTag, Converter={StaticResource NullToVisibilityConverter}}" />
+        </Style>
+
         <Style x:Key="ButtonBlockPathStyle" TargetType="Path">
             <Setter Property="Width" Value="9" />
             <Setter Property="Height" Value="9" />
@@ -81,7 +91,10 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Style="{StaticResource TextBlockPlayerNameStyle}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TextBlockPlayerClanTagStyle}" />
+                            <TextBlock Style="{StaticResource TextBlockPlayerNameStyle}" />
+                        </StackPanel>
 
                         <Button Grid.Column="1"
                                 x:Name="BlockButton"

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations;
 
-    public class TechNodeDecorationTable : TechNode<TechGroupDecorations>
+    public class TechNodeDecorationTable : TechNode<TechGroupDecorationsT2>
     {
         protected override void PrepareTechNode(Config config)
         {

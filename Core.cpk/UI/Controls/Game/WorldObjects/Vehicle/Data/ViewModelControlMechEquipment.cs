@@ -1,13 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ViewModelControlMechEquipment : BaseViewModel
+    public class ViewModelControlMechEquipment : BaseViewModel, IViewModelWithActiveState
     {
         private bool isActive;
 
@@ -51,6 +52,11 @@
         }
 
         public IItemsContainer MechEquipmentItemsContainer { get; }
+
+        public string VehicleWeaponSlotCaption
+            => string.Format(CoreStrings.Vehicle_Mech_ItemSlot_WeaponHardpoint_Format,
+                             ((BaseItemsContainerMechEquipment)this.MechEquipmentItemsContainer.ProtoItemsContainer)
+                             .WeaponHardpointName);
 
         protected override void DisposeViewModel()
         {

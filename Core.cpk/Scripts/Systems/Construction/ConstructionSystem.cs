@@ -1,22 +1,25 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Construction
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -98,47 +101,19 @@
                 return false;
             }
 
-            return true;
-        }
-
-        public static IWorldObject ClientFindWorldObjectAtCurrentMousePosition()
-        {
-            var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
-            var objects = ClientComponentObjectInteractionHelper
-                          // find by click area
-                          .FindObjectsAtCurrentMousePosition(
-                              currentCharacter,
-                              CollisionGroups.ClickArea)
-                          // find by default collider
-                          .Concat(
-                              ClientComponentObjectInteractionHelper
-                                  .FindObjectsAtCurrentMousePosition(
-                                      currentCharacter,
-                                      CollisionGroups.Default))
-                          //find object in the pointed tile
-                          .Concat(
-                              Api.Client.World.GetTile(Api.Client.Input.MouseWorldPosition.ToVector2Ushort())
-                                 .StaticObjects.OrderByDescending(o => o.ProtoStaticWorldObject.Kind));
-
-            // find first damaged or incomplete structure there
-            foreach (var worldObject in objects)
+            if (LandClaimShieldProtectionSystem.SharedIsUnderShieldProtection(worldObject))
             {
-                if (!(worldObject.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
+                // the building is in an area under shield protection
+                if (writeToLog)
                 {
-                    continue;
+                    LandClaimShieldProtectionSystem.SharedSendNotificationActionForbiddenUnderShieldProtection(
+                        character);
                 }
 
-                var maxStructurePointsMax =
-                    protoObjectStructure.SharedGetStructurePointsMax((IStaticWorldObject)worldObject);
-                var structurePointsCurrent =
-                    worldObject.GetPublicState<StaticObjectPublicState>().StructurePointsCurrent;
-                if (structurePointsCurrent < maxStructurePointsMax)
-                {
-                    return worldObject;
-                }
+                return false;
             }
 
-            return null;
+            return true;
         }
 
         public static bool ClientTryAbortAction()
@@ -155,25 +130,79 @@
             return true;
         }
 
-        public static void ClientTryStartAction()
+        public static void ClientTryStartAction(bool allowReplacingCurrentConstructionAction)
         {
-            var worldObject = ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure))
+            if (!(ClientHotbarSelectedItemManager.SelectedItem?.ProtoGameObject
+                      is IProtoItemToolToolbox))
             {
+                // no tool is selected
+                return;
+            }
+
+            if (!ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem))
+            {
+                // the tool is not currently used
+                return;
+            }
+
+            var worldObjects = ClientGetObjectsAtCurrentMousePosition();
+
+            IStaticWorldObject worldObjectToBuildOrRepair = null,
+                               worldObjectToRelocate = null;
+
+            // find first damaged or incomplete structure there
+            foreach (var worldObject in worldObjects)
+            {
+                if (!(worldObject.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
+                {
+                    continue;
+                }
+
+                var maxStructurePointsMax =
+                    protoObjectStructure.SharedGetStructurePointsMax((IStaticWorldObject)worldObject);
+                var structurePointsCurrent =
+                    worldObject.GetPublicState<StaticObjectPublicState>().StructurePointsCurrent;
+                if (structurePointsCurrent < maxStructurePointsMax)
+                {
+                    worldObjectToBuildOrRepair = (IStaticWorldObject)worldObject;
+                    break;
+                }
+
+                if (ConstructionRelocationSystem.SharedIsRelocatable((IStaticWorldObject)worldObject))
+                {
+                    worldObjectToRelocate = (IStaticWorldObject)worldObject;
+                }
+            }
+
+            if (worldObjectToBuildOrRepair is null)
+            {
+                if (!(worldObjectToRelocate is null))
+                {
+                    ConstructionRelocationSystem.ClientStartRelocation(worldObjectToRelocate);
+                }
+
                 return;
             }
 
             var currentCharacter = Client.Characters.CurrentPlayerCharacter;
             var privateState = PlayerCharacter.GetPrivateState(currentCharacter);
 
-            if (privateState.CurrentActionState is ConstructionActionState actionState
-                && actionState.WorldObject == worldObject)
+            if (privateState.CurrentActionState is ConstructionActionState actionState)
             {
-                // the same object is already building/repairing
-                return;
+                if (!allowReplacingCurrentConstructionAction)
+                {
+                    // already performing the action
+                    return;
+                }
+
+                if (ReferenceEquals(actionState.WorldObject, worldObjectToBuildOrRepair))
+                {
+                    // the same object is already building/repairing
+                    return;
+                }
             }
 
-            SharedStartAction(currentCharacter, worldObject);
+            SharedStartAction(currentCharacter, worldObjectToBuildOrRepair);
         }
 
         public static IStaticWorldObject ServerCreateStructure(
@@ -264,6 +293,9 @@
                    .PlaySound(ObjectSound.InteractSuccess,
                               limitOnePerFrame: false,
                               volume: 0.5f);
+
+                // attempt to start the action again (player can move the cursor to the new blueprint to continue building after this one)
+                ClientTryStartAction(allowReplacingCurrentConstructionAction: false);
             }
         }
 
@@ -324,13 +356,13 @@
         {
             if (IsClient)
             {
-                Instance.ClientRemote_ClientShowNotificationCannotBuild(errorMessage, proto);
+                Instance.ClientRemote_ShowNotificationCannotBuild(errorMessage, proto);
             }
             else
             {
                 Instance.CallClient(
                     character,
-                    _ => _.ClientRemote_ClientShowNotificationCannotBuild(errorMessage, proto));
+                    _ => _.ClientRemote_ShowNotificationCannotBuild(errorMessage, proto));
             }
         }
 
@@ -341,14 +373,55 @@
         {
             if (IsClient)
             {
-                Instance.ClientRemote_ClientShowNotificationCannotPlace(errorMessage, proto);
+                Instance.ClientRemote_ShowNotificationCannotPlace(errorMessage, proto);
             }
             else
             {
                 Instance.CallClient(
                     character,
-                    _ => _.ClientRemote_ClientShowNotificationCannotPlace(errorMessage, proto));
+                    _ => _.ClientRemote_ShowNotificationCannotPlace(errorMessage, proto));
             }
+        }
+
+        private static IEnumerable<IWorldObject> ClientGetObjectsAtCurrentMousePosition()
+        {
+            var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
+            return ClientComponentObjectInteractionHelper
+                   // find by click area
+                   .FindObjectsAtCurrentMousePosition(
+                       currentCharacter,
+                       CollisionGroups.ClickArea)
+                   // find by default collider
+                   .Concat(
+                       ClientComponentObjectInteractionHelper
+                           .FindObjectsAtCurrentMousePosition(
+                               currentCharacter,
+                               CollisionGroups.Default))
+                   //find object in the pointed tile
+                   .Concat(
+                       Api.Client.World.GetTile(Api.Client.Input.MouseWorldPosition.ToVector2Ushort())
+                          .StaticObjects.OrderByDescending(o => o.ProtoStaticWorldObject.Kind));
+        }
+
+        private static IEnumerable<IWorldObject> ClientGetObjectsAtCurrentTilePosition()
+        {
+            var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
+            var objects = ClientComponentObjectInteractionHelper
+                          // find by click area
+                          .FindObjectsAtCurrentMousePosition(
+                              currentCharacter,
+                              CollisionGroups.ClickArea)
+                          // find by default collider
+                          .Concat(
+                              ClientComponentObjectInteractionHelper
+                                  .FindObjectsAtCurrentMousePosition(
+                                      currentCharacter,
+                                      CollisionGroups.Default))
+                          //find object in the pointed tile
+                          .Concat(
+                              Api.Client.World.GetTile(Api.Client.Input.MouseWorldPosition.ToVector2Ushort())
+                                 .StaticObjects.OrderByDescending(o => o.ProtoStaticWorldObject.Kind));
+            return objects;
         }
 
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
@@ -465,26 +538,6 @@
             characterPrivateState.SetCurrentActionState(null);
         }
 
-        private void ClientRemote_ClientShowNotificationCannotBuild(string errorMessage, IProtoStaticWorldObject proto)
-        {
-            NotificationSystem.ClientShowNotification(
-                // "Cannot build"
-                NotificationNotEnoughItems_Title,
-                errorMessage,
-                NotificationColor.Bad,
-                proto.Icon);
-        }
-
-        private void ClientRemote_ClientShowNotificationCannotPlace(string errorMessage, IProtoStaticWorldObject proto)
-        {
-            NotificationSystem.ClientShowNotification(
-                // "Cannot place"
-                NotificationCannotPlace,
-                errorMessage,
-                NotificationColor.Bad,
-                proto.Icon);
-        }
-
         private void ClientRemote_ShowNotEnoughItemsNotification(IProtoItemToolToolbox protoItemToolToolbox)
         {
             NotificationSystem.ClientShowNotification(
@@ -494,6 +547,24 @@
                 protoItemToolToolbox.Icon,
                 playSound: false);
             ObjectsSoundsPresets.ObjectConstructionSite.PlaySound(ObjectSound.InteractFail);
+        }
+
+        private void ClientRemote_ShowNotificationCannotBuild(string errorMessage, IProtoStaticWorldObject proto)
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationNotEnoughItems_Title,
+                errorMessage,
+                NotificationColor.Bad,
+                proto.Icon);
+        }
+
+        private void ClientRemote_ShowNotificationCannotPlace(string errorMessage, IProtoStaticWorldObject proto)
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationCannotPlace,
+                errorMessage,
+                NotificationColor.Bad,
+                proto.Icon);
         }
 
         private void ServerRemote_Cancel(IWorldObject worldObject)

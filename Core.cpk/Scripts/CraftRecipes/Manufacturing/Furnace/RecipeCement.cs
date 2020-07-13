@@ -19,11 +19,11 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemClay>(count: 10);
-            inputItems.Add<ItemSand>(count: 10);
-            inputItems.Add<ItemStone>(count: 10);
+            inputItems.Add<ItemClay>(count: 5);
+            inputItems.Add<ItemSand>(count: 5);
+            inputItems.Add<ItemStone>(count: 5);
 
-            outputItems.Add<ItemCement>(count: 10);
+            outputItems.Add<ItemCement>(count: 1);
         }
     }
 }

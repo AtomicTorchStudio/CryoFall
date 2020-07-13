@@ -22,6 +22,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 5);
             inputItems.Add<ItemPragmiumHeart>(count: 1);
+            inputItems.Add<ItemOrePragmium>(count: 5);
             inputItems.Add<ItemComponentsElectronic>(count: 1);
 
             outputItems.Add<ItemHatchetPragmium>();

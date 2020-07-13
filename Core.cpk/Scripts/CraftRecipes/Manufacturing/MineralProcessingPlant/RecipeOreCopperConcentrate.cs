@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
+﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes.MineralProcessingPlant
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;

@@ -5,9 +5,6 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
@@ -25,7 +22,6 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -34,9 +30,6 @@
     public class PowerGridSystem : ProtoSystem<PowerGridSystem>
     {
         public const double BaseCapacity = 10000.0;
-
-        // If the charge drops below 90% in the power grid, the required power producers (generators) will be automatically activated (to ensure the power generation surplus).
-        public const double PowerProductionChargeThreshold = 0.9;
 
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
@@ -67,17 +60,21 @@
             }
         }
 
-        public static async void ClientRestorePower(PowerGridPublicState state)
+        public static void ClientSetElectricityThresholds(
+            IStaticWorldObject worldObject,
+            ElectricityThresholdsPreset thresholds)
         {
-            var grid = (ILogicObject)state.GameObject;
-            var result = await Instance.CallServer(_ => _.ServerRemote_RestorePower(grid));
-            if (result == SetPowerModeResult.Success)
+            thresholds = thresholds.Normalize(
+                isProducer: worldObject.ProtoGameObject is IProtoObjectElectricityProducer);
+
+            if (thresholds.Equals(worldObject.GetPrivateState<IObjectElectricityStructurePrivateState>()
+                                             .ElectricityThresholds))
             {
+                // no changes
                 return;
             }
 
-            NotificationSystem.ClientShowNotification(result.GetDescription(),
-                                                      color: NotificationColor.Bad);
+            Instance.CallServer(_ => _.ServerRemote_SetElectricityThresholds(worldObject, thresholds));
         }
 
         public static async Task<bool> ClientSetPowerMode(bool isOn, IStaticWorldObject worldObject)
@@ -112,19 +109,8 @@
                 return;
             }
 
-            var firstChild = (FrameworkElement)VisualTreeHelper.GetChild(window.Window, 0);
-            var grid = firstChild.FindName<Grid>("ContentChromeGrid");
-
-            var canvas = new Canvas
-            {
-                HorizontalAlignment = HorizontalAlignment.Right,
-            };
-
             var powerSwitchControl = PowerSwitchControl.Create(worldObject);
-            canvas.Children.Add(powerSwitchControl);
-            Canvas.SetLeft(powerSwitchControl, 10);
-
-            grid.Children.Add(canvas);
+            window.Window.AddExtensionControl(powerSwitchControl);
         }
 
         public static bool ServerBaseHasCharge(
@@ -229,7 +215,7 @@
         {
             Logger.Important("Server unregister power grid: " + powerGrid);
             var state = PowerGrid.GetPublicState(powerGrid);
-            ServerCutPower(powerGrid, state, keepCriticalConsumers: false);
+            ServerCutPower(powerGrid, state);
             ServerStopGenerators(state);
         }
 
@@ -242,15 +228,16 @@
 
             double efficiencyMultiplier = state.EfficiencyMultiplier,
                    consumptionCurrent = 0,
-                   consumptionCurrentCriticalOnly = 0,
                    consumptionTotalDemand = 0,
-                   consumptionTotalDemandCriticalOnly = 0,
                    productionCurrent = 0,
                    productionTotalAvailable = 0;
 
             ushort numberConsumersActive = 0,
                    numberConsumersOutage = 0,
                    numberProducersActive = 0;
+
+            var gridElectricityAmountPercent = SharedGetPowerGridChargePercent(state);
+            var gridElectricityAmountPercentByte = (byte)gridElectricityAmountPercent;
 
             // process consumers
             foreach (var consumerObject in state.ServerCacheConsumers)
@@ -259,21 +246,36 @@
                 var energy = protoConsumer.ElectricityConsumptionPerSecondWhenActive;
                 consumptionTotalDemand += energy;
 
-                var isCriticalConsumer = protoConsumer is IProtoObjectElectricityConsumerCritical;
-                if (isCriticalConsumer)
+                var consumerPrivateState = consumerObject.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                consumerPrivateState.PowerGridChargePercent = gridElectricityAmountPercentByte;
+
+                var consumerPublicState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
+                if (consumerPublicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnIdle)
                 {
-                    consumptionTotalDemandCriticalOnly += energy;
+                    if (gridElectricityAmountPercent >= 1
+                        && gridElectricityAmountPercent >= consumerPrivateState.ElectricityThresholds.StartupPercent)
+                    {
+                        // consumer startup threshold reached
+                        consumerPublicState.ElectricityConsumerState = ElectricityConsumerState.PowerOnActive;
+                    }
+                    else
+                    {
+                        numberConsumersOutage++;
+                    }
                 }
 
-                var consumerState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                if (consumerState.ElectricityConsumerState == ElectricityConsumerState.PowerOffOutage)
+                if (consumerPublicState.ElectricityConsumerState != ElectricityConsumerState.PowerOnActive)
                 {
-                    numberConsumersOutage++;
                     continue;
                 }
 
-                if (consumerState.ElectricityConsumerState != ElectricityConsumerState.PowerOn)
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (gridElectricityAmountPercent == 0
+                    || gridElectricityAmountPercent < consumerPrivateState.ElectricityThresholds.ShutdownPercent)
                 {
+                    // consumer shutdown threshold reached
+                    consumerPublicState.ElectricityConsumerState = ElectricityConsumerState.PowerOnIdle;
+                    numberConsumersOutage++;
                     continue;
                 }
 
@@ -290,25 +292,22 @@
 
                 consumptionCurrent += energy;
                 numberConsumersActive++;
-
-                if (isCriticalConsumer)
-                {
-                    consumptionCurrentCriticalOnly += energy;
-                }
             }
 
             // process producers
             {
-                var isPowerGridHasFullCharge = state.ElectricityAmount >= state.ElectricityCapacity;
-                var isPowerGridChargeBelowThreshold = state.ElectricityAmount / state.ElectricityCapacity
-                                                      < PowerProductionChargeThreshold;
-
                 // power demand is used only to handle generators idle/active state
                 var powerDemand = consumptionCurrent;
                 if (state.ServerNeedToSortCacheProducers)
                 {
                     ServerSortProducers(state.ServerCacheProducers);
                     state.ServerNeedToSortCacheProducers = false;
+                }
+
+                if (state.ServerNeedToSortCacheConsumers)
+                {
+                    ServerSortConsumers(state.ServerCacheConsumers);
+                    state.ServerNeedToSortCacheConsumers = false;
                 }
 
                 foreach (var producerObject in state.ServerCacheProducers)
@@ -323,56 +322,48 @@
 
                     productionTotalAvailable += energyMax;
 
-                    var productionCurrentWithoutThisProducer = productionCurrent;
                     if (energyCurrent > 0)
                     {
                         productionCurrent += energyCurrent;
                         numberProducersActive++;
                     }
 
-                    var publicState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
-                    if (publicState.ElectricityProducerState == ElectricityProducerState.PowerOff)
+                    var producerPrivateState =
+                        producerObject.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                    producerPrivateState.PowerGridChargePercent = gridElectricityAmountPercentByte;
+
+                    var producerPublicState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
+                    if (producerPublicState.ElectricityProducerState == ElectricityProducerState.PowerOff)
                     {
                         continue;
                     }
 
                     // refresh power active/idle state for generator
-                    if (publicState.ElectricityProducerState == ElectricityProducerState.PowerOnActive
-                        && isPowerGridHasFullCharge
-                        && (productionCurrent > powerDemand
-                            || (powerDemand == 0
-                                && productionCurrent == powerDemand)))
-                    {
-                        // this generator is not necessary now - go idle
-                        publicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
-                        //Logger.Dev("Producer is not required now and was deactivated: "
-                        //           + producerObject);
-                    }
-                    else if (publicState.ElectricityProducerState == ElectricityProducerState.PowerOnIdle)
+                    if (producerPublicState.ElectricityProducerState == ElectricityProducerState.PowerOnIdle)
                     {
                         // this generator is idle (not generating energy)
-                        if (!isPowerGridChargeBelowThreshold)
+                        if (gridElectricityAmountPercent > producerPrivateState.ElectricityThresholds.StartupPercent)
                         {
                             // no need to turn it on as threshold is not reached
                             continue;
                         }
 
-                        if (productionCurrentWithoutThisProducer >= powerDemand
-                            && numberProducersActive > 0)
-                        {
-                            // no need to turn it on as there is a power generation surplus
-                            // and more than a single generator is active
-                            continue;
-                        }
-
-                        //Logger.Dev("Production is below the generation threshold, producer activated: "
-                        //           + producerObject);
-                        publicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
-                        // power demand is used only to handle generators idle/active state
-                        // assume the just enabled generator will instantly fill the power demand
-                        // (the correct value will be calculated on the next tick)
-                        powerDemand -= energyMax;
+                        producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
                         numberProducersActive++;
+                    }
+                    else if (producerPublicState.ElectricityProducerState == ElectricityProducerState.PowerOnActive)
+                    {
+                        var shutdownPercent = producerPrivateState.ElectricityThresholds.ShutdownPercent;
+                        if (gridElectricityAmountPercent >= shutdownPercent
+                            && (shutdownPercent < 100
+                                || shutdownPercent == 100
+                                && (productionCurrent > powerDemand || powerDemand == 0)))
+                        {
+                            // this generator is not necessary now - go idle
+                            producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
+                            //Logger.Dev("Producer is not required now and was deactivated: "
+                            //           + producerObject);
+                        }
                     }
                 }
             }
@@ -383,22 +374,26 @@
             if (amount < 0)
             {
                 // Not sufficient energy to satisfy all currently active consumers.
-                // Try calculate the amount for the case when only critical consumption is active.
-                amount = state.ElectricityAmount
-                         + (productionCurrent - consumptionCurrentCriticalOnly) * deltaTime;
+                amount = productionCurrent * deltaTime;
+                // (assume state.ElectricityAmount is zero so if there
+                // is no generation going on the power grid will have 0 charge)
 
-                if (amount > 0)
+                // disable all consumers
+                numberConsumersOutage = 0;
+                foreach (var consumerObject in state.ServerCacheConsumers)
                 {
-                    // Have sufficient energy to satisfy all currently active critical consumers.
-                    ServerCutPower(powerGrid, state, keepCriticalConsumers: true);
-                }
-                else
-                {
-                    // Not sufficient energy to satisfy all currently active critical consumers.
-                    ServerCutPower(powerGrid, state, keepCriticalConsumers: false);
+                    var consumerPublicState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
+                    if (consumerPublicState.ElectricityConsumerState == ElectricityConsumerState.PowerOff)
+                    {
+                        continue;
+                    }
 
-                    amount = state.ElectricityAmount
-                             + productionCurrent * deltaTime;
+                    if (consumerPublicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
+                    {
+                        consumerPublicState.ElectricityConsumerState = ElectricityConsumerState.PowerOnIdle;
+                    }
+
+                    numberConsumersOutage++;
                 }
             }
 
@@ -412,7 +407,6 @@
             state.ElectricityAmount = MathHelper.Clamp(amount, 0, state.ElectricityCapacity);
             state.ElectricityConsumptionCurrent = consumptionCurrent;
             state.ElectricityConsumptionTotalDemand = consumptionTotalDemand;
-            state.ElectricityConsumptionTotalDemandCriticalOnly = consumptionTotalDemandCriticalOnly;
             state.ElectricityProductionCurrent = productionCurrent;
             state.ElectricityProductionTotalAvailable = productionTotalAvailable;
 
@@ -420,8 +414,6 @@
             state.NumberConsumersActive = numberConsumersActive;
             state.NumberProducers = (ushort)state.ServerCacheProducers.Count;
             state.NumberProducersActive = numberProducersActive;
-
-            state.IsBlackout = numberConsumersOutage > 0;
         }
 
         protected override void PrepareSystem()
@@ -432,6 +424,9 @@
             LandClaimSystem.ServerAreasGroupDestroyed += ServerLandClaimsGroupDestroyedHandler;
             LandClaimSystem.ServerAreasGroupChanged += ServerLandClaimsGroupChangedHandler;
             LandClaimSystem.ServerObjectLandClaimDestroyed += ServerObjectLandClaimDestroyedHandler;
+            LandClaimSystem.ServerBaseMerge += ServerBaseMergeHandler;
+            ConstructionRelocationSystem.ServerStructureBeforeRelocating += ServerStructureRelocatingOrRelocatedHandler;
+            ConstructionRelocationSystem.ServerStructureRelocated += ServerStructureRelocatingOrRelocatedHandler;
 
             if (IsClient)
             {
@@ -480,6 +475,13 @@
             }
         }
 
+        private static void ServerBaseMergeHandler(ILogicObject areasGroupFrom, ILogicObject areasGroupTo)
+        {
+            var fromState = LandClaimAreasGroup.GetPrivateState(areasGroupFrom);
+            var toState = LandClaimAreasGroup.GetPrivateState(areasGroupTo);
+            PowerGrid.ServerOnPowerGridMerged(fromState.PowerGrid, toState.PowerGrid);
+        }
+
         /// <summary>
         /// The bigger the area (in terms of connected land claims number) the less efficient
         /// power distribution is to make energy requirements more steep for larger bases.
@@ -500,23 +502,19 @@
 
         private static void ServerCutPower(
             ILogicObject powerGrid,
-            PowerGridPublicState state,
-            bool keepCriticalConsumers)
+            PowerGridPublicState state)
         {
-            Logger.Important($"Power cut: {powerGrid}. Keep critical consumers active: {keepCriticalConsumers}");
+            Logger.Important($"Power cut: {powerGrid}");
 
             foreach (var consumerObject in state.ServerCacheConsumers)
             {
-                var consumerState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                if (consumerState.ElectricityConsumerState != ElectricityConsumerState.PowerOn)
-                {
-                    continue;
-                }
+                var consumerPrivateState = consumerObject.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                consumerPrivateState.PowerGridChargePercent = 0;
 
-                if (!keepCriticalConsumers
-                    || !(consumerObject.ProtoGameObject is IProtoObjectElectricityConsumerCritical))
+                var consumerPublicState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
+                if (consumerPublicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
                 {
-                    consumerState.ElectricityConsumerState = ElectricityConsumerState.PowerOffOutage;
+                    consumerPublicState.ElectricityConsumerState = ElectricityConsumerState.PowerOnIdle;
                 }
             }
         }
@@ -564,8 +562,7 @@
             }
 
             ServerCutPower(grid,
-                           powerGridPublicState,
-                           keepCriticalConsumers: false);
+                           powerGridPublicState);
             ServerStopGenerators(powerGridPublicState);
 
             Logger.Important($"Power grid destroyed: {grid} for {areasGroup}");
@@ -594,9 +591,9 @@
             foreach (var consumerObject in consumersInArea)
             {
                 var consumerState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                if (consumerState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+                if (consumerState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
                 {
-                    consumerState.ElectricityConsumerState = ElectricityConsumerState.PowerOffOutage;
+                    consumerState.ElectricityConsumerState = ElectricityConsumerState.PowerOnIdle;
                 }
             }
 
@@ -662,6 +659,7 @@
 
             FillList(ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityConsumer>(boundingBox),
                      state.ServerCacheConsumers);
+            state.ServerNeedToSortCacheConsumers = true;
 
             FillList(ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityProducer>(boundingBox),
                      state.ServerCacheProducers);
@@ -670,16 +668,32 @@
             FillList(ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityStorage>(boundingBox),
                      state.ServerCacheStorage);
 
-            // remove consumers with 0 max consumption
+            // remove consumers with 0 max consumption and fix the invalid electricity thresholds
             var consumers = state.ServerCacheConsumers;
             for (var index = 0; index < consumers.Count; index++)
             {
-                var consumer = consumers[index];
-                if (((IProtoObjectElectricityConsumer)consumer.ProtoGameObject)
-                    .ElectricityConsumptionPerSecondWhenActive
-                    <= 0)
+                var objectConsumer = consumers[index];
+                var protoConsumer = (IProtoObjectElectricityConsumer)objectConsumer.ProtoGameObject;
+                if (protoConsumer.ElectricityConsumptionPerSecondWhenActive <= 0)
                 {
                     consumers.RemoveAt(index--);
+                    continue;
+                }
+
+                var privateState = objectConsumer.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                if (privateState.ElectricityThresholds.IsInvalid)
+                {
+                    privateState.ElectricityThresholds = protoConsumer.DefaultConsumerElectricityThresholds;
+                }
+            }
+
+            foreach (var objectProducer in state.ServerCacheProducers)
+            {
+                var privateState = objectProducer.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                if (privateState.ElectricityThresholds.IsInvalid)
+                {
+                    var protoConsumer = (IProtoObjectElectricityProducer)objectProducer.ProtoGameObject;
+                    privateState.ElectricityThresholds = protoConsumer.DefaultGenerationElectricityThresholds;
                 }
             }
 
@@ -715,13 +729,12 @@
 
         private static SetPowerModeResult ServerSetConsumerPowerMode(IStaticWorldObject worldObject, bool isOn)
         {
-            var protoConsumer = (IProtoObjectElectricityConsumer)worldObject.ProtoGameObject;
-            var publicState = worldObject.GetPublicState<IObjectElectricityConsumerPublicState>();
+            var consumerPublicState = worldObject.GetPublicState<IObjectElectricityConsumerPublicState>();
             var newPowerState = isOn
-                                    ? ElectricityConsumerState.PowerOn
+                                    ? ElectricityConsumerState.PowerOnActive
                                     : ElectricityConsumerState.PowerOff;
 
-            if (newPowerState == publicState.ElectricityConsumerState)
+            if (newPowerState == consumerPublicState.ElectricityConsumerState)
             {
                 return SetPowerModeResult.Success;
             }
@@ -732,21 +745,36 @@
                 return SetPowerModeResult.NoPowerGridExist;
             }
 
-            if (newPowerState == ElectricityConsumerState.PowerOn)
+            var isNotEnoughPower = false;
+            if (newPowerState == ElectricityConsumerState.PowerOnActive)
             {
                 var powerGridState = PowerGrid.GetPublicState(powerGrid);
-                var electricitySurplus = powerGridState.ElectricityAmount
-                                         + powerGridState.ElectricityProductionCurrent
-                                         - powerGridState.ElectricityConsumptionCurrent;
-                if (electricitySurplus < protoConsumer.ElectricityConsumptionPerSecondWhenActive)
+                var gridElectricityAmountPercent = (byte)SharedGetPowerGridChargePercent(powerGridState);
+                if (gridElectricityAmountPercent == 0)
                 {
-                    return SetPowerModeResult.NotEnoughPower;
+                    isNotEnoughPower = true;
+                }
+
+                var consumerPrivateState = worldObject.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                if (gridElectricityAmountPercent <= consumerPrivateState.ElectricityThresholds.ShutdownPercent)
+                {
+                    // consumer shutdown threshold reached
+                    newPowerState = ElectricityConsumerState.PowerOnIdle;
+                    if (newPowerState == consumerPublicState.ElectricityConsumerState)
+                    {
+                        return isNotEnoughPower
+                                   ? SetPowerModeResult.NotEnoughPower
+                                   : SetPowerModeResult.Success;
+                    }
                 }
             }
 
-            publicState.ElectricityConsumerState = newPowerState;
+            consumerPublicState.ElectricityConsumerState = newPowerState;
             Logger.Important($"Changed consumer power mode: {worldObject} to {newPowerState}");
-            return SetPowerModeResult.Success;
+
+            return isNotEnoughPower
+                       ? SetPowerModeResult.NotEnoughPower
+                       : SetPowerModeResult.Success;
         }
 
         private static SetPowerModeResult ServerSetProducerPowerMode(
@@ -784,6 +812,11 @@
             return SetPowerModeResult.Success;
         }
 
+        private static void ServerSortConsumers(List<IStaticWorldObject> producers)
+        {
+            producers.Sort(ObjectConsumerOrderComparer.Instance);
+        }
+
         private static void ServerSortProducers(List<IStaticWorldObject> producers)
         {
             producers.Sort(ObjectProducerOrderComparer.Instance);
@@ -801,30 +834,18 @@
         private static void ServerStructureBuiltHandler(ICharacter character, IStaticWorldObject structure)
         {
             var protoStructure = structure.ProtoGameObject;
-            if (protoStructure is IProtoObjectElectricityConsumer protoConsumer
-                && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0)
+            var protoConsumer = protoStructure as IProtoObjectElectricityConsumer;
+            var protoProducer = protoStructure as IProtoObjectElectricityProducer;
+
+            if (protoProducer != null
+                || protoConsumer != null)
             {
-                var state = TryGetPowerGridState();
-                if (state == null)
-                {
-                    return;
-                }
-
-                state.ServerCacheConsumers.Add(structure);
-
-                if (protoConsumer is IProtoObjectElectricityConsumerCritical)
-                {
-                    // do not enable new critical (defense) consumer (such as psionic projector)
-                    ServerSetConsumerPowerMode(structure, isOn: false);
-                }
-                else
-                {
-                    // auto-enable new regular consumer
-                    ServerSetConsumerPowerMode(structure, isOn: true);
-                }
+                var privateState = structure.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                privateState.ElectricityThresholds = protoProducer?.DefaultGenerationElectricityThresholds
+                                                     ?? protoConsumer.DefaultConsumerElectricityThresholds;
             }
 
-            if (protoStructure is IProtoObjectElectricityProducer)
+            if (protoProducer != null)
             {
                 var state = TryGetPowerGridState();
                 if (state == null)
@@ -835,6 +856,21 @@
                 state.ServerCacheProducers.Add(structure);
                 state.ServerNeedToSortCacheProducers = true;
                 ServerSetProducerPowerMode(structure, ElectricityProducerState.PowerOnIdle);
+            }
+
+            if (protoConsumer != null
+                && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0)
+            {
+                var state = TryGetPowerGridState();
+                if (state == null)
+                {
+                    return;
+                }
+
+                state.ServerCacheConsumers.Add(structure);
+                state.ServerNeedToSortCacheConsumers = true;
+
+                ServerSetConsumerPowerMode(structure, isOn: true);
             }
 
             if (protoStructure is IProtoObjectElectricityStorage)
@@ -893,6 +929,17 @@
             }
         }
 
+        private static void ServerStructureRelocatingOrRelocatedHandler(
+            ICharacter byCharacter,
+            IStaticWorldObject worldObject)
+        {
+            var powerGrid = SharedGetPowerGrid(worldObject);
+            if (powerGrid != null)
+            {
+                ServerRebuildPowerGrid(powerGrid);
+            }
+        }
+
         private static ILogicObject SharedGetPowerGrid(IStaticWorldObject structure)
         {
             var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(structure.OccupiedTile.Position);
@@ -910,48 +957,47 @@
             return LandClaimAreasGroup.GetPrivateState(areasGroup).PowerGrid;
         }
 
-        private SetPowerModeResult ServerRemote_RestorePower(ILogicObject powerGrid)
+        private static double SharedGetPowerGridChargePercent(PowerGridPublicState powerGridPublicState)
         {
-            if (!ServerWorld.IsInPublicScope(powerGrid, ServerRemoteContext.Character))
+            var fraction = powerGridPublicState.ElectricityAmount / powerGridPublicState.ElectricityCapacity;
+            fraction = MathHelper.Clamp(fraction, 0, 1);
+            return 100 * fraction;
+        }
+
+        private void ServerRemote_SetElectricityThresholds(
+            IStaticWorldObject worldObject,
+            ElectricityThresholdsPreset thresholds)
+        {
+            var character = ServerRemoteContext.Character;
+            if (!worldObject.ProtoWorldObject.SharedCanInteract(character, worldObject, writeToLog: true))
             {
-                return SetPowerModeResult.CannotInteractWithObject;
+                return;
             }
 
-            var powerGridState = PowerGrid.GetPublicState(powerGrid);
-            var electricitySurplus = powerGridState.ElectricityAmount
-                                     + powerGridState.ElectricityProductionCurrent
-                                     - powerGridState.ElectricityConsumptionCurrent;
+            thresholds = thresholds.Normalize(
+                isProducer: worldObject.ProtoGameObject is IProtoObjectElectricityProducer);
 
-            // first pass - check all consumers in power outage state
-            foreach (var consumerObject in powerGridState.ServerCacheConsumers)
+            switch (worldObject.ProtoGameObject)
             {
-                var consumerState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                if (consumerState.ElectricityConsumerState != ElectricityConsumerState.PowerOffOutage)
-                {
-                    continue;
-                }
+                case IProtoObjectElectricityProducer _:
+                    worldObject.GetPrivateState<IObjectElectricityStructurePrivateState>()
+                               .ElectricityThresholds = thresholds;
+                    return;
 
-                var protoConsumer = (IProtoObjectElectricityConsumer)consumerObject.ProtoGameObject;
-                electricitySurplus -= protoConsumer.ElectricityConsumptionPerSecondWhenActive;
-                if (electricitySurplus < 0)
-                {
-                    return SetPowerModeResult.NotEnoughPower;
-                }
+                case IProtoObjectElectricityConsumer protoConsumer
+                    when protoConsumer.ElectricityConsumptionPerSecondWhenActive <= 0:
+                    Logger.Error("This consumer doesn't consume any energy (defined consumption is 0): " + worldObject);
+                    return;
+
+                case IProtoObjectElectricityConsumer _:
+                    worldObject.GetPrivateState<IObjectElectricityStructurePrivateState>()
+                               .ElectricityThresholds = thresholds;
+                    return;
+
+                default:
+                    Logger.Error("This structure is not a power producer or consumer: " + worldObject);
+                    return;
             }
-
-            // second pass - enable all consumers in power outage state
-            foreach (var consumerObject in powerGridState.ServerCacheConsumers)
-            {
-                var consumerState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                if (consumerState.ElectricityConsumerState != ElectricityConsumerState.PowerOffOutage)
-                {
-                    continue;
-                }
-
-                consumerState.ElectricityConsumerState = ElectricityConsumerState.PowerOn;
-            }
-
-            return SetPowerModeResult.Success;
         }
 
         private SetPowerModeResult ServerRemote_SetPowerMode(bool isOn, IStaticWorldObject worldObject)
@@ -962,28 +1008,45 @@
                 return SetPowerModeResult.CannotInteractWithObject;
             }
 
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer)
+            switch (worldObject.ProtoStaticWorldObject)
             {
-                // producer
-                return ServerSetProducerPowerMode(worldObject,
-                                                  isOn
-                                                      ? ElectricityProducerState.PowerOnActive
-                                                      : ElectricityProducerState.PowerOff);
-            }
-
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer)
-            {
+                case IProtoObjectElectricityProducer _:
+                    // producer
+                    return ServerSetProducerPowerMode(worldObject,
+                                                      isOn
+                                                          ? ElectricityProducerState.PowerOnActive
+                                                          : ElectricityProducerState.PowerOff);
                 // consumer
-                if (protoConsumer.ElectricityConsumptionPerSecondWhenActive <= 0)
-                {
+                case IProtoObjectElectricityConsumer protoConsumer
+                    when protoConsumer.ElectricityConsumptionPerSecondWhenActive <= 0:
                     Logger.Error("This consumer doesn't consume any energy (defined consumption is 0): " + worldObject);
                     return SetPowerModeResult.CannotInteractWithObject;
-                }
 
-                return ServerSetConsumerPowerMode(worldObject, isOn);
+                case IProtoObjectElectricityConsumer _:
+                    return ServerSetConsumerPowerMode(worldObject, isOn);
+
+                default:
+                    return SetPowerModeResult.CannotInteractWithObject;
+            }
+        }
+
+        private class ObjectConsumerOrderComparer : IComparer<IStaticWorldObject>
+        {
+            // ReSharper disable once MemberHidesStaticFromOuterClass
+            public static readonly ObjectConsumerOrderComparer Instance = new ObjectConsumerOrderComparer();
+
+            private ObjectConsumerOrderComparer()
+            {
             }
 
-            return SetPowerModeResult.CannotInteractWithObject;
+            public int Compare(IStaticWorldObject x, IStaticWorldObject y)
+            {
+                var sx = x.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                var sy = y.GetPrivateState<IObjectElectricityStructurePrivateState>();
+
+                return sx.ElectricityThresholds.StartupPercent
+                         .CompareTo(sy.ElectricityThresholds.StartupPercent);
+            }
         }
 
         private class ObjectProducerOrderComparer : IComparer<IStaticWorldObject>
@@ -997,6 +1060,18 @@
 
             public int Compare(IStaticWorldObject x, IStaticWorldObject y)
             {
+                var sx = x.GetPrivateState<IObjectElectricityStructurePrivateState>();
+                var sy = y.GetPrivateState<IObjectElectricityStructurePrivateState>();
+
+                var result = sx.ElectricityThresholds.StartupPercent
+                               .CompareTo(sy.ElectricityThresholds.StartupPercent);
+
+                if (result != 0)
+                {
+                    // the reverse value is intentional here
+                    return -result;
+                }
+
                 var protoA = (IProtoObjectElectricityProducer)x.ProtoStaticWorldObject;
                 var protoB = (IProtoObjectElectricityProducer)y.ProtoStaticWorldObject;
                 return protoA.GenerationOrder

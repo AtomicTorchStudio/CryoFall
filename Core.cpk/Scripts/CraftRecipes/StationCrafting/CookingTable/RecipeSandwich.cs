@@ -19,7 +19,7 @@
             duration = CraftingDuration.Short;
 
             inputItems.Add<ItemBread>(count: 1);
-            inputItems.Add<ItemMeatRoasted>(count: 1);
+            inputItems.Add<ItemSalami>(count: 1);
             inputItems.Add<ItemTomato>(count: 1);
 
             outputItems.Add<ItemSandwich>(count: 2);

@@ -20,7 +20,7 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 10);
-            inputItems.Add<ItemOreLithium>(count: 10);
+            inputItems.Add<ItemOreLithium>(count: 20);
             inputItems.Add<ItemHerbRed>(count: 1);
             inputItems.Add<ItemFlowerBlueSage>(count: 1);
 

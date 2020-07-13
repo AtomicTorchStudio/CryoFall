@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodePainkiller : TechNode<TechGroupMedicine>
+    public class TechNodePainkiller : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {

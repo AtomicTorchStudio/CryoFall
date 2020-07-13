@@ -1,10 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemAntiRadiationPreExposure : ProtoItemMedical
     {
@@ -15,15 +13,12 @@
 
         public override string Name => "Radiation prevention aid";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // remove radiation
-            character.ServerRemoveStatusEffectIntensity<StatusEffectRadiationPoisoning>(intensityToRemove: 0.1);
-
-            // add radiation protection
-            character.ServerAddStatusEffect<StatusEffectProtectionRadiation>(intensity: 0.5); // 5 minutes
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillRemoveEffect<StatusEffectRadiationPoisoning
+                    >(intensityToRemove: 0.10)                                    // remove accumulated radiation
+                .WillAddEffect<StatusEffectProtectionRadiation>(intensity: 0.50); // add radiation protection
         }
     }
 }

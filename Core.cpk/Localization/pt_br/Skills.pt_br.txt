@@ -25,6 +25,15 @@ Melhores técnicas agrícolas permitem que você aumente a eficiência agrícola
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Agricultura
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Chance de poupar a isca
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Seu conhecimento sobre várias espécies de peixes e seus hábitos refletem em seu sucesso nas pescarias.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Pesca
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Chance de maior produtividade
 
@@ -100,23 +109,29 @@ Aumenta sua chance de permanecer vivo, melhorando vida, comida, água e energia 
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Sobrevivência
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Chance de obter mudas
+
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Chance extra de obter mudas
+
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Com treinamento e compreensão profissional, sua velocidade de cortar madeira aumenta.
+
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Extração de madeira
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
 Chance de mais recursos
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Chance de garimpar pedras preciosas
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-O maior conhecimento dos depósitos minerais aumenta sua velocidade de escavação, a produtividade e as chances de encontrar recursos raros. Aplica-se apenas ao utilizar uma picareta.
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+O maior conhecimento dos depósitos minerais aumenta sua velocidade de escavação, produtividade e chance de encontrar recursos raros.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Mineração
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-Com treinamento e compreensão profissional, sua velocidade de cortar madeira aumenta. Aplica-se apenas ao utilizar um machado.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Cortar madeira
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Prospecção
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Com melhores habilidades de construção, sua velocidade aumenta nos projetos. Aplica-se a todas as tarefas (construção, reparo) realizadas com uma caixa de ferramentas.
@@ -130,9 +145,18 @@ Produzir itens cada vez mais complexos e entender a estrutura deles é uma boa m
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Produção
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Chance de reparar item por completo
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Permite consertar e fazer a manutenção de diferentes itens e equipamentos. Aplica-se a trabalhos realizados na bancada de trabalhos manuais.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Manutenção
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+Habilidade para pilotar diversos veículos e usar seus equipamentos de forma correta e eficaz. Aplica-se a todos os tipos de veículos.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Veículos
 

@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Lights;
 
-    public class TechNodeFloorLampOil : TechNode<TechGroupConstruction>
+    public class TechNodeFloorLampOil : TechNode<TechGroupConstructionT1>
     {
         protected override void PrepareTechNode(Config config)
         {

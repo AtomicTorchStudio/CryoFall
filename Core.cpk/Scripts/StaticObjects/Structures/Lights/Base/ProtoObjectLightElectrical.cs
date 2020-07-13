@@ -13,11 +13,15 @@
               TPublicState,
               TClientState>,
           IProtoObjectElectricityConsumerWithCustomRate
-        where TPrivateState : ObjectLightPrivateState, new()
+        where TPrivateState : ObjectLightWithElectricityPrivateState, new()
         where TPublicState : ObjectLightWithElectricityPublicState, new()
         where TClientState : ObjectLightClientState, new()
     {
         public override byte ContainerInputSlotsCount => 0;
+
+        public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 20,
+                                               shutdownPercent: 10);
 
         public abstract double ElectricityConsumptionPerSecondWhenActive { get; }
 
@@ -26,6 +30,18 @@
             return GetPublicState(worldObject).IsLightActive
                        ? 1
                        : 0;
+        }
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -50,7 +66,7 @@
         protected override bool ServerCheckCanLight(IStaticWorldObject lightObject, double fuelAmount)
         {
             return GetPublicState(lightObject).ElectricityConsumerState
-                   == ElectricityConsumerState.PowerOn;
+                   == ElectricityConsumerState.PowerOnActive;
         }
 
         protected override void ServerTryConsumeFuelItem(TPrivateState privateState)
@@ -61,7 +77,7 @@
 
     public abstract class ProtoObjectLightElectrical
         : ProtoObjectLightElectrical
-            <ObjectLightPrivateState,
+            <ObjectLightWithElectricityPrivateState,
                 ObjectLightWithElectricityPublicState,
                 ObjectLightClientState>
     {

@@ -25,6 +25,8 @@
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Vegetation;
 
+        public bool IsStaleWellWater => false;
+
         public override TileKind Kind => TileKind.Solid;
 
         public override string Name => "Forest (Boreal)";

@@ -32,7 +32,8 @@ Scripts/ClientComponents/Input/GameButton@ItemReload:
 Przeładowanie
 
 Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
-Przełączanie trybu przedmiotu/amunicji
+`Przełączanie trybu
+[br]przedmiotu/amunicji`
 
 Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
 Włącznik czołówki
@@ -101,8 +102,7 @@ Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
 Połącz przedmioty – góra
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
-`Wyświetl posiadaną działkę
-[br]i paski zdrowia`
+Wyświetl posiadaną działkę[br]i paski zdrowia
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
 `Naprawa i budowanie są ograniczone.

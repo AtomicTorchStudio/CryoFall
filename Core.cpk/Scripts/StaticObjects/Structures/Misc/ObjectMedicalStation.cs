@@ -34,6 +34,8 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public override bool IsRelocatable => true;
+
         public override string Name => "Medical station";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
@@ -114,17 +116,17 @@
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 10);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 10);
+            build.StageDurationSeconds = BuildDuration.Long;
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 5);
             build.AddStageRequiredItem<ItemPlastic>(count: 5);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 2);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Medium;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 5);
-            repair.AddStageRequiredItem<ItemPlastic>(count: 2);
+            repair.StageDurationSeconds = BuildDuration.Long;
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 3);
+            repair.AddStageRequiredItem<ItemPlastic>(count: 3);
         }
 
         protected override void PrepareProtoStaticWorldObject()

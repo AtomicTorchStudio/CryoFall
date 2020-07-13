@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
@@ -23,10 +24,10 @@
 
         public const string TaskGatherLoot = "Loot some containers";
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
-                .Add(TaskHaveItemEquipped.Require<ItemRespirator>())
+                .Add(TaskHaveItemEquipped.Require<ItemHelmetRespirator>())
                 .Add(TaskVisitTile.Require<TileRuins>())
                 .Add(TaskGather.Require(new IProtoObjectGatherable[]
                                         {

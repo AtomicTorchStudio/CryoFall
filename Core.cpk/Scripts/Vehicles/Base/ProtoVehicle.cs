@@ -12,7 +12,6 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -109,10 +108,6 @@
 
         public double DestroyedVehicleDamageRadius { get; private set; }
 
-        public uint EnergyMax
-            => (uint)Math.Min(uint.MaxValue,
-                              this.FuelItemsSlotsCount * (ulong)ItemReactorCorePragmium.EnergyCapacity);
-
         public abstract ushort EnergyUsePerSecondIdle { get; }
 
         public abstract ushort EnergyUsePerSecondMoving { get; }
@@ -185,7 +180,7 @@
         protected IReadOnlyList<Vector2D> DismountPoints { get; private set; }
 
         protected virtual IProtoItemsContainer FuelItemsContainerType
-            => Api.GetProtoEntity<ItemsContainerReactorCorePragmium>();
+            => Api.GetProtoEntity<ItemsContainerFuelCores>();
 
         public override void ClientDeinitialize(IDynamicWorldObject gameObject)
         {
@@ -290,7 +285,8 @@
             componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.VehicleLightConfig,
                                            componentLightSource,
-                                           skeletonSlotName: "Torso");
+                                           skeletonSlotName: "Torso",
+                                           isPrimaryLight: true);
 
             skeletonComponents.Add(componentLightInSkeleton);
             skeletonComponents.Add(componentLightSource);
@@ -495,6 +491,23 @@
             var newStructurePoints = publicState.StructurePointsCurrent + structurePointsRestorePerRepairStage;
             newStructurePoints = Math.Min(this.StructurePointsMax, newStructurePoints);
             publicState.StructurePointsCurrent = newStructurePoints;
+        }
+
+        public void ServerRefreshEnergyMax(IDynamicWorldObject vehicle)
+        {
+            var privateState = GetPrivateState(vehicle);
+            var fuelItemsContainer = privateState.FuelItemsContainer;
+
+            var maxEnergy = 0u;
+            foreach (var item in fuelItemsContainer.Items)
+            {
+                if (item.ProtoItem is IProtoItemWithDurability protoItemWithDurability)
+                {
+                    maxEnergy += protoItemWithDurability.DurabilityMax;
+                }
+            }
+
+            privateState.CurrentEnergyMax = maxEnergy;
         }
 
         public void SharedApplyInput(
@@ -1250,6 +1263,8 @@
         {
             clientState.UIElementsHolder?.Dispose();
             clientState.UIElementsHolder = null;
+
+            ClientCurrentCharacterVehicleContainersHelper.Reset();
         }
 
         private static bool SharedPlayerHasRequiredItems(

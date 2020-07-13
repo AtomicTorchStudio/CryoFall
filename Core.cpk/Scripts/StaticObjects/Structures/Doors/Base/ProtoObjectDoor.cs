@@ -578,22 +578,27 @@
             }
 
             // vertical door physics
-            const double doorOpenedColliderHeight = 0.125;
+            const double verticalDoorOpenedColliderHeight = 0.125,
+                         verticalDoorExpansionSide = 0.125;
 
             if (isOpened)
             {
                 physicsBody.AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidthOpened, doorOpenedColliderHeight),
-                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX, 0))
+                               size: (VerticalDoorPhysicsWidthOpened,
+                                      verticalDoorOpenedColliderHeight + verticalDoorExpansionSide),
+                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX,
+                                        -verticalDoorExpansionSide))
                            .AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidthOpened, doorOpenedColliderHeight),
-                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX, doorSize - doorOpenedColliderHeight));
+                               size: (VerticalDoorPhysicsWidthOpened,
+                                      verticalDoorOpenedColliderHeight + verticalDoorExpansionSide),
+                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX,
+                                        doorSize - verticalDoorOpenedColliderHeight));
             }
             else
             {
                 physicsBody.AddShapeRectangle(
-                    size: (VerticalDoorPhysicsWidthClosed, doorWidth: doorSize),
-                    offset: (VerticalDoorPhysicsWidthClosedOffsetX, 0));
+                    size: (VerticalDoorPhysicsWidthClosed, doorSize + 2 * verticalDoorExpansionSide),
+                    offset: (VerticalDoorPhysicsWidthClosedOffsetX, -verticalDoorExpansionSide));
             }
 
             if (!isOpened)
@@ -792,6 +797,11 @@
             IStaticWorldObject worldObject,
             TPrivateState privateState)
         {
+            if (privateState.IsBlockedByShield)
+            {
+                return false;
+            }
+
             var mode = privateState.AccessMode;
             if (mode == WorldObjectAccessMode.Closed)
             {
@@ -856,9 +866,9 @@
                 var characterPhysicsBody = character.PhysicsBody;
                 var characterCenter = character.Position + characterPhysicsBody.CenterOffset;
                 if (!ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
-                                                   characterPhysicsBody.PhysicsSpace,
-                                                   worldObject,
-                                                   sendDebugEvents: true))
+                                                                   characterPhysicsBody.PhysicsSpace,
+                                                                   worldObject,
+                                                                   sendDebugEvents: true))
                 {
                     return true;
                 }

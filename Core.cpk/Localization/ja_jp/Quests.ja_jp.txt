@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 照明
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+既存の建築物を[b]再配置[/b]するには[b]工具箱[/b]を選択し、建築物上で使用します。建築物の中には移動できないものもあるので注意してください。
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `拠点を守る方法をしっかりと理解しましょう！さもないと、卑怯な生存者に簡単に襲われてしまいます。
 [br]
@@ -268,14 +271,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 ナイフを作り、生き物を殺す
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-より良いチェストプレートを装備する
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+より良い防具を装備する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 より良いヘルメットを装備する
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-より良いレガーズを装備する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 もっと良い防御手段について学びましょう。
@@ -359,7 +359,7 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 グリーンハーブを見つけて使う
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
-より多くの構造物を建築するには、技術メニューの「基本建築」のロックを解除する必要があります。
+より多くの建築物を造るためには、技術メニューの「基本建築」のロックを解除する必要があります。
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
 `[*] 操作方法を変更していなければ、"G"を押すことで技術メニューに素早くアクセスできます。
@@ -384,7 +384,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 もう少し狩りをしてみましょう！動物やモンスターはまだたくさんいます。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] 動物やモンスターは、それぞれに生息するエリアがあります。世界を探索し、そこに棲むいろいろな生き物を見つけましょう。
+`[*] 狩り道具は「デバイススロット」（インベントリメニューのキャラクター画像の右側）に装備することができます。
+[*] 動物やモンスターは、それぞれに生息するエリアがあります。世界を探索し、そこに棲むいろいろな生き物を見つけましょう。
 [*] 動物やモンスターの危険度に応じて、狩猟経験値の量が変わります。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -423,31 +424,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 バールを使って解体する
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-プラグミウムは、最先端の技術に必要な希少な宇宙鉱物です。探して手に入れましょう。
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] 気をつけて！プラグミウムの採掘は非常に危険です。
-[*] 大きなプラグミウムの尖塔は砂漠地帯でよく見られ、小さなプラグミウム塊は火山の近くによく落ちています。`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-プラグミウムが必要です！
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-塩鉱物を採掘する
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-石油やリチウムなど特定の資源は、高度な技術のために必要です。従って、これらの獲得方法を学ぶことは非常に重要になります。
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] [u]亜寒帯の森[/u]に生えているオイルポッドフルーツを利用して、少量の石油を獲得することができます。
-[*] [u]リチウム塩[/u]は一般的な塩鉱物を採掘することで入手できます。
-[*] 砂漠にある[u]塩原[/u]でも塩やミネラルを見つけることができます。
-[*] [u]異世界地質学[/u]を学ぶと、産業規模で大量に資源を獲得できるようになります。`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-より高度な資源の獲得
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 工業と建築分野を発展させるには、高度な科学、特に化学の基礎を必要とします。
 
@@ -476,16 +452,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 技術習得－パート2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+蒸気、太陽光、エンジンなど、さまざまな種類の[b]発電機[/b]を利用して、同時に電力を生産することができます。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+電力貯蔵庫や所有地標にアクセスして、[b]詳細な送電情報[/b]を見ることができます。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+電気装置は自分の所有地の[b]内側[/b]にある場合のみ動作します。所有地の外に電気装置を作っても意味がありません。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+電気エネルギーは[b]蓄電器[/b]に蓄えて必要な時に使うことができます。拠点内の総エネルギー容量を向上させると良いでしょう。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+各電力消費装置と発電機に対して、それぞれ[u]起動と停止[/u]の電力[b]しきい値[/b]を設定することができます。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+連結した複数の所有地は、[b]単一の送電網[/b]と見なされます。
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 基地に送電網を巡らせることは効率を上げる上で重要なステップです。動作するのに電気を必要とする高レベルの建築物がたくさんあります。
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] 電気装置は自分の所有地の[b]中[/b]にある場合のみ利用できます。所有地の外に電気装置を作っても意味がありません。
-[*] 電気エネルギーは[b]電力貯蔵庫[/b]に貯めて必要な時に使うことができます。拠点内の総エネルギー容量を向上させると良いでしょう。
-[*] 水蒸気やソーラー、エンジンなど様々なタイプの[b]発電機[/b]を使って電力を生産することができます。
-[*] 十分な電力を[u]蓄えていない[/u]場合は、拠点が[b]停電[/b]モードに入り、電気を手動で復旧しなければなりません。
-[*] 電力貯蔵庫や所有地標で[b]送電詳細情報[/b]を見ることができます。
-[*] 連結した複数の所有地は、[b]1つの送電網[/b]と見なされます。`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 送電網を設置する
@@ -520,6 +506,27 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 いくつかの箱を略奪
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+魚の[u]切り身[/u]は、[b]使用[/b]アクションで[u]作成[/u]できます（つまり、アイテム使用と同じ操作です）。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+[b]釣りスキル[/b]は、釣れる魚の種類と成功率に大きな影響を与えます。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+[u]海水域[/u]と[u]淡水域[/u]では異なる種類の魚が釣れます。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+魚を釣る
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+魚を切り身にする
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+釣りは楽しい娯楽なだけでなく、より多くの食料を得るためにも最適な方法です。魚を釣ってみましょう！
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+釣り
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 もっともっと狩りをしましょう！今回はもっと危険な動物を狙ってみましょう。
 
@@ -540,4 +547,53 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 狩りの達人－パート5
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+プラグミウムは、最先端の技術に必要な希少な宇宙鉱物です。探して手に入れましょう。
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] 気をつけて！プラグミウムの採掘は非常に危険です。
+[*] 大きなプラグミウムの尖塔は砂漠地帯でよく見られ、小さなプラグミウム塊は火山の近くでよく見られます。`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+プラグミウムを手に入れよう！
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+塩鉱物を採掘する
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+石油やリチウムなど特定の資源は、高度な技術のために必要です。従って、これらの獲得方法を学ぶことは非常に重要になります。
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] [u]亜寒帯の森[/u]に生えているオイルポッドの実から、少量の石油を抽出することができます。
+[*] [u]リチウム塩[/u]は通常の塩鉱物を採掘することで入手できます。
+[*] 砂漠にある[u]塩原[/u]でも塩鉱物を見つけることができます。
+[*] [u]異世界地質学[/u]を学ぶと、産業規模で大量に資源を獲得できるようになります。`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+より高度な資源の獲得
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+ドローンに命令を下すには[b]コントローラー[/b]を使用します。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+ドローンは[b]鉱物の採掘[/b]だけでなく、[b]木の伐採[/b]にも利用できます。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+ドローンが[b]インベントリ[/b]または[b]アイテムスロット[/b]にないと命令が下せません。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+人の手で鉱物を採掘したり、木を切ったりするのは面倒なので、できるだけ早く自動化ドローンに切り替えた方が良いでしょう。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+ドローンによる採掘
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+拠点拡大に伴って[u]蓄電容量を拡張[/u]し、常に[u]十分な余剰電力[/u]を確保しておくようにしましょう。
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+送電網の基礎がしっかりしてきた今、役立つ装置を利用して送電網を拡大し、生活を便利にしていくのもいいかもしれません。
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+送電網の使用量を増やす
 

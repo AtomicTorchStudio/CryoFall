@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.Items.Fishing;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
@@ -45,7 +46,7 @@
                                      .Add<ItemPaper>(count: 10,      countRandom: 15, weight: 1 / 2.0)
                                      .Add<ItemBottleEmpty>(count: 1, countRandom: 2,  weight: 1 / 5.0)
                                      .Add<ItemGlassRaw>(count: 20,   countRandom: 10, weight: 1 / 2.0)
-                                     .Add<ItemCement>(count: 10,     countRandom: 40, weight: 1 / 10.0)
+                                     .Add<ItemCement>(count: 2,      countRandom: 8,  weight: 1 / 10.0)
                                      .Add<ItemRubberRaw>(count: 5,   countRandom: 10, weight: 1 / 5.0)
                                      .Add<ItemFirelog>(count: 2,     countRandom: 1,  weight: 1 / 10.0)
                                      // components
@@ -60,12 +61,11 @@
                                      .Add(weight: 1 / 2.0,
                                           nestedList: new DropItemsList(outputs: 1)
                                                       // equipment
-                                                      .Add<ItemLeatherJacket>(count: 1, weight: 1 / 3.0)
-                                                      .Add<ItemLeatherPants>(count: 1,  weight: 1 / 3.0)
+                                                      .Add<ItemLeatherArmor>(count: 1, weight: 1 / 3.0)
                                                       .Add(new DropItemsList(outputs: 1)
-                                                           .Add<ItemLeatherHatCowboy>(count: 1)
-                                                           .Add<ItemLeatherHatPilot>(count: 1)
-                                                           .Add<ItemLeatherHatTricorne>(count: 1),
+                                                           .Add<ItemLeatherHelmetCowboy>(count: 1)
+                                                           .Add<ItemLeatherHelmetPilot>(count: 1)
+                                                           .Add<ItemLeatherHelmetTricorne>(count: 1),
                                                            weight: 1 / 3.0)
                                                       // tools
                                                       .Add<ItemAxeIron>(count: 1,            weight: 1 / 5.0)
@@ -74,6 +74,10 @@
                                                       .Add<ItemWateringCanCopper>(count: 1,  weight: 1 / 5.0)
                                                       .Add<ItemWateringCanSteel>(count: 1,   weight: 1 / 10.0)
                                                       .Add<ItemWateringCanPlastic>(count: 1, weight: 1 / 20.0)
+                                                      // fishing
+                                                      .Add<ItemFishingBaitInsect>(count: 1, weight: 1 / 20.0)
+                                                      .Add<ItemFishingBaitFish>(count: 1,   weight: 1 / 20.0)
+                                                      .Add<ItemFishingBaitMix>(count: 1,    weight: 1 / 20.0)
                                                       // items
                                                       .Add<ItemMRE>(count: 1, countRandom: 2, weight: 1 / 20.0)
                                          )

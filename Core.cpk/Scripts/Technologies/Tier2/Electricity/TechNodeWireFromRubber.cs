@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeWireFromRubber : TechNode<TechGroupElectricity>
+    public class TechNodeWireFromRubber : TechNode<TechGroupElectricityT2>
     {
         protected override void PrepareTechNode(Config config)
         {

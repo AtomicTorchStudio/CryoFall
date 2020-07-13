@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
-    public class TechNodeMedicalLab : TechNode<TechGroupMedicine>
+    public class TechNodeMedicalLab : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {

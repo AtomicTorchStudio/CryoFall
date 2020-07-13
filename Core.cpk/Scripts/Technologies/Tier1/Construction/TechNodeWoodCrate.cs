@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
 
-    public class TechNodeWoodCrate : TechNode<TechGroupConstruction>
+    public class TechNodeWoodCrate : TechNode<TechGroupConstructionT1>
     {
         protected override void PrepareTechNode(Config config)
         {

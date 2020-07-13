@@ -10,6 +10,12 @@ Gravi-platform tasarımının ağır varyantı. Daha sağlamdır, daha yüksek h
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Hoverboard Mk2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Büyük kuşatma amaçlı mekanize savaş zırhı. Eşi benzeri olmayan korunma ve büyük sabit montaj noktası sayesinde harika silah gücü sunar ama nispeten yavaş hareket eder.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Dev
+
 Scripts/Vehicles/VehicleMechManul@Description:
 Mekanize savaş zırhı için orta tasarım. Başka bölgelerden fedakârlık etmeden ciddi savunma yetenekleri ve dev yük taşıma bölümleri ekler.
 
@@ -48,4 +54,10 @@ Tamir gerekli değil.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Aracı tamir etmek için lütfen onu birleştirme sahasına getir.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+Normal
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+Büyük
 

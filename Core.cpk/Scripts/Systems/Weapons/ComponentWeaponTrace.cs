@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -138,6 +141,9 @@
             this.SceneObject.Position = this.worldPositionSource
                                         + this.normalizedRay * currentDistance;
 
+            ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(
+                    new List<Vector2D>() {this.SceneObject.Position}, CollisionGroups.HitboxRanged, isClient: true );
+
             if (this.hasHit)
             {
                 return;
@@ -157,7 +163,7 @@
             this.componentSpriteRender.Color = Color.FromArgb(colorOpacity, 0xFF, 0xFF, 0xFF);
         }
 
-        private static void CalculateAngleAndDirection(
+        public static void CalculateAngleAndDirection(
             Vector2D deltaPos,
             out double angleRad,
             out Vector2D normalizedRay)

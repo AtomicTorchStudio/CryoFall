@@ -23,7 +23,10 @@
             get
             {
                 var sb = new StringBuilder();
-                ViewModelSkillEffectStat.FormatBonusText(sb, this.Value, (this.Percent - 1.0) * 100);
+                ViewModelSkillEffectStat.FormatBonusText(sb,
+                                                         this.Value,
+                                                         (this.Percent - 1.0) * 100,
+                                                         canDisplayPositiveSign: true);
                 return sb.ToString();
             }
         }

@@ -2,14 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodePlasmaRifle : TechNode<TechGroupEnergyWeapons>
+    public class TechNodePlasmaRifle : TechNode<TechGroupEnergyWeaponsT4>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipePlasmaRifle>();
 
-            config.SetRequiredNode<TechNodePlasmaPistol>();
+            config.SetRequiredNode<TechNodeLaserRifle>();
         }
     }
 }

@@ -139,10 +139,7 @@
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="2">
-                    <Image Source="/UI/Images/Icons/Equipment/icon_equipment_legs.png" />
-                    <Image Source="/UI/Images/Icons/Equipment/icon_equipment_slot_blocked.png"
-                           Visibility="{Binding IsHeadAndLegsSlotsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                           Width="40" Height="40" />
+                    <Image Source="/UI/Images/Icons/Equipment/icon_equipment_implant.png" />
                     <Control Style="{StaticResource ItemSlotDelimiterHorizontalControlStyle}" />
                     <controls:ItemSlotControlForBinding Container="{Binding ContainerEquipment}"
                                                         SlotId="2" />
@@ -214,61 +211,70 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-
-                    <RowDefinition Height="0.33*" />
-
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="0.33*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="32" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
 
                 <!-- separator -->
-                <Rectangle Grid.ColumnSpan="3" Grid.Row="2" StrokeThickness="0.5"
-                           HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Fill" Margin="0,0"
-                           Stroke="{StaticResource BrushColor7}" />
+                <Rectangle Grid.Row="2" 
+                           HorizontalAlignment="Stretch" 
+                           VerticalAlignment="Center" 
+                           Stretch="Fill" 
+                           Stroke="{StaticResource BrushColor7}"
+                           StrokeThickness="0.5"/>
 
                 <!-- icons -->
-                <Image Grid.Column="0" Grid.Row="0" Source="/UI/Images/Icons/Damage/icon_damage_melee.png" />
-                <Image Grid.Column="0" Grid.Row="1" Source="/UI/Images/Icons/Damage/icon_damage_kinetic.png" />
+                <Image Grid.Row="0" Source="{StaticResource ImageSourceDamageTypeImpact}" />
+                <Image Grid.Row="1" Source="{StaticResource ImageSourceDamageTypeKinetic}" />
+                <Image Grid.Row="2" Source="{StaticResource ImageSourceDamageTypeExplosion}" />
 
-                <Image Grid.Column="0" Grid.Row="3" Source="/UI/Images/Icons/Damage/icon_damage_fire.png" />
-                <Image Grid.Column="0" Grid.Row="4" Source="/UI/Images/Icons/Damage/icon_damage_cold.png" />
-                <Image Grid.Column="0" Grid.Row="5" Source="/UI/Images/Icons/Damage/icon_damage_acid.png" />
-                <Image Grid.Column="0" Grid.Row="6" Source="/UI/Images/Icons/Damage/icon_damage_electricity.png" />
-                <Image Grid.Column="0" Grid.Row="7" Source="/UI/Images/Icons/Damage/icon_damage_radiation.png" />
-                <Image Grid.Column="0" Grid.Row="8" Source="/UI/Images/Icons/Damage/icon_damage_psy.png" />
+                <Image Grid.Row="4" Source="{StaticResource ImageSourceDamageTypeHeat}" />
+                <Image Grid.Row="5" Source="{StaticResource ImageSourceDamageTypeCold}" />
+                <Image Grid.Row="6" Source="{StaticResource ImageSourceDamageTypeChemical}" />
+                <Image Grid.Row="7" Source="{StaticResource ImageSourceDamageTypeRadiation}" />
+                <Image Grid.Row="8" Source="{StaticResource ImageSourceDamageTypePsi}" />
 
                 <!-- defense bars -->
-                <core:ValueBarControl Grid.Column="1" Grid.Row="0" Style="{StaticResource DefenseStatBarStyle}"
+                <core:ValueBarControl Grid.Row="0"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Impact}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Impact}" />
-                <core:ValueBarControl Grid.Column="1" Grid.Row="1" Style="{StaticResource DefenseStatBarStyle}"
+                <core:ValueBarControl Grid.Row="1"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Kinetic}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Kinetic}" />
+                <core:ValueBarControl Grid.Row="2"
+                                      Style="{StaticResource DefenseStatBarStyle}"
+                                      Value="{Binding Explosion}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Explosion}" />
 
-                <core:ValueBarControl Grid.Column="1" Grid.Row="3" Style="{StaticResource DefenseStatBarStyle}"
+                <Control Grid.Row="3"
+                         Style="{StaticResource ControlHorizontalSeparator}"
+                         Opacity="0.5" />
+
+                <core:ValueBarControl Grid.Row="4"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Heat}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Heat}" />
-                <core:ValueBarControl Grid.Column="1" Grid.Row="4" Style="{StaticResource DefenseStatBarStyle}"
+                <core:ValueBarControl Grid.Row="5"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Cold}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Cold}" />
-                <core:ValueBarControl Grid.Column="1" Grid.Row="5" Style="{StaticResource DefenseStatBarStyle}"
+                <core:ValueBarControl Grid.Row="6"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Chemical}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Chemical}" />
-                <core:ValueBarControl Grid.Column="1" Grid.Row="6" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Electrical}"
-                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Electrical}" />
-                <core:ValueBarControl Grid.Column="1" Grid.Row="7" Style="{StaticResource DefenseStatBarStyle}"
+                <core:ValueBarControl Grid.Row="7"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Radiation}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Radiation}" />
-                <core:ValueBarControl Grid.Column="1" Grid.Row="8" Style="{StaticResource DefenseStatBarStyle}"
+                <core:ValueBarControl Grid.Row="8"
+                                      Style="{StaticResource DefenseStatBarStyle}"
                                       Value="{Binding Psi}"
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Psi}" />
             </Grid>

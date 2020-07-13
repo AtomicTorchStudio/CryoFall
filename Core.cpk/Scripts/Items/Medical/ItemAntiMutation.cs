@@ -19,12 +19,10 @@
 
         public override string Name => "Anti-mutation medicine";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // remove mutation (100%)
-            character.ServerRemoveStatusEffectIntensity<StatusEffectMutation>(intensityToRemove: 1.0);
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillRemoveEffect<StatusEffectMutation>(); // removes mutation
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

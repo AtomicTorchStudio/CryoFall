@@ -15,14 +15,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
                 .Add(TaskVisitTile.Require<TileSwamp>())
                 .Add(TaskVisitTile.Require<TileVolcanic>());
 
             prerequisites
-                .Add<QuestAdvancedResourcesAcquisition>();
+                .Add<QuestExploreBiomes3>()
+                .Add<QuestFishing>();
         }
     }
 }

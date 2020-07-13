@@ -2,7 +2,7 @@
 {
     public class ItemMetalHelmetClosed : ProtoItemEquipmentHead
     {
-        public override string Description => GetProtoEntity<ItemMetalChestplate>().Description;
+        public override string Description => GetProtoEntity<ItemMetalArmor>().Description;
 
         public override uint DurabilityMax => 1000;
 
@@ -15,12 +15,12 @@
             defense.Set(
                 impact: 0.60,
                 kinetic: 0.45,
+                explosion: 0.40,
                 heat: 0.20,
                 cold: 0.10,
                 chemical: 0.15,
-                electrical: 0.00,
                 radiation: 0.10,
-                psi: 0);
+                psi: 0.0);
 
             // normal value override, we don't want it to be affected by armor multiplier later
             defense.Psi = 0.35 / defense.Multiplier;

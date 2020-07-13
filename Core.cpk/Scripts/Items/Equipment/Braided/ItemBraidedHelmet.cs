@@ -2,7 +2,7 @@
 {
     public class ItemBraidedHelmet : ProtoItemEquipmentHead
     {
-        public override string Description => GetProtoEntity<ItemBraidedChestplate>().Description;
+        public override string Description => GetProtoEntity<ItemBraidedArmor>().Description;
 
         public override uint DurabilityMax => 500;
 
@@ -15,12 +15,12 @@
             defense.Set(
                 impact: 0.40,
                 kinetic: 0.30,
+                explosion: 0.40,
                 heat: 0.20,
                 cold: 0.20,
                 chemical: 0.10,
-                electrical: 0.15,
                 radiation: 0.15,
-                psi: 0);
+                psi: 0.0);
         }
     }
 }

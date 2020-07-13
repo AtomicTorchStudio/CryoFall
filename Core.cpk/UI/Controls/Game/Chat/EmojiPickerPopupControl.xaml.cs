@@ -53,11 +53,13 @@
         protected override void OnLoaded()
         {
             Api.Client.UI.LayoutRoot.PreviewMouseDown += this.GlobalRootPreviewMouseDownHandler;
+            ClientUpdateHelper.UpdateCallback += this.Update;
         }
 
         protected override void OnUnloaded()
         {
             Api.Client.UI.LayoutRoot.PreviewMouseDown -= this.GlobalRootPreviewMouseDownHandler;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
         }
 
         private void ExecuteCommandSelectEmoji(object obj)
@@ -82,6 +84,14 @@
         private void Hide()
         {
             Api.Client.UI.LayoutRootChildren.Remove(this);
+        }
+
+        private void Update()
+        {
+            if (!this.chatRoomControl.IsActive)
+            {
+                this.Hide();
+            }
         }
     }
 }

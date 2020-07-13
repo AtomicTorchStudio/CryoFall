@@ -22,9 +22,11 @@
 
         public override uint DurabilityMax => 180; // slightly lower
 
+        public override double FireInterval => 0.5;
+
         public override string Name => "Luger";
 
-        public override double RangeMultipier => 1.1; // slightly higher
+        public override double RangeMultiplier => 1.1; // slightly higher
 
         public override double ReadyDelayDuration => 0.6;
 

@@ -18,7 +18,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
         public string Execute(TechGroup group, [CurrentCharacterIfNull] ICharacter player = null)
         {
             player.SharedGetTechnologies().ServerRemoveGroup(group);
-            return $"{player} tech group {group.Name} removed.";
+            return $"{player} tech group {group.NameWithTierName} removed.";
         }
     }
 }

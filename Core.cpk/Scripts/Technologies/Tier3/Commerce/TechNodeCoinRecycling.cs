@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeCoinRecycling : TechNode<TechGroupCommerce>
+    public class TechNodeCoinRecycling : TechNode<TechGroupCommerceT3>
     {
         public override string Name => "Coin recycling";
 

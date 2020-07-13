@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
     using AtomicTorch.CBND.CoreMod.Technologies;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier3.Industry3;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier3.Industry;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ItemCanisterMineralOil : ProtoItemCanisterWithLiquid, IProtoItemWithReferenceTech

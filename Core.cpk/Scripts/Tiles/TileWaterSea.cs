@@ -14,6 +14,8 @@
             => this.bridgeProtoTile
                    ??= Api.GetProtoEntity<TileWaterSeaBridge>();
 
+        public override bool IsFishingAllowed => true;
+
         public override string Name => "Water (sea)";
 
         public override TextureResource UnderwaterGroundTextureAtlas { get; }
@@ -27,7 +29,7 @@
             = new TextureResource("Terrain/Water/TileWaterSeaPlaceholder",
                                   isTransparent: false);
 
-        protected override Color WaterColor => Color.FromArgb(220, 0, 90, 166);
+        protected override Color WaterColor => Color.FromArgb(230, 0, 90, 166);
 
         protected override void PrepareProtoTile(Settings settings)
         {

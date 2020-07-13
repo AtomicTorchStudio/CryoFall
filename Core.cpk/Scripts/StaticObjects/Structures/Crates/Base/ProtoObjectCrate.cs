@@ -45,6 +45,8 @@
 
         public bool IsClosedAccessModeAvailable => false;
 
+        public override bool IsRelocatable => true;
+
         public virtual bool IsSupportItemIcon => true;
 
         public abstract byte ItemsSlotsCount { get; }
@@ -238,10 +240,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.475), offset: (0, 0.4))
-                .AddShapeRectangle(size: (1, 0.75),  offset: (0, 0.4), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (1, 0.2),   offset: (0, 1.1), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1, 0.75),  offset: (0, 0.4), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.9, 0.475), offset: (0.05, 0.4))
+                .AddShapeRectangle((0.9, 0.75),  offset: (0.05, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.9, 0.2),   offset: (0.05, 1.1), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.9, 0.85),  offset: (0.05, 0.4), group: CollisionGroups.ClickArea);
         }
 
         private void ServerRemote_SetIconSource(IStaticWorldObject worldObjectCrate, IProtoEntity iconSource)

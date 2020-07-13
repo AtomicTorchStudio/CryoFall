@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
 
-    public class TechNodeFarmingBasics : TechNode<TechGroupFarming>
+    public class TechNodeFarmingBasics : TechNode<TechGroupFarmingT1>
     {
         public override string Name => "Farming basics";
 

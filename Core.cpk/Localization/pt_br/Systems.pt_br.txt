@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 Fique perto da água para encher a garrafa ou colocá-la em um poço.
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+Não é possível garimpar isso!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+Um drone já foi enviado!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`O drone não conseguiu retornar até você e foi desativado.
+[br]Você pode encontrá-lo no chão, em sua última localização.`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+Drone desativado
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+Drone destruído
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+Você não pode controlar mais de {0} drones simultaneamente com este dispositivo.
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+Não é possível controlar mais drones
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+Não há drones para serem lançados!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+Não há nada para garimpar no local!
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 Nenhum carregador portátil equipado.
 
@@ -127,6 +155,21 @@ Não é possível adicionar uma nova receita
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Não é possível desconstruir
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+Você não possui iscas em seu inventário para pescar.
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+Não há iscas
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+Não é possível pescar aqui
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+O peixe conseguiu escapar do anzol!
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+Tarde demais... você deixou o peixe escapar
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 {0} quebrou e você nunca mais poderá usar.
 
@@ -166,6 +209,9 @@ A construção/melhoria desta posse de terra resultará num depósito seguro com
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Cruza com outra posse de terra
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+Cruza com outra posse de terra que está sob proteção de um escudo ativo. Desative o escudo de lá primeiro.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `Você esgotou sua quantidade de posse de terra.
@@ -272,7 +318,7 @@ Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
 Quer mesmo denunciar a seguinte mensagem?
 
 Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
-[b]Atenção:[/b] você está jogando num servidor de comunidade, então a moderação do chat é de responsabilidade do proprietário do servidor. Essas conversas não costumam ser moderadas.
+[b]Atenção:[/b] você está jogando num servidor de comunidade, então a moderação do bate-papo é de responsabilidade do proprietário do servidor. Essas conversas não costumam ser moderadas.
 
 Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
 [b]Atenção:[/b] os servidores oficiais NÃO são moderados.
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Ainda não há nada para colher
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-SERVIDOR: O backup mundial inicia em {0} segundos.
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-SERVIDOR: backup mundial concluído!
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 O operador do servidor expulsou você do servidor

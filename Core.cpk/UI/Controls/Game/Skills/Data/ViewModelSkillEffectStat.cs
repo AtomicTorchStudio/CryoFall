@@ -1,45 +1,62 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills.Data
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ViewModelSkillEffectStat : BaseViewModelSkillEffect
     {
-        private readonly StatEffect statEffect;
-
         public ViewModelSkillEffectStat(StatEffect statEffect, byte maxLevel) : base(statEffect, maxLevel)
         {
-            this.statEffect = statEffect;
+            this.StatEffect = statEffect;
         }
 
-        public StatEffect StatEffect => this.statEffect;
+        public StatEffect StatEffect { get; }
 
-        public static void FormatBonusText(AutoStringBuilder text, double value, double percent)
+        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
+        public static void FormatBonusText(
+            AutoStringBuilder text,
+            double valueBonus,
+            double percentBonus,
+            bool canDisplayPositiveSign)
         {
             var hasValueBonus = false;
-            if (value != 0)
+            if (valueBonus != 0)
             {
                 hasValueBonus = true;
-                text.Append(SignChar(value))
-                    .Append(value.ToString("0.##"));
+
+                if (canDisplayPositiveSign
+                    || valueBonus < 0)
+                {
+                    text.Append(SignChar(valueBonus));
+                }
+
+                text.Append(valueBonus.ToString("0.##"));
             }
 
-            if (percent != 0)
+            if (percentBonus == 0)
             {
-                if (hasValueBonus)
-                {
-                    text.Append(" (");
-                }
+                return;
+            }
 
-                text.Append(SignChar(percent))
-                    .Append(percent.ToString("0.##"))
-                    .Append("%");
+            if (hasValueBonus)
+            {
+                text.Append(" (");
+            }
 
-                if (hasValueBonus)
-                {
-                    text.Append(")");
-                }
+            if (canDisplayPositiveSign
+                || percentBonus < 0)
+            {
+                text.Append(SignChar(percentBonus));
+            }
+
+            text.Append(percentBonus.ToString("0.##"))
+                .Append("%");
+
+            if (hasValueBonus)
+            {
+                text.Append(")");
             }
         }
 
@@ -54,7 +71,7 @@
             }
 
             this.Visibility = Visibility.Visible;
-            var text = (AutoStringBuilder)this.statEffect.Description;
+            var text = (AutoStringBuilder)this.StatEffect.Description;
 
             var level = currentLevel;
             if (level < this.Level)
@@ -62,11 +79,16 @@
                 level = this.Level;
             }
 
-            var totalValueBonus = this.statEffect.CalcTotalValueBonus(level);
-            var totalPercentBonus = this.statEffect.CalcTotalPercentBonus(level);
+            // TODO: we didn't implement handling of StatEffect.DisplayTotalValue here, it's just used to hide the + sign
+            // it's implemented only for ViewModelSkillEffectCombinedStats
+            var totalValueBonus = this.StatEffect.CalcTotalValueBonus(level);
+            var totalPercentBonus = this.StatEffect.CalcTotalPercentBonus(level);
 
             text.Append(" ");
-            FormatBonusText(text, totalValueBonus, totalPercentBonus);
+            FormatBonusText(text,
+                            totalValueBonus,
+                            totalPercentBonus,
+                            canDisplayPositiveSign: !this.StatEffect.DisplayTotalValue);
 
             this.Description = text;
         }

@@ -61,7 +61,8 @@
             componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Weapon");
+                                           "Weapon",
+                                           isPrimaryLight: false);
 
             skeletonComponents.Add(componentLightInSkeleton);
             skeletonComponents.Add(componentLightSource);
@@ -163,6 +164,12 @@
             return ClientLighting.CreateLightSourceSpot(
                 sceneObject,
                 this.ItemLightConfig);
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.UsesPowerBanks);
         }
 
         protected sealed override void PrepareProtoWeapon(

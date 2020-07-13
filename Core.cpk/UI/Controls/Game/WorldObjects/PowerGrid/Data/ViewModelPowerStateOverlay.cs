@@ -62,13 +62,13 @@
                         this.IsPowerOutage = false;
                         return;
 
-                    case ElectricityConsumerState.PowerOffOutage:
+                    case ElectricityConsumerState.PowerOnIdle:
                         this.IsPowerOn = false;
                         this.IsPowerOff = false;
                         this.IsPowerOutage = true;
                         return;
 
-                    case ElectricityConsumerState.PowerOn:
+                    case ElectricityConsumerState.PowerOnActive:
                         this.IsPowerOn = true;
                         this.IsPowerOff = false;
                         this.IsPowerOutage = false;
@@ -88,6 +88,11 @@
                     return;
 
                 case ElectricityProducerState.PowerOnIdle:
+                    this.IsPowerOn = false;
+                    this.IsPowerOff = false;
+                    this.IsPowerOutage = false;
+                    return;
+
                 case ElectricityProducerState.PowerOnActive:
                     this.IsPowerOn = true;
                     this.IsPowerOff = false;

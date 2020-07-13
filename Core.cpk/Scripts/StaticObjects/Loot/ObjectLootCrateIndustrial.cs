@@ -48,7 +48,7 @@
                                      .Add<ItemOreIron>(count: 25,    countRandom: 75,  weight: 1 / 10.0)
                                      .Add<ItemSand>(count: 50,       countRandom: 100, weight: 1 / 10.0)
                                      .Add<ItemStone>(count: 50,      countRandom: 100, weight: 1 / 10.0)
-                                     .Add<ItemCement>(count: 10,     countRandom: 40,  weight: 1 / 10.0)
+                                     .Add<ItemCement>(count: 2,      countRandom: 8,   weight: 1 / 10.0)
                                      // items
                                      .Add<ItemGlue>(count: 2,             countRandom: 3,  weight: 1 / 10.0)
                                      .Add<ItemFertilizer>(count: 2,       countRandom: 3,  weight: 1 / 10.0)

@@ -17,10 +17,14 @@
                 new ViewModelImplantSlotOnStation(container, containerEquipmentSlotId: (byte)EquipmentType.Implant);
             this.ViewModelSlot2 =
                 new ViewModelImplantSlotOnStation(container, containerEquipmentSlotId: (byte)EquipmentType.Implant + 1);
+            this.ViewModelSlot3 =
+                new ViewModelImplantSlotOnStation(container, containerEquipmentSlotId: (byte)EquipmentType.Implant + 2);
         }
 
         public ViewModelImplantSlotOnStation ViewModelSlot1 { get; }
 
         public ViewModelImplantSlotOnStation ViewModelSlot2 { get; }
+
+        public ViewModelImplantSlotOnStation ViewModelSlot3 { get; }
     }
 }

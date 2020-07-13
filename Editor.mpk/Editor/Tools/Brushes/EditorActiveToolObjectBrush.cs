@@ -2,7 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -11,6 +14,8 @@
 
     public class EditorActiveToolObjectBrush : BaseEditorActiveTool
     {
+        private readonly ClientInputContext inputContext;
+
         private readonly Action onDispose;
 
         private readonly Action<List<Vector2Ushort>> onSelected;
@@ -38,10 +43,28 @@
                     isBlockingInput: false,
                     validateCanPlaceCallback: this.ValidateCanBuild,
                     placeSelectedCallback: this.PlaceSelectedHandler);
+
+            this.inputContext = ClientInputContext
+                                .Start("Editor delete object")
+                                .HandleButtonDown(
+                                    GameButton.ActionInteract,
+                                    () =>
+                                    {
+                                        var worldObjectsToDelete = Api.Client.World.GetTile(
+                                                                          Api.Client.Input.MousePointedTilePosition)
+                                                                      .StaticObjects;
+
+                                        if (worldObjectsToDelete.Count > 0)
+                                        {
+                                            EditorStaticObjectsRemovalHelper.ClientDelete(
+                                                worldObjectsToDelete.ToList());
+                                        }
+                                    });
         }
 
         public override void Dispose()
         {
+            this.inputContext.Stop();
             this.sceneObject.Destroy();
             this.onDispose?.Invoke();
         }

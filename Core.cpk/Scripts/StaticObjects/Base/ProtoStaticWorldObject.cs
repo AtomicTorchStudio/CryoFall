@@ -3,13 +3,14 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.AmbientOcclusion;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -161,6 +162,11 @@
             this.ClientSetupRenderer(blueprint.SpriteRenderer);
         }
 
+        public virtual StaticObjectLayoutReadOnly GetLayout(IStaticWorldObject worldObject)
+        {
+            return this.Layout;
+        }
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             return this.Layout.Center;
@@ -218,9 +224,11 @@
                 // to calculate damage they're used in WeaponDamageSystem.ServerCalculateTotalDamage method.
                 RaidingProtectionSystem.SharedCanRaid(targetObject,
                                                       showClientNotification: true);
-                PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
-                                                       targetObject,
-                                                       showClientNotification: true);
+                LandClaimShieldProtectionSystem.SharedCanRaid(targetObject,
+                                                              showClientNotification: true);
+                PveSystem.SharedIsAllowStaticObjectDamage(weaponCache.Character,
+                                                          targetObject,
+                                                          showClientNotification: true);
                 NewbieProtectionSystem.SharedIsAllowStructureDamage(weaponCache.Character,
                                                                     targetObject,
                                                                     showClientNotification: true);
@@ -446,7 +454,7 @@
 
         protected virtual void ServerOnStaticObjectDestroyedByCharacter(
             [CanBeNull] ICharacter byCharacter,
-            [CanBeNull] IProtoItemWeapon byWeaponProto,
+            WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject)
         {
         }
@@ -478,8 +486,15 @@
 
             this.ServerOnStaticObjectDestroyedByCharacter(
                 byCharacter,
-                weaponCache.ProtoWeapon,
+                weaponCache,
                 staticWorldObject);
+        }
+
+        protected virtual void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)
+        {
+            WorldObjectClaimSystem.ServerTryClaim(targetObject,
+                                                  character,
+                                                  WorldObjectClaimDuration.RegularObjects);
         }
 
         protected virtual double SharedCalculateDamageByWeapon(

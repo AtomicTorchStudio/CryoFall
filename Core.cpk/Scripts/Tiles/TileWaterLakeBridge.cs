@@ -6,6 +6,10 @@
 
     public class TileWaterLakeBridge : TileWaterLake
     {
+        public override double FishingKnowledgeLevelIncrease => 10;
+
+        public override bool IsFishingAllowed => false;
+
         [NotLocalizable]
         public override string Name => "Lake bridge";
 

@@ -35,7 +35,11 @@
             Vector2D worldObjectPosition,
             int projectilesCount,
             ObjectMaterial objectMaterial,
-            bool hasTrace)
+            bool randomizeHitPointOffset,
+            bool randomRotation,
+            DrawOrder drawOrder,
+            double scale = 1.0,
+            double animationFrameDuration = 2 / 60.0)
         {
             var sceneObject = Api.Client.Scene.CreateSceneObject("Temp_HitSparks");
             sceneObject.Position = worldObjectPosition;
@@ -48,11 +52,13 @@
                     hitWorldObject,
                     protoWorldObject,
                     hitPoint,
-                    isRangedWeapon: hasTrace);
+                    isRangedWeapon: randomizeHitPointOffset);
             }
 
+            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
             if (projectilesCount == 1
-                && !hasTrace)
+                && randomizeHitPointOffset
+                && sparksEntry.AllowRandomizedHitPointOffset)
             {
                 // randomize hitpoint a bit by adding a little random offset
                 var maxOffsetDistance = 0.2;
@@ -64,28 +70,24 @@
                 hitPoint += randomOffset;
             }
 
-            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
             var componentSpriteRender = Api.Client.Rendering.CreateSpriteRenderer(
                 sceneObject,
                 positionOffset: hitPoint,
-                spritePivotPoint: (0.5, 0.225),
-                drawOrder: hasTrace
-                               ? DrawOrder.Light
-                               : DrawOrder.Default);
+                spritePivotPoint: (0.5, sparksEntry.PivotY),
+                drawOrder: drawOrder);
             componentSpriteRender.DrawOrderOffsetY = -hitPoint.Y;
-            componentSpriteRender.Scale = (float)Math.Pow(1.0 / projectilesCount, 0.35);
+            componentSpriteRender.Scale = (float)scale * Math.Pow(1.0 / projectilesCount, 0.35);
 
             if (sparksEntry.UseScreenBlending)
             {
                 componentSpriteRender.BlendMode = BlendMode.Screen;
             }
 
-            if (!hasTrace)
+            if (randomRotation)
             {
                 componentSpriteRender.RotationAngleRad = (float)(RandomHelper.NextDouble() * 2 * Math.PI);
             }
 
-            const double animationFrameDuration = 1 / 30.0;
             var componentAnimator = sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
             var hitSparksEntry = sparksEntry;
             componentAnimator.Setup(
@@ -185,6 +187,7 @@
                 hasTrace: weaponTracePreset?.HasTrace ?? false);
 
             protoWeapon.ClientOnWeaponHitOrTrace(firingCharacter,
+                                                 worldPositionSource,
                                                  protoWeapon,
                                                  protoAmmo,
                                                  protoCharacter,
@@ -258,7 +261,11 @@
                                                worldObjectPosition,
                                                projectilesCount,
                                                objectMaterial,
-                                               hasTrace: weaponTracePreset.HasTrace);
+                                               randomizeHitPointOffset: !weaponTracePreset.HasTrace,
+                                               randomRotation: !weaponTracePreset.HasTrace,
+                                               drawOrder: weaponTracePreset.DrawHitSparksAsLight
+                                                              ? DrawOrder.Light
+                                                              : DrawOrder.Default);
                         }
                     });
 
@@ -329,7 +336,8 @@
                                                isPartyMember: partyId > 0
                                                               && partyId == PartySystem.ClientCurrentParty?.Id);
 
-            const float volume = SoundConstants.VolumeWeapon;
+            float volume = SoundConstants.VolumeWeapon;
+            volume *= protoWeapon.ShotVolumeMultiplier;
             var pitch = RandomHelper.Range(0.95f, 1.05f);
 
             IComponentSoundEmitter emitter;
@@ -565,7 +573,7 @@
                 && character.IsInitialized)
             {
                 if (Api.IsClient
-                    && hasTrace
+                    && (hasTrace || protoWeapon is IProtoItemWeaponRanged)
                     && character.GetClientState<BaseCharacterClientState>().SkeletonRenderer is {} skeletonRenderer)
                 {
                     var protoSkeleton = character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;

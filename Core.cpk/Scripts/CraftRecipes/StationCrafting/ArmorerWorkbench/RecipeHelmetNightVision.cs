@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 10);
             inputItems.Add<ItemPlastic>(count: 10);
-            inputItems.Add<ItemComponentsElectronic>(count: 10);
+            inputItems.Add<ItemWire>(count: 20);
 
             outputItems.Add<ItemHelmetNightVision>();
         }

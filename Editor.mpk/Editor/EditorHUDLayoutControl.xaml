@@ -41,7 +41,7 @@
         <core:Scalebox Grid.Row="0" Grid.RowSpan="3" Scale="1">
             <Border VerticalAlignment="Top" HorizontalAlignment="Left"
                     Margin="5,5,0,0">
-                <notifications:HUDNotificationsPanelControl />
+                <notifications:HudNotificationsPanelControl />
             </Border>
         </core:Scalebox>
     </Grid>

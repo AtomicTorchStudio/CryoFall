@@ -19,6 +19,8 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public override bool IsRelocatable => true;
+
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)

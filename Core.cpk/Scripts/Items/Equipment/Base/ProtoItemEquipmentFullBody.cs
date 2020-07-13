@@ -38,7 +38,7 @@
         /// <inheritdoc />
         public ReadOnlySoundPreset<CharacterSound> SoundPresetMovementOverride { get; private set; }
 
-        protected override double DefenseMultiplier { get; } = DefaultDefenseMultipliers.FullBody;
+        protected override double DefenseMultiplier => DefaultDefenseMultipliers.FullBody;
 
         public virtual void ClientGetHeadSlotSprites(
             IItem item,
@@ -96,7 +96,7 @@
             // (extra check will be performed to ensure only this armor equipped in any of these slots)
             return new[]
             {
-                (byte)EquipmentType.Chest,
+                (byte)EquipmentType.Armor,
             };
         }
     }

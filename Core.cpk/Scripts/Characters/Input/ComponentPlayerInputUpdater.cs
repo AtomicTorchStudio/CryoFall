@@ -58,6 +58,14 @@
                 return true;
             }
 
+            if (ClientCurrentCharacterHelper.PrivateState?
+                    .CurrentActionState?.IsBlocksMovement
+                ?? false)
+            {
+                // current action blocks input
+                return true;
+            }
+
             if (!MainMenuOverlay.IsHidden)
             {
                 // main menu displayed - suppress input

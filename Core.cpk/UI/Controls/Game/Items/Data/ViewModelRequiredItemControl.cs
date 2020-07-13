@@ -4,6 +4,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ViewModelRequiredItemControl : BaseViewModel
     {
@@ -112,8 +113,8 @@
 
         private int CalculateAvailableCount()
         {
-            var currentPlayerCharacter = Client.Characters.CurrentPlayerCharacter;
-            return currentPlayerCharacter.CountItemsOfType(this.protoItemWithCount.ProtoItem);
+            return Client.Characters.CurrentPlayerCharacter
+                         .CountItemsOfType(this.protoItemWithCount.ProtoItem);
         }
     }
 }

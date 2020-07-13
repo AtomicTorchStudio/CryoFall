@@ -55,62 +55,74 @@ Szybkość wzrostu roślin
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Szybkość szukania
 
-Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
-Premia – obrażenia
-
 Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
 Premia – obrażenia
 
-Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
-Premia – obrażenia
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
 
-Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
-Premia – obrażenia
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Szybkość zużycia
 
-Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Czas przeładowania
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Premia – obrażenia
 
 Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
 Szansa na efekt specjalny
 
-Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
-Szansa na efekt specjalny
-
-Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
-Szansa na efekt specjalny
-
-Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
-Szansa na efekt specjalny
-
-Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
-Szansa na efekt specjalny
-
 Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
-Szybkość zużycia
-
-Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
-Szybkość zużycia
-
-Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
-Szybkość zużycia
-
-Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
-Szybkość zużycia
-
-Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
 Szybkość zużycia
 
 Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
 Czas przeładowania
 
-Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Szybkość zużycia
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Czas przeładowania
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Szybkość zużycia
 
 Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
 Zużycie energii
 
-Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
-Czas przeładowania
+Scripts/Base/Stats/StatName@WeaponVehicleDamageBonusMultiplier:
+Premia do obrażeń
+
+Scripts/Base/Stats/StatName@WeaponVehicleDegrationRateMultiplier:
+Szybkość niszczenia broni
+
+Scripts/Base/Stats/StatName@WeaponVehicleReloadingSpeedMultiplier:
+Czas przeładunku broni
+
+Scripts/Base/Stats/StatName@WeaponVehicleSpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Szybkość zużycia
 
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Czas przeładowania
@@ -192,4 +204,13 @@ Gniazda w kolejce wytwarzania
 
 Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
 Toksyczność leku
+
+Scripts/Base/Stats/StatName@FishingKnowledgeLevel:
+Poziom wiedzy rybackiej
+
+Scripts/Base/Stats/StatName@FishingSuccess:
+Sukces rybacki
+
+Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
+Zużycie paliwa
 

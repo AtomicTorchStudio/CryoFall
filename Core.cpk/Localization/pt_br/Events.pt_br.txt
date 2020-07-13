@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `O lixo espacial caiu na área do mapa em destaque.
 [br]Corra para recolher tranqueiras valiosas!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} sofreu uma derrota para:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Progresso: {0}/{1}
 

@@ -145,6 +145,13 @@
             WateringSystem.Instance.ClientTryStartAction();
         }
 
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.ClickToRefilWateringCan);
+            hints.Add(ItemHints.ClickToWaterPlants);
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemGeneric.Clone()

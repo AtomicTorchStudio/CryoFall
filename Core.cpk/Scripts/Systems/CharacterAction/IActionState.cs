@@ -15,6 +15,8 @@
 
         bool IsCompleted { get; }
 
+        bool IsDisplayingProgress { get; }
+
         double ProgressPercents { get; }
 
         IWorldObject TargetWorldObject { get; }

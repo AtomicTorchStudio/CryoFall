@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -47,6 +48,8 @@
             out bool isTooFar);
 
         public static bool HasInstance => instance != null;
+
+        public bool HideBlueprintOnOverlapWithTheSameObject { get; set; } = true;
 
         public bool IsBlockingInput { get; private set; }
 
@@ -195,6 +198,8 @@
             this.sceneObjectForComponents = null;
             this.blueprintRenderer = null;
             this.tilesBlueprint = null;
+
+            ClientLandClaimAreaManager.RemoveBlueprintRenderer();
         }
 
         private void OnPlaceSelected(Vector2Ushort tilePosition, bool isButtonHeld)
@@ -228,8 +233,10 @@
                 .AddComponent<SceneObjectPositionSynchronizer>()
                 .Setup(this.SceneObject);
             this.blueprintRenderer = new ClientBlueprintRenderer(this.sceneObjectForComponents);
+            this.blueprintRenderer.IsEnabled = false;
             this.tilesBlueprint = new ClientBlueprintTilesRenderer(this.sceneObjectForComponents);
             this.tilesBlueprint.Setup(this.protoStaticWorldObject.Layout);
+            this.tilesBlueprint.IsEnabled = false;
 
             if (this.isDrawConstructionGrid)
             {
@@ -263,14 +270,17 @@
 
         private void UpdateBlueprintCanBuild(Tile tile)
         {
-            foreach (var tileObj in tile.StaticObjects)
+            if (this.HideBlueprintOnOverlapWithTheSameObject)
             {
-                if (tileObj.ProtoStaticWorldObject == this.protoStaticWorldObject
-                    || ProtoObjectConstructionSite.SharedIsConstructionOf(tileObj, this.protoStaticWorldObject))
+                foreach (var tileObj in tile.StaticObjects)
                 {
-                    this.blueprintRenderer.IsEnabled = false;
-                    this.tilesBlueprint.IsEnabled = false;
-                    return;
+                    if (tileObj.ProtoStaticWorldObject == this.protoStaticWorldObject
+                        || ProtoObjectConstructionSite.SharedIsConstructionOf(tileObj, this.protoStaticWorldObject))
+                    {
+                        this.blueprintRenderer.IsEnabled = false;
+                        this.tilesBlueprint.IsEnabled = false;
+                        return;
+                    }
                 }
             }
 

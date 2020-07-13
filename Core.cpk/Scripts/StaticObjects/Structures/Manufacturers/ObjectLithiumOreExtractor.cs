@@ -24,7 +24,7 @@
 
         public override double LiquidCapacity => 100;
 
-        public override double LiquidProductionAmountPerSecond => 0.25;
+        public override double LiquidProductionAmountPerSecond => 0.5;
 
         public override string Name => "Lithium salts extractor";
 
@@ -65,13 +65,13 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemPlanks>(count: 10);
-            build.AddStageRequiredItem<ItemCement>(count: 5);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemCement>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemPlanks>(count: 10);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

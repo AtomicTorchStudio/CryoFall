@@ -21,7 +21,7 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemPlanks>(count: 20);
-            inputItems.Add<ItemIngotSteel>(count: 5);
+            inputItems.Add<ItemIngotSteel>(count: 3);
 
             outputItems.Add<ItemPickaxeSteel>();
         }

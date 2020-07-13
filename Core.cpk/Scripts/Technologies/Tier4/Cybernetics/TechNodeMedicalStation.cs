@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
 
-    public class TechNodeMedicalStation : TechNode<TechGroupCybernetics>
+    public class TechNodeMedicalStation : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {

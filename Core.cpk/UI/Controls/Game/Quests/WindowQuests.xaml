@@ -196,12 +196,12 @@
                                             HorizontalAlignment="Stretch"
                                             Margin="41,-2,45,12">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="2.5" />
                                                 <!-- Vertical line -->
-                                                <ColumnDefinition Width="6" />
+                                                <ColumnDefinition Width="2.5" />
                                                 <!-- Margin -->
-                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="6" />
                                                 <!-- Description -->
+                                                <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
 
                                             <Rectangle HorizontalAlignment="Stretch"
@@ -209,7 +209,7 @@
                                                        Margin="0,4,0,2"
                                                        UseLayoutRounding="True">
                                                 <Rectangle.Fill>
-                                                    <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.5" />
+                                                    <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.25" />
                                                 </Rectangle.Fill>
                                             </Rectangle>
 

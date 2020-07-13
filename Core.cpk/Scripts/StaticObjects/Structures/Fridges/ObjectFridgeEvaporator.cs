@@ -30,7 +30,7 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY += 0.25;
-            renderer.PositionOffset += (0, 0.1);
+            renderer.PositionOffset += (0, 0.25);
         }
 
         protected override void PrepareConstructionConfig(
@@ -54,18 +54,12 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var yOffset = 0.25;
             data.PhysicsBody
-                .AddShapeRectangle(size: (0.7, 0.45),
-                                   offset: (0.15, 0.15))
-                .AddShapeRectangle(size: (0.8, 1.1),
-                                   offset: (0.1, 0.1),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.7, 0.2),
-                                   offset: (0.15, 0.95),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.8, 1.1),
-                                   offset: (0.1, 0.1),
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.7, 0.45), offset: (0.15, yOffset + 0.05))
+                .AddShapeRectangle((0.8, 1.1),  offset: (0.1, yOffset), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.7, 0.2),  offset: (0.15, 0.85),   group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.8, 1.1),  offset: (0.1, yOffset), group: CollisionGroups.ClickArea);
         }
     }
 }

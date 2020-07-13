@@ -2,7 +2,7 @@
 {
     public class ItemPickaxeStone : ProtoItemToolPickaxe
     {
-        public override double DamageToMinerals => 50;
+        public override double DamageToMinerals => 55;
 
         public override double DamageToNonMinerals => 12;
 

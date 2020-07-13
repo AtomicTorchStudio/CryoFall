@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
+    // This item is no longer used after to introduction of fuel cells, but we're planning to restore it.
     public class ItemReactorCoreEmpty : ProtoItemGeneric
     {
         public override string Description =>

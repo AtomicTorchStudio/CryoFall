@@ -234,6 +234,10 @@
             {
                 damageDescription = protoItem.OverrideDamageDescription;
             }
+            else if (protoAmmo is IAmmoWithCustomWeaponCacheDamageDescription customAmmo)
+            {
+                damageDescription = customAmmo.DamageDescriptionForWeaponCache;
+            }
             else if (protoAmmo != null)
             {
                 damageDescription = protoAmmo.DamageDescription;
@@ -649,15 +653,18 @@
                                                    radius: eventNetworkRadius,
                                                    onlyPlayers: true);
                 observers.Remove(character);
+                
+                if (observers.Count > 0)
+                {
+                    var partyId = PartySystem.ServerGetParty(character)?.Id ?? 0;
 
-                var partyId = PartySystem.ServerGetParty(character)?.Id ?? 0;
-
-                Instance.CallClient(observers.AsList(),
-                                    _ => _.ClientRemote_OnWeaponShot(character,
-                                                                     partyId,
-                                                                     protoWeapon,
-                                                                     character.ProtoCharacter,
-                                                                     character.Position.ToVector2Ushort()));
+                    Instance.CallClient(observers.AsList(),
+                                        _ => _.ClientRemote_OnWeaponShot(character,
+                                                                         partyId,
+                                                                         protoWeapon,
+                                                                         character.ProtoCharacter,
+                                                                         character.Position.ToVector2Ushort()));
+                }
             }
         }
 

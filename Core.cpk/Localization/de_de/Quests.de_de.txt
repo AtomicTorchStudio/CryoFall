@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Lichtquellen
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+Um ein bestehendes Gebäude zu [b]verschieben[/b] – wähle einen [b]Werkzeugkoffer[/b] aus und benutze diesen am Gebäude. Bitte beachte, dass einige Gebäude nicht verschoben werden können.
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `Es ist sehr wichtig, zu verstehen, wie du deine Basis schützen kannst! Wenn du dich falsch anstellst, kannst du schnell von geschickteren Überlebenen überfallen werden.
 [br]
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Fertige ein Messer an und töte ein Lebewesen
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Lege besseren Brustpanzer an
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+Lege bessere Rüstung an
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 Rüste besseren Helm aus
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Lege bessere Beinrüstung an
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Nun ist es an der Zeit, sich besser zu schützen.
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Brechstange zum Abreißen benutzen
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-Pragmium ist ein seltenes außerirdisches Mineral, das in den fortschrittlichsten Technologien benutzt wird. Versuche etwas davon zu finden.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] Vorsicht! Pragmium zu schürfen, ist sehr gefährlich.
-[*] Große Pragmiumspitzen kommen in der Wüste vor, während sich kleinere Nester häufig in der Nähe von Vulkanen befinden.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-Finde Pragmium!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Baue Salz ab
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-Bestimmte Ressourcen wie Erdöl und Lithium werden für erweiterte Technologien verwendet. Es ist von enormer Wichtigkeit zu lernen, wie diese sich gewinnen lassen.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] Ölschotenfrüchte sind überall in den [u]nördlichen Wäldern[/u] zu finden. Aus ihnen lässt sich eine kleine Menge von Erdöl gewinnen.
-[*] [u]Lithiumsalz[/u] ist ein Nebenprodukt des herkömmlichen Salzabbaus.
-[*] Salze sind in den [u]Salztonebenen[/u] der Wüste zu finden.
-[*] Das Erlernen von [u]Xenogeologie[/u] bietet Möglichkeiten zur industriellen Gewinnung dieser Ressourcen.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-Erweitere Ressourcenbeschaffung
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Fortschritte in der Industrie und Konstruktion erfordern wissenschaftliche Grundlagen, insbesondere der Chemie.
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Das Meistern von Technologien – Teil 2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+Verschiedene Arten von [b]Generatoren[/b], so wie Dampf-, Solar- und Motorgeneratoren, können gemeinsam Strom produzieren.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+[b]Detaillierte Informationen zum Stromnetz[/b] werden dir beim Interagieren mit einem deiner Stromspeichergebäude oder in deinem Land Claim angezeigt.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+Elektrische Geräte funktionieren nur [b]innerhalb[/b] des Land Claim-Bereichs. Ein elektrisches Gerät außerhalb des Land Claim-Bereichs zu bauen, ist zwecklos.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+Elektrische Energie wird in [b]Stromspeicher[/b]-Gebäuden aufbewahrt und steht zur bequemen Nutzung zur Verfügung. Es ist von Vorteil, die Gesamtstromkapazität deiner Basis zu erhöhen.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+Du kannst benutzerdefinierte [u]Start- und Endgrenzwerte[/u] für jeden Stromverbraucher und -generator bestimmen.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+Mehrere miteinander verbundene Land Claim-Bereiche werden zu [b]einem Stromnetz[/b] zusammengefasst.
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 Der Aufbau eines Stromnetzes in deiner Basis wird deine Effizienz zunehmend verbessern. Es gibt viele erweiterte Konstruktionen, die Strom benötigen, um zu funktionieren.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] Elektronische Geräte funktionieren ausschließlich [b]innerhalb[/b] eines Land Claim-Bereichs. Elektronische Geräte außerhalb eines Land Claim-Bereichs zu bauen, ist zwecklos.
-[*] Strom wird in Gebäuden zur [b]Stromspeicherung[/b] gelagert und kann so jederzeit bequem genutzt werden. Es ist sinnvoll, die Gesamtstromkapazität deiner Basis zu erhöhen.
-[*] Verschiedene Arten von [b]Generatoren[/b], z.B. Dampferzeuger, Solar- und Motorgeneratoren, können gemeinsam zur Stromerzeugung genutzt werden.
-[*] Solltest du [u]nicht genügend[/u] Strom gespeichert haben, kommt es in deiner Basis zu einem [b]Stromausfall[/b] und du musst die Stromversorgung manuell wiederherstellen.
-[*] [b]Detaillierte Informationen zum Stromnetz[/b] lassen sich beim Interagieren mit Stromspeichern oder deinem Land Claim abrufen.
-[*] Mehrere miteinander verbundene Land Claims gelten als [b]einzelnes Stromnetz[/b].`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 Baue ein Stromnetz auf
@@ -520,6 +505,27 @@ Erkunde alte Ruinen
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 Durchsuche einige Container
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+[u]Filet[/u] kann mithilfe der [b]Benutzen[/b]-Aktion (siehe jeden anderen benutzbaren Gegenstand) aus gefangenem Fisch [u]gewonnen[/u] werden.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+Deine [b]Angelkenntnisse[/b] spielen eine große Rolle dabei, welche Arten von Fisch du fangen kannst und wie viel Erfolg du dabei hast.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+In [u]Süß- oder Salzgewässern[/u] lassen sich verschiedene Fische fangen.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+Fange einen Fisch
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+Verarbeite einen Fisch zu Filet
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+Angeln ist nicht nur ein guter Zeitvertreib, sondern auch eine gute Art an mehr Essen zu gelangen. Versuche ein paar Fische zu fangen!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+Angeln!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Noch mehr Zeit für die Jagd! Diesmal mit noch gefährlicheren Tieren.
 
@@ -540,4 +546,53 @@ Meisterjäger – Teil 4
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 Meisterjäger – Teil 5
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+Pragmium ist ein seltenes außerirdisches Mineral, das in den fortschrittlichsten Technologien benutzt wird. Versuche etwas davon zu finden.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] Vorsicht! Pragmium zu schürfen, ist sehr gefährlich.
+[*] Große Pragmiumspitzen kommen in der Wüste vor, während sich kleinere Nester häufig in der Nähe von Vulkanen befinden.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+Finde Pragmium!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Baue Salz ab
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+Bestimmte Ressourcen wie Erdöl und Lithium werden für erweiterte Technologien verwendet. Es ist von enormer Wichtigkeit zu erlernen, wie diese sich gewinnen lassen.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Ölschotenfrüchte sind überall in den [u]nördlichen Wäldern[/u] zu finden. Aus ihnen lässt sich eine kleine Menge von Erdöl gewinnen.
+[*] [u]Lithiumsalz[/u] ist ein Nebenprodukt des herkömmlichen Salzabbaus.
+[*] Salze sind in den [u]Salztonebenen[/u] der Wüste zu finden.
+[*] Das Erlernen von [u]Xenogeologie[/u] bietet Möglichkeiten zur industriellen Gewinnung dieser Ressourcen.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+Erweiterte Ressourcengewinnung
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+Verwende das [b]Steuergerät[/b] um die Drohnen zu kontrollieren.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+Drohnen können nicht nur zum [b]Abbau von Bodenschätzen[/b], sondern auch zum [b]Fällen von Bäumen[/b] verwendet werden.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+Um sie zu steuern, müssen sich Drohnen in deinem [b]Inventar[/b] oder deiner [b]Hotbar[/b] befinden.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+Nach Bodenschätzen zu graben und Bäume selbst zu fällen, ist mühsam, also solltest du auf jeden Fall und so bald wie möglich zu automatisierten Drohnen wechseln, die diesen Job für dich erledigen.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+Abbau durch Drohnen
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+Während deine Basis wächst, ist es von Vorteil, [u]deine Stromspeicherkapazität zu erweitern[/u], damit du stets einen [u]ausreichenden Überschuss[/u] besitzt.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+Jetzt, wo du eine solide Grundlage für dein Stromnetz geschaffen hast, ist es vielleicht an der Zeit, es durch weitere nützliche Gebäude zu erweitern, die dein Leben bequemer gestalten.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+Weitere Optionen für das Stromnetz
 

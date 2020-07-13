@@ -19,7 +19,12 @@
 
         Task<ProtoPlantTooltipPrivateData> ClientGetTooltipData(IStaticWorldObject plant);
 
-        void ServerOnWatered(ICharacter byCharacter, IStaticWorldObject worldObjectPlant, double wateringDuration);
+        bool ServerCanBeWatered(IStaticWorldObject worldObjectPlant);
+
+        void ServerOnWatered(
+            IStaticWorldObject worldObjectPlant,
+            double wateringDuration,
+            ICharacter byCharacter = null);
 
         void ServerRefreshCurrentGrowthDuration(IStaticWorldObject worldObjectPlant);
 

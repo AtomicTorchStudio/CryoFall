@@ -16,10 +16,10 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.VeryShort;
+            duration = CraftingDuration.Second;
 
             inputItems.Add<ItemNitrocellulosePowder>(count: 10);
-            inputItems.Add<ItemSolvent>(count: 5);
+            inputItems.Add<ItemSolvent>(count: 3);
 
             outputItems.Add<ItemFormulatedGunpowder>(count: 10);
         }

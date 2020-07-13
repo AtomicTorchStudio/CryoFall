@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationPiano : ProtoObjectDecoration
+    public class ObjectDecorationPiano : ProtoObjectDecoration
     {
         public override string Description => "Beautiful and masterfully made jet-black piano.";
 

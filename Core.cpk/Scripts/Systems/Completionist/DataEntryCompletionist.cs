@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.GameApi.Data;
 
     [Serializable]
-    public readonly struct DataEntryCompletionist
+    public readonly struct DataEntryCompletionist : ICompletionistDataEntry
     {
         public DataEntryCompletionist(bool isRewardClaimed, IProtoEntity prototype)
         {

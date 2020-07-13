@@ -3,6 +3,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -51,8 +52,26 @@
         public bool IsIconAvailable
             => ClientCrateIconHelper.GetOriginalIcon(this.publicState.IconSource) != null;
 
+        protected override void DisposeViewModel()
+        {
+            WindowCrateIconSelector.CloseWindowIfOpened();
+            base.DisposeViewModel();
+        }
+
         private void ExecuteCommandOpenCrateIconSelectorWindow()
         {
+            var protoItemInHand = ClientItemsManager.ItemInHand?.ProtoItem;
+            if (protoItemInHand is null)
+            {
+                return;
+            }
+
+            // use the item in hand as an icon source
+            var protoObjectCrate = (IProtoObjectCrate)this.worldObjectCrate.ProtoGameObject;
+            protoObjectCrate.ClientSetIconSource(this.worldObjectCrate, protoItemInHand);
+            return;
+
+            // the old mechanic is no longer used
             var existingItems = this.worldObjectCrate.GetPrivateState<ObjectCratePrivateState>().ItemsContainer.Items
                                     .ToList();
             var window = new WindowCrateIconSelector(this.publicState.IconSource, existingItems);

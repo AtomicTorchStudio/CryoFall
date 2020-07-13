@@ -48,6 +48,9 @@
 
             // dazed -100%, dazed effect cannot be added if character is drunk
             effects.AddPercent(this, StatName.DazedIncreaseRateMultiplier, -100);
+
+            // +5 fishing knowledge :-)
+            effects.AddValue(this, StatName.FishingKnowledgeLevel, 5);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)

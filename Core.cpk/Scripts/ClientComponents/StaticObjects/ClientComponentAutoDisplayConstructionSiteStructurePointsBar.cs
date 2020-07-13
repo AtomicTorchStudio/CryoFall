@@ -76,7 +76,7 @@
             this.componentAttachedUIElement = Api.Client.UI.AttachControl(
                 this.SceneObject,
                 this.structurePointsBarControl,
-                positionOffset: offset + (0, 0.55),
+                positionOffset: offset + (0, 0.85),
                 isFocusable: false);
         }
 

@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 建造
 
+UI/CoreStrings@Action_Relocate:
+搬迁
+
 UI/CoreStrings@Action_Repair:
 修理
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+兼容武器：
+
+UI/CoreStrings@AutosaveNotification_Completed:
+存档完毕！
+
+UI/CoreStrings@AutosaveNotification_Content1:
+服务器将进行一次常规世界存档。
+
+UI/CoreStrings@AutosaveNotification_Content2:
+玩家将可能遭遇短暂卡顿。
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+存档倒计时：{0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+保存中...
+
+UI/CoreStrings@AutosaveNotification_Title:
+服务器快照
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 摧毁于
@@ -174,6 +198,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 此建筑储存电力。
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+此建筑建造后不可移动。
+
 UI/CoreStrings@Copy:
 复制
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 无头像
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-挑选一个图标
+用一个物品点此来讲其图标放置在箱子上。
+
+UI/CoreStrings@DamageType_Chemical:
+化学品
+
+UI/CoreStrings@DamageType_Cold:
+冷
+
+UI/CoreStrings@DamageType_Explosion:
+爆破
+
+UI/CoreStrings@DamageType_Heat:
+热
+
+UI/CoreStrings@DamageType_Impact:
+冲击
+
+UI/CoreStrings@DamageType_Kinetic:
+动能
+
+UI/CoreStrings@DamageType_Psi:
+灵能
+
+UI/CoreStrings@DamageType_Radiation:
+辐射
 
 UI/CoreStrings@Defense_Format_Chemical:
 化学防护: {0}
@@ -216,8 +267,8 @@ UI/CoreStrings@Defense_Format_Chemical:
 UI/CoreStrings@Defense_Format_Cold:
 寒冷防护: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-电击防护: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+爆炸防护： {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 热能防护: {0}
@@ -273,6 +324,12 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 表层矿点（高采集量）
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+您确定要使用{0}吗？
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+同时控制的无人机
+
 UI/CoreStrings@Duration_Instant:
 瞬间
 
@@ -288,11 +345,26 @@ UI/CoreStrings@Duration_VeryQuick:
 UI/CoreStrings@Duration_VerySlow:
 非常慢
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+额外效果：
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+移除效果：
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EU/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+你需要造成至少{0}%总伤害才能在本次事件中获得奖励。祝下次好运！
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+伤害不足
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+你造成了{0}%的总伤害！你获得了战利品的{1}/{2}。
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall的官方Discord服务器(仅限英文)
@@ -402,6 +474,12 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 需要
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+腐败倒计时：{0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+永不
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 快捷键
 
@@ -425,6 +503,12 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 输出
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+缓冲区
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+T{0}
 
 UI/CoreStrings@LearningPoints:
 学习点数
@@ -595,6 +679,12 @@ UI/CoreStrings@MenuServers_PublicGUID:
 
 UI/CoreStrings@MenuServers_ServersCount:
 服务器
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+此服务器由社区成员搭建。游戏开发者对于此服务器没有管制权限，也无法保证您在此服务器中的游戏体验。此服务器可能使用了自定数值系统，让游戏更加容易或困难。此服务器的管理员将负责为其玩家提供支持与监管。
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+社区
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 顶置服务器往往具有较高声誉，能够提供高质量的游戏体验，类似官方服务器。但是这些服务器仍然是由社区运营的。
@@ -825,6 +915,26 @@ UI/CoreStrings@Performance_VRAMUsage:
 UI/CoreStrings@PleaseWait:
 请耐心等待...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+此耗能设备[b]未连接[/b]至电网。
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+此建筑将持续工作，直到能量等级低于停止阈值([b]{0}%[/b])。
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+此耗能设备[b]已连接[/b]至电网。
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`电力等级已低于关闭阈值([b]{0}%[/b])。
+[br]此建筑将在电力等级高于开启阈值([b]{1}%[/b])后自动开启。`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`电力等级已低于开启阈值([b]{0}%[/b])。
+[br]此建筑将在电力等级高于开启阈值后自动开启。`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+此耗能设备[b]正闲置[/b]。
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 未连接至电网。
 
@@ -891,6 +1001,50 @@ UI/CoreStrings@PowerGridState_Status_Nominal:
 UI/CoreStrings@PowerGridState_Storages:
 储量：
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+此发电机[b]未连接[/b]至电网。
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+此建筑将持续工作，直到能量等级达到停止阈值([b]{0}%[/b])。
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+此发电机[b]已连接[/b]至电网。
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`电力等级已高于关闭阈值([b]{0}%[/b])。
+[br]此建筑将在电力等级低于开启阈值([b]{1}%[/b])后自动开启。`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`电力等级已高于开启阈值([b]{0}%[/b])。
+[br]此建筑将在电力等级低于开启阈值后自动开启。`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+此发电机[b]正闲置[/b]。
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+已连接至电网。
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+已断开与电网的连接。
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+能量控制
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+电网等级
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+关闭:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+启动：
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+能量等级阈值
+
+UI/CoreStrings@Protection_Name:
+防护:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 获取
 
@@ -933,6 +1087,129 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 删档
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+你无法对一个启用了护盾的基地进行此行动。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+激活护盾将花费{0}（激活延迟）。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+激活护盾将花费{0}（激活延迟加额外剩余冷却时间）。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+以当前储量，护盾能提供至多{0}的保护。
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+激活延迟：
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+激活护盾
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+关闭护盾
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+充能护盾
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+你基地的护盾激活因为突击隔断而被取消。
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+无法在突击隔断期间激活护盾。
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+冷却：
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(冷却{0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+当前护盾充能：
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+关闭已激活或激活中的护盾将开始冷却时间({0})。在冷却时间中，护盾无法再次激活。
+
+UI/CoreStrings@ShieldProtection_Description_1:
+护盾能在你离开或离线时保护你的基地。
+
+UI/CoreStrings@ShieldProtection_Description_2:
+在护盾保护状态下，基地大门和墙体将不受任何伤害。
+
+UI/CoreStrings@ShieldProtection_Description_3:
+锁定：没有人能在护盾保护状态下进入或离开基地（所有门都将锁死）。
+
+UI/CoreStrings@ShieldProtection_Description_4:
+在激活护盾以前必须用电力为其充能。
+
+UI/CoreStrings@ShieldProtection_Description_5:
+激活护盾需要时间。
+
+UI/CoreStrings@ShieldProtection_Description_6:
+关闭护盾后无法马上再次重新开启。
+
+UI/CoreStrings@ShieldProtection_Description_7:
+激活护盾将限制工具箱和撬棍的使用。
+
+UI/CoreStrings@ShieldProtection_Description_8:
+护盾无法在激活期间充能 - 必须先将其关闭。
+
+UI/CoreStrings@ShieldProtection_Description_9:
+如果基地在护盾启动时遭遇攻击（突袭隔断开始），护盾启动将被取消，并进入冷却。
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+确定要激活护盾吗？
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+确定要关闭护盾吗？
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+锁定：此门被激活的护盾锁死。
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+此领地被激活护盾所保护。
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+预计持续时间：
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+最大持续时间：
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+除非被打断，护盾将在{0}后打开。（可能打断原因有所有人主动打断，或被袭击导致袭击隔断触发）
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+此基地正在激活护盾
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+此基地正受护盾保护，最大持续{0}。
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]你可以点此马上关闭护盾。[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+此基地正受护盾保护
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+此基地正受护盾保护。墙体和门将不受伤害。无法激活突袭隔断。
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+充能至：
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+护盾状态：
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+激活中
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+激活
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+未激活
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+拥有高等级领地建筑的玩家可使用离线基地保护。尽快升级领地建筑来开启此功能。
+
 UI/CoreStrings@Skill:
 技能
 
@@ -968,6 +1245,9 @@ UI/CoreStrings@SupporterPack_Description:
 `支援包裹是给予那些特别支持了CryoFall的玩家们的一系列奖励物品。作为感谢，游戏将在聊天区域内为这些玩家加入支援徽章。
 [br][br]支援包裹不提供任何游戏内优势并且是可选的。其中包括了游戏的完整原声，概念设计图，高清原画以及聊天徽章等内容。在抢先体验阶段将会有更多内容加入。
 [br][br]我们发自内心的感谢大家的帮助！`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 学习点数: {0}
@@ -1010,6 +1290,9 @@ UI/CoreStrings@Technology:
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 搜索...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 标题
@@ -1083,6 +1366,9 @@ UI/CoreStrings@TitlePowerGrid:
 UI/CoreStrings@TitleSafeStorage:
 安全存储
 
+UI/CoreStrings@TitleShieldProtection:
+S.H.E.I.L.D.
+
 UI/CoreStrings@TitleStructurePoints:
 结构值
 
@@ -1116,6 +1402,9 @@ UI/CoreStrings@Vehicle_EnergyLevel:
 UI/CoreStrings@Vehicle_Enter:
 进入
 
+UI/CoreStrings@Vehicle_FuelCells:
+燃料电池
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 护甲{1:F0}/{2:F0} ({0}%)
 
@@ -1130,6 +1419,9 @@ UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 武器
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+武器({0} 槽位)
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 此武器只有在装备在机甲上后才能使用。
@@ -1175,8 +1467,53 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 蓝图解锁
 
+UI/CoreStrings@Victory:
+胜利!
+
+UI/CoreStrings@Weapon_Accuracy:
+精准
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+弹药容量
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+穿甲
+
+UI/CoreStrings@Weapon_AttackRate:
+攻击速率
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 兼容弹药：
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+当前弹药：
+
+UI/CoreStrings@Weapon_Damage:
+伤害
+
+UI/CoreStrings@Weapon_DamageType:
+伤害类型
+
+UI/CoreStrings@Weapon_FireRate:
+开火速率
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+单发
+
+UI/CoreStrings@Weapon_Range:
+远程
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+装弹速度
+
+UI/CoreStrings@Weapon_Spread:
+散布
+
+UI/CoreStrings@Weapon_StoppingPower:
+抑止力
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+以下属性为武器装备参考弹药({0})后的数值。
 
 UI/CoreStrings@Window_Tab_Main:
 主要
@@ -1192,14 +1529,26 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 随机
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+最大尺寸: {0}厘米
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+最大重量: {0}公斤
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 接受
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+新纪录！
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 进度：
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 生物
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+鱼
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 食物
@@ -1431,6 +1780,12 @@ UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
 UI/CoreStrings@WindowSocial_TotalPlayers:
 总玩家数
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+现在浇水
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+下次浇水尝试于：[b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 创建新的AtomicTorch帐户
 
@@ -1611,6 +1966,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]交易站(你)[/b]
 [br]你自己的交易站。`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+此物体已被另一位玩家占据。
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+您无法在占领期结束前与其互动。
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+占领过期于：{0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+物品已占领
+
 UI/CoreStrings@Yes:
 是
 
@@ -1641,6 +2008,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 第一次击杀
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+第一次捕获
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 第一次进食
@@ -1790,7 +2160,7 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 头发颜色
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 皮肤颜色
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
@@ -1877,6 +2247,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]你可以通过[b]升级[/b]主权声明建筑来延长倒计时。
 [br]腐朽倒计时基于领地内等级[b]最高[/b]的主权建筑。`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+仅限PVP
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 没有燃料
 
@@ -1936,6 +2309,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Ti
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 铸造硬币，建造全自动贸易站来与其他幸存者进行交易。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+钓鱼
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+使用不同种类的鱼饵钓上各种鱼类。看看你能不能钓上破纪录的大鱼！
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 植入物

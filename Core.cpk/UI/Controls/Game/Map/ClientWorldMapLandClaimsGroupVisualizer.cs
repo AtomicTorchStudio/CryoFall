@@ -119,7 +119,7 @@
 
             private FrameworkElement markRaidControl;
 
-            private HUDNotificationControl raidNotification;
+            private HudNotificationControl raidNotification;
 
             private IStateSubscriptionOwner stateSubscriptionStorage;
 

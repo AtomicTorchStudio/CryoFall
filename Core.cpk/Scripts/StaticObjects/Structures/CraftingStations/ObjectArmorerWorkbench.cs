@@ -29,13 +29,12 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.DrawOrderOffsetY = 1.3;
+            renderer.DrawOrderOffsetY = 0.7;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
-            layout.Setup("###",
-                         "###");
+            layout.Setup("##");
         }
 
         protected override void PrepareConstructionConfig(
@@ -60,13 +59,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((3, 0.8),    offset: (0, 1.2))
-                .AddShapeRectangle((1, 0.5),    offset: (0, 0.7))
-                .AddShapeRectangle((3, 1),      offset: (0, 1.2),   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1, 0.5),    offset: (0, 0.7),   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((2.6, 0.25), offset: (0.2, 2.1), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((3, 1.3),    offset: (0, 1.2),   group: CollisionGroups.ClickArea)
-                .AddShapeRectangle((1, 0.5),    offset: (0, 0.7),   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((2, 0.75), offset: (0, 0.1))
+                .AddShapeRectangle((2, 0.6), offset: (0, 0.3), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.8, 0.25), offset: (0.1, 0.8), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1.8, 0.7), offset: (0.1, 0.3), group: CollisionGroups.ClickArea);
         }
     }
 }

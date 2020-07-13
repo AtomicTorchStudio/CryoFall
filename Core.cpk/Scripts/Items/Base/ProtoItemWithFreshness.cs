@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
@@ -45,14 +46,15 @@
             }
         }
 
-        public override void ClientTooltipCreateControls(IItem item, List<Control> controls)
+        protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
-            if (this.FreshnessMaxValue > 0)
+            if (item != null
+                && this.FreshnessMaxValue > 0)
             {
                 controls.Add(ItemTooltipInfoFreshnessControl.Create(item));
             }
 
-            base.ClientTooltipCreateControls(item, controls);
+            base.ClientTooltipCreateControlsInternal(item, controls);
         }
 
         protected sealed override void PrepareProtoItem()

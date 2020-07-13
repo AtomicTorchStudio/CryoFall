@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `Innerhalb des markierten Kartenbereichs ist Weltraumschrott niedergegangen.
 [br]Beeile dich, um wertvollen Schrott zu sammeln!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} wurde besiegt von:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Fortschritt: {0}/{1}
 

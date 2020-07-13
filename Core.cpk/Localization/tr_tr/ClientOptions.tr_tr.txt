@@ -48,6 +48,9 @@ Kamera yakınlaştırma
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 Araç çubuğu eşya seçimi
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+Araç çubuğu eşya seçimi (ters)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 Fare tekerleğini şunun için kullan
 

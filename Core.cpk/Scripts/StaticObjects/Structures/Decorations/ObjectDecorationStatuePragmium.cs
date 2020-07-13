@@ -10,7 +10,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    internal class ObjectDecorationStatuePragmium : ProtoObjectDecoration
+    public class ObjectDecorationStatuePragmium : ProtoObjectDecoration
     {
         public override string Description =>
             "Wasting this precious crystal purely for aesthetic purposes is a good demonstration of one's wealth.";

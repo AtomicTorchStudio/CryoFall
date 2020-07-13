@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeMaceCopper : TechNode<TechGroupIndustry>
+    public class TechNodeMaceCopper : TechNode<TechGroupIndustryT1>
     {
         protected override void PrepareTechNode(Config config)
         {

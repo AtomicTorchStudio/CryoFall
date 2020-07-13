@@ -172,6 +172,9 @@ Vous avez utilisé trop de médicaments en un court laps de temps : faites une 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Overdose médicamenteuse
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
+Veuillez attendre que l'application de la Pérédozine soit terminée.
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 Vous êtes sous l'influence d'un médicament hémostatique : la sévérité des saignements consécutifs à une blessure s'en trouve réduite.
 

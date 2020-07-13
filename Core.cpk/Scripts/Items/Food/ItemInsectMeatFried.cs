@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ItemInsectMeatFried : ProtoItemFood
     {
@@ -20,18 +19,13 @@
 
         public override ushort OrganicValue => 5;
 
-        protected override void ServerOnEat(ItemEatData data)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            var character = data.Character;
-
-            // 25% chance to get food poisoning unless you have artificial stomach
-            if (!character.SharedHasPerk(StatName.PerkEatSpoiledFood)
-                && RandomHelper.RollWithProbability(0.25))
-            {
-                character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 0.25); // 2.5 minutes
-            }
-
-            base.ServerOnEat(data);
+            effects
+                // adds food poisoning unless you have artificial stomach
+                .WillAddEffect<StatusEffectNausea>(intensity: 0.05,
+                                                   condition: context => !context.Character.SharedHasPerk(
+                                                                             StatName.PerkEatSpoiledFood));
         }
     }
 }

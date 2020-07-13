@@ -6,8 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character.Data"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
@@ -116,12 +115,12 @@
         </VisualStateManager.VisualStateGroups>
 
         <i:Interaction.Triggers>
-            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
-                <ei:GoToStateAction StateName="Visible" />
-            </ei:DataTrigger>
-            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
-                <ei:GoToStateAction StateName="Collapsed" />
-            </ei:DataTrigger>
+            <i:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
+                <i:GoToStateAction StateName="Visible" />
+            </i:DataTrigger>
+            <i:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
+                <i:GoToStateAction StateName="Collapsed" />
+            </i:DataTrigger>
         </i:Interaction.Triggers>
     </Grid>
 

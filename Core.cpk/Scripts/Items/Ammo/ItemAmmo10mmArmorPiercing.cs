@@ -8,6 +8,8 @@
         public override string Description =>
             "Modification of the 10mm round specifically designed to provide higher armor penetration potential. Ideal against armored targets, but much less effective against biological targets.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override string Name => "10mm armor-piercing ammo";
 
         protected override void PrepareDamageDescription(

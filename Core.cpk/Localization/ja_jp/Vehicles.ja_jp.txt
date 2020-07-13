@@ -10,6 +10,12 @@ Scripts/Vehicles/VehicleHoverboardMk2@Description:
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 ホバーボード Mk2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+重量級のメカアーマー。大型のハードポイントを備え、無比の防御力と驚異的な火力を誇るが、移動速度は比較的遅い。
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+ビヒモス
+
 Scripts/Vehicles/VehicleMechManul@Description:
 中型のメカアーマー。他の分野を犠牲にすることなく、防御力と貨物輸送力を補強します。
 
@@ -48,4 +54,10 @@ Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 乗り物を修理するには組立台に持って行ってください。
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+通常
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+大型
 

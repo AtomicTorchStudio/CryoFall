@@ -88,7 +88,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
-                            Text="{Binding Title, StringFormat='{}{x:Static loc:CoreStrings.HUDQuestTrackingEntry_QuestTitleFormat}'}"
+                            Text="{Binding Title}"
                             FontSize="13"
                             LineHeight="13"
                             Foreground="{StaticResource BrushColor7}"

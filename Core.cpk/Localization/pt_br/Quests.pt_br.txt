@@ -141,7 +141,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 A agricultura é uma ótima forma sustentável de obter grandes quantidades de comida. É hora de sujar as mãos!
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] [b]As [b]sementes[/b] podem ser encontradas aleatoriamente enquanto você simplesmente [b]colhe grama[/b]. Algumas sementes especiais só podem ser encontradas nas ruínas.
+`[*] [b]As [b]sementes[/b] podem ser encontradas ao acaso enquanto você simplesmente [b]colhe grama[/b]. Algumas sementes especiais só podem ser encontradas nas ruínas.
 [*] É uma boa ideia construir sua fazenda [b]dentro[/b] da proteção de suas muralhas, já que outros sobreviventes podem resolver colher suas plantações no seu lugar :)
 [*] O tempo de maturidade de diferentes plantas varia, assim como a produtividade da safra e outras propriedades.
 [*] Posteriormente, será possível pesquisar melhores fertilizantes e outras coisas para aumentar a eficiência da sua fazenda.`
@@ -159,6 +159,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Fontes de luz
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+Para [b]realocar[/b] uma estrutura já existente, selecione uma [b]caixa de ferramentas[/b] e use-a na estrutura. Atenção: algumas estruturas não são realocáveis.
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `É muito importante entender como proteger a própria base! Se você não fizer isso direito, é muito fácil que sobreviventes mais astutos invadam-na.
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Produzir uma faca e matar qualquer criatura
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equipar o melhor peitoral
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+Equipe uma armadura melhor
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 Equipar o melhor capacete
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equipar a melhor perneira
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Está na hora de arranjar uma proteção melhor.
@@ -358,7 +358,7 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Encontrar e usar uma erva verde
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
-`Para ter acesso a mais estruturas, você precisa desbloquear "edifícios básicos" no menu de tecnologia.`
+`Para ter acesso a mais estruturas, você precisa desbloquear "básico de construção" no menu de tecnologia.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
 `[*] Se você não tiver alterado os controles, é possível acessar rapidamente o menu de tecnologias pressionando "G".
@@ -366,7 +366,7 @@ Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
 [*] Pontos de aprendizagem são obtidos a partir de qualquer atividade significativa, sendo diretamente proporcionais ao seu ganho de experiência em habilidades.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
-Aprender tecnologia básica de construção
+`Aprender tecnologia "básico de construção"`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 É hora de ir caçar! Para começar, é melhor evitar animais mais perigosos, mas o que não falta por aí é opção.
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Usar o pé de cabra para desconstruir
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-O prágmio é um mineral raro estranho, necessário para as tecnologias mais avançadas. Tente encontrar e adquiri-lo.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] Cuidado! Garimpar prágmio é muito perigoso.
-[*] Os grandes espirais de prágmio normalmente se encontram no deserto, ao passo que os pequenos nós costumam estar perto de vulcões.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-Consiga prágmio!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Garimpa sais minerais
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-Alguns recursos, como petróleo bruto e lítio, são necessários para a tecnologia avançada. É extremamente importante aprender a adquiri-los.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] Você pode encontrar frutos da petrovagem na [u]floresta boreal[/u] que cresce em toda parte. É possível extrair pequenas quantidades de petróleo bruto ao usá-los.
-[*] Pode-se conseguir [u]sais de lítio[/u] garimpando sais minerais normais.
-[*] É possível encontrar sais minerais nas [u]salinas[/u] no deserto.
-[*] Aprender [u]Xenogeologia[/u] oferece métodos para adquirir esses recursos em escala industrial.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-Aquisição de recursos avançados
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Avanços na indústria e na construção exigem fundamentos científicos, especialmente em química.
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Dominar Tecnologias: parte 2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+Diferentes tipos de [b]geradores[/b] (como solar, a vapor e à gasolina) podem ser usados para produzirem energia elétrica juntos.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+Você pode ver [b]informações da rede elétrica em detalhes[/b] ao interagir com uma construção de armazenamento de energia ou em sua posse de terra.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+Dispositivos elétricos só funcionam quando estão [b]dentro[/b] da área de posse de terra. Instalar dispositivos elétricos fora da área de posse é inútil.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+A energia elétrica é armazenada em construções de [b]armazenamento de energia[/b] para uso quando necessário. É uma boa ideia aumentar a capacidade de energia total da sua base.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+Você pode configurar [b]limiares[/b] de energia personalizados para [u]inicialização e desligamento[/u] de todos os consumidores e geradores de energia.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+Várias áreas de posses de terra conectadas farão parte de uma [b]única rede elétrica[/b].
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 Estabelecer uma rede elétrica para sua base é um passo importante para aumentar a eficiência. Existem diversas estruturas avançadas que requerem eletricidade para funcionarem.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] Dispositivos elétricos só funcionam quando estão [b]dentro[/b] da área da posse de terra. É inútil construir dispositivos elétricos fora da área da posse de terra.
-[*] A energia elétrica é armazenada em edifícios de [b]armazenamento de energia[/b] para uso conveniente quando necessário. É uma boa ideia aumentar a capacidade global de energia na base.
-[*] Diferentes tipos de [b]geradores[/b], como vapor, solar e motor, podem ser usados juntos para produzir energia elétrica juntos.
-[*] Se você [u]não tem energia elétrica suficiente[/u] armazenada, sua base entrará no modo [b]apagão[/b], sendo necessário restaurar a energia manualmente.
-[*] Você pode ver as [b]informações detalhadas[/b] da rede ao interagir com o armazenamento de energia ou na sua posse de terra.
-[*] Diversas áreas de posse de terra conectadas se comportarão como uma [b]única rede elétrica[/b].`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 Estabelecer rede elétrica
@@ -520,6 +505,27 @@ Explorar ruínas antigas
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 Saqueie alguns recipientes
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+Você pode [u]extrair[/u] [u]filés[/u] dos peixes que pescou com a ação de [b]usar[/b] (a mesma para usar os demais itens).
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+Sua [b]habilidade de pesca[/b] tem um papel importante nos tipos de peixe que você consegue pescar e no sucesso das pescarias, em geral.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+Você pode pescar diferentes tipos de peixes em água [u]salgada[/u] e [u]doce[/u].
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+Pesque um peixe
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+Faça filés de um peixe
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+Pescaria não só é um bom passatempo, como também uma ótima maneira de obter comida. Tente pescar alguns peixes!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+Pescaria!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Hora de ainda mais caça! Desta vez, com animais mais perigosos.
 
@@ -540,4 +546,53 @@ Mestre caçador: parte 4
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 Mestre caçador: parte 5
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+O prágmio é um mineral raro estranho, necessário para as tecnologias mais avançadas. Tente encontrar e adquiri-lo.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] Cuidado! Garimpar prágmio é muito perigoso.
+[*] Os grandes espirais de prágmio normalmente se encontram no deserto, ao passo que os pequenos nós costumam estar perto de vulcões.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+Obtenha prágmio!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Garimpe sais minerais
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+Alguns recursos, como petróleo bruto e lítio, são necessários para as tecnologias avançadas. É extremamente importante aprender a adquiri-los.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Você pode encontrar frutos da petrovagem na [u]floresta boreal[/u] que cresce em toda parte. É possível extrair pequenas quantidades de petróleo bruto ao usá-los.
+[*] Pode-se conseguir [u]sais de lítio[/u] garimpando sais minerais normais.
+[*] É possível encontrar sais minerais nas [u]salinas[/u] no deserto.
+[*] Aprender [u]Xenogeologia[/u] oferece métodos para adquirir esses recursos em escala industrial.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+Aquisição de recursos avançados
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+Use o [b]dispositivo de controle[/b] para dar comandos a drones.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+Drones podem ser usados não somente no [b]garimpo de minerais[/b], mas também para [b]cortar árvores[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+Os drones precisam estar em seu [b]inventário[/b] ou [b]barra de acesso[/b] para receber comandos.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+Garimpar minerais e cortar árvores à mão é cansativo, então use drones automatizados para fazer isso para você o quanto antes.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+Garimpo com drones
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+É uma boa ideia [u]expandir sua capacidade de armazenamento de energia[/u] conforme sua base cresce para sempre ter [u]carga adicional suficiente[/u].
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+Agora que você possui fundações sólidas para sua rede elétrica, pode ser uma boa ideia expandi-la com outras estruturas úteis que facilitam a sua vida.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+Mais usos para a rede elétrica
 

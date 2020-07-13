@@ -11,6 +11,8 @@
         public override string Description =>
             "Modified 8mm ammo with an enclosed cavity holding a small amount of concentrated toxin that bursts upon impact.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override string Name => "8mm toxin ammo";
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
@@ -34,8 +36,8 @@
             armorPiercingCoef = 0;
             finalDamageMultiplier = 2;
             rangeMax = 9;
-            damageDistribution.Set(DamageType.Kinetic, 0.4)
-                              .Set(DamageType.Chemical, 0.6);
+            damageDistribution.Set(DamageType.Kinetic, 0.6)
+                              .Set(DamageType.Chemical, 0.4);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

@@ -829,7 +829,7 @@
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainer.TryStackItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,System.Int32)">
             <summary>
-            Tries to add item to the existings stacks.
+            Tries to add item to the existing stacks.
             </summary>
             <param name="item"></param>
             <param name="countToMove"></param>
@@ -1007,6 +1007,11 @@
             <typeparam name="TPrivateState">Type of server private state.</typeparam>
             <typeparam name="TPublicState">Type of server public state.</typeparam>
             <typeparam name="TClientState">Type of client state.</typeparam>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.GetAllGameObjects(System.Collections.Generic.List{`0})">
+            <summary>
+            Please note that this method might be really slow if the are many objects of this type.
+            </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.GetClientState(`0)">
             <summary>
@@ -2666,6 +2671,12 @@
             Gets the current active skeleton animation resource.
             </summary>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.DefaultTextureRemapper">
+            <summary>
+            A func to remap the original attachment's texture with any other texture.
+            Usually used for skin tone substitution.
+            </summary>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.DrawMode">
             <summary>
             Gets or sets the draw mode.
@@ -3467,7 +3478,7 @@
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.CreateItemResult.Rollback">
             <summary>
-            Revert the operation completely - all the created items will be destroyed, all the updated existings items will be
+            Revert the operation completely - all the created items will be destroyed, all the updated existing items will be
             restored to their previous count.
             </summary>
         </member>
@@ -3633,6 +3644,11 @@
             <param name="sendUpdateToCharacter"></param>
             <returns>True if operation is successful.</returns>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.PurgeContainer(AtomicTorch.CBND.GameApi.Data.Items.IItemsContainer)">
+            <summary>
+            Destroys all items in the container, making it empty.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.SetContainerType(AtomicTorch.CBND.GameApi.Data.Items.IItemsContainer,AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer)">
             <summary>
             Sets container type for container.
@@ -3683,9 +3699,15 @@
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto(AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject)">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
             <summary>
-            Please note—on the server side this method might return the same object several times. Be sure to filter such duplicates.
+            Please note—on the server side this method might return the same object several times. Be sure to filter such
+            duplicates.
             </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetTile(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.Boolean)">

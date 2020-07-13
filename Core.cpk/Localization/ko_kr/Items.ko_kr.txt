@@ -88,6 +88,12 @@ Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 돌화살
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+유효 사정 거리가 증가한 특수 파편 유탄. 폭파 시, 넓은 반경 내의 모든 것에 대미지를 줍니다.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+파편 유탄
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 충격 시, 프라그뮴 입자가 주입된 액체 헬륨을 흩뿌려 표적을 얼려버리는 특수 목적용 수류탄.
 
@@ -111,6 +117,69 @@ Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 페이퍼 카트리지
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+탈것의 장갑에 매우 효과적인 고폭 포탄.
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+포탄
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+이 아이템을 빠르게 사용하거나 소모하려면 Alt 키를 누른 상태에서 아이템을 클릭하세요.
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+해체하고 싶은 구조물을 클릭하세요.
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+구조물을 이동시키려면 손상되지 않은 상태에서 클릭하세요.
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+물을 채우려면 우물이나 집수기를 클릭하세요.
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+수리하거나 지을 구조물을 클릭하세요.
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+물을 주고 싶은 농장의 작물을 클릭하세요.
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+생선살은 (아이템 사용과 같은) 행동으로 잡은 물고기로부터 얻을 수 있습니다.
+
+Scripts/Items/Base/ItemHints@DroneControl:
+인벤토리나 단축막대에 있는 드론은 이 드론 조종기로 명령을 내릴 수 있습니다.
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+명령을 내리면서 Shift 키를 누르고 있으면, 드론이 즉시 근처에 있는 선택된 유형과 같은 모든 오브젝트를 채굴합니다.
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+드론은 직접 사용할 수 없습니다. 드론이 인벤토리에 있는 상태에서 조종기를 사용하여 명령을 내리세요.
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+작동시키려면 장치 슬롯에 장착되어야 합니다.
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+비료는 단축막대에서 선택한 후, 식물을 클릭하여 사용할 수 있습니다.
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+단축막대에서 병을 선택한 후, 월드에 있는 바닷물을 클릭하여 병에 담을 수 있습니다.
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+깨끗한 물을 채우려면 우물이나 집수기를 클릭하세요.
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+연료 전지는 다양한 탈것에 동력을 공급하는 데 사용됩니다.
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+임플란트는 의료소에만 설치할 수 있습니다.
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+이 아이템은 장착된 보조 배터리에서 전력을 끌어옵니다.
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+이 무기는 탈것의 [b]{0}[/b] 장착대에만 사용할 수 있습니다.
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+손질하기
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 암호 해독
@@ -160,23 +229,41 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 기본 보조 배터리
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+고급 드론 원격 조종기
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+자동 드론을 작동하고 명령을 내리는 데 필요한 특수 원격 조종기.
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+드론 원격 조종기
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+증가한 채굴 속도와 범위뿐만 아니라 기타 개선 사항들이 포함된 고급 공업용 드론.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+고급 공업용 드론
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+신속한 자원 획득에 이용되는 표준 공업용 드론.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+공업용 드론
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 전투 및 주위 환경 방어 능력이 이상적으로 조화를 이룬 고급 환경 방호 갑옷.
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T. 슈트
 
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+이 특수 전투복은 어디에서나 적의 사격으로부터 착용자를 놀라울 정도로 잘 보호해줍니다.
+
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+전투복
+
 Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
 돌격 방어 헬멧
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
-이 특수 돌격 방어구는 다른 무엇보다도 적의 사격에 대해 놀라운 방어력을 제공합니다.
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-돌격 방어 재킷
-
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-돌격 방어 바지
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 장비된 헬멧 전등 없음
@@ -205,26 +292,23 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKe
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 버튼이 설정되지 않음
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+뼈 방어구는 가격이 적당하고, 적당한 방어력을 제공하여 초기에 매우 유용합니다.
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+뼈 방어구
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 밀폐 뼈 헬멧
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 뿔 뼈 헬멧
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-뼈 방어구는 가격이 적당하고, 적당한 방어력을 제공하여 초기에 매우 유용합니다.
-
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-뼈 재킷
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-뼈 바지
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
 외관이 아주 멋지진 않지만, 만약의 경우에는 당신을 보호해 줄 겁니다. 가장 가까운 대안보다는 더 나은 환경 방호를 제공해 줍니다.
 
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-편조 갑옷
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+편조 방어구
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 편조 헬멧
@@ -232,50 +316,38 @@ Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 임시 램프 헬멧
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-편조 바지
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+실질적인 방어력을 제공하진 않습니다. 그래도 모기 정도는 막아주지 않겠어요?
 
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-천 모자
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-천 바지
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
-실질적인 방어력을 제공하진 않습니다. 어쩌면 모기는 막아 줄지도 모르죠.
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 천 셔츠
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
-쓸만한 초기의 갑옷. 특히 감기를 막는 데 적합합니다. 아주 비싸지도 않으며, 편안한 착용감을 선사합니다!
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+천 모자
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
+초기에 쓸 만한 갑옷. 특히 추위를 막는 데 적합합니다. 아주 비싸지도 않으면서, 편안한 착용감을 선사합니다!
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
 모피 코트
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 꼬리 달린 모피 모자
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 코사크 모자
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 우샨카 모자
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-모피 바지
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 아주 화려한 황금 복장. 진정한 통치자에게 적합합니다.
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
 황금 갑옷
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 황금 왕관
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-황금 바지
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 대부분의 환경적 위험으로부터 착용자를 보호하도록 특수 디자인된 옷. 전투에서 사용하면 금방 원래의 형태를 잃게 됩니다.
@@ -283,29 +355,26 @@ Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 방호복
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+가죽 방어구는 전반적인 방어 기능이 뛰어나며, 발전 초기 단계에 이상적입니다.
+
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+가죽 방어구
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
 카우보이모자
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
 조종사 모자
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
 해적 모자
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
-가죽 방어구는 전반적인 방어 기능이 뛰어나며, 초기의 발전 단계에 이상적입니다.
-
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-가죽 재킷
-
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-가죽 바지
-
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
 금속 방어구는 물리적인 공격에는 큰 방어력을 제공해주지만, 환경적 위험에 대한 보호는 거의 제공하지 않습니다.
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-금속 갑옷
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+금속 방어구
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 밀폐 금속 헬멧
@@ -313,20 +382,14 @@ Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 금속 해골 헬멧
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-금속 다리 갑옷
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+이 방어구의 제조에 사용되는 고급 소재는 소형 및 기본 무기에 대한 피해를 이상적 막아줍니다.
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+군용 방어구
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 군용 헬멧
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-이 방어구의 제작에 사용되는 고급 소재는 소형 및 기본 무기에 대항하기에 이상적입니다.
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-군용 재킷
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-군용 바지
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 휴대용 발광체가 달려 있어서 손이 자유로워지는 편리한 헬멧. 일회용 배터리가 필요합니다.
@@ -340,56 +403,56 @@ Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 야간 투시경
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+개선된 야간 투시경이 장착된 전술 헬멧으로, 밤에도 완벽한 시야를 제공해 줍니다. 일회용 배터리가 필요합니다.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+고급 야간 투시경
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+방사성 입자 및 유해 가스를 걸러낼 수 있도록 디자인된 기본 방독면. 다른 보호 기능은 제공하지 않습니다.
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+방독면
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 안전 헬멧은 충격, 파편, 감전 및 기타 위험으로부터 머리를 보호해 줍니다.
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 안전 헬멧
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-방사성 입자 및 유해 가스를 걸러낼 수 있도록 디자인된 기본 방독면. 다른 보호 기능은 제공하지 않습니다.
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+기본 틀인 얇은 금속판을 프라그뮴 격자에 결합한 시험용 방어구. 매우 가볍고 내구성이 뛰어납니다.
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-방독면
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-기본틀인 얇은 금속판을 프라그뮴 격자에 결합한 시험용 방어구. 매우 가볍고 내구도가 뛰어납니다.
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 프라그뮴 갑옷
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
 모든 종류의 대미지 및 환경적 영향으로부터 놀라울 정도로 좋은 보호 수준을 제공하는 두껍게 덧댄 천.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-누비 코트
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+누비 방어구
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 누비 모자
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
 누비 헬멧
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-누비 바지
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+최강의 보호구. 이 전투 장갑은 어떠한 상황에서도 착용자를 보호해줍니다. 하지만 기동성이 좋지는 않습니다.
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-최강의 보호구. 이 전투용 갑옷은 어떠한 상황에서도 착용자를 보호해줍니다. 하지만 기동성이 좋지는 않습니다.
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 초중갑
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
-필요는 발명의 어머니입니다. 편안하면서도 초기의 방어구 중 괜찮은 방어력을 제공합니다.
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+필요는 발명의 어머니입니다. 그다지 편하지는 않지만, 초기의 방어구 중에서 괜찮은 방어력을 제공합니다.
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-나무 갑옷
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+나무 방어구
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 나무 헬멧
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-나무 바지
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 한 번에 많은 양의 광물을 채굴하도록 설계된 특수 폭발 장치. 발굴하고 싶은 광물의 노드 옆에 설치해야 합니다.
@@ -404,7 +467,7 @@ Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
 현대식 폭탄
 
 Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Description:
-벽이나 그 밖의 방어 시설을 파괴하는 데 사용되는 구식 폭탄. 최고의 효과를 내려면 최대한 목표물 가까이에서 사용해야 합니다.
+벽이나 그 밖의 방어 시설을 파괴하는 데 사용되는 구식 폭탄. 최고의 효과를 내려면 최대한 표적 가까이에서 사용해야 합니다.
 
 Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
 구식 폭탄
@@ -414,6 +477,78 @@ Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 공진 폭탄
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+토막 미끼는 작은 물고기를 토막낸 것으로, 대형 포식 어류를 잡는 데 이상적입니다.
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+토막 미끼
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+값싸고 사용하기 쉬운 미끼로, 작은 민물고기를 잡기에 적합합니다.
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+곤충 미끼
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+보일리는 다양한 성분을 혼합하여 만든 특수 미끼로, 대부분의 물고기들이 좋아합니다.
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+보일리 미끼
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+어떤 물에서도 이 낚싯대로 물고기를 잡을 수 있습니다. 미끼가 필요합니다.
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+낚싯대
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+갓 잡은 물고기는 요리에 사용하기 전에 먼저 씻어야 합니다.
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+농어
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+도미
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+잉어
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+메기
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+잉어
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+벤자리
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+고등어
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+만새기
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+명태
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+복어
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+강꼬치고기
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+전갱이
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+연어
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+정어리
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+송어
 
 Scripts/Items/Food/ItemBanana@Description:
 어떤 원숭이든지 바나나에 닿을 수 있지만, 오직 인간만이 별에 닿을 수 있습니다.
@@ -643,6 +778,27 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 Scripts/Items/Food/ItemEggsRaw@Name:
 동물의 알
 
+Scripts/Items/Food/ItemFishDried@Description:
+염장하여 말린 물고기, 맥주와 안성맞춤입니다. 오랫동안 상하지 않아 두고두고 먹을 수 있습니다.
+
+Scripts/Items/Food/ItemFishDried@Name:
+말린 생선
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+고품질의 생선살, 요리하기에 좋은 식재료입니다.
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+붉은 생선살
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+흰 생선살
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+오븐에서 구워 매우 부드럽고 육즙이 풍부한 생선살.
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+구운 생선
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 이 고기를 요리해서 그나마 덜 역겨워졌지만... 그래도 먹기 전에는 토할 준비를 먼저 해야 할 것입니다.
 
@@ -751,6 +907,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 Scripts/Items/Food/ItemPineapple@Name:
 파인애플
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+오늘날까지도 격렬한 성전을 불러일으키는 음식입니다...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+파인애플 피자
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 그대로 먹어도 좋고 요리 재료로 사용해도 좋습니다.
 
@@ -775,6 +937,12 @@ Scripts/Items/Food/ItemSaladVegetable@Description:
 Scripts/Items/Food/ItemSaladVegetable@Name:
 채소 샐러드
 
+Scripts/Items/Food/ItemSalami@Description:
+보존 처리된 소시지, 특별 조리된 고기와 향신료로 만들어졌습니다.
+
+Scripts/Items/Food/ItemSalami@Name:
+살라미
+
 Scripts/Items/Food/ItemSandwich@Description:
 부드러운 빵, 육즙 많은 고기, 채소. 이 세 가지가 함께하면 유구한 전통을 자랑하는 샌드위치가 됩니다!
 
@@ -793,6 +961,18 @@ Scripts/Items/Food/ItemSugar@Description:
 Scripts/Items/Food/ItemSugar@Name:
 설탕
 
+Scripts/Items/Food/ItemSushi@Description:
+회와 와사비가 올라간 밥. 단순하지만, 잊을 수 없는 맛을 선보입니다.
+
+Scripts/Items/Food/ItemSushi@Name:
+초밥
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+고기와 특제 소스, 약간의 채소로 채워진 바삭바삭한 토르티야.
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+타코 콘 카르네
+
 Scripts/Items/Food/ItemTequila@Description:
 사막에서 발견된 식물로 증류한 아름다운 술.
 
@@ -810,6 +990,12 @@ Scripts/Items/Food/ItemTomato@Description:
 
 Scripts/Items/Food/ItemTomato@Name:
 토마토
+
+Scripts/Items/Food/ItemUkha@Description:
+생선과 야채를 넣고 전통 방식으로 조리한 맑은 국.
+
+Scripts/Items/Food/ItemUkha@Name:
+우하
 
 Scripts/Items/Food/ItemVodka@Description:
 얼얼한 신들의 액체. 너무 많이 마시면 좋지 않습니다. 또한, 수분을 빼앗아 갑니다. 그리고 분명한 건, 방사능 해독에 도움되지 않습니다.
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 빈 깡통
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-비어 있는 금속 용기. 휘발성 액체를 담을 수 있습니다.
+휘발성 액체를 담는 데 사용됩니다.
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 빈 용기
@@ -1091,6 +1277,24 @@ Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 제형 화약
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+빈 열료 전지는 다양한 탈것에 동력을 공급하는 데 사용됩니다. 우선 연료를 채워야 합니다.
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+빈 연료 전지
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+평범한 액체 연료가 든 연료 전지. 저렴하지만, 오래가진 못합니다.
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+휘발유 연료 전지
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+액체 프라그뮴이 든 연료 전지. 아주 오래갑니다.
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+프라그뮴 연료 전지
+
 Scripts/Items/Generic/ItemFur@Description:
 동물의 털가죽. 따뜻한 겨울옷을 만드는 데 유용합니다.
 
@@ -1192,12 +1396,6 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 강철괴
-
-Scripts/Items/Generic/ItemLeaf@Description:
-이파리... 아마도 나뭇잎일 겁니다.
-
-Scripts/Items/Generic/ItemLeaf@Name:
-잎
 
 Scripts/Items/Generic/ItemLeather@Description:
 동물의 가죽. 가죽 방어구 제작에 유용하게 사용됩니다.
@@ -1565,6 +1763,12 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 나노 섬유 피부 임플란트
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+인공 뼈 및 두개골 보강물. 사용자가 기절하거나 골절상을 입는 것을 막아 줍니다.
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+내골격 보강 임플란트
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 신체에서 통제할 수 없는 변이가 발견되지 않습니다.
 
@@ -1714,6 +1918,20 @@ Scripts/Items/Medical/ItemNeuralEnhancer@Description:
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 신경 강화제
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`참고: 이 아이템은 자주 사용할 수 없습니다.
+[br]지금 사용하면, {0} 동안 다시 사용할 수 없습니다.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`최근에 이 아이템을 사용하셨습니다.
+[br]다시 사용하기까지 {0} 기다려주세요.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+사용 시, 모든 기술에 대한 지식을 완전히 지우고, 사용한 모든 학습 포인트가 반환되어 재분배할 수 있게 됩니다. 자주 사용할 수 없습니다.
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+신경 재결합기
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 진통제를 사용하면 모든 통증을 완전하게 제거하고 효과가 지속되는 동안 예방할 수 있습니다.
@@ -1940,6 +2158,12 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 돌곡괭이
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+이 감지기는 대형 프라그뮴 크리스털에서 뿜어져 나오는 특유의 초능력 발자국을 탐지하여 그것을 찾을 수 있게 해줍니다.
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+프라그뮴 감지기
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 공구함은 구조물을 짓거나 수리할 때 필요합니다. 장착 및 선택하였는지 확인하십시오.
 
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 권총
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-레이저권총은 주로 적외선 스펙트럼과 같은 고에너지 빛을 강하게 발사하여 목표물을 불태웁니다.
+레이저권총은 표적을 태워 버리는 고에너지 광선의 펄스를 빠르게 방출합니다.
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 레이저권총
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-레이저소총은 주로 적외선 스펙트럼과 같은 고에너지 빛을 강하게 발사하여 목표물을 불태웁니다. 더욱 높은 에너지를 소모하여 레이저권총보다 훨씬 빠르게 발사됩니다.
+레이저소총은 주로 적외선 스펙트럼과 같은 고에너지 광선을 빠르게 방출하여 표적을 태웁니다. 레이저권총보다 훨씬 넓은 사정 거리를 제공합니다.
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 레이저소총
@@ -2163,14 +2387,26 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 기관단총
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
-기계화된 전투 장갑에 손으로 고정된 주요 거점을 위해 고안된 중기관포. 대구경 및 대물 탄약을 사용합니다.
+기계화된 전투 장갑의 손 위치에 고정할 수 있도록 고안된 중기관포. 대구경 및 대물 탄약을 사용합니다.
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
 중기관포
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
-기계화된 전투 장갑에 손으로 고정된 주요 거점을 위해 고안된 경기관포. 소구경 탄약을 사용합니다.
+기계화된 전투 장갑의 손 위치에 고정할 수 있도록 고안된 경기관포. 소구경 탄약을 사용합니다.
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 경기관포
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+고폭 포탄을 사용하는 특수 중화포, 중무장된 표적에게 이상적입니다.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+화포
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+가속 입자의 간섭성 전하를 사용하여 표적에 손상을 주는 중포입니다.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+에너지포
 

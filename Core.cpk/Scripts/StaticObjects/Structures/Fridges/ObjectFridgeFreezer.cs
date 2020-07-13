@@ -11,7 +11,7 @@
         public override string Description =>
             "Powerful freezer that can store food at below-zero temperature, ensuring that it stays fresh much longer.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 0.4;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.2;
 
         public override double FreshnessDurationMultiplier => 25;
 
@@ -31,6 +31,7 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY = 0.2;
+            renderer.PositionOffset += (0, 0.25);
         }
 
         protected override void PrepareConstructionConfig(
@@ -56,18 +57,12 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var yOffset = 0.25;
             data.PhysicsBody
-                .AddShapeRectangle(size: (0.9, 0.6),
-                                   offset: (0.05, 0))
-                .AddShapeRectangle(size: (1, 1),
-                                   offset: (0, 0),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.9, 0.2),
-                                   offset: (0.05, 0.85),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1, 1),
-                                   offset: (0, 0),
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.9, 0.6), offset: (0.05, yOffset))
+                .AddShapeRectangle((1, 1),     offset: (0, yOffset),           group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.9, 0.2), offset: (0.05, yOffset + 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1, 1),     offset: (0, yOffset),           group: CollisionGroups.ClickArea);
         }
     }
 }

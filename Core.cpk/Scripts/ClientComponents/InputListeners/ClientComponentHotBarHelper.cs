@@ -55,6 +55,8 @@
 
         private PlayerCharacterPublicState publicState;
 
+        public static bool IsMouseWheelReversedDirection { get; set; }
+
         public static bool IsUsingMouseWheelInputToScrollHotbar { get; set; }
 
         protected bool InputIsUsingItem
@@ -122,10 +124,15 @@
                                                      return;
                                                  }
 
+                                                 if (IsMouseWheelReversedDirection)
+                                                 {
+                                                     delta *= -1;
+                                                 }
+
                                                  ClientHotbarSelectedItemManager.SelectNextSlot(
-                                                     indexDelta: -(int)Math.Round(
-                                                                     delta,
-                                                                     MidpointRounding.AwayFromZero));
+                                                     indexDelta: (int)Math.Round(
+                                                         delta,
+                                                         MidpointRounding.AwayFromZero));
                                              });
         }
 

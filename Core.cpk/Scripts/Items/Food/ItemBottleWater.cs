@@ -1,11 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
-    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
     using AtomicTorch.CBND.GameApi.Scripting;

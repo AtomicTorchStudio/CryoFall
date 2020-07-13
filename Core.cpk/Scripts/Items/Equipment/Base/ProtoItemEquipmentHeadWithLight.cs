@@ -131,10 +131,7 @@
 
         public void ClientOnRefilled(IItem item, bool isCurrentHotbarItem)
         {
-            if (isCurrentHotbarItem)
-            {
-                this.ClientTrySetActiveState(item, setIsActive: true);
-            }
+            this.ClientTrySetActiveState(item, setIsActive: true);
         }
 
         public override void ClientSetupSkeleton(
@@ -163,7 +160,8 @@
             componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Head");
+                                           "Head",
+                                           isPrimaryLight: true);
 
             skeletonComponents.Add(componentLightInSkeleton);
             skeletonComponents.Add(componentLightSource);

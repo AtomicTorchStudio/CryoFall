@@ -14,7 +14,10 @@
             CameraZoom = 0,
 
             [Description("Hotbar item selection")]
-            HotbarItemSelection = 1
+            HotbarItemSelection = 1,
+
+            [Description("Hotbar item selection (reversed)")]
+            HotbarItemSelectionReversed = 2
         }
 
         public override Mode DefaultEnumValue => Mode.CameraZoom;
@@ -31,6 +34,7 @@
             var isCameraZoom = this.CurrentValue == Mode.CameraZoom;
             ClientComponentWorldCameraZoomManager.IsUsingMouseWheelInputToZoom = isCameraZoom;
             ClientComponentHotbarHelper.IsUsingMouseWheelInputToScrollHotbar = !isCameraZoom;
+            ClientComponentHotbarHelper.IsMouseWheelReversedDirection = this.CurrentValue == Mode.HotbarItemSelectionReversed;
         }
     }
 }

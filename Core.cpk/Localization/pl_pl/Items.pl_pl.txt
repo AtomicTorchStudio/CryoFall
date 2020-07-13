@@ -88,8 +88,14 @@ Strzała z kamiennym grotem. Najbardziej podstawowa strzała.
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 Strzała z żelaznym grotem
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+Specjalny granat odłamkowy o zwiększonym polu rażenia. Zadaje obrażenia obszarowe w dużym promieniu.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+Granat odłamkowy
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
-Granat specjalny, który po uderzeniu rozrzuca cząsteczki helu z pragmium zamrażające cel.
+Granat specjalny, który po wybuchu rozrzuca cząsteczki helu z pragmium zamrażające cel.
 
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
 Granat helowy
@@ -111,6 +117,69 @@ Podstawowa amunicja do broni palnej. Odpowiednia tylko do powstrzymywania słabs
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 Ładunek papierowy
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+Pociski artyleryjskie – bardzo skuteczne przeciwko opancerzonym pojazdom.
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+Pocisk artyleryjski
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+Kliknij ten element, trzymając klawisz Alt, aby szybko go użyć lub zużyć.
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+Kliknij dowolną strukturę, aby ją zdemontować.
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+Kliknij nieuszkodzoną strukturę, aby ją przenieść.
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+Kliknij studnię lub zbiornik na wodę, aby napełnić go wodą.
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+Kliknij dowolną konstrukcję, aby ją naprawić lub zbudować.
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+Kliknij dowolne plony, aby je podlać.
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+Filet rybny można uzyskać przy użyciu funkcji UŻYJ (tak samo jak używa się innych elementu).
+
+Scripts/Items/Base/ItemHints@DroneControl:
+Dronami z ekwipunku lub z paska można sterować za pomocą tego kontrolera dronów.
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+Przytrzymanie klawisza Shift podczas wydawania rozkazów spowoduje natychmiastowe wysłanie wszystkich dronów w celu wydobycia wszystkich pobliskich obiektów wybranego typu.
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+Dronów nie można używać bezpośrednio. Za pomocą kontrolera można przekazywać polecenia temu dronowi, gdy znajduje się w ekwipunku.
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+Aby działać, musi się znajdować w jednym z gniazd urządzenia.
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+Nawozy można stosować, wybierając je na pasku i klikając roślinę.
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+Wybierz butelkę na pasku i kliknij wodę morską, aby napełnić butelkę słoną wodą.
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+Umieść w studni lub w zbiorniku wodnym, aby napełnić wodą pitną.
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+Ogniwa paliwowe zasilają różne pojazdy.
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+Implanty można instalować tylko w stacji medycznej.
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+Ten element pobiera moc z zamontowanych banków zasilania.
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+Tę broń można instalować i używać tylko w węźle uzbrojenia pojazdu: [b]{0}[/b].
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+Potnij
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 Odszyfruj
@@ -160,23 +229,41 @@ Standardowy dwukierunkowy bank zasilania. Przechowuje energię podczas podróży
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Standardowy bank zasilania
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+Zaawansowany system zdalnego sterowania dronem
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+Specjalny zdalny kontroler niezbędny do obsługi automatycznych dronów.
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+System zdalnego sterowania dronem
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+Zaawansowany dron przemysłowy szybciej wydobywa surowce, ma większy zasięg i oferuje także inne ulepszenia.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+Zaawansowany dron przemysłowy
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+Standardowy dron przemysłowy pozwala szybko pozyskiwać zasoby.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+Dron przemysłowy
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Zaawansowany pancerz chroniący przed czynnikami środowiskowymi. Zapewnia obronę przed zagrożeniami środowiskowymi i bojowymi.
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 Pancerz A.P.A.R.T
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
-Hełm – pancerz szturmowy
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
 Ten specjalny pancerz szturmowy zapewnia nadzwyczajną ochronę przed ostrzałem wroga i nie ma słabych stron.
 
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-Góra pancerza szturmowego
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Pancerz szturmowy
 
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-Dół pancerza szturmowego
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Hełm – pancerz szturmowy
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 Brak czołówki
@@ -205,26 +292,23 @@ Aby włączyć czołówkę, należy wyposaż ten przedmiot i naciśnij klawisz [
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 przycisk nieustawiony
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Pancerz kostny zapewnia przyzwoitą ochronę, zważywszy jego cenę, i jest użyteczny na wczesnych etapach gry.
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Pancerz kostny
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 Zamknięty hełm kostny
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 Rogaty hełm kostny
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-Pancerz kostny zapewnia przyzwoitą ochronę, biorąc pod uwagę jego cenę, i jest użyteczny na wczesnych etapach gry.
-
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-Góra pancerza kostnego
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-Dół pancerza kostnego
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
 Niezbyt wymyślny ubiór, ale zapewnia lepszą ochronę przed czynnikami środowiskowymi niż podobne pancerze.
 
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-Pleciony napierśnik
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Pleciony pancerz
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Pleciony hełm
@@ -232,50 +316,38 @@ Pleciony hełm
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 Kask z lampą – samoróbka
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-Plecione spodnie
-
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-Czapka płócienna
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-Spodnie płócienne
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
 Nie zapewnia żadnej ochrony. Może powstrzyma komara?
 
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 Koszula płócienna
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
-Przyzwoita zbroja na początek; szczególnie dobrze chroni przed zimnem. Niezbyt droga i wygodna!
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Czapka płócienna
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
-Kurtka futrzana
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
+Przyzwoity pancerz na początek; szczególnie dobrze chroni przed zimnem. Niezbyt drogi i wygodny!
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Płaszcz futrzany
+
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 Czapka futrzana z ogonem
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 Czapka kozacka
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 Uszatka
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-Spodnie futrzane
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 Luksusowy złoty strój. Pasuje do prawdziwych władców.
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-Złoty napierśnik
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Złoty pancerz
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 Złota korona
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-Złote spodnie
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Specjalny strój, który chroni właściciela przed większością zagrożeń środowiskowych. Nie powinien być stosowany w walce, ponieważ szybko utraci swoje zalety.
@@ -283,29 +355,26 @@ Specjalny strój, który chroni właściciela przed większością zagrożeń ś
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 Kombinezon ochronny
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
-Kapelusz kowbojski
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
-Czapka pilota
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
-Czapka pirata
-
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
 Skórzany pancerz zapewnia dobrą ogólną ochronę i jest idealny na początku gry.
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-Skórzana kurtka
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Skórzany pancerz
 
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-Skórzane spodnie
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
+Kapelusz kowbojski
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
+Czapka pilota
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
+Czapka pirata
+
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
 Metalowy pancerz zapewnia doskonałą ochronę przed atakami fizycznymi, ale prawie nie chroni przed zagrożeniami środowiskowymi.
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-Metalowy napierśnik
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Pancerz metalowy
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Zamknięty hełm metalowy
@@ -313,20 +382,14 @@ Zamknięty hełm metalowy
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 Metalowy hełm – czaszka
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-Dół pancerza metalowego
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Zaawansowane materiały użyte do produkcji tego pancerza powodują, że idealnie zabezpiecza on przed ostrzałem z małokalibrowej broni palnej i innych podstawowych rodzajów broni.
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Pancerz wojskowy
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Hełm wojskowy
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-Zaawansowane materiały użyte do produkcji tego pancerza powodują, że idealnie zabezpiecza on przed ostrzałem z małej broni palnej i innych podstawowych rodzajów broni.
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-Kurtka wojskowa
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-Spodnie wojskowe
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Wygodny kask, który zapewnia również przenośne źródło światła i nie wymaga użycia rąk. Działa na baterie jednorazowe.
@@ -340,56 +403,56 @@ Lekki hełm taktyczny ze specjalnym noktowizorem umożliwiającym prawie doskona
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 Noktowizor
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+Ulepszona wersja kasku z noktowizorem, który pozwala widzieć w ciemności. Wymaga baterii jednorazowych.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+Zaawansowane widzenie w ciemnościach
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+Podstawowa maska filtrująca cząsteczki radioaktywne i niebezpieczne gazy. Nie zapewnia żadnej innej ochrony.
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+Maksa ochronna
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 Kask ochronny zapewniający podstawową ochronę głowy przed uderzeniami, odłamkami, porażeniem prądem i innymi zagrożeniami.
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 Kask ochronny
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-Podstawowa maska ochronna filtrująca cząsteczki radioaktywne i niebezpieczne gazy. Nie zapewnia żadnej innej ochrony.
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+Eksperymentalny pancerz z cienkich metalowych płyt wzmacnianych włóknami pragmium. Bardzo lekki i trwały.
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-Maksa ochronna
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-Eksperymentalna zbroja cienkich metalowych płyt wzmacnianych włóknami pragmium. Bardzo lekka i trwała.
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 Pancerz z pragmium
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
 Gruba tkanina zapewniająca zaskakująco dobrą ochronę przed różnorodnymi obrażeniami i czynnikami środowiskowymi.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-Pikowana kurtka
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Pikowany pancerz
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
-Pikowana czapa
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
+Pikowany kapelusz
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-Pikowany hełm
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+Pikowany hełm z wyściółką
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-Pikowane spodnie
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+Ten pancerz bojowy ochroni przed absolutnie każdym zagrożeniem. Jednak bezpieczeństwo jest zapewniane kosztem ograniczonej mobilności.
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-Najlepsza ochrona. Ta zbroja bojowa ochroni cię przed wszystkim, jednak twoja mobilność zostanie obniżona.
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 Superciężki pancerz
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
 Potrzeba jest matką wynalazku. Niezbyt wygodna, ale całkiem przyzwoita ochrona na wczesnym etapie gry.
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-Drewniany napierśnik
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Pancerz drewniany
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 Drewniany hełm
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-Drewniane spodnie
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 Specjalny ładunek wybuchowy przeznaczony do wydobywania dużych ilości minerałów. Należy podłożyć przy złożu minerałów przeznaczonych do wydobycia.
@@ -414,6 +477,78 @@ Specjalna bomba wykorzystująca unikalne właściwości pragmium do jednoczesneg
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 Bomba rezonansowa
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+Przynęty rybne to po prostu kawałki mniejszych ryb idealnie nadające się do połowu większych ryb drapieżnych.
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+Przynęta rybna
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+Tania i prosta w obsłudze przynęta, idealna do połowu mniejszych ryb słodkowodnych.
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+Przynęta – owad
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+Boilie to specjalna przynęta mieszana z wielu różnych składników, co pozwala używać jej do łowienia większości gatunków ryb.
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+Przynęta boilie
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+Ta wędka pozwala łowić ryby w każdym akwenie. Wymaga przynęty.
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+Wędka
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+Świeżo złowione ryby przed ugotowaniem należy oprawić.
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+Okoń
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+Dorada
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+Karp
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+Sum
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+Kleń
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+Hemulon
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+Makrela
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+Koryfena
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+Mintaj
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+Ryba najeżkokształtna
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+Szczupak
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+Nematistius
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+Łosoś
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+Sardynka
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+Pstrąg
 
 Scripts/Items/Food/ItemBanana@Description:
 Każda małpa może sięgnąć po banana, ale tylko ludzie mogą sięgnąć gwiazd.
@@ -643,6 +778,27 @@ Smaczne bez względu na to, czy sadzone czy gotowane. Nie powinny być spożywan
 Scripts/Items/Food/ItemEggsRaw@Name:
 Jaja zwierzęce
 
+Scripts/Items/Food/ItemFishDried@Description:
+Suszona i solona ryba – świetnie smakuje z piwem. Można ją przechowywać przez długi czas.
+
+Scripts/Items/Food/ItemFishDried@Name:
+Suszone ryby
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+Wysokiej jakości filet rybny, doskonała baza potraw.
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+Filet z czerwonej ryby
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+Filet z białej ryby
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+Bardzo delikatny i soczysty filet rybny pieczony w piekarniku.
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+Ryba pieczona
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 Po ugotowaniu to mięso jest odrobinę mniej obrzydliwe... Ale przygotuj się na wymioty, jeśli je zjesz.
 
@@ -751,6 +907,12 @@ Słodki i gorzkawy owoc tropikalny. Można spożywać na surowo lub jako dodatek
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+Święta wojna trwa zawsze...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+Pizza z ananasem
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 Można jeść w takiej formie jak widać albo dodać do innych przepisów.
 
@@ -775,6 +937,12 @@ Mieszana sałatka warzywna. Bardzo zdrowa i zaskakująco syta!
 Scripts/Items/Food/ItemSaladVegetable@Name:
 Sałatka warzywna
 
+Scripts/Items/Food/ItemSalami@Description:
+Wędlina peklowana, produkowana ze specjalnie przygotowanego mięsa i mieszanki przypraw.
+
+Scripts/Items/Food/ItemSalami@Name:
+Salami
+
 Scripts/Items/Food/ItemSandwich@Description:
 Miękkie pieczywo, soczyste mięso i warzywa razem sprawiają, że jest to absolutny klasyk kulinarny!
 
@@ -793,6 +961,18 @@ Słodki i biały. Można dodać do wielu różnych produktów spożywczych lub j
 Scripts/Items/Food/ItemSugar@Name:
 Cukier
 
+Scripts/Items/Food/ItemSushi@Description:
+Ryż z surową rybą i przyprawami. Prosty, ale niezapomniany smak.
+
+Scripts/Items/Food/ItemSushi@Name:
+Sushi
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+Chrupiąca tortilla wypełniona mięsem, specjalnym sosem i odrobiną warzyw.
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+Taco con carne
+
 Scripts/Items/Food/ItemTequila@Description:
 Cudowny trunek destylowany z roślin występujących na pustyni.
 
@@ -810,6 +990,12 @@ Czy wiesz, że pomidory to owoce, a nie warzywa?
 
 Scripts/Items/Food/ItemTomato@Name:
 Pomidor
+
+Scripts/Items/Food/ItemUkha@Description:
+Tradycyjna zupa rybna z warzywami.
+
+Scripts/Items/Food/ItemUkha@Name:
+Ukha
 
 Scripts/Items/Food/ItemVodka@Description:
 Woda ognista bogów. Pita z umiarem nie szkodzi nawet w największych ilościach. Odwadnia organizm. I nie, nie pomaga na promieniowanie.
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 Puste puszki
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-Pusty metalowy pojemnik, który może służyć do przechowywania płynów lotnych.
+Pusty metalowy pojemnik, służący do przechowywania lotnych cieczy.
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 Pusty kanister
@@ -1091,6 +1277,24 @@ Zmodyfikowany proch w postaci granulek nitrocelulozowych stosowany w amunicji pr
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 Modyfikowany proch strzelniczy
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+Puste ogniwo paliwowe pozwalające napędzać różne pojazdy. Najpierw należy je naładować.
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+Puste ogniwo paliwowe
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+Ogniwo paliwowe wypełnione standardowym paliwem płynnym. Tanie, ale nie zawiera zbyt wiele energii.
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+Benzynowe ogniwo paliwowe
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+Ogniwo paliwowe wypełnione płynnym pragmium. Działa niezwykle długo.
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+Pragmiumowe ogniwo paliwowe
+
 Scripts/Items/Generic/ItemFur@Description:
 Futro zwierzęce. Służy do szycia ciepłej odzieży zimowej.
 
@@ -1192,12 +1396,6 @@ Stal przemysłowa o wysokiej zawartości węgla.
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Sztabka stali
-
-Scripts/Items/Generic/ItemLeaf@Description:
-Liść... Prawdopodobnie z drzewa.
-
-Scripts/Items/Generic/ItemLeaf@Name:
-Liść
 
 Scripts/Items/Generic/ItemLeather@Description:
 Skóra zwierzęca. Może posłużyć do uszycia zbroi skórzanej.
@@ -1565,6 +1763,12 @@ Ten specjalny materiał z nanowłóknami zapewniający wysokie właściwości oc
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implant skórny – nanowłókna
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+Sztuczne wzmocnienie kości i czaszki. Zapobiega ogłuszeniom i złamaniom.
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+Implant wzmacniający szkielet
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 W organizmie nie wykryto niekontrolowanych mutacji.
 
@@ -1714,6 +1918,20 @@ Ten jednorazowy modyfikator neuronowy zawiera zaprogramowane nanoroboty. Sztuczn
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 Wzmacniacz neuronalny
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`Uwaga: tego przedmiotu nie można używać często.
+[br]Jeśli użyjesz go teraz, nie będziesz mógł użyć go ponownie przez: {0}.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`Ostatnio użyto tego przedmiotu.
+[br]Kolejne użycie dostępne za: {0}.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+Całkowicie usuwa całą dobytą wiedzę na temat wszystkich technologi i pozwala odzyskać wszystkie punkty technologii, dzięki czemu można je wydać na nowo. Nie można używać często.
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+Rekombinator neuronowy
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 Środek przeciwbólowy całkowicie usuwa ból i zapobiega odczuwaniu bólu przez cały czas jego działania.
@@ -1940,6 +2158,12 @@ Kamienny kilof pozwala eksploatować złoża minerałów.
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Kamienny kilof
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+Ten czujnik umożliwia wyszukiwanie dużych kryształów pragmium poprzez wykrywanie ich unikalnych psionicznych śladów. Działa nawet na duże odległości.
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+Czujnik pragmium
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Skrzynka z narzędziami jest niezbędna do zbudowania i naprawienia wszystkich konstrukcji. Musi być wyposażona i wybrana.
 
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 Pistolet
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-Pistolet laserowy emitujący silny impuls wysokoenergetycznego światła, głównie w pasmie podczerwieni, które spala cel.
+Pistolet laserowy emituje bardzo częste, wysokoenergetyczne impulsy świetlne, które potrafią spopielić cel.
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 Pistolet laserowy
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-Karabin laserowy emitujący szybkie, wysokoenergetyczne impulsy świetlne, głównie w pasmie podczerwieni, które spalają cel. Znacznie wyższa szybkostrzelność od pistoletu laserowego przy wyższym zapotrzebowaniu na energię.
+Karabin laserowy emituje potężne, wysokoenergetyczne impulsy świetlne, głównie w zakresie podczerwieni, które potrafią spopielić cel. Zapewnia znacznie większy zasięg niż pistolet laserowy.
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 Karabin laserowy
@@ -2163,7 +2387,7 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Pistolet maszynowy
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
-Ciężkie działko automatyczne przeznaczone do montażu na bojowych pancerzach wspomaganych. Wykorzystuje wielkokalibrową amunicję przeciwpancerną.
+Ciężkie działko automatyczne przeznaczone do montażu węźle uzbrojenia na bojowych pancerzach wspomaganych. Wykorzystuje wielkokalibrową amunicję przeciwpancerną.
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
 Ciężkie działko automatyczne
@@ -2173,4 +2397,16 @@ Lekkie działko automatyczne przeznaczone do montażu na bojowych pancerzach wsp
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 Lekkie działko automatyczne
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+Specjalne ciężkie działko artyleryjskie, strzelające pociskami przeciwpancernymi.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+Artyleria
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+Ciężkie działo, które niszczy cel za pomocą ładunków przyspieszonych cząstek.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+Działo energetyczne
 

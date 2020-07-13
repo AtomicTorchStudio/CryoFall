@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -22,19 +23,27 @@
 
     public class ViewModelWindowObjectVehicle : BaseViewModel
     {
+        private readonly IClientItemsContainer cargoItemsContainer;
+
+        private readonly Action onActiveTabChanged;
+
         private readonly VehiclePrivateState vehiclePrivateState;
 
         private readonly VehiclePublicState vehiclePublicState;
 
-        private bool isFuelContainerActive;
+        private bool isCargoTabActive;
+
+        private bool isVehicleTabActive;
 
         public ViewModelWindowObjectVehicle(
             IDynamicWorldObject vehicle,
             FrameworkElement vehicleExtraControl,
-            BaseViewModel vehicleExtraControlViewModel)
+            IViewModelWithActiveState vehicleExtraControlViewModel,
+            Action onActiveTabChanged)
         {
             this.VehicleExtraControl = vehicleExtraControl;
             this.VehicleExtraControlViewModel = vehicleExtraControlViewModel;
+            this.onActiveTabChanged = onActiveTabChanged;
             if (vehicleExtraControl != null)
             {
                 vehicleExtraControl.DataContext = vehicleExtraControlViewModel;
@@ -55,12 +64,13 @@
 
             this.ViewModelVehicleEnergy = new ViewModelVehicleEnergy(vehicle);
 
-            this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(
-                    this.vehiclePrivateState.CargoItemsContainer,
-                    callbackTakeAllItemsSuccess: null)
-                {
-                    IsContainerTitleVisible = false
-                };
+            this.cargoItemsContainer = this.vehiclePrivateState.CargoItemsContainer as IClientItemsContainer;
+            this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(this.cargoItemsContainer,
+                                                                                       callbackTakeAllItemsSuccess:
+                                                                                       null)
+            {
+                IsContainerTitleVisible = false
+            };
 
             this.ViewModelItemsContainerExchange.IsActive = false;
 
@@ -80,8 +90,14 @@
 
             this.RefreshCanRepair();
 
-            this.IsFuelContainerActive = true;
+            this.IsVehicleTabActive = true;
             this.ViewModelItemsContainerExchange.IsActive = true;
+
+            if (this.cargoItemsContainer != null)
+            {
+                this.cargoItemsContainer.ItemAdded += this.CargoItemsContainerItemAddedHandler;
+                this.cargoItemsContainer.ItemCountChanged += this.CargoItemsContainerItemCountChangedHandler;
+            }
         }
 
         public string CannotRepairErrorMessage { get; private set; }
@@ -99,20 +115,42 @@
 
         public bool IsCanRepair { get; private set; }
 
-        public bool IsFuelContainerActive
+        public bool IsCargoTabActive
         {
-            get => this.isFuelContainerActive;
+            get => this.isCargoTabActive;
             set
             {
-                if (this.isFuelContainerActive == value)
+                if (this.isCargoTabActive == value)
                 {
                     return;
                 }
 
-                this.isFuelContainerActive = value;
+                this.isCargoTabActive = value;
                 this.NotifyThisPropertyChanged();
 
-                if (this.isFuelContainerActive)
+                if (value)
+                {
+                    this.onActiveTabChanged();
+                }
+            }
+        }
+
+        public bool IsVehicleTabActive
+        {
+            get => this.isVehicleTabActive;
+            set
+            {
+                if (this.isVehicleTabActive == value)
+                {
+                    return;
+                }
+
+                this.isVehicleTabActive = value;
+
+                var wasContainerExchangeActive = this.ViewModelItemsContainerExchange.IsActive;
+                this.ViewModelItemsContainerExchange.IsActive = false;
+
+                if (this.isVehicleTabActive)
                 {
                     var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
                     ClientContainersExchangeManager.Register(
@@ -127,6 +165,20 @@
                 else
                 {
                     ClientContainersExchangeManager.Unregister(this);
+                }
+
+                if (this.VehicleExtraControlViewModel != null)
+                {
+                    this.VehicleExtraControlViewModel.IsActive = value;
+                }
+
+                this.ViewModelItemsContainerExchange.IsActive = wasContainerExchangeActive;
+
+                this.NotifyThisPropertyChanged();
+
+                if (value)
+                {
+                    this.onActiveTabChanged();
                 }
             }
         }
@@ -150,17 +202,37 @@
 
         public ViewModelVehicleEnergy ViewModelVehicleEnergy { get; }
 
-        private BaseViewModel VehicleExtraControlViewModel { get; }
+        private IViewModelWithActiveState VehicleExtraControlViewModel { get; }
 
         protected override void DisposeViewModel()
         {
-            this.IsFuelContainerActive = false;
+            this.IsVehicleTabActive = false;
+
+            if (this.cargoItemsContainer != null)
+            {
+                this.cargoItemsContainer.ItemAdded -= this.CargoItemsContainerItemAddedHandler;
+                this.cargoItemsContainer.ItemCountChanged -= this.CargoItemsContainerItemCountChangedHandler;
+            }
+
             base.DisposeViewModel();
         }
 
         private static void ExecuteCommandEnterVehicle()
         {
             VehicleSystem.ClientOnVehicleEnterOrExitRequest();
+        }
+
+        private void CargoItemsContainerItemAddedHandler(IItem item)
+        {
+            this.IsCargoTabActive = true;
+        }
+
+        private void CargoItemsContainerItemCountChangedHandler(IItem item, ushort previousCount, ushort currentCount)
+        {
+            if (currentCount > previousCount)
+            {
+                this.IsCargoTabActive = true;
+            }
         }
 
         private void ExecuteCommandRepair()

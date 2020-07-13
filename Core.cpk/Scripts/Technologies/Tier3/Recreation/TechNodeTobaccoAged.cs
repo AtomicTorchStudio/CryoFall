@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes.DryingCabinet;
 
-    public class TechNodeTobaccoAged : TechNode<TechGroupRecreation>
+    public class TechNodeTobaccoAged : TechNode<TechGroupRecreationT3>
     {
         protected override void PrepareTechNode(Config config)
         {

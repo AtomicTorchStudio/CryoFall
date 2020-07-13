@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
 
-    public class ObjectGeneratorBioPrivateState : StructurePrivateState
+    public class ObjectGeneratorBioPrivateState : ObjectGeneratorPrivateState
     {
         [SyncToClient]
         public IItemsContainer InputItemsCointainer { get; set; }

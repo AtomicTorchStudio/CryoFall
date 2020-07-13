@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -72,6 +73,12 @@
                     this.SoundPresetItem.PlaySound(ItemSound.Use);
                 }
             }
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.FertilizerApplication);
         }
 
         private static GetPlantResult SharedGetAvailablePlantAt(Vector2Ushort tilePosition, ICharacter character)

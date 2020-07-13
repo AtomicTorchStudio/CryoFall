@@ -17,6 +17,10 @@
             EventWithAreaPublicState,
             EmptyClientState>
     {
+        // {0} is the boss name
+        public const string Notification_VictoryAnnouncement_Format =
+            "{0} has been defeated by:";
+
         public override bool ConsolidateNotifications => false;
 
         public override double ServerUpdateIntervalSeconds => 1;

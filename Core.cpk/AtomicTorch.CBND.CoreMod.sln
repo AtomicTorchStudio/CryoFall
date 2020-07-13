@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "AtomicTorch.CBND.CoreMod", "AtomicTorch.CBND.CoreMod.csproj", "{60F67F5B-3F5C-46D4-86CC-41DD997173A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtomicTorch.CBND.CoreMod", "AtomicTorch.CBND.CoreMod.csproj", "{60F67F5B-3F5C-46D4-86CC-41DD997173A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

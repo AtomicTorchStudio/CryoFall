@@ -13,6 +13,9 @@ Scripts/Events/EventSpaceDrop@Description:
 `В зону, отмеченную на карте, упали обломки из космоса.
 [br]Поспешите, вдруг там есть что-то ценное!`
 
+Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
+{0} терпит поражение от:
+
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Прогресс: {0}/{1}
 

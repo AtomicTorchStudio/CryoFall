@@ -6,6 +6,8 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -15,7 +17,9 @@
 
     public class ObjectMineralPragmiumNode
         : ProtoObjectMineral
-            <ObjectMineralPragmiumNode.PrivateState, StaticObjectPublicState, DefaultMineralClientState>
+            <ObjectMineralPragmiumNode.PrivateState,
+                StaticObjectPublicState,
+                DefaultMineralClientState>
     {
         // The Node destruction will be postponed on this duration
         // if it cannot be destroy because there are characters observing it.
@@ -29,6 +33,8 @@
 
         private TextureResource[] textures;
 
+        public override bool IsAllowDroneMining => false;
+
         // we don't want to see any decals under it
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
@@ -38,13 +44,18 @@
 
         public override double ServerUpdateIntervalSeconds => 60;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 500;
 
         // has light source
         public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
                                                                        minY: -1,
                                                                        maxX: 1,
                                                                        maxY: 2);
+
+        public static void ServerRestartDestroyTimer(PrivateState privateState)
+        {
+            privateState.DestroyAtTime = Server.Game.FrameTime + DestructionTimeoutSeconds;
+        }
 
         protected override ITextureResource ClientGetTextureResource(
             IStaticWorldObject gameObject,
@@ -89,7 +100,25 @@
         {
             config.Stage4.Add<ItemOrePragmium>(count: 2);
         }
-        
+
+        protected override void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)
+        {
+            var objectMineralPragmiumSource = targetObject.OccupiedTile.EightNeighborTiles
+                                                          .SelectMany(t => t.StaticObjects)
+                                                          .FirstOrDefault(
+                                                              o => o.ProtoGameObject is ObjectMineralPragmiumSource);
+            if (objectMineralPragmiumSource != null)
+            {
+                ObjectMineralPragmiumSource.ServerTryClaimPragmiumCluster(objectMineralPragmiumSource, character);
+            }
+            else
+            {
+                WorldObjectClaimSystem.ServerTryClaim(targetObject,
+                                                      character,
+                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
+            }
+        }
+
         protected override void ServerUpdate(ServerUpdateData data)
         {
             base.ServerUpdate(data);
@@ -138,11 +167,6 @@
                 .AddShapeCircle(radius: 0.2,  center: (0.5, 0.5))
                 .AddShapeCircle(radius: 0.45, center: (0.5, 0.5), group: CollisionGroups.HitboxMelee);
             // no ranged hitbox
-        }
-
-        public static void ServerRestartDestroyTimer(PrivateState privateState)
-        {
-            privateState.DestroyAtTime = Server.Game.FrameTime + DestructionTimeoutSeconds;
         }
 
         public class PrivateState : BasePrivateState

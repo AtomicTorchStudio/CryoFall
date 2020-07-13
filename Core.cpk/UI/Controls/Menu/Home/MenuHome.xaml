@@ -112,6 +112,9 @@
                             <Control Template="{StaticResource BlockOfficialMultiplayerServerTemplate}"
                                      Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
 
+                            <Control Template="{StaticResource BlockCommunityMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+
                             <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
                                      Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
 
@@ -311,26 +314,39 @@
                     VerticalAlignment="Top"
                     Orientation="Vertical"
                     Margin="20,15,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="4"
+                                              ShadowDepth="2"
+                                              Direction="-45"
+                                              Opacity="0.5"
+                                              Color="Black" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="noesis:Text.Stroke" Value="#88000000" />
+                    <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+                    <Setter Property="Foreground" Value="#FFFFFFFF" />
+                    <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                </Style>
+            </StackPanel.Resources>
+
             <TextBlock Text="{Binding UpdateTitle}"
-                       FontFamily="{StaticResource CondensedFontFamily}"
-                       FontSize="35"
-                       Foreground="#FFFFFFFF"
-                       noesis:Text.Stroke="#FF000000"
-                       noesis:Text.StrokeThickness="2.5" />
+                       FontSize="35" />
             <TextBlock Text="{Binding UpdateReleaseDateText}"
-                       FontFamily="{StaticResource CondensedFontFamily}"
                        FontSize="22"
-                       Margin="0,-5,0,0"
-                       Foreground="#FFFFFFFF"
-                       noesis:Text.Stroke="#FF000000"
-                       noesis:Text.StrokeThickness="2" />
+                       Margin="0,-5,0,0" />
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="3"
                     VerticalAlignment="Bottom"
-                    Orientation="Vertical"
                     Opacity="0.75"
-                    Margin="20">
+                    Margin="20"
+                    Orientation="Vertical">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />
@@ -338,6 +354,27 @@
                     <Setter Property="FontSize" Value="16" />
                     <Setter Property="FontWeight" Value="Bold" />
                     <Setter Property="Margin" Value="5,0" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="4"
+                                              ShadowDepth="2"
+                                              Direction="-45"
+                                              Opacity="0.75"
+                                              Color="Black" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+                <Style TargetType="Image">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="4"
+                                              ShadowDepth="2"
+                                              Direction="-45"
+                                              Opacity="0.75"
+                                              Color="Black" />
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </StackPanel.Resources>
             <core:HyperlinkControl Command="{Binding CommandShowFeaturesSlideshow}"
@@ -390,6 +427,13 @@
                     <TextBlock Text="Discord" />
                 </StackPanel>
             </core:HyperlinkControl>
+
+            <!-- Hack to ensure some padding to render the DropShadowEffect of the last button in the list -->
+            <Rectangle Height="5"
+                       Width="5"
+                       Margin="0,-5"
+                       HorizontalAlignment="Left"
+                       Fill="Transparent" />
         </StackPanel>
 
         <ContentControl Grid.Row="3" Grid.Column="1" Style="{StaticResource MainMenuWidgetStyle}">

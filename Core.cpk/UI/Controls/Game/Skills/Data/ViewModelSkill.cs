@@ -175,7 +175,7 @@
             {
                 list.Insert(
                     0,
-                    new ViewModelSkillEffectCombinedStats(group.Select(vm => vm.StatEffect).ToArray(), maxLevel));
+                    new ViewModelSkillEffectCombinedStats(this.skill, group.Select(vm => vm.StatEffect).ToArray(), maxLevel));
             }
 
             return list;

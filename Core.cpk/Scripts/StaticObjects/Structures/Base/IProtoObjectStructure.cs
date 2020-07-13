@@ -19,6 +19,8 @@
 
         IConstructionUpgradeConfigReadOnly ConfigUpgrade { get; }
 
+        ProtoObjectConstructionSite ConstructionSitePrototype { get; }
+
         string Description { get; }
 
         string DescriptionUpgrade { get; }
@@ -27,13 +29,15 @@
 
         bool IsListedInTechNodes { get; }
 
+        bool IsRelocatable { get; }
+
         bool IsRepeatPlacement { get; }
 
         IReadOnlyList<TechNode> ListedInTechNodes { get; }
 
-        ProtoObjectConstructionSite ConstructionSitePrototype { get; }
-
         float StructurePointsMaxForConstructionSite { get; }
+
+        IConstructionTileRequirementsReadOnly TileRequirements { get; }
 
         /// <summary>
         /// Returns actual config - for constructed object this is repair config (because it's constructed),

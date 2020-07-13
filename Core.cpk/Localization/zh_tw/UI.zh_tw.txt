@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 建造
 
+UI/CoreStrings@Action_Relocate:
+搬遷
+
 UI/CoreStrings@Action_Repair:
 修理
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+相容武器：
+
+UI/CoreStrings@AutosaveNotification_Completed:
+存檔完畢！
+
+UI/CoreStrings@AutosaveNotification_Content1:
+伺服器將進行一次常規世界存檔。
+
+UI/CoreStrings@AutosaveNotification_Content2:
+玩家將可能遭遇短暫卡頓。
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+存檔倒計時：{0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+保存中...
+
+UI/CoreStrings@AutosaveNotification_Title:
+伺服器快照
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 摧毀於
@@ -145,7 +169,7 @@ UI/CoreStrings@ClanTag_Current:
 
 UI/CoreStrings@ClanTag_Exists:
 `所選氏族標籤已被其他玩家使用。
- [br]請使用其他氏族標籤。`
+[br]請使用其他氏族標籤。`
 
 UI/CoreStrings@ClanTag_FormatWithName:
 [{0}] {1}
@@ -155,9 +179,9 @@ UI/CoreStrings@ClanTag_Invalid:
 
 UI/CoreStrings@ClanTag_Requirements:
 `氏族標籤要求：
- [*] 只能為英文字母與數位
- [*] 必須以英文字母開頭
- [*] 最多4個字元`
+[*] 只能為英文字母與數位
+[*] 必須以英文字母開頭
+[*] 最多4個字元`
 
 UI/CoreStrings@ClanTag_Select:
 請選擇氏族標籤
@@ -173,6 +197,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 此建築儲存電力。
+
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+此建築建造後不可移動。
 
 UI/CoreStrings@Copy:
 複製
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 無頭像
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-挑選一個圖示
+用一個物品點此來講其圖示放置在箱子上。
+
+UI/CoreStrings@DamageType_Chemical:
+化學品
+
+UI/CoreStrings@DamageType_Cold:
+冷
+
+UI/CoreStrings@DamageType_Explosion:
+爆破
+
+UI/CoreStrings@DamageType_Heat:
+熱
+
+UI/CoreStrings@DamageType_Impact:
+衝擊
+
+UI/CoreStrings@DamageType_Kinetic:
+動能
+
+UI/CoreStrings@DamageType_Psi:
+靈能
+
+UI/CoreStrings@DamageType_Radiation:
+輻射
 
 UI/CoreStrings@Defense_Format_Chemical:
 化學防護: {0}
@@ -216,8 +267,8 @@ UI/CoreStrings@Defense_Format_Chemical:
 UI/CoreStrings@Defense_Format_Cold:
 寒冷防護: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-電擊防護: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+爆炸防護： {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 熱能防護: {0}
@@ -273,6 +324,12 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 表層礦點（高採集量）
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+您確定要使用{0}嗎？
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+同時控制的無人機
+
 UI/CoreStrings@Duration_Instant:
 瞬間
 
@@ -288,11 +345,26 @@ UI/CoreStrings@Duration_VeryQuick:
 UI/CoreStrings@Duration_VerySlow:
 非常慢
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+額外效果：
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+移除效果：
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EU/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+你需要造成至少{0}%總傷害才能在本次事件中獲得獎勵。祝下次好運！
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+傷害不足
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+你造成了{0}%的總傷害！你獲得了戰利品的{1}/{2}。
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall的官方Discord伺服器(僅限英文)
@@ -402,6 +474,12 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 需要
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+腐敗倒計時：{0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+永不
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 快速鍵
 
@@ -425,6 +503,12 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 輸出
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+緩衝區
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+T{0}
 
 UI/CoreStrings@LearningPoints:
 學習點數
@@ -595,6 +679,12 @@ UI/CoreStrings@MenuServers_PublicGUID:
 
 UI/CoreStrings@MenuServers_ServersCount:
 伺服器
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+此伺服器由社區成員搭建。遊戲開發者對於此伺服器沒有管制許可權，也無法保證您在此伺服器中的遊戲體驗。此伺服器可能使用了自定數值系統，讓遊戲更加容易或困難。此伺服器的管理員將負責為其玩家提供支援與監管。
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+社區
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 頂置伺服器往往具有較高聲譽，能夠提供高品質的遊戲體驗，類似官方伺服器。但是這些伺服器仍然是由社區運營的。
@@ -825,6 +915,26 @@ UI/CoreStrings@Performance_VRAMUsage:
 UI/CoreStrings@PleaseWait:
 請耐心等待...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+此耗能設備[b]未連接[/b]至電網。
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+此建築將持續工作，直到能量等級低於停止閾值([b]{0}%[/b])。
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+此耗能設備[b]已連接[/b]至電網。
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`電力等級已低於關閉閾值([b]{0}%[/b])。
+[br]此建築將在電力等級高於開啟閾值([b]{1}%[/b])後自動開啟。`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`電力等級已低於開啟閾值([b]{0}%[/b])。
+[br]此建築將在電力等級高於開啟閾值後自動開啟。`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+此耗能設備[b]正閒置[/b]。
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 未連接至電網。
 
@@ -891,6 +1001,50 @@ UI/CoreStrings@PowerGridState_Status_Nominal:
 UI/CoreStrings@PowerGridState_Storages:
 儲量：
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+此發電機[b]未連接[/b]至電網。
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+此建築將持續工作，直到能量等級達到停止閾值([b]{0}%[/b])。
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+此發電機[b]已連接[/b]至電網。
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`電力等級已高於關閉閾值([b]{0}%[/b])。
+[br]此建築將在電力等級低於開啟閾值([b]{1}%[/b])後自動開啟。`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`電力等級已高於開啟閾值([b]{0}%[/b])。
+[br]此建築將在電力等級低於開啟閾值後自動開啟。`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+此發電機[b]正閒置[/b]。
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+已連接至電網。
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+已斷開與電網的連接。
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+能量控制
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+電網等級
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+關閉:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+啟動：
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+能量等級閾值
+
+UI/CoreStrings@Protection_Name:
+防護:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 獲取
 
@@ -933,6 +1087,129 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 刪檔
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+你無法對一個啟用了護盾的基地進行此行動。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+啟動護盾將花費{0}（啟動延遲）。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+啟動護盾將花費{0}（啟動延遲加額外剩餘冷卻時間）。
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+以當前儲量，護盾能提供至多{0}的保護。
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+啟動延遲：
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+啟動護盾
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+關閉護盾
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+充能護盾
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+你基地的護盾啟動因為突擊隔斷而被取消。
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+無法在突擊隔斷期間啟動護盾。
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+冷卻：
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(冷卻{0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+當前護盾充能：
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+關閉已啟動或啟動中的護盾將開始冷卻時間({0})。在冷卻時間中，護盾無法再次啟動。
+
+UI/CoreStrings@ShieldProtection_Description_1:
+護盾能在你離開或離線時保護你的基地。
+
+UI/CoreStrings@ShieldProtection_Description_2:
+在護盾保護狀態下，基地大門和牆體將不受任何傷害。
+
+UI/CoreStrings@ShieldProtection_Description_3:
+鎖定：沒有人能在護盾保護狀態下進入或離開基地（所有門都將鎖死）。
+
+UI/CoreStrings@ShieldProtection_Description_4:
+在啟動護盾以前必須用電力為其充能。
+
+UI/CoreStrings@ShieldProtection_Description_5:
+啟動護盾需要時間。
+
+UI/CoreStrings@ShieldProtection_Description_6:
+關閉護盾後無法馬上再次重新開啟。
+
+UI/CoreStrings@ShieldProtection_Description_7:
+啟動護盾將限制工具箱和撬棍的使用。
+
+UI/CoreStrings@ShieldProtection_Description_8:
+護盾無法在啟動期間充能 - 必須先將其關閉。
+
+UI/CoreStrings@ShieldProtection_Description_9:
+如果基地在護盾啟動時遭遇攻擊（突襲隔斷開始），護盾啟動將被取消，並進入冷卻。
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+確定要啟動護盾嗎？
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+確定要關閉護盾嗎？
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+鎖定：此門被啟動的護盾鎖死。
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+此領地被啟動護盾所保護。
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+預計持續時間：
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+最大持續時間：
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+除非被打斷，護盾將在{0}後打開。（可能打斷原因有所有人主動打斷，或被襲擊導致襲擊隔斷觸發）
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+此基地正在啟動護盾
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+此基地正受護盾保護，最大持續{0}。
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]你可以點此馬上關閉護盾。[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+此基地正受護盾保護
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+此基地正受護盾保護。牆體和門將不受傷害。無法啟動突襲隔斷。
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+充能至：
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+護盾狀態：
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+啟動中
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+啟動
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+未啟動
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+擁有高等級領地建築的玩家可使用離線基地保護。儘快升級領地建築來開啟此功能。
+
 UI/CoreStrings@Skill:
 技能
 
@@ -968,6 +1245,9 @@ UI/CoreStrings@SupporterPack_Description:
 `支援包裹是給予那些特別支持了CryoFall的玩家們的一系列獎勵物品。作為感謝，遊戲將在聊天區域內為這些玩家加入支援徽章。
 [br][br]支援包裹不提供任何遊戲內優勢並且是可選的。其中包括了遊戲的完整原聲，概念設計圖，高清原畫以及聊天徽章等內容。在搶先體驗階段將會有更多內容加入。
 [br][br]我們發自內心的感謝大家的幫助！`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 學習點數: {0}
@@ -1010,6 +1290,9 @@ UI/CoreStrings@Technology:
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 搜索...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 標題
@@ -1083,6 +1366,9 @@ UI/CoreStrings@TitlePowerGrid:
 UI/CoreStrings@TitleSafeStorage:
 安全存儲
 
+UI/CoreStrings@TitleShieldProtection:
+S.H.E.I.L.D.
+
 UI/CoreStrings@TitleStructurePoints:
 結構值
 
@@ -1116,6 +1402,9 @@ UI/CoreStrings@Vehicle_EnergyLevel:
 UI/CoreStrings@Vehicle_Enter:
 進入
 
+UI/CoreStrings@Vehicle_FuelCells:
+燃料電池
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 護甲{1:F0}/{2:F0} ({0}%)
 
@@ -1130,6 +1419,9 @@ UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 武器
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+武器({0} 槽位)
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 此武器只有在裝備在機甲上後才能使用。
@@ -1175,8 +1467,53 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 藍圖解鎖
 
+UI/CoreStrings@Victory:
+勝利!
+
+UI/CoreStrings@Weapon_Accuracy:
+精准
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+彈藥容量
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+穿甲
+
+UI/CoreStrings@Weapon_AttackRate:
+攻擊速率
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 相容彈藥：
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+當前彈藥：
+
+UI/CoreStrings@Weapon_Damage:
+傷害
+
+UI/CoreStrings@Weapon_DamageType:
+傷害類型
+
+UI/CoreStrings@Weapon_FireRate:
+開火速率
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+單發
+
+UI/CoreStrings@Weapon_Range:
+遠程
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+裝彈速度
+
+UI/CoreStrings@Weapon_Spread:
+散佈
+
+UI/CoreStrings@Weapon_StoppingPower:
+抑止力
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+以下屬性為武器裝備參考彈藥({0})後的數值。
 
 UI/CoreStrings@Window_Tab_Main:
 主要
@@ -1192,14 +1529,26 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 隨機
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+最大尺寸: {0}釐米
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+最大重量: {0}公斤
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 接受
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+新紀錄！
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 進度：
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 生物
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+魚
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 食物
@@ -1231,7 +1580,7 @@ UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
 
 UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
 `此容器為空。
- [br]無可選擇圖片的物品。`
+[br]無可選擇圖片的物品。`
 
 UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
 已選擇圖示
@@ -1431,6 +1780,12 @@ UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
 UI/CoreStrings@WindowSocial_TotalPlayers:
 總玩家數
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+現在澆水
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+下次澆水嘗試於：[b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 創建新的AtomicTorch帳戶
 
@@ -1611,6 +1966,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]交易站(你)[/b]
 [br]你自己的交易站。`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+此物體已被另一位元玩家佔據。
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+您無法在佔領期結束前與其互動。
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+佔領過期於：{0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+物品已佔領
+
 UI/CoreStrings@Yes:
 是
 
@@ -1641,6 +2008,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 第一次擊殺
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+第一次捕獲
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 第一次進食
@@ -1790,7 +2160,7 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 頭髮顏色
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 皮膚顏色
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
@@ -1877,6 +2247,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]你可以通過[b]升級[/b]主權聲明建築來延長倒計時。
 [br]腐朽倒計時基於領地內等級[b]最高[/b]的主權建築。`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+僅限PVP
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 沒有燃料
 
@@ -1936,6 +2309,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Ti
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 鑄造硬幣，建造全自動貿易站來與其他倖存者進行交易。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+釣魚
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+使用不同種類的魚餌釣上各種魚類。看看你能不能釣上破紀錄的大魚！
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 植入物

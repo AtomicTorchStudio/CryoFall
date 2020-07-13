@@ -20,9 +20,8 @@
             duration = CraftingDuration.Long;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 50);
-            inputItems.Add<ItemOrePragmium>(count: 25);
-            inputItems.Add<ItemIngotCopper>(count: 25);
             inputItems.Add<ItemComponentsOptical>(count: 50);
+            inputItems.Add<ItemVialBiomaterial>(count: 10);
 
             outputItems.Add<ItemImplantArtificialRetina>(count: 1);
         }

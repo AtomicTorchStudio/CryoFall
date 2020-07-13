@@ -25,6 +25,8 @@
 
         public override uint DurabilityMax => 250;
 
+        public override double FireInterval => 0; // can fire as soon as reloaded
+
         public override string Name => "Crossbow";
 
         public override (float min, float max) SoundPresetWeaponDistance

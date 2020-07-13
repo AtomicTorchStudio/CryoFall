@@ -10,6 +10,12 @@ Variante pesada do projeto da plataforma de gravidade. Mais durável, oferece ma
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
 Prancha Voadora Mk2
 
+Scripts/Vehicles/VehicleMechBehemoth@Description:
+Armadura de batalha pesada mecanizada feita para cercos. Garante proteção inigualável e incrível poder de fogo com seu grande acoplamento fixo, mas possui uma velocidade de deslocamento relativamente lenta.
+
+Scripts/Vehicles/VehicleMechBehemoth@Name:
+Behemoth
+
 Scripts/Vehicles/VehicleMechManul@Description:
 Design médio para armadura de batalha mecanizada. Possui capacidades defensivas substanciais e grande capacidade de transporte de carga sem sacrificar outros aspectos.
 
@@ -48,4 +54,10 @@ Não é necessário reparar.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
 Traga o veículo para o compartimento de montagem de veículo para repará-lo.
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
+Normal
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
+Grande
 

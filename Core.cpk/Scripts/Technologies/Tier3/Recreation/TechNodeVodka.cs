@@ -2,14 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes.FermentationBarrel;
 
-    public class TechNodeVodka : TechNode<TechGroupRecreation>
+    public class TechNodeVodka : TechNode<TechGroupRecreationT3>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipeVodka>();
 
-            config.SetRequiredNode<TechNodeBeer>();
+            config.SetRequiredNode<TechNodeFermentationBarrel>();
         }
     }
 }

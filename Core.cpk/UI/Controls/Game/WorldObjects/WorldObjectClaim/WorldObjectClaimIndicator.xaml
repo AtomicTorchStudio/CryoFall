@@ -1,0 +1,36 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectClaim.WorldObjectClaimIndicator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="450"
+    d:DesignWidth="800">
+
+    <Grid>
+        <ContentControl Background="Transparent"
+                        Padding="30"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+            <Path
+                Data="m 186.26668,237.06667 q 0,-14.02292 -9.92189,-23.94479 Q 166.42292,203.2 152.4,203.2 q -14.02292,0 -23.94479,9.92188 -9.92188,9.92187 -9.92188,23.94479 0,9.78958 5.02709,17.72708 5.02708,7.9375 13.49375,12.43542 l -18.25625,60.58958 q -1.32292,3.96875 1.32291,7.40833 2.64584,3.43959 6.87917,3.43959 h 50.8 q 4.23335,0 6.87918,-3.43959 2.64583,-3.43958 1.32292,-7.40833 l -18.25627,-60.58958 q 8.46667,-4.49792 13.49377,-12.43542 5.02708,-7.9375 5.02708,-17.72708 z M 84.66667,169.33333 h 135.46668 v -50.8 q 0,-28.045831 -19.84375,-47.889581 -19.84375,-19.84375 -47.8896,-19.84375 -28.04583,0 -47.88958,19.84375 -19.84375,19.84375 -19.84375,47.889581 z m 220.13334,25.4 v 152.4 q 0,10.58334 -7.40833,17.99167 -7.40833,7.40833 -17.99167,7.40833 H 25.4 q -10.583333,0 -17.991667,-7.40833 Q 0,357.71667 0,347.13333 v -152.4 Q 0,184.15 7.408333,176.74167 14.816667,169.33333 25.4,169.33333 h 8.46667 v -50.8 q 0,-48.683331 34.925,-83.608331 Q 103.71667,0 152.4,0 q 48.68335,0 83.60835,34.924999 34.925,34.925 34.925,83.608331 v 50.8 h 8.46666 q 10.58334,0 17.99167,7.40834 7.40833,7.40833 7.40833,17.99166 z"
+                Width="48"
+                Height="48"
+                Stretch="Uniform"
+                Fill="#AACCCCCC"
+                Stroke="#88000000"
+                StrokeThickness="2">
+                <Path.Effect>
+                    <DropShadowEffect BlurRadius="4"
+                                      ShadowDepth="2"
+                                      Direction="-45"
+                                      Opacity="0.75"
+                                      Color="Black" />
+                </Path.Effect>
+            </Path>
+        </ContentControl>
+    </Grid>
+
+</base:BaseUserControl>

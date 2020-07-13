@@ -209,23 +209,19 @@
             <Control Style="{StaticResource ControlVerticalSeparatorRight}" Grid.Row="1" />
 
             <!-- Details view -->
-            <ScrollViewer Grid.Row="1"
-                          Grid.Column="3"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Top"
-                          Height="446"
-                          Visibility="{Binding SelectedStructure, Converter={StaticResource NullToVisibilityConverter}}"
-                          Margin="0,-2,5,0">
+            <ContentControl Grid.Row="1"
+                            Grid.Column="3"
+                            Visibility="{Binding SelectedStructure, Converter={StaticResource NullToVisibilityConverter}}">
                 <Grid DataContext="{Binding SelectedStructure}"
                       Width="320"
-                      VerticalAlignment="Stretch">
+                      Height="446"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Center"
+                      Margin="0,-2,5,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
@@ -270,46 +266,58 @@
                                    Height="140" />
                     </Border>
 
-                    <!-- Description text -->
-                    <TextBlock Grid.Row="2"
-                               Text="{Binding Description}"
-                               HorizontalAlignment="Center"
-                               Foreground="{StaticResource BrushColor7}"
-                               FontSize="12"
-                               LineHeight="14"
-                               LineStackingStrategy="BlockLineHeight"
-                               TextWrapping="Wrap"
-                               FontWeight="Bold" />
+                    <ScrollViewer Grid.Row="2"
+                                  VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                    <!-- Building type icon -->
-                    <Grid Grid.Row="3"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Top">
-                        <construction:ConstructionMetaInfoControl ProtoObjectStructure="{Binding ProtoStructure}" />
-                    </Grid>
+                            <!-- Description text -->
+                            <TextBlock Grid.Row="0"
+                                       Text="{Binding Description}"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{StaticResource BrushColor7}"
+                                       FontSize="12"
+                                       LineHeight="14"
+                                       LineStackingStrategy="BlockLineHeight"
+                                       TextWrapping="Wrap"
+                                       FontWeight="Bold" />
 
-                    <!-- Item requirements display -->
+                            <!-- Building type icon -->
+                            <Grid Grid.Row="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top">
+                                <construction:ConstructionMetaInfoControl
+                                    ProtoObjectStructure="{Binding ProtoStructure}" />
+                            </Grid>
 
-                    <Border Grid.Row="4"
-                            Visibility="{Binding DataContext.VisibilityPleaseEquipTool, ElementName=UserControl}"
-                            Width="250"
-                            Padding="5"
-                            Margin="0,0,0,15"
-                            CornerRadius="3"
-                            BorderThickness="1"
-                            Background="{StaticResource BrushColorRed0}"
-                            BorderBrush="{StaticResource BrushColorRed4}">
-                        <!-- Toolbox required message -->
-                        <core:FormattedTextBlock
-                            Content="{x:Static loc:CoreStrings.WindowConstructionMenu_MessageToolboxRequired}"
-                            TextWrapping="Wrap"
-                            FontSize="10"
-                            Foreground="{StaticResource BrushColor7}" />
-                    </Border>
+                            <!-- "Please equip tools" display -->
+                            <Border Grid.Row="2"
+                                    Visibility="{Binding DataContext.VisibilityPleaseEquipTool, ElementName=UserControl}"
+                                    Width="250"
+                                    Padding="5"
+                                    Margin="0,5,0,15"
+                                    CornerRadius="3"
+                                    BorderThickness="1"
+                                    VerticalAlignment="Bottom"
+                                    Background="{StaticResource BrushColorRed0}"
+                                    BorderBrush="{StaticResource BrushColorRed4}">
+                                <!-- Toolbox required message -->
+                                <core:FormattedTextBlock
+                                    Content="{x:Static loc:CoreStrings.WindowConstructionMenu_MessageToolboxRequired}"
+                                    TextWrapping="Wrap"
+                                    FontSize="10"
+                                    Foreground="{StaticResource BrushColor7}" />
+                            </Border>
+                        </Grid>
+                    </ScrollViewer>
 
-                    <Border Grid.Row="5"
-                            Width="300">
-                        <Border Padding="5"
+                    <Border Grid.Row="3"
+                            Margin="-24,0,-20,0">
+                        <Border Padding="5,3"
                                 CornerRadius="3"
                                 BorderThickness="1"
                                 HorizontalAlignment="Center">
@@ -320,92 +328,102 @@
                                 <SolidColorBrush Color="{StaticResource Color6}" Opacity="0.3" />
                             </Border.BorderBrush>
 
-                            <Grid HorizontalAlignment="Center">
-                                <Grid Visibility="{Binding VisibilityModeBlueprint}"
-                                      MinWidth="276">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid Visibility="{Binding VisibilityModeBlueprint}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
-                                        <RowDefinition />
+                                        <RowDefinition Height="7" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition Width="16" />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Text: Blueprint requires -->
                                     <TextBlock
                                         Text="{x:Static loc:CoreStrings.WindowConstructionMenu_BlueprintRequires}"
                                         Grid.Row="0"
-                                        Grid.Column="1"
+                                        Grid.Column="0"
                                         FontSize="10"
                                         Foreground="{StaticResource BrushColor6}"
-                                        FontWeight="Bold" />
-                                    <!-- Text: Total required -->
-                                    <TextBlock
-                                        Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                        Grid.Row="0"
-                                        Grid.Column="3"
-                                        FontSize="10"
-                                        Foreground="{StaticResource BrushColor6}"
-                                        FontWeight="Bold" />
+                                        FontWeight="Bold"
+                                        VerticalAlignment="Center"
+                                        Margin="-2,0,0,0" />
 
                                     <!-- Display icons for required items (one stage only) -->
-                                    <controls:RequiredItemsPanelControl Grid.Row="1" Grid.Column="1"
+                                    <controls:RequiredItemsPanelControl Grid.Row="0"
+                                                                        Grid.Column="2"
                                                                         Items="{Binding StageRequiredItems}"
                                                                         CountMultiplier="1"
                                                                         IconSize="40"
                                                                         FontSize="11"
-                                                                        TextStrokeThickness="1" />
+                                                                        TextStrokeThickness="1"
+                                                                        Margin="-2" />
 
-                                    <Control Template="{StaticResource ItemSlotDelimiterVerticalControlTemplate}"
-                                             Grid.Column="2"
-                                             Grid.Row="
-                                             0"
-                                             Grid.RowSpan="2"
-                                             HorizontalAlignment="Center" />
-
-                                    <!-- Display icons for required items (total) -->
-                                    <controls:RequiredItemsPanelControl Grid.Row="1"
-                                                                        Grid.Column="3"
-                                                                        Items="{Binding StageRequiredItems}"
-                                                                        CountMultiplier="{Binding StagesCount}"
-                                                                        IconSize="40"
-                                                                        FontSize="11"
-                                                                        TextStrokeThickness="1" />
-                                </Grid>
-                                <Grid Visibility="{Binding VisibilityModeInstantBuild}"
-                                      MinWidth="130">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
+                                    <Control Template="{StaticResource ItemSlotDelimiterHorizontalControlTemplate}"
+                                             Opacity="0.5"
+                                             Grid.Row="1"
+                                             Grid.Column="0"
+                                             Grid.ColumnSpan="3"
+                                             VerticalAlignment="Center" />
 
                                     <!-- Text: Total required -->
                                     <TextBlock
                                         Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                        Grid.Row="0"
+                                        Grid.Row="2"
+                                        Grid.Column="0"
                                         FontSize="10"
                                         Foreground="{StaticResource BrushColor6}"
                                         FontWeight="Bold"
-                                        HorizontalAlignment="Center" />
+                                        VerticalAlignment="Center"
+                                        Margin="-2,0,0,0" />
 
                                     <!-- Display icons for required items (total) -->
-                                    <controls:RequiredItemsPanelControl Grid.Row="1"
+                                    <controls:RequiredItemsPanelControl Grid.Row="2"
+                                                                        Grid.Column="2"
                                                                         Items="{Binding StageRequiredItems}"
                                                                         CountMultiplier="{Binding StagesCount}"
                                                                         IconSize="40"
                                                                         FontSize="11"
                                                                         TextStrokeThickness="1"
-                                                                        HorizontalAlignment="Center" />
+                                                                        Margin="-2" />
+                                </Grid>
+
+                                <Grid Visibility="{Binding VisibilityModeInstantBuild}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Text: Total required -->
+                                    <TextBlock
+                                        Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
+                                        Grid.Column="0"
+                                        FontSize="10"
+                                        Foreground="{StaticResource BrushColor6}"
+                                        FontWeight="Bold"
+                                        VerticalAlignment="Center"
+                                        Margin="-2,0,0,0" />
+
+                                    <!-- Display icons for required items (total) -->
+                                    <controls:RequiredItemsPanelControl Grid.Column="2"
+                                                                        Items="{Binding StageRequiredItems}"
+                                                                        CountMultiplier="{Binding StagesCount}"
+                                                                        IconSize="40"
+                                                                        FontSize="11"
+                                                                        TextStrokeThickness="1"
+                                                                        HorizontalAlignment="Center"
+                                                                        Margin="-2" />
                                 </Grid>
                             </Grid>
                         </Border>
                     </Border>
 
                     <!-- Build buttons -->
-                    <Grid Grid.Row="6"
+                    <Grid Grid.Row="4"
                           Visibility="{Binding DataContext.VisibilityBuildButtons, ElementName=UserControl}"
                           Margin="0,10,0,-5">
                         <!-- Text: Place blueprint -->
@@ -422,9 +440,8 @@
                                 HorizontalAlignment="Center"
                                 IsEnabled="{Binding IsCanBuild}" />
                     </Grid>
-
                 </Grid>
-            </ScrollViewer>
+            </ContentControl>
 
         </Grid>
     </core:GameWindow>

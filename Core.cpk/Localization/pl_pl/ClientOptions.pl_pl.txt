@@ -48,6 +48,9 @@ Zoom kamery
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 Wybór przedmiotu na pasku
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+Wybór przedmiotu na pasku (odwrócony)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 Działanie kółka myszy
 

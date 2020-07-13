@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -34,7 +35,11 @@
 
         public override bool IsHeavyVehicle => true;
 
+        public override bool IsPlayersHotbarAndEquipmentItemsAllowed => false;
+
         public override ITextureResource MapIcon => new TextureResource("Icons/MapExtras/VehicleMech");
+
+        public override double MaxDistanceToInteract => 1;
 
         public override float ObjectSoundRadius => 2;
 
@@ -46,6 +51,8 @@
 
         public override SoundResource SoundResourceVehicleMount { get; }
             = new SoundResource("Objects/Vehicles/Mech/Mount");
+
+        public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
         public override void ClientOnVehicleDismounted(IDynamicWorldObject vehicle)
         {
@@ -217,7 +224,13 @@
         protected override void SharedSetupCurrentPlayerUI(IDynamicWorldObject vehicle)
         {
             base.SharedSetupCurrentPlayerUI(vehicle);
+
             GetClientState(vehicle).UIElementsHolder = new ClientVehicleMechCurrentPlayerUIController(vehicle);
+
+            ClientCurrentCharacterVehicleContainersHelper.Init(new[]
+            {
+                (IClientItemsContainer)GetPrivateState(vehicle).EquipmentItemsContainer
+            });
         }
     }
 

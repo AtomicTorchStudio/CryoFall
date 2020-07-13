@@ -13,6 +13,9 @@
         public IItemsContainer CargoItemsContainer { get; set; }
 
         [SyncToClient]
+        public double CurrentEnergyMax { get; set; }
+
+        [SyncToClient]
         public IItemsContainer FuelItemsContainer { get; set; }
 
         [SyncToClient]

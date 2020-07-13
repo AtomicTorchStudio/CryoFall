@@ -118,7 +118,7 @@
             // find chest of full body armor and return its sound material
             foreach (var item in equipment.Items)
             {
-                if (item.ProtoGameObject is IProtoItemEquipmentChest protoChest)
+                if (item.ProtoGameObject is IProtoItemEquipmentArmor protoChest)
                 {
                     return protoChest.Material;
                 }

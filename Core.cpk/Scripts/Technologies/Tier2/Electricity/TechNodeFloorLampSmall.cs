@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Lights;
 
-    public class TechNodeFloorLampSmall : TechNode<TechGroupElectricity>
+    public class TechNodeFloorLampSmall : TechNode<TechGroupElectricityT2>
     {
         protected override void PrepareTechNode(Config config)
         {

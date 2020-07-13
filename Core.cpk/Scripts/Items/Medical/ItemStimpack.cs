@@ -1,10 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemStimpack : ProtoItemMedical
     {
@@ -15,17 +13,15 @@
 
         public override string Name => "Stimpack";
 
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillAddEffect<StatusEffectHealingFast>(intensity: 0.40); // adds fast health regeneration
+        }
+
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemMedicalStimpack;
-        }
-
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
-        {
-            // adds fast health regeneration
-            character.ServerAddStatusEffect<StatusEffectHealingFast>(intensity: 0.4); // 4 seconds (+10 HP each second)
-
-            base.ServerOnUse(character, currentStats);
         }
     }
 }

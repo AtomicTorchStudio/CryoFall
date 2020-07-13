@@ -5,36 +5,48 @@
 sampler2D TextureScreenBufferSampler : register(s0) = sampler_state
 {
     Texture = <TextureScreenBuffer>;
-    Filter = POINT;
-	AddressU = CLAMP;
+    Filter = LINEAR;
+    AddressW = CLAMP;
+    AddressU = CLAMP;
     AddressV = CLAMP;
+    // uncomment these lines to adjust the zoom effect
+    // with magenta border making it obvious
+    BorderColor = 0xFF00FF00;
+    AddressU = BORDER;
+    AddressV = BORDER;
 };
 
 float Intensity;
 float Time;
 
-float GetVignettingCoef(float relativeScreenPosition)
-{
-	float result = 1 - abs(relativeScreenPosition - 0.5) * 2;
-	return result;
-}
-
 float4 MainPS(VSOutput input) : COLOR0
 {     
-	// the effect should apply higher to the screen bounds
-	float distanceCoef = 2 * (0.5 - distance(float2(0.5, 0.5), input.TexCoord));
-	distanceCoef = clamp(distanceCoef, 0, 1);
-	distanceCoef = pow(distanceCoef, 0.667);
-
+    const float distanceCoef = 1;
 	const float speed = 1.5;
-	float power = Intensity * ScreenScale / 200;
+	
+	float power = Intensity * ScreenScale / 300;
 
-	float powerMultiplier = sin(Time * speed / 3) - 0.5;
-	powerMultiplier = max(0, powerMultiplier);
+	// sin range is [-1;1] and we will visualize only values in rage [0;1]
+	// so we can use this as a interval
+    float powerMultiplier = sin(Time * speed / 3);
+    const float intervalDecrease = 0.5; // use this constant to adjust the interval of the effect
+    powerMultiplier -= intervalDecrease;
+    powerMultiplier *= 1 / (1 - intervalDecrease); // normalize range so it could reach 1 max value
+	powerMultiplier = clamp(powerMultiplier, 0, 1);
+	powerMultiplier = pow(powerMultiplier, 0.667);
+	
+    if (powerMultiplier < 0.025)
+    {
+        powerMultiplier = 0;
+    }
+	
+    // please note that the constant was carefully adjusted here by using the BORDER mode
+    float zoomCoef = 0.035 * distanceCoef * ScreenScale * powerMultiplier;
+    input.TexCoord = input.TexCoord * (1 - zoomCoef) + zoomCoef / 2;
 
-	power *= powerMultiplier;
+    power *= powerMultiplier;
 
-	float2 offset = (float2(cos(-Time * speed) * 5, sin(Time * speed) * 2));
+	float2 offset = (float2(cos(Time * speed - 1) * 5, sin(Time * speed - 1) * 4));
 	offset *= distanceCoef * power;
 	float2 texCoord1 = input.TexCoord + offset;
 	float2 texCoord2 = input.TexCoord - offset;

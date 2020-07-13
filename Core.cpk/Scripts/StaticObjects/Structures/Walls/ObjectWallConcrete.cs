@@ -28,8 +28,8 @@
             category = GetCategory<StructureCategoryBuildings>();
 
             build.StagesCount = 5;
-            build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemCement>(count: 20);
+            build.StageDurationSeconds = BuildDuration.Long;
+            build.AddStageRequiredItem<ItemCement>(count: 4);
             build.AddStageRequiredItem<ItemIngotIron>(count: 2);
 
             repair.StagesCount = 5;

@@ -26,6 +26,16 @@
             return IsTimeGateFinished(TechConstants.PvpTechTimeGameTier4Specialized);
         }
 
+        public static bool IsAvailableT5Basic(DropItemContext context)
+        {
+            return IsTimeGateFinished(TechConstants.PvpTechTimeGameTier5Basic);
+        }
+
+        public static bool IsAvailableT5Specialized(DropItemContext context)
+        {
+            return IsTimeGateFinished(TechConstants.PvpTechTimeGameTier5Specialized);
+        }
+
         private static bool IsTimeGateFinished(double timeGateDuration)
         {
             if (Api.IsEditor)

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -12,6 +13,10 @@
     public class ObjectGeneratorSolar : ProtoObjectGeneratorSolar
     {
         private const int DrawOrderOffsetY = 1;
+
+        public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 99,
+                                               shutdownPercent: 100);
 
         public override string Description =>
             "Basic installation for solar power generation. Requires individual solar panels to operate.";
@@ -62,7 +67,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemWire>(count: 10);
+            build.AddStageRequiredItem<ItemWire>(count: 5);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 

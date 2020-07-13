@@ -13,13 +13,8 @@
     using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
-    using AtomicTorch.CBND.CoreMod.Quests;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -34,8 +29,7 @@
             // internal order of equipment items
             Type<IProtoItemEquipmentFullBody>(),
             Type<IProtoItemEquipmentHead>(),
-            Type<IProtoItemEquipmentChest>(),
-            Type<IProtoItemEquipmentLegs>(),
+            Type<IProtoItemEquipmentArmor>(),
             Type<IProtoItemEquipmentImplant>(),
             Type<IProtoItemEquipmentDevice>(),
             // weapons

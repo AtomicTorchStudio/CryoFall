@@ -143,7 +143,8 @@
             componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Weapon");
+                                           "Weapon",
+                                           isPrimaryLight: true);
 
             skeletonComponents.Add(componentLightInSkeleton);
             skeletonComponents.Add(componentLightSource);

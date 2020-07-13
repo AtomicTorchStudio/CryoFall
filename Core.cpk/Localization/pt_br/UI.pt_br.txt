@@ -1,8 +1,32 @@
 ﻿UI/CoreStrings@Action_Build:
 Construir
 
+UI/CoreStrings@Action_Relocate:
+Realocar
+
 UI/CoreStrings@Action_Repair:
 Reparar
+
+UI/CoreStrings@Ammo_CompatibleWeapons:
+Armas compatíveis:
+
+UI/CoreStrings@AutosaveNotification_Completed:
+Jogo salvo!
+
+UI/CoreStrings@AutosaveNotification_Content1:
+O servidor fará um backup regular do mundo.
+
+UI/CoreStrings@AutosaveNotification_Content2:
+É possível haver um pequeno atraso nos comandos.
+
+UI/CoreStrings@AutosaveNotification_DelayRemains_Format:
+O backup será realizado em: {0}
+
+UI/CoreStrings@AutosaveNotification_Saving:
+Salvando...
+
+UI/CoreStrings@AutosaveNotification_Title:
+Instantâneo do servidor
 
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Destruído(a) em
@@ -111,28 +135,28 @@ UI/CoreStrings@Chat_MessageMenu_Unblock:
 Desbloquear
 
 UI/CoreStrings@Chat_PressKeyToOpen_Format:
-Pressione [{0}] para começar a utilizar o chat
+Pressione [{0}] para começar a utilizar o bate-papo
 
 UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
-Manter o chat escondido
+Manter o bate-papo escondido
 
 UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
-Ativar o chat
+Ativar o bate-papo
 
 UI/CoreStrings@ChatDisclaimer_Checkbox:
 Compreendi e aceito
 
 UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
-[b]Atenção:[/b] você está jogando num servidor de comunidade, então a moderação do chat é de responsabilidade do proprietário do servidor. Essas conversas NÃO são moderadas, e talvez você se exponha a mensagens desagradáveis ou até mesmo insultos de outros jogadores. Ative o chat apenas se aceitar essas possibilidades.
+[b]Atenção:[/b] você está jogando num servidor de comunidade, então a moderação do bate-papo é de responsabilidade do proprietário do servidor. Essas conversas NÃO são moderadas, e talvez você se exponha a mensagens desagradáveis ou até mesmo insultos de outros jogadores. Ative o bate-papo apenas se aceitar essas possibilidades.
 
 UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
-[b]Atenção:[/b] o chat NÃO é moderado, e talvez você se exponha a mensagens desagradáveis ou até mesmo insultos de outros jogadores. Ative o chat apenas se aceitar essas possibilidades.
+[b]Atenção:[/b] o bate-papo NÃO é moderado, e talvez você se exponha a mensagens desagradáveis ou até mesmo insultos de outros jogadores. Ative o bate-papo apenas se aceitar essas possibilidades.
 
 UI/CoreStrings@ChatDisclaimer_Title_Community:
-Quer ativar o chat dentro do jogo neste servidor de comunidade?
+Quer ativar o bate-papo dentro do jogo neste servidor de comunidade?
 
 UI/CoreStrings@ChatDisclaimer_Title_Official:
-Quer ativar o chat dentro do jogo neste servidor?
+Quer ativar o bate-papo dentro do jogo neste servidor?
 
 UI/CoreStrings@ChatDisclaimer_UseBlock:
 `Se encontrar mensagens inadequadas, clique na mensagem e selecione "Denunciar" ou "Bloquear".`
@@ -174,6 +198,9 @@ Esta estrutura produz eletricidade.
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Esta estrutura armazena eletricidade.
 
+UI/CoreStrings@ConstructionMetaInfo_Unmovable:
+Esta estrutura não pode ser movida depois de construída.
+
 UI/CoreStrings@Copy:
 Copiar
 
@@ -208,7 +235,31 @@ UI/CoreStrings@CrateIconControl_NoIcon:
 Sem ícone
 
 UI/CoreStrings@CrateIconControl_SelectIcon:
-Escolha um ícone
+Clique aqui com um item para colocar um ícone no caixote.
+
+UI/CoreStrings@DamageType_Chemical:
+Químico
+
+UI/CoreStrings@DamageType_Cold:
+Frio
+
+UI/CoreStrings@DamageType_Explosion:
+Explosão
+
+UI/CoreStrings@DamageType_Heat:
+Calor
+
+UI/CoreStrings@DamageType_Impact:
+Impacto
+
+UI/CoreStrings@DamageType_Kinetic:
+Cinético
+
+UI/CoreStrings@DamageType_Psi:
+Psíquico
+
+UI/CoreStrings@DamageType_Radiation:
+Radiação
 
 UI/CoreStrings@Defense_Format_Chemical:
 Proteção química: {0}
@@ -216,8 +267,8 @@ Proteção química: {0}
 UI/CoreStrings@Defense_Format_Cold:
 Proteção contra frio: {0}
 
-UI/CoreStrings@Defense_Format_Electrical:
-Proteção elétrica: {0}
+UI/CoreStrings@Defense_Format_Explosion:
+Proteção contra explosão: {0}
 
 UI/CoreStrings@Defense_Format_Heat:
 Proteção contra calor: {0}
@@ -274,6 +325,12 @@ Depósito profundo (produção baixa, infinito)
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Depósito de superfície (produção alta)
 
+UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
+Quer mesmo usar {0}?
+
+UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
+Drones controlados simultaneamente
+
 UI/CoreStrings@Duration_Instant:
 Instantâneo
 
@@ -289,11 +346,26 @@ Muito rápido
 UI/CoreStrings@Duration_VerySlow:
 Muito lento
 
+UI/CoreStrings@EffectActionDescription_AddsEffects:
+Adiciona:
+
+UI/CoreStrings@EffectActionDescription_RemovesEffects:
+Remove:
+
 UI/CoreStrings@EnergyUnitAbbreviation:
 UE
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 UE/s
+
+UI/CoreStrings@EventDamage_FailureMessage_Format:
+Você precisa causar pelo menos {0}% de dano total para poder receber uma recompensa neste evento. Boa sorte na próxima vez!
+
+UI/CoreStrings@EventDamage_FailureTitle_Format:
+Dano insuficiente
+
+UI/CoreStrings@EventDamage_SuccessMessage_Format:
+Você causou {0}% de dano total! Sua parte nos espólios é de {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Servidor oficial Discord de CryoFall (apenas em inglês)
@@ -403,6 +475,12 @@ Posicionar um implante para instalar
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Requer
 
+UI/CoreStrings@Item_SpoiledIn_Format:
+Apodrecerá em: {0}
+
+UI/CoreStrings@Item_SpoiledIn_Never:
+nunca
+
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 Atalhos
 
@@ -426,6 +504,12 @@ Insumo
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Resultado
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
+Margem de segurança
+
+UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelTier_Format:
+Nível {0}
 
 UI/CoreStrings@LearningPoints:
 Pontos de aprendizagem
@@ -596,6 +680,12 @@ GUID público
 
 UI/CoreStrings@MenuServers_ServersCount:
 Servidores
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Description:
+Este servidor é gerenciado por um membro da comunidade. Os desenvolvedores não possuem controle sobre o servidor, e não garantem que você terá uma boa experiência nele. O servidor pode ter parâmetros personalizados que tornam o jogo muito mais fácil ou difícil. O dono do servidor é responsável por sua moderação e suporte.
+
+UI/CoreStrings@MenuServers_ServerTag_Community_Title:
+COMUNIDADE
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 Os servidores em destaque costumam ter a reputação de oferecer uma experiência de alta qualidade, semelhante aos servidores oficiais. Mesmo assim, esses servidores ainda são hospedados pela comunidade.
@@ -824,6 +914,26 @@ Uso da VRAM
 UI/CoreStrings@PleaseWait:
 Aguarde...
 
+UI/CoreStrings@PowerConsumerState_PowerOff_Title:
+Este consumidor de energia [b]não está conectado[/b] à rede elétrica.
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Description_Format:
+Esta estrutura continuará funcionando até que o nível de energia fique abaixo do limiar de desligamento ([b]{0}%[/b]).
+
+UI/CoreStrings@PowerConsumerState_PowerOn_Title:
+Este consumidor de energia [b]está conectado[/b] à rede elétrica.
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowShutdownThreshold_Description_Format:
+`O nível de energia da rede elétrica está abaixo do limiar de desligamento ([b]{0}%[/b]).
+[br]Esta estrutura será ativada automaticamente quando o nível de energia estiver acima do limiar de [b]inicialização[/b] ([b]{1}%[/b]).`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_BelowStartupThreshold_Description_Format:
+`O nível de energia da rede elétrica está abaixo do limiar de inicialização ([b]{0}%[/b]).
+[br]Esta estrutura será ativada automaticamente quando o nível de energia estiver acima deste nível.`
+
+UI/CoreStrings@PowerConsumerState_PowerOnIdle_Title:
+Este consumidor de energia está [b]ocioso[/b].
+
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
 Sem conexão com a rede elétrica.
 
@@ -890,6 +1000,50 @@ Nominal
 UI/CoreStrings@PowerGridState_Storages:
 Armazenamentos:
 
+UI/CoreStrings@PowerProducerState_PowerOff_Title:
+Este gerador de energia [b]não está conectado[/b] à rede elétrica.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Description_Format:
+Esta estrutura continuará gerando energia até que o limiar de desligamento ([b]{0}%[/b]) seja atingido.
+
+UI/CoreStrings@PowerProducerState_PowerOn_Title:
+Este gerador de energia [b]está conectado[/b] à rede elétrica.
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveShutdownThreshold_Description_Format:
+`O nível de energia da rede elétrica está acima do limiar de desligamento ([b]{0}%[/b]).
+[br]Este gerador será ativado automaticamente quando o nível de energia estiver abaixo do limiar de [b]inicialização[/b] ([b]{1}%[/b]).`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_AboveStartupThreshold_Description_Format:
+`O nível de energia da rede elétrica está acima do limiar de inicialização ([b]{0}%[/b]).
+[br]Este gerador será ativado automaticamente quando o nível de energia estiver abaixo deste limiar.`
+
+UI/CoreStrings@PowerProducerState_PowerOnIdle_Title:
+Este gerador de energia está [b]ocioso[/b].
+
+UI/CoreStrings@PowerSwitchControl_Button_ConnectFromPowerGrid:
+Conectar à rede elétrica
+
+UI/CoreStrings@PowerSwitchControl_Button_DisconnectFromPowerGrid:
+Desconectar da rede elétrica
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerControl:
+Controle de energia
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerGridLevel:
+Nível da rede elétrica
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Shutdown:
+Desligamento:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Startup:
+Inicialização:
+
+UI/CoreStrings@PowerSwitchControl_Title_PowerLevelThresholds_Title:
+Limiares de energia
+
+UI/CoreStrings@Protection_Name:
+Proteção:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Pegar
 
@@ -932,6 +1086,129 @@ Jogadores
 UI/CoreStrings@ServerWipedDate:
 Zerado
 
+UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
+Você não pode realizar essa ação numa base protegida por um escudo.
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDuration_Format:
+Ativar o escudo levará {0} (tempo de ativação).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_DelayDurationWithCooldown_Format:
+Ativar o escudo levará {0} (tempo de ativação mais o tempo de espera restante).
+
+UI/CoreStrings@ShieldProtection_ActivationConfirmation_ProtectionDuration_Format:
+Com a carga atual, o escudo ativo pode proteger por até {0}.
+
+UI/CoreStrings@ShieldProtection_ActivationDelay:
+Tempo de ativação:
+
+UI/CoreStrings@ShieldProtection_Button_ActivateShield:
+Ativar escudo
+
+UI/CoreStrings@ShieldProtection_Button_DeactivateShield:
+Desativar escudo
+
+UI/CoreStrings@ShieldProtection_Button_RechargeShield:
+Recarregar escudo
+
+UI/CoreStrings@ShieldProtection_CancelledActivationDueToRaidBlock:
+Ativação de escudo cancelada de sua base devido ao bloqueio por invasão.
+
+UI/CoreStrings@ShieldProtection_CannotActivateDuringRaidBlock:
+Não é possível ativar o escudo durante o bloqueio por invasão.
+
+UI/CoreStrings@ShieldProtection_CooldownDuration:
+Tempo de espera:
+
+UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
+(tempo de espera de {0})
+
+UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
+Carga de escudo atual:
+
+UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
+Desativar um escudo ativo ou que está sendo ativado iniciará um tempo de espera ({0}). Durante o tempo de espera, o escudo não poderá ser ativado novamente.
+
+UI/CoreStrings@ShieldProtection_Description_1:
+O escudo protege sua base enquanto você está longe dela ou desconectado.
+
+UI/CoreStrings@ShieldProtection_Description_2:
+Sob a proteção do escudo, as portas e muros da base são imunes a todo o tipo de dano.
+
+UI/CoreStrings@ShieldProtection_Description_3:
+Confinamento: ninguém pode entrar ou sair da base enquanto ela estiver sob proteção do escudo (todas as portas ficam bloqueadas).
+
+UI/CoreStrings@ShieldProtection_Description_4:
+Antes de ativar o escudo, ele deve ser recarregado com eletricidade.
+
+UI/CoreStrings@ShieldProtection_Description_5:
+Ativar o escudo leva algum tempo.
+
+UI/CoreStrings@ShieldProtection_Description_6:
+Escudos desativados não podem ser reativados imediatamente.
+
+UI/CoreStrings@ShieldProtection_Description_7:
+Escudos ativos restringem o uso da caixa de ferramentas e do pé de cabra.
+
+UI/CoreStrings@ShieldProtection_Description_8:
+O escudo não pode ser recarregado enquanto estiver ativo. Ele precisa ser desativado antes.
+
+UI/CoreStrings@ShieldProtection_Description_9:
+Se a base for atacada (um bloqueio por invasão) durante a ativação do escudo, a ativação será cancelada e o tempo de espera de reativação será iniciado.
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmActivation:
+Quer mesmo ativar o escudo?
+
+UI/CoreStrings@ShieldProtection_Dialog_ConfirmDeactivation:
+Quer mesmo desativar o escudo?
+
+UI/CoreStrings@ShieldProtection_DoorBlockedByShield:
+Confinamento: esta porta foi bloqueada pela proteção do escudo ativo.
+
+UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection:
+Esta posse de terra está sob a proteção de um escudo ativo.
+
+UI/CoreStrings@ShieldProtection_EstimatedDuration:
+Estimativa de duração:
+
+UI/CoreStrings@ShieldProtection_MaxDuration:
+Duração máxima:
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
+O escudo será ativado em {0} a menos que sofra uma interrupção (cancelado pelo dono da base ou interrompido por invasores aplicando um bloqueio por invasão).
+
+UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
+Esta base está acionando a proteção de escudo
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Message_Format:
+Esta base está sob proteção de escudo, podendo continuar por até {0}.
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_MessageOwner:
+[u]Você já pode desativar o escudo agora (clique aqui).[/u]
+
+UI/CoreStrings@ShieldProtection_NotificationBaseUnderShield_Title:
+Esta base está sob a proteção de escudo
+
+UI/CoreStrings@ShieldProtection_NotificationProtected_Message:
+Esta base está sob a proteção de escudo. Nenhum dano pode ser causado às portas e aos muros. O bloqueio por invasão não pode ser acionado.
+
+UI/CoreStrings@ShieldProtection_RechargeTo:
+Recarregar até:
+
+UI/CoreStrings@ShieldProtection_ShieldStatus:
+Condição do escudo:
+
+UI/CoreStrings@ShieldProtection_Status_Activating:
+Ativando
+
+UI/CoreStrings@ShieldProtection_Status_Active:
+Ativo
+
+UI/CoreStrings@ShieldProtection_Status_Inactive:
+Inativo
+
+UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
+A proteção contra invasão offline está disponível para níveis maiores de posses de terra. Aprimore sua posse o quanto antes para desbloquear este recurso.
+
 UI/CoreStrings@Skill:
 Habilidade
 
@@ -967,6 +1244,9 @@ UI/CoreStrings@SupporterPack_Description:
 `O Supporter Pack é uma coleção de itens bônus quem deseja dar um passo além e apoiar os desenvolvedores de CryoFall. Para demonstrar nossa gratidão, o jogo exibirá uma insígnia de apoiador especial no bate-papo do jogo.
 [br][br]O pacote não fornece nenhuma vantagem no jogo, é completamente optativo. Ele inclui a trilha sonora completa do jogo, arte conceitual, arte do jogo em alta resolução, insígnia do bate-papo, etc. Serão adicionados mais itens ao Supporter Pack durante o período de Acesso Antecipado.
 [br][br]Nosso obrigado sincero pelo seu apoio!`
+
+UI/CoreStrings@TechGroup_NameWithTier_Format:
+{0} ({1})
 
 UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
 Pontos de aprendizagem: {0}
@@ -1009,6 +1289,9 @@ Tecnologia
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Procurar...
+
+UI/CoreStrings@TextInParenthesisFormat:
+({0})
 
 UI/CoreStrings@Title:
 Título
@@ -1082,6 +1365,9 @@ Rede elétrica
 UI/CoreStrings@TitleSafeStorage:
 Depósito seguro
 
+UI/CoreStrings@TitleShieldProtection:
+E.S.C.U.D.O.
+
 UI/CoreStrings@TitleStructurePoints:
 Pontos de estrutura
 
@@ -1115,6 +1401,9 @@ Nível de energia
 UI/CoreStrings@Vehicle_Enter:
 Aceitar
 
+UI/CoreStrings@Vehicle_FuelCells:
+Células de combustível
+
 UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
 Armadura {1:F0}/{2:F0} ({0}%)
 
@@ -1129,6 +1418,9 @@ Braço direito
 
 UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
 Arma
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_WeaponHardpoint_Format:
+Arma (acoplamento {0})
 
 UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
 Esta arma só pode ser usada quando instalada em um mecha.
@@ -1174,8 +1466,53 @@ Projetos
 UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 Projetos desbloqueados
 
+UI/CoreStrings@Victory:
+Vitória!
+
+UI/CoreStrings@Weapon_Accuracy:
+Precisão
+
+UI/CoreStrings@Weapon_AmmoCapacity:
+Capacidade de munição
+
+UI/CoreStrings@Weapon_ArmorPiercingCoefficient:
+Penetração
+
+UI/CoreStrings@Weapon_AttackRate:
+Cadência de ataque
+
 UI/CoreStrings@Weapon_CompatibleAmmo:
 Munição compatível:
+
+UI/CoreStrings@Weapon_CurrentAmmo:
+Munição atual:
+
+UI/CoreStrings@Weapon_Damage:
+Dano
+
+UI/CoreStrings@Weapon_DamageType:
+Tipo de dano
+
+UI/CoreStrings@Weapon_FireRate:
+Cadência de disparo
+
+UI/CoreStrings@Weapon_FireRate_SingleShot:
+Disparo único
+
+UI/CoreStrings@Weapon_Range:
+Alcance
+
+UI/CoreStrings@Weapon_ReloadSpeed:
+Velocidade de recarga
+
+UI/CoreStrings@Weapon_Spread:
+Propagação
+
+UI/CoreStrings@Weapon_StoppingPower:
+Poder de parada
+
+UI/CoreStrings@Weapon_Tooltip_ReferenceAmmo_Format:
+Os atributos abaixo são da arma com uma munição para referência ({0}).
 
 UI/CoreStrings@Window_Tab_Main:
 Principal
@@ -1191,14 +1528,26 @@ Exemplos:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Aleatório
 
+UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
+Maior tamanho: {0} cm
+
+UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
+Maior peso: {0} kg
+
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
 Aceitar
+
+UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
+Novo recorde!
 
 UI/CoreStrings@WindowCompletionist_ProgressLabel:
 Progresso:
 
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Criaturas
+
+UI/CoreStrings@WindowCompletionist_TabFish:
+Peixes
 
 UI/CoreStrings@WindowCompletionist_TabFood:
 Comida
@@ -1429,6 +1778,12 @@ Jogadores online
 UI/CoreStrings@WindowSocial_TotalPlayers:
 Total de jogadores
 
+UI/CoreStrings@WindowSprinker_WaterNow:
+Regar agora
+
+UI/CoreStrings@WindowSprinkler_NextWateringIn_Format:
+Próxima tentativa de rega em: [b]{0}[/b]
+
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 Criar uma nova conta AtomicTorch
 
@@ -1609,6 +1964,18 @@ UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]Ponto comercial (seu)[/b]
 [br]Você possui este ponto comercial.`
 
+UI/CoreStrings@WorldObjectClaim_Description:
+Este objeto está sob posse de outro jogador.
+
+UI/CoreStrings@WorldObjectClaim_Description2:
+Você não pode interagir com ele até que a posse expire.
+
+UI/CoreStrings@WorldObjectClaim_ExpiresIn_Format:
+A posse expira em: {0}
+
+UI/CoreStrings@WorldObjectClaim_Title:
+Objeto sob posse
+
 UI/CoreStrings@Yes:
 Sim
 
@@ -1639,6 +2006,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Primeira vez que morre.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
+Primeira vez que é pescado.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 Primeira vez que é consumido(a).
@@ -1788,8 +2158,8 @@ Cabelo
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
 Cor do cabelo
 
-UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
-Cor da pele
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
+Tom de pele
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Parte superior
@@ -1875,6 +2245,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]Você pode aumentar a demora na desintegração [b]melhorando[/b] qualquer uma das posses de terra para um nível superior.
 [br]Esta demora na desintegração da base inteira depende da construção do [b]nível mais alto[/b] dentro da posse de terra.`
 
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DestructionTimeoutOnlyInPvP:
+somente no JvJ
+
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Sem combustível
 
@@ -1934,6 +2307,12 @@ Economia
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
 Cunhe moedas e construa pontos comerciais totalmente automatizados para facilitar o comércio com outros sobreviventes.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Pesca
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Use vários tipos de iscas e pesque uma série de peixes de água doce e salgada. Tente bater seus próprios recordes e dispute com outros jogadores.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
 Implantes cibernéticos

@@ -15,7 +15,7 @@
     {
         public override ushort AmmoCapacity => 2;
 
-        public override double AmmoReloadDuration => 3;
+        public override double AmmoReloadDuration => 4;
 
         public override string CharacterAnimationAimingName => "WeaponPistolAiming";
 

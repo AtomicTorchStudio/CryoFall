@@ -28,13 +28,13 @@
             category = GetCategory<StructureCategoryBuildings>();
 
             build.StagesCount = 5;
-            build.StageDurationSeconds = BuildDuration.Long;
-            build.AddStageRequiredItem<ItemCement>(count: 50);
+            build.StageDurationSeconds = BuildDuration.VeryLong;
+            build.AddStageRequiredItem<ItemCement>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

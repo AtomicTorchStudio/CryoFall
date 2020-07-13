@@ -2,14 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImplantArtificialLiver : TechNode<TechGroupCybernetics>
+    public class TechNodeImplantArtificialLiver : TechNode<TechGroupCyberneticsT4>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipeImplantArtificialLiver>();
 
-            config.SetRequiredNode<TechNodeImplantArtificialStomach>();
+            config.SetRequiredNode<TechNodeImplantArtificialRetina>();
         }
     }
 }

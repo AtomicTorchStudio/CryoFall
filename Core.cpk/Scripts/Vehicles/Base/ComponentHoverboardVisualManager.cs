@@ -39,13 +39,13 @@
 
         public double EffectSpeedMoving = 8;
 
-        public double MaxVelocity = 3.0;
-
         // The last vehicle position is stored in order to calculate
         // the approximated vehicle velocity if the vehicle is not simulated locally.
         private Vector2D lastVehiclePosition;
 
         private BaseClientComponentLightSource lightSourceActiveEngine;
+
+        private double maxVelocity;
 
         private ICharacter pilotCharacter;
 
@@ -185,10 +185,12 @@
             IDynamicWorldObject vehicle,
             BaseClientComponentLightSource lightSourceActiveEngine,
             TextureResource textureResourceHoverboard,
-            TextureResource textureResourceLight)
+            TextureResource textureResourceLight,
+            double maxVelocity)
         {
             this.vehicle = vehicle;
             this.lightSourceActiveEngine = lightSourceActiveEngine;
+            this.maxVelocity = maxVelocity;
 
             this.pilotSkeletonOriginalProperties = null;
             this.pilotShadowRendererOriginalProperties = null;
@@ -240,7 +242,7 @@
         private double GetMovemementSpeedCoef(Vector2D velocity)
         {
             var length = velocity.Length;
-            length /= this.MaxVelocity;
+            length /= this.maxVelocity;
             return Math.Min(1, length);
         }
 

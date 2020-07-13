@@ -160,6 +160,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Źródła światła
 
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+Aby [b]przenieść[/b] istniejącą strukturę – wybierz [b]skrzynkę z narzędziami[/b] i użyj jej na strukturze. Niektórych struktur nie można przenieść.
+
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `Ochrona swojej bazy jest krytycznie ważna! Jeśli tego nie dopilnujesz, bardziej przebiegli gracze cię najadą.
 [br]
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Wykonaj nóż i zabij dowolne stworzenie
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Załóż lepszy napierśnik
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+Wybierz lepszy pancerz
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 Załóż lepszy hełm
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Załóż lepszy dół pancerza
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Czas lepiej się zabezpieczyć.
@@ -423,31 +423,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Wyburz łomem
 
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-Pragmium to rzadki obcy materiał wymagany podczas konstruowania większości zaawansowanych technologii. Postaraj się go znaleźć.
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*] Uważaj! Wydobywanie pragmium jest bardzo niebezpieczne.
-[*] Duże żyły pragmium można znaleźć na pustyni, a małe w pobliżu wulkanów.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-Zdobądź pragmium!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Wydobywaj minerały solne
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-Niektóre zasoby takie jak ropa naftowa i lit są niezbędne do wytwarzania zaawansowanych technologii. Należy poznać metody pozyskiwania tych zasobów.
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] Owoce olejaku powszechnie występują w [u]tajdze[/u]. Można z nich wycisnąć niewielkie ilości ropy naftowej.
-[*] [u]Sole litu[/u] można uzyskać, wydobywając inne minerały solne.
-[*] Minerały solne można napotkać na [u]słonych równinach[/u] na pustyni.
-[*] Dzięki [u]ksenogeologii[/u] można poznać przemysłowe metody uzyskiwania tych zasobów.`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-Pozyskiwanie zasobów – zaawansowane
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Rozwijanie zdolności przemysłowych i budowlanych wymaga podstawowych umiejętności w naukach ścisłych, zwłaszcza chemicznych.
 
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Opanowanie technologii – część druga
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+Różne typy [b]generatorów energii[/b], takie jak parowe, słoneczne i silniki pozwalają wytwarzać energię elektryczną.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+[b]Szczegółowe informacje o sieci[/b] można wyświetlić z poziomu dowolnego budynku magazynującego energię elektryczną lub z poziomu działki.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+Urządzenia elektryczne działają tylko wtedy, gdy znajdują się [b]w obrębie[/b] działki. Stawianie urządzeń elektrycznych poza działką jest bezcelowe.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+Energia elektryczna jest przechowywana w [b]budynkach magazynujących[/b] pozwalających ją wykorzystywać w razie potrzeby. Warto zwiększać ogólną produkcję energii w bazie.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+Dla każdego odbiornika i generatora można skonfigurować oddzielne [b]wartości progowe[/b] [u]rozruchu i wyłączenia[/u].
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+Kilka podłączonych działek będzie zachowywać się jak [b]jedna sieć energetyczna[/b].
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 Stworzenie sieci energetycznej zasilającej bazę bardzo zwiększa jej wydajność. Wiele zaawansowanych struktur wymaga energii elektrycznej do działania.
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] Urządzenia elektryczne działają tylko [b]w obszarze[/b] posiadanej działki. Nie ma sensu ich budować gdzie indziej.
-[*] Energię elektryczną można magazynować w [b]akumulatorowniach[/b]. Warto zwiększać ilość energii elektrycznej w bazie.
-[*] Energię można produkować za pomocą różnych rodzajów [b]generatorów[/b] (np. parowy, słoneczny i zasilany paliwem płynnym).
-[*] Jeśli [u]nie zmagazynujesz[/u] odpowiedniej ilości energii elektrycznej nastąpi [b]blackout[/b] i zasilanie trzeba będzie przywrócić ręcznie.
-[*] [b]Szczegółowe informacje o sieci elektrycznej[/b] można wyświetlić po wybraniu akumulatorowni lub z poziomu posiadanej działki.
-[*] Kilka połączonych posiadanych działek zachowuje się jak [b]jedna sieć energetyczna[/b].`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 Stwórz sieć energetyczną
@@ -520,6 +505,27 @@ Zbadaj stare ruiny
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 Zbierz przedmioty z zasobników
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+[u]Filety rybne[/u] można [u]uzyskać[/u] ze złowionych ryb, wykorzystując operację [b]używnia[/b] (tak samo jak w przypadku innych przedmiotów).
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+Twoje [b]umiejętności wędkarskie[/b] znacznie wpływają na gatunki ryb, które możesz złowić, i ogólne szanse złowienia czegokolwiek.
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+Ryby można łowić w zbiornikach [u]słonowodnych[/u] i [u]słodkowodnych[/u].
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+Złów każdą rybę
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+Opraw rybę i uzyskaj filet
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+Wędkowanie to nie tylko dobra zabawa, ale też świetny sposób na zdobycie większej ilości jedzenia. Spróbuj nałowić trochę ryb!
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+Na ryby!
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Jeszcze więcej polowania! Tym razem starcie z bardziej niebezpiecznymi zwierzętami.
 
@@ -540,4 +546,53 @@ Najlepszy łowca – część czwarta
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 Najlepszy łowca – część piąta
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+Pragmium to rzadki obcy materiał wymagany podczas konstruowania większości zaawansowanych technologii. Postaraj się go znaleźć.
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*] Uważaj! Wydobywanie pragmium jest bardzo niebezpieczne.
+[*] Duże żyły pragmium można znaleźć na pustyni, a małe w pobliżu wulkanów.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+Zdobądź pragmium!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Wydobywaj minerały solne
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+Niektóre zasoby takie jak ropa naftowa i lit są niezbędne do wytwarzania zaawansowanych technologii. Należy poznać metody pozyskiwania tych zasobów.
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Owoce olejaku powszechnie występują w [u]tajdze[/u]. Można z nich wycisnąć niewielkie ilości ropy naftowej.
+[*] [u]Sole litu[/u] można uzyskać, wydobywając inne minerały solne.
+[*] Minerały solne można napotkać na [u]słonych równinach[/u] na pustyni.
+[*] Dzięki [u]ksenogeologii[/u] można poznać przemysłowe metody uzyskiwania tych zasobów.`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+Pozyskiwanie zasobów – zaawansowane
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+Za pomocą [b]kontrolera[/b] steruj dronami.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+Drony mogą być wykorzystywane nie tylko do [b]wydobywania minerałów[/b], ale również do [b]wycinania drzew[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+Aby nimi sterować, drony muszą znajdować się w [b]ekwipunku[/b] lub na [b]pasku[/b].
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+Ręczne wydobywanie minerałów i rąbanie drzew jest żmudne, więc zdecydowanie warto zautomatyzować te czynności dzięki dronom, które zrobią je za ciebie znacznie sprawniej.
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+Wydobywanie za pomocą dronów
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+Warto [u]zwiększać ilość magazynowej energii[/u] wraz z rozwojem swojej bazy, aby zawsze dysponować [u]wystarczającą nadwyżką[/u] energetyczną.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+Gdy opracujesz już solidne podstawy sieci energetycznej, warto ją rozbudować o bardziej użyteczne struktury, aby twoje życie było wygodniejsze.
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+Więcej zastosowań dla sieci energetycznej
 

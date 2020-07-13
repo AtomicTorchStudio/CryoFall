@@ -2,14 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeSteppenHawkGold : TechNode<TechGroupJewelry>
+    public class TechNodeSteppenHawkGold : TechNode<TechGroupJewelryT4>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipeSteppenHawkGold>();
 
-            config.SetRequiredNode<TechNodeGoldChestplate>();
+            config.SetRequiredNode<TechNodeGoldArmor>();
         }
     }
 }

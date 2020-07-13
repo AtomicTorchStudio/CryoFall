@@ -1,11 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemHerbBlue : ProtoItemMedical, IProtoItemOrganic
     {
@@ -20,12 +18,11 @@
 
         public ushort OrganicValue => 3;
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.1);
-            character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 0.05);
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillAddEffect<StatusEffectToxins>(intensity: 0.10)
+                .WillAddEffect<StatusEffectNausea>(intensity: 0.05);
         }
     }
 }

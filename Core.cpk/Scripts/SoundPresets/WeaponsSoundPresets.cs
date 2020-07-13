@@ -45,6 +45,11 @@
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotLaser");
 
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLaserRifle
+            = WeaponRanged.Clone()
+                          // TODO: set the new sound here when it's ready
+                          .Replace(Shot, "Weapons/Ranged/ShotLaser");
+
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLightRifle
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotLightRifle");

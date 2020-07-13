@@ -1,0 +1,56 @@
+﻿<base:BaseUserControl
+    x:Name="UserControl"
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectClaim.WorldObjectClaimTooltip"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <Border Margin="0,220,0,0"
+            Background="#AA666666"
+            BorderBrush="#88000000"
+            BorderThickness="2"
+            CornerRadius="5"
+            Padding="5">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="LineHeight" Value="22" />
+                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="noesis:Text.Stroke" Value="Black" />
+                    <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static loc:CoreStrings.WorldObjectClaim_Description}" />
+            <TextBlock Grid.Row="2" Text="{Binding ExpirationTimeText, ElementName=UserControl}" />
+        </Grid>
+
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="4"
+                              ShadowDepth="2"
+                              Direction="-45"
+                              Opacity="0.75"
+                              Color="Black" />
+        </Border.Effect>
+    </Border>
+
+</base:BaseUserControl>

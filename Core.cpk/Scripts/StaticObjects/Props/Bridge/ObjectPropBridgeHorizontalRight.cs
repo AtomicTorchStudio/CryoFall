@@ -22,8 +22,10 @@
         {
             const double xOffset = 0.2;
             data.PhysicsBody
-                .AddShapeRectangle((2 - xOffset, 1), (0, -1), CollisionGroups.Default)
-                .AddShapeRectangle((2 - xOffset, 1), (0, 2),  CollisionGroups.Default);
+                .AddShapeRectangle((1, 0.7),           (0, 2),    CollisionGroups.Default)
+                .AddShapeRectangle((1 - xOffset, 0.5), (1, 2),    CollisionGroups.Default)
+                .AddShapeRectangle((1, 1),             (0, -1),   CollisionGroups.Default)
+                .AddShapeRectangle((1 - xOffset, 0.5), (1, -0.5), CollisionGroups.Default);
         }
     }
 }

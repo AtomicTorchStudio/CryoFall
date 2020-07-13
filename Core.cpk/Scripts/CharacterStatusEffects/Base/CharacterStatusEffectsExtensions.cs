@@ -28,7 +28,7 @@
         public static void ServerAddStatusEffect(
             this ICharacter character,
             IProtoStatusEffect protoStatusEffect,
-            double intensity)
+            double intensity = 1.0)
         {
             if (protoStatusEffect == null)
             {
@@ -91,7 +91,7 @@
 
         public static void ServerAddStatusEffect<TProtoStatusEffect>(
             this ICharacter character,
-            double intensity)
+            double intensity = 1.0)
             where TProtoStatusEffect : class, IProtoStatusEffect, new()
         {
             var protoStatusEffect = Api.GetProtoEntity<TProtoStatusEffect>();

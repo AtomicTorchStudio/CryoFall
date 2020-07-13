@@ -1,42 +1,50 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications
 {
     using System;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public partial class HUDNotificationsPanelControl : BaseUserControl
+    public partial class HudNotificationsPanelControl : BaseUserControl
     {
         private const int MaxNotificationsToDisplay = 7;
 
         private const double NotificationHideDelaySeconds = 7.5;
 
-        private static HUDNotificationsPanelControl instance;
+        private static HudNotificationsPanelControl instance;
 
         private UIElementCollection stackPanelChildren;
 
-        public static HUDNotificationControl Show(
-            string title,
-            string message,
-            Brush brushBackground,
-            Brush brushBorder,
-            ITextureResource icon,
-            Action onClick,
-            bool autoHide,
-            SoundResource soundToPlay,
-            bool writeToLog = true)
+        public static void ShowNotificationControl
+            <TNotificationControl>(TNotificationControl notificationControl)
+            where TNotificationControl : UIElement, IHudNotificationControl
         {
-            return instance.ShowInternal(title,
-                                         message,
-                                         brushBackground,
-                                         brushBorder,
-                                         icon,
-                                         onClick,
-                                         autoHide,
-                                         soundToPlay,
-                                         writeToLog);
+            var panelControl = instance;
+            if (notificationControl.IsAutoHide)
+            {
+                panelControl.HideSimilarNotifications(notificationControl);
+            }
+
+            panelControl.stackPanelChildren.Add(notificationControl);
+
+            if (notificationControl.IsAutoHide)
+            {
+                // hide the notification control after delay
+                ClientTimersSystem.AddAction(
+                    NotificationHideDelaySeconds,
+                    () =>
+                    {
+                        if (notificationControl.IsAutoHide) // still configured as auto hide
+                        {
+                            notificationControl.Hide(quick: false);
+                        }
+                    });
+            }
+
+            panelControl.HideOldNotificationsIfTooManyDisplayed();
         }
 
         protected override void InitControl()
@@ -55,7 +63,7 @@
             var countToHide = this.stackPanelChildren.Count - MaxNotificationsToDisplay;
             for (var index = 0; index < countToHide; index++)
             {
-                var control = (HUDNotificationControl)this.stackPanelChildren[index];
+                var control = (IHudNotificationControl)this.stackPanelChildren[index];
                 if (control.IsAutoHide)
                 {
                     control.Hide(quick: true);
@@ -63,11 +71,11 @@
             }
         }
 
-        private void HideSimilarNotifications(HUDNotificationControl notificationControl)
+        private void HideSimilarNotifications(IHudNotificationControl notificationControl)
         {
             for (var index = 0; index < this.stackPanelChildren.Count; index++)
             {
-                var control = (HUDNotificationControl)this.stackPanelChildren[index];
+                var control = (IHudNotificationControl)this.stackPanelChildren[index];
                 if (control.IsSame(notificationControl))
                 {
                     control.Hide(quick: true);
@@ -75,7 +83,7 @@
             }
         }
 
-        private HUDNotificationControl ShowInternal(
+        private IHudNotificationControl ShowInternal(
             string title,
             string message,
             Brush brushBackground,
@@ -96,7 +104,7 @@
                         message));
             }
 
-            var notificationControl = HUDNotificationControl.Create(
+            var notificationControl = HudNotificationControl.Create(
                 title,
                 message,
                 brushBackground,
@@ -106,12 +114,13 @@
                 autoHide,
                 soundToPlay);
 
+            var instance = this;
             if (notificationControl.IsAutoHide)
             {
-                this.HideSimilarNotifications(notificationControl);
+                instance.HideSimilarNotifications(notificationControl);
             }
 
-            this.stackPanelChildren.Add(notificationControl);
+            instance.stackPanelChildren.Add(notificationControl);
 
             if (notificationControl.IsAutoHide)
             {
@@ -127,7 +136,7 @@
                     });
             }
 
-            this.HideOldNotificationsIfTooManyDisplayed();
+            instance.HideOldNotificationsIfTooManyDisplayed();
 
             return notificationControl;
         }

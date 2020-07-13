@@ -22,8 +22,8 @@
         {
             const double height = 1.3;
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, height), offset: (-1, 0), group: CollisionGroups.Default)
-                .AddShapeRectangle(size: (1, height), offset: (2, 0),  group: CollisionGroups.Default);
+                .AddShapeRectangle(size: (0.75, height), offset: (-0.75, 0), group: CollisionGroups.Default)
+                .AddShapeRectangle(size: (0.75, height), offset: (2, 0),     group: CollisionGroups.Default);
         }
     }
 }

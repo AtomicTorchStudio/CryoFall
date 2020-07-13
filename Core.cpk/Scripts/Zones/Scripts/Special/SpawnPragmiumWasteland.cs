@@ -16,7 +16,7 @@
                 // (please note when changing this value to adjust the destruction timeout in ObjectMineralPragmiumNode)
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(30)));
 
-            spawnList.CreatePreset(interval: 10, padding: 2)
+            spawnList.CreatePreset(interval: 9, padding: 2)
                      .Add<ObjectMineralPragmiumNode>();
 
             // mob spawn

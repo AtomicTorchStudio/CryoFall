@@ -38,6 +38,8 @@
                          .Select(name => GetAttachments(name))
                          .ToArray());
 
+        private static int headGenerationId;
+
         public static void ClientRebuildAppearance(
             ICharacter character,
             BaseCharacterClientState clientState,
@@ -292,9 +294,6 @@
                 return;
             }
 
-            skeletonRenderer.ResetAttachments();
-            skeleton.ClientResetItemInHand(skeletonRenderer);
-
             bool isMale;
             CharacterHumanFaceStyle faceStyle;
             if (character.ProtoCharacter is PlayerCharacter)
@@ -317,25 +316,38 @@
                 faceStyle = SharedCharacterFaceStylesProvider.GetForGender(isMale).GenerateRandomFace();
             }
 
+            skeletonRenderer.ResetAttachments();
+            skeleton.ClientResetItemInHand(skeletonRenderer);
+
+            var skinToneId = faceStyle.SkinToneId;
+            if (string.IsNullOrEmpty(skinToneId))
+            {
+                skeletonRenderer.DefaultTextureRemapper = null;
+            }
+            else
+            {
+                // use colorizer for the original sprites (to apply the skin tone)
+                skeletonRenderer.DefaultTextureRemapper
+                    = textureResource => ClientCharacterSkinHelper.GetSkinProceduralTexture(textureResource,
+                                                                                            skinToneId);
+            }
+
             // setup equipment items
             using var equipmentItems = Api.Shared.WrapInTempList(
                 containerEquipment.GetItemsOfProto<IProtoItemEquipment>());
             if (!IsAllowNakedHumans)
             {
-                if (!equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentLegs))
+                if (!equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentArmor))
                 {
-                    // no lower cloth - apply generic one
+                    // no armor equipped - apply generic one
                     var pants = GenericPantsAttachments.Value;
                     ClientSkeletonAttachmentsLoader.SetAttachments(
                         skeletonRenderer,
                         isMale
                             ? pants.SlotAttachmentsMale
                             : pants.SlotAttachmentsFemale);
-                }
 
-                if (!equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentChest))
-                {
-                    // no upper cloth - apply generic one (based on character Id)
+                    // select a random generic T-shirt based on character ID
                     var allShirts = GenericShirtAttachments.Value;
                     var selectedShirtIndex = character.Id % allShirts.Length;
                     var shirt = allShirts[(int)selectedShirtIndex];
@@ -367,19 +379,23 @@
             // generate head sprites for human players
             const string slotName = "Head",
                          attachmentName = "Head";
+
+            headGenerationId++;
+
+            var spriteQualityOffset = skeletonRenderer.SpriteQualityOffset;
             skeletonRenderer.SetAttachmentSprite(
                 skeleton.SkeletonResourceFront,
                 slotName,
                 attachmentName,
                 new ProceduralTexture(
-                    "Head Front CharacterID=" + character.Id,
+                    $"Head Front CharacterID={character.Id} gen={headGenerationId}",
                     proceduralTextureRequest =>
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
                             new CharacterHeadSpriteData(faceStyle, headEquipment, skeleton.SkeletonResourceFront),
                             proceduralTextureRequest,
                             isMale,
                             isFrontFace: true,
-                            spriteQualityOffset: skeletonRenderer.SpriteQualityOffset),
+                            spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
 
@@ -388,14 +404,14 @@
                 slotName,
                 attachmentName,
                 new ProceduralTexture(
-                    "Head Back CharacterID=" + character.Id,
+                    $"Head Back CharacterID={character.Id} gen={headGenerationId}",
                     proceduralTextureRequest =>
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
                             new CharacterHeadSpriteData(faceStyle, headEquipment, skeleton.SkeletonResourceBack),
                             proceduralTextureRequest,
                             isMale,
                             isFrontFace: false,
-                            spriteQualityOffset: skeletonRenderer.SpriteQualityOffset),
+                            spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
         }
@@ -431,7 +447,7 @@
             {
                 switch (c)
                 {
-                    case ClientComponentLightInSkeleton _:
+                    case ClientComponentLightInSkeleton lightInSkeleton when lightInSkeleton.IsPrimary:
                     case ClientComponentNightVisionEffect _:
                     case ItemImplantArtificialRetina.ClientComponentArtificialRetinaEffect _:
                         return;

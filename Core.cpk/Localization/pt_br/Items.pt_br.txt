@@ -88,11 +88,17 @@ Flecha simples com ponta de pedra. Mais simples do que isso não existe.
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 Flecha com ponta de pedra
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+Granada de fragmentação especial com um alcance de efeito estendido. Atinge tudo à sua volta em um grande raio de ação no momento do impacto.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+Granada de fragmentação
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 Granada para fins especiais que dispersa hélio líquido impregnado de partículas de prágmio no momento do impacto para congelar o alvo.
 
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
-Hélio granada
+Granada de hélio
 
 Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
 Granada padrão com material altamente explosivo que causa dano a tudo num pequeno raio no ponto de impacto.
@@ -111,6 +117,69 @@ Munição padrão para armas de fogo. Adequada apenas para alvos mais fracos, ma
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 Cartucho de papel
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+Cartuchos de artilharia altamente explosivos, muito eficazes contra blindagens de veículos.
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+Projétil de artilharia
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+Clique neste item segurando a tecla Alt para usá-lo ou consumi-lo rapidamente.
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+Clique numa estrutura para desmontá-la.
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+Clique numa estrutura não danificada para movê-la.
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+Clique num poço ou coletor de água para reabastecê-lo com água.
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+Clique numa estrutura para reparar ou construir.
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+Clique numa planta de fazenda para regá-la.
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+Você pode extrair filés de peixe com a ação de USAR (a mesma para usar os demais itens).
+
+Scripts/Items/Base/ItemHints@DroneControl:
+Com este controle de drones, você pode atribuir comandos para os drones do seu inventário ou da barra de acesso.
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+Ao atribuir comandos segurando a tecla Shift, você enviará instantaneamente todos os seus drones para garimpar objetos próximos do tipo selecionado.
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+Drones não podem ser usados diretamente. Use um dispositivo de controle para atribuir comandos ao drone enquanto ele estiver em seu inventário.
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+Deve estar equipado num dos espaços de dispositivos para funcionar.
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+Você pode aplicar fertilizantes selecionando-os na barra de acesso e clicando numa planta.
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+Selecione uma garrafa na barra de acesso e clique na água do mar no mundo para enchê-la de água salgada.
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+Coloque-a num poço ou coletor de água para enchê-la de água limpa.
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+Células de combustível são usadas para alimentar veículos distintos.
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+Implantes só podem ser instalados no posto médico.
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+Este item usa energia dos carregadores portáteis equipados.
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+Esta arma só pode ser instalada e usada num acoplamento [b]{0}[/b] de veículo.
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+Cortar
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 Decifrar
@@ -160,23 +229,41 @@ Carregador portátil bidirecional padrão. Armazena energia para uso conveniente
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Carregador portátil padrão
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+Controle remoto de drones avançado
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+Controle remoto especial, necessário para operar e atribuir comandos a drones automatizados.
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+Controle remoto de drones
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+Versão avançada do drone industrial. Oferece maior velocidade de garimpo e alcance, assim como outras melhorias.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+Drone industrial avançado
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+Drone industrial padrão, que pode ser utilizado para a aquisição rápida de recursos.
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+Drone industrial
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Armadura de proteção ambiental avançada que oferece a combinação ideal de combate e defesa ambiental.
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 Traje A.P.A.R.T.
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
-Capacete de armadura de assalto
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
 Esta armadura de ataque especial oferece surpreendente proteção contra fogo inimigo sem comprometer outras áreas.
 
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-Jaqueta de armadura de assalto
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Armadura de assalto
 
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-Calça de armadura de assalto
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Capacete de armadura de assalto
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 Nenhum capacete equipado
@@ -205,26 +292,23 @@ Para ativar a luz do capacete, equipe este item e aperte a tecla [{0}].
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 botão não configurado
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+A armadura de osso oferece uma boa proteção, pelo preço, sendo uma ótima opção inicial.
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Armadura de osso
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 Capacete de osso fechado
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 Capacete de osso com chifre
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-A armadura de osso oferece uma boa proteção, considerando o preço, sendo uma ótima opção inicial.
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Não é a coisa mais bonita do mundo, mas, na falta de algo melhor, protege. Oferece proteção ambiental melhor do que as alternativas equivalentes.
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-Jaqueta de osso
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-Calça de osso
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
-Não é a coisa mais bonita do mundo, mas protege, na falta de algo melhor. Oferece proteção ambiental melhor do que as alternativas equivalentes.
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-Peitoral trançado
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Armadura trançada
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Capacete trançado
@@ -232,50 +316,38 @@ Capacete trançado
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 Capacete improvisado com lâmpada
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-Calça trançada
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+Não oferece proteção nenhuma. Talvez contra mosquito, no máximo?
 
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-Chapéu de pano
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-Calça de pano
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
-Não oferece proteção nenhuma. Talvez contra mosquito, no máximo.
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 Camisa de pano
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Chapéu de pano
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
 Boa armadura inicial, principalmente para se proteger do frio. Não é muito cara e é confortável!
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
 Casaco de pele
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 Chapéu de pele com rabo
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
-Chapéu de cossaco
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
+Chapéu cossaco
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 Chapéu ushanka
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-Calça de pele
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 Traje luxuoso de ouro. Digno de grandes soberanos.
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-Peitoral de ouro
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Armadura de ouro
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 Coroa de ouro
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-Calça de ouro
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Traje criado especialmente para proteger o usuário de grande parte dos riscos ambientais. Não deve ser usado em combate, por ser muito frágil.
@@ -283,29 +355,26 @@ Traje criado especialmente para proteger o usuário de grande parte dos riscos a
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 Traje de proteção
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+A armadura de couro oferece uma boa proteção geral, sendo ideal para os primeiros estágios de desenvolvimento.
+
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Armadura de couro
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
 Chapéu de vaqueiro
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
 Chapéu de piloto
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
 Chapéu de pirata
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
-A armadura de couro oferece uma boa proteção geral e é ideal para os primeiros estágios de desenvolvimento.
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+A armadura de metal oferece uma ótima proteção contra ataques físicos, mas quase não protege contra riscos ambientais.
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-Jaqueta de couro
-
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-Calça de couro
-
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
-A armadura de metal oferece uma ótima proteção contra ataques físicos, mas praticamente não protege contra riscos ambientais.
-
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-Peitoral de metal
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Armadura de metal
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Capacete de metal fechado
@@ -313,20 +382,14 @@ Capacete de metal fechado
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 Capacete de crânio de metal
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-Perneira de metal
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+O material avançado usado na fabricação dessa armadura oferece proteção contra pequenas armas de fogo e outras armas comuns.
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Armadura militar
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Capacete militar
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-O material avançado usado na fabricação dessa armadura oferece proteção contra pequenas armas de fogo e outras armas comuns.
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-Jaqueta militar
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-Calça militar
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Capacete conveniente que vem com uma fonte de luz acoplada, deixando as mãos livres. Requer pilhas.
@@ -340,56 +403,56 @@ Capacete tático leve com óculos de visão noturna que permitem enxergar quase 
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 Visão noturna
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+A versão aprimorada do capacete tático com visão noturna, que garante uma visão perfeita à noite. Requer pilhas.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+Visão noturna avançada
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+Máscara de oxigênio padrão que filtra partículas radioativas e gases nocivos. Não oferece nenhuma outra proteção.
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+Máscara de oxigênio
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 Os capacetes de segurança oferecem proteção básica para a cabeça contra contusões, escombros, choques elétricos e outros perigos.
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 Capacete de segurança
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-Máscara de oxigênio padrão que filtra partículas radioativas e gases nocivos. Não oferece nenhuma outra proteção.
-
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-Máscara de oxigênio
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
 Armadura experimental com estrutura formada por uma malha de prágmio e finas placas de metal. É muito leve e resistente.
 
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 Armadura de prágmio
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
-A malha grossa acolchoada oferece um bom e inesperado nível de proteção contra todos os tipos de dano e efeitos ambientais.
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+A malha grossa acolchoada oferece um nível bom e inesperado de proteção contra todos os tipos de dano e efeitos ambientais.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-Casaco acolchoado
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Armadura acolchoada
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 Chapéu acolchoado
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
 Capacete acolchoado
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-Calça acolchoada
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
 A defesa suprema. Esta armadura de batalha protegerá você contra tudo o que te atingir, ao custo de reduzir sua mobilidade.
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 Armadura superpesada
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
 A necessidade é a mãe da invenção. Não é muito confortável, mas é uma proteção inicial muito boa.
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-Peitoral de madeira
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Armadura de madeira
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 Capacete de madeira
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-Calça de madeira
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 Dispositivo explosivo especial feito para extrair uma grande quantidade de minério de uma vez só. Precisa ser armado ao lado de um depósito de minério.
@@ -414,6 +477,78 @@ Bomba especial que utiliza as propriedades únicas do prágmio para destruir mú
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 Bomba de ressonância
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+Iscas naturais são apenas pedaços de peixes menores, ideais para a pesca de peixes predadores maiores.
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+Isca natural
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+Iscas baratas e comuns, ideais para a pesca de peixes menores de água doce.
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+Isca de inseto
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+A isca de massa é uma isca especial preparada com vários ingredientes, tornando-a atrativa para a maioria dos peixes.
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+Isca de massa
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+Esta vara de pesca pode ser usada para pegar peixes em qualquer tipo de água. Requer iscas.
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+Vara de pesca
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+Peixes frescos e recém-pescados devem ser limpos antes de serem usados na culinária.
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+Achigã
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+Brema
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+Carpa
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+Bagre
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+Esquálio
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+Biquara
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+Cavala
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+Dourado do mar
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+Paloco
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+Baiacu
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+Lúcio
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+Peixe-galo
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+Salmão
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+Sardinha
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+Truta
 
 Scripts/Items/Food/ItemBanana@Description:
 Qualquer macaco pode alcançar as bananas, mas apenas os humanos podem alcançar as estrelas.
@@ -643,6 +778,27 @@ Muito saborosos, sejam fritos ou cozidos. Não devem ser consumidos crus, pois p
 Scripts/Items/Food/ItemEggsRaw@Name:
 Ovos de animal
 
+Scripts/Items/Food/ItemFishDried@Description:
+Peixe salgado e seco. Combina bem com cerveja, podendo ser armazenado por bastante tempo sem estragar.
+
+Scripts/Items/Food/ItemFishDried@Name:
+Peixe seco
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+Filés de peixe de alta qualidade, um ótimo ingrediente culinário.
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+Filé de peixe de carne vermelha
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+Filé de peixe de carne branca
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+Filés de peixe assados no forno, muito macios e suculentos.
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+Peixe assado
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 Cozinhar esta carne tornou-a um pouco menos nojenta… Mas prepare-se para vomitar se decidir comer.
 
@@ -751,6 +907,12 @@ Fruto tropical doce e ácido. Pode ser comido cru ou preparado em diversos prato
 Scripts/Items/Food/ItemPineapple@Name:
 Abacaxi
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+A guerra santa culinária dura até hoje...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+Pizza de abacaxi
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 Bom do jeito que está ou como parte de uma refeição mais complexa.
 
@@ -775,6 +937,12 @@ Uma salada. É muito saudável e satisfaz muito bem!
 Scripts/Items/Food/ItemSaladVegetable@Name:
 Salada
 
+Scripts/Items/Food/ItemSalami@Description:
+Salame curado, feito com carne e temperos especialmente preparados.
+
+Scripts/Items/Food/ItemSalami@Name:
+Salame
+
 Scripts/Items/Food/ItemSandwich@Description:
 Pão fofinho, carne suculenta e salada reunidos para criar um verdadeiro clássico!
 
@@ -793,6 +961,18 @@ Doce e branquinho. Pode ser usado em diversas receitas. Você até pode comer pu
 Scripts/Items/Food/ItemSugar@Name:
 Açúcar
 
+Scripts/Items/Food/ItemSushi@Description:
+Arroz com temperos coberto por peixe cru. Simples, mas com um sabor inesquecível.
+
+Scripts/Items/Food/ItemSushi@Name:
+Sushi
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+Uma tortilha crocante, recheada com carne, molho especial e alguns vegetais.
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+Taco con carne
+
 Scripts/Items/Food/ItemTequila@Description:
 Uma boa bebida destilada feita com plantas encontradas no deserto.
 
@@ -810,6 +990,12 @@ Você sabia q os tomates são frutos e não vegetais?
 
 Scripts/Items/Food/ItemTomato@Name:
 Tomate
+
+Scripts/Items/Food/ItemUkha@Description:
+Sopa clara de peixes e vegetais, preparada de maneira tradicional.
+
+Scripts/Items/Food/ItemUkha@Name:
+Ukha
 
 Scripts/Items/Food/ItemVodka@Description:
 A bebida ardente dos deuses. Beber muito pode trazer consequências, então beba com moderação. Ela também desidrata. E não, ela não oferece proteção contra radiação.
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 Latas vazias
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-Reservatório de metal vazio. Pode ser usado para armazenar líquidos voláteis.
+Pode-se usar para armazenar líquidos voláteis.
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 Reservatório vazio
@@ -1091,6 +1277,24 @@ Grânulos de nitrocelulose especialmente formuladas e moldadas para armas de fog
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 Pólvora formulada
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+Célula de combustível vazia utilizada para alimentar diversos veículos. Deve ser reabastecida antes.
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+Célula de combustível vazia
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+Célula abastecida com combustível normal. Custa pouco, mas não dura muito.
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+Célula de combustível com gasolina
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+Célula abastecida com prágmio líquido. Tem uma vida útil extremamente longa.
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+Célula de combustível com prágmio
+
 Scripts/Items/Generic/ItemFur@Description:
 Pele animal. Pode ser usada para criar roupa quente para o inverno.
 
@@ -1192,12 +1396,6 @@ Aço industrial com alto teor de carbono.
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Lingote de aço
-
-Scripts/Items/Generic/ItemLeaf@Description:
-Uma folha. Provavelmente de uma árvore.
-
-Scripts/Items/Generic/ItemLeaf@Name:
-Folha
 
 Scripts/Items/Generic/ItemLeather@Description:
 Couro animal. Pode ser usado na fabricação de armadura de couro.
@@ -1565,6 +1763,12 @@ Este material especial de nanofibra pode ser aplicado à camada inferior da epid
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implante de pele de nanofibra
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+Reforços artificiais para os ossos e o crânio. Evita atordoamentos ou fraturas ósseas.
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+Implante de reforço endoesquelético
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 Não foi detectada nenhuma mutação fora de controle no organismo.
 
@@ -1714,6 +1918,20 @@ Este aprimorador neural descartável contém nanomáquinas pré-programadas. Exp
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 Aprimorador neural
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`Atenção: este item não pode ser usado com frequência.
+[br]Se você usar agora, não poderá usá-lo novamente por {0}.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`Você usou este item recentemente.
+[br]Aguarde {0} até poder usá-lo novamente.`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+Seu uso apaga por completo todo o conhecimento sobre tecnologias e restitui todos os pontos de aprendizagem já usados para que você possa redistribuí-los. Não pode ser usado com frequência.
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+Recombinador neural
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 O analgésico é usado para aliviar e prevenir qualquer tipo de dor enquanto fizer efeito.
@@ -1940,6 +2158,12 @@ A picareta de pedra pode ser usada para garimpar depósitos minerais.
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Picareta de pedra
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+Este sensor possibilita a busca por cristais grandes de prágmio através da detecção de seus registros psiônicos únicos, até mesmo em grandes distâncias.
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+Sensor de prágmio
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 A caixa de ferramentas é necessária para construir ou consertar qualquer uma das suas estruturas. Lembre-se de equipá-la e selecioná-la.
 
@@ -2043,7 +2267,7 @@ Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Pistola de pederneira
 
 Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
-Lançador de granadas simples que dispara munição de grande calibre especialmente concebida para explodir no momento do impacto, provocando muito dano.
+Lançador de granadas simples que dispara munição de calibre grosso concebida especialmente para explodir no momento do impacto, provocando muito dano.
 
 Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
 Lança-granadas
@@ -2061,13 +2285,13 @@ Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 Pistola
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-A pistola laser dispara um poderoso pulso de luz de alta energia, predominantemente infravermelha, que queima o inimigo.
+A pistola laser dispara rápidos pulsos de luz de alta energia que queimam o alvo.
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 Pistola laser
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-O fuzil laser dispara rápidos pulsos de luz de alta energia, predominantemente infravermelha, que queimam o alvo. Oferece uma cadência de tiro muito maior do que a da pistola laser, mas consome mais energia.
+O fuzil laser dispara fortes pulsos de luz de alta energia, predominantemente infravermelha, que queimam o alvo. Oferece um alcance de tiro muito maior do que a da pistola laser.
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 Fuzil laser
@@ -2115,7 +2339,7 @@ Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Revólver
 
 Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-Fuzil de precisão automático leve desenvolvido para projéteis de 10 mm.
+Fuzil de precisão leve automático desenvolvido para projéteis de 10 mm.
 
 Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
 Fuzil leve
@@ -2127,7 +2351,7 @@ Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Fuzil pesado
 
 Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-Fuzil primitivo de ação de ferrolho desenvolvido para projéteis de uso comum de 8 mm.
+Fuzil primitivo de ação de ferrolho desenvolvido para projéteis de uso comum de 8 mm.
 
 Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
 Fuzil de ação de ferrolho
@@ -2173,4 +2397,16 @@ Canhão automático leve projetado para ser montado nos acoplamentos da armadura
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 Canhão automático leve
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+Canhão de artilharia pesada especial que utiliza projéteis altamente explosivos, ideais para alvos blindados.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+Canhão de artilharia
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+Canhão pesado que utiliza cargas coerentes de partículas aceleradas para causar dano ao alvo.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+Canhão de energia
 

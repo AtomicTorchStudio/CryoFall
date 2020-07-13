@@ -8,6 +8,8 @@
         public override string Description =>
             "Large pellets of buckshot offer good balance between spread and penetrating power. However, usage of black powder as propellant offers less power than nitrocellulose, limiting this ammo's effectiveness.";
 
+        public override bool IsReferenceAmmo => true;
+
         public override string Name => "12-gauge buckshot charge";
 
         public override WeaponFireScatterPreset? OverrideFireScatterPreset { get; }

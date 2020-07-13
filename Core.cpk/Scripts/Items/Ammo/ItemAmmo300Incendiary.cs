@@ -12,6 +12,8 @@
         public override string Description =>
             "Heavy .300 incendiary rounds, able to punch through armor and ignite the target.";
 
+        public override bool IsReferenceAmmo => false;
+
         public override string Name => ".300 incendiary ammo";
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)

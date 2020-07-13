@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes.DryingCabinet;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
-    public class TechNodeDryingCabinet : TechNode<TechGroupCooking>
+    public class TechNodeDryingCabinet : TechNode<TechGroupCookingT1>
     {
         protected override void PrepareTechNode(Config config)
         {

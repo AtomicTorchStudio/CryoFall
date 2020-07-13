@@ -17,7 +17,7 @@ Scripts/Skills/Categories/SkillCategoryTechnical@Name:
 기술
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
-일정 확률로 추가 농작물 획득
+추가 농작물 획득 확률
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 더 나은 농사 기술을 통해 농사 효율성, 농작물 생장 속도, 숙성 속도를 향상시킬 수 있으며, 때로는 농작물을 추가로 얻을 수도 있습니다.
@@ -25,8 +25,17 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 농사
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+미끼 절약 확률
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+다양한 어종과 습성에 대한 지식은 낚시를 성공할 수 있는 능력을 나타냅니다.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+낚시
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
-일정 확률로 추가 농작물 획득
+추가 채집물 획득 확률
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
 행성의 식물상에 대한 이해를 바탕으로 수확 속도와 추가 농작물을 얻을 확률을 향상시킵니다.
@@ -100,23 +109,29 @@ Scripts/Skills/Skills/Personal/SkillSurvival@Description:
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 생존
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-일정 확률로 추가 광물 획득
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+묘목 획득 확률
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-채굴 시 일정 확률로 보석 발견
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+추가 묘목 획득 확률
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-광물 매장지에 대한 지식이 높아져 채굴 속도, 채굴량, 희귀한 자원을 찾을 확률이 증가합니다. 곡괭이를 사용할 때만 적용됩니다.
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+벌목에 대한 더 많은 훈련과 이해로 벌목 속도를 높입니다.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-채굴
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-벌목에 대한 훈련과 이해도 증가로 벌목 속도가 향상됩니다. 도끼를 사용할 때만 적용됩니다.
-
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
 벌목
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
+추가 광물 획득 확률
+
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
+채굴 시 원석 획득 확률
+
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+광물 매장지에 대한 지식이 높아져 채굴 속도, 채굴량, 희귀한 자원을 찾을 확률이 증가합니다.
+
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+탐광
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 건설 스킬 좋아짐에 따라 건설 속도가 향상됩니다. 공구함을 사용하여 수행되는 모든 작업 (건설, 수리)에 적용됩니다.
@@ -130,9 +145,18 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 제작
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+아이템 완전 수리 확률
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 여러 아이템과 장비를 수리하여 유지 보수할 수 있습니다. 수리공 탁자에서 작업을 수행할 수 있습니다.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 유지 보수
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+다양한 탈것을 조종하고 장비를 정확하고 효과적으로 사용할 수 있는 능력. 모든 유형의 탈것에 적용됩니다.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+탈것
 

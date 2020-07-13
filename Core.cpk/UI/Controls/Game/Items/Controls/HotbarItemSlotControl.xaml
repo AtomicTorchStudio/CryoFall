@@ -50,8 +50,8 @@
             </Border.Style>
         </Border>
 
-        <controls:ItemSlotControl x:Name="ItemSlotControl" 
-                                  Margin="0,1" 
+        <controls:ItemSlotControl x:Name="ItemSlotControl"
+                                  Margin="0,1"
                                   IsBackgroundEnabled="False" />
 
         <ContentControl Content="{Binding OverlayControl}" />

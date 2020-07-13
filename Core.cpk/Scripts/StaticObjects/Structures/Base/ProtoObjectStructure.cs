@@ -46,7 +46,9 @@
     {
         public const string NotificationUseWeaponOrTool = "Use a weapon or a tool to damage this structure.";
 
-        private IComponentAttachedControl currentDisplayedRepairTooltip;
+        private static IComponentAttachedControl currentDisplayedRelocateTooltip;
+
+        private static IComponentAttachedControl currentDisplayedRepairTooltip;
 
         private List<TechNode> listedInTechNodes;
 
@@ -72,10 +74,13 @@
 
         public IConstructionUpgradeConfigReadOnly ConfigUpgrade { get; private set; }
 
+        public virtual ProtoObjectConstructionSite ConstructionSitePrototype
+            => Api.GetProtoEntity<ObjectConstructionSite>();
+
         /// <summary>
         /// Text description.
         /// </summary>
-        public virtual string Description => "No description.";
+        public abstract string Description { get; }
 
         /// <summary>
         /// Text description for this structure when it's displayed as an upgrade for another structure.
@@ -88,16 +93,15 @@
             => this.listedInTechNodes != null
                && this.listedInTechNodes.Count != 0;
 
-        public virtual bool IsRepeatPlacement => true;
+        public virtual bool IsRelocatable => false;
+
+        public virtual bool IsRepeatPlacement => false;
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
         public IReadOnlyList<TechNode> ListedInTechNodes
             => this.listedInTechNodes
                ?? (IReadOnlyList<TechNode>)Array.Empty<TechNode>();
-
-        public virtual ProtoObjectConstructionSite ConstructionSitePrototype
-            => Api.GetProtoEntity<ObjectConstructionSite>();
 
         public override string ShortId { get; }
 
@@ -110,15 +114,27 @@
 
             base.ClientDeinitialize(gameObject);
 
-            if (this.currentDisplayedRepairTooltip != null)
+            if (currentDisplayedRepairTooltip != null)
             {
                 var tooltipDisplayedForObject =
-                    ((ConstructionOrRepairRequirementsTooltip)this.currentDisplayedRepairTooltip.Control).WorldObject;
-                if (gameObject == tooltipDisplayedForObject)
+                    ((ConstructionOrRepairRequirementsTooltip)currentDisplayedRepairTooltip.Control).WorldObject;
+                if (ReferenceEquals(gameObject, tooltipDisplayedForObject))
                 {
                     // destroy tooltip
-                    this.currentDisplayedRepairTooltip?.Destroy();
-                    this.currentDisplayedRepairTooltip = null;
+                    currentDisplayedRepairTooltip.Destroy();
+                    currentDisplayedRepairTooltip = null;
+                }
+            }
+
+            if (currentDisplayedRelocateTooltip != null)
+            {
+                var tooltipDisplayedForObject =
+                    ((ConstructionRelocationTooltip)currentDisplayedRelocateTooltip.Control).WorldObject;
+                if (ReferenceEquals(gameObject, tooltipDisplayedForObject))
+                {
+                    // destroy tooltip
+                    currentDisplayedRelocateTooltip.Destroy();
+                    currentDisplayedRelocateTooltip = null;
                 }
             }
 
@@ -142,7 +158,7 @@
 
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
         {
-            if (this.listedInTechNodes == null)
+            if (this.listedInTechNodes is null)
             {
                 if (this.IsAutoUnlocked)
                 {
@@ -190,7 +206,7 @@
         {
             // calculate decay damage
             // damage is proportional to the structure max HP and the decay duration constant
-            var damage = this.StructurePointsMax
+            var damage = this.SharedGetStructurePointsMax(worldObject)
                          / StructureConstants.StructuresDecayDurationSeconds;
 
             // damage is proportional to the decay system update rate
@@ -316,39 +332,63 @@
             StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
         }
 
-        protected override void ClientUpdate(ClientUpdateData data)
-        {
-            base.ClientUpdate(data);
-
-            if (this.currentDisplayedRepairTooltip != null)
-            {
-                var tooltipDisplayedForObject =
-                    ((ConstructionOrRepairRequirementsTooltip)this.currentDisplayedRepairTooltip.Control).WorldObject;
-                if (data.GameObject == tooltipDisplayedForObject
-                    && !this.IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
-                {
-                    // destroy tooltip
-                    this.currentDisplayedRepairTooltip?.Destroy();
-                    this.currentDisplayedRepairTooltip = null;
-                }
-            }
-
-            if (this.currentDisplayedRepairTooltip == null
-                && this.IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
-            {
-                // display tooltip
-                var worldObject = data.GameObject;
-                this.currentDisplayedRepairTooltip =
-                    ConstructionOrRepairRequirementsTooltip.CreateAndAttach(worldObject);
-            }
-        }
-
-        protected virtual bool IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(TPublicState publicState)
+        protected virtual bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
+            TPublicState publicState)
         {
             return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject
                    && this.ConfigRepair.IsAllowed
                    && publicState.StructurePointsCurrent < this.StructurePointsMax
                    && ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem is IProtoItemToolToolbox;
+        }
+
+        protected override void ClientUpdate(ClientUpdateData data)
+        {
+            base.ClientUpdate(data);
+
+            var worldObject = data.GameObject;
+
+            if (currentDisplayedRepairTooltip is null)
+            {
+                if (this.ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
+                {
+                    // display build/repair tooltip
+                    currentDisplayedRepairTooltip =
+                        ConstructionOrRepairRequirementsTooltip.CreateAndAttach(worldObject);
+                }
+            }
+            else
+            {
+                var tooltipDisplayedForObject =
+                    ((ConstructionOrRepairRequirementsTooltip)currentDisplayedRepairTooltip.Control).WorldObject;
+                if (ReferenceEquals(worldObject, tooltipDisplayedForObject)
+                    && !this.ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
+                {
+                    // destroy tooltip
+                    currentDisplayedRepairTooltip?.Destroy();
+                    currentDisplayedRepairTooltip = null;
+                }
+            }
+
+            if (currentDisplayedRelocateTooltip is null)
+            {
+                if (ClientCanRelocateStructure(worldObject))
+                {
+                    currentDisplayedRelocateTooltip =
+                        ConstructionRelocationTooltip.CreateAndAttach(worldObject);
+                }
+            }
+            else
+            {
+                var tooltipDisplayedForObject =
+                    ((ConstructionRelocationTooltip)currentDisplayedRelocateTooltip.Control).WorldObject;
+                if (ReferenceEquals(worldObject, tooltipDisplayedForObject)
+                    && !ClientCanRelocateStructure(worldObject))
+                {
+                    // destroy tooltip
+                    currentDisplayedRelocateTooltip?.Destroy();
+                    currentDisplayedRelocateTooltip = null;
+                }
+            }
         }
 
         protected abstract void PrepareConstructionConfig(
@@ -485,6 +525,14 @@
                                                       damagePreMultiplier,
                                                       targetObject,
                                                       out obstacleBlockDamageCoef);
+        }
+
+        private static bool ClientCanRelocateStructure(IStaticWorldObject worldObject)
+        {
+            return ClientComponentObjectInteractionHelper.MouseOverObject == worldObject
+                   && ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem is IProtoItemToolToolbox
+                   && !ConstructionRelocationSystem.IsInObjectPlacementMode
+                   && ConstructionRelocationSystem.SharedIsRelocatable(worldObject);
         }
 
         private void ClientPlayDeconstructionSound(Vector2D worldPosition, bool isByCurrentCharacter)

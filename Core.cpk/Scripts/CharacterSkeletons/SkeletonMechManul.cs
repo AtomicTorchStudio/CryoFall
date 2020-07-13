@@ -14,6 +14,8 @@
         public override SkeletonResource SkeletonResourceFront { get; }
             = new SkeletonResource("MechManul/Front");
 
+        protected override float AnimationVerticalMovemementSpeedMultiplier => 1.25f;
+
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {
             shadowRenderer.PositionOffset = (0, -0.1 * scaleMultiplier);

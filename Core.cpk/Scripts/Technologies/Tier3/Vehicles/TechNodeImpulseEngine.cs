@@ -2,14 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeImpulseEngine : TechNode<TechGroupVehicles>
+    public class TechNodeImpulseEngine : TechNode<TechGroupVehiclesT3>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipeImpulseEngine>();
 
-            config.SetRequiredNode<TechNodeVehicleAssemblyBay>();
+            config.SetRequiredNode<TechNodeStructuralPlating>();
         }
     }
 }

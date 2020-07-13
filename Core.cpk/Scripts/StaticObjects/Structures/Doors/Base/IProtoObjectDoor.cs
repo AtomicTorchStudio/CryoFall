@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Data.World;
 
-    public interface IProtoObjectDoor : IProtoObjectWithOwnersList, IProtoObjectWithAccessMode
+    public interface IProtoObjectDoor : IProtoStaticWorldObject, IProtoObjectWithOwnersList, IProtoObjectWithAccessMode
     {
         /// <summary>
         /// If set to null the door orientation is selected automatically.

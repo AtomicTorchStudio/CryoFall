@@ -18,8 +18,7 @@
             return this.GetLiquidState(GetPrivateState(objectManufacturer));
         }
 
-        protected abstract LiquidContainerState GetLiquidState(
-            ObjectOilRefineryPrivateState privateState);
+        protected abstract LiquidContainerState GetLiquidState(ProtoObjectOilRefinery.PrivateState privateState);
 
         protected override void ServerOnLiquidAmountChanged(IStaticWorldObject objectManufacturer)
         {
@@ -32,8 +31,7 @@
             stations.AddAll<ProtoObjectOilRefinery>();
         }
 
-        private static ObjectOilRefineryPrivateState
-            GetPrivateState(IStaticWorldObject objectManufacturer)
+        private static ProtoObjectOilRefinery.PrivateState GetPrivateState(IStaticWorldObject objectManufacturer)
         {
             return ProtoObjectOilRefinery.GetPrivateState(objectManufacturer);
         }

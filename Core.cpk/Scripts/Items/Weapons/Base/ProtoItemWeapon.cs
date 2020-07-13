@@ -3,18 +3,23 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -30,6 +35,7 @@
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
+    [PrepareOrder(afterType: typeof(IProtoItemAmmo))]
     public abstract class ProtoItemWeapon
         <TPrivateState,
          TPublicState,
@@ -61,8 +67,6 @@
 
         public abstract double AmmoReloadDuration { get; }
 
-        public virtual double ArmorPiercingMultiplier => 1;
-
         public virtual bool CanDamageStructures => true;
 
         public abstract string CharacterAnimationAimingName { get; }
@@ -74,6 +78,8 @@
         public virtual double DamageApplyDelay => 0;
 
         public virtual double DamageMultiplier => 1;
+
+        public abstract DamageStatsComparisonPreset DamageStatsComparisonPreset { get; }
 
         public virtual ushort DurabilityDecreasePerAction => 1;
 
@@ -103,10 +109,28 @@
 
         public DamageDescription OverrideDamageDescription { get; private set; }
 
-        public virtual double RangeMultipier => 1;
+        public virtual double RangeMultiplier => 1;
 
         /// <inheritdoc />
         public virtual double ReadyDelayDuration => 1;
+
+        public IProtoItemAmmo ReferenceAmmoProto
+        {
+            get
+            {
+                foreach (var protoAmmo in this.CompatibleAmmoProtos)
+                {
+                    if (protoAmmo.IsReferenceAmmo)
+                    {
+                        return protoAmmo;
+                    }
+                }
+
+                return this.CompatibleAmmoProtos.FirstOrDefault();
+            }
+        }
+
+        public virtual float ShotVolumeMultiplier => 1.0f;
 
         /// <inheritdoc />
         public ReadOnlySoundPreset<ObjectMaterial> SoundPresetHit { get; private set; }
@@ -156,6 +180,7 @@
 
         public virtual void ClientOnWeaponHitOrTrace(
             ICharacter firingCharacter,
+            Vector2D worldPositionSource,
             IProtoItemWeapon protoWeapon,
             IProtoItemAmmo protoAmmo,
             IProtoCharacter protoCharacter,
@@ -260,8 +285,8 @@
             // spawned unsuccessfully - try to spawn in any container for character
             result.Rollback();
             Server.Items.CreateItem(
-                container.OwnerAsCharacter,
                 protoItem: privateState.CurrentProtoItemAmmo,
+                toCharacter: container.OwnerAsCharacter,
                 count: ammoCount);
         }
 
@@ -427,7 +452,6 @@
             {
                 protoItemAmmo?.ClientOnObjectHit(weaponCache,
                                                  damagedObject,
-                                                 damage,
                                                  hitData,
                                                  ref isDamageStop);
             }
@@ -573,6 +597,30 @@
             }
         }
 
+        protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
+        {
+            base.ClientTooltipCreateControlsInternal(item, controls);
+
+            var hasAmmo = this.CompatibleAmmoProtos.Count > 0;
+
+            if (item != null
+                && hasAmmo)
+            {
+                controls.Add(ItemTooltipCurrentAmmoControl.Create(item));
+            }
+
+            if (!(this is IProtoItemTool))
+            {
+                controls.Add(
+                    ItemTooltipWeaponStats.Create(item, this));
+            }
+
+            if (hasAmmo)
+            {
+                controls.Add(ItemTooltipCompatibleAmmoControl.Create(this));
+            }
+        }
+
         protected virtual WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return default;
@@ -612,6 +660,11 @@
 
             this.CompatibleAmmoProtos = compatibleAmmoProtos?.Distinct().ToArray()
                                         ?? Array.Empty<IProtoItemAmmo>();
+
+            foreach (var protoItemAmmo in this.CompatibleAmmoProtos)
+            {
+                protoItemAmmo.PrepareRegisterCompatibleWeapon(this);
+            }
 
             if (this.CompatibleAmmoProtos.Count == 0
                 && overrideDamageDescription == null)

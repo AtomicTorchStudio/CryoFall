@@ -17,13 +17,18 @@
               TClientState>,
           IProtoObjectElectricityProducer,
           IInteractableProtoWorldObject
-        where TPrivateState : StructurePrivateState, new()
-        where TPublicState : StaticObjectPublicState, IObjectPublicStateWithActiveFlag, new()
+        where TPrivateState : ObjectGeneratorPrivateState, new()
+        where TPublicState : StaticObjectPublicState, IObjectPublicStateWithActiveFlag,
+        IObjectElectricityProducerPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public abstract ElectricityThresholdsPreset DefaultGenerationElectricityThresholds { get; }
+
         public int GenerationOrder { get; set; }
 
         public virtual bool IsAutoEnterPrivateScopeOnInteraction => true;
+
+        public override bool IsRelocatable => true;
 
         public override double ServerUpdateIntervalSeconds => 0.2;
 
@@ -43,6 +48,18 @@
         BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
             return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
+        }
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityProducer.GetPrivateState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityProducerPublicState IProtoObjectElectricityProducer.GetPublicState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -67,7 +84,7 @@
 
     public abstract class ProtoObjectGenerator
         : ProtoObjectGenerator
-            <StructurePrivateState,
+            <ObjectGeneratorPrivateState,
                 ObjectGeneratorPublicState,
                 StaticObjectClientState>
     {

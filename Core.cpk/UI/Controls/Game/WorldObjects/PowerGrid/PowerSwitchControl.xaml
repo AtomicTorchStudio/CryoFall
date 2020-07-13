@@ -7,6 +7,7 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:ui="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
@@ -15,16 +16,38 @@
     Visibility="{Binding Converter={StaticResource NullToVisibilityConverter}}"
     HorizontalAlignment="Right"
     VerticalAlignment="Top"
-    Focusable="False">
-    <base:BaseUserControl.Resources>
-        <Style x:Key="PathStyle" TargetType="Path">
-            <Setter Property="Stroke" Value="Black" />
-            <Setter Property="StrokeThickness" Value="1.5" />
-            <Setter Property="Stretch" Value="Uniform" />
-        </Style>
-    </base:BaseUserControl.Resources>
+    Focusable="False"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    Width="138">
 
     <Grid HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <Style x:Key="PathStyle" TargetType="Path">
+                <Setter Property="Stroke" Value="Black" />
+                <Setter Property="StrokeThickness" Value="1.5" />
+                <Setter Property="Stretch" Value="Uniform" />
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="LineHeight" Value="12" />
+                <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+
+            <Style TargetType="{x:Type core:FormattedTextBlock}">
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="LineHeight" Value="12" />
+                <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+        </Grid.Resources>
+
         <core:WidgetPanel InnerGlowSize="7"
                           VisibilityBackgroundImage="Collapsed"
                           WidgetBackground="{StaticResource WindowBackgroundBrush}" />
@@ -34,10 +57,22 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
+            <!-- Text: Power control -->
+            <TextBlock Grid.Row="0"
+                       Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerControl}"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource BrushColor7}"
+                       Margin="0,-1,0,5"
+                       HorizontalAlignment="Center" />
+
             <StackPanel
-                Grid.Row="0"
+                Grid.Row="1"
                 Visibility="{Binding ViewModelPowerStateOverlay.IsPowerOn, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
                 Orientation="Horizontal"
                 HorizontalAlignment="Center"
@@ -58,72 +93,33 @@
                            LineHeight="10"
                            FontWeight="Bold"
                            FontFamily="{StaticResource DigitsFontFamily}"
-                           TextWrapping="NoWrap" />
+                           TextWrapping="NoWrap"
+                           Margin="0,0,0,-3" />
             </StackPanel>
 
-            <StackPanel
-                Grid.Row="0"
-                Visibility="{Binding ViewModelPowerStateOverlay.IsPowerOn, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
-                Orientation="Horizontal"
-                HorizontalAlignment="Center"
-                Margin="0,0,0,2">
-                <Rectangle Fill="{Binding ElectricityIcon, ElementName=UserControl}"
-                           Width="20"
-                           Height="20"
-                           HorizontalAlignment="Center"
-                           Stretch="Uniform"
-                           UseLayoutRounding="True"
-                           Opacity="0.7" />
-            </StackPanel>
+            <ContentControl Grid.Row="1"
+                            Visibility="{Binding ViewModelPowerStateOverlay.IsPowerOn, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}">
+                <StackPanel
+                    Visibility="{Binding ViewModelPowerStateOverlay.IsPowerOutage, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,2">
+                    <Rectangle Fill="{Binding ElectricityIcon, ElementName=UserControl}"
+                               Width="20"
+                               Height="20"
+                               HorizontalAlignment="Center"
+                               Stretch="Uniform"
+                               UseLayoutRounding="True"
+                               Opacity="0.7" />
+                </StackPanel>
+            </ContentControl>
 
-            <Grid Grid.Row="1">
-                <Grid.Resources>
-                    <Geometry x:Key="IconGeometryPathPowerOn">M 231.46484 952.21289 C 224.17732 952.32858 219.20187 956.60833 218.50781 963.54883 L 217.92969 968.52344 L 189.24219 968.98633 C 153.49854 969.33333 142.5098 972.45536 127.125 986.2207 C 116.25152 995.93738 108.50039 1007.8535 105.83984 1018.6113 L 104.56836 1024.2793 L 32.410156 1024.2793 L 0.021484375 1024.2793 L 0.021484375 1037.4648 L 0.021484375 1050.8848 L 32.410156 1050.8848 L 104.79883 1050.8848 L 107.92383 1060.4844 C 110.93138 1069.0443 112.31921 1071.1278 123.88672 1082.6953 C 135.80126 1094.6099 137.30428 1095.651 148.17773 1099.584 C 157.54743 1102.9386 165.75969 1103.7472 189.35742 1103.9785 C 206.36166 1104.0942 218.50869 1105.1362 218.27734 1106.293 C 217.93032 1107.334 218.39252 1110.573 219.43359 1113.4648 C 220.8217 1118.0919 221.51511 1118.7853 226.25781 1120.2891 C 229.03399 1121.2144 232.85127 1121.5623 234.4707 1121.0996 C 241.08411 1119.296 242.91375 1117.9936 243.41797 1084.4297 L 272.11328 1084.4297 L 272.46094 1100.2773 C 272.57662 1109.8784 273.73255 1117.0509 275.23633 1118.5547 C 283.7963 1127.1147 298.94972 1120.752 297.79297 1108.9531 C 297.44596 1105.8299 300.68553 1105.3661 326.82812 1105.1348 C 365.46362 1104.9034 373.7919 1102.128 391.49023 1084.4297 C 402.36371 1073.5562 403.98246 1071.2436 407.56836 1061.6426 L 411.50195 1051 L 479.61133 1050.8848 L 507.83594 1050.8848 L 507.83594 1037.6973 L 507.83594 1024.2793 L 479.61133 1024.2793 L 411.50195 1024.1621 L 407.56836 1013.5215 C 403.98246 1003.9204 402.4794 1001.7215 391.49023 990.73242 C 373.79194 973.03414 365.34797 970.3743 326.82812 970.02734 L 297.67773 969.79492 L 297.79297 964.82227 C 297.79298 957.65042 291.77821 952.32833 284.375 952.79102 C 274.77397 953.60078 272.69232 957.30218 272.46094 974.88477 L 272.11328 990.73242 L 243.46875 990.73242 C 243.00072 952.17551 240.90584 952.21289 231.46484 952.21289 z M 243.5957 1015.0254 L 272.34375 1015.0254 L 272.22852 1037.582 L 272.34375 1060.1387 L 243.58594 1060.1387 C 243.60295 1053.0503 243.60937 1045.456 243.60938 1036.541 C 243.60938 1028.3891 243.60471 1021.6774 243.5957 1015.0254 z </Geometry>
-                    <Geometry x:Key="IconGeometryPathPowerOff">m 51.453947,296.62403 c -0.428476,0.12243 -1.438469,0.0306 -2.173,-0.21423 -1.254841,-0.39788 -1.438469,-0.58151 -1.805739,-1.80574 -0.275451,-0.76514 -0.397874,-1.62211 -0.306058,-1.89756 0.06121,-0.30605 -3.152394,-0.58151 -7.651432,-0.61211 -6.243566,-0.0612 -8.416574,-0.27545 -10.89564,-1.16302 -2.876936,-1.04059 -3.274815,-1.31605 -6.427203,-4.46844 -3.06057,-3.06057 -3.427842,-3.61148 -4.22359,-5.8763 l -0.826356,-2.54028 -8.5696007,10e-6 H 0.00572898 l -3e-6,-3.55027 2e-6,-3.48905 H 8.5753273 17.083718 l 0.336661,-1.49968 c 0.703936,-2.84633 2.754516,-5.99873 5.631458,-8.5696 4.070561,-3.64208 6.978103,-4.46844 16.435276,-4.56025 l 7.59022,-0.12243 0.153027,-1.31605 c 0.183636,-1.83634 1.499682,-2.96875 3.42784,-2.99936 3.244207,0 3.213605,-0.0918 3.213605,22.31158 -5e-6,21.36279 -0.06121,21.73006 -2.417858,22.37278 z m 75.443113,-18.57767 -7.43719,0.0306 -1.0406,2.81573 c -0.94877,2.54027 -1.37725,3.15239 -4.25419,6.02933 -4.68268,4.68267 -6.88629,5.41721 -17.108599,5.47842 -6.916896,0.0612 -7.773853,0.18364 -7.682039,1.00999 0.306058,3.12178 -3.703289,4.8051 -5.968116,2.54027 -0.397875,-0.39787 -0.703927,-2.29542 -0.734534,-4.8357 l -0.09181,-4.19298 h -8.998087 c -7.682036,-0.0306 -9.151111,-0.15303 -9.946861,-0.94878 -1.163021,-1.16302 -1.163018,-3.48905 0,-4.65207 0.642721,-0.64272 2.723907,-0.82636 9.88565,-0.82635 h 9.120505 l -0.03061,-5.96812 0.03061,-5.96812 h -9.120504 c -9.977471,0 -10.773219,-0.24484 -10.742609,-3.2136 -0.03061,-2.96875 0.795748,-3.18299 10.742607,-3.2136 h 9.059296 l 0.09181,-4.19299 c 0.06122,-4.65206 0.612121,-5.63144 3.152393,-5.84569 1.958765,-0.12242 3.550264,1.28544 3.550261,3.18299 l -0.0306,1.31606 7.712638,0.0612 c 10.191709,0.0918 12.425929,0.79576 17.108599,5.47843 2.90755,2.90754 3.30543,3.48905 4.2542,6.02933 l 1.0406,2.81572 7.43719,0.0306 h 7.4678 v 3.55027 3.48905 z</Geometry>
-                </Grid.Resources>
-                <Grid.LayoutTransform>
-                    <ScaleTransform CenterX="0.5" ScaleX="-1" />
-                </Grid.LayoutTransform>
-
-                <Button Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}}"
-                        Command="{Binding CommandPowerOff}"
-                        Style="{StaticResource SmallButtonStyle}">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border Background="Transparent">
-                                <Path Data="{StaticResource IconGeometryPathPowerOn}"
-                                      Style="{StaticResource PathStyle}"
-                                      Fill="{StaticResource BrushElectricity}"
-                                      Width="56" />
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button
-                    Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                    Command="{Binding CommandPowerOn}"
-                    Style="{StaticResource SmallButtonStyle}">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border Background="Transparent">
-                                <Path Data="{StaticResource IconGeometryPathPowerOff}"
-                                      Style="{StaticResource PathStyle}"
-                                      Fill="#FFDDDDDD"
-                                      Width="56" />
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </Grid>
-
-            <Grid Grid.Row="2"
-                  Visibility="{Binding IsPowerOutage, Converter={StaticResource BoolToVisibilityConverter}}"
+            <Grid Grid.Row="1"
+                  Visibility="{Binding ViewModelPowerStateOverlay.IsPowerOutage, Converter={StaticResource BoolToVisibilityConverter}}"
                   HorizontalAlignment="Center"
-                  DataContext="{Binding ViewModelPowerStateOverlay}"
-                  Margin="0,4"
-                  Width="30"
-                  Height="30">
+                  Width="28"
+                  Height="28"
+                  Margin="-4,-6,-4,-2">
                 <Grid.LayoutTransform>
                     <ScaleTransform CenterX="0.5" ScaleX="-1" />
                 </Grid.LayoutTransform>
@@ -131,8 +127,172 @@
                 <Path Data="{StaticResource IconGeometryPathPowerOutage}"
                       Style="{StaticResource PathStyle}"
                       Fill="#FFFF4400"
-                      Width="30"
-                      Height="30" />
+                      Width="28"
+                      Height="28" />
+            </Grid>
+
+            <Grid Grid.Row="2"
+                  Margin="0,3">
+                <Grid.Resources>
+                    <Geometry x:Key="IconGeometryPathSwitchOn">M 231.46484 952.21289 C 224.17732 952.32858 219.20187 956.60833 218.50781 963.54883 L 217.92969 968.52344 L 189.24219 968.98633 C 153.49854 969.33333 142.5098 972.45536 127.125 986.2207 C 116.25152 995.93738 108.50039 1007.8535 105.83984 1018.6113 L 104.56836 1024.2793 L 32.410156 1024.2793 L 0.021484375 1024.2793 L 0.021484375 1037.4648 L 0.021484375 1050.8848 L 32.410156 1050.8848 L 104.79883 1050.8848 L 107.92383 1060.4844 C 110.93138 1069.0443 112.31921 1071.1278 123.88672 1082.6953 C 135.80126 1094.6099 137.30428 1095.651 148.17773 1099.584 C 157.54743 1102.9386 165.75969 1103.7472 189.35742 1103.9785 C 206.36166 1104.0942 218.50869 1105.1362 218.27734 1106.293 C 217.93032 1107.334 218.39252 1110.573 219.43359 1113.4648 C 220.8217 1118.0919 221.51511 1118.7853 226.25781 1120.2891 C 229.03399 1121.2144 232.85127 1121.5623 234.4707 1121.0996 C 241.08411 1119.296 242.91375 1117.9936 243.41797 1084.4297 L 272.11328 1084.4297 L 272.46094 1100.2773 C 272.57662 1109.8784 273.73255 1117.0509 275.23633 1118.5547 C 283.7963 1127.1147 298.94972 1120.752 297.79297 1108.9531 C 297.44596 1105.8299 300.68553 1105.3661 326.82812 1105.1348 C 365.46362 1104.9034 373.7919 1102.128 391.49023 1084.4297 C 402.36371 1073.5562 403.98246 1071.2436 407.56836 1061.6426 L 411.50195 1051 L 479.61133 1050.8848 L 507.83594 1050.8848 L 507.83594 1037.6973 L 507.83594 1024.2793 L 479.61133 1024.2793 L 411.50195 1024.1621 L 407.56836 1013.5215 C 403.98246 1003.9204 402.4794 1001.7215 391.49023 990.73242 C 373.79194 973.03414 365.34797 970.3743 326.82812 970.02734 L 297.67773 969.79492 L 297.79297 964.82227 C 297.79298 957.65042 291.77821 952.32833 284.375 952.79102 C 274.77397 953.60078 272.69232 957.30218 272.46094 974.88477 L 272.11328 990.73242 L 243.46875 990.73242 C 243.00072 952.17551 240.90584 952.21289 231.46484 952.21289 z M 243.5957 1015.0254 L 272.34375 1015.0254 L 272.22852 1037.582 L 272.34375 1060.1387 L 243.58594 1060.1387 C 243.60295 1053.0503 243.60937 1045.456 243.60938 1036.541 C 243.60938 1028.3891 243.60471 1021.6774 243.5957 1015.0254 z </Geometry>
+                    <Geometry x:Key="IconGeometryPathSwitchOff">m 51.453947,296.62403 c -0.428476,0.12243 -1.438469,0.0306 -2.173,-0.21423 -1.254841,-0.39788 -1.438469,-0.58151 -1.805739,-1.80574 -0.275451,-0.76514 -0.397874,-1.62211 -0.306058,-1.89756 0.06121,-0.30605 -3.152394,-0.58151 -7.651432,-0.61211 -6.243566,-0.0612 -8.416574,-0.27545 -10.89564,-1.16302 -2.876936,-1.04059 -3.274815,-1.31605 -6.427203,-4.46844 -3.06057,-3.06057 -3.427842,-3.61148 -4.22359,-5.8763 l -0.826356,-2.54028 -8.5696007,10e-6 H 0.00572898 l -3e-6,-3.55027 2e-6,-3.48905 H 8.5753273 17.083718 l 0.336661,-1.49968 c 0.703936,-2.84633 2.754516,-5.99873 5.631458,-8.5696 4.070561,-3.64208 6.978103,-4.46844 16.435276,-4.56025 l 7.59022,-0.12243 0.153027,-1.31605 c 0.183636,-1.83634 1.499682,-2.96875 3.42784,-2.99936 3.244207,0 3.213605,-0.0918 3.213605,22.31158 -5e-6,21.36279 -0.06121,21.73006 -2.417858,22.37278 z m 75.443113,-18.57767 -7.43719,0.0306 -1.0406,2.81573 c -0.94877,2.54027 -1.37725,3.15239 -4.25419,6.02933 -4.68268,4.68267 -6.88629,5.41721 -17.108599,5.47842 -6.916896,0.0612 -7.773853,0.18364 -7.682039,1.00999 0.306058,3.12178 -3.703289,4.8051 -5.968116,2.54027 -0.397875,-0.39787 -0.703927,-2.29542 -0.734534,-4.8357 l -0.09181,-4.19298 h -8.998087 c -7.682036,-0.0306 -9.151111,-0.15303 -9.946861,-0.94878 -1.163021,-1.16302 -1.163018,-3.48905 0,-4.65207 0.642721,-0.64272 2.723907,-0.82636 9.88565,-0.82635 h 9.120505 l -0.03061,-5.96812 0.03061,-5.96812 h -9.120504 c -9.977471,0 -10.773219,-0.24484 -10.742609,-3.2136 -0.03061,-2.96875 0.795748,-3.18299 10.742607,-3.2136 h 9.059296 l 0.09181,-4.19299 c 0.06122,-4.65206 0.612121,-5.63144 3.152393,-5.84569 1.958765,-0.12242 3.550264,1.28544 3.550261,3.18299 l -0.0306,1.31606 7.712638,0.0612 c 10.191709,0.0918 12.425929,0.79576 17.108599,5.47843 2.90755,2.90754 3.30543,3.48905 4.2542,6.02933 l 1.0406,2.81572 7.43719,0.0306 h 7.4678 v 3.55027 3.48905 z</Geometry>
+                </Grid.Resources>
+                <Grid.LayoutTransform>
+                    <ScaleTransform CenterX="0.5" ScaleX="-1" />
+                </Grid.LayoutTransform>
+
+                <Button Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Command="{Binding CommandPowerOff}"
+                        Padding="4,2"
+                        MinWidth="10"
+                        MinHeight="10"
+                        Focusable="False"
+                        base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.PowerSwitchControl_Button_DisconnectFromPowerGrid}">
+                    <Border Background="Transparent">
+                        <Path Data="{StaticResource IconGeometryPathSwitchOn}"
+                              Style="{StaticResource PathStyle}"
+                              Fill="{StaticResource BrushElectricity}"
+                              Width="56" />
+                    </Border>
+                </Button>
+
+                <Button
+                    Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Command="{Binding CommandPowerOn}"
+                    Padding="4,2"
+                    MinWidth="10"
+                    MinHeight="10"
+                    Focusable="False"
+                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.PowerSwitchControl_Button_ConnectFromPowerGrid}">
+                    <Border Background="Transparent">
+                        <Path Data="{StaticResource IconGeometryPathSwitchOff}"
+                              Style="{StaticResource PathStyle}"
+                              Fill="#FFDDDDDD"
+                              Width="56" />
+                    </Border>
+                </Button>
+            </Grid>
+
+            <core:FormattedTextBlock Grid.Row="4"
+                                     Content="{Binding CurrentPowerModeExplanationText}"
+                                     Margin="0,5" />
+
+            <!-- Power grid level -->
+            <Grid Grid.Row="5"
+                  Margin="0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerGridLevel}"
+                           Foreground="{StaticResource BrushColor7}"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,2" />
+
+                <core:ValueBarControl
+                    Grid.Row="1"
+                    Value="{Binding PowerGridChargePercent}"
+                    MaxValue="100"
+                    Background="Transparent"
+                    BorderBrush="#AAFFAA10"
+                    BorderThickness="1"
+                    Margin="0"
+                    HorizontalAlignment="Stretch"
+                    MinWidth="120"
+                    Height="13"
+                    Padding="1"
+                    IsDisplayTooltip="False"
+                    IsDisplayLabel="True"
+                    IsDisplayPercents="True">
+                    <core:ValueBarControl.Template>
+                        <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
+                            <Grid x:Name="LayoutRoot">
+                                <Border x:Name="Border"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="2" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="Left" />
+                                <TextBlock x:Name="TextBlockValueDisplay"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="100%"
+                                           Foreground="White"
+                                           FontSize="10"
+                                           FontWeight="Bold"
+                                           FontFamily="{StaticResource DigitsFontFamily}"
+                                           noesis:Text.Stroke="#AA000000"
+                                           noesis:Text.StrokeThickness="1.5"
+                                           Margin="0,-0.25,0,0" />
+                            </Grid>
+                        </ControlTemplate>
+                    </core:ValueBarControl.Template>
+                    <Border Background="#AAFFAA10" CornerRadius="1" />
+                </core:ValueBarControl>
+            </Grid>
+
+            <Grid Grid.Row="6"
+                  Margin="0,5,0,0"
+                  HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Power level thresholds -->
+                <TextBlock Grid.Row="0"
+                           Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerLevelThresholds_Title}"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource BrushColor7}" />
+
+                <Grid Grid.Row="1"
+                      HorizontalAlignment="Center"
+                      Margin="0,1,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Startup -->
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerLevelThresholds_Startup}" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2"
+                               Text="{Binding ThresholdStartupPercentsText}"
+                               FontWeight="Bold" />
+
+                    <!-- Shutdown -->
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="{x:Static loc:CoreStrings.PowerSwitchControl_Title_PowerLevelThresholds_Shutdown}" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="2"
+                               Text="{Binding ThresholdShutdownPercentsText}"
+                               FontWeight="Bold" />
+                </Grid>
+
+                <Button Grid.Row="2"
+                        Grid.Column="0"
+                        Content="{x:Static ui:CoreStrings.Button_Configure}"
+                        Command="{Binding CommandConfigureThresholds}"
+                        FontSize="12"
+                        Padding="4,2"
+                        Margin="0,5,0,0"
+                        MinWidth="10"
+                        MinHeight="10"
+                        HorizontalAlignment="Center"
+                        Focusable="False" />
             </Grid>
         </Grid>
     </Grid>

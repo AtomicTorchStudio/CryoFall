@@ -3,6 +3,8 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -81,15 +83,23 @@
 
                 var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
                 var isMoving = vehicle.PhysicsBody.Velocity != Vector2D.Zero;
-                var consumption = isMoving
-                                      ? protoVehicle.EnergyUsePerSecondMoving
-                                      : protoVehicle.EnergyUsePerSecondIdle;
+                var energyConsumption = isMoving
+                                            ? protoVehicle.EnergyUsePerSecondMoving
+                                            : protoVehicle.EnergyUsePerSecondIdle;
 
-                consumption = (ushort)Math.Floor(consumption * spreadDeltaTime);
+                var energyConsumptionRate = character.SharedGetFinalStatMultiplier(StatName.VehicleFuelConsumptionRate);
+                energyConsumptionRate = Math.Max(energyConsumptionRate, 0);
 
-                if (VehicleEnergySystem.ServerDeductEnergyCharge(vehicle, consumption))
+                energyConsumption = (ushort)Math.Floor(energyConsumption * spreadDeltaTime * energyConsumptionRate);
+                if (VehicleEnergySystem.ServerDeductEnergyCharge(vehicle, energyConsumption))
                 {
                     // consumed energy
+                    if (isMoving)
+                    {
+                        character.ServerAddSkillExperience<SkillVehicles>(
+                            SkillVehicles.ExperienceForDrivingVehiclePerSecond * spreadDeltaTime);
+                    }
+
                     continue;
                 }
 

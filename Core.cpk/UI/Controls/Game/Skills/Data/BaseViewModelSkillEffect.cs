@@ -59,17 +59,12 @@
 
         public static BaseViewModelSkillEffect Create(ISkillEffect skillEffect, IProtoSkill protoSkill)
         {
-            if (skillEffect is StatEffect statEffect)
+            return skillEffect switch
             {
-                return new ViewModelSkillEffectStat(statEffect, protoSkill.MaxLevel);
-            }
-
-            if (skillEffect is IFlagEffect flagEffect)
-            {
-                return new ViewModelSkillEffectFlag(flagEffect, protoSkill.MaxLevel);
-            }
-
-            throw new Exception("Unknown skill effect type: " + skillEffect);
+                StatEffect statEffect  => new ViewModelSkillEffectStat(statEffect, protoSkill.MaxLevel),
+                IFlagEffect flagEffect => new ViewModelSkillEffectFlag(flagEffect, protoSkill.MaxLevel),
+                _                      => throw new Exception("Unknown skill effect type: " + skillEffect)
+            };
         }
 
         public abstract void Refresh(byte currentLevel);

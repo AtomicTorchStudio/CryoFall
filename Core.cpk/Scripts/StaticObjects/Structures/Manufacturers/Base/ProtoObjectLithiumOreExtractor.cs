@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -21,11 +22,13 @@
 
         private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrGeothermalSpring
             = new ConstructionTileRequirements.Validator(
-                () => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}",
+                () => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}[*]{4}[*]{5}",
                                     ConstructionTileRequirements.Error_UnsuitableGround_Title,
                                     ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                    Api.GetProtoEntity<TileForestTropical>().Name,
                                     Api.GetProtoEntity<TileForestTemperate>().Name,
-                                    Api.GetProtoEntity<TileForestBoreal>().Name),
+                                    Api.GetProtoEntity<TileForestBoreal>().Name,
+                                    Api.GetProtoEntity<TileMeadows>().Name),
                 c =>
                 {
                     foreach (var obj in c.Tile.StaticObjects)
@@ -37,8 +40,10 @@
                     }
 
                     var protoTile = c.Tile.ProtoTile;
-                    return protoTile is TileForestTemperate
-                           || protoTile is TileForestBoreal;
+                    return protoTile is TileForestTropical
+                           || protoTile is TileForestTemperate
+                           || protoTile is TileForestBoreal
+                           || protoTile is TileMeadows;
                 });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherExtractor
@@ -108,6 +113,10 @@
         public override byte ContainerInputSlotsCount => 0;
 
         public override byte ContainerOutputSlotsCount => 1;
+
+        public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 30,
+                                               shutdownPercent: 20);
 
         protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {

@@ -42,7 +42,8 @@
                            Foreground="{StaticResource BrushColorAlt7}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding CurrentStructureLandClaimDestructionTimeout, Converter={StaticResource NullToVisibilityConverter}}">
                 <!-- Text: Destruction timeout -->
                 <TextBlock Text="{x:Static loc:CoreStrings.TitleDestructionTimeout}" />
                 <TextBlock Text=": " />

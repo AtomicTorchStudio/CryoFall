@@ -142,9 +142,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
 `[*] [b]種子[/b]可以在收集草時獲得。部分特殊種子可以在遺跡中獲得。
- [*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。
- [*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
- [*] 你可以在未來研究肥料等科技來進一步提升農業效率。`
+[*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。
+[*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
+[*] 你可以在未來研究肥料等科技來進一步提升農業效率。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
 建造農場
@@ -159,6 +159,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 光源
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
+要[b]搬遷[/b]現有建築—選擇一個 [b]工具箱[/b]並對建築使用。 請注意，一些建築是不可移動的。
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `學會如何保護你的基地是非常重要的！如果沒有正確的方法，很容易就會被其他狡猾的倖存者襲擊劫掠。
@@ -267,14 +270,11 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 製作一把刀並殺死任何生物
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-裝備更好的胸甲
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyArmor:
+裝備更好的護甲
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
 裝備更好的頭盔
-
-Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-裝備更好的護腿
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 是時候獲得更好的防護了。
@@ -362,8 +362,8 @@ Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
 `[*] 你可以通過按下"G"鍵來快速訪問科技菜單。
- [*] 解鎖科技節點需要花費[b]LP[/b] (學習點數)。
- [*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。`
+[*] 解鎖科技節點需要花費[b]LP[/b] (學習點數)。
+[*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 學習基礎建築科技
@@ -395,7 +395,7 @@ Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
 `[*] 要整理物品欄，先將物品欄打開，然後按下[u]滑鼠中鍵[/u]或者[u]Z鍵[/u]。你可以通過此方式整理[b]任何[/b]物品欄介面(例如箱子)。
- [*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。`
+[*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 進行基礎行動
@@ -422,31 +422,6 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 使用撬棍進行拆解
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
-普拉格是一種稀有外星材料，最為尖端的科技都會使用到它。嘗試找到一些普拉格。
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
-`[*]小心！ 採集普拉格礦是非常危險的。
- [*]大型普拉格礦點通常可以在沙漠發現，而小型礦點，常常可以在火山附近發現。`
-
-Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
-獲得普拉格礦!
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-開採鹽礦
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-某些資源，如石油和鋰，是開發先進技術的必要素材。瞭解如何獲得它們是極為重要的。
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*] 你可以在[u]寒林[/u]中發現石油果。使用它們可以讓你獲得少量石油。
-[*] 你可以在開採一般鹽礦時獲得[u]鋰鹽[/u]。
-[*] 你可以在沙漠中的[u]鹽原[/u]找到大量鹽礦。
-[*] 學習[u]外星科技[/u]讓你可以能以工業規模制取這些資源。`
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-高級資源的獲取
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 工業和建築的進步需要硬科學，尤其是化學方面的基礎。
@@ -476,16 +451,26 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 掌握技術 - 第二部分
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
+不同類型的[b]發電機[/b]，例如蒸汽機、太陽能發電機和發動機，都可以用來生產電能。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
+在與任何儲能建築互動或在你的領地範圍內時，你可以看到[b]電網詳細資訊[/b]。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridZone:
+電氣設備必須在領地[b]內[/b]才能正常工作。 在領地範圍外建造任何電氣設備都是毫無意義的。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintPowerStorage:
+電能儲存在[b]蓄電[/b]設施之中以備不時之需。提高你基地中的電力儲存量是一個不錯的選擇。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
+你可以自訂基地裡每個電力消耗或生產建築的[u]啟動和關閉[/u]電力[b]閾值[/b]。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
+數個相連的佔領區域將使用 [b]同一個電網[/b]。
+
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 為基地建立電網是提升效率的重要步驟。 有許多高級建築需要電力才能運轉。
-
-Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*] 電器只有在[b]佔領區域內[/b]才能生效。在佔領區域外間建造電器是沒有任何意義的。
-[*] [b]儲電[/b]設施可以儲藏電力，以備不時之需。提高基地的電力容量是個不錯的選擇。
-[*] 不同的[b]發電裝置[/b]，例如蒸汽發電機，太陽能發電機和汽油發電機都能產生電能。
-[*] 如果[u]電力不足[/u]，你的基地就會陷入[b]斷電[/b]，此時你必須手動恢復電力。
-[*] 你可以通過與儲電設施互動來查看[b]電網詳情[/b]。
-[*] 數個連接的佔領區域可以共用單一電網。`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 建立電網
@@ -520,6 +505,27 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
 掠奪一些容器
 
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
+用“使用”動作來獲得魚肉。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintSkill:
+你的[b]釣魚技能[/b]將決定你釣上魚的種類以及釣魚的成功率。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@HintWaterTypes:
+你可以在淡水和咸水中釣到不同的魚類。
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCatchAnyFish:
+釣一條魚
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
+將魚做成魚肉
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
+釣魚不僅是休閒的好辦法，更是獲取食物的手段。去試試釣魚吧！
+
+Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
+釣魚！
+
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 是時候狩獵了！這次來打更危險的動物。
 
@@ -540,4 +546,53 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
 狩獵大師 - 第五部分
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Description:
+普拉格是一種稀有外星材料，最為尖端的科技都會使用到它。嘗試找到一些普拉格。
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Hints:
+`[*]小心！ 採集普拉格礦是非常危險的。
+[*]大型普拉格礦點通常可以在沙漠發現，而小型礦點，常常可以在火山附近發現。`
+
+Scripts/Quests/Tutorial/Stage4/QuestAcquirePragmium@Name:
+獲得普拉格礦!
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+開採鹽礦
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Description:
+某些資源，如石油和鋰，是開發先進技術的必要素材。瞭解如何獲得它們是極為重要的。
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Hints:
+`[*] 你可以在[u]寒林[/u]中發現石油果。使用它們可以讓你獲得少量石油。
+[*] 你可以在開採一般鹽礦時獲得[u]鋰鹽[/u]。
+[*] 你可以在沙漠中的[u]鹽原[/u]找到大量鹽礦。
+[*] 學習[u]外星科技[/u]讓你可以能以工業規模制取這些資源。`
+
+Scripts/Quests/Tutorial/Stage4/QuestAdvancedResourcesAcquisition@Name:
+高級資源的獲取
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneControl:
+使用[b]遙控器[/b]對無人機發出命令。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneTasks:
+無人機不僅可以用於[b]開採礦物[/b]，也可以用於[b]砍伐樹木[/b]。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@HintDroneUsage:
+無人機必須在你的[b]物品欄[/b]或[b]快捷欄[/b]中才能接受命令。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
+手動開採礦物砍伐樹木十分繁瑣，所以你應該盡可能快的切換到無人機工作模式。
+
+Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
+無人機開採
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
+你應該隨基地擴張[u]不斷擴大電能儲量[/u]，以確保有 [u]足夠的多餘電能[/u]。
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
+現在你已經為電網打下了堅實的基礎，可以用更多的設備來拓展它，讓你的生活更加便利。
+
+Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Name:
+電網的更多用處
 

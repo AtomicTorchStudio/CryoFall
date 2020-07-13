@@ -2,6 +2,7 @@
 {
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.UI;
 
     public enum ObjectLandClaimCanUpgradeCheckResult
     {
@@ -28,6 +29,12 @@
         ErrorAreaIntersectionDemoPlayer,
 
         [Description(LandClaimSystem.ErrorCannotBuild_ExceededSafeStorageCapacity)]
-        ErrorExceededSafeStorageCapacity
+        ErrorExceededSafeStorageCapacity,
+
+        [Description(LandClaimSystem.ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection)]
+        ErrorAreaIntersectionWithShieldProtectedArea,
+
+        [Description(CoreStrings.ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection)]
+        ErrorUnderShieldProtection
     }
 }

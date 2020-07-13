@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeAntiNausea : TechNode<TechGroupMedicine>
+    public class TechNodeAntiNausea : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {

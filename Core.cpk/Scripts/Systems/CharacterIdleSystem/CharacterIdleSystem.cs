@@ -34,7 +34,7 @@
 
         private const double TimeIntervalSeconds = 1.0;
 
-        private HUDNotificationControl clientNotificationIsIdle;
+        private HudNotificationControl clientNotificationIsIdle;
 
         public static bool ClientIsCurrentPlayerIdle
         {

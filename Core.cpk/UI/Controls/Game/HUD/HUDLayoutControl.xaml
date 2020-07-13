@@ -216,7 +216,7 @@
         <core:Scalebox Grid.Row="1" Grid.Column="0" Scale="0.75">
             <Border VerticalAlignment="Top" HorizontalAlignment="Left"
                     Width="200"
-                    Margin="5,5,0,0">
+                    Margin="5,-43,0,0">
                 <crafting:CraftingQueueControl
                     d:DataContext="{d:DesignInstance data2:ViewModelCraftingQueue, IsDesignTimeCreatable=True}" />
             </Border>
@@ -231,7 +231,7 @@
                     <newbieProtection:HUDNewbieProtectionInfo />
                     <politics:HUDDuelModeControl />
                     <questTracking:HUDQuestTrackingPanelControl />
-                    <notifications:HUDNotificationsPanelControl />
+                    <notifications:HudNotificationsPanelControl />
                 </StackPanel>
             </Border>
         </core:Scalebox>

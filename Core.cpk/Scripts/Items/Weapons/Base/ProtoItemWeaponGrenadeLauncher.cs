@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -25,6 +26,9 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        public override DamageStatsComparisonPreset DamageStatsComparisonPreset
+            => DamageStatsComparisonPresets.PresetRangedGrenades;
+
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsHeavy>();
 
         public override void ClientOnFireModChanged(bool isFiring, uint shotsDone)

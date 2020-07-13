@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
@@ -10,12 +9,16 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public abstract class ProtoObjectTree<TPrivateState, TPublicState, TClientState>
+    public abstract class ProtoObjectTree
+        <TPrivateState,
+         TPublicState,
+         TClientState>
         : ProtoObjectVegetation
           <TPrivateState,
               TPublicState,
@@ -35,10 +38,28 @@
 
         public override float StructurePointsMax => 600;
 
+        public abstract double TreeHeight { get; }
+
         public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
                                                                        minY: 0,
                                                                        maxX: 1,
                                                                        maxY: 4);
+
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+        {
+            var treeHeight = this.TreeHeight;
+            if (worldObject != null)
+            {
+                treeHeight *= this.SharedGetVisualScaleCoef((IStaticWorldObject)worldObject);
+
+                var growthProgressFraction = this.SharedGetGrowthProgress(worldObject);
+                growthProgressFraction = MathHelper.Clamp(growthProgressFraction, 0.1, 1);
+                treeHeight *= growthProgressFraction;
+            }
+
+            return base.SharedGetObjectCenterWorldOffset(worldObject)
+                   + (0, treeHeight * 0.75);
+        }
 
         protected override void ClientAddShadowRenderer(ClientInitializeData data)
         {
@@ -49,15 +70,7 @@
             IStaticWorldObject worldObject,
             IComponentSpriteRenderer renderer)
         {
-            // if this is not a blueprint, apply random scale (depending on the tree position and seed)
-            const int maxDifferencePercents = 30;
-
-            var scaleCoef = PositionalRandom.Get(worldObject.TilePosition,
-                                                 minInclusive: 100 - maxDifferencePercents / 2,
-                                                 maxExclusive: 100 + maxDifferencePercents / 2,
-                                                 seed: (uint)(worldObject.Id + this.ShortId.GetHashCode()))
-                            / 100.0;
-
+            var scaleCoef = this.SharedGetVisualScaleCoef(worldObject);
             renderer.Scale *= scaleCoef;
             renderer.DrawOrderOffsetY *= scaleCoef;
         }
@@ -65,9 +78,11 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
+
+            var worldObject = data.GameObject;
             var renderer = data.ClientState.Renderer;
 
-            this.ClientApplyTreeRandomScale(data.GameObject, data.ClientState.Renderer);
+            this.ClientApplyTreeRandomScale(worldObject, data.ClientState.Renderer);
 
             if (data.ClientState.RendererShadow != null)
             {
@@ -78,6 +93,10 @@
             {
                 data.ClientState.RendererOcclusion.DrawOrderOffsetY = renderer.DrawOrderOffsetY;
             }
+
+            data.PublicState.ClientSubscribe(_ => _.GrowthStage,
+                                             _ => worldObject.ClientInitialize(),
+                                             data.ClientState);
         }
 
         protected override void ClientOnObjectDestroyed(Vector2D position)
@@ -108,28 +127,33 @@
             IStaticWorldObject targetObject,
             out double obstacleBlockDamageCoef)
         {
-            obstacleBlockDamageCoef = 1;
-            if (!PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
-                                                        targetObject,
-                                                        showClientNotification: false))
+            // ReSharper disable once VariableHidesOuterVariable
+            if (!PveSystem.SharedIsAllowStaticObjectDamage(weaponCache.Character,
+                                                           targetObject,
+                                                           showClientNotification: false))
             {
+                obstacleBlockDamageCoef = 0;
                 return 0;
             }
 
             if (weaponCache.ProtoWeapon is IProtoItemToolWoodcutting protoItemToolWoodCutting)
             {
                 // get damage multiplier ("woodcutting speed")
-                var damageMultiplier = weaponCache.Character
-                                                  .SharedGetFinalStatMultiplier(StatName.WoodcuttingSpeed);
+                obstacleBlockDamageCoef = 1;
+                var damageMultiplier = weaponCache.CharacterFinalStatsCache.GetMultiplier(
+                    StatName.WoodcuttingSpeed);
 
                 return protoItemToolWoodCutting.ServerGetDamageToTree(targetObject)
                        * damageMultiplier
-                       * ToolsConstants.ActionWoodcuttingSpeedMultiplier;
+                       * ToolsConstants.ActionWoodcuttingSpeedMultiplier
+                       * this.SharedGetDamageMultiplierByGrowthProgress(targetObject);
             }
 
             if (weaponCache.ProtoWeapon is ItemNoWeapon)
             {
                 // no damage with hands
+                obstacleBlockDamageCoef = 1;
+
                 if (IsClient)
                 {
                     NotificationSystem.ClientShowNotification(NotificationUseAxe,
@@ -152,6 +176,17 @@
                 .AddShapeCircle(radius: 0.25, center: (0.5, 0.35))
                 .AddShapeRectangle(size: (0.75, 1),   offset: (0.125, 0.1), group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (0.4, 0.35), offset: (0.3, 0.9),   group: CollisionGroups.HitboxRanged);
+        }
+
+        // calculate a random tree scale depending on the tree position and seed
+        private double SharedGetVisualScaleCoef(IStaticWorldObject worldObject)
+        {
+            const int maxDifferencePercents = 30;
+            return PositionalRandom.Get(worldObject.TilePosition,
+                                        minInclusive: 100 - maxDifferencePercents / 2,
+                                        maxExclusive: 100 + maxDifferencePercents / 2,
+                                        seed: (uint)(worldObject.Id + this.ShortId.GetHashCode()))
+                   / 100.0;
         }
     }
 

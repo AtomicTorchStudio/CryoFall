@@ -184,14 +184,14 @@
                 <!-- Shortcut button -->
                 <Canvas HorizontalAlignment="Center"
                         VerticalAlignment="Bottom">
-                    <Border Canvas.Top="-10"
+                    <Border Canvas.Top="-6"
                             Canvas.Left="-8"
                             Style="{StaticResource WidgetBackgroundBorder}"
                             CornerRadius="2"
                             BorderThickness="0.75"
                             Padding="1,2.5,0.5,0.5"
                             Width="16"
-                            Height="20"
+                            Height="18"
                             BorderBrush="{StaticResource WidgetBorderBrush}"
                             UseLayoutRounding="False">
                         <Grid>

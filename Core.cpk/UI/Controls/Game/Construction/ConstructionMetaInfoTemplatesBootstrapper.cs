@@ -27,6 +27,11 @@
             // add some default templates
             templates.Add(
                 new ConstructionMetaInfoTemplateDefinition(
+                    condition: protoStructure => !protoStructure.IsRelocatable,
+                    template: GetTemplate("TemplateUnmovable")));
+
+            templates.Add(
+                new ConstructionMetaInfoTemplateDefinition(
                     condition: protoStructure => protoStructure.Category is StructureCategoryDecorations,
                     template: GetTemplate("TemplateDecorative")));
 

@@ -15,13 +15,13 @@
         public override double CharacterAnimationAimingRecoilPower => 0.45;
 
         public override string Description =>
-            "Laser pistol emits a strong pulse of high-energy light, mostly in infrared spectrum, that burns the target.";
+            "Laser pistol emits quick pulses of high-energy light that burn the target.";
 
-        public override uint DurabilityMax => 800;
+        public override uint DurabilityMax => 1400;
 
         public override double EnergyUsePerShot => 20;
 
-        public override double FireInterval => 1 / 3.0; // 3 shots per second
+        public override double FireInterval => 0.15;
 
         public override string Name => "Laser pistol";
 
@@ -33,28 +33,28 @@
         {
             return new WeaponFirePatternPreset(
                 initialSequence: new[] { 0.0, 0.5, -0.5 },
-                cycledSequence: new[] { 0.0, 0.5, -0.5, 0.5, -0.5 });
+                cycledSequence: new[] { 1.5, 2.0, 1.0, 0.0, -1.5, -2.0, -1.0, 0.0 });
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()
         {
-            return WeaponFireTracePresets.Laser;
+            return WeaponFireTracePresets.LaserBlue;
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
-            description.Set(MuzzleFlashPresets.EnergyLaserWeapon)
-                       .Set(textureScreenOffset: (-4, 1.5));
+            description.Set(MuzzleFlashPresets.EnergyLaserWeaponBlue)
+                       .Set(textureScreenOffset: (-8, 6));
         }
 
         protected override void PrepareProtoWeaponRangedEnergy(
             ref DamageDescription damageDescription)
         {
             damageDescription = new DamageDescription(
-                damageValue: 12,
-                armorPiercingCoef: 0.45,
+                damageValue: 9,
+                armorPiercingCoef: 0.5,
                 finalDamageMultiplier: 1.1,
-                rangeMax: 10,
+                rangeMax: 9,
                 damageDistribution: new DamageDistribution(DamageType.Heat, 1));
         }
 

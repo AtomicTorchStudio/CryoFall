@@ -12,7 +12,6 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.DataStructures;
-    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     /// <summary>
@@ -25,6 +24,8 @@
                 WallDestroyedPublicState,
                 ObjectWallClientState>
     {
+        public override string Description => string.Empty;
+
         // we don't want the destroyed walls to disallow constructions so let's call this is a floor decal
         public override StaticObjectKind Kind => StaticObjectKind.FloorDecal;
 

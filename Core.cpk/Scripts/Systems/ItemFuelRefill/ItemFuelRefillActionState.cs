@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ItemFuelRefillActionState
-        : ActionSystemState<
+        : BaseSystemActionState<
             ItemFuelRefillSystem,
             ItemFuelRefillRequest,
             ItemFuelRefillActionState,

@@ -17,19 +17,15 @@
         public override string Description =>
             "Hemostatic can be used to completely stop bleeding and partially reduce any further bleeding for the duration of its effect.";
 
-        public override double MedicalToxicity => 0.15;
+        public override double MedicalToxicity => 0.12;
 
         public override string Name => "Hemostatic";
 
-        protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
+        protected override void PrepareEffects(EffectActionsList effects)
         {
-            // remove all bleeding
-            character.ServerRemoveStatusEffectIntensity<StatusEffectBleeding>(intensityToRemove: 1);
-
-            // add bleeding protection
-            character.ServerAddStatusEffect<StatusEffectProtectionBleeding>(intensity: 0.5); // 5 minutes
-
-            base.ServerOnUse(character, currentStats);
+            effects
+                .WillRemoveEffect<StatusEffectBleeding>()                        // removes all bleeding
+                .WillAddEffect<StatusEffectProtectionBleeding>(intensity: 0.50); // adds bleeding protection
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

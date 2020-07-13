@@ -3,10 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -32,6 +35,8 @@
         public const string NotiticationCannotBuy_Title = "Cannot buy";
 
         public const string NotiticationCannotSell_Title = "Cannot sell";
+
+        private const double MinQualityFractionWhenStationBuying = 0.95;
 
         // how long the items dropped on the ground from the destroyed trading station should remain there
         private static readonly TimeSpan DestroyedTradingStationDroppedItemsDestructionTimeout
@@ -287,7 +292,13 @@
             bool isPlayerBuying)
         {
             // find items to buy by other party
-            if (!SharedTryFindItemsOfType(sellerContainers, lot.ProtoItem, lot.LotQuantity, out var itemsToSell))
+            if (!SharedTryFindItemsOfType(sellerContainers,
+                                          lot.ProtoItem,
+                                          lot.LotQuantity,
+                                          out var itemsToSell,
+                                          minQualityFraction: isPlayerBuying
+                                                                  ? 0
+                                                                  : MinQualityFractionWhenStationBuying))
             {
                 return isPlayerBuying
                            ? TradingResult.ErrorNotEnoughItemsOnStation
@@ -300,11 +311,13 @@
             if (!SharedTryFindItemsOfType(buyerContainers,
                                           ProtoItemCoinPenny.Value,
                                           countCoinPenny,
-                                          out _)
+                                          out _,
+                                          minQualityFraction: 0)
                 || !SharedTryFindItemsOfType(buyerContainers,
                                              ProtoItemCoinShiny.Value,
                                              countCoinShiny,
-                                             out _))
+                                             out _,
+                                             minQualityFraction: 0))
             {
                 return isPlayerBuying
                            ? TradingResult.ErrorNotEnoughMoneyOnStation
@@ -501,7 +514,8 @@
             IItemsContainerProvider containers,
             IProtoItem requiredProtoItem,
             uint count,
-            out List<IItem> result)
+            out List<IItem> result,
+            double minQualityFraction)
         {
             var countToFindRemains = (int)count;
 
@@ -512,6 +526,20 @@
                 {
                     if (item.ProtoItem != requiredProtoItem)
                     {
+                        continue;
+                    }
+
+                    if (requiredProtoItem is IProtoItemWithDurability
+                        && ItemDurabilitySystem.SharedGetDurabilityFraction(item) < minQualityFraction)
+                    {
+                        // not enough durability
+                        continue;
+                    }
+
+                    if (requiredProtoItem is IProtoItemWithFreshness
+                        && ItemFreshnessSystem.SharedGetFreshnessFraction(item) < minQualityFraction)
+                    {
+                        // not enough durability
                         continue;
                     }
 

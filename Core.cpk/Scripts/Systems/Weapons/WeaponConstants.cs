@@ -1,7 +1,5 @@
 namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class WeaponConstants
@@ -36,10 +34,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             DamageExplosivesToStructuresMultiplier = ServerRates.Get(
                 "DamageExplosivesToStructuresMultiplier",
-                defaultValue: 1.0,
-                @"All damage dealt by bombs to structures is multiplied on this rate.
-                  You can set it to 0 to disable bombs damage to structures.
-                  Applies only on PvP servers - on PvE it will be always 0.");
+                defaultValue: 2.0,
+                @"All damage dealt by bombs and grenades to structures is multiplied on this rate.
+                  You can set it to 0 to disable explosives damage to structures.
+                  Applies only on PvP servers—on PvE it will be always 0.
+                  Please note: in A27 the default value is 2.0 as the S.H.I.E.L.D. protection was introduced.");
 
             DamageFriendlyFireMultiplier = MathHelper.Clamp(
                 ServerRates.Get(

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Fridges;
 
-    public class TechNodeFridgeEvaporator : TechNode<TechGroupConstruction>
+    public class TechNodeFridgeEvaporator : TechNode<TechGroupConstructionT1>
     {
         protected override void PrepareTechNode(Config config)
         {

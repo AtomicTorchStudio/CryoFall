@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data
 {
     using System.Collections.Generic;
-    using System.Windows.Controls;
+    using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -17,7 +17,7 @@
             this.item = item;
             this.protoItem = protoItem;
 
-            var controls = new List<Control>();
+            var controls = new List<UIElement>();
             this.PopulateControls(controls);
 
             if (controls.Count > 0)
@@ -33,17 +33,12 @@
                    ? (Brush)Client.UI.GetTextureBrush(this.protoItem.Icon)
                    : Brushes.BlueViolet;
 
-        public IReadOnlyList<Control> InfoControls { get; }
+        public IReadOnlyList<UIElement> InfoControls { get; }
 
         public string Name => this.protoItem.Name;
 
-        private void PopulateControls(List<Control> controls)
+        private void PopulateControls(List<UIElement> controls)
         {
-            if (this.item == null)
-            {
-                return;
-            }
-
             this.protoItem.ClientTooltipCreateControls(this.item, controls);
         }
     }

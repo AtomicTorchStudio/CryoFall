@@ -48,6 +48,9 @@ Zoom caméra
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 Sélection d'objet de la barre de raccourcis
 
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelectionReversed:
+Sélection d'objet de la barre de raccourcis (inversé)
+
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 Utiliser la molette pour
 

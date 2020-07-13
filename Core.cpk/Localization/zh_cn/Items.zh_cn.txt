@@ -88,6 +88,12 @@ Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
 石箭
 
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
+特殊破片手榴弹，有着较高的有效范围。爆破时对半径内的所有单位造成伤害。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Name:
+破片手雷
+
 Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
 特殊的榴弹，能在命中时释放混合了普拉格粒子的液态氦，冰冻目标。
 
@@ -111,6 +117,69 @@ Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
 纸盒
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Description:
+高爆迫击炮弹能够很好地起到反车辆作用。
+
+Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
+迫击炮弹
+
+Scripts/Items/Base/ItemHints@AltClickToUseItem:
+按住Alt键并点击此物品来进行快速使用。
+
+Scripts/Items/Base/ItemHints@ClickToDisasseble:
+用于任何建筑来将其拆除。
+
+Scripts/Items/Base/ItemHints@ClickToMove:
+用于完好建筑来将其移动。
+
+Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
+点击井或储水器来装满水。
+
+Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
+点击任何建筑以修复或建造。
+
+Scripts/Items/Base/ItemHints@ClickToWaterPlants:
+点击任何农作物来浇水。
+
+Scripts/Items/Base/ItemHints@CuttingFish:
+用“使用”动作来获得鱼肉。
+
+Scripts/Items/Base/ItemHints@DroneControl:
+你物品栏或快捷栏中的无人机可以用此控制器进行操控。
+
+Scripts/Items/Base/ItemHints@DroneControlSendAllDrones:
+按住Shift键发布命令能立即让你的所有无人机开采周围指定类型物品。
+
+Scripts/Items/Base/ItemHints@DroneUsage:
+无人机无法直接操作。使用控制器来对你物品栏中的无人机发布指令。
+
+Scripts/Items/Base/ItemHints@EquipIntoDeviceSlots:
+必须装备在设备栏内才能生效。
+
+Scripts/Items/Base/ItemHints@FertilizerApplication:
+肥料可以通过在快捷栏中选中再点击植物来使用。
+
+Scripts/Items/Base/ItemHints@FillWithSaltyWater:
+选择快捷栏中的一个瓶子再点击世界中的海水来将其灌满盐水。
+
+Scripts/Items/Base/ItemHints@FillWithWater:
+点击井或储水器来装满淡水。
+
+Scripts/Items/Base/ItemHints@FuelCellForVehicles:
+用于驱动各种载具的燃料电池。
+
+Scripts/Items/Base/ItemHints@ImplantApplication:
+只能在医疗站安装植入物。
+
+Scripts/Items/Base/ItemHints@UsesPowerBanks:
+此物品将会从装备的移动电源上抽取能量。
+
+Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
+此物品只能被安装在载具[b]{0}[/b]槽位上。
+
+Scripts/Items/Base/ItemUseCaptions@Cut:
+割伤
 
 Scripts/Items/Base/ItemUseCaptions@Decrypt:
 解密
@@ -160,23 +229,41 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 标准移动电源
 
+Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
+高级远程无人机控制。
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Description:
+向无人机发出指令所必要的特殊远程操控装置。
+
+Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
+无人机遥控器
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
+高级版的工业无人机，挖矿速度和作业范围等参数都有所提升。
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
+高级工业无人机
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Description:
+标准工业无人机可以用于快速资源获取。
+
+Scripts/Items/Drones/DroneItems/ItemDroneIndustrialStandard@Name:
+工业无人机
+
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 高级环境保护装甲，能够提供理想的环境耐受和战斗抗性。
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T.防护服
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
-突击装甲头盔
-
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
 这套特别的突击装甲提供极高的防弹能力。
 
-Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-突击装甲服
+Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+突击装甲
 
-Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-突击装甲裤
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+突击装甲头盔
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
 未装备头盔灯
@@ -205,26 +292,23 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKe
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 按键未设定
 
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+骨质头盔提供廉价的防御性能，在早期很有用。
+
+Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+骨甲
+
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
 封闭骨头盔
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 长角骨头盔
 
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-骨质头盔提供廉价的防御性能，在早期很有用。
-
-Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
-骨质衣
-
-Scripts/Items/Equipment/Bone/ItemBonePants@Name:
-骨质裤
-
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
 并不潇洒，但是危急时刻能救命。提供比其他替代品更好的环境防护效果。
 
-Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-饰带胸甲
+Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+编织盔甲
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 饰带头盔
@@ -232,50 +316,38 @@ Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
 临时照明头盔
 
-Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
-饰带裤
-
-Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
-布帽
-
-Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
-布裤
-
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
 不提供任何防护效果。可能能防蚊虫叮咬吧。
 
-Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
 布衬衫
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+布帽
+
+Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
 不错的早期护甲；其御寒能力出色。 不会非常昂贵，而且很舒适！
 
-Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
 皮大衣
 
-Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
 皮帽子
 
-Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
 哥萨克帽
 
-Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
 乌山卡帽
 
-Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-皮裤
-
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
 豪华的金衣。配得上真正的统治者。
 
-Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-金胸甲
+Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+金甲
 
-Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
 金冠
-
-Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-金裤
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 专为保护用户免受大多数类型的环境危害而设计的套装。不应该在战斗中使用, 因为它很快就会破损。
@@ -283,29 +355,26 @@ Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 防护服
 
-Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
-牛仔帽
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
-飞行员帽
-
-Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
-海盗帽
-
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
 皮革盔甲提供良好的整体保护, 是早期发展的理想选择。
 
-Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-皮夹克
+Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+皮革盔甲
 
-Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-皮裤
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
+牛仔帽
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
+飞行员帽
+
+Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
+海盗帽
+
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
 金属盔甲提供高物理防御力， 但几乎没有任何环境保护能力。
 
-Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-金属胸甲
+Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+金属盔甲
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 封闭金属盔
@@ -313,20 +382,14 @@ Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 金属骷髅头盔
 
-Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
-金属腿甲
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+制造这种装甲的先进材料使其成为防范小武器和其他弱效武器的理想护甲。
+
+Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+军用装甲
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 军用头盔
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-制造这种装甲的先进材料使其成为防范小型武器和其他弱效武器的理想护甲。
-
-Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
-军服
-
-Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
-军用长裤
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 方便的头盔, 还提供了一个便携式光源, 让你能够腾出手来。需要一次性电池。
@@ -340,56 +403,56 @@ Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 夜视仪
 
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Description:
+轻型战术头盔, 配有特殊的夜视镜, 可在夜间实现近乎完美的视觉。需要一次性电池。
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVisionAdvanced@Name:
+高级夜视
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
+基本的呼吸器设计, 可以过滤掉放射性粒子和有害气体。不提供任何其他保护。
+
+Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
+呼吸器
+
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
 安全帽为头部提供了基本保护, 使其免受撞击、破片、电击和其他危险伤害。
 
 Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 安全帽
 
-Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-基本的呼吸器设计, 可以过滤掉放射性粒子和有害气体。不提供任何其他保护。
-
-Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-呼吸器
-
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
 实验装甲, 其中含有嵌入薄普拉格金属板的格架作为其结构基础。非常轻, 经久耐用。
 
-Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
 普拉格装甲
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
 厚实的填充织物, 提供了令人惊讶的防护能力, 能够抵抗所有类型的伤害和环境影响。
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-缝制外套
+Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+缝制盔甲
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
 缝制帽
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-缝制头盔
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+缝制衬垫头盔
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-缝制裤
-
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
 最强防护。这套战斗护甲能够保护你不受各种伤害，但是会牺牲部分机动性。
 
-Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
 超重型护甲
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
 需要是发明之母。并不舒适, 但能在早期获得较高防御力。
 
-Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-木胸甲
+Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+木制盔甲
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
 木头盔
-
-Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-木裤子
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 用于一次性挖掘大量矿物的特殊爆炸装置。必须安装在要挖掘的矿物节点旁边。
@@ -414,6 +477,78 @@ Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 共振炸弹
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Description:
+碎饵就是剁碎了的小鱼，是钓大型捕猎鱼类的理想鱼饵。
+
+Scripts/Items/Fishing/ItemFishingBaitFish@Name:
+碎饵
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Description:
+简易鱼饵，适合钓小型淡水鱼。
+
+Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
+昆虫诱饵
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Description:
+柏叶丽是一种混合了多种原料的特殊诱饵，可以引诱多种鱼类。
+
+Scripts/Items/Fishing/ItemFishingBaitMix@Name:
+柏叶丽诱饵
+
+Scripts/Items/Fishing/ItemFishingRod@Description:
+这种鱼竿可以在任何水体中钓到鱼。需要鱼饵。
+
+Scripts/Items/Fishing/ItemFishingRod@Name:
+鱼竿
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Description:
+新鲜的鱼，在烹饪前必须先进行清理。
+
+Scripts/Items/Fishing/Fish/ItemFishBass@Name:
+鲈鱼
+
+Scripts/Items/Fishing/Fish/ItemFishBream@Name:
+鲷鱼
+
+Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
+鲤鱼
+
+Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
+鲶鱼
+
+Scripts/Items/Fishing/Fish/ItemFishChub@Name:
+鲦鱼
+
+Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
+石鲈鱼
+
+Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
+鲭鱼
+
+Scripts/Items/Fishing/Fish/ItemFishMahimahi@Name:
+鲯鳅鱼
+
+Scripts/Items/Fishing/Fish/ItemFishPollock@Name:
+狭鳕鱼
+
+Scripts/Items/Fishing/Fish/ItemFishPuffer@Name:
+河豚
+
+Scripts/Items/Fishing/Fish/ItemFishPyke@Name:
+狗鱼
+
+Scripts/Items/Fishing/Fish/ItemFishRooster@Name:
+皇带鱼
+
+Scripts/Items/Fishing/Fish/ItemFishSalmon@Name:
+鲑鱼
+
+Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
+沙丁鱼
+
+Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
+鳟鱼
 
 Scripts/Items/Food/ItemBanana@Description:
 任何猴子都会伸手去拿香蕉，但只有人类会掌向群星。
@@ -643,6 +778,27 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 Scripts/Items/Food/ItemEggsRaw@Name:
 动物蛋
 
+Scripts/Items/Food/ItemFishDried@Description:
+被晾晒干燥的鱼，下酒简直一绝。可以长期储存。
+
+Scripts/Items/Food/ItemFishDried@Name:
+鱼干
+
+Scripts/Items/Food/ItemFishFilletRed@Description:
+高质量鱼肉，是烹饪的高级材料。
+
+Scripts/Items/Food/ItemFishFilletRed@Name:
+红雨肉
+
+Scripts/Items/Food/ItemFishFilletWhite@Name:
+白鱼肉
+
+Scripts/Items/Food/ItemFishRoasted@Description:
+烤箱烤出来的软嫩多汁的鱼肉。
+
+Scripts/Items/Food/ItemFishRoasted@Name:
+烤鱼
+
 Scripts/Items/Food/ItemInsectMeatFried@Description:
 将这种肉烹饪之后能略微减少其恶心程度...但如果你打算吃最好还是做好呕吐的准备。
 
@@ -751,6 +907,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 Scripts/Items/Food/ItemPineapple@Name:
 菠萝
 
+Scripts/Items/Food/ItemPizzaPineapple@Description:
+神圣的战争迄今不止...
+
+Scripts/Items/Food/ItemPizzaPineapple@Name:
+菠萝披萨
+
 Scripts/Items/Food/ItemRiceCooked@Description:
 可以直接吃，也可以进一步加工成更加复杂的餐点。
 
@@ -775,6 +937,12 @@ Scripts/Items/Food/ItemSaladVegetable@Description:
 Scripts/Items/Food/ItemSaladVegetable@Name:
 蔬菜沙拉
 
+Scripts/Items/Food/ItemSalami@Description:
+风干的香肠，内有香料，用料考究
+
+Scripts/Items/Food/ItemSalami@Name:
+意式香肠
+
 Scripts/Items/Food/ItemSandwich@Description:
 软面包，多汁肉片和蔬菜，完美的经典组合！
 
@@ -793,6 +961,18 @@ Scripts/Items/Food/ItemSugar@Description:
 Scripts/Items/Food/ItemSugar@Name:
 糖
 
+Scripts/Items/Food/ItemSushi@Description:
+饭团上搭着一片鱼肉与少量香料。很简单，却有着令人难忘的风味。
+
+Scripts/Items/Food/ItemSushi@Name:
+寿司
+
+Scripts/Items/Food/ItemTacoMeat@Description:
+装满了肉馅的脆玉米饼，上面撒着一层特别酱汁和一点蔬菜。
+
+Scripts/Items/Food/ItemTacoMeat@Name:
+塔可
+
 Scripts/Items/Food/ItemTequila@Description:
 使用沙漠植物酿造蒸馏的酒。
 
@@ -810,6 +990,12 @@ Scripts/Items/Food/ItemTomato@Description:
 
 Scripts/Items/Food/ItemTomato@Name:
 番茄
+
+Scripts/Items/Food/ItemUkha@Description:
+用鱼和蔬菜炖成的传统清汤。
+
+Scripts/Items/Food/ItemUkha@Name:
+乌卡
 
 Scripts/Items/Food/ItemVodka@Description:
 诸神的火酒。喝多了会出事，所以别喝太多。它还会使你脱水。对了，别以为这东西能减少辐射。
@@ -932,7 +1118,7 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 空罐
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-空金属容器。可以用来装挥发性液体。
+可以用来装挥发性液体。
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
 空容器
@@ -1091,6 +1277,24 @@ Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 改良火药
 
+Scripts/Items/Generic/ItemFuelCellEmpty@Description:
+用于各种载具的空燃料电池。必须填充后才能使用。
+
+Scripts/Items/Generic/ItemFuelCellEmpty@Name:
+空燃料电池
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Description:
+装满了液体燃料的燃料电池。便宜，但无法坚持很长时间。
+
+Scripts/Items/Generic/ItemFuelCellGasoline@Name:
+汽油燃料电池
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Description:
+装满了液体普拉格的燃料电池。能坚持很长时间。
+
+Scripts/Items/Generic/ItemFuelCellPragmium@Name:
+普拉格燃料电池
+
 Scripts/Items/Generic/ItemFur@Description:
 动物皮毛。可以被用来制造保暖的冬衣。
 
@@ -1192,12 +1396,6 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 钢锭
-
-Scripts/Items/Generic/ItemLeaf@Description:
-一片叶子...估计是从树上掉下来的。
-
-Scripts/Items/Generic/ItemLeaf@Name:
-树叶
 
 Scripts/Items/Generic/ItemLeather@Description:
 动物皮革。可以制成皮甲。
@@ -1565,6 +1763,12 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 纳米纤维皮肤
 
+Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
+人工骨骼强化。是使用者无法被眩晕或骨折。
+
+Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
+内骨骼强化植入
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 身体中检测到异常突变
 
@@ -1714,6 +1918,20 @@ Scripts/Items/Medical/ItemNeuralEnhancer@Description:
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 神经强化剂
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_CannotBeUsedOften_Format:
+`请注意：此物品无法频繁使用。
+[br]使用后将有{0}的冷却时间。`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
+`您最近已经使用过了此物品。
+[br]要再次使用请等待{0}。`
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Description:
+完全抹除所有科技的所有知识，并返还所有已花费的知识点数，让你可以重新加点。无法频繁使用。
+
+Scripts/Items/Medical/ItemNeuralRecombinator@Name:
+神经重组剂
 
 Scripts/Items/Medical/ItemPainkiller@Description:
 用于在作用期间完全阻止疼痛感知的药物。
@@ -1940,6 +2158,12 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 石镐
 
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
+这个感应器通过感知大型普拉格水晶的独特灵能信号来侦测其位置，可以扫描到极远距离。
+
+Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
+普拉格感应器
+
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 对于修复和建造建筑来说工具箱必不可少。记得将其装备并选中。
 
@@ -2067,7 +2291,7 @@ Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 激光手枪
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-激光步枪能够射出高能射线并灼烧目标。比激光手枪开火速度快得多，但能量消耗也更大。
+激光步枪能够射出高能射线并灼烧目标。比激光手枪距离更远。
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 激光步枪
@@ -2173,4 +2397,16 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
 轻型自动加农炮
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Description:
+使用高爆弹药的特殊重型迫击炮，是对抗重甲敌人的理想武器。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonArtillery@Name:
+迫击炮
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
+使用加速粒子伤害目标的重型加农炮。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
+能量加农炮
 

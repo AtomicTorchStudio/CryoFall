@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
@@ -19,12 +20,14 @@
 
     public abstract class ProtoItemGrenade : ProtoItemAmmo, IAmmoGrenade
     {
-        private DamageDescription damageDescriptionCharacters;
+        private DamageDescription damageDescriptionForWeaponCache;
 
-        public DamageDescription DamageDescriptionCharacters
-            => this.damageDescriptionCharacters;
+        public DamageDescription DamageDescriptionForWeaponCache => this.damageDescriptionForWeaponCache;
 
         public abstract double DamageRadius { get; }
+
+        public override DamageStatsComparisonPreset DamageStatsComparisonPreset
+            => DamageStatsComparisonPresets.PresetGrenades;
 
         public ExplosionPreset ExplosionPreset { get; private set; }
 
@@ -44,7 +47,6 @@
         public sealed override void ClientOnObjectHit(
             WeaponFinalCache weaponCache,
             IWorldObject damagedObject,
-            double damage,
             WeaponHitData hitData,
             ref bool isDamageStop)
         {
@@ -65,7 +67,7 @@
             var explosiveDefensePenetrationCoef = this.StructureDefensePenetrationCoef;
             explosiveDefensePenetrationCoef = MathHelper.Clamp(explosiveDefensePenetrationCoef, 0, 1);
 
-            if (!PveSystem.SharedIsAllowStructureDamage(byCharacter,
+            if (!PveSystem.SharedIsAllowStaticObjectDamage(byCharacter,
                                                         targetStaticWorldObject,
                                                         showClientNotification: false))
             {
@@ -130,30 +132,28 @@
             out double rangeMax,
             DamageDistribution damageDistribution)
         {
-            damageValue = 0;
-            armorPiercingCoef = 0;
-            finalDamageMultiplier = 1;
-            rangeMax = this.FireRangeMax;
-
             this.PrepareExplosionPreset(out var explosionPreset);
             this.ExplosionPreset = explosionPreset
                                    ?? throw new Exception("No explosion preset provided");
 
+            this.damageDescriptionForWeaponCache = new DamageDescription(
+                damageValue: 0,
+                armorPiercingCoef: 0,
+                finalDamageMultiplier: 1,
+                rangeMax: this.FireRangeMax,
+                damageDistribution: new DamageDistribution());
+
             // prepare damage description for characters
             {
-                var charDamageDistribution = new DamageDistribution();
-                this.PrepareDamageDescriptionCharacters(
-                    out var charDamageValue,
-                    out var charArmorPiercingCoef,
-                    out var charFinalDamageMultiplier,
-                    charDamageDistribution);
+                rangeMax = this.FireRangeMax;
 
-                this.damageDescriptionCharacters = new DamageDescription(
-                    damageValue: this.SharedPrepareStatDamageToCharacters(charDamageValue),
-                    charArmorPiercingCoef,
-                    charFinalDamageMultiplier,
-                    rangeMax: this.DamageRadius,
-                    charDamageDistribution);
+                this.PrepareDamageDescriptionCharacters(
+                    out damageValue,
+                    out armorPiercingCoef,
+                    out finalDamageMultiplier,
+                    damageDistribution);
+
+                damageValue = this.SharedPrepareStatDamageToCharacters(damageValue);
             }
 
             // prepare damage properties for structures
@@ -329,7 +329,7 @@
                             protoWeapon: protoWeapon,
                             explosionPreset: this.ExplosionPreset,
                             epicenterPosition: endPosition,
-                            damageDescriptionCharacters: this.damageDescriptionCharacters,
+                            damageDescriptionCharacters: this.DamageDescription,
                             physicsSpace: Server.World.GetPhysicsSpace(),
                             executeExplosionCallback: this.ServerExecuteExplosion);
                     });

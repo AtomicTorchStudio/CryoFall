@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -28,26 +29,30 @@
 
         public override byte ContainerOutputSlotsCount => 1;
 
+        public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
+            => new ElectricityThresholdsPreset(startupPercent: 30,
+                                               shutdownPercent: 20);
+
         public override string Description =>
             "Refines raw petroleum oil into more useful components, such as fuel and mineral oil.";
 
         public override double ElectricityConsumptionPerSecondWhenActive => 4;
 
-        public override double LiquidCapacityGasoline => 100;
+        public override double LiquidCapacityGasoline => 50;
 
-        public override double LiquidCapacityMineralOil => 100;
+        public override double LiquidCapacityMineralOil => 50;
 
-        public override double LiquidCapacityRawPetroleum => 100;
+        public override double LiquidCapacityRawPetroleum => 50;
 
         // A little larger number is used for liquids production speed
         // to fix an issue with the floating point precision
         // (e.g. a case when 0.0001 liquid level shortage prevents from collecting a full canister).
         // With the adjusted number we have a barely noticeable profit which resolves the issue.
-        public override double LiquidGasolineProductionPerSecond => 0.2002;
+        public override double LiquidGasolineProductionPerSecond => 0.1002;
 
-        public override double LiquidMineralOilProductionPerSecond => 0.2002;
+        public override double LiquidMineralOilProductionPerSecond => 0.1002;
 
-        public override double LiquidRawPetroleumConsumptionPerSecond => 0.2;
+        public override double LiquidRawPetroleumConsumptionPerSecond => 0.1;
 
         public override string Name => "Oil refinery";
 
@@ -110,14 +115,14 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemCement>(count: 10);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 3);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemCement>(count: 3);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

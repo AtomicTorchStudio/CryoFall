@@ -22,8 +22,8 @@
         {
             const double yOffset = 0.4;
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 2 - yOffset), offset: (-1, yOffset), group: CollisionGroups.Default)
-                .AddShapeRectangle(size: (1, 2 - yOffset), offset: (2, yOffset),  group: CollisionGroups.Default);
+                .AddShapeRectangle(size: (0.75, 2 - yOffset), offset: (-0.75, yOffset), group: CollisionGroups.Default)
+                .AddShapeRectangle(size: (0.75, 2 - yOffset), offset: (2, yOffset),     group: CollisionGroups.Default);
         }
     }
 }

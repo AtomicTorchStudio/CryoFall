@@ -1,6 +1,34 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
 병에 물을 채우려면 물 근처에 서있거나 우물에서 담으세요.
 
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
+그곳은 채굴할 수 없습니다!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
+이미 그곳에는 드론을 보냈습니다!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Message:
+`드론이 비활성화되어 복귀할 수 없습니다.
+[br]해당 드론은 마지막 위치에서 찾을 수 있습니다.`
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDeactivated_Title:
+드론 비활성화
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneDestroyed_Title:
+드론 파괴
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Message_Format:
+이 장치로는 {0}대 이상의 드론을 조종할 수 없습니다.
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorCannotControlMoreDrones_Title:
+더 많은 드론 조종 불가
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_ErrorNoDrones_Title:
+발사할 드론이 없습니다!
+
+Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_NothingToMineThere:
+그곳에는 채굴할 것이 없습니다!
+
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
 장착된 보조 배터리가 없습니다.
 
@@ -127,6 +155,21 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 해체 불가
 
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
+낚시에 사용할 미끼가 인벤토리에 없습니다!
+
+Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Title:
+미끼 없음
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_CannotFishHere:
+이곳에서는 낚시할 수 없습니다
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_FishSlipOffTheHook:
+물고기가 낚싯바늘에서 빠졌습니다!
+
+Scripts/Systems/FishingSystem/FishingSystem@Notification_TooLate:
+너무 늦었습니다... 물고기가 도망쳤습니다
+
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
 {0}이(가) 고장나서 영원히 사라졌습니다.
 
@@ -166,6 +209,9 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCa
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 다른 토지 점유 영역과 교차
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
+실드로 보호받고 있는 다른 토지 점유 영역과 겹치고 있습니다. 우선 그곳의 실드를 비활성화하세요.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `할당되어 있는 토지 점유소를 전부 사용하였습니다.
@@ -281,7 +327,7 @@ Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
 메시지 신고
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
-상호작용 불가 - 너무 멀거나 접근할 수 없는 건물입니다.
+상호 작용 불가 - 너무 멀거나 접근할 수 없는 건물입니다.
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
 전력망이 없습니다.
@@ -324,12 +370,6 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWi
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 아직 수확할 것 없음
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-서버: {0}초 후에 월드 백업이 시작됩니다.
-
-Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-서버: 월드 백업이 완료되었습니다!
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
 서버 관리자로부터 이 서버에 출입 금지 당했습니다

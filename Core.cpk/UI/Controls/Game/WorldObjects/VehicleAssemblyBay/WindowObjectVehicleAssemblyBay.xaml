@@ -8,6 +8,8 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.VehicleAssemblyBay"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:electricityRequirements="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ElectricityRequirements"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
 
@@ -34,8 +36,8 @@
                           Visibility="{Binding VehicleSchematicsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition />
                         </Grid.RowDefinitions>
 
                         <Grid>
@@ -54,7 +56,7 @@
                                            Style="{StaticResource TextBlockItemTitleStyle}"
                                            Foreground="{StaticResource BrushColorAlt6}"
                                            FontSize="10"
-                                           Margin="5,7,0,0" />
+                                           Margin="5,3,0,0" />
                             </Border>
                         </Grid>
 
@@ -62,7 +64,7 @@
                                  ItemsSource="{Binding VehicleSchematicsList}"
                                  SelectedItem="{Binding SelectedVehicleSchematic}"
                                  HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Top">
+                                 VerticalAlignment="Stretch">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -207,7 +209,7 @@
 
                         <StackPanel Grid.Row="2"
                                     Orientation="Horizontal"
-                                    Margin="0,0,3,2"
+                                    Margin="0,0,3,-3"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom">
                             <StackPanel.Resources>
@@ -332,7 +334,6 @@
                         <Border Grid.Row="2"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="3"
-                                Padding="5"
                                 CornerRadius="3"
                                 BorderThickness="1"
                                 HorizontalAlignment="Center">
@@ -346,32 +347,15 @@
                             <!-- Display icons for required items (total) -->
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Center">
-                                <controls:RequiredItemsPanelControl MinWidth="130"
-                                                                    Items="{Binding BuildRequiredItems}"
+                                <controls:RequiredItemsPanelControl Items="{Binding BuildRequiredItems}"
                                                                     CountMultiplier="1"
                                                                     IconSize="40"
                                                                     FontSize="11"
-                                                                    TextStrokeThickness="1" />
-                                <Border VerticalAlignment="Center"
-                                        Margin="7,2,2,0">
-                                    <StackPanel Orientation="Vertical">
-                                        <Rectangle Fill="{StaticResource IconElectricity}"
-                                                   Width="20"
-                                                   Height="20"
-                                                   HorizontalAlignment="Center"
-                                                   Stretch="Uniform"
-                                                   UseLayoutRounding="True" />
-
-                                        <TextBlock Text="{Binding BuildRequiredElectricityAmount}"
-                                                   Foreground="#FFFFEE00"
-                                                   HorizontalAlignment="Center"
-                                                   FontSize="12"
-                                                   LineHeight="10"
-                                                   FontWeight="Bold"
-                                                   FontFamily="{StaticResource DigitsFontFamily}"
-                                                   TextWrapping="NoWrap" />
-                                    </StackPanel>
-                                </Border>
+                                                                    TextStrokeThickness="1"
+                                                                    Margin="2,0" />
+                                <electricityRequirements:ElectricityRequirementsControl
+                                    RequiredElectricityAmount="{Binding BuildRequiredElectricityAmount}"
+                                    Margin="2" />
                             </StackPanel>
                         </Border>
 

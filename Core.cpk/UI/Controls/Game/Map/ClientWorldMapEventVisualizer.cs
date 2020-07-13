@@ -31,8 +31,8 @@
 
         private readonly bool enableNotifications;
 
-        private readonly List<(ILogicObject activeEvent, HUDNotificationControl notification)> notifications
-            = new List<(ILogicObject activeEvent, HUDNotificationControl notification)>();
+        private readonly List<(ILogicObject activeEvent, HudNotificationControl notification)> notifications
+            = new List<(ILogicObject activeEvent, HudNotificationControl notification)>();
 
         private readonly List<(ILogicObject activeEvent, FrameworkElement mapControl)> visualizedSearchAreas
             = new List<(ILogicObject activeEvent, FrameworkElement mapControl)>();
@@ -129,7 +129,7 @@
             return sb.ToString();
         }
 
-        private HUDNotificationControl FindNotification(ILogicObject activeEvent)
+        private HudNotificationControl FindNotification(ILogicObject activeEvent)
         {
             foreach (var pair in this.notifications)
             {
@@ -226,10 +226,12 @@
             var notification = this.RemoveNotification(activeEvent,
                                                        false,
                                                        FinishedEventHideDelay);
-            notification?.SetMessage(
-                GetUpdatedEventNotificationText(activeEvent,
-                                                CalculateEventTimeRemains(activeEvent),
-                                                addDescription: false));
+            if (!(notification is null))
+            {
+                notification.Message = GetUpdatedEventNotificationText(activeEvent,
+                                                                       CalculateEventTimeRemains(activeEvent),
+                                                                       addDescription: false);
+            }
         }
 
         private void RefreshActiveEventInfo(ILogicObject activeEvent)
@@ -285,10 +287,9 @@
 
                 if (!notification.IsHiding)
                 {
-                    notification.SetMessage(
-                        GetUpdatedEventNotificationText(activeEvent,
-                                                        timeRemains,
-                                                        addDescription: false));
+                    notification.Message = GetUpdatedEventNotificationText(activeEvent,
+                                                                           timeRemains,
+                                                                           addDescription: false);
                 }
             }
 
@@ -300,7 +301,7 @@
                 () => this.RefreshActiveEventInfo(activeEvent));
         }
 
-        private HUDNotificationControl RemoveNotification(
+        private HudNotificationControl RemoveNotification(
             ILogicObject activeEvent,
             bool quick,
             double delaySeconds = 0)

@@ -34,11 +34,8 @@
             }
         }
 
-        public override string ToString()
-        {
-            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            return "Script config for " + this.ShortId;
-        }
+        // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+        public override string ToString() => "Script config for " + this.ShortId;
 
         private void TriggerCallback(IProtoZone zone, BaseTriggerConfig triggerConfig)
         {

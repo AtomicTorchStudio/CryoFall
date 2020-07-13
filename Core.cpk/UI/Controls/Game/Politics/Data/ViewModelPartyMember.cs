@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data
 {
-    using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
@@ -21,10 +20,9 @@
             this.RemoveButtonVisibility = removeButtonVisibility;
 
             this.IsOnline = name == ClientCurrentCharacterHelper.Character.Name
-                            || OnlinePlayersSystem.ClientEnumerateOnlinePlayers()
-                                                  .Contains(name);
+                            || OnlinePlayersSystem.ClientContains(name);
 
-            OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved += this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
+            OnlinePlayersSystem.ClientPlayerAddedOrRemoved += this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
         }
 
         public BaseCommand CommandCopyName => new ActionCommand(this.ExecuteCommandCopyName);
@@ -42,7 +40,7 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved -= this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
+            OnlinePlayersSystem.ClientPlayerAddedOrRemoved -= this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
         }
 
         private void ExecuteCommandCopyName()
@@ -55,9 +53,9 @@
             ChatSystem.ClientOpenPrivateChat(withCharacterName: this.Name);
         }
 
-        private void OnlinePlayersSystemPlayerAddedOrRemovedHandler(string name, bool isOnline)
+        private void OnlinePlayersSystemPlayerAddedOrRemovedHandler(OnlinePlayersSystem.Entry entry, bool isOnline)
         {
-            if (name == this.Name)
+            if (entry.Name == this.Name)
             {
                 this.IsOnline = isOnline;
             }

@@ -21,7 +21,6 @@
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 5);
             inputItems.Add<ItemHerbPurple>(count: 1);
-            inputItems.Add<ItemToxin>(count: 1);
 
             outputItems.Add<ItemAntiToxinPreExposure>(count: 1);
         }

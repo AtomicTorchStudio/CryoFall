@@ -25,6 +25,15 @@ De meilleures techniques agricoles vous permettent d'augmenter votre efficacité
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Exploitation agricole
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
+Probabilité de récupérer votre appât
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Description:
+Votre connaissance des différentes espèces de poissons et des techniques de pêche améliore vos probabilités de succès lorsque vous pêchez.
+
+Scripts/Skills/Skills/Agriculture/SkillFishing@Name:
+Pêche
+
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Chance de récolte supplémentaire
 
@@ -100,23 +109,29 @@ Augmente vos chances de rester en vie en améliorant votre maximum de santé, ai
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 Survie
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-Chance de meilleur rendement
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetSapplings:
+Probabilité d'obtenir de nouvelles pousses
 
-Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-Chance de trouver des gemmes
+Scripts/Skills/Skills/Production/SkillLumbering@Flags.GetExtraSapplings:
+Probabilité d'obtenir plus de nouvelles pousses
 
-Scripts/Skills/Skills/Production/SkillMining@Description:
-Une meilleure connaissance des gisements de minerai augmente votre vitesse d'excavation, le rendement, ainsi que vos chances de découvrir des ressources rares. Ne s'applique que lorsque vous utilisez une pioche.
+Scripts/Skills/Skills/Production/SkillLumbering@Description:
+Une meilleure formation et compréhension de cette profession permet d'améliorer votre vitesse de découpe du bois.
 
-Scripts/Skills/Skills/Production/SkillMining@Name:
-Extraction minière
+Scripts/Skills/Skills/Production/SkillLumbering@Name:
+Exploitation forestière
 
-Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-Un bon entraînement et une meilleure compréhension de cette profession augmentent votre vitesse de coupe. Ne s'applique que lorsque vous utilisez une hache.
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
+Probabilité d'avoir plus de rendement
 
-Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-Coupe du bois
+Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
+Probabilité de trouver des gemmes en minant
+
+Scripts/Skills/Skills/Production/SkillProspecting@Description:
+Une meilleure connaissance des gisements de minerai vous permet d'augmenter votre vitesse d'excavation et votre rendement, voire de découvrir occasionnellement des ressources rares.
+
+Scripts/Skills/Skills/Production/SkillProspecting@Name:
+Prospection
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 L'amélioration de votre maîtrise augmente votre vitesse de construction. S'applique à toutes les tâches (construction, réparation) effectuées avec une boîte à outils.
@@ -130,9 +145,18 @@ Fabriquer des objets de plus en plus complexes tout en comprenant leur structure
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Artisanat
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
+Probabilité de réparer complètement un objet
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 Vous permet de réparer et entretenir divers objets et équipements. S'applique au travail réalisé sur la table de bricolage.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Entretien
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Description:
+Capacité à piloter divers véhicules et à utiliser leurs équipements correctement et efficacement. S'applique à tous types de véhicules.
+
+Scripts/Skills/Skills/Technical/SkillVehicles@Name:
+Véhicules
 

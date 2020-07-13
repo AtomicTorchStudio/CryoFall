@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.PowerStorage;
 
-    public class TechNodePowerStorage : TechNode<TechGroupElectricity>
+    public class TechNodePowerStorage : TechNode<TechGroupElectricityT2>
     {
         protected override void PrepareTechNode(Config config)
         {

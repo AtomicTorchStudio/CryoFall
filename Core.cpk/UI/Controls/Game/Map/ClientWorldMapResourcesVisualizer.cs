@@ -33,8 +33,8 @@
 
         private readonly bool enableNotifications;
 
-        private readonly List<(WorldMapResourceMark mark, HUDNotificationControl notification)> notifications
-            = new List<(WorldMapResourceMark mark, HUDNotificationControl notification)>();
+        private readonly List<(WorldMapResourceMark mark, HudNotificationControl notification)> notifications
+            = new List<(WorldMapResourceMark mark, HudNotificationControl notification)>();
 
         private readonly List<(WorldMapResourceMark mark, FrameworkElement mapControl)> visualizedMarks
             = new List<(WorldMapResourceMark, FrameworkElement)>();
@@ -127,13 +127,13 @@
                                  ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
         }
 
-        private void AddNotification(in WorldMapResourceMark mark, HUDNotificationControl notification)
+        private void AddNotification(in WorldMapResourceMark mark, HudNotificationControl notification)
         {
             this.RemoveNotification(mark, quick: true);
             this.notifications.Add((mark, notification));
         }
 
-        private HUDNotificationControl FindNotification(in WorldMapResourceMark mark)
+        private HudNotificationControl FindNotification(in WorldMapResourceMark mark)
         {
             foreach (var pair in this.notifications)
             {
@@ -176,8 +176,8 @@
                     Width = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
                     Height = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
                     EllipseColorStroke = Color.FromArgb(0xDD, 0xCC, 0x66, 0x66),
-                    EllipseColorStart = Color.FromArgb(0x00, 0xCC, 0x66, 0x66),
-                    EllipseColorEnd = Color.FromArgb(0x77,   0xCC, 0x66, 0x66)
+                    EllipseColorStart = Color.FromArgb(0x00,  0xCC, 0x66, 0x66),
+                    EllipseColorEnd = Color.FromArgb(0x77,    0xCC, 0x66, 0x66)
                 };
 
                 var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(
@@ -294,7 +294,7 @@
             this.UpdateNotification(mark, notification);
         }
 
-        private void UpdateNotification(WorldMapResourceMark mark, HUDNotificationControl notification)
+        private void UpdateNotification(WorldMapResourceMark mark, HudNotificationControl notification)
         {
             if (notification.IsHiding)
             {
@@ -315,9 +315,7 @@
                 return;
             }
 
-            notification.SetMessage(
-                GetUpdatedRecentResourceNotificationText(mark,
-                                                         timeRemains));
+            notification.Message = GetUpdatedRecentResourceNotificationText(mark, timeRemains);
 
             // schedule recursive update in a second
             ClientTimersSystem.AddAction(

@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
+    using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Equipment.ApartSuit;
     using AtomicTorch.CBND.CoreMod.Items.Equipment.Assault;
@@ -12,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
+    using AtomicTorch.CBND.CoreMod.Items.Tools.Special;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -73,6 +75,7 @@
         {
             DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
             DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
+            DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
 
             // loot groups are sorted in the order of rarity (more common first)
             droplist.Add(nestedList:
@@ -81,17 +84,18 @@
                              .Add(weight: 1,
                                   nestedList:
                                   new DropItemsList(outputs: 2)
-                                      .Add<ItemAmmo10mmStandard>(count: 50,      weight: 1)
-                                      .Add<ItemAmmo10mmHollowPoint>(count: 50,   weight: 1)
-                                      .Add<ItemAmmo10mmArmorPiercing>(count: 50, weight: 1)
-                                      .Add<ItemAmmo12gaPellets>(count: 40,       weight: 1)
-                                      .Add<ItemAmmo12gaSlugs>(count: 40,         weight: 1)
-                                      .Add<ItemAmmo300ArmorPiercing>(count: 30,  weight: 1)
-                                      .Add<ItemAmmo300Incendiary>(count: 30,     weight: 1)
-                                      .Add<ItemAmmoGrenadeHE>(count: 10,         weight: 1)
-                                      .Add<ItemAmmoGrenadeIncendiary>(count: 10, weight: 1)
-                                      .Add<ItemAmmoGrenadeFreeze>(count: 10,     weight: 1)
-                                      .Add<ItemAmmo50SH>(count: 40,              weight: 1)
+                                      .Add<ItemAmmo10mmStandard>(count: 50,         weight: 1)
+                                      .Add<ItemAmmo10mmHollowPoint>(count: 50,      weight: 1)
+                                      .Add<ItemAmmo10mmArmorPiercing>(count: 50,    weight: 1)
+                                      .Add<ItemAmmo12gaPellets>(count: 40,          weight: 1)
+                                      .Add<ItemAmmo12gaSlugs>(count: 40,            weight: 1)
+                                      .Add<ItemAmmo300ArmorPiercing>(count: 30,     weight: 1)
+                                      .Add<ItemAmmo300Incendiary>(count: 30,        weight: 1)
+                                      .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1)
+                                      .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1)
+                                      .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1)
+                                      .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1)
+                                      .Add<ItemAmmo50SH>(count: 40,                 weight: 1)
                                  )
                              // components and high value items
                              .Add(weight: 1,
@@ -104,8 +108,9 @@
                                       .Add<ItemComponentsOptical>(count: 10,    weight: 1)
                                       .Add<ItemComponentsWeapon>(count: 10,     weight: 1)
                                       // high value items
-                                      .Add<ItemReactorCorePragmium>(count: 1, weight: 1 / 2.0)
-                                      .Add<ItemSolarPanel>(count: 1,          weight: 1 / 2.0)
+                                      .Add<ItemFuelCellGasoline>(count: 1, weight: 1)
+                                      .Add<ItemFuelCellPragmium>(count: 1, weight: 1 / 2.0)
+                                      .Add<ItemSolarPanel>(count: 1,       weight: 1 / 2.0)
                                  )
                              // misc
                              .Add(weight: 1,
@@ -124,49 +129,57 @@
                                       // explosives
                                       .Add<ItemBombMining>(count: 20, weight: 1 / 2.0)
                                       // medical
-                                      .Add<ItemMedkit>(count: 5,           weight: 1)
-                                      .Add<ItemNeuralEnhancer>(count: 1,   weight: 1)
                                       .Add<ItemHeatPreExposure>(count: 3,  weight: 1)
                                       .Add<ItemStrengthBoostBig>(count: 5, weight: 1)
-                                      .Add<ItemStimpack>(count: 5, weight: 1, condition: T4Specialized)
+                                      .Add<ItemMedkit>(count: 5,           weight: 1, condition: T3Specialized)
+                                      .Add<ItemStimpack>(count: 5,         weight: 1, condition: T4Specialized)
+                                      .Add<ItemPeredozin>(count: 2,        weight: 1, condition: T4Specialized)
+                                      .Add<ItemNeuralEnhancer>(count: 1,   weight: 1, condition: T4Specialized)
                                  )
                              // ranged weapons
                              .Add(weight: 1 / 2.0,
                                   nestedList:
                                   new DropItemsList(outputs: 1)
                                       // require reaching particular tier before the weapon could be acquired there
-                                      .Add<ItemHandgun10mm>(count: 1,       weight: 1,       condition: T3Specialized)
-                                      .Add<ItemSubmachinegun10mm>(count: 1, weight: 1,       condition: T3Specialized)
-                                      .Add<ItemRifle10mm>(count: 1,         weight: 1,       condition: T3Specialized)
-                                      .Add<ItemShotgunMilitary>(count: 1,   weight: 1,       condition: T3Specialized)
-                                      .Add<ItemGrenadeLauncher>(count: 1,   weight: 1,       condition: T3Specialized)
-                                      .Add<ItemSteppenHawk>(count: 1,       weight: 1,       condition: T4Specialized)
-                                      .Add<ItemMachinegun300>(count: 1,     weight: 1 / 2.0, condition: T4Specialized)
-                                      .Add<ItemRifle300>(count: 1,          weight: 1 / 2.0, condition: T4Specialized)
+                                      .Add<ItemHandgun10mm>(count: 1,          weight: 1,       condition: T3Specialized)
+                                      .Add<ItemSubmachinegun10mm>(count: 1,    weight: 1,       condition: T3Specialized)
+                                      .Add<ItemRifle10mm>(count: 1,            weight: 1,       condition: T3Specialized)
+                                      .Add<ItemShotgunMilitary>(count: 1,      weight: 1,       condition: T3Specialized)
+                                      .Add<ItemGrenadeLauncher>(count: 1,      weight: 1,       condition: T3Specialized)
+                                      .Add<ItemSteppenHawk>(count: 1,          weight: 1,       condition: T4Specialized)
+                                      .Add<ItemMachinegun300>(count: 1,        weight: 1 / 2.0, condition: T4Specialized)
+                                      .Add<ItemRifle300>(count: 1,             weight: 1 / 2.0, condition: T5Specialized)
+                                      .Add<ItemGrenadeLauncherMulti>(count: 1, weight: 1 / 2.0, condition: T5Specialized)
                                  )
                              // equipment
                              .Add(weight: 1 / 2.0,
                                   nestedList:
                                   new DropItemsList(outputs: 1)
-                                      .Add<ItemRespirator>(count: 1, weight: 1)
+                                      .Add<ItemHelmetRespirator>(count: 1, weight: 1)
                                       // it's intentional that these T3 items are available without time-gating
-                                      .Add<ItemHelmetNightVision>(count: 1, weight: 1)
-                                      .Add<ItemMilitaryHelmet>(count: 1,    weight: 1)
-                                      .Add<ItemMilitaryJacket>(count: 1,    weight: 1)
-                                      .Add<ItemMilitaryPants>(count: 1,     weight: 1)
-                                      // it's intentional that these T4 items are available in T3 despite being T4
-                                      .Add<ItemAssaultHelmet>(count: 1,   weight: 1,       condition: T3Specialized)
-                                      .Add<ItemAssaultJacket>(count: 1,   weight: 1,       condition: T3Specialized)
-                                      .Add<ItemAssaultPants>(count: 1,    weight: 1,       condition: T3Specialized)
-                                      .Add<ItemApartSuit>(count: 1,       weight: 1 / 3.0, condition: T4Specialized)
-                                      .Add<ItemSuperHeavyArmor>(count: 1, weight: 1 / 3.0, condition: T4Specialized)
+                                      .Add<ItemHelmetNightVision>(count: 1,         weight: 1)
+                                      .Add<ItemMilitaryHelmet>(count: 1,            weight: 1)
+                                      .Add<ItemMilitaryArmor>(count: 1,             weight: 1)
+                                      // advanced stuff
+                                      .Add<ItemHelmetNightVisionAdvanced>(count: 1, weight: 1 / 2.0, condition: T4Specialized)
+                                      .Add<ItemAssaultHelmet>(count: 1,             weight: 1 / 2.0, condition: T4Specialized)
+                                      .Add<ItemAssaultArmor>(count: 1,              weight: 1 / 2.0, condition: T4Specialized)
+                                      .Add<ItemApartSuit>(count: 1,                 weight: 1 / 3.0, condition: T4Specialized)
+                                      .Add<ItemSuperHeavySuit>(count: 1,            weight: 1 / 3.0, condition: T5Specialized)
                                  )
-                             // devices
+                             // devices & drones
                              .Add(weight: 1 / 10.0,
                                   nestedList:
                                   new DropItemsList(outputs: 1)
-                                      .Add<ItemPowerBankStandard>(count: 1, weight: 1)
-                                      .Add<ItemPowerBankLarge>(count: 1,    weight: 1)
+                                      // devices
+                                      .Add<ItemPowerBankStandard>(count: 1,       weight: 1)
+                                      .Add<ItemPowerBankLarge>(count: 1,          weight: 1)
+                                      .Add<ItemPragmiumSensor>(count: 1,          weight: 1 / 5.0,   condition: T4Specialized)
+                                      // drones
+                                      .Add<ItemDroneIndustrialStandard>(count: 1, weight: 1,       condition: T3Specialized)
+                                      .Add<ItemDroneControlStandard>(count: 1,    weight: 1 / 2.0, condition: T3Specialized)
+                                      .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1 / 2.0, condition: T4Specialized)
+                                      .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 4.0, condition: T4Specialized)
                                  )
                              // implants
                              .Add(weight: 1 / 20.0,
@@ -179,6 +192,7 @@
                                       .Add<ItemImplantHealingGland>(count: 1,        weight: 1)
                                       .Add<ItemImplantMetabolismModulator>(count: 1, weight: 1)
                                       .Add<ItemImplantNanofiberSkin>(count: 1,       weight: 1)
+                                      .Add<ItemImplantReinforcedBones>(count: 1,     weight: 1)
                                  )
                 );
         }

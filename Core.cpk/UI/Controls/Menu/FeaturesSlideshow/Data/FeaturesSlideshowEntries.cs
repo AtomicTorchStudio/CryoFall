@@ -24,6 +24,10 @@
         public const string EntryEconomy_Description =
             "Mint coins and build fully automated trading stations to facilitate trade with other survivors.";
 
+        public const string EntryFishing_Title = "Fishing";
+        public const string EntryFishing_Description =
+            "Use different types of bait and catch a variety of freshwater and saltwater fish. Try to beat your records and compete with other players.";
+
         public const string EntryImplants_Title = "Cybernetic implants";
         public const string EntryImplants_Description =
             "Install a variety of different bionic and cybernetic implants into your character to receive new abilities or boost your stats.";
@@ -91,6 +95,9 @@
             new Entry(EntryEconomy_Title,
                       EntryEconomy_Description,
                       "Features/Economy.png"),
+            new Entry(EntryFishing_Title,
+                      EntryFishing_Description,
+                      "Features/Fishing.png"),
             new Entry(EntryElectricity_Title,
                       EntryElectricity_Description,
                       "Features/Electricity.png"),

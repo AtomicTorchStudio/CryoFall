@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeWateringCanWood : TechNode<TechGroupFarming>
+    public class TechNodeWateringCanWood : TechNode<TechGroupFarmingT1>
     {
         protected override void PrepareTechNode(Config config)
         {

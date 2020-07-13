@@ -1,0 +1,45 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.ItemTooltipCompatibleWeaponsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelItemTooltipCompatibleWeaponsControl, IsDesignTimeCreatable=True}"
+    UseLayoutRounding="False"
+    Opacity="0.7">
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="{x:Static loc:CoreStrings.Ammo_CompatibleWeapons}"
+                   FontSize="11"
+                   FontWeight="Bold" />
+
+        <ItemsControl ItemsSource="{Binding CompatibleWeaponProtos}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Bullet point -->
+                        <Ellipse Width="4"
+                                 Height="4"
+                                 Fill="{StaticResource BrushColor7}"
+                                 Opacity="0.7"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,2,-1" />
+                        <TextBlock Text="{Binding Name}"
+                                   TextWrapping="Wrap"
+                                   Foreground="{StaticResource BrushColor7}"
+                                   FontSize="10" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </StackPanel>
+</base:BaseUserControl>

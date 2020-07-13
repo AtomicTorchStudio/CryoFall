@@ -5,9 +5,9 @@
     using AtomicTorch.GameEngine.Common.Extensions;
 
     /// <summary>
-    /// Provides key-value storage of calculated stats.
+    /// Provides key-value storage of calculated character stats.
     /// </summary>
-    public struct FinalStatsCache
+    public readonly struct FinalStatsCache
     {
         public static readonly FinalStatsCache Empty
             = new FinalStatsCache(new Dictionary<StatName, double>(),
@@ -70,6 +70,12 @@
                 this.dictionaryMultipliers,
                 this.Sources,
                 isClean: false);
+        }
+
+        public bool CustomEquals(in FinalStatsCache other)
+        {
+            return ReferenceEquals(this.dictionaryFinalValues,    other.dictionaryFinalValues)
+                   && ReferenceEquals(this.dictionaryMultipliers, other.dictionaryMultipliers);
         }
 
         public IEnumerable<KeyValuePair<StatName, double>> EnumerateFinalValues()

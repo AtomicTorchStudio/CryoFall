@@ -108,7 +108,7 @@
             var hoursSinceWorldCreation = Api.Server.Game.SecondsSinceWorldCreation / (60 * 60);
 
             // apply the timegate offset as there should be no deposits spawn until Xenogeology is available for research
-            var timeGateHours = Api.GetProtoEntity<TechGroupXenogeology>().TimeGatePvP / (60 * 60);
+            var timeGateHours = Api.GetProtoEntity<TechGroupXenogeologyT3>().TimeGatePvP / (60 * 60);
             if (timeGateHours > 0)
             {
                 // as there is a timegate ensure the spawn could start immediately after it's expired without requiring any additional time

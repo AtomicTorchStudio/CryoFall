@@ -110,6 +110,59 @@
             return (uint)freshnessMaxValue;
         }
 
+        public static double SharedCalculateTimeToSpoilRemains(IItem item)
+        {
+            var protoItem = (IProtoItemWithFreshness)item.ProtoItem;
+            if (protoItem.FreshnessMaxValue == 0)
+            {
+                // unlimited freshness
+                return double.NaN;
+            }
+
+            var privateState = item.GetPrivateState<IItemWithFreshnessPrivateState>();
+
+            var container = item.Container;
+            if (container == null)
+            {
+                // should be impossible - abandoned item
+                return double.NaN;
+            }
+
+            var result = privateState.FreshnessCurrent / (double)FreshnessFractionsPerSecond;
+
+            if (container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge)
+            {
+                var freshnessDecreaseCoefficient =
+                    protoFridge.SharedGetCurrentFoodFreshnessDecreaseCoefficient(container);
+                if (freshnessDecreaseCoefficient <= 0)
+                {
+                    // this fridge container stops spoilage
+                    return double.NaN;
+                }
+
+                freshnessDecreaseCoefficient = Math.Min(freshnessDecreaseCoefficient, 1);
+                if (freshnessDecreaseCoefficient < 1.0)
+                {
+                    // basically, it extends the freshness
+                    result /= freshnessDecreaseCoefficient;
+                }
+            }
+
+            return result;
+        }
+
+        public static int SharedCompareFreshness(IItem itemA, IItem itemB)
+        {
+            var freshnessA = itemA.GetPrivateState<IItemWithFreshnessPrivateState>().FreshnessCurrent;
+            var freshnessB = itemB.GetPrivateState<IItemWithFreshnessPrivateState>().FreshnessCurrent;
+            return freshnessA.CompareTo(freshnessB);
+        }
+        
+        public static int SharedCompareFreshnessReverse(IItem itemA, IItem itemB)
+        {
+            return -SharedCompareFreshness(itemA, itemB);
+        }
+
         public static ItemFreshness SharedGetFreshnessEnum(IItem item)
         {
             var fraction = SharedGetFreshnessFraction(item);
@@ -162,6 +215,32 @@
                 default:
                     throw new ArgumentOutOfRangeException(nameof(freshness), freshness, null);
             }
+        }
+
+        public static bool SharedIsRefrigerated(IItem item)
+        {
+            var container = item.Container;
+            if (container == null)
+            {
+                // should be impossible - abandoned item
+                return false;
+            }
+
+            if (!(container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge))
+            {
+                return false;
+            }
+
+            var freshnessDecreaseCoefficient =
+                protoFridge.SharedGetCurrentFoodFreshnessDecreaseCoefficient(container);
+            if (freshnessDecreaseCoefficient <= 0)
+            {
+                // this fridge container stops spoilage
+                return true;
+            }
+
+            freshnessDecreaseCoefficient = Math.Min(freshnessDecreaseCoefficient, 1);
+            return freshnessDecreaseCoefficient < 1.0;
         }
 
         protected override void PrepareSystem()

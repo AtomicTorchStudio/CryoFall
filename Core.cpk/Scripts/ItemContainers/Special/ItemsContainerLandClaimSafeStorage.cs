@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
+    using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Explosives;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
@@ -38,7 +39,9 @@
                 typeof(IProtoItemSeed),
                 typeof(IProtoItemTool),
                 typeof(IProtoItemFuelElectricity),
-                typeof(IProtoItemWeapon)
+                typeof(IProtoItemWeapon),
+                typeof(IProtoItemDrone),
+                typeof(IProtoItemDroneControl)
             };
 
             if (IsClient)

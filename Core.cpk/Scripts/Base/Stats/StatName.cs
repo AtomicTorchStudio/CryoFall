@@ -31,13 +31,13 @@
 
         DefenseKinetic,
 
+        DefenseExplosion,
+
         DefenseHeat,
 
         DefenseCold,
 
         DefenseChemical,
-
-        DefenseElectrical,
 
         DefenseRadiation,
 
@@ -47,13 +47,13 @@
 
         DamageProportionKinetic,
 
+        DamageProportionExplosion,
+
         DamageProportionHeat,
 
         DamageProportionCold,
 
         DamageProportionChemical,
-
-        DamageProportionElectrical,
 
         DamageProportionRadiation,
 
@@ -107,80 +107,96 @@
         SearchingSpeed,
 
         [Description("Damage bonus")]
+        [RelatedToSkill(typeof(SkillWeaponsMelee))]
+        WeaponMeleeDamageBonusMultiplier,
+
+        [Description("Special effect chance")]
+        [RelatedToSkill(typeof(SkillWeaponsMelee))]
+        WeaponMeleeSpecialEffectChanceMultiplier,
+
+        [Description("Degradation rate")]
+        [RelatedToSkill(typeof(SkillWeaponsMelee))]
+        WeaponMeleeDegradationRateMultiplier,
+
+        [Description("Reloading time")]
+        [RelatedToSkill(typeof(SkillWeaponsMelee))]
+        WeaponMeleeReloadingSpeedMultiplier,
+
+        [Description("Damage bonus")]
         [RelatedToSkill(typeof(SkillWeaponsConventional))]
         WeaponConventionalDamageBonusMultiplier,
 
+        [Description("Special effect chance")]
+        [RelatedToSkill(typeof(SkillWeaponsConventional))]
+        WeaponConventionalSpecialEffectChanceMultiplier,
+
+        [Description("Degradation rate")]
+        [RelatedToSkill(typeof(SkillWeaponsConventional))]
+        WeaponConventionalDegradationRateMultiplier,
+
+        [Description("Reloading time")]
+        [RelatedToSkill(typeof(SkillWeaponsConventional))]
+        WeaponConventionalReloadingSpeedMultiplier,
+
         [Description("Damage bonus")]
-        [RelatedToSkill(typeof(SkillWeaponsMelee))]
-        WeaponMeleeDamageBonusMultiplier,
+        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
+        WeaponHeavyDamageBonusMultiplier,
+
+        [Description("Special effect chance")]
+        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
+        WeaponHeavySpecialEffectChanceMultiplier,
+
+        [Description("Degradation rate")]
+        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
+        WeaponHeavyDegradationRateMultiplier,
+
+        [Description("Reloading time")]
+        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
+        WeaponHeavyReloadingSpeedMultiplier,
 
         [Description("Damage bonus")]
         [RelatedToSkill(typeof(SkillWeaponsEnergy))]
         WeaponEnergyDamageBonusMultiplier,
 
-        [Description("Damage bonus")]
-        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
-        WeaponHeavyDamageBonusMultiplier,
+        [Description("Special effect chance")]
+        [RelatedToSkill(typeof(SkillWeaponsEnergy))]
+        WeaponEnergySpecialEffectChanceMultiplier,
+
+        [Description("Degradation rate")]
+        [RelatedToSkill(typeof(SkillWeaponsEnergy))]
+        WeaponEnergyDegradationRateMultiplier,
+
+        [Description("Energy consumption")]
+        [RelatedToSkill(typeof(SkillWeaponsEnergy))]
+        WeaponEnergyWeaponEnergyConsumptionMultiplier,
+
+        [Description("Weapon damage bonus")]
+        [RelatedToSkill(typeof(SkillVehicles))]
+        WeaponVehicleDamageBonusMultiplier,
+
+        [Description("Weapon degradation rate")]
+        [RelatedToSkill(typeof(SkillVehicles))]
+        WeaponVehicleDegrationRateMultiplier,
+
+        [Description("Weapon reloading time")]
+        [RelatedToSkill(typeof(SkillVehicles))]
+        WeaponVehicleReloadingSpeedMultiplier,
+
+        [Description("Weapon special effect chance")]
+        [RelatedToSkill(typeof(SkillVehicles))]
+        WeaponVehicleSpecialEffectChanceMultiplier,
 
         [Description("Damage bonus")]
         //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticDamageBonusMultiplier,
 
         [Description("Special effect chance")]
-        [RelatedToSkill(typeof(SkillWeaponsConventional))]
-        WeaponConventionalSpecialEffectChanceMultiplier,
-
-        [Description("Special effect chance")]
-        [RelatedToSkill(typeof(SkillWeaponsMelee))]
-        WeaponMeleeSpecialEffectChanceMultiplier,
-
-        [Description("Special effect chance")]
-        [RelatedToSkill(typeof(SkillWeaponsEnergy))]
-        WeaponEnergySpecialEffectChanceMultiplier,
-
-        [Description("Special effect chance")]
-        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
-        WeaponHeavySpecialEffectChanceMultiplier,
-
-        [Description("Special effect chance")]
         //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticSpecialEffectChanceMultiplier,
 
         [Description("Degradation rate")]
-        [RelatedToSkill(typeof(SkillWeaponsConventional))]
-        WeaponConventionalDegradationRateMultiplier,
-
-        [Description("Degradation rate")]
-        [RelatedToSkill(typeof(SkillWeaponsMelee))]
-        WeaponMeleeDegradationRateMultiplier,
-
-        [Description("Degradation rate")]
-        [RelatedToSkill(typeof(SkillWeaponsEnergy))]
-        WeaponEnergyDegradationRateMultiplier,
-
-        [Description("Degradation rate")]
-        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
-        WeaponHeavyDegradationRateMultiplier,
-
-        [Description("Degradation rate")]
         //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticDegradationRateMultiplier,
-
-        [Description("Reloading time")]
-        [RelatedToSkill(typeof(SkillWeaponsConventional))]
-        WeaponConventionalReloadingSpeedMultiplier,
-
-        [Description("Reloading time")]
-        [RelatedToSkill(typeof(SkillWeaponsMelee))]
-        WeaponMeleeReloadingSpeedMultiplier,
-
-        [Description("Energy consumption")]
-        [RelatedToSkill(typeof(SkillWeaponsEnergy))]
-        WeaponEnergyWeaponEnergyConsumptionMultiplier,
-
-        [Description("Reloading time")]
-        [RelatedToSkill(typeof(SkillWeaponsHeavy))]
-        WeaponHeavyReloadingSpeedMultiplier,
 
         [Obsolete("Currently not used and also the name is not matching the description")]
         [Description("Reloading time")]
@@ -246,6 +262,11 @@
         [Description("Dazed")]
         DazedIncreaseRateMultiplier,
 
+        /// <summary>
+        /// Used in StatusEffectBrokenLeg to determine whether the status effect could be added to the player.
+        /// </summary>
+        ReinforcedBones,
+
         [Description("Maximum number of land claims")]
         LandClaimsMaxNumber,
 
@@ -278,6 +299,16 @@
         CraftingQueueMaxSlotsCount,
 
         [Description("Medicine toxicity")]
-        MedicineToxicityMultiplier
+        MedicineToxicityMultiplier,
+
+        [Description("Fishing knowledge level")]
+        FishingKnowledgeLevel,
+
+        [Description("Fishing success")]
+        FishingSuccess,
+
+        [Description("Fuel consumption")]
+        [RelatedToSkill(typeof(SkillVehicles))]
+        VehicleFuelConsumptionRate
     }
 }

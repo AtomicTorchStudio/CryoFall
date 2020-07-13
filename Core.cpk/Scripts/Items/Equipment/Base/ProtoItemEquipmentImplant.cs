@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
     using System;
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
@@ -60,7 +61,7 @@
         // ten minutes, required for good granularity for durability degradation
         public sealed override double ServerUpdateIntervalSeconds => 10 * 60;
 
-        protected override double DefenseMultiplier { get; } = 0;
+        protected override double DefenseMultiplier => 0;
 
         /// <summary>
         /// Determines how much durability the implant should loss
@@ -72,15 +73,15 @@
         {
             if (!isEquipped)
             {
-                // drop unequipped implant only if full loot is enabled
-                shouldDrop = ItemConstants.ServerPvpIsFullLootEnabled;
+                // not installed implants always drop on death
+                shouldDrop = true;
                 return;
             }
 
-            // equipped implants never drop on death
+            // installed implants never drop on death
             shouldDrop = false;
 
-            // reduce equipped item's durability on death
+            // reduce implant's durability on death
             var fraction = MathHelper.Clamp(this.DurabilityFractionReduceOnDeath, 0, 1);
             var durabilityDelta = this.DurabilityMax * fraction;
             ItemDurabilitySystem.ServerModifyDurability(item,
@@ -113,6 +114,12 @@
         protected sealed override void PrepareDefense(DefenseDescription defense)
         {
             // no defenses
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+            hints.Add(ItemHints.ImplantApplication);
         }
 
         protected sealed override void PrepareProtoItemEquipment()
@@ -202,6 +209,7 @@
             {
                 (byte)EquipmentType.Implant,
                 (byte)EquipmentType.Implant + 1,
+                (byte)EquipmentType.Implant + 2,
             };
         }
     }

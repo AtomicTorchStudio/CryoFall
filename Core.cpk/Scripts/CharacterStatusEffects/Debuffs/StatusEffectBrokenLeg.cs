@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.Stats;
 
@@ -24,6 +25,17 @@
             // 20% move speed reduction
             // when we will implement the limping animation we will decrease the move speed even further
             effects.AddPercent(this, StatName.MoveSpeed, -20);
+        }
+
+        protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
+        {
+            if (data.Character.SharedGetFinalStatValue(StatName.ReinforcedBones) > 0)
+            {
+                // the character has reinforced bones so they cannot break
+                return;
+            }
+
+            base.ServerAddIntensity(data, intensityToAdd);
         }
 
         protected override void ServerSetup(StatusEffectData data)

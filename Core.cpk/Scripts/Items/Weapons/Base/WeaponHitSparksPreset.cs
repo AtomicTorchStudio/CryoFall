@@ -29,12 +29,18 @@
 
         public WeaponHitSparksPreset Add(
             ObjectMaterial material,
-            TextureAtlasResource textureAtlasResource,
+            double texturePivotY,
+            TextureAtlasResource texture,
             Color? lightColor = null,
-            bool useScreenBlending = false)
+            bool useScreenBlending = false,
+            bool allowRandomizedHitPointOffset = true)
         {
-            var frames = ClientComponentSpriteSheetAnimator.CreateAnimationFrames(textureAtlasResource);
-            this.HitSparksPreset[material] = new HitSparksEntry(frames, lightColor, useScreenBlending);
+            var frames = ClientComponentSpriteSheetAnimator.CreateAnimationFrames(texture);
+            this.HitSparksPreset[material] = new HitSparksEntry(frames,
+                                                                lightColor,
+                                                                useScreenBlending,
+                                                                texturePivotY,
+                                                                allowRandomizedHitPointOffset);
             return this;
         }
 
@@ -62,14 +68,20 @@
         }
 
         public WeaponHitSparksPreset SetDefault(
-            TextureAtlasResource textureAtlasResource,
+            double texturePivotY,
+            TextureAtlasResource texture,
             Color? lightColor = null,
-            bool useScreenBlending = false)
+            bool useScreenBlending = false,
+            bool allowRandomizedHitPointOffset = true)
         {
-            var frames = ClientComponentSpriteSheetAnimator.CreateAnimationFrames(textureAtlasResource);
+            var frames = ClientComponentSpriteSheetAnimator.CreateAnimationFrames(texture);
             foreach (var soundMaterial in AllSoundMaterials)
             {
-                this.HitSparksPreset[soundMaterial] = new HitSparksEntry(frames, lightColor, useScreenBlending);
+                this.HitSparksPreset[soundMaterial] = new HitSparksEntry(frames,
+                                                                         lightColor,
+                                                                         useScreenBlending,
+                                                                         texturePivotY,
+                                                                         allowRandomizedHitPointOffset);
             }
 
             return this;
@@ -77,7 +89,11 @@
 
         public readonly struct HitSparksEntry
         {
+            public readonly bool AllowRandomizedHitPointOffset;
+
             public readonly Color? LightColor;
+
+            public readonly double PivotY;
 
             public readonly ITextureResource[] SpriteSheetAnimationFrames;
 
@@ -86,11 +102,15 @@
             public HitSparksEntry(
                 ITextureResource[] spriteSheetAnimationFrames,
                 Color? lightColor,
-                bool useScreenBlending)
+                bool useScreenBlending,
+                double pivoY,
+                bool allowRandomizedHitPointOffset)
             {
+                this.AllowRandomizedHitPointOffset = allowRandomizedHitPointOffset;
                 this.SpriteSheetAnimationFrames = spriteSheetAnimationFrames;
                 this.LightColor = lightColor;
                 this.UseScreenBlending = useScreenBlending;
+                this.PivotY = pivoY;
             }
         }
     }

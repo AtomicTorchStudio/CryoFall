@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    internal class ObjectDecorationRugRed : ProtoObjectDecorationFloor
+    public class ObjectDecorationRugRed : ProtoObjectDecorationFloor
     {
         public override string Description => "This fancy floor rug can make any room feel warmer and nicer.";
 

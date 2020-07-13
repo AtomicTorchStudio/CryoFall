@@ -29,7 +29,7 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             var recipeMusket = Api.GetProtoEntity<RecipeMusket>();
             var recipeFlintlockPistol = Api.GetProtoEntity<RecipeFlintlockPistol>();

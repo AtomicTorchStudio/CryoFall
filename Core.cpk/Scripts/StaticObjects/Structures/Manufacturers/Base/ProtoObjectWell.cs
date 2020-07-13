@@ -129,7 +129,7 @@
             {
                 // perform electricity checks (if applies)
                 isActive = this.ElectricityConsumptionPerSecondWhenActive <= 0
-                           || publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn;
+                           || publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive;
             }
 
             publicState.IsActive = isActive;
@@ -205,7 +205,7 @@
 
             Logger.Important($"{character} drank water from {objectWell}");
 
-            // notify clients (to play sound)
+            // notify clients (to play a sound)
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(character, scopedBy);
             scopedBy.Add(character);

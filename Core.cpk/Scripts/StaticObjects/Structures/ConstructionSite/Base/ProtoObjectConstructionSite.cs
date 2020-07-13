@@ -69,6 +69,14 @@
             return publicState.ConstructionProto.Name;
         }
 
+        public override StaticObjectLayoutReadOnly GetLayout(IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject)
+                   .ConstructionProto?
+                   .Layout
+                   ?? this.Layout;
+        }
+
         public override IConstructionStageConfigReadOnly GetStructureActiveConfig(IStaticWorldObject staticWorldObject)
         {
             if (staticWorldObject.ProtoGameObject != this)
@@ -177,6 +185,14 @@
         protected override void ClientInteractStart(ClientObjectData data)
         {
             DeconstructionSystem.ClientTryStartAction();
+        }
+
+        protected override void ClientObserving(ClientObjectData data, bool isObserving)
+        {
+            if (isObserving)
+            {
+                ConstructionSystem.ClientTryStartAction(allowReplacingCurrentConstructionAction: false);
+            }
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()

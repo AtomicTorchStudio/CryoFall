@@ -3,6 +3,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -12,6 +13,10 @@
 
     public static class ServerDroplistHelper
     {
+        private static readonly IItemsServerService Items = Api.Server.Items;
+
+        private static readonly IWorldServerService World = Api.Server.World;
+
         public static CreateItemResult TryDropToCharacter(
             IReadOnlyDropItemsList dropItemsList,
             ICharacter character,
@@ -24,10 +29,8 @@
                 return new CreateItemResult() { IsEverythingCreated = false };
             }
 
-            var itemsService = Api.Server.Items;
-
             var result = dropItemsList.Execute(
-                (protoItem, count) => itemsService.CreateItem(character, protoItem, count),
+                (protoItem, count) => Items.CreateItem(protoItem, character, count),
                 context,
                 probabilityMultiplier);
 
@@ -49,37 +52,46 @@
             DropItemContext context,
             out IItemsContainer groundContainer)
         {
-            CreateItemResult result;
-            if (toCharacter != null)
-            {
-                result = TryDropToCharacter(
-                    dropItemsList,
-                    toCharacter,
-                    sendNoFreeSpaceNotification: false,
-                    probabilityMultiplier,
-                    context);
-                if (result.IsEverythingCreated)
-                {
-                    groundContainer = null;
-                    return result;
-                }
+            var containersProvider = new CharacterAndGroundContainersProvider(toCharacter, tilePosition);
 
-                // cannot add to character - rollback and drop on ground instead
-                result.Rollback();
+            var result = dropItemsList.Execute(
+                (protoItem, count) => Items.CreateItem(protoItem, containersProvider, count),
+                context,
+                probabilityMultiplier);
+
+            groundContainer = containersProvider.GroundContainer;
+            if (groundContainer is null)
+            {
+                return result;
             }
 
-            result = TryDropToGround(dropItemsList,
-                                     tilePosition,
-                                     probabilityMultiplier,
-                                     context,
-                                     out groundContainer);
-            if (sendNotificationWhenDropToGround
-                && result.TotalCreatedCount > 0)
+            if (groundContainer.OccupiedSlotsCount == 0)
             {
-                // notify player that there were not enough space in inventory so the items were dropped to the ground
-                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
-                    toCharacter,
-                    result.ItemAmounts.FirstOrDefault().Key?.ProtoItem);
+                // nothing is spawned, the ground container should be destroyed
+                World.DestroyObject(groundContainer.OwnerAsStaticObject);
+                groundContainer = null;
+            }
+            else
+            {
+                if (sendNotificationWhenDropToGround && result.TotalCreatedCount > 0)
+                {
+                    // notify player that there were not enough space in inventory so the items were dropped to the ground
+                    NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                        toCharacter,
+                        protoItemForIcon: result.ItemAmounts
+                                                .Keys
+                                                .FirstOrDefault(
+                                                    k => k.Container == containersProvider.GroundContainer)?
+                                                .ProtoItem);
+                }
+
+                // limit the ground container slots limit so players cannot use the extra slots
+                // to store more items than usually allowed
+                ObjectGroundItemsContainer.ServerTrimSlotsNumber(groundContainer);
+
+                WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
+                                                      toCharacter,
+                                                      WorldObjectClaimDuration.GroundItems);
             }
 
             return result;
@@ -91,10 +103,8 @@
             double probabilityMultiplier,
             DropItemContext context)
         {
-            var itemsService = Api.Server.Items;
-
             var result = dropItemsList.Execute(
-                (protoItem, count) => itemsService.CreateItem(protoItem, toContainer, count),
+                (protoItem, count) => Items.CreateItem(protoItem, toContainer, count),
                 context,
                 probabilityMultiplier);
 
@@ -109,7 +119,7 @@
             [CanBeNull] out IItemsContainer groundContainer)
         {
             // obtain the ground container to drop the items into
-            var tile = Api.Server.World.GetTile(tilePosition);
+            var tile = World.GetTile(tilePosition);
             groundContainer = ObjectGroundItemsContainer
                 .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
 
@@ -119,15 +129,25 @@
                 return new CreateItemResult() { IsEverythingCreated = false };
             }
 
-            var result = dropItemsList.TryDropToContainer(groundContainer, context, probabilityMultiplier);
+            // temporary raise the container slots limit
+            Items.SetSlotsCount(groundContainer, byte.MaxValue);
 
-            if (result.TotalCreatedCount == 0
-                && groundContainer.OccupiedSlotsCount == 0)
+            var result = dropItemsList.TryDropToContainer(groundContainer, context, probabilityMultiplier);
+            if (groundContainer.OccupiedSlotsCount == 0)
             {
                 // nothing is spawned, the ground container should be destroyed
-                Api.Server.World.DestroyObject(groundContainer.OwnerAsStaticObject);
+                World.DestroyObject(groundContainer.OwnerAsStaticObject);
                 groundContainer = null;
+                return result;
             }
+
+            // restore the container slots limit so players cannot use the extra slots
+            // to store more items than usually allowed
+            ObjectGroundItemsContainer.ServerTrimSlotsNumber(groundContainer);
+
+            WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
+                                                  context.HasCharacter ? context.Character : null,
+                                                  WorldObjectClaimDuration.GroundItems);
 
             return result;
         }

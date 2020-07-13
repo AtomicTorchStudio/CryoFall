@@ -171,7 +171,7 @@
                 <StackPanel Grid.Row="0"
                             Grid.Column="1"
                             Orientation="Horizontal">
-                    <TextBlock Text="{Binding TotalCapacity}"
+                    <TextBlock Text="{Binding TotalCapacity, StringFormat={}{0:N0}}"
                                FontWeight="Bold" />
                     <TextBlock Text=" " />
                     <!-- Text: EU -->
@@ -189,7 +189,7 @@
                 <StackPanel Grid.Row="1"
                             Grid.Column="1"
                             Orientation="Horizontal">
-                    <TextBlock Text="{Binding TotalCharge}"
+                    <TextBlock Text="{Binding TotalCharge, StringFormat={}{0:N0}}"
                                FontWeight="Bold" />
                     <TextBlock Text=" " />
                     <!-- Text: EU -->
