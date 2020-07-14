@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -25,25 +24,19 @@
     {
         private readonly IClientItemsContainer cargoItemsContainer;
 
-        private readonly Action onActiveTabChanged;
-
         private readonly VehiclePrivateState vehiclePrivateState;
 
         private readonly VehiclePublicState vehiclePublicState;
-
-        private bool isCargoTabActive;
 
         private bool isVehicleTabActive;
 
         public ViewModelWindowObjectVehicle(
             IDynamicWorldObject vehicle,
             FrameworkElement vehicleExtraControl,
-            IViewModelWithActiveState vehicleExtraControlViewModel,
-            Action onActiveTabChanged)
+            IViewModelWithActiveState vehicleExtraControlViewModel)
         {
             this.VehicleExtraControl = vehicleExtraControl;
             this.VehicleExtraControlViewModel = vehicleExtraControlViewModel;
-            this.onActiveTabChanged = onActiveTabChanged;
             if (vehicleExtraControl != null)
             {
                 vehicleExtraControl.DataContext = vehicleExtraControlViewModel;
@@ -115,25 +108,7 @@
 
         public bool IsCanRepair { get; private set; }
 
-        public bool IsCargoTabActive
-        {
-            get => this.isCargoTabActive;
-            set
-            {
-                if (this.isCargoTabActive == value)
-                {
-                    return;
-                }
-
-                this.isCargoTabActive = value;
-                this.NotifyThisPropertyChanged();
-
-                if (value)
-                {
-                    this.onActiveTabChanged();
-                }
-            }
-        }
+        public bool IsCargoTabActive { get; set; }
 
         public bool IsVehicleTabActive
         {
@@ -175,11 +150,6 @@
                 this.ViewModelItemsContainerExchange.IsActive = wasContainerExchangeActive;
 
                 this.NotifyThisPropertyChanged();
-
-                if (value)
-                {
-                    this.onActiveTabChanged();
-                }
             }
         }
 

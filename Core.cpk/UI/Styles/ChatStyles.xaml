@@ -26,7 +26,6 @@
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="12.5" />
-        <!-- This doesn't work in NoesisGUI https://www.noesisengine.com/bugs/view.php?id=1460 -->
         <Setter Property="TextBlock.LineHeight" Value="13" />
         <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="AcceptsReturn" Value="False" />

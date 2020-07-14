@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Hacking
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -28,6 +30,8 @@
             this.protoHackableContainer = (IProtoObjectHackableContainer)worldObject.ProtoWorldObject;
             this.currentStageDurationSeconds = this.CalculateStageDurationSeconds(character, isFirstStage: true);
             this.currentStageTimeRemainsSeconds = this.currentStageDurationSeconds;
+
+            this.SharedTryClaimObject();
         }
 
         public override IWorldObject TargetWorldObject => this.WorldObject;
@@ -88,6 +92,8 @@
 
         private void SharedOnStageCompleted()
         {
+            this.SharedTryClaimObject();
+
             this.currentStageDurationSeconds = this.CalculateStageDurationSeconds(this.Character, isFirstStage: false);
             this.currentStageTimeRemainsSeconds += this.currentStageDurationSeconds;
 
@@ -116,6 +122,18 @@
 
             this.SetCompleted(isCancelled: false);
             HackingSystem.SharedActionCompleted(this.Character, this);
+        }
+
+        private void SharedTryClaimObject()
+        {
+            if (Api.IsServer)
+            {
+                WorldObjectClaimSystem.ServerTryClaim(
+                    this.WorldObject,
+                    this.Character,
+                    durationSeconds: Math.Max(this.currentStageDurationSeconds + 5,
+                                              WorldObjectClaimDuration.EventObjects));
+            }
         }
 
         private void UpdateProgress()

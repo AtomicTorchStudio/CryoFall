@@ -14,15 +14,9 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
-        <StackPanel Orientation="Vertical" 
-                    HorizontalAlignment="Center" 
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-
-            <Rectangle Fill="{StaticResource LiquidIconWater}"
-                       HorizontalAlignment="Center"
-                       Width="18"
-                       Height="18"
-                       Margin="0,0,-4,1" />
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical"
@@ -46,12 +40,21 @@
                     Margin="0,0,-6,0"
                     Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />-->
 
-                <core:ValueBarControl
-                    Value="{Binding ViewModelLiquidContainerState.Amount}"
-                    MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
-                    Foreground="{StaticResource LiquidBrushWater}"
-                    Margin="20,0"
-                    Style="{StaticResource LiquidMediumValueBar}" />
+                <Grid>
+                    <Rectangle Fill="{StaticResource LiquidIconWater}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Width="18"
+                               Height="18"
+                               Margin="0,-20,0,0" />
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelLiquidContainerState.Amount}"
+                        MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
+                        Foreground="{StaticResource LiquidBrushWater}"
+                        Margin="20,0"
+                        Style="{StaticResource LiquidMediumValueBar}" />
+                </Grid>
+
 
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Left"
@@ -71,7 +74,8 @@
             <!-- Text: Drink -->
             <Button Content="{x:Static loc:CoreStrings.Button_Drink}"
                     Command="{Binding CommandDrink}"
-                    Margin="0,23,0,0" Focusable="False" />
+                    Margin="0,23,0,0" 
+                    Focusable="False" />
 
         </StackPanel>
 

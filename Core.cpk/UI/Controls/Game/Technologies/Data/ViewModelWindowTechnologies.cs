@@ -103,7 +103,7 @@
 
                 if (this.listSelectedTechGroup != null)
                 {
-                    this.ShowCannotUnlockTechGroup();
+                    this.ShowCannotUnlockTechGroup(isUnlockAttempt: false);
                 }
             }
         }
@@ -223,7 +223,7 @@
 
             if (!techGroup.CanUnlock)
             {
-                this.ShowCannotUnlockTechGroup();
+                this.ShowCannotUnlockTechGroup(isUnlockAttempt: true);
                 return;
             }
 
@@ -244,7 +244,7 @@
             }
         }
 
-        private void ShowCannotUnlockTechGroup()
+        private void ShowCannotUnlockTechGroup(bool isUnlockAttempt)
         {
             var character = ClientCurrentCharacterHelper.Character;
 
@@ -254,6 +254,12 @@
             var stringBuilder = new StringBuilder();
             foreach (var requirement in requirements)
             {
+                if (!isUnlockAttempt
+                    && requirement is TechGroupRequirementLearningPoints)
+                {
+                    continue;
+                }
+
                 if (requirement.IsSatisfied(character, out var errorMessage))
                 {
                     continue;

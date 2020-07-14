@@ -20,9 +20,9 @@
         public override string Description =>
             "Heavy cannon that uses coherent charges of accelerated particles to damage the target.";
 
-        public override uint DurabilityMax => 2000;
+        public override uint DurabilityMax => 2500;
 
-        public override ushort EnergyUsePerShot => 1000;
+        public override ushort EnergyUsePerShot => 750;
 
         public override double FireInterval => 1 / 2.5;
 
@@ -58,8 +58,8 @@
         protected override void PrepareProtoWeaponRangedEnergy(ref DamageDescription damageDescription)
         {
             damageDescription = new DamageDescription(
-                damageValue: 24, // this may seem high, but because of the spread not all projectiles hit the target
-                armorPiercingCoef: 0.0,
+                damageValue: 25, // this may seem high, but because of the spread not all projectiles hit the target
+                armorPiercingCoef: 0.3,
                 finalDamageMultiplier: 2.0,
                 // the range is the same as for the autocannons that are using 10 mm or .300 cal ammo
                 rangeMax: 10,

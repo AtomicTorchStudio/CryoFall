@@ -65,6 +65,9 @@
         public bool IsDead { get; set; }
 
         [SyncToClient]
+        public bool IsHeadEquipmentHiddenForSelfAndPartyMembers { get; set; }
+
+        [SyncToClient]
         public bool IsMale { get; set; }
 
         [SyncToClient]
@@ -152,7 +155,7 @@
             var character = (ICharacter)this.GameObject;
             if (Api.IsServer)
             {
-                this.SelectedItem?.ProtoItem.ServerItemHotbarSelectionChanged(this.SelectedItem, 
+                this.SelectedItem?.ProtoItem.ServerItemHotbarSelectionChanged(this.SelectedItem,
                                                                               character,
                                                                               isSelected: false);
             }
@@ -161,8 +164,8 @@
 
             if (Api.IsServer)
             {
-                this.SelectedItem?.ProtoItem.ServerItemHotbarSelectionChanged(this.SelectedItem, 
-                                                                              character, 
+                this.SelectedItem?.ProtoItem.ServerItemHotbarSelectionChanged(this.SelectedItem,
+                                                                              character,
                                                                               isSelected: true);
             }
 

@@ -8,13 +8,14 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemTooltipWeaponStats, IsDesignTimeCreatable=True}"
     UseLayoutRounding="False"
+    HorizontalAlignment="Left"
     Margin="0,0,0,3"
-    Opacity="0.7"
-    HorizontalAlignment="Left">
+    Opacity="0.7">
 
     <base:BaseUserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TooltipStatTextBlock}" />
@@ -42,7 +43,8 @@
 
         <!-- For ranged weapons -->
         <Grid Grid.Row="2"
-              Visibility="{Binding IsRangedWeapon, Converter={StaticResource BoolToVisibilityConverter}}">
+              Visibility="{Binding IsRangedWeapon, Converter={StaticResource BoolToVisibilityConverter}}"
+              services:SharedFirstColumnWidthService.Enabled="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="5" />
@@ -113,7 +115,8 @@
 
         <!-- For melee weapons -->
         <Grid Grid.Row="2"
-              Visibility="{Binding IsRangedWeapon, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+              Visibility="{Binding IsRangedWeapon, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+              services:SharedFirstColumnWidthService.Enabled="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="5" />

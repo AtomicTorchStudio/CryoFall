@@ -38,6 +38,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
@@ -238,6 +239,12 @@
                 _ => ResetRendering(resetSkeleton: true),
                 clientState);
 
+            // subscribe on head equipment visibility change
+            publicState.ClientSubscribe(
+                _ => _.IsHeadEquipmentHiddenForSelfAndPartyMembers,
+                _ => ResetRendering(resetSkeleton: true),
+                clientState);
+
             // subscribe on vehicle change
             publicState.ClientSubscribe(
                 _ => _.CurrentVehicle,
@@ -429,7 +436,7 @@
                 NewbieProtectionSystem.ServerRegisterNewbie(character);
             }
 
-            publicState.IsMale = true;
+            publicState.IsMale = 1 == RandomHelper.Next(0, maxValueExclusive: 2); // male/female ratio: 50/50
             publicState.FaceStyle = SharedCharacterFaceStylesProvider
                                     .GetForGender(publicState.IsMale)
                                     .GenerateRandomFace();

@@ -9,14 +9,16 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemTooltipInfoDamageDescription, IsDesignTimeCreatable=True}"
+    HorizontalAlignment="Left"
     VerticalAlignment="Bottom"
     Margin="0,0,0,3"
     UseLayoutRounding="False"
     Opacity="0.7"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data">
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
 
-    <Grid>
+    <Grid services:SharedFirstColumnWidthService.Enabled="True">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
@@ -48,17 +50,19 @@
         <ItemsControl Grid.Row="0"
                       Grid.Column="2"
                       ItemsSource="{Binding DamageProportions}"
-                      Margin="-1">
+                      Margin="-1,0"
+                      HorizontalAlignment="Left">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
+                    <WrapPanel MaxWidth="160" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border CornerRadius="3"
                             Background="#BB4B5562"
-                            Margin="3,2,0,2">
+                            Margin="3,1,0,1"
+                            HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding IconImageSource}"
                                    Width="16"

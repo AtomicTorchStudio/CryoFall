@@ -64,7 +64,6 @@
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.32, center: (0.5, 0.35))
                 .AddShapeCircle(radius: 0.32, center: (0.5, 0.4), group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.3, center: (0.5, 0.45), group: CollisionGroups.HitboxRanged)
                 .AddShapeCircle(radius: 0.35, center: (0.5, 0.35), group: CollisionGroups.ClickArea);
         }
 

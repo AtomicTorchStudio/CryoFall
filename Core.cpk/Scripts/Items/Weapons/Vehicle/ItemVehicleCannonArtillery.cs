@@ -36,6 +36,8 @@
 
         public override double FireInterval => 1.5; // very slow
 
+        public override double RangeMultiplier => 1.3; // this way shells will have 13 tile radius, same as sniper rifle
+
         public override string Name => "Artillery cannon";
 
         public override double ReadyDelayDuration => 0;

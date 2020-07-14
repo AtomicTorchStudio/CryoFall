@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using AtomicTorch.GameEngine.Common.Extensions;
 
-    public struct ViewModelEnum<TValue> : IEquatable<ViewModelEnum<TValue>>
+    public readonly struct ViewModelEnum<TValue> : IEquatable<ViewModelEnum<TValue>>
         where TValue : struct, Enum
     {
         public ViewModelEnum(TValue value)

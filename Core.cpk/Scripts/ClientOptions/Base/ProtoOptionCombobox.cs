@@ -25,7 +25,7 @@
     {
         private readonly Lazy<Dictionary<TEnumValue, ViewModelEnum<TEnumValue>>> viewModels;
 
-        public ProtoOptionCombobox()
+        protected ProtoOptionCombobox()
         {
             this.viewModels =
                 new Lazy<Dictionary<TEnumValue, ViewModelEnum<TEnumValue>>>(
@@ -36,21 +36,6 @@
             => this.DefaultEnumValue;
 
         public abstract TEnumValue DefaultEnumValue { get; }
-
-        //// TODO: remove this bad override as soon as NoesisGUI will support value binding for combobox
-        //public override void ApplyAbstractValue(object value)
-        //{
-        //    if (value is TEnumValue casted
-        //        && this.viewModels.Value.TryGetValue(casted, out var valueViewModel))
-        //    {
-        //        base.ApplyAbstractValue(valueViewModel);
-        //        return;
-        //    }
-
-        //    Logger.WriteWarning(
-        //        $"Option {this.Name} cannot apply abstract value - type mismatch. Will reset option to the default value");
-        //    this.Reset();
-        //}
 
         public override object GetAbstractValue()
         {

@@ -20,7 +20,7 @@
                                         typeof(ItemTooltipControl),
                                         new PropertyMetadata(default(IItem), PropertyChangedHandler));
 
-        private Grid layoutRoot;
+        private FrameworkElement layoutRoot;
 
         private ViewModelItemTooltip viewModel;
 
@@ -58,7 +58,7 @@
 
         protected override void InitControl()
         {
-            this.layoutRoot = this.GetByName<Grid>("LayoutRoot");
+            this.layoutRoot = this.GetByName<FrameworkElement>("LayoutRoot");
         }
 
         protected override void OnLoaded()

@@ -13,12 +13,25 @@
             Instance.CallServer(_ => _.ServerRemote_ChangeStyle(style, isMale));
         }
 
+        public static void ClientSetHeadEquipmentVisibility(bool isHeadEquipmentHiddenForSelfAndPartyMembers)
+        {
+            Instance.CallServer(_ => _.ServerRemote_SetHeadEquipmentVisibility(
+                                    isHeadEquipmentHiddenForSelfAndPartyMembers));
+        }
+
         private void ServerRemote_ChangeStyle(CharacterHumanFaceStyle style, bool isMale)
         {
             var character = ServerRemoteContext.Character;
             var publicState = PlayerCharacter.GetPublicState(character);
             publicState.IsMale = isMale;
             publicState.FaceStyle = style;
+        }
+
+        private void ServerRemote_SetHeadEquipmentVisibility(bool isHeadEquipmentHiddenForSelfAndPartyMembers)
+        {
+            var character = ServerRemoteContext.Character;
+            var publicState = PlayerCharacter.GetPublicState(character);
+            publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers = isHeadEquipmentHiddenForSelfAndPartyMembers;
         }
     }
 }

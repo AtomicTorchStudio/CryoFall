@@ -30,6 +30,11 @@
 
             config.AddStatEffect(
                 statName,
+                level: 10,
+                percentBonus: 5);
+
+            config.AddStatEffect(
+                statName,
                 level: 15,
                 percentBonus: 5);
 

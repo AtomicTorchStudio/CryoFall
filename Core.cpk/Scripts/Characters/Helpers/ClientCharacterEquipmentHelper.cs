@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -294,13 +295,14 @@
                 return;
             }
 
-            bool isMale;
+            bool isMale, isHeadEquipmentHiddenForSelfAndPartyMembers;
             CharacterHumanFaceStyle faceStyle;
             if (character.ProtoCharacter is PlayerCharacter)
             {
-                var pubicState = PlayerCharacter.GetPublicState(character);
-                faceStyle = pubicState.FaceStyle;
-                isMale = pubicState.IsMale;
+                var publicState = PlayerCharacter.GetPublicState(character);
+                faceStyle = publicState.FaceStyle;
+                isMale = publicState.IsMale;
+                isHeadEquipmentHiddenForSelfAndPartyMembers = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers;
 
                 if (isMale && !(skeleton is SkeletonHumanMale)
                     || !isMale && !(skeleton is SkeletonHumanFemale))
@@ -314,6 +316,7 @@
                 // for NPC it will generate a random face
                 isMale = true;
                 faceStyle = SharedCharacterFaceStylesProvider.GetForGender(isMale).GenerateRandomFace();
+                isHeadEquipmentHiddenForSelfAndPartyMembers = false;
             }
 
             skeletonRenderer.ResetAttachments();
@@ -328,8 +331,20 @@
             {
                 // use colorizer for the original sprites (to apply the skin tone)
                 skeletonRenderer.DefaultTextureRemapper
-                    = textureResource => ClientCharacterSkinHelper.GetSkinProceduralTexture(textureResource,
-                                                                                            skinToneId);
+                    = textureResource =>
+                      {
+                          var filePath = textureResource.LocalPath;
+                          if (filePath.IndexOf("/Weapon",  StringComparison.Ordinal) >= 0
+                              || filePath.IndexOf("/Head", StringComparison.Ordinal) >= 0)
+                          {
+                              // no need to remap the original head and weapon sprites
+                              // (they're never used as is)
+                              return textureResource;
+                          }
+
+                          return ClientCharacterSkinTexturesCache.Get(textureResource,
+                                                                      skinToneId);
+                      };
             }
 
             // setup equipment items
@@ -359,7 +374,7 @@
                 }
             }
 
-            IItem headEquipment = null;
+            IItem headEquipmentForFaceSprite = null;
             foreach (var item in equipmentItems.AsList())
             {
                 var proto = (IProtoItemEquipment)item.ProtoGameObject;
@@ -370,10 +385,17 @@
                                           isPreview);
 
                 if (item.ProtoItem is IProtoItemEquipmentHead
-                    && headEquipment == null)
+                    && headEquipmentForFaceSprite == null)
                 {
-                    headEquipment = item;
+                    headEquipmentForFaceSprite = item;
                 }
+            }
+
+            if (isHeadEquipmentHiddenForSelfAndPartyMembers
+                && (character.IsCurrentClientCharacter
+                    || PartySystem.ClientIsPartyMember(character.Name)))
+            {
+                headEquipmentForFaceSprite = null;
             }
 
             // generate head sprites for human players
@@ -391,7 +413,9 @@
                     $"Head Front CharacterID={character.Id} gen={headGenerationId}",
                     proceduralTextureRequest =>
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
-                            new CharacterHeadSpriteData(faceStyle, headEquipment, skeleton.SkeletonResourceFront),
+                            new CharacterHeadSpriteData(faceStyle,
+                                                        headEquipmentForFaceSprite,
+                                                        skeleton.SkeletonResourceFront),
                             proceduralTextureRequest,
                             isMale,
                             isFrontFace: true,
@@ -407,7 +431,9 @@
                     $"Head Back CharacterID={character.Id} gen={headGenerationId}",
                     proceduralTextureRequest =>
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
-                            new CharacterHeadSpriteData(faceStyle, headEquipment, skeleton.SkeletonResourceBack),
+                            new CharacterHeadSpriteData(faceStyle,
+                                                        headEquipmentForFaceSprite,
+                                                        skeleton.SkeletonResourceBack),
                             proceduralTextureRequest,
                             isMale,
                             isFrontFace: false,

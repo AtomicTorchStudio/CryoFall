@@ -248,50 +248,47 @@
                 return true;
             }
 
+            if (IsClient)
+            {
+                // unfortunately we cannot perform owner check on the client
+                return true;
+            }
+
             var pilot = targetObject.GetPublicState<VehiclePublicState>()
                                     .PilotCharacter;
 
-            if (pilot is null)
+            if (weaponCache.Character is null)
             {
-                if (IsClient)
-                {
-                    // unfortunately we cannot perform owner check on the client
-                    return true;
-                }
-
-                if (weaponCache.Character is null)
-                {
-                    // vehicle cannot be damaged by explosions and other non-player stuff
-                    return false;
-                }
-
-                if (WorldObjectOwnersSystem.SharedIsOwner(weaponCache.Character, targetObject))
-                {
-                    // vehicle damage by vehicle owner is disabled in PvE
-                    return false;
-                }
-
-                if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob
-                    && protoCharacterMob.IsBoss)
-                {
-                    // boss can damage a vehicle without a pilot
-                    return true;
-                }
-            }
-            else // pilot is not null
-            {
-                if (WeaponDamageSystem.SharedCanHitCharacter(weaponCache,
-                                                             targetCharacter: pilot))
-                {
-                    // probably the vehicle's pilot character is in duel mode
-                    return true;
-                }
+                // vehicle cannot be damaged by explosions and other non-player stuff
+                return false;
             }
 
-            if (IsClient && showClientNotification)
+            if (WorldObjectOwnersSystem.SharedIsOwner(weaponCache.Character, targetObject))
             {
-                ClientShowNotificationCannotDamagePlayersAndStructures();
+                // vehicle damage by vehicle owner is disabled in PvE
+                return false;
             }
+
+            if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob
+                && protoCharacterMob.IsBoss)
+            {
+                // boss can damage any vehicle
+                return true;
+            }
+
+            if (pilot != null
+                && WeaponDamageSystem.SharedCanHitCharacter(weaponCache,
+                                                              targetCharacter: pilot))
+            {
+                // probably the pilot character is in the Duel mode
+                return true;
+            }
+
+            // commented out as it's definitely server side code
+            //if (IsClient && showClientNotification)
+            //{
+            //    ClientShowNotificationCannotDamagePlayersAndStructures();
+            //}
 
             return false;
         }

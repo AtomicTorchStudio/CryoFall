@@ -96,11 +96,17 @@
                 Visibility="{Binding IsLandClaimDecayInfoConfirmed, Converter={StaticResource BoolToVisibilityConverter}}"
                 Style="{StaticResource TabControlCompactStyle}">
 
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemCompactStyle}">
+                        <Setter Property="Padding" Value="5" />
+                    </Style>
+                </TabControl.Resources>
+
                 <!-- Text: Main -->
                 <TabItem Header="{x:Static loc:CoreStrings.Window_Tab_Main}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.69*" />
+                            <ColumnDefinition Width="0.7*" />
                             <ColumnDefinition Width="30" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>

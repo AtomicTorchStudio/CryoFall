@@ -130,7 +130,20 @@
             this.ViewModelSafeStorageItemsContainerExchange.Container.SlotsCount
             > ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity;
 
-        public Action OnActiveTabChanged { get; set; }
+        public bool IsSafeStorageTabSelected
+        {
+            get => this.isSafeStorageTabSelected;
+            set
+            {
+                if (this.isSafeStorageTabSelected == value)
+                {
+                    return;
+                }
+
+                this.isSafeStorageTabSelected = value;
+                this.NotifyThisPropertyChanged();
+            }
+        }
 
         public ViewModelWorldObjectOwnersEditor ViewModelOwnersEditor { get; }
 
@@ -145,21 +158,6 @@
         public ViewModelShieldProtectionControl ViewModelShieldProtectionControl { get; }
 
         public ViewModelStructureUpgrade ViewModelStructureUpgrade { get; }
-
-        public bool IsSafeStorageTabSelected
-        {
-            get => this.isSafeStorageTabSelected;
-            set { 
-                if (this.isSafeStorageTabSelected == value)
-                {
-                    return;
-                }
-
-                this.isSafeStorageTabSelected = value;
-                this.NotifyThisPropertyChanged();
-                this.OnActiveTabChanged();
-            }
-        }
 
         protected override void DisposeViewModel()
         {

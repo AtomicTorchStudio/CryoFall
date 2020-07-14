@@ -26,6 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="{x:Static loc:CoreStrings.Weapon_CurrentAmmo}"
+                   Grid.ColumnSpan="2"
                    FontSize="11"
                    FontWeight="Bold"
                    Margin="0,0,0,-3"
@@ -38,6 +39,9 @@
                    Margin="2,0,0,0"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
+                   MaxWidth="180"
+                   LineHeight="11"
+                   LineStackingStrategy="BlockLineHeight"
                    Opacity="0.8" />
 
         <Rectangle Grid.Row="1"

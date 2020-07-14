@@ -12,6 +12,8 @@
 
     public class ObjectStoveElectric : ProtoObjectManufacturer
     {
+        private const float HorizontalOffset = 0.215f;
+
         private static TextureResource textureActive;
 
         public override byte ContainerFuelSlotsCount => 0;
@@ -68,6 +70,7 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY = 0.25;
+            renderer.PositionOffset = (HorizontalOffset - 0.045, 0);
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
@@ -109,11 +112,11 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var offsetX = HorizontalOffset;
             data.PhysicsBody
-                .AddShapeRectangle(size: (1.57, 0.8), offset: (0.05, 0))
-                .AddShapeRectangle(size: (1.57, 0.3), offset: (0.05, 0.6),  group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (1.57, 0.3), offset: (0.05, 0.85), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1.57, 1.4), offset: (0.05, 0),    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (1.57, 0.8), offset: (offsetX, 0))
+                .AddShapeRectangle(size: (1.57, 0.3), offset: (offsetX, 0.6), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.57, 1.4), offset: (offsetX, 0),   group: CollisionGroups.ClickArea);
         }
     }
 }

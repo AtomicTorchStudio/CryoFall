@@ -21,7 +21,7 @@
         public override string Description =>
             "Light design for mechanized battle armor. Boasts relatively high speed while not lacking in armor or firepower.";
 
-        public override ushort EnergyUsePerSecondIdle => 70;
+        public override ushort EnergyUsePerSecondIdle => 60;
 
         public override ushort EnergyUsePerSecondMoving => 250;
 

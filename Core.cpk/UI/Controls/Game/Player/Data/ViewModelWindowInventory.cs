@@ -2,13 +2,15 @@
 {
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterStyle;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelWindowInventory : BaseViewModel
@@ -19,6 +21,8 @@
 
         private bool isActive;
 
+        private bool isHeadEquipmentDisplayed;
+
         public ViewModelWindowInventory(FrameworkElement controlSkeletonView = null)
         {
             if (IsDesignTime)
@@ -26,7 +30,7 @@
                 return;
             }
 
-            this.character = Api.Client.Characters.CurrentPlayerCharacter;
+            this.character = ClientCurrentCharacterHelper.Character;
             this.ContainerInventory = (IClientItemsContainer)this.character.SharedGetPlayerContainerInventory();
             this.ContainerEquipment = (IClientItemsContainer)this.character.SharedGetPlayerContainerEquipment();
             this.containerHand = (IClientItemsContainer)this.character.SharedGetPlayerContainerHand();
@@ -35,6 +39,13 @@
             this.InventorySkeleton.CurrentCharacter = this.character;
 
             this.DefenseStats.CurrentCharacter = this.character;
+
+            var publicState = ClientCurrentCharacterHelper.PublicState;
+            this.isHeadEquipmentDisplayed = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers;
+            publicState.ClientSubscribe(
+                _ => _.IsHeadEquipmentHiddenForSelfAndPartyMembers,
+                _ => this.IsHeadEquipmentDisplayed = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers,
+                this);
         }
 
         public BaseCommand CommandOpenHelpMenu
@@ -55,6 +66,8 @@
 
         public ViewModelCharacterDefenseStats DefenseStats { get; }
             = new ViewModelCharacterDefenseStats();
+
+        public bool HasHeadEquipmentOrFullBodyArmorEquipped { get; set; }
 
         public ViewModelInventorySkeleton InventorySkeleton { get; }
             = new ViewModelInventorySkeleton();
@@ -98,7 +111,24 @@
             }
         }
 
-        public bool IsHeadAndLegsSlotsVisible { get; private set; }
+        public bool IsHeadEquipmentDisplayed
+        {
+            get => this.isHeadEquipmentDisplayed;
+            set
+            {
+                if (this.isHeadEquipmentDisplayed == value)
+                {
+                    return;
+                }
+
+                this.isHeadEquipmentDisplayed = value;
+                this.NotifyThisPropertyChanged();
+
+                CharacterStyleSystem.ClientSetHeadEquipmentVisibility(this.isHeadEquipmentDisplayed);
+            }
+        }
+
+        public bool IsHeadSlotBlocked { get; private set; }
 
         public string ItemInHandUseText { get; private set; }
 
@@ -138,7 +168,10 @@
                                    && protoEquipment.EquipmentType == EquipmentType.FullBody;
 
             // hide head and legs slot when full body armor is equipped
-            this.IsHeadAndLegsSlotsVisible = hasFullBodyArmor;
+            this.IsHeadSlotBlocked = hasFullBodyArmor;
+
+            var hasHeadEquipment = this.ContainerEquipment.GetItemAtSlot((byte)EquipmentType.Head) != null;
+            this.HasHeadEquipmentOrFullBodyArmorEquipped = hasFullBodyArmor || hasHeadEquipment;
         }
     }
 }

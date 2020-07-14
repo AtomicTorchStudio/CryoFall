@@ -10,7 +10,8 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelCrateIconControl, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
 
     <Button Style="{StaticResource SmallButtonStyle}"
             Padding="3"
@@ -18,6 +19,12 @@
         <base:ToolTipServiceExtend.ToolTip>
             <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.CrateIconControl_SelectIcon}" />
         </base:ToolTipServiceExtend.ToolTip>
+
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseRightButtonUp">
+                <i:InvokeCommandAction Command="{Binding CommandResetIcon}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
 
         <Grid>
             <Rectangle Fill="{Binding IconPlaceholder}"

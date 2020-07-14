@@ -123,7 +123,7 @@
                 return true;
             }
 
-            if (showClientNotification)
+            if (IsClient && showClientNotification)
             {
                 NotificationSystem.ClientShowNotification(
                     CoreStrings.WorldObjectClaim_Title,

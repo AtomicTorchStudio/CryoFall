@@ -131,7 +131,7 @@
             Api.Client.UI.AttachControl(
                 data.GameObject,
                 new ObjectHackingProgressDisplayControl(data.PublicState),
-                positionOffset: this.SharedGetObjectCenterWorldOffset(data.GameObject) + (0, 1.3),
+                positionOffset: this.SharedGetObjectCenterWorldOffset(data.GameObject) + (0, 1.35),
                 isFocusable: false);
 
             // flip renderer with some deterministic randomization

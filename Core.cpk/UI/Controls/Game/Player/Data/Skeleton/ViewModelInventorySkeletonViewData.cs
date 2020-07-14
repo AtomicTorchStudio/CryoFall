@@ -21,8 +21,6 @@
 
         private readonly ICharacter character;
 
-        private readonly PlayerCharacterClientState clientState;
-
         private readonly string renderingTag;
 
         private readonly IClientSceneObject sceneObjectCamera;
@@ -81,9 +79,15 @@
             //    this);
 
             // subscribe on change of the equipment
-            this.clientState = PlayerCharacter.GetClientState(character);
-            this.clientState.ClientSubscribe(
+            var clientState = PlayerCharacter.GetClientState(character);
+            clientState.ClientSubscribe(
                 _ => _.LastEquipmentContainerHash,
+                _ => this.OnNeedRefreshEquipment(),
+                this);
+
+            var publicState = PlayerCharacter.GetPublicState(character);
+            publicState.ClientSubscribe(
+                _ => _.IsHeadEquipmentHiddenForSelfAndPartyMembers,
                 _ => this.OnNeedRefreshEquipment(),
                 this);
 
@@ -100,8 +104,8 @@
         {
             this.isNeedRefreshEquipment = false;
 
-            this.character.ProtoCharacter.SharedGetSkeletonProto(this.character, 
-                                                                 out var currentProtoCharacterSkeleton, 
+            this.character.ProtoCharacter.SharedGetSkeletonProto(this.character,
+                                                                 out var currentProtoCharacterSkeleton,
                                                                  out _);
 
             if (this.protoCharacterSkeleton != currentProtoCharacterSkeleton)

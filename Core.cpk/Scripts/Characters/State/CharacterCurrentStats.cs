@@ -174,8 +174,23 @@
 
         public void ServerSetHealthMax(float maxHealth)
         {
+            if (this.HealthMax == maxHealth)
+            {
+                return;
+            }
+
+            var healthCurrent = this.HealthCurrent;
+            if (this.HealthMax > 0
+                && maxHealth > 0
+                && healthCurrent > 0)
+            {
+                // recalculate current health to keep the ratio
+                healthCurrent = maxHealth * (healthCurrent / this.HealthMax);
+            }
+
             this.HealthMax = maxHealth;
-            this.ServerSetHealthCurrent(this.HealthCurrent);
+            // reapply current health
+            this.ServerSetHealthCurrent(healthCurrent);
         }
 
         protected void SharedTryRefreshFinalCache()

@@ -120,6 +120,8 @@
                                                TextTrimming="None"
                                                TextWrapping="Wrap"
                                                FontSize="16"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
                                                FontWeight="Bold"
                                                Foreground="{StaticResource BrushColor6}"
                                                FontFamily="{StaticResource CondensedFontFamily}"

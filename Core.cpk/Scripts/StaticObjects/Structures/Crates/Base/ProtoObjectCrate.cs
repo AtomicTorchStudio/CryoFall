@@ -242,7 +242,6 @@
             data.PhysicsBody
                 .AddShapeRectangle((0.9, 0.475), offset: (0.05, 0.4))
                 .AddShapeRectangle((0.9, 0.75),  offset: (0.05, 0.4), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((0.9, 0.2),   offset: (0.05, 1.1), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle((0.9, 0.85),  offset: (0.05, 0.4), group: CollisionGroups.ClickArea);
         }
 

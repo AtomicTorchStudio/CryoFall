@@ -1164,7 +1164,7 @@ UI/CoreStrings@ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtectio
 Эта точка контроля находится под активной защитой щита.
 
 UI/CoreStrings@ShieldProtection_EstimatedDuration:
-Предполагаемая длительность:
+Текущая длительность:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Макс. длительность:

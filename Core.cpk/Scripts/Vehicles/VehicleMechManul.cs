@@ -21,7 +21,7 @@
         public override string Description =>
             "Medium design for mechanized battle armor. Boasts substantial defensive capabilities and massive cargo holds without sacrificing in other areas.";
 
-        public override ushort EnergyUsePerSecondIdle => 85;
+        public override ushort EnergyUsePerSecondIdle => 70;
 
         public override ushort EnergyUsePerSecondMoving => 300;
 

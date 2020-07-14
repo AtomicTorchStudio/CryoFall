@@ -1,20 +1,16 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle
 {
     using System.Windows;
-    using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class WindowObjectVehicle : BaseUserControlWithWindow
     {
         private static WindowObjectVehicle instance;
 
         private IDynamicWorldObject objectVehicle;
-
-        private TabControl tabControl;
 
         private FrameworkElement vehicleExtraControl;
 
@@ -51,9 +47,6 @@
         {
             // TODO: redone this to cached window when NoesisGUI implement proper Storyboard.Completed triggers
             this.Window.IsCached = false;
-
-            this.tabControl = this.GetByName<WindowMenuWithInventory>("WindowMenuWithInventory")
-                                  .GetByName<TabControl>("TabControl");
         }
 
         protected override void OnLoaded()
@@ -64,8 +57,7 @@
                 = this.ViewModel =
                       new ViewModelWindowObjectVehicle(this.objectVehicle,
                                                        this.vehicleExtraControl,
-                                                       this.vehicleExtraControlViewModel,
-                                                       this.ActiveTabChangedHandler);
+                                                       this.vehicleExtraControlViewModel);
         }
 
         protected override void OnUnloaded()
@@ -80,20 +72,6 @@
             {
                 instance = null;
             }
-        }
-
-        private void ActiveTabChangedHandler()
-        {
-            if (this.ViewModel is null)
-            {
-                return;
-            }
-
-            // NoesisGUI bug workaround to ensure the previously selected tab is clickable 
-            // https://www.noesisengine.com/bugs/view.php?id=1751
-            this.tabControl.Visibility = Visibility.Collapsed;
-            this.tabControl.UpdateLayout();
-            this.tabControl.Visibility = Visibility.Visible;
         }
     }
 }

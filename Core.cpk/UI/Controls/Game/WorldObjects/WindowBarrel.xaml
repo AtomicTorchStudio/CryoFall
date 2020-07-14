@@ -31,11 +31,12 @@
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
-                        <!-- Text: Input -->
+                        <!-- TODO: Replace with correct text-->
+                        <!-- Text: Input --><!--
                         <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
                                    HorizontalAlignment="Center"
-                                   Margin="0" />
+                                   Margin="0" />-->
                         <controls:ItemsContainerControl
                             Container="{Binding ViewModelManufacturingState.ContainerInput}"
                             MaxWidth="100"
@@ -56,11 +57,12 @@
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
+                        <!-- TODO: Replace with correct text-->
                         <!-- Text: Output -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                        <!--<TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
                                    HorizontalAlignment="Center"
-                                   Margin="0" />
+                                   Margin="0" />-->
                         <controls:ItemsContainerControl
                             Container="{Binding ViewModelManufacturingState.ContainerOutput}"
                             MaxWidth="100"

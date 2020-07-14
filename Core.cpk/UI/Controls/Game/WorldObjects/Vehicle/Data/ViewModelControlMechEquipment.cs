@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelControlMechEquipment : BaseViewModel, IViewModelWithActiveState
     {
@@ -56,7 +57,8 @@
         public string VehicleWeaponSlotCaption
             => string.Format(CoreStrings.Vehicle_Mech_ItemSlot_WeaponHardpoint_Format,
                              ((BaseItemsContainerMechEquipment)this.MechEquipmentItemsContainer.ProtoItemsContainer)
-                             .WeaponHardpointName);
+                             .WeaponHardpointName
+                             .GetDescription());
 
         protected override void DisposeViewModel()
         {

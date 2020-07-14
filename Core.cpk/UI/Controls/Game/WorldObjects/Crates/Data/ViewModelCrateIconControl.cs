@@ -35,6 +35,9 @@
         public BaseCommand CommandOpenCrateIconSelectorWindow
             => new ActionCommand(this.ExecuteCommandOpenCrateIconSelectorWindow);
 
+        public BaseCommand CommandResetIcon
+            => new ActionCommand(this.ExecuteCommandResetIcon);
+
         public TextureBrush Icon
         {
             get
@@ -60,14 +63,10 @@
 
         private void ExecuteCommandOpenCrateIconSelectorWindow()
         {
-            var protoItemInHand = ClientItemsManager.ItemInHand?.ProtoItem;
-            if (protoItemInHand is null)
-            {
-                return;
-            }
-
-            // use the item in hand as an icon source
             var protoObjectCrate = (IProtoObjectCrate)this.worldObjectCrate.ProtoGameObject;
+
+            // use the item in hand as an icon source (could be null)
+            var protoItemInHand = ClientItemsManager.ItemInHand?.ProtoItem;
             protoObjectCrate.ClientSetIconSource(this.worldObjectCrate, protoItemInHand);
             return;
 
@@ -90,6 +89,12 @@
                 var protoObjectCrate = (IProtoObjectCrate)this.worldObjectCrate.ProtoGameObject;
                 protoObjectCrate.ClientSetIconSource(this.worldObjectCrate, selectedIconSource);
             }
+        }
+
+        private void ExecuteCommandResetIcon()
+        {
+            var protoObjectCrate = (IProtoObjectCrate)this.worldObjectCrate.ProtoGameObject;
+            protoObjectCrate.ClientSetIconSource(this.worldObjectCrate, null);
         }
     }
 }

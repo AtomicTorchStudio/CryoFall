@@ -67,8 +67,9 @@ namespace AtomicTorch.CBND.CoreMod.Characters
             var result = await renderTarget2D.SaveToTexture(
                              isTransparent: true,
                              qualityScaleCoef: Renderer.CalculateCurrentQualityScaleCoefWithOffset(
-                                 spriteQualityOffset));
-
+                                 spriteQualityOffset),
+                             customName: request.TextureName);
+            
             renderTarget2D.Dispose();
 
             return result;

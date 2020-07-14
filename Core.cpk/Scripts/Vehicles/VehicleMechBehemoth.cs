@@ -21,9 +21,9 @@
         public override string Description =>
             "Heavy-siege oriented mechanized battle armor. Offers unmatched protection and incredible firepower with its large mounting hardpoint, but relatively slow movement speed.";
 
-        public override ushort EnergyUsePerSecondIdle => 100;
+        public override ushort EnergyUsePerSecondIdle => 80;
 
-        public override ushort EnergyUsePerSecondMoving => 400;
+        public override ushort EnergyUsePerSecondMoving => 320;
 
         public override BaseItemsContainerMechEquipment EquipmentItemsContainerType
             => Api.GetProtoEntity<ContainerMechEquipmentBehemoth>();
@@ -43,11 +43,11 @@
         protected override void PrepareDefense(DefenseDescription defense)
         {
             defense.Set(
-                impact: 0.80,
-                kinetic: 0.80,
-                explosion: 0.50,
-                heat: 0.80,
-                cold: 0.80,
+                impact: 0.90,
+                kinetic: 0.90,
+                explosion: 0.60,
+                heat: 0.90,
+                cold: 0.90,
                 chemical: 1.00,
                 radiation: 0.0,
                 psi: 0.0);
@@ -74,7 +74,7 @@
                 .Add<ItemStructuralPlating>(30)
                 .Add<ItemUniversalActuator>(8)
                 .Add<ItemImpulseEngine>(6)
-                .Add<ItemComponentsHighTech>(25);
+                .Add<ItemComponentsHighTech>(20);
 
             repairStageRequiredItems
                 .Add<ItemIngotSteel>(10)

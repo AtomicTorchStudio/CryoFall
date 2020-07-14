@@ -122,12 +122,52 @@
                 <Grid Grid.Column="0" Grid.Row="0">
                     <Image Source="/UI/Images/Icons/Equipment/icon_equipment_head.png" />
                     <Image Source="/UI/Images/Icons/Equipment/icon_equipment_slot_blocked.png"
-                           Visibility="{Binding IsHeadAndLegsSlotsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Visibility="{Binding IsHeadSlotBlocked, Converter={StaticResource BoolToVisibilityConverter}}"
                            Width="40" Height="40" />
                     <Control Style="{StaticResource ItemSlotDelimiterHorizontalControlStyle}" />
                     <controls:ItemSlotControlForBinding
                         Container="{Binding ContainerEquipment}"
                         SlotId="0" />
+
+                    <!-- Eye checkbox to toggle head equipment rendering -->
+                    <CheckBox IsChecked="{Binding IsHeadEquipmentDisplayed}"
+                              Visibility="{Binding HasHeadEquipmentOrFullBodyArmorEquipped, Converter={StaticResource BoolToVisibilityConverter}}"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Top"
+                              Width="18"
+                              Height="12"
+                              Margin="0"
+                              Focusable="False">
+                        <CheckBox.Template>
+                            <ControlTemplate TargetType="{x:Type CheckBox}">
+                                <BulletDecorator VerticalAlignment="Bottom" Background="Transparent">
+                                    <BulletDecorator.Bullet>
+                                        <Grid Width="18" Height="12">
+                                            <Path x:Name="Path"
+                                                  Width="14"
+                                                  Height="10"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Data="{StaticResource IconGeometryEye}"
+                                                  Fill="#AAFFFFFF"
+                                                  Stretch="Uniform" />
+                                        </Grid>
+                                    </BulletDecorator.Bullet>
+                                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
+                                </BulletDecorator>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="Path"
+                                                Property="Fill"
+                                                Value="#44FFFFFF" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
                 </Grid>
 
 
@@ -221,12 +261,12 @@
                 </Grid.RowDefinitions>
 
                 <!-- separator -->
-                <Rectangle Grid.Row="2" 
-                           HorizontalAlignment="Stretch" 
-                           VerticalAlignment="Center" 
-                           Stretch="Fill" 
+                <Rectangle Grid.Row="2"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           Stretch="Fill"
                            Stroke="{StaticResource BrushColor7}"
-                           StrokeThickness="0.5"/>
+                           StrokeThickness="0.5" />
 
                 <!-- icons -->
                 <Image Grid.Row="0" Source="{StaticResource ImageSourceDamageTypeImpact}" />

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -35,6 +36,9 @@
         public sealed override ITextureResource Icon => null;
 
         public sealed override string Name { get; }
+
+        public override (float min, float max) SoundPresetWeaponDistance
+            => (SoundConstants.AudioListenerMinDistance, SoundConstants.AudioListenerMaxDistance);
 
         protected override ProtoSkillWeapons WeaponSkill => null;
 

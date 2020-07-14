@@ -19,7 +19,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="LineHeight" Value="13" />
         </Style>
@@ -33,7 +33,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="LineHeight" Value="13" />
         </Style>
@@ -55,7 +55,7 @@
         <Grid
             Visibility="{Binding IsShieldProtectionAvailableForCurrentTier, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.69*" />
+                <ColumnDefinition Width="0.7*" />
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -76,12 +76,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="15" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="15" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -97,26 +97,23 @@
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Text="{x:Static loc:CoreStrings.ShieldProtection_ShieldStatus}"
-                           VerticalAlignment="Center" />
+                           VerticalAlignment="Top" />
 
                 <StackPanel Grid.Row="0"
                             Grid.Column="2"
-                            Orientation="Horizontal">
+                            Orientation="Vertical">
                     <TextBlock Text="{Binding StatusText}"
-                               Foreground="{Binding StatusTextBrush}"
-                               VerticalAlignment="Center" />
+                               Foreground="{Binding StatusTextBrush}" />
 
-                    <TextBlock Text="{Binding ActivationTimeRemainsText}"
-                               Visibility="{Binding ActivationTimeRemainsText, Converter={StaticResource NullToVisibilityConverter}}"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource BrushColor5}"
-                               Margin="3,0,0,0" />
+                    <Grid Margin="0,-3,0,0">
+                        <TextBlock Text="{Binding ActivationTimeRemainsText}"
+                                   Visibility="{Binding ActivationTimeRemainsText, Converter={StaticResource NullToHiddenVisibilityConverter}}"
+                                   Foreground="{StaticResource BrushColor5}" />
 
-                    <TextBlock Text="{Binding CooldownTimeRemainsText}"
-                               Visibility="{Binding CooldownTimeRemainsText, Converter={StaticResource NullToVisibilityConverter}}"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource BrushColor5}"
-                               Margin="3,0,0,0" />
+                        <TextBlock Text="{Binding CooldownTimeRemainsText}"
+                                   Visibility="{Binding CooldownTimeRemainsText, Converter={StaticResource NullToHiddenVisibilityConverter}}"
+                                   Foreground="{StaticResource BrushColor5}" />
+                    </Grid>
                 </StackPanel>
 
                 <!-- Text: Activate shield -->
