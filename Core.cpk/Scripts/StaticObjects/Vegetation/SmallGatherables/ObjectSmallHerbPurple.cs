@@ -17,7 +17,7 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.DrawOrderOffsetY = 0.33;
+            renderer.DrawOrderOffsetY = 0.375;
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
@@ -38,10 +38,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeCircle(radius: 0.12, center: (0.5, 0.33))
                 .AddShapeRectangle(offset: (0.35, 0.2), size: (0.3, 0.6), group: CollisionGroups.HitboxMelee)
                 .AddShapeCircle(radius: 0.45, center: (0.5, 0.5), group: CollisionGroups.ClickArea);
-            // no ranged hitbox
         }
     }
 }

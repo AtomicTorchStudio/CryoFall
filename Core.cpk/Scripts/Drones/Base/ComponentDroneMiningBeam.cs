@@ -24,7 +24,7 @@
 
         private const double MiningTargetEndPositionMaxDistance = 0.05;
 
-        private const float MiningVolume = 1.0f;
+        private const float MiningVolume = 0.65f;
 
         private static readonly RenderingMaterial BeamRenderingMaterial
             = RenderingMaterial.Create(

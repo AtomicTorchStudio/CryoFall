@@ -225,7 +225,7 @@
                                 color: NotificationColor.Good,
                                 onClick: Menu.Open<WindowCompletionist>,
                                 playSound: false);
-                            Client.Audio.PlayOneShot(CompletionistSystem.EntryUnlockedSoundResource);
+                            Client.Audio.PlayOneShot(CompletionistSystem.EntryUnlockedSoundResource, 0.5f);
                         });
                     return;
                 }
@@ -235,7 +235,7 @@
                     && !this.lastRemovedEntryByServer.IsRewardClaimed)
                 {
                     // reward was not claimed but now claimed
-                    Client.Audio.PlayOneShot(CompletionistSystem.RewardClaimedSoundResource);
+                    Client.Audio.PlayOneShot(CompletionistSystem.RewardClaimedSoundResource, 0.5f);
                 }
 
                 if (viewModel.State == ViewModelWindowCompletionist.CompletionistEntryState.RewardClaimed
