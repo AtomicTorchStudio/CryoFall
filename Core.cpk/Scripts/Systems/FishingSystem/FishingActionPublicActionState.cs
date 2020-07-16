@@ -48,6 +48,8 @@
             skeletonRenderer.AddAnimation(AnimationTrackIndexes.Extra,
                                           FishingOutAnimationName,
                                           isLooped: false);
+
+            ClientFishingSoundsHelper.PlaySoundCancel(this.Character);
         }
 
         protected override void ClientOnStart()
@@ -67,6 +69,8 @@
             skeletonRenderer.AddAnimation(AnimationTrackIndexes.Extra,
                                           FishingInAnimationName,
                                           isLooped: false);
+
+            ClientFishingSoundsHelper.PlaySoundStart(this.Character);
         }
     }
 }

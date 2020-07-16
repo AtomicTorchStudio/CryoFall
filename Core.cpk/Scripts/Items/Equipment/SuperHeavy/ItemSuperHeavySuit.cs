@@ -171,7 +171,7 @@
 
             var clientState = GetClientState(item);
             var skeletonComponents = character.GetClientState<PlayerCharacterClientState>().SkeletonComponents;
-            var component = skeletonComponents.Find(t => t is ClientComponentNightVisionEffect);
+            var component = skeletonComponents.Find(t => t is ClientComponentNightVisionEffect2);
 
             if (!clientState.IsNightVisionActive)
             {
@@ -192,7 +192,7 @@
             }
 
             component = character.ClientSceneObject
-                                 .AddComponent<ClientComponentNightVisionEffect>();
+                                 .AddComponent<ClientComponentNightVisionEffect2>();
             skeletonComponents.Add(component);
         }
 

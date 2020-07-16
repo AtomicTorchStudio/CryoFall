@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.Bloom;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
 
     /// <summary>
@@ -12,10 +13,6 @@
     /// </summary>
     public class ClientComponentNightVisionEffect : ClientComponent
     {
-        private const double AdditionalAmbientLight = 0.8;
-
-        private const double AdditionalAmbientLightAdditiveFraction = 0.35;
-
         private static readonly BloomSettings BloomSettings
             = new BloomSettings(name: "Night Vision",
                                 bloomThreshold: 0,
@@ -31,6 +28,13 @@
 
         private NightVisionPostEffect postEffectNightVision;
 
+        protected virtual double AdditionalAmbientLight => 0.8;
+
+        protected virtual double AdditionalAmbientLightAdditiveFraction => 0.35;
+
+        protected virtual EffectResource EffectResource
+            => new EffectResource("PostEffects/NightVision");
+
         public override void Update(double deltaTime)
         {
             if (this.isLightAdjusted
@@ -41,9 +45,9 @@
             }
 
             this.isLightAdjusted = true;
-            ClientComponentLightingRenderer.AdditionalAmbientLight += AdditionalAmbientLight;
+            ClientComponentLightingRenderer.AdditionalAmbientLight += this.AdditionalAmbientLight;
             ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction +=
-                AdditionalAmbientLightAdditiveFraction;
+                this.AdditionalAmbientLightAdditiveFraction;
 
             this.postEffectNightVision.IsSuppressed = false;
             this.postEffectBloom.IsSuppressed = false;
@@ -54,9 +58,9 @@
             if (this.isLightAdjusted)
             {
                 this.isLightAdjusted = false;
-                ClientComponentLightingRenderer.AdditionalAmbientLight -= AdditionalAmbientLight;
+                ClientComponentLightingRenderer.AdditionalAmbientLight -= this.AdditionalAmbientLight;
                 ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction -=
-                    AdditionalAmbientLightAdditiveFraction;
+                    this.AdditionalAmbientLightAdditiveFraction;
             }
 
             this.postEffectBloom.Destroy();
@@ -67,6 +71,7 @@
         {
             this.postEffectNightVision = ClientPostEffectsManager.Add<NightVisionPostEffect>();
             this.postEffectNightVision.Order = PostEffectsOrder.Devices;
+            this.postEffectNightVision.EffectResource = this.EffectResource;
 
             this.postEffectBloom = ClientPostEffectsManager.Add<BloomPostEffect>();
             this.postEffectBloom.Setup(BloomSettings);

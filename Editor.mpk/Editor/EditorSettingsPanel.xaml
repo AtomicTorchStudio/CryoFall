@@ -11,7 +11,15 @@
     d:DataContext="{d:DesignInstance data:ViewModelEditorSettingsPanel, IsDesignTimeCreatable=True}">
 
     <base:BaseUserControl.Resources>
-        <ResourceDictionary Source="EditorStyles.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="EditorStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="Focusable" Value="False" />
+            </Style>
+        </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
     <Border Style="{StaticResource EditorPanelStyle}">

@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemThread>(count: 5);
             inputItems.Add<ItemPaper>(count: 5);

@@ -230,7 +230,7 @@
             // subscribe on head style change
             publicState.ClientSubscribe(
                 _ => _.FaceStyle,
-                _ => ResetRendering(resetSkeleton: true),
+                _ => ResetRendering(resetSkeleton: false),
                 clientState);
 
             // subscribe on gender change
@@ -242,7 +242,7 @@
             // subscribe on head equipment visibility change
             publicState.ClientSubscribe(
                 _ => _.IsHeadEquipmentHiddenForSelfAndPartyMembers,
-                _ => ResetRendering(resetSkeleton: true),
+                _ => ResetRendering(resetSkeleton: false),
                 clientState);
 
             // subscribe on vehicle change
@@ -434,12 +434,19 @@
             if (!Api.IsEditor)
             {
                 NewbieProtectionSystem.ServerRegisterNewbie(character);
-            }
 
-            publicState.IsMale = 1 == RandomHelper.Next(0, maxValueExclusive: 2); // male/female ratio: 50/50
-            publicState.FaceStyle = SharedCharacterFaceStylesProvider
-                                    .GetForGender(publicState.IsMale)
-                                    .GenerateRandomFace();
+                publicState.IsMale = 1 == RandomHelper.Next(0, maxValueExclusive: 2); // male/female ratio: 50/50
+                publicState.FaceStyle = SharedCharacterFaceStylesProvider
+                                        .GetForGender(publicState.IsMale)
+                                        .GenerateRandomFace();
+            }
+            else // if Editor
+            {
+                publicState.IsMale = true;
+                publicState.FaceStyle = SharedCharacterFaceStylesProvider
+                                        .GetForGender(publicState.IsMale)
+                                        .GetDefaultFaceInEditor();
+            }
 
             ServerPlayerSpawnManager.ServerAddTorchItemIfNoItems(character);
 

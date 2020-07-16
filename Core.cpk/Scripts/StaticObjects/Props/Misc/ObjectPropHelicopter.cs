@@ -33,9 +33,9 @@
                 .AddShapeRectangle(size: (0.4, 0.6), offset: (3.2, 0.70))
                 .AddShapeRectangle(size: (0.2, 0.3), offset: (3.6, 1.10));
 
-            AddFullHeightWallHitboxes(data, width: 1.6, offsetX: 0.2);
-            AddFullHeightWallHitboxes(data, width: 1,   offsetX: 1.6, offsetY: 0.5);
-            AddFullHeightWallHitboxes(data, width: 1,   offsetX: 2.6, offsetY: 0.8);
+            AddHalfHeightWallHitboxes(data, width: 1.1, offsetX: 0.7, offsetY: 0.15);
+            AddHalfHeightWallHitboxes(data, width: 1,   offsetX: 1.6, offsetY: 0.5);
+            AddHalfHeightWallHitboxes(data, width: 0.4,   offsetX: 2.6, offsetY: 0.65);
         }
     }
 }

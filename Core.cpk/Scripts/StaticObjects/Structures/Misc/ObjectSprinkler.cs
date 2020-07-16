@@ -69,6 +69,13 @@
                                             isTransparent: true);
         }
 
+        protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
+        {
+            return ObjectsSoundsPresets.ObjectGeneric
+                                       .Clone()
+                                       .Replace(ObjectSound.Active, "Objects/Structures/ObjectSprinkler/Action");
+        }
+
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             var offsetY = 0.3;

@@ -39,70 +39,72 @@
             DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
 
             // common loot
-            droplist.Add(nestedList:
-                         new DropItemsList(outputs: 2, outputsRandom: 1)
-                             // resources, components
-                             .Add<ItemBlackpowder>(count: 20,          countRandom: 10, weight: 1 / 1.0)
-                             .Add<ItemNitrocellulosePowder>(count: 20, countRandom: 10, weight: 1 / 1.0)
-                             .Add<ItemComponentsWeapon>(count: 2,      countRandom: 2,  weight: 1 / 10.0)
-                             // ammo
-                             .Add<ItemAmmo8mmStandard>(count: 5,       countRandom: 10, weight: 1 / 1.0)
-                             .Add<ItemAmmo8mmToxic>(count: 5,          countRandom: 10, weight: 1 / 5.0)
-                             .Add<ItemAmmo10mmStandard>(count: 5,      countRandom: 10, weight: 1 / 1.0)
-                             .Add<ItemAmmo10mmHollowPoint>(count: 5,   countRandom: 10, weight: 1 / 4.0)
-                             .Add<ItemAmmo10mmArmorPiercing>(count: 5, countRandom: 10, weight: 1 / 4.0)
-                             .Add<ItemAmmo12gaBuckshot>(count: 5,      countRandom: 10, weight: 1 / 2.0)
-                             .Add<ItemAmmo12gaSlugs>(count: 5,         countRandom: 10, weight: 1 / 2.0)
-                             .Add<ItemAmmo12gaPellets>(count: 5,       countRandom: 10, weight: 1 / 2.0)
-                             .Add<ItemAmmo300ArmorPiercing>(count: 5,  countRandom: 10, weight: 1 / 10.0)
-                             .Add<ItemAmmo300Incendiary>(count: 5,     countRandom: 10, weight: 1 / 10.0)
-                             .Add<ItemAmmoGrenadeHE>(count: 2,         countRandom: 3,  weight: 1 / 15.0)
-                             .Add<ItemAmmoGrenadeIncendiary>(count: 2, countRandom: 3,  weight: 1 / 15.0)
-                             .Add<ItemAmmo50SH>(count: 5,              countRandom: 10, weight: 1 / 5.0)
-                             // trash ammo
-                             .Add<ItemAmmo10mmBlank>(count: 5,         countRandom: 10, weight: 1 / 15.0)
-                             .Add<ItemAmmo12gaSaltCharge>(count: 5,    countRandom: 10, weight: 1 / 15.0));
+            droplist.Add(
+                nestedList:
+                new DropItemsList(outputs: 2, outputsRandom: 1)
+                    // resources, components
+                    .Add<ItemBlackpowder>(count: 20,          countRandom: 10, weight: 1 / 1.0)
+                    .Add<ItemNitrocellulosePowder>(count: 20, countRandom: 10, weight: 1 / 1.0)
+                    .Add<ItemComponentsWeapon>(count: 2,      countRandom: 2,  weight: 1 / 10.0)
+                    // ammo
+                    .Add<ItemAmmo8mmStandard>(count: 5,       countRandom: 10, weight: 1 / 1.0)
+                    .Add<ItemAmmo8mmToxic>(count: 5,          countRandom: 10, weight: 1 / 5.0)
+                    .Add<ItemAmmo10mmStandard>(count: 5,      countRandom: 10, weight: 1 / 1.0)
+                    .Add<ItemAmmo10mmHollowPoint>(count: 5,   countRandom: 10, weight: 1 / 4.0)
+                    .Add<ItemAmmo10mmArmorPiercing>(count: 5, countRandom: 10, weight: 1 / 4.0)
+                    .Add<ItemAmmo12gaBuckshot>(count: 5,      countRandom: 10, weight: 1 / 2.0)
+                    .Add<ItemAmmo12gaSlugs>(count: 5,         countRandom: 10, weight: 1 / 2.0)
+                    .Add<ItemAmmo12gaPellets>(count: 5,       countRandom: 10, weight: 1 / 2.0)
+                    .Add<ItemAmmo300ArmorPiercing>(count: 5,  countRandom: 10, weight: 1 / 10.0)
+                    .Add<ItemAmmo300Incendiary>(count: 5,     countRandom: 10, weight: 1 / 10.0)
+                    .Add<ItemAmmoGrenadeHE>(count: 2,         countRandom: 3,  weight: 1 / 15.0)
+                    .Add<ItemAmmoGrenadeIncendiary>(count: 2, countRandom: 3,  weight: 1 / 15.0)
+                    .Add<ItemAmmo50SH>(count: 5,              countRandom: 10, weight: 1 / 5.0)
+                    // trash ammo
+                    .Add<ItemAmmo10mmBlank>(count: 5,      countRandom: 10, weight: 1 / 15.0)
+                    .Add<ItemAmmo12gaSaltCharge>(count: 5, countRandom: 10, weight: 1 / 15.0));
 
             // rare loot
-            droplist.Add(probability: 1 / 10.0,
-                         nestedList:
-                         new DropItemsList(outputs: 1)
-                             // weapons
-                             .Add<ItemKnifeIron>(weight: 1 / 1.0)
-                             .Add<ItemRevolver8mm>(weight: 1 / 1.0)
-                             .Add<ItemLuger>(weight: 1 / 1.0)
-                             .Add<ItemMachinePistol>(weight: 1 / 1.0)
-                             .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
-                             .Add<ItemRifleBoltAction>(weight: 1 / 1.0)
-                             .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
-                             .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
-                             .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
-                             .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
-                             .Add<ItemGrenadeLauncher>(weight: 1 / 4.0,   condition: T3Specialized)
-                             .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
-                             // equipment
-                             .Add<ItemMilitaryHelmet>(weight: 1 / 4.0,    condition: T3Specialized)
-                             .Add<ItemMilitaryArmor>(weight: 1 / 4.0,     condition: T3Specialized)
-                             .Add<ItemAssaultHelmet>(weight: 1 / 10.0,    condition: T4Specialized)
-                             .Add<ItemAssaultArmor>(weight: 1 / 10.0,     condition: T4Specialized)
-                             // misc stuff for soldiers use :)
-                             .Add<ItemCigarNormal>(count: 3,        countRandom: 2, weight: 1 / 5.0)
-                             .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)
-                             .Add<ItemStrengthBoostSmall>(count: 3, countRandom: 2, weight: 1 / 5.0)
-                             .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
-                             .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0)
-                );
+            droplist.Add(
+                probability: 1 / 10.0,
+                nestedList:
+                new DropItemsList(outputs: 1)
+                    // weapons
+                    .Add<ItemKnifeIron>(weight: 1 / 1.0)
+                    .Add<ItemRevolver8mm>(weight: 1 / 1.0)
+                    .Add<ItemLuger>(weight: 1 / 1.0)
+                    .Add<ItemMachinePistol>(weight: 1 / 1.0)
+                    .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
+                    .Add<ItemRifleBoltAction>(weight: 1 / 1.0)
+                    .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
+                    .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
+                    .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
+                    .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
+                    .Add<ItemGrenadeLauncher>(weight: 1 / 4.0,   condition: T3Specialized)
+                    .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
+                    // equipment
+                    .Add<ItemMilitaryHelmet>(weight: 1 / 4.0, condition: T3Specialized)
+                    .Add<ItemMilitaryArmor>(weight: 1 / 4.0,  condition: T3Specialized)
+                    .Add<ItemAssaultHelmet>(weight: 1 / 10.0, condition: T4Specialized)
+                    .Add<ItemAssaultArmor>(weight: 1 / 10.0,  condition: T4Specialized)
+                    // misc stuff for soldiers use :)
+                    .Add<ItemCigarNormal>(count: 3,        countRandom: 2, weight: 1 / 5.0)
+                    .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)
+                    .Add<ItemStrengthBoostSmall>(count: 3, countRandom: 2, weight: 1 / 5.0)
+                    .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
+                    .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0));
 
             // extra loot from skill
-            droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
-                         nestedList:
-                         new DropItemsList(outputs: 1)
-                             .Add<ItemAmmo8mmStandard>(count: 2,       countRandom: 2)
-                             .Add<ItemAmmo10mmStandard>(count: 2,      countRandom: 2)
-                             .Add<ItemAmmo10mmHollowPoint>(count: 2,   countRandom: 2)
-                             .Add<ItemAmmo10mmArmorPiercing>(count: 2, countRandom: 2)
-                             .Add<ItemAmmo12gaSlugs>(count: 2,         countRandom: 2)
-                             .Add<ItemAmmo12gaPellets>(count: 2,       countRandom: 2));
+            droplist.Add(
+                condition: SkillSearching.ServerRollExtraLoot,
+                nestedList:
+                new DropItemsList(outputs: 1)
+                    .Add<ItemAmmo8mmStandard>(count: 2,       countRandom: 2)
+                    .Add<ItemAmmo10mmStandard>(count: 2,      countRandom: 2)
+                    .Add<ItemAmmo10mmHollowPoint>(count: 2,   countRandom: 2)
+                    .Add<ItemAmmo10mmArmorPiercing>(count: 2, countRandom: 2)
+                    .Add<ItemAmmo12gaSlugs>(count: 2,         countRandom: 2)
+                    .Add<ItemAmmo12gaPellets>(count: 2,       countRandom: 2));
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

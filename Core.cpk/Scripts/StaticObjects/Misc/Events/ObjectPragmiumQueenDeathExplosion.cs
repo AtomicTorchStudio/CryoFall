@@ -43,18 +43,6 @@
 
         public override float VolumeExplosion => 3;
 
-        public override void ServerOnDestroy(IStaticWorldObject gameObject)
-        {
-            var tilePosition = gameObject.TilePosition;
-
-            // spawn Pragmium nodes on explosion (right after the damage is dealt to all the objects there)
-            ServerTimersSystem.AddAction(
-                delaySeconds: this.ExplosionPreset.ServerDamageApplyDelay * 1.01,
-                () => MobPragmiumQueen.ServerOnExplode(tilePosition));
-
-            base.ServerOnDestroy(gameObject);
-        }
-
         public override bool SharedOnDamage(
             WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject,

@@ -306,6 +306,13 @@
             return false;
         }
 
+        public static string SharedGetClanTag(ILogicObject party)
+        {
+            return party is null
+                       ? null
+                       : Party.GetPublicState(party).ClanTag;
+        }
+
         public static bool SharedIsValidClanTag(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -340,7 +347,7 @@
                    && c <= 'Z';
         }
 
-        public ILogicObject ServerFindPartyByClanTag(string clanTag)
+        public static ILogicObject ServerFindPartyByClanTag(string clanTag)
         {
             if (string.IsNullOrEmpty(clanTag))
             {
@@ -361,7 +368,7 @@
             return null;
         }
 
-        public bool ServerSetClanTag(ILogicObject party, string clanTag)
+        public static bool ServerSetClanTag(ILogicObject party, string clanTag)
         {
             var members = ServerGetPartyMembersReadOnly(party);
             if (string.IsNullOrEmpty(clanTag))
@@ -393,7 +400,7 @@
                 }
             }
 
-            var otherParty = this.ServerFindPartyByClanTag(clanTag);
+            var otherParty = ServerFindPartyByClanTag(clanTag);
             if (otherParty != null)
             {
                 // the clan tag is already taken
@@ -802,7 +809,7 @@
                 throw new Exception("You're not the party owner");
             }
 
-            return this.ServerSetClanTag(party, clanTag);
+            return ServerSetClanTag(party, clanTag);
         }
 
         private class Bootstrapper : BaseBootstrapper

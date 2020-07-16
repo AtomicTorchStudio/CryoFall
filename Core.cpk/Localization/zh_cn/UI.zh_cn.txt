@@ -1367,7 +1367,7 @@ UI/CoreStrings@TitleSafeStorage:
 安全存储
 
 UI/CoreStrings@TitleShieldProtection:
-S.H.E.I.L.D.
+护盾
 
 UI/CoreStrings@TitleStructurePoints:
 结构值

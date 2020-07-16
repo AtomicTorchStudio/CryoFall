@@ -9,9 +9,9 @@
 
     public class TaskRelocateAnyStructure : BasePlayerTaskWithDefaultState
     {
-        public new const string Description = "Relocate any structure";
+        public const string DefaultDescription = "Relocate any structure";
 
-        private TaskRelocateAnyStructure() : base(Description)
+        private TaskRelocateAnyStructure() : base(DefaultDescription)
         {
         }
 

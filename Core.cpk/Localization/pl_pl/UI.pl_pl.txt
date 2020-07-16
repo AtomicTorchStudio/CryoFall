@@ -1123,7 +1123,7 @@ UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
 (Czas odnowienia {0})
 
 UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
-Aktualne naładowanie tarczy:
+Naładowanie tarczy:
 
 UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
 Dezaktywacja aktywnej lub aktywującej się tarczy powoduje włączenie licznika czasu odnowienia ({0}). W tym okresie nie można ponownie aktywować tarczy.

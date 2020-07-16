@@ -11,6 +11,6 @@
 
         public override string Name => "Oilpod fruit";
 
-        public ushort OrganicValue => 3;
+        public ushort OrganicValue => 5;
     }
 }

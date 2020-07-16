@@ -67,6 +67,14 @@
                 var ch = text[position];
                 switch (ch)
                 {
+                    // escaped bracket
+                    case '\\' when position + 1 < text.Length
+                                   && (text[position + 1] == '['
+                                       || text[position + 1] == ']'):
+                        text = text.Remove(position, 1);
+                        // do not offset position here despite removing a character
+                        break;
+
                     // tag opening bracket
                     case '[':
                         if (isTagParsingMode)

@@ -1123,7 +1123,7 @@ UI/CoreStrings@ShieldProtection_CooldownRemains_Format:
 (クールタイム {0})
 
 UI/CoreStrings@ShieldProtection_CurrentShieldCharge:
-現在のシールド充電量：
+シールド充電量：
 
 UI/CoreStrings@ShieldProtection_DeactivationNotes_Format:
 有効または発動中のシールドを解除すると、クールタイム({0})が始まります。クールタイム中はシールドを再び発動することはできません。

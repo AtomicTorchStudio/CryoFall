@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -54,6 +53,8 @@
 
         public virtual TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(5);
 
+        public ExplosionPreset ExplosionPreset { get; private set; }
+
         public override bool HasIncreasedScopeSize => true;
 
         public abstract bool IsActivatesRaidModeForLandClaim { get; }
@@ -75,8 +76,6 @@
         public sealed override float StructurePointsMax => 9001; // it's non-damageable anyway
 
         public virtual float VolumeExplosion => 1;
-
-        protected ExplosionPreset ExplosionPreset { get; private set; }
 
         public sealed override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {

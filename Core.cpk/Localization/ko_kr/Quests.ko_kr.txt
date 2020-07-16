@@ -244,7 +244,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 [*] 약초 치료는 요리 카테고리에서 찾을 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
-허브를 모으고 약 만들기
+약초 모으고 약 만들기
 
 Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
 초기에 배운 기술을 숙달해야 더 높은 수준의 기술을 사용할 수 있게 됩니다.
@@ -329,7 +329,7 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 모든 환경에는 각기 다른 특성을 지닌 고유한 동식물이 살고 있습니다. 그것을 최대한 활용하는 것이 좋습니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
-`[*] 초원에는 덤불과 허브, 그 밖의 식량거리가 많이 있습니다.
+`[*] 초원에는 덤불과 약초, 그 밖의 식량거리가 많이 있습니다.
 [*] 물가 근처에는 많은 수생 동물들을 찾을 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
@@ -347,15 +347,15 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
 환경 탐험-제2부
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
-더 좋은 약물 아이템은 무수히 많지만, 위급 상황일 때는 초록색 허브로도 체력을 약간 회복할 수 있다는 것을 잊으면 안 됩니다.
+더 좋은 약물 아이템은 무수히 많지만, 위급 상황일 때는 초록색 약초로도 체력을 약간 회복할 수 있다는 것을 잊으면 안 됩니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 `[*] 초록색 약초는 모든 약물 중에서도 가장 기본적인 것이며, 상대적으로 손쉽게 얻을 수 있습니다..
-[*] 허브와 그 밖의 작은 식물들은 숲의 초원에서 매우 많이 자라고 있습니다.
-[*] 초록색 허브가 상자를 어지럽힐 만큼 너무 많다면, 그대로 사용해도 되지만, 그렇지 않다면 약물 아이템으로 만들어 사용하는 것이 훨씬 현명한 방법입니다.`
+[*] 약초와 그 밖의 작은 식물들은 숲의 초원에서 매우 많이 자라고 있습니다.
+[*] 초록색 약초가 상자를 어지럽힐 만큼 너무 많다면, 그대로 사용해도 되지만, 그렇지 않다면 약물 아이템으로 만들어 사용하는 것이 훨씬 현명한 방법입니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
-초록색 허브를 찾아 사용하세요
+초록색 약초 찾아 사용하기
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `더 많은 구조물을 지으려면, 기술 메뉴에 있는 "기본 건물"의 잠금을 해제해야 합니다.`

@@ -21,8 +21,6 @@
 
         private Storyboard storyboardFadeIn;
 
-        public new static bool IsOpened => instance != null;
-
         public static void EnsureClosed()
         {
             if (isClosed)

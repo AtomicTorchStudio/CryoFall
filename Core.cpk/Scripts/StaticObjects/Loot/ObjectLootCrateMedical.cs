@@ -33,42 +33,46 @@
             DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
 
             // common loot
-            droplist.Add(nestedList: new DropItemsList(outputs: 2, outputsRandom: 0)
-                                     // resources
-                                     .Add<ItemComponentsPharmaceutical>(count: 10, countRandom: 10, weight: 1)
-                                     // basic medical
-                                     .Add<ItemBandage>(count: 1,       weight: 1 / 4.0)
-                                     .Add<ItemRemedyHerbal>(count: 1,  weight: 1 / 4.0)
-                                     .Add<ItemEnergyTablets>(count: 1, weight: 1 / 4.0)
-                                     .Add<ItemPainkiller>(count: 1,    weight: 1 / 10.0)
-                                     .Add<ItemAntiNausea>(count: 1,    weight: 1 / 10.0)
-                                     .Add<ItemHemostatic>(count: 1,    weight: 1 / 25.0)
-                                     .Add<ItemSplint>(count: 1,        weight: 1 / 25.0)
-                                     // boost
-                                     .Add<ItemStrengthBoostSmall>(count: 1, weight: 1 / 5.0)
-                                     .Add<ItemStrengthBoostBig>(count: 1,   weight: 1 / 10.0)
-                                     // anti effect
-                                     .Add<ItemAntiRadiation>(count: 1,            weight: 1 / 15.0)
-                                     .Add<ItemAntiRadiationPreExposure>(count: 1, weight: 1 / 40.0)
-                                     .Add<ItemAntiToxin>(count: 1,                weight: 1 / 25.0)
-                                     .Add<ItemAntiToxinPreExposure>(count: 1,     weight: 1 / 60.0)
-                                     .Add<ItemPsiPreExposure>(count: 1,           weight: 1 / 60.0)
-                                     .Add<ItemHeatPreExposure>(count: 1,          weight: 1 / 60.0)
-                                     // top tier
-                                     .Add<ItemMedkit>(count: 1,         weight: 1 / 40.0,  condition: T3Specialized)
-                                     .Add<ItemStimpack>(count: 1,       weight: 1 / 40.0,  condition: T4Specialized)
-                                     .Add<ItemPeredozin>(count: 1,      weight: 1 / 50.0,  condition: T4Specialized)
-                                     .Add<ItemNeuralEnhancer>(count: 1, weight: 1 / 150.0, condition: T4Specialized));
+            droplist.Add(
+                nestedList:
+                new DropItemsList(outputs: 2, outputsRandom: 0)
+                    // resources
+                    .Add<ItemComponentsPharmaceutical>(count: 10, countRandom: 10, weight: 1)
+                    // basic medical
+                    .Add<ItemBandage>(count: 1,       weight: 1 / 4.0)
+                    .Add<ItemRemedyHerbal>(count: 1,  weight: 1 / 4.0)
+                    .Add<ItemEnergyTablets>(count: 1, weight: 1 / 4.0)
+                    .Add<ItemPainkiller>(count: 1,    weight: 1 / 10.0)
+                    .Add<ItemAntiNausea>(count: 1,    weight: 1 / 10.0)
+                    .Add<ItemHemostatic>(count: 1,    weight: 1 / 25.0)
+                    .Add<ItemSplint>(count: 1,        weight: 1 / 25.0)
+                    // boost
+                    .Add<ItemStrengthBoostSmall>(count: 1, weight: 1 / 5.0)
+                    .Add<ItemStrengthBoostBig>(count: 1,   weight: 1 / 10.0)
+                    // anti effect
+                    .Add<ItemAntiRadiation>(count: 1,            weight: 1 / 15.0)
+                    .Add<ItemAntiRadiationPreExposure>(count: 1, weight: 1 / 40.0)
+                    .Add<ItemAntiToxin>(count: 1,                weight: 1 / 25.0)
+                    .Add<ItemAntiToxinPreExposure>(count: 1,     weight: 1 / 60.0)
+                    .Add<ItemPsiPreExposure>(count: 1,           weight: 1 / 60.0)
+                    .Add<ItemHeatPreExposure>(count: 1,          weight: 1 / 60.0)
+                    // top tier
+                    .Add<ItemMedkit>(count: 1,         weight: 1 / 40.0,  condition: T3Specialized)
+                    .Add<ItemStimpack>(count: 1,       weight: 1 / 40.0,  condition: T4Specialized)
+                    .Add<ItemPeredozin>(count: 1,      weight: 1 / 50.0,  condition: T4Specialized)
+                    .Add<ItemNeuralEnhancer>(count: 1, weight: 1 / 150.0, condition: T4Specialized));
 
             // extra loot from skill
-            droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
-                         nestedList: new DropItemsList(outputs: 1)
-                                     .Add<ItemComponentsPharmaceutical>(count: 2, countRandom: 3)
-                                     .Add<ItemStrengthBoostSmall>(count: 1)
-                                     .Add<ItemStrengthBoostBig>(count: 1)
-                                     .Add<ItemEnergyTablets>(count: 1)
-                                     .Add<ItemRemedyHerbal>(count: 1)
-                                     .Add<ItemBandage>(count: 1));
+            droplist.Add(
+                condition: SkillSearching.ServerRollExtraLoot,
+                nestedList:
+                new DropItemsList(outputs: 1)
+                    .Add<ItemComponentsPharmaceutical>(count: 2, countRandom: 3)
+                    .Add<ItemStrengthBoostSmall>(count: 1)
+                    .Add<ItemStrengthBoostBig>(count: 1)
+                    .Add<ItemEnergyTablets>(count: 1)
+                    .Add<ItemRemedyHerbal>(count: 1)
+                    .Add<ItemBandage>(count: 1));
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

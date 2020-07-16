@@ -38,8 +38,8 @@
                                            UseLayoutRounding="True"
                                            VerticalAlignment="Top"
                                            HorizontalAlignment="Center"
-                                           Width="34"
-                                           Height="34" />
+                                           Width="24"
+                                           Height="24" />
                             </Border>
 
                             <StackPanel Orientation="Horizontal"

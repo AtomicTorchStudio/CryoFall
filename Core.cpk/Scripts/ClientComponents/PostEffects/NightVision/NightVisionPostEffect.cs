@@ -12,14 +12,30 @@
     /// </summary>
     public class NightVisionPostEffect : BasePostEffect
     {
-        private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/NightVision");
-
         private EffectInstance effectInstance;
+
+        private EffectResource effectResource;
 
         private double intensity = 1;
 
         public override PostEffectsOrder DefaultOrder => PostEffectsOrder.Devices;
+
+        public EffectResource EffectResource
+        {
+            get => this.effectResource;
+            set
+            {
+                if (this.effectResource == value)
+                {
+                    return;
+                }
+
+                this.effectResource = value;
+
+                this.TryDestroyEffectInstance();
+                this.TryCreateEffectInstance();
+            }
+        }
 
         public double Intensity
         {
@@ -44,7 +60,7 @@
 
         public override bool IsCanRender
             => this.intensity > 0
-               && this.effectInstance.IsReady;
+               && (this.effectInstance?.IsReady ?? false);
 
         public override void Render(IRenderTarget2D source, IRenderTarget2D destination)
         {
@@ -57,14 +73,12 @@
 
         protected override void OnDisable()
         {
-            this.effectInstance.Dispose();
-            this.effectInstance = null;
+            this.TryDestroyEffectInstance();
         }
 
         protected override void OnEnable()
         {
-            this.effectInstance = EffectInstance.Create(EffectResource);
-            this.SetEffectParameterIntensity();
+            this.TryCreateEffectInstance();
         }
 
         private void SetEffectParameterIntensity()
@@ -72,6 +86,24 @@
             this.effectInstance?
                 .Parameters
                 .Set("Intensity", (float)this.Intensity);
+        }
+
+        private void TryCreateEffectInstance()
+        {
+            if (this.effectResource is null
+                || !this.IsEnabled)
+            {
+                return;
+            }
+
+            this.effectInstance = EffectInstance.Create(this.effectResource);
+            this.SetEffectParameterIntensity();
+        }
+
+        private void TryDestroyEffectInstance()
+        {
+            this.effectInstance?.Dispose();
+            this.effectInstance = null;
         }
     }
 }

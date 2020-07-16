@@ -125,7 +125,7 @@ Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Technologię już odblokowano
 
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
-Wymagane PT: {0}, (masz tylko: {1}).
+Wymagane PT: {0} (masz tylko: {1}).
 
 Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
 Brak dostępu przez {0} po czyszczeniu serwera (poczekaj {1}).

@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -352,7 +353,7 @@
             }
 
             // notify player about the new event
-            var protoEvent = ((IProtoEvent)activeEvent.ProtoGameObject);
+            var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
             notification = NotificationSystem.ClientShowNotification(
                 Notification_ActiveEvent_Title,
                 GetUpdatedEventNotificationText(activeEvent,
@@ -360,7 +361,12 @@
                                                 addDescription: false),
                 icon: protoEvent.Icon,
                 autoHide: false,
-                playSound: !protoEvent.ConsolidateNotifications);
+                playSound: false);
+            
+            if (!protoEvent.ConsolidateNotifications)
+            {
+                ClientEventSoundHelper.PlayEventStartedSound();
+            }
 
             this.RemoveNotification(activeEvent, true);
             this.notifications.Add((activeEvent, notification));

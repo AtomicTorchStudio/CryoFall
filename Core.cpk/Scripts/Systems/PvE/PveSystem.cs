@@ -269,16 +269,24 @@
                 return false;
             }
 
-            if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob
-                && protoCharacterMob.IsBoss)
+            if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob)
             {
-                // boss can damage any vehicle
-                return true;
+                if (protoCharacterMob.IsBoss)
+                {
+                    // boss can damage any vehicle
+                    return true;
+                }
+
+                if (pilot is null
+                    && ((IProtoVehicle)targetObject.ProtoGameObject).IsAllowCreatureDamageWhenNoPilot)
+                {
+                    return true;
+                }
             }
 
             if (pilot != null
                 && WeaponDamageSystem.SharedCanHitCharacter(weaponCache,
-                                                              targetCharacter: pilot))
+                                                            targetCharacter: pilot))
             {
                 // probably the pilot character is in the Duel mode
                 return true;

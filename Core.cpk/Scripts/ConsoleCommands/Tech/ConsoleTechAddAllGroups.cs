@@ -6,7 +6,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ConsoleTechAddAllGroups : BaseConsoleCommand
     {

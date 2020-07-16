@@ -190,7 +190,7 @@
                         data: headSpriteData,
                         request: request,
                         isMale: this.IsMale,
-                        isFrontFace: true,
+                        headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.Front,
                         customTextureSize: HeadPreviewSpriteTextureSize,
                         spriteQualityOffset: -100),
                     isUseCache: false,

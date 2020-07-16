@@ -104,6 +104,14 @@
                 return true;
             }
 
+            if (serverDamage <= 0
+                && obstacleBlockDamageCoef <= 0)
+            {
+                // assume no damage was passed
+                damageApplied = 0;
+                return false;
+            }
+
             // apply damage
             damageApplied = serverDamage;
             var newStructurePoints = (float)(previousStructurePoints - serverDamage);

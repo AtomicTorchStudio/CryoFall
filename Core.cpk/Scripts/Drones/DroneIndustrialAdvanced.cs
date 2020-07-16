@@ -30,9 +30,9 @@
         protected override double DrawVerticalOffset => 0.88;
 
         protected override SoundResource EngineSoundResource { get; }
-            = new SoundResource("Objects/Drones/Engine1");
+            = new SoundResource("Items/Drones/Fly");
 
-        protected override double EngineSoundVolume => 0.3;
+        protected override double EngineSoundVolume => 0.6;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

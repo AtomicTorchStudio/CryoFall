@@ -518,6 +518,7 @@
             var currentVehicle = character.SharedGetCurrentVehicle();
             if (currentVehicle is null
                 || currentVehicle.IsDestroyed
+                || !currentVehicle.IsInitialized
                 || ((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
             {
                 // no vehicle — use only character's containers

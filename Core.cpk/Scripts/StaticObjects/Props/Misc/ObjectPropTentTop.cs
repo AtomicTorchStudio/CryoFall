@@ -21,9 +21,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (3.0, 0.7), offset: (0.0, 0.0))
-                .AddShapeRectangle(size: (2.8, 0.8), offset: (0.1, 0.0), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (2.8, 0.8), offset: (0.1, 0.0), group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (2.8, 1.0), offset: (0.1, 0));
+            AddFullHeightWallHitboxes(data, width: 2.8, offsetX: 0.1);
         }
     }
 }

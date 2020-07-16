@@ -68,12 +68,13 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
         {
             if (isObserving)
             {
-                var isLandClaimed = LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
-                if (isLandClaimed)
-                {
-                    // display only the green indicator when hover (as the red indicator is always displayed)
-                    lastHoverIndicator = SetupFor(worldObject, isClaimed: true);
-                }
+                // do not display the green indicator as it may be misleading to some players
+                //var isLandClaimed = LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
+                //if (isLandClaimed)
+                //{
+                //    // display only the green indicator when hover (as the red indicator is always displayed)
+                //    lastHoverIndicator = SetupFor(worldObject, isClaimed: true);
+                //}
             }
             else if (lastHoverIndicator != null)
             {

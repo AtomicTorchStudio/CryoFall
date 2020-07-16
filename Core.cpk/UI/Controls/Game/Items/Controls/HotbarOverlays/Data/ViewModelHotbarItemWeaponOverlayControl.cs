@@ -32,7 +32,6 @@
             ClientCurrentCharacterVehicleContainersHelper.ContainersItemsReset += this.ContainersItemsResetHandler;
             ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged += this.ItemAddedOrRemovedOrCountChangedHandler;
 
-
             if (this.weaponState is null)
             {
                 return;

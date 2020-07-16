@@ -201,13 +201,13 @@
             ServerDropDroneToGround(worldObject);
 
             Logger.Info("Drone deactivated: " + worldObject);
-            ServerDespawnDrone(worldObject);
+            ServerDespawnDrone(worldObject, isReturnedToPlayer: false);
 
             Instance.CallClient(characterOwner,
                                 _ => _.ClientRemote_OnDroneAbandoned(protoItemDrone));
         }
 
-        public static void ServerDespawnDrone(IDynamicWorldObject worldObject)
+        public static void ServerDespawnDrone(IDynamicWorldObject worldObject, bool isReturnedToPlayer)
         {
             var privateState = worldObject.GetPrivateState<DronePrivateState>();
             var publicState = worldObject.GetPublicState<DronePublicState>();
@@ -224,11 +224,14 @@
             var characterOwner = privateState.CharacterOwner;
             var world = Server.World;
 
+            var protoDrone = protoItemDrone.ProtoDrone;
+            protoDrone.ServerOnDroneDroppedOrReturned(worldObject, characterOwner, isReturnedToPlayer);
+
             world.SetPosition(worldObject,
                               ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
             world.SetDynamicObjectMoveSpeed(worldObject, 0);
             world.SetDynamicObjectPhysicsMovement(worldObject, Vector2D.Zero, 0);
-
+            
             privateState.IsDespawned = true;
             privateState.CharacterOwner = null;
             ServerOnDroneControlRemoved(characterOwner, worldObject);

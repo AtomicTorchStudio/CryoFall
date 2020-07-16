@@ -86,7 +86,7 @@ Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
 Strzała z kamiennym grotem. Najbardziej podstawowa strzała.
 
 Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
-Strzała z żelaznym grotem
+Strzała z kamiennym grotem
 
 Scripts/Items/Ammo/ItemAmmoGrenadeFragmentation@Description:
 Specjalny granat odłamkowy o zwiększonym polu rażenia. Zadaje obrażenia obszarowe w dużym promieniu.

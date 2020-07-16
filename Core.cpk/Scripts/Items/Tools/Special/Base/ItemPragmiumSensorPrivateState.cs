@@ -5,12 +5,6 @@
     public class ItemPragmiumSensorPrivateState : ItemWithDurabilityPrivateState
     {
         [TempOnly]
-        public byte ServerCurrentSignalStrength { get; set; }
-
-        [TempOnly]
         public double ServerTimeToPing { get; set; }
-
-        [TempOnly]
-        public double ServerTimeToPong { get; set; }
     }
 }

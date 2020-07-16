@@ -28,8 +28,6 @@
             data.PhysicsBody
                 .AddShapeRectangle(size: (1.8, 0.3), offset: (0.1, 0.1))
                 .AddShapeRectangle(size: (1.8, 0.4), offset: (0.1, 0.1), group: CollisionGroups.HitboxMelee);
-
-            // no ranged hitbox here
         }
     }
 }

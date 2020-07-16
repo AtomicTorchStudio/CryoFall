@@ -205,7 +205,7 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 El depósito de recursos acaba de aparecer y aún no ha sido reclamado. De momento, no se puede construir a su alrededor.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
-Construir o mejorar este terreno adjudicado provocará que la combinación de almacenamientos seguros superará la capacidad de la base. Elimina objetos de los almacenamientos seguros de los terrenos adjudicados cercanos y luego repite la acción.
+Construir o mejorar este terreno adjudicado provocará que la combinación de almacenes seguros superará la capacidad de la base. Elimina objetos de los almacenes seguros de los terrenos adjudicados cercanos y luego repite la acción.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Se cruza con otro terreno adjudicado

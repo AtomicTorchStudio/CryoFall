@@ -312,12 +312,11 @@
                                        != Server.World.GetTile(endPosition.ToVector2Ushort()).Height;
 
             if (!WeaponSystem.SharedHasTileObstacle(
-                    shotSourcePosition,
+                    character.Position,
                     character.Tile.Height,
                     endPosition,
                     character.PhysicsBody.PhysicsSpace,
-                    anyCliffIsAnObstacle:
-                    anyCliffIsAnObstacle))
+                    anyCliffIsAnObstacle: anyCliffIsAnObstacle))
             {
                 ServerTimersSystem.AddAction(
                     timeToHit,

@@ -42,10 +42,6 @@
 
             var publicState = ClientCurrentCharacterHelper.PublicState;
             this.isHeadEquipmentDisplayed = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers;
-            publicState.ClientSubscribe(
-                _ => _.IsHeadEquipmentHiddenForSelfAndPartyMembers,
-                _ => this.IsHeadEquipmentDisplayed = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers,
-                this);
         }
 
         public BaseCommand CommandOpenHelpMenu

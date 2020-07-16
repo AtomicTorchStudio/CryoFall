@@ -31,6 +31,8 @@
     {
         public abstract BaseItemsContainerMechEquipment EquipmentItemsContainerType { get; }
 
+        public override bool IsAllowCreatureDamageWhenNoPilot => true;
+
         public override bool IsHealthbarDisplayedWhenPiloted => true;
 
         public override bool IsHeavyVehicle => true;
@@ -131,6 +133,18 @@
                                         clientState);
         }
 
+        protected override void ClientSetupCurrentPlayerUI(IDynamicWorldObject vehicle)
+        {
+            base.ClientSetupCurrentPlayerUI(vehicle);
+
+            GetClientState(vehicle).UIElementsHolder = new ClientVehicleMechCurrentPlayerUIController(vehicle);
+
+            ClientCurrentCharacterVehicleContainersHelper.Init(new[]
+            {
+                (IClientItemsContainer)GetPrivateState(vehicle).EquipmentItemsContainer
+            });
+        }
+
         protected override void ClientSetupRendering(ClientInitializeData data)
         {
             base.ClientSetupRendering(data);
@@ -161,6 +175,22 @@
                         skeletonComponents: new List<IClientComponent>());
                 }
             }
+        }
+
+        protected override void ClientTryDestroyCurrentPlayerUI(IDynamicWorldObject gameObject)
+        {
+            base.ClientTryDestroyCurrentPlayerUI(gameObject);
+
+            if (!gameObject.ClientHasPrivateState)
+            {
+                return;
+            }
+
+            var privateState = GetPrivateState(gameObject);
+            ClientCurrentCharacterVehicleContainersHelper.Reset(new[]
+            {
+                (IClientItemsContainer)privateState.EquipmentItemsContainer
+            });
         }
 
         protected override void ServerInitializeVehicle(ServerInitializeData data)
@@ -219,18 +249,6 @@
             }
 
             return damage;
-        }
-
-        protected override void SharedSetupCurrentPlayerUI(IDynamicWorldObject vehicle)
-        {
-            base.SharedSetupCurrentPlayerUI(vehicle);
-
-            GetClientState(vehicle).UIElementsHolder = new ClientVehicleMechCurrentPlayerUIController(vehicle);
-
-            ClientCurrentCharacterVehicleContainersHelper.Init(new[]
-            {
-                (IClientItemsContainer)GetPrivateState(vehicle).EquipmentItemsContainer
-            });
         }
     }
 

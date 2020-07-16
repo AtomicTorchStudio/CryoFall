@@ -6,6 +6,6 @@
 
         public override string Name => "Animal fat";
 
-        public ushort OrganicValue => 3;
+        public ushort OrganicValue => 5;
     }
 }

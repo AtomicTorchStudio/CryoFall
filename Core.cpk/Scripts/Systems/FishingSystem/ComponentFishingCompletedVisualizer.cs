@@ -172,6 +172,8 @@
             caughtFishSizeValue = (float)Math.Pow(caughtFishSizeValue, 0.667);
             this.spriteRenderer.Scale = 0.667 * caughtFishSizeValue;
             this.spriteRenderer.IsEnabled = true;
+
+            ClientFishingSoundsHelper.PlaySoundSuccess(this.character);
         }
     }
 }

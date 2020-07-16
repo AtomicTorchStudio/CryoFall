@@ -30,6 +30,8 @@
 
         ITextureResource Icon { get; }
 
+        bool IsAllowCreatureDamageWhenNoPilot { get; }
+
         bool IsHeavyVehicle { get; }
 
         bool IsPlayersHotbarAndEquipmentItemsAllowed { get; }
@@ -82,6 +84,8 @@
 
         void ServerOnRepair(IDynamicWorldObject worldObject, ICharacter byCharacter);
 
+        void ServerRefreshEnergyMax(IDynamicWorldObject vehicle);
+
         void SharedApplyInput(
             IDynamicWorldObject vehicle,
             ICharacter character,
@@ -106,7 +110,5 @@
         bool SharedPlayerHasRequiredItemsToBuild(ICharacter character, bool allowIfAdmin = true);
 
         bool SharedPlayerHasRequiredItemsToRepair(ICharacter character, bool allowIfAdmin = true);
-
-        void ServerRefreshEnergyMax(IDynamicWorldObject vehicle);
     }
 }

@@ -18,15 +18,20 @@
             IWorldObject worldObject,
             string message,
             bool isOutOfRange = false,
-            double? hideDelay = null)
+            double? hideDelay = null,
+            bool playSound = true)
         {
             ShowOn(worldObject, message, hideDelay);
 
             var soundKey = isOutOfRange
                                ? ObjectSound.InteractOutOfRange
                                : ObjectSound.InteractFail;
-            worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                       .PlaySound(soundKey);
+
+            if (playSound)
+            {
+                worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
+                           .PlaySound(soundKey);
+            }
         }
 
         public static void Hide()
@@ -35,9 +40,10 @@
             lastControl = null;
         }
 
-        public static void ShowOn(IWorldObject worldObject, 
-                                  string message, 
-                                  double? hideDelay = null)
+        public static void ShowOn(
+            IWorldObject worldObject,
+            string message,
+            double? hideDelay = null)
         {
             if (Api.IsServer)
             {

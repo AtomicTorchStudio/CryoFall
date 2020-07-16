@@ -3,7 +3,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
@@ -34,56 +33,62 @@
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
             // common loot
-            droplist.Add(nestedList: new DropItemsList(outputs: 2, outputsRandom: 0)
-                                     // money
-                                     .Add<ItemCoinPenny>(count: 10, countRandom: 30, weight: 1 / 1.0)
-                                     // resources
-                                     .Add<ItemPlanks>(count: 30,     countRandom: 50,  weight: 1 / 1.0)
-                                     .Add<ItemIngotCopper>(count: 5, countRandom: 15,  weight: 1 / 1.0)
-                                     .Add<ItemIngotIron>(count: 5,   countRandom: 15,  weight: 1 / 1.0)
-                                     .Add<ItemIngotSteel>(count: 5,  countRandom: 10,  weight: 1 / 4.0)
-                                     .Add<ItemClay>(count: 30,       countRandom: 20,  weight: 1 / 4.0)
-                                     .Add<ItemCoal>(count: 5,        countRandom: 15,  weight: 1 / 4.0)
-                                     .Add<ItemOreCopper>(count: 25,  countRandom: 75,  weight: 1 / 10.0)
-                                     .Add<ItemOreIron>(count: 25,    countRandom: 75,  weight: 1 / 10.0)
-                                     .Add<ItemSand>(count: 50,       countRandom: 100, weight: 1 / 10.0)
-                                     .Add<ItemStone>(count: 50,      countRandom: 100, weight: 1 / 10.0)
-                                     .Add<ItemCement>(count: 2,      countRandom: 8,   weight: 1 / 10.0)
-                                     // items
-                                     .Add<ItemGlue>(count: 2,             countRandom: 3,  weight: 1 / 10.0)
-                                     .Add<ItemFertilizer>(count: 2,       countRandom: 3,  weight: 1 / 10.0)
-                                     .Add<ItemRubberRaw>(count: 10,       countRandom: 20, weight: 1 / 10.0)
-                                     .Add<ItemRubberVulcanized>(count: 3, countRandom: 2,  weight: 1 / 10.0));
+            droplist.Add(
+                nestedList:
+                new DropItemsList(outputs: 2, outputsRandom: 0)
+                    // money
+                    .Add<ItemCoinPenny>(count: 10, countRandom: 30, weight: 1 / 1.0)
+                    // resources
+                    .Add<ItemPlanks>(count: 30,     countRandom: 50,  weight: 1 / 1.0)
+                    .Add<ItemIngotCopper>(count: 5, countRandom: 15,  weight: 1 / 1.0)
+                    .Add<ItemIngotIron>(count: 5,   countRandom: 15,  weight: 1 / 1.0)
+                    .Add<ItemIngotSteel>(count: 5,  countRandom: 10,  weight: 1 / 4.0)
+                    .Add<ItemClay>(count: 30,       countRandom: 20,  weight: 1 / 4.0)
+                    .Add<ItemCoal>(count: 5,        countRandom: 15,  weight: 1 / 4.0)
+                    .Add<ItemOreCopper>(count: 25,  countRandom: 75,  weight: 1 / 10.0)
+                    .Add<ItemOreIron>(count: 25,    countRandom: 75,  weight: 1 / 10.0)
+                    .Add<ItemSand>(count: 50,       countRandom: 100, weight: 1 / 10.0)
+                    .Add<ItemStone>(count: 50,      countRandom: 100, weight: 1 / 10.0)
+                    .Add<ItemCement>(count: 2,      countRandom: 8,   weight: 1 / 10.0)
+                    // items
+                    .Add<ItemGlue>(count: 2,             countRandom: 3,  weight: 1 / 10.0)
+                    .Add<ItemFertilizer>(count: 2,       countRandom: 3,  weight: 1 / 10.0)
+                    .Add<ItemRubberRaw>(count: 10,       countRandom: 20, weight: 1 / 10.0)
+                    .Add<ItemRubberVulcanized>(count: 3, countRandom: 2,  weight: 1 / 10.0));
 
             // rare loot
-            droplist.Add(probability: 1 / 3.0,
-                         nestedList: new DropItemsList(outputs: 1)
-                                     // components
-                                     .Add<ItemComponentsMechanical>(count: 5,          countRandom: 5, weight: 1 / 1.0)
-                                     .Add<ItemComponentsElectronic>(count: 5,          countRandom: 5, weight: 1 / 1.0)
-                                     .Add<ItemComponentsOptical>(count: 5,             countRandom: 5, weight: 1 / 10.0)
-                                     .Add<ItemComponentsIndustrialChemicals>(count: 5, countRandom: 5, weight: 1 / 10.0)
-                                     // items
-                                     .Add<ItemFirelog>(count: 2,           countRandom: 3, weight: 1 / 1.0)
-                                     .Add<ItemBatteryDisposable>(count: 2, countRandom: 3, weight: 1 / 10.0)
-                                     .Add<ItemBombMining>(count: 2,        countRandom: 3, weight: 1 / 25.0)
-                                     // tools
-                                     .Add<ItemAxeIron>(count: 1,      weight: 1 / 25.0)
-                                     .Add<ItemPickaxeIron>(count: 1,  weight: 1 / 25.0)
-                                     .Add<ItemToolboxT2>(count: 1,    weight: 1 / 25.0)
-                                     .Add<ItemAxeSteel>(count: 1,     weight: 1 / 50.0)
-                                     .Add<ItemPickaxeSteel>(count: 1, weight: 1 / 50.0)
-                                     .Add<ItemToolboxT3>(count: 1,    weight: 1 / 50.0)
-                                     .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
-                                     // equipment
-                                     .Add<ItemHelmetSafety>(count: 1, weight: 1 / 15.0));
+            droplist.Add(
+                probability: 1 / 3.0,
+                nestedList:
+                new DropItemsList(outputs: 1)
+                    // components
+                    .Add<ItemComponentsMechanical>(count: 5,          countRandom: 5, weight: 1 / 1.0)
+                    .Add<ItemComponentsElectronic>(count: 5,          countRandom: 5, weight: 1 / 1.0)
+                    .Add<ItemComponentsOptical>(count: 5,             countRandom: 5, weight: 1 / 10.0)
+                    .Add<ItemComponentsIndustrialChemicals>(count: 5, countRandom: 5, weight: 1 / 10.0)
+                    // items
+                    .Add<ItemFirelog>(count: 2,           countRandom: 3, weight: 1 / 1.0)
+                    .Add<ItemBatteryDisposable>(count: 2, countRandom: 3, weight: 1 / 10.0)
+                    .Add<ItemBombMining>(count: 2,        countRandom: 3, weight: 1 / 25.0)
+                    // tools
+                    .Add<ItemAxeIron>(count: 1,      weight: 1 / 25.0)
+                    .Add<ItemPickaxeIron>(count: 1,  weight: 1 / 25.0)
+                    .Add<ItemToolboxT2>(count: 1,    weight: 1 / 25.0)
+                    .Add<ItemAxeSteel>(count: 1,     weight: 1 / 50.0)
+                    .Add<ItemPickaxeSteel>(count: 1, weight: 1 / 50.0)
+                    .Add<ItemToolboxT3>(count: 1,    weight: 1 / 50.0)
+                    .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
+                    // equipment
+                    .Add<ItemHelmetSafety>(count: 1, weight: 1 / 15.0));
 
             // extra loot from skill
-            droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
-                         nestedList: new DropItemsList(outputs: 1)
-                                     .Add<ItemComponentsMechanical>(count: 1, countRandom: 1)
-                                     .Add<ItemComponentsElectronic>(count: 1, countRandom: 1)
-                                     .Add<ItemBatteryDisposable>(count: 1,    countRandom: 1));
+            droplist.Add(
+                condition: SkillSearching.ServerRollExtraLoot,
+                nestedList:
+                new DropItemsList(outputs: 1)
+                    .Add<ItemComponentsMechanical>(count: 1, countRandom: 1)
+                    .Add<ItemComponentsElectronic>(count: 1, countRandom: 1)
+                    .Add<ItemBatteryDisposable>(count: 1,    countRandom: 1));
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

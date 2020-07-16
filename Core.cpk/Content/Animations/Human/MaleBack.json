@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "r/kRiJkGRis7ZHfEJxZ+gyDhpkg", "spine": "3.7.94", "width": 38.14, "height": 80.72 },
+"skeleton": { "hash": "+0ReJfBsnp3U3zRQeKwtkyK5L4o", "spine": "3.7.94", "width": 38.14, "height": 80.72 },
 "bones": [
 	{ "name": "root", "rotation": 0.05, "scaleX": 0.068, "scaleY": 0.067 },
 	{ "name": "Pelvis", "parent": "root", "length": 71.03, "rotation": 92.71, "x": -36.27, "y": 299.86 },
@@ -53,6 +53,7 @@
 	{ "name": "TorsoEquipment", "bone": "Torso", "attachment": "TorsoEquipment" },
 	{ "name": "UpperArmLeft", "bone": "UpperArmLeft", "attachment": "UpperArmLeft" },
 	{ "name": "UpperArmLeftEquipment", "bone": "UpperArmLeft", "attachment": "UpperArmLeftEquipment" },
+	{ "name": "HeadBack", "bone": "Head", "attachment": "Head" },
 	{ "name": "LowerArmLeft", "bone": "LowerArmLeft", "attachment": "LowerArmLeft" },
 	{ "name": "HandLeft", "bone": "HandLeft", "attachment": "HandLeft" },
 	{ "name": "HandLeftEquipment", "bone": "HandLeft", "attachment": "HandLeftEquipment" },
@@ -292,6 +293,18 @@
 			}
 		},
 		"Head": {
+			"Head": {
+				"path": "Back/Male/Head",
+				"x": 69.01,
+				"y": 2.1,
+				"scaleX": 2.96,
+				"scaleY": 2.96,
+				"rotation": -91.12,
+				"width": 106,
+				"height": 149
+			}
+		},
+		"HeadBack": {
 			"Head": {
 				"path": "Back/Male/Head",
 				"x": 69.01,
@@ -6593,10 +6606,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -17 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -18 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
 				]
 			},
 			{
@@ -6604,10 +6617,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -16 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -17 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -19 }
 				]
 			}
 		]
@@ -6796,10 +6809,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -17 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -18 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
 				]
 			},
 			{
@@ -6807,10 +6820,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -16 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -17 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -19 }
 				]
 			},
 			{
@@ -6818,10 +6831,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -16 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -17 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -19 }
 				]
 			}
 		]
@@ -6993,10 +7006,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -16 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -17 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -19 }
 				]
 			}
 		]
@@ -7174,10 +7187,10 @@
 				"offsets": [
 					{ "slot": "UpperArmLeft", "offset": -17 },
 					{ "slot": "UpperArmLeftEquipment", "offset": -17 },
-					{ "slot": "LowerArmLeft", "offset": -17 },
-					{ "slot": "HandLeft", "offset": -17 },
-					{ "slot": "HandLeftEquipment", "offset": -16 },
-					{ "slot": "LowerArmLeftEquipment", "offset": -18 }
+					{ "slot": "LowerArmLeft", "offset": -18 },
+					{ "slot": "HandLeft", "offset": -18 },
+					{ "slot": "HandLeftEquipment", "offset": -17 },
+					{ "slot": "LowerArmLeftEquipment", "offset": -19 }
 				]
 			}
 		]

@@ -27,7 +27,7 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (1.8, 1), offset: (0.1, 0.1));
-            AddFullHeightWallHitboxes(data, width: 1.6, offsetX: 0.2);
+            AddHalfHeightWallHitboxes(data, width: 1.6, offsetX: 0.2, offsetY: 0.1);
         }
     }
 }

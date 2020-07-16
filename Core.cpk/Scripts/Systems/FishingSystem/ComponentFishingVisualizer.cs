@@ -256,6 +256,7 @@
                 // fish started biting, start a floater spritesheet animation
                 this.wasFishBiting = true;
                 this.CreateFloaterAnimationComponent();
+                ClientFishingSoundsHelper.PlaySoundBaiting(this.character);
             }
 
             // calculate and apply float position movement

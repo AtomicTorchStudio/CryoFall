@@ -357,7 +357,10 @@
             CannotInteractMessageDisplay.ClientOnCannotInteract(ClientCurrentCharacterHelper.Character,
                                                                 Notification_FishSlipOffTheHook,
                                                                 isOutOfRange: false,
-                                                                hideDelay: 3);
+                                                                hideDelay: 3,
+                                                                playSound: false);
+
+            ClientFishingSoundsHelper.PlaySoundFail(ClientCurrentCharacterHelper.Character);
         }
 
         private void ClientRemote_OnTooLate()
@@ -365,7 +368,10 @@
             CannotInteractMessageDisplay.ClientOnCannotInteract(ClientCurrentCharacterHelper.Character,
                                                                 Notification_TooLate,
                                                                 isOutOfRange: false,
-                                                                hideDelay: 3);
+                                                                hideDelay: 3,
+                                                                playSound: false);
+
+            ClientFishingSoundsHelper.PlaySoundFail(ClientCurrentCharacterHelper.Character);
         }
 
         private void ServerRemote_PullFish(ILogicObject fishingSession)

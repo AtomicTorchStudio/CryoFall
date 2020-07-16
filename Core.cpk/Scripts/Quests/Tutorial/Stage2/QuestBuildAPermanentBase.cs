@@ -34,8 +34,9 @@
         {
             tasks
                 .Add(TaskHaveTechNode.Require<TechNodeLandClaimT1>())
-                .Add(TaskBuildStructure.Require<ObjectLandClaimT1>())
-                .Add(TaskRelocateAnyStructure.Require());
+                .Add(TaskBuildStructure.Require<ObjectLandClaimT1>());
+            // TODO: restore this for A28 as it will include the necessary localization of the task name
+                //.Add(TaskRelocateAnyStructure.Require());
 
             prerequisites
                 .Add<QuestCraftAndEquipClothArmor>()

@@ -20,14 +20,27 @@
 
         private static readonly IRenderingClientService Rendering = Api.IsClient ? Api.Client.Rendering : null;
 
+        private static readonly ITextureResource TransparentTexturePlaceholder
+            = new TextureResource("FX/TransparentPixel");
+
+        public enum HeadSpriteType
+        {
+            Front,
+
+            Back,
+
+            BackOverlay
+        }
+
         public static async Task<ITextureResource> GenerateHeadSprite(
             CharacterHeadSpriteData data,
             ProceduralTextureRequest request,
             bool isMale,
-            bool isFrontFace,
+            HeadSpriteType headSpriteType,
             Vector2Ushort? customTextureSize = null,
             sbyte spriteQualityOffset = 0)
         {
+            var isFrontFace = headSpriteType == HeadSpriteType.Front;
             var renderingTag = request.TextureName;
             var side = isFrontFace ? "Front" : "Back";
 
@@ -88,7 +101,8 @@
             isHairVisible &= style.HairId != null;
 
             string hair = null, hairBehind = null;
-            if (isHairVisible)
+            if (isHairVisible
+                && !string.IsNullOrEmpty(style.HairId))
             {
                 var hairBase = faceStylesProvider.HairFolderPath + $"{style.HairId}/{side}";
                 hair = hairBase + ".png";
@@ -124,11 +138,10 @@
                 }
             }
 
-            var isHeadVisible = protoItemHeadEquipment?.IsHeadVisible ?? true;
-
             // let's combine all the layers (if some elements are null - they will not be rendered)
             List<ComposeLayer> layers;
-            if (isHeadVisible)
+            if (protoItemHeadEquipment is null
+                || protoItemHeadEquipment.IsHeadVisible)
             {
                 var faceLayer = await CreateFaceTexture(
                                     request,
@@ -142,23 +155,55 @@
                                     },
                                     skinTone);
 
-                var (layerHair, layerHairBehind) = await GetHairLayers(request,
-                                                                       hair,
-                                                                       hairBehind,
-                                                                       hairColor,
-                                                                       spriteQualityOffset);
+                layers = new List<ComposeLayer>();
 
-                layers = new List<ComposeLayer>()
+                if (isHairVisible)
                 {
-                    new ComposeLayer(helmetBehind, spriteQualityOffset),
-                    layerHairBehind,
-                    faceLayer,
-                    layerHair,
-                    new ComposeLayer(helmetFront, spriteQualityOffset)
-                };
+                    var (layerHair, layerHairBehind) = await GetHairLayers(request,
+                                                                           hair,
+                                                                           hairBehind,
+                                                                           hairColor,
+                                                                           spriteQualityOffset);
+
+                    if (headSpriteType != HeadSpriteType.BackOverlay)
+                    {
+                        layers.Add(new ComposeLayer(helmetBehind, spriteQualityOffset));
+                        layers.Add(layerHairBehind);
+                        layers.Add(faceLayer);
+                    }
+
+                    if (headSpriteType != HeadSpriteType.Back)
+                    {
+                        if (layerHair.TextureResource is null
+                            && helmetFront is null
+                            && layers.Count == 0)
+                        {
+                            return TransparentTexturePlaceholder;
+                        }
+
+                        layers.Add(layerHair);
+                        layers.Add(new ComposeLayer(helmetFront, spriteQualityOffset));
+                    }
+                }
+                else // hair is not visible
+                {
+                    if (headSpriteType == HeadSpriteType.BackOverlay)
+                    {
+                        return TransparentTexturePlaceholder;
+                    }
+
+                    layers.Add(new ComposeLayer(helmetBehind, spriteQualityOffset));
+                    layers.Add(faceLayer);
+                    layers.Add(new ComposeLayer(helmetFront, spriteQualityOffset));
+                }
             }
-            else // if head is not visible (defined by head equipment item)
+            else // draw only helmet
             {
+                if (headSpriteType == HeadSpriteType.BackOverlay)
+                {
+                    return TransparentTexturePlaceholder;
+                }
+
                 layers = new List<ComposeLayer>()
                 {
                     new ComposeLayer(helmetBehind, spriteQualityOffset),
@@ -320,7 +365,7 @@
                     return new ComposeLayer(filePath, spriteQualityOffset);
                 }
 
-                var textureResource = new TextureResource(filePath, 
+                var textureResource = new TextureResource(filePath,
                                                           isProvidesMagentaPixelPosition: true,
                                                           qualityOffset: spriteQualityOffset);
                 var renderTarget2D = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,

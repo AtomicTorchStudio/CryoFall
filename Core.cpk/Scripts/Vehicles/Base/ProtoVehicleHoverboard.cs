@@ -31,6 +31,8 @@
     {
         public override byte CargoItemsSlotsCount => 0;
 
+        public override bool IsAllowCreatureDamageWhenNoPilot => false;
+
         public override bool IsHealthbarDisplayedWhenPiloted => false;
 
         public override bool IsHeavyVehicle => false;
@@ -156,7 +158,7 @@
                        textureResourceHoverboard: this.TextureResourceHoverboard,
                        textureResourceLight: this.TextureResourceHoverboardLight,
                        this.StatMoveSpeed);
-            
+
             var componentHoverboardSoundEmitter = HoverboardEngineSoundEmittersManager.CreateSoundEmitter(
                 vehicle,
                 this.EngineSoundResource,
@@ -178,6 +180,25 @@
                 finalDamageMultiplier: 1,
                 rangeMax: damageRadius,
                 damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
+        }
+
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IDynamicWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
+        {
+            var result = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            if (result > 0)
+            {
+                return result;
+            }
+
+            obstacleBlockDamageCoef = 0;
+            return 0;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

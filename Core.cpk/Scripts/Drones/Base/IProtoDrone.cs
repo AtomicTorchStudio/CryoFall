@@ -17,6 +17,11 @@
 
         IItemsContainer ServerGetStorageItemsContainer(IDynamicWorldObject objectDrone);
 
+        void ServerOnDroneDroppedOrReturned(
+            IDynamicWorldObject objectDrone,
+            ICharacter toCharacter,
+            bool isReturnedToPlayer);
+
         void ServerSetDroneTarget(
             IDynamicWorldObject objectDrone,
             IStaticWorldObject targetWorldObject,

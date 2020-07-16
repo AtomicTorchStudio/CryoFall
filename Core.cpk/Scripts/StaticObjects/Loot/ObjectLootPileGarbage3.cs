@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -43,15 +42,17 @@
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
             // common loot
-            droplist.Add(nestedList: new DropItemsList(outputs: 1)
-                                     .Add<ItemPlastic>(count: 1));
+            droplist.Add(nestedList:
+                         new DropItemsList(outputs: 1)
+                             .Add<ItemPlastic>(count: 1));
 
             // extra loot
             droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
-                         nestedList: new DropItemsList(outputs: 1)
-                                     .Add<ItemPlastic>(count: 1)
-                                     .Add<ItemBottleEmpty>(count: 1)
-                                     .Add<ItemCoinPenny>(count: 1, countRandom: 2));
+                         nestedList:
+                         new DropItemsList(outputs: 1)
+                             .Add<ItemPlastic>(count: 1)
+                             .Add<ItemBottleEmpty>(count: 1)
+                             .Add<ItemCoinPenny>(count: 1, countRandom: 2));
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
@@ -63,9 +64,8 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.32, center: (0.5, 0.35))
-                .AddShapeCircle(radius: 0.32, center: (0.5, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.32, center: (0.5, 0.4),  group: CollisionGroups.HitboxMelee)
                 .AddShapeCircle(radius: 0.35, center: (0.5, 0.35), group: CollisionGroups.ClickArea);
         }
-
     }
 }

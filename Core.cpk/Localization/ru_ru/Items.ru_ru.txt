@@ -491,10 +491,10 @@ Scripts/Items/Fishing/ItemFishingBaitInsect@Name:
 Наживка из насекомых
 
 Scripts/Items/Fishing/ItemFishingBaitMix@Description:
-Бойлы - это специально изготовленная наживка, в составе которой много различных ингредиентов, поэтому она подходит почти для всех видов рыб.
+Специально изготовленная наживка, в составе которой много различных ингредиентов, поэтому она подходит почти для всех видов рыб.
 
 Scripts/Items/Fishing/ItemFishingBaitMix@Name:
-Протеиновые бойлы
+Смешанная наживка
 
 Scripts/Items/Fishing/ItemFishingRod@Description:
 Этой удочкой можно ловить рыбу в любых водоемах. Требуется наживка.

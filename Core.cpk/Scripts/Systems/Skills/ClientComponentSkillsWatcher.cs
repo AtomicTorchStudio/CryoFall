@@ -46,28 +46,33 @@
                 return;
             }
 
-            // show notification
-            if (level == 1)
-            {
-                Client.Audio.PlayOneShot(SoundResourceSkillDiscovered, volume: 0.5f);
-                NotificationSystem.ClientShowNotification(
-                    string.Format(NotificationSkillDiscovered, skill.Name),
-                    message: null,
-                    color: NotificationColor.Good,
-                    icon: skill.Icon,
-                    onClick: OnNotificationClick,
-                    playSound: false);
-            }
-            else
-            {
-                Client.Audio.PlayOneShot(SoundResourceSkillLevelUp, volume: 0.5f);
-                NotificationSystem.ClientShowNotification(
-                    string.Format(NotificationSkillReachedLevel, skill.Name, level),
-                    color: NotificationColor.Good,
-                    icon: skill.Icon,
-                    onClick: OnNotificationClick,
-                    playSound: false);
-            }
+            ClientTimersSystem.AddAction(
+                delaySeconds: 1,
+                () =>
+                {
+                    // show notification
+                    if (level == 1)
+                    {
+                        Client.Audio.PlayOneShot(SoundResourceSkillDiscovered, volume: 0.5f);
+                        NotificationSystem.ClientShowNotification(
+                            string.Format(NotificationSkillDiscovered, skill.Name),
+                            message: null,
+                            color: NotificationColor.Good,
+                            icon: skill.Icon,
+                            onClick: OnNotificationClick,
+                            playSound: false);
+                    }
+                    else
+                    {
+                        Client.Audio.PlayOneShot(SoundResourceSkillLevelUp, volume: 0.5f);
+                        NotificationSystem.ClientShowNotification(
+                            string.Format(NotificationSkillReachedLevel, skill.Name, level),
+                            color: NotificationColor.Good,
+                            icon: skill.Icon,
+                            onClick: OnNotificationClick,
+                            playSound: false);
+                    }
+                });
 
             void OnNotificationClick()
             {

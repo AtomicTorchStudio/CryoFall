@@ -25,13 +25,13 @@
                 CharacterMobPublicState,
                 CharacterMobClientState>
     {
+        private const int DeathSpawnLootObjectsDefaultCount = 16;
+
+        private const double DeathSpawnLootObjectsRadius = 19;
+
         private const int DeathSpawnMinionsDefaultCount = 8;
 
         private const double DeathSpawnMinionsRadius = 17;
-
-        private const int DeathSpawnRemainsDefaultObjectsCount = 16;
-
-        private const double DeathSpawnRemainsObjectsRadius = 19;
 
         // The boss is regenerating only if it didn't receive any serious damage for a while.
         private const double HealthRegenerationPerSecond = 40;
@@ -51,9 +51,15 @@
 
         private const double VictoryLearningPointsBonusToEachAlivePlayer = 50;
 
+        private static readonly int MaxLootWinners;
+
         // Determines how often the boss will attempt to use the nova attack (a time interval in seconds).
         private static readonly Interval<double> NovaAttackInterval
             = new Interval<double>(min: 15, max: 21);
+
+        private static readonly Lazy<IProtoStaticWorldObject> ProtoLootObjectLazy
+            = new Lazy<IProtoStaticWorldObject>(
+                GetProtoEntity<ObjectPragmiumQueenRemains>);
 
         // Determines the type of the minion creatures to spawn when boss is dead.
         private static readonly Lazy<IProtoCharacterMob> ProtoMinionObjectDeathLazy
@@ -64,10 +70,6 @@
         private static readonly Lazy<IProtoCharacterMob> ProtoMinionObjectLazy
             = new Lazy<IProtoCharacterMob>(
                 GetProtoEntity<MobPragmiumBeetleMinion>);
-
-        private static readonly Lazy<ObjectPragmiumQueenRemains> ProtoRemainsObjectLazy
-            = new Lazy<ObjectPragmiumQueenRemains>(
-                GetProtoEntity<ObjectPragmiumQueenRemains>);
 
         private static readonly double ServerBossDifficultyCoef;
 
@@ -104,6 +106,9 @@
 
             // coef range from 0.2 to 2.0
             ServerBossDifficultyCoef = requiredPlayersNumber / 5.0;
+
+            MaxLootWinners = (int)Math.Ceiling(requiredPlayersNumber * 2);
+            MaxLootWinners = Math.Max(MaxLootWinners, 5); // ensure at least 5 winners
         }
 
         public override bool AiIsRunAwayFromHeavyVehicles => false;
@@ -157,11 +162,45 @@
                         }
                     }
 
+                    // explode
                     var protoExplosion = Api.GetProtoEntity<ObjectPragmiumQueenDeathExplosion>();
                     Server.World.CreateStaticWorldObject(protoExplosion,
                                                          (bossPosition - protoExplosion.Layout.Center)
                                                          .ToVector2Ushort());
 
+                    var privateState = GetPrivateState(character);
+                    var damageTracker = privateState.DamageTracker;
+
+                    // spawn loot and minions on death
+                    ServerTimersSystem.AddAction(
+                        delaySeconds: protoExplosion.ExplosionDelay.TotalSeconds
+                                      + protoExplosion.ExplosionPreset.ServerDamageApplyDelay * 1.01,
+                        () =>
+                        {
+                            try
+                            {
+                                ServerBossLootSystem.ServerCreateBossLoot(
+                                    epicenterPosition: bossPosition.ToVector2Ushort(),
+                                    protoCharacterBoss: this,
+                                    damageTracker: damageTracker,
+                                    bossDifficultyCoef: ServerBossDifficultyCoef,
+                                    lootObjectProto: ProtoLootObjectLazy.Value,
+                                    lootObjectsDefaultCount: DeathSpawnLootObjectsDefaultCount,
+                                    lootObjectsRadius: DeathSpawnLootObjectsRadius,
+                                    maxLootWinners: MaxLootWinners);
+                            }
+                            finally
+                            {
+                                ServerBossLootSystem.ServerSpawnBossMinionsOnDeath(
+                                    epicenterPosition: bossPosition.ToVector2Ushort(),
+                                    bossDifficultyCoef: ServerBossDifficultyCoef,
+                                    minionProto: ProtoMinionObjectDeathLazy.Value,
+                                    minionsDefaultCount: DeathSpawnMinionsDefaultCount,
+                                    minionsRadius: DeathSpawnMinionsRadius);
+                            }
+                        });
+
+                    // destroy the character object after the explosion
                     ServerTimersSystem.AddAction(
                         delaySeconds: protoExplosion.ExplosionDelay.TotalSeconds + 0.5,
                         () => Server.World.DestroyObject(character));
@@ -170,10 +209,11 @@
 
         public void ServerTrySpawnMinions(ICharacter characterBoss)
         {
+            var bossDamageTracker = GetPrivateState(characterBoss).DamageTracker;
             var bossPosition = characterBoss.Position + (0, 1.0);
 
             // calculate how many minions required
-            var minionsRequired = 0;
+            var minionsRequired = 1;
             using var tempListCharacters = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(characterBoss, tempListCharacters);
 
@@ -186,10 +226,10 @@
                 }
             }
 
-            if (minionsRequired < 2)
+            if (minionsRequired < 3)
             {
-                // ensure there are at least 2 minions
-                minionsRequired = 2;
+                // ensure there are at least 3 minions
+                minionsRequired = 3;
             }
 
             // calculate how many minions present
@@ -242,13 +282,22 @@
                     // spawned successfully!
                     minionsRequired--;
                 }
+            }
 
-                bool ServerTrySpawnMinion(Vector2Ushort spawnPosition)
+            bool ServerTrySpawnMinion(Vector2Ushort spawnPosition)
+            {
+                var worldPosition = spawnPosition.ToVector2D();
+                var spawnedCharacter = Server.Characters.SpawnCharacter(protoMobMinion, worldPosition);
+                if (spawnedCharacter is null)
                 {
-                    var worldPosition = spawnPosition.ToVector2D();
-                    var spawnedCharacter = Server.Characters.SpawnCharacter(protoMobMinion, worldPosition);
-                    return spawnedCharacter != null;
+                    return false;
                 }
+
+                // write this boss' damage tracker into the minion character
+                // so any damage dealt to it will be counted in the winners ranking
+                var privateState = spawnedCharacter.GetPrivateState<ICharacterPrivateStateWithBossDamageTracker>();
+                privateState.DamageTracker = bossDamageTracker;
+                return true;
             }
         }
 
@@ -260,7 +309,8 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            if (NewbieProtectionSystem.SharedIsNewbie(weaponCache.Character))
+            var byCharacter = weaponCache.Character;
+            if (NewbieProtectionSystem.SharedIsNewbie(byCharacter))
             {
                 // don't allow attacking a boss while under newbie protection
                 if (IsClient)
@@ -294,147 +344,22 @@
 
             if (IsServer
                 && result
-                && damageApplied > 1 / ServerBossDifficultyCoef)
+                && byCharacter != null
+                && !byCharacter.IsNpc)
             {
-                // record the last time a significant damage is dealt
                 var privateState = GetPrivateState((ICharacter)targetObject);
-                privateState.LastDamageTime = Server.Game.FrameTime;
+
+                // record the damage dealt by player
+                privateState.DamageTracker.RegisterDamage(byCharacter, damageApplied);
+
+                if (damageApplied > 1 / ServerBossDifficultyCoef)
+                {
+                    // record the last time a significant damage is dealt
+                    privateState.LastDamageTime = Server.Game.FrameTime;
+                }
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// When the explosion is processed this method will be called (see ObjectPragmiumQueenDeathExplosion).
-        /// </summary>
-        internal static void ServerOnExplode(
-            Vector2Ushort epicenterPosition)
-        {
-            ServerSpawnRemains(epicenterPosition);
-            ServerSpawnMinionsOnDeath(epicenterPosition);
-
-            static void ServerSpawnRemains(Vector2Ushort epicenterPosition)
-            {
-                var countToSpawnRemains = DeathSpawnRemainsDefaultObjectsCount;
-
-                // apply difficulty coefficient
-                countToSpawnRemains = (int)Math.Ceiling(countToSpawnRemains * ServerBossDifficultyCoef);
-                if (countToSpawnRemains < 2)
-                {
-                    countToSpawnRemains = 2;
-                }
-
-                var attemptsRemains = 3000;
-
-                while (countToSpawnRemains > 0)
-                {
-                    attemptsRemains--;
-                    if (attemptsRemains <= 0)
-                    {
-                        // attempts exceeded
-                        return;
-                    }
-
-                    // calculate random distance from the explosion epicenter
-                    var distance = RandomHelper.Range(2, DeathSpawnRemainsObjectsRadius);
-
-                    // ensure we spawn more objects closer to the epicenter
-                    var spawnProbability = 1 - (distance / DeathSpawnRemainsObjectsRadius);
-                    spawnProbability = Math.Pow(spawnProbability, 1.25);
-                    if (!RandomHelper.RollWithProbability(spawnProbability))
-                    {
-                        // random skip
-                        continue;
-                    }
-
-                    var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-                    var spawnPosition = new Vector2Ushort(
-                        (ushort)(epicenterPosition.X + distance * Math.Cos(angle)),
-                        (ushort)(epicenterPosition.Y + distance * Math.Sin(angle)));
-
-                    if (ServerTrySpawnRemainsObject(spawnPosition))
-                    {
-                        // spawned successfully!
-                        countToSpawnRemains--;
-                    }
-                }
-
-                static bool ServerTrySpawnRemainsObject(Vector2Ushort spawnPosition)
-                {
-                    var protoNode = ProtoRemainsObjectLazy.Value;
-                    if (!protoNode.CheckTileRequirements(spawnPosition,
-                                                         character: null,
-                                                         logErrors: false))
-                    {
-                        return false;
-                    }
-
-                    var node = Server.World.CreateStaticWorldObject(protoNode, spawnPosition);
-                    return node != null;
-                }
-            }
-
-            static void ServerSpawnMinionsOnDeath(Vector2Ushort epicenterPosition)
-            {
-                var protoCharacterMob = ProtoMinionObjectDeathLazy.Value;
-                var countToSpawnRemains = DeathSpawnMinionsDefaultCount;
-
-                // apply difficulty coefficient
-                countToSpawnRemains = (int)Math.Ceiling(countToSpawnRemains * ServerBossDifficultyCoef);
-                if (countToSpawnRemains < 2)
-                {
-                    countToSpawnRemains = 2;
-                }
-
-                var attemptsRemains = 3000;
-
-                while (countToSpawnRemains > 0)
-                {
-                    attemptsRemains--;
-                    if (attemptsRemains <= 0)
-                    {
-                        // attempts exceeded
-                        return;
-                    }
-
-                    // calculate random distance from the explosion epicenter
-                    var distance = RandomHelper.Range(2, DeathSpawnMinionsRadius);
-
-                    // ensure we spawn more objects closer to the epicenter
-                    var spawnProbability = 1 - (distance / DeathSpawnMinionsRadius);
-                    spawnProbability = Math.Pow(spawnProbability, 1.25);
-                    if (!RandomHelper.RollWithProbability(spawnProbability))
-                    {
-                        // random skip
-                        continue;
-                    }
-
-                    var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-                    var spawnPosition = new Vector2Ushort(
-                        (ushort)(epicenterPosition.X + distance * Math.Cos(angle)),
-                        (ushort)(epicenterPosition.Y + distance * Math.Sin(angle)));
-
-                    if (ServerTrySpawnMinion(spawnPosition))
-                    {
-                        // spawned successfully!
-                        countToSpawnRemains--;
-                    }
-                }
-
-                bool ServerTrySpawnMinion(Vector2Ushort spawnPosition)
-                {
-                    var worldPosition = spawnPosition.ToVector2D();
-                    if (!ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(worldPosition,
-                                                                                     isPlayer: false))
-                    {
-                        // position is not valid for spawning
-                        return false;
-                    }
-
-                    var spawnedCharacter = Server.Characters.SpawnCharacter(protoCharacterMob, worldPosition);
-                    return spawnedCharacter != null;
-                }
-            }
         }
 
         protected override void FillDefaultEffects(Effects effects)
@@ -466,6 +391,8 @@
             {
                 data.PrivateState.HoldPosition = data.GameObject.TilePosition;
             }
+
+            data.PrivateState.DamageTracker = new ServerBossDamageTracker();
 
             this.weaponsListPrimary = new AiWeaponPresetList()
                                       .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponPragmiumQueenMelee>()))
@@ -516,7 +443,7 @@
                 character,
                 weaponList,
                 distanceEnemyTooClose: 7.5,
-                distanceEnemyTooFar: 14.5,
+                distanceEnemyTooFar: 15.5,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad);
 
@@ -594,6 +521,9 @@
 
         public class PrivateState : CharacterMobPrivateState
         {
+            [TempOnly]
+            public ServerBossDamageTracker DamageTracker { get; set; }
+
             public Vector2Ushort HoldPosition { get; set; }
 
             [TempOnly]

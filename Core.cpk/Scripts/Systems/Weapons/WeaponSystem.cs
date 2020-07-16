@@ -653,7 +653,7 @@
                                                    radius: eventNetworkRadius,
                                                    onlyPlayers: true);
                 observers.Remove(character);
-                
+
                 if (observers.Count > 0)
                 {
                     var partyId = PartySystem.ServerGetParty(character)?.Id ?? 0;
@@ -856,7 +856,8 @@
                 if (SharedHasTileObstacle(character.Position,
                                           characterTileHeight,
                                           damagedObject,
-                                          testResult.PhysicsBody.Position + testResult.PhysicsBody.CenterOffset))
+                                          targetPosition: testResult.PhysicsBody.Position
+                                                          + testResult.PhysicsBody.CenterOffset))
                 {
                     continue;
                 }

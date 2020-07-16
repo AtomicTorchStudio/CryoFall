@@ -28,6 +28,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!-- The 100 right margin is necessary to not overflow the item icon in the item tooltip -->
         <TextBlock
             Grid.Row="0"
             Visibility="{Binding CurrentReferenceAmmoType, Converter={StaticResource NullToVisibilityConverter}}"
@@ -35,7 +36,7 @@
             TextWrapping="Wrap"
             LineHeight="11"
             LineStackingStrategy="BlockLineHeight"
-            Margin="0,1,0,3"
+            Margin="0,1,100,3"
             Foreground="{StaticResource TooltipForegroundBrushDark}" />
 
         <ContentControl Grid.Row="1"

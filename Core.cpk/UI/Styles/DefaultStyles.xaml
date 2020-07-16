@@ -2865,6 +2865,7 @@
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="11" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Margin" Value="0,1" />
     </Style>
 

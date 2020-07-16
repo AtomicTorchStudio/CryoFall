@@ -120,6 +120,8 @@
 
         public ITextureResource Icon { get; }
 
+        public abstract bool IsAllowCreatureDamageWhenNoPilot { get; }
+
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public virtual bool IsAutoUnlocked => false;
@@ -182,10 +184,11 @@
         protected virtual IProtoItemsContainer FuelItemsContainerType
             => Api.GetProtoEntity<ItemsContainerFuelCores>();
 
-        public override void ClientDeinitialize(IDynamicWorldObject gameObject)
+        public sealed override void ClientDeinitialize(IDynamicWorldObject gameObject)
         {
-            ClientDestroyCurrentPlayerUI(GetClientState(gameObject));
+            this.ClientTryDestroyCurrentPlayerUI(gameObject);
             base.ClientDeinitialize(gameObject);
+            this.ClientDeinitializeVehicle(gameObject);
         }
 
         public override string ClientGetTitle(IWorldObject worldObject)
@@ -859,6 +862,10 @@
                 this.VehicleLightConfig);
         }
 
+        protected virtual void ClientDeinitializeVehicle(IDynamicWorldObject gameObject)
+        {
+        }
+
         protected sealed override void ClientInitialize(ClientInitializeData data)
         {
             // preload all the explosion spritesheets
@@ -892,7 +899,7 @@
                 && pilotCharacter.IsCurrentClientCharacter
                 && vehicle.ClientHasPrivateState)
             {
-                this.SharedSetupCurrentPlayerUI(vehicle);
+                this.ClientSetupCurrentPlayerUI(vehicle);
             }
 
             //// subscribe on pilot change
@@ -926,6 +933,10 @@
         protected override void ClientInteractStart(ClientObjectData data)
         {
             InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
+        }
+
+        protected virtual void ClientSetupCurrentPlayerUI(IDynamicWorldObject vehicle)
+        {
         }
 
         protected virtual void ClientSetupRendering(ClientInitializeData data)
@@ -983,6 +994,13 @@
                                      protoSkeleton,
                                      skeletonRenderer,
                                      skeletonComponents: new List<IClientComponent>());
+        }
+
+        protected virtual void ClientTryDestroyCurrentPlayerUI(IDynamicWorldObject gameObject)
+        {
+            var clientState = GetClientState(gameObject);
+            clientState.UIElementsHolder?.Dispose();
+            clientState.UIElementsHolder = null;
         }
 
         protected virtual void PrepareDismountPoints(List<Vector2D> dismountPoints)
@@ -1254,18 +1272,6 @@
             IDynamicWorldObject gameObject,
             out ProtoCharacterSkeleton protoSkeleton,
             ref double scale);
-
-        protected virtual void SharedSetupCurrentPlayerUI(IDynamicWorldObject vehicle)
-        {
-        }
-
-        private static void ClientDestroyCurrentPlayerUI(TVehicleClientState clientState)
-        {
-            clientState.UIElementsHolder?.Dispose();
-            clientState.UIElementsHolder = null;
-
-            ClientCurrentCharacterVehicleContainersHelper.Reset();
-        }
 
         private static bool SharedPlayerHasRequiredItems(
             IReadOnlyList<ProtoItemWithCount> requiredItems,

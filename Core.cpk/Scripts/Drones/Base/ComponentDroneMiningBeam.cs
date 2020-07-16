@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
@@ -23,20 +24,23 @@
 
         private const double MiningTargetEndPositionMaxDistance = 0.05;
 
-        private const float MiningVolume = 0.5f;
+        private const float MiningVolume = 1.0f;
 
         private static readonly RenderingMaterial BeamRenderingMaterial
             = RenderingMaterial.Create(
                 new EffectResource("Special/MiningLaserBeam"));
 
         private static readonly SoundResource SourceResourceMiningEnd
-            = new SoundResource("Objects/Drones/MiningEnd");
+            = new SoundResource("Items/Drones/MiningEnd");
 
-        private static readonly SoundResource SourceResourceMiningProcess
-            = new SoundResource("Objects/Drones/MiningProcess");
+        private static readonly SoundResource SourceResourceMiningProcessStone
+            = new SoundResource("Items/Drones/MiningProcessStone");
+
+        private static readonly SoundResource SourceResourceMiningProcessWood
+            = new SoundResource("Items/Drones/MiningProcessWood");
 
         private static readonly SoundResource SourceResourceMiningStart
-            = new SoundResource("Objects/Drones/MiningStart");
+            = new SoundResource("Items/Drones/MiningStart");
 
         private double alpha;
 
@@ -112,6 +116,13 @@
                 this.hitWorldObject = null;
             }
 
+            if (this.hitWorldObject != null
+                && this.soundEmitterMiningProcess.SoundResource is null)
+            {
+                this.soundEmitterMiningProcess.SoundResource
+                    = GetSourceResourceMiningProcess(this.hitWorldObject.ProtoStaticWorldObject);
+            }
+
             var wasEnabled = this.spriteRendererLine.IsEnabled;
             var isBeamActive = this.dronePublicState.IsMining
                                && this.lastTargetPosition.HasValue;
@@ -149,7 +160,7 @@
 
             var alphaComponent = (byte)(this.alpha * byte.MaxValue);
             this.spriteRendererLine.Color = this.beamColor.WithAlpha(alphaComponent);
-            this.spriteRendererOrigin.Color = Color.FromArgb(alphaComponent, 0xFF,0xFF,0xFF);
+            this.spriteRendererOrigin.Color = Color.FromArgb(alphaComponent, 0xFF, 0xFF, 0xFF);
             this.soundEmitterMiningProcess.Volume = (float)(this.alpha * MiningVolume);
 
             // update line start-end positions and rotation angle
@@ -218,10 +229,17 @@
 
             this.soundEmitterMiningProcess = Api.Client.Audio.CreateSoundEmitter(
                 this.SceneObject,
-                SourceResourceMiningProcess,
+                SoundResource.NoSound,
                 isLooped: true,
                 is3D: true);
             this.soundEmitterMiningProcess.IsEnabled = false;
+        }
+
+        private static SoundResource GetSourceResourceMiningProcess(IProtoStaticWorldObject protoStaticWorldObject)
+        {
+            return protoStaticWorldObject is IProtoObjectVegetation
+                       ? SourceResourceMiningProcessWood
+                       : SourceResourceMiningProcessStone;
         }
 
         private Vector2D GetMiningTargetMovementAnimation(double deltaTime)

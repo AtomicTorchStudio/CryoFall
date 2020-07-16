@@ -1,12 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Tools.Special
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -24,6 +26,8 @@
               EmptyClientState>,
           IProtoItemWithHotbarOverlay
     {
+        private const byte MaxNumberOfPongsPerScan = 2;
+
         /// <summary>
         /// Scan pragmium sources once a second.
         /// </summary>
@@ -82,30 +86,15 @@
             var privateState = data.PrivateState;
 
             var character = item.Container.OwnerAsCharacter;
-            if (character is null
-                || !ReferenceEquals(item, character.SharedGetPlayerSelectedHotbarItem()))
+            if (!IsItemSelectedByPlayer(character, item))
             {
                 // not a selected player item
-                privateState.ServerCurrentSignalStrength = 0;
                 return;
             }
 
             privateState.ServerTimeToPing -= data.DeltaTime;
             if (privateState.ServerTimeToPing > 0)
             {
-                if (privateState.ServerTimeToPong <= 0)
-                {
-                    // pong signal is already sent or no pong signal should be sent
-                    return;
-                }
-
-                privateState.ServerTimeToPong -= data.DeltaTime;
-                if (privateState.ServerTimeToPong <= 0)
-                {
-                    // time to send pong
-                    this.CallClient(character, _ => _.ClientRemote_OnSignal(item, PragmiumSensorSignalKind.Pong));
-                }
-
                 return;
             }
 
@@ -132,19 +121,46 @@
             }
 
             // update signal strength
-            var distance = this.ServerCalculateDistanceToTheClosestPragmiumSpire(character.TilePosition);
-            var signalStrength = this.SharedConvertDistanceToSignalStrength(distance);
-            privateState.ServerTimeToPong = SharedCalculateTimeToPong(signalStrength);
+            using var tempSignalStrength = Api.Shared.GetTempList<byte>();
+            this.ServerCalculateStrengthToTheClosestPragmiumSpires(character,
+                                                                   tempSignalStrength.AsList(),
+                                                                   MaxNumberOfPongsPerScan);
 
-            if (privateState.ServerCurrentSignalStrength != signalStrength)
+            var previousSignalStrength = -1;
+            foreach (var signalStrength in tempSignalStrength.AsList())
             {
-                privateState.ServerCurrentSignalStrength = signalStrength;
-                //Logger.Dev(string.Format("Signal strength changed: {0}. Time to send pong: {1} ms.",
+                if (signalStrength == previousSignalStrength)
+                {
+                    // don't send multiple pongs for the signals of the same strength
+                    continue;
+                }
+
+                previousSignalStrength = signalStrength;
+
+                var serverTimeToPong = SharedCalculateTimeToPong(signalStrength);
+                ServerTimersSystem.AddAction(
+                    serverTimeToPong,
+                    () =>
+                    {
+                        var currentCharacter = item.Container.OwnerAsCharacter;
+                        if (IsItemSelectedByPlayer(currentCharacter, item))
+                        {
+                            this.CallClient(currentCharacter,
+                                            _ => _.ClientRemote_OnSignal(item,
+                                                                         PragmiumSensorSignalKind.Pong));
+                        }
+                    });
+
+                //Logger.Dev(string.Format("Pragmium scanner signal: {0} strength. Time to send pong: {1} ms.",
                 //                         signalStrength,
-                //                         (int)(privateState.ServerTimeToPong * 1000)));
+                //                         (int)(serverTimeToPong * 1000)));
             }
 
             this.CallClient(character, _ => _.ClientRemote_OnSignal(item, PragmiumSensorSignalKind.Ping));
+
+            bool IsItemSelectedByPlayer(ICharacter c, IItem i)
+                => !(c is null)
+                   && ReferenceEquals(i, c.SharedGetPlayerSelectedHotbarItem());
         }
 
         private static double SharedCalculateTimeToPong(byte signalStrength)
@@ -188,28 +204,46 @@
             Api.SafeInvoke(() => ServerSignalReceived?.Invoke(item, signalKind));
         }
 
-        private double ServerCalculateDistanceToTheClosestPragmiumSpire(Vector2Ushort position)
+        private void ServerCalculateDistanceSqrToTheClosestPragmiumSpires(
+            Vector2Ushort position,
+            List<double> closestSqrDistances)
         {
             using var tempList = Api.Shared.GetTempList<IStaticWorldObject>();
             LazyPragmiumSource.Value.GetAllGameObjects(tempList.AsList());
 
-            var closestDistanceSqr = double.MaxValue;
             foreach (var staticWorldObject in tempList.AsList())
             {
                 var distanceSqr = position.TileSqrDistanceTo(staticWorldObject.TilePosition);
-                if (distanceSqr < closestDistanceSqr)
+                if (distanceSqr >= this.MaxRange * this.MaxRange)
                 {
-                    closestDistanceSqr = distanceSqr;
+                    // too far
+                    continue;
                 }
+
+                closestSqrDistances.Add(distanceSqr);
             }
 
-            if (closestDistanceSqr >= this.MaxRange * this.MaxRange)
+            closestSqrDistances.Sort();
+        }
+
+        private void ServerCalculateStrengthToTheClosestPragmiumSpires(
+            ICharacter character,
+            List<byte> results,
+            int maxNumberOfSpires)
+        {
+            using var tempSqrDistances = Api.Shared.GetTempList<double>();
+            var listSqrResults = tempSqrDistances.AsList();
+            this.ServerCalculateDistanceSqrToTheClosestPragmiumSpires(character.TilePosition, listSqrResults);
+
+            for (var index = 0;
+                 index < Math.Min(maxNumberOfSpires, listSqrResults.Count);
+                 index++)
             {
-                // the closest object is too far
-                return -1;
+                var distanceSqr = listSqrResults[index];
+                var distance = Math.Sqrt(distanceSqr);
+                var signalStrength = this.SharedConvertDistanceToSignalStrength(distance);
+                results.Add(signalStrength);
             }
-
-            return Math.Sqrt(closestDistanceSqr);
         }
 
         private byte SharedConvertDistanceToSignalStrength(double distance)

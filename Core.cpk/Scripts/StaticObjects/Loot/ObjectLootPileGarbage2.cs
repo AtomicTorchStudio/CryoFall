@@ -43,29 +43,31 @@
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
             // common loot
-            droplist.Add(nestedList: new DropItemsList(outputs: 1, outputsRandom: 1)
-                                     // money
-                                     .Add<ItemCoinPenny>(count: 10, countRandom: 10, probability: 1 / 5.0)
-                                     // resources
-                                     .Add<ItemPlanks>(count: 25,  countRandom: 25, weight: 1 / 1.0)
-                                     .Add<ItemStone>(count: 25,   countRandom: 25, weight: 1 / 1.0)
-                                     .Add<ItemTwigs>(count: 15,   countRandom: 10, weight: 1 / 1.0)
-                                     .Add<ItemFibers>(count: 15,  countRandom: 10, weight: 1 / 1.0)
-                                     .Add<ItemCharcoal>(count: 5, countRandom: 5,  weight: 1 / 1.0)
-                                     .Add<ItemRot>(count: 5,      countRandom: 5,  weight: 1 / 1.0)
-                                     .Add<ItemCoal>(count: 5,     countRandom: 5,  weight: 1 / 5.0)
-                                     // misc
-                                     .Add<ItemGlassRaw>(count: 5,    countRandom: 15, weight: 1 / 5.0)
-                                     .Add<ItemBottleEmpty>(count: 1, countRandom: 2,  weight: 1 / 5.0)
-                                     .Add<ItemBottleWater>(count: 1, countRandom: 2,  weight: 1 / 5.0));
+            droplist.Add(nestedList:
+                         new DropItemsList(outputs: 1, outputsRandom: 1)
+                             // money
+                             .Add<ItemCoinPenny>(count: 10, countRandom: 10, probability: 1 / 5.0)
+                             // resources
+                             .Add<ItemPlanks>(count: 25,  countRandom: 25, weight: 1 / 1.0)
+                             .Add<ItemStone>(count: 25,   countRandom: 25, weight: 1 / 1.0)
+                             .Add<ItemTwigs>(count: 15,   countRandom: 10, weight: 1 / 1.0)
+                             .Add<ItemFibers>(count: 15,  countRandom: 10, weight: 1 / 1.0)
+                             .Add<ItemCharcoal>(count: 5, countRandom: 5,  weight: 1 / 1.0)
+                             .Add<ItemRot>(count: 5,      countRandom: 5,  weight: 1 / 1.0)
+                             .Add<ItemCoal>(count: 5,     countRandom: 5,  weight: 1 / 5.0)
+                             // misc
+                             .Add<ItemGlassRaw>(count: 5,    countRandom: 15, weight: 1 / 5.0)
+                             .Add<ItemBottleEmpty>(count: 1, countRandom: 2,  weight: 1 / 5.0)
+                             .Add<ItemBottleWater>(count: 1, countRandom: 2,  weight: 1 / 5.0));
 
             // extra loot
             droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
-                         nestedList: new DropItemsList(outputs: 1)
-                                     .Add<ItemPlanks>(count: 25,   countRandom: 25)
-                                     .Add<ItemStone>(count: 25,    countRandom: 25)
-                                     .Add<ItemFibers>(count: 25,   countRandom: 25)
-                                     .Add<ItemGlassRaw>(count: 10, countRandom: 10));
+                         nestedList:
+                         new DropItemsList(outputs: 1)
+                             .Add<ItemPlanks>(count: 25,   countRandom: 25)
+                             .Add<ItemStone>(count: 25,    countRandom: 25)
+                             .Add<ItemFibers>(count: 25,   countRandom: 25)
+                             .Add<ItemGlassRaw>(count: 10, countRandom: 10));
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
@@ -77,9 +79,8 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.32, center: (0.5, 0.35))
-                .AddShapeCircle(radius: 0.32, center: (0.5, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.32, center: (0.5, 0.4),  group: CollisionGroups.HitboxMelee)
                 .AddShapeCircle(radius: 0.35, center: (0.5, 0.35), group: CollisionGroups.ClickArea);
         }
-
     }
 }

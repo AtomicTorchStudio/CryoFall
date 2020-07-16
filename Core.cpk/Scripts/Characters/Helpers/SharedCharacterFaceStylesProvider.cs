@@ -66,6 +66,7 @@
         public CharacterHumanFaceStyle GenerateRandomFace()
         {
             this.EnsureInitialized();
+
             var face = this.allFaceFolders.Values.TakeByRandom();
             var topId = face.TopIds.TakeByRandom();
             var bottomId = face.BottomIds.TakeByRandom();
@@ -79,6 +80,28 @@
                                                hairStyle,
                                                skinToneId,
                                                hairColorId);
+        }
+
+        /// <summary>
+        /// In Editor it's important that the game reload speed is as quick is possible.
+        /// Due to this, Editor is always using the same character face
+        /// (without the skin tone or hair color customization).
+        /// </summary>
+        public CharacterHumanFaceStyle GetDefaultFaceInEditor()
+        {
+            this.EnsureInitialized();
+
+            var face = this.allFaceFolders.Values.ElementAt(2);
+            var topId = face.TopIds[0];
+            var bottomId = face.BottomIds[0];
+            var hairStyle = this.allHairFolders[3];
+
+            return new CharacterHumanFaceStyle(face.Id,
+                                               topId,
+                                               bottomId,
+                                               hairStyle,
+                                               skinToneId: null,
+                                               hairColorId: null);
         }
 
         public FaceFolder GetFace(string faceId)

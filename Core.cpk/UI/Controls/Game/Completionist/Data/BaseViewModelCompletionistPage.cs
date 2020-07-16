@@ -214,13 +214,28 @@
                         return;
                     }
 
-                    NotificationSystem.ClientShowNotification(
-                        viewModel.Title,
-                        viewModel.NotificationMessage,
-                        icon: viewModel.IconTexture,
-                        color: NotificationColor.Good,
-                        onClick: Menu.Open<WindowCompletionist>);
+                    ClientTimersSystem.AddAction(
+                        1.5,
+                        () =>
+                        {
+                            NotificationSystem.ClientShowNotification(
+                                viewModel.Title,
+                                viewModel.NotificationMessage,
+                                icon: viewModel.IconTexture,
+                                color: NotificationColor.Good,
+                                onClick: Menu.Open<WindowCompletionist>,
+                                playSound: false);
+                            Client.Audio.PlayOneShot(CompletionistSystem.EntryUnlockedSoundResource);
+                        });
                     return;
+                }
+
+                if (viewModel.State == ViewModelWindowCompletionist.CompletionistEntryState.RewardClaimed
+                    && ReferenceEquals(this.lastRemovedEntryByServer.Prototype, prototype)
+                    && !this.lastRemovedEntryByServer.IsRewardClaimed)
+                {
+                    // reward was not claimed but now claimed
+                    Client.Audio.PlayOneShot(CompletionistSystem.RewardClaimedSoundResource);
                 }
 
                 if (viewModel.State == ViewModelWindowCompletionist.CompletionistEntryState.RewardClaimed

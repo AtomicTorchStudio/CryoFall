@@ -6,6 +6,7 @@
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.CraftRecipes.Sprinkler;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
@@ -203,6 +204,11 @@
             // reset hashes to ensure the recipe will refresh (it will refill the water bar if there are bottles with water)
             privateState.ManufacturingState.ContainerInputLastStateHash = null;
             privateState.ManufacturingState.ContainerOutputLastStateHash = null;
+
+            using var observers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(worldObjectSprinkler, observers);
+            this.CallClient(observers.AsList(),
+                            _ => _.ClientRemote_OnWatered(worldObjectSprinkler));
 
             return SprinklerWateringRequestResult.Success;
         }
@@ -465,6 +471,11 @@
             }
 
             this.ServerTryWaterNow(worldObject);
+        }
+
+        private void ClientRemote_OnWatered(IStaticWorldObject worldObjectSprinkler)
+        {
+            this.SoundPresetObject.PlaySound(ObjectSound.Active, worldObjectSprinkler);
         }
 
         private HashSet<IStaticWorldObject> ServerGetPlantObjectsToWater(IStaticWorldObject worldObjectSprinkler)

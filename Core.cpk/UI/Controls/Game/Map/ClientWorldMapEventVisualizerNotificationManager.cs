@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class ClientWorldMapEventVisualizerNotificationManager
@@ -194,9 +195,11 @@
                     ClientWorldMapEventVisualizer.Notification_ActiveEvent_Title,
                     this.GetUpdatedEventNotificationText(timeRemains),
                     icon: this.ProtoEvent.Icon,
-                    autoHide: false);
-
+                    autoHide: false,
+                    playSound: false);
                 this.RefreshNotification();
+
+                ClientEventSoundHelper.PlayEventStartedSound();
             }
         }
     }

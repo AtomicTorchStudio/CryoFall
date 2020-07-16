@@ -54,6 +54,36 @@
                 repetitionProtectionKey);
         }
 
+        public SoundResource GetSoundAtIndex(int soundIndex)
+        {
+            var index = -1;
+            foreach (var sound in this.sounds)
+            {
+                index++;
+                if (index == soundIndex)
+                {
+                    return sound.Value;
+                }
+            }
+
+            return null;
+        }
+
+        public int IndexOf(SoundResource soundResource)
+        {
+            var index = -1;
+            foreach (var sound in this.sounds)
+            {
+                index++;
+                if (sound.Value.Equals(soundResource))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();

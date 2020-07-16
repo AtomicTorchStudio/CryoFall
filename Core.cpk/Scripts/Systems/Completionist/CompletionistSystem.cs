@@ -14,11 +14,18 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class CompletionistSystem : ProtoSystem<CompletionistSystem>
     {
+        public static readonly SoundResource EntryUnlockedSoundResource
+            = new SoundResource("UI/Completionist/EntryUnlocked");
+
+        public static readonly SoundResource RewardClaimedSoundResource
+            = new SoundResource("UI/Completionist/RewardClaimed");
+
         public static IReadOnlyCollection<IProtoItemFish> CompletionistAllFish { get; private set; }
 
         public static IReadOnlyCollection<IProtoItemFood> CompletionistAllFood { get; private set; }
@@ -76,6 +83,17 @@
             }
         }
 
+        private static void ServerFishCaughtHandler(ICharacter character, IItem itemFish, float sizeValue)
+        {
+            if (character.IsNpc)
+            {
+                return;
+            }
+
+            SharedGetCompletionistData(character)
+                .ServerOnFishCaught((IProtoItemFish)itemFish.ProtoItem, sizeValue);
+        }
+
         private static void ServerItemUsedHandler(ICharacter character, IItem item)
         {
             if (!(item.ProtoGameObject is IProtoItemFood protoItemFood)
@@ -98,17 +116,6 @@
 
             SharedGetCompletionistData(character)
                 .ServerOnLootReceived(protoObjectLoot);
-        }
-
-        private static void ServerFishCaughtHandler(ICharacter character, IItem itemFish, float sizeValue)
-        {
-            if (character.IsNpc)
-            {
-                return;
-            }
-
-            SharedGetCompletionistData(character)
-                .ServerOnFishCaught((IProtoItemFish)itemFish.ProtoItem, sizeValue);
         }
 
         private static PlayerCharacterCompletionistData SharedGetCompletionistData(ICharacter character)

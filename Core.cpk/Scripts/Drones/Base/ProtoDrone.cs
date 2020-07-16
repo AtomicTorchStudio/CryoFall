@@ -59,6 +59,10 @@
         private static readonly Lazy<TItemDrone> LazyProtoItemDrone
             = new Lazy<TItemDrone>(Api.GetProtoEntity<TItemDrone>);
 
+        private double lastDroneReturnSoundTime;
+
+        private double lastDroneStartSoundTime;
+
         protected ProtoDrone()
         {
             var name = this.GetType().Name;
@@ -118,6 +122,12 @@
 
         protected abstract double DrawVerticalOffset { get; }
 
+        protected virtual SoundResource DroneReturnOrDropSoundResource { get; }
+            = new SoundResource("Items/Drones/Return");
+
+        protected virtual SoundResource DroneStartSoundResource { get; }
+            = new SoundResource("Items/Drones/Start");
+
         protected abstract SoundResource EngineSoundResource { get; }
 
         protected abstract double EngineSoundVolume { get; }
@@ -133,6 +143,25 @@
         {
             base.ServerOnDestroy(gameObject);
             CharacterDroneControlSystem.ServerOnDroidDestroyed(gameObject);
+        }
+
+        public void ServerOnDroneDroppedOrReturned(
+            IDynamicWorldObject objectDrone,
+            ICharacter toCharacter,
+            bool isReturnedToPlayer)
+        {
+            if (!isReturnedToPlayer)
+            {
+                toCharacter = null;
+            }
+
+            using var observers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(objectDrone, observers);
+            
+            this.CallClient(observers.AsList(),
+                            _ => _.ClientRemote_OnDroneDroppedOrReturned(toCharacter,
+                                                                         objectDrone.TilePosition,
+                                                                         isReturnedToPlayer));
         }
 
         public void ServerSetDroneTarget(
@@ -200,6 +229,11 @@
             privateState.IsStartedFromHotbarContainer = isFromHotbarContainer;
             privateState.StartedFromSlotIndex = fromSlotIndex;
             Server.World.SetPosition(objectDrone, character.Position, writeToLog: false);
+
+            using var observers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(objectDrone, observers);
+            this.CallClient(observers.AsList(),
+                            _ => _.ClientRemote_OnDroneStart(objectDrone, character.Id));
         }
 
         protected virtual IComponentSpriteRenderer ClientCreateRendererShadow(
@@ -673,7 +707,7 @@
             var privateState = GetPrivateState(worldObject);
             var character = privateState.CharacterOwner;
 
-            CharacterDroneControlSystem.ServerDespawnDrone(worldObject);
+            CharacterDroneControlSystem.ServerDespawnDrone(worldObject, isReturnedToPlayer: true);
 
             var storageContainer = privateState.StorageItemsContainer;
             if (storageContainer.OccupiedSlotsCount == 0)
@@ -760,6 +794,65 @@
                          + worldObject
                          + " slots occupied: "
                          + storageContainer.OccupiedSlotsCount);
+        }
+
+        private void ClientRemote_OnDroneDroppedOrReturned(
+            ICharacter toCharacter,
+            Vector2Ushort objectDroneTilePosition,
+            bool isReturnedToPlayer)
+        {
+            if (!(toCharacter is null)
+                && !toCharacter.IsInitialized)
+            {
+                toCharacter = null;
+            }
+
+            var time = Client.Core.ClientRealTime;
+            if (time - this.lastDroneReturnSoundTime < 0.1)
+            {
+                //Logger.Dev("Drone return sound throttled");
+                return;
+            }
+
+            this.lastDroneReturnSoundTime = time;
+            //Logger.Dev("Drone return sound");
+
+            if (toCharacter != null)
+            {
+                Client.Audio.PlayOneShot(this.DroneReturnOrDropSoundResource, toCharacter);
+            }
+            else
+            {
+                Client.Audio.PlayOneShot(this.DroneReturnOrDropSoundResource,
+                                         worldPosition: objectDroneTilePosition.ToVector2D() + (0.5, 0.5));
+            }
+        }
+
+        private void ClientRemote_OnDroneStart(IDynamicWorldObject objectDrone, uint ownerCharacterId)
+        {
+            if (!objectDrone.IsInitialized)
+            {
+                return;
+            }
+
+            var time = Client.Core.ClientRealTime;
+            if (time - this.lastDroneStartSoundTime < 0.1)
+            {
+                //Logger.Dev("Drone start sound throttled");
+                return;
+            }
+
+            this.lastDroneStartSoundTime = time;
+            //Logger.Dev("Drone start sound at: " + objectDrone.Position);
+
+            if (ownerCharacterId == ClientCurrentCharacterHelper.Character.Id)
+            {
+                Client.Audio.PlayOneShot(this.DroneStartSoundResource);
+            }
+            else
+            {
+                Client.Audio.PlayOneShot(this.DroneStartSoundResource, objectDrone);
+            }
         }
 
         private void ClientRemote_OnMiningSoundCue(

@@ -141,8 +141,8 @@
             this.SceneObject.Position = this.worldPositionSource
                                         + this.normalizedRay * currentDistance;
 
-            ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(
-                    new List<Vector2D>() {this.SceneObject.Position}, CollisionGroups.HitboxRanged, isClient: true );
+            //ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(
+            //        new List<Vector2D>() {this.SceneObject.Position}, CollisionGroups.HitboxRanged, isClient: true );
 
             if (this.hasHit)
             {

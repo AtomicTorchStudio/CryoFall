@@ -29,7 +29,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override double ShieldProtectionDuration => 28 * 60 * 60; // 28 hours
+        public override double ShieldProtectionDuration => 52 * 60 * 60; // 52 hours
 
         public override double ShieldProtectionTotalElectricityCost => 5000;
 

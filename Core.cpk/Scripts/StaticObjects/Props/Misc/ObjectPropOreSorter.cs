@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Props.Misc
 {
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
@@ -26,9 +25,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (4.7, 0.8), offset: (0.1, 0.15))
-                .AddShapeRectangle((4.5, 0.85),      offset: (0.2, 0.15), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((4.5, 1.07),      offset: (0.2, 0.15), group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (4.7, 0.8), offset: (0.1, 0.15));
+            AddHalfHeightWallHitboxes(data, width: 4.4, offsetX: 0.25, offsetY: 0.15);
         }
     }
 }

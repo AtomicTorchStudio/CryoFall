@@ -42,17 +42,19 @@
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
             // common loot
-            droplist.Add(nestedList: new DropItemsList(outputs: 1)
-                                     // resources
-                                     .Add<ItemIngotCopper>(count: 1)
-                                     .Add<ItemIngotIron>(count: 1));
+            droplist.Add(nestedList:
+                         new DropItemsList(outputs: 1)
+                             // resources
+                             .Add<ItemIngotCopper>(count: 1)
+                             .Add<ItemIngotIron>(count: 1));
 
             // extra loot
             droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
-                         nestedList: new DropItemsList(outputs: 1)
-                                     .Add<ItemStone>(count: 2,     countRandom: 3)
-                                     .Add<ItemGlassRaw>(count: 1,  countRandom: 2)
-                                     .Add<ItemCoinPenny>(count: 1, countRandom: 2));
+                         nestedList:
+                         new DropItemsList(outputs: 1)
+                             .Add<ItemStone>(count: 2,     countRandom: 3)
+                             .Add<ItemGlassRaw>(count: 1,  countRandom: 2)
+                             .Add<ItemCoinPenny>(count: 1, countRandom: 2));
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()

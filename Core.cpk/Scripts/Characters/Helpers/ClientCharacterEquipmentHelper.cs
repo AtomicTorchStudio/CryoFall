@@ -418,7 +418,7 @@
                                                         skeleton.SkeletonResourceFront),
                             proceduralTextureRequest,
                             isMale,
-                            isFrontFace: true,
+                            headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.Front,
                             spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
@@ -436,7 +436,25 @@
                                                         skeleton.SkeletonResourceBack),
                             proceduralTextureRequest,
                             isMale,
-                            isFrontFace: false,
+                            headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.Back,
+                            spriteQualityOffset: spriteQualityOffset),
+                    isTransparent: true,
+                    isUseCache: false));
+
+            skeletonRenderer.SetAttachmentSprite(
+                skeleton.SkeletonResourceBack,
+                slotName + "Back",
+                attachmentName,
+                new ProceduralTexture(
+                    $"Head Back2 CharacterID={character.Id} gen={headGenerationId}",
+                    proceduralTextureRequest =>
+                        ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
+                            new CharacterHeadSpriteData(faceStyle,
+                                                        headEquipmentForFaceSprite,
+                                                        skeleton.SkeletonResourceBack),
+                            proceduralTextureRequest,
+                            isMale,
+                            headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.BackOverlay,
                             spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));

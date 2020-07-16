@@ -1365,7 +1365,7 @@ UI/CoreStrings@TitlePowerGrid:
 Red eléctrica
 
 UI/CoreStrings@TitleSafeStorage:
-Almacenamiento seguro
+Almacén seguro
 
 UI/CoreStrings@TitleShieldProtection:
 E.S.C.U.D.O.
@@ -1611,13 +1611,13 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 No puedes usar los terrenos adjudicados para almacenar recursos y objetos básicos.
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
-Información de deterioro
+Deterioro
 
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 Soy consciente del sistema de deterioro
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
-Los objetos de almacenamiento seguro se comparten entre todas las estructuras del terreno adjudicado de esta base.
+Los objetos del almacén seguro se comparten entre todas las estructuras del terreno adjudicado de esta base.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Solo el propietario puede mejorar esta estructura.

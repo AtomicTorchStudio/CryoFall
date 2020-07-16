@@ -40,7 +40,7 @@
 
             // setup night vision effect for current character
             var sceneObject = character.ClientSceneObject;
-            var componentNightVisionEffect = sceneObject.AddComponent<ClientComponentNightVisionEffect>();
+            var componentNightVisionEffect = sceneObject.AddComponent<ClientComponentNightVisionEffect2>();
             skeletonComponents.Add(componentNightVisionEffect);
 
             // we need this to disable the light added by the PlayerCharacter class for the current character

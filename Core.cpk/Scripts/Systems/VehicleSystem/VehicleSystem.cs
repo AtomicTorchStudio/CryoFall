@@ -218,7 +218,7 @@
                                                                                vehicle.Position,
                                                                                protoVehicle));
         }
-       
+
         private static void ServerProcessVehicleQuitRequests()
         {
             ServerVehicleQuitRequests.ProcessAndRemoveByValue(
@@ -229,7 +229,7 @@
                                                                    vehicle: p.Value));
         }
 
-        private async void ClientOnVehicleEnterExitButtonPress()
+        private void ClientOnVehicleEnterExitButtonPress()
         {
             var character = ClientCurrentCharacterHelper.Character;
             if (character is null)

@@ -11,7 +11,7 @@ Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
 10mm 공포탄
 
 Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
-생물 표적을 위해 특별히 디자인된 10mm 탄의 개조판. 발사체는 충돌 시, 팽창하여 훨씬 더 높은 저지력과 대미지를 제공해 줍니다. 장갑 표적에 전적으로 효과적입니다.
+생물 표적을 위해 특별히 디자인된 10mm 탄의 개조판. 발사체는 충격 시, 팽창하여 훨씬 더 높은 저지력과 대미지를 제공해 줍니다. 장갑 표적에 전적으로 효과적입니다.
 
 Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Name:
 10mm 할로우 포인트탄
@@ -71,7 +71,7 @@ Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
 8mm standard 표준탄
 
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
-충돌 시 폭발하는 농축된 소량의 독성 물질이 밀폐된 공간에 들어 있는 8mm 탄의 개조판.
+충격 시, 폭발하는 농축된 소량의 독성 물질이 밀폐된 공간에 들어 있는 8mm 탄의 개조판.
 
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm 독소탄
@@ -743,10 +743,10 @@ Scripts/Items/Food/ItemDrinkEnergy@Name:
 에너지 음료
 
 Scripts/Items/Food/ItemDrinkHerbal@Description:
-허브 성분이 함유된 대중적인 음료. 건강에 좋으며, 특히 몸을 해독하는 데 도움을 줄 수 있습니다.
+약초 성분이 함유된 대중적인 음료. 건강에 좋으며, 특히 몸을 해독하는 데 도움을 줄 수 있습니다.
 
 Scripts/Items/Food/ItemDrinkHerbal@Name:
-허브 음료
+약초 음료
 
 Scripts/Items/Food/ItemDrinkSoft@Description:
 7세기 넘게 핵심 부문에서 가장 인기 있는 음료로 선정된 청량음료.
@@ -980,7 +980,7 @@ Scripts/Items/Food/ItemTequila@Name:
 테킬라
 
 Scripts/Items/Food/ItemTincture@Description:
-이 허브 팅크는 건강 증진을 포함한 수많은 긍정적인 효과를 제공합니다.
+이 약초 팅크는 건강 증진을 포함한 수많은 긍정적인 효과를 제공합니다.
 
 Scripts/Items/Food/ItemTincture@Name:
 팅크
@@ -2321,13 +2321,13 @@ Scripts/Items/Weapons/Ranged/ItemMusket@Name:
 머스킷
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-플라스마권총은 충돌 시 표적을 태우는 응집 플라스마 덩어리를 형성하고 투사하여 큰 대미지를 줍니다. 높은 전력을 소모합니다.
+플라스마권총은 충격 시, 표적을 태우는 응집 플라스마 덩어리를 형성하고 투사하여 큰 대미지를 줍니다. 높은 전력을 소모합니다.
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
 플라스마권총
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
-플라스마소총은 충돌 시 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
+플라스마소총은 충격 시, 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
 플라스마소총
