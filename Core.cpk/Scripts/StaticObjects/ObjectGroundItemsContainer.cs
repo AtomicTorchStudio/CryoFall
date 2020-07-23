@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
@@ -13,6 +14,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -32,6 +34,7 @@
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public sealed class ObjectGroundItemsContainer
         : ProtoWorldObject<IStaticWorldObject,
@@ -57,13 +60,15 @@
         public static readonly TextureResource TextureResourceSack
             = new TextureResource("StaticObjects/Loot/ObjectSack");
 
-        private static readonly IItemsServerService ServerItemsService = IsServer ? Server.Items : null;
+        private static readonly IItemsServerService ServerItems = IsServer ? Server.Items : null;
 
         private static ObjectGroundItemsContainer instance;
 
         private readonly IConstructionTileRequirementsReadOnly tileRequirements
             = new ConstructionTileRequirements()
-                .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor);
+              .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
+              .Add(ConstructionTileRequirements.ValidatorSolidGround)
+              .Add(ConstructionTileRequirements.ValidatorNotCliffOrSlope);
 
         public ObjectGroundItemsContainer()
         {
@@ -157,7 +162,7 @@
 
             var tile = Client.World.GetTile(tilePosition);
             var objectGroundContainer = tile.StaticObjects.FirstOrDefault(_ => _.ProtoGameObject == instance);
-            if (objectGroundContainer == null)
+            if (objectGroundContainer is null)
             {
                 if (!instance.CheckTileRequirements(tilePosition, character, logErrors: false))
                 {
@@ -289,7 +294,7 @@
 
                 objectGroundContainer = neighborTile.StaticObjects.FirstOrDefault(
                     so => so.ProtoGameObject is ObjectGroundItemsContainer);
-                if (objectGroundContainer == null)
+                if (objectGroundContainer is null)
                 {
                     continue;
                 }
@@ -348,9 +353,20 @@
 
         public static void ServerTrimSlotsNumber(IItemsContainer itemsContainer)
         {
+            if (itemsContainer.IsDestroyed)
+            {
+                return;
+            }
+
             Server.Items.SetSlotsCount(itemsContainer,
                                        Math.Max(DefaultMaxSlotsCount,
                                                 itemsContainer.OccupiedSlotsCount));
+
+            if (itemsContainer.SlotsCount > DefaultMaxSlotsCount)
+            {
+                // change ground container type (prevent from placing new items there)
+                ServerItems.SetContainerType<ItemsContainerOutputPublic>(itemsContainer);
+            }
         }
 
         public static IItemsContainer ServerTryDropOnGroundContainerContent(Tile tile, IItemsContainer otherContainer)
@@ -362,21 +378,14 @@
                 return null;
             }
 
-            var groundContainer = ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
-            if (groundContainer == null)
+            var groundContainer = ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(forCharacter: null, tile);
+            if (groundContainer is null)
             {
                 // cannot drop items there
                 return null;
             }
 
-            // change ground container type (prevent from placing new items there)
-            ServerItemsService.SetContainerType<ItemsContainerOutputPublic>(groundContainer);
-            // set exact slots count
-            ServerItemsService.SetSlotsCount(
-                groundContainer,
-                (byte)Math.Min(byte.MaxValue, otherContainerOccupiedSlotsCount + groundContainer.OccupiedSlotsCount));
-
-            ServerItemsService.TryMoveAllItems(
+            ServerItems.TryMoveAllItems(
                 containerFrom: otherContainer,
                 containerTo: groundContainer);
 
@@ -389,6 +398,7 @@
         /// Please note: the ground container will be automatically destroyed if (during the next update) it's empty!
         /// </summary>
         public static IItemsContainer ServerTryGetOrCreateGroundContainerAtTile(
+            ICharacter forCharacter,
             Vector2Ushort tilePosition,
             bool writeWarningsToLog = true)
         {
@@ -396,29 +406,64 @@
             var objectGroundContainer = tile.StaticObjects.FirstOrDefault(
                 so => so.ProtoGameObject is ObjectGroundItemsContainer);
 
-            if (objectGroundContainer == null)
+            if (objectGroundContainer is null)
             {
                 // No ground container found in the cell. Try to create a new ground container here.
-                objectGroundContainer = instance.ServerTryCreateGroundContainer(tilePosition, writeWarningsToLog);
-                if (objectGroundContainer == null)
+                objectGroundContainer = TryCreateGroundContainer();
+                if (objectGroundContainer is null)
                 {
                     // cannot create
                     return null;
                 }
             }
+            else if (!WorldObjectClaimSystem.SharedIsAllowInteraction(forCharacter,
+                                                                      objectGroundContainer,
+                                                                      showClientNotification: false))
+            {
+                // cannot interact with this ground container as it's claimed by another player
+                return null;
+            }
 
-            return GetPublicState(objectGroundContainer).ItemsContainer;
+            var result = GetPublicState(objectGroundContainer).ItemsContainer;
+            ServerExpandContainerAndScheduleProcessing(result);
+            return result;
+
+            IStaticWorldObject TryCreateGroundContainer()
+            {
+                if (instance.CheckTileRequirements(tilePosition, character: null, logErrors: false))
+                {
+                    Logger.Info("Creating ground container at " + tilePosition);
+                    return Server.World.CreateStaticWorldObject(instance, tilePosition);
+                }
+
+                if (writeWarningsToLog)
+                {
+                    Logger.Warning(
+                        $"Cannot create ground container at {tilePosition} - tile contains something preventing it.");
+                }
+
+                return null;
+            }
         }
 
-        public static IItemsContainer ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(Tile tile)
+        public static IItemsContainer ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(
+            [CanBeNull] ICharacter forCharacter,
+            Tile tile,
+            bool canExceedContainerSpace = true)
         {
             var groundContainer = ServerTryGetOrCreateGroundContainerAtTile(
+                forCharacter,
                 tile.Position,
                 writeWarningsToLog: false);
 
             if (groundContainer != null
-                && groundContainer.OccupiedSlotsCount < groundContainer.SlotsCount)
+                && (groundContainer.OccupiedSlotsCount
+                    < (canExceedContainerSpace
+                           ? byte.MaxValue / 2
+                           : groundContainer.SlotsCount)))
             {
+                // found a ground container with empty space
+                ServerExpandContainerAndScheduleProcessing(groundContainer);
                 return groundContainer;
             }
 
@@ -436,12 +481,17 @@
                 }
 
                 groundContainer = ServerTryGetOrCreateGroundContainerAtTile(
+                    forCharacter,
                     neighborTile.Position,
                     writeWarningsToLog: false);
                 if (groundContainer != null
-                    && groundContainer.OccupiedSlotsCount < groundContainer.SlotsCount)
+                    && (groundContainer.OccupiedSlotsCount
+                        < (canExceedContainerSpace
+                               ? byte.MaxValue / 2
+                               : groundContainer.SlotsCount)))
                 {
-                    // found a ground container with some empty space
+                    // found a ground container with empty space
+                    ServerExpandContainerAndScheduleProcessing(groundContainer);
                     return groundContainer;
                 }
             }
@@ -493,7 +543,7 @@
             Vector2Ushort tilePosition)
         {
             var character = ServerRemoteContext.Character;
-            if (item == null)
+            if (item is null)
             {
                 Logger.Error(
                     "Cannot drop item - the item is not found",
@@ -506,7 +556,7 @@
                 Logger.Error(
                     $"Cannot drop item: {item} - count to drop={countToDrop} is > than available item count. Will request a container re-sync.",
                     character);
-                ServerItemsService.ServerForceContainersResync(character);
+                ServerItems.ServerForceContainersResync(character);
                 return null;
             }
 
@@ -534,14 +584,14 @@
                 return null;
             }
 
-            var groundItemsContainer = ServerTryGetOrCreateGroundContainerAtTile(tilePosition);
-            if (groundItemsContainer == null)
+            var groundItemsContainer = ServerTryGetOrCreateGroundContainerAtTile(character, tilePosition);
+            if (groundItemsContainer is null)
             {
                 return null;
             }
 
             // try move item to the ground items container
-            if (!ServerItemsService.MoveOrSwapItem(
+            if (!ServerItems.MoveOrSwapItem(
                     item,
                     groundItemsContainer,
                     out _,
@@ -663,17 +713,17 @@
         protected override void ServerInitialize(ServerInitializeData data)
         {
             var publicState = data.PublicState;
-            if (publicState.ItemsContainer == null)
+            if (publicState.ItemsContainer is null)
             {
                 // create container
                 publicState.ItemsContainer
-                    = ServerItemsService.CreateContainer<ItemsContainerPublic>(
+                    = ServerItems.CreateContainer<ItemsContainerPublic>(
                         data.GameObject,
                         slotsCount: DefaultMaxSlotsCount);
             }
             else if (publicState.ItemsContainer.SlotsCount < DefaultMaxSlotsCount)
             {
-                ServerItemsService.SetSlotsCount(publicState.ItemsContainer, slotsCount: DefaultMaxSlotsCount);
+                ServerItems.SetSlotsCount(publicState.ItemsContainer, slotsCount: DefaultMaxSlotsCount);
             }
         }
 
@@ -755,6 +805,15 @@
             InteractableWorldObjectHelper.ClientStartInteract(objectGroundContainer);
         }
 
+        /// <summary>
+        /// This method will expand the container capacity to max and schedule its trimming.
+        /// </summary>
+        private static void ServerExpandContainerAndScheduleProcessing(IItemsContainer itemsContainer)
+        {
+            ServerItems.SetSlotsCount(itemsContainer, slotsCount: byte.MaxValue);
+            ServerTimersSystem.AddAction(0, () => ServerTrimSlotsNumber(itemsContainer));
+        }
+
         private static bool SharedIsWithinInteractionDistance(
             ICharacter character,
             Vector2Ushort tilePosition,
@@ -763,7 +822,7 @@
             var interactionAreaShape = character.PhysicsBody.Shapes.FirstOrDefault(
                 s => s.CollisionGroup == CollisionGroups.CharacterInteractionArea);
 
-            if (interactionAreaShape == null)
+            if (interactionAreaShape is null)
             {
                 // no interaction area shape (probably a spectator character)
                 obstaclesOnTheWay = false;
@@ -813,25 +872,6 @@
         {
             Client.Audio.PlayOneShot(ItemsSoundPresets.SoundResourceOtherPlayerPickItem,
                                      position.ToVector2D() + this.Layout.Center);
-        }
-
-        private IStaticWorldObject ServerTryCreateGroundContainer(
-            Vector2Ushort tilePosition,
-            bool writeWarningsToLog = true)
-        {
-            if (this.CheckTileRequirements(tilePosition, character: null, logErrors: false))
-            {
-                Logger.Info("Creating ground container at " + tilePosition);
-                return Server.World.CreateStaticWorldObject(this, tilePosition);
-            }
-
-            if (writeWarningsToLog)
-            {
-                Logger.Warning(
-                    $"Cannot create ground container at {tilePosition} - tile contains something preventing it.");
-            }
-
-            return null;
         }
 
         public class PrivateState : BasePrivateState

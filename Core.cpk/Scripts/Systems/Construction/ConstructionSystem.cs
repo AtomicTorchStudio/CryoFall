@@ -324,10 +324,14 @@
             if (LandClaimSystem.SharedIsUnderRaidBlock(character, staticWorldObject))
             {
                 // the building is in an area under the raid
-                SharedShowCannotBuildNotification(
-                    character,
-                    LandClaimSystem.ErrorCannotBuild_RaidUnderWay,
-                    staticWorldObject.ProtoStaticWorldObject);
+                if (writeToLog)
+                {
+                    SharedShowCannotBuildNotification(
+                        character,
+                        LandClaimSystem.ErrorCannotBuild_RaidUnderWay,
+                        staticWorldObject.ProtoStaticWorldObject);
+                }
+
                 return false;
             }
 

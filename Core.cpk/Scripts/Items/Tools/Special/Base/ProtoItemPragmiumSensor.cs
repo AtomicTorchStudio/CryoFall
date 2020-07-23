@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -205,9 +206,11 @@
         }
 
         private void ServerCalculateDistanceSqrToTheClosestPragmiumSpires(
+            ICharacter character,
             Vector2Ushort position,
             List<double> closestSqrDistances)
         {
+            var isObjectClaimSystemEnabled = WorldObjectClaimSystem.SharedIsEnabled;
             using var tempList = Api.Shared.GetTempList<IStaticWorldObject>();
             LazyPragmiumSource.Value.GetAllGameObjects(tempList.AsList());
 
@@ -217,6 +220,15 @@
                 if (distanceSqr >= this.MaxRange * this.MaxRange)
                 {
                     // too far
+                    continue;
+                }
+
+                if (isObjectClaimSystemEnabled
+                    && !WorldObjectClaimSystem.SharedIsAllowInteraction(character,
+                                                                        staticWorldObject,
+                                                                        showClientNotification: false))
+                {
+                    // this pragmium source is claimed for another player
                     continue;
                 }
 
@@ -233,7 +245,9 @@
         {
             using var tempSqrDistances = Api.Shared.GetTempList<double>();
             var listSqrResults = tempSqrDistances.AsList();
-            this.ServerCalculateDistanceSqrToTheClosestPragmiumSpires(character.TilePosition, listSqrResults);
+            this.ServerCalculateDistanceSqrToTheClosestPragmiumSpires(character,
+                                                                      character.TilePosition,
+                                                                      listSqrResults);
 
             for (var index = 0;
                  index < Math.Min(maxNumberOfSpires, listSqrResults.Count);

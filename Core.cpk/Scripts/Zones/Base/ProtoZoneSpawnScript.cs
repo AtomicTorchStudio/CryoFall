@@ -212,6 +212,7 @@
             Vector2Ushort tilePosition)
         {
             var container = ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTile(
+                forCharacter: null,
                 tilePosition,
                 writeWarningsToLog: false);
 

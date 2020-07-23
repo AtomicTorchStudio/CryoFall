@@ -24,7 +24,8 @@
 
         public static void ShowOn(ICharacter character, string message)
         {
-            if (!ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+            if (!ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer
+                || ClientChatDisclaimerConfirmationHelper.IsNeedToDisplayDisclaimerForCurrentServer)
             {
                 return;
             }

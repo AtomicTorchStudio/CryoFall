@@ -38,6 +38,7 @@
 
         public static void ClientClaimReward(IProtoEntity prototype)
         {
+            Client.Audio.PlayOneShot(RewardClaimedSoundResource, 0.5f);
             Instance.CallServer(_ => _.ServerRemote_ClaimReward(prototype));
         }
 

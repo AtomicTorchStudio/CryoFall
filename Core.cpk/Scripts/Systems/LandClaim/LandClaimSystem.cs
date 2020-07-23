@@ -454,6 +454,9 @@
                         centerTilePosition,
                         protoObjectLandClaim.LandClaimWithGraceAreaSize);
 
+                    // deflate by 1 tile as bases have 1 tile buffer area around them that allows intersection
+                    newAreaBounds = newAreaBounds.Inflate(-1);
+
                     using var tempListAreas = Api.Shared.GetTempList<ILogicObject>();
                     using var tempListGroups = Api.Shared.GetTempList<ILogicObject>();
                     SharedGatherAreasAndGroups(newAreaBounds,
@@ -2323,6 +2326,13 @@
                 var currentArea = result[index];
                 var currentAreaBounds = SharedGetLandClaimAreaBounds(currentArea,
                                                                      addGracePadding: addGracePadding);
+                
+                if (addGracePadding)
+                {
+                    // deflate by 1 tile as bases have 1 tile buffer area around them that allows intersection
+                    currentAreaBounds = currentAreaBounds.Inflate(-1);
+                }
+
                 // find adjacent areas
                 foreach (var otherArea in sharedLandClaimAreas)
                 {

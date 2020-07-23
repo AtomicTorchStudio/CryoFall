@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
+    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestDroneMining : ProtoQuest
     {
@@ -24,10 +27,42 @@
 
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
-            tasks
-                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeDroneControlStandard>())
-                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeDroneIndustrialStandard>())
-                .Add(TaskUseItem.Require<ItemDroneControlStandard>());
+            var recipeDroneControlStandard = Api.GetProtoEntity<RecipeDroneControlStandard>();
+            var recipeDroneControlAdvanced = Api.GetProtoEntity<RecipeDroneControlAdvanced>();
+            var recipeDroneIndustrialStandard = Api.GetProtoEntity<RecipeDroneIndustrialStandard>();
+            var recipeDroneIndustrialAdvanced = Api.GetProtoEntity<RecipeDroneIndustrialAdvanced>();
+            var protoItemRemoteControlStandard = Api.GetProtoEntity<ItemDroneControlStandard>();
+
+            // require crafting any drone control
+            tasks.Add(TaskCraftRecipe.RequireStationRecipe(
+                          new List<Recipe.RecipeForStationCrafting>()
+                          {
+                              recipeDroneControlStandard,
+                              recipeDroneControlAdvanced
+                          },
+                          count: 1,
+                          description: TaskCraftRecipe.AppendRecipeLocationIfNecessary(
+                              TaskCraftRecipe.DescriptionTitlePrefix + " " + recipeDroneControlStandard.Name,
+                              recipeDroneControlStandard)));
+
+            // require crafting any drone (an item)
+            tasks.Add(TaskCraftRecipe.RequireStationRecipe(
+                          new List<Recipe.RecipeForStationCrafting>()
+                          {
+                              recipeDroneIndustrialStandard,
+                              recipeDroneIndustrialAdvanced
+                          },
+                          count: 1,
+                          description: TaskCraftRecipe.AppendRecipeLocationIfNecessary(
+                              TaskCraftRecipe.DescriptionTitlePrefix + " " + recipeDroneIndustrialStandard.Name,
+                              recipeDroneIndustrialStandard)));
+
+            // require using any drone item
+            tasks.Add(TaskUseItem.Require(
+                          Api.FindProtoEntities<IProtoItemDroneControl>(),
+                          count: 1,
+                          description: string.Format(TaskUseItem.DescriptionFormat,
+                                                     protoItemRemoteControlStandard.Name)));
 
             prerequisites
                 .Add<QuestAdvancedResourcesAcquisition>();

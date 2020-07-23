@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -393,7 +394,8 @@
 
             if (isHeadEquipmentHiddenForSelfAndPartyMembers
                 && (character.IsCurrentClientCharacter
-                    || PartySystem.ClientIsPartyMember(character.Name)))
+                    || PartySystem.ClientIsPartyMember(character.Name)
+                    || PveSystem.ClientIsPve(false)))
             {
                 headEquipmentForFaceSprite = null;
             }

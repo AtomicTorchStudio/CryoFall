@@ -17,9 +17,9 @@ namespace AtomicTorch.CBND.CoreMod.Characters
             }
 
             proceduralTexture = new ProceduralTexture(
-                "Colored skin sprite \""
+                "Colored skin sprite skinToneId="
                 + skinToneId
-                + "\" "
+                + " path="
                 + textureResource.FullPath,
                 proceduralTextureRequest
                     => ClientSpriteLutColorRemappingHelper.GetColorizedSprite(

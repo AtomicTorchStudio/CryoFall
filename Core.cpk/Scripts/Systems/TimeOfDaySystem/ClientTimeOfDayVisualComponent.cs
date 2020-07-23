@@ -6,6 +6,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.ColorGrading;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
 
@@ -17,8 +18,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
         public const double DayAmbientLightFraction = 1;
 
         public const double DuskDawnAmbientLightFraction = 0.6;
-
-        public const double NightAmbientLightFraction = 0.15;
 
         private static readonly TextureResource3D TextureResourceColorGradingDay
             = new TextureResource3D("FX/ColorGrading/Day", depth: 24, isTransparent: false);
@@ -32,19 +31,31 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
         private ColorGradingPostEffect2LutWithLightmap colorGrading;
 
         /// <summary>
-        /// Returns current faction of day (0-1, where 1 means it's full day (noon)).
+        /// Returns current fraction of day (0-1, where 1 means it's full day (noon)).
         /// </summary>
         public static double CurrentDayFraction { get; private set; }
 
         /// <summary>
-        /// Returns current faction of dusk or dawn (0-1, where 1 means it's full dusk or dawn).
+        /// Returns current fraction of dusk or dawn (0-1, where 1 means it's full dusk or dawn).
         /// </summary>
         public static double CurrentDuskDawnFraction { get; private set; }
 
         /// <summary>
-        /// Returns current faction of night (0-1, where 1 means it's full night (midnight)).
+        /// Returns current fraction of night (0-1, where 1 means it's full night (midnight)).
         /// </summary>
         public static double CurrentNightFraction { get; private set; }
+
+        /// <summary>
+        /// Make brighter nights in PvP as it's too easy to workaround anyway
+        /// (with monitor adjustments, GPU driver gamma, or a mod to change this value).
+        /// </summary>
+        public static double NightAmbientCurrentExtraLightFraction
+            => PveSystem.ClientIsPve(false)
+                   ? 0
+                   : 0.15;
+
+        public static double NightAmbientLightFraction
+            => 0.15 + NightAmbientCurrentExtraLightFraction;
 
         public void Initialize()
         {

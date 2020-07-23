@@ -73,6 +73,7 @@
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
+            DropItemConditionDelegate onlyBeforeT3Specialized = ServerTechTimeGateHelper.OnlyBeforeT3SpecializedAndPvP;
             DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
             DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
             DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
@@ -85,18 +86,21 @@
                     weight: 1,
                     nestedList:
                     new DropItemsList(outputs: 2)
-                        .Add<ItemAmmo10mmStandard>(count: 50,         weight: 1)
-                        .Add<ItemAmmo10mmHollowPoint>(count: 50,      weight: 1)
-                        .Add<ItemAmmo10mmArmorPiercing>(count: 50,    weight: 1)
-                        .Add<ItemAmmo12gaPellets>(count: 40,          weight: 1)
-                        .Add<ItemAmmo12gaSlugs>(count: 40,            weight: 1)
-                        .Add<ItemAmmo300ArmorPiercing>(count: 30,     weight: 1)
-                        .Add<ItemAmmo300Incendiary>(count: 30,        weight: 1)
-                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1)
-                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1)
-                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1)
-                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1)
-                        .Add<ItemAmmo50SH>(count: 40,                 weight: 1)
+                        .Add<ItemAmmo8mmStandard>(count: 50,          weight: 1, condition: onlyBeforeT3Specialized)
+                        .Add<ItemAmmo8mmToxic>(count: 50,             weight: 1, condition: onlyBeforeT3Specialized)
+                        .Add<ItemAmmo12gaBuckshot>(count: 50,         weight: 1, condition: onlyBeforeT3Specialized)
+                        .Add<ItemAmmo10mmStandard>(count: 50,         weight: 1, condition: T3Specialized)
+                        .Add<ItemAmmo10mmHollowPoint>(count: 50,      weight: 1, condition: T3Specialized)
+                        .Add<ItemAmmo10mmArmorPiercing>(count: 50,    weight: 1, condition: T3Specialized)
+                        .Add<ItemAmmo12gaPellets>(count: 40,          weight: 1, condition: T3Specialized)
+                        .Add<ItemAmmo12gaSlugs>(count: 40,            weight: 1, condition: T3Specialized)
+                        .Add<ItemAmmo300ArmorPiercing>(count: 30,     weight: 1, condition: T4Specialized)
+                        .Add<ItemAmmo300Incendiary>(count: 30,        weight: 1, condition: T4Specialized)
+                        .Add<ItemAmmo50SH>(count: 40,                 weight: 1, condition: T4Specialized)
+                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1, condition: T3Specialized)
+                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1, condition: T4Specialized)
+                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1, condition: T4Specialized)
+                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1, condition: T5Specialized)
                 );
 
             // components and high value items
@@ -124,20 +128,19 @@
                         // resources / misc
                         .Add<ItemCanisterGasoline>(count: 10,   weight: 1)
                         .Add<ItemCanisterMineralOil>(count: 10, weight: 1)
-                        .Add<ItemFirelog>(count: 10,            weight: 1)
+                        .Add<ItemFirelog>(count: 20,            countRandom: 20, weight: 1)
                         .Add<ItemBatteryHeavyDuty>(count: 5,    weight: 1)
-                        .Add<ItemFertilizer>(count: 5,          weight: 1)
                         .Add<ItemPlastic>(count: 10,            weight: 1)
                         .Add<ItemRubberVulcanized>(count: 10,   weight: 1)
                         // food
                         .Add<ItemMRE>(count: 10, weight: 1)
                         // explosives
-                        .Add<ItemBombMining>(count: 20, weight: 1 / 2.0)
+                        .Add<ItemBombMining>(count: 20, weight: 1 / 2.0, condition: T3Specialized)
                         // medical
                         .Add<ItemHeatPreExposure>(count: 3,  weight: 1)
                         .Add<ItemStrengthBoostBig>(count: 5, weight: 1)
-                        .Add<ItemMedkit>(count: 3,           weight: 1)                           // 1 tier lower
-                        .Add<ItemStimpack>(count: 3,         weight: 1, condition: T3Specialized) // 1 tier lower
+                        .Add<ItemMedkit>(count: 3,           weight: 1, condition: T3Specialized)
+                        .Add<ItemStimpack>(count: 3,         weight: 1, condition: T4Specialized)
                         .Add<ItemPeredozin>(count: 2,        weight: 1, condition: T4Specialized)
                         .Add<ItemNeuralEnhancer>(count: 1,   weight: 1, condition: T4Specialized)
                 );
@@ -145,6 +148,7 @@
             // ranged weapons
             droplist.Add(
                     weight: 1 / 2.0,
+                    condition: T3Specialized,
                     nestedList:
                     new DropItemsList(outputs: 1)
                         // require reaching particular tier before the weapon could be acquired there
@@ -164,23 +168,23 @@
                     weight: 1 / 2.0,
                     nestedList:
                     new DropItemsList(outputs: 1)
+                        .Add<ItemHelmetMiner>(count: 1,       weight: 1, condition: onlyBeforeT3Specialized)
                         .Add<ItemHelmetRespirator>(count: 1,  weight: 1)
-                        .Add<ItemHelmetNightVision>(count: 1, weight: 1) // 1 tier lower
-                        .Add<ItemMilitaryHelmet>(count: 1,    weight: 1) // 1 tier lower
-                        .Add<ItemMilitaryArmor>(count: 1,     weight: 1) // 1 tier lower
+                        .Add<ItemHelmetNightVision>(count: 1, weight: 1, condition: T3Specialized)
+                        .Add<ItemMilitaryHelmet>(count: 1,    weight: 1, condition: T3Specialized)
+                        .Add<ItemMilitaryArmor>(count: 1,     weight: 1, condition: T3Specialized)
                         // advanced stuff
-                        .Add<ItemHelmetNightVisionAdvanced>(count: 1,
-                                                            weight: 1 / 2.0,
-                                                            condition: T3Specialized)                 // 1 tier lower
-                        .Add<ItemAssaultHelmet>(count: 1,  weight: 1 / 2.0, condition: T3Specialized) // 1 tier lower
-                        .Add<ItemAssaultArmor>(count: 1,   weight: 1 / 2.0, condition: T3Specialized) // 1 tier lower
-                        .Add<ItemApartSuit>(count: 1,      weight: 1 / 3.0, condition: T4Specialized)
-                        .Add<ItemSuperHeavySuit>(count: 1, weight: 1 / 3.0, condition: T5Specialized)
+                        .Add<ItemHelmetNightVisionAdvanced>(count: 1, weight: 1 / 2.0, condition: T4Specialized)
+                        .Add<ItemAssaultHelmet>(count: 1,             weight: 1 / 2.0, condition: T4Specialized)
+                        .Add<ItemAssaultArmor>(count: 1,              weight: 1 / 2.0, condition: T4Specialized)
+                        .Add<ItemApartSuit>(count: 1,                 weight: 1 / 3.0, condition: T4Specialized)
+                        .Add<ItemSuperHeavySuit>(count: 1,            weight: 1 / 3.0, condition: T5Specialized)
                 );
 
             // devices & drones
             droplist.Add(
                     weight: 1 / 10.0,
+                    condition: T3Specialized,
                     nestedList:
                     new DropItemsList(outputs: 1)
                         // devices
@@ -197,6 +201,8 @@
             // implants
             droplist.Add(
                     weight: 1 / 20.0,
+                    // drop it a tier earlier (useful as a bonus)
+                    condition: T3Specialized,
                     nestedList:
                     new DropItemsList(outputs: 1)
                         .Add<ItemImplantArtificialLiver>(count: 1,     weight: 1)

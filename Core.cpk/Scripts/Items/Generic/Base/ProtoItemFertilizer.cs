@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -54,9 +55,10 @@
             {
                 NotificationSystem.ClientShowNotification(
                     result.ErrorTitle,
-                    result.ErrorMessage,
-                    NotificationColor.Bad,
-                    this.Icon);
+                    // it's not localized
+                    //result.ErrorMessage,
+                    color: NotificationColor.Bad,
+                    icon: this.Icon);
                 return false;
             }
 
@@ -96,7 +98,7 @@
                                 objectPlant,
                                 writeToLog: false))
             {
-                return GetPlantResult.Fail("Too far!", "Come closer to apply fertilizer.");
+                return GetPlantResult.Fail(CoreStrings.Notification_TooFar, "Come closer to apply fertilizer.");
             }
 
             return GetPlantResult.Success(objectPlant);

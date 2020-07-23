@@ -30,7 +30,7 @@
         protected override double DrawVerticalOffset => 0.667;
 
         protected override SoundResource EngineSoundResource { get; }
-            = new SoundResource("Items/Drones/Fly");
+            = new SoundResource("Items/Drones/FlyStandard");
 
         protected override double EngineSoundVolume => 0.6;
 

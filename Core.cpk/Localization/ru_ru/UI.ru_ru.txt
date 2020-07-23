@@ -545,7 +545,7 @@ UI/CoreStrings@MainMenu_TabCurrentGame:
 ТЕКУЩАЯ ИГРА
 
 UI/CoreStrings@MainMenu_TabExtras:
-ДОПОЛНИТЕЛЬНО
+ОБ ИГРЕ
 
 UI/CoreStrings@MainMenu_TabHome:
 ГЛАВНОЕ
@@ -1131,7 +1131,7 @@ UI/CoreStrings@ShieldProtection_Description_2:
 Стены и двери на базе с активным щитом неуязвимы для любого урона.
 
 UI/CoreStrings@ShieldProtection_Description_3:
-Брокировка: никто не может входить или выходить с базы с активным щитом (все двери заблокированы).
+Блокировка: никто не может входить или выходить с базы с активным щитом (все двери заблокированы).
 
 UI/CoreStrings@ShieldProtection_Description_4:
 Перед активацией щит следует зарядить электроэнергией.

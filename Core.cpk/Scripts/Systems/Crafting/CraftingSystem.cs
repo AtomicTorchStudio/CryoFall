@@ -291,7 +291,7 @@
             return ServerCraftingSpeedMultiplier;
         }
 
-        // This bootstrapper requests ServerCraftingSpeedMultiplier rate value from server.
+        // This bootstrapper requests CraftingSpeedMultiplier rate value from server.
         private class Bootstrapper : BaseBootstrapper
         {
             public override void ClientInitialize()

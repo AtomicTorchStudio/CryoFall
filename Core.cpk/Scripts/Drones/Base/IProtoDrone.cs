@@ -15,6 +15,8 @@
 
         double StatMoveSpeed { get; }
 
+        void ServerDropDroneToGround(IDynamicWorldObject objectDrone);
+
         IItemsContainer ServerGetStorageItemsContainer(IDynamicWorldObject objectDrone);
 
         void ServerOnDroneDroppedOrReturned(

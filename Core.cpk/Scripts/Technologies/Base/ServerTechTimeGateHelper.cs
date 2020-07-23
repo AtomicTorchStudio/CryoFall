@@ -36,6 +36,22 @@
             return IsTimeGateFinished(TechConstants.PvpTechTimeGameTier5Specialized);
         }
 
+        public static bool OnlyBeforeT3SpecializedAndPvP(DropItemContext context)
+        {
+            if (PveSystem.ServerIsPvE)
+            {
+                return false;
+            }
+
+            if (Api.IsEditor)
+            {
+                return true;
+            }
+
+            var timeRemains = TechConstants.PvpTechTimeGameTier3Specialized - Api.Server.Game.SecondsSinceWorldCreation;
+            return timeRemains > 0;
+        }
+
         private static bool IsTimeGateFinished(double timeGateDuration)
         {
             if (Api.IsEditor)

@@ -589,7 +589,7 @@
 
                             var tile = Api.Server.World.GetTile(character.TilePosition);
                             var groundContainer = ObjectGroundItemsContainer
-                                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
+                                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, tile);
 
                             if (groundContainer is null)
                             {

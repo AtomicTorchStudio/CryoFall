@@ -56,7 +56,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedPlasma;
+            return WeaponsSoundPresets.WeaponRangedPlasmaRifle;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

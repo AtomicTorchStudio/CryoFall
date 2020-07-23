@@ -103,15 +103,7 @@
 
         protected override void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)
         {
-            var objectMineralPragmiumSource = targetObject.OccupiedTile.EightNeighborTiles
-                                                          .SelectMany(t => t.StaticObjects)
-                                                          .FirstOrDefault(
-                                                              o => o.ProtoGameObject is ObjectMineralPragmiumSource);
-            if (objectMineralPragmiumSource != null)
-            {
-                ObjectMineralPragmiumSource.ServerTryClaimPragmiumCluster(objectMineralPragmiumSource, character);
-            }
-            else
+            if (!ObjectMineralPragmiumSource.ServerTryClaimPragmiumClusterNearCharacter(character))
             {
                 WorldObjectClaimSystem.ServerTryClaim(targetObject,
                                                       character,

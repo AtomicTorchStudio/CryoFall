@@ -55,7 +55,7 @@
         {
             var tile = Api.Server.World.GetTile(this.TilePosition);
             this.GroundContainer = ObjectGroundItemsContainer
-                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
+                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(this.Character, tile);
 
             // don't restrict the ground container space limit
             Api.Server.Items.SetSlotsCount(this.GroundContainer, byte.MaxValue);

@@ -306,7 +306,8 @@
 
             lastMessageReceivedSoundPlayerFrameNumber = frameNumber;
 
-            if (ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+            if (ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer
+                && !ClientChatDisclaimerConfirmationHelper.IsNeedToDisplayDisclaimerForCurrentServer)
             {
                 Api.Client.Audio.PlayOneShot(this.GetMessageReceivedSound(chatEntry),
                                              volume: SoundConstants.VolumeUIChat);

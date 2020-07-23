@@ -211,6 +211,27 @@
             return party;
         }
 
+        public static ILogicObject ServerFindPartyByClanTag(string clanTag)
+        {
+            if (string.IsNullOrEmpty(clanTag))
+            {
+                return null;
+            }
+
+            var allParties = Server.World.GetGameObjectsOfProto<ILogicObject, Party>();
+            foreach (var party in allParties)
+            {
+                if (string.Equals(clanTag,
+                                  Party.GetPublicState(party).ClanTag,
+                                  StringComparison.Ordinal))
+                {
+                    return party;
+                }
+            }
+
+            return null;
+        }
+
         [CanBeNull]
         public static ILogicObject ServerGetParty(ICharacter character)
         {
@@ -253,6 +274,18 @@
             return ServerInvitations.AddInvitation(invitee, inviter);
         }
 
+        public static bool ServerIsSameParty(ICharacter characterA, ICharacter characterB)
+        {
+            var partyA = ServerGetParty(characterA);
+            if (partyA is null)
+            {
+                return false;
+            }
+
+            var partyB = ServerGetParty(characterB);
+            return ReferenceEquals(partyA, partyB);
+        }
+
         public static void ServerLeaveParty(ICharacter character)
         {
             var party = ServerGetParty(character);
@@ -265,6 +298,65 @@
             ChatSystem.ServerSendServiceMessage(
                 ServerGetPartyChat(party),
                 string.Format(Notification_PlayerLeftPartyFormat, character.Name));
+        }
+
+        public static bool ServerSetClanTag(ILogicObject party, string clanTag)
+        {
+            var members = ServerGetPartyMembersReadOnly(party);
+            if (string.IsNullOrEmpty(clanTag))
+            {
+                clanTag = null;
+            }
+
+            var partyPublicState = Party.GetPublicState(party);
+            if (string.Equals(partyPublicState.ClanTag, clanTag, StringComparison.Ordinal))
+            {
+                // this party already has this clan tag
+                return true;
+            }
+
+            if (!SharedIsValidClanTag(clanTag))
+            {
+                throw new Exception("Invalid clantag");
+            }
+
+            if (ClanTagFilterHelper.IsInvalidClanTag(clanTag))
+            {
+                Logger.Warning("Attempting to set a filter containing profanity or reserved word, ignoring it: "
+                               + clanTag);
+                clanTag = null;
+                if (string.Equals(partyPublicState.ClanTag, null, StringComparison.Ordinal))
+                {
+                    // this party already has empty clan tag
+                    return true;
+                }
+            }
+
+            var otherParty = ServerFindPartyByClanTag(clanTag);
+            if (otherParty != null)
+            {
+                // the clan tag is already taken
+                return false;
+            }
+
+            partyPublicState.ClanTag = clanTag;
+
+            foreach (var memberName in members)
+            {
+                var member = Server.Characters.GetPlayerCharacter(memberName);
+                if (member is null)
+                {
+                    Logger.Warning("Unknown character in party: " + memberName);
+                    continue;
+                }
+
+                PlayerCharacter.GetPublicState(member).ClanTag = clanTag;
+            }
+
+            Api.SafeInvoke(
+                () => ServerPartyClanTagChanged?.Invoke(party));
+
+            return true;
         }
 
         public static bool SharedArePlayersInTheSameParty(ICharacter characterA, ICharacter characterB)
@@ -345,86 +437,6 @@
             bool IsValidLetter(char c)
                 => c >= 'A'
                    && c <= 'Z';
-        }
-
-        public static ILogicObject ServerFindPartyByClanTag(string clanTag)
-        {
-            if (string.IsNullOrEmpty(clanTag))
-            {
-                return null;
-            }
-
-            var allParties = Server.World.GetGameObjectsOfProto<ILogicObject, Party>();
-            foreach (var party in allParties)
-            {
-                if (string.Equals(clanTag,
-                                  Party.GetPublicState(party).ClanTag,
-                                  StringComparison.Ordinal))
-                {
-                    return party;
-                }
-            }
-
-            return null;
-        }
-
-        public static bool ServerSetClanTag(ILogicObject party, string clanTag)
-        {
-            var members = ServerGetPartyMembersReadOnly(party);
-            if (string.IsNullOrEmpty(clanTag))
-            {
-                clanTag = null;
-            }
-
-            var partyPublicState = Party.GetPublicState(party);
-            if (string.Equals(partyPublicState.ClanTag, clanTag, StringComparison.Ordinal))
-            {
-                // this party already has this clan tag
-                return true;
-            }
-
-            if (!SharedIsValidClanTag(clanTag))
-            {
-                throw new Exception("Invalid clantag");
-            }
-
-            if (ClanTagFilterHelper.IsInvalidClanTag(clanTag))
-            {
-                Logger.Warning("Attempting to set a filter containing profanity or reserved word, ignoring it: "
-                               + clanTag);
-                clanTag = null;
-                if (string.Equals(partyPublicState.ClanTag, null, StringComparison.Ordinal))
-                {
-                    // this party already has empty clan tag
-                    return true;
-                }
-            }
-
-            var otherParty = ServerFindPartyByClanTag(clanTag);
-            if (otherParty != null)
-            {
-                // the clan tag is already taken
-                return false;
-            }
-
-            partyPublicState.ClanTag = clanTag;
-
-            foreach (var memberName in members)
-            {
-                var member = Server.Characters.GetPlayerCharacter(memberName);
-                if (member is null)
-                {
-                    Logger.Warning("Unknown character in party: " + memberName);
-                    continue;
-                }
-
-                PlayerCharacter.GetPublicState(member).ClanTag = clanTag;
-            }
-
-            Api.SafeInvoke(
-                () => ServerPartyClanTagChanged?.Invoke(party));
-
-            return true;
         }
 
         internal static void ServerRegisterParty(ILogicObject party)

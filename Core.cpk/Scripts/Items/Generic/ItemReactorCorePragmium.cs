@@ -1,11 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Resources;
 
     // This item is no longer used after to introduction of fuel cells, but we're planning to restore it.
     public class ItemReactorCorePragmium : ProtoItemWithDurability
     {
         public const uint EnergyCapacity = 360_000;
+
+        // ensure the object is not visible in trading station
+        public override ITextureResource Icon => null;
 
         public override string Description =>
             "Pragmium-filled reactor core. Relatively stable, portable and long-lasting power source.";

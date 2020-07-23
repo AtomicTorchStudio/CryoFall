@@ -5,8 +5,13 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
+    using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class MobPragmiumBeetle : ProtoCharacterMob
     {
@@ -25,6 +30,30 @@
         public override double StatDefaultHealthMax => 120;
 
         public override double StatMoveSpeed => 2.475;
+
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IWorldObject targetObject,
+            double damagePreMultiplier,
+            double damagePostMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            var result = base.SharedOnDamage(weaponCache, targetObject, damagePreMultiplier, damagePostMultiplier, out obstacleBlockDamageCoef, out damageApplied);
+
+            if (!result)
+            {
+                return false;
+            }
+
+            if (IsClient)
+            {
+                return true;
+            }
+
+            ObjectMineralPragmiumSource.ServerTryClaimPragmiumClusterNearCharacter(weaponCache.Character);
+            return true;
+        }
 
         protected override void FillDefaultEffects(Effects effects)
         {

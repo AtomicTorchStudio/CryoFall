@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.Bloom;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
 
@@ -28,7 +29,8 @@
 
         private NightVisionPostEffect postEffectNightVision;
 
-        protected virtual double AdditionalAmbientLight => 0.8;
+        protected virtual double AdditionalAmbientLight
+            => 0.8 - ClientTimeOfDayVisualComponent.NightAmbientCurrentExtraLightFraction;
 
         protected virtual double AdditionalAmbientLightAdditiveFraction => 0.35;
 

@@ -290,7 +290,7 @@
             if (data.IsFirstTimeInit)
             {
                 this.ServerSetGrowthStage(data.GameObject,
-                                          growthStage: this.TimeToMature.Ticks > 0
+                                          growthStage: this.cachedTimeToGrowTotalSeconds > 0
                                                            ? (byte)0
                                                            : this.GrowthStagesCount);
             }

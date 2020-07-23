@@ -8,18 +8,15 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Drones;
-    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
-    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi;
@@ -197,8 +194,9 @@
             var privateState = worldObject.GetPrivateState<DronePrivateState>();
             var characterOwner = privateState.CharacterOwner;
             var protoItemDrone = (IProtoItemDrone)privateState.AssociatedItem.ProtoItem;
+            var protoDrone = (IProtoDrone)worldObject.ProtoGameObject;
 
-            ServerDropDroneToGround(worldObject);
+            protoDrone.ServerDropDroneToGround(worldObject);
 
             Logger.Info("Drone deactivated: " + worldObject);
             ServerDespawnDrone(worldObject, isReturnedToPlayer: false);
@@ -231,7 +229,7 @@
                               ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
             world.SetDynamicObjectMoveSpeed(worldObject, 0);
             world.SetDynamicObjectPhysicsMovement(worldObject, Vector2D.Zero, 0);
-            
+
             privateState.IsDespawned = true;
             privateState.CharacterOwner = null;
             ServerOnDroneControlRemoved(characterOwner, worldObject);
@@ -262,6 +260,16 @@
             }
         }
 
+        public static bool ServerIsMiningAllowed(Vector2Ushort tilePosition, IDynamicWorldObject droneObject)
+        {
+            if (ServerCurrentMinedObjectsByDrones.TryGetValue(tilePosition, out var existingDroneObject))
+            {
+                return ReferenceEquals(existingDroneObject, droneObject);
+            }
+
+            return true;
+        }
+
         public static void ServerOnDroidDestroyed(IDynamicWorldObject worldObject)
         {
             Logger.Info("Drone destroyed: " + worldObject);
@@ -277,7 +285,8 @@
                 Server.Items.DestroyItem(droneItem);
             }
 
-            ServerDropDroneToGround(worldObject);
+            var protoDrone = (IProtoDrone)worldObject.ProtoGameObject;
+            protoDrone.ServerDropDroneToGround(worldObject);
 
             if (droneItem is null)
             {
@@ -382,8 +391,7 @@
                 return null;
             }
 
-            if (PveSystem.SharedIsPve(false)
-                && !LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject, character))
+            if (!PveSystem.SharedIsAllowStaticObjectDamage(character, targetObject, showClientNotification: false))
             {
                 hasIncompatibleTarget = true;
                 isPveActionForbidden = true;
@@ -594,6 +602,13 @@
             }
 
             var objectDrone = itemDrone.GetPrivateState<ItemDronePrivateState>().WorldObjectDrone;
+
+            if (!ServerIsMiningAllowed(worldPosition, objectDrone))
+            {
+                Logger.Info("Cannot mine there as it's already mined by another drone: " + worldPosition, character);
+                return;
+            }
+
             var targetObject = SharedGetCompatibleTarget(character,
                                                          worldPosition,
                                                          out _,
@@ -638,35 +653,6 @@
                                             fromStartPosition: character.Position);
 
             ServerItemUseObserver.NotifyItemUsed(character, itemDroneControl);
-        }
-
-        private static void ServerDropDroneToGround(IDynamicWorldObject worldObject)
-        {
-            var privateState = worldObject.GetPrivateState<DronePrivateState>();
-            var storageContainer = privateState.StorageItemsContainer;
-            if (storageContainer.OccupiedSlotsCount == 0)
-            {
-                return;
-            }
-
-            // drop all items on the ground
-            var groundContainer = ObjectGroundItemsContainer
-                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(worldObject.Tile);
-            if (groundContainer != null)
-            {
-                Server.Items.SetSlotsCount(groundContainer, byte.MaxValue);
-                Server.Items.TryMoveAllItems(storageContainer, groundContainer);
-                ObjectGroundItemsContainer.ServerTrimSlotsNumber(groundContainer);
-                WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
-                                                      privateState.CharacterOwner,
-                                                      WorldObjectClaimDuration.DroppedGoods);
-            }
-            else
-            {
-                // TODO: try to create a ground container in any other ground spot
-                Logger.Error("Cannot find a place to drop the drone contents on the ground - drone lost!"
-                             + worldObject);
-            }
         }
 
         private void ClientRemote_OnDroneAbandoned(IProtoItemDrone protoItemDrone)

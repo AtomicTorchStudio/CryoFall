@@ -235,7 +235,8 @@
                     && !this.lastRemovedEntryByServer.IsRewardClaimed)
                 {
                     // reward was not claimed but now claimed
-                    Client.Audio.PlayOneShot(CompletionistSystem.RewardClaimedSoundResource, 0.5f);
+                    // commented out - the sound is played when pressing an "Accept" button
+                    //Client.Audio.PlayOneShot(CompletionistSystem.RewardClaimedSoundResource, 0.5f);
                 }
 
                 if (viewModel.State == ViewModelWindowCompletionist.CompletionistEntryState.RewardClaimed

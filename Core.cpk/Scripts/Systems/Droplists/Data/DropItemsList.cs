@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -202,7 +203,7 @@
 
             var result = new CreateItemResult() { IsEverythingCreated = true };
             using var selectedEntries = Api.Shared.GetTempList<Entry>();
-            this.SelectRandomEntries(selectedEntries);
+            this.SelectRandomEntries(selectedEntries, dropItemContext);
 
             // execute selected entries
             foreach (var entry in selectedEntries.AsList())
@@ -361,7 +362,7 @@
             }
         }
 
-        private void SelectRandomEntries(ITempList<Entry> result)
+        private void SelectRandomEntries(ITempList<Entry> result, DropItemContext dropItemContext)
         {
             var countToSelect = this.Outputs + RandomHelper.Next(0, this.OutputsRandom + 1);
             if (countToSelect >= this.frozenEntries.Count)
@@ -377,13 +378,114 @@
 
             if (countToSelect == 1)
             {
-                // simply return a single random selected entry
-                result.Add(this.frozenEntries.GetSingleRandomElement());
+                // simply return a single random selected entry that is satisfying the condition
+                Entry entry = default;
+                for (var attempt = 0; attempt < 100; attempt++)
+                {
+                    entry = this.frozenEntries.GetSingleRandomElement();
+                    if (entry.Condition is null)
+                    {
+                        break;
+                    }
+
+                    try
+                    {
+                        if (entry.Condition(dropItemContext))
+                        {
+                            break;
+                        }
+
+                        // condition not match, select another entry
+                        continue;
+                    }
+                    catch (Exception ex)
+                    {
+                        Api.Logger.Exception(ex, "Exception during checking condition for droplist item " + entry);
+                        break;
+                    }
+                }
+
+                if (!entry.Equals(default))
+                {
+                    result.Add(entry);
+                }
+
                 return;
             }
 
-            // need to select multiple random entries
-            this.frozenEntries.SelectRandomElements(result.AsList(), countToSelect);
+            // need to select multiple random entries, filter out those that pass the condition
+            using var tempAvailableEntries = Api.Shared.GetTempList<ValueWithWeight<Entry>>();
+            var availableEntries = tempAvailableEntries.AsList();
+            this.frozenEntries.CopyToList(availableEntries);
+
+            for (var index = 0; index < availableEntries.Count; index++)
+            {
+                var v = availableEntries[index];
+                if (v.Value.Condition != null
+                    && !v.Value.Condition(dropItemContext))
+                {
+                    availableEntries.RemoveAt(index);
+                    index--;
+                }
+            }
+
+            if (availableEntries.Count == 0)
+            {
+                return;
+            }
+
+            SelectRandomElements(availableEntries, result.AsList(), countToSelect);
+
+            static void SelectRandomElements(
+                List<ValueWithWeight<Entry>> items,
+                List<Entry> result,
+                int countToSelect)
+            {
+                if (countToSelect >= items.Count)
+                {
+                    // simply return all elements
+                    foreach (var item in items)
+                    {
+                        result.Add(item.Value);
+                    }
+
+                    return;
+                }
+
+                var currentTotalWeight = items.Sum(e => e.Weight);
+                var pickedIndices = new List<ushort>(capacity: countToSelect);
+
+                for (var selection = 0; selection < countToSelect; selection++)
+                {
+                    // take some random value from 0.0 (inclusive) to 1.0 (exclusive)
+                    var value = RandomHelper.NextDouble();
+                    // normalize it to current total weight
+                    value *= currentTotalWeight;
+                    var accumulator = 0.0;
+
+                    for (ushort index = 0; index < items.Count; index++)
+                    {
+                        if (pickedIndices.Contains(index))
+                        {
+                            // this item is already picked - ignore it
+                            continue;
+                        }
+
+                        var item = items[index];
+                        accumulator += item.Weight;
+                        if (accumulator < value)
+                        {
+                            continue;
+                        }
+
+                        // the item is picked
+                        result.Add(item.Value);
+                        pickedIndices.Add(index);
+                        currentTotalWeight -= item.Weight;
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>

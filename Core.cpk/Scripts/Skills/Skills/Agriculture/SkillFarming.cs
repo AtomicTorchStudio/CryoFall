@@ -17,8 +17,8 @@
         public const double ExperienceForWatering = 25.0; // 0.0625 LP
 
         public static readonly DropItemConditionDelegate ConditionExtraYield
-            // requires flag
-            = context => context.Character.SharedHasSkillFlag(Flags.AdditionalYield);
+            = context => context.HasCharacter 
+                         && context.Character.SharedHasSkillFlag(Flags.AdditionalYield);
 
         public enum Flags
         {

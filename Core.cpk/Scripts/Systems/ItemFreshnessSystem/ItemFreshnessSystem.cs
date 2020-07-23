@@ -4,10 +4,12 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using static ItemFreshnessConstants;
 
     public class ItemFreshnessSystem : ProtoSystem<ItemFreshnessSystem>
     {
@@ -42,7 +44,9 @@
 
             var privateState = item.GetPrivateState<IItemWithFreshnessPrivateState>();
             var freshness = (long)privateState.FreshnessCurrent;
-            var freshnessDecrease = (uint)(deltaTime * FreshnessFractionsPerSecond);
+            var freshnessDecrease = (uint)(deltaTime
+                                           * FreshnessFractionsPerSecond
+                                           * ServerFreshnessDecaySpeedMultiplier);
             if (freshnessDecrease == 0)
             {
                 // no freshness decrease
@@ -128,7 +132,11 @@
                 return double.NaN;
             }
 
-            var result = privateState.FreshnessCurrent / (double)FreshnessFractionsPerSecond;
+            var result = privateState.FreshnessCurrent
+                         / (FreshnessFractionsPerSecond
+                            * (IsServer
+                                   ? ServerFreshnessDecaySpeedMultiplier
+                                   : ClientFreshnessDecaySpeedMultiplier));
 
             if (container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge)
             {
@@ -157,7 +165,7 @@
             var freshnessB = itemB.GetPrivateState<IItemWithFreshnessPrivateState>().FreshnessCurrent;
             return freshnessA.CompareTo(freshnessB);
         }
-        
+
         public static int SharedCompareFreshnessReverse(IItem itemA, IItem itemB)
         {
             return -SharedCompareFreshness(itemA, itemB);
@@ -241,6 +249,17 @@
 
             freshnessDecreaseCoefficient = Math.Min(freshnessDecreaseCoefficient, 1);
             return freshnessDecreaseCoefficient < 1.0;
+        }
+
+        // TODO: move this to separate system in A28
+        public double ServerRemote_RequestFarmPlantsSpoilSpeedMultiplier()
+        {
+            return FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier;
+        }
+
+        public double ServerRemote_RequestFreshnessDecaySpeedMultiplier()
+        {
+            return ServerFreshnessDecaySpeedMultiplier;
         }
 
         protected override void PrepareSystem()

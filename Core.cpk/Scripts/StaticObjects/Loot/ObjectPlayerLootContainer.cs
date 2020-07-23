@@ -5,7 +5,6 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
@@ -16,7 +15,9 @@
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Windows;
@@ -29,6 +30,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectPlayerLootContainer
@@ -81,15 +83,22 @@
 
         public override float StructurePointsMax => float.MaxValue;
 
-        public static IItemsContainer ServerTryCreateLootContainer(ICharacter character)
+        public static IItemsContainer ServerTryCreateLootContainer(
+            ICharacter character,
+            Vector2D? position = null)
         {
+            position ??= character.Position;
+
             return ServerTryCreateLootContainerInternal(character,
+                                                        position.Value,
                                                         ensureNoWallsOnTheWay: true,
                                                         ensureNoClosedDoorsOnTheWay: true)
                    ?? ServerTryCreateLootContainerInternal(character,
+                                                           position.Value,
                                                            ensureNoWallsOnTheWay: true,
                                                            ensureNoClosedDoorsOnTheWay: false)
                    ?? ServerTryCreateLootContainerInternal(character,
+                                                           position.Value,
                                                            ensureNoWallsOnTheWay: false,
                                                            ensureNoClosedDoorsOnTheWay: false);
         }
@@ -177,9 +186,31 @@
                 return false;
             }
 
-            if (GetPublicState(worldObject).OwnerName == character.Name)
+            var ownerName = GetPublicState(worldObject).OwnerName;
+            if (ownerName == character.Name)
             {
                 return true;
+            }
+
+            if (PveSystem.SharedIsPve(false))
+            {
+                if (IsClient && PartySystem.ClientIsPartyMember(ownerName)
+                    || (IsServer
+                        && PartySystem.ServerIsSameParty(Server.Characters.GetPlayerCharacter(ownerName),
+                                                         character)))
+                {
+                    // in PvE party members can pickup items of their party members
+                }
+                else
+                {
+                    // other players in PvE cannot pickup player's loot
+                    if (writeToLog && IsClient)
+                    {
+                        PveSystem.ClientShowNotificationActionForbidden();
+                    }
+
+                    return false;
+                }
             }
 
             if (NewbieProtectionSystem.SharedIsNewbie(character))
@@ -265,10 +296,11 @@
                 // skip this check as it's usually fine to drop the loot if player could stand there
                 //.Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
                 // validate no static physics objects there except destroyed walls and opened doors
+                .Add(ConstructionTileRequirements.ValidatorSolidGround)
+                .Add(ConstructionTileRequirements.ValidatorNotCliffOrSlope)
                 .Add(new ConstructionTileRequirements.Validator(
                          ConstructionTileRequirements.ErrorNoFreeSpace,
-                         c => c.Tile.ProtoTile.Kind == TileKind.Solid
-                              && !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
+                         c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                                   c.Tile,
                                   t => t.PhysicsBody.IsStatic
                                        // allow destroyed walls physics in the tile
@@ -373,6 +405,52 @@
                 .AddShapeRectangle((1, 1), group: CollisionGroups.ClickArea);
         }
 
+        /// <summary>
+        /// Finds the closest available empty tile (if possible).
+        /// If cannot, returns the tile at the start position.
+        /// </summary>
+        private static Tile ServerGetStartTileForLootContainerLocation(Vector2D startPosition)
+        {
+            var startTile = Server.World.GetTile(startPosition.ToVector2Ushort());
+
+            using var tempTiles = Api.Shared.GetTempList<Tile>();
+            tempTiles.Add(startTile);
+            tempTiles.AddRange(startTile.EightNeighborTiles);
+
+            var collisionGroup = CollisionGroups.Default;
+            var physicsSpace = Server.World.GetPhysicsSpace();
+            tempTiles.AsList()
+                     .SortBy(t => (t.Position.ToVector2D() + (0.5, 0.5))
+                                 .DistanceSquaredTo(startPosition));
+
+            foreach (var tile in tempTiles.AsList())
+            {
+                var testResults = physicsSpace.TestLine(startPosition,
+                                                        toPosition: tile.Position.ToVector2D() + (0.5, 0.5),
+                                                        collisionGroup,
+                                                        sendDebugEvent: false);
+                var isValidTile = true;
+                foreach (var testResult in testResults.AsList())
+                {
+                    var associatedWorldObject = testResult.PhysicsBody.AssociatedWorldObject;
+                    if (associatedWorldObject != null
+                        && associatedWorldObject.IsStatic
+                        || testResult.PhysicsBody.AssociatedProtoTile != null)
+                    {
+                        isValidTile = false;
+                        break;
+                    }
+                }
+
+                if (isValidTile)
+                {
+                    return tile;
+                }
+            }
+
+            return startTile;
+        }
+
         private static void ServerSetDefaultDestroyTimeout(ObjectPlayerLootContainerPrivateState privateState)
         {
             var timeNow = Server.Game.FrameTime;
@@ -423,14 +501,11 @@
         // try create the loot container nearby the character death position
         private static IItemsContainer ServerTryCreateLootContainerInternal(
             ICharacter character,
+            Vector2D startPosition,
             bool ensureNoWallsOnTheWay,
             bool ensureNoClosedDoorsOnTheWay)
         {
-            var characterPosition = character.Position;
-            var startTilePosition = new Vector2Ushort(
-                (ushort)characterPosition.X,
-                (ushort)(characterPosition.Y - ProtoCharacterSkeletonHuman.LegsColliderRadius));
-            var startTile = Server.World.GetTile(startTilePosition);
+            var startTile = ServerGetStartTileForLootContainerLocation(startPosition);
 
             var checkQueue = new List<Tile>();
             checkQueue.Add(startTile);

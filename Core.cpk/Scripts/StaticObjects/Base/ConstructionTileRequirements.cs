@@ -255,18 +255,24 @@
             = new Lazy<IServerZone>(
                 () => ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance);
 
+        public static readonly Validator ValidatorSolidGround
+            = new Validator(ErrorNotSolidGround,
+                            c => c.Tile.ProtoTile.Kind == TileKind.Solid);
+
+        public static readonly Validator ValidatorNotCliffOrSlope
+            = new Validator(ErrorCannotBuildOnCliffOrSlope,
+                            c => !c.Tile.IsCliffOrSlope);
+
         private readonly List<Validator> checkFunctions = new List<Validator>();
 
         static ConstructionTileRequirements()
         {
             BasicRequirements = new ConstructionTileRequirements()
-                                .Add(ErrorNotSolidGround,
-                                     c => c.Tile.ProtoTile.Kind == TileKind.Solid)
+                                .Add(ValidatorSolidGround)
                                 .Add(ErrorCannotBuildInRestrictedArea,
                                      c => c.CharacterBuilder == null
                                           || !c.Tile.ProtoTile.IsRestrictingConstruction)
-                                .Add(ErrorCannotBuildOnCliffOrSlope,
-                                     c => !c.Tile.IsCliffOrSlope)
+                                .Add(ValidatorNotCliffOrSlope)
                                 .Add(ErrorTooCloseToCliffOrSlope,
                                      c => c.Tile.EightNeighborTiles.All(neighbor => !neighbor.IsCliffOrSlope))
                                 .Add(ErrorTooCloseToWater,

@@ -24,7 +24,7 @@
             double probabilityMultiplier,
             DropItemContext context)
         {
-            if (character == null)
+            if (character is null)
             {
                 return new CreateItemResult() { IsEverythingCreated = false };
             }
@@ -84,11 +84,7 @@
                                                     k => k.Container == containersProvider.GroundContainer)?
                                                 .ProtoItem);
                 }
-
-                // limit the ground container slots limit so players cannot use the extra slots
-                // to store more items than usually allowed
-                ObjectGroundItemsContainer.ServerTrimSlotsNumber(groundContainer);
-
+                
                 WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
                                                       toCharacter,
                                                       WorldObjectClaimDuration.GroundItems);
@@ -118,19 +114,18 @@
             DropItemContext context,
             [CanBeNull] out IItemsContainer groundContainer)
         {
+            var character = context.HasCharacter ? context.Character : null;
+
             // obtain the ground container to drop the items into
             var tile = World.GetTile(tilePosition);
             groundContainer = ObjectGroundItemsContainer
-                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
+                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, tile);
 
-            if (groundContainer == null)
+            if (groundContainer is null)
             {
                 // cannot drop because there are no free space available on the ground
                 return new CreateItemResult() { IsEverythingCreated = false };
             }
-
-            // temporary raise the container slots limit
-            Items.SetSlotsCount(groundContainer, byte.MaxValue);
 
             var result = dropItemsList.TryDropToContainer(groundContainer, context, probabilityMultiplier);
             if (groundContainer.OccupiedSlotsCount == 0)
@@ -141,12 +136,8 @@
                 return result;
             }
 
-            // restore the container slots limit so players cannot use the extra slots
-            // to store more items than usually allowed
-            ObjectGroundItemsContainer.ServerTrimSlotsNumber(groundContainer);
-
             WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
-                                                  context.HasCharacter ? context.Character : null,
+                                                  character,
                                                   WorldObjectClaimDuration.GroundItems);
 
             return result;

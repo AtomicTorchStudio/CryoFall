@@ -41,14 +41,13 @@
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotFlintlockPistol");
 
-        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLaser
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLaserPistol
             = WeaponRanged.Clone()
-                          .Replace(Shot, "Weapons/Ranged/ShotLaser");
+                          .Replace(Shot, "Weapons/Ranged/ShotLaserPistol");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLaserRifle
             = WeaponRanged.Clone()
-                          // TODO: set the new sound here when it's ready
-                          .Replace(Shot, "Weapons/Ranged/ShotLaser");
+                          .Replace(Shot, "Weapons/Ranged/ShotLaserRifle");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLightRifle
             = WeaponRanged.Clone()
@@ -78,9 +77,13 @@
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotPistol");
 
-        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedPlasma
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedPlasmaPistol
             = WeaponRanged.Clone()
-                          .Replace(Shot, "Weapons/Ranged/ShotPlasma");
+                          .Replace(Shot, "Weapons/Ranged/ShotPlasmaPistol");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedPlasmaRifle
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotPlasmaRifle");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedRevolver
             = WeaponRanged.Clone()
@@ -113,5 +116,9 @@
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponVehicleAutocannonLight
             = WeaponVehicleGeneric.Clone()
                                   .Replace(Shot, "Weapons/Vehicle/ShotAutocannonLight");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponVehicleEnergyCannon
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Vehicle/ShotEnergyCannon");
     }
 }

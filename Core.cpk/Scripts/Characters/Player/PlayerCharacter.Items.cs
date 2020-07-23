@@ -35,27 +35,18 @@
             countToSpawn -= result.TotalCreatedCount;
 
             // cannot spawn - try spawn to the ground
-            if (groundContainer == null)
+            if (groundContainer is null)
             {
                 groundContainer = ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(
+                    character,
                     character.Tile);
 
-                if (groundContainer == null)
+                if (groundContainer is null)
                 {
-                    // cannot drop on ground
                     return;
                 }
-
-                ServerItemsService.SetContainerType<ItemsContainerOutputPublic>(groundContainer);
             }
-
-            // estimate how many slots are required
-            var groundSlotsCount = (int)groundContainer.OccupiedSlotsCount;
-            groundSlotsCount += (int)Math.Ceiling(countToSpawn / (double)protoItem.MaxItemsPerStack);
-            ServerItemsService.SetSlotsCount(
-                groundContainer,
-                (byte)Math.Min(byte.MaxValue, groundSlotsCount));
-
+            
             ServerItemsService.CreateItem(protoItem,
                                           groundContainer,
                                           count: countToSpawn);

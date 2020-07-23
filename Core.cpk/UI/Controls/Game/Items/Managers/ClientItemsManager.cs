@@ -16,7 +16,7 @@
     {
         private static readonly HashSet<ItemSlotControl> AllSlotControls = new HashSet<ItemSlotControl>();
 
-        private static ClientInputContext clientInputContext;
+        private static ClientInputContext clientInputContextDropItem;
 
         private static IItem itemInHand;
 
@@ -34,8 +34,8 @@
 
                 if (itemInHand != null)
                 {
-                    clientInputContext.Stop();
-                    clientInputContext = null;
+                    clientInputContextDropItem.Stop();
+                    clientInputContextDropItem = null;
                 }
 
                 itemInHand = value;
@@ -43,24 +43,28 @@
                 if (itemInHand != null)
                 {
                     // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                    clientInputContext = ClientInputContext
-                                         .Start("Drop item from hand to ground")
-                                         .HandleAll(
-                                             () =>
-                                             {
-                                                 if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
-                                                 {
-                                                     ClientInputManager.ConsumeButton(GameButton.ActionUseCurrentItem);
-                                                     TryPlaceItemInHandOnGround();
-                                                 }
-                                                 else if (ClientInputManager.IsButtonDown(GameButton.ActionInteract))
-                                                 {
-                                                     if (TryPlaceItemInHandOnGround(count: 1))
+                    clientInputContextDropItem = ClientInputContext
+                                                 .Start("Drop item from hand to ground")
+                                                 .HandleAll(
+                                                     () =>
                                                      {
-                                                         ClientInputManager.ConsumeButton(GameButton.ActionInteract);
-                                                     }
-                                                 }
-                                             });
+                                                         if (ClientInputManager.IsButtonDown(
+                                                             GameButton.ActionUseCurrentItem))
+                                                         {
+                                                             ClientInputManager.ConsumeButton(
+                                                                 GameButton.ActionUseCurrentItem);
+                                                             TryPlaceItemInHandOnGround();
+                                                         }
+                                                         else if (ClientInputManager.IsButtonDown(
+                                                             GameButton.ActionInteract))
+                                                         {
+                                                             if (TryPlaceItemInHandOnGround(count: 1))
+                                                             {
+                                                                 ClientInputManager.ConsumeButton(
+                                                                     GameButton.ActionInteract);
+                                                             }
+                                                         }
+                                                     });
                 }
             }
         }
@@ -69,12 +73,12 @@
         {
             if (HandContainer != null)
             {
-                HandContainer.StateHashChanged -= HandContainerStateHashChanged;
+                HandContainer.StateHashChanged -= RefreshItemInHand;
             }
 
             HandContainer = (IClientItemsContainer)currentCharacter.SharedGetPlayerContainerHand();
-            HandContainer.StateHashChanged += HandContainerStateHashChanged;
-            HandContainerStateHashChanged();
+            HandContainer.StateHashChanged += RefreshItemInHand;
+            RefreshItemInHand();
 
             ClientItemInHandDisplayManager.Init(HandContainer);
             ClientContainerSortHelper.Init();
@@ -113,7 +117,7 @@
             AllSlotControls.Remove(slotControl);
         }
 
-        private static void HandContainerStateHashChanged()
+        private static void RefreshItemInHand()
         {
             ItemInHand = HandContainer.GetItemAtSlot(0);
         }

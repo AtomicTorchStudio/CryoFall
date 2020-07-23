@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDroneControl;
@@ -134,6 +135,55 @@
 
         protected virtual double ShadowOpacity => 0.5;
 
+        public void ServerDropDroneToGround(IDynamicWorldObject objectDrone)
+        {
+            var privateState = objectDrone.GetPrivateState<DronePrivateState>();
+            var storageContainer = privateState.StorageItemsContainer;
+            if (storageContainer.OccupiedSlotsCount == 0)
+            {
+                return;
+            }
+
+            // drop all items on the ground
+            IItemsContainer groundContainer = null;
+            if (privateState.CharacterOwner != null)
+            {
+                groundContainer = ObjectPlayerLootContainer.ServerTryCreateLootContainer(privateState.CharacterOwner,
+                                                                                         objectDrone.Position);
+
+                if (groundContainer != null)
+                {
+                    // set slots count matching the total occupied slots count
+                    Server.Items.SetSlotsCount(
+                        groundContainer,
+                        (byte)Math.Min(byte.MaxValue,
+                                       groundContainer.OccupiedSlotsCount
+                                       + storageContainer.OccupiedSlotsCount));
+                }
+            }
+
+            groundContainer ??=
+                ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(
+                    privateState.CharacterOwner,
+                    objectDrone.Tile);
+
+            if (groundContainer != null)
+            {
+                Server.Items.TryMoveAllItems(storageContainer, groundContainer);
+                WorldObjectClaimSystem.ServerTryClaim(
+                    groundContainer.OwnerAsStaticObject,
+                    privateState.CharacterOwner,
+                    durationSeconds: ObjectPlayerLootContainer.AutoDestroyTimeoutSeconds
+                                     + (10 * 60));
+            }
+            else
+            {
+                // TODO: try to create a ground container in any other ground spot
+                Logger.Error("Cannot find a place to drop the drone contents on the ground - drone lost!"
+                             + objectDrone);
+            }
+        }
+
         public IItemsContainer ServerGetStorageItemsContainer(IDynamicWorldObject objectDrone)
         {
             return GetPrivateState(objectDrone).StorageItemsContainer;
@@ -157,7 +207,7 @@
 
             using var observers = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(objectDrone, observers);
-            
+
             this.CallClient(observers.AsList(),
                             _ => _.ClientRemote_OnDroneDroppedOrReturned(toCharacter,
                                                                          objectDrone.TilePosition,
@@ -460,7 +510,17 @@
             if (hasMiningTargets)
             {
                 // go to the next waypoint
-                destinationCoordinate = publicState.TargetDronePosition.Value;
+                destinationCoordinate = publicState.TargetDronePosition
+                                        ?? publicState.TargetObjectPosition.Value.ToVector2D();
+
+                if (!CharacterDroneControlSystem.ServerIsMiningAllowed(
+                    publicState.TargetObjectPosition.Value,
+                    objectDrone))
+                {
+                    // cannot mine as it's already mined by another drone
+                    publicState.ResetTargetPosition();
+                    return;
+                }
             }
             else
             {
@@ -769,13 +829,11 @@
 
             // try to drop the remaining items on the ground
             var groundContainer = ObjectGroundItemsContainer
-                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character.Tile);
+                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, character.Tile);
             if (groundContainer != null)
             {
-                Server.Items.SetSlotsCount(groundContainer, byte.MaxValue);
                 var protoItemForIcon = storageContainer.Items.First().ProtoItem;
                 Server.Items.TryMoveAllItems(storageContainer, groundContainer);
-                ObjectGroundItemsContainer.ServerTrimSlotsNumber(groundContainer);
                 NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(character,
                                                                                                 protoItemForIcon);
 

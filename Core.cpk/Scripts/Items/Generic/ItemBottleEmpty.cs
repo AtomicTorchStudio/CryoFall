@@ -36,8 +36,8 @@
             createItemResult.Rollback();
 
             var groundContainer =
-                ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character.Tile);
-            if (groundContainer == null)
+                ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, character.Tile);
+            if (groundContainer is null)
             {
                 return;
             }

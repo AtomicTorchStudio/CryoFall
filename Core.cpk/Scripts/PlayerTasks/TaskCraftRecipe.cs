@@ -40,20 +40,26 @@
 
                 var recipe = this.List[0];
                 var result = prefix + " " + recipe.Name;
-                if (recipe is Recipe.BaseRecipeForStation recipeForStation
-                    && recipeForStation.RecipeType != RecipeType.Hand)
-                {
-                    // list stations where the recipe might be crafted
-                    result += " ("
-                              + string.Format(CraftOnStationNameTitleFormat,
-                                              recipeForStation.StationTypes
-                                                              .Select(s => s.Name)
-                                                              .GetJoinedString())
-                              + ")";
-                }
-
+                result = AppendRecipeLocationIfNecessary(result, recipe);
                 return result;
             }
+        }
+
+        public static string AppendRecipeLocationIfNecessary(string result, Recipe recipe)
+        {
+            if (recipe is Recipe.BaseRecipeForStation recipeForStation
+                && recipeForStation.RecipeType != RecipeType.Hand)
+            {
+                // list stations where the recipe might be crafted
+                result += " ("
+                          + string.Format(CraftOnStationNameTitleFormat,
+                                          recipeForStation.StationTypes
+                                                          .Select(s => s.Name)
+                                                          .GetJoinedString())
+                          + ")";
+            }
+
+            return result;
         }
 
         public static TaskCraftRecipe RequireHandRecipe<TRecipe>(

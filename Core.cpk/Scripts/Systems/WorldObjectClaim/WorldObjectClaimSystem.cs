@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim
 {
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -98,6 +99,15 @@
             WorldObjectClaim.ServerSetupClaim(objectClaim, character, worldObject, durationSeconds);
             worldObjectPublicState.WorldObjectClaim = objectClaim;
             //Logger.Dev("World object claim added: " + worldObject);
+
+            if (worldObject.ProtoGameObject is ObjectGroundItemsContainer)
+            {
+                // set custom timeout for the ground items container to ensure it cannot be removed from the world
+                // before the claim expires
+                ObjectGroundItemsContainer.ServerSetDestructionTimeout(
+                    (IStaticWorldObject)worldObject,
+                    durationSeconds);
+            }
         }
 
         public static bool SharedIsAllowInteraction(

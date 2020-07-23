@@ -408,8 +408,9 @@
                 return this.TimeToGiveHarvestTotalSeconds / speedMultiplier;
             }
 
-            // next stage is spoiling
-            return this.TimeToHarvestSpoilTotalSeconds; // please note the speed multiplier is not applied
+            // next stage is spoiling (the growth speed multiplier variable is not applicable here)
+            return this.TimeToHarvestSpoilTotalSeconds
+                   / FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -563,7 +564,7 @@
             multiplier += Math.Max(0, privateState.SkillGrowthSpeedMultiplier - 1);
 
             // apply growth rate multiplier
-            multiplier *= FarmingConstants.FarmPlantsGrowthSpeedMultiplier;
+            multiplier *= FarmingConstants.ServerFarmPlantsGrowthSpeedMultiplier;
 
             return multiplier;
         }

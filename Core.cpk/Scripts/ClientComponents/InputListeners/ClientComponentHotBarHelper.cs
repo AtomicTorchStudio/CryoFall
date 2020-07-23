@@ -11,7 +11,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Services;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
@@ -27,21 +26,6 @@
                 { GameButton.HotbarSelectSlot3, 2 },
                 { GameButton.HotbarSelectSlot4, 3 },
                 { GameButton.HotbarSelectSlot5, 4 },
-                { GameButton.HotbarSelectSlot6, 5 },
-                { GameButton.HotbarSelectSlot7, 6 },
-                { GameButton.HotbarSelectSlot8, 7 },
-                { GameButton.HotbarSelectSlot9, 8 },
-                { GameButton.HotbarSelectSlot10, 9 }
-            };
-
-        private static readonly Dictionary<GameButton, byte> KeysMappingWhileControlKeyHeld
-            = new Dictionary<GameButton, byte>()
-            {
-                { GameButton.HotbarSelectSlot1, 5 },
-                { GameButton.HotbarSelectSlot2, 6 },
-                { GameButton.HotbarSelectSlot3, 7 },
-                { GameButton.HotbarSelectSlot4, 8 },
-                { GameButton.HotbarSelectSlot5, 9 },
                 { GameButton.HotbarSelectSlot6, 5 },
                 { GameButton.HotbarSelectSlot7, 6 },
                 { GameButton.HotbarSelectSlot8, 7 },
@@ -152,17 +136,35 @@
                 return;
             }
 
-            var keysMapping = Api.Client.Input.IsKeyHeld(InputKey.Control, evenIfHandled: true)
-                                  ? KeysMappingWhileControlKeyHeld
-                                  : KeysMapping;
-            foreach (var pair in keysMapping)
+            const bool evenIfHandled = true;
+            var isQuickUseItem = (Input.IsKeyHeld(InputKey.Control, evenIfHandled)
+                                  || Input.IsKeyHeld(InputKey.Alt,  evenIfHandled))
+                                 && !(ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem, evenIfHandled)
+                                      || ClientInputManager.IsButtonHeld(GameButton.ActionInteract,    evenIfHandled));
+
+            foreach (var pair in KeysMapping)
             {
-                if (ClientInputManager.IsButtonDown(pair.Key))
+                if (!ClientInputManager.IsButtonDown(pair.Key))
                 {
-                    // the key was pressed - select according slot
-                    ClientHotbarSelectedItemManager.SelectedSlotId = pair.Value;
-                    break;
+                    continue;
                 }
+
+                // the key was pressed
+                var hotbarSlotId = pair.Value;
+
+                if (isQuickUseItem)
+                {
+                    // try to use an item from the hotbar slot
+                    var item = ClientHotbarSelectedItemManager.ContainerHotbar.GetItemAtSlot(hotbarSlotId);
+                    ClientItemManagementCases.TryUseItem(item);
+                }
+                else
+                {
+                    // select the hotbar slot
+                    ClientHotbarSelectedItemManager.SelectedSlotId = hotbarSlotId;
+                }
+
+                break;
             }
 
             var canUseHotbarItems = WindowsManager.OpenedWindowsCount == 0;

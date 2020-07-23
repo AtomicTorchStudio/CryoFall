@@ -145,35 +145,6 @@
                                                                        maxX: 6,
                                                                        maxY: 4);
 
-        public static void ServerTryClaimPragmiumCluster(IStaticWorldObject objectPragmiumSource, ICharacter character)
-        {
-            if (!WorldObjectClaimSystem.SharedIsEnabled)
-            {
-                return;
-            }
-
-            WorldObjectClaimSystem.ServerTryClaim(objectPragmiumSource,
-                                                  character,
-                                                  WorldObjectClaimDuration.PragmiumSourceCluster);
-
-            // claim neighbor nodes
-            var neighborTiles = objectPragmiumSource.OccupiedTiles
-                                                    .SelectMany(t => t.EightNeighborTiles)
-                                                    .Distinct()
-                                                    .ToList();
-
-            foreach (var neighborTile in neighborTiles)
-            foreach (var otherObject in neighborTile.StaticObjects)
-            {
-                if (otherObject.ProtoStaticWorldObject is ObjectMineralPragmiumNode)
-                {
-                    WorldObjectClaimSystem.ServerTryClaim(otherObject,
-                                                          character,
-                                                          WorldObjectClaimDuration.PragmiumSourceCluster);
-                }
-            }
-        }
-
         public void ServerForceUpdate(IStaticWorldObject worldObject, double deltaTime)
         {
             var publicState = GetPublicState(worldObject);
@@ -400,7 +371,7 @@
 
         protected override void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)
         {
-            ServerTryClaimPragmiumCluster(targetObject, character);
+            ServerTryClaimPragmiumClusterNearCharacter(character);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -649,6 +620,53 @@
         {
             [TempOnly]
             public double LastTimeObservedByAnyPlayer { get; set; }
+        }
+
+        public static bool ServerTryClaimPragmiumClusterNearCharacter(ICharacter character)
+        {
+            if (!WorldObjectClaimSystem.SharedIsEnabled
+                || character is null
+                || character.IsNpc)
+            {
+                return true;
+            }
+
+            using var objectsInScope = Api.Shared.GetTempList<IWorldObject>();
+            Server.World.GetWorldObjectsInView(character, objectsInScope.AsList(), sortByDistance: false);
+
+            var hasSource = false;
+            foreach (var worldObject in objectsInScope.AsList())
+            {
+                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumSource))
+                {
+                    continue;
+                }
+
+                hasSource = true;
+                WorldObjectClaimSystem.ServerTryClaim(worldObject,
+                                                      character,
+                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
+                break;
+            }
+
+            if (!hasSource)
+            {
+                return false;
+            }
+
+            foreach (var worldObject in objectsInScope.AsList())
+            {
+                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumNode))
+                {
+                    continue;
+                }
+
+                WorldObjectClaimSystem.ServerTryClaim(worldObject,
+                                                      character,
+                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
+            }
+
+            return true;
         }
     }
 }

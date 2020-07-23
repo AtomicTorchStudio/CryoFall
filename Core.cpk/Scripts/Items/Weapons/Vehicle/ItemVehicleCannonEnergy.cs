@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Vehicle
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -73,7 +72,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedPlasma;
+            return WeaponsSoundPresets.WeaponVehicleEnergyCannon;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
