@@ -38,8 +38,6 @@
 
         public override string InteractionTooltipText => InteractionTooltipTexts.TogglePower;
 
-        public override bool IsRelocatable => false;
-
         public override string Name => "Psionic field generator";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;

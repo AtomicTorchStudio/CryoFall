@@ -24,7 +24,7 @@
 
         public void EnsureEverythingCreated()
         {
-            if (this.StatusEffects == null)
+            if (this.StatusEffects is null)
             {
                 // TODO: actually, we don't need this to be instantiated for mobs by default
                 this.StatusEffects = new NetworkSyncList<ILogicObject>();

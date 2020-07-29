@@ -145,7 +145,7 @@
             }
 
             gridPublicState.ElectricityAmount = newAmount;
-            Logger.Important(
+            Logger.Info(
                 $"Electricity deducted from power grid: {grid} - {amountToDeduct:F0}. Total amount now: {newAmount:F0}");
         }
 
@@ -202,18 +202,18 @@
 
             state.ElectricityAmount = newAmount;
 
-            Logger.Important($"Power grid capacity changed: {powerGrid} - {state.ElectricityCapacity} EU");
+            Logger.Info($"Power grid capacity changed: {powerGrid} - {state.ElectricityCapacity} EU");
         }
 
         public static void ServerRegisterGrid(ILogicObject powerGrid)
         {
-            Logger.Important("Server register power grid: " + powerGrid);
+            Logger.Info("Server register power grid: " + powerGrid);
             ServerRebuildPowerGrid(powerGrid);
         }
 
         public static void ServerUnregisterGrid(ILogicObject powerGrid)
         {
-            Logger.Important("Server unregister power grid: " + powerGrid);
+            Logger.Info("Server unregister power grid: " + powerGrid);
             var state = PowerGrid.GetPublicState(powerGrid);
             ServerCutPower(powerGrid, state);
             ServerStopGenerators(state);
@@ -504,7 +504,7 @@
             ILogicObject powerGrid,
             PowerGridPublicState state)
         {
-            Logger.Important($"Power cut: {powerGrid}");
+            Logger.Info($"Power cut: {powerGrid}");
 
             foreach (var consumerObject in state.ServerCacheConsumers)
             {
@@ -542,7 +542,7 @@
             var grid = ServerWorld.CreateLogicObject<PowerGrid>();
             areasGroupPrivateState.PowerGrid = grid;
             PowerGrid.GetPublicState(grid).ServerAreasGroup = areasGroup;
-            Logger.Important($"Power grid created: {grid} for {areasGroup}");
+            Logger.Info($"Power grid created: {grid} for {areasGroup}");
         }
 
         private static void ServerLandClaimsGroupDestroyedHandler(ILogicObject areasGroup)
@@ -565,7 +565,7 @@
                            powerGridPublicState);
             ServerStopGenerators(powerGridPublicState);
 
-            Logger.Important($"Power grid destroyed: {grid} for {areasGroup}");
+            Logger.Info($"Power grid destroyed: {grid} for {areasGroup}");
             ServerWorld.DestroyObject(grid);
         }
 
@@ -583,7 +583,7 @@
                 return;
             }
 
-            Logger.Important(
+            Logger.Info(
                 $"Cutting off the power for objects inside the destroyed land claim area: {landClaimStructure} {areaBounds}");
             var consumersInArea =
                 ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityConsumer>(areaBounds);
@@ -619,7 +619,7 @@
             }
 
             state.ServerIsDirty = true;
-            Logger.Important("Server scheduled recalculation of the power grid: " + powerGrid);
+            Logger.Info("Server scheduled recalculation of the power grid: " + powerGrid);
             ServerTimersSystem.AddAction(0,
                                          () => ServerRebuildPowerGridNowIfDirty(powerGrid, state));
         }
@@ -648,7 +648,7 @@
                 return;
             }
 
-            Logger.Important("Server recalculating power grid: " + powerGrid);
+            Logger.Info("Server recalculating power grid: " + powerGrid);
             using var areasBounds = Api.Shared.GetTempList<RectangleInt>();
             foreach (var area in LandClaimAreasGroup.GetPrivateState(areasGroup)
                                                     .ServerLandClaimsAreas)
@@ -770,7 +770,7 @@
             }
 
             consumerPublicState.ElectricityConsumerState = newPowerState;
-            Logger.Important($"Changed consumer power mode: {worldObject} to {newPowerState}");
+            Logger.Info($"Changed consumer power mode: {worldObject} to {newPowerState}");
 
             return isNotEnoughPower
                        ? SetPowerModeResult.NotEnoughPower
@@ -808,7 +808,7 @@
             }
 
             publicState.ElectricityProducerState = newPowerState;
-            Logger.Important($"Changed producer power mode: {worldObject} to {newPowerState}");
+            Logger.Info($"Changed producer power mode: {worldObject} to {newPowerState}");
             return SetPowerModeResult.Success;
         }
 
@@ -931,6 +931,7 @@
 
         private static void ServerStructureRelocatingOrRelocatedHandler(
             ICharacter byCharacter,
+            Vector2Ushort fromPosition,
             IStaticWorldObject worldObject)
         {
             var powerGrid = SharedGetPowerGrid(worldObject);

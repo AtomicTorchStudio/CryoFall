@@ -85,23 +85,11 @@
         {
             base.ServerOnDestroy(gameObject);
 
-            var itemsContainer = GetPrivateState(gameObject).ItemsContainer;
-            if (itemsContainer.OccupiedSlotsCount == 0)
-            {
-                return;
-            }
-
-            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 gameObject.OccupiedTile,
-                itemsContainer);
+                GetPrivateState(gameObject).ItemsContainer,
+                destroyTimeout: DestroyedCrateDroppedItemsDestructionTimeout.TotalSeconds);
 
-            if (groundContainer != null)
-            {
-                // set custom timeout for the dropped ground items container
-                ObjectGroundItemsContainer.ServerSetDestructionTimeout(
-                    (IStaticWorldObject)groundContainer.Owner,
-                    DestroyedCrateDroppedItemsDestructionTimeout.TotalSeconds);
-            }
         }
 
         public bool SharedCanEditOwners(IWorldObject worldObject, ICharacter byOwner)

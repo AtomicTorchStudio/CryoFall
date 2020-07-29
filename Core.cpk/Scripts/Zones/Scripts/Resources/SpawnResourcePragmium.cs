@@ -109,10 +109,10 @@
             int currentCount,
             int desiredCountByDensity)
         {
-            // respawn at least half of pragmium source objects per iteration
+            // respawn no more than 66% of pragmium source objects per iteration
             // but scale automatically with the number of players online
             var spawnMaxPerIteration = (int)Math.Ceiling(desiredCountByDensity
-                                                         * 0.5
+                                                         * 0.66
                                                          * ServerSpawnRateScaleHelper.CalculateCurrentRate());
 
             return Math.Min(currentCount + spawnMaxPerIteration,

@@ -48,7 +48,7 @@
             this.ProtoAmmo = protoAmmo;
             this.ProtoExplosive = protoExplosive;
 
-            if (damageDescription == null)
+            if (damageDescription is null)
             {
                 // TODO: it looks like not implemented yet and we should throw an exception here
                 // fallback in case weapon don't provide damage description (such as no-ammo weapon)

@@ -83,10 +83,7 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var settingsControl = new EditorToolTerrainNoiseSettings();
-            if (this.settings == null)
-            {
-                this.settings = new ViewModelEditorToolTerrainNoiseSettings();
-            }
+            this.settings ??= new ViewModelEditorToolTerrainNoiseSettings();
 
             settingsControl.DataContext = this.settings;
             return settingsControl;

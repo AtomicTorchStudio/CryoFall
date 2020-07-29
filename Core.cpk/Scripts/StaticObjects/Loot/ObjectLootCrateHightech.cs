@@ -52,7 +52,7 @@
                 nestedList:
                 new DropItemsList(outputs: 1)
                     // components
-                    .Add<ItemComponentsMechanical>(count: 5, countRandom: 10, weight: 1)
+                    .Add<ItemComponentsMechanical>(count: 10, countRandom: 20, weight: 1)
                     .Add<ItemComponentsElectronic>(count: 5, countRandom: 10, weight: 1)
                     .Add<ItemComponentsOptical>(count: 5,    countRandom: 10, weight: 1 / 5.0)
                     .Add<ItemComponentsHighTech>(count: 2,   countRandom: 3,  weight: 1 / 10.0)
@@ -76,7 +76,7 @@
                 condition: SkillSearching.ServerRollExtraLoot,
                 nestedList:
                 new DropItemsList(outputs: 1)
-                    .Add<ItemComponentsMechanical>(count: 1, countRandom: 2)
+                    .Add<ItemComponentsMechanical>(count: 2, countRandom: 4)
                     .Add<ItemComponentsElectronic>(count: 1, countRandom: 2)
                     .Add<ItemBatteryDisposable>(count: 1,    countRandom: 1));
         }

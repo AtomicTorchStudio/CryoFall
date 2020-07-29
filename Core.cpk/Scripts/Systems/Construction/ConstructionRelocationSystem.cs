@@ -36,9 +36,9 @@
 
         private static ClientComponentObjectRelocationHelper componentRelocationHelper;
 
-        public static event Action<ICharacter, IStaticWorldObject> ServerStructureBeforeRelocating;
+        public static event Action<ICharacter, Vector2Ushort, IStaticWorldObject> ServerStructureBeforeRelocating;
 
-        public static event Action<ICharacter, IStaticWorldObject> ServerStructureRelocated;
+        public static event Action<ICharacter, Vector2Ushort, IStaticWorldObject> ServerStructureRelocated;
 
         public static bool IsInObjectPlacementMode => componentObjectPlacementHelper?.IsEnabled ?? false;
 
@@ -475,14 +475,27 @@
                 return;
             }
 
+            var fromPosition = objectStructure.TilePosition;
+
             Api.SafeInvoke(
-                () => ServerStructureBeforeRelocating?.Invoke(character, objectStructure));
+                () => ServerStructureBeforeRelocating?.Invoke(character, fromPosition, objectStructure));
 
             Server.World.SetPosition(objectStructure, toPosition);
+
+            try
+            {
+                // ensure the structure is reinitialized (has its physics rebuilt, etc)
+                objectStructure.ServerInitialize();
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+            }
+
             ConstructionPlacementSystem.Instance.ServerNotifyOnStructurePlacedOrRelocated(objectStructure, character);
 
             Api.SafeInvoke(
-                () => ServerStructureRelocated?.Invoke(character, objectStructure));
+                () => ServerStructureRelocated?.Invoke(character, fromPosition, objectStructure));
 
             // let's deduct the tool durability
             if (CreativeModeSystem.SharedIsInCreativeMode(character))

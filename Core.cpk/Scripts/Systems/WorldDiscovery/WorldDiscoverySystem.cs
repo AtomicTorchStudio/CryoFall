@@ -91,15 +91,13 @@
                 }
 
                 // new chunk discovered!
-                if (tempList == null)
-                {
-                    tempList = new List<Vector2Ushort>();
-                }
+                tempList ??= new List<Vector2Ushort>();
 
                 tempList.Add(chunkPosition);
             }
 
-            if (tempList?.Count > 0)
+            if (tempList?.Count > 0
+                && character.ServerIsOnline)
             {
                 // send to client (it will automatically request the according tiles chunk if doesn't have it in the cache)
                 this.CallClient(character, _ => _.ClientRemote_ChunksDiscovered(tempList));

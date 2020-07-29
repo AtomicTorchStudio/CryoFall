@@ -1125,10 +1125,7 @@
 
             public void Add(ObjectSpawnPreset preset, Vector2Ushort position)
             {
-                if (preset == null)
-                {
-                    preset = ObjectSpawnPreset.Empty;
-                }
+                preset ??= ObjectSpawnPreset.Empty;
 
                 if (!this.WorldObjectsByPreset.TryGetValue(preset, out var listPositions))
                 {

@@ -125,13 +125,7 @@
             }
 
             ValidateIsClient();
-            if (!ClientUseItemHelper.ClientIsUsingItem)
-            {
-                // already finished using item
-                return;
-            }
 
-            ClientUseItemHelper.ClientIsUsingItem = false;
             if (this.ClientItemUseFinish(new ClientItemData(item)))
             {
                 this.SoundPresetItem.PlaySound(ItemSound.Use,
@@ -151,13 +145,7 @@
             }
 
             ValidateIsClient();
-            if (ClientUseItemHelper.ClientIsUsingItem)
-            {
-                // already started using item
-                return;
-            }
 
-            ClientUseItemHelper.ClientIsUsingItem = true;
             this.ClientItemUseStart(new ClientItemData(item));
         }
 

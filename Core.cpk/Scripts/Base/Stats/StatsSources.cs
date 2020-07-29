@@ -75,10 +75,7 @@
             double value,
             double percent)
         {
-            if (this.list == null)
-            {
-                this.list = new List<StatEntry>();
-            }
+            this.list ??= new List<StatEntry>();
 
             for (var index = 0; index < this.list.Count; index++)
             {

@@ -55,7 +55,7 @@
             if (bestRecipe != null
                 && selectedRecipe != null
                 && selectedRecipe.CanBeCrafted(objectManufacturer, state.CraftingQueue, 1)
-                && bestRecipe.InputItems.Count <= selectedRecipe.InputItems.Count)
+                && bestRecipe.InputItems.Length <= selectedRecipe.InputItems.Length)
             {
                 // the best recipe is ignored because selected recipe is also valid
                 // and it has the same or more amount of input items

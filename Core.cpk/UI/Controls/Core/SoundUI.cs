@@ -39,22 +39,12 @@
 
         public static bool operator ==(SoundUI left, SoundUI right)
         {
-            if (ReferenceEquals(left, null))
-            {
-                left = NoSound;
-            }
-
-            return left.Equals(right);
+            return (left ?? NoSound).Equals(right);
         }
 
         public static bool operator !=(SoundUI left, SoundUI right)
         {
-            if (ReferenceEquals(left, null))
-            {
-                left = NoSound;
-            }
-
-            return !left.Equals(right);
+            return !(left ?? NoSound).Equals(right);
         }
 
         public static void PlaySound(SoundUI soundUI)

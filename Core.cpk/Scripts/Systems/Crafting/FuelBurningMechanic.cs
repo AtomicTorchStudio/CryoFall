@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Logging;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -122,22 +124,30 @@
             bool isNeedFuelNow)
         {
             if (state.FuelUseTimeRemainsSeconds > 0
-                || !isNeedFuelNow)
+                || !isNeedFuelNow
+                || state.ContainerFuel.OccupiedSlotsCount == 0)
             {
                 return;
             }
 
             // look for best fuel item from placed into the fuel container
-            var bestFuelItem = state.ContainerFuel.Items.OrderBy(
-                                        i =>
-                                        {
-                                            var fuelItemType = i.ProtoItem as IProtoItemFuelSolid;
-                                            return fuelItemType?.FuelAmount ?? double.MaxValue;
-                                        })
-                                    .FirstOrDefault();
+            IItem bestFuelItem = null;
+            var bestFuelItemFuelAmount = 0.0;
+            foreach (var item in state.ContainerFuel.Items)
+            {
+                if (item.ProtoItem is IProtoItemFuelSolid fuelItemType)
+                {
+                    var itemFuelAmount = fuelItemType.FuelAmount;
+                    if (itemFuelAmount > bestFuelItemFuelAmount)
+                    {
+                        bestFuelItem = item;
+                        bestFuelItemFuelAmount = itemFuelAmount;
+                    }
+                }
+            }
 
-            var bestFuelItemType = bestFuelItem?.ProtoItem as IProtoItemFuelSolid;
-            if (bestFuelItemType == null)
+            var bestProtoFuel = bestFuelItem?.ProtoGameObject as IProtoItemFuelSolid;
+            if (bestProtoFuel == null)
             {
                 // no fuel placed in fuel container
                 //if (state.CurrentFuelItemType != null)
@@ -149,14 +159,14 @@
                 return;
             }
 
-            Logger.Info($"Fuel will be used for manufacturing {bestFuelItemType.ShortId} at {objectManufacturer}");
+            Logger.Info($"Fuel will be used for manufacturing {bestProtoFuel.ShortId} at {objectManufacturer}");
 
             // destroy one fuel item
             Api.Server.Items.SetCount(bestFuelItem, bestFuelItem.Count - 1);
 
             // set fuel burn time
-            state.CurrentFuelItemType = bestFuelItemType;
-            var secondsToBurn = bestFuelItemType.FuelAmount;
+            state.CurrentFuelItemType = bestProtoFuel;
+            var secondsToBurn = bestProtoFuel.FuelAmount;
             state.FuelUseTimeRemainsSeconds = secondsToBurn;
 
             OnFuelChanged(objectManufacturer, state, byproductsCraftQueue, config);

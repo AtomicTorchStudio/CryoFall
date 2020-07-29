@@ -51,13 +51,10 @@
                                                              isRespawn: true);
                 }
 
-                if (!spawnPosition.HasValue)
-                {
-                    spawnPosition = TryFindZoneSpawnPosition(character,
-                                                             spawnZone,
-                                                             random,
-                                                             isRespawn: false);
-                }
+                spawnPosition ??= TryFindZoneSpawnPosition(character,
+                                                           spawnZone,
+                                                           random,
+                                                           isRespawn: false);
             }
 
             if (!spawnPosition.HasValue)

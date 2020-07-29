@@ -10,7 +10,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowFridge, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:crates="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
                                   SoundOpening="{StaticResource SoundWindowContainerOpen}"
@@ -24,6 +25,13 @@
 
             <controls:ItemsContainerExchangeControl Grid.Row="1"
                                                     DataContext="{Binding ViewModelItemsContainerExchange}" />
+
+            <crates:CrateIconControl Grid.Row="0" 
+                                     Grid.RowSpan="3"
+                                     WorldObjectCrate="{Binding WorldObjectFridge}"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Bottom"
+                                     Margin="0,0,5,5" />
 
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"

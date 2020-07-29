@@ -68,7 +68,8 @@
             protected set => this.customIcon = value;
         }
 
-        public IReadOnlyList<ProtoItemWithCount> InputItems { get; private set; }
+        // we're not using a IReadOnlyList as it's optimized for faster enumeration
+        public ProtoItemWithCount[] InputItems { get; private set; }
 
         public virtual bool IsAutoUnlocked => false;
 
@@ -264,7 +265,7 @@
             inputItems.ApplyRates(RecipeConstants.InputItemsCountMultiplier);
             outputItems.ApplyRates(RecipeConstants.OutputItemsCountMultiplier);
 
-            this.InputItems = inputItems.AsReadOnly();
+            this.InputItems = inputItems.AsReadOnly().ToArray();
             this.OutputItems = outputItems.AsReadOnly();
         }
 

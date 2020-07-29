@@ -100,11 +100,7 @@
         {
             this.AppliedInput = new AppliedCharacterInput();
             this.CurrentPublicStatusEffects = new NetworkSyncList<IProtoStatusEffect>();
-
-            if (this.CurrentStatsExtended == null)
-            {
-                this.CurrentStatsExtended = new PlayerCharacterCurrentStats();
-            }
+            this.CurrentStatsExtended ??= new PlayerCharacterCurrentStats();
         }
 
         public void ServerInitState(ICharacter character)
@@ -112,14 +108,10 @@
             // prepare equipment container
             // see EquipmentType enum
             const byte equipmentSlotsCount = 10;
-
-            if (this.ContainerEquipment == null)
-            {
-                this.ContainerEquipment = Api.Server.Items.CreateContainer(
-                    character,
-                    Api.GetProtoEntity<ItemsContainerCharacterEquipment>(),
-                    slotsCount: equipmentSlotsCount);
-            }
+            this.ContainerEquipment ??= Api.Server.Items.CreateContainer(
+                character,
+                Api.GetProtoEntity<ItemsContainerCharacterEquipment>(),
+                slotsCount: equipmentSlotsCount);
         }
 
         public void ServerSetCurrentVehicle(IDynamicWorldObject vehicle)

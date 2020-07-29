@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -87,6 +89,22 @@
             ConstructionStageConfig build,
             ConstructionStageConfig repair);
 
+        protected virtual void PrepareProtoObjectFarmPlot()
+        {
+        }
+
+        protected sealed override void PrepareProtoStaticWorldObject()
+        {
+            base.PrepareProtoStaticWorldObject();
+
+            if (IsServer)
+            {
+                ConstructionRelocationSystem.ServerStructureRelocated += this.ServerStructureRelocatedHandler;
+            }
+
+            this.PrepareProtoObjectFarmPlot();
+        }
+
         protected sealed override void ServerUpdate(ServerUpdateData data)
         {
         }
@@ -94,6 +112,41 @@
         protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
             return true;
+        }
+
+        /// <summary>
+        /// Relocate plant in farm plot when relocating the farm.
+        /// </summary>
+        private void ServerStructureRelocatedHandler(
+            ICharacter character,
+            Vector2Ushort fromPosition,
+            IStaticWorldObject staticWorldObject)
+        {
+            if (!ReferenceEquals(staticWorldObject.ProtoGameObject, this))
+            {
+                return;
+            }
+
+            foreach (var otherObject in Server.World.GetTile(fromPosition).StaticObjects)
+            {
+                if (!(otherObject.ProtoGameObject is IProtoObjectPlant))
+                {
+                    continue;
+                }
+
+                Server.World.SetPosition(otherObject, staticWorldObject.TilePosition);
+
+                try
+                {
+                    otherObject.ServerInitialize();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Exception(ex);
+                }
+
+                break;
+            }
         }
     }
 }

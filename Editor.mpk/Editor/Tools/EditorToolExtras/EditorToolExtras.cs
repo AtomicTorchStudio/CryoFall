@@ -20,10 +20,7 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var control = new EditorToolExtrasSettings();
-            if (this.settingsViewModel == null)
-            {
-                this.settingsViewModel = new ViewModelEditorToolExtras();
-            }
+            this.settingsViewModel ??= new ViewModelEditorToolExtras();
 
             control.Setup(this.settingsViewModel);
             return control;

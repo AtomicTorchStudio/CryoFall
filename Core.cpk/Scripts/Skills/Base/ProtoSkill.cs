@@ -123,10 +123,7 @@
                     continue;
                 }
 
-                if (tempStatsCache == null)
-                {
-                    tempStatsCache = TempStatsCache.GetFromPool();
-                }
+                tempStatsCache ??= TempStatsCache.GetFromPool();
 
                 var statName = statEffect.StatName;
                 tempStatsCache.AddValue(this, statName, statEffect.CalcTotalValueBonus(level));

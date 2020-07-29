@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectFridgeSmall : ProtoObjectFridgeElectrical
     {
@@ -26,6 +27,8 @@
         public override double ObstacleBlockDamageCoef => 1;
 
         public override float StructurePointsMax => 2500;
+
+        protected override Vector2D ItemIconOffset => (0, 0.38);
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

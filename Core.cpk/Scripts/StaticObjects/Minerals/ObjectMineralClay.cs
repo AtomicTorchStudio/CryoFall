@@ -33,20 +33,12 @@
             config.Stage4
                   .Add<ItemClay>(count: 10,      countRandom: 0)
                   .Add<ItemClay>(countRandom: 5, condition: SkillProspecting.ConditionAdditionalYield)
-                  .Add<ItemGoldNugget
-                      >(count: 1, countRandom: 3, probability: 1 / 100.0); // lower chance, since it's easy to mine
+                  .Add(preset: ItemDroplistPresets.GoldNuggetsRare); // lower chance, since it's easy to mine
 
             // drop gemstones
             config.Stage4
                   .Add(condition: SkillProspecting.ConditionDropGemstones,
-                       probability: 1 / 1000.0,
-                       nestedList: new DropItemsList(outputs: 1)
-                                   .Add<ItemGemDiamond>()
-                                   .Add<ItemGemEmerald>()
-                                   .Add<ItemGemRuby>()
-                                   .Add<ItemGemSapphire>()
-                                   .Add<ItemGemTopaz>()
-                                   .Add<ItemGemTourmaline>());
+                       preset: ItemDroplistPresets.Gemstones);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

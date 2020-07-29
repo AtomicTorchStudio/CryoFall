@@ -989,7 +989,7 @@ UI/CoreStrings@PowerGridState_MaxTotalConsumption:
 Consumo total máximo:
 
 UI/CoreStrings@PowerGridState_PowerGridInformation:
-Info. rede elétrica
+Rede elétrica
 
 UI/CoreStrings@PowerGridState_Status_Blackout:
 Apagão

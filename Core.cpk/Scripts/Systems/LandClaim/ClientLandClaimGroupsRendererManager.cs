@@ -172,13 +172,10 @@
 
         private void EnsureGroupRendererCreated()
         {
-            if (this.groupRenderer is null)
-            {
-                this.groupRenderer = new ClientLandClaimGroupRenderer(this.material,
-                                                                      this.isGraceAreaRenderer,
-                                                                      this.callbackGetRendererFromCache,
-                                                                      this.callbackReturnRendererToCache);
-            }
+            this.groupRenderer ??= new ClientLandClaimGroupRenderer(this.material,
+                                                                    this.isGraceAreaRenderer,
+                                                                    this.callbackGetRendererFromCache,
+                                                                    this.callbackReturnRendererToCache);
         }
 
         private void ForceUpdate()

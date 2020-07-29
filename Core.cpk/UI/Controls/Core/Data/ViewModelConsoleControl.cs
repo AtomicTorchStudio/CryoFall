@@ -149,11 +149,7 @@
             get => this.filterString ?? string.Empty;
             set
             {
-                if (value == null)
-                {
-                    value = string.Empty;
-                }
-
+                value ??= string.Empty;
                 if (value == this.filterString)
                 {
                     return;

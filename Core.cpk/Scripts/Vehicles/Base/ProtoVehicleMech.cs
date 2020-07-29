@@ -86,28 +86,12 @@
 
             // try drop extra containers on the ground
             var privateState = GetPrivateState(gameObject);
-            DropItemsToTheGround(privateState.EquipmentItemsContainer);
-            //DropItemsToTheGround(privateState.FuelItemsContainer); // consider fuel items were destroyed during the explosion
-
-            void DropItemsToTheGround(IItemsContainer itemsContainer)
-            {
-                if (itemsContainer?.OccupiedSlotsCount == 0)
-                {
-                    return;
-                }
-
-                var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
-                    gameObject.Tile,
-                    itemsContainer);
-
-                if (groundContainer != null)
-                {
-                    // set custom timeout for the dropped ground items container
-                    ObjectGroundItemsContainer.ServerSetDestructionTimeout(
-                        (IStaticWorldObject)groundContainer.Owner,
-                        DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
-                }
-            }
+            
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.Tile,
+                privateState.EquipmentItemsContainer,
+                DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
+            // consider fuel items were destroyed during the explosion
         }
 
         public override IItemsContainer SharedGetHotbarItemsContainer(IDynamicWorldObject vehicle)

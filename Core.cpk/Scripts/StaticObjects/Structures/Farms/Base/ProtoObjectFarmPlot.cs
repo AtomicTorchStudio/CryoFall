@@ -36,6 +36,8 @@
 
         public TextureAtlasResource BlendMaskTextureAtlas { get; private set; }
 
+        public override bool IsRelocatable => false;
+
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
         public abstract ITextureResource Texture { get; }
@@ -150,9 +152,9 @@
             ConstructionStageConfig build,
             ConstructionStageConfig repair);
 
-        protected override void PrepareProtoStaticWorldObject()
+        protected override void PrepareProtoObjectFarmPlot()
         {
-            base.PrepareProtoStaticWorldObject();
+            base.PrepareProtoObjectFarmPlot();
 
             this.BlendMaskTextureAtlas = new TextureAtlasResource(
                 this.BlendMaskTexture,

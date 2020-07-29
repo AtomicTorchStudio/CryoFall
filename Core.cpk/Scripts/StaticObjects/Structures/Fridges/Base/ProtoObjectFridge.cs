@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public abstract class ProtoObjectFridge
@@ -28,10 +29,11 @@
 
         public abstract double FreshnessDurationMultiplier { get; }
 
-        public override bool IsSupportItemIcon => false;
-
         protected sealed override IProtoItemsContainer ItemsContainerType
             => LazyFridgeContainer.Value;
+
+        protected override ITextureResource TextureResourceIconPlate { get; }
+            = new TextureResource("StaticObjects/Structures/Crates/ObjectCrate_Plate2");
 
         public virtual double ServerGetCurrentFreshnessDurationMultiplier(IStaticWorldObject worldObject)
         {

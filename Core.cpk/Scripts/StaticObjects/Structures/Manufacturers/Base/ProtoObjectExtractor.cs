@@ -77,8 +77,6 @@
 
         public override bool IsFuelProduceByproducts => false;
 
-        public override bool IsRelocatable => false;
-
         public abstract double LiquidCapacity { get; }
 
         public abstract double LiquidProductionAmountPerSecond { get; }
@@ -302,10 +300,7 @@
             Server.Items.SetContainerType<ItemsContainerEmptyCanisters>(
                 statePrivate.ManufacturingState.ContainerInput);
 
-            if (statePrivate.LiquidContainerState == null)
-            {
-                statePrivate.LiquidContainerState = new LiquidContainerState();
-            }
+            statePrivate.LiquidContainerState ??= new LiquidContainerState();
         }
 
         protected override void ServerOnStaticObjectZeroStructurePoints(

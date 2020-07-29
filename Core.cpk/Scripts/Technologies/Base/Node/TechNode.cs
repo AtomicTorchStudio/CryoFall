@@ -258,11 +258,7 @@
 
         private void PrepareRegisterDependentNode(TechNode dependentNode)
         {
-            if (this.dependentNodes == null)
-            {
-                this.dependentNodes = new List<TechNode>();
-            }
-
+            this.dependentNodes ??= new List<TechNode>();
             this.dependentNodes.Add(dependentNode);
         }
 

@@ -97,11 +97,11 @@
 
             if (!wasCompleted)
             {
-                Api.Logger.Important("Task completed: " + this, character);
+                Api.Logger.Info("Task completed: " + this, character);
             }
             else
             {
-                Api.Logger.Important("Reversible task became incomplete: " + this, character);
+                Api.Logger.Info("Reversible task became incomplete: " + this, character);
             }
         }
 

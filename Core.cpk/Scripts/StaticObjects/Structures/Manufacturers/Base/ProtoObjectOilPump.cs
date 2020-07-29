@@ -177,8 +177,15 @@
 
         protected override IStaticWorldObject SharedGetDepositWorldObject(Tile tile)
         {
-            return tile.StaticObjects.FirstOrDefault(
-                o => o.ProtoStaticWorldObject is ObjectDepositOilSeep);
+            foreach (var o in tile.StaticObjects)
+            {
+                if (o.ProtoGameObject is ObjectDepositOilSeep)
+                {
+                    return o;
+                }
+            }
+
+            return null;
         }
     }
 }

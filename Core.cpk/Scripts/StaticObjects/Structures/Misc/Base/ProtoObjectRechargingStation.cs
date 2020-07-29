@@ -40,6 +40,16 @@
 
         public override double ServerUpdateIntervalSeconds => 5;
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            var privateState = GetPrivateState(gameObject);
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ItemsContainer);
+        }
+
         public virtual double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
         {
             var count = 0;

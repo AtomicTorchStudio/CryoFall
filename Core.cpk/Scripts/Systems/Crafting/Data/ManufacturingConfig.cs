@@ -21,7 +21,7 @@
             bool isAutoSelectRecipe)
         {
             this.Recipes = recipes.Where(r => r.IsEnabled).ToArray();
-            if (this.Recipes.Count == 0)
+            if (this.Recipes.Length == 0)
             {
                 Api.Logger.Error(
                     "Recipes list for manufacturing is empty (perhaps recipes are disabled?): "
@@ -36,7 +36,8 @@
             this.IsAutoSelectRecipe = isAutoSelectRecipe;
         }
 
-        public IReadOnlyList<Recipe> Recipes { get; }
+        // we're not using a IReadOnlyList as it's optimized for faster enumeration
+        public Recipe[] Recipes { get; }
 
         public IReadOnlyList<Recipe.RecipeForManufacturingByproduct> RecipesForByproducts { get; }
 
@@ -47,7 +48,7 @@
             {
                 if (bestRecipe != null
                     // TODO: compare by "value" of recipes?
-                    && recipe.InputItems.Count < bestRecipe.InputItems.Count)
+                    && recipe.InputItems.Length < bestRecipe.InputItems.Length)
                 {
                     // no need to check this recipe - already has a good recipe with the similar amount of items
                     continue;

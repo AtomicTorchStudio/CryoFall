@@ -165,10 +165,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             // collect all damaged objects via physics space
             var damageCandidates = new HashSet<IWorldObject>();
-            if (collisionGroup is null)
-            {
-                collisionGroup = CollisionGroups.Default;
-            }
+            collisionGroup ??= CollisionGroups.Default;
 
             var defaultCollisionGroup = collisionGroup;
             CollectDamagedPhysicalObjects(defaultCollisionGroup);

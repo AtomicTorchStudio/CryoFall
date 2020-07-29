@@ -61,11 +61,7 @@
                 return;
             }
 
-            if (this.viewModel == null)
-            {
-                this.viewModel = new ViewModelRecipesBrowserRecipeDetails(null, null);
-            }
-
+            this.viewModel ??= new ViewModelRecipesBrowserRecipeDetails(null, null);
             this.viewModel.ViewModelRecipe = this.Recipe;
             this.layoutRoot.DataContext = this.viewModel;
         }

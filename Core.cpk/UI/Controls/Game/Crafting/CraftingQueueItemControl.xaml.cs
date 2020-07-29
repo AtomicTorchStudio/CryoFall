@@ -134,13 +134,10 @@
                 return;
             }
 
-            if (this.viewModel == null)
-            {
-                this.viewModel = new ViewModelCraftingQueueItem(
-                    this.craftingQueue,
-                    this.craftingQueueItem,
-                    this.OnCountToCraftChangedCallback);
-            }
+            this.viewModel ??= new ViewModelCraftingQueueItem(
+                this.craftingQueue,
+                this.craftingQueueItem,
+                this.OnCountToCraftChangedCallback);
 
             this.border.DataContext = this.viewModel;
         }

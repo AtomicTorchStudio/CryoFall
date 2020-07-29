@@ -136,12 +136,6 @@
                 return;
             }
 
-            const bool evenIfHandled = true;
-            var isQuickUseItem = (Input.IsKeyHeld(InputKey.Control, evenIfHandled)
-                                  || Input.IsKeyHeld(InputKey.Alt,  evenIfHandled))
-                                 && !(ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem, evenIfHandled)
-                                      || ClientInputManager.IsButtonHeld(GameButton.ActionInteract,    evenIfHandled));
-
             foreach (var pair in KeysMapping)
             {
                 if (!ClientInputManager.IsButtonDown(pair.Key))
@@ -152,7 +146,8 @@
                 // the key was pressed
                 var hotbarSlotId = pair.Value;
 
-                if (isQuickUseItem)
+                if (Input.IsKeyHeld(InputKey.Control, evenIfHandled: true)
+                    || Input.IsKeyHeld(InputKey.Alt,  evenIfHandled: true))
                 {
                     // try to use an item from the hotbar slot
                     var item = ClientHotbarSelectedItemManager.ContainerHotbar.GetItemAtSlot(hotbarSlotId);

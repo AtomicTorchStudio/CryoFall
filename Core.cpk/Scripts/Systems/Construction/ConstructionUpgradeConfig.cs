@@ -25,10 +25,7 @@
         public ConstructionUpgradeEntry AddUpgrade<TProtoObjectStructure>()
             where TProtoObjectStructure : IProtoObjectStructure, new()
         {
-            if (this.entries == null)
-            {
-                this.entries = new List<ConstructionUpgradeEntry>();
-            }
+            this.entries ??= new List<ConstructionUpgradeEntry>();
 
             var protoStructure = (IProtoObjectStructure)Api.GetProtoEntity<TProtoObjectStructure>();
             foreach (var existingEntry in this.entries)

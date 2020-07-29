@@ -28,8 +28,6 @@
         public override string Description =>
             "Provides inexhaustible source of fresh water. Now you won't ever die from thirst. Doesn't really work in deserts and other rocky places, for some reason...";
 
-        public override bool IsRelocatable => false;
-
         public override string Name => "Well";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;

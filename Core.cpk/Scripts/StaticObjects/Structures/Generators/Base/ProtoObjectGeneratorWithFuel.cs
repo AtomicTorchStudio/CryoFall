@@ -88,11 +88,7 @@
             base.ServerInitialize(data);
 
             var privateState = data.PrivateState;
-
-            if (privateState.LiquidState == null)
-            {
-                privateState.LiquidState = new LiquidContainerState();
-            }
+            privateState.LiquidState ??= new LiquidContainerState();
         }
 
         protected override void ServerUpdate(ServerUpdateData data)

@@ -24,8 +24,8 @@
             get
             {
                 var items = this.effect.Recipe.InputItems;
-                var array = new IProtoItem[items.Count];
-                for (var index = 0; index < items.Count; index++)
+                var array = new IProtoItem[items.Length];
+                for (var index = 0; index < items.Length; index++)
                 {
                     array[index] = items[index].ProtoItem;
                 }

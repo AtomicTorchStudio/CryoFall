@@ -38,11 +38,8 @@
             }
 
             // seed is selected - create blueprint component
-            if (blueprintComponent == null)
-            {
-                blueprintComponent = Api.Client.Scene.CreateSceneObject("Seed placer helper")
-                                        .AddComponent<ClientComponentObjectPlacementHelper>();
-            }
+            blueprintComponent ??= Api.Client.Scene.CreateSceneObject("Seed placer helper")
+                                      .AddComponent<ClientComponentObjectPlacementHelper>();
 
             blueprintComponent.Setup(
                 protoStaticWorldObject: currentSelectedProtoSeed.ObjectPlantProto,

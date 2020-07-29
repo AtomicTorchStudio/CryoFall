@@ -28,20 +28,13 @@
             config.Stage4
                   .Add<ItemSalt>(count: 2,       countRandom: 0)
                   .Add<ItemSalt>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield)
-                  .Add<ItemGoldNugget>(count: 1, countRandom: 3, probability: 1 / 50.0)
-                  .Add<ItemOreLithium>(count: 1, countRandom: 2);
+                  .Add<ItemOreLithium>(count: 1, countRandom: 2)
+                  .Add(preset: ItemDroplistPresets.GoldNuggets);
 
             // drop gemstones
             config.Stage4
                   .Add(condition: SkillProspecting.ConditionDropGemstones,
-                       probability: 1 / 1000.0,
-                       nestedList: new DropItemsList(outputs: 1)
-                                   .Add<ItemGemDiamond>()
-                                   .Add<ItemGemEmerald>()
-                                   .Add<ItemGemRuby>()
-                                   .Add<ItemGemSapphire>()
-                                   .Add<ItemGemTopaz>()
-                                   .Add<ItemGemTourmaline>());
+                       preset: ItemDroplistPresets.Gemstones);
         }
     }
 }

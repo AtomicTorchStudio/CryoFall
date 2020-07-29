@@ -142,6 +142,31 @@
             return this;
         }
 
+        public DropItemsList Add(
+            IReadOnlyDropItemsListPreset preset,
+            double weight = 1,
+            DropItemConditionDelegate condition = null)
+        {
+            var nestedList = preset.DropItemsList;
+            if (nestedList == this)
+            {
+                throw new ArgumentException("Other droplist passed to this method is the same as this droplist",
+                                            nameof(nestedList));
+            }
+
+            if (nestedList.ContainsDroplist(this))
+            {
+                throw new Exception("Recursive reference between droplists found!");
+            }
+
+            condition = preset.CreateCompoundConditionIfNecessary(condition);
+
+            this.entries.Add(new ValueWithWeight<Entry>(
+                                 new Entry(nestedList, condition, preset.GetProbabilityForDroplist()),
+                                 weight));
+            return this;
+        }
+
         public IReadOnlyDropItemsList AsReadOnly()
         {
             this.Freeze();
@@ -356,10 +381,7 @@
 
         private void Freeze()
         {
-            if (this.frozenEntries == null)
-            {
-                this.frozenEntries = new ArrayWithWeights<Entry>(this.entries);
-            }
+            this.frozenEntries ??= new ArrayWithWeights<Entry>(this.entries);
         }
 
         private void SelectRandomEntries(ITempList<Entry> result, DropItemContext dropItemContext)
@@ -514,13 +536,19 @@
                 }
             }
 
-            public Entry(DropItemsList entryNestedList, DropItemConditionDelegate condition, double probability)
+            public Entry(
+                IReadOnlyDropItemsList entryNestedList,
+                DropItemConditionDelegate condition,
+                double probability)
                 : this(condition, probability)
             {
                 this.EntryNestedList = entryNestedList;
             }
 
-            public Entry(DropItem dropEntryItem, DropItemConditionDelegate condition, double probability)
+            public Entry(
+                DropItem dropEntryItem,
+                DropItemConditionDelegate condition,
+                double probability)
                 : this(condition, probability)
             {
                 this.EntryItem = dropEntryItem;

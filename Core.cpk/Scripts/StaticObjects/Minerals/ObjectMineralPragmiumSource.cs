@@ -145,6 +145,53 @@
                                                                        maxX: 6,
                                                                        maxY: 4);
 
+        public static bool ServerTryClaimPragmiumClusterNearCharacter(ICharacter character)
+        {
+            if (!WorldObjectClaimSystem.SharedIsEnabled
+                || character is null
+                || character.IsNpc)
+            {
+                return true;
+            }
+
+            using var objectsInScope = Api.Shared.GetTempList<IWorldObject>();
+            Server.World.GetWorldObjectsInView(character, objectsInScope.AsList(), sortByDistance: false);
+
+            var hasSource = false;
+            foreach (var worldObject in objectsInScope.AsList())
+            {
+                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumSource))
+                {
+                    continue;
+                }
+
+                hasSource = true;
+                WorldObjectClaimSystem.ServerTryClaim(worldObject,
+                                                      character,
+                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
+                break;
+            }
+
+            if (!hasSource)
+            {
+                return false;
+            }
+
+            foreach (var worldObject in objectsInScope.AsList())
+            {
+                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumNode))
+                {
+                    continue;
+                }
+
+                WorldObjectClaimSystem.ServerTryClaim(worldObject,
+                                                      character,
+                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
+            }
+
+            return true;
+        }
+
         public void ServerForceUpdate(IStaticWorldObject worldObject, double deltaTime)
         {
             var publicState = GetPublicState(worldObject);
@@ -620,53 +667,6 @@
         {
             [TempOnly]
             public double LastTimeObservedByAnyPlayer { get; set; }
-        }
-
-        public static bool ServerTryClaimPragmiumClusterNearCharacter(ICharacter character)
-        {
-            if (!WorldObjectClaimSystem.SharedIsEnabled
-                || character is null
-                || character.IsNpc)
-            {
-                return true;
-            }
-
-            using var objectsInScope = Api.Shared.GetTempList<IWorldObject>();
-            Server.World.GetWorldObjectsInView(character, objectsInScope.AsList(), sortByDistance: false);
-
-            var hasSource = false;
-            foreach (var worldObject in objectsInScope.AsList())
-            {
-                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumSource))
-                {
-                    continue;
-                }
-
-                hasSource = true;
-                WorldObjectClaimSystem.ServerTryClaim(worldObject,
-                                                      character,
-                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
-                break;
-            }
-
-            if (!hasSource)
-            {
-                return false;
-            }
-
-            foreach (var worldObject in objectsInScope.AsList())
-            {
-                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumNode))
-                {
-                    continue;
-                }
-
-                WorldObjectClaimSystem.ServerTryClaim(worldObject,
-                                                      character,
-                                                      WorldObjectClaimDuration.PragmiumSourceCluster);
-            }
-
-            return true;
         }
     }
 }

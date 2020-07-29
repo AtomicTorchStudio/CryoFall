@@ -279,6 +279,8 @@
             privateState.IsStartedFromHotbarContainer = isFromHotbarContainer;
             privateState.StartedFromSlotIndex = fromSlotIndex;
             Server.World.SetPosition(objectDrone, character.Position, writeToLog: false);
+            // recreate physics (as spawned drone has physics)
+            objectDrone.ProtoWorldObject.SharedCreatePhysics(objectDrone);
 
             using var observers = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(objectDrone, observers);
@@ -514,8 +516,8 @@
                                         ?? publicState.TargetObjectPosition.Value.ToVector2D();
 
                 if (!CharacterDroneControlSystem.ServerIsMiningAllowed(
-                    publicState.TargetObjectPosition.Value,
-                    objectDrone))
+                        publicState.TargetObjectPosition.Value,
+                        objectDrone))
                 {
                     // cannot mine as it's already mined by another drone
                     publicState.ResetTargetPosition();
@@ -734,6 +736,20 @@
                                                       targetObject,
                                                       out obstacleBlockDamageCoef);
         }
+
+        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        {
+            if (IsServer
+                && data.PrivateState.IsDespawned)
+            {
+                // no physics for despawned drones
+                return;
+            }
+
+            this.SharedCreatePhysicsDrone(data);
+        }
+
+        protected abstract void SharedCreatePhysicsDrone(CreatePhysicsData data);
 
         private static WeaponFinalCache ServerCreateWeaponFinalCacheForDrone(
             ICharacter characterOwner,

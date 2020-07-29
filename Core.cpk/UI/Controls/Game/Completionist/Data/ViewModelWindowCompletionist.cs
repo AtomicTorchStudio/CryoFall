@@ -42,37 +42,25 @@
             var commandClaimReward = new ActionCommandWithParameter(
                 proto => CompletionistSystem.ClientClaimReward((IProtoEntity)proto));
 
-            if (allFoodEntries is null)
-            {
-                allFoodEntries = CompletionistSystem.CompletionistAllFood.ToDictionary(
-                    proto => (IProtoEntity)proto,
-                    proto => new ViewDataEntryCompletionist(proto,
-                                                            commandClaimReward));
-            }
+            allFoodEntries ??= CompletionistSystem.CompletionistAllFood.ToDictionary(
+                proto => (IProtoEntity)proto,
+                proto => new ViewDataEntryCompletionist(proto,
+                                                        commandClaimReward));
 
-            if (allMobEntries is null)
-            {
-                allMobEntries = CompletionistSystem.CompletionistAllMobs.ToDictionary(
-                    proto => (IProtoEntity)proto,
-                    proto => new ViewDataEntryCompletionist(proto,
-                                                            commandClaimReward));
-            }
+            allMobEntries ??= CompletionistSystem.CompletionistAllMobs.ToDictionary(
+                proto => (IProtoEntity)proto,
+                proto => new ViewDataEntryCompletionist(proto,
+                                                        commandClaimReward));
 
-            if (allLootEntries is null)
-            {
-                allLootEntries = CompletionistSystem.CompletionistAllLoot.ToDictionary(
-                    proto => (IProtoEntity)proto,
-                    proto => new ViewDataEntryCompletionist(proto,
-                                                            commandClaimReward));
-            }
+            allLootEntries ??= CompletionistSystem.CompletionistAllLoot.ToDictionary(
+                proto => (IProtoEntity)proto,
+                proto => new ViewDataEntryCompletionist(proto,
+                                                        commandClaimReward));
 
-            if (allFishEntries is null)
-            {
-                allFishEntries = CompletionistSystem.CompletionistAllFish.ToDictionary(
-                    proto => (IProtoEntity)proto,
-                    proto => new ViewDataEntryFishCompletionist(proto,
-                                                                commandClaimReward));
-            }
+            allFishEntries ??= CompletionistSystem.CompletionistAllFish.ToDictionary(
+                proto => (IProtoEntity)proto,
+                proto => new ViewDataEntryFishCompletionist(proto,
+                                                            commandClaimReward));
 
             this.EntriesFood = new ViewModelCompletionistPageDefault(
                 allFoodEntries,

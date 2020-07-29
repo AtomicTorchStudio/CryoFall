@@ -75,21 +75,29 @@
             this.CallServer(_ => _.ServerRemote_SelectRecipe(worldObject, recipe));
         }
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            var privateState = GetPrivateState(gameObject);
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ManufacturingState?.ContainerInput);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ManufacturingState?.ContainerOutput);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.FuelBurningState?.ContainerFuel);
+        }
+
         public virtual double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
         {
             return GetPublicState(worldObject).IsActive
                        ? 1
                        : 0;
-        }
-
-        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(IStaticWorldObject worldObject)
-        {
-            return GetPrivateState(worldObject);
-        }
-
-        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(IStaticWorldObject worldObject)
-        {
-            return GetPublicState(worldObject);
         }
 
         BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
@@ -103,6 +111,18 @@
 
         void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
+        }
+
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPrivateState(worldObject);
+        }
+
+        IObjectElectricityConsumerPublicState IProtoObjectElectricityConsumer.GetPublicState(
+            IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject);
         }
 
         protected virtual IComponentSoundEmitter ClientCreateActiveStateSoundEmitterComponent(
@@ -318,12 +338,9 @@
                         $"No fuel container - please set {nameof(this.ContainerFuelSlotsCount)} higher than zero?");
                 }
 
-                if (privateState.FuelBurningByproductsQueue == null)
-                {
-                    privateState.FuelBurningByproductsQueue = new CraftingQueue(
-                        fuelBurningState.ContainerFuel,
-                        manufacturingState.ContainerOutput);
-                }
+                privateState.FuelBurningByproductsQueue ??= new CraftingQueue(
+                    fuelBurningState.ContainerFuel,
+                    manufacturingState.ContainerOutput);
             }
             else
             {

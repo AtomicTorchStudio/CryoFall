@@ -155,23 +155,17 @@
                 return;
             }
 
-            if (!this.pilotSkeletonOriginalProperties.HasValue)
-            {
-                this.pilotSkeletonOriginalProperties = new RendererSavedProperties(pilotSkeleton.DrawOrder,
-                                                                                   pilotSkeleton.PositionOffset,
-                                                                                   pilotSkeleton.DrawOrderOffsetY);
-            }
+            this.pilotSkeletonOriginalProperties ??= new RendererSavedProperties(pilotSkeleton.DrawOrder,
+                                                                                 pilotSkeleton.PositionOffset,
+                                                                                 pilotSkeleton.DrawOrderOffsetY);
 
             pilotSkeleton.PositionOffset = (0, offsetY);
             pilotSkeleton.DrawOrderOffsetY = BaseDrawOrderOffsetY - offsetY - 0.05;
 
             var pilotShadow = pilotClientState.RendererShadow;
-            if (!this.pilotShadowRendererOriginalProperties.HasValue)
-            {
-                this.pilotShadowRendererOriginalProperties = new RendererSavedProperties(pilotShadow.DrawOrder,
-                                                                                         pilotShadow.PositionOffset,
-                                                                                         pilotShadow.DrawOrderOffsetY);
-            }
+            this.pilotShadowRendererOriginalProperties ??= new RendererSavedProperties(pilotShadow.DrawOrder,
+                                                                                       pilotShadow.PositionOffset,
+                                                                                       pilotShadow.DrawOrderOffsetY);
 
             pilotShadow.DrawOrder = DrawOrder.Default;
             pilotShadow.PositionOffset = (0, offsetY);

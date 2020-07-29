@@ -24,10 +24,7 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var settingsControl = new EditorToolGeneratorSettings();
-            if (this.settings == null)
-            {
-                this.settings = new ViewModelEditorToolGeneratorSettings();
-            }
+            this.settings ??= new ViewModelEditorToolGeneratorSettings();
 
             settingsControl.DataContext = this.settings;
             return settingsControl;

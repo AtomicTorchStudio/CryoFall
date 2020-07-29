@@ -23,11 +23,11 @@
 
         protected override void ClientSetupLiquidTypeSpriteRenderer(
             IStaticWorldObject worldObject,
-            IComponentSpriteRenderer renderer)
+            IComponentSpriteRenderer rendererLiquidIcon)
         {
-            var offsetY = 1.15 + GetClientState(worldObject).Renderer.DrawOrderOffsetY;
-            renderer.PositionOffset = (1.02, y: offsetY);
-            renderer.DrawOrderOffsetY = -offsetY;
+            var mainRenderer = GetClientState(worldObject).Renderer;
+            rendererLiquidIcon.PositionOffset = (1.02, y: 1.15 + mainRenderer.PositionOffset.Y);
+            rendererLiquidIcon.DrawOrderOffsetY = -1.15 + mainRenderer.DrawOrderOffsetY;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)

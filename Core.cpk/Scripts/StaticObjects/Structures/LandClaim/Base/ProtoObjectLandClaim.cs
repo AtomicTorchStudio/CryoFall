@@ -71,6 +71,9 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public override bool IsRelocatable 
+            => false; // land claims relocation is not possible as it will cause multiple issues
+
         public virtual bool IsShortRaidblockOnHit => false;
 
         public ushort LandClaimGraceAreaPaddingSizeOneDirection

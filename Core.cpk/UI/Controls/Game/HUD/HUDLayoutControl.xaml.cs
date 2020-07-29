@@ -32,12 +32,7 @@
 
             Instance = this;
 
-            if (viewModel == null)
-            {
-                viewModel = new ViewModelHUD();
-            }
-
-            this.DataContext = viewModel;
+            this.DataContext = viewModel ??= new ViewModelHUD();
         }
 
         protected override void OnUnloaded()

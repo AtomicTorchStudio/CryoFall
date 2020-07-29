@@ -34,11 +34,8 @@
             }
 
             // explosive is selected - create blueprint component
-            if (blueprintComponent == null)
-            {
-                blueprintComponent = Client.Scene.CreateSceneObject("Explosive placer helper")
-                                           .AddComponent<ClientComponentObjectPlacementHelper>();
-            }
+            blueprintComponent ??= Client.Scene.CreateSceneObject("Explosive placer helper")
+                                         .AddComponent<ClientComponentObjectPlacementHelper>();
 
             blueprintComponent.Setup(
                 protoStaticWorldObject: currentSelectedProtoExplosive.ObjectExplosiveProto,

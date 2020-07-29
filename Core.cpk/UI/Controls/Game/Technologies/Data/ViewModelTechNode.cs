@@ -265,11 +265,7 @@
 
         private void RegisterChildren(ViewModelTechNode childNode)
         {
-            if (this.childrenNodes == null)
-            {
-                this.childrenNodes = new List<ViewModelTechNode>();
-            }
-
+            this.childrenNodes ??= new List<ViewModelTechNode>();
             this.childrenNodes.Add(childNode);
         }
     }

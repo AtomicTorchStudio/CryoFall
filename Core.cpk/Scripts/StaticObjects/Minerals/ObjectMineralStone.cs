@@ -31,21 +31,14 @@
                   .Add<ItemStone>(count: 10,      countRandom: 0)
                   .Add<ItemStone>(countRandom: 5, condition: SkillProspecting.ConditionAdditionalYield)
                   // extra stuff
-                  .Add<ItemCoal>(count: 2,       countRandom: 2, probability: 1 / 10.0)
-                  .Add<ItemSalt>(count: 3,       countRandom: 3, probability: 1 / 10.0)
-                  .Add<ItemGoldNugget>(count: 1, countRandom: 3, probability: 1 / 50.0);
+                  .Add<ItemCoal>(count: 2, countRandom: 2, probability: 1 / 10.0)
+                  .Add<ItemSalt>(count: 3, countRandom: 3, probability: 1 / 10.0)
+                  .Add(preset: ItemDroplistPresets.GoldNuggets);
 
             // drop gemstones
             config.Stage4
                   .Add(condition: SkillProspecting.ConditionDropGemstones,
-                       probability: 1 / 1000.0,
-                       nestedList: new DropItemsList(outputs: 1)
-                                   .Add<ItemGemDiamond>()
-                                   .Add<ItemGemEmerald>()
-                                   .Add<ItemGemRuby>()
-                                   .Add<ItemGemSapphire>()
-                                   .Add<ItemGemTopaz>()
-                                   .Add<ItemGemTourmaline>());
+                       preset: ItemDroplistPresets.Gemstones);
         }
     }
 }

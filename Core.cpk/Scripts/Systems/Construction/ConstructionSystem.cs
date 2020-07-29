@@ -12,6 +12,8 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
@@ -147,8 +149,7 @@
 
             var worldObjects = ClientGetObjectsAtCurrentMousePosition();
 
-            IStaticWorldObject worldObjectToBuildOrRepair = null,
-                               worldObjectToRelocate = null;
+            IStaticWorldObject worldObjectToBuildOrRepair = null;
 
             // find first damaged or incomplete structure there
             foreach (var worldObject in worldObjects)
@@ -158,24 +159,20 @@
                     continue;
                 }
 
-                var maxStructurePointsMax =
-                    protoObjectStructure.SharedGetStructurePointsMax((IStaticWorldObject)worldObject);
-                var structurePointsCurrent =
-                    worldObject.GetPublicState<StaticObjectPublicState>().StructurePointsCurrent;
+                var maxStructurePointsMax = protoObjectStructure.SharedGetStructurePointsMax(
+                    (IStaticWorldObject)worldObject);
+                var structurePointsCurrent = worldObject.GetPublicState<StaticObjectPublicState>()
+                                                        .StructurePointsCurrent;
                 if (structurePointsCurrent < maxStructurePointsMax)
                 {
                     worldObjectToBuildOrRepair = (IStaticWorldObject)worldObject;
                     break;
                 }
-
-                if (ConstructionRelocationSystem.SharedIsRelocatable((IStaticWorldObject)worldObject))
-                {
-                    worldObjectToRelocate = (IStaticWorldObject)worldObject;
-                }
             }
 
             if (worldObjectToBuildOrRepair is null)
             {
+                var worldObjectToRelocate = ClientFindWorldObjectToRelocate(worldObjects);
                 if (!(worldObjectToRelocate is null))
                 {
                     ConstructionRelocationSystem.ClientStartRelocation(worldObjectToRelocate);
@@ -385,6 +382,37 @@
                     character,
                     _ => _.ClientRemote_ShowNotificationCannotPlace(errorMessage, proto));
             }
+        }
+
+        private static IStaticWorldObject ClientFindWorldObjectToRelocate(IEnumerable<IWorldObject> worldObjects)
+        {
+            IStaticWorldObject selectedObject = null;
+
+            foreach (var worldObject in worldObjects)
+            {
+                if (!ConstructionRelocationSystem.SharedIsRelocatable((IStaticWorldObject)worldObject))
+                {
+                    continue;
+                }
+
+                if (selectedObject != null)
+                {
+                    switch (worldObject.ProtoGameObject)
+                    {
+                        case IProtoObjectFloor _:
+                            // don't select floor when selected anything else
+                            continue;
+                        case ProtoObjectDecorationFloor _ 
+                            when !(selectedObject.ProtoGameObject is IProtoObjectFloor):
+                            // don't select decoration when selected anything else except the floor
+                            continue;
+                    }
+                }
+
+                selectedObject = (IStaticWorldObject)worldObject;
+            }
+
+            return selectedObject;
         }
 
         private static IEnumerable<IWorldObject> ClientGetObjectsAtCurrentMousePosition()

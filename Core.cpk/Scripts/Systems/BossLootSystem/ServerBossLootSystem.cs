@@ -349,7 +349,7 @@
                                                 totalLootCount),
                                   NotificationColor.Good,
                                   protoCharacterBoss.Icon)
-                              .HideAfterDelay(30);
+                              .HideAfterDelay(60);
         }
 
         private void ClientRemote_BossRewardNotAvailable(
@@ -364,7 +364,7 @@
                                                 damagePercentRequired),
                                   NotificationColor.Neutral,
                                   protoCharacterBoss.Icon)
-                              .HideAfterDelay(30);
+                              .HideAfterDelay(60);
         }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -381,7 +381,7 @@
                                                                     .GetJoinedString("[*]"),
                                   color: NotificationColor.Neutral,
                                   icon: protoCharacterBoss.Icon)
-                              .HideAfterDelay(30);
+                              .HideAfterDelay(60);
 
             string GetFormattedName((string Name, string ClanTag) entry)
             {

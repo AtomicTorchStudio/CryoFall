@@ -33,13 +33,10 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var control = new EditorToolWorldSizeSettings();
-            if (this.settingsViewModel == null)
-            {
-                this.settingsViewModel = new ViewModelEditorToolWorldSizeSettings(
-                    this.ClientApplyWorldSizeExtension,
-                    this.ClientApplyWorldSizeOptimization,
-                    this.ClientApplyWorldSizeSliceExpansion);
-            }
+            this.settingsViewModel ??= new ViewModelEditorToolWorldSizeSettings(
+                this.ClientApplyWorldSizeExtension,
+                this.ClientApplyWorldSizeOptimization,
+                this.ClientApplyWorldSizeSliceExpansion);
 
             control.Setup(this.settingsViewModel);
             return control;

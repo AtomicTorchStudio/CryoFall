@@ -60,7 +60,7 @@
                 damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
         }
 
-        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        protected override void SharedCreatePhysicsDrone(CreatePhysicsData data)
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (0.6, 0.6), offset: (-0.3, 0.5), group: CollisionGroups.HitboxMelee)

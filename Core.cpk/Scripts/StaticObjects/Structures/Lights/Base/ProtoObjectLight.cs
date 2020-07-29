@@ -239,10 +239,10 @@
             }
 
             var containerInput = privateState.ContainerInput;
-            if (containerInput == null)
+            if (containerInput is null)
             {
-                containerInput =
-                    Server.Items.CreateContainer(data.GameObject, this.ContainerInputSlotsCount);
+                containerInput = Server.Items.CreateContainer(data.GameObject,
+                                                              this.ContainerInputSlotsCount);
                 privateState.ContainerInput = containerInput;
             }
             else

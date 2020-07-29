@@ -2,11 +2,8 @@
 {
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -24,23 +21,6 @@
         public override Vector2D PlacedPlantPositionOffset { get; } = (0, 0.25);
 
         public override float StructurePointsMax => 400;
-
-        public override void ServerOnDestroy(IStaticWorldObject gameObject)
-        {
-            // destroy all the plants over this plant pot
-            foreach (var tile in gameObject.OccupiedTiles)
-            {
-                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndDispose())
-                {
-                    if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectPlant)
-                    {
-                        Server.World.DestroyObject(staticWorldObject);
-                    }
-                }
-            }
-
-            base.ServerOnDestroy(gameObject);
-        }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

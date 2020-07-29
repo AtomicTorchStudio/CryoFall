@@ -4,12 +4,10 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Media;
-    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
-    using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public static class WorldMapTexturesProvider
@@ -28,79 +26,88 @@
         private static readonly IWorldClientService ClientWorldService = Api.Client.World;
 
         // TODO: fix memory leak - garbage collection for these image brushes will never happen!
-        private static readonly Dictionary<uint, Task<TextureBrush>> TexturesCache
+        private static readonly Dictionary<uint, TextureBrush> TexturesCache
+            = new Dictionary<uint, TextureBrush>();
+
+        private static readonly Dictionary<uint, Task<TextureBrush>> TexturesCacheActiveTasks
             = new Dictionary<uint, Task<TextureBrush>>();
 
-        private static int activeTasksCount;
-
-        public static bool IsBusy => activeTasksCount > MaxSimultaneouslyLoadingChunks
+        public static bool IsBusy => TexturesCacheActiveTasks.Count > MaxSimultaneouslyLoadingChunks
                                      || ClientCoreService.IsMainThreadIsOutOfTime;
 
-        public static Task<TextureBrush> LoadMapChunkImageBrush(
+        public static ValueTask<TextureBrush> LoadMapChunkImageBrush(
             Vector2Ushort chunkStartPosition,
             uint checksum,
             CancellationToken cancellationToken)
         {
             if (cancellationToken.IsCancellationRequested)
             {
-                return null;
+                return new ValueTask<TextureBrush>(result: null);
             }
 
             if (TexturesCache.TryGetValue(checksum, out var result))
             {
-                return result;
+                return new ValueTask<TextureBrush>(result);
+            }
+
+            if (TexturesCacheActiveTasks.TryGetValue(checksum, out var activeTask))
+            {
+                return new ValueTask<TextureBrush>(activeTask);
             }
 
             if (Api.Client.CurrentGame.ConnectionState
                 != ConnectionState.Connected)
             {
                 // not connected - don't load the map
-                return null;
+                return new ValueTask<TextureBrush>(result: null);
             }
 
-            var tempTilesList = Api.Shared.GetTempList<Tile>();
-            tempTilesList.AddRange(ClientWorldService.GetWorldChunk(chunkStartPosition));
+            var task = LoadAsync();
+            if (!task.IsCompleted)
+            {
+                TexturesCacheActiveTasks.Add(checksum, task);
+            }
 
-            result = LoadAsync();
-            TexturesCache.Add(checksum, result);
-            return result;
+            return new ValueTask<TextureBrush>(task);
 
             async Task<TextureBrush> LoadAsync()
             {
-                activeTasksCount++;
-
-                // create new image brush task
-                var proceduralTexture = new ProceduralTexture(
-                    "WorldMapChunk checksum=" + checksum,
-                    // ReSharper disable once AccessToDisposedClosure
-                    request => GenerateChunkProceduralTexture(tempTilesList, chunkStartPosition, request),
-                    isTransparent: false,
-                    isUseCache: false,
-                    useThrottling: false);
-
-                var brush = ClientUIService.GetTextureBrush(proceduralTexture, Stretch.Fill);
-                //brush = ClientUIService.GetTextureBrush(new TextureResource("TestWhiteRect", isTransparent: false), Stretch.None);
+                TextureBrush brush;
 
                 try
                 {
+                    // create new image brush task
+                    var proceduralTexture = new ProceduralTexture(
+                        "WorldMapChunk",
+                        // ReSharper disable once AccessToDisposedClosure
+                        GenerateChunkProceduralTexture,
+                        isTransparent: false,
+                        isUseCache: false,
+                        useThrottling: false,
+                        data: (checksum, chunkStartPosition));
+
+                    brush = ClientUIService.GetTextureBrush(proceduralTexture, Stretch.Fill);
+                    //brush = ClientUIService.GetTextureBrush(new TextureResource("TestWhiteRect", isTransparent: false), Stretch.None);
+
                     await brush.WaitLoaded();
+                    TexturesCache.Add(checksum, brush);
                 }
                 finally
                 {
-                    activeTasksCount--;
+                    TexturesCacheActiveTasks.Remove(checksum);
                 }
 
                 return brush;
             }
         }
 
-        private static async Task<ITextureResource> GenerateChunkProceduralTexture(
-            ITempList<Tile> tempTilesList,
-            Vector2Ushort chunkStartPosition,
-            ProceduralTextureRequest request)
+        private static async Task<ITextureResource> GenerateChunkProceduralTexture(ProceduralTextureRequest request)
         {
+            var (checksum, chunkStartPosition) = ((uint checksum, Vector2Ushort chunkStartPosition))request.Data;
+            using var tempTilesList = Api.Shared.WrapInTempList(ClientWorldService.GetWorldChunk(chunkStartPosition));
+
             var renderingService = Api.Client.Rendering;
-            var renderingTag = request.TextureName;
+            var renderingTag = request.TextureName + "-" + checksum;
 
             var textureSize = new Vector2Ushort(WorldChunkMapTextureSize, WorldChunkMapTextureSize);
 
@@ -113,17 +120,16 @@
                                                        renderingTag,
                                                        drawOrder: -100);
             camera.RenderTarget = renderTexture;
-            camera.ClearColor = Colors.Magenta; // to make potential issues visible clear with magenta color
+            camera.ClearColor = Colors.Magenta; // to make any potential issues obvious
             camera.SetOrthographicProjection(textureSize.X, textureSize.Y);
 
             // create tile renderers
             foreach (var tile in tempTilesList.EnumerateAndDispose())
             {
                 var drawPosition = tile.Position.ToVector2D() - chunkStartPosition.ToVector2D();
-                drawPosition = (
-                                   drawPosition.X * WorldTileTextureSize,
-                                   // Y is reversed
-                                   (drawPosition.Y - ScriptingConstants.WorldChunkSize + 1) * WorldTileTextureSize);
+                drawPosition = (drawPosition.X * WorldTileTextureSize,
+                                // Y is reversed
+                                (drawPosition.Y - ScriptingConstants.WorldChunkSize + 1) * WorldTileTextureSize);
 
                 renderingService.CreateSpriteRenderer(
                     cameraObject,

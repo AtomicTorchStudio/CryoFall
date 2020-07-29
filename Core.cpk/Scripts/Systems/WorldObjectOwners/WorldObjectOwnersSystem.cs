@@ -64,10 +64,7 @@
         public static void ServerInitialize(IWorldObject worldObject)
         {
             var privateState = GetPrivateState(worldObject);
-            if (privateState.Owners == null)
-            {
-                privateState.Owners = new NetworkSyncList<string>();
-            }
+            privateState.Owners ??= new NetworkSyncList<string>();
         }
 
         public static void ServerNotifyNotOwner(ICharacter character, IWorldObject worldObject)

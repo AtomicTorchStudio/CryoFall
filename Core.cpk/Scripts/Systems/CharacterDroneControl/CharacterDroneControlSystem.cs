@@ -205,10 +205,10 @@
                                 _ => _.ClientRemote_OnDroneAbandoned(protoItemDrone));
         }
 
-        public static void ServerDespawnDrone(IDynamicWorldObject worldObject, bool isReturnedToPlayer)
+        public static void ServerDespawnDrone(IDynamicWorldObject objectDrone, bool isReturnedToPlayer)
         {
-            var privateState = worldObject.GetPrivateState<DronePrivateState>();
-            var publicState = worldObject.GetPublicState<DronePublicState>();
+            var privateState = objectDrone.GetPrivateState<DronePrivateState>();
+            var publicState = objectDrone.GetPublicState<DronePublicState>();
 
             publicState.ResetTargetPosition();
 
@@ -223,18 +223,20 @@
             var world = Server.World;
 
             var protoDrone = protoItemDrone.ProtoDrone;
-            protoDrone.ServerOnDroneDroppedOrReturned(worldObject, characterOwner, isReturnedToPlayer);
+            protoDrone.ServerOnDroneDroppedOrReturned(objectDrone, characterOwner, isReturnedToPlayer);
 
-            world.SetPosition(worldObject,
-                              ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
-            world.SetDynamicObjectMoveSpeed(worldObject, 0);
-            world.SetDynamicObjectPhysicsMovement(worldObject, Vector2D.Zero, 0);
-
+            // recreate physics (as despawned drone doesn't have any physics)
             privateState.IsDespawned = true;
-            privateState.CharacterOwner = null;
-            ServerOnDroneControlRemoved(characterOwner, worldObject);
+            objectDrone.ProtoWorldObject.SharedCreatePhysics(objectDrone);
+            world.SetPosition(objectDrone,
+                              ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
+            world.SetDynamicObjectMoveSpeed(objectDrone, 0);
+            world.SetDynamicObjectPhysicsMovement(objectDrone, Vector2D.Zero, 0);
 
-            var currentDurability = (int)(worldObject.GetPublicState<DronePublicState>().StructurePointsCurrent
+            privateState.CharacterOwner = null;
+            ServerOnDroneControlRemoved(characterOwner, objectDrone);
+
+            var currentDurability = (int)(objectDrone.GetPublicState<DronePublicState>().StructurePointsCurrent
                                           / protoItemDrone.DurabilityToStructurePointsConversionCoefficient);
             if (currentDurability <= 1)
             {
@@ -391,19 +393,19 @@
                 return null;
             }
 
-            if (!PveSystem.SharedIsAllowStaticObjectDamage(character, targetObject, showClientNotification: false))
-            {
-                hasIncompatibleTarget = true;
-                isPveActionForbidden = true;
-                return null;
-            }
-
             if (!SharedIsValidDroneTarget(targetObject))
             {
                 hasIncompatibleTarget = true;
                 return null;
             }
 
+            if (!PveSystem.SharedIsAllowStaticObjectDamage(character, targetObject, showClientNotification: false))
+            {
+                hasIncompatibleTarget = true;
+                isPveActionForbidden = true;
+                return null;
+            }
+            
             hasIncompatibleTarget = false;
             return targetObject;
         }

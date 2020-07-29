@@ -44,11 +44,7 @@
 
         public static void Init(IClientItemsContainer handContainer)
         {
-            if (itemInHandDisplayControl == null)
-            {
-                itemInHandDisplayControl = new ItemInHandDisplayControl();
-            }
-
+            itemInHandDisplayControl ??= new ItemInHandDisplayControl();
             HandContainer = handContainer;
         }
 

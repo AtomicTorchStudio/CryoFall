@@ -25,7 +25,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
             foreach (var recipe in Api.FindProtoEntities<Recipe>())
             {
                 if (!recipe.IsEnabled
-                    || recipe.InputItems.Count == 0
+                    || recipe.InputItems.Length == 0
                     || recipe.OutputItems.Count == 0)
                 {
                     continue;

@@ -44,10 +44,7 @@
             get => this.selectedLanguage;
             set
             {
-                if (value == null)
-                {
-                    value = this.Languages.First(l => l.LanguageDefinition is Language_en_us);
-                }
+                value ??= this.Languages.First(l => l.LanguageDefinition is Language_en_us);
 
                 if (this.selectedLanguage == value)
                 {

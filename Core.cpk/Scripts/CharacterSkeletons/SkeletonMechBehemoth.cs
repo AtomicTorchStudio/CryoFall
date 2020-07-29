@@ -18,7 +18,7 @@
 
         public override double WorldScale => 0.13;
 
-        protected override float AnimationVerticalMovemementSpeedMultiplier => 1.1f;
+        protected override float AnimationVerticalMovemementSpeedMultiplier => 1.15f;
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {

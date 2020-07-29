@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
     public abstract class ProtoObjectGeneratorBio
         : ProtoObjectGenerator
@@ -22,6 +23,15 @@
         public abstract double OrganicDecreasePerSecondWhenActive { get; }
 
         public override double ServerUpdateIntervalSeconds => 0.5;
+
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                GetPrivateState(gameObject).InputItemsCointainer);
+        }
 
         protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {

@@ -16,6 +16,8 @@
 
         public override bool HasOwnersList => false;
 
+        public override bool IsSupportItemIcon => false;
+
         public override byte ItemsSlotsCount => 8;
 
         public override string Name => "Primitive fridge";

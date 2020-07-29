@@ -20,11 +20,7 @@
 
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
         {
-            if (this.listedInTechNodes == null)
-            {
-                this.listedInTechNodes = new List<TechNode>();
-            }
-
+            this.listedInTechNodes ??= new List<TechNode>();
             this.listedInTechNodes.AddIfNotContains(techNode);
         }
 

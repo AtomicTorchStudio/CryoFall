@@ -238,10 +238,7 @@
                 viewModelEffect.Refresh(level);
             }
 
-            if (this.Effects == null)
-            {
-                this.Effects = effects;
-            }
+            this.Effects ??= effects;
         }
     }
 }

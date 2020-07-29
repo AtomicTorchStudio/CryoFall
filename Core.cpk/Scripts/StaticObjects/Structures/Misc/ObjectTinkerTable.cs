@@ -163,6 +163,20 @@
             return true;
         }
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            var privateState = GetPrivateState(gameObject);
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ContainerInput);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ContainerOutput);
+        }
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             return (1, 0.65);
@@ -230,19 +244,13 @@
             var worldObject = data.GameObject;
             var privateState = data.PrivateState;
 
-            if (privateState.ContainerInput == null)
-            {
-                privateState.ContainerInput =
-                    Server.Items.CreateContainer<ItemsContainerTinkerTableInput>(worldObject,
+            privateState.ContainerInput
+                ??= Server.Items.CreateContainer<ItemsContainerTinkerTableInput>(worldObject,
                                                                                  slotsCount: 2);
-            }
 
-            if (privateState.ContainerOutput == null)
-            {
-                privateState.ContainerOutput =
-                    Server.Items.CreateContainer<ItemsContainerOutput>(worldObject,
+            privateState.ContainerOutput
+                ??= Server.Items.CreateContainer<ItemsContainerOutput>(worldObject,
                                                                        slotsCount: 1);
-            }
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

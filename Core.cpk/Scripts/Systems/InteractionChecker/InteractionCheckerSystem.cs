@@ -77,7 +77,7 @@
                 return null;
             }
 
-            if (requiredCollisionGroup == null)
+            if (requiredCollisionGroup is null)
             {
                 // default group to check interaction is click area
                 requiredCollisionGroup = CollisionGroups.ClickArea;

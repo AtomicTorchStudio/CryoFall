@@ -325,10 +325,7 @@
             }
 
             viewModelServer.Ping = pingMs;
-            if (viewModelServer.CommandRefresh == null)
-            {
-                viewModelServer.CommandRefresh = this.commandRefresh;
-            }
+            viewModelServer.CommandRefresh ??= this.commandRefresh;
 
             if (isPingMeasurementDone)
             {

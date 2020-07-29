@@ -50,7 +50,7 @@
 
         public void ClientDrink(IStaticWorldObject objectWell)
         {
-            if (!this.SharedValidateCanDrink(Client.Characters.CurrentPlayerCharacter, objectWell))
+            if (!SharedValidateCanDrink(Client.Characters.CurrentPlayerCharacter, objectWell))
             {
                 return;
             }
@@ -109,10 +109,7 @@
                 data.PrivateState.ManufacturingState.ContainerInput);
 
             var privateState = data.PrivateState;
-            if (privateState.LiquidStateWater == null)
-            {
-                privateState.LiquidStateWater = new LiquidContainerState();
-            }
+            privateState.LiquidStateWater ??= new LiquidContainerState();
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -145,6 +142,26 @@
                 forceUpdateRecipe: !isFull);
         }
 
+        private static bool SharedValidateCanDrink(ICharacter character, IStaticWorldObject objectWell)
+        {
+            if (!(objectWell.OccupiedTile.ProtoTile
+                      is IProtoTileWellAllowed protoTileWellAllowed))
+            {
+                // the ground doesn't provide water
+                return false;
+            }
+
+            if (protoTileWellAllowed.IsStaleWellWater)
+            {
+                // cannot drink stale water directly
+                return false;
+            }
+
+            return !StatusEffectNausea.SharedCheckIsNauseous(
+                       character,
+                       showNotificationIfNauseous: true);
+        }
+
         [RemoteCallSettings(DeliveryMode.ReliableOrdered, keyArgIndex: 0)]
         private void ClientRemote_CharacterDrankWater(ICharacter character)
         {
@@ -164,7 +181,7 @@
                 return;
             }
 
-            if (!this.SharedValidateCanDrink(character, objectWell))
+            if (!SharedValidateCanDrink(character, objectWell))
             {
                 return;
             }
@@ -210,13 +227,6 @@
             Server.World.GetScopedByPlayers(character, scopedBy);
             scopedBy.Add(character);
             this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_CharacterDrankWater(character));
-        }
-
-        private bool SharedValidateCanDrink(ICharacter character, IStaticWorldObject objectWell)
-        {
-            return !StatusEffectNausea.SharedCheckIsNauseous(
-                       character,
-                       showNotificationIfNauseous: true);
         }
     }
 }

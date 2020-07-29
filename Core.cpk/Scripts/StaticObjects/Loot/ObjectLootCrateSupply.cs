@@ -51,7 +51,7 @@
                     .Add<ItemRubberRaw>(count: 5,   countRandom: 10, weight: 1 / 5.0)
                     .Add<ItemFirelog>(count: 2,     countRandom: 1,  weight: 1 / 10.0)
                     // components
-                    .Add<ItemComponentsMechanical>(count: 5, countRandom: 5, weight: 1 / 5.0)
+                    .Add<ItemComponentsMechanical>(count: 10, countRandom: 10, weight: 1 / 5.0)
                     .Add<ItemComponentsElectronic>(count: 5, countRandom: 5, weight: 1 / 5.0)
                     // items
                     .Add<ItemCampFuel>(count: 2, countRandom: 3, weight: 1 / 5.0));
@@ -114,7 +114,7 @@
                 new DropItemsList(outputs: 1)
                     .Add<ItemFirelog>(count: 1, countRandom: 1)
                     .Add<ItemGlue>(count: 1,    countRandom: 2)
-                    .Add<ItemComponentsMechanical>(count: 1)
+                    .Add<ItemComponentsMechanical>(count: 2)
                     .Add<ItemComponentsElectronic>(count: 1));
         }
 

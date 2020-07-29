@@ -14,6 +14,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -93,7 +94,8 @@
             => this.listedInTechNodes != null
                && this.listedInTechNodes.Count != 0;
 
-        public virtual bool IsRelocatable => false;
+        public virtual bool IsRelocatable
+            => PveSystem.SharedIsPve(false); // in PvE everything is relocatable by default
 
         public virtual bool IsRepeatPlacement => false;
 

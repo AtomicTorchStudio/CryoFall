@@ -127,73 +127,30 @@
 
         public void ServerInitState(ICharacter character)
         {
-            if (this.DroppedLootLocations is null)
-            {
-                this.DroppedLootLocations = new NetworkSyncList<DroppedLootInfo>();
-            }
-
-            if (this.OwnedLandClaimAreas is null)
-            {
-                this.OwnedLandClaimAreas = new NetworkSyncList<ILogicObject>();
-            }
+            this.DroppedLootLocations ??= new NetworkSyncList<DroppedLootInfo>();
+            this.OwnedLandClaimAreas ??= new NetworkSyncList<ILogicObject>();
 
             var serverItemsService = Api.Server.Items;
 
-            if (this.ContainerHand is null)
-            {
-                this.ContainerHand = serverItemsService.CreateContainer<ItemsContainerCharacterHand>(
-                    character,
-                    slotsCount: 1);
-            }
+            this.ContainerHand ??= serverItemsService.CreateContainer<ItemsContainerCharacterHand>(
+                character,
+                slotsCount: 1);
 
-            if (this.ContainerInventory is null)
-            {
-                this.ContainerInventory = serverItemsService.CreateContainer<ItemsContainerCharacterInventory>(
-                    character,
-                    slotsCount: 40);
-            }
+            this.ContainerInventory ??= serverItemsService.CreateContainer<ItemsContainerCharacterInventory>(
+                character,
+                slotsCount: 40);
 
-            if (this.ContainerHotbar is null)
-            {
-                this.ContainerHotbar = serverItemsService.CreateContainer<ItemsContainerCharacterHotbar>(
-                    character,
-                    slotsCount: 10);
-            }
+            this.ContainerHotbar ??= serverItemsService.CreateContainer<ItemsContainerCharacterHotbar>(
+                character,
+                slotsCount: 10);
 
-            if (this.CraftingQueue is null)
-            {
-                this.CraftingQueue = new CharacterCraftingQueue();
-            }
-
-            if (this.Skills is null)
-            {
-                this.Skills = new PlayerCharacterSkills();
-            }
-
-            if (this.Technologies is null)
-            {
-                this.Technologies = new PlayerCharacterTechnologies();
-            }
-
-            if (this.Quests is null)
-            {
-                this.Quests = new PlayerCharacterQuests();
-            }
-
-            if (this.Achievements is null)
-            {
-                this.Achievements = new PlayerCharacterAchievements();
-            }
-
-            if (this.CompletionistData == null)
-            {
-                this.CompletionistData = new PlayerCharacterCompletionistData();
-            }
-
-            if (this.DroneController is null)
-            {
-                this.DroneController = CharacterDroneControlSystem.ServerCreateCharacterDroneController();
-            }
+            this.CraftingQueue ??= new CharacterCraftingQueue();
+            this.Skills ??= new PlayerCharacterSkills();
+            this.Technologies ??= new PlayerCharacterTechnologies();
+            this.Quests ??= new PlayerCharacterQuests();
+            this.Achievements ??= new PlayerCharacterAchievements();
+            this.CompletionistData ??= new PlayerCharacterCompletionistData();
+            this.DroneController ??= CharacterDroneControlSystem.ServerCreateCharacterDroneController();
 
             if (this.ServerLastActiveTime <= 0)
             {

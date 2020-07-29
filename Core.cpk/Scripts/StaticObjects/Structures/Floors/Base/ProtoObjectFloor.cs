@@ -236,13 +236,10 @@
 
         private void InitProceduralTextureAtlas()
         {
-            if (this.proceduralTextureAtlasPrimary == null)
-            {
-                this.proceduralTextureAtlasPrimary =
-                    FloorTextureComposer.CreateProceduralTexture(
-                        this.Id + "_Primary",
-                        this.texturePrimaryAtlas);
-            }
+            this.proceduralTextureAtlasPrimary
+                ??= FloorTextureComposer.CreateProceduralTexture(
+                    this.Id + "_Primary",
+                    this.texturePrimaryAtlas);
         }
     }
 

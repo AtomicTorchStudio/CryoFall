@@ -126,7 +126,7 @@
             var privateState = GetPrivateState(tradingStation);
             var publicState = GetPublicState(tradingStation);
 
-            if (privateState.StockItemsContainer == null)
+            if (privateState.StockItemsContainer is null)
             {
                 privateState.StockItemsContainer = ServerItems.CreateContainer(tradingStation,
                                                                                protoTradingStation
@@ -138,12 +138,8 @@
                                           protoTradingStation.StockItemsContainerSlotsCount);
             }
 
-            var lots = publicState.Lots;
-            if (lots == null)
-            {
-                publicState.Lots =
-                    lots = new NetworkSyncList<TradingStationLot>(capacity: protoTradingStation.LotsCount);
-            }
+            var lots = publicState.Lots
+                           ??= new NetworkSyncList<TradingStationLot>(capacity: protoTradingStation.LotsCount);
 
             // ensure that the lots count is not exceeded
             while (lots.Count > protoTradingStation.LotsCount)
@@ -157,7 +153,7 @@
                 {
                     lots.Add(new TradingStationLot());
                 }
-                else if (lots[i] == null)
+                else if (lots[i] is null)
                 {
                     lots[i] = new TradingStationLot();
                 }
@@ -173,22 +169,10 @@
             TradingStationsMapMarksSystem.ServerTryRemoveMark(tradingStation);
 
             var itemsContainer = GetPrivateState(tradingStation).StockItemsContainer;
-            if (itemsContainer.OccupiedSlotsCount == 0)
-            {
-                return;
-            }
-
-            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 tradingStation.OccupiedTile,
-                itemsContainer);
-
-            if (groundContainer != null)
-            {
-                // set custom timeout for the dropped ground items container
-                ObjectGroundItemsContainer.ServerSetDestructionTimeout(
-                    (IStaticWorldObject)groundContainer.Owner,
-                    DestroyedTradingStationDroppedItemsDestructionTimeout.TotalSeconds);
-            }
+                itemsContainer,
+                DestroyedTradingStationDroppedItemsDestructionTimeout.TotalSeconds);
         }
 
         public static void ServerUpdate(IStaticWorldObject tradingStation)
@@ -418,7 +402,7 @@
                     continue;
                 }
 
-                if (lot.ProtoItem == null
+                if (lot.ProtoItem is null
                     || !(lot.PriceCoinPenny > 0 || lot.PriceCoinShiny > 0)
                     || lot.LotQuantity < 1
                     || lot.LotQuantity > TradingStationLot.MaxLotQuantity)

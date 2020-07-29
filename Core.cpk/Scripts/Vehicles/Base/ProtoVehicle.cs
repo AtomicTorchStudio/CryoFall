@@ -456,22 +456,10 @@
 
             // try drop cargo on the ground
             var itemsContainer = GetPrivateState(gameObject).CargoItemsContainer;
-            if (itemsContainer.OccupiedSlotsCount == 0)
-            {
-                return;
-            }
-
-            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 gameObject.Tile,
-                itemsContainer);
-
-            if (groundContainer != null)
-            {
-                // set custom timeout for the dropped ground items container
-                ObjectGroundItemsContainer.ServerSetDestructionTimeout(
-                    (IStaticWorldObject)groundContainer.Owner,
-                    DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
-            }
+                itemsContainer,
+                DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
         }
 
         public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)

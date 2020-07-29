@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectFridgeFreezer : ProtoObjectFridgeElectrical
     {
@@ -26,6 +27,8 @@
         public override double ObstacleBlockDamageCoef => 1;
 
         public override float StructurePointsMax => 3500;
+
+        protected override Vector2D ItemIconOffset => (0, 0.138);
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -60,8 +63,8 @@
             var yOffset = 0.25;
             data.PhysicsBody
                 .AddShapeRectangle((0.9, 0.6), offset: (0.05, yOffset))
-                .AddShapeRectangle((1, 1),     offset: (0, yOffset),           group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1, 1),     offset: (0, yOffset),           group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((1, 1),     offset: (0, yOffset), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1, 1),     offset: (0, yOffset), group: CollisionGroups.ClickArea);
         }
     }
 }

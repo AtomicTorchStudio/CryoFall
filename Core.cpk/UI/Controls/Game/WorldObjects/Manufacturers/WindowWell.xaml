@@ -46,13 +46,34 @@
                                VerticalAlignment="Top"
                                Width="18"
                                Height="18"
-                               Margin="0,-20,0,0" />
+                               Margin="0,-20,0,0"
+                               Visibility="{Binding IsCommandDrinkAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                    <!-- Stale water icon -->
+                    <Rectangle Fill="{StaticResource LiquidIconWaterStale}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Width="18"
+                               Height="18"
+                               Margin="0,-20,0,0"
+                               Visibility="{Binding IsCommandDrinkAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+
                     <core:ValueBarControl
                         Value="{Binding ViewModelLiquidContainerState.Amount}"
                         MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
                         Foreground="{StaticResource LiquidBrushWater}"
                         Margin="20,0"
-                        Style="{StaticResource LiquidMediumValueBar}" />
+                        Style="{StaticResource LiquidMediumValueBar}"
+                        Visibility="{Binding IsCommandDrinkAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                    <!-- Stale water bar -->
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelLiquidContainerState.Amount}"
+                        MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
+                        Foreground="{StaticResource LiquidBrushWaterStale}"
+                        Margin="20,0"
+                        Style="{StaticResource LiquidMediumValueBar}"
+                        Visibility="{Binding IsCommandDrinkAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
                 </Grid>
 
 
@@ -74,7 +95,8 @@
             <!-- Text: Drink -->
             <Button Content="{x:Static loc:CoreStrings.Button_Drink}"
                     Command="{Binding CommandDrink}"
-                    Margin="0,23,0,0" 
+                    Visibility="{Binding IsCommandDrinkAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Margin="0,23,0,0"
                     Focusable="False" />
 
         </StackPanel>

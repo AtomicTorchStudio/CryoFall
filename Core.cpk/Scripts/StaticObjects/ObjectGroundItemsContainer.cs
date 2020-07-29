@@ -369,9 +369,12 @@
             }
         }
 
-        public static IItemsContainer ServerTryDropOnGroundContainerContent(Tile tile, IItemsContainer otherContainer)
+        public static IItemsContainer ServerTryDropOnGroundContainerContent(
+            Tile tile, 
+            IItemsContainer otherContainer,
+            double? destroyTimeout = null)
         {
-            var otherContainerOccupiedSlotsCount = otherContainer.OccupiedSlotsCount;
+            var otherContainerOccupiedSlotsCount = otherContainer?.OccupiedSlotsCount ?? 0;
             if (otherContainerOccupiedSlotsCount == 0)
             {
                 // nothing to drop there
@@ -390,6 +393,14 @@
                 containerTo: groundContainer);
 
             SharedLootDropNotifyHelper.ServerOnLootDropped(groundContainer);
+
+            if (destroyTimeout.HasValue)
+            {
+                ServerSetDestructionTimeout(
+                    (IStaticWorldObject)groundContainer.Owner,
+                    destroyTimeout.Value);
+            }
+
             return groundContainer;
         }
 

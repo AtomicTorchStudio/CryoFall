@@ -147,11 +147,7 @@
             get => this.selectedFilter;
             set
             {
-                if (value == null)
-                {
-                    value = this.FiltersCollection[0];
-                }
-
+                value ??= this.FiltersCollection[0];
                 if (this.selectedFilter == value)
                 {
                     return;

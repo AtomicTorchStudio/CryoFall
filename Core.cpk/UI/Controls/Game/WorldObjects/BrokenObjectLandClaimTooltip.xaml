@@ -33,7 +33,6 @@
 
     <Border
         x:Name="LayoutRoot"
-        Width="224"
         CornerRadius="3">
 
         <StackPanel Orientation="Vertical">

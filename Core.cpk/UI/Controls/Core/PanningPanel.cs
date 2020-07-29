@@ -639,7 +639,7 @@
                 contentWrapperPoint = this.contentWrapper.PointFromScreen(screenPoint).ToVector2D();
             }
 
-            if (contentWrapperPoint == null)
+            if (contentWrapperPoint is null)
             {
                 // zoom to center of the screen if no custom zoom position provided
                 contentWrapperPoint = (this.contentWrapper.ActualWidth / 2,

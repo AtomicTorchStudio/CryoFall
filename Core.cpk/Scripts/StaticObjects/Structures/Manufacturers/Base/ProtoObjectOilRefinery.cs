@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
     public abstract class ProtoObjectOilRefinery
         : ProtoObjectManufacturer<
@@ -62,6 +63,29 @@
         protected ManufacturingConfig ManufacturingConfigGasoline { get; private set; }
 
         protected ManufacturingConfig ManufacturingConfigMineralOil { get; private set; }
+
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            var stateGasoline = GetPrivateState(gameObject).ManufacturingStateGasoline;
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                stateGasoline.ContainerInput);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                stateGasoline.ContainerOutput);
+
+            var stateMineralOil = GetPrivateState(gameObject).ManufacturingStateMineralOil;
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                stateMineralOil.ContainerInput);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                stateMineralOil.ContainerOutput);
+        }
 
         protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {

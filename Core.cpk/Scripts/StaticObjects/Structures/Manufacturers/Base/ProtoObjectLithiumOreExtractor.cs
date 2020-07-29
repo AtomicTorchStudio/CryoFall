@@ -179,8 +179,15 @@
 
         protected override IStaticWorldObject SharedGetDepositWorldObject(Tile tile)
         {
-            return tile.StaticObjects.FirstOrDefault(
-                o => o.ProtoStaticWorldObject is ObjectDepositGeothermalSpring);
+            foreach (var o in tile.StaticObjects)
+            {
+                if (o.ProtoGameObject is ObjectDepositGeothermalSpring)
+                {
+                    return o;
+                }
+            }
+
+            return null;
         }
     }
 }

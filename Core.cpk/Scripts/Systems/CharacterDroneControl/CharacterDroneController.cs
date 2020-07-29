@@ -34,10 +34,7 @@
 
             public void Init()
             {
-                if (this.CurrentlyControlledDrones is null)
-                {
-                    this.CurrentlyControlledDrones = new NetworkSyncList<IDynamicWorldObject>();
-                }
+                this.CurrentlyControlledDrones ??= new NetworkSyncList<IDynamicWorldObject>();
             }
         }
     }

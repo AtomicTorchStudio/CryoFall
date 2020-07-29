@@ -389,7 +389,7 @@
             var imageBrush = await WorldMapTexturesProvider.LoadMapChunkImageBrush(chunkStartPosition,
                                                                                    checksum,
                                                                                    cancellationToken);
-            if (imageBrush == null)
+            if (imageBrush is null)
             {
                 // cancelled
                 return;

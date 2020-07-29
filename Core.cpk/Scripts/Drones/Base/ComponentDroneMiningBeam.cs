@@ -96,13 +96,9 @@
             if (this.dronePublicState.TargetObjectPosition.HasValue)
             {
                 this.lastTargetPosition = this.dronePublicState.TargetObjectPosition.Value.ToVector2D();
-
-                if (this.hitWorldObject is null)
-                {
-                    this.hitWorldObject = Client.World.GetTile(this.lastTargetPosition.Value.ToVector2Ushort())
-                                                .StaticObjects
-                                                .FirstOrDefault();
-                }
+                this.hitWorldObject ??= Client.World.GetTile(this.lastTargetPosition.Value.ToVector2Ushort())
+                                              .StaticObjects
+                                              .FirstOrDefault();
 
                 if (this.hitWorldObject != null)
                 {

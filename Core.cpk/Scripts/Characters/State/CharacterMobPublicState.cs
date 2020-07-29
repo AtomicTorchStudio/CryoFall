@@ -39,11 +39,7 @@
             this.AppliedInput = new AppliedCharacterInput();
             this.CurrentPublicStatusEffects = new NetworkSyncList<IProtoStatusEffect>();
 
-            if (this.CurrentStats == null)
-            {
-                // create current stats
-                this.CurrentStats = new CharacterCurrentStats();
-            }
+            this.CurrentStats ??= new CharacterCurrentStats();
         }
 
         public void SharedSetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto)

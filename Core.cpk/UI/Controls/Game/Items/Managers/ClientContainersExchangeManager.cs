@@ -189,10 +189,7 @@
                     return;
                 }
 
-                if (this.allowedTargetContainers == null)
-                {
-                    this.allowedTargetContainers = new HashSet<IClientItemsContainer>();
-                }
+                this.allowedTargetContainers ??= new HashSet<IClientItemsContainer>();
 
                 foreach (var itemsContainer in containersList)
                 {

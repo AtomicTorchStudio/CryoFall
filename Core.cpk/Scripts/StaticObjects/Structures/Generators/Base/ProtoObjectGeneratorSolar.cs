@@ -40,6 +40,15 @@
             return SharedGetCurrentLightFraction();
         }
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                GetPublicState(gameObject).PanelsContainer);
+        }
+
         public override void SharedGetElectricityProduction(
             IStaticWorldObject worldObject,
             out double currentProduction,

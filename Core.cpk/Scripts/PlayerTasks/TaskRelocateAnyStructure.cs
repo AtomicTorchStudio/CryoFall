@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class TaskRelocateAnyStructure : BasePlayerTaskWithDefaultState
     {
@@ -46,7 +47,9 @@
             }
         }
 
-        private void ServerStructureRelocatedHandler(ICharacter character, IStaticWorldObject staticWorldObject)
+        private void ServerStructureRelocatedHandler(ICharacter character, 
+                                                     Vector2Ushort fromPosition,
+                                                     IStaticWorldObject staticWorldObject)
         {
             var context = this.GetActiveContext(character, out _);
             context?.SetCompleted();

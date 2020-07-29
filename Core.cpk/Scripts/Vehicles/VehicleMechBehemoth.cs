@@ -43,11 +43,11 @@
         protected override void PrepareDefense(DefenseDescription defense)
         {
             defense.Set(
-                impact: 0.90,
+                impact: 0.60,
                 kinetic: 0.90,
                 explosion: 0.60,
                 heat: 0.90,
-                cold: 0.90,
+                cold: 0.50,
                 chemical: 1.00,
                 radiation: 0.0,
                 psi: 0.0);

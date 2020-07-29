@@ -1889,28 +1889,6 @@
             <br />5. Arrays or lists of 1/2/3 cases.
             </param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Network.ProtoEntityRemoteExtensions.CallClient``2(``0,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Calls remote Client method. Use only on the Server-side.
-            </summary>
-            <example>
-            <code language="c#">
-            this.CallClient(character, _ => _.ClientRemote_DoSomethingOnClient(someArgument1, someArgument2);</code>
-            </example>
-            <param name="protoEntity">Proto entity (containing the remote method).</param>
-            <param name="characterDestination">Player character who will receive this remote call.</param>
-            <param name="remoteClientCall">
-            Lambda expression of call (see example).
-            <br />Please note that the server method must have name starting with "ServerRemote_".
-            <br />Please note that only these argument types are supported:
-            <br />1. Primitive types such as int, float, string, etc.
-            <br />2. Proto entities (such as instance of IProtoItem or IProtoCharacter). Use
-            <see cref="M:AtomicTorch.CBND.GameApi.Scripting.Api.GetProtoEntity``1" /> to acquire instance of proto entity.
-            <br />3. Instances of IGameObject (dynamic/static world objects, characters, projectiles, etc).
-            <br />4. Instances of objects which classes are implements IRemoteCallParameter.
-            <br />5. Arrays or lists of 1/2/3 cases.
-            </param>
-        </member>
         <member name="M:AtomicTorch.CBND.GameApi.Scripting.Network.ProtoEntityRemoteExtensions.CallClient``1(``0,System.Collections.Generic.IEnumerable{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter},System.Linq.Expressions.Expression{System.Action{``0}})">
             <summary>
             Calls remote Client method. Use only on the Server-side.

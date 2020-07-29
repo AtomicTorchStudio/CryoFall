@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Eventing.Reader;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
@@ -330,8 +332,15 @@
 
                 if (weaponCache.ProtoExplosive != null)
                 {
-                    // the boss is massive so it will take x2 damage from explosives (such as grenades)
-                    damagePostMultiplier *= 2;
+                    // the boss is massive so it will take increased damage from explosives/grenades
+                    if (weaponCache.ProtoExplosive is IAmmoCannonShell)
+                    {
+                        damagePostMultiplier *= 1.333; // the artillery shells are too OP already
+                    }
+                    else
+                    {
+                        damagePostMultiplier *= 2;
+                    }
                 }
             }
 

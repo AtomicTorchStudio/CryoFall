@@ -2058,25 +2058,9 @@
         {
             // try drop items from the safe storage
             var itemsContainer = LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainerSafeStorage;
-            if (itemsContainer.OccupiedSlotsCount == 0)
-            {
-                // no items to drop
-                return;
-            }
-
-            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 landClaimStructure.OccupiedTile,
-                itemsContainer);
-
-            if (groundContainer == null)
-            {
-                // no items dropped
-                return;
-            }
-
-            // set custom timeout for the dropped ground items container
-            ObjectGroundItemsContainer.ServerSetDestructionTimeout(
-                (IStaticWorldObject)groundContainer.Owner,
+                itemsContainer,
                 DestroyedLandClaimDroppedItemsDestructionTimeout.TotalSeconds);
         }
 
@@ -2105,10 +2089,7 @@
             }
 
             var groupPrivateState = LandClaimAreasGroup.GetPrivateState(currentGroup);
-            if (groupPrivateState.ServerLandClaimsAreas == null)
-            {
-                groupPrivateState.ServerLandClaimsAreas = new List<ILogicObject>();
-            }
+            groupPrivateState.ServerLandClaimsAreas ??= new List<ILogicObject>();
 
             var areasGroupAreasList = groupPrivateState.ServerLandClaimsAreas;
 

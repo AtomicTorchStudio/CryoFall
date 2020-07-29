@@ -167,12 +167,9 @@
             base.ServerOnDestroy(gameObject);
 
             var itemsContainer = GetPrivateState(gameObject).ItemsContainer;
-            if (itemsContainer.OccupiedSlotsCount > 0)
-            {
-                ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
-                    gameObject.OccupiedTile,
-                    itemsContainer);
-            }
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                itemsContainer);
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)

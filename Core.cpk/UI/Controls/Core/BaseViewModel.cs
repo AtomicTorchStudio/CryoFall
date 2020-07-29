@@ -56,11 +56,7 @@
 
         public void RegisterSubscription(StateSubscriptionToken stateSubscriptionToken)
         {
-            if (this.stateSubscriptionStorage == null)
-            {
-                this.stateSubscriptionStorage = new StateSubscriptionStorage();
-            }
-
+            this.stateSubscriptionStorage ??= new StateSubscriptionStorage();
             this.stateSubscriptionStorage.RegisterSubscription(stateSubscriptionToken);
         }
 

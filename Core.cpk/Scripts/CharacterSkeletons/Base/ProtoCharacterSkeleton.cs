@@ -380,15 +380,8 @@
                 }
             }
 
-            if (soundPresetCharacter == null)
-            {
-                soundPresetCharacter = this.SoundPresetCharacter;
-            }
-
-            if (soundPresetMovement == null)
-            {
-                soundPresetMovement = this.SoundPresetMovement;
-            }
+            soundPresetCharacter ??= this.SoundPresetCharacter;
+            soundPresetMovement ??= this.SoundPresetMovement;
 
             return (soundPresetCharacter, soundPresetMovement);
         }
@@ -504,7 +497,7 @@
             }
 
             var protoSkeleton = (ProtoCharacterSkeleton)protoCharacter.ClientGetCurrentProtoSkeleton(character);
-            if (soundPresetMovement == null)
+            if (soundPresetMovement is null)
             {
                 // movement sound preset is not overridden - use from this skeleton
                 soundPresetMovement = protoSkeleton.SoundPresetFootsteps;

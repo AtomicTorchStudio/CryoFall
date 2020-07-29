@@ -1981,13 +1981,13 @@ UI/CoreStrings@Yes:
 Tak
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Połączone
@@ -2075,8 +2075,8 @@ Odblokuj mnie!
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Jeśli zamurujesz się wewnątrz domu, to się z niego nie wydostaniesz.
-br]Ktoś cię załatwił i nie możesz się ruszyć?
-br]Za pomocą tej funkcji przeteleportujesz z pewnym opóźnieniem swoją postać.`
+[br]Ktoś cię załatwił i nie możesz się ruszyć?
+[br]Za pomocą tej funkcji przeteleportujesz z pewnym opóźnieniem swoją postać.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Odblokuj

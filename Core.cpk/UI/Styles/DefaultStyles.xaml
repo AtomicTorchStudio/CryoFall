@@ -89,12 +89,14 @@
     <!-- Liquid colors -->
     <Color x:Key="LiquidColorEmpty">#FF999999</Color>
     <Color x:Key="LiquidColorWater">#FF0C8AD3</Color>
+    <Color x:Key="LiquidColorWaterStale">#FF558866</Color>
     <Color x:Key="LiquidColorGasoline">#FF59A353</Color>
     <Color x:Key="LiquidColorMineralOil">#FFBCAE2F</Color>
     <Color x:Key="LiquidColorPetroleum">#FF8E2A2A</Color>
 
     <SolidColorBrush x:Key="LiquidBrushEmpty" Color="{StaticResource LiquidColorEmpty}" />
     <SolidColorBrush x:Key="LiquidBrushWater" Color="{StaticResource LiquidColorWater}" />
+    <SolidColorBrush x:Key="LiquidBrushWaterStale" Color="{StaticResource LiquidColorWaterStale}" />
     <SolidColorBrush x:Key="LiquidBrushGasoline" Color="{StaticResource LiquidColorGasoline}" />
     <SolidColorBrush x:Key="LiquidBrushMineralOil" Color="{StaticResource LiquidColorMineralOil}" />
     <SolidColorBrush x:Key="LiquidBrushPetroleum" Color="{StaticResource LiquidColorPetroleum}" />
@@ -106,6 +108,8 @@
     <!-- Also see class LiquidColorIconHelper -->
     <ImageBrush x:Key="LiquidIconWater" Stretch="Uniform"
                 ImageSource="/Content/Textures/Icons/Liquids/IconLiquidWater.png" />
+    <ImageBrush x:Key="LiquidIconWaterStale" Stretch="Uniform"
+                ImageSource="/Content/Textures/Icons/Liquids/IconLiquidWaterStale.png" />
     <ImageBrush x:Key="LiquidIconGasoline" Stretch="Uniform"
                 ImageSource="/Content/Textures/Icons/Liquids/IconLiquidGasoline.png" />
     <ImageBrush x:Key="LiquidIconMineralOil" Stretch="Uniform"

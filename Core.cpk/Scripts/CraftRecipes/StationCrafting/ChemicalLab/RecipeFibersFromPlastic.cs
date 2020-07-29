@@ -22,7 +22,7 @@
             inputItems.Add<ItemPlastic>(count: 1);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 1);
 
-            outputItems.Add<ItemFibers>(count: 100);
+            outputItems.Add<ItemFibers>(count: 125);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",

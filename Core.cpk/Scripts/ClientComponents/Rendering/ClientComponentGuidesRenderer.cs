@@ -34,11 +34,8 @@
                 return;
             }
 
-            if (instance == null)
-            {
-                instance = Client.Scene.CreateSceneObject("Guide lines renderer")
-                                 .AddComponent<ClientComponentGuidesRenderer>();
-            }
+            instance ??= Client.Scene.CreateSceneObject("Guide lines renderer")
+                               .AddComponent<ClientComponentGuidesRenderer>();
         }
 
         public override void LateUpdate(double deltaTime)
