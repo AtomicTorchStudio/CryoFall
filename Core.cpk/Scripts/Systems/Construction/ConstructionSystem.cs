@@ -147,6 +147,12 @@
                 return;
             }
 
+            if (ConstructionPlacementSystem.ClientConstructionCooldownIsWaitingButtonRelease)
+            {
+                // under cooldown since a structure was placed recently
+                return;
+            }
+
             var worldObjects = ClientGetObjectsAtCurrentMousePosition();
 
             IStaticWorldObject worldObjectToBuildOrRepair = null;
@@ -172,10 +178,13 @@
 
             if (worldObjectToBuildOrRepair is null)
             {
-                var worldObjectToRelocate = ClientFindWorldObjectToRelocate(worldObjects);
-                if (!(worldObjectToRelocate is null))
+                if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
                 {
-                    ConstructionRelocationSystem.ClientStartRelocation(worldObjectToRelocate);
+                    var worldObjectToRelocate = ClientFindWorldObjectToRelocate(worldObjects);
+                    if (!(worldObjectToRelocate is null))
+                    {
+                        ConstructionRelocationSystem.ClientStartRelocation(worldObjectToRelocate);
+                    }
                 }
 
                 return;
@@ -402,7 +411,7 @@
                         case IProtoObjectFloor _:
                             // don't select floor when selected anything else
                             continue;
-                        case ProtoObjectDecorationFloor _ 
+                        case ProtoObjectDecorationFloor _
                             when !(selectedObject.ProtoGameObject is IProtoObjectFloor):
                             // don't select decoration when selected anything else except the floor
                             continue;

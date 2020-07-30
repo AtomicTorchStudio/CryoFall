@@ -36,6 +36,8 @@
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Deconstruct;
 
+        public override bool IsRelocatable => false;
+
         public sealed override double ServerUpdateIntervalSeconds => 0.25;
 
         /// <summary>

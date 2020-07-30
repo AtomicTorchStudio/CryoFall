@@ -3,14 +3,13 @@
     using System;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -59,6 +58,8 @@
         }
 
         public override string Name => "Construction placement system";
+
+        public static bool ClientConstructionCooldownIsWaitingButtonRelease { get; private set; }
 
         public static void ClientDisableConstructionPlacement()
         {
@@ -175,6 +176,14 @@
             ClientToggleConstructionMenu();
         }
 
+        protected override void PrepareSystem()
+        {
+            if (IsClient)
+            {
+                ClientUpdateHelper.UpdateCallback += ClientUpdate;
+            }
+        }
+
         private static bool ClientCloseConstructionMenu()
         {
             if (Instance.IsOpened)
@@ -198,6 +207,8 @@
         private static void ClientConstructionPlaceSelectedCallback(Vector2Ushort tilePosition)
         {
             ClientEnsureConstructionToolIsSelected();
+
+            ClientConstructionCooldownIsWaitingButtonRelease = true;
 
             // validate if there are enough required items/resources to build the structure
             Instance.CallServer(_ => _.ServerRemote_PlaceStructure(currentSelectedProtoConstruction, tilePosition));
@@ -232,6 +243,15 @@
             }
 
             ClientHotbarSelectedItemManager.Select(itemTool);
+        }
+
+        private static void ClientUpdate()
+        {
+            if (ClientConstructionCooldownIsWaitingButtonRelease 
+                && !ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem))
+            {
+                ClientConstructionCooldownIsWaitingButtonRelease = false;
+            }
         }
 
         private static void ClientValidateCanBuild(
