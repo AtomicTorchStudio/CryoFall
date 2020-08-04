@@ -64,7 +64,8 @@
         public static void ServerTryClaim(
             IWorldObject worldObject,
             ICharacter character,
-            double durationSeconds)
+            double durationSeconds,
+            bool claimForPartyMembers = true)
         {
             if (!SharedIsEnabled)
             {
@@ -96,7 +97,11 @@
             }
 
             objectClaim = Server.World.CreateLogicObject<WorldObjectClaim>();
-            WorldObjectClaim.ServerSetupClaim(objectClaim, character, worldObject, durationSeconds);
+            WorldObjectClaim.ServerSetupClaim(objectClaim, 
+                                              character, 
+                                              worldObject, 
+                                              durationSeconds,
+                    claimForPartyMembers);
             worldObjectPublicState.WorldObjectClaim = objectClaim;
             //Logger.Dev("World object claim added: " + worldObject);
 

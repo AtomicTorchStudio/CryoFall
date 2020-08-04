@@ -2004,7 +2004,7 @@ UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_Cr
 Убито впервые.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
-Поймана впервые.
+Поймано впервые.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
 Употреблено впервые.

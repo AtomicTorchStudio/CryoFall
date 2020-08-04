@@ -74,6 +74,8 @@
 
         public abstract bool AiIsRunAwayFromHeavyVehicles { get; }
 
+        public virtual double BiomaterialValueMultiplier => 1.0;
+
         public ITextureResource Icon
         {
             get
@@ -133,7 +135,7 @@
         public virtual void ServerOnDeath(ICharacter character)
         {
             this.ServerSendDeathSoundEvent(character);
-            
+
             ServerWorld.DestroyObject(character);
 
             var position = character.Position;

@@ -205,16 +205,8 @@
             }
 
             RegisteredActions.ProcessAndRemove(
-                removeCondition: pair =>
-                                 {
-                                     if (IsServer)
-                                     {
-                                         CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(pair.Character);
-                                     }
-
-                                     // remove if cannot interact
-                                     return !SharedIsValidInteraction(pair);
-                                 },
+                // remove if cannot interact
+                removeCondition: pair => !SharedIsValidInteraction(pair),
                 // abort action when pair removed due to the interaction check failed
                 removeCallback: pair => pair.Value.FinishAction?.Invoke(isAbort: true));
         }

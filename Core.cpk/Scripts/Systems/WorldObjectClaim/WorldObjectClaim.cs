@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi;
@@ -32,11 +33,14 @@
             ILogicObject objectClaim,
             ICharacter character,
             IWorldObject worldObject,
-            double durationSeconds)
+            double durationSeconds,
+            bool claimForPartyMembers)
         {
             var publicState = GetPublicState(objectClaim);
             publicState.PlayerCharacterId = character.Id;
-            publicState.PlayerPartyId = PartySystem.ServerGetParty(character)?.Id ?? 0;
+            publicState.PlayerPartyId = claimForPartyMembers
+                                            ? PartySystem.ServerGetParty(character)?.Id ?? 0
+                                            : 0;
             publicState.ExpirationTime = Server.Game.FrameTime + durationSeconds;
             publicState.WorldObject = worldObject;
         }
@@ -65,10 +69,18 @@
                 return true;
             }
 
+            // perform the same party check to allow players from the same party access to it
             var claimPartyId = publicState.PlayerPartyId;
             if (claimPartyId == 0)
             {
                 return false;
+            }
+
+            var worldObject = publicState.WorldObject;
+            if (worldObject is null)
+            {
+                // should not be possible
+                return true;
             }
 
             if (IsServer)

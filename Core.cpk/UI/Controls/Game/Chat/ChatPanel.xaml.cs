@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -433,9 +434,9 @@
             this.textBlockPressKeyToOpenChat.Text
                 = string.Format(
                     CoreStrings.Chat_PressKeyToOpen_Format,
-                    ClientInputManager.GetKeyForAbstractButton(
-                                          WrappedButton<GameButton>.GetWrappedButton(GameButton.OpenChat))
-                                      .ToString());
+                    InputKeyNameHelper.GetKeyText(
+                        ClientInputManager.GetKeyForAbstractButton(
+                            WrappedButton<GameButton>.GetWrappedButton(GameButton.OpenChat))));
         }
 
         private class ChatRoomTab

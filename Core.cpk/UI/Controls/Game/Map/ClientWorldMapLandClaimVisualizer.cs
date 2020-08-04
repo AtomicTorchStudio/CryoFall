@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -96,7 +96,7 @@
 
             private readonly WorldMapController worldMapController;
 
-            private FrameworkElement markControl;
+            private WorldMapMarkLandClaim markControl;
 
             public LandClaimMapData(
                 ILogicObject area,
@@ -105,11 +105,12 @@
                 bool isFounder)
             {
                 this.area = area;
+
                 this.worldMapController = worldMapController;
                 this.landClaimGroupVisualizer = landClaimGroupVisualizer;
 
                 // add land claim mark control to map
-                this.markControl = new WorldMapMarkLandClaim() { IsFounder = isFounder };
+                this.markControl = new WorldMapMarkLandClaim() { IsFounder = isFounder, Area = area };
                 var canvasPosition = this.GetAreaCanvasPosition();
                 Canvas.SetLeft(this.markControl, canvasPosition.X);
                 Canvas.SetTop(this.markControl, canvasPosition.Y);
@@ -117,6 +118,8 @@
 
                 worldMapController.AddControl(this.markControl);
                 this.landClaimGroupVisualizer.Register(this.area);
+
+                ClientUpdateHelper.UpdateCallback += this.UpdateCallback;
             }
 
             public void Dispose()
@@ -128,6 +131,8 @@
                 }
 
                 this.landClaimGroupVisualizer.Unregister(this.area);
+
+                ClientUpdateHelper.UpdateCallback -= this.UpdateCallback;
             }
 
             private Vector2D GetAreaCanvasPosition()
@@ -140,6 +145,30 @@
                 var bounds = LandClaimSystem.SharedGetLandClaimAreaBounds(this.area);
                 return (bounds.X + bounds.Width / 2.0,
                         bounds.Y + bounds.Height / 2.0);
+            }
+
+            private void UpdateCallback()
+            {
+                var areasGroup = LandClaimArea.GetPublicState(this.area).LandClaimAreasGroup;
+                var status = LandClaimShieldProtectionSystem.SharedGetShieldPublicStatus(areasGroup);
+
+                switch (status)
+                {
+                    case ShieldProtectionStatus.Active:
+                        this.markControl.IsUnderShield = true;
+                        break;
+
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    case ShieldProtectionStatus.Activating:
+                        // flicker the icon for half a second
+                        this.markControl.IsUnderShield = Math.Round(Api.Client.Core.ClientRealTime % 1.0)
+                                                         == 0.0;
+                        break;
+
+                    default:
+                        this.markControl.IsUnderShield = false;
+                        break;
+                }
             }
         }
     }

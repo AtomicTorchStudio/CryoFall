@@ -227,11 +227,10 @@
 
             // recreate physics (as despawned drone doesn't have any physics)
             privateState.IsDespawned = true;
+            world.StopPhysicsBody(objectDrone.PhysicsBody);
             objectDrone.ProtoWorldObject.SharedCreatePhysics(objectDrone);
             world.SetPosition(objectDrone,
                               ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
-            world.SetDynamicObjectMoveSpeed(objectDrone, 0);
-            world.SetDynamicObjectPhysicsMovement(objectDrone, Vector2D.Zero, 0);
 
             privateState.CharacterOwner = null;
             ServerOnDroneControlRemoved(characterOwner, objectDrone);

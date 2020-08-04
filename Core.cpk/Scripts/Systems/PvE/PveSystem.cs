@@ -60,14 +60,12 @@
                 return;
             }
 
-            serverIsPvE = ServerRates.Get("PvE",
-                                          defaultValue: Api.IsEditor ? 0 : 1,
-                                          description:
-                                          @"PvP / PvE mode switch.
-                              Set it to 1 to make this server PvE-only. Otherwise it will default to PvP.
-                              Please note: this changes some of the game mechanics.
-                              It's better not to change it after the server world is created
-                              as it might lead to unexpected consequences. But usually it's fine.")
+            serverIsPvE = ServerRates.Get(
+                              "PvE",
+                              defaultValue: Api.IsEditor ? 0 : 1,
+                              description:
+                              @"PvP / PvE mode switch.
+                              Set it to 0 to make this server PvP-only. Otherwise it will default to PvE.")
                           > 0;
         }
 

@@ -26,14 +26,18 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical" 
+                                Grid.Row="0" 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
                         <!-- Text: Mineral oil -->
                         <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidMineralOil}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
                                    HorizontalAlignment="Center"
                                    Margin="0,-13,0,0" />
 
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
                             <controls:ItemsContainerControl
                                 Container="{Binding ViewModelManufacturingStateMineralOil.ContainerInput}"
                                 HorizontalAlignment="Left"
@@ -51,7 +55,7 @@
 
                     <StackPanel Grid.Row="2"
                                 Orientation="Vertical"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         <!-- Text: Empty -->
                         <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"

@@ -130,23 +130,23 @@
                 return;
             }
 
-            // look for best fuel item from placed into the fuel container
-            IItem bestFuelItem = null;
-            var bestFuelItemFuelAmount = 0.0;
+            // look for the fuel item with the lowest fuel value
+            IItem fuelItem = null;
+            var lowestFuelItemValue = double.MaxValue;
             foreach (var item in state.ContainerFuel.Items)
             {
                 if (item.ProtoItem is IProtoItemFuelSolid fuelItemType)
                 {
                     var itemFuelAmount = fuelItemType.FuelAmount;
-                    if (itemFuelAmount > bestFuelItemFuelAmount)
+                    if (itemFuelAmount < lowestFuelItemValue)
                     {
-                        bestFuelItem = item;
-                        bestFuelItemFuelAmount = itemFuelAmount;
+                        fuelItem = item;
+                        lowestFuelItemValue = itemFuelAmount;
                     }
                 }
             }
 
-            var bestProtoFuel = bestFuelItem?.ProtoGameObject as IProtoItemFuelSolid;
+            var bestProtoFuel = fuelItem?.ProtoGameObject as IProtoItemFuelSolid;
             if (bestProtoFuel == null)
             {
                 // no fuel placed in fuel container
@@ -162,7 +162,7 @@
             Logger.Info($"Fuel will be used for manufacturing {bestProtoFuel.ShortId} at {objectManufacturer}");
 
             // destroy one fuel item
-            Api.Server.Items.SetCount(bestFuelItem, bestFuelItem.Count - 1);
+            Api.Server.Items.SetCount(fuelItem, fuelItem.Count - 1);
 
             // set fuel burn time
             state.CurrentFuelItemType = bestProtoFuel;

@@ -148,6 +148,12 @@
             get => instance != null;
             set
             {
+                if (!(Api.IsEditor
+                      || ServerOperatorSystem.ClientIsOperator()))
+                {
+                    value = false;
+                }
+
                 if (IsVisualizerEnabled == value)
                 {
                     return;

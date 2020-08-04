@@ -115,7 +115,7 @@
                 this.serverLockedAchievements.Add(achievementEntry);
             }
 
-            Api.Logger.Important($"Achievement added: {achievement.ShortId} as {(isUnlocked ? "unlocked" : "locked")}",
+            Api.Logger.Info($"Achievement added: {achievement.ShortId} as {(isUnlocked ? "unlocked" : "locked")}",
                                  this.Character);
 
             if (isUnlocked)
@@ -148,7 +148,7 @@
             foundAchievementEntry.ServerClearStatesAndActiveTasks();
             this.UnlockedAchievements.Remove(foundAchievementEntry);
             this.serverLockedAchievements.Remove(foundAchievementEntry);
-            Api.Logger.Important("Achievement removed: " + achievement.ShortId, this.Character);
+            Api.Logger.Info("Achievement removed: " + achievement.ShortId, this.Character);
 
             // add locked achievement
             this.ServerTryAddAchievement(achievement, isUnlocked: false);

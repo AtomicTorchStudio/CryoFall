@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemWeaponGrenadeLauncher
@@ -33,24 +34,45 @@
 
         public override void ClientOnFireModChanged(bool isFiring, uint shotsDone)
         {
+            var character = ClientCurrentCharacterHelper.Character;
             var weaponState = ClientCurrentCharacterHelper.PrivateState.WeaponState;
 
             if (isFiring
-                && !weaponState.ProtoWeapon.SharedCanFire(ClientCurrentCharacterHelper.Character, weaponState))
+                && !weaponState.ProtoWeapon.SharedCanFire(character, weaponState))
             {
                 // cannot fire now
                 weaponState.SharedSetInputIsFiring(false, shotsDone: 0);
                 return;
             }
 
+            if (!isFiring)
+            {
+                weaponState.CustomTargetPosition = null;
+                return;
+            }
+
             var targetPosition = Client.Input.MouseWorldPosition;
+
+            if (Client.Input.IsKeyHeld(InputKey.Alt,        evenIfHandled: true)
+                || Client.Input.IsKeyHeld(InputKey.Control, evenIfHandled: true))
+            {
+                // shoot in the direction as far as the range allows
+                if (weaponState.WeaponCache is null)
+                {
+                    WeaponSystem.SharedRebuildWeaponCache(character, weaponState);
+                }
+
+                // ReSharper disable once PossibleNullReferenceException
+                var rangeMax = weaponState.WeaponCache.RangeMax;
+                var fromPosition = character.Position;
+                var direction = targetPosition - fromPosition;
+                targetPosition = fromPosition + direction.Normalized * rangeMax;
+            }
+
             weaponState.CustomTargetPosition = targetPosition;
 
-            if (isFiring)
-            {
-                this.CallServer(
-                    _ => _.ServerRemote_ShootOnce(targetPosition));
-            }
+            this.CallServer(
+                _ => _.ServerRemote_ShootOnce(targetPosition));
         }
 
         public override bool SharedOnFire(ICharacter character, WeaponState weaponState)
@@ -79,6 +101,13 @@
                     Client.Rendering.PreloadTextureAsync(textureAtlasResource);
                 }
             }
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+
+            hints.Add(ItemHints.HintShootGrenadeLauncher);
         }
 
         protected abstract void PrepareProtoGrenadeLauncher(

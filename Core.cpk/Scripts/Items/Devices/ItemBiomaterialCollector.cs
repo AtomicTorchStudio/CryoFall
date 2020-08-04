@@ -77,12 +77,13 @@
                 return;
             }
 
-            var protoMob = (IProtoCharacterCore)worldObject.GetPublicState<ObjectCorpse.PublicState>()
-                                                           .ProtoCharacterMob;
+            var protoMob = (IProtoCharacterMob)worldObject.GetPublicState<ObjectCorpse.PublicState>()
+                                                          .ProtoCharacterMob;
             var healthMax = protoMob.StatDefaultHealthMax;
-            var maxVialsToUse = (ushort)MathHelper.Clamp(Math.Floor(healthMax / 100.0),
-                                                         min: 1,
-                                                         max: 10);
+            var maxVialsToUse = (ushort)MathHelper.Clamp(
+                Math.Floor(protoMob.BiomaterialValueMultiplier * healthMax / 100.0),
+                min: 1,
+                max: 10);
 
             // destroy empty vial
             Server.Items.DestroyItemsOfType(

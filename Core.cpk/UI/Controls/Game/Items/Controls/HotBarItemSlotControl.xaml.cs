@@ -110,6 +110,12 @@
                 return false;
             }
 
+            if (!isDown)
+            {
+                // no action on mouse button up over the hotbar
+                return true;
+            }
+
             // no menus opened, no use-click - select this hotbar slot instead
             ClientHotbarSelectedItemManager.SelectedSlotId = this.itemSlotControl.SlotId;
             return true;

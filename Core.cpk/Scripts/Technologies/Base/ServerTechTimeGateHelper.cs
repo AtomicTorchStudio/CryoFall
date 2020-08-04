@@ -52,6 +52,54 @@
             return timeRemains > 0;
         }
 
+        public static bool OnlyBeforeT3SpecializedOrPvE(DropItemContext context)
+        {
+            if (PveSystem.ServerIsPvE)
+            {
+                return true;
+            }
+
+            if (Api.IsEditor)
+            {
+                return true;
+            }
+
+            var timeRemains = TechConstants.PvpTechTimeGameTier3Specialized - Api.Server.Game.SecondsSinceWorldCreation;
+            return timeRemains > 0;
+        }
+
+        public static bool OnlyBeforeT4SpecializedAndPvP(DropItemContext context)
+        {
+            if (PveSystem.ServerIsPvE)
+            {
+                return false;
+            }
+
+            if (Api.IsEditor)
+            {
+                return true;
+            }
+
+            var timeRemains = TechConstants.PvpTechTimeGameTier4Specialized - Api.Server.Game.SecondsSinceWorldCreation;
+            return timeRemains > 0;
+        }
+
+        public static bool OnlyBeforeT4SpecializedOrPvE(DropItemContext context)
+        {
+            if (PveSystem.ServerIsPvE)
+            {
+                return true;
+            }
+
+            if (Api.IsEditor)
+            {
+                return true;
+            }
+
+            var timeRemains = TechConstants.PvpTechTimeGameTier4Specialized - Api.Server.Game.SecondsSinceWorldCreation;
+            return timeRemains > 0;
+        }
+
         private static bool IsTimeGateFinished(double timeGateDuration)
         {
             if (Api.IsEditor)

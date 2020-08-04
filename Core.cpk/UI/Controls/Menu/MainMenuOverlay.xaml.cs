@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows;
+    using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
@@ -27,7 +28,6 @@
                 {
                     instance = new MainMenuOverlay();
                     Api.Client.UI.LayoutRootChildren.Add(instance);
-                    UpdateActiveTab();
                 }
 
                 return instance;
@@ -115,22 +115,6 @@
             }
         }
 
-        /// <summary>
-        /// Selects "Current game" tab if main menu overlay instance is not null and game server is connected or connecting.
-        /// </summary>
-        public static void UpdateActiveTab()
-        {
-            if (instance == null)
-            {
-                return;
-            }
-
-            var connectionState = Api.Client.CurrentGame.ConnectionState;
-            ViewModelMainMenuOverlay.Instance.IsCurrentGameTabSelected
-                = connectionState == ConnectionState.Connecting
-                  || connectionState == ConnectionState.Connected;
-        }
-
         protected override void InitControl()
         {
             this.Options = this.GetByName<MenuOptions>("MenuOptions");
@@ -142,6 +126,8 @@
             openedMainMenuInputContext?.Stop();
             openedMainMenuInputContext = null;
             ServerViewModelsProvider.Instance.IsEnabled = false;
+
+            BootstrapperClientCore.DisconnectMasterServerIfNotNecessary();
         }
 
         private static void OnBecomeVisible()

@@ -48,6 +48,13 @@
 
         protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
 
+        public static bool SharedIsProvidingStaleWater(IStaticWorldObject objectWell)
+        {
+            return objectWell.OccupiedTile.ProtoTile
+                       is IProtoTileWellAllowed protoTileWellAllowed
+                   && protoTileWellAllowed.IsStaleWellWater;
+        }
+
         public void ClientDrink(IStaticWorldObject objectWell)
         {
             if (!SharedValidateCanDrink(Client.Characters.CurrentPlayerCharacter, objectWell))
@@ -144,14 +151,7 @@
 
         private static bool SharedValidateCanDrink(ICharacter character, IStaticWorldObject objectWell)
         {
-            if (!(objectWell.OccupiedTile.ProtoTile
-                      is IProtoTileWellAllowed protoTileWellAllowed))
-            {
-                // the ground doesn't provide water
-                return false;
-            }
-
-            if (protoTileWellAllowed.IsStaleWellWater)
+            if (SharedIsProvidingStaleWater(objectWell))
             {
                 // cannot drink stale water directly
                 return false;

@@ -30,62 +30,31 @@
                 return key.ToString().TrimStart('D');
             }
 
-            switch (key)
+            return key switch
             {
-                case InputKey.None:
-                    return string.Empty;
-
-                case InputKey.MouseLeftButton:
-                    return Title_LeftMouseButton;
-
-                case InputKey.MouseRightButton:
-                    return Title_RightMouseButton;
-
-                case InputKey.MouseScrollButton:
-                    return Title_MouseScrollButton;
-
-                case InputKey.MouseExtraButton1:
-                    return Title_MouseExtraButton1;
-
-                case InputKey.MouseExtraButton2:
-                    return Title_MouseExtraButton2;
-
-                case InputKey.Space:
-                    return Title_SpaceBar;
-
-                case InputKey.CapsLock:
-                    return Title_CapsLock;
-
-                case InputKey.OemTilde:
-                    return "~";
-
-                case InputKey.CircumflexAccent:
-                    return '\u005E'.ToString();
-
-                case InputKey.OemMinus:
-                    return "-";
-
-                case InputKey.OemPlus:
-                    return "+";
-
-                case InputKey.OemComma:
-                    return ",";
-
-                case InputKey.OemPeriod:
-                    return ".";
-
-                case InputKey.OemQuestion:
-                    return "?";
-
-                case InputKey.PageUp:
-                    return Title_PageUp;
-
-                case InputKey.PageDown:
-                    return Title_PageDown;
-
-                default:
-                    return key.ToString();
-            }
+                InputKey.None              => string.Empty,
+                InputKey.MouseLeftButton   => Title_LeftMouseButton,
+                InputKey.MouseRightButton  => Title_RightMouseButton,
+                InputKey.MouseScrollButton => Title_MouseScrollButton,
+                InputKey.MouseExtraButton1 => Title_MouseExtraButton1,
+                InputKey.MouseExtraButton2 => Title_MouseExtraButton2,
+                InputKey.Space             => Title_SpaceBar,
+                InputKey.CapsLock          => Title_CapsLock,
+                InputKey.OemTilde          => "~",
+                InputKey.CircumflexAccent  => '\u005E'.ToString(),
+                InputKey.OemMinus          => "-",
+                InputKey.OemPlus           => "+",
+                InputKey.OemComma          => ",",
+                InputKey.OemPeriod         => ".",
+                InputKey.OemSemicolon      => ";",
+                InputKey.OemQuestion       => "?",
+                InputKey.OemPipe           => "|",
+                InputKey.OemOpenBrackets   => "[",
+                InputKey.OemCloseBrackets  => "]",
+                InputKey.PageUp            => Title_PageUp,
+                InputKey.PageDown          => Title_PageDown,
+                _                          => key.ToString()
+            };
         }
     }
 }

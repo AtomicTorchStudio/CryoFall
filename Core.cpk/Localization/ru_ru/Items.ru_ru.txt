@@ -169,6 +169,9 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Топливные ячейки используются для питания различного транспорта.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+Удерживайте [b]Alt[/b] или [b]Ctrl[/b] когда стреляете, чтобы выстрелить на максимальную дистанцию в указанном направлении вместо стрельбы в указанную позицию.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Импланты можно устанавливать только на медицинских станциях.
 

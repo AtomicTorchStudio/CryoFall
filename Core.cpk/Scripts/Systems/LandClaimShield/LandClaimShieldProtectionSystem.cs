@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
+    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
@@ -682,6 +683,18 @@
                 return;
             }
 
+            var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
+            if (currentInteractionObject is null
+                || (areasGroup
+                    != LandClaimSystem.SharedGetLandClaimAreasGroup(
+                        ProtoObjectLandClaim.GetPublicState((IStaticWorldObject)currentInteractionObject)
+                                            .LandClaimAreaObject)))
+            {
+                Logger.Warning("Player not interacting with the land claim to activate the shield: " + areasGroup,
+                               character);
+                return;
+            }
+
             var status = SharedGetShieldPublicStatus(areasGroup);
             if (status != ShieldProtectionStatus.Inactive)
             {
@@ -720,10 +733,10 @@
             publicState.Status = ShieldProtectionStatus.Activating;
 
             Logger.Important("Shield activation scheduled after "
-                       + SharedActivationDuration.ToString("F2")
-                       + " seconds for "
-                       + areasGroup,
-                       character);
+                             + SharedActivationDuration.ToString("F2")
+                             + " seconds for "
+                             + areasGroup,
+                             character);
         }
 
         private void ServerRemote_DeactivateShield(ILogicObject areasGroup)

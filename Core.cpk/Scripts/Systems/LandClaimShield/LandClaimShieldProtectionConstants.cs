@@ -15,13 +15,17 @@
             }
 
             SharedIsEnabled =
-                !PveSystem.ServerIsPvE
-                && ServerRates.Get(
+                ServerRates.Get(
                     "PvP.ShieldProtection.Enabled",
                     defaultValue: 1,
                     @"Set it to 0 to disable the S.H.I.E.L.D. protection (PvP only).
                     Set it to 1 to enable the S.H.I.E.L.D. protection.")
                 > 0;
+
+            if (PveSystem.ServerIsPvE)
+            {
+                SharedIsEnabled = false;
+            }
 
             SharedCooldownDuration = ServerRates.Get(
                 "PvP.ShieldProtection.CooldownDuration",

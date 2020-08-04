@@ -573,16 +573,21 @@
                            : DistanceThresholdToPlayer))
                 {
                     // fly towards that object
-                    targetVelocity = this.StatMoveSpeed;
+                    var moveSpeed = this.StatMoveSpeed;
+
+                    targetVelocity = moveSpeed;
                     isDestinationReached = false;
 
-                    // reduce speed when too close to the target
-                    var distanceCoef = positionDeltaLength / (0.5 * targetVelocity);
-                    if (distanceCoef < 1)
+                    if (isToMineral)
                     {
-                        targetVelocity *= Math.Pow(distanceCoef, 0.5);
-                        // ensure it cannot drop lower than 5% of the original move speed
-                        targetVelocity = Math.Max(0.05 * this.StatMoveSpeed, targetVelocity);
+                        // reduce speed when too close to the mineral
+                        var distanceCoef = positionDeltaLength / (0.333 * targetVelocity);
+                        if (distanceCoef < 1)
+                        {
+                            targetVelocity *= Math.Pow(distanceCoef, 0.5);
+                            // ensure it cannot drop lower than 5% of the original move speed
+                            targetVelocity = Math.Max(0.05 * moveSpeed, targetVelocity);
+                        }
                     }
                 }
                 else
@@ -848,15 +853,20 @@
                 .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, character.Tile);
             if (groundContainer != null)
             {
-                var protoItemForIcon = storageContainer.Items.First().ProtoItem;
-                Server.Items.TryMoveAllItems(storageContainer, groundContainer);
-                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(character,
-                                                                                                protoItemForIcon);
+                var result2 = Server.Items.TryMoveAllItems(storageContainer, groundContainer);
+                if (result2.MovedItems.Count > 0)
+                {
+                    var protoItemForIcon = result2.MovedItems.First().Key.ProtoItem;
 
-                // ensure that these items could be lifted only by their owner in PvE
-                WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
-                                                      character,
-                                                      WorldObjectClaimDuration.DroppedGoods);
+                    NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                        character,
+                        protoItemForIcon);
+
+                    // ensure that these items could be lifted only by their owner in PvE
+                    WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
+                                                          character,
+                                                          WorldObjectClaimDuration.DroppedGoods);
+                }
             }
 
             if (storageContainer.OccupiedSlotsCount == 0)

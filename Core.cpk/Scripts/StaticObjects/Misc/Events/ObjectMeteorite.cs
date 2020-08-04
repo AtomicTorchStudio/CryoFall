@@ -4,8 +4,10 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
@@ -17,7 +19,7 @@
 
         public override double ServerCooldownDuration
             => PveSystem.ServerIsPvE
-                   ? 1 * 60   // 1 minute in PvE
+                   ? 0        // in PvE can mine instantly (first come first serve)
                    : 10 * 60; // 10 minutes in PvP
 
         public override float StructurePointsMax => 3000;
@@ -60,7 +62,17 @@
                   .Add<ItemOreIronConcentrate>(count: 10,        countRandom: 0)
                   .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 2)
-                  .Add<ItemGoldNugget>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield);
+                  .Add<ItemGoldNugget>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield)
+                  .Add<ItemGoldNugget>(count: 3,       condition: T4SpecializedPvPOnly)
+                  .Add<ItemGoldNugget>(count: 3,       condition: T5SpecializedPvPOnly);
+
+            static bool T4SpecializedPvPOnly(DropItemContext context)
+                => !PveSystem.ServerIsPvE
+                   && ServerTechTimeGateHelper.IsAvailableT4Specialized(context);
+
+            static bool T5SpecializedPvPOnly(DropItemContext context)
+                => !PveSystem.ServerIsPvE
+                   && ServerTechTimeGateHelper.IsAvailableT5Specialized(context);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

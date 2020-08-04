@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -108,6 +109,7 @@
 
             this.serversProvider.ServerPingUpdated += this.ServerPingUpdatedHandled;
             this.serversProvider.ServerInfoReceived += this.ServerInfoReceivedHandler;
+            Api.Client.MasterServer.ConnectionStateChanged += MasterServerConnectionStateChangedHandler;
         }
 
         public static ViewModelMenuServers Instance { get; private set; }
@@ -274,6 +276,15 @@
 
         protected override void DisposeViewModel()
         {
+            try
+            {
+                Api.Client.MasterServer.ConnectionStateChanged -= MasterServerConnectionStateChangedHandler;
+            }
+            catch (Exception ex)
+            {
+                Api.Logger.Exception(ex);
+            }
+
             if (Instance == this)
             {
                 Instance = null;
@@ -306,6 +317,14 @@
                           },
                 okText: CoreStrings.Yes,
                 hideCancelButton: false);
+        }
+
+        private static void MasterServerConnectionStateChangedHandler()
+        {
+            if (Api.Client.MasterServer.MasterServerConnectionState == ConnectionState.Connected)
+            {
+                RequestPublicServersList();
+            }
         }
 
         private static void RequestPublicServersList()

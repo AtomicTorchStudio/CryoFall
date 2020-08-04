@@ -38,18 +38,32 @@
 
         private static WeakReference cannotConnectToMasterServerDialog;
 
+        public static void DisconnectMasterServerIfNotNecessary()
+        {
+            if (Client.CurrentGame.ConnectionState == ConnectionState.Connected
+                && Client.MasterServer.MasterServerConnectionState != ConnectionState.Disconnected
+                && MainMenuOverlay.IsHidden)
+            {
+                Logger.Important(
+                    "Disconnecting from MasterServer as it's not necessary now (client is connected to the game server and main menu overlay is hidden)");
+
+                // ensure the master server is disconnected as it's not necessary now
+                Client.MasterServer.Disconnect();
+            }
+        }
+
         public override void ClientInitialize()
         {
             if (!Api.IsEditor
                 && !Api.Shared.IsRequiresLanguageSelection)
             {
                 // force master server connection in non-game mode (in non-Editor only)
-                Api.Client.MasterServer.Connect();
+                Client.MasterServer.Connect();
             }
 
             Client.Core.SetLoadingSplashScreenManager(LoadingSplashScreenManager.Instance);
 
-            Client.CurrentGame.ConnectionStateChanged += RefreshCurrentGameServerConnectionState;
+            Client.CurrentGame.ConnectionStateChanged += CurrentGameServerConnectionChangedHandler;
             Client.CurrentGame.ConnectingFailed += GameServerLoginFailedDialogHelper.ShowDialog;
             Client.CurrentGame.ConnectingFailedModsMissing += GameServerConnectingFailedModsMissingHandler;
             RefreshCurrentGameServerConnectionState();
@@ -62,7 +76,7 @@
             Client.MasterServer.LoggedInStateChanged += RefreshLoggedInState;
             Client.MasterServer.LoginFailed += MasterServerLoginFailedHandler;
             Client.MasterServer.ConnectingFailed += MasterServerConnectingFailedHandler;
-            Client.MasterServer.ConnectionStateChanged += RefreshMasterServerConnectionState;
+            Client.MasterServer.ConnectionStateChanged += MasterServerConnectionStateChangedHandler;
             Client.SteamApi.StateChanged += SteamServiceStateChanged;
 
             RefreshLoggedInState();
@@ -72,13 +86,43 @@
                 MasterServerLoginFailedHandler(Client.MasterServer.LastLoginErrorCode.Value);
             }
 
-            RefreshMasterServerConnectionState();
+            MasterServerConnectionStateChangedHandler();
 
             MainMenuMusicHelper.Init();
             GameplayMusicHelper.Init();
             ClientComponentCameraScreenShakes.Init();
 
             SoundConstants.ApplyConstants();
+        }
+
+        private static void ConnectToMasterServerIfNecessary()
+        {
+            if (Client.CurrentGame.ConnectionState != ConnectionState.Connected
+                && Client.MasterServer.MasterServerConnectionState == ConnectionState.Disconnected
+                && !MainMenuOverlay.IsHidden)
+            {
+                if (IsMasterServerCannotConnectDialogDisplayed())
+                {
+                    // do not autoconnect to the master server as player is expected to press Retry there
+                    return;
+                }
+
+                Logger.Important(
+                    "Connecting to MasterServer as it's necessary now (client is not connected to the game server and main menu overlay is not hidden)");
+                Client.MasterServer.Connect();
+            }
+        }
+
+        private static void CurrentGameServerConnectionChangedHandler()
+        {
+            RefreshCurrentGameServerConnectionState();
+            DisconnectMasterServerIfNotNecessary();
+
+            // selects "Current game" tab when connected
+            var state = Client.CurrentGame.ConnectionState;
+            ViewModelMainMenuOverlay.Instance.IsCurrentGameTabSelected
+                = state == ConnectionState.Connecting
+                  || state == ConnectionState.Connected;
         }
 
         private static void GameServerConnectingFailedModsMissingHandler(IReadOnlyList<ServerModInfo> missingMods)
@@ -97,18 +141,32 @@
                 textAlignment: TextAlignment.Left);
         }
 
-        private static void MasterServerConnectingFailedHandler()
+        private static bool IsMasterServerCannotConnectDialogDisplayed()
         {
             var dialog = (DialogWindow)cannotConnectToMasterServerDialog?.Target;
-            if (dialog != null
-                && dialog.GameWindow.State == GameWindowState.Opened)
+            return dialog != null
+                   && (dialog.GameWindow.State == GameWindowState.Opened
+                       || dialog.GameWindow.State == GameWindowState.Opening);
+        }
+
+        private static void MasterServerConnectingFailedHandler()
+        {
+            if (IsMasterServerCannotConnectDialogDisplayed())
             {
+                return;
+            }
+
+            if (Client.CurrentGame.ConnectionState == ConnectionState.Connected
+                && MainMenuOverlay.IsHidden)
+            {
+                // already playing and main menu hidden - do not disturb the player!
+                Logger.Important("Do not disturb the player");
                 return;
             }
 
             string cancelText;
             Action cancelAction;
-            if (Api.Client.MasterServer.CurrentPlayerIsLoggedIn)
+            if (Client.MasterServer.CurrentPlayerIsLoggedIn)
             {
                 cancelText = CoreStrings.Button_Cancel;
                 cancelAction = () => { };
@@ -119,7 +177,7 @@
                 cancelAction = () => Client.Core.Quit();
             }
 
-            dialog = DialogWindow.ShowDialog(
+            var dialog = DialogWindow.ShowDialog(
                 title: DialogCannotConnectToTheMasterServer_Title,
                 text: DialogCannotConnectToTheMasterServer_Message,
                 textAlignment: TextAlignment.Left,
@@ -130,7 +188,33 @@
                 zIndexOffset: 9002,
                 autoWidth: true);
 
+            // ensure the window is displayed
+            dialog.UpdateLayout();
+            dialog.Window.UpdateLayout();
+            dialog.Window.Open();
+
             cannotConnectToMasterServerDialog = new WeakReference(dialog);
+        }
+
+        private static void MasterServerConnectionStateChangedHandler()
+        {
+            var state = Client.MasterServer.MasterServerConnectionState;
+            MasterServerConnectionIndicator.MasterConnectionState = state;
+
+            RefreshLoggedInState();
+
+            ConnectToMasterServerIfNecessary();
+
+            if (state == ConnectionState.Connected)
+            {
+                var dialog = (DialogWindow)cannotConnectToMasterServerDialog?.Target;
+                if (dialog != null
+                    && (dialog.Window.State == GameWindowState.Opening
+                        || dialog.Window.State == GameWindowState.Opened))
+                {
+                    dialog.Window.Close(DialogResult.Cancel);
+                }
+            }
         }
 
         private static void MasterServerLoginFailedHandler(MasterClientLoginErrorCode errorCode)
@@ -153,27 +237,18 @@
         {
             ClientCursorSystem.CurrentCursorId = CursorId.Default;
 
-            MainMenuOverlay.UpdateActiveTab();
-
             var currentGameService = Client.CurrentGame;
             var isConnected = currentGameService.ConnectionState == ConnectionState.Connected;
             var isConnecting = currentGameService.ConnectionState == ConnectionState.Connecting;
 
-            if (!isConnected
+            if (Api.IsEditor
+                && !isConnected
                 && !isConnecting
                 && Client.MasterServer.CurrentPlayerIsLoggedIn)
             {
-                var isEditor = Api.IsEditor;
-                if (isEditor || Api.Client.Input.IsKeyHeld(InputKey.F1))
-                {
-                    if (isEditor)
-                    {
-                        Logger.Important("Editor mode: automatically connect to the local game server");
-                    }
-
-                    currentGameService.ConnectToServer(new ServerAddress());
-                    isConnecting = true;
-                }
+                Logger.Info("Editor mode: automatically connect to the local game server");
+                currentGameService.ConnectToServer(new ServerAddress());
+                isConnecting = true;
             }
 
             if (isConnecting)
@@ -222,8 +297,8 @@
             {
                 var connectionState = Client.MasterServer.MasterServerConnectionState;
 
-                if (Api.Client.SteamApi.IsSteamClient
-                    && Api.Client.SteamApi.State == SteamApiState.Connecting)
+                if (Client.SteamApi.IsSteamClient
+                    && Client.SteamApi.State == SteamApiState.Connecting)
                 {
                     connectionState = ConnectionState.Connecting;
                 }
@@ -232,14 +307,6 @@
                                            ? MenuLoginMode.Connecting
                                            : MenuLoginMode.Login);
             }
-        }
-
-        private static void RefreshMasterServerConnectionState()
-        {
-            var state = Client.MasterServer.MasterServerConnectionState;
-            MasterServerConnectionIndicator.MasterConnectionState = state;
-
-            RefreshLoggedInState();
         }
 
         private static void SteamServiceStateChanged()

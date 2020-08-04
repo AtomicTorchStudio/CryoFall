@@ -30,7 +30,7 @@
             OldLocations.Clear();
         }
 
-        public static bool IsLocationUsedRecently(Vector2Ushort position, ushort radius)
+        public static bool IsLocationUsedRecently(Vector2Ushort position, double radius)
         {
             var position2D = position.ToVector2D();
             var serverTime = Api.Server.Game.FrameTime;
@@ -41,7 +41,7 @@
                 if (serverTime >= oldEvent.ServerTimeExpires)
                 {
                     // the location expired and became available again
-                    OldLocations.RemoveAt(index++);
+                    OldLocations.RemoveAt(index--);
                     continue;
                 }
 

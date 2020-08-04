@@ -190,7 +190,8 @@
                 // mark the loot object for this player (works only in PvE)
                 WorldObjectClaimSystem.ServerTryClaim(lootObject,
                                                       forCharacter,
-                                                      WorldObjectClaimDuration.BossLoot);
+                                                      WorldObjectClaimDuration.BossLoot,
+                                                      claimForPartyMembers: false);
                 return true;
             }
         }

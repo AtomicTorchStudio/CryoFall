@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Eventing.Reader;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;

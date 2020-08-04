@@ -705,7 +705,6 @@
             if (IsServer)
             {
                 protoWeaponSkill?.ServerOnShot(playerCharacterSkills); // give experience for shot
-                CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(character);
             }
 
             var weaponCache = weaponState.WeaponCache;
@@ -892,21 +891,13 @@
                         obstacleBlockDamageCoef = 1;
                     }
 
-                    if (IsServer)
+                    if (IsServer 
+                        && damageApplied > 0)
                     {
-                        if (damageApplied > 0
-                            && damagedObject is ICharacter damagedCharacter)
-                        {
-                            CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
-                        }
-
-                        if (damageApplied > 0)
-                        {
-                            // give experience for damage
-                            protoWeaponSkill?.ServerOnDamageApplied(playerCharacterSkills,
-                                                                    damagedObject,
-                                                                    damageApplied);
-                        }
+                        // give experience for damage
+                        protoWeaponSkill?.ServerOnDamageApplied(playerCharacterSkills,
+                                                                damagedObject,
+                                                                damageApplied);
                     }
 
                     if (obstacleBlockDamageCoef < 0

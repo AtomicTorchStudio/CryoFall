@@ -35,6 +35,67 @@
                    ?? LandClaimSystem.SharedGetLandClaimAreasGroup(position, addGracePadding: true);
         }
 
+        private static void GetText(
+            LandClaimAreasGroupPublicState publicState,
+            bool canDeactivate,
+            out string message,
+            out string title)
+        {
+            var time = Api.Client.CurrentGame.ServerFrameTimeApproximated;
+
+            switch (publicState.Status)
+            {
+                case ShieldProtectionStatus.Active:
+                {
+                    var timeRemains = publicState.ShieldEstimatedExpirationTime - time;
+                    timeRemains = Math.Max(0, timeRemains);
+
+                    title = CoreStrings.ShieldProtection_NotificationBaseUnderShield_Title;
+
+                    message = string.Format(CoreStrings.ShieldProtection_NotificationBaseUnderShield_Message_Format,
+                                            ClientTimeFormatHelper.FormatTimeDuration(
+                                                timeRemains,
+                                                appendSeconds: false));
+
+                    if (canDeactivate)
+                    {
+                        message += "[br][br]"
+                                   + CoreStrings.ShieldProtection_NotificationBaseUnderShield_MessageOwner;
+                    }
+
+                    message += "[br][br]"
+                               + CoreStrings.ShieldProtection_Description_2
+                               + "[br]"
+                               + CoreStrings.ShieldProtection_Description_3;
+                    break;
+                }
+
+                case ShieldProtectionStatus.Activating:
+                {
+                    var timeRemains = publicState.ShieldActivationTime - time;
+                    timeRemains = Math.Max(0, timeRemains);
+
+                    title = CoreStrings.ShieldProtection_NotificationBaseActivatingShield_Title;
+                    message = string.Format(
+                        CoreStrings.ShieldProtection_NotificationBaseActivatingShield_Message_Format,
+                        ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+
+                    if (canDeactivate)
+                    {
+                        message += "[br][br]"
+                                   + CoreStrings.ShieldProtection_NotificationBaseUnderShield_MessageOwner;
+                    }
+
+                    break;
+                }
+
+                default:
+                    title = null;
+                    message = null;
+                    break;
+            }
+        }
+
         private static bool IsOwner(ILogicObject areasGroup)
         {
             if (areasGroup.ClientHasPrivateState)
@@ -76,8 +137,8 @@
                 return;
             }
 
-            var status = LandClaimAreasGroup.GetPublicState(areasGroup).Status;
-            if (status == ShieldProtectionStatus.Inactive)
+            var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            if (publicState.Status == ShieldProtectionStatus.Inactive)
             {
                 currentNotification?.Hide(quick: true);
                 currentNotification = null;
@@ -92,44 +153,10 @@
                 currentNotification = CreateNotification();
             }
 
-            var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
-            var time = Api.Client.CurrentGame.ServerFrameTimeApproximated;
-
-            string message, title;
-            if (status == ShieldProtectionStatus.Active)
-            {
-                var timeRemains = publicState.ShieldEstimatedExpirationTime - time;
-                title = CoreStrings.ShieldProtection_NotificationBaseUnderShield_Title;
-
-                message = string.Format(CoreStrings.ShieldProtection_NotificationBaseUnderShield_Message_Format,
-                                        ClientTimeFormatHelper.FormatTimeDuration(timeRemains, appendSeconds: false));
-
-                if (isOwner)
-                {
-                    message += "[br][br]"
-                               + CoreStrings.ShieldProtection_NotificationBaseUnderShield_MessageOwner;
-                }
-
-                message += "[br][br]"
-                           + CoreStrings.ShieldProtection_Description_2
-                           + "[br]"
-                           + CoreStrings.ShieldProtection_Description_3;
-            }
-            else // activating
-            {
-                var timeRemains = publicState.ShieldActivationTime - time;
-                timeRemains = Math.Max(0, timeRemains);
-
-                title = CoreStrings.ShieldProtection_NotificationBaseActivatingShield_Title;
-                message = string.Format(CoreStrings.ShieldProtection_NotificationBaseActivatingShield_Message_Format,
-                                        ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
-
-                if (isOwner)
-                {
-                    message += "[br][br]"
-                               + CoreStrings.ShieldProtection_NotificationBaseUnderShield_MessageOwner;
-                }
-            }
+            GetText(publicState,
+                    canDeactivate: isOwner,
+                    out var message,
+                    out var title);
 
             currentNotification.Title = title;
             currentNotification.Message = message;

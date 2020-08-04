@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoEventWithArea
@@ -24,14 +25,39 @@
         where TEventPublicState : EventWithAreaPublicState, new()
         where TEventClientState : BaseClientState, new()
     {
-        protected bool ServerCheckNoEventsNearby(Vector2Ushort position, double areaRadius)
+        protected static bool ServerCheckNoEventsInZone(IServerZone zoneInstance, List<ILogicObject> events)
         {
-            var position2D = position.ToVector2D();
-            using var tempEvents =
+            foreach (var activeEvent in events)
+            {
+                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                if (zoneInstance.IsContainsPosition(publicState.AreaEventOriginalPosition))
+                {
+                    // this event is in the same biome
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        protected bool ServerCheckNoEventsNearby(
+            Vector2Ushort position,
+            double areaRadius)
+        {
+            using var tempAllActiveEvents =
                 Api.Shared.WrapInTempList(
                     Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
 
-            foreach (var activeEvent in tempEvents.AsList())
+            return this.ServerCheckNoEventsNearby(position, areaRadius, tempAllActiveEvents.AsList());
+        }
+
+        protected bool ServerCheckNoEventsNearby(
+            Vector2Ushort position,
+            double areaRadius,
+            List<ILogicObject> allActiveEvents)
+        {
+            var position2D = position.ToVector2D();
+            foreach (var activeEvent in allActiveEvents)
             {
                 var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
                 var distance = (publicState.AreaCirclePosition.ToVector2D() - position2D).Length;
@@ -152,20 +178,5 @@
         protected abstract void ServerOnEventWithAreaStarted(ILogicObject activeEvent);
 
         protected abstract Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent);
-
-        private static bool ServerCheckNoEventsInZone(IServerZone zoneInstance, List<ILogicObject> events)
-        {
-            foreach (var activeEvent in events)
-            {
-                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
-                if (zoneInstance.IsContainsPosition(publicState.AreaEventOriginalPosition))
-                {
-                    // this event is in the same biome
-                    return false;
-                }
-            }
-
-            return true;
-        }
     }
 }

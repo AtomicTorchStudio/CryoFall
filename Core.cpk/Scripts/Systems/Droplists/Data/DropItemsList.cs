@@ -74,7 +74,7 @@
         /// ///
         /// <param name="condition">(optional) Special condition.</param>
         public DropItemsList Add<TProtoItem>(
-            ushort count = 1,
+            ushort? count = null,
             ushort countRandom = 0,
             double weight = 1,
             double probability = 1,
@@ -82,7 +82,15 @@
             where TProtoItem : class, IProtoItem, new()
         {
             var protoItem = Api.GetProtoEntity<TProtoItem>();
-            return this.Add(protoItem, count, countRandom, weight, probability, condition);
+            return this.Add(protoItem,
+                            count: count // use default count when provided
+                                   ?? (countRandom > 0
+                                           ? (ushort)0 // use zero count when random amount is provided
+                                           : (ushort)1), // spawn one item if default count is not provided and random is zero
+                            countRandom,
+                            weight,
+                            probability,
+                            condition);
         }
 
         /// <summary>

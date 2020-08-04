@@ -1529,7 +1529,7 @@ UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Zufällig
 
 UI/CoreStrings@WindowCompletionist_BestFishLength_Format:
-Beste Länge: {0} kg
+Beste Länge: {0} cm
 
 UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
 Bestes Gewicht: {0} kg

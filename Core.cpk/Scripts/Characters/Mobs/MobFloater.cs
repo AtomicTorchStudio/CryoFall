@@ -13,6 +13,8 @@
     {
         public override bool AiIsRunAwayFromHeavyVehicles => false;
 
+        public override double BiomaterialValueMultiplier => 2.0;
+
         public override float CharacterWorldHeight => 2.4f;
 
         public override float CharacterWorldWeaponOffsetRanged => 1.1f;

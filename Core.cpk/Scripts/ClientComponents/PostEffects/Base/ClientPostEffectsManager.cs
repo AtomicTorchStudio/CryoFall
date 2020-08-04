@@ -40,6 +40,12 @@
             get => isPostEffectsEnabled;
             set
             {
+                if (!(Api.IsEditor
+                      || ServerOperatorSystem.ClientIsOperator()))
+                {
+                    value = true;
+                }
+
                 if (isPostEffectsEnabled == value)
                 {
                     return;

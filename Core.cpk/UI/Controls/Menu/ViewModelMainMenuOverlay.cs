@@ -112,6 +112,9 @@
                 this.NotifyThisPropertyChanged();
 
                 ViewModelMenuServers.Instance?.ResetSortOrder();
+                
+                // ensure master server is connected
+                Client.MasterServer.Connect();
             }
         }
 

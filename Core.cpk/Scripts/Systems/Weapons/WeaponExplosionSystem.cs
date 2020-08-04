@@ -9,7 +9,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterUnstuck;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -125,12 +124,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
                     if (Api.IsServer)
                     {
-                        if (damageApplied > 0
-                            && damagedObject is ICharacter damagedCharacter)
-                        {
-                            CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
-                        }
-
                         if (damageApplied > 0)
                         {
                             // give experience for damage
@@ -293,7 +286,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 if (damageApplied > 0
                     && damagedObject is ICharacter damagedCharacter)
                 {
-                    CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
                     hitCharacters.Add(new WeaponHitData(damagedCharacter,
                                                         (0,
                                                          damagedCharacter

@@ -19,11 +19,11 @@
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
-    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using static Technologies.ServerTechTimeGateHelper;
 
     public class ObjectSpaceDebris : ProtoObjectHackableContainer
     {
@@ -73,10 +73,13 @@
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
-            DropItemConditionDelegate onlyBeforeT3Specialized = ServerTechTimeGateHelper.OnlyBeforeT3SpecializedAndPvP;
-            DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
-            DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
-            DropItemConditionDelegate T5Specialized = ServerTechTimeGateHelper.IsAvailableT5Specialized;
+            DropItemConditionDelegate onlyBeforeT3SpecializedOrPvE = OnlyBeforeT3SpecializedOrPvE;
+            DropItemConditionDelegate onlyBeforeT3SpecializedPvP = OnlyBeforeT3SpecializedAndPvP;
+            DropItemConditionDelegate onlyBeforeT4SpecializedOrPvE = OnlyBeforeT4SpecializedOrPvE;
+            DropItemConditionDelegate T3Specialized = IsAvailableT3Specialized;
+            DropItemConditionDelegate T4Basic = IsAvailableT4Basic;
+            DropItemConditionDelegate T4Specialized = IsAvailableT4Specialized;
+            DropItemConditionDelegate T5Specialized = IsAvailableT5Specialized;
 
             droplist.Outputs = 3;
 
@@ -86,9 +89,9 @@
                     weight: 1,
                     nestedList:
                     new DropItemsList(outputs: 2)
-                        .Add<ItemAmmo8mmStandard>(count: 50,          weight: 1, condition: onlyBeforeT3Specialized)
-                        .Add<ItemAmmo8mmToxic>(count: 50,             weight: 1, condition: onlyBeforeT3Specialized)
-                        .Add<ItemAmmo12gaBuckshot>(count: 50,         weight: 1, condition: onlyBeforeT3Specialized)
+                        .Add<ItemAmmo8mmStandard>(count: 50,          weight: 1, condition: onlyBeforeT3SpecializedPvP)
+                        .Add<ItemAmmo8mmToxic>(count: 50,             weight: 1, condition: onlyBeforeT3SpecializedPvP)
+                        .Add<ItemAmmo12gaBuckshot>(count: 50,         weight: 1, condition: onlyBeforeT3SpecializedPvP)
                         .Add<ItemAmmo10mmStandard>(count: 50,         weight: 1, condition: T3Specialized)
                         .Add<ItemAmmo10mmHollowPoint>(count: 50,      weight: 1, condition: T3Specialized)
                         .Add<ItemAmmo10mmArmorPiercing>(count: 50,    weight: 1, condition: T3Specialized)
@@ -152,7 +155,6 @@
                     nestedList:
                     new DropItemsList(outputs: 1)
                         // require reaching particular tier before the weapon could be acquired there
-                        .Add<ItemHandgun10mm>(count: 1,          weight: 1,       condition: T3Specialized)
                         .Add<ItemSubmachinegun10mm>(count: 1,    weight: 1,       condition: T3Specialized)
                         .Add<ItemRifle10mm>(count: 1,            weight: 1,       condition: T3Specialized)
                         .Add<ItemShotgunMilitary>(count: 1,      weight: 1,       condition: T3Specialized)
@@ -168,9 +170,9 @@
                     weight: 1 / 2.0,
                     nestedList:
                     new DropItemsList(outputs: 1)
-                        .Add<ItemHelmetMiner>(count: 1,       weight: 1, condition: onlyBeforeT3Specialized)
-                        .Add<ItemHelmetRespirator>(count: 1,  weight: 1)
-                        .Add<ItemHelmetNightVision>(count: 1, weight: 1, condition: T3Specialized)
+                        .Add<ItemHelmetMiner>(count: 1,       weight: 1, condition: onlyBeforeT3SpecializedOrPvE)
+                        .Add<ItemHelmetRespirator>(count: 1,  weight: 1, condition: onlyBeforeT4SpecializedOrPvE)
+                        .Add<ItemHelmetNightVision>(count: 1, weight: 1, condition: onlyBeforeT4SpecializedOrPvE)
                         .Add<ItemMilitaryHelmet>(count: 1,    weight: 1, condition: T3Specialized)
                         .Add<ItemMilitaryArmor>(count: 1,     weight: 1, condition: T3Specialized)
                         // advanced stuff
@@ -192,10 +194,8 @@
                         .Add<ItemPowerBankLarge>(count: 1,    weight: 1)
                         .Add<ItemPragmiumSensor>(count: 1,    weight: 1 / 5.0, condition: T4Specialized)
                         // drones
-                        .Add<ItemDroneIndustrialStandard>(count: 1, weight: 1,       condition: T3Specialized)
-                        .Add<ItemDroneControlStandard>(count: 1,    weight: 1 / 2.0, condition: T3Specialized)
-                        .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 4.0, condition: T4Specialized)
+                        .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1,       condition: T4Basic)
+                        .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 2.0, condition: T4Basic)
                 );
 
             // implants

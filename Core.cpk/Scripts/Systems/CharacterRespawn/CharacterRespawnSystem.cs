@@ -239,6 +239,8 @@
                 }
             }
 
+            privateState.ServerLastActiveTime = Server.Game.FrameTime;
+
             // recreate physics (as dead character doesn't have any physics)
             character.ProtoCharacter.SharedCreatePhysics(character);
 

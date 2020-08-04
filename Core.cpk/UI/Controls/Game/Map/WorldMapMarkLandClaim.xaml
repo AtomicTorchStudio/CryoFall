@@ -7,25 +7,24 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     x:Name="UserControl"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
+    d:DesignHeight="300" d:DesignWidth="300">
     <Canvas>
+        <Image Source="Images/LandClaimShield.png"
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Width="64"
+               Height="64"
+               Canvas.Top="-47"
+               Canvas.Left="-24"
+               Visibility="{Binding IsUnderShield, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}" />
+
         <Image Source="Images/LandClaim.png"
                Style="{StaticResource WorldMapMarkImagePinStyle}"
                Canvas.Left="-6.5"
-               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip_Owner}" />
-            </base:ToolTipServiceExtend.ToolTip>
-        </Image>
+               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}" />
 
         <Image Source="Images/LandClaimWithAccess.png"
                Style="{StaticResource WorldMapMarkImagePinStyle}"
                Canvas.Left="-6.5"
-               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip}" />
-            </base:ToolTipServiceExtend.ToolTip>
-        </Image>
+               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
     </Canvas>
 </base:BaseUserControl>

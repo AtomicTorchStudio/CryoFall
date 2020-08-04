@@ -1,9 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Core
 {
-    using System;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
-    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class LabelWithButton : BaseContentControl
@@ -44,6 +43,7 @@
         protected override void OnLoaded()
         {
             ClientInputManager.ButtonKeyMappingUpdated += this.ClientInputManagerButtonKeyMappingUpdatedHandler;
+            this.Refresh();
         }
 
         protected override void OnUnloaded()
@@ -56,30 +56,27 @@
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var control = (LabelWithButton)dependencyObject;
-            var value = dependencyPropertyChangedEventArgs.NewValue;
-            if (!(value is IButtonReference buttonReference))
-            {
-                Api.Logger.Error(
-                    $"You need to provide a valid ButtonReference for {nameof(LabelWithButton)} control."
-                    + $"{Environment.NewLine}Currently provided value is {value}");
-                return;
-            }
-
-            control.UpdateTextKey(buttonReference.AbstractButton);
+            control.Refresh();
         }
 
         private void ClientInputManagerButtonKeyMappingUpdatedHandler(IWrappedButton obj)
         {
             if (obj == this.Button.AbstractButton)
             {
-                this.UpdateTextKey(obj);
+                this.Refresh();
             }
         }
 
-        private void UpdateTextKey(IWrappedButton button)
+        private void Refresh()
         {
-            this.TextKey = ClientInputManager.GetKeyForAbstractButton(button)
-                                             .ToString();
+            if (!this.isLoaded)
+            {
+                return;
+            }
+
+            var value = this.Button;
+            this.TextKey = InputKeyNameHelper.GetKeyText(
+                ClientInputManager.GetKeyForAbstractButton(value.AbstractButton));
         }
     }
 }

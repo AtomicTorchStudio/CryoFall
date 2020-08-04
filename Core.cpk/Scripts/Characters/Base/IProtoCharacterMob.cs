@@ -8,6 +8,8 @@
 
     public interface IProtoCharacterMob : IProtoCharacterCore, IProtoSpawnableObject
     {
+        double BiomaterialValueMultiplier { get; }
+
         ITextureResource Icon { get; }
 
         bool IsAvailableInCompletionist { get; }
