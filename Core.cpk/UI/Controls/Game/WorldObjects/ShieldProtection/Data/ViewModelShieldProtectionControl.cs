@@ -68,6 +68,9 @@
 
             this.RefreshState();
 
+            this.IsLandClaimInsideAnotherBase = LandClaimShieldProtectionSystem.SharedIsLandClaimInsideAnotherBase(
+                areasGroup);
+
             UpdateCurrentDurationsEverySecond();
 
             void UpdateCurrentDurationsEverySecond()
@@ -137,6 +140,8 @@
         public bool HasFullCharge => this.ElectricityAmount >= this.ElectricityCapacity;
 
         public bool IsEnabled => LandClaimShieldProtectionConstants.SharedIsEnabled;
+
+        public bool IsLandClaimInsideAnotherBase { get; }
 
         public bool IsShieldActive => this.shieldStatus == ShieldProtectionStatus.Active;
 

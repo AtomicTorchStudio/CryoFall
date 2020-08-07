@@ -101,7 +101,7 @@
             var stopwatch = Stopwatch.StartNew();
             var world = Server.World;
 
-            const int attemptsMax = 5;
+            const int attemptsMax = 20;
             var attemptsRemains = attemptsMax;
             do
             {

@@ -241,7 +241,7 @@
 
         protected abstract void ServerPrepareEvent(Triggers triggers);
 
-        protected IServerZone ServerSelectRandomZoneWithEvenDistribution(IReadOnlyList<IServerZone> list)
+        protected IServerZone ServerSelectRandomZoneWithEvenDistribution(IReadOnlyList<(IServerZone Zone, uint Weight)> list)
         {
             if (list.Count == 0)
             {
@@ -253,24 +253,24 @@
             long totalPositionsCount = 0;
             foreach (var z in list)
             {
-                totalPositionsCount += z.PositionsCount;
+                totalPositionsCount += z.Weight;
             }
 
             var value = (long)(RandomHelper.NextDouble() * totalPositionsCount);
-            var accumulator = 0;
+            var accumulator = 0u;
 
             for (var index = 0; index < list.Count - 1; index++)
             {
                 var zone = list[index];
-                accumulator += zone.PositionsCount;
+                accumulator += zone.Weight;
 
                 if (value < accumulator)
                 {
-                    return zone;
+                    return zone.Zone;
                 }
             }
 
-            return list[list.Count - 1];
+            return list[list.Count - 1].Zone;
         }
 
         protected virtual void ServerTryFinishEvent(ILogicObject activeEvent)

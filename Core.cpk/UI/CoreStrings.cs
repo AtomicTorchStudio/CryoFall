@@ -939,6 +939,9 @@
 
         public const string ShieldProtection_MaxDuration = "Max duration:";
 
+        public const string ShieldProtection_NotAvailableInsideAnotherBase =
+            @"Offline raiding protection shield is not available for this land claim as it's completely inside another base that provides its own shield protection.";
+
         public const string ShieldProtection_NotificationBaseActivatingShield_Message_Format =
             "Shield will become active in {0} unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).";
 

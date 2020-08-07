@@ -43,13 +43,6 @@
             IProtoObjectPlant protoPlant,
             double proposedWateringDuration)
         {
-            if (!protoPlant.ServerCanBeWatered((IStaticWorldObject)objectPlant))
-            {
-                // no need to water the plant
-                Instance.CallClient(character, _ => _.ClientRemote_CannotWaterLastHarvestOrRotten(protoItem));
-                return false;
-            }
-
             var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
             if (plantPrivateState.ServerTimeWateringEnds >= double.MaxValue
                 || (proposedWateringDuration < double.MaxValue
@@ -61,6 +54,13 @@
                 return false;
             }
 
+            if (!protoPlant.ServerCanBeWatered((IStaticWorldObject)objectPlant))
+            {
+                // no need to water the plant
+                Instance.CallClient(character, _ => _.ClientRemote_CannotWaterLastHarvestOrRotten(protoItem));
+                return false;
+            }
+            
             return true;
         }
 

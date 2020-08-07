@@ -18,7 +18,7 @@
 
     public class EventMeteoriteDrop : ProtoEventDrop
     {
-        private static Lazy<IReadOnlyList<IServerZone>> serverSpawnZones;
+        private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
                                                  ? (ushort)58
@@ -43,7 +43,7 @@
                 return false;
             }
 
-            if (serverSpawnZones.Value.All(z => z.IsEmpty))
+            if (serverSpawnZones.Value.All(z => z.Zone.IsEmpty))
             {
                 Logger.Error("All zones are empty (not mapped in the world), no place to start the event: " + this);
                 return false;
@@ -63,7 +63,7 @@
         {
             foreach (var serverZone in serverSpawnZones.Value)
             {
-                if (serverZone.IsContainsPosition(spawnPosition))
+                if (serverZone.Zone.IsContainsPosition(spawnPosition))
                 {
                     return true;
                 }
@@ -78,7 +78,7 @@
             ServerEventLocationManager.AddUsedLocation(
                 publicState.AreaCirclePosition,
                 publicState.AreaCircleRadius * 1.2,
-                duration: TimeSpan.FromHours(12));
+                duration: TimeSpan.FromHours(8));
         }
 
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
@@ -112,7 +112,7 @@
             using var tempAllActiveEvents = Api.Shared.WrapInTempList(
                 world.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
 
-            for (var globalAttempt = 0; globalAttempt < 5; globalAttempt++)
+            for (var globalAttempt = 0; globalAttempt < 10; globalAttempt++)
             {
                 // try to select a zone which doesn't contain an active event of the same type
                 var attempts = 25;
@@ -181,12 +181,12 @@
 
         protected override void ServerWorldChangedHandler()
         {
-            serverSpawnZones = new Lazy<IReadOnlyList<IServerZone>>(ServerSetupSpawnZones);
+            serverSpawnZones = new Lazy<IReadOnlyList<(IServerZone, uint)>>(ServerSetupSpawnZones);
         }
 
-        private static IReadOnlyList<IServerZone> ServerSetupSpawnZones()
+        private static IReadOnlyList<(IServerZone, uint)> ServerSetupSpawnZones()
         {
-            var result = new List<IServerZone>();
+            var result = new List<(IServerZone, uint)>();
             AddZone(Api.GetProtoEntity<ZoneTropicalForest>());
             AddZone(Api.GetProtoEntity<ZoneTemperateForest>());
             AddZone(Api.GetProtoEntity<ZoneBorealForest>());
@@ -196,7 +196,7 @@
             void AddZone(IProtoZone zone)
             {
                 var instance = zone.ServerZoneInstance;
-                result.Add(instance);
+                result.Add((instance, (uint)instance.PositionsCount));
             }
 
             return result;

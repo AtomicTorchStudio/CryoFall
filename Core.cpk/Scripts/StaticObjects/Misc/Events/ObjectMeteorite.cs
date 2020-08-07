@@ -45,10 +45,10 @@
         {
             // droplist for stage 1
             config.Stage1
-                  .Add<ItemOreCopperConcentrate>(count: 5,       countRandom: 0)
+                  .Add<ItemOreCopperConcentrate>(count: 5)
                   .Add<ItemOreCopperConcentrate>(countRandom: 2, condition: SkillProspecting.ConditionAdditionalYield)
-                  .Add<ItemOreIronConcentrate>(count: 5,         countRandom: 0)
-                  .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillProspecting.ConditionAdditionalYield)
+                  .Add<ItemOreIronConcentrate>(count: 5)
+                  .Add<ItemOreIronConcentrate>(countRandom: 2, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 1);
 
             // droplist for stages 2 and 3 - reuse droplist from stage 1
@@ -57,10 +57,10 @@
 
             // droplist for stage 4
             config.Stage4
-                  .Add<ItemOreCopperConcentrate>(count: 10,      countRandom: 0)
+                  .Add<ItemOreCopperConcentrate>(count: 10)
                   .Add<ItemOreCopperConcentrate>(countRandom: 2, condition: SkillProspecting.ConditionAdditionalYield)
-                  .Add<ItemOreIronConcentrate>(count: 10,        countRandom: 0)
-                  .Add<ItemOreIronConcentrate>(countRandom: 2,   condition: SkillProspecting.ConditionAdditionalYield)
+                  .Add<ItemOreIronConcentrate>(count: 10)
+                  .Add<ItemOreIronConcentrate>(countRandom: 2, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 2)
                   .Add<ItemGoldNugget>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 3,       condition: T4SpecializedPvPOnly)

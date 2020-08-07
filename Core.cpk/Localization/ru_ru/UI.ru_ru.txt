@@ -1169,6 +1169,9 @@ UI/CoreStrings@ShieldProtection_EstimatedDuration:
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Макс. длительность:
 
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+Щит защиты от рейдов недоступен для этой точки контроля, т. к. она находится полностью внутри другой базы, предоставляющей свой собственный щит.
+
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 Щит будет активирован через {0}, если активация не будет прервана (например, отменена хозяином или прервана рейдерами, применяющими рейд-блокировку).
 

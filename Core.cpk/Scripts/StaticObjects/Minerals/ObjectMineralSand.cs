@@ -31,7 +31,7 @@
         {
             // droplist for stage 1
             config.Stage1
-                  .Add<ItemSand>(count: 5,       countRandom: 0)
+                  .Add<ItemSand>(count: 5)
                   .Add<ItemSand>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield);
 
             // droplist for stages 2 and 3 - reuse droplist from stage 1
@@ -39,7 +39,7 @@
             config.Stage3.Add(config.Stage1);
 
             // droplist for stage 4
-            config.Stage4.Add<ItemSand>(count: 10, countRandom: 0)
+            config.Stage4.Add<ItemSand>(count: 10)
                   .Add<ItemSand>(countRandom: 5, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add(preset: ItemDroplistPresets.GoldNuggetsRare); // lower chance, since it's easy to mine
 

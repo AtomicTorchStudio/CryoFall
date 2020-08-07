@@ -17,7 +17,7 @@
         {
             // droplist for stage 1
             config.Stage1
-                  .Add<ItemSalt>(count: 1,       countRandom: 0)
+                  .Add<ItemSalt>(count: 1)
                   .Add<ItemSalt>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield);
 
             // droplist for stages 2 and 3 - reuse droplist from stage 1
@@ -26,7 +26,7 @@
 
             // droplist for stage 4
             config.Stage4
-                  .Add<ItemSalt>(count: 2,       countRandom: 0)
+                  .Add<ItemSalt>(count: 5)
                   .Add<ItemSalt>(countRandom: 1, condition: SkillProspecting.ConditionAdditionalYield)
                   .Add<ItemOreLithium>(count: 1, countRandom: 2)
                   .Add(preset: ItemDroplistPresets.GoldNuggets);
