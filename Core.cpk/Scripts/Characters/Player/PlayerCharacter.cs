@@ -598,6 +598,12 @@
             else // has a vehicle
             {
                 physicsBody.RemoveShapesOfGroup(CollisionGroups.Default);
+                if (!ReferenceEquals(CollisionGroups.Default,
+                                     CollisionGroups.CharacterOrVehicle))
+                {
+                    physicsBody.RemoveShapesOfGroup(CollisionGroups.CharacterOrVehicle);
+                }
+
                 physicsBody.AttachedToPhysicsBody = currentVehicle.PhysicsBody;
             }
         }
