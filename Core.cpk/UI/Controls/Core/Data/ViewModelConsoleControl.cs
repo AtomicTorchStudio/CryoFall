@@ -199,7 +199,7 @@
 
         public void SetSuggestions(IReadOnlyList<string> suggestions)
         {
-            if (suggestions == null
+            if (suggestions is null
                 || suggestions.Count == 0)
             {
                 this.SuggestionsListItems.Clear();

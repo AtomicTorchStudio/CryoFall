@@ -259,7 +259,7 @@
 
             // try consume input item and add it's organic value into the mulchbox organic amount
             var inputItem = privateState.ContainerInput.Items.FirstOrDefault();
-            if (inputItem != null
+            if (inputItem is not null
                 && inputItem.ProtoItem is IProtoItemFuel protoItemFuel)
             {
                 var count = inputItem.Count;
@@ -339,6 +339,7 @@
             return false;
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, keyArgIndex: 0)]
         private void ServerRemote_SetLightMode(IStaticWorldObject lightObject, ObjectLightMode mode)
         {
             var character = ServerRemoteContext.Character;

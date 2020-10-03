@@ -34,7 +34,7 @@
                 return;
             }
 
-            var itemViewModels = tool.AbstractItems.Select(i => new ViewModelEditorToolItem(i)).ToList();
+            var itemViewModels = tool.AbstractItems.Select(i => tool.CreateItemViewModel(i)).ToList();
             if (itemViewModels.Count > 0)
             {
                 foreach (var viewModelEditorToolItem in itemViewModels)
@@ -128,7 +128,7 @@
 
                 this.searchText = value;
 
-                if (value != null)
+                if (value is not null)
                 {
                     this.SelectDefaultFilter();
                 }
@@ -155,7 +155,7 @@
 
                 this.selectedFilter = value;
 
-                if (this.selectedFilter != null)
+                if (this.selectedFilter is not null)
                 {
                     this.selectedFilter.IsSelected = true;
                 }
@@ -190,7 +190,7 @@
 
                 this.selectedItem = value;
 
-                if (this.selectedItem != null)
+                if (this.selectedItem is not null)
                 {
                     this.selectedItem.IsSelected = true;
                 }
@@ -218,7 +218,7 @@
 
         private void CreateSettings()
         {
-            if (this.ToolSettingsControl != null)
+            if (this.ToolSettingsControl is not null)
             {
                 // do not destroy settings (cache it)
                 //this.DestroySettings();
@@ -259,7 +259,7 @@
             //	return;
             //}
 
-            if (this.searchText != null)
+            if (this.searchText is not null)
             {
                 // apply filter
                 this.FilteredItemsCollection.AddRange(
@@ -275,7 +275,7 @@
                     this.allItemsCollection.Where(item => filter.FilterItem(item.ToolItem)));
             }
 
-            if (this.selectedItem == null
+            if (this.selectedItem is null
                 || !this.FilteredItemsCollection.Contains(this.selectedItem))
             {
                 // select first available item in collection

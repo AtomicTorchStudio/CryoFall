@@ -17,6 +17,7 @@
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -49,6 +50,23 @@
         public static Task<IReadOnlyList<GarageVehicleEntry>> ClientGetVehiclesListAsync()
         {
             return Instance.CallServer(_ => _.ServerRemote_GetVehiclesList());
+        }
+
+        public static bool ClientIsVehicleDocked(
+            IDynamicWorldObject vehicle,
+            IStaticWorldObject vehicleAssemblyBay)
+        {
+            foreach (var o in Client.World
+                                    .GetTile(vehicle.TilePosition)
+                                    .StaticObjects)
+            {
+                if (ReferenceEquals(o, vehicleAssemblyBay))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static async void ClientPutCurrentVehicle()
@@ -121,7 +139,7 @@
             }
 
             var vehicleCurrentPilot = vehicle.GetPublicState<VehiclePublicState>().PilotCharacter;
-            if (vehicleCurrentPilot != null)
+            if (vehicleCurrentPilot is not null)
             {
                 VehicleSystem.ServerCharacterExitCurrentVehicle(vehicleCurrentPilot, force: true);
             }
@@ -150,7 +168,7 @@
             foreach (var owner in vehiclePrivateState.Owners)
             {
                 var player = Server.Characters.GetPlayerCharacter(owner);
-                if (player == null)
+                if (player is null)
                 {
                     continue;
                 }
@@ -178,21 +196,24 @@
         {
             var result = new List<GarageVehicleEntry>();
             var allVehicles = Server.World.GetWorldObjectsOfProto<IProtoVehicle>();
+
             // ReSharper disable once PossibleInvalidCastExceptionInForeachLoop
             foreach (IDynamicWorldObject vehicle in allVehicles)
             {
-                if (WorldObjectOwnersSystem.SharedIsOwner(character, vehicle))
+                if (!WorldObjectOwnersSystem.SharedIsOwner(character, vehicle))
                 {
-                    var vehicleStatus = ServerGetVehicleStatus(vehicle, forCharacter: character);
-                    if (onlyVehiclesInGarage
-                        && vehicleStatus != VehicleStatus.InGarage)
-                    {
-                        continue;
-                    }
-
-                    result.Add(new GarageVehicleEntry(vehicle,
-                                                      vehicleStatus));
+                    continue;
                 }
+
+                var vehicleStatus = ServerGetVehicleStatus(vehicle, forCharacter: character);
+                if (onlyVehiclesInGarage
+                    && vehicleStatus != VehicleStatus.InGarage)
+                {
+                    continue;
+                }
+
+                result.Add(new GarageVehicleEntry(vehicle,
+                                                  vehicleStatus));
             }
 
             return result;
@@ -207,7 +228,7 @@
             }
 
             var publicState = vehicle.GetPublicState<VehiclePublicState>();
-            if (!(publicState.PilotCharacter is null))
+            if (publicState.PilotCharacter is not null)
             {
                 return VehicleStatus.InUse;
             }
@@ -276,6 +297,7 @@
                               .HideAfterDelay(delaySeconds: 60);
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_CheckHasVehiclesInGarage()
         {
             var character = ServerRemoteContext.Character;
@@ -370,7 +392,7 @@
             var vehicleAssemblyBay = (IStaticWorldObject)currentInteractionObject;
             var vehicle = Server.World.GetGameObjectById<IDynamicWorldObject>(GameObjectType.DynamicObject,
                                                                               vehicleGameObjectId);
-            if (vehicle == null)
+            if (vehicle is null)
             {
                 Logger.Warning("Vehicle is not found", character);
                 return TakeVehicleResult.Unknown;
@@ -403,7 +425,9 @@
                     return TakeVehicleResult.Error_InUse;
 
                 case VehicleStatus.Docked:
-                    return TakeVehicleResult.Error_Docked;
+                    //return TakeVehicleResult.Error_Docked;
+                    // allow to take
+                    break;
 
                 default:
                     return TakeVehicleResult.Unknown;

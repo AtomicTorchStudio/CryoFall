@@ -114,7 +114,7 @@
             base.SharedCreatePhysics(data);
 
             var physicsBody = data.PhysicsBody;
-            if (data.PublicState.PilotCharacter == null)
+            if (data.PublicState.PilotCharacter is null)
             {
                 // no pilot
                 physicsBody.AddShapeRectangle(size: (0.9, 1.5),

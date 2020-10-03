@@ -47,7 +47,7 @@
         public void Refresh()
         {
             this.NotifyPropertyChanged(nameof(this.Title));
-            if (this.protoItemWithCount == null)
+            if (this.protoItemWithCount is null)
             {
                 this.CountVisibility = Visibility.Collapsed;
                 this.Icon = null;

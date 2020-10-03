@@ -81,7 +81,7 @@
                                            x:Name="ImageRectangle"
                                            UseLayoutRounding="True"
                                            Width="308"
-                                           Height="176"
+                                           Height="173"
                                            Margin="0,5,0,0" />
                             </Grid>
                         </DataTemplate>

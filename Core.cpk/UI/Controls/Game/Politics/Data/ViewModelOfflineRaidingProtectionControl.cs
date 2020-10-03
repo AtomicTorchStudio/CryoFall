@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
-    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
 
@@ -43,8 +42,8 @@
                 var fromDate = todayUtc + TimeSpan.FromHours(timeInterval.FromHour);
                 var toDate = todayUtc + TimeSpan.FromHours(timeInterval.ToHourNormalized);
 
-                fromDate = TimeZone.CurrentTimeZone.ToLocalTime(fromDate);
-                toDate = TimeZone.CurrentTimeZone.ToLocalTime(toDate);
+                fromDate = fromDate.ToLocalTime();
+                toDate = toDate.ToLocalTime();
 
                 var inTotal = timeInterval.DurationHours.ToString("0.##") + ClientTimeFormatHelper.SuffixHours;
 

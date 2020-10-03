@@ -164,14 +164,14 @@
             this.PercentInput2Text = GetDurabilityPercentText(inputItem2);
 
             var outputItem = this.containerOutput.GetItemAtSlot(0);
-            if (outputItem != null)
+            if (outputItem is not null)
             {
                 this.PercentOutputText = string.Empty;
                 return;
             }
 
-            if (inputItem1 == null
-                || inputItem2 == null)
+            if (inputItem1 is null
+                || inputItem2 is null)
             {
                 this.PercentOutputText = "?";
             }
@@ -184,7 +184,7 @@
             }
 
             static string GetDurabilityPercentText(IItem item)
-                => item == null
+                => item is null
                    || !(item.ProtoItem is IProtoItemWithDurability)
                        ? string.Empty
                        : ItemDurabilitySystem.SharedGetDurabilityPercent(item) + "%";

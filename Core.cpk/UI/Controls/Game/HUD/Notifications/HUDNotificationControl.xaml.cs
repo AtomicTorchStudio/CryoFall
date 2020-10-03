@@ -78,7 +78,7 @@
             bool autoHide,
             SoundResource soundToPlay)
         {
-            var iconBrush = icon != null
+            var iconBrush = icon is not null
                                 ? Api.Client.UI.GetTextureBrush(icon)
                                 : null;
 
@@ -178,7 +178,7 @@
 
             this.storyboardShow.Begin();
 
-            if (this.soundToPlay != null)
+            if (this.soundToPlay is not null)
             {
                 Api.Client.Audio.PlayOneShot(this.soundToPlay,
                                              SoundConstants.VolumeUINotifications);

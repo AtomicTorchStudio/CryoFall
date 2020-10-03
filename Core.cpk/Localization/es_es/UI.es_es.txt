@@ -101,6 +101,9 @@ Guardar
 UI/CoreStrings@Button_Upgrade:
 Mejorar
 
+UI/CoreStrings@CannotSelectDateInThePast:
+No se puede seleccionar una fecha ya pasada.
+
 UI/CoreStrings@CharacterStatName_Food:
 Comida
 
@@ -200,6 +203,9 @@ Esta estructura almacena electricidad.
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Tras construirla, esta estructura no podrá volver a moverse.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Consulta con el administrador del servidor.
 
 UI/CoreStrings@Copy:
 Copiar
@@ -699,6 +705,9 @@ Este servidor tiene modificaciones de terceros. Puede que te encuentres cambios 
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 CON MODS
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+Este servidor no permite modificaciones del cliente. Todas las modificaciones del cliente se desactivarán para todos los jugadores.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Este es uno de los servidores oficiales de CryoFall, cuya responsabilidad es de los desarrolladores.
 
@@ -1088,6 +1097,19 @@ Jugadores
 UI/CoreStrings@ServerWipedDate:
 Limpiado
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Próximo borrado:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+No se ha especificado la información de borrado.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`Este servidor no tiene un calendario de borrado regular y tan solo se borra cuando se lanzan nuevas versiones del juego. Presta atención a las actualizaciones oficiales del proyecto para más información sobre las nuevas versiones importantes que se lancen.
+[br]Ten en cuenta que todos los datos del servidor (incluidos el mundo y los datos del personaje) se reinician cuando el servidor se actualiza a una nueva versión importante.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Inicio del servidor:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 No puedes llevar a cabo esta acción en una base que está protegida por un escudo.
 
@@ -1174,6 +1196,9 @@ Duración estimada:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Duración máxima:
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+El sistema de protección contra asaltos al no estar conectado no está disponible en este terreno adjudicado, puesto que se encuentra dentro de otra base que ya cuenta con su propio sistema de protección.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 El escudo se activará en {0}, a menos que sea interrumpido (por ejemplo, que lo cancele el dueño de la base o que unos asaltantes activen el bloqueo de asalto).
@@ -1294,6 +1319,12 @@ Buscar...
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+La hora ya aparece convertida a tu hora local (UTC{0}).
+
+UI/CoreStrings@TimeRemains:
+Tiempo restante
 
 UI/CoreStrings@Title:
 Título
@@ -1910,6 +1941,11 @@ Recién limpiado
 
 UI/CoreStrings@WipedDate_Yesterday:
 Ayer
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`¡Ten en cuenta que el borrado no se lleva a cabo automáticamente!
+[br]Tienes que detener manualmente el servidor y borrar la partida guardada.
+[br]Este menú es tan solo para informar a los jugadores.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Mapa explorado

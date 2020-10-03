@@ -1,0 +1,78 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Core.DateTimeSelectionControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelDateTimeSelectionControl}"
+    HorizontalAlignment="Left">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding Days}"
+                      SelectedValue="{Binding SelectedDay}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Text" />
+
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding Months}"
+                      SelectedValue="{Binding SelectedMonth}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Text"
+                      Margin="5,0" />
+
+            <ComboBox Grid.Column="2"
+                      ItemsSource="{Binding Years}"
+                      SelectedValue="{Binding SelectedYear}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Text" />
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding Hours}"
+                      SelectedValue="{Binding SelectedHour}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Text" />
+
+            <TextBlock Grid.Column="1"
+                       Text=":"
+                       FontWeight="Bold"
+                       Margin="3" />
+
+            <ComboBox Grid.Column="2"
+                      ItemsSource="{Binding Minutes}"
+                      SelectedValue="{Binding SelectedMinute}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Text" />
+
+            <TextBlock Grid.Column="3"
+                       Text="UTC+0"
+                       Margin="3,4,0,3" />
+        </Grid>
+    </Grid>
+
+</base:BaseUserControl>

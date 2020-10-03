@@ -12,7 +12,7 @@
 
         public static void NotifyItemUsed(ICharacter character, IItem item)
         {
-            if (item == null)
+            if (item is null)
             {
                 Api.Logger.Error("Item is null for " + nameof(NotifyItemUsed));
                 return;

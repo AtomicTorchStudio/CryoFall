@@ -54,7 +54,7 @@
             }
 
             var worldObjectPublicState = worldObject?.AbstractPublicState as IWorldObjectPublicStateWithClaim;
-            if (worldObjectPublicState?.WorldObjectClaim != null)
+            if (worldObjectPublicState?.WorldObjectClaim is not null)
             {
                 // please note - the property will clean during the ServerDestroy method of WorldObjectClaim
                 Server.World.DestroyObject(worldObjectPublicState.WorldObjectClaim);
@@ -89,7 +89,7 @@
             }
 
             var objectClaim = worldObjectPublicState.WorldObjectClaim;
-            if (objectClaim != null)
+            if (objectClaim is not null)
             {
                 // already claimed
                 WorldObjectClaim.ServerTryExtendClaim(objectClaim, character, durationSeconds);

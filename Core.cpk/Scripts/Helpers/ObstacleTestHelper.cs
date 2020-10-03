@@ -45,7 +45,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
                 foreach (var test in obstaclesOnTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
-                    if (!(testPhysicsBody.AssociatedProtoTile is null))
+                    if (testPhysicsBody.AssociatedProtoTile is not null)
                     {
                         // obstacle tile on the way
                         return true;

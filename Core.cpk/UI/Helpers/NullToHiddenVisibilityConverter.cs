@@ -10,7 +10,7 @@
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // ReSharper disable once PossibleNullReferenceException
-            var isAvailable = value != null;
+            var isAvailable = value is not null;
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             if (parameter as string == "Reverse")
             {

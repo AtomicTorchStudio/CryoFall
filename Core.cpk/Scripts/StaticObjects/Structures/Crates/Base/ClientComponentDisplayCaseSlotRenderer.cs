@@ -19,7 +19,7 @@
         {
             var showcasedItem = this.itemsContainer.GetItemAtSlot(this.slotIndex);
             this.rendererShowcaseItem.TextureResource = showcasedItem?.ProtoItem.GroundIcon;
-            var isEnabled = showcasedItem != null;
+            var isEnabled = showcasedItem is not null;
             if (isEnabled)
             {
                 this.rendererShowcaseItem.Scale = 0.333 * showcasedItem.ProtoItem.GroundIconScale;

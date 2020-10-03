@@ -18,7 +18,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Quests
         public string Execute(IProtoQuest quest, [CurrentCharacterIfNull] ICharacter player = null)
         {
             var quests = player.SharedGetQuests();
-            if (quests.SharedFindQuestEntry(quest, out var isUnlocked) == null)
+            if (quests.SharedFindQuestEntry(quest, out var isUnlocked) is null)
             {
                 return "Quest entry not found";
             }

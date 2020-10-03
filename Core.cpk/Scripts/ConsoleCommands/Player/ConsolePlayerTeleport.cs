@@ -12,6 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -142,6 +143,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
         {
             public override string Name => nameof(ConsolePlayerTeleportSystem);
 
+            [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
             public string ServerRemote_Teleport(Vector2D worldPosition)
             {
                 try
@@ -157,7 +159,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
                         return message;
                     }
 
-                    return "Error: you're not in creative mode and not a spectator. You cannot use the teleport system.";
+                    return
+                        "Error: you're not in creative mode and not a spectator. You cannot use the teleport system.";
                 }
                 catch (Exception ex)
                 {

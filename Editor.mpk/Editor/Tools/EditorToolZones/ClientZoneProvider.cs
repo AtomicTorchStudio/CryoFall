@@ -47,7 +47,7 @@
 
         public event Action ZoneReset;
 
-        public bool IsDataReceived => this.quadTree != null;
+        public bool IsDataReceived => this.quadTree is not null;
 
         public static ClientZoneProvider Get(IProtoZone protoZone)
         {
@@ -228,7 +228,7 @@
 
         private void ValidateIsDataReceived()
         {
-            if (this.quadTree == null)
+            if (this.quadTree is null)
             {
                 throw new Exception("The zone quadtree data is not received from the server yet.");
             }

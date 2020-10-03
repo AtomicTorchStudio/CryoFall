@@ -28,7 +28,7 @@
                     + protoManufacturer);
             }
 
-            this.RecipesForByproducts = recipesForByproducts != null
+            this.RecipesForByproducts = recipesForByproducts is not null
                                             ? recipesForByproducts.ToArray()
                                             : Array.Empty<Recipe.RecipeForManufacturingByproduct>();
 
@@ -46,7 +46,7 @@
             Recipe bestRecipe = null;
             foreach (var recipe in this.Recipes)
             {
-                if (bestRecipe != null
+                if (bestRecipe is not null
                     // TODO: compare by "value" of recipes?
                     && recipe.InputItems.Length < bestRecipe.InputItems.Length)
                 {

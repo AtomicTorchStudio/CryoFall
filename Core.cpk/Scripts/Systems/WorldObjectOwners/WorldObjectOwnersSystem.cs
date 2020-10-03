@@ -52,7 +52,7 @@
         public static async void ClientSetOwners(IWorldObject worldObject, List<string> newOwners)
         {
             var errorMessage = await Instance.CallServer(_ => _.ServerRemote_SetOwners(worldObject, newOwners));
-            if (errorMessage != null)
+            if (errorMessage is not null)
             {
                 NotificationSystem.ClientShowNotification(
                     title: null,
@@ -148,7 +148,7 @@
             {
                 var name = n;
                 var playerToAdd = Api.Server.Characters.GetPlayerCharacter(name);
-                if (playerToAdd == null)
+                if (playerToAdd is null)
                 {
                     return string.Format(DialogCannotSetOwners_MessageFormatPlayerNotFound, name);
                 }
@@ -171,7 +171,7 @@
                 Api.Logger.Important($"Removed owner: {name}; {worldObject}", characterRelated: byOwner);
 
                 var removedPlayer = Api.Server.Characters.GetPlayerCharacter(name);
-                if (removedPlayer == null)
+                if (removedPlayer is null)
                 {
                     continue;
                 }
@@ -256,7 +256,7 @@
             foreach (var worldObject in worldObjectsWithOwnerLists)
             {
                 var owners = GetPrivateState(worldObject).Owners;
-                if (owners == null)
+                if (owners is null)
                 {
                     continue;
                 }

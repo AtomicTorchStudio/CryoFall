@@ -146,12 +146,12 @@
 
             // drop all items on the ground
             IItemsContainer groundContainer = null;
-            if (privateState.CharacterOwner != null)
+            if (privateState.CharacterOwner is not null)
             {
                 groundContainer = ObjectPlayerLootContainer.ServerTryCreateLootContainer(privateState.CharacterOwner,
                                                                                          objectDrone.Position);
 
-                if (groundContainer != null)
+                if (groundContainer is not null)
                 {
                     // set slots count matching the total occupied slots count
                     Server.Items.SetSlotsCount(
@@ -167,7 +167,7 @@
                     privateState.CharacterOwner,
                     objectDrone.Tile);
 
-            if (groundContainer != null)
+            if (groundContainer is not null)
             {
                 Server.Items.TryMoveAllItems(storageContainer, groundContainer);
                 WorldObjectClaimSystem.ServerTryClaim(
@@ -802,7 +802,7 @@
             var characterContainerHotbar = character.SharedGetPlayerContainerHotbar();
 
             var itemInFirstSlot = storageContainer.GetItemAtSlot(0);
-            if (itemInFirstSlot != null)
+            if (itemInFirstSlot is not null)
             {
                 // item in the first slot is the drone's associated item
                 // it could be destroyed in case the drone's HP dropped <= 1
@@ -851,7 +851,7 @@
             // try to drop the remaining items on the ground
             var groundContainer = ObjectGroundItemsContainer
                 .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, character.Tile);
-            if (groundContainer != null)
+            if (groundContainer is not null)
             {
                 var result2 = Server.Items.TryMoveAllItems(storageContainer, groundContainer);
                 if (result2.MovedItems.Count > 0)
@@ -885,7 +885,7 @@
             Vector2Ushort objectDroneTilePosition,
             bool isReturnedToPlayer)
         {
-            if (!(toCharacter is null)
+            if (toCharacter is not null
                 && !toCharacter.IsInitialized)
             {
                 toCharacter = null;
@@ -901,7 +901,7 @@
             this.lastDroneReturnSoundTime = time;
             //Logger.Dev("Drone return sound");
 
-            if (toCharacter != null)
+            if (toCharacter is not null)
             {
                 Client.Audio.PlayOneShot(this.DroneReturnOrDropSoundResource, toCharacter);
             }
@@ -944,7 +944,7 @@
             uint ownerCharacterPartyId,
             Vector2Ushort fallbackPosition)
         {
-            if (objectDrone != null
+            if (objectDrone is not null
                 && !objectDrone.IsInitialized)
             {
                 objectDrone = null;

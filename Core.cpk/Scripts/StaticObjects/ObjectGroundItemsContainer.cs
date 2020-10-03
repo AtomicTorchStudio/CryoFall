@@ -182,7 +182,7 @@
                                                 itemToDrop,
                                                 countToDrop,
                                                 tilePosition));
-                if (objectGroundContainer != null)
+                if (objectGroundContainer is not null)
                 {
                     // successfully placed on ground
                     OnSuccess(GetPublicState(objectGroundContainer).ItemsContainer);
@@ -257,7 +257,7 @@
             var objectGroundContainer = startTile.StaticObjects.FirstOrDefault(
                 so => so.ProtoGameObject is ObjectGroundItemsContainer);
 
-            if (objectGroundContainer != null)
+            if (objectGroundContainer is not null)
             {
                 if (TryDropTo(objectGroundContainer, out var droppedTo))
                 {
@@ -467,7 +467,7 @@
                 tile.Position,
                 writeWarningsToLog: false);
 
-            if (groundContainer != null
+            if (groundContainer is not null
                 && (groundContainer.OccupiedSlotsCount
                     < (canExceedContainerSpace
                            ? byte.MaxValue / 2
@@ -495,7 +495,7 @@
                     forCharacter,
                     neighborTile.Position,
                     writeWarningsToLog: false);
-                if (groundContainer != null
+                if (groundContainer is not null
                     && (groundContainer.OccupiedSlotsCount
                         < (canExceedContainerSpace
                                ? byte.MaxValue / 2
@@ -679,7 +679,7 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            if (ClientItemsManager.ItemInHand != null)
+            if (ClientItemsManager.ItemInHand is not null)
             {
                 // in that case we want to allow place item from the hand
                 // it will be handled automatically via ClientTryDropItemOnGround() call
@@ -786,7 +786,7 @@
                 + worldObject.TilePosition
                 + (isTimedOut ? " - timed out" : " - contains no items"));
 
-            if (data.PrivateState.ServerLastInteractCharacter != null)
+            if (data.PrivateState.ServerLastInteractCharacter is not null)
             {
                 // notify other players that the ground items were picked up
                 using var scopedBy = Api.Shared.GetTempList<ICharacter>();

@@ -59,7 +59,7 @@
 
             this.clientFishingVisualizer.Setup(this.Character, this.FishingTargetPosition);
 
-            if (this.CurrentFishingSession != null)
+            if (this.CurrentFishingSession is not null)
             {
                 this.clientFishingVisualizer.OnFishingSessionReceived(this.CurrentFishingSession);
             }

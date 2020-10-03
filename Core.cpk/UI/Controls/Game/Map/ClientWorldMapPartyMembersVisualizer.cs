@@ -81,7 +81,7 @@
 
         private static bool IsPartyMemberInScope(ICharacter character)
         {
-            return !(character is null)
+            return character is not null
                    && character.IsInitialized
                    && character.TilePosition != Vector2Ushort.Zero
                    // if physics body is active but position is zero the player will stuck at the bottom left corner of the world

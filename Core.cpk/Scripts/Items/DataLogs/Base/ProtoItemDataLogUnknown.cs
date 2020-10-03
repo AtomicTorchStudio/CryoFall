@@ -95,9 +95,8 @@
 
             try
             {
-                var actualDataLogItem = await this.CallServer(_ => _.ServerRemote_ClientUseItem(data.Item));
-
-                if (actualDataLogItem != null)
+                var actualDataLogItem = await this.CallServer(_ => _.ServerRemote_UseItem(data.Item));
+                if (actualDataLogItem is not null)
                 {
                     NotificationSystem.ClientShowNotification(
                         "Decoding Data Log",
@@ -124,13 +123,13 @@
             }
         }
 
-        private IItem ServerRemote_ClientUseItem(IItem item)
+        private IItem ServerRemote_UseItem(IItem item)
         {
             var character = ServerRemoteContext.Character;
             this.ServerValidateItemForRemoteCall(item, character);
 
             var protoDataLog = this.ServerGetDataLogProtoToSpawn();
-            if (protoDataLog == null)
+            if (protoDataLog is null)
             {
                 throw new Exception(
                     $"Prototype for data log is not returned by {nameof(this.ServerGetDataLogProtoToSpawn)}() method");

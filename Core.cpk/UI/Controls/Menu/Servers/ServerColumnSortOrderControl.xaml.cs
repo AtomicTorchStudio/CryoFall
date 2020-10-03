@@ -3,7 +3,6 @@
     using System.Windows;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class ServerColumnSortOrderControl : BaseUserControl
@@ -14,41 +13,26 @@
                                         typeof(ServerColumnSortOrderControl),
                                         new PropertyMetadata(default(bool)));
 
-        public static readonly DependencyProperty CurrentSortOrderProperty =
-            DependencyProperty.Register(nameof(CurrentSortOrder),
-                                        typeof(ServersListSortType),
-                                        typeof(ServerColumnSortOrderControl),
-                                        new PropertyMetadata(default(ServersListSortType),
-                                                             AnySortPropertyChangedCallback));
-
-        public static readonly DependencyProperty IsCurrentSortOrderReversedProperty =
-            DependencyProperty.Register("IsCurrentSortOrderReversed",
-                                        typeof(bool),
-                                        typeof(ServerColumnSortOrderControl),
-                                        new PropertyMetadata(default(bool),
-                                                             AnySortPropertyChangedCallback));
-
         public static readonly DependencyProperty TargetSortOrderProperty =
             DependencyProperty.Register(nameof(TargetSortOrder),
                                         typeof(ServersListSortType),
                                         typeof(ServerColumnSortOrderControl),
                                         new PropertyMetadata(default(ServersListSortType)));
 
+        public static readonly DependencyProperty ViewModelServersListProperty =
+            DependencyProperty.Register(nameof(ViewModelServersList),
+                                        typeof(ViewModelServersList),
+                                        typeof(ServerColumnSortOrderControl),
+                                        new PropertyMetadata(default(ViewModelServersList),
+                                                             ViewModelServersListPropertyChangedHandler));
+
+        private bool isEventSubscribed;
+
+        private ViewModelServersList lastViewModelServersList;
+
         private FrameworkElement layoutRoot;
 
         private ViewModelServerColumnSortOrderControl viewModel;
-
-        public ServersListSortType CurrentSortOrder
-        {
-            get => (ServersListSortType)this.GetValue(CurrentSortOrderProperty);
-            set => this.SetValue(CurrentSortOrderProperty, value);
-        }
-
-        public bool IsCurrentSortOrderReversed
-        {
-            get => (bool)this.GetValue(IsCurrentSortOrderReversedProperty);
-            set => this.SetValue(IsCurrentSortOrderReversedProperty, value);
-        }
 
         public bool IsTargetOrderReversed
         {
@@ -60,6 +44,12 @@
         {
             get => (ServersListSortType)this.GetValue(TargetSortOrderProperty);
             set => this.SetValue(TargetSortOrderProperty, value);
+        }
+
+        public ViewModelServersList ViewModelServersList
+        {
+            get => (ViewModelServersList)this.GetValue(ViewModelServersListProperty);
+            set => this.SetValue(ViewModelServersListProperty, value);
         }
 
         protected override void InitControl()
@@ -82,9 +72,12 @@
             this.viewModel = null;
 
             this.MouseLeftButtonUp -= this.ClickHandler;
+
+            this.UnsubscribeEvents();
+            this.lastViewModelServersList = null;
         }
 
-        private static void AnySortPropertyChangedCallback(
+        private static void ViewModelServersListPropertyChangedHandler(
             DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
@@ -93,26 +86,70 @@
 
         private void ClickHandler(object sender, MouseButtonEventArgs e)
         {
-            if (this.CurrentSortOrder != this.TargetSortOrder)
+            var viewModelServersList = this.ViewModelServersList;
+            if (viewModelServersList.SortType != this.TargetSortOrder)
             {
                 // select the target sort type
-                this.SetCurrentValue(CurrentSortOrderProperty, this.TargetSortOrder);
+                viewModelServersList.SortType = this.TargetSortOrder;
                 // ensure the sort order is direct
-                this.SetCurrentValue(IsCurrentSortOrderReversedProperty, false);
+                viewModelServersList.IsSortOrderReversed = this.IsTargetOrderReversed;
                 return;
             }
 
             // the target sort order is already selected, reverse the sort order
-            this.SetCurrentValue(IsCurrentSortOrderReversedProperty, !this.IsCurrentSortOrderReversed);
+            viewModelServersList.IsSortOrderReversed = !viewModelServersList.IsSortOrderReversed;
+        }
+
+        private void ListSortTypeOrOrderChangedHander()
+        {
+            this.RefreshViewModel();
         }
 
         private void Refresh()
         {
-            var isSelected = this.CurrentSortOrder == this.TargetSortOrder;
+            this.UnsubscribeEvents();
+            this.lastViewModelServersList = null;
+
+            if (!this.isLoaded)
+            {
+                return;
+            }
+
+            var viewModelServersList = this.ViewModelServersList;
+            this.lastViewModelServersList = viewModelServersList;
+            this.SubscribeEvents();
+
+            this.RefreshViewModel();
+        }
+
+        private void RefreshViewModel()
+        {
+            var isSelected = this.lastViewModelServersList.SortType == this.TargetSortOrder;
             this.viewModel?.Refresh(
                 isSelected,
                 isReversed: isSelected
-                            && (this.IsCurrentSortOrderReversed ^ this.IsTargetOrderReversed));
+                            && (this.lastViewModelServersList.IsSortOrderReversed ^ this.IsTargetOrderReversed));
+        }
+
+        private void SubscribeEvents()
+        {
+            this.UnsubscribeEvents();
+
+            if (this.lastViewModelServersList is not null)
+            {
+                this.lastViewModelServersList.SortTypeOrOrderChanged += this.ListSortTypeOrOrderChangedHander;
+            }
+        }
+
+        private void UnsubscribeEvents()
+        {
+            if (!this.isEventSubscribed)
+            {
+                return;
+            }
+
+            this.isEventSubscribed = false;
+            this.lastViewModelServersList.SortTypeOrOrderChanged -= this.ListSortTypeOrOrderChangedHander;
         }
     }
 }

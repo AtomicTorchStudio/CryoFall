@@ -31,7 +31,7 @@
             base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents, isPreview);
 
             if (isPreview
-                || character == null
+                || character is null
                 || !character.IsCurrentClientCharacter
                 || !GetPublicState(item).IsActive)
             {

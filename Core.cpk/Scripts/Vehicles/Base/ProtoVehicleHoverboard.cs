@@ -33,7 +33,7 @@
 
         public override bool IsAllowCreatureDamageWhenNoPilot => false;
 
-        public override bool IsHealthbarDisplayedWhenPiloted => false;
+        public override bool IsArmorBarDisplayedWhenPiloted => false;
 
         public override bool IsHeavyVehicle => false;
 
@@ -147,7 +147,7 @@
 
             void RefreshLightSource()
             {
-                lightSourceActiveEngine.IsEnabled = !(publicState.PilotCharacter is null);
+                lightSourceActiveEngine.IsEnabled = publicState.PilotCharacter is not null;
             }
 
             var componentHoverboardVisualManager = vehicle.ClientSceneObject
@@ -204,7 +204,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             var physicsBody = data.PhysicsBody;
-            if (data.PublicState.PilotCharacter == null)
+            if (data.PublicState.PilotCharacter is null)
             {
                 // no pilot
                 physicsBody.AddShapeRectangle(size: (0.9, 0.6),
@@ -227,15 +227,18 @@
                 {
                     physicsBody.AddShapeCircle(
                         radius / 2,
-                        center: (-radius / 2, offsetY + colliderY));
+                        center: (-radius / 2, offsetY + colliderY),
+                        CollisionGroups.CharacterOrVehicle);
 
                     physicsBody.AddShapeCircle(
                         radius / 2,
-                        center: (radius / 2, offsetY + colliderY));
+                        center: (radius / 2, offsetY + colliderY),
+                        CollisionGroups.CharacterOrVehicle);
 
                     physicsBody.AddShapeRectangle(
                         size: (radius, radius),
-                        offset: (-radius / 2, offsetY + colliderY - radius / 2));
+                        offset: (-radius / 2, offsetY + colliderY - radius / 2),
+                        CollisionGroups.CharacterOrVehicle);
                 }
             }
         }

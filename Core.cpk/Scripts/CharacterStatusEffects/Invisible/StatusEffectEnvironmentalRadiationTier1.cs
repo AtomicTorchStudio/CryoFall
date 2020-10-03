@@ -21,7 +21,7 @@
             double currentEffectIntensity)
         {
             // intensity threshold for this radiation zone (effectively target radiation level)
-            double threshold = 0.25;
+            double threshold = 0.30;
 
             // what fraction of remaining distance to threshold value is added every second?
             double thresholdFractionIncrease = 0.05; // 5%

@@ -25,11 +25,14 @@
 
         private bool isSortOrderReversed;
 
+        private bool isSortScheduled;
+
         private ServersListSortType sortType;
 
         protected BaseMultiplayerMenuServersController(ServerViewModelsProvider serverViewModelsProvider)
         {
             this.ServerViewModelsProvider = serverViewModelsProvider;
+            ClientUpdateHelper.UpdateCallback += this.Update;
         }
 
         public event Action IsListAvailableChanged;
@@ -74,7 +77,7 @@
                 }
 
                 this.isSortOrderReversed = value;
-                this.SortEntries();
+                this.ScheduleSortEntries();
             }
         }
 
@@ -92,7 +95,7 @@
                 }
 
                 this.sortType = value;
-                this.SortEntries();
+                this.ScheduleSortEntries();
             }
         }
 
@@ -100,6 +103,7 @@
         {
             this.RemoveAllViewModels();
             this.ServersCollection.Clear();
+            ClientUpdateHelper.UpdateCallback -= this.Update;
         }
 
         public void RebuildServersList()
@@ -111,27 +115,9 @@
 
         public abstract void ReloadServersList();
 
-        public void SortEntries()
+        public void ScheduleSortEntries()
         {
-            using var tempOrderedList = Api.Shared.WrapInTempList(this.GetOrderedList());
-            // simply reset the observable collection
-            this.ServersCollection.ClearAndAddRange(tempOrderedList.AsList());
-            return;
-
-            // not implemented by NoesisGUI
-            var currentList = this.ServersCollection;
-            var order = tempOrderedList.AsList();
-            for (var index = 0; index < order.Count; index++)
-            {
-                var currentIndex = currentList.IndexOf(order[index]);
-                if (currentIndex == index)
-                {
-                    continue;
-                }
-
-                currentList.Move(currentIndex, index);
-                Api.Logger.Dev("Moving: " + currentIndex + " -> " + index);
-            }
+            this.isSortScheduled = true;
         }
 
         protected IEnumerable<ViewModelServerInfoListEntry> GetOrderedList()
@@ -142,53 +128,53 @@
                 return entries; // return as is (it could be a recent/history list)
             }
 
-            if (this.sortType == ServersListSortType.Featured)
+            entries = this.sortType switch
             {
-                entries = ReverseIfRequested(
-                    entries.OrderBy(s => !s.ViewModelServerInfo.IsOfficial) // official first
-                           .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)  // then featured
-                           .ThenBy(s => s.ViewModelServerInfo.Title));
-
-                // apply further sorting to return incompatible servers last
-                return entries.OrderBy(s => s.ViewModelServerInfo.IsCompatible == false);
-            }
-
-            return this.sortType switch
-            {
+                ServersListSortType.Featured
+                    => ReverseIfRequested(
+                        entries.OrderBy(s => !s.ViewModelServerInfo.IsOfficial) // official first
+                               .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)  // then featured
+                               .ThenBy(s => s.ViewModelServerInfo.Title)),
+                
                 ServersListSortType.Title
-                => ReverseIfRequested(entries.Where(s => !IsEmptyOrPlaceholderServerTitle(s))
-                                             .OrderBy(s => s.ViewModelServerInfo.Title))
-                    .Concat(entries.Where(IsEmptyOrPlaceholderServerTitle)
-                                   .OrderBy(p => p.ViewModelServerInfo.Address)),
+                    => ReverseIfRequested(entries.Where(s => !IsEmptyOrPlaceholderServerTitle(s))
+                                                 .OrderBy(s => s.ViewModelServerInfo.Title))
+                        .Concat(entries.Where(IsEmptyOrPlaceholderServerTitle)
+                                       .OrderBy(p => p.ViewModelServerInfo.Address)),
 
                 ServersListSortType.Ping
-                => ReverseIfRequested(
-                        entries.Where(v => v.ViewModelServerInfo.Ping.HasValue)
-                               .OrderBy(s => s.ViewModelServerInfo.Ping.Value)
-                               .ThenBy(s => s.ViewModelServerInfo.Title))
-                    .Concat(entries.Where(s => !s.ViewModelServerInfo.Ping.HasValue)
-                                   .OrderBy(s => s.ViewModelServerInfo.Title)),
+                    => ReverseIfRequested(
+                            entries.Where(v => v.ViewModelServerInfo.Ping.HasValue)
+                                   .OrderBy(s => s.ViewModelServerInfo.Ping.Value)
+                                   .ThenBy(s => s.ViewModelServerInfo.Title))
+                        .Concat(entries.Where(s => !s.ViewModelServerInfo.Ping.HasValue)
+                                       .OrderBy(s => s.ViewModelServerInfo.Title)),
 
                 ServersListSortType.OnlinePlayersCount
-                => ReverseIfRequested(
-                        entries.Where(s => s.ViewModelServerInfo.IsInfoReceived)
-                               .OrderByDescending(s => s.ViewModelServerInfo.PlayersOnlineCount)
-                               .ThenBy(s => s.ViewModelServerInfo.Title))
-                    .Concat(entries.Where(s => !s.ViewModelServerInfo.IsInfoReceived)
-                                   .OrderBy(s => s.ViewModelServerInfo.Title)),
+                    => ReverseIfRequested(
+                            entries.Where(s => s.ViewModelServerInfo.IsInfoReceived)
+                                   .OrderByDescending(s => s.ViewModelServerInfo.PlayersOnlineCount)
+                                   .ThenBy(s => s.ViewModelServerInfo.Title))
+                        .Concat(entries.Where(s => !s.ViewModelServerInfo.IsInfoReceived)
+                                       .OrderBy(s => s.ViewModelServerInfo.Title)),
 
                 ServersListSortType.LastWipe
-                => ReverseIfRequested(
-                        entries.Where(s => s.ViewModelServerInfo.IsInfoReceived)
-                               .OrderByDescending(s => s.ViewModelServerInfo.WipedDate.Value)
-                               .ThenBy(s => s.ViewModelServerInfo.Title))
-                    .Concat(entries.Where(s => !s.ViewModelServerInfo.IsInfoReceived)
-                                   .OrderBy(s => s.ViewModelServerInfo.Title)),
+                    => ReverseIfRequested(
+                            entries.Where(s => s.ViewModelServerInfo.IsInfoReceived)
+                                   .OrderByDescending(s => s.ViewModelServerInfo.WipedDate.Value)
+                                   .ThenBy(s => s.ViewModelServerInfo.Title))
+                        .Concat(entries.Where(s => !s.ViewModelServerInfo.IsInfoReceived)
+                                       .OrderBy(s => s.ViewModelServerInfo.Title)),
 
                 _ => throw new ArgumentException("Unknown sort order: " + this.sortType)
             };
 
-            IEnumerable<ViewModelServerInfoListEntry> ReverseIfRequested(IEnumerable<ViewModelServerInfoListEntry> query)
+            // apply further sorting to return incompatible servers last
+            return entries.OrderBy(s => !s.ViewModelServerInfo.IsInfoReceived 
+                                        || s.ViewModelServerInfo.IsCompatible == false);
+
+            IEnumerable<ViewModelServerInfoListEntry> ReverseIfRequested(
+                IEnumerable<ViewModelServerInfoListEntry> query)
             {
                 if (this.IsSortOrderReversed)
                 {
@@ -216,6 +202,7 @@
 
         private void FillServersList()
         {
+            this.isSortScheduled = false;
             this.IsClearingNow = true;
             this.ServersCollection.Clear();
             foreach (var server in this.GetOrderedList())
@@ -235,6 +222,30 @@
             }
 
             this.ServerAddressToServerViewModel.Clear();
+        }
+
+        private void Update()
+        {
+            if (!this.isSortScheduled)
+            {
+                return;
+            }
+
+            this.isSortScheduled = false;
+
+            using var tempOrderedList = Api.Shared.WrapInTempList(this.GetOrderedList());
+            var currentList = this.ServersCollection;
+            var order = tempOrderedList.AsList();
+            for (var index = 0; index < order.Count; index++)
+            {
+                var currentIndex = currentList.IndexOf(order[index]);
+                if (currentIndex == index)
+                {
+                    continue;
+                }
+
+                currentList.Move(currentIndex, index);
+            }
         }
     }
 }

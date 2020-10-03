@@ -72,7 +72,7 @@
 
         public bool SelectSuggestion(bool isPreviousSuggestion, int itemsDistance = 1)
         {
-            if (this.currentSuggestions == null
+            if (this.currentSuggestions is null
                 || this.currentSuggestions.Count <= 0)
             {
                 return false;
@@ -136,7 +136,7 @@
 
             var stringBuilder = new StringBuilder(capacity: 100);
             string commandName;
-            if (this.currentCommandVariant == null)
+            if (this.currentCommandVariant is null)
             {
                 // get suggested command name
                 if (text[0] == ConsoleCommandsSystem.ServerConsoleCommandPrefixOnClient)
@@ -165,7 +165,7 @@
                 }
 
                 if (!consoleCommand.Name.StartsWith(name)
-                    && (consoleCommand.Alias == null
+                    && (consoleCommand.Alias is null
                         || !consoleCommand.Alias.StartsWith(name)))
                 {
                     // current command variant is different from what is displayed now
@@ -189,7 +189,7 @@
                 text = text.Substring(1);
             }
 
-            var isCommandNameParsedSuccessfully = this.currentCommandVariant != null
+            var isCommandNameParsedSuccessfully = this.currentCommandVariant is not null
                                                   && (commandName.Equals(consoleCommand.Name,
                                                                          StringComparison.OrdinalIgnoreCase)
                                                       || commandName.Equals(
@@ -244,7 +244,7 @@
             if (this.lastText == text)
             {
                 // already requested the same suggestion
-                if (this.currentCommandVariant != null)
+                if (this.currentCommandVariant is not null)
                 {
                     this.SuggestionsProvidedHandler(this.currentCommandVariant,
                                                     this.currentSuggestions,
@@ -308,7 +308,7 @@
 
             int? caretIndex = null;
             if (parsedArgumentIndexForSuggestion == -1
-                || this.currentCommandVariant == null
+                || this.currentCommandVariant is null
                 || (!string.Equals(parsedCommandName,
                                    this.currentCommandVariant.ConsoleCommand.Name,
                                    StringComparison.OrdinalIgnoreCase)
@@ -369,7 +369,7 @@
 
             this.currentCommandVariant = commandVariant;
 
-            if (suggestions != null)
+            if (suggestions is not null)
             {
                 var sortedSuggestions = new List<string>(suggestions);
                 sortedSuggestions.Sort(StringComparer.OrdinalIgnoreCase);
@@ -396,7 +396,7 @@
 
             this.SetSuggestedText(suggestion);
 
-            if (this.currentSuggestions != null
+            if (this.currentSuggestions is not null
                 && this.currentSuggestions.Count == 1)
             {
                 // reset suggestions as there are no other suggestions except the one which was set right now

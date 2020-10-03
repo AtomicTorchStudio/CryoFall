@@ -214,7 +214,7 @@
 
         public static IEnumerable<WorldMapResourceMark> SharedEnumerateMarks()
         {
-            if (sharedResourceMarksList == null)
+            if (sharedResourceMarksList is null)
             {
                 yield break;
             }
@@ -235,7 +235,7 @@
 
         public static bool SharedIsContainsMark(in WorldMapResourceMark mark)
         {
-            if (sharedResourceMarksList == null)
+            if (sharedResourceMarksList is null)
             {
                 return false;
             }
@@ -314,10 +314,10 @@
                             Logger.Important(
                                 $"World map resource marks received from server: {marksList.Count} marks total");
 
-                            if (sharedResourceMarksList != null)
+                            if (sharedResourceMarksList is not null)
                             {
                                 var onRemoved = ClientMarkRemoved;
-                                if (onRemoved != null)
+                                if (onRemoved is not null)
                                 {
                                     foreach (var mark in
                                         sharedResourceMarksList)
@@ -339,7 +339,7 @@
                             sharedResourceMarksList.ClientElementRemoved += this.ClientMarksListElementRemovedHandler;
 
                             var onAdded = ClientMarkAdded;
-                            if (onAdded != null)
+                            if (onAdded is not null)
                             {
                                 foreach (var mark in sharedResourceMarksList)
                                 {

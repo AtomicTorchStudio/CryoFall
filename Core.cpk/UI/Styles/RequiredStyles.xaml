@@ -8,6 +8,8 @@
     xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers">
 
     <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <helpers:AnyBoolToVisibilityMultiConverter x:Key="AnyBoolToVisibilityMultiConverter" />
+    <helpers:AllBoolToVisibilityMultiConverter x:Key="AllBoolToVisibilityMultiConverter" />
     <helpers:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibilityConverter" />
     <helpers:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <helpers:NullToHiddenVisibilityConverter x:Key="NullToHiddenVisibilityConverter" />

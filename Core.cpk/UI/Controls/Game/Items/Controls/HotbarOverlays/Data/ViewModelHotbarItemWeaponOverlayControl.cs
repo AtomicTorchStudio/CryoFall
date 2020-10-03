@@ -61,14 +61,14 @@
                     return;
                 }
 
-                if (this.item != null)
+                if (this.item is not null)
                 {
                     this.ReleaseSubscriptions();
                 }
 
                 this.item = value;
 
-                if (this.item == null)
+                if (this.item is null)
                 {
                     return;
                 }
@@ -128,7 +128,7 @@
             ClientCurrentCharacterVehicleContainersHelper.ContainersItemsReset -= this.ContainersItemsResetHandler;
             ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged -= this.ItemAddedOrRemovedOrCountChangedHandler;
 
-            if (this.weaponState != null)
+            if (this.weaponState is not null)
             {
                 this.weaponState.ClientWeaponReloadingStateChanged -= this.WeaponReloadingStateChangedHandler;
                 this.weaponState.ClientActiveWeaponChanged -= this.ActiveWeaponChangedHandler;
@@ -207,7 +207,7 @@
         private void UpdateCurrentProtoItem()
         {
             var reloadingState = this.weaponState.WeaponReloadingState;
-            if (reloadingState != null
+            if (reloadingState is not null
                 && reloadingState.Item == this.item)
             {
                 this.ProtoItemAmmo = reloadingState.ProtoItemAmmo;

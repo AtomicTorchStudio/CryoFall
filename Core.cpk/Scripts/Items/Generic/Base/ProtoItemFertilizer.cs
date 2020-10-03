@@ -87,7 +87,7 @@
         {
             var tile = WorldService.GetTile(tilePosition);
             var objectPlant = tile.StaticObjects.FirstOrDefault(so => so.ProtoStaticWorldObject is IProtoObjectPlant);
-            if (objectPlant == null)
+            if (objectPlant is null)
             {
                 return GetPlantResult.Fail(CannotApplyErrorTitle, "Can apply only on plants.");
             }
@@ -124,6 +124,7 @@
                 this.Icon);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
         private bool ServerRemote_ApplyFertilizer(Vector2Ushort tilePosition, IItem item)
         {
             var character = ServerRemoteContext.Character;
@@ -141,7 +142,7 @@
             var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
 
             // validate if can apply fertilizer
-            if (plantPrivateState.AppliedFertilizerProto != null)
+            if (plantPrivateState.AppliedFertilizerProto is not null)
             {
                 // already applied
                 this.CallClient(character, _ => _.ClientRemote_CannotApplyAlreadyApplied());

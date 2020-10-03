@@ -91,7 +91,7 @@
         public virtual bool IsAutoUnlocked => false;
 
         public bool IsListedInTechNodes
-            => this.listedInTechNodes != null
+            => this.listedInTechNodes is not null
                && this.listedInTechNodes.Count != 0;
 
         public virtual bool IsRelocatable
@@ -116,7 +116,7 @@
 
             base.ClientDeinitialize(gameObject);
 
-            if (currentDisplayedRepairTooltip != null)
+            if (currentDisplayedRepairTooltip is not null)
             {
                 var tooltipDisplayedForObject =
                     ((ConstructionOrRepairRequirementsTooltip)currentDisplayedRepairTooltip.Control).WorldObject;
@@ -128,7 +128,7 @@
                 }
             }
 
-            if (currentDisplayedRelocateTooltip != null)
+            if (currentDisplayedRelocateTooltip is not null)
             {
                 var tooltipDisplayedForObject =
                     ((ConstructionRelocationTooltip)currentDisplayedRelocateTooltip.Control).WorldObject;
@@ -293,7 +293,7 @@
                 return;
             }
 
-            if (byCharacter != null)
+            if (byCharacter is not null)
             {
                 this.ServerOnReturnItemsFromDeconstructionStage(worldObject,
                                                                 byCharacter,

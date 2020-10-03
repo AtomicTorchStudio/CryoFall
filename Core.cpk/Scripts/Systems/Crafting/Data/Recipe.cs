@@ -41,7 +41,7 @@
         {
             get
             {
-                if (allRecipes == null)
+                if (allRecipes is null)
                 {
                     var allRecipesList = Api.FindProtoEntities<Recipe>();
                     allRecipesList.RemoveAll(r => !r.IsEnabled);
@@ -57,7 +57,7 @@
         {
             get
             {
-                if (this.customIcon == null)
+                if (this.customIcon is null)
                 {
                     // by default use icon from the first output item
                     return this.OutputItems.Items.FirstOrDefault()?.ProtoItem.Icon;
@@ -161,7 +161,7 @@
 
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
         {
-            if (this.listedInTechNodes == null)
+            if (this.listedInTechNodes is null)
             {
                 if (this.IsAutoUnlocked)
                 {
@@ -216,7 +216,7 @@
 
         public bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true)
         {
-            if (this.listedInTechNodes == null
+            if (this.listedInTechNodes is null
                 || this.listedInTechNodes.Count == 0)
             {
                 return this.IsAutoUnlocked;
@@ -283,7 +283,7 @@
                 CraftingQueue craftingQueue,
                 ushort countToCraft)
             {
-                if (characterOrStationObject == null)
+                if (characterOrStationObject is null)
                 {
                     // require character or station
                     return false;
@@ -393,7 +393,7 @@
                 OutputItems outputItems)
             {
                 this.SetupRecipe(out duration, out var protoItemFuel, outputItems);
-                Api.Assert(protoItemFuel != null, "Crafting byproduct recipe requires proto item fuel.");
+                Api.Assert(protoItemFuel is not null, "Crafting byproduct recipe requires proto item fuel.");
                 this.ProtoItemFuel = protoItemFuel;
             }
 

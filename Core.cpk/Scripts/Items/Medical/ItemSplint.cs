@@ -14,6 +14,8 @@
 
         public const string NotificationNoBrokenBones_Title = "No broken bones";
 
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description => "Splint is used to set a broken bone and allow it to heal.";
 
         public override double MedicalToxicity => 0;

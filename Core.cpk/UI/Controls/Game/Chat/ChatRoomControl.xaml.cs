@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.EmojiSystem;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -93,15 +92,9 @@
                     this.textBoxChatInput.KeyDown += this.InputKeyDownHandler;
                     this.textBoxChatInput.PreviewTextInput += this.InputPreviewTextInputHandler;
                     this.textBoxChatInput.PreviewKeyDown += this.InputPreviewKeyDownHandler;
-                    this.scrollViewerChatLog.MouseLeftButtonUp += this.ScrollViewerChatLogMouseLeftButtonUpHandler;
 
                     this.viewModelChatRoom.IsOpened = true;
                     this.RefreshScrollViewerChatLogVisibility();
-
-                    if (this.viewModelChatRoom.IsSelected)
-                    {
-                        this.FocusInputIfNecessary();
-                    }
                 }
                 else
                 {
@@ -122,7 +115,6 @@
                     this.textBoxChatInput.KeyDown -= this.InputKeyDownHandler;
                     this.textBoxChatInput.PreviewTextInput -= this.InputPreviewTextInputHandler;
                     this.textBoxChatInput.PreviewKeyDown -= this.InputPreviewKeyDownHandler;
-                    this.scrollViewerChatLog.MouseLeftButtonUp -= this.ScrollViewerChatLogMouseLeftButtonUpHandler;
 
                     this.viewModelChatRoom.IsOpened = false;
                 }
@@ -134,23 +126,13 @@
             get => this.viewModelChatRoom;
             set
             {
-                if (this.viewModelChatRoom != null)
+                if (this.viewModelChatRoom is not null)
                 {
                     throw new InvalidOperationException();
                 }
 
                 this.viewModelChatRoom = value;
                 this.PopulateEntriesFromRoomLog();
-
-                this.viewModelChatRoom.SubscribePropertyChange(
-                    _ => _.IsSelected,
-                    isSelected =>
-                    {
-                        if (isSelected && this.IsActive)
-                        {
-                            this.FocusInputIfNecessary();
-                        }
-                    });
             }
         }
 
@@ -169,19 +151,13 @@
 
         public void FocusInputIfNecessary()
         {
-            // set focus on the next frame (if necessary)
-            ClientTimersSystem.AddAction(
-                0,
-                () =>
-                {
-                    if (this.isLoaded
-                        && this.IsActive
-                        && this.viewModelChatRoom.IsSelected)
-                    {
-                        this.textBoxChatInput.Focus();
-                        Keyboard.Focus(this.textBoxChatInput);
-                    }
-                });
+            if (this.isLoaded
+                && this.IsActive
+                && this.viewModelChatRoom.IsSelected)
+            {
+                this.textBoxChatInput.Focus();
+                Keyboard.Focus(this.textBoxChatInput);
+            }
         }
 
         public void OnEmojiSelected(string emoji)
@@ -218,8 +194,6 @@
             this.PopulateEntriesFromRoomLog();
 
             this.RefreshScrollViewerChatLogVisibility();
-
-            this.FocusInputIfNecessary();
         }
 
         protected override void OnUnloaded()
@@ -523,7 +497,7 @@
         private void PopulateEntriesFromRoomLog()
         {
             if (!this.isLoaded
-                || this.viewModelChatRoom == null)
+                || this.viewModelChatRoom is null)
             {
                 return;
             }
@@ -587,11 +561,6 @@
         {
             this.scrollViewerChatLog.UpdateLayout();
             AdvancedScrollViewerService.ScrollToBottom(this.scrollViewerChatLog, force);
-        }
-
-        private void ScrollViewerChatLogMouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)
-        {
-            this.FocusInputIfNecessary();
         }
 
         private void SendMessage(string message)

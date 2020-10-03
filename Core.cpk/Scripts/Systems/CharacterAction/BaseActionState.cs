@@ -134,7 +134,7 @@
             finally
             {
                 if (Api.IsClient
-                    && this.TargetWorldObject != null)
+                    && this.TargetWorldObject is not null)
                 {
                     ClientTimersSystem.AddAction(
                         delaySeconds:

@@ -36,7 +36,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
             string vehicleHealedMessage = null;
             var vehicle = PlayerCharacter.GetPublicState(player).CurrentVehicle;
-            if (!(vehicle is null))
+            if (vehicle is not null)
             {
                 var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
                 var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
@@ -48,7 +48,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
                 "{0} healed to {1} HP (all other stats are also restored, all debuff status effects were removed){2}.",
                 player,
                 stats.HealthCurrent,
-                vehicleHealedMessage != null
+                vehicleHealedMessage is not null
                     ? Environment.NewLine + vehicleHealedMessage
                     : string.Empty);
         }

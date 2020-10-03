@@ -8,7 +8,7 @@
         public override bool CanAddItem(CanAddItemContext context)
         {
             var character = context.ByCharacter;
-            if (character == null)
+            if (character is null)
             {
                 return true;
             }

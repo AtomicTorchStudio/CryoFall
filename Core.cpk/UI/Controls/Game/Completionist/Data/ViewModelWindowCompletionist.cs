@@ -12,6 +12,8 @@
 
     public class ViewModelWindowCompletionist : BaseViewModel
     {
+        public const double NewEntryNotificationDelay = 1.5;
+
         public const string Notification_CreatureDiscovered_MessageFormat
             = "Killed for the first time.";
 
@@ -32,6 +34,10 @@
         private static Dictionary<IProtoEntity, ViewDataEntryCompletionist> allLootEntries;
 
         private static Dictionary<IProtoEntity, ViewDataEntryCompletionist> allMobEntries;
+
+        private bool hasPendingEntries;
+
+        private int totalPendingEntries;
 
         static ViewModelWindowCompletionist()
         {
@@ -111,9 +117,15 @@
 
         public ViewModelCompletionistPageDefault EntriesMobs { get; }
 
-        public bool HasPendingEntries { get; private set; }
+        public bool HasPendingEntries
+        {
+            get => this.hasPendingEntries;
+        }
 
-        public int TotalPendingEntries { get; private set; }
+        public int TotalPendingEntries
+        {
+            get => this.totalPendingEntries;
+        }
 
         public void RefreshLists()
         {
@@ -145,11 +157,22 @@
 
         private void EntriesPendingCountChangedHandler()
         {
-            this.TotalPendingEntries = this.EntriesFood.PendingEntriesCount
+            var previousNumber = this.totalPendingEntries;
+            this.totalPendingEntries = this.EntriesFood.PendingEntriesCount
                                        + this.EntriesMobs.PendingEntriesCount
                                        + this.EntriesLoot.PendingEntriesCount
                                        + this.EntriesFish.PendingEntriesCount;
-            this.HasPendingEntries = this.TotalPendingEntries > 0;
+            this.hasPendingEntries = this.TotalPendingEntries > 0;
+
+            ClientTimersSystem.AddAction(
+                delaySeconds: previousNumber < this.totalPendingEntries
+                                  ? NewEntryNotificationDelay
+                                  : 0,
+                () =>
+                {
+                    this.NotifyPropertyChanged(nameof(this.TotalPendingEntries));
+                    this.NotifyPropertyChanged(nameof(this.HasPendingEntries));
+                });
         }
     }
 }

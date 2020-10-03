@@ -30,7 +30,7 @@
             }
 
             this.objectStructurePointsData = data;
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 this.RefreshViewModelData();
             }

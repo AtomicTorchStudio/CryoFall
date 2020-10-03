@@ -15,10 +15,10 @@
         public override string Description =>
             "A broken implant in your body significantly affects your well-being. Your maximum health (HP) is lowered as a result.";
 
+        public override StatusEffectDisplayMode DisplayMode => StatusEffectDisplayMode.None;
+
         // does not decrease
         public override double IntensityAutoDecreasePerSecondValue => 0;
-
-        public override bool IsIntensityPercentVisible => false;
 
         public override bool IsRemovedOnRespawn => false;
 

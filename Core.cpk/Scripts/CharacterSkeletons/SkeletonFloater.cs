@@ -51,10 +51,10 @@
                 .AddShapeCircle(radius: 0.15,
                                 center: (0, -0.05))
                 .AddShapeRectangle(size: (1, 1.2),
-                                   offset: (-0.5, 0.4), 
+                                   offset: (-0.5, 0.4),
                                    group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (1, 1.6),
-                                   offset: (-0.5, 0.2), 
+                                   offset: (-0.5, 0.2),
                                    group: CollisionGroups.HitboxRanged);
         }
 

@@ -103,7 +103,7 @@
                     return;
                 }
 
-                if (value != null
+                if (value is not null
                     && !this.isLoaded)
                 {
                     return;
@@ -111,7 +111,7 @@
 
                 this.item = value;
                 var currentViewModel = this.DataContext as BaseViewModel;
-                if (currentViewModel != null)
+                if (currentViewModel is not null)
                 {
                     this.DataContext = null;
                     currentViewModel.Dispose();
@@ -128,8 +128,8 @@
         {
             string stateName;
 
-            if (selectedItem != null
-                && this.container != null)
+            if (selectedItem is not null
+                && this.container is not null)
             {
                 var canAddItem = Api.Client.Items.CanPlaceItem(
                     selectedItem,
@@ -216,7 +216,7 @@
 
         private void DestroyTooltip()
         {
-            if (this.tooltip == null)
+            if (this.tooltip is null)
             {
                 return;
             }
@@ -254,7 +254,7 @@
         private void RefreshDataContext()
         {
             var viewModel = this.DataContext as ViewModelItem;
-            if (viewModel != null)
+            if (viewModel is not null)
             {
                 if (viewModel.Item == this.item)
                 {
@@ -265,7 +265,7 @@
                 viewModel.Dispose();
             }
 
-            this.DataContext = this.item != null
+            this.DataContext = this.item is not null
                                    ? new ViewModelItem(this.item)
                                    : null;
         }
@@ -275,7 +275,7 @@
             this.DestroyTooltip();
 
             if (!this.IsMouseOver
-                || this.item == null)
+                || this.item is null)
             {
                 // no need to display the tooltip
                 return;
@@ -381,7 +381,7 @@
                     return;
                 }
 
-                if (ClientItemsManager.ItemInHand != null
+                if (ClientItemsManager.ItemInHand is not null
                     && e.ChangedButton == MouseButton.Left)
                 {
                     // try to drop item here

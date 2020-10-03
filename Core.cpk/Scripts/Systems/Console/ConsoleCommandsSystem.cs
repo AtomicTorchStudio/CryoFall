@@ -81,7 +81,7 @@
         /// </summary>
         public static bool ServerIsModeratorOrSystemConsole(ICharacter character)
             => ServerModeratorSystem.SharedIsModerator(character)
-               || character == null && Api.IsServer;
+               || character is null && Api.IsServer;
 
         /// <summary>
         /// Returns true if character has the Operator role or it's null and we're on the server
@@ -89,7 +89,7 @@
         /// </summary>
         public static bool ServerIsOperatorOrSystemConsole(ICharacter character)
             => ServerOperatorSystem.SharedIsOperator(character)
-               || character == null && Api.IsServer;
+               || character is null && Api.IsServer;
 
         public static void ServerOnConsoleCommandResult(
             ICharacter byCharacter,
@@ -181,7 +181,7 @@
                 out var argumentIndexForSuggestion);
 
             var consoleCommand = SharedFindConsoleCommandByName(commandName);
-            if (consoleCommand == null)
+            if (consoleCommand is null)
             {
                 // unknown command
                 return null;
@@ -256,7 +256,7 @@
                         $"Command name={commandName} (class {command.Id}) is already used by class {dictionary[commandName].Id}");
                 }
 
-                if (commandAlias == null)
+                if (commandAlias is null)
                 {
                     continue;
                 }
@@ -308,7 +308,7 @@
             }
 
             var commandData = SharedParseCommand(text, out _);
-            if (commandData == null)
+            if (commandData is null)
             {
                 Logger.Warning($"Unknown console command: \"{text}\"", byCharacter);
                 return;
@@ -363,7 +363,7 @@
             var isOperator = ServerIsOperatorOrSystemConsole(byCharacter);
             var isModerator = ServerIsModeratorOrSystemConsole(byCharacter);
 
-            if (commandData == null) // don't have parsed command - suggest commands
+            if (commandData is null) // don't have parsed command - suggest commands
             {
                 if (text.Contains(' ')
                     && text.TrimEnd(' ').Contains(' '))
@@ -478,7 +478,7 @@
             SharedExecuteConsoleCommand(text, byCharacter: ServerRemoteContext.Character);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.1, avoidBuffer: true)]
         private void ServerRemote_GetSuggestions(string text, ushort textPosition, byte requestId)
         {
             var byCharacter = ServerRemoteContext.Character;
@@ -491,7 +491,7 @@
             BaseConsoleCommand consoleCommand = null;
             byte variantIndex = 0;
 
-            if (consoleCommandVariant != null)
+            if (consoleCommandVariant is not null)
             {
                 consoleCommand = consoleCommandVariant.ConsoleCommand;
                 var variants = consoleCommand.Variants;

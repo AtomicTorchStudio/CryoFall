@@ -47,9 +47,9 @@
                     new MultiplayerMenuServersPublicController(
                             this.serverViewModelsProvider,
                             specialCondition: info => info.IsOfficial
-                                                      || (info.IsFeatured && !info.IsModded))
+                                                      || info.IsFeatured)
                         {
-                            DefaultSortType = ServersListSortType.Featured
+                            DefaultSortType = ServersListSortType.Ping
                         },
                     this.OnSelectedServerChanged);
             this.FeaturedServers.IsActive = true;
@@ -62,7 +62,7 @@
                                                       && !info.IsFeatured
                                                       && !info.IsModded)
                         {
-                            DefaultSortType = ServersListSortType.OnlinePlayersCount
+                            DefaultSortType = ServersListSortType.Ping
                         },
                     this.OnSelectedServerChanged);
 
@@ -71,9 +71,10 @@
                     new MultiplayerMenuServersPublicController(
                             this.serverViewModelsProvider,
                             specialCondition: info => !info.IsOfficial
+                                                      && !info.IsFeatured
                                                       && info.IsModded)
                         {
-                            DefaultSortType = ServersListSortType.OnlinePlayersCount
+                            DefaultSortType = ServersListSortType.Ping
                         },
                     this.OnSelectedServerChanged);
 
@@ -84,10 +85,7 @@
 
             this.FavoriteServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.Favorite, this.serverViewModelsProvider)
-                    {
-                        DefaultSortType = ServersListSortType.OnlinePlayersCount
-                    },
+                    new MultiplayerMenuServersController(this.serversProvider.Favorite, this.serverViewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.HistoryServers =
@@ -166,7 +164,7 @@
 
                 this.selectedServer = value;
                 this.NotifyThisPropertyChanged();
-                this.SelectedServerVisibility = this.selectedServer != null ? Visibility.Visible : Visibility.Collapsed;
+                this.SelectedServerVisibility = this.selectedServer is not null ? Visibility.Visible : Visibility.Collapsed;
 
                 //foreach (var viewModelServersList in this.allServersLists)
                 //{
@@ -346,9 +344,9 @@
                                                       ? new ServerAddress(guid)
                                                       : new ServerAddress(newServerName);
 
-                               var serversProvider = Client.MasterServer.ServersProvider;
-                               serversProvider.Custom.Add(newServerAddress);
-                               serversProvider.Custom.Save();
+                               var provider = Client.MasterServer.ServersProvider;
+                               provider.Custom.Add(newServerAddress);
+                               provider.Custom.Save();
 
                                // select custom servers list
                                foreach (var serversList in this.allServersLists)
@@ -359,6 +357,8 @@
                                this.CustomServers.SelectedServer =
                                    this.CustomServers.ServersList.FirstOrDefault(
                                        s => s.ViewModelServerInfo.Address == newServerAddress);
+
+                               // TODO: ensure the new entry is refreshed first
                            }
             };
 
@@ -389,7 +389,7 @@
                 {
                     case ServersListSortType.OnlinePlayersCount:
                     case ServersListSortType.LastWipe:
-                        serversList.SortEntries();
+                        serversList.ScheduleSortEntries();
                         break;
                     // Please note: we don't sort on server info receive if the list is ordered by ping
                 }
@@ -408,7 +408,7 @@
                 if (serversList.IsActive
                     && serversList.Controller.SortType == ServersListSortType.Ping)
                 {
-                    serversList.SortEntries();
+                    serversList.ScheduleSortEntries();
                 }
             }
         }

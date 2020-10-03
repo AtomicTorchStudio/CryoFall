@@ -266,7 +266,7 @@
             {
                 this.UpdateBounds();
 
-                if (this.sliderScale != null)
+                if (this.sliderScale is not null)
                 {
                     this.isListeningToScaleEvents = false;
                     this.sliderScale.Value = newScale;
@@ -315,7 +315,7 @@
                 this.contentWrapper.PreviewMouseLeftButtonDown += this.ContentWrapperOnMouseLeftButtonDownHandler;
                 this.contentWrapper.MouseWheel += this.ContentWrapperMouseWheelHandler;
 
-                if (this.sliderScale != null)
+                if (this.sliderScale is not null)
                 {
                     this.sliderScale.ValueChanged += this.SliderScaleValueChangedHandler;
                 }
@@ -352,7 +352,7 @@
             this.contentWrapper.PreviewMouseLeftButtonDown -= this.ContentWrapperOnMouseLeftButtonDownHandler;
             this.contentWrapper.MouseWheel -= this.ContentWrapperMouseWheelHandler;
 
-            if (this.sliderScale != null)
+            if (this.sliderScale is not null)
             {
                 this.sliderScale.ValueChanged -= this.SliderScaleValueChangedHandler;
             }
@@ -500,7 +500,7 @@
             var newScale = Math.Exp(Math.Log(this.CurrentTargetZoom) + wheelRotation);
             newScale = MathHelper.Clamp(newScale, this.MinZoom, this.MaxZoom);
 
-            if (this.sliderScale != null)
+            if (this.sliderScale is not null)
             {
                 this.isListeningToScaleEvents = false;
                 this.sliderScale.Value = newScale;
@@ -546,7 +546,7 @@
             }
 
             var pos = this.GetMouseCanvasPosition();
-            if (!(this.contentScaleStoryboard is null))
+            if (this.contentScaleStoryboard is not null)
             {
                 // don't allow panning while zoom storyboard is playing
                 return;
@@ -589,7 +589,7 @@
             this.isMouseButtonDown = false;
             this.mouseHoldAbsolutePosition = null;
 
-            if (this.mouseEventsRoot != null)
+            if (this.mouseEventsRoot is not null)
             {
                 this.mouseEventsRoot.PreviewMouseLeftButtonUp -= this.LayoutRootOnMouseLeftButtonUpHandler;
                 this.mouseEventsRoot.MouseLeave -= this.LayoutRootMouseLeaveHandler;

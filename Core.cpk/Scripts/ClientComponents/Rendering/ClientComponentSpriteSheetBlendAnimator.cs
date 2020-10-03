@@ -42,7 +42,7 @@
             ITextureResource[] framesTextureResources,
             double frameDurationSeconds)
         {
-            if (framesTextureResources == null
+            if (framesTextureResources is null
                 || framesTextureResources.Length == 0)
             {
                 throw new Exception("Incorrect sprite sheet");
@@ -63,7 +63,7 @@
 
         public override void Update(double deltaTime)
         {
-            if (this.framesTextureResources == null)
+            if (this.framesTextureResources is null)
             {
                 throw new Exception("Sprite sheet animator is not setup");
             }

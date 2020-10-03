@@ -57,13 +57,13 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
-            build.AddStageRequiredItem<ItemHygroscopicGranules>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            build.AddStageRequiredItem<ItemHygroscopicGranules>(count: 10);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
         }

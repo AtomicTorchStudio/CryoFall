@@ -10,9 +10,9 @@
     {
         public override double DefaultMoveSpeed => 0.825;
 
-        public override double IconScale => 0.6;
-
         public override Vector2D IconOffset => (-45, 20);
+
+        public override double IconScale => 0.6;
 
         public override float OrientationDownExtraAngle => 5;
 

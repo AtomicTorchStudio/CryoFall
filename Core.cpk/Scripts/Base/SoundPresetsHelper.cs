@@ -29,7 +29,7 @@
         public static ReadOnlySoundPreset<ObjectSound> SharedGetObjectSoundPreset(
             this IProtoWorldObject protoWorldObject)
         {
-            if (protoWorldObject == null)
+            if (protoWorldObject is null)
             {
                 throw new ArgumentNullException(nameof(protoWorldObject));
             }

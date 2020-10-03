@@ -25,7 +25,7 @@
         public override bool CanAddItem(CanAddItemContext context)
         {
             // prohibit adding items to this container by any character
-            return context.ByCharacter == null;
+            return context.ByCharacter is null;
         }
 
         public override void ServerOnItemCountChanged(

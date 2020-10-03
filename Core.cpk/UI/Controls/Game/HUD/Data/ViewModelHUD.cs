@@ -103,7 +103,7 @@
         private void RefreshVehicleUI()
         {
             var currentVehicle = ClientCurrentCharacterHelper.PublicState.CurrentVehicle;
-            if (!(currentVehicle is null)
+            if (currentVehicle is not null
                 && (!currentVehicle.IsInitialized
                     || !currentVehicle.ClientHasPrivateState))
             {
@@ -113,7 +113,7 @@
                 currentVehicle = null;
             }
 
-            this.IsQuitVehicleButtonVisible = !(currentVehicle is null);
+            this.IsQuitVehicleButtonVisible = currentVehicle is not null;
             this.IsConstructionMenuAvailable = currentVehicle is null;
             this.IsPlayersHotbarVisible = currentVehicle is null
                                           || ((IProtoVehicle)currentVehicle.ProtoGameObject)

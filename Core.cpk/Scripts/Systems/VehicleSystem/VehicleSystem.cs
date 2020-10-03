@@ -66,7 +66,7 @@
         public static void ServerOnVehicleDestroyed(IDynamicWorldObject vehicle)
         {
             var publicState = vehicle.GetPublicState<VehiclePublicState>();
-            if (!(publicState.PilotCharacter is null))
+            if (publicState.PilotCharacter is not null)
             {
                 ServerCharacterExitVehicle(publicState.PilotCharacter, vehicle);
             }
@@ -238,7 +238,7 @@
             }
 
             var vehicle = ClientCurrentCharacterHelper.PublicState.CurrentVehicle;
-            if (vehicle != null)
+            if (vehicle is not null)
             {
                 // already inside a vehicle
                 var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
@@ -266,7 +266,7 @@
                 var closestVehicle = Client.World.GetGameObjectsOfProto<IDynamicWorldObject, IProtoVehicle>()
                                            .OrderBy(v => v.Position.DistanceSquaredTo(character.Position))
                                            .FirstOrDefault();
-                if (closestVehicle != null
+                if (closestVehicle is not null
                     && closestVehicle.Position.DistanceTo(character.Position) < 3)
                 {
                     vehicle = closestVehicle;
@@ -361,7 +361,7 @@
             }
 
             var characterPublicState = PlayerCharacter.GetPublicState(character);
-            if (characterPublicState.CurrentVehicle != null)
+            if (characterPublicState.CurrentVehicle is not null)
             {
                 Logger.Warning($"Player cannot enter vehicle: {vehicle} (already in a vehicle)", character);
                 return;
@@ -369,7 +369,7 @@
 
             var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
             var vehiclePrivateState = vehicle.GetPrivateState<VehiclePrivateState>();
-            if (vehiclePublicState.PilotCharacter != null)
+            if (vehiclePublicState.PilotCharacter is not null)
             {
                 Logger.Warning($"Player cannot enter vehicle: {vehicle} (already has a pilot)", character);
                 return;
@@ -390,7 +390,7 @@
             characterPrivateState.CurrentActionState?.Cancel();
 
             var currentCharacterInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
-            if (currentCharacterInteractionObject != null)
+            if (currentCharacterInteractionObject is not null)
             {
                 InteractionCheckerSystem.SharedUnregister(character, currentCharacterInteractionObject, isAbort: true);
             }

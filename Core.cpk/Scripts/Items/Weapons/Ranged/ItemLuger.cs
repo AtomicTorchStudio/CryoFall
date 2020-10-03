@@ -28,7 +28,7 @@
 
         public override double RangeMultiplier => 1.1; // slightly higher
 
-        public override double ReadyDelayDuration => 0.6;
+        public override double ReadyDelayDuration => WeaponReadyDelays.ConventionalPistols;
 
         public override double SpecialEffectProbability => 0.25;
 
@@ -37,14 +37,14 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.0, -0.5, 0.5 },
-                cycledSequence: new[] { -1.2, 1.2, 0.6, -0.6 });
+                initialSequence: new[] { 0.0, 0.5, 0.5 },
+                cycledSequence: new[] { 1.2, 0.6, 1.2, 0.6 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.SimplePistol)
-                       .Set(textureScreenOffset: (-16, 8));
+                       .Set(textureScreenOffset: (-14, 6));
         }
 
         protected override void PrepareProtoWeaponRanged(

@@ -25,7 +25,7 @@
                     return;
                 }
 
-                if (subscribedContainers != null)
+                if (subscribedContainers is not null)
                 {
                     // unsubscribe
                     foreach (var container in subscribedContainers)
@@ -39,7 +39,7 @@
 
                 subscribedContainers = value;
 
-                if (subscribedContainers != null)
+                if (subscribedContainers is not null)
                 {
                     // subscribe
                     foreach (var container in subscribedContainers)

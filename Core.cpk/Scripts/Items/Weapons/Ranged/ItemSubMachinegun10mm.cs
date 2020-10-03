@@ -37,14 +37,14 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.0, 1.0, -2.0 },
-                cycledSequence: new[] { 1.5, 3.0, 2.5, 0.0, 3.5, -1.5, -3.0, -2.5, 0.0, -3.5 });
+                initialSequence: new[] { 0.0, 1.0, 2.0 },
+                cycledSequence: new[] { 1.5, 3.0, 2.0, 2.5 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.ModernSubmachinegun)
-                       .Set(textureScreenOffset: (9, 19));
+                       .Set(textureScreenOffset: (12, 19));
         }
 
         protected override void PrepareProtoWeaponRanged(

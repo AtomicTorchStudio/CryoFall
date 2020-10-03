@@ -110,21 +110,21 @@
 
             if (this.protoCharacterSkeleton != currentProtoCharacterSkeleton)
             {
-                if (currentProtoCharacterSkeleton == null)
+                if (currentProtoCharacterSkeleton is null)
                 {
                     return;
                 }
 
                 // proto skeleton changed - destroy current skeleton
                 this.protoCharacterSkeleton = (ProtoCharacterSkeleton)currentProtoCharacterSkeleton;
-                if (this.currentSkeleton != null)
+                if (this.currentSkeleton is not null)
                 {
                     this.currentSkeleton.Destroy();
                     this.currentSkeleton = null;
                 }
             }
 
-            if (this.currentSkeleton == null)
+            if (this.currentSkeleton is null)
             {
                 var scale = this.textureWidth / 128;
                 this.currentSkeleton = ClientCharacterEquipmentHelper.CreateCharacterSkeleton(
@@ -133,7 +133,7 @@
                     worldScale: 0.125 * scale * this.protoCharacterSkeleton.InventoryScale,
                     spriteQualityOffset: -1);
 
-                if (this.currentSkeleton == null)
+                if (this.currentSkeleton is null)
                 {
                     // failed to create the skeleton renderer (spectator?)
                     return;
@@ -162,7 +162,7 @@
 
         public void ToggleView()
         {
-            if (this.protoCharacterSkeleton?.SkeletonResourceFront == null)
+            if (this.protoCharacterSkeleton?.SkeletonResourceFront is null)
             {
                 return;
             }

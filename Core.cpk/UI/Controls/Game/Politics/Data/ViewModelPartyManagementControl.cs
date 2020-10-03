@@ -72,7 +72,7 @@
             => new ActionCommandWithParameter(
                 arg => this.ExecuteCommandRemoveMember((string)arg));
 
-        public bool HasParty => PartySystem.ClientCurrentParty != null;
+        public bool HasParty => PartySystem.ClientCurrentParty is not null;
 
         public string InviteeName { get; set; }
 
@@ -176,10 +176,10 @@
 
             var party = PartySystem.ClientCurrentParty;
 
-            this.partyPublicState = party != null
+            this.partyPublicState = party is not null
                                         ? Party.GetPublicState(party)
                                         : null;
-            if (this.partyPublicState != null)
+            if (this.partyPublicState is not null)
             {
                 this.partyPublicStateSubscriptionStorage = new StateSubscriptionStorage();
                 this.partyPublicState.ClientSubscribe(_ => _.ClanTag,

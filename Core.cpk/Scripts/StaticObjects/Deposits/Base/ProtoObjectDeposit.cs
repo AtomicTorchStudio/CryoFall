@@ -77,7 +77,7 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            if (weaponCache.ProtoExplosive != null)
+            if (weaponCache.ProtoExplosive is not null)
             {
                 // allow to explode only a resource deposit which could be claimed
                 if (WorldMapResourceMarksSystem.SharedCalculateTimeRemainsToClaimCooldownSeconds(targetObject)
@@ -226,7 +226,7 @@
                 var objectExtractor = worldObject.OccupiedTile.StaticObjects.FirstOrDefault(
                     o => o.ProtoStaticWorldObject is IProtoObjectManufacturer);
 
-                if (objectExtractor != null
+                if (objectExtractor is not null
                     && objectExtractor.GetPublicState<ObjectManufacturerPublicState>().IsActive)
                 {
                     // decay faster as the extraction/manufacturing is going on

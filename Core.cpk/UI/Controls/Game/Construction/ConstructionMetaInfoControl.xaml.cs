@@ -62,7 +62,7 @@
             var protoStructure = this.ProtoObjectStructure;
             var result = new List<ControlTemplate>();
 
-            if (protoStructure != null)
+            if (protoStructure is not null)
             {
                 foreach (var entry in Templates)
                 {

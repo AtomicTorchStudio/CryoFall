@@ -79,7 +79,7 @@
                     return;
                 }
 
-                if (value != null
+                if (value is not null
                     && !value.IsStyleSet)
                 {
                     value.GenerateRandomFace();

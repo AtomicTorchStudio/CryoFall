@@ -50,7 +50,7 @@
                 if (masterConnectionState == ConnectionState.Connecting)
                 {
                     // need to display the indicator
-                    if (instance == null)
+                    if (instance is null)
                     {
                         instance = new MasterServerConnectionIndicator();
                         Api.Client.UI.LayoutRootChildren.Add(instance);

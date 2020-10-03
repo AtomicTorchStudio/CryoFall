@@ -37,7 +37,7 @@
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
-            if (trigger != null
+            if (trigger is not null
                 && this.ServerHasAnyEventOfType<ProtoEventDrop>())
             {
                 return false;

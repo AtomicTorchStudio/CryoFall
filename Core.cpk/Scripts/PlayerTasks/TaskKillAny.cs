@@ -63,7 +63,7 @@
             }
 
             var context = this.GetActiveContext(attackerCharacter, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }

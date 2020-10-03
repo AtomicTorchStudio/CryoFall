@@ -170,7 +170,7 @@
             var tilePosition = targetObject.TilePosition;
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
 
-            if (weaponCache != null)
+            if (weaponCache is not null)
             {
                 // wall was destroyed (and not deconstructed by a crowbar or any other means)
                 ObjectWallDestroyed.ServerSpawnDestroyedWall(tilePosition, this);

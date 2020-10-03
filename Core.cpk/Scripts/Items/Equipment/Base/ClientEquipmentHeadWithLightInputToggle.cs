@@ -36,7 +36,7 @@
 
             // check whether a vehicle is overriding the helmet light switch
             var currentVehicle = characterPublicState.CurrentVehicle;
-            if (currentVehicle != null)
+            if (currentVehicle is not null)
             {
                 var currentVehicleProto = (IProtoVehicle)currentVehicle.ProtoGameObject;
                 if (!currentVehicleProto.IsPlayersHotbarAndEquipmentItemsAllowed)
@@ -50,7 +50,7 @@
             var item = characterPublicState?.ContainerEquipment.Items.FirstOrDefault(
                 i => i.ProtoItem is IProtoItemEquipmentHeadWithLight);
 
-            if (item == null)
+            if (item is null)
             {
                 NotificationSystem.ClientShowNotification(NotificationNoHelmetLightEquipped,
                                                           color: NotificationColor.Bad);

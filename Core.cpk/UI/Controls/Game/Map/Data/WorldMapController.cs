@@ -10,6 +10,7 @@
     using System.Windows.Media;
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -58,9 +59,13 @@
 
         private ClientComponentWorldMapCurrentCharacterUpdater componentCurrentCharacterUpdater;
 
+        private ControlTemplate customControlTemplatePlayerMark;
+
         private bool isActive;
 
         private bool isAutocenterOnPlayer = true;
+
+        private bool isCurrentCameraViewDisplayed;
 
         private bool isDisposed;
 
@@ -82,8 +87,10 @@
             PanningPanel panningPanel,
             ViewModelControlWorldMap viewModelControlWorldMap,
             bool isPlayerMarkDisplayed,
+            bool isCurrentCameraViewDisplayed,
             bool isListeningToInput,
-            int paddingChunks)
+            int paddingChunks,
+            ControlTemplate customControlTemplatePlayerMark = null)
         {
             this.cancellationTokenSource = new CancellationTokenSource();
             this.cancellationToken = CancellationTokenSource
@@ -93,8 +100,10 @@
             this.panningPanel = panningPanel;
             this.viewModelControlWorldMap = viewModelControlWorldMap;
             this.isPlayerMarkDisplayed = isPlayerMarkDisplayed;
+            this.isCurrentCameraViewDisplayed = isCurrentCameraViewDisplayed;
             this.isListeningToInput = isListeningToInput;
             this.paddingChunks = paddingChunks;
+            this.customControlTemplatePlayerMark = customControlTemplatePlayerMark;
 
             this.canvasMap = new Canvas();
             this.canvasMapChildren = this.canvasMap.Children;
@@ -116,7 +125,7 @@
             };
 
             Panel.SetZIndex(controlCurrentCameraView, 10);
-            if (!this.isPlayerMarkDisplayed)
+            if (this.isCurrentCameraViewDisplayed)
             {
                 this.canvasMapChildren.Add(controlCurrentCameraView);
             }
@@ -171,7 +180,8 @@
                                                      {
                                                          if (Api.Client.Input.IsKeyDown(InputKey.Space))
                                                          {
-                                                             this.CenterMapOnPlayerCharacter(resetZoomIfBelowThreshold: this.isListeningToInput);
+                                                             this.CenterMapOnPlayerCharacter(
+                                                                 resetZoomIfBelowThreshold: this.isListeningToInput);
                                                          }
                                                      });
                 }
@@ -188,7 +198,7 @@
             IEnumerable<Vector2Ushort> worldChunksAvailable)
         {
             var playerCharacter = Api.Client.Characters.CurrentPlayerCharacter;
-            if (playerCharacter == null)
+            if (playerCharacter is null)
             {
                 return worldChunksAvailable;
             }
@@ -216,7 +226,7 @@
             this.lastPlayerCanvasPosition = canvasPosition;
             //Api.Logger.Write("Centering on player at canvas position: " + canvasPosition);
 
-            if (resetZoomIfBelowThreshold 
+            if (resetZoomIfBelowThreshold
                 && this.panningPanel.CurrentTargetZoom < 0.5)
             {
                 this.panningPanel.SetZoom(0.5);
@@ -387,8 +397,8 @@
             CancellationToken cancellationToken)
         {
             var imageBrush = await WorldMapTexturesProvider.LoadMapChunkImageBrush(chunkStartPosition,
-                                                                                   checksum,
-                                                                                   cancellationToken);
+                                 checksum,
+                                 cancellationToken);
             if (imageBrush is null)
             {
                 // cancelled
@@ -422,7 +432,9 @@
 
         private void CreateCurrentCharacterControl()
         {
-            var controlCurrentCharacter = new WorldMapMarkCurrentCharacter();
+            Control controlCurrentCharacter = this.customControlTemplatePlayerMark is not null
+                                                  ? new Control() { Template = this.customControlTemplatePlayerMark }
+                                                  : new WorldMapMarkCurrentCharacter();
             Panel.SetZIndex(controlCurrentCharacter, 10);
             if (this.isPlayerMarkDisplayed)
             {
@@ -528,6 +540,19 @@
                 if (this.isListeningToInput)
                 {
                     this.viewModelControlWorldMap.PointedPositionText = pointedMapPosition.ToString();
+
+                    var protoTile = this.panningPanel.IsMouseOver
+                                        ? Api.Client.World.GetTile(this.PointedMapPositionWithoutOffset).ProtoTile
+                                        : null;
+                    if (protoTile is null
+                        || protoTile is TilePlaceholder)
+                    {
+                        this.viewModelControlWorldMap.PointedPositionBiomeName = string.Empty;
+                    }
+                    else
+                    {
+                        this.viewModelControlWorldMap.PointedPositionBiomeName = protoTile.Name;
+                    }
                 }
             }
 

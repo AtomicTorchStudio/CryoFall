@@ -120,7 +120,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
                 protoMob,
                 position.Value);
 
-            if (character == null)
+            if (character is null)
             {
                 throw new Exception("Cannot spawn character.");
             }

@@ -126,7 +126,7 @@
                     return;
                 }
 
-                if (value != null
+                if (value is not null
                     && !value.SharedIsTechUnlocked(Client.Characters.CurrentPlayerCharacter))
                 {
                     // suggested recipe is locked
@@ -135,7 +135,7 @@
 
                 this.bestMatchingRecipe = value;
                 this.NotifyThisPropertyChanged();
-                this.BestMatchingRecipeViewModel = value == null ? null : new ViewModelCraftingRecipe(value);
+                this.BestMatchingRecipeViewModel = value is null ? null : new ViewModelCraftingRecipe(value);
 
                 this.RefreshIsInputMatchSelectedRecipe();
             }
@@ -186,7 +186,7 @@
 
                 this.selectedRecipe = value;
                 this.NotifyThisPropertyChanged();
-                this.SelectedRecipeViewModel = value == null ? null : new ViewModelCraftingRecipe(value);
+                this.SelectedRecipeViewModel = value is null ? null : new ViewModelCraftingRecipe(value);
 
                 this.RefreshBestMatchingRecipe();
                 this.RefreshIsInputMatchSelectedRecipe();
@@ -250,7 +250,7 @@
                         validateItemsAvailabilityInPlayerInventory: false,
                         customCallbackOnRecipeSelect: this.ExecuteCommandSelectRecipeFromBrowser);
 
-                    if (this.selectedRecipe != null)
+                    if (this.selectedRecipe is not null)
                     {
                         this.RecipesBrowserViewModel.SelectedRecipe =
                             this.RecipesBrowserViewModel.RecipesList.FirstOrDefault(
@@ -272,15 +272,15 @@
         {
             var occupiedSlotsCount = this.ContainerInput.OccupiedSlotsCount;
 
-            if (this.selectedRecipe == null
+            if (this.selectedRecipe is null
                 || occupiedSlotsCount == 0)
             {
                 this.IsInputNotEnoughItems = false;
 
                 // consider the recipe is matched if there is no input
-                if (this.selectedRecipe == null
+                if (this.selectedRecipe is null
                     && occupiedSlotsCount > 0
-                    && this.bestMatchingRecipe == null)
+                    && this.bestMatchingRecipe is null)
                 {
                     this.IsInputMatchSelectedRecipe = false;
                     return;

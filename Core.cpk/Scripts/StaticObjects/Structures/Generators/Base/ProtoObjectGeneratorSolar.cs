@@ -89,7 +89,7 @@
             var publicState = data.PublicState;
             var itemsContainer = publicState.PanelsContainer;
             var itemsSlotsCount = this.PanelSlotsCount;
-            if (itemsContainer != null)
+            if (itemsContainer is not null)
             {
                 // container already created - update slots count
                 Server.Items.SetSlotsCount(itemsContainer, slotsCount: itemsSlotsCount);

@@ -26,7 +26,7 @@
 
         public bool SharedIsPerkUnlocked(ICharacter character, bool allowIfAdmin = true)
         {
-            if (this.listedInTechNodes == null
+            if (this.listedInTechNodes is null
                 || this.listedInTechNodes.Count == 0)
             {
                 // not unlockable perk!

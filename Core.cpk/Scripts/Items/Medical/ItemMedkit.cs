@@ -7,6 +7,8 @@
 
     public class ItemMedkit : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Long;
+
         public override string Description =>
             "All-in-one medical kit. Restores health over time, removes nausea and bleeding, even contains a splint for broken bones.";
 

@@ -60,7 +60,7 @@
         {
             var skeletonRenderer = PlayerCharacter.GetClientState(this.Character).SkeletonRenderer;
             var currentAnimationName = skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.Extra);
-            if (!(currentAnimationName is null)
+            if (currentAnimationName is not null
                 && currentAnimationName.IndexOf("Fishing", StringComparison.Ordinal) >= 0)
             {
                 // the animation is not yet finished
@@ -68,7 +68,7 @@
             }
 
             // player clicked a mouse so the rod should be removed
-            if (!(this.SharedFishingSession is null)
+            if (this.SharedFishingSession is not null
                 && FishingSession.GetPublicState(this.SharedFishingSession)
                                  .IsFishBiting)
             {
@@ -165,7 +165,7 @@
                 return;
             }
 
-            if (this.SharedFishingSession != null
+            if (this.SharedFishingSession is not null
                 && this.SharedFishingSession.IsDestroyed)
             {
                 this.Complete();

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -118,7 +119,7 @@
         private void ExecuteCommandTakeSelectedVehicle()
         {
             var entry = this.SelectedVehicle;
-            if (entry == null)
+            if (entry is null)
             {
                 return;
             }
@@ -159,10 +160,37 @@
 
         private void RefreshCanTakeSelectedVehicle()
         {
-            var viewModelGarageVehicleEntry = this.selectedVehicle;
-            this.CanTakeSelectedVehicle = viewModelGarageVehicleEntry != null
-                                          && (viewModelGarageVehicleEntry.Status == VehicleStatus.InGarage
-                                              || viewModelGarageVehicleEntry.Status == VehicleStatus.InWorld);
+            var vehicleEntry = this.selectedVehicle;
+            if (vehicleEntry is null)
+            {
+                this.CanTakeSelectedVehicle = false;
+                return;
+            }
+
+            switch (vehicleEntry.Status)
+            {
+                case VehicleStatus.InGarage:
+                case VehicleStatus.InWorld:
+                    this.CanTakeSelectedVehicle = true;
+                    break;
+
+                case VehicleStatus.Docked:
+                    // can take a docked vehicle only from another VAB
+                    var vehicle = Client.World.GetGameObjectById<IDynamicWorldObject>(
+                        GameObjectType.DynamicObject,
+                        vehicleEntry.VehicleGameObjectId);
+
+                    this.CanTakeSelectedVehicle = vehicle is null
+                                                  || !vehicle.IsInitialized
+                                                  || !VehicleGarageSystem.ClientIsVehicleDocked(
+                                                      vehicle,
+                                                      this.vehicleAssemblyBay);
+                    break;
+
+                default:
+                    this.CanTakeSelectedVehicle = false;
+                    break;
+            }
         }
     }
 }

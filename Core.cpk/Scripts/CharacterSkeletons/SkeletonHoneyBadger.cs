@@ -10,9 +10,9 @@
     {
         public override double DefaultMoveSpeed => 1.5;
 
-        public override double IconScale => 0.8;
-
         public override Vector2D IconOffset => (0, -40);
+
+        public override double IconScale => 0.8;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("HoneyBadger/Back");

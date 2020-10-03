@@ -14,7 +14,7 @@
 
         public static bool IsDisplayed
         {
-            get => instance != null;
+            get => instance is not null;
             set
             {
                 if (IsDisplayed == value)
@@ -25,7 +25,7 @@
                 if (value)
                 {
                     // must be displayed
-                    if (instance != null)
+                    if (instance is not null)
                     {
                         // already displayed
                         return;
@@ -38,7 +38,7 @@
                 }
 
                 // must be hidden
-                if (instance == null)
+                if (instance is null)
                 {
                     // already hidden
                     return;

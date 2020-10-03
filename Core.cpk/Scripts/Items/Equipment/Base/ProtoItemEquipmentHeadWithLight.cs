@@ -117,7 +117,7 @@
                                        : "HeadEquipment");
 
             if (isActive
-                && spriteFront == null)
+                && spriteFront is null)
             {
                 // no active sprite found - fallback to default head equipment method
                 base.ClientGetHeadSlotSprites(item,
@@ -151,7 +151,7 @@
 
             var sceneObject = character.ClientSceneObject;
             var componentLightSource = this.ClientCreateLightSource(item, character, sceneObject);
-            if (componentLightSource == null)
+            if (componentLightSource is null)
             {
                 return;
             }
@@ -198,7 +198,7 @@
                     var ownerCharacter = item.Container?.OwnerAsCharacter;
                     ownerCharacter?.ClientInvalidateSkeletonRenderer();
 
-                    if (ownerCharacter != null
+                    if (ownerCharacter is not null
                         && !ownerCharacter.IsCurrentClientCharacter)
                     {
                         this.SoundPresetItem.PlaySound(ItemSound.Use, ownerCharacter);
@@ -252,14 +252,14 @@
 
             var playerCharacter = Client.Characters.CurrentPlayerCharacter;
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(playerCharacter)
-                != null)
+                is not null)
             {
                 return;
             }
 
             ClientTryRefill(item);
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(playerCharacter)
-                != null)
+                is not null)
             {
                 return;
             }
@@ -426,7 +426,7 @@
             this.SoundPresetItem.PlaySound(ItemSound.Use);
         }
 
-        [RemoteCallSettings(DeliveryMode.Default)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.5, keyArgIndex: 0)]
         private void ServerRemote_SetMode(IItem item, bool setIsActive)
         {
             this.VerifyGameObject(item);
@@ -476,9 +476,9 @@
             }
 
             var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
-            if (itemOwnerCharacter != null
+            if (itemOwnerCharacter is not null
                 && itemOwnerCharacter.ServerIsOnline
-                // check if item is in a hotbar selected slot, if not - make it not active
+                // check if item is inside equipment container
                 && item.Container == itemOwnerCharacter.SharedGetPlayerContainerEquipment()
                 // check if item can be active now
                 && this.SharedCanActivate(itemOwnerCharacter, item))

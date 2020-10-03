@@ -40,6 +40,8 @@
 
         public abstract IProtoTileWater BridgeProtoTile { get; }
 
+        public abstract bool CanCollect { get; }
+
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Liquid;
 
         public abstract bool IsFishingAllowed { get; }

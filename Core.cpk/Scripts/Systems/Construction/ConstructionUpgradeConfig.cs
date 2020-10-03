@@ -13,7 +13,7 @@
         {
             get
             {
-                if (this.entries != null)
+                if (this.entries is not null)
                 {
                     return this.entries;
                 }
@@ -44,7 +44,7 @@
 
         public void ApplyRates(byte multiplier)
         {
-            if (this.entries == null)
+            if (this.entries is null)
             {
                 return;
             }

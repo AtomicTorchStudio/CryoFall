@@ -90,7 +90,7 @@
             Api.Server.Items.DestroyItem(item);
             Api.SafeInvoke(() => protoItem.ServerOnItemBrokeAndDestroyed(item, container, slotId));
 
-            if (owner != null)
+            if (owner is not null)
             {
                 Instance.CallClient(owner,
                                     _ => _.ClientRemote_ItemBroke(item.ProtoItem));

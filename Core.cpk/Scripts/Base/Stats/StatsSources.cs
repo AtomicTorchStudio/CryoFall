@@ -15,12 +15,12 @@
 
         public static void Merge(ref StatsSources current, StatsSources other)
         {
-            if (other.list == null)
+            if (other.list is null)
             {
                 return;
             }
 
-            if (current.list == null)
+            if (current.list is null)
             {
                 current.list = other.List.ToList();
             }
@@ -58,7 +58,7 @@
 
         public StatsSources Clone()
         {
-            if (this.list == null)
+            if (this.list is null)
             {
                 return new StatsSources();
             }

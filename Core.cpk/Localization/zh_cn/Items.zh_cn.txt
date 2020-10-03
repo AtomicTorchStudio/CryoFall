@@ -169,8 +169,14 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 用于驱动各种载具的燃料电池。
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+按住 [b]Alt[/b] 或 [b]Ctrl[/b] 来向鼠标方向进行最远距离射击，而非射击至鼠标位置。
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 只能在医疗站安装植入物。
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+未曾食用
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 此物品将会从装备的移动电源上抽取能量。
@@ -216,6 +222,12 @@ Scripts/Items/Devices/ItemHuntersTools@Description:
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 猎人工具
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+用于辅助瞄准的小型激光瞄准器。
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+激光瞄准器
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 储存大量能量并能便携使用。所有使用能量的设备和武器都可以从装备的移动电源中提取能量。

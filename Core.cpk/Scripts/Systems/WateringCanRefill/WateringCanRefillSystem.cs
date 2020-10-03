@@ -58,13 +58,13 @@
 
             // try to find a well object
             var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject;
-            if (worldObject != null
+            if (worldObject is not null
                 && !(worldObject.ProtoWorldObject is ProtoObjectWell))
             {
                 worldObject = null;
             }
 
-            if (worldObject != null)
+            if (worldObject is not null)
             {
                 // no need to consume water bottles - will consume water from well
             }
@@ -176,7 +176,7 @@
                 throw new Exception("Cannot refill - no well object and no water bottles available");
             }
 
-            if (IsServer && bottlesToConsume != null)
+            if (IsServer && bottlesToConsume is not null)
             {
                 foreach (var item in bottlesToConsume)
                 {

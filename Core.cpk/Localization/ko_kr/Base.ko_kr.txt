@@ -214,3 +214,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 연료 소모량
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+달릴 수 없습니다
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+공격할 수 없습니다
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+의료 아이템의 쿨타임이 남아있어 사용할 수 없습니다
+

@@ -112,7 +112,7 @@
             void TryRemoveFrom(ObservableCollection<ViewModelQuestEntry> list)
             {
                 var viewModel = list.FirstOrDefault(vm => vm.QuestEntry == removedValue);
-                if (viewModel != null)
+                if (viewModel is not null)
                 {
                     list.Remove(viewModel);
                     viewModel.Dispose();

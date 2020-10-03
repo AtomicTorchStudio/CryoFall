@@ -43,7 +43,7 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            if (this.PasswordInputControl != null)
+            if (this.PasswordInputControl is not null)
             {
                 this.PasswordInputControl.PreviewKeyUp -= this.PasswordInputControlPreviewKeyUp;
             }

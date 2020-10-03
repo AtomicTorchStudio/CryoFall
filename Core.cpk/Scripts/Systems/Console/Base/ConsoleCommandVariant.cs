@@ -31,7 +31,7 @@
         public void Execute(ICharacter byCharacter, string[] args)
         {
             var sendNotification = Api.IsServer
-                                   && byCharacter != null;
+                                   && byCharacter is not null;
             try
             {
                 var parsedArgs = this.ParseArguments(
@@ -40,7 +40,7 @@
                     throwExceptionOnUnparsedArgument: true,
                     successfullyParsedArgsCount: out _);
                 var resultObj = this.MethodInfo.MethodInfo.Invoke(this.ConsoleCommand, parsedArgs);
-                if (resultObj != null)
+                if (resultObj is not null)
                 {
                     var resultStr = resultObj.ToString();
                     Api.Logger.Important(

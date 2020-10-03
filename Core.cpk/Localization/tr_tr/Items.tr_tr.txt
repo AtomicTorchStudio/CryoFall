@@ -169,8 +169,14 @@ Temiz suyla doldurmak için bir kuyunun veya su toplayıcının içine yerleşti
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Yakıt hücreleri farklı araçlara enerji sağlamak için kullanılır.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+İmlecin bulunduğu noktaya değil de imlecin gösterdiği yönde ateş edilebilecek en uzağa ateş etmek için ateş ederken [b]Alt[/b] tuşuna veya [b]Ctrl[/b] tuşuna basılı tutun.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Implantlar sadece tıbbi istasyonda kurulabilir.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+Hiç tüketilmedi
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Bu eşya kullanılan güç bankalarından enerji alır.
@@ -216,6 +222,12 @@ Bu kullanışlı avcılık aletleri canlıları yağmalamağı hızlandırır.
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Avcılık aletleri
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Uzun mesafeli nişan almayı kolaylaştırmak için kullanılan küçük lazer hedef belirleyicisi.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Lazer görüşü
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Hareket halindeyken kullanmak için büyük miktarda güç depolar. Herhangi bir cihaz veya enerji silahı kuşanılmış olan taşınabilir güç kaynağından enerji çeker.

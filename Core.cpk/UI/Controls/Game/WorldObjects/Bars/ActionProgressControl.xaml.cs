@@ -47,7 +47,7 @@
 
         private void UpdateViewModel()
         {
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 this.viewModel.ActionState = this.actionState;
             }

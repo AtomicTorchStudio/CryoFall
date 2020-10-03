@@ -22,7 +22,7 @@
 
         public static WindowObjectVehicleAssemblyBay Open(IStaticWorldObject vehicleAssemblyBay)
         {
-            if (instance != null
+            if (instance is not null
                 && instance.vehicleAssemblyBay == vehicleAssemblyBay)
             {
                 return instance;

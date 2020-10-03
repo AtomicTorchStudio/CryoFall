@@ -58,7 +58,7 @@
             var request = state.Request;
             Logger.Info("Action completed: " + request, character);
 
-            if (state.TargetWorldObject != null)
+            if (state.TargetWorldObject is not null)
             {
                 InteractionCheckerSystem.SharedUnregister(character, state.TargetWorldObject, isAbort: false);
             }
@@ -96,7 +96,7 @@
 
         public bool SharedStartAction(TActionRequest request)
         {
-            if (request == null)
+            if (request is null)
             {
                 return false;
             }
@@ -127,7 +127,7 @@
             }
 
             var state = this.SharedTryCreateState(request);
-            if (state == null)
+            if (state is null)
             {
                 Logger.Info(
                     "Action cannot be started: " + request,
@@ -146,7 +146,7 @@
                 this.ClientOnStartActionCompleted(request, state);
             }
 
-            if (state.TargetWorldObject != null)
+            if (state.TargetWorldObject is not null)
             {
                 InteractionCheckerSystem.SharedRegister(
                     character,
@@ -244,7 +244,7 @@
 
             Logger.Info("Action cancelled: " + state, character);
 
-            if (state.TargetWorldObject != null)
+            if (state.TargetWorldObject is not null)
             {
                 InteractionCheckerSystem.SharedUnregister(character, state.TargetWorldObject, isAbort: false);
             }

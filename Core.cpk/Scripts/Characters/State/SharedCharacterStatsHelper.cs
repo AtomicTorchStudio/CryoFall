@@ -15,7 +15,7 @@
 
             var attributeSkill = statName.GetAttribute<RelatedToSkillAttribute>();
             var skillName = attributeSkill?.ProtoSkill?.Name;
-            if (skillName == null)
+            if (skillName is null)
             {
                 return title;
             }
@@ -65,7 +65,7 @@
                     tempStatsCache.Merge(protoStatusEffect.ProtoEffects);
                 }
 
-                if (containerEquipment != null)
+                if (containerEquipment is not null)
                 {
                     // merge equipment effects
                     foreach (var item in containerEquipment.Items)

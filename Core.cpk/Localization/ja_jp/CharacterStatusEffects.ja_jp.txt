@@ -163,6 +163,15 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 高揚
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+クールタイムが終了するまで待ってください。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+あなたは最近医薬品を使用しました。クールタイムが終了するまでは、これ以上使用できません。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+医薬品クールタイム
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 医薬品を使いすぎて、結果として健康に悪い影響を与えました。
 

@@ -20,7 +20,7 @@
                     return;
                 }
 
-                if (this.currentPhysicsSpace != null)
+                if (this.currentPhysicsSpace is not null)
                 {
                     this.currentPhysicsSpace.DebugShapeTesting -= PhysicsSpaceDebugTestingHandler;
                 }

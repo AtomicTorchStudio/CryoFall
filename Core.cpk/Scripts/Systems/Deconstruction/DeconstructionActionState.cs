@@ -101,7 +101,7 @@
 
         public override void SharedUpdate(double deltaTime)
         {
-            if ((this.ItemCrowbarTool != null
+            if ((this.ItemCrowbarTool is not null
                  && this.ItemCrowbarTool != this.CharacterPublicState.SelectedItem)
                 || !this.CheckIsAllowed())
             {
@@ -169,7 +169,7 @@
         private void SharedOnStageCompleted()
         {
             if (Api.IsServer
-                && this.ItemCrowbarTool != null)
+                && this.ItemCrowbarTool is not null)
             {
                 // notify tool was used
                 ServerItemUseObserver.NotifyItemUsed(this.Character, this.ItemCrowbarTool);
@@ -205,7 +205,7 @@
                 this.UpdateProgress();
 
                 if (Api.IsServer
-                    && this.ItemCrowbarTool != null
+                    && this.ItemCrowbarTool is not null
                     && this.ItemCrowbarTool.IsDestroyed)
                 {
                     // tool was destroyed (durability 0)

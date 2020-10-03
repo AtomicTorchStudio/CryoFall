@@ -18,7 +18,7 @@
             var color = ui.GetApplicationResource<Color>(colorKey);
 
             ImageBrush icon;
-            if (liquidType != null)
+            if (liquidType is not null)
             {
                 var iconKey = "LiquidIcon" + liquidType.Value;
                 icon = ui.GetApplicationResource<ImageBrush>(iconKey);

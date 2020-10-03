@@ -17,7 +17,7 @@
             {
                 if (handContainer != value)
                 {
-                    if (handContainer != null)
+                    if (handContainer is not null)
                     {
                         handContainer.ItemAdded -= HandContainerItemAddedHandler;
                         handContainer.ItemRemoved -= HandContainerItemRemovedHandler;
@@ -26,7 +26,7 @@
 
                     handContainer = value;
 
-                    if (handContainer != null)
+                    if (handContainer is not null)
                     {
                         handContainer.ItemAdded += HandContainerItemAddedHandler;
                         handContainer.ItemRemoved += HandContainerItemRemovedHandler;
@@ -34,7 +34,7 @@
                     }
                 }
 
-                if (handContainer != null
+                if (handContainer is not null
                     && handContainer.OccupiedSlotsCount > 0)
                 {
                     HandContainerItemAddedHandler(null);
@@ -66,7 +66,7 @@
         private static void RefreshSlotControl()
         {
             var item = handContainer.Items.FirstOrDefault();
-            if (item != null)
+            if (item is not null)
             {
                 itemInHandDisplayControl.Show();
             }

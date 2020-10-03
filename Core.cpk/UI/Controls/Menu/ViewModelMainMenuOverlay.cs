@@ -133,7 +133,7 @@
                 }
 
                 var options = MainMenuOverlay.Instance.Options;
-                if (options != null)
+                if (options is not null)
                 {
                     if (ReferenceEquals(this.selectedTab?.Content, options))
                     {
@@ -150,7 +150,7 @@
 
                 this.selectedTab = value;
 
-                if (options != null
+                if (options is not null
                     && ReferenceEquals(this.selectedTab?.Content, options))
                 {
                     options.SelectFirstTab();

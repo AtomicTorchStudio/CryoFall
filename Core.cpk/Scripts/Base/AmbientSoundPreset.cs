@@ -71,7 +71,10 @@
         {
             unchecked
             {
-                return ((this.SoundResource != null ? this.SoundResource.GetHashCode() : 0) * 397)
+                return ((this.SoundResource is not null
+                             ? this.SoundResource.GetHashCode()
+                             : 0)
+                        * 397)
                        ^ this.SuppressionCoef.GetHashCode();
             }
         }

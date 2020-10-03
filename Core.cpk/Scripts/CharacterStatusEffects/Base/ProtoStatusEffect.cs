@@ -42,21 +42,30 @@
 
             this.ShortId = name;
             this.Icon = new TextureResource($"StatusEffects/{name}.png");
+
+            var displayMode = StatusEffectDisplayMode.IconShowIntensityPercent
+                              | StatusEffectDisplayMode.TooltipShowIntensityPercent;
+
+            // ReSharper disable once VirtualMemberCallInConstructor
+            if (this.IntensityAutoDecreasePerSecondValue > 0)
+            {
+                displayMode |= StatusEffectDisplayMode.TooltipShowTimeRemains;
+            }
+
+            this.DisplayMode = displayMode;
         }
 
         public override double ClientUpdateIntervalSeconds => 0; // every frame
 
         public abstract string Description { get; }
 
+        public virtual StatusEffectDisplayMode DisplayMode { get; private set; }
+
         public bool HasStatEffects { get; private set; }
 
         public virtual ITextureResource Icon { get; }
 
-        public virtual double IntensityAutoDecreasePerSecondFraction => 0;
-
         public virtual double IntensityAutoDecreasePerSecondValue => 0;
-
-        public virtual bool IsIntensityPercentVisible => true;
 
         public virtual bool IsPublic => this.VisibilityIntensityThreshold < 1;
 
@@ -96,8 +105,10 @@
         public void ServerAddIntensity(ILogicObject statusEffect, double intensityToAdd)
         {
             var effectData = new StatusEffectData(statusEffect, deltaTime: 0);
+            var previousIntensity = effectData.Intensity;
+     
             this.ServerAddIntensity(effectData, intensityToAdd);
-
+            
             if (effectData.Intensity <= 0)
             {
                 // didn't add any intensity or intensity is zero - delete this status effect
@@ -105,8 +116,12 @@
                 return;
             }
 
-            Logger.Info(
-                $"Status effect intensity added: {statusEffect}: intensity {effectData.StatusEffectPublicState.Intensity:F3} (added {intensityToAdd:F3}) to {effectData.Character}");
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (effectData.Intensity != previousIntensity)
+            {
+                Logger.Info(
+                    $"Status effect intensity added: {statusEffect}: intensity {effectData.StatusEffectPublicState.Intensity:F3} (added {intensityToAdd:F3}) to {effectData.Character}");
+            }
 
             this.ServerRefreshPublicStatusEffectEntry(effectData);
         }
@@ -117,7 +132,7 @@
             this.ServerDestroy(statusEffectData);
 
             var character = statusEffectData.Character;
-            if (character == null
+            if (character is null
                 || character.IsDestroyed)
             {
                 return;
@@ -197,15 +212,33 @@
 
             this.PrepareProtoStatusEffect();
 
-            if (this.IntensityAutoDecreasePerSecondFraction < 0
-                || this.IntensityAutoDecreasePerSecondFraction > 1)
+            this.isAutoDecrease = this.IntensityAutoDecreasePerSecondValue > 0;
+
+            if (this.IntensityAutoDecreasePerSecondValue <= 0
+                && ((this.DisplayMode & StatusEffectDisplayMode.IconShowTimeRemains) != 0
+                    || (this.DisplayMode & StatusEffectDisplayMode.TooltipShowTimeRemains) != 0))
             {
                 throw new Exception(
-                    $"Invalid value of the property {nameof(this.IntensityAutoDecreasePerSecondFraction)}: it must be in [0;1] range");
+                    string.Format(
+                        "{0} has {1} or {2} but its {3} is <= 0 so it's not possible to calculate how much time remains",
+                        this.ShortId,
+                        nameof(StatusEffectDisplayMode.IconShowTimeRemains),
+                        nameof(StatusEffectDisplayMode.TooltipShowTimeRemains),
+                        nameof(this.IntensityAutoDecreasePerSecondValue)));
             }
 
-            this.isAutoDecrease = this.IntensityAutoDecreasePerSecondValue > 0
-                                  || this.IntensityAutoDecreasePerSecondFraction > 0;
+            this.HasStatEffects = !this.ProtoEffects.IsEmpty;
+
+            if ((this.DisplayMode & StatusEffectDisplayMode.IconShowIntensityPercent) != 0
+                && (this.DisplayMode & StatusEffectDisplayMode.IconShowTimeRemains) != 0)
+            {
+                throw new Exception(
+                    string.Format("{0} has both {1} and {2} in its {3}",
+                                  this.ShortId,
+                                  nameof(StatusEffectDisplayMode.IconShowIntensityPercent),
+                                  nameof(StatusEffectDisplayMode.IconShowTimeRemains),
+                                  nameof(this.DisplayMode)));
+            }
 
             if (IsServer
                 && this.GetType().HasOverride(nameof(this.ServerOnAutoAdd), isPublic: false))
@@ -215,8 +248,6 @@
                     callback: this.ServerAutoAddTimerCallback,
                     name: "StatusEffect.AutoAddCallback." + this.ShortId);
             }
-
-            this.HasStatEffects = !this.ProtoEffects.IsEmpty;
         }
 
         protected virtual void PrepareProtoStatusEffect()
@@ -274,11 +305,6 @@
 
             intensity -= this.IntensityAutoDecreasePerSecondValue * data.DeltaTime;
 
-            if (this.IntensityAutoDecreasePerSecondFraction > 0)
-            {
-                intensity *= 1 - this.IntensityAutoDecreasePerSecondFraction * data.DeltaTime;
-            }
-
             data.Intensity = intensity;
         }
 
@@ -291,7 +317,7 @@
             var effectData = new StatusEffectData(data.GameObject, data.DeltaTime);
             var character = effectData.Character;
 
-            if (character == null
+            if (character is null
                 || character.IsDestroyed)
             {
                 //Logger.WriteDev("The status effect owner character is no longer exist - destroy the status effect: " + data.GameObject);

@@ -89,7 +89,6 @@
                 gameObject.OccupiedTile,
                 GetPrivateState(gameObject).ItemsContainer,
                 destroyTimeout: DestroyedCrateDroppedItemsDestructionTimeout.TotalSeconds);
-
         }
 
         public bool SharedCanEditOwners(IWorldObject worldObject, ICharacter byOwner)
@@ -174,7 +173,7 @@
             void UpdateIcon()
             {
                 var iconSource = publicState.IconSource;
-                spriteRenderIcon.IsEnabled = spriteRenderIconPlate.IsEnabled = iconSource != null;
+                spriteRenderIcon.IsEnabled = spriteRenderIconPlate.IsEnabled = iconSource is not null;
                 spriteRenderIcon.TextureResource = ClientCrateIconHelper.GetIcon(iconSource);
             }
         }
@@ -210,7 +209,7 @@
             WorldObjectOwnersSystem.ServerInitialize(worldObject);
 
             var itemsContainer = privateState.ItemsContainer;
-            if (itemsContainer != null)
+            if (itemsContainer is not null)
             {
                 // container already created - update slots count
                 Server.Items.SetSlotsCount(itemsContainer, slotsCount: this.ItemsSlotsCount);
@@ -233,6 +232,7 @@
                 .AddShapeRectangle((0.9, 0.85),  offset: (0.05, 0.4), group: CollisionGroups.ClickArea);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 3, keyArgIndex: 0)]
         private void ServerRemote_SetIconSource(IStaticWorldObject worldObjectCrate, IProtoEntity iconSource)
         {
             this.VerifyGameObject(worldObjectCrate);

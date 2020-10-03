@@ -48,7 +48,7 @@
 
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
-            if (item != null
+            if (item is not null
                 && this.FreshnessMaxValue > 0)
             {
                 controls.Add(ItemTooltipInfoFreshnessControl.Create(item));

@@ -5,6 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -53,6 +54,8 @@
         private bool isSelected;
 
         private int lastIconLoadRequestId;
+
+        private DateTime? nextScheduledWipeDate;
 
         private ushort? ping = ushort.MaxValue;
 
@@ -110,7 +113,7 @@
 
                 this.commandRefresh = value;
                 this.NotifyThisPropertyChanged();
-                this.RefreshButtonVisibility = value != null ? Visibility.Visible : Visibility.Collapsed;
+                this.RefreshButtonVisibility = value is not null ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -200,7 +203,11 @@
 
         public bool IsModded { get; set; }
 
+        public bool IsNoClientModsAllowed { get; set; }
+
         public bool IsOfficial { get; set; }
+        
+        public bool IsCommunity { get; set; }
 
         public bool IsPingMeasurementDone { get; set; }
 
@@ -234,6 +241,29 @@
 
         public ushort NetworkProtocolVersion { get; set; }
 
+        public DateTime? NextScheduledWipeDate
+        {
+            get => this.nextScheduledWipeDate;
+            set
+            {
+                if (this.nextScheduledWipeDate == value)
+                {
+                    return;
+                }
+
+                this.nextScheduledWipeDate = value;
+                this.NotifyThisPropertyChanged();
+
+                this.NotifyPropertyChanged(nameof(this.NextScheduledWipeDateText));
+            }
+        }
+
+        public string NextScheduledWipeDateText
+            => this.nextScheduledWipeDate.HasValue
+                   ? string.Format(CoreStrings.ServerWipeInfoNextWipeDate_Format,
+                                   WelcomeMessageSystem.FormatDate(this.nextScheduledWipeDate.Value))
+                   : null;
+
         public ushort? Ping
         {
             get => this.ping;
@@ -261,6 +291,10 @@
         public string PlayersText { get; set; } = "128/256";
 
         public Visibility RefreshButtonVisibility { get; private set; }
+
+        public string TimeAlreadyConvertedToLocalTimeZoneText
+            => string.Format(CoreStrings.TimeAlreadyConvertedToLocalTimeZone_Format,
+                             WelcomeMessageSystem.GetCurrentUtcOffsetText());
 
         public string Title
         {
@@ -518,8 +552,12 @@
             this.IconHash = null;
             this.IsPvP = false;
             this.IsPvE = false;
+            this.IsNoClientModsAllowed = false;
             this.WipedDate = null;
+            this.NextScheduledWipeDate = null;
             this.VisibilityInList = Visibility.Visible;
+            this.IsOfficial = false;
+            this.IsCommunity = false;
         }
 
         /// <summary>
@@ -534,7 +572,7 @@
         private void OnInfoReceivedOnInaccessible()
         {
             var callback = this.dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach;
-            if (callback == null)
+            if (callback is null)
             {
                 return;
             }

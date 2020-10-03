@@ -56,7 +56,7 @@
             this.ViewModelVehicleEnergy?.Dispose();
 
             var vehicle = this.playerCharacterPublicState.CurrentVehicle;
-            if (vehicle == null)
+            if (vehicle is null)
             {
                 this.IndicatorVisibility = Visibility.Collapsed;
                 this.ViewModelVehicleEnergy = null;

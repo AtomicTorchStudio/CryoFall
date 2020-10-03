@@ -18,14 +18,14 @@
                     return;
                 }
 
-                if (this.objectStructurePointsData.State != null)
+                if (this.objectStructurePointsData.State is not null)
                 {
                     this.ReleaseSubscriptions();
                 }
 
                 this.objectStructurePointsData = value;
 
-                if (value.State == null)
+                if (value.State is null)
                 {
                     return;
                 }
@@ -65,7 +65,7 @@
 
         private void RefreshBar()
         {
-            if (this.objectStructurePointsData.State == null)
+            if (this.objectStructurePointsData.State is null)
             {
                 return;
             }

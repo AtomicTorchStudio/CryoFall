@@ -214,3 +214,12 @@ Probabilité de pêche réussie
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Consommation de carburant
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+Impossible de courir
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+Impossible d'attaquer
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+Impossible d'utiliser des soins disposant d'un délai de temporisation
+

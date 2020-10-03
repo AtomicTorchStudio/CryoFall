@@ -67,7 +67,7 @@
 
                 this.privateState = value;
 
-                if (this.privateState == null)
+                if (this.privateState is null)
                 {
                     return;
                 }
@@ -83,7 +83,7 @@
 
         private void UpdateValues()
         {
-            if (this.privateState == null)
+            if (this.privateState is null)
             {
                 return;
             }

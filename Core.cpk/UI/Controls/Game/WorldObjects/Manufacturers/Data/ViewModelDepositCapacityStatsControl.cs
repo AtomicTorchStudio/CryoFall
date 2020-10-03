@@ -28,7 +28,7 @@
         {
             this.worldObjectDeposit = worldObjectDeposit;
             this.tilePosition = tilePosition;
-            if (worldObjectDeposit != null)
+            if (worldObjectDeposit is not null)
             {
                 this.publicState = worldObjectDeposit.GetPublicState<StaticObjectPublicState>();
                 this.protoDeposit = (IProtoObjectDeposit)worldObjectDeposit.ProtoStaticWorldObject;
@@ -133,7 +133,7 @@
         private void RefreshDepletion()
         {
             var depletedDeposit = ObjectDepletedDeposit.SharedGetDepletedDepositWorldObject(this.tilePosition);
-            if (depletedDeposit != null)
+            if (depletedDeposit is not null)
             {
                 // depleted deposit
                 this.IsInfiniteDeposit = false;
@@ -147,8 +147,8 @@
 
             this.IsDepletedDeposit = false;
 
-            var currentValue = this.publicState != null
-                               && this.protoDeposit != null
+            var currentValue = this.publicState is not null
+                               && this.protoDeposit is not null
                                && this.protoDeposit.LifetimeTotalDurationSeconds > 0
                                    ? this.publicState.StructurePointsCurrent
                                    : 0;

@@ -129,13 +129,13 @@
                 var questEntry = pair.Key;
                 var control = pair.Value;
                 if (questEntry.IsCompleted
-                    && control != null)
+                    && control is not null)
                 {
                     control.Hide(quick: false);
                     this.registeredEntries[questEntry] = null;
                 }
                 else if (!questEntry.IsCompleted
-                         && control == null)
+                         && control is null)
                 {
                     this.registeredEntries.Remove(questEntry);
                     // register again

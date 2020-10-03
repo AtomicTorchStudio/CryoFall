@@ -6,6 +6,8 @@
 
     public class ItemStimpack : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Long;
+
         public override string Description =>
             "Stimpack is used to restore a moderate amount of health almost instantly. Especially useful in combat, but should not be overused as that can lead to serious complications.";
 

@@ -1024,7 +1024,7 @@
                                               VisibilityBackgroundImage="Collapsed" />
 
                             <Border BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid x:Name="ContentChromeGrid" 
+                                <Grid x:Name="ContentChromeGrid"
                                       Margin="{TemplateBinding Padding}"
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -1064,7 +1064,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type core:DialogWindow}">
-                    <core:GameWindow x:Name="Window">
+                    <core:GameWindow x:Name="Window"
+                                     ZIndexOffset="10000">
                         <Grid MinWidth="240">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -1506,7 +1507,7 @@
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundNormal}" />
         <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderNormal}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="MaxDropDownHeight" Value="500" />
+        <Setter Property="MaxDropDownHeight" Value="300" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -1515,10 +1516,11 @@
                             x:Name="PART_Popup"
                             AllowsTransparency="True"
                             Focusable="False"
-                            IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
                             Placement="Bottom"
                             PopupAnimation="None">
-                            <Grid x:Name="DropDown" MinWidth="{TemplateBinding ActualWidth}"
+                            <Grid x:Name="DropDown"
+                                  MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border x:Name="DropDownBorder"
                                         Margin="0,1,0,0"
@@ -1528,6 +1530,13 @@
                                     <Border.Background>
                                         <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.975" />
                                     </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="4"
+                                                          ShadowDepth="2"
+                                                          Direction="-45"
+                                                          Opacity="0.75"
+                                                          Color="Black" />
+                                    </Border.Effect>
                                 </Border>
 
                                 <ScrollViewer Margin="1" HorizontalScrollBarVisibility="Auto"
@@ -1751,6 +1760,13 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="TabItemCompactStyle" TargetType="{x:Type TabItem}">
@@ -2960,7 +2976,7 @@
                         <ContentPresenter Margin="{TemplateBinding Padding}" />
 
                         <!-- Shadow gradient overlay -->
-                        <Border Margin="{TemplateBinding Padding}" 
+                        <Border Margin="{TemplateBinding Padding}"
                                 CornerRadius="1">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.15">

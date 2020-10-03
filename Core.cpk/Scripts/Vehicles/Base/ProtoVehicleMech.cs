@@ -33,7 +33,7 @@
 
         public override bool IsAllowCreatureDamageWhenNoPilot => true;
 
-        public override bool IsHealthbarDisplayedWhenPiloted => true;
+        public override bool IsArmorBarDisplayedWhenPiloted => true;
 
         public override bool IsHeavyVehicle => true;
 
@@ -187,7 +187,7 @@
             // setup equipment items container
             var equipmentItemsContainer = privateState.EquipmentItemsContainer;
             var equipmentItemsSlotsCount = this.EquipmentItemsContainerType.TotalSlotsCount;
-            if (equipmentItemsContainer != null)
+            if (equipmentItemsContainer is not null)
             {
                 // container already created - update it
                 Server.Items.SetContainerType(equipmentItemsContainer, this.EquipmentItemsContainerType);

@@ -63,7 +63,7 @@
         {
             get
             {
-                if (this.icon != null)
+                if (this.icon is not null)
                 {
                     return this.icon;
                 }
@@ -120,7 +120,7 @@
                 this.hasCachedTextureOcclusion = true;
 
                 var defaultTexture = this.DefaultTexture as TextureResource;
-                if (defaultTexture != null)
+                if (defaultTexture is not null)
                 {
                     var textureResource = new TextureResource(
                         defaultTexture.LocalPath.Replace(".png", "") + "Occlusion",
@@ -333,7 +333,7 @@
             this.ClientSetupRenderer(clientState.Renderer);
 
             var textureOcclusion = this.TextureOcclusion;
-            if (textureOcclusion != null)
+            if (textureOcclusion is not null)
             {
                 clientState.RendererOcclusion = ClientAmbientOcclusion.CreateOcclusionRenderer(
                     worldObject,
@@ -469,7 +469,7 @@
                 return;
             }
 
-            Logger.Info($"Static object destroyed: {targetObject} by {byCharacter}");
+            Logger.Important($"Static object destroyed: {targetObject} by {byCharacter}");
 
             this.ServerSendObjectDestroyedEvent(targetObject);
             Server.World.DestroyObject(targetObject);

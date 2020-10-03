@@ -57,7 +57,7 @@
             {
                 this.CountRequired = questRequirementWithCount.RequiredCount;
 
-                if (taskState != null)
+                if (taskState is not null)
                 {
                     // requirement state can be null if the quest is already completed
                     this.taskStateWithCount = (PlayerTaskStateWithCount)taskState;
@@ -73,12 +73,12 @@
         {
             get
             {
-                if (this.taskStateWithCount != null)
+                if (this.taskStateWithCount is not null)
                 {
                     return this.taskStateWithCount.CountCurrent;
                 }
 
-                if (this.taskState == null)
+                if (this.taskState is null)
                 {
                     // the quest is completed so there is no requirement state
                     return this.CountRequired;
@@ -98,7 +98,7 @@
         public string Description => this.requirement.Description;
 
         public bool HasIcon => this.showIcon
-                               && this.requirement.Icon != null;
+                               && this.requirement.Icon is not null;
 
         public Brush Icon => Api.Client.UI.GetTextureBrush(this.requirement.Icon);
 

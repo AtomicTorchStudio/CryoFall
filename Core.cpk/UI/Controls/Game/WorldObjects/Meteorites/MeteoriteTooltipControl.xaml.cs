@@ -29,9 +29,9 @@
         private void RefreshViewModel()
         {
             if (!this.isLoaded
-                || this.lastWorldObjectMeteorite == null)
+                || this.lastWorldObjectMeteorite is null)
             {
-                if (this.viewModel == null)
+                if (this.viewModel is null)
                 {
                     return;
                 }

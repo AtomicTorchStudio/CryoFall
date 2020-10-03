@@ -46,6 +46,9 @@ Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 생산: {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+구조물 재배치
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 10 미터 달리기
 

@@ -59,7 +59,7 @@
             set
             {
                 this.closeByEscapeKey = value;
-                if (this.window != null)
+                if (this.window is not null)
                 {
                     this.window.CloseByEscapeKey = value;
                 }
@@ -173,15 +173,15 @@
                     "Dialog window shown: {0}: {1}{2}{3}",
                     title,
                     text,
-                    okAction != null && !hideOkButton
+                    okAction is not null && !hideOkButton
                         ? $" [{okText ?? "OK"}]"
                         : string.Empty,
-                    cancelAction != null
+                    cancelAction is not null
                         ? $" [{cancelText ?? "Cancel"}]"
                         : string.Empty));
 
             if (!hideCancelButton
-                && cancelAction == null)
+                && cancelAction is null)
             {
                 cancelAction = EmptyAction;
             }
@@ -257,7 +257,7 @@
                 this.buttonCancel.Content = this.CancelText;
             }
 
-            if (this.CancelAction == null)
+            if (this.CancelAction is null)
             {
                 Grid.SetColumn(this.buttonOk, 1);
                 this.buttonOk.Margin = new Thickness(0);
@@ -291,8 +291,6 @@
             this.buttonCancel.Click += this.ButtonCancelClickHandler;
             this.window.StateChanged += this.WindowStateChangedHandler;
 
-            // TODO: remove this hack (use class with constants to define all the common Z index offsets?)
-            this.window.ZIndexOffset = 10000;
             this.window.Open();
         }
 
@@ -318,7 +316,7 @@
         private void UpdateWindowZIndexOffset()
         {
             if (this.ZIndexOffset != 0
-                && this.window != null)
+                && this.window is not null)
             {
                 this.window.ZIndexOffset = this.ZIndexOffset;
             }

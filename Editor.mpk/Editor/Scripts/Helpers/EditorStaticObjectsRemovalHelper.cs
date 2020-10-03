@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -68,6 +69,7 @@
                 canGroupWithPreviousAction: false);
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_DeleteObjects(List<Vector2Ushort> positionsToDeleteObjects)
         {
             var worldService = Server.World;
@@ -90,6 +92,7 @@
         /// Tradeoff: we cannot restore deleted objects, but we can spawn the same objects again.
         /// Of course their IDs and state will be new.
         /// </summary>
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_RestoreObjects(IReadOnlyList<RestoreObjectRequest> request)
         {
             foreach (var restoreObjectRequest in request)

@@ -169,8 +169,14 @@ Placez-la dans un puits ou un collecteur d'eau pour la remplir d'eau propre.
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Les cellules d'alimentation permettent de faire fonctionner différents véhicules.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+Maintenez [b]Alt[/b] ou [b]Ctrl[/b] enfoncé tout en tirant pour lancer le projectile le plus loin possible dans la direction du pointeur au lieu de viser l'endroit où se trouve le pointeur.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Les implants ne peuvent être installés que dans les stations médicales.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+Encore jamais consommé
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Pour alimenter cet objet, vous devez y connecter une batterie.
@@ -216,6 +222,12 @@ Les ustensiles de chasseur permettent de récolter des ressources sur les créat
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Ustensiles de chasseur
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Appareil de visée laser permettant d'augmenter votre précision à longue distance.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Visée laser
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Emmagasine une grande quantité d'énergie utilisable en déplacement. Permet d'alimenter tout appareil ou arme à énergie.

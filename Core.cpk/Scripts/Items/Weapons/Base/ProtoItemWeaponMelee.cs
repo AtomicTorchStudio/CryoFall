@@ -54,7 +54,7 @@
 
         public override ITextureResource Icon => new TextureResource("Items/Weapons/Melee/" + this.GetType().Name);
 
-        public override double ReadyDelayDuration => 0.5;
+        public override double ReadyDelayDuration => WeaponReadyDelays.DefaultMelee;
 
         public override string WeaponAttachmentName => "WeaponMelee";
 

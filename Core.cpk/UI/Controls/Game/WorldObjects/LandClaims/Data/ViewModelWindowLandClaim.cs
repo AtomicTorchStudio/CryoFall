@@ -82,7 +82,7 @@
                 (IProtoObjectLandClaim)this.landClaimWorldObject.ProtoStaticWorldObject;
 
             var upgrade = this.protoObjectLandClaim.ConfigUpgrade.Entries.FirstOrDefault();
-            if (upgrade != null)
+            if (upgrade is not null)
             {
                 this.ViewModelStructureUpgrade = new ViewModelStructureUpgrade(upgrade);
                 this.ViewModelProtoLandClaimInfoUpgrade = new ViewModelProtoLandClaimInfo(
@@ -171,7 +171,7 @@
         private void DisposeViewModelItemsContainerExchange()
         {
             var viewModel = this.ViewModelSafeStorageItemsContainerExchange;
-            if (viewModel == null)
+            if (viewModel is null)
             {
                 return;
             }

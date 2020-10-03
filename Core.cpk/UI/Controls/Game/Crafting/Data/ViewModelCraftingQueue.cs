@@ -137,7 +137,7 @@
         private void Refresh()
         {
             var currentCraftingItem = this.craftingQueueItems.FirstOrDefault();
-            this.ProgressVisibility = currentCraftingItem != null ? Visibility.Visible : Visibility.Collapsed;
+            this.ProgressVisibility = currentCraftingItem is not null ? Visibility.Visible : Visibility.Collapsed;
             if (this.ProgressVisibility == Visibility.Visible)
             {
                 this.CraftingQueueControlVisibility = Visibility.Visible;

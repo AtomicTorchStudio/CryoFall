@@ -39,7 +39,7 @@
             IStaticWorldObject worldObjectManufacturer,
             FuelBurningState fuelBurningState)
         {
-            if (fuelBurningState != null
+            if (fuelBurningState is not null
                 && fuelBurningState.ContainerFuel?.ProtoItemsContainer is IFuelItemsContainer fuelItemsContainer)
             {
                 return new ViewModelBurningFuel(worldObjectManufacturer, fuelItemsContainer);

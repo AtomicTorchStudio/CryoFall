@@ -111,7 +111,7 @@
         private async void RefreshDamageSources()
         {
             var serverResult = await CharacterDamageTrackingSystem.ClientGetDamageTrackingStatsAsync();
-            if (serverResult == null)
+            if (serverResult is null)
             {
                 this.DamageSourcesList = null;
                 this.callbackRefreshHeght();

@@ -71,7 +71,7 @@
                                           craftingQueue,
                                           ref groundContainer);
 
-            if (groundContainer != null)
+            if (groundContainer is not null)
             {
                 NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
                     character,
@@ -94,7 +94,7 @@
             ushort? maxQueueSize = null)
         {
             var characterOrStation = (IWorldObject)station ?? character;
-            if (characterOrStation == null)
+            if (characterOrStation is null)
             {
                 throw new NullReferenceException("Character AND station cannot be null simultaneously");
             }
@@ -104,7 +104,7 @@
                 throw new Exception("Are you really want to craft zero items?");
             }
 
-            var isAdminMode = character != null
+            var isAdminMode = character is not null
                               && CreativeModeSystem.SharedIsInCreativeMode(character);
 
             if (!isAdminMode

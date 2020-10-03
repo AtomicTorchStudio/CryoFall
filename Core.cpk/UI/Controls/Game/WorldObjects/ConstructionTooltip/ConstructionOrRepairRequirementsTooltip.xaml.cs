@@ -71,7 +71,7 @@
 
         protected override void OnLoaded()
         {
-            if (this.constructionSitePublicState != null)
+            if (this.constructionSitePublicState is not null)
             {
                 this.viewModel = new ViewModelConstructionBuildRequirementsTooltip(
                     this.constructionSitePublicState);

@@ -48,7 +48,7 @@
                 }
 
                 var damageSources = CharacterDamageTrackingSystem.ServerGetDamageSources(character);
-                if (damageSources == null)
+                if (damageSources is null)
                 {
                     return false;
                 }

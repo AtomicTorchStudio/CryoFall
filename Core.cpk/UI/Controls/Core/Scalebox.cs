@@ -75,7 +75,7 @@
 
         private void RefreshViewBoxMargins()
         {
-            if (this.contentPresenter == null)
+            if (this.contentPresenter is null)
             {
                 return;
             }
@@ -84,20 +84,20 @@
             if (this.currentChild != child)
             {
                 // child changed
-                if (this.currentChild != null)
+                if (this.currentChild is not null)
                 {
                     this.currentChild.SizeChanged -= this.OnCurrentChildOnSizeChanged;
                 }
 
                 this.currentChild = child;
 
-                if (this.currentChild != null)
+                if (this.currentChild is not null)
                 {
                     this.currentChild.SizeChanged += this.OnCurrentChildOnSizeChanged;
                 }
             }
 
-            if (this.currentChild == null)
+            if (this.currentChild is null)
             {
                 return;
             }
@@ -170,7 +170,7 @@
 
         private void SizeChangedHandler(object o, SizeChangedEventArgs e)
         {
-            if (this.currentChild == null)
+            if (this.currentChild is null)
             {
                 return;
             }

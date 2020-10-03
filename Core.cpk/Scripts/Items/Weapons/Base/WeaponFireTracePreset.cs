@@ -35,7 +35,7 @@
             bool useScreenBlending = false,
             bool? drawHitSparksAsLight = null)
         {
-            this.TraceTexture = traceTexturePath != null
+            this.TraceTexture = traceTexturePath is not null
                                     ? new TextureResource(traceTexturePath, isTransparent: true)
                                     : null;
 
@@ -55,6 +55,6 @@
             this.DrawHitSparksAsLight = drawHitSparksAsLight ?? this.HasTrace;
         }
 
-        public bool HasTrace => !(this.TraceTexture is null);
+        public bool HasTrace => this.TraceTexture is not null;
     }
 }

@@ -190,7 +190,7 @@
             if (MouseOverObject is null
                 // cannot interact while on vehicle
                 || ClientCurrentCharacterHelper.Character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle
-                != null)
+                is not null)
             {
                 ClientCursorSystem.CurrentCursorId = CursorId.Default;
                 InteractionTooltip.Hide();
@@ -244,7 +244,7 @@
                     != MouseOverObject))
             {
                 var interactionTooltipText = MouseOverObject.ProtoWorldObject.InteractionTooltipText;
-                if (interactionTooltipText != null)
+                if (interactionTooltipText is not null)
                 {
                     InteractionTooltip.ShowOn(MouseOverObject,
                                               interactionTooltipText,
@@ -293,7 +293,7 @@
                 }
             }
 
-            if (mouseOverObjectCandidate != null
+            if (mouseOverObjectCandidate is not null
                 && (ConstructionPlacementSystem.IsInObjectPlacementMode
                     || ConstructionRelocationSystem.IsInObjectPlacementMode)
                 && !(mouseOverObjectCandidate.ProtoGameObject is ProtoObjectConstructionSite))
@@ -304,7 +304,7 @@
 
             SetCurrentMouseOverObject(mouseOverObjectCandidate);
 
-            if (character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle != null)
+            if (character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle is not null)
             {
                 // cannot interact while on vehicle
                 InteractingWithObject = null;

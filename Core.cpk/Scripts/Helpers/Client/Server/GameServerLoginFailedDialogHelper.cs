@@ -1,10 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Helpers.Client.Server
 {
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
     public static class GameServerLoginFailedDialogHelper
     {
+        public const string ClientHasModifiedCore =
+            "You're using a game client with a modified or unpacked Core.cpk which is not permitted on this game server. Please reinstall the game.";
+
         public const string IncompatibleNetworkSchemeVersionHash =
             @"Incompatible network version.
               [br]Perhaps you and the server are using different mods.";
@@ -35,16 +39,6 @@
             string errorMessage;
             switch (reason)
             {
-                case GameServerConnectingFailedReason.ScriptingRestriction:
-                    errorTitle = TitleConnectionRejectedByServer;
-                    if (!scriptingRestrictionMessage.EndsWith("."))
-                    {
-                        scriptingRestrictionMessage += '.';
-                    }
-
-                    errorMessage = scriptingRestrictionMessage;
-                    break;
-
                 case GameServerConnectingFailedReason.ServerUnreachable:
                     errorMessage = ServerUnreachable;
                     break;
@@ -66,6 +60,23 @@
 
                 case GameServerConnectingFailedReason.ServerFull:
                     errorMessage = ServerFull;
+                    break;
+
+                case GameServerConnectingFailedReason.ScriptingRestriction:
+                    errorTitle = TitleConnectionRejectedByServer;
+                    if (!scriptingRestrictionMessage.EndsWith("."))
+                    {
+                        scriptingRestrictionMessage += '.';
+                    }
+
+                    errorMessage = scriptingRestrictionMessage;
+                    break;
+
+                case GameServerConnectingFailedReason.ClientHasModifiedCore:
+                    errorMessage = ClientHasModifiedCore
+                                   + "[br]"
+                                   + "[br]"
+                                   + CoreStrings.MenuServers_ServerTag_NoClientMods_Description;
                     break;
 
                 case GameServerConnectingFailedReason.Unknown:

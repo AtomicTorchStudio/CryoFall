@@ -6,7 +6,7 @@
     {
         public override void ClientInitialize()
         {
-            if (TestReferencesHolder<string>.TestObject != null)
+            if (TestReferencesHolder<string>.TestObject is not null)
             {
                 Logger.Error("Test object not null. Something wrong with reloading scripting assemblies.");
                 return;

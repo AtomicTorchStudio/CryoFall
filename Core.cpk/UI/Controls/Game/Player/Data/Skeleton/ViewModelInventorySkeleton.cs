@@ -59,7 +59,7 @@
 
                 if (this.isActive)
                 {
-                    if (this.control == null)
+                    if (this.control is null)
                     {
                         throw new Exception(
                             $"Cannot activate {nameof(ViewModelInventorySkeleton)} when no {nameof(this.Control)} is assigned");
@@ -108,7 +108,7 @@
         private void CreateImageBrushForSkeleton()
         {
             if (!this.isActive
-                || this.control == null)
+                || this.control is null)
             {
                 return;
             }
@@ -152,7 +152,7 @@
 
         private void DestroyImageBrushForSkeleton()
         {
-            if (this.inventorySkeletonViewData == null)
+            if (this.inventorySkeletonViewData is null)
             {
                 return;
             }

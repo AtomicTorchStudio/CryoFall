@@ -111,7 +111,7 @@
 
         private void DestroyTooltip()
         {
-            if (this.tooltip == null)
+            if (this.tooltip is null)
             {
                 return;
             }
@@ -125,7 +125,7 @@
             this.DestroyTooltip();
 
             if (!this.IsMouseOver
-                || this.ProtoItemWithCount == null)
+                || this.ProtoItemWithCount is null)
             {
                 // no need to display the tooltip
                 return;

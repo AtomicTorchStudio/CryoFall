@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolStaticObjects
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes;
@@ -13,6 +15,8 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
+    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -21,13 +25,26 @@
 
     public class EditorToolStaticObjects : BaseEditorTool<EditorToolStaticObjectsItem>
     {
+        private readonly Dictionary<IProtoEntity, WeakReference<ViewModelEditorToolItemStaticObject>>
+            viewModelsDictionary
+                = new Dictionary<IProtoEntity, WeakReference<ViewModelEditorToolItemStaticObject>>();
+
+        public EditorToolStaticObjects()
+        {
+            if (IsClient)
+            {
+                Api.Client.World.ObjectEnterScope += this.WorldObjectEnterScopeHandler;
+                Api.Client.World.ObjectLeftScope += this.WorldObjectLeftScopeHandler;
+            }
+        }
+
         public override string Name => "Static Objects tool";
 
         public override int Order => 20;
 
         public override BaseEditorActiveTool Activate(EditorToolStaticObjectsItem item)
         {
-            if (item == null)
+            if (item is null)
             {
                 return null;
             }
@@ -35,6 +52,15 @@
             return new EditorActiveToolObjectBrush(
                 item.ProtoStaticObject,
                 tilePositions => this.ClientPlaceStaticObject(tilePositions, item.ProtoStaticObject));
+        }
+
+        public override ViewModelEditorToolItem CreateItemViewModel(BaseEditorToolItem item)
+        {
+            var entry = (EditorToolStaticObjectsItem)item;
+            var viewModel = new ViewModelEditorToolItemStaticObject(entry);
+            this.viewModelsDictionary[entry.ProtoStaticObject]
+                = new WeakReference<ViewModelEditorToolItemStaticObject>(viewModel);
+            return viewModel;
         }
 
         protected override void SetupFilters(List<EditorToolItemFilter<EditorToolStaticObjectsItem>> filters)
@@ -89,6 +115,7 @@
 
         protected override void SetupItems(List<EditorToolStaticObjectsItem> items)
         {
+            this.viewModelsDictionary.Clear();
             var protoStaticWorldObjects = Api.FindProtoEntities<IProtoStaticWorldObject>();
 
             foreach (var prototype in protoStaticWorldObjects
@@ -99,7 +126,8 @@
                     && !(prototype is ProtoObjectConstructionSite)
                     && !(prototype is ObjectCorpse))
                 {
-                    items.Add(new EditorToolStaticObjectsItem(prototype));
+                    var item = new EditorToolStaticObjectsItem(prototype);
+                    items.Add(item);
                 }
             }
         }
@@ -127,6 +155,7 @@
             return new TextureResource($"{this.ToolTexturesPath}Filters/{textureName}.png");
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_Destroy(IProtoStaticWorldObject protoStaticWorldObject, Vector2Ushort tilePosition)
         {
             var worldService = Server.World;
@@ -139,6 +168,7 @@
             }
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceStaticObject(
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort tilePosition)
@@ -153,6 +183,26 @@
             if (protoStaticWorldObject is IProtoObjectVegetation protoVegetation)
             {
                 protoVegetation.ServerSetFullGrown(worldObject);
+            }
+        }
+
+        private void WorldObjectEnterScopeHandler(IGameObjectWithProto obj)
+        {
+            if (this.viewModelsDictionary.TryGetValue(obj.ProtoGameObject, out var weakReference)
+                && weakReference.TryGetTarget(out var item)
+                && !item.IsDisposed)
+            {
+                item.Count++;
+            }
+        }
+
+        private void WorldObjectLeftScopeHandler(IGameObjectWithProto obj)
+        {
+            if (this.viewModelsDictionary.TryGetValue(obj.ProtoGameObject, out var weakReference)
+                && weakReference.TryGetTarget(out var item)
+                && !item.IsDisposed)
+            {
+                item.Count--;
             }
         }
     }

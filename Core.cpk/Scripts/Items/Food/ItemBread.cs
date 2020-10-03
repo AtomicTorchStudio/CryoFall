@@ -10,8 +10,6 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Lasting;
 
-        public override float HealthRestore => 1;
-
         public override string Name => "Bread loaf";
 
         public override ushort OrganicValue => 5;

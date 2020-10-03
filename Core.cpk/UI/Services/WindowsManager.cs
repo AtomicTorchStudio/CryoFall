@@ -98,7 +98,7 @@
             }
 
             var lastOpenedWindow = LastOpenedWindow;
-            if (lastOpenedWindow != null)
+            if (lastOpenedWindow is not null)
             {
                 UpdateOverlayZIndex();
             }
@@ -108,7 +108,7 @@
             }
 
             var closeByEscapeKeyInputContext = window.CloseByEscapeKeyInputContext;
-            if (closeByEscapeKeyInputContext != null)
+            if (closeByEscapeKeyInputContext is not null)
             {
                 closeByEscapeKeyInputContext.Stop();
                 window.CloseByEscapeKeyInputContext = null;
@@ -122,7 +122,7 @@
             // destroy window completely
             var layoutRootChildren = Api.Client.UI.LayoutRootChildren;
             if (window.Parent is UIElement parent
-                && layoutRootChildren != null
+                && layoutRootChildren is not null
                 && layoutRootChildren.Contains(parent))
             {
                 layoutRootChildren.Remove(parent);
@@ -138,7 +138,7 @@
 
         private static void TurnOffOverlay()
         {
-            if (backgroundOverlay != null)
+            if (backgroundOverlay is not null)
             {
                 backgroundOverlay.IsBackgroundEnabled = false;
             }
@@ -155,7 +155,7 @@
             }
 
             var maxWindowZIndex = openedWindows.Max(w => w.CurrentZIndex);
-            if (backgroundOverlay == null)
+            if (backgroundOverlay is null)
             {
                 backgroundOverlay = new GameWindowBackgroundOverlay();
                 Api.Client.UI.LayoutRootChildren.Add(backgroundOverlay);

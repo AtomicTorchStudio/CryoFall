@@ -34,7 +34,7 @@
 
         public override string Name => "Flintlock pistol";
 
-        public override double ReadyDelayDuration => 0.6;
+        public override double ReadyDelayDuration => WeaponReadyDelays.ConventionalPistols;
 
         public override double SpecialEffectProbability => 0.25;
 
@@ -44,7 +44,7 @@
         {
             return new WeaponFirePatternPreset(
                 initialSequence: new[] { 0.0 },
-                cycledSequence: new[] { 3.0, -1.0 });
+                cycledSequence: new[] { 2.5 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

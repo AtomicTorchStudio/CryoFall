@@ -86,7 +86,7 @@
 
                 this.selectedZoneForBrush = value;
                 this.NotifyThisPropertyChanged();
-                if (value != null)
+                if (value is not null)
                 {
                     value.IsRendered = true;
                 }
@@ -99,7 +99,7 @@
 
         private void ExecuteCommandClearSelectedZone()
         {
-            if (this.selectedZoneForBrush == null)
+            if (this.selectedZoneForBrush is null)
             {
                 return;
             }
@@ -114,7 +114,7 @@
 
         private void ExecuteCommandDeleteSelectedZoneObjects()
         {
-            if (this.selectedZoneForBrush == null)
+            if (this.selectedZoneForBrush is null)
             {
                 return;
             }
@@ -124,7 +124,7 @@
 
         private void ExecuteCommandInvokeSelectedZoneScriptsAsInitial()
         {
-            if (this.selectedZoneForBrush != null)
+            if (this.selectedZoneForBrush is not null)
             {
                 EditorZoneSystem.Instance.ClientInvokeZoneScripts(this.selectedZoneForBrush.Zone, isInitialSpawn: true);
             }
@@ -132,7 +132,7 @@
 
         private void ExecuteCommandInvokeSelectedZoneScriptsAsTimer()
         {
-            if (this.selectedZoneForBrush != null)
+            if (this.selectedZoneForBrush is not null)
             {
                 EditorZoneSystem.Instance.ClientInvokeZoneScripts(this.selectedZoneForBrush.Zone,
                                                                   isInitialSpawn: false);

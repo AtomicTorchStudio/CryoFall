@@ -37,7 +37,7 @@
                     throw new Exception("Character cannot be null in the " + nameof(EffectActionContext));
                 }
 
-                if (this.Condition != null
+                if (this.Condition is not null
                     && !this.Condition(context))
                 {
                     return;

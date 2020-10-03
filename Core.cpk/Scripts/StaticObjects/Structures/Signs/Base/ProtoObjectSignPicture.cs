@@ -35,7 +35,7 @@
             TPublicState publicState)
         {
             var texturePicture = SharedSignPictureHelper.GetTextureResource(publicState.Text);
-            if (texturePicture == null)
+            if (texturePicture is null)
             {
                 rendererSignContent.TextureResource = null;
                 rendererSignContent.IsEnabled = false;

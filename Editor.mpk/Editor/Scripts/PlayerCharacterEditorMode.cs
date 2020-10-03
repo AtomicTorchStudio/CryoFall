@@ -57,6 +57,7 @@
             }
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, groupName: "PlayerMode")]
         public void ServerRemote_SwitchToEditorMode()
         {
             var character = ServerRemoteContext.Character;
@@ -67,6 +68,7 @@
             character.ServerRemoveAllStatusEffects();
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, groupName: "PlayerMode")]
         public void ServerRemote_SwitchToPlayerMode()
         {
             var character = ServerRemoteContext.Character;
@@ -169,7 +171,7 @@
             this.CallServer(_ => _.ServerRemote_SetSpeed(speed));
         }
 
-        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, maxCallsPerSecond: 10)]
+        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, timeInterval: 1 / 10.0)]
         private void ServerRemote_SetPosition(Vector2D position)
         {
             var character = ServerRemoteContext.Character;
@@ -182,7 +184,7 @@
             Server.World.SetPosition(character, position, writeToLog: false);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 60)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1 / 60.0)]
         private void ServerRemote_SetSpeed(double speed)
         {
             var character = ServerRemoteContext.Character;

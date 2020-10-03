@@ -103,7 +103,7 @@
         public override void ServerOnItemDamaged(IItem item, double damageApplied)
         {
             var owner = item.Container.OwnerAsCharacter;
-            if (owner != null)
+            if (owner is not null)
             {
                 damageApplied *= owner.SharedGetFinalStatMultiplier(StatName.ImplantDegradationFromDamageMultiplier);
             }
@@ -172,7 +172,7 @@
             // try to degrade durability over time and give experience for cybernetic affinity skill
             var item = data.GameObject;
             var owner = item.Container?.OwnerAsCharacter;
-            if (owner == null
+            if (owner is null
                 || !owner.ServerIsOnline
                 || owner.SharedGetPlayerContainerEquipment() != item.Container)
             {

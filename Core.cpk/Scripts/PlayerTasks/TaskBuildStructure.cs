@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -82,7 +83,7 @@
                 var partyMember = Api.Server.Characters
                                      .GetPlayerCharacter(partyMemberName);
 
-                if (partyMember == null)
+                if (partyMember is null)
                 {
                     continue;
                 }
@@ -137,7 +138,7 @@
                 var partyMember = Api.Server.Characters
                                      .GetPlayerCharacter(partyMemberName);
 
-                if (partyMember == null)
+                if (partyMember is null)
                 {
                     continue;
                 }
@@ -147,7 +148,10 @@
             }
         }
 
-        private void ServerCharacterJoinedOrLeftPartyHandler(ICharacter character)
+        private void ServerCharacterJoinedOrLeftPartyHandler(
+            ICharacter character,
+            ILogicObject party,
+            bool isJoined)
         {
             if (PartySystem.ServerGetParty(character) is null)
             {
@@ -163,7 +167,7 @@
         private void StructureBuiltHandler(ICharacter character, IStaticWorldObject structure)
         {
             var context = this.GetActiveContext(character, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }

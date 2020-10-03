@@ -6,6 +6,8 @@
 
     public class ItemCigarCheap : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.None;
+
         public override string Description =>
             "Cheap and quickly made cigar. Stimulant.";
 

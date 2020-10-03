@@ -5,15 +5,12 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using static GameEngine.Common.Primitives.MathConstants;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public static class ClientCharacterAnimationHelper
@@ -33,7 +30,7 @@
             ICharacterPublicState publicState)
         {
             var skeletonRenderer = clientState.SkeletonRenderer;
-            if (skeletonRenderer == null)
+            if (skeletonRenderer is null)
             {
                 return;
             }
@@ -107,254 +104,260 @@
             skeletonRenderer.IsEnabled = true;
             rendererShadow.IsEnabled = true;
 
-            var appliedInput = publicState.AppliedInput;
-            var rotationAngleRad = GetCurrentRotationAngleRadInterpolated(character,
-                                                                          clientState,
-                                                                          appliedInput);
+                var appliedInput = publicState.AppliedInput;
+                var rotationAngleRad = GetCurrentRotationAngleRadInterpolated(character,
+                                                                              clientState,
+                                                                              appliedInput);
 
-            var moveModes = appliedInput.MoveModes;
-            if (publicState is PlayerCharacterPublicState playerCharacterPublicState
-                && playerCharacterPublicState.CurrentVehicle is { } vehicle)
-            {
-                var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
-                protoVehicle.SharedGetSkeletonProto(vehicle, out var vehicleSkeleton, out _);
-                if (vehicleSkeleton is null)
+                var moveModes = appliedInput.MoveModes;
+                if (publicState is PlayerCharacterPublicState playerCharacterPublicState
+                    && playerCharacterPublicState.CurrentVehicle is { } vehicle)
                 {
-                    // this vehicle doesn't provide any skeleton so player is simply displayed as standing idle inside it
-                    moveModes = CharacterMoveModes.None;
+                    var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+                    protoVehicle.SharedGetSkeletonProto(vehicle, out var vehicleSkeleton, out _);
+                    if (vehicleSkeleton is null)
+                    {
+                        // this vehicle doesn't provide any skeleton so player is simply displayed as standing idle inside it
+                        moveModes = CharacterMoveModes.None;
+                    }
                 }
-            }
 
-            protoSkeleton.GetCurrentAnimationSetting(
-                character,
-                moveModes,
-                rotationAngleRad,
-                clientState.LastViewOrientation,
-                out var newAnimationStarterName,
-                out var newAnimationName,
-                out var currentDrawMode,
-                out var aimCoef,
-                out var viewOrientation,
-                out var isIdle);
+                protoSkeleton.GetCurrentAnimationSetting(
+                    character,
+                    moveModes,
+                    rotationAngleRad,
+                    clientState.LastViewOrientation,
+                    out var newAnimationStarterName,
+                    out var newAnimationName,
+                    out var currentDrawMode,
+                    out var aimCoef,
+                    out var viewOrientation,
+                    out var isIdle);
 
-            clientState.LastViewOrientation = viewOrientation;
+                clientState.LastViewOrientation = viewOrientation;
 
-            // TODO: consider adding new field - HasBackwardAnimations
-            if (!protoSkeleton.HasMoveStartAnimations)
-            {
-                newAnimationStarterName = null;
-                if (newAnimationName == "RunSideBackward")
+                // TODO: consider adding new field - HasBackwardAnimations
+                if (!protoSkeleton.HasMoveStartAnimations)
                 {
-                    newAnimationName = "RunSide";
+                    newAnimationStarterName = null;
+                    if (newAnimationName == "RunSideBackward")
+                    {
+                        newAnimationName = "RunSide";
+                    }
                 }
-            }
 
-            var currentSkeleton = viewOrientation.IsUp && protoSkeleton.SkeletonResourceBack != null
-                                      ? protoSkeleton.SkeletonResourceBack
-                                      : protoSkeleton.SkeletonResourceFront;
+                var currentSkeleton = viewOrientation.IsUp && protoSkeleton.SkeletonResourceBack is not null
+                                          ? protoSkeleton.SkeletonResourceBack
+                                          : protoSkeleton.SkeletonResourceFront;
 
-            if (skeletonRenderer.CurrentSkeleton != currentSkeleton)
-            {
-                // switch skeleton completely
-                skeletonRenderer.SelectCurrentSkeleton(
-                    currentSkeleton,
-                    // please note: no starter animation in that case!
-                    animationName: newAnimationName,
-                    isLooped: true);
-            }
-            else
-            {
-                var activeAnimationName = skeletonRenderer.GetLatestAddedAnimationName(
-                    trackIndex: AnimationTrackIndexes.Primary);
-
-                if (newAnimationName != activeAnimationName
-                    && newAnimationStarterName != activeAnimationName)
+                if (skeletonRenderer.CurrentSkeleton != currentSkeleton)
                 {
-                    //Api.Logger.WriteDev(
-                    //	newAnimationStarterName != null
-                    //	? $"Changing move animation: {activeAnimationName}->{newAnimationStarterName}->{newAnimationName}"
-                    //	: $"Changing move animation: {activeAnimationName}->{newAnimationName}");
-
-                    skeletonRenderer.RemoveAnimationTrackNextEntries(
+                    // switch skeleton completely
+                    skeletonRenderer.SelectCurrentSkeleton(
+                        currentSkeleton,
+                        // please note: no starter animation in that case!
+                        animationName: newAnimationName,
+                        isLooped: true);
+                }
+                else
+                {
+                    var activeAnimationName = skeletonRenderer.GetLatestAddedAnimationName(
                         trackIndex: AnimationTrackIndexes.Primary);
 
-                    var currentAnimationName = skeletonRenderer.GetCurrentAnimationName(
-                        trackIndex: AnimationTrackIndexes.Primary,
-                        getLatestAddedAnimation: false);
-
-                    var hasStarterAnimation = newAnimationStarterName != null;
-                    if (newAnimationName != "Idle"
-                        && hasStarterAnimation)
+                    if (newAnimationName != activeAnimationName
+                        && newAnimationStarterName != activeAnimationName)
                     {
-                        // add starter animation
-                        skeletonRenderer.SetAnimationLoopMode(AnimationTrackIndexes.Primary,
-                                                              isLooped: false);
+                        //Api.Logger.WriteDev(
+                        //	newAnimationStarterName is not null
+                        //	? $"Changing move animation: {activeAnimationName}->{newAnimationStarterName}->{newAnimationName}"
+                        //	: $"Changing move animation: {activeAnimationName}->{newAnimationName}");
 
-                        if (newAnimationStarterName != currentAnimationName)
+                        skeletonRenderer.RemoveAnimationTrackNextEntries(
+                            trackIndex: AnimationTrackIndexes.Primary);
+
+                        var currentAnimationName = skeletonRenderer.GetCurrentAnimationName(
+                            trackIndex: AnimationTrackIndexes.Primary,
+                            getLatestAddedAnimation: false);
+
+                        var hasStarterAnimation = newAnimationStarterName is not null;
+                        if (newAnimationName != "Idle"
+                            && hasStarterAnimation)
                         {
-                            if (currentAnimationName == "Idle")
+                            // add starter animation
+                            skeletonRenderer.SetAnimationLoopMode(AnimationTrackIndexes.Primary,
+                                                                  isLooped: false);
+
+                            if (newAnimationStarterName != currentAnimationName)
                             {
-                                //Api.Logger.Dev("Adding starter animation: "
+                                if (currentAnimationName == "Idle")
+                                {
+                                    //Api.Logger.Dev("Adding starter animation: "
+                                    //               + newAnimationStarterName
+                                    //               + " (current animation is "
+                                    //               + currentAnimationName
+                                    //               + ")");
+
+                                    skeletonRenderer.SetAnimation(
+                                        trackIndex: AnimationTrackIndexes.Primary,
+                                        animationName: newAnimationStarterName,
+                                        isLooped: false);
+                                }
+                                else
+                                {
+                                    //Api.Logger.Dev("No starter animation will be added. Current animation: "
+                                    //               + currentAnimationName
+                                    //               + " starter name: "
+                                    //               + newAnimationStarterName);
+                                    //skeletonRenderer.AddAnimation(
+                                    //    trackIndex: AnimationTrackIndexes.Primary,
+                                    //    animationName: newAnimationStarterName,
+                                    //    isLooped: false);
+                                }
+                            }
+                            else
+                            {
+                                //Api.Logger.Dev("No need to add starter animation: "
                                 //               + newAnimationStarterName
                                 //               + " (current animation is "
                                 //               + currentAnimationName
                                 //               + ")");
+                            }
 
-                                skeletonRenderer.SetAnimation(
+                            // add looped animation
+                            skeletonRenderer.AddAnimation(
+                                trackIndex: AnimationTrackIndexes.Primary,
+                                animationName: newAnimationName,
+                                isLooped: true);
+                        }
+                        else
+                        {
+                            if (currentAnimationName is not null
+                                && currentAnimationName.EndsWith("Start"))
+                            {
+                                //Api.Logger.Dev("Adding new animation + Abort animation after START animation: "
+                                //               + newAnimationName
+                                //               + " (current animation is "
+                                //               + currentAnimationName
+                                //               + ")");
+
+                                // going into idle when playing a start animation - allow to finish it!
+
+                                // remove queued entries
+                                skeletonRenderer.RemoveAnimationTrackNextEntries(
+                                    trackIndex: AnimationTrackIndexes.Primary);
+
+                                // add abort animation
+                                skeletonRenderer.AddAnimation(
                                     trackIndex: AnimationTrackIndexes.Primary,
-                                    animationName: newAnimationStarterName,
+                                    animationName: currentAnimationName + "Abort",
                                     isLooped: false);
+
+                                // add looped animation
+                                skeletonRenderer.AddAnimation(
+                                    trackIndex: AnimationTrackIndexes.Primary,
+                                    animationName: newAnimationName,
+                                    isLooped: true);
+                            }
+                            else if (currentAnimationName is not null
+                                     && currentAnimationName.EndsWith("Abort"))
+                            {
+                                //Api.Logger.Dev("Adding new animation after Abort animation: "
+                                //               + newAnimationName
+                                //               + " (current animation is "
+                                //               + currentAnimationName
+                                //               + ")");
+
+                                // remove queued entries
+                                skeletonRenderer.RemoveAnimationTrackNextEntries(
+                                    trackIndex: AnimationTrackIndexes.Primary);
+
+                                // add end animation
+                                skeletonRenderer.AddAnimation(
+                                    trackIndex: AnimationTrackIndexes.Primary,
+                                    animationName: currentAnimationName + "Abort",
+                                    isLooped: false);
+
+                                // add looped animation
+                                skeletonRenderer.AddAnimation(
+                                    trackIndex: AnimationTrackIndexes.Primary,
+                                    animationName: newAnimationName,
+                                    isLooped: true);
                             }
                             else
                             {
-                                //Api.Logger.Dev("No starter animation will be added. Current animation: "
+                                //Api.Logger.Dev("Setting new animation: "
+                                //               + newAnimationName
+                                //               + " (current animation is "
                                 //               + currentAnimationName
-                                //               + " starter name: "
-                                //               + newAnimationStarterName);
-                                //skeletonRenderer.AddAnimation(
-                                //    trackIndex: AnimationTrackIndexes.Primary,
-                                //    animationName: newAnimationStarterName,
-                                //    isLooped: false);
+                                //               + ")");
+
+                                // set looped animation (reset any current animation)
+                                skeletonRenderer.SetAnimation(
+                                    trackIndex: AnimationTrackIndexes.Primary,
+                                    animationName: newAnimationName,
+                                    isLooped: true);
                             }
-                        }
-                        else
-                        {
-                            //Api.Logger.Dev("No need to add starter animation: "
-                            //               + newAnimationStarterName
-                            //               + " (current animation is "
-                            //               + currentAnimationName
-                            //               + ")");
-                        }
-
-                        // add looped animation
-                        skeletonRenderer.AddAnimation(
-                            trackIndex: AnimationTrackIndexes.Primary,
-                            animationName: newAnimationName,
-                            isLooped: true);
-                    }
-                    else
-                    {
-                        if (currentAnimationName != null
-                            && currentAnimationName.EndsWith("Start"))
-                        {
-                            //Api.Logger.Dev("Adding new animation + Abort animation after START animation: "
-                            //               + newAnimationName
-                            //               + " (current animation is "
-                            //               + currentAnimationName
-                            //               + ")");
-
-                            // going into idle when playing a start animation - allow to finish it!
-
-                            // remove queued entries
-                            skeletonRenderer.RemoveAnimationTrackNextEntries(
-                                trackIndex: AnimationTrackIndexes.Primary);
-
-                            // add abort animation
-                            skeletonRenderer.AddAnimation(
-                                trackIndex: AnimationTrackIndexes.Primary,
-                                animationName: currentAnimationName + "Abort",
-                                isLooped: false);
-
-                            // add looped animation
-                            skeletonRenderer.AddAnimation(
-                                trackIndex: AnimationTrackIndexes.Primary,
-                                animationName: newAnimationName,
-                                isLooped: true);
-                        }
-                        else if (currentAnimationName != null
-                                 && currentAnimationName.EndsWith("Abort"))
-                        {
-                            //Api.Logger.Dev("Adding new animation after Abort animation: "
-                            //               + newAnimationName
-                            //               + " (current animation is "
-                            //               + currentAnimationName
-                            //               + ")");
-
-                            // remove queued entries
-                            skeletonRenderer.RemoveAnimationTrackNextEntries(
-                                trackIndex: AnimationTrackIndexes.Primary);
-
-                            // add end animation
-                            skeletonRenderer.AddAnimation(
-                                trackIndex: AnimationTrackIndexes.Primary,
-                                animationName: currentAnimationName + "Abort",
-                                isLooped: false);
-
-                            // add looped animation
-                            skeletonRenderer.AddAnimation(
-                                trackIndex: AnimationTrackIndexes.Primary,
-                                animationName: newAnimationName,
-                                isLooped: true);
-                        }
-                        else
-                        {
-                            //Api.Logger.Dev("Setting new animation: "
-                            //               + newAnimationName
-                            //               + " (current animation is "
-                            //               + currentAnimationName
-                            //               + ")");
-
-                            // set looped animation (reset any current animation)
-                            skeletonRenderer.SetAnimation(
-                                trackIndex: AnimationTrackIndexes.Primary,
-                                animationName: newAnimationName,
-                                isLooped: true);
                         }
                     }
                 }
-            }
 
-            if (moveModes != CharacterMoveModes.None)
-            {
-                // moving mode
-                var animationSpeedMultiplier = appliedInput.MoveSpeed
-                                               / (protoSkeleton.DefaultMoveSpeed
-                                                  * clientState.CurrentProtoSkeletonScaleMultiplier);
-
-                skeletonRenderer.SetAnimationSpeed(
-                    trackIndex: AnimationTrackIndexes.Primary,
-                    speedMultiliper: (float)animationSpeedMultiplier);
-
-                // moving - remove animation for static firing
-                skeletonRenderer.RemoveAnimationTrack(AnimationTrackIndexes.ItemFiringStatic);
-            }
-            else
-            {
-                skeletonRenderer.SetAnimationSpeed(
-                    trackIndex: AnimationTrackIndexes.Primary,
-                    speedMultiliper: 1.0f);
-            }
-
-            skeletonRenderer.DrawMode = currentDrawMode;
-
-            if (activeWeaponProto != null)
-            {
-                clientState.HasWeaponAnimationAssigned = true;
-                clientState.LastAimCoef = aimCoef;
-
-                var aimingAnimationName = activeWeaponProto.CharacterAnimationAimingName;
-                if (aimingAnimationName != null)
+                if (moveModes != CharacterMoveModes.None)
                 {
-                    //Api.Logger.WriteDev(
-                    //    $"Setting aiming animation: {aimingAnimationName} timePercents: {aimCoef:F2}");
-                    skeletonRenderer.SetAnimationFrame(
-                        trackIndex: AnimationTrackIndexes.ItemAiming,
-                        animationName: aimingAnimationName,
-                        timePositionFraction: aimCoef);
+                    // moving mode
+                    var animationSpeedMultiplier = appliedInput.MoveSpeed
+                                                   / (protoSkeleton.DefaultMoveSpeed
+                                                      * clientState.CurrentProtoSkeletonScaleMultiplier);
+
+                    skeletonRenderer.SetAnimationSpeed(
+                        trackIndex: AnimationTrackIndexes.Primary,
+                        speedMultiliper: (float)animationSpeedMultiplier);
+
+                    // moving - remove animation for static firing
+                    skeletonRenderer.RemoveAnimationTrack(AnimationTrackIndexes.ItemFiringStatic);
                 }
                 else
                 {
-                    skeletonRenderer.RemoveAnimationTrack(AnimationTrackIndexes.ItemAiming);
+                    skeletonRenderer.SetAnimationSpeed(
+                        trackIndex: AnimationTrackIndexes.Primary,
+                        speedMultiliper: 1.0f);
                 }
 
-                WeaponSystemClientDisplay.ClientRefreshCurrentAttackAnimation(character);
-            }
-            else
-            {
-                clientState.HasWeaponAnimationAssigned = false;
-            }
+                skeletonRenderer.DrawMode = currentDrawMode;
 
-            SetLoopSounds(character, clientState, publicState.AppliedInput, protoSkeleton, isIdle);
+                if (activeWeaponProto is not null)
+                {
+                    clientState.HasWeaponAnimationAssigned = true;
+                    clientState.LastAimCoef = aimCoef;
+
+                    var aimingAnimationName = activeWeaponProto.CharacterAnimationAimingName;
+                    if (aimingAnimationName is not null)
+                    {
+                        //Api.Logger.WriteDev(
+                        //    $"Setting aiming animation: {aimingAnimationName} timePercents: {aimCoef:F2}");
+                        skeletonRenderer.SetAnimationFrame(
+                            trackIndex: AnimationTrackIndexes.ItemAiming,
+                            animationName: aimingAnimationName,
+                            timePositionFraction: aimCoef);
+                    }
+                    else
+                    {
+                        skeletonRenderer.RemoveAnimationTrack(AnimationTrackIndexes.ItemAiming);
+                    }
+
+                    WeaponSystemClientDisplay.ClientRefreshCurrentAttackAnimation(character);
+                }
+                else
+                {
+                    clientState.HasWeaponAnimationAssigned = false;
+                }
+
+                    SetLoopSounds(character, clientState, publicState.AppliedInput, protoSkeleton, isIdle);
+        }
+
+        public static bool IsLeftHalfOfCircle(double angleDeg)
+        {
+            return angleDeg > 90
+                   && angleDeg <= 270;
         }
 
         private static double GetCurrentRotationAngleRadInterpolated(
@@ -362,35 +365,49 @@
             BaseCharacterClientState clientState,
             AppliedCharacterInput appliedInput)
         {
+            var isCurrentClientCharacter = character.IsCurrentClientCharacter;
+
             double rotationAngleRad = appliedInput.RotationAngleRad;
-            if (!clientState.LastInterpolatedRotationAngleRad.HasValue)
+            rotationAngleRad = WeaponSystem.ClientGetCorrectedRotationAngleForWeaponAim(character,
+                                   clientState.LastViewOrientation,
+                                   rotationAngleRad)
+                               ?? rotationAngleRad;
+
+            if (clientState.LastInterpolatedRotationAngleRad.HasValue)
             {
-                // current character or first time - simply use current angle
-                clientState.LastInterpolatedRotationAngleRad = rotationAngleRad;
-                return rotationAngleRad;
-            }
-
-            var oldAngle = clientState.LastInterpolatedRotationAngleRad.Value;
-
-            if (Math.Abs(MathHelper.GetShortestAngleDist(oldAngle, rotationAngleRad))
-                < Math.PI / 2)
-            {
-                // small difference - allow to interpolate
-                // smooth interpolation for remote players is required to better deal with the network update rate
-                // for local player it's much more fast and just improves overall smoothness of the character rotation
-                var rate = character.IsCurrentClientCharacter
-                               ? RotationAngleRadInterpolationRateCurrentCharacter
-                               : RotationAngleRadInterpolationRateRemoteCharacter;
-
-                rotationAngleRad = MathHelper.LerpAngle(
-                    oldAngle,
-                    rotationAngleRad,
-                    Api.Client.Core.DeltaTime,
-                    rate);
+                InterpolateAngle(clientState.LastInterpolatedRotationAngleRad.Value,
+                                 ref rotationAngleRad,
+                                 isCurrentClientCharacter);
             }
 
             clientState.LastInterpolatedRotationAngleRad = rotationAngleRad;
             return rotationAngleRad;
+        }
+
+        private static void InterpolateAngle(
+            double previousAngleRad,
+            ref double newAngleRad,
+            bool isCurrentClientCharacter)
+        {
+            if (Math.Abs(MathHelper.GetShortestAngleDist(previousAngleRad, newAngleRad))
+                >= Math.PI / 2)
+            {
+                // too big difference
+                return;
+            }
+
+            // small difference - allow to interpolate
+            // smooth interpolation for remote players is required to better deal with the network update rate
+            // for local player it's much more fast and just improves overall smoothness of the character rotation
+            var rate = isCurrentClientCharacter
+                           ? RotationAngleRadInterpolationRateCurrentCharacter
+                           : RotationAngleRadInterpolationRateRemoteCharacter;
+
+            newAngleRad = MathHelper.LerpAngle(
+                previousAngleRad,
+                newAngleRad,
+                Api.Client.Core.DeltaTime,
+                rate);
         }
 
         private static void SetLoopSounds(
@@ -418,12 +435,6 @@
             // ensure the sounds are played
             clientState.SoundEmitterLoopCharacter.Play();
             clientState.SoundEmitterLoopMovemement.Play();
-        }
-
-        public static bool IsLeftHalfOfCircle(double angleDeg)
-        {
-            return angleDeg > 90
-                   && angleDeg <= 270;
         }
     }
 }

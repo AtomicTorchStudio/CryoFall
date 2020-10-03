@@ -85,7 +85,7 @@
                 result.Append(this.LocalName);
 
                 var parent = this.Parent;
-                while (parent != null)
+                while (parent is not null)
                 {
                     result.Append(parent.LocalName);
                     parent = parent.Parent;

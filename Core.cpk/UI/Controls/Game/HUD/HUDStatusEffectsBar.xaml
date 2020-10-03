@@ -103,12 +103,21 @@
                                     <Setter Property="noesis:Text.StrokeThickness" Value="2" />
                                 </Style>
                             </Grid.Resources>
+
+                            <TextBlock Text="{Binding TimeRemains}"
+                                       Visibility="{Binding IsIconTimeRemainsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                       FontFamily="{StaticResource CondensedFontFamily}"
+                                       FontSize="14"
+                                       FontWeight="Normal" />
+
                             <TextBlock Text="{Binding IntensityPercent, StringFormat={} {0}% }"
-                                       Visibility="{Binding IsIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                       Visibility="{Binding IsIconIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                        FontFamily="{StaticResource DigitsFontFamily}" />
+
                             <TextBlock Text=" — "
-                                       Visibility="{Binding IsIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                       Visibility="{Binding IsIconPlaceholderVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                        FontFamily="{StaticResource DigitsFontFamily}" />
+
                         </Grid>
                     </Grid>
                     <base:ToolTipServiceExtend.ToolTip>
@@ -117,15 +126,67 @@
                                        TextWrapping="Wrap"
                                        FontWeight="Bold" />
 
-                            <StackPanel
-                                Visibility="{Binding IsIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                                Orientation="Horizontal"
-                                Margin="0,2">
-                                <!-- Text: Intensity -->
-                                <TextBlock Text="{x:Static loc:CoreStrings.StatusEffect_TitleIntensity}" />
-                                <TextBlock Text=": " />
-                                <TextBlock Text="{Binding IntensityPercent}" FontWeight="Bold" />
-                                <TextBlock Text="%" FontWeight="Bold" />
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0,2">
+                                <StackPanel.Visibility>
+                                    <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}">
+                                        <Binding Path="IsTooltipIntensityPercentVisible" />
+                                        <Binding Path="IsTooltipTimeRemainsVisible" />
+                                    </MultiBinding>
+                                </StackPanel.Visibility>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Visibility>
+                                        <MultiBinding Converter="{StaticResource AllBoolToVisibilityMultiConverter}">
+                                            <Binding Path="IsTooltipIntensityPercentVisible" />
+                                            <Binding Path="IsTooltipTimeRemainsVisible" />
+                                        </MultiBinding>
+                                    </StackPanel.Visibility>
+
+                                    <!-- Text: Intensity -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.StatusEffect_TitleIntensity}" />
+                                    <TextBlock Text=": " />
+                                    <TextBlock Text="{Binding IntensityPercent}" FontWeight="Bold" />
+                                    <TextBlock Text="%" FontWeight="Bold" />
+                                    <TextBlock Text=" (" />
+
+                                    <!-- Text: Time remains -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.TimeRemains}" />
+                                    <TextBlock Text=": " />
+                                    <TextBlock Text="{Binding TimeRemains}"
+                                               FontWeight="Bold" />
+                                    <TextBlock Text=")" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel.Visibility>
+                                        <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}"
+                                                      ConverterParameter="Reverse">
+                                            <Binding Path="IsTooltipIntensityPercentVisible" />
+                                            <Binding Path="IsTooltipTimeRemainsVisible" />
+                                        </MultiBinding>
+                                    </StackPanel.Visibility>
+
+                                    <StackPanel
+                                        Visibility="{Binding IsTooltipIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                        <!-- Text: Intensity -->
+                                        <TextBlock Text="{x:Static loc:CoreStrings.StatusEffect_TitleIntensity}" />
+                                        <TextBlock Text=": " />
+                                        <TextBlock Text="{Binding IntensityPercent}" FontWeight="Bold" />
+                                        <TextBlock Text="%" FontWeight="Bold" />
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Visibility="{Binding IsTooltipTimeRemainsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                        <!-- Text: Time remains -->
+                                        <TextBlock Text="{x:Static loc:CoreStrings.TimeRemains}" />
+                                        <TextBlock Text=": " />
+                                        <TextBlock Text="{Binding TimeRemains}"
+                                                   FontWeight="Bold" />
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
 
                             <TextBlock Text="{Binding Description}"
@@ -135,49 +196,51 @@
                                        LineStackingStrategy="BlockLineHeight"
                                        Margin="0,2,0,0" />
 
-                            <StackPanel Orientation="Vertical"
-                                        Visibility="{Binding Effects, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
-                                <ItemsControl ItemsSource="{Binding Effects}" Margin="0,2,0,-1">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,2">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.Resources>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="Foreground"
-                                                                Value="{StaticResource BrushColor6}" />
-                                                        <Setter Property="FontWeight" Value="Bold" />
-                                                        <Setter Property="FontSize" Value="11" />
-                                                        <Setter Property="LineHeight" Value="12" />
-                                                        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
-                                                    </Style>
-                                                </Grid.Resources>
+                            <ItemsControl
+                                Visibility="{Binding Effects, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                                ItemsSource="{Binding Effects}"
+                                Margin="0,2,0,-1">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,2"
+                                              HorizontalAlignment="Left">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.Resources>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground"
+                                                            Value="{StaticResource BrushColor6}" />
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                    <Setter Property="FontSize" Value="11" />
+                                                    <Setter Property="LineHeight" Value="12" />
+                                                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                                                </Style>
+                                            </Grid.Resources>
 
-                                                <!-- Bullet point -->
-                                                <Ellipse Width="4"
-                                                         Height="4"
-                                                         Fill="{StaticResource BrushColor5}"
-                                                         VerticalAlignment="Center" />
+                                            <!-- Bullet point -->
+                                            <Ellipse Width="4"
+                                                     Height="4"
+                                                     Fill="{StaticResource BrushColor5}"
+                                                     VerticalAlignment="Center" />
 
-                                                <TextBlock Grid.Column="1"
-                                                           Text="{Binding StatTitle}"
-                                                           TextWrapping="Wrap"
-                                                           Margin="3,0,0,0" />
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding StatTitle}"
+                                                       TextWrapping="Wrap"
+                                                       Margin="3,0,0,0" />
 
-                                                <TextBlock Grid.Column="2"
-                                                           Text="{Binding EffectText}"
-                                                           Visibility="{Binding EffectTextVisibility}"
-                                                           TextWrapping="Wrap"
-                                                           Margin="3,0,0,0" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding EffectText}"
+                                                       Visibility="{Binding EffectTextVisibility}"
+                                                       TextWrapping="Wrap"
+                                                       VerticalAlignment="Center"
+                                                       Margin="3,0,0,0" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                     </base:ToolTipServiceExtend.ToolTip>
                 </Border>

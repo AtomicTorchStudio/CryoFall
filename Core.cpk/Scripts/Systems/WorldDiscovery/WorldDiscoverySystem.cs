@@ -56,7 +56,7 @@
                 return;
             }
 
-            if (resultDiscoveredTiles != null)
+            if (resultDiscoveredTiles is not null)
             {
                 //Logger.WriteDev("Client received from server all the discovered tiles for current character: "
                 //                + resultDiscoveredTiles.GetJoinedString(Environment.NewLine));
@@ -164,6 +164,7 @@
             this.ServerDiscoverWorldChunks(character, chunkTilePositions);
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private HashSet<Vector2Ushort> ServerRemote_GetDiscoveredTiles()
         {
             return this.serverPlayerDiscoveredChunkTiles.Find(ServerRemoteContext.Character);

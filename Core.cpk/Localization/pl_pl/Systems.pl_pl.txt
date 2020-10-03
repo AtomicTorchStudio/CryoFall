@@ -382,47 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Do tego serwera można dołączyć tylko na zaproszenie.
 [br]Zapoznaj się z opisem serwera.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`Witaj na oficjalnym serwerze CryoFall!
-[br]
-[br]
-[b]Ważne:[/b]
-[br]
-To jest serwer PvE (gracz kontra środowisko gry). Na tym serwerze gracze w żaden sposób nie mogą atakować siebie wzajemnie. Działania na tym serwerze skupiają się na spokojnej eksploracji. Nie możesz zabijać, niszczyć ani okradać innych graczy. Ponadto serwer oferuje wszystkie funkcje gry CryoFall: niebezpieczne stwory, technologie do odblokowania i świat do eksplorowania. Wybierz się na wyprawę.
-[br]
-[br]
-Jeśli wolisz większe emocje bez ograniczeń, dołącz do serwera PvP.
-[br]
-[br]
-[b]Reguły serwera:[/b]
-[*]Bądź uprzejmy dla innych. Nie tolerujemy żadnej przemocy ani dyskryminacji.
-[*]Stosuj się do zaleceń moderatorów.
-[*]Nie spamuj ani nie zalewaj kanału wiadomościami. Powstrzymuj się od przeklinania.
-[*]Nie próbuj obchodzić żadnych ograniczeń rozgrywki PvE.
-[*]Nie naginaj zasad ani mechanik gry w celu uprzykrzania życia innym graczom.
-[br]
-[br]
-Baw się dobrze! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+Na tym serwerze społeczności zainstalowano modyfikacje innych firm. Nie gwarantujemy, że będą ona działać poprawnie, a gra CryoFall będzie się zachowywać stabilnie. W przypadku problemów należy się kontaktować z właścicielem tego serwera społeczności.
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`Witaj na oficjalnym serwerze CryoFall!
-[br]
-[br]
-[b]Ważne:[/b]
-[br]
-To jest dostępny dla wszystkich serwer PvP bez ograniczeń. Pamiętaj, że na serwerach PvP można spotkać się z agresywnymi zachowaniami innych graczy. Musisz walczyć, bronić się i zawsze uważać na siebie. Możesz również połączyć siły z innymi ocalałymi i wspólnie próbować przetrwać.
-[br]
-[br]
-Jeśli wolisz spokojniejszą grę, zwłaszcza jeśli grasz pierwszy raz, dołącz raczej do serwera PvE.
-[br]
-[br]
-[b]Regulamin serwera:[/b]
-[*]Bądź uprzejmy względem innych. Nie tolerujemy żadnych form przemocy, dyskryminacji itp.
-[*]Dostosowuj się do wszystkich próśb moderatorów serwera.
-[*]Nie spamuj, nie flooduj na czacie ani nie przeklinaj za bardzo.
-[br]
-[br]
-Powodzenia! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`To jest serwer PvE (gracz kontra środowisko gry). Na tym serwerze gracze w żaden sposób nie mogą atakować siebie wzajemnie pośrednio ani bezpośrednio. Działania na tym serwerze skupiają się na spokojnej eksploracji bez agresji. Nie możesz zabijać, niszczyć ani okradać innych graczy. Ponadto serwer oferuje wszystkie funkcje gry CryoFall: niebezpieczne stwory, technologie do odblokowania i świat do eksplorowania. Wybierz się na wyprawę.
+[br]Jeśli wolisz większe emocje bez ograniczeń, dołącz do serwera PvP.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`To jest darmowy server PvP. Pamiętaj, że na serwerach PvP [b]można spotkać się z agresywnymi zachowaniami[/b] innych graczy. Musisz walczyć, bronić się i zawsze uważać na siebie. Możesz również połączyć siły z innymi ocalałymi i wspólnie próbować przetrwać. Ten tryb jest przeznaczony tylko dla doświadczonych graczy.
+[br]Jeśli wolisz spokojniejszą grę, zwłaszcza jeśli grasz pierwszy raz, dołącz raczej do serwera PvE.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+Serwer PvE
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+Serwer PvP
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+Serwer z modami
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+Komunikat powitalny
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+Czyszczenie - informacje
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Witaj na serwerze {0}

@@ -14,6 +14,8 @@
 
         public const string NotificationNoNausea_Title = "No nausea";
 
+        public override double CooldownDuration => MedicineCooldownDuration.Short;
+
         public override string Description =>
             "This medicine helps to completely remove the symptoms of nausea.";
 

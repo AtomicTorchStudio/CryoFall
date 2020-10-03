@@ -82,14 +82,14 @@
                     return;
                 }
 
-                if (this.selectedCategory != null)
+                if (this.selectedCategory is not null)
                 {
                     this.selectedCategory.IsSelected = false;
                 }
 
                 this.selectedCategory = value;
 
-                if (this.selectedCategory != null)
+                if (this.selectedCategory is not null)
                 {
                     this.selectedCategory.IsSelected = true;
                 }
@@ -111,14 +111,14 @@
                     return;
                 }
 
-                if (this.selectedStructure != null)
+                if (this.selectedStructure is not null)
                 {
                     this.selectedStructure.IsSelected = false;
                 }
 
                 this.selectedStructure = value;
 
-                if (this.selectedStructure != null)
+                if (this.selectedStructure is not null)
                 {
                     this.selectedStructure.IsSelected = true;
                 }
@@ -135,7 +135,7 @@
 
         public void SelectStructure(IProtoObjectStructure protoStructure)
         {
-            if (protoStructure == null)
+            if (protoStructure is null)
             {
                 return;
             }
@@ -192,7 +192,7 @@
         private void UpdateStructuresList()
         {
             IEnumerable<IProtoObjectStructure> structuresEnumeration = this.GetAvailableStructures();
-            if (this.selectedCategory == null
+            if (this.selectedCategory is null
                 || !this.selectedCategory.IsEnabled)
             {
                 this.SelectedCategory = this.Categories.FirstOrDefault(c => c.IsEnabled);
@@ -209,7 +209,7 @@
             else
             {
                 var category = this.selectedCategory?.Category;
-                if (category != null)
+                if (category is not null)
                 {
                     structuresEnumeration = structuresEnumeration.Where(s => s.Category == category);
                 }

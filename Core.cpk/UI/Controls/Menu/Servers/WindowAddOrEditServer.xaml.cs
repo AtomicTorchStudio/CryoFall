@@ -34,9 +34,9 @@
 
         public Action<string> OkAction;
 
-        private Button btnAction;
+        private Button buttonAction;
 
-        private Button btnCancel;
+        private Button buttonCancel;
 
         private TextBox textBoxAddress;
 
@@ -64,8 +64,8 @@
 
         protected override void InitControlWithWindow()
         {
-            this.btnAction = this.GetByName<Button>("ButtonAction");
-            this.btnCancel = this.GetByName<Button>("ButtonCancel");
+            this.buttonAction = this.GetByName<Button>("ButtonAction");
+            this.buttonCancel = this.GetByName<Button>("ButtonCancel");
             this.textBoxAddress = this.GetByName<TextBox>("TextBoxAddress");
         }
 
@@ -73,8 +73,8 @@
         {
             base.OnLoaded();
 
-            this.btnCancel.Click += this.BtnCancelOnClick;
-            this.btnAction.Click += this.BtnActionOnClick;
+            this.buttonCancel.Click += this.ButtonCancelClickHandler;
+            this.buttonAction.Click += this.ButtonActionClickHandler;
             this.textBoxAddress.PreviewKeyUp += this.TextBoxAddressKeyUpHandler;
 
             this.textBoxAddress.Focus();
@@ -85,17 +85,17 @@
         {
             base.OnUnloaded();
 
-            this.btnCancel.Click -= this.BtnCancelOnClick;
-            this.btnAction.Click -= this.BtnActionOnClick;
+            this.buttonCancel.Click -= this.ButtonCancelClickHandler;
+            this.buttonAction.Click -= this.ButtonActionClickHandler;
             this.textBoxAddress.PreviewKeyUp -= this.TextBoxAddressKeyUpHandler;
         }
 
-        private void BtnActionOnClick(object sender, RoutedEventArgs arg1)
+        private void ButtonActionClickHandler(object sender, RoutedEventArgs arg1)
         {
             this.DoAction();
         }
 
-        private void BtnCancelOnClick(object sender, RoutedEventArgs routedEventArgs)
+        private void ButtonCancelClickHandler(object sender, RoutedEventArgs routedEventArgs)
         {
             this.Window.Close(DialogResult.Cancel);
         }

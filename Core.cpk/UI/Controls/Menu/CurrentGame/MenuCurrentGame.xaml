@@ -9,6 +9,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:serverWelcomeMessage="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelMenuCurrentGame, IsDesignTimeCreatable=True}"
     d:DesignWidth="1300"
@@ -130,12 +131,19 @@
 
                 <!-- Description -->
                 <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <core:FormattedTextBlock Content="{Binding ServerDescription}"
+                    <core:FormattedTextBlock Grid.Row="0"
+                                             Grid.Column="0"
+                                             Content="{Binding ServerDescription}"
                                              Width="200"
                                              FontSize="13"
                                              HorizontalAlignment="Center"
@@ -144,10 +152,34 @@
                                              LineStackingStrategy="BlockLineHeight" />
 
                     <!-- Edit button -->
-                    <Button Grid.Column="1"
+                    <Button Grid.Row="0"
+                            Grid.Column="1"
                             Content="{x:Static loc:CoreStrings.Button_Edit}"
                             Command="{Binding CommandEditDescription}"
                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Focusable="False"
+                            Margin="3,0,0,0"
+                            MinWidth="40" />
+
+                    <!-- Scheduled wipe date and edit button -->
+                    <core:FormattedTextBlock Grid.Row="2"
+                                             Grid.Column="0"
+                                             Content="{x:Static serverWelcomeMessage:WelcomeMessageSystem.HeaderWipeInformation}"
+                                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
+                                             Width="200"
+                                             FontSize="13"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             LineHeight="14.5"
+                                             LineStackingStrategy="BlockLineHeight" />
+
+                    <!-- Edit button -->
+                    <Button Grid.Row="2"
+                            Grid.Column="1"
+                            Content="{x:Static loc:CoreStrings.Button_Edit}"
+                            Command="{Binding CommandEditScheduledWipeDate}"
+                            Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Focusable="False"
                             Margin="3,0,0,0"
                             MinWidth="40" />
                 </Grid>
@@ -162,6 +194,7 @@
                     <!-- Text: Show welcome message -->
                     <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_ShowWelcomeMessage}"
                             Command="{Binding CommandShowWelcomeMessage}"
+                            Focusable="False"
                             Margin="0" />
 
                     <!-- Edit button -->
@@ -169,6 +202,7 @@
                             Content="{x:Static loc:CoreStrings.Button_Edit}"
                             Command="{Binding CommandEditWelcomeMessage}"
                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Focusable="False"
                             Margin="3,0,0,0"
                             MinWidth="40" />
                 </Grid>
@@ -176,6 +210,7 @@
                 <!-- Text: Disconnect -->
                 <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_Disconnect}"
                         Command="{Binding CommandDisconnect}"
+                        Focusable="False"
                         Margin="0,10,0,5" />
             </StackPanel>
 

@@ -19,13 +19,9 @@
         public const string DialogDoYouWantToResearch = "Do you want to research {0}?";
 
         private static readonly SoundUI GroupSelectedSoundUI
-            = Api.Client.UI.GetApplicationResource<SoundUI>("SoundListElementClick");
+            = Api.Client.UI.GetApplicationResource<SoundUI>("SoundDropdownClick");
 
         private readonly PlayerCharacterTechnologies technologies;
-
-        private ViewModelTechGroup lastGroupSelected;
-
-        private ViewModelTechGroup listSelectedTechGroup;
 
         private ViewModelTechGroup selectedTechGroup;
 
@@ -49,8 +45,6 @@
                 _ => _.LearningPoints,
                 _ => this.NotifyPropertyChanged(nameof(this.LearningPoints)),
                 this);
-
-            this.technologies.Groups.ClientElementInserted += this.GroupInserted;
         }
 
         public BaseCommand CommandCloseDetails { get; }
@@ -59,86 +53,41 @@
 
         public int LearningPoints => this.technologies.LearningPoints;
 
-        public ViewModelTechGroup ListSelectedTechGroup
-        {
-            get => this.listSelectedTechGroup;
-            set
-            {
-                if (this.listSelectedTechGroup == value)
-                {
-                    return;
-                }
-
-                this.listSelectedTechGroup = value;
-                this.listSelectedTechGroup?.Refresh();
-
-                this.NotifyThisPropertyChanged();
-
-                if (this.listSelectedTechGroup == null)
-                {
-                    this.SelectedTechGroup = null;
-                    return;
-                }
-
-                this.lastGroupSelected = value;
-
-                // HACK: play button click sounds - actual click sound will be never played
-                // (it's never triggered when the item selected in the ListBox)
-                SoundUI.PlaySound(GroupSelectedSoundUI);
-
-                if (this.listSelectedTechGroup.IsUnlocked
-                    || this.listSelectedTechGroup.CanUnlock)
-                {
-                    this.SelectedTechGroup = this.listSelectedTechGroup;
-                    return;
-                }
-
-                // the group is locked but can be unlocked
-                this.SelectedTechGroup = null;
-
-                // apply hack - reset selected tech group at next frame
-                ClientTimersSystem.AddAction(
-                    0,
-                    () => this.ListSelectedTechGroup = null);
-
-                if (this.listSelectedTechGroup != null)
-                {
-                    this.ShowCannotUnlockTechGroup(isUnlockAttempt: false);
-                }
-            }
-        }
-
         public ViewModelTechGroup SelectedTechGroup
         {
             get => this.selectedTechGroup;
-            private set
+            set
             {
                 if (this.selectedTechGroup == value)
                 {
                     return;
                 }
 
-                if (this.selectedTechGroup != null)
+                if (this.selectedTechGroup is not null)
                 {
                     this.selectedTechGroup.IsSelected = false;
                 }
 
                 this.selectedTechGroup = value;
 
-                if (this.selectedTechGroup != null)
+                if (this.selectedTechGroup is not null)
                 {
                     this.selectedTechGroup.IsSelected = true;
                 }
 
-                this.VisibilityTiersAndGroups = this.selectedTechGroup == null
+                this.VisibilityTiersAndGroups = this.selectedTechGroup is null
                                                     ? Visibility.Visible
                                                     : Visibility.Collapsed;
 
-                this.VisibilityGroupDetails = this.selectedTechGroup != null
+                this.VisibilityGroupDetails = this.selectedTechGroup is not null
                                                   ? Visibility.Visible
                                                   : Visibility.Collapsed;
 
                 this.NotifyThisPropertyChanged();
+
+                // HACK: play button click sounds - actual click sound will be never played
+                // (it's never triggered when the item selected in the ListBox)
+                SoundUI.PlaySound(GroupSelectedSoundUI);
             }
         }
 
@@ -152,14 +101,14 @@
                     return;
                 }
 
-                if (this.selectedTier != null)
+                if (this.selectedTier is not null)
                 {
                     this.selectedTier.IsSelected = false;
                 }
 
                 this.selectedTier = value;
 
-                if (this.selectedTier != null)
+                if (this.selectedTier is not null)
                 {
                     this.selectedTier.IsSelected = true;
                 }
@@ -173,17 +122,6 @@
         public Visibility VisibilityGroupDetails { get; private set; } = Visibility.Collapsed;
 
         public Visibility VisibilityTiersAndGroups { get; private set; } = Visibility.Visible;
-
-        protected override void DisposeViewModel()
-        {
-            if (IsDesignTime)
-            {
-                return;
-            }
-
-            base.DisposeViewModel();
-            this.technologies.Groups.ClientElementInserted -= this.GroupInserted;
-        }
 
         private static void DisplayUnlockGroupDialog(ViewModelTechGroup viewModelTechGroup)
         {
@@ -210,13 +148,13 @@
 
         private void CloseDetails()
         {
-            this.ListSelectedTechGroup = null;
+            this.SelectedTechGroup = null;
         }
 
         private void ExecuteCommandUnlockTechGroup()
         {
             var techGroup = this.SelectedTechGroup;
-            if (techGroup == null)
+            if (techGroup is null)
             {
                 return;
             }
@@ -230,25 +168,11 @@
             DisplayUnlockGroupDialog(techGroup);
         }
 
-        private void GroupInserted(NetworkSyncList<TechGroup> source, int index, TechGroup value)
-        {
-            this.OnGroupSetOrInserted(value);
-        }
-
-        private void OnGroupSetOrInserted(TechGroup value)
-        {
-            if (this.lastGroupSelected?.TechGroup == value)
-            {
-                // added group which was selected last time
-                this.ListSelectedTechGroup = this.lastGroupSelected;
-            }
-        }
-
         private void ShowCannotUnlockTechGroup(bool isUnlockAttempt)
         {
             var character = ClientCurrentCharacterHelper.Character;
 
-            var requirements = this.listSelectedTechGroup
+            var requirements = this.SelectedTechGroup
                                    .TechGroup
                                    .GroupRequirements;
             var stringBuilder = new StringBuilder();
@@ -273,7 +197,7 @@
                 TechnologiesSystem.NotificationCannotUnlockTech,
                 message: stringBuilder.ToString(),
                 color: NotificationColor.Bad,
-                icon: this.listSelectedTechGroup.TechGroup.Icon);
+                icon: this.SelectedTechGroup.TechGroup.Icon);
         }
     }
 }

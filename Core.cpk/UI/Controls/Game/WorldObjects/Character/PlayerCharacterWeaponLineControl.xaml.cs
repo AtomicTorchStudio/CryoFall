@@ -13,7 +13,7 @@
 
         public static void Setup(ICharacter character)
         {
-            if (instance == null)
+            if (instance is null)
             {
                 instance = new PlayerCharacterWeaponLineControl();
                 Api.Client.UI.LayoutRootChildren.Add(instance);

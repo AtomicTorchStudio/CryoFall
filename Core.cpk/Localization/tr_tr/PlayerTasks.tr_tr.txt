@@ -46,6 +46,9 @@ Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 İmal et: {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+Herhangi bir yapının yerini değiştir
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 10 metre depar at
 

@@ -114,6 +114,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                                                                 isOutOfRange: false);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, keyArgIndex: 0)]
         private void ServerRemote_SetMode(IWorldObject worldObject, WorldObjectAccessMode mode)
         {
             var character = ServerRemoteContext.Character;

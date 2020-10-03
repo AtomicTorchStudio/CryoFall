@@ -15,6 +15,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -619,6 +620,7 @@
                                             publicState);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1, keyArgIndex: 0)]
         private void ServerRemote_StationSetMode(IStaticWorldObject tradingStation, TradingStationMode mode)
         {
             ValidateCanAdminAndInteract(ServerRemoteContext.Character, tradingStation);

@@ -153,14 +153,14 @@
 
             if (this.cachedContainer != currentContainer)
             {
-                if (this.cachedContainer != null)
+                if (this.cachedContainer is not null)
                 {
                     this.UnsubscribeContainerEvents();
                 }
 
                 this.cachedContainer = currentContainer;
 
-                if (this.cachedContainer != null)
+                if (this.cachedContainer is not null)
                 {
                     this.SubscribeContainerEvents();
                 }
@@ -168,7 +168,7 @@
 
             this.cachedSlotId = (byte)this.SlotId;
 
-            if (this.itemSlotControl == null)
+            if (this.itemSlotControl is null)
             {
                 return;
             }
@@ -181,7 +181,7 @@
         {
             if (!this.isLoaded
                 || this.isSubscribedOnContainerEvents
-                || this.cachedContainer == null)
+                || this.cachedContainer is null)
             {
                 return;
             }

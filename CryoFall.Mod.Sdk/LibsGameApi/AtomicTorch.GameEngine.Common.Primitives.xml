@@ -166,6 +166,11 @@
             </summary>
             <returns>Relative sequence number.</returns>
         </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.SequenceNumberHelper.GetRelativeSequenceNumberForUshort(System.UInt16,System.UInt16)">
+            <summary>
+            Same as <see cref="M:AtomicTorch.GameEngine.Common.Helpers.SequenceNumberHelper.GetRelativeSequenceNumberForByte(System.Byte,System.Byte)" /> but for ushort.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.GameEngine.Common.Helpers.TypeHelper.TryParsePrimitiveType(System.String,System.Type,System.Object@)">
             <summary>
             Parse primitive type value from string.

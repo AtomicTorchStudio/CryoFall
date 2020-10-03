@@ -25,7 +25,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
         {
             IEnumerable<BaseConsoleCommand> allCommands = ConsoleCommandsSystem.AllCommands;
 
-            if (this.ExecutionContextCurrentCharacter != null
+            if (this.ExecutionContextCurrentCharacter is not null
                 && !ServerOperatorSystem.SharedIsOperator(this.ExecutionContextCurrentCharacter))
             {
                 // not a server operator - exclude server operator commands
@@ -40,7 +40,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
                 var foundCommandsList =
                     allCommands.Where(
                                    c => c.Name.StartsWith(searchCommand, StringComparison.OrdinalIgnoreCase)
-                                        || c.Alias != null
+                                        || c.Alias is not null
                                         && c.Alias.StartsWith(searchCommand, StringComparison.OrdinalIgnoreCase))
                                .ToList();
                 if (foundCommandsList.Count == 0)
@@ -86,7 +86,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
 
         private static void AppendCommandInfo(StringBuilder sb, BaseConsoleCommand consoleCommand, string prefix)
         {
-            if (consoleCommand.Alias != null)
+            if (consoleCommand.Alias is not null)
             {
                 sb.Append(prefix)
                   .Append(consoleCommand.Alias)
@@ -108,7 +108,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
 
             var isServer = IsServer;
 
-            if (consoleCommand.Alias != null)
+            if (consoleCommand.Alias is not null)
             {
                 PrintUsageExample(consoleCommand.Alias);
             }
@@ -158,7 +158,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
             {
                 yield return command.Name;
 
-                if (command.Alias != null)
+                if (command.Alias is not null)
                 {
                     yield return command.Alias;
                 }

@@ -52,7 +52,7 @@
 
         private void Refresh()
         {
-            if (this.consumerPublicState != null)
+            if (this.consumerPublicState is not null)
             {
                 switch (this.consumerPublicState.ElectricityConsumerState)
                 {

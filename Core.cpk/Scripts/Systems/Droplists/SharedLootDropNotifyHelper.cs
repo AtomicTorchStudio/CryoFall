@@ -19,7 +19,7 @@
         public static void ServerOnLootDropped(IItemsContainer container)
         {
             var worldObject = container?.OwnerAsStaticObject;
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 return;
             }

@@ -138,7 +138,7 @@
 
                 Server.Items.DestroyItem(item);
 
-                if (owner != null)
+                if (owner is not null)
                 {
                     // notify owner
                     this.CallClient(owner, _ => _.ClientRemote_TorchBurned());

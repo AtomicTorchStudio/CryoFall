@@ -26,7 +26,7 @@
 
         public static void Init()
         {
-            if (instance == null)
+            if (instance is null)
             {
                 Client.Scene.CreateSceneObject(nameof(ClientComponentCameraScreenShakes))
                       .AddComponent<ClientComponentCameraScreenShakes>();

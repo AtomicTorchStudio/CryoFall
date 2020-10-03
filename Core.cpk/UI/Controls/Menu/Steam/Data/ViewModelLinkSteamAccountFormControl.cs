@@ -10,7 +10,7 @@
         public ViewModelLinkSteamAccountFormControl()
         {
             this.PasswordInputControl = Client.UI.CreateSecurePasswordInputControl();
-            if (this.PasswordInputControl != null)
+            if (this.PasswordInputControl is not null)
             {
                 this.PasswordInputControl.PreviewKeyUp += this.PasswordInputControlLinkingFormKeyUp;
             }
@@ -27,7 +27,7 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            if (this.PasswordInputControl != null)
+            if (this.PasswordInputControl is not null)
             {
                 this.PasswordInputControl.PreviewKeyUp -= this.PasswordInputControlLinkingFormKeyUp;
             }

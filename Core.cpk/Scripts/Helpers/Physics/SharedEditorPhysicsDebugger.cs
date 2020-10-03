@@ -45,7 +45,7 @@
             {
                 Api.Assert(Api.IsEditor, "This is Editor-only server code");
                 var allPlayers = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true,
-                                                                                exceptSpectators: false);
+                    exceptSpectators: false);
 
                 var testResults = new List<Vector2D>();
                 AddTestResults(physicsTestResults.AsList(), testResults);
@@ -73,7 +73,7 @@
             }
         }
 
-        [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 120, avoidBuffer: true)]
+        [RemoteCallSettings(DeliveryMode.Unreliable, timeInterval: 1 / 120.0, avoidBuffer: true)]
         private void ClientRemote_ProcessServerDebugPhysicsTesting(BasePhysicsShapeRemoteData wrappedShape)
         {
             var shape = PhysicsShapeRemoteDataHelper.Unwrap(wrappedShape);

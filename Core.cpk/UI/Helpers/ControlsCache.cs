@@ -106,8 +106,8 @@
 
         public void Push(TControl control)
         {
-            if (control.Parent != null
-                || control.TemplatedParent != null)
+            if (control.Parent is not null
+                || control.TemplatedParent is not null)
             {
                 Api.Logger.Error(
                     "Cannot push control "

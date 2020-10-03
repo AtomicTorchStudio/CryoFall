@@ -101,7 +101,7 @@ namespace AtomicTorch.CBND.CoreMod
 
         protected override void OnEnable()
         {
-            if (instance != null)
+            if (instance is not null)
             {
                 throw new Exception("Instance already set");
             }

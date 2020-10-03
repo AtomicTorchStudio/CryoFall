@@ -45,7 +45,7 @@
         {
             get
             {
-                if (this.rotationAngleRadUncompressed != null)
+                if (this.rotationAngleRadUncompressed is not null)
                 {
                     return this.rotationAngleRadUncompressed.Value;
                 }

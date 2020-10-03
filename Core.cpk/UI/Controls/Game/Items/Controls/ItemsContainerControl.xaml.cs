@@ -111,7 +111,7 @@
                 throw new Exception("Cannot create dummy slots in non-DesignTime");
             }
 
-            if (this.wrapPanelItemsSlotsChildren == null)
+            if (this.wrapPanelItemsSlotsChildren is null)
             {
                 return;
             }

@@ -84,7 +84,16 @@
                                     <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                                     <Setter Property="Foreground" Value="White" />
                                     <Setter Property="noesis:Text.Stroke" Value="#FF000000" />
-                                    <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+                                    <Setter Property="noesis:Text.StrokeThickness" Value="0.5" />
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="4"
+                                                              ShadowDepth="2"
+                                                              Direction="-45"
+                                                              Opacity="0.5"
+                                                              Color="#77000000" />
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                             </Grid.Resources>
 
@@ -131,6 +140,40 @@
                             <TextBlock Grid.Row="3"
                                        Grid.Column="2"
                                        Text="{Binding MapExploredPercent, StringFormat={}~{0}%}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Margin="15"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            SnapsToDevicePixels="True"
+                            Background="#77000000"
+                            CornerRadius="3"
+                            Padding="6,4"
+                            Visibility="{Binding PointedPositionBiomeName, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}">
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="noesis:Text.Stroke" Value="#FF000000" />
+                                    <Setter Property="noesis:Text.StrokeThickness" Value="0.5" />
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="4"
+                                                              ShadowDepth="2"
+                                                              Direction="-45"
+                                                              Opacity="0.5"
+                                                              Color="#77000000" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Grid.Resources>
+
+                            <TextBlock Text="{Binding PointedPositionBiomeName}"
+                                       Foreground="{StaticResource BrushColor6}" />
                         </Grid>
                     </Border>
 

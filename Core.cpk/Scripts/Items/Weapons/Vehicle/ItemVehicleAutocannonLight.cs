@@ -71,8 +71,8 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.0, 0.5, -0.5 },
-                cycledSequence: new[] { 1.5, 3.0, 2.5, 0.0, 3.5, -1.5, -3.0, -2.5, 0.0, -3.5 });
+                initialSequence: new[] { 0.0, 0.5, 0.5 },
+                cycledSequence: new[] { 1.5, 3.0, 2.5, 0.0, 3.5 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

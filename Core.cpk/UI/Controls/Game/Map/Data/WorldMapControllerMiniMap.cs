@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data
 {
     using System.Collections.Generic;
+    using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -19,14 +20,18 @@
             PanningPanel panningPanel,
             ViewModelControlWorldMap viewModelControlWorldMap,
             bool isPlayerMarkDisplayed,
+            bool isCurrentCameraViewDisplayed,
             bool isListeningToInput,
             int paddingChunks,
-            Vector2Ushort mapAreaSize)
+            Vector2Ushort mapAreaSize,
+            ControlTemplate customControlTemplatePlayerMark)
             : base(panningPanel,
                    viewModelControlWorldMap,
                    isPlayerMarkDisplayed,
+                   isCurrentCameraViewDisplayed,
                    isListeningToInput,
-                   paddingChunks)
+                   paddingChunks,
+                   customControlTemplatePlayerMark)
         {
             this.mapAreaSize = mapAreaSize;
         }

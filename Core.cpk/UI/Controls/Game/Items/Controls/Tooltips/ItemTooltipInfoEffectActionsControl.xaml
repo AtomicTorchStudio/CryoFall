@@ -90,20 +90,15 @@
                       Visibility="{Binding EffectsToAdd, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
 
         <!-- Padding control that is displayed only when the both lists are rendered -->
-        <!-- Disabled due to NoesisGUI bug https://www.noesisengine.com/bugs/view.php?id=1735 -->
-        <!--<Control Grid.Row="2"
-                 Height="5">
+        <Control Grid.Row="2"
+                 Height="8">
             <Control.Visibility>
-                <MultiBinding Converter="{StaticResource BoolToVisibilityConverter}">
+                <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}">
                     <Binding Path="HasEffectsToAdd" />
                     <Binding Path="HasEffectsToRemove" />
                 </MultiBinding>
             </Control.Visibility>
-        </Control>-->
-
-        <Control Grid.Row="2"
-                 Height="8"
-                 Visibility="{Binding HasEffectsToAddAndRemove, Converter={StaticResource BoolToVisibilityConverter}}" />
+        </Control>
 
         <!-- Text: Removes effects: -->
         <TextBlock Grid.Row="3"

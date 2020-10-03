@@ -21,7 +21,7 @@
             float speed = 0.333f)
         {
             var worldObject = renderer.SceneObject.AttachedWorldObject;
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 // blueprint - use default rendering
                 return;

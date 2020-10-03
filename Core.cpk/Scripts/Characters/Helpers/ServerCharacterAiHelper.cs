@@ -106,11 +106,12 @@
             var targetCharacter = GetClosestPlayer(characterNpc);
             CalculateDistanceAndDirectionToEnemy(characterNpc,
                                                  targetCharacter,
+                                                 isRangedWeapon: weaponState.ProtoWeapon is IProtoItemWeaponRanged,
                                                  out var distanceToTarget,
                                                  out var directionToEnemyPosition,
                                                  out var directionToEnemyHitbox);
             if (isRetreatingForHeavyVehicles
-                && !(targetCharacter is null)
+                && targetCharacter is not null
                 && !targetCharacter.IsNpc)
             {
                 // determine if the enemy player riding a heavy vehicle
@@ -254,6 +255,7 @@
             var targetCharacter = GetClosestPlayer(characterNpc);
             CalculateDistanceAndDirectionToEnemy(characterNpc,
                                                  targetCharacter,
+                                                 isRangedWeapon: weaponState.ProtoWeapon is IProtoItemWeaponRanged,
                                                  out var distanceToTarget,
                                                  out var directionToEnemyPosition,
                                                  out var directionToEnemyHitbox);
@@ -339,16 +341,17 @@
 
             CalculateDistanceAndDirectionToEnemy(characterNpc,
                                                  targetCharacter,
+                                                 isRangedWeapon: false,
                                                  out var distanceToEnemy,
-                                                 out var directionToEnemy,
+                                                 out var directionToEnemyPosition,
                                                  directionToEnemyHitbox: out _);
-            directionToEnemy *= -1;
+            directionToEnemyPosition *= -1;
 
             var isRetreating = distanceToEnemy <= distanceRetreat;
             if (isRetreating)
             {
                 // retreat
-                movementDirection = directionToEnemy;
+                movementDirection = directionToEnemyPosition;
             }
             else
             {
@@ -362,7 +365,7 @@
                                            .AppliedInput
                                            .RotationAngleRad;
             // look away from the enemy
-            LookOnEnemy(directionToEnemy, ref rotationAngleRad);
+            LookOnEnemy(directionToEnemyPosition, ref rotationAngleRad);
 
             if (isRetreating)
             {
@@ -404,25 +407,32 @@
         private static void CalculateDistanceAndDirectionToEnemy(
             ICharacter characterNpc,
             ICharacter enemyCharacter,
+            bool isRangedWeapon,
             out double distanceToEnemy,
             out Vector2F directionToEnemyPosition,
             out Vector2F directionToEnemyHitbox)
         {
-            if (enemyCharacter == null)
+            if (enemyCharacter is null)
             {
                 distanceToEnemy = double.NaN;
                 directionToEnemyPosition = directionToEnemyHitbox = Vector2F.Zero;
                 return;
             }
 
+            var enemyWeaponOffset = isRangedWeapon
+                                        ? enemyCharacter.ProtoCharacter.CharacterWorldWeaponOffsetRanged
+                                        : enemyCharacter.ProtoCharacter.CharacterWorldWeaponOffsetMelee;
+
+            var npcWeaponOffset = isRangedWeapon
+                                      ? characterNpc.ProtoCharacter.CharacterWorldWeaponOffsetRanged
+                                      : characterNpc.ProtoCharacter.CharacterWorldWeaponOffsetMelee;
+            
             var deltaPos = enemyCharacter.Position - characterNpc.Position;
-            distanceToEnemy = deltaPos.Length;
             directionToEnemyPosition = (Vector2F)deltaPos;
 
-            directionToEnemyHitbox = new Vector2F(directionToEnemyPosition.X,
-                                                  directionToEnemyPosition.Y
-                                                  + enemyCharacter.ProtoCharacter.CharacterWorldWeaponOffsetMelee
-                                                  - characterNpc.ProtoCharacter.CharacterWorldWeaponOffsetMelee);
+            deltaPos = (deltaPos.X, deltaPos.Y + enemyWeaponOffset - npcWeaponOffset);
+            distanceToEnemy = deltaPos.Length;
+            directionToEnemyHitbox = (Vector2F)deltaPos;
         }
 
         private static void LookOnEnemy(Vector2F directionToEnemyHitbox, ref double rotationAngleRad)

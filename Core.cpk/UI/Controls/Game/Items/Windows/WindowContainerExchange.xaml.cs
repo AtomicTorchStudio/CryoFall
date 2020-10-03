@@ -59,7 +59,7 @@
 
         private void DestroyViewModel()
         {
-            if (this.viewModel == null)
+            if (this.viewModel is null)
             {
                 return;
             }
@@ -73,12 +73,12 @@
         {
             if (this.WindowState != GameWindowState.Opened
                 && this.WindowState != GameWindowState.Opening
-                || this.itemsContainer == null)
+                || this.itemsContainer is null)
             {
                 return;
             }
 
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 if (this.viewModel.ViewModel.Container == this.itemsContainer)
                 {

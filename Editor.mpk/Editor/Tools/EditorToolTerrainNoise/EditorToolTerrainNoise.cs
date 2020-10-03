@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolGenerator;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -35,8 +36,8 @@
             IProtoTile protoTileTarget,
             IProtoTile protoTileNoise)
         {
-            Api.Assert(protoTileTarget != null,                "Please select target tile proto");
-            Api.Assert(protoTileNoise != null,                 "Please select noise tile proto");
+            Api.Assert(protoTileTarget is not null,                "Please select target tile proto");
+            Api.Assert(protoTileNoise is not null,                 "Please select noise tile proto");
             Api.Assert(selectionBounds.Size.LengthSquared > 0, "Please select world area");
             Api.Assert(noiseProbability >= 0 || noiseProbability <= 1,
                        "Noise probability must be in range from 0 to 1 inclusive.");
@@ -89,6 +90,7 @@
             return settingsControl;
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceAt(IList<Vector2Ushort> modifyRequests, IProtoTile protoTile)
         {
             if (modifyRequests.Count == 0)

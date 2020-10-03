@@ -147,7 +147,7 @@
             }
 
             var itemTypesToMove = new HashSet<IProtoItem>(toContainer1.Items.Select(i => i.ProtoItem));
-            if (toContainer2 != null)
+            if (toContainer2 is not null)
             {
                 itemTypesToMove.AddRange(toContainer2.Items.Select(i => i.ProtoItem));
             }
@@ -170,7 +170,7 @@
                     continue;
                 }
 
-                if (toContainer2 != null
+                if (toContainer2 is not null
                     && itemsClientService.MoveOrSwapItem(
                         itemToMove,
                         toContainer2,

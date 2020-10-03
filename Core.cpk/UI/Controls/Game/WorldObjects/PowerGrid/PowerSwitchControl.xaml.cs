@@ -32,7 +32,7 @@
 
         protected override void OnLoaded()
         {
-            if (this.worldObject != null)
+            if (this.worldObject is not null)
             {
                 this.DataContext = new ViewModelPowerSwitch(this.worldObject);
             }
@@ -40,7 +40,7 @@
 
         protected override void OnUnloaded()
         {
-            if (this.worldObject == null)
+            if (this.worldObject is null)
             {
                 return;
             }

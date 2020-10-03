@@ -212,6 +212,8 @@
                 tempExceptTargets.Add(targetPosition);
             }
 
+            CharacterDroneControlSystem.ClientSubmitStartDroneCommandsImmediately();
+
             // always return false as we don't want to play any device sounds
             return false;
 
@@ -291,7 +293,7 @@
                     animationName: this.ActiveLightCharacterAnimationName,
                     isLooped: true);
             }
-            else if (skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.Extra) != null)
+            else if (skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.Extra) is not null)
             {
                 // TODO: this is a hack - when an empty animation is added latest animation looping is breaking
                 //skeletonRenderer.SetAnimationLoopMode(AnimationTrackIndexes.Extra, isLooped: false);

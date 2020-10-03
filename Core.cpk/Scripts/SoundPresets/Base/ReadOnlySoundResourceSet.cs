@@ -42,8 +42,8 @@
                 return this.sounds.GetNonRandomFirst();
             }
 
-            if (soundPreset == null
-                || repetitionProtectionKey == null)
+            if (soundPreset is null
+                || repetitionProtectionKey is null)
             {
                 return this.sounds.GetSingleRandomElement();
             }

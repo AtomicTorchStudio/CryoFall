@@ -1,0 +1,2 @@
+ * AtomicTorch.CBND.CoreMod.Technologies.Tier3.Medicine.TechNodeToxinFromMushroom
+   -> AtomicTorch.CBND.CoreMod.Technologies.Tier2.Medicine.TechNodeToxinFromMushroom

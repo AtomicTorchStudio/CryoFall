@@ -28,7 +28,7 @@
             FrameworkElement vehicleExtraControl = null,
             IViewModelWithActiveState vehicleExtraControlViewModel = null)
         {
-            if (instance != null
+            if (instance is not null
                 && instance.objectVehicle == objectVehicle)
             {
                 return instance;

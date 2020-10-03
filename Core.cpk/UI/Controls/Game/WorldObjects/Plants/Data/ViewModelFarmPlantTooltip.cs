@@ -100,7 +100,7 @@
         public bool HasHarvest => this.publicState.HasHarvest;
 
         public Brush IconFertilizer =>
-            this.appliedFertilizedProto != null
+            this.appliedFertilizedProto is not null
                 ? Api.Client.UI.GetTextureBrush(this.appliedFertilizedProto.Icon)
                 : null;
 

@@ -31,10 +31,15 @@
 
             data.ClientSubscribe(
                 _ => _.Level,
-                _ => this.Refresh(),
+                _ =>
+                {
+                    this.RefreshLevelAndVisibility();
+                    this.RequestExperienceAndRefreshAll();
+                },
                 this);
 
-            this.Refresh();
+            this.RefreshLevelAndVisibility();
+            this.RequestExperienceAndRefreshAll();
         }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -95,7 +100,11 @@
                 }
 
                 this.NotifyThisPropertyChanged();
-                this.RequestExperienceAndRefreshAll();
+
+                if (this.isSelected)
+                {
+                    this.RequestExperienceAndRefreshAll();
+                }
             }
         }
 
@@ -148,12 +157,6 @@
             return string.Compare(this.Title, other.Title, StringComparison.Ordinal);
         }
 
-        public void Refresh()
-        {
-            this.RefreshLevelAndVisibility();
-            this.RequestExperienceAndRefreshAll();
-        }
-
         public void RefreshExperiencePoints()
         {
             this.RequestExperienceAndRefreshAll();
@@ -175,7 +178,9 @@
             {
                 list.Insert(
                     0,
-                    new ViewModelSkillEffectCombinedStats(this.skill, group.Select(vm => vm.StatEffect).ToArray(), maxLevel));
+                    new ViewModelSkillEffectCombinedStats(this.skill,
+                                                          group.Select(vm => vm.StatEffect).ToArray(),
+                                                          maxLevel));
             }
 
             return list;

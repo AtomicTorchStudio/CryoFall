@@ -50,13 +50,13 @@
         private static void CommandOnDoubleClickChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var frameworkElement = (FrameworkElement)d;
-            if (e.NewValue == null)
+            if (e.NewValue is null)
             {
                 Unregister(frameworkElement);
                 return;
             }
 
-            if (e.OldValue != null)
+            if (e.OldValue is not null)
             {
                 // already registered
                 return;
@@ -95,7 +95,7 @@
                 {
                     // double click!
                     var command = GetCommandOnDoubleClick(frameworkElement);
-                    if (command != null)
+                    if (command is not null)
                     {
                         // invoke attached command
                         var parameter = GetCommandOnDoubleClickParameter(frameworkElement);

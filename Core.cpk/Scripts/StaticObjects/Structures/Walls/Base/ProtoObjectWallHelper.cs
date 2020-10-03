@@ -62,7 +62,7 @@
                 }
 
                 var overlayChunkPreset = result.Overlay;
-                if (overlayChunkPreset == null
+                if (overlayChunkPreset is null
                     || overlayChunkPreset.Count == 0)
                 {
                     // no overlay renderers needed
@@ -77,7 +77,7 @@
                         textureAtlas.Chunk((byte)preset.AtlasChunkPosition.X,
                                            (byte)preset.AtlasChunkPosition.Y));
 
-                    if (overlayRenderers == null)
+                    if (overlayRenderers is null)
                     {
                         overlayRenderers = new List<IComponentSpriteRenderer>();
                         clientState.RenderersObjectOverlay = overlayRenderers;
@@ -170,7 +170,7 @@
                 var protoWall = ObjectWallDestroyed.GetPublicState(worldObject)
                                                    .OriginalProtoObjectWall;
 
-                if (protoWall == null)
+                if (protoWall is null)
                 {
                     Api.Logger.Important("Incorrect destroyed wall - no protoWall defined: " + worldObject);
                     protoWall = Api.GetProtoEntity<ObjectWallWood>();

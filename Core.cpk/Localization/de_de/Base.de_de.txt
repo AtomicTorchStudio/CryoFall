@@ -214,3 +214,12 @@ Angelerfolg
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Kraftstoffverbrauch
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+Rennen unmöglich
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+Angreifen unmöglich
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+Einnehmen von Medizin mit Abklingzeit unmöglich
+

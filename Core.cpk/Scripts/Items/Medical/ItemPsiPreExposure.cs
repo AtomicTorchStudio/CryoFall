@@ -5,6 +5,8 @@
 
     public class ItemPsiPreExposure : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "Special neuro-modulating chemical that can help mitigate neural damage from psi field exposure.";
 

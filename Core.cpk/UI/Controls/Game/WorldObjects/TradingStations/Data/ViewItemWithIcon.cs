@@ -32,7 +32,7 @@
 
         public override int GetHashCode()
         {
-            return this.ProtoItem != null ? this.ProtoItem.GetHashCode() : 0;
+            return this.ProtoItem is not null ? this.ProtoItem.GetHashCode() : 0;
         }
     }
 }

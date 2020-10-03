@@ -67,7 +67,7 @@
             base.ClientSetupRenderer(renderer);
 
             var worldOffset = this.Layout.Center;
-            if (renderer.SceneObject.AttachedWorldObject != null)
+            if (renderer.SceneObject.AttachedWorldObject is not null)
             {
                 var publicState = GetPublicState((IStaticWorldObject)renderer.SceneObject.AttachedWorldObject);
                 worldOffset = publicState.WorldOffset.ToVector2D();

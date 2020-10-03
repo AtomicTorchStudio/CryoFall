@@ -40,7 +40,7 @@
 
         public Brush ForegroundBrush { get; }
 
-        public bool IsOpenFileMenuEntryEnabled => this.CommandOpenFile != null;
+        public bool IsOpenFileMenuEntryEnabled => this.CommandOpenFile is not null;
 
         public string TextMessage { get; }
 

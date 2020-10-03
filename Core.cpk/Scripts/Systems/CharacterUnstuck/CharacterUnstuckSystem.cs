@@ -148,7 +148,7 @@
                                          ClientRefreshCurrentUnstuckRequestStatus);
 
             var characterPublicState = ClientCurrentCharacterHelper.PublicState;
-            if (ClientCurrentUnstuckNotification != null)
+            if (ClientCurrentUnstuckNotification is not null)
             {
                 if (ClientCurrentUnstuckNotification.IsHiding)
                 {
@@ -162,7 +162,7 @@
                 }
             }
 
-            if (characterPublicState == null)
+            if (characterPublicState is null)
             {
                 ClientCurrentUnstuckNotification?.Hide(quick: false);
                 ClientCurrentUnstuckNotification = null;
@@ -184,7 +184,7 @@
             var message = string.Format(NotificationUnstuckRequested_MessageFormat,
                                         ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
 
-            if (ClientCurrentUnstuckNotification == null)
+            if (ClientCurrentUnstuckNotification is null)
             {
                 ClientCurrentUnstuckNotification = NotificationSystem.ClientShowNotification(
                     NotificationUnstuckRequested_Title,
@@ -247,7 +247,7 @@
                 NotificationUnstuckSuccessful_Message);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2)]
         private void ServerRemote_CreateUnstuckRequest()
         {
             var character = ServerRemoteContext.Character;
@@ -266,11 +266,11 @@
             }
 
             var vehicle = character.SharedGetCurrentVehicle();
-            if (vehicle != null)
+            if (vehicle is not null)
             {
                 VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
-                if (vehicle.GetPublicState<VehiclePublicState>().PilotCharacter != null)
+                if (vehicle.GetPublicState<VehiclePublicState>().PilotCharacter is not null)
                 {
                     // cannot quit vehicle here, cannot unstuck
                     this.CallClient(character, _ => _.ClientRemote_UnstuckImpossible());
@@ -318,7 +318,7 @@
                         return true; // remove this request
                     }
 
-                    if (character.SharedGetCurrentVehicle() != null)
+                    if (character.SharedGetCurrentVehicle() is not null)
                     {
                         // character entered vehicle
                         ServerNotifyUnstuckCancelledCharacterMoved(character);

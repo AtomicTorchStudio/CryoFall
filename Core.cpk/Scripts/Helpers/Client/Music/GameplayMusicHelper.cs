@@ -119,7 +119,7 @@
             }
 
             var character = ClientCurrentCharacterHelper.Character;
-            if (character == null
+            if (character is null
                 || !LandClaimSystem.ClientIsOwnedAreasReceived)
             {
                 ClientMusicSystem.CurrentPlaylist = null;

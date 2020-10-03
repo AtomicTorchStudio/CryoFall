@@ -68,7 +68,7 @@
 
             this.RefreshState();
 
-            this.IsLandClaimInsideAnotherBase = LandClaimShieldProtectionSystem.SharedIsLandClaimInsideAnotherBase(
+            this.IsLandClaimInsideAnotherBase = LandClaimShieldProtectionHelper.SharedIsLandClaimInsideAnotherBase(
                 areasGroup);
 
             UpdateCurrentDurationsEverySecond();

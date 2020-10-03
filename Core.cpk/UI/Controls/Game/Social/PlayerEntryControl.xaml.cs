@@ -41,7 +41,7 @@
         private void DestroyContextMenu()
         {
             var m = this.ContextMenu;
-            if (m == null)
+            if (m is null)
             {
                 return;
             }
@@ -79,7 +79,7 @@
         private void MouseUpHandler(object sender, MouseEventArgs e)
         {
             var contextMenu = this.ContextMenu;
-            if (contextMenu != null
+            if (contextMenu is not null
                 && contextMenu.IsOpen)
             {
                 // close current context menu

@@ -19,8 +19,8 @@
             this.StatName = statName;
             this.Level = level;
 
-            if (formulaValueBonus == null
-                && formulaPercentBonus == null
+            if (formulaValueBonus is null
+                && formulaPercentBonus is null
                 && valueBonus == 0
                 && percentBonus == 0)
             {
@@ -61,7 +61,7 @@
             var value = this.PercentBonus;
 
             var formula = this.FormulaPercentBonus;
-            if (formula != null)
+            if (formula is not null)
             {
                 value += formula(level);
             }
@@ -74,7 +74,7 @@
             var value = this.ValueBonus;
 
             var formula = this.FormulaValueBonus;
-            if (formula != null)
+            if (formula is not null)
             {
                 value += formula(level);
             }

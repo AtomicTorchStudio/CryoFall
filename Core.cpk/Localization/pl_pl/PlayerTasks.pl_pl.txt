@@ -46,6 +46,9 @@ Zabij: {0}
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 Wytwórz: {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+Zmień położenie dowolnej struktury
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 Przebiegnij 10 metrów
 

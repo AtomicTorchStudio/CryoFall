@@ -112,7 +112,7 @@
             if (itemEquipmentType == EquipmentType.Implant)
             {
                 // implant item
-                if (context.ByCharacter == null
+                if (context.ByCharacter is null
                     || CreativeModeSystem.SharedIsInCreativeMode(context.ByCharacter))
                 {
                     // Allowed to add/remove implant item by the game only (via medical station).
@@ -170,7 +170,7 @@
             if (itemEquipmentType == EquipmentType.Implant)
             {
                 // implant item
-                if (context.ByCharacter == null
+                if (context.ByCharacter is null
                     || CreativeModeSystem.SharedIsInCreativeMode(context.ByCharacter))
                 {
                     // Allowed to add/remove implant item by the game only (via medical station).
@@ -243,7 +243,7 @@
 
         private static bool IsSlotEmpty(IItemsContainer container, EquipmentType slotId)
         {
-            return container.GetItemAtSlot((byte)slotId) == null;
+            return container.GetItemAtSlot((byte)slotId) is null;
         }
 
         private void ClientRemote_ClientShowNotificationCannotRemoveImplant(

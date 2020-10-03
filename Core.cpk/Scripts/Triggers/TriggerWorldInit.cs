@@ -19,7 +19,9 @@
             if (isWorldSpawned
                 && Api.Shared.IsDebug)
             {
-                // in debug mode, don't invoke world init trigger as the world is already spawned with objects
+                // In the debug mode, don't invoke world init trigger as the world
+                // is already spawned with objects and we don't want to have
+                // any additional delay (ensure debug client connections ASAP). 
                 return;
             }
 

@@ -21,7 +21,7 @@
 
             this.hasCurrentCharacterAttribute =
                 this.parameterInfo.GetCustomAttribute(typeof(CurrentCharacterIfNullAttribute))
-                != null;
+                is not null;
 
             this.customSuggestionsAttribute = (CustomSuggestionsAttribute)
                 this.parameterInfo.GetCustomAttribute(typeof(CustomSuggestionsAttribute));
@@ -36,7 +36,7 @@
         {
             if (this.hasCurrentCharacterAttribute)
             {
-                if (byCharacter == null)
+                if (byCharacter is null)
                 {
                     // current character is not provided (system console on server)
                     value = null;
@@ -59,7 +59,7 @@
 
         public IEnumerable<string> GetSuggestions(string startsWith)
         {
-            if (this.customSuggestionsAttribute != null)
+            if (this.customSuggestionsAttribute is not null)
             {
                 return this.customSuggestionsAttribute
                            .GetSuggestions(this.parameterInfo.ParameterInfo.Member.DeclaringType,

@@ -55,8 +55,14 @@
                 size: noObstaclesBounds.Size);
 
             // test with different collision zones (required to handle hoverboards which don't have physical colliders)
-            var defaultCollisionGroup = CollisionGroups.Default;
-            CollectVehicles(defaultCollisionGroup);
+            CollectVehicles(CollisionGroups.Default);
+
+            if (!ReferenceEquals(CollisionGroups.Default,
+                                 CollisionGroups.CharacterOrVehicle))
+            {
+                CollectVehicles(CollisionGroups.CharacterOrVehicle);
+            }
+
             CollectVehicles(CollisionGroups.HitboxMelee);
 
             void CollectVehicles(CollisionGroup collisionGroup)

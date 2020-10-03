@@ -53,8 +53,8 @@
         {
             unchecked
             {
-                return ((this.ProtoEntity != null ? this.ProtoEntity.GetHashCode() : 0) * 397)
-                       ^ (this.Name != null ? this.Name.GetHashCode() : 0);
+                return ((this.ProtoEntity is not null ? this.ProtoEntity.GetHashCode() : 0) * 397)
+                       ^ (this.Name is not null ? this.Name.GetHashCode() : 0);
             }
         }
     }

@@ -7,6 +7,8 @@
 
     public class ItemPainkiller : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Short;
+
         public override string Description =>
             "Painkiller can be used to completely remove and prevent any pain for the duration of its effect.";
 

@@ -79,7 +79,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemWire>(count: 4);
+            build.AddStageRequiredItem<ItemWire>(count: 3);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemRubberVulcanized>(count: 1);
 

@@ -94,7 +94,7 @@
                                + characterFinalStatsCache[StatName.DamageAdd];
 
             var weaponSkillProto = protoWeapon?.WeaponSkillProto;
-            if (weaponSkillProto != null)
+            if (weaponSkillProto is not null)
             {
                 var statName = protoWeapon.WeaponSkillProto.StatNameDamageBonusMultiplier;
                 this.DamageValue *= characterFinalStatsCache.GetMultiplier(statName);
@@ -113,7 +113,7 @@
                                          + characterFinalStatsCache[StatName.AttackFinalDamageMultiplier];
 
             var probability = protoWeapon?.SpecialEffectProbability ?? 0;
-            if (weaponSkillProto != null)
+            if (weaponSkillProto is not null)
             {
                 var statNameSpecialEffectChance = weaponSkillProto.StatNameSpecialEffectChanceMultiplier;
                 probability *= characterFinalStatsCache.GetMultiplier(statNameSpecialEffectChance);

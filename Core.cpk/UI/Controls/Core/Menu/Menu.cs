@@ -204,7 +204,7 @@
             this.IsSelected = this.menu.IsOpened;
 
             if (this.menu.IsOpened
-                && MenuOpened != null)
+                && MenuOpened is not null)
             {
                 Api.SafeInvoke(() => MenuOpened?.Invoke(this));
             }

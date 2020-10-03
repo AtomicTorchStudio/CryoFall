@@ -61,7 +61,7 @@
             var character = deconstructionActionState.Character;
 
             var context = this.GetActiveContext(character, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }
@@ -70,7 +70,7 @@
             var protoStaticWorldObject = structure.ProtoStaticWorldObject;
             var protoTool = deconstructionActionState.ProtoItemCrowbarTool;
 
-            if (protoTool == null
+            if (protoTool is null
                 || protoStaticWorldObject is ProtoObjectConstructionSite)
             {
                 // it's a blueprint and/or deconstructed not by a tool

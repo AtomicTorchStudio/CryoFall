@@ -52,8 +52,8 @@
                 return null;
             }
 
-            if (bestRecipe != null
-                && selectedRecipe != null
+            if (bestRecipe is not null
+                && selectedRecipe is not null
                 && selectedRecipe.CanBeCrafted(objectManufacturer, state.CraftingQueue, 1)
                 && bestRecipe.InputItems.Length <= selectedRecipe.InputItems.Length)
             {
@@ -143,7 +143,7 @@
                                                    config,
                                                    objectManufacturer);
 
-            if (bestRecipe != null
+            if (bestRecipe is not null
                 && config.IsAutoSelectRecipe)
             {
                 // auto-select the best recipe
@@ -152,7 +152,7 @@
                 state.CraftingQueue.Clear();
             }
 
-            if (selectedRecipe == null)
+            if (selectedRecipe is null)
             {
                 return;
             }
@@ -166,7 +166,7 @@
             if (isSelectedRecipeCanBeCrafted)
             {
                 var currentCraftingRecipe = state.CraftingQueue.QueueItems.FirstOrDefault();
-                if (currentCraftingRecipe == null
+                if (currentCraftingRecipe is null
                     || currentCraftingRecipe.Recipe != selectedRecipe)
                 {
                     // there is nothing crafting or something different is crafting - start crafting the new selected recipe

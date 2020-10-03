@@ -83,7 +83,7 @@
             ServerSkillExperienceToLearningPointsConversionMultiplier = 0.01 * ServerLearningPointsGainMultiplier;
 
             {
-                var key = "PvpTimeGating";
+                var key = "PvP.TimeGating";
                 var defaultValue = "24,72,120,168,216,216";
                 var description =
                     @"This rate determines the time-gating values for Tier 3-5 technologies on PvP servers.

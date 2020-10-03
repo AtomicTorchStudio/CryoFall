@@ -88,7 +88,7 @@
             this.UpdateVisualState(useTransitions: false);
 
             var badgeContent = this.BadgeContent;
-            if (badgeContent != null)
+            if (badgeContent is not null)
             {
                 // workaround for NoesisGUI 3.0
                 var child = (FrameworkElement)VisualTreeHelper.GetChild(badgeContent, 0);

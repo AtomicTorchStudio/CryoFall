@@ -59,7 +59,7 @@
                 return;
             }
 
-            if (e.NewValue == null
+            if (e.NewValue is null
                 || !(e.NewValue is bool isEnabled)
                 || !isEnabled)
             {
@@ -67,7 +67,7 @@
                 return;
             }
 
-            if (e.OldValue != null
+            if (e.OldValue is not null
                 && e.OldValue is bool wasEnabled
                 && wasEnabled)
             {

@@ -180,6 +180,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemHerbGreen>();
                     CreateItem<ItemHerbPurple>();
                     CreateItem<ItemHerbRed>();
+                    CreateItem<ItemHerbBlue>();
                     CreateItem<ItemMedkit>();
                     CreateItem<ItemNeuralEnhancer>();
                     CreateItem<ItemPainkiller>();

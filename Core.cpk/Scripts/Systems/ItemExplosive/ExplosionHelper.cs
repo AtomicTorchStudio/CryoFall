@@ -194,7 +194,7 @@
 
             // schedule explosion charred ground spawning
             var protoObjectCharredGround = explosionPreset.ProtoObjectCharredGround;
-            if (protoObjectCharredGround != null)
+            if (protoObjectCharredGround is not null)
             {
                 ServerTimersSystem.AddAction(
                     delaySeconds: explosionPreset.SpriteAnimationDuration * 0.5,

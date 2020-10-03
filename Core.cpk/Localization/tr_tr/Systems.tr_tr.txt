@@ -383,47 +383,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Bu sunucunun operatörü sadece davetle girilebilecek şekilde ayarladı.
 [br]Lütfen daha fazla detay için sunucu açıklamasına bak.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`Resmî CyroFall sunucusuna hoş geldiniz!
-[br]
-[br]
-[b]Önemli:[/b]
-[br]
-Bu bir PvE (player versus environment) sunucusudur. Bu sunucuda oyuncular doğrudan veya dolaylı yoldan birbirlerine saldıramaz. Bu sunucu düşman oyuncuların saldırması olmaksızın huzurlu bir şekilde keşif için açılmıştır. Öldüremezsiniz, yok edemezsiniz, çalamazsınız veya başka şekilde oyunculara saldıramazsınız. Bunun dışında sunucu, tehlikeli yaratıkları, açılacak teknolojileri ve keşfedilecek dünyasıyla size tam bir CyroFall tecrübesi sunuyor. Bu maceranın seni nereye götüreceğini gör. 
-[br]
-[br]
-Daha heyecanlı ve sınırsız bir tecrübe istiyorsanız - lütfen PvP sunucusuna katılmayı düşünün.
-[br]
-[br]
-[b]Sunucu kuralları:[/b]
-[*]Karşınızdakilere saygılı ve nazik davranın. Hiçbir türlü taciz, ayrıma vb. şeylere müsamaha göstermiyoruz. 
-[*]Sunucu moderatörlerinin tüm isteklerine uyunuz.
-[*]Sohbeti mesaj sağanağına tutmayın ve küfür kullanmayın.
-[*]PvE kısıtlamalarının hiçbirini bozmaya veya onlardan faydalanmaya çalışmayın.
-[*]Diğer oyunculara sıkıntı vermek veya başka türlü rahatsız etmek için oyun kurallarını veya mekaniklerini kötüye kullanmayın.
-[br]
-[br]
-Bol şanslar! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+Bu topluluk sunucusunda yüklü üçüncü parti modifikasyonlar var. Oyunun doğru çalışacağının ve iyi bir CryoFall tecrübesi sunacağının garantisi yoktur. Herhangi bir sorunla karşılaşırsanız lütfen bu sorunu topluluk sunucusunun sahibine söyleyiniz.
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`Resmî CyroFall sunucusuna hoş geldiniz!
-[br]
-[br]
-[b]Önemli:[/b]
-[br]
-Bu herkese açık bir PvP sunucusudur. Lütfen PvP merkezli sunucularda diğer oyuncuların saldırganlıklarına uğrayacağınızı unutmayın. Sizden savaşmanız ve kendinizi savunmanız bekleniyor. Kendinizi düzgün bir şekilde korumanız ve her zaman dikkatli olmanız gerekecek. Şansınızı arttırmak için diğer hayatta kalanlarla el ele vermeyi de düşünebilirsiniz.
-[br]
-[br]
-Daha rahat bir tecrübe yaşamayı tercih ediyorsanız, özellikle bu oyunu ilk defa oynuyorsanız - lütfen bir PvE sunucusuna katılmayı düşünün.
-[br]
-[br]
-[b]Sunucu kuralları:[/b]
-[*]Karşınızdakilere saygılı ve nazik davranın. Hiçbir türlü taciz, ayrıma vb. şeylere müsamaha göstermiyoruz. 
-[*]Sunucu moderatörlerinin tüm isteklerine uyunuz.
-[*]Sohbeti mesaj sağanağına tutmayın veya küfür kullanmayın.
-[br]
-[br]
-Bol şanslar! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`Burası bir PvE (oyuncunun çevreye karşı olan mücadelesi) sunucusudur. Bu sunucuda oyuncular direkt veya dolaylı olarak birbirlerine saldıramazlar. Bu sunucu düşmancıl oyuncular olmadan, oyunu barışçıl bir şekilde keşfetmek amaçlıdır. Diğer oyunculara saldıramaz, öldüremez, yok edemez, onlardan bir şey çalamazsınız. Bunların yanı sıra sunucu, tehlikeli yaratıkları, açılacak teknolojileri ve keşfedilecek dünyasıyla size tam bir CryoFall tecrübesi sunar. Yolculuğunuz sizi nereye götürecek, bakın.
+[br]Daha heyecan verici ve sınırsız bir deneyim peşindeyseniz lütfen bir PvP sunucusuna katılmayı düşünün.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`Bu tamamen ücretsiz bir PvP sunucusudur. Lütfen unutmayın ki PvP-merkezli sunucularda diğer oyuncuların [b]düşmanlığıyla[/b] karşılaşacaksınız. Savaşmanız ve kendinizi korumanız gerekecek. Kendinizi iyi şekilde korumalı, sürekli tetikte olmalısınız. Bu oyun modu sadece tecrübeli oyunculara yöneliktir.
+[br]Daha sakin bir tecrübe arıyorsanız, özellikle bu oyunu ilk defa oynuyorsanız, lütfen bir PvE sunucusuna katılmayı düşünün.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+PvE sunucusu
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+PvP sunucusu
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+Modlu sunucu
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+Hoş geldin mesajı
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+Bilgiyi sil
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}'a hoş geldiniz

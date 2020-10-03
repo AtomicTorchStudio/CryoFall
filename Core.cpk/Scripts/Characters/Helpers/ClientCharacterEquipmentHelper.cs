@@ -51,7 +51,7 @@
             if (!character.IsNpc)
             {
                 var vehicle = character.SharedGetCurrentVehicle();
-                if (vehicle != null
+                if (vehicle is not null
                     && !vehicle.IsInitialized)
                 {
                     // Character has a vehicle which is not yet initialized.
@@ -66,14 +66,14 @@
             double skeletonScaleMultiplier = 0;
 
             if (publicState is PlayerCharacterPublicState playerCharacterPublicState
-                && playerCharacterPublicState.CurrentVehicle != null
+                && playerCharacterPublicState.CurrentVehicle is not null
                 && playerCharacterPublicState.CurrentVehicle.IsInitialized)
             {
                 var protoVehicle = (IProtoVehicle)playerCharacterPublicState.CurrentVehicle.ProtoWorldObject;
                 protoVehicle.SharedGetSkeletonProto(null,
                                                     out var protoSkeletonVehicle,
                                                     out var scaleResult);
-                if (!(protoSkeletonVehicle is null))
+                if (protoSkeletonVehicle is not null)
                 {
                     newProtoSkeleton = (ProtoCharacterSkeleton)protoSkeletonVehicle;
                     skeletonScaleMultiplier = scaleResult;
@@ -120,12 +120,12 @@
                 .ClientCreateShadowRenderer(character,
                                             skeletonScaleMultiplier);
 
-            if (skeletonRenderer == null
+            if (skeletonRenderer is null
                 || isSkeletonChanged)
             {
                 skeletonRenderer?.Destroy();
-                if (newProtoSkeleton == null
-                    || newProtoSkeleton.SkeletonResourceFront == null)
+                if (newProtoSkeleton is null
+                    || newProtoSkeleton.SkeletonResourceFront is null)
                 {
                     return;
                 }
@@ -154,7 +154,7 @@
             var containerEquipment = (publicState as ICharacterPublicStateWithEquipment)
                 ?.ContainerEquipment;
 
-            if (containerEquipment != null)
+            if (containerEquipment is not null)
             {
                 SetupSkeletonEquipmentForCharacter(
                     character,
@@ -167,7 +167,7 @@
             if (!character.IsNpc)
             {
                 var vehicle = character.SharedGetCurrentVehicle();
-                if (vehicle != null
+                if (vehicle is not null
                     && vehicle.IsInitialized)
                 {
                     var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
@@ -178,7 +178,7 @@
                 }
             }
 
-            if (selectedItem != null)
+            if (selectedItem is not null)
             {
                 var activeProtoItem = selectedItem.ProtoGameObject as IProtoItemWithCharacterAppearance;
                 activeProtoItem?.ClientSetupSkeleton(selectedItem,
@@ -222,7 +222,7 @@
 
             var containerEquipment = publicState.ContainerEquipment;
             if (clientState.LastEquipmentContainerHash == containerEquipment.StateHash
-                && clientState.SkeletonRenderer != null
+                && clientState.SkeletonRenderer is not null
                 && clientState.LastSelectedItem == selectedItem)
             {
                 return;
@@ -242,14 +242,14 @@
             double worldScale,
             sbyte spriteQualityOffset = 0)
         {
-            if (protoCharacterSkeleton.SkeletonResourceFront == null)
+            if (protoCharacterSkeleton.SkeletonResourceFront is null)
             {
                 return null;
             }
 
             var skeletonResources = new List<SkeletonResource>();
             skeletonResources.Add(protoCharacterSkeleton.SkeletonResourceFront);
-            if (protoCharacterSkeleton.SkeletonResourceBack != null)
+            if (protoCharacterSkeleton.SkeletonResourceBack is not null)
             {
                 skeletonResources.Add(protoCharacterSkeleton.SkeletonResourceBack);
             }
@@ -386,7 +386,7 @@
                                           isPreview);
 
                 if (item.ProtoItem is IProtoItemEquipmentHead
-                    && headEquipmentForFaceSprite == null)
+                    && headEquipmentForFaceSprite is null)
                 {
                     headEquipmentForFaceSprite = item;
                 }
@@ -503,7 +503,7 @@
             // this is current client character and it doesn't have light in hand
             // create a faint light source (see called method comments)
             var lightSource = PlayerCharacter.ClientCreateDefaultLightSource(character);
-            if (lightSource != null)
+            if (lightSource is not null)
             {
                 skeletonComponents.Add(lightSource);
             }

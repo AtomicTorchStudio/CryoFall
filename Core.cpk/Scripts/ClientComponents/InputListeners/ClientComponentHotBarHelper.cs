@@ -55,13 +55,13 @@
                 this.isMouseLeftButtonDown = value;
 
                 var selectedItem = ClientHotbarSelectedItemManager.SelectedItem;
-                var protoItem = selectedItem != null
+                var protoItem = selectedItem is not null
                                     ? selectedItem.ProtoItem
                                     : ItemNoWeapon.Instance;
 
                 if (this.isMouseLeftButtonDown)
                 {
-                    if (ClientItemsManager.ItemInHand != null)
+                    if (ClientItemsManager.ItemInHand is not null)
                     {
                         // cannot start using any item because there is an item held in hand
                         return;

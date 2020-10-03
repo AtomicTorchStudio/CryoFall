@@ -149,14 +149,14 @@
             {
                 this.DestroyProcessSoundEmitter();
 
-                if (this.TargetWorldObject == null)
+                if (this.TargetWorldObject is null)
                 {
                     return;
                 }
 
                 var objectSoundPreset = this.SharedGetObjectSoundPreset();
                 objectSoundPreset?.PlaySound(
-                    this.TargetWorldObject != null
+                    this.TargetWorldObject is not null
                     && !this.TargetWorldObject.IsDestroyed
                         ? ObjectSound.InteractFail
                         : ObjectSound.InteractSuccess,

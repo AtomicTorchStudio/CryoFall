@@ -33,15 +33,18 @@
 
             physicsBody.AddShapeCircle(
                 radius / 2,
-                center: (-radius / 2, 0));
+                center: (-radius / 2, 0),
+                CollisionGroups.CharacterOrVehicle);
 
             physicsBody.AddShapeCircle(
                 radius / 2,
-                center: (radius / 2, 0));
+                center: (radius / 2, 0),
+                CollisionGroups.CharacterOrVehicle);
 
             physicsBody.AddShapeRectangle(
                 size: (radius, radius),
-                offset: (-radius / 2, -radius / 2));
+                offset: (-radius / 2, -radius / 2),
+                CollisionGroups.CharacterOrVehicle);
 
             // melee hitbox
             physicsBody.AddShapeRectangle(

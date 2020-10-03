@@ -21,7 +21,7 @@
             get
             {
                 var currentMapping = ClientInputManager.CloneMapping();
-                if (this.savedMapping == null)
+                if (this.savedMapping is null)
                 {
                     // not initialized yet
                     return false;
@@ -63,7 +63,7 @@
 
         public void SaveMappingIfRequired()
         {
-            if (this.savedMapping == null)
+            if (this.savedMapping is null)
             {
                 this.SaveMapping();
             }

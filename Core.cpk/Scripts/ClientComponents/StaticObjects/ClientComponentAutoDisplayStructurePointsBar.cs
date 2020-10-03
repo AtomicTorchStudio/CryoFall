@@ -129,7 +129,7 @@
             }
 
             var protoStaticWorldObject = this.data.ProtoWorldObject;
-            if (protoStaticWorldObject == null)
+            if (protoStaticWorldObject is null)
             {
                 this.RemoveAttachedControl();
                 return;
@@ -168,7 +168,7 @@
                 return;
             }
 
-            if (this.componentAttachedUIElement != null)
+            if (this.componentAttachedUIElement is not null)
             {
                 return;
             }
@@ -192,7 +192,7 @@
 
         private void RemoveAttachedControl()
         {
-            if (this.componentAttachedUIElement == null)
+            if (this.componentAttachedUIElement is null)
             {
                 return;
             }
@@ -206,7 +206,7 @@
         private void Subscribe()
         {
             if (!this.IsEnabled
-                || this.data.State == null)
+                || this.data.State is null)
             {
                 return;
             }

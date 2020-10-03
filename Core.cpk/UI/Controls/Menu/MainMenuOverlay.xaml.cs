@@ -24,7 +24,7 @@
         {
             get
             {
-                if (instance == null)
+                if (instance is null)
                 {
                     instance = new MainMenuOverlay();
                     Api.Client.UI.LayoutRootChildren.Add(instance);
@@ -44,7 +44,7 @@
                     return;
                 }
 
-                if (value && instance != null)
+                if (value && instance is not null)
                 {
                     // will hide - ensure the active tab allows to be hidden
                     // (options tab might not allow that if there are unapplied changes)
@@ -61,7 +61,7 @@
 
                 if (isHidden)
                 {
-                    if (instance == null)
+                    if (instance is null)
                     {
                         // instance is not yet created!
                         return;
@@ -89,7 +89,7 @@
 
         public static void DestroyIfPresent()
         {
-            if (instance == null)
+            if (instance is null)
             {
                 return;
             }

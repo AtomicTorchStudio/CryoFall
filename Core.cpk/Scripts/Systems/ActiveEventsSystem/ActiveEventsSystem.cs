@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -45,6 +46,7 @@
             // the event will be automatically removed from players' scope as it's destroyed
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_RequestActiveEvents()
         {
             var character = ServerRemoteContext.Character;
@@ -66,7 +68,7 @@
 
                 static void Refresh()
                 {
-                    if (Api.Client.Characters.CurrentPlayerCharacter != null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         Instance.CallServer(_ => _.ServerRemote_RequestActiveEvents());
                     }

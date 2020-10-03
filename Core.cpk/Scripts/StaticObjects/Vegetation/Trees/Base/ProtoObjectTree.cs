@@ -48,7 +48,7 @@
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             var treeHeight = this.TreeHeight;
-            if (worldObject != null)
+            if (worldObject is not null)
             {
                 treeHeight *= this.SharedGetVisualScaleCoef((IStaticWorldObject)worldObject);
 
@@ -84,12 +84,12 @@
 
             this.ClientApplyTreeRandomScale(worldObject, data.ClientState.Renderer);
 
-            if (data.ClientState.RendererShadow != null)
+            if (data.ClientState.RendererShadow is not null)
             {
                 data.ClientState.RendererShadow.DrawOrderOffsetY = renderer.DrawOrderOffsetY;
             }
 
-            if (data.ClientState.RendererOcclusion != null)
+            if (data.ClientState.RendererOcclusion is not null)
             {
                 data.ClientState.RendererOcclusion.DrawOrderOffsetY = renderer.DrawOrderOffsetY;
             }

@@ -12,7 +12,7 @@
         {
             get
             {
-                if (allVehicles == null)
+                if (allVehicles is null)
                 {
                     var list = Api.FindProtoEntities<IProtoVehicle>();
                     list.RemoveAll(r => r.ListedInTechNodes.Count == 0);

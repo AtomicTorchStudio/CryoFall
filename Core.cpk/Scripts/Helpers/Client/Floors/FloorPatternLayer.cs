@@ -81,7 +81,7 @@
                 return false;
             }
 
-            if (this.RequiresAnyCheck != null)
+            if (this.RequiresAnyCheck is not null)
             {
                 foreach (var pattern in this.RequiresAnyCheck)
                 {
@@ -117,7 +117,7 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsExcluded(NeighborsPattern variant)
         {
-            if (this.ExcludesAnyCheck != null)
+            if (this.ExcludesAnyCheck is not null)
             {
                 foreach (var pattern in this.ExcludesAnyCheck)
                 {

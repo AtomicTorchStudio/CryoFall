@@ -69,7 +69,7 @@
                 isVisualizerEnabled = value;
                 SessionStorage.Save(isVisualizerEnabled);
 
-                if (instance != null)
+                if (instance is not null)
                 {
                     instance.IsEnabled = isVisualizerEnabled;
                 }
@@ -80,7 +80,7 @@
         {
             base.Update(deltaTime);
             var character = ClientCurrentCharacterHelper.Character;
-            if (character != null)
+            if (character is not null)
             {
                 this.UpdateActualClientPosition(character.Position);
             }

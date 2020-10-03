@@ -27,7 +27,7 @@
         {
             var isNewControl = false;
             var control = Instance;
-            if (control == null)
+            if (control is null)
             {
                 control = new WindowConstructionMenu();
                 Instance = control;
@@ -75,7 +75,7 @@
 
         protected override void WindowOpening()
         {
-            if (this.ViewModel != null)
+            if (this.ViewModel is not null)
             {
                 // re-opening before closed
                 return;
@@ -90,7 +90,7 @@
 
         private void OnSelectedHandler(IProtoObjectStructure selectedProtoStructure)
         {
-            if (selectedProtoStructure == null)
+            if (selectedProtoStructure is null)
             {
                 return;
             }

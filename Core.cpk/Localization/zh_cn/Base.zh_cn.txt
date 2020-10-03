@@ -214,3 +214,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 燃料消耗
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+无法跑步
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+无法攻击
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+无法使用正在冷却中的医疗物品
+

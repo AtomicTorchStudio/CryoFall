@@ -14,6 +14,8 @@
 
     public class ViewModelMenuCurrentGame : BaseViewModel
     {
+        public const bool CurrentGameInfoEnabledInEditor = false;
+
         private readonly ICurrentGameService game = Client.CurrentGame;
 
         private ConnectionState? connectionState;
@@ -23,8 +25,6 @@
         private int lastIconLoadRequestId;
 
         private DateTime? wipedDate;
-
-        public static ViewModelMenuCurrentGame Instance { get; private set; }
 
         public ViewModelMenuCurrentGame()
         {
@@ -37,7 +37,8 @@
 
             ServerOperatorSystem.ClientIsOperatorChanged += this.IsServerOperatorChangedHandler;
 
-            if (Api.IsEditor)
+            if (Api.IsEditor
+                && !CurrentGameInfoEnabledInEditor)
             {
                 this.VisibilityConnected = this.VisibilityNotConnected = Visibility.Collapsed;
                 this.VisibilityEditorMode = Visibility.Visible;
@@ -57,6 +58,8 @@
             this.RefreshWipedDateText();
         }
 
+        public static ViewModelMenuCurrentGame Instance { get; private set; }
+
         public BaseCommand CommandCopyPublicGuidToClipboard
             => new ActionCommand(() => Client.Core.CopyToClipboard(this.ServerAddress.PublicGuid.ToString()));
 
@@ -65,6 +68,9 @@
 
         public BaseCommand CommandEditDescription
             => new ActionCommand(WelcomeMessageSystem.ClientEditDescription);
+
+        public BaseCommand CommandEditScheduledWipeDate
+            => new ActionCommand(WelcomeMessageSystem.ClientEditScheduledWipeDate);
 
         public BaseCommand CommandEditWelcomeMessage
             => new ActionCommand(WelcomeMessageSystem.ClientEditWelcomeMessage);
@@ -120,6 +126,9 @@
                 this.game.GetPingAverageSeconds(yesIKnowIShouldUsePingGameInstead: true) * 1000,
                 MidpointRounding.AwayFromZero);
 
+        public Brush PingGameForegroundBrush
+            => ViewModelServerInfo.GetPingForegroundBrush(this.PingGameMilliseconds);
+
         public ushort PingGameMilliseconds
             => (ushort)Math.Round(
                 this.game.PingGameSeconds * 1000,
@@ -158,9 +167,6 @@
         public string WipedDateText
             => ViewModelServerInfo.FormatWipedDate(this.wipedDate);
 
-        public Brush PingGameForegroundBrush 
-            => ViewModelServerInfo.GetPingForegroundBrush(this.PingGameMilliseconds);
-
         public async void ReloadIcon()
         {
             if (IsDesignTime)
@@ -196,7 +202,7 @@
 
             ServerOperatorSystem.ClientIsOperatorChanged -= this.IsServerOperatorChangedHandler;
 
-            if (this.game == null)
+            if (this.game is null)
             {
                 return;
             }
@@ -260,7 +266,7 @@
         private void UpdateServerInfo()
         {
             var serverInfo = this.game.ServerInfo;
-            if (serverInfo == null)
+            if (serverInfo is null)
             {
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                 this.ServerName = "<no server info>";

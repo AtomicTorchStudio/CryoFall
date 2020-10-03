@@ -54,7 +54,7 @@
                 text += this.protoItem.Name.Replace(" ", "\u00A0");
 
                 this.CheckIsTechAvailable(out var techNodeUnlockRequired);
-                if (techNodeUnlockRequired != null)
+                if (techNodeUnlockRequired is not null)
                 {
                     var groupName = techNodeUnlockRequired.Group.NameWithTierName;
                     // replace spaces with non-breaking space char
@@ -87,7 +87,7 @@
             //}
 
             if (this.protoItem is IProtoItemWithReferenceTech protoItemWithDefaultRecipe
-                && protoItemWithDefaultRecipe.ReferenceTech != null)
+                && protoItemWithDefaultRecipe.ReferenceTech is not null)
             {
                 var techs = character.SharedGetTechnologies();
                 var referenceTech = protoItemWithDefaultRecipe.ReferenceTech;

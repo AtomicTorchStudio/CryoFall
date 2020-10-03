@@ -48,26 +48,26 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
                 }
             }
 
-            if (characterNpcToDestroy != null)
+            if (characterNpcToDestroy is not null)
             {
                 Server.World.DestroyObject(characterNpcToDestroy);
                 return characterNpcToDestroy + " destroyed";
             }
 
             var staticWorldObjectToDestroy = tile.StaticObjects.LastOrDefault();
-            if (staticWorldObjectToDestroy == null)
+            if (staticWorldObjectToDestroy is null)
             {
                 foreach (var neighborTile in tile.EightNeighborTiles)
                 {
                     staticWorldObjectToDestroy = neighborTile.StaticObjects.LastOrDefault();
-                    if (staticWorldObjectToDestroy != null)
+                    if (staticWorldObjectToDestroy is not null)
                     {
                         break;
                     }
                 }
             }
 
-            if (staticWorldObjectToDestroy == null)
+            if (staticWorldObjectToDestroy is null)
             {
                 return "No world objects nearby to destroy";
             }

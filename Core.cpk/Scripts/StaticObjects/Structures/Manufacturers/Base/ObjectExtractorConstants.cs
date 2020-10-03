@@ -11,11 +11,5 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
         public const double ExtractorPvpWithDeposit = 2.0;
 
         public const double ExtractorPvpWithoutDeposit = 0.5;
-
-        // Not used in A26.
-        public const double InfiniteExtractorPvE = 1.0;
-
-        // Not used in A26.
-        public const double InfiniteExtractorPvP = 1.0;
     }
 }

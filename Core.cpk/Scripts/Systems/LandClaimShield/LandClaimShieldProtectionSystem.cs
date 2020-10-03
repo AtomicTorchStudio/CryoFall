@@ -20,6 +20,7 @@
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -314,57 +315,6 @@
             return SharedGetShieldPublicStatus(areasGroup) == ShieldProtectionStatus.Active;
         }
 
-        /// <summary>
-        /// This check prevents the abuse of the shield mechanic for this layout:
-        /// * * *
-        /// * X *
-        /// * * *
-        /// Where X is the land claim surrounded by 8 other * land claims (of max tier level),
-        /// but not connected to them so normally it should provide its own shield.
-        /// </summary>
-        public static bool SharedIsLandClaimInsideAnotherBase(ILogicObject areasGroup)
-        {
-            var groupAreas = IsServer
-                                 ? LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas
-                                 : LandClaimSystem.ClientGetKnownAreasForGroup(areasGroup);
-
-            if (groupAreas.Count() > 1)
-            {
-                // definitely cannot be inside another base as the base size is limited to 3*3 bases
-                return false;
-            }
-
-            // check whether this area is surrounded by other land claims
-            var centerArea = groupAreas.First();
-            var centerAreaState = LandClaimArea.GetPublicState(centerArea);
-            var landClaimCenterTilePosition = centerAreaState.LandClaimCenterTilePosition;
-
-            var newAreaBounds = LandClaimSystem.SharedCalculateLandClaimAreaBounds(
-                landClaimCenterTilePosition,
-                (ushort)(LandClaimSystem.MaxLandClaimSizeWithGraceArea.Value
-                         // reduce the outer bounds as it's the buffer area
-                         - LandClaimSystem.MinPaddingSizeOneDirection * 2));
-
-            using var tempListAreas = Api.Shared.GetTempList<ILogicObject>();
-            LandClaimSystem.SharedGetAreasInBounds(newAreaBounds,
-                                                   tempListAreas,
-                                                   addGracePadding: true);
-
-            foreach (var set in tempListAreas.AsList()
-                                             .Distinct()
-                                             .GroupBy(a => LandClaimArea.GetPublicState(a).LandClaimAreasGroup))
-            {
-                if (set.Count() >= 8)
-                {
-                    // definitely surrounded by 8 other land claims
-                    return true;
-                }
-            }
-
-            // not surrounded by other land claims
-            return false;
-        }
-
         public static bool SharedIsUnderShieldProtection(IStaticWorldObject worldObject)
         {
             if (!SharedIsEnabled)
@@ -394,6 +344,7 @@
             }
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         public (bool SharedIsEnabled, double SharedActivationDuration, double SharedCooldownDuration)
             ServerRemote_GetSettings()
         {
@@ -721,6 +672,7 @@
                 color: NotificationColor.Bad);
         }
 
+        [RemoteCallSettings(timeInterval: 2)]
         private void ServerRemote_ActivateShield(ILogicObject areasGroup)
         {
             if (!SharedIsEnabled)
@@ -753,7 +705,7 @@
                 return;
             }
 
-            if (SharedIsLandClaimInsideAnotherBase(areasGroup))
+            if (LandClaimShieldProtectionHelper.SharedIsLandClaimInsideAnotherBase(areasGroup))
             {
                 Logger.Warning("The base is inside another base so it cannot use the shield: " + areasGroup);
                 return;
@@ -796,6 +748,7 @@
                              character);
         }
 
+        [RemoteCallSettings(timeInterval: 2)]
         private void ServerRemote_DeactivateShield(ILogicObject areasGroup)
         {
             var character = ServerRemoteContext.Character;
@@ -814,6 +767,7 @@
             ServerDeactivateShield(areasGroup, character);
         }
 
+        [RemoteCallSettings(timeInterval: 1)]
         private void ServerRemote_RechargeShield(
             ILogicObject areasGroup,
             double totalChargeElectricity)

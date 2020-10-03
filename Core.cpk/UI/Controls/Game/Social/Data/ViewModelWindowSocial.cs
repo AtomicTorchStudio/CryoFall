@@ -27,6 +27,7 @@
                     OnlinePlayersSystem.ClientPlayerAddedOrRemoved -= this.PlayerAddedOrRemovedHandler;
                     OnlinePlayersSystem.ClientOnlinePlayerClanTagChanged -= this.OnlinePlayerClanTagChangedHandler;
                     OnlinePlayersSystem.ClientTotalServerPlayersCountChanged -= this.TotalPlayersCountChangedHandler;
+                    OnlinePlayersSystem.ClientOnlinePlayersCountChanged -= this.OnlinePlayersCountChangedHandler;
                     ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
                 }
 
@@ -44,6 +45,7 @@
                 OnlinePlayersSystem.ClientPlayerAddedOrRemoved += this.PlayerAddedOrRemovedHandler;
                 OnlinePlayersSystem.ClientOnlinePlayerClanTagChanged += this.OnlinePlayerClanTagChangedHandler;
                 OnlinePlayersSystem.ClientTotalServerPlayersCountChanged += this.TotalPlayersCountChangedHandler;
+                OnlinePlayersSystem.ClientOnlinePlayersCountChanged += this.OnlinePlayersCountChangedHandler;
                 ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
 
                 var currentCharacterName = Client.Characters.CurrentPlayerCharacter?.Name;
@@ -78,7 +80,11 @@
             = new SuperObservableCollection<ViewModelPlayerEntry>();
 
         // add current player to the total online players count
-        public int PlayersOnlineCount => this.PlayersOnline.Count + 1;
+        public int PlayersOnlineCount => OnlinePlayersSystem.ClientOnlinePlayersCount;
+
+        public Visibility PlayersOnlineVisibility => OnlinePlayersSystem.ClientIsListHidden
+                                                         ? Visibility.Collapsed
+                                                         : Visibility.Visible;
 
         public int PlayersTotalCount => OnlinePlayersSystem.ClientTotalServerPlayersCount;
 
@@ -111,6 +117,11 @@
         {
             this.PlayerAddedOrRemovedHandler(entry, isOnline: false);
             this.PlayerAddedOrRemovedHandler(entry, isOnline: true);
+        }
+
+        private void OnlinePlayersCountChangedHandler(int onlineNumber)
+        {
+            this.NotifyPropertyChanged(nameof(this.PlayersOnlineCount));
         }
 
         private void PlayerAddedOrRemovedHandler(OnlinePlayersSystem.Entry entry, bool isOnline)
@@ -174,6 +185,7 @@
         {
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCount));
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCountVisibility));
+            this.NotifyPropertyChanged(nameof(this.PlayersOnlineVisibility));
         }
     }
 }

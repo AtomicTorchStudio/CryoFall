@@ -227,7 +227,7 @@
             var notification = this.RemoveNotification(activeEvent,
                                                        false,
                                                        FinishedEventHideDelay);
-            if (!(notification is null))
+            if (notification is not null)
             {
                 notification.Message = GetUpdatedEventNotificationText(activeEvent,
                                                                        CalculateEventTimeRemains(activeEvent),
@@ -263,7 +263,7 @@
                          || notification.IsHiding)
                 {
                     // inside the interaction area but has no notification displayed
-                    if (notification != null)
+                    if (notification is not null)
                     {
                         this.RemoveNotification(activeEvent, quick: true);
                     }
@@ -273,7 +273,7 @@
                 }
             }
 
-            if (notification != null)
+            if (notification is not null)
             {
                 var timeRemains = CalculateEventTimeRemains(activeEvent);
                 if (timeRemains <= 0)
@@ -346,7 +346,7 @@
             }
 
             var notification = this.FindNotification(activeEvent);
-            if (!(notification is null))
+            if (notification is not null)
             {
                 // notification already exist
                 return;

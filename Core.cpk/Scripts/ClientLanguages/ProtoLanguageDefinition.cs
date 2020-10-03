@@ -5,7 +5,7 @@
     using AtomicTorch.GameEngine.Common.Extensions;
     using JetBrains.Annotations;
 
-    [UsedImplicitly]
+    [UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
     public abstract class ProtoLanguageDefinition
     {
         public abstract string AcceptText { get; }

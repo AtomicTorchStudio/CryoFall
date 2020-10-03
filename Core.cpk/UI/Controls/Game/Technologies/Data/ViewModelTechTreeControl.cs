@@ -53,7 +53,7 @@
             {
                 var oldDataItems = this.items;
                 this.items = value;
-                if (oldDataItems != null)
+                if (oldDataItems is not null)
                 {
                     this.DisposeCollection(oldDataItems);
                 }
@@ -108,10 +108,10 @@
 
                 this.techGroup = value;
 
-                if (this.techGroup == null
+                if (this.techGroup is null
                     || this.techGroup.RootNodes.Count == 0)
                 {
-                    if (this.techGroup != null
+                    if (this.techGroup is not null
                         && this.techGroup.RootNodes.Count == 0)
                     {
                         Api.Logger.Error($"Incorrect tech group \"{this.techGroup.Id}\" - no nodes");
@@ -125,7 +125,7 @@
                                    ? this.BuildTestTree()
                                    : this.BuildTree(this.techGroup);
 
-                var roots = newNodes.Where(n => n.ParentNode == null).ToList();
+                var roots = newNodes.Where(n => n.ParentNode is null).ToList();
                 new TreeLayoutHelper<ViewModelTechNode>(
                         estimatedTreeMaxDepth: newNodes.Max(n => n.HierarchyLevel))
                     .DoLayout(roots);
@@ -197,7 +197,7 @@
         {
             foreach (var techNode in this.nodes)
             {
-                if (techNode.ParentNode == null)
+                if (techNode.ParentNode is null)
                 {
                     continue;
                 }
@@ -225,13 +225,13 @@
                         node.Level,
                         this,
                         node.IsUnlocked,
-                        canUnlock: node.Parent != null && node.Parent.IsUnlocked));
+                        canUnlock: node.Parent is not null && node.Parent.IsUnlocked));
             }
 
             foreach (var pair in vmNodes)
             {
                 var parent = pair.Key.Parent;
-                if (parent != null)
+                if (parent is not null)
                 {
                     pair.Value.SetParentNode(vmNodes[parent]);
                 }
@@ -243,7 +243,7 @@
         private List<ViewModelTechNode> BuildTree(TechGroup techGroup)
         {
             var nodes = new List<ViewModelTechNode>();
-            if (techGroup == null)
+            if (techGroup is null)
             {
                 return nodes;
             }
@@ -257,7 +257,7 @@
             foreach (var viewModelTechNode in nodes)
             {
                 var requiredNode = viewModelTechNode.TechNode.RequiredNode;
-                if (requiredNode == null)
+                if (requiredNode is null)
                 {
                     // root node
                     continue;

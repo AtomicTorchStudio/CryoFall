@@ -103,7 +103,7 @@
         private bool CustomItemSlotControlMouseClickHandler(bool isDown)
         {
             if (WindowsManager.OpenedWindowsCount > 0
-                || ClientItemsManager.ItemInHand != null
+                || ClientItemsManager.ItemInHand is not null
                 || Api.Client.Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true))
             {
                 // allow working with item slot control as usual

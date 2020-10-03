@@ -10,8 +10,6 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
-        public override float HealthRestore => 0;
-
         public override string Name => "Boiled eggs";
 
         public override ushort OrganicValue => 5;

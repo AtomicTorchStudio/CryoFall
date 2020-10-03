@@ -34,7 +34,7 @@
         {
             base.Dispose();
 
-            if (this.serversListProvider != null)
+            if (this.serversListProvider is not null)
             {
                 this.serversListProvider.Updated -= this.ListUpdatedHandler;
                 this.serversListProvider = null;

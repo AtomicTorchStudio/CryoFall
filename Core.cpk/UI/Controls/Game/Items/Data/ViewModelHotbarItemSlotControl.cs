@@ -20,7 +20,7 @@
                 }
 
                 this.item = value;
-                this.OverlayControl = this.item != null
+                this.OverlayControl = this.item is not null
                                           ? CreateOverlayControl(this.item)
                                           : null;
             }

@@ -76,7 +76,7 @@
         {
             double offsetY;
 
-            if (this.pilotCharacter == null)
+            if (this.pilotCharacter is null)
             {
                 // no pilot - hoverboard off
                 offsetY = OffsetOff;

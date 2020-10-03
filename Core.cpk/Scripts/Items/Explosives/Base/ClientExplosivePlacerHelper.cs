@@ -25,7 +25,7 @@
 
             currentSelectedExplosiveItem = item;
             currentSelectedProtoExplosive = currentSelectedExplosiveItem?.ProtoItem as IProtoItemExplosive;
-            if (currentSelectedProtoExplosive == null)
+            if (currentSelectedProtoExplosive is null)
             {
                 // explosive is not selected anymore
                 blueprintComponent?.SceneObject.Destroy();
@@ -49,7 +49,7 @@
 
         private static void OnPlaceSelected(Vector2Ushort tilePosition)
         {
-            if (ClientItemsManager.ItemInHand != null)
+            if (ClientItemsManager.ItemInHand is not null)
             {
                 return;
             }
@@ -57,7 +57,7 @@
             ItemExplosiveSystem.Instance.ClientTryStartAction(tilePosition);
 
             var privateState = ClientCurrentCharacterHelper.PrivateState;
-            if (privateState.CurrentActionState != null)
+            if (privateState.CurrentActionState is not null)
             {
                 blueprintComponent.IsFrozen = true;
             }

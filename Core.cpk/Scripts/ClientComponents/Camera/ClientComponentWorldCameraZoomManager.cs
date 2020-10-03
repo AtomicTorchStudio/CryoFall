@@ -66,7 +66,7 @@
         public ClientComponentWorldCameraZoomManager()
             : base(isLateUpdateEnabled: false)
         {
-            if (instance != null)
+            if (instance is not null)
             {
                 throw new Exception("Instance already exist");
             }
@@ -84,7 +84,7 @@
         {
             get
             {
-                if (instance == null)
+                if (instance is null)
                 {
                     instance = Client.Scene.CreateSceneObject(nameof(ClientComponentWorldCameraZoomManager))
                                      .AddComponent<ClientComponentWorldCameraZoomManager>();

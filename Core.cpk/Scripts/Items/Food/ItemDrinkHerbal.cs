@@ -14,8 +14,6 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
-        public override float HealthRestore => 1;
-
         public override string ItemUseCaption => ItemUseCaptions.Drink;
 
         public override string Name => "Herbal drink";

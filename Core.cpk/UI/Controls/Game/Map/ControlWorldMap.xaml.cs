@@ -68,6 +68,7 @@
                 this.panningPanel,
                 viewModelControlWorldMap,
                 isPlayerMarkDisplayed: !this.IsEditor,
+                isCurrentCameraViewDisplayed: this.IsEditor,
                 isListeningToInput: true,
                 paddingChunks: this.IsEditor ? 1 : 0);
 

@@ -41,7 +41,7 @@
         {
             get
             {
-                if (this.publicStatePowerConsumer == null)
+                if (this.publicStatePowerConsumer is null)
                 {
                     return true; // not a power consumer - always on
                 }

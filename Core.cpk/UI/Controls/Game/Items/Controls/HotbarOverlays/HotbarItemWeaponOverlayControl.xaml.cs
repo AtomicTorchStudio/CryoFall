@@ -51,7 +51,7 @@
 
         private void DestroyTooltip()
         {
-            if (this.tooltip == null)
+            if (this.tooltip is null)
             {
                 return;
             }
@@ -75,7 +75,7 @@
             }
 
             var protoItemAmmo = this.viewModel.ProtoItemAmmo;
-            if (protoItemAmmo == null)
+            if (protoItemAmmo is null)
             {
                 return;
             }

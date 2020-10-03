@@ -70,7 +70,7 @@
 
                 var privateState = PlayerCharacter.GetPrivateState(character);
                 var bedObject = privateState.CurrentBedObject;
-                if (bedObject == null)
+                if (bedObject is null)
                 {
                     continue;
                 }
@@ -93,7 +93,7 @@
             foreach (IDynamicWorldObject vehicle in allVehicles)
             {
                 var publicState = vehicle.GetPublicState<VehiclePublicState>();
-                if (!(publicState.PilotCharacter is null))
+                if (publicState.PilotCharacter is not null)
                 {
                     continue;
                 }
@@ -155,7 +155,7 @@
                 // valid tile found - respawn here
                 // ensure the character has quit the current vehicle
                 VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
-                if (PlayerCharacter.GetPublicState(character).CurrentVehicle != null)
+                if (PlayerCharacter.GetPublicState(character).CurrentVehicle is not null)
                 {
                     Logger.Important($"{character} cannot be teleported to bed as it cannot exit the current vehicle");
                     return;

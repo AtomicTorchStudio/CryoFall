@@ -50,7 +50,7 @@
             characterQuests.ServerClaimReward(questToComplete, ignoreRequirements);
 
             var handler = ServerCharacterQuestCompleted;
-            if (handler != null)
+            if (handler is not null)
             {
                 Api.SafeInvoke(() => handler.Invoke(characterQuests.Character, questToComplete));
             }
@@ -105,7 +105,7 @@
             return true;
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0, avoidBuffer: true)]
         private void ServerRemote_ClaimReward(IProtoQuest quest)
         {
             var character = ServerRemoteContext.Character;
@@ -113,7 +113,6 @@
             ServerCompleteQuest(characterQuests, quest, ignoreRequirements: false);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0)]
         private void ServerRemote_MarkAsNotNew(IProtoQuest quest)
         {
             var character = ServerRemoteContext.Character;

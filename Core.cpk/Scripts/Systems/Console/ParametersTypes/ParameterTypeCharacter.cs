@@ -49,7 +49,7 @@
         {
             result = GetAllCharacters()
                 .FirstOrDefault(c => c.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
-            return result != null;
+            return result is not null;
         }
 
         private static IEnumerable<ICharacter> GetAllCharacters()

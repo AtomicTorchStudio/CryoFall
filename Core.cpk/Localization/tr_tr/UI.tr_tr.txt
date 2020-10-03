@@ -101,6 +101,9 @@ Kaydet
 UI/CoreStrings@Button_Upgrade:
 Geliştirme
 
+UI/CoreStrings@CannotSelectDateInThePast:
+Geçmişteki bir tarihi seçemezsiniz.
+
 UI/CoreStrings@CharacterStatName_Food:
 Yiyecek
 
@@ -200,6 +203,9 @@ Bu yapı elektrik depolar.
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Bu yapı inşa edildikten sonra yeniden konumlandırılamaz.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Lütfen sunucu yöneticisine danışın.
 
 UI/CoreStrings@Copy:
 Kopya
@@ -699,6 +705,9 @@ Bu sunucuda üçüncü taraf düzenlemeler bulunur. Orijinal oyuna kıyasla öne
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MODLANMIŞ
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+Bu sunucu, oturum modifikasyonlarına izin vermiyor. Bütün oturum modları bütün oyuncular için kapatılacak.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Bu, geliştiricilerin ev sahipliği yaptığı resmî CryoFall sunucularından biridir.
 
@@ -1088,6 +1097,19 @@ Oyuncular
 UI/CoreStrings@ServerWipedDate:
 Temizlendi
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Sonraki silme:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+Silme bilgisi özelleştirilmedi.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`Bu sunucu sıradan bir silme takvimi izlemiyor, sadece yeni oyun versiyonları çıktığında silinme gerçekleşiyor. Lütfen büyük versiyon yayınlarını takip etmek için resmî proje güncellemelerini izleyin.
+[br]Not: Bütün sunucu verileri (dünya ve karakter verileri dâhil) yeni büyük versiyona geçildiğinde sıfırlanır.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Sunucu başladı:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 Kalkan koruması altındaki bir üste bunu kullanamazsın.
 
@@ -1174,6 +1196,9 @@ Tahmini süre:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Maks süre:
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+Çevrim dışı baskın koruma kalkanı bu alan tutucu için kullanılamaz. Çünkü bu alan tutucu, kendi kalkan korumasını sağlayan başka bir üssün içinde.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 Kalkan bir müdahale olmazsa {0} süre içinde aktif olacak (müdahaleler üs sahibinin iptal etmesi veya baskın engelleme uygulayan yağmacılar tarafından engellenmesi olabilir).
@@ -1294,6 +1319,12 @@ Araştır…
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+Zaman zaten yerel saat bölgene göre ayarlandı (UTC{0}).
+
+UI/CoreStrings@TimeRemains:
+Kalan süre
 
 UI/CoreStrings@Title:
 Unvan
@@ -1910,6 +1941,11 @@ Yeni temizlendi
 
 UI/CoreStrings@WipedDate_Yesterday:
 Dün
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`Not: Silinme otomatik olarak gerçekleştirilmez!
+[br]Sunucuyu manuel olarak durdurup kayıtlı oyunu silmeniz gerekir.
+[br]Bu menü oyuncuları bilgilendirmenize yarar.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Harita keşfedildi

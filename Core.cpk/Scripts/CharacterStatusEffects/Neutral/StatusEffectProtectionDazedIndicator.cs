@@ -16,10 +16,10 @@
         [NotLocalizable]
         public override string Description => string.Empty;
 
+        public override StatusEffectDisplayMode DisplayMode => StatusEffectDisplayMode.None;
+
         // does not decrease
         public override double IntensityAutoDecreasePerSecondValue => 0;
-
-        public override bool IsIntensityPercentVisible => false;
 
         // visible to other players as an icon over player
         public override bool IsPublic => true;

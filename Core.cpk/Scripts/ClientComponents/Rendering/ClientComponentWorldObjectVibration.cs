@@ -49,7 +49,7 @@
 
         private void RefreshMaterial()
         {
-            if (this.spriteRenderer == null)
+            if (this.spriteRenderer is null)
             {
                 return;
             }

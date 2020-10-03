@@ -30,7 +30,7 @@
 
         public override double ShieldProtectionDuration => 52 * 60 * 60; // 52 hours
 
-        public override double ShieldProtectionTotalElectricityCost => 10000;
+        public override double ShieldProtectionTotalElectricityCost => 5000;
 
         public override float StructurePointsMax => 42000;
 

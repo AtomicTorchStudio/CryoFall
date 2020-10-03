@@ -86,7 +86,7 @@
                 async () =>
                 {
                     var result = await this.CallServer(_ => _.ServerRemote_Pickup(data.GameObject));
-                    if (result == null)
+                    if (result is null)
                     {
                         this.SoundPresetObject.PlaySound(ObjectSound.InteractFail);
                         return;

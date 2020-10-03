@@ -269,7 +269,7 @@
             Attribute for configuring remote call parameters such as channel and max call rate.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.State.RemoteCallSettingsAttribute.#ctor(AtomicTorch.CBND.GameApi.Data.State.DeliveryMode,System.Byte,System.Int16,System.String,System.Boolean)">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.State.RemoteCallSettingsAttribute.#ctor(AtomicTorch.CBND.GameApi.Data.State.DeliveryMode,System.Double,System.Int16,System.String,System.Boolean,System.Byte)">
             <summary>
             Remote call settings.
             </summary>
@@ -277,7 +277,17 @@
             Please read
             https://github.com/lidgren/lidgren-network-gen3/wiki/Sequence-Channels
             </param>
-            <param name="maxCallsPerSecond">Max update rate (useful to limit network utilization).</param>
+            <param name="timeInterval">
+            The interval of sending the remote calls
+            (such as 1/40.0 to send every frame for a server with 40 FPS or tickrate).
+            This is used as a rate limit for remote calls
+            (to limit network utilization and prevent spamming certain methods).
+            The server will drop the connection when notice an abuse by exceeding the rate.
+            IMPORTANT: please keep in mind that the provided number should be a double floating point number.
+            If you divide on a number, ensure its type is double.
+            E. g. use 1/60.0 instead of 1/60 as in the second case it will result in zero as both numbers are int!
+            The default time interval is defined by <see cref="F:AtomicTorch.CBND.GameApi.Data.State.RemoteCallSettingsAttribute.DefaultTimeInterval" />.
+            </param>
             <param name="keyArgIndex">
             Remote call method argument at this index will be used as a key. Use it if you need to
             separate remote calls on two independent sequence channels based by what the object is argument.
@@ -287,6 +297,20 @@
             one class.
             For example, you can have a shared channel for weapon fire start/stop methods,
             this way you will always have the valid state (firing/non-firing).
+            </param>
+            <param name="avoidBuffer">
+            Should the remote method execute in order with the order commands in its scheduled time (recommended)
+            or should it execute ASAP (not recommended as it might lead to the execution order problem).
+            </param>
+            <param name="clientMaxSendQueueSize">
+            Determines how many remote calls should be scheduled in a queue for sending.
+            Client is always sending remote calls of the same type one by one.
+            The default value is <see cref="F:AtomicTorch.CBND.GameApi.Data.State.RemoteCallSettingsAttribute.DefaultClientMaxSendQueueSize" />.
+            If this number is exceeded during scheduling a remote call,
+            the client will drop the first remote call in the queue.
+            Please note that it applies only to the remote calls with specific delivery
+            methods (Default, Unreliable, ReliableUnordered, ReliableOrdered).
+            Sequenced delivery methods will use a max queue size of a single entry.
             </param>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers">
@@ -3829,7 +3853,7 @@
             <param name="worldObject">Any world object.</param>
             <param name="result"></param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjects(AtomicTorch.GameEngine.Common.DataStructures.ITempList{AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject})">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjects(System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject})">
             <summary>
             Adds all the static world objects into the list.
             Very slow and should be not used as is unless very necessary!

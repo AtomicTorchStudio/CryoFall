@@ -163,6 +163,15 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Под кайфом
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Пожалуйста, подождите окончания периода задержки.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Вы недавно использовали медицинский предмет. Вы не сможете использовать подобные предметы до окончания периода задержки.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Медицинская задержка
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Вы приняли слишком много лекарств, и это не пошло на пользу вашему здоровью.
 

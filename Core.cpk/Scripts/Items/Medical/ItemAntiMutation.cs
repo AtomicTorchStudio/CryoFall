@@ -12,10 +12,12 @@
 
         public const string NotificationMutation_Title = "No mutations";
 
+        public override double CooldownDuration => MedicineCooldownDuration.None;
+
         public override string Description =>
             "Protects and restores cell DNA damaged by radiation exposure and other harmful effects. Stops uncontrolled mutations in the body.";
 
-        public override double MedicalToxicity => 0.2;
+        public override double MedicalToxicity => 0.35;
 
         public override string Name => "Anti-mutation medicine";
 

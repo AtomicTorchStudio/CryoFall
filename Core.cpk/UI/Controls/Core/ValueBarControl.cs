@@ -297,9 +297,9 @@
             this.isValueInterpolated = this.IsValueInterpolated;
 
             this.contentControl = this.Content as FrameworkElement;
-            if (this.contentControl == null)
+            if (this.contentControl is null)
             {
-                if (this.DefaultContentTemplate == null)
+                if (this.DefaultContentTemplate is null)
                 {
                     Api.Logger.Error(
                         "Content not set for value bar control with Name="
@@ -508,7 +508,7 @@
             }
 
             if (!this.isDisplayLabel
-                || this.textBlockValueDisplay == null)
+                || this.textBlockValueDisplay is null)
             {
                 // do not update text
                 return;
@@ -548,7 +548,7 @@
                 this.lastValue = v;
                 this.lastValueMax = maxValue;
                 this.textBlockValueDisplay.Text =
-                    this.labelFormat != null
+                    this.labelFormat is not null
                         ? string.Format(this.labelFormat, value, maxValue)
                         : this.lastValue
                           + "/"
@@ -564,7 +564,7 @@
 
         private void UpdateCurrentTooltipText()
         {
-            if (this.tooltipTextBlock == null)
+            if (this.tooltipTextBlock is null)
             {
                 // no current tooltip
                 return;
@@ -597,7 +597,7 @@
                 return;
             }
 
-            if (this.contentControl == null)
+            if (this.contentControl is null)
             {
                 throw new Exception("Content control not found for ValueBarControl with Name=" + this.Name);
             }
@@ -654,14 +654,14 @@
             this.isDisplayBar = this.IsDisplayBar;
             this.isDisplayPercents = this.IsDisplayPercents;
 
-            if (this.textBlockValueDisplay != null)
+            if (this.textBlockValueDisplay is not null)
             {
                 this.textBlockValueDisplay.Visibility = this.isDisplayLabel ? Visibility.Visible : Visibility.Collapsed;
             }
 
             var barVisibility = this.isDisplayBar ? Visibility.Visible : Visibility.Collapsed;
             this.contentControl.Visibility = barVisibility;
-            if (this.border != null)
+            if (this.border is not null)
             {
                 this.border.Visibility = barVisibility;
             }

@@ -294,7 +294,7 @@
                                                           weaponCache.ProtoExplosive);
 
                 var objectDrone = weaponCache.Drone;
-                if (objectDrone != null)
+                if (objectDrone is not null)
                 {
                     // drop resources into the internal storage of the drone
                     var storageItemsContainer = ((IProtoDrone)objectDrone.ProtoGameObject)

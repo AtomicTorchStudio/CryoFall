@@ -232,7 +232,7 @@
             base.ServerInitialize(data);
 
             var itemsContainer = data.PrivateState.ItemsContainer;
-            if (itemsContainer != null)
+            if (itemsContainer is not null)
             {
                 // container already created - update slots count
                 Server.Items.SetSlotsCount(itemsContainer, slotsCount: this.ItemsSlotsCount);

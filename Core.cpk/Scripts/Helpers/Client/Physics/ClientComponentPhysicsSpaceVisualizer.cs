@@ -145,7 +145,7 @@
 
         public static bool IsVisualizerEnabled
         {
-            get => instance != null;
+            get => instance is not null;
             set
             {
                 if (!(Api.IsEditor
@@ -193,7 +193,7 @@
                     return;
                 }
 
-                if (this.physicsSpace != null)
+                if (this.physicsSpace is not null)
                 {
                     this.physicsSpace.DebugPhysicsBodyAdded -= this.PhysicsBodyAddedHandler;
                     this.physicsSpace.DebugPhysicsBodyRemoved -= this.PhysicsBodyRemovedHandler;
@@ -213,7 +213,7 @@
 
                 this.physicsSpace = value;
 
-                if (this.physicsSpace == null)
+                if (this.physicsSpace is null)
                 {
                     return;
                 }
@@ -226,6 +226,17 @@
                 {
                     this.RegisterPhysicsBody(physicsBody);
                 }
+            }
+        }
+
+        public static void DrawGizmo(IPhysicsShape physicsShape, double? lifetime = null)
+        {
+            if (Api.IsEditor
+                || Api.Shared.IsDebug)
+            {
+                instance?.DrawPhysicsTest(physicsShape,
+                                          isClient: true,
+                                          lifetime);
             }
         }
 
@@ -292,7 +303,7 @@
             IPhysicsBody physicsBody,
             IComponentAttachedControl component)
         {
-            if (physicsBody.AssociatedProtoTile != null)
+            if (physicsBody.AssociatedProtoTile is not null)
             {
                 component.SceneObject.Destroy();
             }
@@ -405,7 +416,10 @@
             }
         }
 
-        private void DrawPhysicsTest(IPhysicsShape physicsShape, bool isClient)
+        private void DrawPhysicsTest(
+            IPhysicsShape physicsShape,
+            bool isClient,
+            double? lifetime = null)
         {
             if (isClient && !this.isClientTestRendered
                 || !isClient && !this.isServerTestRendered)
@@ -446,7 +460,7 @@
 
             Panel.SetZIndex((UIElement)canvas.Parent, 1);
 
-            sceneObject.Destroy(delay: DebugShapeLifetime);
+            sceneObject.Destroy(delay: lifetime ?? DebugShapeLifetime);
         }
 
         private Brush GetBrush(IPhysicsBody physicsBody, IPhysicsShape shape)
@@ -521,7 +535,7 @@
             var associatedWorldObject = physicsBody.AssociatedWorldObject;
             var associatedProtoTile = physicsBody.AssociatedProtoTile;
 
-            if (this.visualizerControlsRoot == null)
+            if (this.visualizerControlsRoot is null)
             {
                 this.visualizerControlsRoot = new Canvas()
                 {
@@ -548,7 +562,7 @@
                 {
                     ToolTipServiceExtend.SetToolTip(
                         shapeControl,
-                        associatedWorldObject != null
+                        associatedWorldObject is not null
                             ? $"{associatedWorldObject.Name} (ID={associatedWorldObject.Id})"
                             : associatedProtoTile.ToString());
                 }
@@ -568,7 +582,7 @@
             }
 
             IClientSceneObject sceneObject;
-            if (associatedWorldObject != null)
+            if (associatedWorldObject is not null)
             {
                 sceneObject = associatedWorldObject.ClientSceneObject;
             }

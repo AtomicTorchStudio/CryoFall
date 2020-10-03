@@ -25,7 +25,7 @@
                 return;
             }
 
-            if (Instance != null)
+            if (Instance is not null)
             {
                 throw new Exception(this.GetType() + " instance is already exists");
             }

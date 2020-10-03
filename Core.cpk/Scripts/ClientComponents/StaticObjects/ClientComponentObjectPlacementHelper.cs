@@ -47,7 +47,7 @@
             out bool canPlace,
             out bool isTooFar);
 
-        public static bool HasInstance => instance != null;
+        public static bool HasInstance => instance is not null;
 
         public bool HideBlueprintOnOverlapWithTheSameObject { get; set; } = true;
 
@@ -107,7 +107,7 @@
 
             var isUpdateRequired = false;
             this.isCanBuildChanged = false;
-            if (this.blueprintRenderer == null)
+            if (this.blueprintRenderer is null)
             {
                 // first update called
                 this.SetupComponents();
@@ -247,14 +247,14 @@
 
         private void UpdateBlueprint(Vector2Ushort tilePosition)
         {
-            if (this.blueprintRenderer == null)
+            if (this.blueprintRenderer is null)
             {
                 return;
             }
 
             var tile = Client.World.GetTile(tilePosition);
             this.UpdateBlueprintCanBuild(tile);
-            if (this.blueprintRenderer == null
+            if (this.blueprintRenderer is null
                 || !this.blueprintRenderer.IsEnabled)
             {
                 return;
@@ -292,7 +292,7 @@
                                           out var canPlace,
                                           out var isTooFar);
 
-            if (this.blueprintRenderer == null)
+            if (this.blueprintRenderer is null)
             {
                 // this component have been disabled during the validation callback
                 return;

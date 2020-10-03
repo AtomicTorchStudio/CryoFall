@@ -119,7 +119,7 @@
                 return;
             }
 
-            if (this.container == null)
+            if (this.container is null)
             {
                 //throw new Exception("Container is not assigned for " + this);
                 return;
@@ -192,7 +192,7 @@
         {
             if (!this.isLoaded
                 || this.isSubscribedOnContainerEvents
-                || this.container == null)
+                || this.container is null)
             {
                 return;
             }

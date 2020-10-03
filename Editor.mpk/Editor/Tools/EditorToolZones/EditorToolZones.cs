@@ -37,7 +37,7 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var control = new EditorToolZonesSettings();
-            if (this.settings == null)
+            if (this.settings is null)
             {
                 this.settings = new ViewModelEditorToolZonesSettings();
                 this.settings.BrushSettingsChanged += this.RefreshActiveTool;
@@ -51,7 +51,7 @@
         private void ClientOnPaintZone(List<Vector2Ushort> tilePositions, bool isRepeat)
         {
             var selectedZoneForBrush = this.settings.SelectedZoneForBrush;
-            if (selectedZoneForBrush == null
+            if (selectedZoneForBrush is null
                 || !selectedZoneForBrush.IsRendered)
             {
                 // no zone selected for brush or zone is not visible

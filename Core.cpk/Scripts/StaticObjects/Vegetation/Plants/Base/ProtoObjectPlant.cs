@@ -110,7 +110,7 @@
 
         public Task<ProtoPlantTooltipPrivateData> ClientGetTooltipData(IStaticWorldObject plant)
         {
-            Api.Assert(plant != null, "Plant object cannot be null");
+            Api.Assert(plant is not null, "Plant object cannot be null");
             return this.CallServer(_ => _.ServerRemote_GetTooltipData(plant));
         }
 
@@ -272,7 +272,7 @@
         protected override void ClientAddShadowRenderer(ClientInitializeData data)
         {
             var farmObject = CommonGetFarmObjectProto(data.GameObject.OccupiedTile);
-            if (farmObject != null
+            if (farmObject is not null
                 && !farmObject.IsDrawingPlantShadow)
             {
                 // don't create plant shadow renderer
@@ -300,7 +300,7 @@
             ClientAddPlantRenderingOffsetFromFarm(tile, clientState.Renderer);
 
             var rendererShadow = clientState.RendererShadow;
-            if (rendererShadow != null)
+            if (rendererShadow is not null)
             {
                 ClientAddPlantRenderingOffsetFromFarm(tile, rendererShadow);
             }
@@ -417,7 +417,7 @@
         {
             base.ServerInitialize(data);
 
-            data.PublicState.IsFertilized = data.PrivateState.AppliedFertilizerProto != null;
+            data.PublicState.IsFertilized = data.PrivateState.AppliedFertilizerProto is not null;
         }
 
         protected override void ServerOnGathered(IStaticWorldObject worldObject, ICharacter byCharacter)
@@ -548,7 +548,7 @@
         {
             var multiplier = 1.0;
 
-            if (privateState.AppliedFertilizerProto != null)
+            if (privateState.AppliedFertilizerProto is not null)
             {
                 // apply fertilizer effect (as percents)
                 multiplier += Math.Max(0, privateState.AppliedFertilizerProto.PlantGrowthSpeedMultiplier - 1);
@@ -626,7 +626,7 @@
             }
 
             // set previous growth stage (on achieving last growth stage it will produce the harvest)
-            if (gatheredByCharacter != null)
+            if (gatheredByCharacter is not null)
             {
                 this.ServerSetBonusForCharacter(worldObject, gatheredByCharacter, applyNow: false);
             }
@@ -634,6 +634,7 @@
             this.ServerSetGrowthStage(worldObject, this.GrowthStageIndexHarvestProductionProcess);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.25)]
         private ProtoPlantTooltipPrivateData ServerRemote_GetTooltipData(IStaticWorldObject worldObjectPlant)
         {
             this.VerifyGameObject(worldObjectPlant);

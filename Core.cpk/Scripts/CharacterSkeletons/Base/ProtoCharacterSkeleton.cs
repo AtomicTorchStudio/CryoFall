@@ -421,6 +421,20 @@
         {
         }
 
+        protected virtual ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()
+        {
+            if (!Api.Shared.IsFolderExists(ContentPaths.Sounds + this.SoundsFolderPath))
+            {
+                throw new Exception("Sounds folder for " + this + " doesn't exist");
+            }
+
+            var preset = SoundPreset.CreateFromFolder<CharacterSound>(
+                this.SoundsFolderPath + "/Character/",
+                throwExceptionIfNoFilesFound: false);
+            //this.VerifySoundPreset(preset);
+            return preset;
+        }
+
         protected virtual ReadOnlySoundPreset<GroundSoundMaterial> PrepareSoundPresetFootsteps()
         {
             var preset = SoundPreset.CreateFromFolder<GroundSoundMaterial>(
@@ -468,7 +482,7 @@
                 }
             }
 
-            if (protoGroundObject != null)
+            if (protoGroundObject is not null)
             {
                 // get sound material of proto ground object
                 groundSoundMaterial = protoGroundObject.SharedGetGroundSoundMaterial();
@@ -519,20 +533,6 @@
                 character,
                 volume: (float)volume,
                 pitch: (float)pitch);
-        }
-
-        protected virtual ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()
-        {
-            if (!Api.Shared.IsFolderExists(ContentPaths.Sounds + this.SoundsFolderPath))
-            {
-                throw new Exception("Sounds folder for " + this + " doesn't exist");
-            }
-
-            var preset = SoundPreset.CreateFromFolder<CharacterSound>(
-                this.SoundsFolderPath + "/Character/",
-                throwExceptionIfNoFilesFound: false);
-            //this.VerifySoundPreset(preset);
-            return preset;
         }
 
         private ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetMovement()

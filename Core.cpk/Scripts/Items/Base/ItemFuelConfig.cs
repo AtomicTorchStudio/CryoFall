@@ -40,13 +40,13 @@
 
         public virtual ITextureResource ClientGetFuelIcon()
         {
-            if (this.FuelCustomIcon != null)
+            if (this.FuelCustomIcon is not null)
             {
                 return this.FuelCustomIcon;
             }
 
             var fuelType = this.FuelProtoItemsList.FirstOrDefault()?.GetType();
-            if (fuelType == null)
+            if (fuelType is null)
             {
                 Api.Logger.Error("No fuel icon is overridden for " + this);
                 return TextureResource.NoTexture;

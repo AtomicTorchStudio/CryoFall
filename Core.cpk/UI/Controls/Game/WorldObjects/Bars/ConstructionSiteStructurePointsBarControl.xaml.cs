@@ -22,7 +22,7 @@
 
                 this.objectStructurePointsData = value;
 
-                if (this.viewModel != null)
+                if (this.viewModel is not null)
                 {
                     this.viewModel.ObjectStructurePointsData = this.objectStructurePointsData;
                 }

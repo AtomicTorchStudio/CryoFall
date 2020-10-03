@@ -17,7 +17,7 @@
             // remove all non-done editor actions
             Actions.RemoveAll(a => !a.IsDone);
             var lastAction = Actions.LastOrDefault();
-            if (lastAction != null
+            if (lastAction is not null
                 && canGroupWithPreviousAction
                 && lastAction.TryGroupWith(editorAction))
             {
@@ -32,7 +32,7 @@
         public static void Redo()
         {
             var action = Actions.FirstOrDefault(a => !a.IsDone);
-            if (action != null)
+            if (action is not null)
             {
                 action.Do();
             }
@@ -45,7 +45,7 @@
         public static void Undo()
         {
             var action = Actions.LastOrDefault(a => a.IsDone);
-            if (action != null)
+            if (action is not null)
             {
                 action.Undo();
             }

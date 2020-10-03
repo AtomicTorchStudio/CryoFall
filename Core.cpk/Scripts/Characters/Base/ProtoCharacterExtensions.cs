@@ -35,9 +35,10 @@
             return character.SharedGetFinalStatsCache()[statName];
         }
 
-        public static bool SharedHasPerk(this ICharacter character, StatName statName)
+        public static bool SharedHasPerk(this ICharacter character, StatName statNamePerk)
         {
-            return character.SharedGetFinalStatsCache()[statName] >= 1;
+            return character.SharedGetFinalStatsCache()
+                            .HasPerk(statNamePerk);
         }
     }
 }

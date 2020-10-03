@@ -27,7 +27,7 @@
         protected override void WindowClosed()
         {
             base.WindowClosed();
-            this.viewModel.ListSelectedTechGroup = null;
+            this.viewModel.SelectedTechGroup = null;
         }
 
         protected override void WindowClosing()

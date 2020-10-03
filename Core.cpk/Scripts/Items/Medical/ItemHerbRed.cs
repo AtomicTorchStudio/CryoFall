@@ -8,6 +8,8 @@
 
     public class ItemHerbRed : ProtoItemMedical, IProtoItemOrganic
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "Medicinal herb with a strong stimulating effect. Should not be taken raw, as it contains toxins.";
 

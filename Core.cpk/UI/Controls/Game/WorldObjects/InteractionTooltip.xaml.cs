@@ -55,7 +55,7 @@
             lastCanInteract = canInteract;
 
             if (string.IsNullOrEmpty(message)
-                || worldObject == null)
+                || worldObject is null)
             {
                 return;
             }

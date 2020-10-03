@@ -88,7 +88,7 @@
             }
 
             var command = this.Command;
-            if (command != null)
+            if (command is not null)
             {
                 command.Execute(null);
                 return;

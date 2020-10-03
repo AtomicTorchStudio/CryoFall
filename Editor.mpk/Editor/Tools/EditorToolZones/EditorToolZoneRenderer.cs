@@ -181,7 +181,7 @@
             // local func to traverse quad tree and add missing renderers
             void CreateRendersRecursive(IQuadTreeNode node)
             {
-                if (node == null
+                if (node is null
                     || !this.IsVisibleQuadTreeNode(node.Position, node.Size))
                 {
                     return;

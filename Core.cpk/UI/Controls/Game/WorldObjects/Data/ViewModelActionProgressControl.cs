@@ -18,14 +18,14 @@
                     return;
                 }
 
-                if (this.actionState != null)
+                if (this.actionState is not null)
                 {
                     this.actionState.ProgressPercentsChanged -= this.ProgressPercentsChangedHandler;
                 }
 
                 this.actionState = value;
 
-                if (this.actionState == null)
+                if (this.actionState is null)
                 {
                     if (!this.IsDisposed)
                     {

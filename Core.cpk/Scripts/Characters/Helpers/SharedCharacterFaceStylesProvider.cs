@@ -176,6 +176,17 @@
             return (ushort)this.allSkinToneFiles.IndexOf(skinToneName);
         }
 
+        public bool SharedIsValidFaceStyle(CharacterHumanFaceStyle style)
+        {
+            this.EnsureInitialized();
+            return this.allFaceFolders.TryGetValue(style.FaceId, out var face)
+                   && face.TopIds.Contains(style.TopId)
+                   && face.BottomIds.Contains(style.BottomId)
+                   && this.allHairFolders.Contains(style.HairId)
+                   && this.allSkinToneFiles.Contains(style.SkinToneId)
+                   && this.allHairColorFiles.Contains(style.HairColorId);
+        }
+
         private void EnsureInitialized()
         {
             if (this.isInitialized)

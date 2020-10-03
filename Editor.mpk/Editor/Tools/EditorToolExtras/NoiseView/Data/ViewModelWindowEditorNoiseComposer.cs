@@ -134,7 +134,7 @@
         private async Task<ITextureResource> GenerateProceduralNoise(ProceduralTextureRequest request)
         {
             var noiseSource = this.GetNoiseSource();
-            if (noiseSource == null)
+            if (noiseSource is null)
             {
                 // return black texture
                 var black = new Color[1, 1];

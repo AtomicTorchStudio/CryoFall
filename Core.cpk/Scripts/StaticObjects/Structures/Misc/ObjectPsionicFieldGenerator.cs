@@ -150,7 +150,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
             build.AddStageRequiredItem<ItemOrePragmium>(count: 5);
             build.AddStageRequiredItem<ItemPlastic>(count: 2);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 1);

@@ -122,7 +122,7 @@
             var isActive = publicState.ElectricityProducerState == ElectricityProducerState.PowerOnActive
                            && privateState.LiquidState.Amount > 0;
             var fuelBurningState = privateState.FuelBurningState;
-            if (fuelBurningState != null)
+            if (fuelBurningState is not null)
             {
                 // progress fuel burning
                 FuelBurningMechanic.Update(

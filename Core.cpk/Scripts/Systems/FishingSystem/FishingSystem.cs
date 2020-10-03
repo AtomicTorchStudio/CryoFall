@@ -25,6 +25,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -374,6 +375,7 @@
             ClientFishingSoundsHelper.PlaySoundFail(ClientCurrentCharacterHelper.Character);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0)]
         private void ServerRemote_PullFish(ILogicObject fishingSession)
         {
             var character = ServerRemoteContext.Character;

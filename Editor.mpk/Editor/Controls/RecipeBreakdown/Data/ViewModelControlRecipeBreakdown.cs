@@ -30,7 +30,7 @@
 
         protected override void DisposeViewModel()
         {
-            if (this.inheritedViewModel != null)
+            if (this.inheritedViewModel is not null)
             {
                 ((BaseViewModel)this.inheritedViewModel).PropertyChanged
                     -= this.InheritedViewModelOnPropertyChangedHandler;
@@ -50,14 +50,14 @@
         private void RefreshRecipe()
         {
             var oldViewModel = this.ViewModelRecipeBreakdown;
-            if (oldViewModel != null)
+            if (oldViewModel is not null)
             {
                 this.ViewModelRecipeBreakdown = null;
                 oldViewModel.Dispose();
             }
 
             var recipe = this.inheritedViewModel.ViewModelRecipe?.Recipe;
-            if (recipe == null)
+            if (recipe is null)
             {
                 return;
             }

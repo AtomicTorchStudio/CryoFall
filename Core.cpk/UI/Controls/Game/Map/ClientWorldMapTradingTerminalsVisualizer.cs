@@ -70,7 +70,7 @@
                 return;
             }
 
-            if (e.OldItems != null)
+            if (e.OldItems is not null)
             {
                 foreach (var oldItem in e.OldItems)
                 {
@@ -78,7 +78,7 @@
                 }
             }
 
-            if (e.NewItems != null)
+            if (e.NewItems is not null)
             {
                 foreach (var newItem in e.NewItems)
                 {
@@ -108,7 +108,7 @@
                 }
             }
 
-            if (this.marksProvider != null)
+            if (this.marksProvider is not null)
             {
                 foreach (var mark in this.marksProvider)
                 {

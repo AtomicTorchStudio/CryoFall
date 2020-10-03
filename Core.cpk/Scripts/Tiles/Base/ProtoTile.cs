@@ -641,7 +641,7 @@
 
         private static TextureResource SharedCreateMapTexture(string worldMapTexturePath)
         {
-            var worldMapTexture = worldMapTexturePath != null
+            var worldMapTexture = worldMapTexturePath is not null
                                       ? new TextureResource(worldMapTexturePath,
                                                             isTransparent: false,
                                                             qualityOffset: -100)

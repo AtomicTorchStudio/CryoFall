@@ -44,13 +44,13 @@
             this.rows.Add(new RowDefinition());
 
             var row = this.currentRowsCount++;
-            if (controlKey != null)
+            if (controlKey is not null)
             {
                 Grid.SetRow(controlKey, row);
                 this.children.Add(controlKey);
             }
 
-            if (controlValue != null)
+            if (controlValue is not null)
             {
                 Grid.SetRow(controlValue, row);
                 Grid.SetColumn(controlValue, 2);

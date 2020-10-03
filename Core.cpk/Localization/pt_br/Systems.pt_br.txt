@@ -382,47 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `O operador deste servidor configurou-o apenas para convidados.[br]
 Verifique a descrição do servidor para mais detalhes.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`Receba as boas-vindas ao servidor oficial de CryoFall!
-[br]
-[br]
-[b]Importante:[/b]
-[br]
-Este é um servidor JvA (jogador versus ambiente). Neste servidor, os jogadores não podem atacar uns aos outros direta ou indiretamente. Esse servidor é dedicado à exploração pacífica do jogo, sem engajamento hostil entre jogadores. Você não pode matar, destruir, roubar ou atacar os outros jogadores. Excluindo-se isso, o servidor oferece a você a experiência completa de CryoFall e suas criaturas perigosas, tecnologias desbloqueáveis e mundo explorável. Veja aonde essa jornada te levará.
-[br]
-[br]
-Se preferir ter uma experiência mais emocionante e irrestrita, considere entrar em um servidor JvJ.
-[br]
-[br]
-[b]Regras do servidor:[/b]
-[*]Agir com respeito e cortesia com os outros. Não toleramos nenhuma forma de abuso, discriminação, etc.
-[*]Cumprir todos os pedidos dos moderadores do servidor.
-[*]Não enviar spam, floodar o bate-papo ou usar linguagem profana em excesso.
-[*]Não tentar burlar ou se aproveitar de nenhuma uma das restrições do JvA.
-[*]Não abusar das regras ou da mecânica do jogo a fim de atazanar ou ser inconvenientes com os outros jogadores.
-[br]
-[br]
-Boa sorte! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+Este servidor comunitário tem modificações de terceiros instaladas. Não há garantia de que funcionará corretamente, nem que oferecerá a você a experiência CryoFall adequada. Se encontrar algum problema, encaminhe-o ao proprietário deste servidor de comunidade.
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`Receba as boas-vindas ao servidor oficial de CryoFall!
-[br]
-[br]
-[b]Importante:[/b]
-[br]
-Este é um servidor JvJ gratuito para todos. Lembre-se que nos servidores JvJ você se deparará com agressão de outros jogadores. Será necessário proteger-se direito e manter-se vigilante o tempo todo. Talvez seja interessante pensar em se aliar a outros sobreviventes para aumentar suas chances.
-[br]
-[br]
-Caso você prefire uma experiência mais descontraída, especialmente se estiver jogando pela primeira vez, considere jogar em um servidor JvA.
-[br]
-[br]
-[b]Regras do servidor:[/b]
-[*]Agir com respeito e cortesia com os outros. Não toleramos nenhuma forma de abuso, discriminação, etc.
-[*]Cumprir todos os pedidos dos moderadores do servidor.
-[*]Não enviar spam, floodar o bate-papo ou usar linguagem profana em excesso.
-[br]
-[br]
-Boa sorte! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`Este é um servidor JvA (jogador versus ambiente). Neste servidor, os jogadores não podem atacar uns aos outros direta ou indiretamente. Esse servidor é dedicado à exploração pacífica do jogo, sem engajamento hostil entre jogadores. Você não pode matar, destruir, roubar ou atacar os outros jogadores. Excluindo-se isso, o servidor oferece a você a experiência completa de CryoFall e suas criaturas perigosas, tecnologias desbloqueáveis e mundo explorável. Veja aonde essa jornada te levará.
+[br]Se preferir ter uma experiência mais emocionante e irrestrita, considere entrar em um servidor JvJ.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`Este é um servidor JvJ gratuito para todos. Lembre-se que nos servidores JvJ, [b]você se deparará com agressão[/b]de outros jogadores. Será necessário proteger-se direito e manter-se vigilante o tempo todo. Este modo de jogo é voltado apenas para jogadores experientes.
+[br]Caso você prefira uma experiência mais descontraída, especialmente se estiver jogando pela primeira vez, considere jogar em um servidor JvA.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+Servidor JvA
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+Servidor de JvJ
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+Servidor com mods
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+Mensagem de boas-vindas
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+Informações sobre limpeza
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Receba as boas-vindas a {0}

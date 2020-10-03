@@ -37,7 +37,7 @@
 
         public static void Initialize()
         {
-            if (Options != null)
+            if (Options is not null)
             {
                 return;
             }

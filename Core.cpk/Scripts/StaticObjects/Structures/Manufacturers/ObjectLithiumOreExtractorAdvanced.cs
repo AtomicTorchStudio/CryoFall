@@ -119,7 +119,7 @@
             build.StageDurationSeconds = BuildDuration.Long;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
-            build.AddStageRequiredItem<ItemCement>(count: 5);
+            build.AddStageRequiredItem<ItemCement>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Long;

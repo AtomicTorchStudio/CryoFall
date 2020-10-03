@@ -187,6 +187,7 @@
                                                       this.ObjectPlantProto.Icon);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
         private void ServerRemote_PlaceAt(IItem item, Vector2Ushort tilePosition)
         {
             var character = ServerRemoteContext.Character;

@@ -14,7 +14,7 @@
         {
             this.DestroyProcessSoundEmitter();
 
-            if (this.TargetWorldObject == null)
+            if (this.TargetWorldObject is null)
             {
                 return;
             }
@@ -29,7 +29,7 @@
 
         protected override void ClientOnStart()
         {
-            if (this.TargetWorldObject == null)
+            if (this.TargetWorldObject is null)
             {
                 return;
             }
@@ -43,7 +43,7 @@
             objectSoundPreset.PlaySound(ObjectSound.InteractStart, this.Character);
 
             var soundProcess = objectSoundPreset.GetSound(ObjectSound.InteractProcess);
-            if (soundProcess != null)
+            if (soundProcess is not null)
             {
                 this.soundEmitter = Api.Client.Audio.CreateSoundEmitter(
                     this.Character,

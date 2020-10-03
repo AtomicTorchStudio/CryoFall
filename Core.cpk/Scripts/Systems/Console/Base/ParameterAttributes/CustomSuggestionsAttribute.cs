@@ -22,7 +22,7 @@
 
         public IEnumerable<string> GetSuggestions(Type type, string startsWith)
         {
-            if (this.cachedFuncGetSuggestions == null)
+            if (this.cachedFuncGetSuggestions is null)
             {
                 // cache function delegate
                 this.cachedType = type;

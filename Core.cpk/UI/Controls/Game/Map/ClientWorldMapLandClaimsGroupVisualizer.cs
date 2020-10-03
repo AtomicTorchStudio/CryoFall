@@ -64,7 +64,7 @@
             }
 
             var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            if (areasGroup == null)
+            if (areasGroup is null)
             {
                 return;
             }

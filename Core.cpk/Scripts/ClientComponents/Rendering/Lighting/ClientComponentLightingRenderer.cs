@@ -136,7 +136,7 @@
 
             var renderTargetSize = GetRenderTargetSize();
 
-            if (renderTargetLightMap == null
+            if (renderTargetLightMap is null
                 || renderTargetLightMap.Width != renderTargetSize.X
                 || renderTargetLightMap.Height != renderTargetSize.Y)
             {

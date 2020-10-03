@@ -21,7 +21,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
             string playerName)
         {
             var character = Server.Characters.GetPlayerCharacter(playerName);
-            if (character == null)
+            if (character is null)
             {
                 throw new Exception("The character name is not provided");
             }

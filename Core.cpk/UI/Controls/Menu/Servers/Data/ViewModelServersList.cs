@@ -53,6 +53,8 @@
 
 #endif
 
+        public event Action SortTypeOrOrderChanged;
+
         public BaseMultiplayerMenuServersController Controller
         {
             get => this.controller;
@@ -79,7 +81,7 @@
 
                 if (this.isActive)
                 {
-                    this.SortEntries();
+                    this.ScheduleSortEntries();
                 }
             }
         }
@@ -96,6 +98,7 @@
 
                 this.controller.IsSortOrderReversed = value;
                 this.NotifyThisPropertyChanged();
+                this.SortTypeOrOrderChanged?.Invoke();
             }
         }
 
@@ -134,14 +137,14 @@
                     return;
                 }
 
-                if (this.selectedServer != null)
+                if (this.selectedServer is not null)
                 {
                     this.selectedServer.ViewModelServerInfo.IsSelected = false;
                 }
 
                 this.selectedServer = value;
 
-                if (this.selectedServer != null)
+                if (this.selectedServer is not null)
                 {
                     this.selectedServer.ViewModelServerInfo.IsSelected = true;
                 }
@@ -173,33 +176,6 @@
 
         public ObservableCollection<ViewModelServerInfoListEntry> ServersList { get; }
 
-        public int SortBySelectedIndex
-        {
-            get
-            {
-                var index = ViewModelServersListSortType.AllSortTypes.IndexOf(this.controller.SortType);
-                return index;
-            }
-            set
-            {
-                if (value == this.SortBySelectedIndex)
-                {
-                    return;
-                }
-
-                if (value < 0
-                    || value >= ViewModelServersListSortType.AllSortTypes.Count)
-                {
-                    // invalid value
-                    return;
-                }
-
-                var sortBy = ViewModelServersListSortType.AllSortTypes[value];
-                this.controller.SortType = sortBy;
-                this.NotifyThisPropertyChanged();
-            }
-        }
-
         public ServersListSortType SortType
         {
             get => this.controller.SortType;
@@ -212,13 +188,14 @@
 
                 this.controller.SortType = value;
                 this.NotifyThisPropertyChanged();
+                this.SortTypeOrOrderChanged?.Invoke();
             }
         }
 
         public void ControllerListChangedHandler()
         {
             this.RefreshListCount();
-            if (this.selectedServer != null
+            if (this.selectedServer is not null
                 && !this.controller.ServersCollection.Contains(this.selectedServer))
             {
                 this.SelectedServer = null;
@@ -227,18 +204,16 @@
             this.NotifyPropertyChanged(nameof(this.SelectedServer));
         }
 
-        public void SortEntries()
+        public void ScheduleSortEntries()
         {
-            var selected = this.SelectedServer;
-            this.controller.SortEntries();
-            this.SelectedServer = selected;
+            this.controller.ScheduleSortEntries();
         }
 
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
 
-            if (this.controller != null)
+            if (this.controller is not null)
             {
                 this.controller.IsListAvailableChanged -= this.ControllerIsListAvailableChangedHandler;
                 this.controller.ListChanged -= this.ControllerListChangedHandler;

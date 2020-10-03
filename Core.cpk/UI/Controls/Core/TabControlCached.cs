@@ -96,14 +96,14 @@
                 var isSelected = index == selectedIndex;
 
                 this.tabContentPresenters.TryGetValue(tabItem, out var tabContentPresenter);
-                if (tabContentPresenter == null
+                if (tabContentPresenter is null
                     && isSelected)
                 {
                     // need to create the content
                     tabContentPresenter = this.EnsureTabContentPresenterExist(index);
                 }
 
-                if (tabContentPresenter != null)
+                if (tabContentPresenter is not null)
                 {
                     tabContentPresenter.Visibility = isSelected
                                                          ? Visibility.Visible
@@ -166,7 +166,7 @@
 
         private static void DisposeContentPresenter(FrameworkElement contentPresenter)
         {
-            if (contentPresenter != null)
+            if (contentPresenter is not null)
             {
                 BindingOperations.ClearAllBindings(contentPresenter);
             }
@@ -181,7 +181,7 @@
             }
 
             var content = (FrameworkElement)tabItem.Content;
-            if (content == null)
+            if (content is null)
             {
                 return null;
             }

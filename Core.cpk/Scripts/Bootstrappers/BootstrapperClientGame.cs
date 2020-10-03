@@ -54,7 +54,7 @@
 
             isInitialized = true;
 
-            if (currentCharacter == null)
+            if (currentCharacter is null)
             {
                 return;
             }
@@ -147,12 +147,12 @@
 
             ClientComponentObjectPlacementHelper.DestroyInstanceIfExist();
 
-            if (HUDLayoutControl.Instance != null)
+            if (HUDLayoutControl.Instance is not null)
             {
                 Api.Client.UI.LayoutRootChildren.Remove(HUDLayoutControl.Instance);
             }
 
-            if (ChatPanel.Instance != null)
+            if (ChatPanel.Instance is not null)
             {
                 Api.Client.UI.LayoutRootChildren.Remove(ChatPanel.Instance);
             }

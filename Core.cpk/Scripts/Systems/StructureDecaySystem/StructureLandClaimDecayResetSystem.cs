@@ -89,7 +89,7 @@
                 foreach (var owner in owners)
                 {
                     var character = ServerCharacters.GetPlayerCharacter(owner);
-                    if (character == null
+                    if (character is null
                         || !character.ServerIsOnline)
                     {
                         continue;

@@ -25,6 +25,7 @@
 
         /// <summary>
         /// Only one item per stack.
+        /// Please do NOT change this otherwise it will cause issues with items that have durability, ammo, etc.
         /// </summary>
         public const ushort Single = 1;
 

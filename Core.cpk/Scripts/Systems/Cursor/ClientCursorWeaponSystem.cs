@@ -40,7 +40,7 @@
 
         private static CursorResource GetCurrentCursorResource()
         {
-            if (Api.Client.UI.GetVisualInPointedPosition() != null)
+            if (Api.Client.UI.GetVisualInPointedPosition() is not null)
             {
                 return null;
             }

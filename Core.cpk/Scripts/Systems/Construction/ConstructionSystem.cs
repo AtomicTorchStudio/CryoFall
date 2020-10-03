@@ -122,7 +122,7 @@
         {
             var privateState = ClientCurrentCharacterHelper.PrivateState;
             var actionState = privateState.CurrentActionState as ConstructionActionState;
-            if (actionState == null)
+            if (actionState is null)
             {
                 return false;
             }
@@ -181,7 +181,7 @@
                 if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
                 {
                     var worldObjectToRelocate = ClientFindWorldObjectToRelocate(worldObjects);
-                    if (!(worldObjectToRelocate is null))
+                    if (worldObjectToRelocate is not null)
                     {
                         ConstructionRelocationSystem.ClientStartRelocation(worldObjectToRelocate);
                     }
@@ -229,7 +229,7 @@
             ICharacter character,
             IWorldObject worldObject)
         {
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 return;
             }
@@ -237,7 +237,7 @@
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
 
             var actionState = characterPrivateState.CurrentActionState as ConstructionActionState;
-            if (actionState == null
+            if (actionState is null
                 || actionState.WorldObject != worldObject)
             {
                 // not repairing or repairing another object
@@ -310,7 +310,7 @@
             IWorldObject worldObject,
             bool writeToLog)
         {
-            if (worldObject == null
+            if (worldObject is null
                 || worldObject.IsDestroyed)
             {
                 return false;
@@ -404,7 +404,7 @@
                     continue;
                 }
 
-                if (selectedObject != null)
+                if (selectedObject is not null)
                 {
                     switch (worldObject.ProtoGameObject)
                     {
@@ -568,7 +568,7 @@
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
 
             var actionState = characterPrivateState.CurrentActionState as ConstructionActionState;
-            if (actionState == null
+            if (actionState is null
                 || actionState.WorldObject != worldObject)
             {
                 // not repairing or repairing another object

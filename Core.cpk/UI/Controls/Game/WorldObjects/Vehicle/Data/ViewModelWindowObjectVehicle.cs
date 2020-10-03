@@ -37,7 +37,7 @@
         {
             this.VehicleExtraControl = vehicleExtraControl;
             this.VehicleExtraControlViewModel = vehicleExtraControlViewModel;
-            if (vehicleExtraControl != null)
+            if (vehicleExtraControl is not null)
             {
                 vehicleExtraControl.DataContext = vehicleExtraControlViewModel;
             }
@@ -86,7 +86,7 @@
             this.IsVehicleTabActive = true;
             this.ViewModelItemsContainerExchange.IsActive = true;
 
-            if (this.cargoItemsContainer != null)
+            if (this.cargoItemsContainer is not null)
             {
                 this.cargoItemsContainer.ItemAdded += this.CargoItemsContainerItemAddedHandler;
                 this.cargoItemsContainer.ItemCountChanged += this.CargoItemsContainerItemCountChangedHandler;
@@ -142,7 +142,7 @@
                     ClientContainersExchangeManager.Unregister(this);
                 }
 
-                if (this.VehicleExtraControlViewModel != null)
+                if (this.VehicleExtraControlViewModel is not null)
                 {
                     this.VehicleExtraControlViewModel.IsActive = value;
                 }
@@ -178,7 +178,7 @@
         {
             this.IsVehicleTabActive = false;
 
-            if (this.cargoItemsContainer != null)
+            if (this.cargoItemsContainer is not null)
             {
                 this.cargoItemsContainer.ItemAdded -= this.CargoItemsContainerItemAddedHandler;
                 this.cargoItemsContainer.ItemCountChanged -= this.CargoItemsContainerItemCountChangedHandler;

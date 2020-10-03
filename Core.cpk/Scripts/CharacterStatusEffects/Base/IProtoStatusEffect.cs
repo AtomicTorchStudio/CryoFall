@@ -9,9 +9,11 @@
     {
         string Description { get; }
 
+        StatusEffectDisplayMode DisplayMode { get; }
+
         ITextureResource Icon { get; }
 
-        bool IsIntensityPercentVisible { get; }
+        double IntensityAutoDecreasePerSecondValue { get; }
 
         bool IsPublic { get; }
 

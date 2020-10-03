@@ -32,5 +32,21 @@
             this.SkinToneId = skinToneId;
             this.HairColorId = hairColorId;
         }
+
+        public CharacterHumanFaceStyle EmptyStringsToNulls()
+        {
+            return new CharacterHumanFaceStyle(
+                faceId: this.FaceId,
+                topId: this.TopId,
+                bottomId: this.BottomId,
+                hairId: ToNullIfEmpty(this.HairId),
+                skinToneId: ToNullIfEmpty(this.SkinToneId),
+                hairColorId: ToNullIfEmpty(this.HairColorId));
+
+            static string ToNullIfEmpty(string str)
+                => string.IsNullOrEmpty(str)
+                       ? null
+                       : str;
+        }
     }
 }

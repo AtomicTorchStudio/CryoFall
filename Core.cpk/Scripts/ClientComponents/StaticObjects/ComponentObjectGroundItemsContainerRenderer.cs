@@ -32,7 +32,7 @@
 
         public void Setup(IItemsContainer setItemsContainer)
         {
-            if (this.itemsContainer != null)
+            if (this.itemsContainer is not null)
             {
                 throw new Exception("Items container is already assigned");
             }
@@ -170,7 +170,7 @@
 
         private void EventsSubscribe()
         {
-            if (this.itemsContainer == null)
+            if (this.itemsContainer is null)
             {
                 return;
             }
@@ -182,7 +182,7 @@
 
         private void EventsUnsubscribe()
         {
-            if (this.itemsContainer == null)
+            if (this.itemsContainer is null)
             {
                 return;
             }
@@ -238,7 +238,7 @@
 
         private void RebuildAll()
         {
-            if (this.itemsContainer == null)
+            if (this.itemsContainer is null)
             {
                 return;
             }
@@ -293,7 +293,7 @@
                 var slotRenderer = pair.Value;
                 slotRenderer.Renderer.PositionOffset = drawOffset;
 
-                if (slotRenderer.RendererOcclusion != null)
+                if (slotRenderer.RendererOcclusion is not null)
                 {
                     slotRenderer.RendererOcclusion.PositionOffset = drawOffset;
                 }

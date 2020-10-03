@@ -32,7 +32,7 @@
                     return;
                 }
 
-                if (itemInHand != null)
+                if (itemInHand is not null)
                 {
                     clientInputContextDropItem.Stop();
                     clientInputContextDropItem = null;
@@ -40,7 +40,7 @@
 
                 itemInHand = value;
 
-                if (itemInHand != null)
+                if (itemInHand is not null)
                 {
                     // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                     clientInputContextDropItem = ClientInputContext
@@ -71,7 +71,7 @@
 
         public static void Init(ICharacter currentCharacter)
         {
-            if (HandContainer != null)
+            if (HandContainer is not null)
             {
                 HandContainer.StateHashChanged -= RefreshItemInHand;
             }
@@ -124,14 +124,14 @@
 
         private static bool TryPlaceItemInHandOnGround(ushort? count = null)
         {
-            if (Api.Client.UI.GetVisualInPointedPosition() != null)
+            if (Api.Client.UI.GetVisualInPointedPosition() is not null)
             {
                 // mouse is over some UI control which can take the input/focus
                 return false;
             }
 
             var item = ItemInHand;
-            if (item == null)
+            if (item is null)
             {
                 return false;
             }

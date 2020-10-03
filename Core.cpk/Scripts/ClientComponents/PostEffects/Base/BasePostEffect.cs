@@ -91,7 +91,7 @@
 
         internal void SetupManager(Action callbackRegister, Action callbackUnregister)
         {
-            if (this.callbackRegister != null)
+            if (this.callbackRegister is not null)
             {
                 throw new Exception("Already setup: " + this);
             }

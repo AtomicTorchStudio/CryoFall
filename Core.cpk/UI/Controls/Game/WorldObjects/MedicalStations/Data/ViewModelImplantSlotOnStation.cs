@@ -136,7 +136,7 @@
         private void Refresh()
         {
             var installedImplant = this.GetInstalledImplantItem();
-            if (installedImplant != null)
+            if (installedImplant is not null)
             {
                 this.VisibilityInstallMode = Visibility.Collapsed;
                 this.VisibilitySelectImplant = Visibility.Collapsed;
@@ -147,7 +147,7 @@
             }
 
             var protoItemToInstall = this.GetProtoItemToInstall();
-            var hasItemToInstall = protoItemToInstall != null;
+            var hasItemToInstall = protoItemToInstall is not null;
             this.Price = protoItemToInstall?.BiomaterialAmountRequiredToInstall ?? 0;
 
             this.VisibilityUninstallMode = Visibility.Collapsed;
@@ -164,7 +164,7 @@
         {
             // ensure player cannot install the same implant prototype as already installed in another slot
             var itemToInstallProto = this.GetProtoItemToInstall();
-            if (itemToInstallProto != null)
+            if (itemToInstallProto is not null)
             {
                 foreach (var equippedItem in this.ContainerEquipment.Items)
                 {

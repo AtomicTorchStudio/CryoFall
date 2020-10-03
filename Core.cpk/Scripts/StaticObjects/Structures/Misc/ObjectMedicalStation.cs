@@ -153,7 +153,7 @@
 
             var containerEquipment = character.SharedGetPlayerContainerEquipment();
             var currentInstalledItem = containerEquipment.GetItemAtSlot(slotId);
-            if (currentInstalledItem != null)
+            if (currentInstalledItem is not null)
             {
                 if (currentInstalledItem == itemToInstall)
                 {
@@ -242,7 +242,7 @@
 
             var itemToUninstall = character.SharedGetPlayerContainerEquipment()
                                            .GetItemAtSlot(slotId);
-            if (itemToUninstall == null)
+            if (itemToUninstall is null)
             {
                 throw new Exception("No implant installed");
             }

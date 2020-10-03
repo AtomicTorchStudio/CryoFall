@@ -71,7 +71,7 @@
                 this.selectedRecipe = value;
                 this.NotifyThisPropertyChanged();
 
-                if (value == null)
+                if (value is null)
                 {
                     this.SelectedRecipeDetails = null;
                     return;
@@ -103,7 +103,7 @@
 
         public void TrySelectRecipe(Recipe recipe)
         {
-            if (recipe == null)
+            if (recipe is null)
             {
                 return;
             }

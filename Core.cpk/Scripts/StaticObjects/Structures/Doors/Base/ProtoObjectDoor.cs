@@ -90,7 +90,7 @@
                     var proceduralTexture = new ProceduralTexture(
                         "Composed blueprint " + this.Id,
                         generateTextureCallback: request => ClientComposeHorizontalDoor(request,
-                                                                                        textureResources),
+                                                     textureResources),
                         isTransparent: true,
                         isUseCache: true,
                         dependsOn: textureResources);
@@ -131,6 +131,8 @@
         /// If set to null the door orientation is selected automatically.
         /// </summary>
         public virtual bool? IsHorizontalDoorOnly => null;
+
+        public override bool IsRepeatPlacement => true;
 
         public override double ServerUpdateIntervalSeconds => 0.2; // 5 times per second
 
@@ -192,7 +194,7 @@
             foreach (var occupiedTile in gameObject.OccupiedTiles)
             {
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
-                                                                                 isDestroy: true);
+                    isDestroy: true);
             }
 
             base.ServerOnDestroy(gameObject);
@@ -325,7 +327,7 @@
             foreach (var occupiedTile in gameObject.OccupiedTiles)
             {
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
-                                                                                 isDestroy: true);
+                    isDestroy: true);
             }
         }
 
@@ -379,7 +381,7 @@
             foreach (var occupiedTile in staticWorldObject.OccupiedTiles)
             {
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
-                                                                                 isDestroy: false);
+                    isDestroy: false);
             }
 
             StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
@@ -475,13 +477,13 @@
             // refresh door type
             publicState.IsHorizontalDoor = this.IsHorizontalDoorOnly
                                            ?? DoorHelper.IsHorizontalDoorNeeded(worldObject.OccupiedTile,
-                                                                                checkExistingDoor: false);
+                                               checkExistingDoor: false);
             publicState.IsOpened = true;
 
             foreach (var occupiedTile in worldObject.OccupiedTiles)
             {
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
-                                                                                 isDestroy: false);
+                    isDestroy: false);
             }
         }
 
@@ -492,7 +494,7 @@
         {
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
 
-            if (weaponCache != null)
+            if (weaponCache is not null)
             {
                 // door was destroyed (and not deconstructed by a crowbar or any other means)
                 LandClaimSystem.ServerOnRaid(((IStaticWorldObject)targetObject).Bounds,

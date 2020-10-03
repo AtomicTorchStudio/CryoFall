@@ -144,7 +144,7 @@
 
             var lootObjectPrivateState = GetPrivateState(gameObject);
             var owner = lootObjectPrivateState.Owner;
-            if (owner == null)
+            if (owner is null)
             {
                 return;
             }
@@ -163,7 +163,7 @@
 
             var lastInteractingCharacter = lootObjectPrivateState.LastInteractingCharacter;
             if (owner == lastInteractingCharacter
-                || lastInteractingCharacter == null)
+                || lastInteractingCharacter is null)
             {
                 // owner looted it or it's disappeared by timeout
                 return;
@@ -325,7 +325,7 @@
             var privateState = data.PrivateState;
             var itemsContainer = privateState.ItemsContainer;
 
-            if (itemsContainer == null)
+            if (itemsContainer is null)
             {
                 // create container
                 itemsContainer = ServerItemsService.CreateContainer<ItemsContainerOutputPublic>(
@@ -433,9 +433,9 @@
                 foreach (var testResult in testResults.AsList())
                 {
                     var associatedWorldObject = testResult.PhysicsBody.AssociatedWorldObject;
-                    if (associatedWorldObject != null
+                    if (associatedWorldObject is not null
                         && associatedWorldObject.IsStatic
-                        || testResult.PhysicsBody.AssociatedProtoTile != null)
+                        || testResult.PhysicsBody.AssociatedProtoTile is not null)
                     {
                         isValidTile = false;
                         break;
@@ -474,7 +474,7 @@
                 objectLootContainer = Server.World.CreateStaticWorldObject(protoLootContainer, tilePosition);
             }
 
-            if (objectLootContainer == null)
+            if (objectLootContainer is null)
             {
                 // cannot create loot container
                 if (writeWarningsToLog)
@@ -527,7 +527,7 @@
                         tile.Position,
                         character,
                         writeWarningsToLog: false);
-                    if (lootContainer != null)
+                    if (lootContainer is not null)
                     {
                         // successfully created a loot container
                         return lootContainer;

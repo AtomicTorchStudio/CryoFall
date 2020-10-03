@@ -127,7 +127,7 @@
                                      ? this.PragmiumHatchetHitSoundPreset
                                      : this.SoundPresetHit;
 
-            if (hitWorldObject != null)
+            if (hitWorldObject is not null)
             {
                 soundPresetHit.PlaySound(
                     objectMaterial,

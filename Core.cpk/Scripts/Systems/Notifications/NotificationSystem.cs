@@ -59,6 +59,8 @@
 
         private static readonly Color ColorNeutral = Color.FromRgb(0x33, 0x66, 0x88);
 
+        public static event Action<HUDItemNotificationControl> ClientItemNotificationDisplayed;
+
         public static event Action<HudNotificationControl> ClientNotificationDisplayed;
 
         public override string Name => "Notification system";
@@ -67,7 +69,7 @@
             CreateItemResult result,
             IItemsContainer itemsContainer)
         {
-            if (itemsContainer == null)
+            if (itemsContainer is null)
             {
                 return result;
             }
@@ -111,7 +113,7 @@
         public static void ClientShowItemsNotification(CreateItemResult createItemResult)
         {
             var itemsChangedCount = SharedGetItemsChangedCount(createItemResult);
-            if (itemsChangedCount != null)
+            if (itemsChangedCount is not null)
             {
                 ClientShowItemsNotification(itemsChangedCount);
             }
@@ -154,9 +156,7 @@
                 soundToPlay);
 
             HudNotificationsPanelControl.ShowNotificationControl(notificationControl);
-
             Api.SafeInvoke(() => ClientNotificationDisplayed?.Invoke(notificationControl));
-
             return notificationControl;
         }
 
@@ -204,7 +204,7 @@
             }
 
             var itemsChangedCount = SharedGetItemsChangedCount(createItemResult);
-            if (itemsChangedCount != null)
+            if (itemsChangedCount is not null)
             {
                 ServerSendItemsNotification(character, itemsChangedCount);
             }
@@ -293,7 +293,7 @@
             }
 
             var itemAmounts = createItemResult.ItemAmounts;
-            if (itemAmounts == null
+            if (itemAmounts is null
                 || itemAmounts.Count == 0)
             {
                 return null;
@@ -319,7 +319,8 @@
         private static void ClientShowItemNotification(IProtoItem protoItem, int deltaCount)
         {
             Api.ValidateIsClient();
-            HUDItemsNotificationsPanelControl.Show(protoItem, deltaCount);
+            var notificationControl = HUDItemsNotificationsPanelControl.Show(protoItem, deltaCount);
+            Api.SafeInvoke(() => ClientItemNotificationDisplayed?.Invoke(notificationControl));
         }
 
         private static (Brush background, Brush border) GetBrush(NotificationColor notificationColor)
@@ -383,7 +384,7 @@
                 title,
                 message,
                 color,
-                icon: iconTextureLocalPath != null
+                icon: iconTextureLocalPath is not null
                           ? new TextureResource(iconTextureLocalPath)
                           : null,
                 autoHide: autoHide);

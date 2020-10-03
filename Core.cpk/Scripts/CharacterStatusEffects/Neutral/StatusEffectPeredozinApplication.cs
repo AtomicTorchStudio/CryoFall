@@ -13,10 +13,14 @@
 
         public override string Description => GetProtoEntity<ItemPeredozin>().Description;
 
+        public override StatusEffectDisplayMode DisplayMode
+            => StatusEffectDisplayMode.IconShowTimeRemains
+               | StatusEffectDisplayMode.TooltipShowTimeRemains;
+
         public override ITextureResource Icon => Api.GetProtoEntity<ItemPeredozin>().Icon;
 
         public override double IntensityAutoDecreasePerSecondValue
-            => 1.0 / 5.0; // total of 5 seconds
+            => 1.0 / ItemPeredozin.MedicalCooldownDuration;
 
         public override bool IsRemovedOnRespawn => false;
 

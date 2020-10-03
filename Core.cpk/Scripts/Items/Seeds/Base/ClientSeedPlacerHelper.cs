@@ -29,7 +29,7 @@
 
             currentSelectedSeedItem = item;
             currentSelectedProtoSeed = currentSelectedSeedItem?.ProtoItem as IProtoItemSeed;
-            if (currentSelectedProtoSeed == null)
+            if (currentSelectedProtoSeed is null)
             {
                 // seed is not selected anymore
                 blueprintComponent?.SceneObject.Destroy();

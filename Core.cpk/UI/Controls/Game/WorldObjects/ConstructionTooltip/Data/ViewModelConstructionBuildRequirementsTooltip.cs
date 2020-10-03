@@ -19,7 +19,7 @@
         {
             this.constructionSitePublicState = constructionSitePublicState;
 
-            if (constructionSitePublicState == null)
+            if (constructionSitePublicState is null)
             {
                 if (!IsDesignTime)
                 {

@@ -73,7 +73,7 @@
         public void ClientInteractFinish(TWorldObject worldObject)
         {
             ValidateIsClient();
-            if (ClientWorldObjectInteractHelper.CurrentlyInteractingWith == null)
+            if (ClientWorldObjectInteractHelper.CurrentlyInteractingWith is null)
             {
                 // already finished interacting
                 return;
@@ -108,7 +108,7 @@
         {
             ValidateIsClient();
 
-            if (ClientWorldObjectInteractHelper.CurrentlyInteractingWith != null)
+            if (ClientWorldObjectInteractHelper.CurrentlyInteractingWith is not null)
             {
                 // already started interacting with some world object
                 return;
@@ -203,7 +203,7 @@
         public void SharedCreatePhysics(IWorldObject worldObject)
         {
             var physicsBody = worldObject.PhysicsBody;
-            if (physicsBody == null)
+            if (physicsBody is null)
             {
                 return;
             }
@@ -293,7 +293,7 @@
                         requiredCollisionGroup);
 
                 isInsideInteractionArea = false;
-                if (objectsInCharacterInteractionArea != null)
+                if (objectsInCharacterInteractionArea is not null)
                 {
                     foreach (var t in objectsInCharacterInteractionArea.AsList())
                     {
@@ -401,7 +401,7 @@
 
         bool IProtoWorldObject.SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 return true;
             }

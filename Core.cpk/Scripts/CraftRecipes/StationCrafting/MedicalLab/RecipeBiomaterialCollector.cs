@@ -19,9 +19,8 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemIngotSteel>(count: 20);
-            inputItems.Add<ItemIngotCopper>(count: 10);
-            inputItems.Add<ItemComponentsHighTech>(count: 10);
+            inputItems.Add<ItemIngotSteel>(count: 10);
+            inputItems.Add<ItemComponentsHighTech>(count: 5);
             inputItems.Add<ItemComponentsOptical>(count: 5);
 
             outputItems.Add<ItemBiomaterialCollector>(count: 1);

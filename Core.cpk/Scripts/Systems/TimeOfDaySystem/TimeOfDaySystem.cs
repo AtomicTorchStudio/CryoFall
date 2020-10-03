@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesClient;
 
     /// <summary>
     /// This system provides current time of day for both client and server.
@@ -158,12 +157,12 @@
             }
             else // if client
             {
-                Api.Client.CurrentGame.ConnectionStateChanged += Refresh;
+                Api.Client.Characters.CurrentPlayerCharacterChanged += Refresh;
                 Refresh();
 
                 void Refresh()
                 {
-                    if (Api.Client.CurrentGame.ConnectionState == ConnectionState.Connected)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         this.CallServer(_ => _.ServerRemote_RequestGetTimeOfDayOffset());
                     }
@@ -208,7 +207,7 @@
             SharedWriteToLogCurrentTimeOfDay();
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_RequestGetTimeOfDayOffset()
         {
             this.CallClient(

@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Save:
 UI/CoreStrings@Button_Upgrade:
 升级
 
+UI/CoreStrings@CannotSelectDateInThePast:
+无法选择过去的日期。
+
 UI/CoreStrings@CharacterStatName_Food:
 食物
 
@@ -200,6 +203,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 此建筑建造后不可移动。
+
+UI/CoreStrings@ConsultServerAdministrator:
+请询问服务器管理员。
 
 UI/CoreStrings@Copy:
 复制
@@ -698,6 +704,9 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MOD
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+此服务器不允许客户端模组。所有玩家的客户端模组都将被禁用。
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 这是CryoFall官方服务器开发商进行管理。
 
@@ -1087,6 +1096,19 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 删档
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]下一次删档:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+未设置删档信息。
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`此服务器不遵循一般的删档日程；只会在新游戏版本更新时才会进行删档。请查看官方更新日程来获取详细信息。
+[br]请注意：所有服务器数据（包括世界和角色数据）将在服务器更新到下一个主版本时重置。`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]服务器已晕眩:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 你无法对一个启用了护盾的基地进行此行动。
 
@@ -1173,6 +1195,9 @@ UI/CoreStrings@ShieldProtection_EstimatedDuration:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 最大持续时间：
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+下线保护无法在此领地内使用，因为其完全处于另一个拥有独立护盾保护的基地当中。
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 除非被打断，护盾将在{0}后打开。（可能打断原因有所有人主动打断，或被袭击导致袭击隔断触发）
@@ -1293,6 +1318,12 @@ UI/CoreStrings@TextBoxSearchPlaceholder:
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+时间已经被调整至您的当地时区(UTC{0})。
+
+UI/CoreStrings@TimeRemains:
+剩余时间
 
 UI/CoreStrings@Title:
 标题
@@ -1909,6 +1940,11 @@ UI/CoreStrings@WipedDate_JustWiped:
 
 UI/CoreStrings@WipedDate_Yesterday:
 昨天
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`请注意：删档无法自动进行！
+[br]您需要手动关停服务器并删除存档。
+[br]此菜单仅用于提醒玩家。`
 
 UI/CoreStrings@WorldMap_MapExplored:
 地图已探索

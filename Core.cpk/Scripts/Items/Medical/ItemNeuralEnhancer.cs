@@ -17,6 +17,8 @@
 
         public const int UsageGivesLearningPointsAmount = 100;
 
+        public override double CooldownDuration => MedicineCooldownDuration.None;
+
         public override string Description =>
             "This disposable neural enhancer contains preprogrammed nanomachines. Artificially expands neural connections in the brain, increasing complexity of thoughts. Instantly gives learning points upon usage.";
 

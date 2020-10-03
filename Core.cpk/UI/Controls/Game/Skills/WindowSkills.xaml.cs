@@ -36,7 +36,7 @@
         protected override void WindowOpening()
         {
             base.WindowOpening();
-            this.viewModel.RefreshExperiencePoints();
+            this.viewModel.RefreshExperiencePointsForAllSkills();
         }
     }
 }

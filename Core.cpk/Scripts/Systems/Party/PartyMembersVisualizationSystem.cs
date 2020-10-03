@@ -46,7 +46,7 @@
 
                 clientIsEnabled = value;
 
-                if (PartySystem.ClientCurrentParty != null)
+                if (PartySystem.ClientCurrentParty is not null)
                 {
                     Instance.CallServer(_ => _.ServerRemote_SetSubscription(clientIsEnabled));
                 }
@@ -66,7 +66,7 @@
             ClientIsEnabled = true;
 
             if (wasEnabled
-                && PartySystem.ClientCurrentParty != null)
+                && PartySystem.ClientCurrentParty is not null)
             {
                 // ensure client requesting an update ASAP to quickly display party members on the map
                 // (minimal delay)
@@ -104,7 +104,7 @@
         [RemoteCallSettings(DeliveryMode.UnreliableSequenced)]
         private void ClientRemote_Update(NetworkPartyMemberData[] data)
         {
-            if (ClientUpdateReceived == null)
+            if (ClientUpdateReceived is null)
             {
                 return;
             }
@@ -224,7 +224,7 @@
                 }
 
                 var partyMember = CharactersServerService.GetPlayerCharacter(partyMemberName);
-                if (partyMember == null)
+                if (partyMember is null)
                 {
                     // incorrect party, contains a null character
                     Logger.Warning(

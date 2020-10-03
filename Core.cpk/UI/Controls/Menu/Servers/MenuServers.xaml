@@ -63,7 +63,7 @@
 
             <DataTemplate x:Key="ServerInfoEntryItemTemplateMenuServers"
                           DataType="{x:Type data:ViewModelServerInfoListEntry}">
-                <!-- Enter sound is bugged due to the template reusing -->
+                <!-- Enter sound sounds not good when hovering over a long list -->
                 <!--core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"-->
                 <Grid Background="Transparent"
                       core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
@@ -105,25 +105,28 @@
                                     Margin="0,0,0,-8"
                                     VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
-                                <Control Template="{StaticResource BlockCommunityMultiplayerServerTemplate}"
-                                         Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
                                 <Control Template="{StaticResource BlockOfficialMultiplayerServerTemplate}"
                                          Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                                <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
-                                         Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <Control Template="{StaticResource BlockCommunityMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsCommunity, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                 <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
                                          Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                 <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
                                          Visibility="{Binding IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                 <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
                                          Visibility="{Binding IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                                <Control Template="{StaticResource BlockNoClientModsMultiplayerServerTemplate}"
+                                         Visibility="{Binding IsNoClientModsAllowed, Converter={StaticResource BoolToVisibilityConverter}}" />
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -158,7 +161,8 @@
                                   CommandParameter="{Binding}" />
                     </StackPanel>
 
-                    <Rectangle Grid.ColumnSpan="8"
+                    <Rectangle Grid.Column="0"
+                               Grid.ColumnSpan="7"
                                Visibility="{Binding IncompatibleVisibility}"
                                Fill="#77330000"
                                Margin="-2,-1"
@@ -309,32 +313,16 @@
 
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Grid.Row="0"
-                                            Grid.Column="0"
-                                            Orientation="Horizontal">
-                                    <!-- Text: Address -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerAddress}" />
-                                    <TextBlock Text=": " />
-                                </StackPanel>
-                                <TextBlock Grid.Row="0"
-                                           Grid.Column="1"
-                                           Text="{Binding ViewModelServerInfo.Address.HostAddress}"
-                                           HorizontalAlignment="Right" TextWrapping="Wrap" />
-
-                                <StackPanel Grid.Row="1"
                                             Grid.Column="0"
                                             Orientation="Horizontal">
                                     <!-- Text: Public GUID -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_PublicGUID}" />
                                     <TextBlock Text=": " />
                                 </StackPanel>
-                                <TextBlock Grid.Row="1"
+                                <TextBlock Grid.Row="0"
                                            Grid.Column="1"
                                            Text="{Binding ViewModelServerInfo.Address.PublicGuid}"
                                            MaxWidth="100"
@@ -355,43 +343,6 @@
                                         </StackPanel>
                                     </base:ToolTipServiceExtend.ToolTip>
                                 </TextBlock>
-
-                                <StackPanel Grid.Row="2"
-                                            Grid.Column="0"
-                                            Orientation="Horizontal">
-                                    <!-- Text: Ping -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
-                                    <TextBlock Text=": " />
-                                </StackPanel>
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="1"
-                                           Text="{Binding ViewModelServerInfo.PingText}"
-                                           Foreground="{Binding ViewModelServerInfo.PingForegroundBrush}"
-                                           HorizontalAlignment="Right" />
-
-                                <StackPanel Grid.Row="3"
-                                            Grid.Column="0"
-                                            Orientation="Horizontal">
-                                    <!-- Text: Players -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerPlayersCount}" />
-                                    <TextBlock Text=": " />
-                                </StackPanel>
-                                <TextBlock Grid.Row="3"
-                                           Grid.Column="1"
-                                           Text="{Binding ViewModelServerInfo.PlayersText}"
-                                           HorizontalAlignment="Right" />
-
-                                <StackPanel Grid.Row="4"
-                                            Grid.Column="0"
-                                            Orientation="Horizontal">
-                                    <!-- Text: Wiped -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerWipedDate}" />
-                                    <TextBlock Text=": " />
-                                </StackPanel>
-                                <TextBlock Grid.Row="4"
-                                           Grid.Column="1"
-                                           Text="{Binding ViewModelServerInfo.WipedDateText}"
-                                           HorizontalAlignment="Right" />
                             </Grid>
 
                             <Control Style="{StaticResource ControlHorizontalSeparator}"
@@ -401,6 +352,17 @@
                             <ScrollViewer Margin="0,0,-10,10">
                                 <core:FormattedTextBlock Content="{Binding ViewModelServerInfo.Description}" />
                             </ScrollViewer>
+
+                            <!-- Text: Next wipe date -->
+                            <StackPanel Orientation="Vertical"
+                                        Visibility="{Binding ViewModelServerInfo.NextScheduledWipeDate, Converter={StaticResource NullToVisibilityConverter}}">
+                                <Control Style="{StaticResource ControlHorizontalSeparator}"
+                                         Margin="0,0,0,5" />
+                                <core:FormattedTextBlock
+                                    Content="{Binding ViewModelServerInfo.NextScheduledWipeDateText}"
+                                    base:ToolTipServiceExtend.ToolTip="{Binding ViewModelServerInfo.TimeAlreadyConvertedToLocalTimeZoneText}" />
+                            </StackPanel>
+
                         </StackPanel>
 
                         <StackPanel Grid.Row="1"

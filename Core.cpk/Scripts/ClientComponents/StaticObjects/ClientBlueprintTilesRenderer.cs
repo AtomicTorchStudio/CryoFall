@@ -29,7 +29,7 @@
         {
             this.sceneObjectRoot = sceneObjectRoot;
 
-            if (renderingMaterial == null)
+            if (renderingMaterial is null)
             {
                 renderingMaterial = RenderingMaterial.Create(new EffectResource("SolidColor"));
                 renderingMaterial.EffectParameters.Set(EffectParameters);

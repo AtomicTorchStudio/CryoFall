@@ -63,7 +63,7 @@
 
             if (IsServer
                 && result
-                && byCharacter != null
+                && byCharacter is not null
                 && !byCharacter.IsNpc)
             {
                 var privateState = GetPrivateState((ICharacter)targetObject);
@@ -123,7 +123,7 @@
                 isRetreatingForHeavyVehicles: false,
                 distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
-                distanceEnemyTooFar: 16,
+                distanceEnemyTooFar: 19,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad);
 

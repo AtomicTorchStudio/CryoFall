@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -66,7 +67,7 @@
             for (var index = 0; index < techNodes.Count; index++)
             {
                 var techNode = techNodes[index];
-                if (!(techNode is null))
+                if (techNode is not null)
                 {
                     continue;
                 }
@@ -80,7 +81,7 @@
             for (var index = 0; index < techGroups.Count; index++)
             {
                 var techGroup = techGroups[index];
-                if (!(techGroup is null))
+                if (techGroup is not null)
                 {
                     continue;
                 }
@@ -162,6 +163,7 @@
             }
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private (double LearningPointsGainMultiplier,
             double TimeGameTier3Basic,
             double TimeGameTier3Specialized,

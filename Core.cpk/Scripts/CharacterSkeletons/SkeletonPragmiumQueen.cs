@@ -128,7 +128,7 @@
             }
 
             var sceneObject = skeleton.SceneObject;
-            if (sceneObject.AttachedWorldObject != null)
+            if (sceneObject.AttachedWorldObject is not null)
             {
                 ClientLighting.CreateLightSourceSpot(
                     sceneObject,

@@ -11,7 +11,7 @@
         public EditorToolTerrainItem(IProtoTile protoTile)
             : base(protoTile?.Name ?? "(don't change the terrain sprite)",
                    id: string.Empty,
-                   displayShortName: protoTile != null)
+                   displayShortName: protoTile is not null)
         {
             this.ProtoTile = protoTile;
         }

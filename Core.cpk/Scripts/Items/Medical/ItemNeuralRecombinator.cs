@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class ItemNeuralRecombinator : ProtoItemMedical
@@ -27,6 +28,8 @@
             = TimeSpan.FromDays(4).TotalSeconds;
 
         private static Dictionary<ICharacter, double> serverLastItemUseTimeByCharacter;
+
+        public override double CooldownDuration => MedicineCooldownDuration.None;
 
         public override string Description =>
             "Completely clears all knowledge of all technologies upon use and returns all spent Learning Points so you can redistribute them. Cannot be used often.";
@@ -152,6 +155,7 @@
             }
         }
 
+        [RemoteCallSettings(timeInterval: 1)]
         private (double cooldownDuration, double cooldownRemains) ServerRemote_GetCooldownRemainsSeconds()
         {
             return (ServerCooldownSeconds,

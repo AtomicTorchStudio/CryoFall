@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Save:
 UI/CoreStrings@Button_Upgrade:
 Улучшить
 
+UI/CoreStrings@CannotSelectDateInThePast:
+Невозможно выбрать дату в прошлом.
+
 UI/CoreStrings@CharacterStatName_Food:
 Пища
 
@@ -200,6 +203,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 После постройки это строение нельзя будет переместить.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Пожалуйста, свяжитесь с администратором сервера.
 
 UI/CoreStrings@Copy:
 Копировать
@@ -699,6 +705,9 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 С МОДАМИ
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+На этом сервере запрещены модификации клиента. Все моды клиента будут отключены для всех игроков.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Это один из официальных серверов CryoFall, поддерживаемый разработчиками.
 
@@ -1082,6 +1091,19 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 Вайп
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Следующий вайп:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+Информация о вайпе не указана.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`На этом сервере нет регулярного расписания вайпов; вайпы производятся только при выходе крупных обновлений. Пожалуйста, подпишитесь на официальные новости проекта, чтобы быть в курсе событий.
+[br]Обратите внимание: все данные сервера (включая данные мира и персонажей) сбрасываются, когда на сервере происходит новое крупное обновление.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Начало работы сервера:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 Вы не можете совершить это действие на базе с активным щитом.
 
@@ -1170,7 +1192,7 @@ UI/CoreStrings@ShieldProtection_MaxDuration:
 Макс. длительность:
 
 UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
-Щит защиты от рейдов недоступен для этой точки контроля, т. к. она находится полностью внутри другой базы, предоставляющей свой собственный щит.
+Щит защиты от рейдов недоступен для этой точки контроля, так как она находится внутри другой базы, которая обеспечивает собственную защиту.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 Щит будет активирован через {0}, если активация не будет прервана (например, отменена хозяином или прервана рейдерами, применяющими рейд-блокировку).
@@ -1291,6 +1313,12 @@ UI/CoreStrings@TextBoxSearchPlaceholder:
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+Время уже переведено в ваш местный часовой пояс (UTC{0}).
+
+UI/CoreStrings@TimeRemains:
+Осталось времени
 
 UI/CoreStrings@Title:
 Название
@@ -1906,6 +1934,11 @@ UI/CoreStrings@WipedDate_JustWiped:
 
 UI/CoreStrings@WipedDate_Yesterday:
 Вчера
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`Внимание: вайп не производится автоматически!
+[br]Вам необходимо вручную остановить сервер и удалить файл сохранения.
+[br]Это меню лишь позволяет вам проинформировать игроков.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Исследовано карты

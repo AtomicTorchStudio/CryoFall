@@ -160,7 +160,7 @@
             this.CallClient(character, _ => _.ClientRemote_OnSignal(item, PragmiumSensorSignalKind.Ping));
 
             bool IsItemSelectedByPlayer(ICharacter c, IItem i)
-                => !(c is null)
+                => c is not null
                    && ReferenceEquals(i, c.SharedGetPlayerSelectedHotbarItem());
         }
 

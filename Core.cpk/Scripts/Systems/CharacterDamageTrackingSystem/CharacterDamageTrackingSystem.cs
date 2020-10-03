@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -75,7 +76,7 @@
         {
             var percentOfPvPdamage = 0.0;
             var damageSources = ServerGetDamageSources(character);
-            if (damageSources == null)
+            if (damageSources is null)
             {
                 return 0;
             }
@@ -143,6 +144,7 @@
         /// Please note - the result could be a null list.
         /// </summary>
         /// <returns></returns>
+        [RemoteCallSettings(timeInterval: 5)]
         [CanBeNull]
         private List<DamageSourceRemoteEntry> ServerRemote_GetDamageTrackingStatsAsync()
         {

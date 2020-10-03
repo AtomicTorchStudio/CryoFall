@@ -64,7 +64,7 @@
 
             var clientState = GetClientState(worldObject);
             var renderer = clientState?.Renderer;
-            if (renderer == null)
+            if (renderer is null)
             {
                 // not initialized yet
                 return;
@@ -98,7 +98,7 @@
             this.InitProceduralTextureAtlas();
 
             var primaryChunk = this.GetAtlasTextureChunkPosition(tile);
-            if (primaryChunk == null)
+            if (primaryChunk is null)
             {
                 return TextureResource.NoTexture;
             }

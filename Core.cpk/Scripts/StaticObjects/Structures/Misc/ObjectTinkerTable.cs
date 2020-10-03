@@ -113,8 +113,8 @@
             var inputItem1 = containerInput.GetItemAtSlot(0);
             var inputItem2 = containerInput.GetItemAtSlot(1);
 
-            if (inputItem1 == null
-                || inputItem2 == null
+            if (inputItem1 is null
+                || inputItem2 is null
                 || inputItem1.ProtoItem != inputItem2.ProtoItem)
             {
                 errorMessage = ErrorMessage_Input;
@@ -153,7 +153,7 @@
                 return false;
             }
 
-            if (containerOutput.GetItemAtSlot(0) != null)
+            if (containerOutput.GetItemAtSlot(0) is not null)
             {
                 errorMessage = ErrorMessage_OutputIsFull;
                 return false;

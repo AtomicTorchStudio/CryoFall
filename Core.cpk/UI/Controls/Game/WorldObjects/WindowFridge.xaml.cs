@@ -45,7 +45,7 @@
 
         private void DestroyViewModel()
         {
-            if (this.viewModel == null)
+            if (this.viewModel is null)
             {
                 return;
             }
@@ -59,12 +59,12 @@
         {
             if (this.WindowState != GameWindowState.Opened
                 && this.WindowState != GameWindowState.Opening
-                || this.worldObject == null)
+                || this.worldObject is null)
             {
                 return;
             }
 
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 if (this.viewModel.WorldObjectFridge == this.worldObject)
                 {

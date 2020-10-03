@@ -169,8 +169,14 @@ In einem Brunnen oder Wasserkollektor platzieren, um sauberes Wasser zu erhalten
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Brennstoffzellen werden zum Antrieb verschiedener Fahrzeuge benutzt.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+Während du schießt, halte [b]Alt[/b] oder [b]Strg[/b] gedrückt, um in maximaler Reichweite über die Position des Mauszeigers hinaus zu feuern.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Implantate können nur in der Krankenstation installiert werden.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+Nie probiert
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Dieser Gegenstand bezieht Strom aus den ausgerüsteten Powerbanks.
@@ -216,6 +222,12 @@ Ein Bündel nützlicher Jagdwerkzeuge, die das Plündern von Kreaturen stark bes
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Jagdwerkzeuge
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Eine kleine Laserzielerfassung, die das Zielen aus großer Distanz vereinfacht.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Laservisier
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Speichert große Mengen an Energie für die bequeme Nutzung unterwegs. Jedes Gerät und jede Energiewaffe kann auf ausgerüstete Powerbanks zugreifen.

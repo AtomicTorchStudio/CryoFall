@@ -70,7 +70,7 @@
 
         public static bool SharedIsInCreativeMode(ICharacter character)
         {
-            if (character == null)
+            if (character is null)
             {
                 return false;
             }

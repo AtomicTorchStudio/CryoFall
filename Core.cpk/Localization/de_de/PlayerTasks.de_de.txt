@@ -46,6 +46,9 @@ Töte: {0}
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 Stelle her: {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+Verschiebe ein Gebäude
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 Renne 10 Meter
 

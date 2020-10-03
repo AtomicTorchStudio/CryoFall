@@ -22,7 +22,7 @@
 
         public SoundResourceSet Add(SoundResource soundResource, double weight = 1)
         {
-            if (soundResource == null)
+            if (soundResource is null)
             {
                 throw new Exception("Sound resource is not provided");
             }

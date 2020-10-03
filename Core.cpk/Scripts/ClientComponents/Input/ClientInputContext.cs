@@ -41,7 +41,7 @@
 
         public ClientInputContext HandleAll(Action callback)
         {
-            if (this.callbackHandleAll != null)
+            if (this.callbackHandleAll is not null)
             {
                 throw new Exception(nameof(this.HandleAll) + " callback is already assigned");
             }
@@ -81,7 +81,7 @@
 
             if (this.buttonDownCallbacks.Count > 0
                 // if there is no key rebinding window
-                && ViewModelRebindKeyWindow.Instance == null)
+                && ViewModelRebindKeyWindow.Instance is null)
             {
                 foreach (var pair in this.buttonDownCallbacks)
                 {
@@ -119,7 +119,7 @@
             }
 
             if (this.buttonDownCallbacks.Count == 0
-                && this.callbackHandleAll == null)
+                && this.callbackHandleAll is null)
             {
                 this.Stop();
                 throw new Exception(

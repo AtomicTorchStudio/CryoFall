@@ -382,45 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `このサーバーの管理者は招待者のみの設定にしています。
 [br]考えられるその他の詳細については、サーバーの説明を確認してください。`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`CryoFallの公式サーバへようこそ！
-[br]
-[br]
-[b]重要：[/b]
-これはPvE（プレイヤー対環境）サーバーです。このサーバー上では、プレイヤーは直接または間接的にお互いを攻撃することはできません。このサーバーは攻撃的なやり取りなく、平和的な探検のために作られています。他のプレイヤーを殺したり、破壊したり、盗んだり、攻撃することはできません。その反面、危険な生物や技術のアンロック、世界の探検など、完全なるCryoFallを体験いただけます。この冒険でどんなことができるか見てみましょう。
-[br]
-[br]
-もっとスリリングで制限のない体験をしたい場合は、PvPサーバーに参加することをオススメします。
-[br]
-[br]
-[b]サーバールール：[/b]
-[*] 他のプレイヤーを尊重しましょう。いかなる形式の差別や攻撃的な言動も許されません。
-[*] サーバー管理者の要求を厳守してください。
-[*] 大量のチャットを送信したり不適切な言動は控えてください。
-[*] PvEの制限を厳守してください。
-[*] ゲームルールやメカニズムに違反しないでください。他のプレイヤーの迷惑になります。
-[br]
-[br]
-幸運を祈ります！:)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+このコミュニティサーバーにはサードパーティ製のMODがインストールされています。正しい動作と適切なCryoFall体験の提供を保証するものではありません。何か問題が発生した場合は、このコミュニティサーバーの所有者に連絡してください。
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`CryoFallの公式サーバーへようこそ！
-[br]
-[br]
-[b]重要：[/b]
-これはPvPサーバーです。PvP中心サーバでは、他のプレイヤーから攻撃を受けることがあります。戦って、自己防衛する必要があります。常に警戒し、自分自身をしっかり守らなければなりません。他の生存者と協力して生存確率を上げることも検討してください。
-[br]
-[br]
-もっと気楽にゲームをしたい、特に初めてプレイする場合は、PvEサーバーをオススメします。
-[br]
-[br]
-[b]サーバールール：[/b]
-[*] 他のプレイヤーを尊重しましょう。いかなる形式の差別や攻撃的な言動も許されません。
-[*] サーバー管理者の要求を厳守してください。
-[*] 大量のチャットを送信したり不適切な言動は控えてください。
-[br]
-[br]
-幸運を祈ります！:)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`これはPvE（プレイヤー対環境）サーバーです。このサーバーでは、プレイヤー同士が直接・間接的に攻撃することはできません。このサーバーは、敵対的なプレイヤーの関与なしにゲームを平和的に探索することを目的としています。他のプレイヤーを殺したり、破壊したり、盗んだりなど、攻撃的な行動はできません。その一方で、危険な生き物、技術のアンロック、世界の探索など、完全なCryoFall体験を提供しています。この冒険があなたをどこへ連れて行ってくれるのか、ご覧ください。
+[br]もっとスリリングで制限のない体験をしたい方は、PvPサーバーへの参加をオススメします。`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`ここは制限のないPvPサーバーです。PvPサーバーでは、他のプレイヤーから[b]攻撃を受けることがあります[/b]。あなたは戦って、自己防衛する必要があります。自分の身は自分で守り、常に警戒を怠らないようにしなければなりません。このゲームモードは経験者向けです。
+[br]もっと気楽にプレイしたい、特に初めてプレイする方は、PvEサーバーをオススメします。`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+PvEサーバー
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+PvPサーバー
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+MODサーバー
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+ウェルカムメッセージ
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+ワイプ情報
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}へようこそ

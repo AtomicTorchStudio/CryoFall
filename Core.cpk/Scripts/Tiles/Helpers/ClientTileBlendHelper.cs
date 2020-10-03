@@ -300,7 +300,7 @@
             TryBlendWith(tile, tileTexture, isHeightsBlendPhase, tileDownLeft,  DownLeft,  ref blendLayers);
             TryBlendWith(tile, tileTexture, isHeightsBlendPhase, tileDownRight, DownRight, ref blendLayers);
 
-            if (blendLayers == null)
+            if (blendLayers is null)
             {
                 // no blending required
                 return;
@@ -400,7 +400,7 @@
                 return;
             }
 
-            if (blendLayers != null)
+            if (blendLayers is not null)
             {
                 for (var index = 0; index < blendLayers.Count; index++)
                 {

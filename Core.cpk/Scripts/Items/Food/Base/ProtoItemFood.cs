@@ -4,10 +4,13 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
@@ -16,6 +19,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -90,6 +94,32 @@
             if (this.Effects.Count > 0)
             {
                 controls.Add(ItemTooltipInfoEffectActionsControl.Create(this.Effects));
+            }
+
+            // display a "Never consumed" message if this food is available in Completionist menu
+            if (this.IsAvailableInCompletionist)
+            {
+                var isUnlockedInCompletionist = false;
+                foreach (var entry in ClientCurrentCharacterHelper.PrivateState.CompletionistData.ListFood)
+                {
+                    if (ReferenceEquals(entry.Prototype, this))
+                    {
+                        isUnlockedInCompletionist = true;
+                        break;
+                    }
+                }
+
+                if (!isUnlockedInCompletionist)
+                {
+                    controls.Add(
+                        new TextBlock()
+                        {
+                            Text = "(" + ItemHints.NeverConsumed + ")",
+                            TextWrapping = TextWrapping.Wrap,
+                            FontWeight = FontWeights.Bold,
+                            Foreground = Api.Client.UI.GetApplicationResource<Brush>("BrushColor4")
+                        });
+                }
             }
         }
 
@@ -210,6 +240,9 @@
                        showNotificationIfNauseous: true);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableOrdered,
+                            timeInterval: 0.2,
+                            clientMaxSendQueueSize: 20)]
         private void ServerRemote_Eat(IItem item)
         {
             var character = ServerRemoteContext.Character;

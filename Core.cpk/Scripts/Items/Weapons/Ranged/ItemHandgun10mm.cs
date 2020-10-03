@@ -27,7 +27,7 @@
 
         public override string Name => "Handgun";
 
-        public override double ReadyDelayDuration => 0.6;
+        public override double ReadyDelayDuration => WeaponReadyDelays.ConventionalPistols;
 
         public override double SpecialEffectProbability => 0.25;
 
@@ -36,8 +36,8 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.0, 0.0, -0.5, 0.5 },
-                cycledSequence: new[] { -1.0, 1.0, 0.0 });
+                initialSequence: new[] { 0.0, 0.0, 0.5, 0.5 },
+                cycledSequence: new[] { 1.0, 0.5 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

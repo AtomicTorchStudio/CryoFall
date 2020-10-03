@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -281,7 +282,10 @@
             return taskState.IsCompleted;
         }
 
-        private static void ServerCharacterJoinedOrLeftPartyHandler(ICharacter character)
+        private static void ServerCharacterJoinedOrLeftPartyHandler(
+            ICharacter character,
+            ILogicObject party,
+            bool isJoined)
         {
             var playerCharacterQuests = character.SharedGetQuests();
             foreach (var quest in playerCharacterQuests.Quests)

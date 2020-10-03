@@ -128,7 +128,7 @@
                 return false;
             }
 
-            if (this.RequiredNode != null
+            if (this.RequiredNode is not null
                 && this.RequiredNode.IsAvailable)
             {
                 if (!technologies.SharedIsNodeUnlocked(this.RequiredNode))
@@ -183,7 +183,7 @@
 
             this.RequiredNode?.PrepareRegisterDependentNode(this);
 
-            if (effects != null)
+            if (effects is not null)
                 //&& effects.Count > 0)
             {
                 this.NodeEffects = effects;
@@ -203,7 +203,7 @@
                 {
                     var level = 0;
                     var node = this.RequiredNode;
-                    while (node != null)
+                    while (node is not null)
                     {
                         level++;
                         node = node.RequiredNode;
@@ -265,7 +265,7 @@
         private void ValidateRequiredNode()
         {
             var requiredNode = this.RequiredNode;
-            if (requiredNode == null)
+            if (requiredNode is null)
             {
                 return;
             }
@@ -284,7 +284,7 @@
             do
             {
                 requiredNode = requiredNode.RequiredNode;
-                if (requiredNode == null)
+                if (requiredNode is null)
                 {
                     return;
                 }

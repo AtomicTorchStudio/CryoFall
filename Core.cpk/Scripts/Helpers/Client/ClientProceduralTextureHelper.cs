@@ -62,7 +62,7 @@
             var qualityScaleCoef = rendering.CalculateCurrentQualityScaleCoefWithOffset(0);
 
             Vector2Ushort size;
-            if (customSize != null)
+            if (customSize is not null)
             {
                 size = customSize.Value;
                 if (qualityScaleCoef > 1)

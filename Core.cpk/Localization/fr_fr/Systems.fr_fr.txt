@@ -382,44 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `L'administrateur de ce serveur a limité son accès aux personnes invitées uniquement.
 [br]Veuillez vérifier la description du serveur pour plus de détails.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`Bienvenue sur le serveur officiel de CryoFall ! 
-[br] 
-[br]
-[b]Important :[/b]
-[br]
-Ce serveur est de type JcE (Joueur contre l'Environnement). Sur ce serveur, les joueurs ne peuvent pas s'attaquer les uns les autres, que ce soit de manière directe ou indirecte. L'exploration paisible est favorisée. Vous ne pouvez pas tuer, détruire, voler ou d'une quelconque façon attaquer d'autres joueurs. En dehors de cela, ce serveur vous propose l'expérience complète de CryoFall, avec ses créatures dangereuses, ses technologies à découvrir et son monde à explorer. À vous de voir où vous mènera votre voyage ! 
-[br] 
-[br]
-Si vous êtes tenté par une expérience plus intense et sans aucune restriction, envisagez plutôt de rejoindre un serveur JcJ. 
-[br] 
-[br] 
-[b]Règles du serveur :[/b] 
-[*]Montrez-vous respectueux et courtois envers les autres. Nous ne tolérerons aucune forme d'agression, de discrimination, etc. 
-[*]Pliez-vous aux requêtes des modérateurs du serveur. 
-[*]N'essayez pas de contourner ou d'abuser des restrictions JcE. 
-[*]N'exploitez pas les règles ou les mécaniques du jeu afin de nuire ou de gêner d'autres joueurs. 
-[br] 
-[br]
-Bonne chance ! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+Des mods externes sont installés sur ce serveur communautaire. Nous ne pouvons garantir qu'il fonctionnera correctement et que l'expérience de jeu sera fidèle à celle de CryoFall. Si vous rencontrez des problèmes, veuillez contacter le propriétaire de ce serveur communautaire.
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`Bienvenue sur le serveur officiel de CryoFall ! 
-[br] 
-[br]
-[b]Important :[/b] 
-[br]
-Ce serveur est de type JcJ (Joueur contre Joueur). Soyez bien conscient que sur les serveurs JcJ, vous serez confrontés à des joueurs agressifs. Vous êtes censé vous battre et vous défendre par vous-même. Vous devrez apprendre à vous protéger, et faire preuve d'une vigilance de tous les instants. Vous pourrez également envisager de vous associer à d'autres joueurs afin d'augmenter vos chances de survie. 
-[br] 
-[br] Si vous êtes tenté par une expérience plus paisible, surtout si vous jouez pour la première fois, envisagez plutôt de rejoindre un serveur JcE. 
-[br] 
-[br] [b]Règles du serveur :[/b] 
-[*]Montrez-vous respectueux et courtois envers les autres. Nous ne tolérerons aucune forme d'agression, de discrimination, etc. 
-[*]Pliez-vous aux requêtes des modérateurs du serveur. 
-[*]Ne polluez pas le chat avec des messages superflus, et restez modérés dans l'usage de la grossièreté... 
-[br] 
-[br]
-Bonne chance ! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`Ce serveur est de type JcE (Joueur contre l'Environnement). Sur ce serveur, les joueurs ne peuvent pas s'attaquer les uns les autres, que ce soit de manière directe ou indirecte. L'exploration paisible est favorisée. Vous ne pouvez pas tuer, détruire, voler ou d'une quelconque façon attaquer d'autres joueurs. En dehors de cela, ce serveur vous propose l'expérience complète de CryoFall, avec ses créatures dangereuses, ses technologies à découvrir et son monde à explorer. À vous de voir où vous mènera votre voyage !
+[br]Pour profiter d'une expérience de jeu plus intense et libérée de ces contraintes, envisagez plutôt de rejoindre un serveur JcJ.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`Ce serveur est de type JcJ (Joueur contre Joueur). Soyez bien conscient que sur les serveurs JcJ, [b]vous serez confronté à des joueurs agressifs[/b]. Vous êtes censé vous battre et vous défendre par vous-même. Vous devrez apprendre à vous protéger et faire preuve d'une vigilance de tous les instants. Ce mode de jeu est conçu pour les joueurs expérimentés.
+[br] Si vous êtes tenté par une expérience plus paisible, surtout si vous jouez pour la première fois, envisagez plutôt de rejoindre un serveur JcE.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+Serveur JcE
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+Serveur JcJ
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+Serveur moddé
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+Message d'accueil
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+Informations d'effacement du serveur
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Bienvenue sur {0}

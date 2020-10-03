@@ -7,6 +7,11 @@
         public override string Description =>
             "You feel rather weak. Undertaking any tasks seems much more difficult. Give it some time to restore your condition and avoid dangerous situations.";
 
+        public override StatusEffectDisplayMode DisplayMode
+            => StatusEffectDisplayMode.IconShowTimeRemains
+               | StatusEffectDisplayMode.TooltipShowIntensityPercent
+               | StatusEffectDisplayMode.TooltipShowTimeRemains;
+
         public override double IntensityAutoDecreasePerSecondValue
             => 1.0 / 600.0; // total of 10 minutes for max possible time
 

@@ -151,7 +151,7 @@
         {
             var animationProgress = 0.0;
 
-            if (this.componentSpriteSheetAnimatorFloater != null)
+            if (this.componentSpriteSheetAnimatorFloater is not null)
             {
                 var framesCount = this.componentSpriteSheetAnimatorFloater.FramesCount;
                 var frameIndex = this.componentSpriteSheetAnimatorFloater.FrameIndex;
@@ -233,7 +233,7 @@
 
         private void UpdateFloat(double deltaTime)
         {
-            if (this.FishingCompletedVisualizer != null)
+            if (this.FishingCompletedVisualizer is not null)
             {
                 this.fishingTargetPosition = this.FishingCompletedVisualizer.SceneObject.Position;
             }

@@ -226,7 +226,7 @@
             point = this.rootElement.PointFromScreen(point);
             var hitTest = VisualTreeHelper.HitTest(this.rootElement, point);
 
-            this.IsMouseOverIncludingHidden = !(hitTest.VisualHit is null);
+            this.IsMouseOverIncludingHidden = hitTest.VisualHit is not null;
         }
     }
 }

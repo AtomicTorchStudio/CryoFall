@@ -144,7 +144,7 @@
         private static bool IsMasterServerCannotConnectDialogDisplayed()
         {
             var dialog = (DialogWindow)cannotConnectToMasterServerDialog?.Target;
-            return dialog != null
+            return dialog is not null
                    && (dialog.GameWindow.State == GameWindowState.Opened
                        || dialog.GameWindow.State == GameWindowState.Opening);
         }
@@ -208,7 +208,7 @@
             if (state == ConnectionState.Connected)
             {
                 var dialog = (DialogWindow)cannotConnectToMasterServerDialog?.Target;
-                if (dialog != null
+                if (dialog is not null
                     && (dialog.Window.State == GameWindowState.Opening
                         || dialog.Window.State == GameWindowState.Opened))
                 {
@@ -267,7 +267,6 @@
                 LoadingSplashScreenManager.Show("not everything is loaded yet");
                 // ensure it's allowed to hide (when everything will be loaded)
                 LoadingSplashScreenManager.Hide();
-                MainMenuOverlay.IsHidden = true;
                 return;
             }
 

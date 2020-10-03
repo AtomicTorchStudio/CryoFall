@@ -31,6 +31,12 @@
                                     Api.GetProtoEntity<TileMeadows>().Name),
                 c =>
                 {
+                    if (PveSystem.SharedIsPve(true))
+                    {
+                        // no soil requirement in PvE
+                        return true;
+                    }
+
                     foreach (var obj in c.Tile.StaticObjects)
                     {
                         if (obj.ProtoStaticWorldObject is ObjectDepositGeothermalSpring)
@@ -51,21 +57,21 @@
                 ErrorTooCloseToAnotherExtractor,
                 c =>
                 {
-                    if (c.TileOffset != default)
-                    {
-                        return true;
-                    }
-
                     if (PveSystem.SharedIsPve(false))
                     {
                         // no distance limit in PvE
                         return true;
                     }
 
-                    var startPosition = c.Tile.Position;
+                    var startPosition = c.StartTilePosition;
                     var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
                     foreach (var obj in objectsInBounds)
                     {
+                        if (ReferenceEquals(obj, c.ObjectToRelocate))
+                        {
+                            continue;
+                        }
+
                         switch (obj.ProtoStaticWorldObject)
                         {
                             case ProtoObjectLithiumOreExtractor _:
@@ -88,12 +94,7 @@
                 Error_CannotBuildTooCloseToDeposit,
                 c =>
                 {
-                    if (c.TileOffset != default)
-                    {
-                        return true;
-                    }
-
-                    var startPosition = c.Tile.Position;
+                    var startPosition = c.StartTilePosition;
                     var objectsInBounds = SharedFindObjectsNearby<ObjectDepositGeothermalSpring>(startPosition);
                     foreach (var obj in objectsInBounds)
                     {

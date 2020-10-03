@@ -14,10 +14,10 @@
             AmbientSoundPreset nightSoundPresetForest)
             : base(daySoundPresetPlains, nightSoundPresetPlains)
         {
-            Api.Assert(daySoundPresetPlains != null,   $"{nameof(daySoundPresetPlains)} cannot be null");
-            Api.Assert(daySoundPresetForest != null,   $"{nameof(daySoundPresetForest)} cannot be null");
-            Api.Assert(nightSoundPresetPlains != null, $"{nameof(nightSoundPresetPlains)} cannot be null");
-            Api.Assert(nightSoundPresetForest != null, $"{nameof(nightSoundPresetForest)} cannot be null");
+            Api.Assert(daySoundPresetPlains is not null,   $"{nameof(daySoundPresetPlains)} cannot be null");
+            Api.Assert(daySoundPresetForest is not null,   $"{nameof(daySoundPresetForest)} cannot be null");
+            Api.Assert(nightSoundPresetPlains is not null, $"{nameof(nightSoundPresetPlains)} cannot be null");
+            Api.Assert(nightSoundPresetForest is not null, $"{nameof(nightSoundPresetForest)} cannot be null");
 
             // combine sound presets for case when there are trees or bushes nearby
             this.AmbientSoundPresetsDayWithTrees = new[] { daySoundPresetPlains, daySoundPresetForest };

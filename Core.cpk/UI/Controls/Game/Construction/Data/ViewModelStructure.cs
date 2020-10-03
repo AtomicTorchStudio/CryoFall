@@ -23,7 +23,7 @@
                 return;
             }
 
-            if (protoStructure == null)
+            if (protoStructure is null)
             {
                 return;
             }

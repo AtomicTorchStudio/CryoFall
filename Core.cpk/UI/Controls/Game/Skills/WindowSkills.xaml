@@ -181,9 +181,9 @@
                                                                         BorderThickness="{TemplateBinding BorderThickness}"
                                                                         Background="{TemplateBinding Background}" />
                                                                 <ContentPresenter Margin="{TemplateBinding Padding}"
-                                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                                             </Grid>
                                                         </ControlTemplate>
                                                     </Setter.Value>
@@ -316,10 +316,9 @@
                     </StackPanel>
 
                     <!-- Selected skill effects list -->
-                    <ScrollViewer
-                        Grid.Row="1"
-                        Margin="9,5,0,0"
-                        VerticalAlignment="Stretch">
+                    <ScrollViewer Grid.Row="1"
+                                  Margin="9,5,0,0"
+                                  VerticalAlignment="Stretch">
                         <ItemsControl ItemsSource="{Binding Effects}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>

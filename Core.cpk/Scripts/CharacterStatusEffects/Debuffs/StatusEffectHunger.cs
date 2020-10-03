@@ -12,6 +12,8 @@
 
         public override string Description => "You are starving to death!";
 
+        public override StatusEffectDisplayMode DisplayMode => StatusEffectDisplayMode.None;
+
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
         public override string Name => "Hunger";

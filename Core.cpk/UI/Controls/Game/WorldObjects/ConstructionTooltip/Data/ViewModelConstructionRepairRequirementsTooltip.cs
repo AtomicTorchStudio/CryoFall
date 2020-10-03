@@ -18,7 +18,7 @@
         {
             this.objectPublicState = objectPublicState;
 
-            if (objectPublicState == null)
+            if (objectPublicState is null)
             {
                 if (!IsDesignTime)
                 {

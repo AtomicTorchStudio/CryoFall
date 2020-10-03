@@ -54,7 +54,7 @@
             if (Api.IsClient)
             {
                 var handler = this.ClientMessageAdded;
-                if (handler != null)
+                if (handler is not null)
                 {
                     Api.SafeInvoke(() => handler.Invoke(chatEntry));
                 }

@@ -110,7 +110,7 @@
             if (childrenCount == 0)
             {
                 // no children
-                if (previousNode == null)
+                if (previousNode is null)
                 {
                     // first node in the row
                     node.X = 0;
@@ -140,7 +140,7 @@
                 middleX = (leftChild.X + rightChild.X) / 2;
             }
 
-            if (previousNode == null)
+            if (previousNode is null)
             {
                 // no left sibling
                 node.X = middleX;
@@ -373,14 +373,14 @@
 
             public TreeLayoutNode GetLeftMostSibling()
             {
-                return this.Parent == null
+                return this.Parent is null
                            ? this
                            : this.Parent.Children[0];
             }
 
             public TreeLayoutNode GetNextSibling()
             {
-                return this.Parent == null
+                return this.Parent is null
                            ? this
                            : this.Parent.Children[this.Parent.Children.IndexOf(this) + 1];
             }

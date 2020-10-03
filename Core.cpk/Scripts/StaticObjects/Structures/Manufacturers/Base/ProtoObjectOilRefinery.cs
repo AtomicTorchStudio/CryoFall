@@ -170,7 +170,7 @@
 
             // setup manufacturing state for gasoline
             var manufacturingStateProcessedGasoline = privateState.ManufacturingStateGasoline;
-            if (manufacturingStateProcessedGasoline == null)
+            if (manufacturingStateProcessedGasoline is null)
             {
                 privateState.ManufacturingStateGasoline
                     = manufacturingStateProcessedGasoline
@@ -186,7 +186,7 @@
 
             // setup manufacturing state for mineral oil
             var manufacturingStateProcessedMineralOil = privateState.ManufacturingStateMineralOil;
-            if (manufacturingStateProcessedMineralOil == null)
+            if (manufacturingStateProcessedMineralOil is null)
             {
                 privateState.ManufacturingStateMineralOil
                     = manufacturingStateProcessedMineralOil

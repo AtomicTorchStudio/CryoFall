@@ -54,6 +54,10 @@
         /// </summary>
         public double LearningPointsRemainderAccumulator { get; private set; }
 
+        /// <summary>
+        /// This is a list of the researched/unlocked tech nodes.
+        /// Do not modify as all modifications should go through PlayerCharacterTechnologies.
+        /// </summary>
         [SyncToClient]
         public NetworkSyncList<TechNode> Nodes { get; } = new NetworkSyncList<TechNode>();
 
@@ -326,7 +330,7 @@
                 this.ServerAddNodeNoCheckGroup(currentNode);
                 currentNode = currentNode.RequiredNode;
             }
-            while (currentNode != null);
+            while (currentNode is not null);
 
             character.SharedSetFinalStatsCacheDirty();
         }

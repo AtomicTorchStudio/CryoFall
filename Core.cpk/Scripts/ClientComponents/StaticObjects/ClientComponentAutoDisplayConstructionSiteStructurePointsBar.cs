@@ -60,7 +60,7 @@
                 return;
             }
 
-            if (this.componentAttachedUIElement != null)
+            if (this.componentAttachedUIElement is not null)
             {
                 return;
             }
@@ -82,7 +82,7 @@
 
         private void RemoveAttachedControl()
         {
-            if (this.componentAttachedUIElement == null)
+            if (this.componentAttachedUIElement is null)
             {
                 return;
             }

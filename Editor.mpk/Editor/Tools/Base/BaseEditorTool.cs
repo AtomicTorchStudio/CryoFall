@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Windows;
+    using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -47,6 +48,11 @@
 
         public abstract BaseEditorActiveTool Activate(BaseEditorToolItem item);
 
+        public virtual ViewModelEditorToolItem CreateItemViewModel(BaseEditorToolItem item)
+        {
+            return new ViewModelEditorToolItem(item);
+        }
+
         public virtual FrameworkElement CreateSettingsControl()
         {
             return null;
@@ -81,7 +87,7 @@
         {
             get
             {
-                if (this.filters == null)
+                if (this.filters is null)
                 {
                     var filters = new List<EditorToolItemFilter<TItem>>();
                     // add default filter (all items allowed)
@@ -99,7 +105,7 @@
         {
             get
             {
-                if (this.items == null)
+                if (this.items is null)
                 {
                     var items = new List<TItem>();
                     this.SetupItems(items);

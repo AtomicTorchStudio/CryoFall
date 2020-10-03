@@ -65,7 +65,7 @@
 
         private static bool IsValidContainer(IItemsContainer container)
         {
-            if (container == null)
+            if (container is null)
             {
                 return false;
             }
@@ -86,7 +86,7 @@
             }
 
             var context = this.GetActiveContext(character, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }
@@ -107,7 +107,7 @@
             ushort newcount,
             ICharacter character)
         {
-            if (character == null)
+            if (character is null)
             {
                 return;
             }
@@ -124,7 +124,7 @@
             }
 
             var context = this.GetActiveContext(character, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }
@@ -141,14 +141,14 @@
 
         private void ServerItemRemovedHandler(IItemsContainer container, IItem item, ICharacter character)
         {
-            if (character == null
+            if (character is null
                 || !IsValidContainer(container))
             {
                 return;
             }
 
             var context = this.GetActiveContext(character, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }

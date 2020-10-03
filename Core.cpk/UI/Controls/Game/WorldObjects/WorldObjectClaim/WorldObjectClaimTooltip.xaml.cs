@@ -29,7 +29,7 @@
 
         public void Setup(ILogicObject tag)
         {
-            if (this.publicState != null)
+            if (this.publicState is not null)
             {
                 this.subscriptionStorage.ReleaseSubscriptions();
             }

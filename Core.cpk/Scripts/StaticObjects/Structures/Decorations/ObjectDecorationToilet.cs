@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -13,6 +14,8 @@
 
     public class ObjectDecorationToilet : ProtoObjectDecoration
     {
+        private const int UseIntervalSeconds = 3;
+
         private double clientLastInteractTime;
 
         public override string Description =>
@@ -34,7 +37,7 @@
         protected override void ClientInteractFinish(ClientObjectData data)
         {
             var time = Client.Core.ClientRealTime;
-            if (time - this.clientLastInteractTime < 3)
+            if (time - this.clientLastInteractTime < UseIntervalSeconds)
             {
                 return;
             }
@@ -89,12 +92,13 @@
         private void ClientRemote_OnObjectUseByOtherPlayer(IStaticWorldObject worldObject, int index)
         {
             var soundResource = SoundSet.GetSoundAtIndex(index);
-            if (soundResource != null)
+            if (soundResource is not null)
             {
                 Client.Audio.PlayOneShot(soundResource, worldObject);
             }
         }
 
+        [RemoteCallSettings(timeInterval: UseIntervalSeconds, clientMaxSendQueueSize: 1)]
         private void ServerRemote_ObjectUse(IStaticWorldObject worldObject, int soundIndex)
         {
             var character = ServerRemoteContext.Character;

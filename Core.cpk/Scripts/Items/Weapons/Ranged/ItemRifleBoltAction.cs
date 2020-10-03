@@ -41,7 +41,7 @@
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.SimplePistol)
-                       .Set(textureScreenOffset: (58, 10));
+                       .Set(textureScreenOffset: (58, 9));
         }
 
         protected override void PrepareProtoWeaponRanged(

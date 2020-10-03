@@ -19,8 +19,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         public string Execute([CurrentCharacterIfNull] ICharacter character)
         {
+            if (ServerModeratorSystem.ServerIsModerator(character.Name))
+            {
+                return character.Name + " is already a server moderator";
+            }
+
             ServerModeratorSystem.ServerAdd(character);
-            return null;
+            return character.Name + " added to the server moderators list";
         }
     }
 }

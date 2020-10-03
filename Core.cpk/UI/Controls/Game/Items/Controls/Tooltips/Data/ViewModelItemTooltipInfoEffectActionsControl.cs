@@ -29,9 +29,6 @@
 
         public bool HasEffectsToAdd => this.EffectsToAdd.Length > 0;
 
-        public bool HasEffectsToAddAndRemove => this.HasEffectsToAdd
-                                                && this.HasEffectsToRemove;
-
         public bool HasEffectsToRemove => this.EffectsToRemove.Length > 0;
     }
 }

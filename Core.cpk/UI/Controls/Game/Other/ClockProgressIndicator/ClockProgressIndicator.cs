@@ -40,7 +40,7 @@
 
         protected override void OnLoaded()
         {
-            if (this.Content == null)
+            if (this.Content is null)
             {
                 // setup default content
                 var ellipse = new Ellipse();
@@ -79,7 +79,7 @@
 
         private void Refresh()
         {
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 this.viewModel.ProgressFraction = this.ProgressFraction;
             }

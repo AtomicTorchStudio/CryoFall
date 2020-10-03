@@ -34,6 +34,7 @@
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -114,7 +115,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -172,7 +173,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -196,7 +197,7 @@
                 function: context =>
                           {
                               var forCharacter = context.CharacterBuilder;
-                              if (forCharacter == null)
+                              if (forCharacter is null)
                               {
                                   return true;
                               }
@@ -223,7 +224,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -255,7 +256,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -287,7 +288,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -318,7 +319,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -392,7 +393,7 @@
                         }
 
                         var forCharacter = context.CharacterBuilder;
-                        if (forCharacter == null)
+                        if (forCharacter is null)
                         {
                             return true;
                         }
@@ -427,7 +428,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -524,7 +525,7 @@
                     context =>
                     {
                         var forCharacter = context.CharacterBuilder;
-                        if (forCharacter == null)
+                        if (forCharacter is null)
                         {
                             return true;
                         }
@@ -558,7 +559,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -603,7 +604,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -649,7 +650,7 @@
                     context =>
                     {
                         var forCharacter = context.CharacterBuilder;
-                        if (forCharacter == null)
+                        if (forCharacter is null)
                         {
                             return true;
                         }
@@ -746,12 +747,7 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
-                    {
-                        return true;
-                    }
-
-                    if (context.TileOffset != Vector2Int.Zero)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
@@ -882,7 +878,7 @@
 
         public static bool ClientIsOwnedArea(ILogicObject area)
         {
-            if (area == null)
+            if (area is null)
             {
                 throw new ArgumentNullException(nameof(area));
             }
@@ -899,7 +895,7 @@
         {
             var errorMessage = await Instance.CallServer(
                                    _ => Instance.ServerRemote_SetAreaOwners(area, newOwners));
-            if (errorMessage == null)
+            if (errorMessage is null)
             {
                 return;
             }
@@ -930,7 +926,7 @@
             }
 
             // unprotected building
-            if (weaponCache.ProtoExplosive == null)
+            if (weaponCache.ProtoExplosive is null)
             {
                 // damage multiplier for weapon
                 damageMultiplier *= 50;
@@ -1023,7 +1019,7 @@
 
         public static bool ServerIsOwnedArea(ILogicObject area, ICharacter character)
         {
-            if (area == null)
+            if (area is null)
             {
                 Logger.Warning(nameof(ServerIsOwnedArea) + " - argument area is null");
                 return false;
@@ -1088,7 +1084,7 @@
             }
 
             var area = ServerGetLandClaimArea(landClaimStructure);
-            if (area == null)
+            if (area is null)
             {
                 // area was already released (upgrade?)
                 return;
@@ -1176,7 +1172,7 @@
 
             foreach (var area in tempList.AsList())
             {
-                if (!(byCharacter is null)
+                if (byCharacter is not null
                     && ServerIsOwnedArea(area, byCharacter))
                 {
                     // don't start the raid timer if attack is performed by the owner of the area
@@ -1195,7 +1191,7 @@
 
             var owners = area.GetPrivateState<LandClaimAreaPrivateState>()
                              .LandOwners;
-            if (owners == null)
+            if (owners is null)
             {
                 return;
             }
@@ -1203,7 +1199,7 @@
             foreach (var owner in owners)
             {
                 var player = ServerCharacters.GetPlayerCharacter(owner);
-                if (player != null)
+                if (player is not null)
                 {
                     SharedGetPlayerOwnedAreas(player).Add(area);
                 }
@@ -1261,7 +1257,7 @@
 
             var owners = area.GetPrivateState<LandClaimAreaPrivateState>()
                              .LandOwners;
-            if (owners == null)
+            if (owners is null)
             {
                 return;
             }
@@ -1269,7 +1265,7 @@
             foreach (var owner in owners)
             {
                 var player = ServerCharacters.GetPlayerCharacter(owner);
-                if (player != null)
+                if (player is not null)
                 {
                     SharedGetPlayerOwnedAreas(player).Remove(area);
                 }
@@ -1704,7 +1700,7 @@
 
         public static bool SharedIsFoundedArea(ILogicObject area, ICharacter forCharacter)
         {
-            if (area == null)
+            if (area is null)
             {
                 Logger.Warning(nameof(ServerIsOwnedArea) + " - argument area is null");
                 return false;
@@ -1931,7 +1927,8 @@
                         occupiedTile,
                         character,
                         protoStaticWorldObject,
-                        tileOffset)))
+                        tileOffset,
+                        startTilePosition)))
                 {
                     continue;
                 }
@@ -1973,11 +1970,13 @@
             return false;
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         public byte ServerRemote_GetLandClaimOwnersMax()
         {
             return LandClaimSystemConstants.SharedLandClaimOwnersMax;
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         public (ushort landClaimsNumberLimitIncrease, double raidBlockDurationSeconds)
             ServerRemote_RequestLandClaimSystemConstants()
         {
@@ -1999,7 +1998,7 @@
         /// </summary>
         private static void ServerCleanupAreasGroup(ILogicObject areasGroup)
         {
-            if (areasGroup == null
+            if (areasGroup is null
                 || areasGroup.IsDestroyed)
             {
                 return;
@@ -2042,7 +2041,7 @@
                 }
 
                 var otherAreasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-                if (otherAreasGroup == null)
+                if (otherAreasGroup is null)
                 {
                     continue;
                 }
@@ -2079,7 +2078,7 @@
                 g => LandClaimAreasGroup
                      .GetPrivateState(g).ServerLandClaimsAreas.Count);
 
-            if (currentGroup == null)
+            if (currentGroup is null)
             {
                 // need to create a new group
                 currentGroup = Api.Server.World.CreateLogicObject<LandClaimAreasGroup>();
@@ -2107,7 +2106,7 @@
                 Logger.Important($"Assigned land claim areas group: {currentGroup} - to {area}");
                 areasGroupAreasList.Add(area);
 
-                if (areasGroup != null)
+                if (areasGroup is not null)
                 {
                     // group changed - copy necessary properties such as last raid time
                     LandClaimAreasGroup.ServerOnGroupChanged(area, areasGroup, currentGroup);
@@ -2185,7 +2184,7 @@
 
                 // find and rename access list entry for this player
                 var owners = privateState.LandOwners;
-                if (owners == null)
+                if (owners is null)
                 {
                     continue;
                 }
@@ -2222,7 +2221,7 @@
             // rebuild groups for every land claim without a group there
             foreach (var otherArea in tempListAreas.AsList())
             {
-                if (LandClaimArea.GetPublicState(otherArea).LandClaimAreasGroup == null)
+                if (LandClaimArea.GetPublicState(otherArea).LandClaimAreasGroup is null)
                 {
                     ServerEstablishAreasGroup(
                         SharedGetLandClaimAreaBounds(otherArea));
@@ -2270,7 +2269,7 @@
             foreach (var area in tempListAreas.AsList())
             {
                 var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-                if (areasGroup != null)
+                if (areasGroup is not null)
                 {
                     tempListGroups.AddIfNotContains(areasGroup);
                 }
@@ -2333,7 +2332,7 @@
 
         private static LandClaimAreasCache SharedGetLandClaimAreasCache()
         {
-            if (!(sharedLandClaimAreasCache is null))
+            if (sharedLandClaimAreasCache is not null)
             {
                 return sharedLandClaimAreasCache;
             }
@@ -2384,6 +2383,7 @@
                 color: NotificationColor.Bad);
         }
 
+        [RemoteCallSettings(timeInterval: 1, keyArgIndex: 0)]
         private LandClaimsGroupDecayInfo ServerRemote_GetDecayInfo(IStaticWorldObject landClaimStructure)
         {
             var character = ServerRemoteContext.Character;
@@ -2409,6 +2409,7 @@
                                                 normalDecayDelayDuration);
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private bool ServerRemote_RequestOwnedAreas()
         {
             var character = ServerRemoteContext.Character;
@@ -2421,6 +2422,7 @@
             return true;
         }
 
+        [RemoteCallSettings(timeInterval: 2)]
         private string ServerRemote_SetAreaOwners(ILogicObject area, List<string> newOwners)
         {
             var owner = ServerRemoteContext.Character;
@@ -2467,7 +2469,7 @@
             {
                 var name = n;
                 var playerToAdd = ServerCharacters.GetPlayerCharacter(name);
-                if (playerToAdd == null)
+                if (playerToAdd is null)
                 {
                     return string.Format(WorldObjectOwnersSystem.DialogCannotSetOwners_MessageFormatPlayerNotFound,
                                          name);
@@ -2492,7 +2494,7 @@
                 Logger.Important($"Removed land owner: {name}, land: {area}", characterRelated: owner);
 
                 var removedPlayer = ServerCharacters.GetPlayerCharacter(name);
-                if (removedPlayer == null)
+                if (removedPlayer is null)
                 {
                     continue;
                 }

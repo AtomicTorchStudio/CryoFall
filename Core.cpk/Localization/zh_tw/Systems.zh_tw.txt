@@ -382,47 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `此伺服器的管理員已將其設置為僅限邀請進入。
 [br]請查看伺服器說明以瞭解其他詳細資訊。`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`歡迎來到CryoFall官方伺服器！
-[br]
-[br]
-[b]重要:[/b]
-[br]
-這是一個PVE伺服器。在本伺服器上玩家不能以任何方式傷害其他玩家。此伺服器致力於玩家的和平探索，對抗自然環境。玩家無法殺死其他玩家，摧毀其建築或盜取物品。除此之外，此伺服器和正常的遊戲體驗一致，有著危險的怪物，可解鎖的科技和奇幻的世界。去冒險吧。
-[br]
-[br]
-如果你希望獲得更加刺激，不受限制的遊戲體驗，請考慮加入PVP伺服器。
-[br]
-[br]
-[b]伺服器規則:[/b]
-[*]尊重其他玩家。我們不會容忍任何的濫用以及歧視行為。
-[*]遵從伺服器管理員的安排。
-[*]不要在聊天欄刷屏或發送不雅內容。
-[*]不要濫用PVE限制。
-[*]不要濫用遊戲規則或遊戲機制來對其他玩家造成麻煩。
-[br]
-[br]
-祝大家遊戲愉快! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+此社區服務器已安裝社區模組。我們不保證它能順利運行或為您提供標準的CryoFall遊戲體驗。如果您遇到了任何問題 - 請聯繫該社區服務器的管理員。
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`歡迎來到CryoFall官方伺服器！
-[br]
-[br]
-[b]重要:[/b]
-[br]
-這是一個PVP伺服器。請記住在PVP伺服器上，你將遭遇來自其他玩家的敵對行為。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。
-[br]
-[br]
-如果你希望獲得更加平和的探索體驗，尤其如果這是你第一次進行遊戲，請考慮加入PVE伺服器。
-[br]
-[br]
-[b]伺服器規則:[/b]
-[*]尊重其他玩家。我們不會容忍任何的濫用以及歧視行為。
-[*]遵從伺服器管理員的安排。
-[*]不要在聊天欄刷屏或發送不雅內容。
-[br]
-[br]
-祝大家遊戲愉快! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`此服務器為PvE（玩家對抗環境）服務器。在此服務器上，玩家不可直接或間接相互攻擊。此服務器致力於和平探索遊戲世界而非玩家衝突。你無法殺死，破壞或攻擊其他玩家及他們的物品。除此之外，此服務器將提供標準的CryoFall遊戲體驗，比如危險生物，科技樹和可探索的世界。開始你的旅行吧。
+[br]如果您想要更加緊張刺激的遊戲體驗 - 請考慮選擇PVP服務器。`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`這是一個PVP服務器。請記住在PVP服務器上，[b]你將遭遇來自其他玩家的敵對行為[/b]。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。
+[br]如果你希望獲得更加平和的探索體驗，尤其如果這是你第一次進行遊戲，請考慮加入PVE服務器。`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+PvE服務器
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+PvP服務器
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+模組服務器
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+歡迎信息
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+抹除數據
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 歡迎來到{0}

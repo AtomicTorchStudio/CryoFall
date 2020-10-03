@@ -184,7 +184,7 @@
 
         public void SetParentNode(ViewModelTechNode parentNode)
         {
-            if (this.parentNode != null)
+            if (this.parentNode is not null)
             {
                 throw new Exception("Parent node is already set");
             }
@@ -204,7 +204,7 @@
             base.DisposeViewModel();
 
             this.IsUnlockedChanged = null;
-            if (this.TechNode == null)
+            if (this.TechNode is null)
             {
                 return;
             }
@@ -227,7 +227,7 @@
             foreach (var effect in this.TechNode.NodeEffects.OfType<TEffect>())
             {
                 var vm = effect.CreateViewModel();
-                if (vm != null)
+                if (vm is not null)
                 {
                     list.Add((TViewModel)vm);
                 }
@@ -249,7 +249,7 @@
                                  out cannotUnlockMessage);
 
             if (this.CanUnlock
-                || cannotUnlockMessage == null)
+                || cannotUnlockMessage is null)
             {
                 this.CannotUnlockMessage = null;
                 return;

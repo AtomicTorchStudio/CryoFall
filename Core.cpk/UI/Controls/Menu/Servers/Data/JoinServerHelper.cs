@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client.Server;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -52,9 +53,17 @@
 
             if (serverInfo.IsInaccessible)
             {
+                var title = serverInfo.IsOfficial
+                                ? null
+                                : GameServerLoginFailedDialogHelper.TitleDefault;
+
+                var message = serverInfo.IsOfficial
+                                  ? DialogServerInaccessible
+                                  : GameServerLoginFailedDialogHelper.ServerUnreachable;
+
                 DialogWindow.ShowDialog(
-                    title: null,
-                    DialogServerInaccessible,
+                    title: title,
+                    message,
                     okAction: () =>
                               {
                                   if (!serverInfo.IsInaccessible)

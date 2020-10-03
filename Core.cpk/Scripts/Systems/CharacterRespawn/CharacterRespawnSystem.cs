@@ -204,7 +204,7 @@
         private static bool ServerCheckIsHasBed(ICharacter character, out IStaticWorldObject bed)
         {
             bed = PlayerCharacter.GetPrivateState(character).CurrentBedObject;
-            return bed != null
+            return bed is not null
                    && !bed.IsDestroyed
                    && LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bed, character);
         }
@@ -393,6 +393,7 @@
                 closeByEscapeKey: true);
         }
 
+        [RemoteCallSettings(timeInterval: 5)]
         private Tuple<bool, int> ServerRemote_GetHasBed()
         {
             var character = ServerRemoteContext.Character;

@@ -163,6 +163,15 @@ Jesteś na haju i z nieznanych powodów czujesz radość...
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Na haju
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Poczekaj, aż czas odnowienia upłynie.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Niedawno użyto przedmiotu leczniczego. Nie można użyć kolejnego, póki nie upłynie czas odnowienia.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Czas odnowienia - lecznicze
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Nadużywasz leków i odczuwasz negatywne skutki swojej lekkomyślności – podupadasz na zdrowiu.
 

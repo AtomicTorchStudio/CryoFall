@@ -146,7 +146,7 @@
         private static ICharacter ClientGetItemOwnerCharacter(IItem item)
         {
             var container = item.Container;
-            if (container != null)
+            if (container is not null)
             {
                 return container.OwnerAsCharacter;
             }

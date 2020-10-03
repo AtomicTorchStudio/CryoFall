@@ -32,8 +32,10 @@
                                      .Select(
                                          category => new ViewModelSkillCategory(
                                              category,
-                                             onCategoryVisibilityChanged: this.SkillSkillOrCategoryVisibilityChangedHandler,
-                                             onSkillVisibilityChanged: this.SkillSkillOrCategoryVisibilityChangedHandler));
+                                             onCategoryVisibilityChanged: this
+                                                 .SkillSkillOrCategoryVisibilityChangedHandler,
+                                             onSkillVisibilityChanged:
+                                             this.SkillSkillOrCategoryVisibilityChangedHandler));
 
             //// uncomment to test scrollbar
             //skillCategories = skillCategories.Concat(skillCategories);
@@ -59,7 +61,7 @@
                     return;
                 }
 
-                if (this.selectedSkill != null)
+                if (this.selectedSkill is not null)
                 {
                     this.selectedSkill.IsSelected = false;
                 }
@@ -69,7 +71,7 @@
                 this.selectedSkill = null;
                 this.NotifyThisPropertyChanged();
 
-                if (value != null
+                if (value is not null
                     && value.Visibility != Visibility.Visible)
                 {
                     // cannot select invisible skill
@@ -79,7 +81,7 @@
                 this.selectedSkill = value;
                 this.NotifyThisPropertyChanged();
 
-                if (this.selectedSkill != null)
+                if (this.selectedSkill is not null)
                 {
                     this.selectedSkill.IsSelected = true;
                 }
@@ -92,14 +94,35 @@
 
         public int SkillsCountTotal { get; } = 10;
 
-        public void RefreshExperiencePoints()
+        public void RefreshExperiencePointsForAllSkills()
         {
+            // Refresh the experience points for all the skills that have visible experience.
+            // So player will see an actual data in large and small experience bars.
+            TryRefresh(this.selectedSkill); // refresh the selected skill first
+
             foreach (var skillCategory in this.SkillCategories)
             {
-                foreach (var skill in skillCategory.Skills)
+                foreach (var viewModelSkill in skillCategory.Skills)
                 {
-                    skill.RefreshExperiencePoints();
+                    if (ReferenceEquals(viewModelSkill, this.selectedSkill))
+                    {
+                        continue;
+                    }
+
+                    TryRefresh(viewModelSkill);
                 }
+            }
+
+            static void TryRefresh(ViewModelSkill viewModelSkill)
+            {
+                if (viewModelSkill is null
+                    || viewModelSkill.Visibility != Visibility.Visible
+                    || viewModelSkill.VisibilityExperience != Visibility.Visible)
+                {
+                    return;
+                }
+
+                viewModelSkill.RefreshExperiencePoints();
             }
         }
 

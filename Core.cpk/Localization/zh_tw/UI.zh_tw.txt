@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Save:
 UI/CoreStrings@Button_Upgrade:
 升級
 
+UI/CoreStrings@CannotSelectDateInThePast:
+無法選擇過去的日期。
+
 UI/CoreStrings@CharacterStatName_Food:
 食物
 
@@ -200,6 +203,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 此建築建造後不可移動。
+
+UI/CoreStrings@ConsultServerAdministrator:
+請詢問服務器管理員。
 
 UI/CoreStrings@Copy:
 複製
@@ -698,6 +704,9 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MOD
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+此服務器不允許客戶端模組。所有玩家的客戶端模組都將被禁用。
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 這是CryoFall官方伺服器開發商進行管理。
 
@@ -1087,6 +1096,19 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 刪檔
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]下一次抹除:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+抹除數據未具體化。
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`此服務器不遵循一般的數據抹除日程；只會在新遊戲版本更新時才會進行數據抹除。請查看官方更新日程來獲取詳細信息。
+[br]請注意：所有服務器數據（包括世界和角色數據）將在服務器更新到下一個主版本時重置。`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]服務器啟動:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 你無法對一個啟用了護盾的基地進行此行動。
 
@@ -1173,6 +1195,9 @@ UI/CoreStrings@ShieldProtection_EstimatedDuration:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 最大持續時間：
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+下線保護無法在此領地內使用，因為其完全處於另一個擁有獨立護盾保護的基地當中。
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 除非被打斷，護盾將在{0}後打開。（可能打斷原因有所有人主動打斷，或被襲擊導致襲擊隔斷觸發）
@@ -1293,6 +1318,12 @@ UI/CoreStrings@TextBoxSearchPlaceholder:
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+時間已經被調整至您的當地時區(UTC{0})。
+
+UI/CoreStrings@TimeRemains:
+剩餘時間
 
 UI/CoreStrings@Title:
 標題
@@ -1909,6 +1940,11 @@ UI/CoreStrings@WipedDate_JustWiped:
 
 UI/CoreStrings@WipedDate_Yesterday:
 昨天
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`請注意：抹除無法自動進行！
+[br]您需要手動關停服務器並刪除存檔。
+[br]此菜單僅用於提醒玩家。`
 
 UI/CoreStrings@WorldMap_MapExplored:
 地圖已探索

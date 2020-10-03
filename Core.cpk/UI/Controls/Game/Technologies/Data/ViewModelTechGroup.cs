@@ -32,7 +32,7 @@
         {
             get
             {
-                if (this.requirements != null)
+                if (this.requirements is not null)
                 {
                     return this.requirements;
                 }

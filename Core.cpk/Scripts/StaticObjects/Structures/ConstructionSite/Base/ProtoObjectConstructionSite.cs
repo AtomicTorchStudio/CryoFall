@@ -217,7 +217,7 @@
             var publicState = data.PublicState;
             var protoStructure = publicState.ConstructionProto;
 
-            if (protoStructure == null)
+            if (protoStructure is null)
             {
                 // incorrect construction site! destroy it
                 Server.World.DestroyObject(data.GameObject);
@@ -242,7 +242,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             var constructionProto = data.PublicState.ConstructionProto;
-            if (constructionProto == null)
+            if (constructionProto is null)
             {
                 return;
             }

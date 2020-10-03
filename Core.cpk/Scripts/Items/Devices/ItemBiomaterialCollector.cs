@@ -62,7 +62,7 @@
             var itemDevice = character.SharedGetPlayerContainerEquipment()
                                       .GetItemsOfProto(this)
                                       .FirstOrDefault();
-            if (itemDevice == null)
+            if (itemDevice is null)
             {
                 // don't have an equipped device
                 return;

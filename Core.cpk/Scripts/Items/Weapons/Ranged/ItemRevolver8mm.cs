@@ -31,7 +31,7 @@
 
         public override string Name => "Revolver";
 
-        public override double ReadyDelayDuration => 0.6;
+        public override double ReadyDelayDuration => WeaponReadyDelays.ConventionalPistols;
 
         public override double SpecialEffectProbability => 0.25;
 
@@ -40,14 +40,14 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.0, -0.5, 0.5 },
-                cycledSequence: new[] { -0.7, 0.8 });
+                initialSequence: new[] { 0.0, 0.5, 0.5 },
+                cycledSequence: new[] { 0.7, 0.8 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.SimplePistol)
-                       .Set(textureScreenOffset: (-6.5, 14));
+                       .Set(textureScreenOffset: (-4, 14));
         }
 
         protected override void PrepareProtoWeaponRanged(

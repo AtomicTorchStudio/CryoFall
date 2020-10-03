@@ -56,11 +56,11 @@
             }
         }
 
-        public Visibility EditButtonVisibility => IsDesignTime || this.CommandEdit != null
+        public Visibility EditButtonVisibility => IsDesignTime || this.CommandEdit is not null
                                                       ? Visibility.Visible
                                                       : Visibility.Collapsed;
 
-        public Visibility RemoveButtonVisibility => IsDesignTime || this.CommandRemove != null
+        public Visibility RemoveButtonVisibility => IsDesignTime || this.CommandRemove is not null
                                                         ? Visibility.Visible
                                                         : Visibility.Collapsed;
 

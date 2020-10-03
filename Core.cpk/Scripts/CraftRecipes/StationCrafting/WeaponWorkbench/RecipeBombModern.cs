@@ -19,10 +19,10 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemExplosives>(count: 400);
-            inputItems.Add<ItemIngotSteel>(count: 100);
+            inputItems.Add<ItemExplosives>(count: 250);
+            inputItems.Add<ItemIngotSteel>(count: 50);
             inputItems.Add<ItemComponentsElectronic>(count: 10);
-            inputItems.Add<ItemComponentsWeapon>(count: 2);
+            inputItems.Add<ItemComponentsWeapon>(count: 1);
 
             outputItems.Add<ItemBombModern>(count: 1);
         }

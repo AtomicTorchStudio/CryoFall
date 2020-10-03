@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.Characters.Input.ClientPrediction;
@@ -25,9 +26,11 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.Tiles;
@@ -122,11 +125,11 @@
 
         public abstract bool IsAllowCreatureDamageWhenNoPilot { get; }
 
+        public virtual bool IsArmorBarDisplayedWhenPiloted { get; }
+
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public virtual bool IsAutoUnlocked => false;
-
-        public virtual bool IsHealthbarDisplayedWhenPiloted { get; }
 
         public abstract bool IsHeavyVehicle { get; }
 
@@ -303,7 +306,7 @@
                     RefreshLights();
 
                     var currentPilot = publicState.PilotCharacter;
-                    if (currentPilot != null
+                    if (currentPilot is not null
                         && !currentPilot.IsCurrentClientCharacter)
                     {
                         Api.Client.Audio.PlayOneShot(this.SoundResourceLightsToggle,
@@ -377,7 +380,7 @@
 
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
         {
-            if (this.listedInTechNodes == null)
+            if (this.listedInTechNodes is null)
             {
                 if (this.IsAutoUnlocked)
                 {
@@ -456,10 +459,31 @@
 
             // try drop cargo on the ground
             var itemsContainer = GetPrivateState(gameObject).CargoItemsContainer;
-            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+            var objectGroundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 gameObject.Tile,
                 itemsContainer,
                 DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
+
+            if (objectGroundContainer is null)
+            {
+                return;
+            }
+
+            var ownerName = GetPrivateState(gameObject).Owners.FirstOrDefault();
+            if (ownerName is null)
+            {
+                return;
+            }
+
+            var ownerCharacter = Server.Characters.GetPlayerCharacter(ownerName);
+            if (ownerCharacter is null)
+            {
+                return;
+            }
+
+            WorldObjectClaimSystem.ServerTryClaim(objectGroundContainer.OwnerAsStaticObject,
+                                                  ownerCharacter,
+                                                  WorldObjectClaimDuration.DroppedGoods);
         }
 
         public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
@@ -711,7 +735,7 @@
 
         public bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true)
         {
-            if (this.listedInTechNodes == null
+            if (this.listedInTechNodes is null
                 || this.listedInTechNodes.Count == 0)
             {
                 return this.IsAutoUnlocked;
@@ -733,6 +757,34 @@
             }
 
             return false;
+        }
+
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IWorldObject targetObject,
+            double damagePreMultiplier,
+            double damagePostMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            if (PveSystem.SharedIsPve(false)
+                && GetPublicState((IDynamicWorldObject)targetObject).PilotCharacter is null
+                && (weaponCache.Character is null
+                    || (weaponCache.Character.ProtoGameObject is IProtoCharacterMob protoCharacterMob
+                        && !protoCharacterMob.IsBoss)))
+            {
+                // in PvE only a boss could damage a vehicle without a pilot
+                obstacleBlockDamageCoef = 0;
+                damageApplied = 0;
+                return false;
+            }
+
+            return base.SharedOnDamage(weaponCache,
+                                       targetObject,
+                                       damagePreMultiplier,
+                                       damagePostMultiplier,
+                                       out obstacleBlockDamageCoef,
+                                       out damageApplied);
         }
 
         public VehicleCanBuildCheckResult SharedPlayerCanBuild(ICharacter character)
@@ -867,7 +919,7 @@
             var clientState = data.ClientState;
 
             var pilotCharacter = publicState.PilotCharacter;
-            if (pilotCharacter != null
+            if (pilotCharacter is not null
                 && pilotCharacter.IsInitialized)
             {
                 // re-initialize pilot character physics
@@ -882,7 +934,7 @@
 
             RefreshHealthbar();
 
-            if (pilotCharacter != null
+            if (pilotCharacter is not null
                 && pilotCharacter.IsInitialized
                 && pilotCharacter.IsCurrentClientCharacter
                 && vehicle.ClientHasPrivateState)
@@ -908,7 +960,7 @@
                 componentArmorBar.IsEnabled =
                     publicState.PilotCharacter != Api.Client.Characters.CurrentPlayerCharacter
                     && (publicState.PilotCharacter is null
-                        || this.IsHealthbarDisplayedWhenPiloted);
+                        || this.IsArmorBarDisplayedWhenPiloted);
 
                 componentArmorBar.IsDisplayedOnlyOnMouseOver = publicState.PilotCharacter is null;
             }
@@ -939,7 +991,7 @@
             clientState.RendererShadow?.Destroy();
             clientState.RendererShadow = null;
 
-            if (publicState.PilotCharacter != null)
+            if (publicState.PilotCharacter is not null)
             {
                 // pilot character will use the vehicle's skeleton
                 return;
@@ -1100,7 +1152,7 @@
 
             // setup cargo items container
             var cargoItemsContainer = privateState.CargoItemsContainer;
-            if (cargoItemsContainer != null)
+            if (cargoItemsContainer is not null)
             {
                 // container already created - update it
                 Server.Items.SetContainerType(cargoItemsContainer, this.CargoItemsContainerType);
@@ -1118,7 +1170,7 @@
 
             // setup fuel items container
             var fuelItemsContainer = privateState.FuelItemsContainer;
-            if (fuelItemsContainer != null)
+            if (fuelItemsContainer is not null)
             {
                 // container already created - update it
                 Server.Items.SetContainerType(fuelItemsContainer, this.FuelItemsContainerType);
@@ -1146,7 +1198,7 @@
             try
             {
                 var pilot = GetPublicState(vehicle).PilotCharacter;
-                if (pilot != null)
+                if (pilot is not null)
                 {
                     VehicleSystem.ServerCharacterExitCurrentVehicle(pilot, force: true);
                 }
@@ -1237,22 +1289,23 @@
                 return;
             }
 
-            data.PhysicsBody.IsNotPushable = true;
+            var physicsBody = data.PhysicsBody;
+            physicsBody.IsNotPushable = true;
 
             var scale = 1.0;
             this.SharedGetSkeletonProto(data.GameObject, out var skeleton, ref scale);
-            if (skeleton == null)
+            if (skeleton is null)
             {
                 return;
             }
 
-            skeleton.CreatePhysics(data.PhysicsBody);
+            skeleton.CreatePhysics(physicsBody);
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (scale != 1.0)
             {
                 // apply non-default scale
-                data.PhysicsBody.ApplyShapesScale(scale);
+                physicsBody.ApplyShapesScale(scale);
             }
         }
 
@@ -1283,6 +1336,11 @@
 
             // all required items are available
             return true;
+        }
+
+        private void ClientRemote_OnVehicleBuiltByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleBuilt, position);
         }
 
         private void ClientRemote_VehicleExploded(Vector2D position)
@@ -1408,14 +1466,9 @@
             tempPlayers.Remove(character);
 
             this.CallClient(tempPlayers.AsList(),
-                            _ => _.ServerRemote_OnVehicleBuiltByOtherPlayer(soundPosition));
+                            _ => _.ClientRemote_OnVehicleBuiltByOtherPlayer(soundPosition));
 
             return VehicleCanBuildCheckResult.Success;
-        }
-
-        private void ServerRemote_OnVehicleBuiltByOtherPlayer(Vector2D position)
-        {
-            Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleBuilt, position);
         }
 
         private void ServerRemote_OnVehicleRepairByOtherPlayer(Vector2D position)
@@ -1466,7 +1519,7 @@
             return VehicleCanRepairCheckResult.Success;
         }
 
-        [RemoteCallSettings(DeliveryMode.Default)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.5)]
         private void ServerRemote_SetCurrentVehicleLightsMode(bool setIsActive)
         {
             if (!this.HasVehicleLights)

@@ -68,7 +68,7 @@
             }
 
             var worldObjectGenerator = item.Container.OwnerAsStaticObject;
-            if (worldObjectGenerator == null
+            if (worldObjectGenerator is null
                 || worldObjectGenerator.IsDestroyed)
             {
                 return;

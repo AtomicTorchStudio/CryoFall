@@ -20,7 +20,7 @@
             this.RemoveButtonVisibility = removeButtonVisibility;
 
             this.IsOnline = name == ClientCurrentCharacterHelper.Character.Name
-                            || OnlinePlayersSystem.ClientContains(name);
+                            || OnlinePlayersSystem.ClientIsOnline(name);
 
             OnlinePlayersSystem.ClientPlayerAddedOrRemoved += this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
         }

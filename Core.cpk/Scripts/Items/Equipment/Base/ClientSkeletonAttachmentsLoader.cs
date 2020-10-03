@@ -53,7 +53,7 @@
                 var skeletonName = skeleton.SkeletonName;
                 foreach (var slotAttachment in slotAttachments)
                 {
-                    if (slotAttachment.SkeletonName != null
+                    if (slotAttachment.SkeletonName is not null
                         && !slotAttachment.SkeletonName.Equals(skeletonName, StringComparison.Ordinal))
                     {
                         // this attachment for different skeleton

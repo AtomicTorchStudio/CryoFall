@@ -23,7 +23,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
 
         public string Execute(ICharacter character, int? minutes = null)
         {
-            if (character == null)
+            if (character is null)
             {
                 throw new Exception("The character name is not provided");
             }

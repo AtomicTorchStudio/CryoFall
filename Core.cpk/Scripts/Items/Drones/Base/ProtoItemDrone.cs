@@ -57,7 +57,7 @@
             base.ServerOnDestroy(gameObject);
 
             var objectDrone = GetPrivateState(gameObject).WorldObjectDrone;
-            if (objectDrone != null
+            if (objectDrone is not null
                 && !objectDrone.IsDestroyed)
             {
                 Server.World.DestroyObject(objectDrone);

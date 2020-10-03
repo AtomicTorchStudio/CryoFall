@@ -125,7 +125,7 @@
             this.textBlock.Inlines.Clear();
 
             var text = this.Content as string;
-            if (text == null)
+            if (text is null)
             {
                 return;
 

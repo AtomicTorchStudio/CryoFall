@@ -19,14 +19,14 @@
                     return;
                 }
 
-                if (this.characterCurrentStats != null)
+                if (this.characterCurrentStats is not null)
                 {
                     this.ReleaseSubscriptions();
                 }
 
                 this.characterCurrentStats = value;
 
-                if (this.characterCurrentStats == null)
+                if (this.characterCurrentStats is null)
                 {
                     return;
                 }

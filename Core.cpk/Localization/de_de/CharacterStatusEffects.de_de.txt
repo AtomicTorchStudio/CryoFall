@@ -163,6 +163,15 @@ Du bist berauscht. Aus irgendeinem Grund fühlst du dich wirklich glücklich ...
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Berauscht
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Bitte warte, bis die Abklingzeit vorüber ist.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Du hast erst kürzlich Medizin zu dir genommen. Bis zum Ende der Abklingzeit kannst du keine weitere Medizin einnehmen.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Medizinische Abklingzeit
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Du hast zu viel Medizin zu dir genommen und deshalb gesundheitlichen Schaden davongetragen.
 

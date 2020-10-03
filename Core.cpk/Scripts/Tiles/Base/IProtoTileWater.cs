@@ -8,6 +8,8 @@
     {
         IProtoTileWater BridgeProtoTile { get; }
 
+        bool CanCollect { get; }
+
         bool IsFishingAllowed { get; }
 
         TextureResource UnderwaterGroundTextureAtlas { get; }

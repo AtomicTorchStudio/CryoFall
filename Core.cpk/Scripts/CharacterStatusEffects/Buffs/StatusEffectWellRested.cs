@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs
 {
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
@@ -10,16 +11,16 @@
 
     /// <summary>
     /// This status effect is providing a daily bonus to players who cannot play the game a lot.
+    /// Basically, this effect provides additional learning points every time player gains them.
+    /// The effect intensity decreases with every gained LP.
     /// </summary>
     public class StatusEffectWellRested : ProtoStatusEffect
     {
         /// <summary>
-        /// The effect will deplete slowly with every gained LP.
-        /// The number configured for this constant determines how long the full status effect will last.
-        /// E.g. if we set it to 100 LP then 100% status effect will become 0% after gaining 100 LP
-        /// (so 1 LP gained reduces this status effect by 1%).
-        /// Currently we've set it to 200 LP
-        /// (basically 100 LP gained by player and 100 LP gained via x2 bonus from this effect).
+        /// Determines how many bonus Learning Points this effect
+        /// could provide for 100% effect intensity.
+        /// Please note: this value is automatically multiplied on
+        /// the server rate "ServerLearningPointsGainMultiplier". 
         /// </summary>
         public const int LearningPointsBonusForFullEffect = 200;
 
@@ -31,12 +32,12 @@
 
         private static IProtoStatusEffect instance;
 
-        public override bool IsRemovedOnRespawn => false;
-
         public override string Description =>
             "You've been resting for a while, so you find it easier to learn new things or polish your skills. (This is a daily bonus that accumulates while you are offline for a sufficiently long time; it is used to provide special bonuses as it depletes.)";
 
         public override bool IsPublic => false; // never show this effect to other players
+
+        public override bool IsRemovedOnRespawn => false;
 
         public override StatusEffectKind Kind => StatusEffectKind.Buff;
 
@@ -46,8 +47,8 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPercent(this, StatName.LearningsPointsGainMultiplier, 100)
-                   .AddPercent(this, StatName.SkillsExperienceGainMultiplier, 100);
+            effects.AddPercent(this, StatName.LearningsPointsGainMultiplier, 150)
+                   .AddPercent(this, StatName.SkillsExperienceGainMultiplier, 150);
         }
 
         protected override void PrepareProtoStatusEffect()
@@ -109,13 +110,19 @@
                 return;
             }
 
-            var intensityToRemove = gainedLearningPoints
-                                    / ((double)LearningPointsBonusForFullEffect
-                                       * TechConstants.ServerLearningPointsGainMultiplier);
-            character.ServerRemoveStatusEffectIntensity(this, intensityToRemove);
+            var originalLearningPointsGained = gainedLearningPoints
+                                               / character.SharedGetFinalStatMultiplier(
+                                                   StatName.LearningsPointsGainMultiplier);
 
-            //Logger.Dev(
-            //    $"{character} gained: {gainedLearningPoints} LP. Intensity removed: {100 * intensityToRemove:F2}%");
+            var bonusLearningPointsGained = originalLearningPointsGained
+                                            * (this.ProtoEffects.Multipliers[StatName.LearningsPointsGainMultiplier]
+                                               - 1.0);
+
+            var intensityToRemove = bonusLearningPointsGained
+                                    / (LearningPointsBonusForFullEffect
+                                       * TechConstants.ServerLearningPointsGainMultiplier);
+
+            character.ServerRemoveStatusEffectIntensity(this, intensityToRemove);
         }
     }
 }

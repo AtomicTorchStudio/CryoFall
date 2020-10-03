@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Lights;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
@@ -28,8 +29,8 @@
                 .Add(TaskHaveTechNode.Require<TechNodeFloorLampOil>())
                 .Add(TaskHaveTechNode.Require<TechNodeOilLamp>())
                 .Add(TaskBuildStructure.Require<ObjectLightFloorLampOil>())
-                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeOilLamp>())
-                .Add(TaskHaveItem.Require<ItemCampFuel>(count: 3, isReversible: false));
+                .Add(TaskUseItem.Require<ItemOilLamp>(count: 1))
+                .Add(TaskHaveItem.Require<ItemCampFuel>(count: 1, isReversible: false));
 
             prerequisites
                 .Add<QuestBuildEvaporativeFridge>();

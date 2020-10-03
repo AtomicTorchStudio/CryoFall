@@ -121,9 +121,9 @@
         private void Refresh()
         {
             if (!this.isLoaded
-                || this.craftingQueueItem == null)
+                || this.craftingQueueItem is null)
             {
-                if (this.viewModel == null)
+                if (this.viewModel is null)
                 {
                     return;
                 }

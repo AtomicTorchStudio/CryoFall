@@ -62,7 +62,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                        $"{nameof(damageDistanceMax)} must be >= {nameof(damageDistanceFullDamage)}");
 
             var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
-            var protoWeaponSkill = playerCharacterSkills != null
+            var protoWeaponSkill = playerCharacterSkills is not null
                                        ? weaponFinalCache.ProtoWeapon?.WeaponSkillProto
                                        : null;
 
@@ -152,7 +152,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             [CanBeNull] CollisionGroup collisionGroup = null)
         {
             var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
-            var protoWeaponSkill = playerCharacterSkills != null
+            var protoWeaponSkill = playerCharacterSkills is not null
                                        ? weaponFinalCache.ProtoWeapon?.WeaponSkillProto
                                        : null;
 
@@ -406,7 +406,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 var protoWorldObject = hitData.FallbackProtoWorldObject;
                 var objectMaterial = hitData.FallbackObjectMaterial;
                 var hitWorldObject = hitData.WorldObject;
-                if (hitWorldObject != null
+                if (hitWorldObject is not null
                     && !hitWorldObject.IsInitialized)
                 {
                     hitWorldObject = null;
@@ -419,7 +419,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 volume *= RandomHelper.Range(0.8f, 1.0f);
                 var pitch = RandomHelper.Range(0.95f, 1.05f);
 
-                if (hitWorldObject != null)
+                if (hitWorldObject is not null)
                 {
                     SoundPresetHitExplosion.PlaySound(
                         objectMaterial,
@@ -594,7 +594,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 foreach (var test in obstaclesOnTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
-                    if (!(testPhysicsBody.AssociatedProtoTile is null))
+                    if (testPhysicsBody.AssociatedProtoTile is not null)
                     {
                         // obstacle tile on the way
                         return true;

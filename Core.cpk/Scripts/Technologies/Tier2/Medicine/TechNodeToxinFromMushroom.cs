@@ -1,15 +1,15 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier3.Medicine
+﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier2.Medicine
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeToxinFromMushroom : TechNode<TechGroupMedicineT3>
+    public class TechNodeToxinFromMushroom : TechNode<TechGroupMedicineT2>
     {
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipeToxinFromMushroom>();
 
-            config.SetRequiredNode<TechNodeHemostatic>();
+            config.SetRequiredNode<TechNodePainkiller>();
         }
     }
 }

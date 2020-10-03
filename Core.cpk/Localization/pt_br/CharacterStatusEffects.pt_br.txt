@@ -163,6 +163,15 @@ Você está chapado por alguma coisa. Por algum motivo, isso faz você se sentir
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Chapado
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Aguarde até que o tempo de espera tenha terminado.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Você usou recentemente um item médico. Não é possível usar outro até o fim do tempo de espera.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Tempo de espera médico
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Você usou em itens médicos demais e, por causa disso, sofreu danos à vida.
 

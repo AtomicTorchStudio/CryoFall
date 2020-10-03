@@ -16,6 +16,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -84,7 +85,7 @@
 
         public override bool CanAddItem(CanAddItemContext context)
         {
-            if (context.ByCharacter == null
+            if (context.ByCharacter is null
                 || isCompactingNow)
             {
                 return true;
@@ -169,6 +170,7 @@
             return false;
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private byte ServerRemote_RequestSafeItemsSlotsCapacity()
         {
             return ServerSafeItemsSlotsCapacity;
@@ -184,7 +186,7 @@
 
                 void Refresh()
                 {
-                    if (Api.Client.Characters.CurrentPlayerCharacter != null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         instance.CallServer(_ => _.ServerRemote_RequestSafeItemsSlotsCapacity())
                                 .ContinueWith(t =>

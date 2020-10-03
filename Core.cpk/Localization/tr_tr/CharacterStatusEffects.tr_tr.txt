@@ -163,6 +163,15 @@ Bir şey kafanı güzel yaptı. Nedense, kendini mutlu hissediyorsun.
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Kafası güzel
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Lütfen soğuma süresi bitene kadar bekleyin.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Kısa süre önce medikal bir eşya kullandınız. Soğuma süresi sona ermeden daha fazla kullanamazsınız.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Medikal soğuma süresi
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Çok fazla tıbbi eşya kullandın ve bunun sonucunda sağlığın hasar gördü.
 

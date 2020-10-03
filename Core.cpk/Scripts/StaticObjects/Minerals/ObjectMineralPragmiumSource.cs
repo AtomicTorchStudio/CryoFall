@@ -69,19 +69,14 @@
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
-                    {
-                        return true;
-                    }
-
-                    if (context.TileOffset != Vector2Int.Zero)
+                    if (forCharacter is null)
                     {
                         return true;
                     }
 
                     if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
                     {
-                        // this limitation doesn't apply to PvP mode
+                        // this limitation doesn't apply to PvP servers
                         return true;
                     }
 
@@ -241,7 +236,7 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            if (weaponCache.Character != null)
+            if (weaponCache.Character is not null)
             {
                 // damaged by character
                 if (IsServer)
@@ -258,7 +253,7 @@
                 }
             }
 
-            if (weaponCache.ProtoWeapon != null
+            if (weaponCache.ProtoWeapon is not null
                 && !(weaponCache.ProtoWeapon is IProtoItemWeaponMelee))
             {
                 // hit but not damaged - only melee weapons (including pickaxes can damage this)

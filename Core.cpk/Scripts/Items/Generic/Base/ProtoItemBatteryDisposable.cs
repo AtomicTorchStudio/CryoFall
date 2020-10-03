@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public abstract class ProtoItemBatteryDisposable
@@ -36,6 +37,9 @@
                                     .Replace(ItemSound.Use, "Items/BatteryDisposable/Use");
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableOrdered,
+                            timeInterval: 0.2,
+                            clientMaxSendQueueSize: 20)]
         private void ServerRemote_ConsumeItem(IItem item)
         {
             var character = ServerRemoteContext.Character;

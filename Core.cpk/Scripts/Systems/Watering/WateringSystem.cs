@@ -68,7 +68,7 @@
         {
             var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject
                                   as IStaticWorldObject;
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 return null;
             }
@@ -165,7 +165,7 @@
         {
             var character = request.Character;
             var objectPlant = request.WorldObject;
-            if (objectPlant == null
+            if (objectPlant is null
                 || !(objectPlant.ProtoWorldObject is IProtoObjectPlant protoPlant))
             {
                 throw new Exception("The world object must be a plant");

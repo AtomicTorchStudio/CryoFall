@@ -98,7 +98,7 @@
             var itemHeadEquipment = data.HeadEquipment;
             var protoItemHeadEquipment = (IProtoItemEquipmentHead)itemHeadEquipment?.ProtoItem;
             var isHairVisible = protoItemHeadEquipment?.IsHairVisible ?? true;
-            isHairVisible &= style.HairId != null;
+            isHairVisible &= style.HairId is not null;
 
             string hair = null, hairBehind = null;
             if (isHairVisible
@@ -122,7 +122,7 @@
             }
 
             string helmetFront = null, helmetBehind = null;
-            if (protoItemHeadEquipment != null)
+            if (protoItemHeadEquipment is not null)
             {
                 protoItemHeadEquipment.ClientGetHeadSlotSprites(
                     itemHeadEquipment,
@@ -481,7 +481,7 @@
 
             public ComposeLayer(string path, sbyte spriteQualityOffset)
             {
-                this.TextureResource = path != null
+                this.TextureResource = path is not null
                                            ? new TextureResource(
                                                path.Substring(ContentPaths.Textures.Length),
                                                isProvidesMagentaPixelPosition: true,

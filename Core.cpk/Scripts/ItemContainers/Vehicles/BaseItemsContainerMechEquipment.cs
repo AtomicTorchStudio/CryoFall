@@ -23,14 +23,14 @@
                 return false;
             }
 
-            if (context.ByCharacter == null)
+            if (context.ByCharacter is null)
             {
                 // perhaps the server is placing destroyed weapon's ammo there
                 return true;
             }
 
             var allowedSlotsIds = this.GetAllowedSlotsIds(context.Item.ProtoItem);
-            if (allowedSlotsIds == null)
+            if (allowedSlotsIds is null)
             {
                 return false;
             }
@@ -46,7 +46,7 @@
         public override byte? FindSlotForItem(IItemsContainer container, IProtoItem protoItem)
         {
             var allowedSlotsIds = this.GetAllowedSlotsIds(protoItem);
-            if (allowedSlotsIds == null)
+            if (allowedSlotsIds is null)
             {
                 return null;
             }

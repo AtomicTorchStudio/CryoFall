@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -122,9 +123,9 @@
             return (byte)this.heightSettings.Count;
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_ApplyMap(IReadOnlyCollection<TileModifyRequest> modifyRequests)
         {
-            // TODO: validate is Admin and Editor mode
             var worldService = Server.World;
 
             foreach (var request in modifyRequests)
@@ -142,7 +143,6 @@
 
         private void ServerRemote_FixMap()
         {
-            // TODO: validate is Admin and Editor mode
             Server.World.FixMapTilesRecentlyModified();
         }
 

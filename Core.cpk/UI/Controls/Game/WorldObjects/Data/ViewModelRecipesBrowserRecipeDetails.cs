@@ -21,7 +21,7 @@
 
         public ViewModelRecipesBrowserRecipeDetails(Action onSelected, Action onCancel)
         {
-            if (onSelected != null)
+            if (onSelected is not null)
             {
                 this.VisibilityCommandSelect = Visibility.Visible;
                 this.CommandSelect = new ActionCommandWithCondition(
@@ -33,7 +33,7 @@
                 this.VisibilityCommandSelect = Visibility.Collapsed;
             }
 
-            if (onCancel != null)
+            if (onCancel is not null)
             {
                 this.VisibilityCommandCancel = Visibility.Visible;
                 this.CommandCancel = new ActionCommand(onCancel);
@@ -116,7 +116,7 @@
         private void RefreshIsCanCraft()
         {
             var recipe = this.viewModelRecipe?.Recipe;
-            if (recipe == null)
+            if (recipe is null)
             {
                 this.IsCanCraft = false;
                 return;

@@ -23,7 +23,7 @@
             var manufacturingState = privateState.ManufacturingState;
 
             // please note - the order of creating these view models is important for the proper container exchange order
-            this.ViewModelFuelBurningState = fuelBurningState != null
+            this.ViewModelFuelBurningState = fuelBurningState is not null
                                                  ? new ViewModelFuelBurningState(fuelBurningState)
                                                  : null;
 
@@ -80,14 +80,14 @@
         public ViewModelManufacturingState ViewModelManufacturingState { get; }
 
         public Visibility VisibilityElectricityControls
-            => this.ViewModelFuelBurningState == null
+            => this.ViewModelFuelBurningState is null
                && this.WorldObjectManufacturer.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer
                && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0
                    ? Visibility.Visible
                    : Visibility.Collapsed;
 
         public Visibility VisibilityFuelControls
-            => this.ViewModelFuelBurningState != null
+            => this.ViewModelFuelBurningState is not null
                    ? Visibility.Visible
                    : Visibility.Collapsed;
 
@@ -106,15 +106,15 @@
 
         private void RefreshIsNeedFuel()
         {
-            if (this.ViewModelBurningFuel == null
-                || this.ViewModelFuelBurningState == null)
+            if (this.ViewModelBurningFuel is null
+                || this.ViewModelFuelBurningState is null)
             {
                 this.IsNeedFuel = false;
                 return;
             }
 
             this.IsNeedFuel = !this.ViewModelBurningFuel.IsActive
-                              && this.ViewModelManufacturingState.SelectedRecipe != null
+                              && this.ViewModelManufacturingState.SelectedRecipe is not null
                               && this.ViewModelManufacturingState.ContainerInput.OccupiedSlotsCount > 0
                               && this.ViewModelManufacturingState.IsInputMatchSelectedRecipe
                               && this.ViewModelFuelBurningState.FuelUsageCurrentValue <= 0;

@@ -52,7 +52,7 @@
 
         public void Setup(ICharacter character)
         {
-            if (this.Character != null)
+            if (this.Character is not null)
             {
                 throw new Exception("Cannot change status effect owner - it's already set");
             }

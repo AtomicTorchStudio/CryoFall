@@ -50,7 +50,7 @@
             // setup input container to allow only organic on input
             var itemsContainer = privateState.InputItemsCointainer;
             var itemsSlotsCount = this.ContainerInputSlotsCount;
-            if (itemsContainer != null)
+            if (itemsContainer is not null)
             {
                 // container already created - update slots count
                 Server.Items.SetSlotsCount(itemsContainer, slotsCount: itemsSlotsCount);
@@ -86,7 +86,7 @@
 
             // try consume input item and add it's organic value into the mulchbox organic amount
             var inputItem = privateState.InputItemsCointainer.Items.FirstOrDefault();
-            if (inputItem == null
+            if (inputItem is null
                 || !(inputItem.ProtoItem is IProtoItemOrganic protoItemOrganic))
             {
                 return;

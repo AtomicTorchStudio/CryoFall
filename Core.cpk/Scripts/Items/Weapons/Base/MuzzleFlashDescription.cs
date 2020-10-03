@@ -65,37 +65,37 @@
                 this.LightColor = lightColor.Value;
             }
 
-            if (lightDurationSeconds != null)
+            if (lightDurationSeconds is not null)
             {
                 this.LightDurationSeconds = lightDurationSeconds.Value;
             }
 
-            if (lightPower != null)
+            if (lightPower is not null)
             {
                 this.LightPower = lightPower.Value;
             }
 
-            if (lightRelativeToTextureScreenOffset != null)
+            if (lightRelativeToTextureScreenOffset is not null)
             {
                 this.LightScreenOffsetRelativeToTexture = lightRelativeToTextureScreenOffset.Value;
             }
 
-            if (textureAnimationDurationSeconds != null)
+            if (textureAnimationDurationSeconds is not null)
             {
                 this.TextureAnimationDurationSeconds = textureAnimationDurationSeconds.Value;
             }
 
-            if (textureAtlas != null)
+            if (textureAtlas is not null)
             {
                 this.TextureAtlas = textureAtlas;
             }
 
-            if (textureScale != null)
+            if (textureScale is not null)
             {
                 this.TextureScale = textureScale.Value;
             }
 
-            if (textureScreenOffset != null)
+            if (textureScreenOffset is not null)
             {
                 this.TextureScreenOffset = textureScreenOffset.Value;
             }

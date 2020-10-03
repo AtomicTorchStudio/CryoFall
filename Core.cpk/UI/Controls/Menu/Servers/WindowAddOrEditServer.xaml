@@ -23,7 +23,8 @@
             <TextBlock Text="{Binding ElementName=UserControl, Path=WindowTitle}"
                        FontWeight="Bold"
                        Foreground="{StaticResource WindowTitleForeground}"
-                       HorizontalAlignment="Center" Margin="0,0,0,5" />
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,5" />
 
             <!-- Text: Please enter server public GUID or host address... -->
             <core:FormattedTextBlock
@@ -31,8 +32,10 @@
                 Grid.Row="1"
                 TextWrapping="Wrap" />
 
-            <TextBox x:Name="TextBoxAddress" Grid.Row="2"
-                     Margin="0,10" VerticalAlignment="Center"
+            <TextBox x:Name="TextBoxAddress"
+                     Grid.Row="2"
+                     Margin="0,10"
+                     VerticalAlignment="Center"
                      Text="{Binding ElementName=UserControl, Path=TextAddress}" />
 
             <!--CharacterCasing="Upper" />-->

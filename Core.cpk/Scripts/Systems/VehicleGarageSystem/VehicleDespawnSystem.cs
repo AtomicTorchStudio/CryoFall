@@ -25,7 +25,7 @@
         public static bool ServerIsVehicleInsideOwnerBase(IDynamicWorldObject vehicle)
         {
             var vehicleCurrentBase = LandClaimSystem.SharedGetLandClaimAreasGroup(vehicle.TilePosition);
-            if (vehicleCurrentBase == null)
+            if (vehicleCurrentBase is null)
             {
                 return false;
             }

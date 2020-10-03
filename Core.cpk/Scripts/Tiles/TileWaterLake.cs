@@ -14,6 +14,8 @@
             => this.bridgeProtoTile
                    ??= Api.GetProtoEntity<TileWaterLakeBridge>();
 
+        public override bool CanCollect => true;
+
         public override bool IsFishingAllowed => true;
 
         public override string Name => "Water (lake)";

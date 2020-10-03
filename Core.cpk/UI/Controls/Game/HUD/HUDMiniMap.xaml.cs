@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data;
@@ -37,16 +38,19 @@
         protected override void InitControl()
         {
             this.panningPanel = this.GetByName<PanningPanel>("PanningPanel");
-
+            var controlTemplatePlayerMark = this.GetResource<ControlTemplate>("PlayerMarkControlTemplate");
+            
             var viewModelControlWorldMap = new ViewModelControlWorldMap();
             this.worldMapController = new WorldMapControllerMiniMap(
                 this.panningPanel,
                 viewModelControlWorldMap,
-                isPlayerMarkDisplayed: false,
+                isPlayerMarkDisplayed: true,
+                isCurrentCameraViewDisplayed: true,
                 isListeningToInput: false,
                 paddingChunks: 1,
                 // map area size will be changed later anyway
-                mapAreaSize: (100, 100));
+                mapAreaSize: (100, 100),
+                controlTemplatePlayerMark);
             this.ViewModelControlWorldMap = viewModelControlWorldMap;
         }
 

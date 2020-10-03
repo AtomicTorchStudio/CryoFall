@@ -51,7 +51,7 @@
 
         public async void ClientSaveWorldLastFile()
         {
-            if (lastMapPath == null)
+            if (lastMapPath is null)
             {
                 return;
             }
@@ -86,11 +86,11 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var control = new EditorToolMapSettings();
-            if (this.settingsViewModel == null)
+            if (this.settingsViewModel is null)
             {
                 this.commandClientSaveWorld = new ActionCommandWithCondition(
                     this.ClientSaveWorldLastFile,
-                    () => lastMapPath != null);
+                    () => lastMapPath is not null);
 
                 this.settingsViewModel = new ViewModelEditorToolMapSettings(
                     new ActionCommand(this.ClientNewWorld),

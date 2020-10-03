@@ -14,14 +14,14 @@
             // requires selected mining tool/bomb and flag
             = context => context.HasCharacter
                          && (context.ByWeaponProto is IProtoItemToolMining
-                             || context.ByExplosiveProto != null)
+                             || context.ByExplosiveProto is not null)
                          && context.Character.SharedHasSkillFlag(Flags.AdditionalYield);
 
         public static readonly DropItemConditionDelegate ConditionDropGemstones
             // requires selected mining tool/bomb and flag
             = context => context.HasCharacter
                          && (context.ByWeaponProto is IProtoItemToolMining
-                             || context.ByExplosiveProto != null)
+                             || context.ByExplosiveProto is not null)
                          && context.Character.SharedHasSkillFlag(Flags.FindGemstones);
 
         public enum Flags

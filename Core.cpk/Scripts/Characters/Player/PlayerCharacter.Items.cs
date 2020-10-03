@@ -119,12 +119,12 @@
             IProtoItem protoItem,
             uint countToSpawn = 1)
         {
-            if (character == null)
+            if (character is null)
             {
                 throw new ArgumentNullException(nameof(character));
             }
 
-            if (protoItem == null)
+            if (protoItem is null)
             {
                 throw new ArgumentNullException(nameof(protoItem));
             }

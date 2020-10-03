@@ -77,7 +77,7 @@
         {
             var tile = WorldService.GetTile(tilePosition);
             var objectPlant = tile.StaticObjects.FirstOrDefault(so => so.ProtoStaticWorldObject is IProtoObjectPlant);
-            if (objectPlant == null)
+            if (objectPlant is null)
             {
                 return GetPlantResult.Fail(CannotApplyErrorTitle, CanApplyOnlyOnPlants);
             }
@@ -94,6 +94,7 @@
             return GetPlantResult.Success(objectPlant);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
         private bool ServerRemote_ApplyWatering(Vector2Ushort tilePosition, IItem item)
         {
             var character = ServerRemoteContext.Character;

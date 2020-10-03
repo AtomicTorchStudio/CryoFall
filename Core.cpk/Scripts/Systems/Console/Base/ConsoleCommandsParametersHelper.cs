@@ -177,7 +177,7 @@
                 return EnumExtensions.TryParse(type, value, out result);
             }
 
-            if (Nullable.GetUnderlyingType(type) != null
+            if (Nullable.GetUnderlyingType(type) is not null
                 && "null".Equals(value))
             {
                 // parsed null

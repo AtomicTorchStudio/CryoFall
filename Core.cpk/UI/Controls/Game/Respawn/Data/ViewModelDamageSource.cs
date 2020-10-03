@@ -50,7 +50,7 @@
         {
             get
             {
-                if (this.protoEntity == null)
+                if (this.protoEntity is null)
                 {
                     return TitleOther;
                 }

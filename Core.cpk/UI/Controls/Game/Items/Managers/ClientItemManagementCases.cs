@@ -86,8 +86,8 @@
         public static bool Execute(ItemSlotControl slotControl, IItem itemInHand, bool isLeftMouseButton, bool isDown)
         {
             var itemInSlot = slotControl.Item;
-            if (itemInSlot == null
-                && itemInHand == null)
+            if (itemInSlot is null
+                && itemInHand is null)
             {
                 return false;
             }
@@ -116,7 +116,7 @@
 
         public static void TryUseItem(IItem item)
         {
-            if (item == null)
+            if (item is null)
             {
                 return;
             }
@@ -382,7 +382,7 @@
                 break;
             }
 
-            if (newContainer != null)
+            if (newContainer is not null)
             {
                 item.ProtoItem.ClientOnItemDrop(item, newContainer);
             }
@@ -619,12 +619,12 @@
                 this.SlotContainer = slotControl.Container;
                 this.SlotContainerSlotId = slotControl.SlotId;
 
-                this.CanStackItems = itemInHand != null
+                this.CanStackItems = itemInHand is not null
                                      && itemInHand.ProtoItem.IsStackable
-                                     && itemInSlot != null
+                                     && itemInSlot is not null
                                      && itemInHand.Container.CanStackItems(itemInHand, itemInSlot);
 
-                this.TargetContainers = itemInSlot != null
+                this.TargetContainers = itemInSlot is not null
                                             ? ClientContainersExchangeManager.GetTargetContainers(itemInSlot.Container)
                                             : null;
 
@@ -639,13 +639,13 @@
 
             public bool IsControlHeld { get; }
 
-            public bool IsEmptyHand => this.ItemInHand == null;
+            public bool IsEmptyHand => this.ItemInHand is null;
 
-            public bool IsEmptySlot => this.ItemInSlot == null;
+            public bool IsEmptySlot => this.ItemInSlot is null;
 
-            public bool IsFullHand => this.ItemInHand != null;
+            public bool IsFullHand => this.ItemInHand is not null;
 
-            public bool IsFullSlot => this.ItemInSlot != null;
+            public bool IsFullSlot => this.ItemInSlot is not null;
 
             public bool IsLeftMouseButton { get; }
 

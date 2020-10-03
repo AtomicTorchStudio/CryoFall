@@ -6,6 +6,8 @@
 
     public class ItemAntiToxinPreExposure : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "This pre-exposure toxin aid could be used to prevent absorption of any toxins by the body, as well as boost the immune system to mitigate the effects of any toxins that do enter the bloodstream.";
 

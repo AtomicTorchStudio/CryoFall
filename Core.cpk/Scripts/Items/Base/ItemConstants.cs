@@ -12,7 +12,7 @@
             {
                 ServerPvpIsFullLootEnabled
                     = ServerRates.Get(
-                          "PvpIsFullLootEnabled",
+                          "PvP.IsFullLootEnabled",
                           defaultValue: 0,
                           @"For PvP servers you can enable full loot (dropping the equipped items on death)
                             or keep it by default (not dropping the equipped items on death).")

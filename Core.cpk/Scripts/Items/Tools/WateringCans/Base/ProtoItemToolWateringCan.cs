@@ -134,7 +134,7 @@
                 Client.World.TileAtCurrentMousePosition.StaticObjects.FirstOrDefault(
                     _ => _.ProtoStaticWorldObject is ProtoObjectWell);
 
-            if (objectWell != null
+            if (objectWell is not null
                 || data.PrivateState.WaterAmount == 0)
             {
                 // try to refill

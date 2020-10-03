@@ -146,7 +146,7 @@
 
             foreach (var lot in publicState.Lots)
             {
-                if (lot == null)
+                if (lot is null)
                 {
                     continue;
                 }

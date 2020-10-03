@@ -29,7 +29,7 @@
 
         public override string Name => "Steppen Hawk";
 
-        public override double ReadyDelayDuration => 0.6;
+        public override double ReadyDelayDuration => WeaponReadyDelays.ConventionalPistols;
 
         public override double SpecialEffectProbability => 0.20;
 
@@ -38,8 +38,8 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.0, -1.0, 1.0 },
-                cycledSequence: new[] { -1.5, 1.5, -1.5, 0.0, 1.5 });
+                initialSequence: new[] { 0.0, 1.0, 1.0 },
+                cycledSequence: new[] { 1.5 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

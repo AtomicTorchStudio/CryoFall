@@ -20,8 +20,7 @@
             duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemIngotIron>(count: 2);
-            inputItems.Add<ItemIngotCopper>(count: 2);
-            inputItems.Add<ItemNitrocellulosePowder>(count: 20);
+            inputItems.Add<ItemNitrocellulosePowder>(count: 15);
 
             outputItems.Add<ItemAmmo10mmArmorPiercing>(count: 10);
         }

@@ -13,6 +13,8 @@
 
         public override IProtoTileWater BridgeProtoTile => null;
 
+        public override bool CanCollect => false;
+
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Mud;
 
         public override bool IsFishingAllowed => false;

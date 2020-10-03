@@ -50,7 +50,7 @@
         {
             if (!this.isLoaded)
             {
-                if (this.viewModel == null)
+                if (this.viewModel is null)
                 {
                     return;
                 }

@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -56,6 +57,7 @@
                 onUndo: () => this.CallServer(_ => _.ServerRemote_PlaceAt(tilePosition, previousIsSlope)));
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceAt(Vector2Ushort tilePosition, bool isSlope)
         {
             var worldService = Server.World;

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeEnergyTablets>();
 
-            config.SetRequiredNode<TechNodeAntiNausea>();
+            config.SetRequiredNode<TechNodeStrengthBoostSmall>();
         }
     }
 }

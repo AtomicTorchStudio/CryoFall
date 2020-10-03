@@ -16,7 +16,7 @@
 
         private FrameworkElement overlay;
 
-        public static bool IsInstanceExist => instance != null;
+        public static bool IsInstanceExist => instance is not null;
 
         public static void Toggle()
         {
@@ -84,7 +84,7 @@
 
         private static void CreateInstance()
         {
-            if (instance != null)
+            if (instance is not null)
             {
                 return;
             }
@@ -96,7 +96,7 @@
 
         private static void DestroyInstance()
         {
-            if (instance == null)
+            if (instance is null)
             {
                 return;
             }

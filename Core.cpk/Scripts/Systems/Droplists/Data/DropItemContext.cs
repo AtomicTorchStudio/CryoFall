@@ -33,9 +33,9 @@
                ?? throw new Exception(
                    "Spawning in non-character context - there is no Character property provided to the context");
 
-        public bool HasCharacter => this.character != null;
+        public bool HasCharacter => this.character is not null;
 
-        public bool HasStaticWorldObject => this.staticWorldObject != null;
+        public bool HasStaticWorldObject => this.staticWorldObject is not null;
 
         public IStaticWorldObject StaticWorldObject
             => this.staticWorldObject

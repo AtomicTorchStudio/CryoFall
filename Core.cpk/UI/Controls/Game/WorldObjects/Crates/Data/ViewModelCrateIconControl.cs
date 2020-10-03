@@ -43,7 +43,7 @@
             get
             {
                 var icon = ClientCrateIconHelper.GetIcon(this.publicState.IconSource);
-                return icon != null
+                return icon is not null
                            ? Api.Client.UI.GetTextureBrush(icon)
                            : null;
             }
@@ -53,7 +53,7 @@
             => Api.Client.UI.GetTextureBrush(TextureResourcePlaceholderIcon);
 
         public bool IsIconAvailable
-            => ClientCrateIconHelper.GetOriginalIcon(this.publicState.IconSource) != null;
+            => ClientCrateIconHelper.GetOriginalIcon(this.publicState.IconSource) is not null;
 
         protected override void DisposeViewModel()
         {

@@ -163,6 +163,15 @@ Vous planez littéralement : vous vous sentez très heureux, sans savoir pourqu
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Défoncé
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Veuillez attendre que le délai de temporisation soit écoulé.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Vous venez d'utiliser un objet de soin. Vous ne pourrez pas en utiliser d'autres avant la fin du délai de temporisation.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Temporisation des soins
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Vous avez abusé de certaines substances médicamenteuses : votre santé en a prix un coup.
 

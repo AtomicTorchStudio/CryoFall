@@ -197,7 +197,7 @@
         private void RefreshOwnersList()
         {
             IEnumerable<string> entries = this.ownersSyncList;
-            if (this.ownersListFilter != null)
+            if (this.ownersListFilter is not null)
             {
                 entries = entries.Where(this.ownersListFilter);
             }

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -81,6 +82,7 @@
             }
         }
 
+        [RemoteCallSettings(timeInterval: 5)]
         private void ServerRemote_ReportChatEntry(ChatEntry chatEntry)
         {
             var reporterCharacter = ServerRemoteContext.Character;

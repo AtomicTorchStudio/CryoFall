@@ -22,7 +22,7 @@
             inputItems.Add<ItemIngotSteel>(count: 5);
             inputItems.Add<ItemNitrocellulosePowder>(count: 40);
 
-            outputItems.Add<ItemAmmoGrenadeFragmentation>(count: 4);
+            outputItems.Add<ItemAmmoGrenadeFragmentation>(count: 5);
         }
     }
 }

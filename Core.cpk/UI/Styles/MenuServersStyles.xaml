@@ -70,21 +70,24 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="LaberBorderStyle" TargetType="Border">
+    <Style x:Key="ServerTagBorderStyle" TargetType="Border">
         <Setter Property="Margin" Value="3,3,0,0" />
         <Setter Property="Padding" Value="3,1" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <!-- Bug in NoesisGUI https://www.noesisengine.com/bugs/view.php?id=1686 -->
-        <!--<Setter Property="CornerRadius" Value="0" />-->
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="7"
-                                  ShadowDepth="0"
-                                  Opacity="0.75"
-                                  Color="Black" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="BorderThickness" Value="0,0,1,1" />
+        <!-- A cheap way to create a drop shadow effect -->
+        <Setter Property="BorderBrush" Value="#66000000" />
+        <!-- <Setter Property="Effect"> -->
+        <!--     <Setter.Value> -->
+        <!--         <DropShadowEffect BlurRadius="7" -->
+        <!--                           ShadowDepth="0" -->
+        <!--                           Opacity="0.75" -->
+        <!--                           Color="Black" /> -->
+        <!--     </Setter.Value> -->
+        <!-- </Setter> -->
     </Style>
 
     <Style x:Key="TextBlockTagStyle" TargetType="TextBlock">
@@ -93,7 +96,7 @@
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect BlurRadius="1.5"
-                                  ShadowDepth="1"
+                                  ShadowDepth="0.5"
                                   Direction="-45"
                                   Color="Black" />
             </Setter.Value>
@@ -106,13 +109,13 @@
     </Style>
 
     <ControlTemplate x:Key="BlockCommunityMultiplayerServerTemplate">
-        <Border Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource ServerTagBorderStyle}">
             <!-- Text: COMMUNITY -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStopCollection>
-                        <GradientStop Color="#FF999922" Offset="0" />
-                        <GradientStop Color="#FF666611" Offset="0.333" />
+                        <GradientStop Color="#FFA68A3E" Offset="0" />
+                        <GradientStop Color="#FF6E5719" Offset="0.333" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </Border.Background>
@@ -126,13 +129,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockFeaturedMultiplayerServerTemplate">
-        <Border Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource ServerTagBorderStyle}">
             <!-- Text: FEATURED -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStopCollection>
-                        <GradientStop Color="#FF448844" Offset="0" />
-                        <GradientStop Color="#FF336633" Offset="0.333" />
+                        <GradientStop Color="#FF477B71" Offset="0" />
+                        <GradientStop Color="#FF355B6A" Offset="0.333" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </Border.Background>
@@ -146,13 +149,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockOfficialMultiplayerServerTemplate">
-        <Border Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource ServerTagBorderStyle}">
             <!-- Text: OFFICIAL -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStopCollection>
-                        <GradientStop Color="#FF448844" Offset="0" />
-                        <GradientStop Color="#FF336633" Offset="0.333" />
+                        <GradientStop Color="#FF477B71" Offset="0" />
+                        <GradientStop Color="#FF355B6A" Offset="0.333" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </Border.Background>
@@ -166,13 +169,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockModdedMultiplayerServerTemplate">
-        <Border Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource ServerTagBorderStyle}">
             <!-- Text: MODDED -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStopCollection>
-                        <GradientStop Color="#FF992299" Offset="0" />
-                        <GradientStop Color="#FF771177" Offset="0.333" />
+                        <GradientStop Color="#FF48407C" Offset="0" />
+                        <GradientStop Color="#FF3B3D71" Offset="0.333" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </Border.Background>
@@ -185,14 +188,34 @@
         </Border>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="BlockNoClientModsMultiplayerServerTemplate">
+        <Border Style="{StaticResource ServerTagBorderStyle}"
+                Height="15">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStopCollection>
+                        <GradientStop Color="#FF666666" Offset="0" />
+                        <GradientStop Color="#FF4F4F4F" Offset="0.333" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Image Source="/UI/Images/Icons/MenuServers/ServerTagNoMods.png"
+                   Stretch="Uniform" />
+            <ui:ToolTipServiceExtend.ToolTip>
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_NoClientMods_Description}"
+                           Style="{StaticResource TextBlockTagTooltipStyle}" />
+            </ui:ToolTipServiceExtend.ToolTip>
+        </Border>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="BlockPvPMultiplayerServerTemplate">
-        <Border Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource ServerTagBorderStyle}">
             <!-- Text: PvP -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStopCollection>
-                        <GradientStop Color="#FFBB0000" Offset="0" />
-                        <GradientStop Color="#FF880000" Offset="0.333" />
+                        <GradientStop Color="#FF991111" Offset="0" />
+                        <GradientStop Color="#FF771111" Offset="0.333" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </Border.Background>
@@ -206,13 +229,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockPvEMultiplayerServerTemplate">
-        <Border Style="{StaticResource LaberBorderStyle}">
+        <Border Style="{StaticResource ServerTagBorderStyle}">
             <!-- Text: PvE -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStopCollection>
-                        <GradientStop Color="#FF0077CC" Offset="0" />
-                        <GradientStop Color="#FF0055AA" Offset="0.333" />
+                        <GradientStop Color="#FF1177BB" Offset="0" />
+                        <GradientStop Color="#FF115599" Offset="0.333" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </Border.Background>
@@ -459,8 +482,7 @@
                                     HorizontalAlignment="Left"
                                     Margin="4,0,0,0">
                             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ColumnInfo}" />
-                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
-                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                            <servers:ServerColumnSortOrderControl ViewModelServersList="{Binding}"
                                                                   TargetSortOrder="Title"
                                                                   IsTargetOrderReversed="True" />
                         </StackPanel>
@@ -471,8 +493,7 @@
                                     HorizontalAlignment="Center"
                                     Margin="7,0,0,0">
                             <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
-                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
-                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                            <servers:ServerColumnSortOrderControl ViewModelServersList="{Binding}"
                                                                   TargetSortOrder="Ping"
                                                                   IsTargetOrderReversed="True" />
                         </StackPanel>
@@ -483,8 +504,7 @@
                                     HorizontalAlignment="Center"
                                     Margin="7,0,0,0">
                             <TextBlock Text="{x:Static loc:CoreStrings.ServerPlayersCount}" />
-                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
-                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                            <servers:ServerColumnSortOrderControl ViewModelServersList="{Binding}"
                                                                   TargetSortOrder="OnlinePlayersCount" />
                         </StackPanel>
 
@@ -493,8 +513,7 @@
                                     HorizontalAlignment="Center"
                                     Margin="7,0,0,0">
                             <TextBlock Text="{x:Static loc:CoreStrings.ServerWipedDate}" />
-                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
-                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                            <servers:ServerColumnSortOrderControl ViewModelServersList="{Binding}"
                                                                   TargetSortOrder="LastWipe"
                                                                   IsTargetOrderReversed="True" />
                         </StackPanel>

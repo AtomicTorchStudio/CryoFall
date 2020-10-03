@@ -45,14 +45,14 @@
                 var capacity = 40 + source.StackTrace?.Length + source.MethodName?.Length;
                 var extraInfoStringBuilder = new StringBuilder(capacity ?? 0);
 
-                var hasMethodName = source.MethodName != null;
+                var hasMethodName = source.MethodName is not null;
                 if (hasMethodName)
                 {
                     extraInfoStringBuilder.Append("Method: ");
                     extraInfoStringBuilder.Append(source.MethodName);
                 }
 
-                if (source.StackTrace != null)
+                if (source.StackTrace is not null)
                 {
                     if (hasMethodName)
                     {
@@ -76,8 +76,8 @@
 
             BaseCommand commandOpenFile;
             if (parsedSourceAttribute.HasValue
-                && parsedSourceAttribute.Value.RealFilePath != null
-                && parsedSourceAttribute.Value.Line != null)
+                && parsedSourceAttribute.Value.RealFilePath is not null
+                && parsedSourceAttribute.Value.Line is not null)
             {
                 var source = parsedSourceAttribute.Value;
                 commandOpenFile =
@@ -93,7 +93,7 @@
 
         public static void InitBrushes(FrameworkElement frameworkElement)
         {
-            if (brushDebug != null)
+            if (brushDebug is not null)
             {
                 return;
             }

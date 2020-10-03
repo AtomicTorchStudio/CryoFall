@@ -135,7 +135,7 @@
 
             var itemsContainer = data.PrivateState.ItemsContainer;
             const byte itemsSlotsCount = 4;
-            if (itemsContainer != null)
+            if (itemsContainer is not null)
             {
                 // container already created - update slots count
                 Server.Items.SetSlotsCount(itemsContainer, slotsCount: itemsSlotsCount);

@@ -169,8 +169,14 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 燃料電池は、さまざまな乗り物の動力源として使用されます。
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+射撃の際に[b]Alt[/b]か[b]Ctrl[/b]を押しながら撃つと、カーソル位置ではなく、カーソル方向に最大距離で発射されます。
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 インプラントは医療ステーション内にしか設置できません。
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+消費したことなし
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 このアイテムは、補助バッテリーを装着して電力を供給する必要があります。
@@ -212,10 +218,16 @@ Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 生体材料収集装置
 
 Scripts/Items/Devices/ItemHuntersTools@Description:
-獲物をより早く捕獲できる便利な狩り道具一式。
+獲物をより早く解体できる便利な狩り道具一式。
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 ハンターの道具
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+遠距離の照準を容易にするために使う小型レーザー照準器。
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+レーザーサイト
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 大容量の電力を貯蔵し、移動中にも使える便利な携帯バッテリー。あらゆる装置やエネルギー兵器にも装備したバッテリーから電力を供給できます。
@@ -509,7 +521,7 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 バス
 
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
-鯛
+ブリーム
 
 Scripts/Items/Fishing/Fish/ItemFishCarp@Name:
 コイ
@@ -2111,7 +2123,7 @@ Scripts/Items/Tools/Lights/ItemOilLamp@Description:
 便利な携帯用照明です。キャンプ燃料ですぐに補充できます。
 
 Scripts/Items/Tools/Lights/ItemOilLamp@Name:
-石油ランプ
+オイルランプ
 
 Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
 松明が燃え尽きました。

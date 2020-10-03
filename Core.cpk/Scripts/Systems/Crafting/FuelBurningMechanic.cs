@@ -70,7 +70,7 @@
 
             if (config.IsProduceByproducts)
             {
-                if (byproductsCraftQueue == null)
+                if (byproductsCraftQueue is null)
                 {
                     throw new Exception("No byproductsCraftQueue");
                 }
@@ -101,7 +101,7 @@
 
             byproductsCraftQueue.Clear();
 
-            if (newByproductRecipe != null)
+            if (newByproductRecipe is not null)
             {
                 CraftingMechanics.ServerStartCrafting(
                     objectManufacturer,
@@ -147,10 +147,10 @@
             }
 
             var bestProtoFuel = fuelItem?.ProtoGameObject as IProtoItemFuelSolid;
-            if (bestProtoFuel == null)
+            if (bestProtoFuel is null)
             {
                 // no fuel placed in fuel container
-                //if (state.CurrentFuelItemType != null)
+                //if (state.CurrentFuelItemType is not null)
                 //{
                 //    state.CurrentFuelItemType = null;
                 //    Logger.Info($"Fuel depleted for manufacturing at {objectManufacturer}");

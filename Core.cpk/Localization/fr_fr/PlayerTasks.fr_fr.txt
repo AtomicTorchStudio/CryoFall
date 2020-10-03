@@ -46,6 +46,9 @@ Tuer : {0}
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 Fabriquer : {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+Déplacer n'importe quelle structure
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 Courir pendant 10 mètres
 

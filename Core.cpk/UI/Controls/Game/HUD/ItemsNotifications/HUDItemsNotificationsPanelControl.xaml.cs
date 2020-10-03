@@ -15,9 +15,9 @@
 
         private UIElementCollection stackPanelChildren;
 
-        public static void Show(IProtoItem protoItem, int deltaCount)
+        public static HUDItemNotificationControl Show(IProtoItem protoItem, int deltaCount)
         {
-            instance.ShowInternal(protoItem, deltaCount);
+            return instance.ShowInternal(protoItem, deltaCount);
         }
 
         protected override void InitControl()
@@ -41,9 +41,9 @@
             }
         }
 
-        private void ShowInternal(IProtoItem protoItem, int deltaCount)
+        private HUDItemNotificationControl ShowInternal(IProtoItem protoItem, int deltaCount)
         {
-            if (protoItem == null)
+            if (protoItem is null)
             {
                 throw new ArgumentNullException(nameof(protoItem));
             }
@@ -62,6 +62,7 @@
                 () => notificationControl.Hide(quick: false));
 
             this.HideOldNotificationsIfTooManyDisplayed();
+            return notificationControl;
         }
     }
 }

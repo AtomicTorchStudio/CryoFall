@@ -49,7 +49,7 @@
 
         private void RefreshFuelUsage()
         {
-            if (this.FuelBurningState == null)
+            if (this.FuelBurningState is null)
             {
                 return;
             }

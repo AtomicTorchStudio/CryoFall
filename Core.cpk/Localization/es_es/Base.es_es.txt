@@ -214,3 +214,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Consumo de combustible
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+No puedes correr
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+No puedes atacar
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+No puedes usar objetos médicos que tengan recarga
+

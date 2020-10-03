@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -55,6 +56,9 @@
             this.BaitWeightList = baitWeightList.ToReadOnly();
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered,
+                            timeInterval: 0.2,
+                            clientMaxSendQueueSize: 20)]
         private void ServerRemote_Cut(IItem item)
         {
             var character = ServerRemoteContext.Character;

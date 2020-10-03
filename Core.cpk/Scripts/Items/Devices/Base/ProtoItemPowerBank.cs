@@ -37,7 +37,7 @@
 
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
-            if (item != null)
+            if (item is not null)
             {
                 controls.Add(ItemTooltipInfoEnergyChargeControl.Create(item));
             }

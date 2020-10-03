@@ -65,13 +65,13 @@
         {
             category = GetCategory<StructureCategoryElectricity>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemWire>(count: 5);
+            build.AddStageRequiredItem<ItemWire>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemWire>(count: 5);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);

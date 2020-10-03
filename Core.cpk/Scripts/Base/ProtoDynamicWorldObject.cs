@@ -66,7 +66,7 @@
             return this.StructurePointsMax;
         }
 
-        public bool SharedOnDamage(
+        public virtual bool SharedOnDamage(
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             double damagePreMultiplier,
@@ -243,12 +243,12 @@
                 return;
             }
 
-            Logger.Info($"Dynamic object destroyed: {targetObject} by {byCharacter}");
+            Logger.Important($"Dynamic object destroyed: {targetObject} by {byCharacter}");
 
             this.ServerSendObjectDestroyedEvent(targetObject);
             Server.World.DestroyObject(targetObject);
 
-            if (weaponCache == null)
+            if (weaponCache is null)
             {
                 return;
             }

@@ -34,7 +34,7 @@
         protected override BottleRefillRequest ClientTryCreateRequest(ICharacter character)
         {
             var item = character.SharedGetPlayerSelectedHotbarItem();
-            if (item == null
+            if (item is null
                 || item.ProtoItem != ProtoItemBottleEmpty.Value)
             {
                 // no bottle selected
@@ -42,22 +42,25 @@
             }
 
             var tile = character.Tile;
-            if (!(tile.ProtoTile is IProtoTileWater tileWater))
+            if (!(tile.ProtoTile is IProtoTileWater protoTileWater)
+                || !protoTileWater.CanCollect)
             {
                 // pointed tile is not a water - find a neighbor tile with water
-                tileWater = tile.EightNeighborTiles
-                                .Select(t => t.ProtoTile as IProtoTileWater)
-                                .FirstOrDefault(t => t != null);
+                protoTileWater = tile.EightNeighborTiles
+                                     .FirstOrDefault(t => t.ProtoTile is IProtoTileWater p
+                                                          && p.CanCollect)
+                                     .ProtoTile as IProtoTileWater;
             }
 
-            if (tileWater == null)
+            if (protoTileWater is null
+                || SharedGetFilledBottlePrototype(protoTileWater) is null)
             {
-                // not a water tile
+                // not a compatible water tile
                 ClientShowNeedWaterTileNotification(item);
                 return null;
             }
 
-            return new BottleRefillRequest(character, item, tileWater);
+            return new BottleRefillRequest(character, item, protoTileWater);
         }
 
         protected override void SharedOnActionCompletedInternal(BottleRefillAction state, ICharacter character)
@@ -65,7 +68,7 @@
             var itemBottle = state.ItemEmptyBottle;
 
             var requiredWaterProtoTile = state.WaterProtoTileToRefill;
-            if (requiredWaterProtoTile == null)
+            if (requiredWaterProtoTile is null)
             {
                 throw new Exception("Impossible");
             }
@@ -75,36 +78,22 @@
                 return;
             }
 
-            var isNeedToReduceItemCount = true;
-            if (itemBottle.Count == 1)
+            // destroy the empty bottle item stack
+            var itemsContainer = itemBottle.Container;
+            var countToSpawn = itemBottle.Count;
+            var containerSlotId = itemBottle.ContainerSlotId;
+            Server.Items.SetCount(itemBottle,
+                                  count: 0,
+                                  byCharacter: character);
+
+            // spawn a filled bottle item stack in place of the destroyed empty bottle item stack
+            var protoItemFilledBottle = SharedGetFilledBottlePrototype(requiredWaterProtoTile);
+            if (protoItemFilledBottle is null)
             {
-                // destroy last item
-                isNeedToReduceItemCount = false;
-                Server.Items.SetCount(itemBottle,
-                                      count: 0,
-                                      byCharacter: character);
+                throw new Exception("Should be impossible");
             }
 
-            // spawn filled bottle item
-            var result = requiredWaterProtoTile is TileWaterSea
-                             ? Server.Items.CreateItem<ItemBottleWaterSalty>(character)
-                             : Server.Items.CreateItem<ItemBottleWaterStale>(character);
-
-            if (!result.IsEverythingCreated)
-            {
-                result.Rollback();
-                NotificationSystem.ServerSendNotificationNoSpaceInInventory(character);
-                return;
-            }
-
-            if (isNeedToReduceItemCount)
-            {
-                // reduce item count
-                Server.Items.SetCount(itemBottle,
-                                      itemBottle.Count - 1,
-                                      byCharacter: character);
-            }
-
+            var result = Server.Items.CreateItem(protoItemFilledBottle, itemsContainer, countToSpawn, containerSlotId);
             var itemsChangedCount = NotificationSystem.SharedGetItemsChangedCount(result);
             this.CallClient(character,
                             _ => _.ClientRemote_ActionCompleted(itemsChangedCount));
@@ -161,6 +150,22 @@
                 NotificationStandNearWaterToRefill,
                 color: NotificationColor.Bad,
                 icon: item.ProtoItem.Icon);
+        }
+
+        private static IProtoItem SharedGetFilledBottlePrototype(IProtoTileWater protoTile)
+        {
+            if (protoTile is null
+                || !protoTile.CanCollect)
+            {
+                return null;
+            }
+
+            return protoTile switch
+            {
+                TileWaterLake => GetProtoEntity<ItemBottleWaterStale>(),
+                TileWaterSea  => GetProtoEntity<ItemBottleWaterSalty>(),
+                _             => null
+            };
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

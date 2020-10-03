@@ -61,7 +61,7 @@
         private static readonly Random Random = Api.Random;
 
         // one for all ProtoZoneSpawnScript instances - used to chain/queue spawn tasks
-        private static readonly SemaphoreSlim serverSpawnSemaphore = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim ServerSpawnTasksSemaphore = new SemaphoreSlim(1, 1);
 
         private static readonly IWorldServerService ServerWorldService = IsServer ? Server.World : null;
 
@@ -106,7 +106,16 @@
                 return;
             }
 
-            await serverSpawnSemaphore.WaitAsync(Api.CancellationToken);
+            // Don't use tasks semaphore during the initial spawn.
+            // This way new players cannot connect to the server until the spawn scripts have ended
+            // (the initial spawn is not async anyway so semaphore doesn't do anything good here).
+            var isInitialSpawn = trigger is null
+                                 || trigger is TriggerWorldInit;
+
+            if (!isInitialSpawn)
+            {
+                await ServerSpawnTasksSemaphore.WaitAsync(Api.CancellationToken);
+            }
 
             try
             {
@@ -115,12 +124,17 @@
                             .Append("\" for zone \"")
                             .Append(zone.ProtoGameObject.ShortId)
                             .Append("\": spawn started"));
+
                 await this.ServerRunSpawnTaskAsync(config, trigger, zone);
             }
             finally
             {
                 this.executingEntries.Remove(key);
-                serverSpawnSemaphore.Release();
+
+                if (!isInitialSpawn)
+                {
+                    ServerSpawnTasksSemaphore.Release();
+                }
             }
         }
 
@@ -141,7 +155,7 @@
                 collisionGroup: CollisionGroups.Default,
                 sendDebugEvent: false).EnumerateAndDispose())
             {
-                if (result.PhysicsBody.AssociatedProtoTile != null)
+                if (result.PhysicsBody.AssociatedProtoTile is not null)
                 {
                     // collision with a tile found - probably a cliff or water
                     // avoid spawning there
@@ -216,7 +230,7 @@
                 tilePosition,
                 writeWarningsToLog: false);
 
-            if (container == null)
+            if (container is null)
             {
                 // cannot spawn item there
                 return null;
@@ -288,7 +302,7 @@
             }
 
             var spawnedObject = ServerWorldService.CreateStaticWorldObject(protoStaticWorldObject, tilePosition);
-            if (spawnedObject == null)
+            if (spawnedObject is null)
             {
                 // cannot spawn static object there
                 return null;
@@ -299,9 +313,9 @@
                 && (trigger is null
                     || trigger is TriggerWorldInit))
             {
-                var growthProgress = RandomHelper.RollWithProbability(0.6)
-                                         ? 1 // 60% are spawned in full grown state
-                                         : Random.Next(0, 11) / 10.0;
+                var growthProgress = RandomHelper.RollWithProbability(0.85)
+                                         ? 1 // 85% are spawned in full grown state during initial spawn
+                                         : Random.Next(0, maxValue: 11) / 10.0;
 
                 protoVegetation.ServerSetGrowthProgress(spawnedObject, growthProgress);
             }
@@ -457,7 +471,7 @@
                     var nearbyObjectPreset = nearbyPreset.Key;
                     double padding;
 
-                    if (nearbyObjectPreset != null)
+                    if (nearbyObjectPreset is not null)
                     {
                         // preset found
                         if (presetCustomObjectPadding.TryGetValue(nearbyObjectPreset, out padding))
@@ -516,7 +530,7 @@
                 return false;
             }
 
-            if (preset.CustomCanSpawnCheckCallback != null
+            if (preset.CustomCanSpawnCheckCallback is not null
                 && !preset.CustomCanSpawnCheckCallback(physicsSpace, spawnPosition))
             {
                 // custom spawn check failed
@@ -525,7 +539,7 @@
                 return false;
             }
 
-            if (resultSpawnArea == null)
+            if (resultSpawnArea is null)
             {
                 // no area exist (will be created)
                 isSectorDensityExceeded = false;
@@ -646,7 +660,8 @@
         private async Task ServerFillSpawnAreasInZoneAsync(
             IServerZone zone,
             IReadOnlyDictionary<Vector2Ushort, SpawnZoneArea> areas,
-            Func<Task> callbackYieldIfOutOfTime)
+            Func<Task> callbackYieldIfOutOfTime,
+            bool isInitialSpawn)
         {
             // this is a heavy method so we will try to yield every 100 objects to reduce the load
             const int defaultCounterToYieldValue = 100;
@@ -657,7 +672,19 @@
             //await zone.PopulateStaticObjectsInZone(tempList, callbackYieldIfOutOfTime);
 
             TempListAllStaticWorldObjects.Clear();
-            await Api.Server.World.GetStaticWorldObjectsAsync(TempListAllStaticWorldObjects);
+            if (!isInitialSpawn)
+            {
+                await Api.Server.World.GetStaticWorldObjectsAsync(TempListAllStaticWorldObjects);
+            }
+            else // initial spawn
+            {
+                // execute a non-async version
+#pragma warning disable 618
+                // ReSharper disable once MethodHasAsyncOverload
+                Api.Server.World.GetStaticWorldObjects(TempListAllStaticWorldObjects);
+#pragma warning restore 618
+            }
+
             foreach (var staticObject in TempListAllStaticWorldObjects)
             {
                 await YieldIfOutOfTime();
@@ -685,7 +712,7 @@
 
                     // create entry for regular static object
                     var preset = this.FindPreset(protoStaticWorldObject);
-                    if (preset != null
+                    if (preset is not null
                         && preset.Density > 0
                         && !zone.IsContainsPosition(staticObject.TilePosition))
                     {
@@ -705,7 +732,7 @@
                 {
                     // create entry for each item in the ground container
                     var preset = this.FindPreset(item.ProtoItem);
-                    if (preset != null
+                    if (preset is not null
                         && preset.Density > 0
                         && !zone.IsContainsPosition(staticObject.TilePosition))
                     {
@@ -770,7 +797,7 @@
             // but we use a quadtree instead of polygon for the spawn zone definition.
             if (zone.IsEmpty)
             {
-                if (trigger != null)
+                if (trigger is not null)
                 {
                     Logger.Important($"Cannot spawn at {zone} - the zone is empty");
                 }
@@ -783,7 +810,8 @@
                 return;
             }
 
-            var isInitialSpawn = trigger == null || trigger is TriggerWorldInit;
+            var isInitialSpawn = trigger is null
+                                 || trigger is TriggerWorldInit;
             var yieldIfOutOfTime = isInitialSpawn
                                        ? () => Task.CompletedTask
                                        : (Func<Task>)Core.YieldIfOutOfTime;
@@ -804,7 +832,8 @@
             var spawnZoneAreas = await ServerSpawnZoneAreasHelper.ServerGetCachedZoneAreaAsync(zone, yieldIfOutOfTime);
             await this.ServerFillSpawnAreasInZoneAsync(zone,
                                                        spawnZoneAreas,
-                                                       yieldIfOutOfTime);
+                                                       yieldIfOutOfTime,
+                                                       isInitialSpawn);
             var maxSpawnFailedAttemptsInRow = isInitialSpawn
                                                   ? InitialSpawnMaxSpawnFailedAttemptsInRow
                                                   : DefaultSpawnMaxSpawnFailedAttemptsInRow;
@@ -994,7 +1023,7 @@
                     }
                 }
 
-                if (spawnedObject == null)
+                if (spawnedObject is null)
                 {
                     // cannot spawn
                     if (++spawnRequest.FailedAttempts >= maxSpawnFailedAttemptsInRow)
@@ -1020,7 +1049,7 @@
 
                 // spawned successfully
                 // register object in zone area
-                if (spawnZoneArea == null)
+                if (spawnZoneArea is null)
                 {
                     throw new Exception("Should be impossible");
                 }
@@ -1087,9 +1116,9 @@
             {
                 unchecked
                 {
-                    var hashCode = this.config != null ? this.config.GetHashCode() : 0;
-                    hashCode = (hashCode * 397) ^ (this.trigger != null ? this.trigger.GetHashCode() : 0);
-                    hashCode = (hashCode * 397) ^ (this.zone != null ? this.zone.GetHashCode() : 0);
+                    var hashCode = this.config is not null ? this.config.GetHashCode() : 0;
+                    hashCode = (hashCode * 397) ^ (this.trigger is not null ? this.trigger.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ (this.zone is not null ? this.zone.GetHashCode() : 0);
                     return hashCode;
                 }
             }

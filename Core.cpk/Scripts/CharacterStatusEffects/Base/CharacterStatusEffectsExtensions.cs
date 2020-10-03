@@ -30,7 +30,7 @@
             IProtoStatusEffect protoStatusEffect,
             double intensity = 1.0)
         {
-            if (protoStatusEffect == null)
+            if (protoStatusEffect is null)
             {
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }
@@ -67,7 +67,7 @@
                 }
             }
 
-            if (statusEffect == null)
+            if (statusEffect is null)
             {
                 // no such status effect instance exists - create and add it
                 statusEffect = ServerWorld.CreateLogicObject(protoStatusEffect);
@@ -134,7 +134,7 @@
             this ICharacter character,
             IProtoStatusEffect protoStatusEffect)
         {
-            if (protoStatusEffect == null)
+            if (protoStatusEffect is null)
             {
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }
@@ -173,7 +173,7 @@
             IProtoStatusEffect protoStatusEffect,
             double intensityToRemove)
         {
-            if (protoStatusEffect == null)
+            if (protoStatusEffect is null)
             {
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }
@@ -212,7 +212,7 @@
             IProtoStatusEffect protoStatusEffect,
             double intensity)
         {
-            if (protoStatusEffect == null)
+            if (protoStatusEffect is null)
             {
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }
@@ -250,7 +250,7 @@
             this ICharacter character,
             IProtoStatusEffect protoStatusEffect)
         {
-            if (protoStatusEffect == null)
+            if (protoStatusEffect is null)
             {
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }

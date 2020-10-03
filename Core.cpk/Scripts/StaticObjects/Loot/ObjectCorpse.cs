@@ -208,7 +208,7 @@
 
             var worldObject = data.GameObject;
             var publicState = data.PublicState;
-            if (publicState.ProtoCharacterMob == null)
+            if (publicState.ProtoCharacterMob is null)
             {
                 // incorrect game object
                 Server.World.DestroyObject(worldObject);

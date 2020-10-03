@@ -163,7 +163,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemWire>(count: 4);
+            build.AddStageRequiredItem<ItemWire>(count: 3);
             build.AddStageRequiredItem<ItemIngotIron>(count: 2);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
@@ -212,7 +212,7 @@
 
             var isActive = privateState.LiquidState.Amount > 0;
             var fuelBurningState = privateState.FuelBurningState;
-            if (fuelBurningState != null)
+            if (fuelBurningState is not null)
             {
                 // progress fuel burning
                 FuelBurningMechanic.Update(

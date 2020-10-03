@@ -100,7 +100,7 @@
                                               .StaticObjects
                                               .FirstOrDefault();
 
-                if (this.hitWorldObject != null)
+                if (this.hitWorldObject is not null)
                 {
                     var objectCenter = DroneTargetPositionHelper.GetTargetPosition(this.hitWorldObject);
                     objectCenter = (objectCenter.X, objectCenter.Y * 0.5 + 0.2);
@@ -112,7 +112,7 @@
                 this.hitWorldObject = null;
             }
 
-            if (this.hitWorldObject != null
+            if (this.hitWorldObject is not null
                 && this.soundEmitterMiningProcess.SoundResource is null)
             {
                 this.soundEmitterMiningProcess.SoundResource

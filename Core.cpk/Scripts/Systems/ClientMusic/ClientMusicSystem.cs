@@ -45,7 +45,7 @@
             get => currentPlaylist;
             set
             {
-                if (value != null
+                if (value is not null
                     && value.Tracks.Count == 0)
                 {
                     // no tracks in this playlist
@@ -63,7 +63,7 @@
 
                 ClearQueue();
 
-                if (currentPlaylist == null)
+                if (currentPlaylist is null)
                 {
                     return;
                 }
@@ -173,13 +173,13 @@
                 || Audio.VolumeMaster <= 0)
             {
                 // no music should be playing
-                if (CurrentTrack != null)
+                if (CurrentTrack is not null)
                 {
                     CurrentTrack.RequestStop();
                     CurrentTrack = null;
                 }
 
-                if (ComponentMusicSource.MusicResource != null)
+                if (ComponentMusicSource.MusicResource is not null)
                 {
                     ComponentMusicSource.Stop();
                     ComponentMusicSource.MusicResource = null;
@@ -189,7 +189,7 @@
             }
 
             // music should be playing
-            if (CurrentTrack != null)
+            if (CurrentTrack is not null)
             {
                 var isFirstTrackOfQueue = CurrentTrack.MusicTrack == Queue.FirstOrDefault();
                 if (!isFirstTrackOfQueue)
@@ -219,7 +219,7 @@
             if (Queue.Count == 0)
             {
                 // no more tracks to play
-                if (currentPlaylist == null)
+                if (currentPlaylist is null)
                 {
                     // and no playlist
                     return;

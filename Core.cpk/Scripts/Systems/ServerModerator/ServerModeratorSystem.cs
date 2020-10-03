@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -122,12 +123,13 @@
             clientIsServerModerator = isModerator;
             Logger.Important(
                 $"Server moderator status received: current player {(isModerator ? "is" : "is not")} a server moderator");
-            if (ClientIsModeratorChanged != null)
+            if (ClientIsModeratorChanged is not null)
             {
                 Api.SafeInvoke(ClientIsModeratorChanged);
             }
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_RequestCurrentUserIsModerator()
         {
             var character = ServerRemoteContext.Character;

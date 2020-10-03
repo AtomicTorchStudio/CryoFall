@@ -24,7 +24,7 @@
             if (!isDrawing)
             {
                 // instance is not needed
-                if (instance == null)
+                if (instance is null)
                 {
                     return;
                 }

@@ -7,6 +7,8 @@
 
     public class ItemHerbGreen : ProtoItemMedical, IProtoItemOrganic
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "Medicinal herb with unique healing and antibacterial properties. Can be used as-is, but becomes much more potent once properly prepared.";
 

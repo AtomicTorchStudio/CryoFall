@@ -51,7 +51,7 @@
 
                 this.chargeValueCurrent = null;
 
-                if (this.item != null)
+                if (this.item is not null)
                 {
                     if (this.TrySetupFuelItem())
                     {

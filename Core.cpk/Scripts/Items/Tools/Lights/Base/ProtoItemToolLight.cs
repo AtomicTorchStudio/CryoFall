@@ -199,7 +199,7 @@
                         ownerCharacter.ClientInvalidateSkeletonRenderer();
                     }
 
-                    if (ownerCharacter != null
+                    if (ownerCharacter is not null
                         && !ownerCharacter.IsCurrentClientCharacter)
                     {
                         this.SoundPresetItem.PlaySound(ItemSound.Use, ownerCharacter);
@@ -227,7 +227,7 @@
             if (publicState.IsActive)
             {
                 var ownerCharacter = item.Container?.OwnerAsCharacter;
-                if (ownerCharacter != null
+                if (ownerCharacter is not null
                     && !ownerCharacter.IsCurrentClientCharacter)
                 {
                     this.SoundPresetItem.PlaySound(ItemSound.Use, ownerCharacter);
@@ -303,7 +303,7 @@
             var item = data.Item;
 
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(Client.Characters.CurrentPlayerCharacter)
-                != null)
+                is not null)
             {
                 // no need for notification - after refilling it will turn on automatically
                 return;
@@ -329,7 +329,7 @@
                     animationName: this.ActiveLightCharacterAnimationName,
                     isLooped: true);
             }
-            else if (skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.Extra) != null)
+            else if (skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.Extra) is not null)
             {
                 // TODO: this is a hack - when an empty animation is added latest animation looping is breaking
                 //skeletonRenderer.SetAnimationLoopMode(AnimationTrackIndexes.Extra, isLooped: false);
@@ -365,7 +365,7 @@
 
             // check if item is in a hotbar selected slot, if not - make it not active
             var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
-            if (itemOwnerCharacter == null
+            if (itemOwnerCharacter is null
                 || item != itemOwnerCharacter.SharedGetPlayerSelectedHotbarItem())
             {
                 Logger.Info(item + " is not in the hotbar selected slot - make it inactive");
@@ -418,7 +418,7 @@
 
             // check if item is in a hotbar selected slot, if not - make it not active
             var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
-            if (itemOwnerCharacter == null
+            if (itemOwnerCharacter is null
                 || !itemOwnerCharacter.ServerIsOnline
                 || item != itemOwnerCharacter.SharedGetPlayerSelectedHotbarItem())
             {
@@ -436,7 +436,7 @@
             }
         }
 
-        [RemoteCallSettings(DeliveryMode.Default)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.5, keyArgIndex: 0)]
         private void ServerRemote_SetMode(IItem item, bool setIsActive)
         {
             this.VerifyGameObject(item);

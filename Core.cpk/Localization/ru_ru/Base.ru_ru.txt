@@ -214,3 +214,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Потребление топлива
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+Невозможно бежать
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+Невозможно атаковать
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+Невозможно использовать медицинские предметы, которые имеют задержку
+

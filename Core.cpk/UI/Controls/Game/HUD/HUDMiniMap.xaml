@@ -29,6 +29,31 @@
             <Setter Property="Background" Value="#FFCCCCCC" />
             <Setter Property="Foreground" Value="{StaticResource MiniButtonForegroundBrush}" />
         </Style>
+
+        <!-- Player mark in the center of the minimap -->
+        <ControlTemplate x:Key="PlayerMarkControlTemplate">
+            <Canvas Width="10"
+                    Height="10">
+                <Grid Canvas.Left="-5" 
+                      Canvas.Top="-5">
+                    <Path Fill="Black"
+                          Data="M4,0 L8,4 L4,8 L0,4 z"
+                          Width="10"
+                          Height="10"
+                          Stretch="Uniform"
+                          UseLayoutRounding="False"
+                          Margin="0,-0.5,0,0" />
+                    <Path Fill="#FF00BFF3"
+                          Data="M4,0 L8,4 L4,8 L0,4 z"
+                          Width="8"
+                          Height="8"
+                          Stretch="Uniform"
+                          UseLayoutRounding="False"
+                          Margin="0,-0.5,0,0" />
+                </Grid>
+            </Canvas>
+        </ControlTemplate>
+
     </base:BaseUserControl.Resources>
 
     <Grid>
@@ -144,7 +169,8 @@
                 <core:PanningPanel.Template>
                     <ControlTemplate TargetType="{x:Type core:PanningPanel}">
                         <Grid x:Name="LayoutRoot"
-                              Background="#66000000">
+                              Background="#66000000"
+                              UseLayoutRounding="False">
                             <Canvas x:Name="CanvasContentWrapper">
                                 <Canvas x:Name="CanvasContent"
                                         RenderTransformOrigin="0.5,0.5">

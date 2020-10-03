@@ -38,7 +38,7 @@
 
         private void Refresh()
         {
-            if (this.Decal == null)
+            if (this.Decal is null)
             {
                 // decal is not setup (yet)
                 return;

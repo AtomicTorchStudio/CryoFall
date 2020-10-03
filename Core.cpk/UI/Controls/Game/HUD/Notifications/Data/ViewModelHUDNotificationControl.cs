@@ -30,12 +30,12 @@
             this.BrushBackground = brushBackground;
             this.BrushBorder = brushBorder;
 
-            if (iconBrush != null)
+            if (iconBrush is not null)
             {
                 this.Icon = iconBrush;
             }
 
-            if (onClick != null)
+            if (onClick is not null)
             {
                 this.CommandClick = new ActionCommand(onClick);
                 this.Cursor = CursorId.InteractionPossible;
@@ -68,7 +68,7 @@
 
         public Brush Icon { get; set; }
 
-        public Visibility IconVisibility => this.Icon != null
+        public Visibility IconVisibility => this.Icon is not null
                                                 ? Visibility.Visible
                                                 : Visibility.Collapsed;
 

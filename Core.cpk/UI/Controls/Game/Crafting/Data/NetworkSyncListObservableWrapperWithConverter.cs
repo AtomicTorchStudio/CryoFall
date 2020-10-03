@@ -44,7 +44,7 @@
             var items = this.observableCollection.Count > 0 ? this.observableCollection.ToList() : null;
             this.observableCollection.Clear();
 
-            if (items != null)
+            if (items is not null)
             {
                 foreach (var item in items)
                 {

@@ -27,7 +27,7 @@
 
         public LoadingSplashScreenManager()
         {
-            if (instance != null)
+            if (instance is not null)
             {
                 throw new Exception("Instance already created");
             }
@@ -44,7 +44,7 @@
         {
             get
             {
-                if (instance == null)
+                if (instance is null)
                 {
                     instance = Api.Client.Scene.CreateSceneObject("Loading splash screen governor")
                                   .AddComponent<LoadingSplashScreenManager>();

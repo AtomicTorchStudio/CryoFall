@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -68,7 +69,7 @@
 
             var bedPrivateState = GetPrivateState(gameObject);
             var ownerCharacter = bedPrivateState.Owner;
-            if (ownerCharacter == null)
+            if (ownerCharacter is null)
             {
                 // the bed doesn't have the owner
                 return;
@@ -119,7 +120,7 @@
         {
             var playerPrivateState = PlayerCharacter.GetPrivateState(owner);
             var previousBed = playerPrivateState.CurrentBedObject;
-            if (previousBed != null)
+            if (previousBed is not null)
             {
                 // remove from the previous bed the current character
                 GetPrivateState(previousBed).Owner = null;
@@ -134,7 +135,7 @@
         private async void ClientMakeCurrentBed(IStaticWorldObject bedObject)
         {
             var errorMessage = await this.CallServer(_ => _.ServerRemote_MakeCurrentBed(bedObject));
-            if (errorMessage == null)
+            if (errorMessage is null)
             {
                 this.ClientShowNotificationBedClaimed();
                 return;
@@ -160,6 +161,7 @@
                 icon: this.Icon);
         }
 
+        [RemoteCallSettings(timeInterval: 1)]
         private (bool isSuccess, string ownerName) ServerRemote_GetBedOwnerName(IStaticWorldObject bedObject)
         {
             var character = ServerRemoteContext.Character;
@@ -172,6 +174,7 @@
             return (isSuccess: true, owner?.Name);
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 3)]
         private string ServerRemote_MakeCurrentBed(IStaticWorldObject bedObject)
         {
             var character = ServerRemoteContext.Character;
@@ -181,7 +184,7 @@
             }
 
             var privateState = GetPrivateState(bedObject);
-            if (privateState.Owner == null)
+            if (privateState.Owner is null)
             {
                 // can set new owner
                 if (!LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bedObject, character))

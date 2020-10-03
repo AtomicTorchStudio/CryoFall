@@ -20,7 +20,7 @@
                     return;
                 }
 
-                if (this.viewModel != null)
+                if (this.viewModel is not null)
                 {
                     this.DataContext = null;
                     this.viewModel.Dispose();
@@ -28,7 +28,7 @@
 
                 this.viewModel = value;
 
-                if (this.viewModel != null)
+                if (this.viewModel is not null)
                 {
                     this.DataContext = this.viewModel;
                 }
@@ -37,7 +37,7 @@
 
         public static TControl Open(TViewModel viewModel)
         {
-            if (Instance == null)
+            if (Instance is null)
             {
                 var instance = new TControl();
                 instance.ViewModel = viewModel;

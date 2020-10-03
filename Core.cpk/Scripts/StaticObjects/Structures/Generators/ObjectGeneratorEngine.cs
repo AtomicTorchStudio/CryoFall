@@ -112,14 +112,14 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemWire>(count: 10);
+            build.AddStageRequiredItem<ItemWire>(count: 5);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
-            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 2);
+            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemWire>(count: 5);
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

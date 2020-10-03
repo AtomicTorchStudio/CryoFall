@@ -9,7 +9,7 @@
 
         public override bool CanAddItem(CanAddItemContext context)
         {
-            if (context.ByCharacter == null)
+            if (context.ByCharacter is null)
             {
                 // server can place here anything
                 // (necessary for placing the broken solar panels)

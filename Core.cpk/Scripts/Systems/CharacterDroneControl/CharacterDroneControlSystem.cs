@@ -23,9 +23,12 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class CharacterDroneControlSystem : ProtoSystem<CharacterDroneControlSystem>
@@ -71,6 +74,9 @@
 
         public const string Notification_NothingToMineThere =
             "Nothing to mine there!";
+
+        private static readonly ListDictionary<IItem, Vector2Ushort> ClientDroneStartQueue
+            = new ListDictionary<IItem, Vector2Ushort>();
 
         private static readonly Dictionary<Vector2Ushort, IDynamicWorldObject> ServerCurrentMinedObjectsByDrones
             = IsServer
@@ -121,6 +127,35 @@
 
                 order = int.MinValue;
                 return false;
+            }
+        }
+
+        public static void ClientSubmitStartDroneCommandsImmediately()
+        {
+            switch (ClientDroneStartQueue.Count)
+            {
+                case 0:
+                    return;
+
+                case 1:
+                    var onlyEntry = ClientDroneStartQueue.GetFirstEntry();
+                    Instance.CallServer(_ => _.ServerRemote_StartDrone(onlyEntry.Key, onlyEntry.Value));
+                    ClientDroneStartQueue.Clear();
+                    return;
+
+                default:
+                {
+                    using var tempList = Api.Shared.GetTempList<(IItem, Vector2Ushort)>();
+                    foreach (var entry in ClientDroneStartQueue)
+                    {
+                        tempList.Add((entry.Key, entry.Value));
+                    }
+
+                    ClientDroneStartQueue.Clear();
+                    // ReSharper disable once AccessToDisposedClosure
+                    Instance.CallServer(_ => _.ServerRemote_StartDrones(tempList.AsList()));
+                    return;
+                }
             }
         }
 
@@ -179,8 +214,7 @@
                 return false;
             }
 
-            Logger.Info($"Requesting drone start: {itemDrone} to {worldPosition}");
-            Instance.CallServer(_ => _.ServerRemote_StartDrone(itemDrone, worldPosition));
+            ClientDroneStartQueue.Add(itemDrone, worldPosition);
             return true;
         }
 
@@ -281,7 +315,7 @@
             ServerOnDroneControlRemoved(privateState.CharacterOwner, worldObject);
 
             var droneItem = privateState.AssociatedItem;
-            if (droneItem != null)
+            if (droneItem is not null)
             {
                 Server.Items.DestroyItem(droneItem);
             }
@@ -404,7 +438,7 @@
                 isPveActionForbidden = true;
                 return null;
             }
-            
+
             hasIncompatibleTarget = false;
             return targetObject;
         }
@@ -552,6 +586,7 @@
             return true;
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
         public void ServerRemote_StartDrone(IItem itemDrone, Vector2Ushort worldPosition)
         {
             var character = ServerRemoteContext.Character;
@@ -654,6 +689,29 @@
                                             fromStartPosition: character.Position);
 
             ServerItemUseObserver.NotifyItemUsed(character, itemDroneControl);
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
+        public void ServerRemote_StartDrones(List<(IItem Item, Vector2Ushort Position)> drones)
+        {
+            foreach (var entry in drones)
+            {
+                this.ServerRemote_StartDrone(entry.Item, entry.Position);
+            }
+        }
+
+        protected override void PrepareSystem()
+        {
+            base.PrepareSystem();
+            if (IsClient)
+            {
+                ClientUpdateHelper.UpdateCallback += ClientUpdate;
+
+                static void ClientUpdate()
+                {
+                    ClientSubmitStartDroneCommandsImmediately();
+                }
+            }
         }
 
         private void ClientRemote_OnDroneAbandoned(IProtoItemDrone protoItemDrone)

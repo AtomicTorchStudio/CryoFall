@@ -27,11 +27,11 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 3);
+            build.AddStageRequiredItem<ItemPlanks>(count: 2);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

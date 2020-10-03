@@ -117,7 +117,7 @@
             items.Remove(Api.GetProtoEntity<ItemImplantBroken>());
 
             // and all items without icons (which are not really actual items):
-            items.RemoveAll(i => i.Icon == null);
+            items.RemoveAll(i => i.Icon is null);
 
             var search = this.searchText.Trim();
             if (search.Length > 0)
@@ -157,7 +157,7 @@
 
             var result = new List<IProtoItem>();
             result.AddRange(stockItemsContainer.Items.Select(i => i.ProtoItem));
-            result.AddRange(availableLots.Select(l => l.ProtoItem).Where(i => i != null));
+            result.AddRange(availableLots.Select(l => l.ProtoItem).Where(i => i is not null));
             return result.Distinct().ToList();
         }
 

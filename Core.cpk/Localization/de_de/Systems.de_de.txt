@@ -382,47 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Auf diesen Server kann nur per Einladung zugegriffen werden.
 [br]Bitte überprüfe die Serverbeschreibung um mögliche zusätzliche Details zu erhalten.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`Willkommen auf dem offiziellen CryoFall-Server!
-[br]
-[br]
-[b]Wichtig:[/b]
-[br]
-Dies ist ein PvE ("Spieler gegen Umgebung") Server. Auf diesem Server können Spieler einander weder auf direktem oder indirektem Weg angreifen. Dieser Server dient der friedlichen Erkundung des Spiels, ohne dabei auf feindlich gesinnte Spieler zu treffen. Du kannst andere Spieler weder töten oder angreifen, noch von ihnen stehlen. Davon einmal abgesehen, bietet dir dieser Server die komplette Bandbreite von CryoFall, mitsamt seiner gefährlichen Kreaturen, freischaltbarer Technologien und seiner frei zu erkundenden Welt. Finde selbst heraus, wohin dich deine Reise führen wird.
-[br]
-[br]
-Wenn du stattdessen lieber eine spannendere und uneingeschränkte Spielerfahrung genießen möchtest – erwäge bitte, einem PvP-Server beizutreten.
-[br]
-[br]
-[b]Server-Regeln:[/b]
-[*]Sei respektvoll und höflich im Umgang mit anderen. Wir tolerieren keinerlei Form von Beschimpfung, Diskriminierung, etc.
-[*]Halte dich an die Anweisungen der Server-Moderatoren.
-[*]Benutze keinen Spam oder übermäßige Kraftausdrücke im Chat.
-[*]Versuche nicht, die PvE-Einschränkungen zu umgehen oder auszunutzen.
-[*]Missbrauche keine Spielregeln oder -mechaniken, um andere Spieler zu beeinträchtigen.
-[br]
-[br]
-Viel Glück! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+Auf diesem Community-Server sind Fremdmodifikationen installiert. Es kann nicht garantiert werden, dass der Server einwandfrei läuft und dir so die echte CryoFall-Erfahrung bietet. Solltest du auf Probleme stoßen – bitte wende dich an den Besitzer des Community-Servers.
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`Willkommen auf dem offiziellen CryoFall-Server!
-[br]
-[br]
-[b]Wichtig:[/b]
-[br]
-Dies ist ein uneingeschränkter PvP-Server. Bitte bedenke, dass du auf PvP-Servern den Angriffen anderer Spieler ausgesetzt bist. Es wird von dir erwartet, dass du kämpfst und dich verteidigst. Du wirst dich selbst angemessen schützen und stets wachsam sein müssen. Erwäge außerdem, dich mit anderen Überlebenden zusammenzutun, um deine Chancen zu verbessern.
-[br]
-[br]
-Wenn du stattdessen lieber eine enspanntere Spielerfahrung genießen möchtest – vor allem dann, wenn du gerade erst damit angefangen hast, CryoFall zu spielen – erwäge bitte, einem PvE-Server beizutreten.
-[br]
-[br]
-[b]Server-Regeln:[/b]
-[*]Sei respektvoll und höflich im Umgang mit anderen. Wir tolerieren keinerlei Form von Beschimpfung, Diskriminierung, etc.
-[*]Halte dich an die Anweisungen der Server-Moderatoren.
-[*]Benutze keinen Spam oder übermäßige Kraftausdrücke im Chat.
-[br]
-[br]
-Viel Glück! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`Dies ist ein PvE ("Spieler gegen Umgebung")-Server. Auf diesem Server können Spieler einander weder auf direkte noch indirekte Weise angreifen. Dieser Server ist der friedlichen Erkundung des Spiels, ganz ohne feindlichen Spielerkontakt, gewidmet. Du kannst andere Spieler weder töten, verletzen, bestehlen noch ihnen anderweitig schaden. Davon abgesehen bietet dir dieser Server die vollständige CryoFall-Erfahrung mitsamt seinen gefährlichen Kreaturen, den zu entschlüsselnden Technologien und seiner erkundbaren Welt. Finde selbst heraus, wohin die Reise dich führt.
+[br]Solltest du nach einer spannenderen und uneingeschränkten Spielatmosphäre suchen – bitte erwäge, einem PvP-Server beizutreten.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`Dies ist ein allgemeiner PvP-Server. Bitte beachte, dass du auf PvP-fokussierten Servern [b]den Angriffen anderer Spieler[/b] ausgesetzt bist. Es wird von dir erwartet, zu kämpfen und dich zu verteidigen. Du musst dich angemessen schützen und stets achtsam sein. Dieser Spielmodus richtet sich ausschließlich an erfahrene Spieler.
+[br]Solltest du nach einer entspannteren Atmosphäre suchen, besonders wenn du zum ersten Mal spielst – bitte erwäge, einem PvE-Server beizutreten.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+PvE-Server
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+PvP-Server
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+Gemoddeter Server
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+Begrüßungstext
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+Wipe-Informationen
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Willkommen bei {0}

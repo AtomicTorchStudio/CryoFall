@@ -103,7 +103,7 @@
                                        // local helper method for getting option order
                                        IEnumerable<IProtoOption> GetOptionOrder(IProtoOption tab)
                                        {
-                                           if (tab.OrderAfterOption != null)
+                                           if (tab.OrderAfterOption is not null)
                                            {
                                                yield return tab.OrderAfterOption;
                                            }

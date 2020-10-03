@@ -47,12 +47,7 @@
                 Error_TooCloseToDepletedDeposit,
                 c =>
                 {
-                    if (c.TileOffset != default)
-                    {
-                        return true;
-                    }
-
-                    var startPosition = c.Tile.Position;
+                    var startPosition = c.StartTilePosition;
                     var objectsInBounds = SharedFindObjectsNearby<ObjectDepletedDeposit>(startPosition);
                     if (objectsInBounds.Any())
                     {
@@ -176,7 +171,7 @@
             // force reinitialize deposit to ensure the deposit healthbar will be hidden
             objectDeposit?.ClientInitialize();
 
-            if (objectDeposit != null
+            if (objectDeposit is not null
                 && ((IProtoObjectDeposit)objectDeposit.ProtoGameObject).LifetimeTotalDurationSeconds <= 0)
             {
                 // this extractor is built over an infinite source
@@ -195,7 +190,7 @@
             if (isObserving)
             {
                 // display tooltip only if we have a deposit here
-                isObserving = worldObjectDeposit != null;
+                isObserving = worldObjectDeposit is not null;
             }
 
             ClientObjectDepositTooltipHelper.Refresh(worldObjectDeposit, isObserving);
@@ -310,9 +305,9 @@
         {
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
 
-            if (weaponCache == null
-                || (weaponCache.ProtoWeapon == null
-                    && weaponCache.ProtoExplosive == null)
+            if (weaponCache is null
+                || (weaponCache.ProtoWeapon is null
+                    && weaponCache.ProtoExplosive is null)
                 || PveSystem.ServerIsPvE)
             {
                 return;
@@ -326,7 +321,7 @@
             var worldObjectDeposit = this.SharedGetDepositWorldObject(
                 Server.World.GetTile(tilePosition));
 
-            if (worldObjectDeposit != null)
+            if (worldObjectDeposit is not null)
             {
                 ((IProtoObjectDeposit)worldObjectDeposit.ProtoStaticWorldObject)
                     .ServerOnExtractorDestroyedForDeposit(worldObjectDeposit);
@@ -349,12 +344,12 @@
             var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
 
             var fuelBurningState = privateState.FuelBurningState;
-            if (objectDepletedDeposit != null)
+            if (objectDepletedDeposit is not null)
             {
                 // this is a depleted deposit - stop extraction
                 data.PublicState.IsActive = false;
                 privateState.LiquidContainerState.Amount = 0;
-                if (fuelBurningState != null)
+                if (fuelBurningState is not null)
                 {
                     fuelBurningState.FuelUseTimeRemainsSeconds = 0;
                 }
@@ -365,7 +360,7 @@
             var isActive = false;
             var isFull = privateState.LiquidContainerState.Amount >= this.LiquidContainerConfig.Capacity;
 
-            if (fuelBurningState == null)
+            if (fuelBurningState is null)
             {
                 // no fuel burning state
                 if (this.ElectricityConsumptionPerSecondWhenActive <= 0)
@@ -426,9 +421,7 @@
             {
                 if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
                 {
-                    return objectDeposit is null
-                               ? ExtractorPvE
-                               : InfiniteExtractorPvE;
+                    return ExtractorPvE;
                 }
 
                 // extractor in PvP
@@ -438,9 +431,7 @@
                 }
 
                 var protoObjectDeposit = (IProtoObjectDeposit)objectDeposit.ProtoStaticWorldObject;
-                return protoObjectDeposit.LifetimeTotalDurationSeconds <= 0
-                           ? InfiniteExtractorPvP
-                           : ExtractorPvpWithDeposit;
+                return ExtractorPvpWithDeposit;
             }
         }
     }

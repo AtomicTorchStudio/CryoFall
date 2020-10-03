@@ -192,7 +192,7 @@
                 randomizeInitialFrame: randomizeInitialFrame);
 
             var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(worldObject);
-            if (clientState.SoundEmitter != null)
+            if (clientState.SoundEmitter is not null)
             {
                 Logger.Error("Sound emitter will be overwritten for: " + worldObject);
             }
@@ -210,7 +210,7 @@
             {
                 overlayRenderer.IsEnabled = isActive;
                 spriteSheetAnimator.IsEnabled = isActive;
-                if (soundEmitter != null)
+                if (soundEmitter is not null)
                 {
                     soundEmitter.IsEnabled = isActive;
                 }
@@ -305,7 +305,7 @@
             // configure fuel burning state
             var fuelBurningState = privateState.FuelBurningState;
             {
-                if (fuelBurningState == null)
+                if (fuelBurningState is null)
                 {
                     if (this.ContainerFuelSlotsCount > 0)
                     {
@@ -323,7 +323,7 @@
                     privateState.FuelBurningState = fuelBurningState = null;
                 }
 
-                if (fuelBurningState != null)
+                if (fuelBurningState is not null)
                 {
                     Server.Items.SetContainerType<ItemsContainerFuelSolid>(
                         fuelBurningState.ContainerFuel);
@@ -332,7 +332,7 @@
 
             if (this.ManufacturingConfig.IsProduceByproducts)
             {
-                if (fuelBurningState == null)
+                if (fuelBurningState is null)
                 {
                     throw new Exception(
                         $"No fuel container - please set {nameof(this.ContainerFuelSlotsCount)} higher than zero?");
@@ -365,7 +365,7 @@
             var isActive = false;
             var fuelBurningState = privateState.FuelBurningState;
 
-            if (fuelBurningState == null)
+            if (fuelBurningState is null)
             {
                 // no fuel burning state
                 if (this.ElectricityConsumptionPerSecondWhenActive <= 0)
@@ -426,7 +426,7 @@
         {
             var character = ServerRemoteContext.Character;
 
-            if (worldObject == null
+            if (worldObject is null
                 || worldObject.ProtoWorldObject != this
                 || !this.SharedCanInteract(character, worldObject, writeToLog: true))
             {
@@ -448,7 +448,7 @@
                 this.ManufacturingConfig);
 
             // reset fuel container hash - to ensure the fuel will refresh as soon as possible
-            if (statePrivate.FuelBurningState != null)
+            if (statePrivate.FuelBurningState is not null)
             {
                 statePrivate.FuelBurningState.ContainerFuelLastStateHash = 0;
             }

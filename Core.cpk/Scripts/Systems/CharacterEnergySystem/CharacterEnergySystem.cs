@@ -88,7 +88,7 @@
         public static void ServerAddEnergyCharge(IItemsContainer container, double energyAmountToAdd)
         {
             if (energyAmountToAdd <= 0
-                || container == null
+                || container is null
                 || container.IsDestroyed)
             {
                 return;

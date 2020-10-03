@@ -14,6 +14,8 @@
 
         public const string NotificationNoBleeding_Title = "No bleeding";
 
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "Hemostatic can be used to completely stop bleeding and partially reduce any further bleeding for the duration of its effect.";
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -19,9 +20,11 @@
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
 
     public class PveSystem : ProtoSystem<PveSystem>
     {
@@ -45,6 +48,12 @@
         // Displayed when player attempting to take the dropped loot of another player on a PvE server.
         public const string Notification_StuffBelongsToAnotherPlayer_Message =
             "This belongs to another player.";
+
+        [NotLocalizable]
+        private const string ServerTagPvE = "PvE";
+
+        [NotLocalizable]
+        private const string ServerTagPvP = "PvP";
 
         private static readonly bool serverIsPvE;
 
@@ -209,7 +218,7 @@
                 return true;
             }
 
-            if (character == null)
+            if (character is null)
             {
                 // non-player damage is always forbidden on the owned objects
                 return false;
@@ -282,7 +291,7 @@
                 }
             }
 
-            if (pilot != null
+            if (pilot is not null
                 && WeaponDamageSystem.SharedCanHitCharacter(weaponCache,
                                                             targetCharacter: pilot))
             {
@@ -372,7 +381,9 @@
             }
 
             var isPvE = ServerIsPvE;
-            Server.Core.AddServerInfoTag(isPvE ? "PvE" : "PvP");
+            Server.Core.AddServerInfoTag(isPvE
+                                             ? ServerTagPvE
+                                             : ServerTagPvP);
 
             if (isPvE)
             {
@@ -415,33 +426,7 @@
             Logger.Important("Switched PvE duel mode to " + (isEnabled ? "enabled" : "disabled"), character);
         }
 
-        private void ClientRemote_IsPvE(bool isPvE)
-        {
-            try
-            {
-                if (clientIsPvE == isPvE)
-                {
-                    return;
-                }
-
-                clientIsPvE = isPvE;
-                if (ClientIsPvEChanged != null)
-                {
-                    Api.SafeInvoke(ClientIsPvEChanged);
-                }
-            }
-            finally
-            {
-                clientPvErequestTask.SetResult(isPvE);
-            }
-        }
-
-        private void ServerRemote_RequestIsPvE()
-        {
-            this.CallClient(ServerRemoteContext.Character,
-                            _ => _.ClientRemote_IsPvE(ServerIsPvE));
-        }
-
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 5)]
         private void ServerRemote_SetDuelMode(bool isEnabled)
         {
             ServerSetDuelMode(ServerRemoteContext.Character, isEnabled);
@@ -451,18 +436,36 @@
         {
             public override void ClientInitialize()
             {
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-
+                Client.CurrentGame.ServerInfoChanged += Refresh;
                 Refresh();
 
-                void Refresh()
+                static void Refresh()
                 {
-                    clientPvErequestTask?.TrySetCanceled();
-
-                    clientPvErequestTask = new TaskCompletionSource<bool>();
-                    if (Api.Client.Characters.CurrentPlayerCharacter != null)
+                    var serverInfo = Client.CurrentGame.ServerInfo;
+                    if (serverInfo is null)
                     {
-                        Instance.CallServer(_ => _.ServerRemote_RequestIsPvE());
+                        return;
+                    }
+                    
+                    clientPvErequestTask?.TrySetCanceled();
+                    clientPvErequestTask = new TaskCompletionSource<bool>();
+                    var isPvE = serverInfo.ScriptingTags.Contains(ServerTagPvE);
+                    try
+                    {
+                        if (clientIsPvE == isPvE)
+                        {
+                            return;
+                        }
+
+                        clientIsPvE = isPvE;
+                        if (ClientIsPvEChanged is not null)
+                        {
+                            Api.SafeInvoke(ClientIsPvEChanged);
+                        }
+                    }
+                    finally
+                    {
+                        clientPvErequestTask.SetResult(isPvE);
                     }
                 }
             }

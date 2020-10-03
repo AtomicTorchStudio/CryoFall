@@ -89,7 +89,7 @@
                     value = 1;
                 }
 
-                if (this.viewModelRecipe == null)
+                if (this.viewModelRecipe is null)
                 {
                     return;
                 }
@@ -181,7 +181,7 @@
             get
             {
                 var recipe = this.viewModelRecipe?.Recipe;
-                if (recipe == null)
+                if (recipe is null)
                 {
                     // cannot craft at all
                     return 0;
@@ -279,7 +279,7 @@
                 return;
             }
 
-            if (this.customCallbackOnRecipeSelect != null)
+            if (this.customCallbackOnRecipeSelect is not null)
             {
                 this.customCallbackOnRecipeSelect.Invoke(this.viewModelRecipe.Recipe);
             }
@@ -332,7 +332,7 @@
         private void RefreshIsCanCraft()
         {
             var recipe = this.viewModelRecipe?.Recipe;
-            if (recipe == null)
+            if (recipe is null)
             {
                 this.IsCanCraft = false;
                 return;

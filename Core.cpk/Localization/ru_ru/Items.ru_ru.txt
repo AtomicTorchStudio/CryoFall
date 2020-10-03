@@ -170,10 +170,13 @@ Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Топливные ячейки используются для питания различного транспорта.
 
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
-Удерживайте [b]Alt[/b] или [b]Ctrl[/b] когда стреляете, чтобы выстрелить на максимальную дистанцию в указанном направлении вместо стрельбы в указанную позицию.
+Удерживайте [b]Alt[/b] или [b]Ctrl[/b] во время стрельбы, чтобы выстрелить на максимальное расстояние в направлении курсора, а не в местоположение курсора.
 
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Импланты можно устанавливать только на медицинских станциях.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+Вы это не пробовали
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Этот предмет получает энергию от экипированных аккумуляторов.
@@ -219,6 +222,12 @@ Scripts/Items/Devices/ItemHuntersTools@Description:
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Инструменты охотника
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Небольшой лазерный целеуказатель, который облегчает прицеливание при стрельбе на дальние расстояния.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Лазерный прицел
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Хранит большой объем энергии. От экипированных аккумуляторов можно заряжать любые приборы и энергетическое оружие.

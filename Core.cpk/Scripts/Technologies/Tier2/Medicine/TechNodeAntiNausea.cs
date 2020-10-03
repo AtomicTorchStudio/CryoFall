@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeAntiNausea>();
 
-            config.SetRequiredNode<TechNodeBandage>();
+            config.SetRequiredNode<TechNodeMedicalLab>();
         }
     }
 }

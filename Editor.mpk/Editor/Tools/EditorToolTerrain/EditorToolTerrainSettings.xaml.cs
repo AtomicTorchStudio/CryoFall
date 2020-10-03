@@ -22,7 +22,7 @@
         protected override void OnLoaded()
         {
             base.OnLoaded();
-            if (this.ViewModel != null)
+            if (this.ViewModel is not null)
             {
                 this.DataContext = this.ViewModel;
             }

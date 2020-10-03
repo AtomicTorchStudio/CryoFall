@@ -97,5 +97,10 @@
                 throw new Exception("Final stats cache is not initialized");
             }
         }
+
+        public bool HasPerk(StatName statNamePerk)
+        {
+            return this[statNamePerk] >= 1;
+        }
     }
 }

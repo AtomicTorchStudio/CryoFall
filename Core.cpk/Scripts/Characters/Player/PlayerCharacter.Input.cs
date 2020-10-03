@@ -46,9 +46,10 @@
             }
         }
 
-        public static void SharedSelectHotbarSlotId(ICharacter character, 
-                                                    byte? slotId,
-                                                    bool isByPlayer)
+        public static void SharedSelectHotbarSlotId(
+            ICharacter character,
+            byte? slotId,
+            bool isByPlayer)
         {
             var publicState = GetPublicState(character);
             var privateState = GetPrivateState(character);
@@ -67,20 +68,20 @@
                 return;
             }
 
-            if (vehicleItemsContainer != null)
+            if (vehicleItemsContainer is not null)
             {
                 slotId = null;
                 itemsContainer = vehicleItemsContainer;
                 isVehicleDecidesSelectedItem = true;
             }
 
-            if (privateState.SelectedHotbarSlotId != null)
+            if (privateState.SelectedHotbarSlotId is not null)
             {
                 privateState.PreviouslySelectedHotbarSlotId = privateState.SelectedHotbarSlotId;
             }
 
-            if (privateState.PreviouslySelectedHotbarSlotId != null
-                && slotId == null)
+            if (privateState.PreviouslySelectedHotbarSlotId is not null
+                && slotId is null)
             {
                 slotId = privateState.PreviouslySelectedHotbarSlotId;
             }
@@ -97,7 +98,7 @@
             {
                 item = itemsContainer.GetItemAtSlot(slotId.Value);
 
-                if (item != null
+                if (item is not null
                     && !item.ProtoItem.SharedCanSelect(item,
                                                        character,
                                                        isAlreadySelected: publicState.SelectedItem == item,
@@ -162,7 +163,7 @@
                 .ComponentPlayerInputSender.Send(data);
         }
 
-        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, maxCallsPerSecond: 120)]
+        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, timeInterval: 1 / 120.0)]
         internal void ServerRemote_SetInput(CharacterInputUpdate data, byte inputId)
         {
             var character = ServerRemoteContext.Character;
@@ -211,7 +212,7 @@
             }
 
             var vehicle = publicState.CurrentVehicle;
-            if (!(vehicle is null))
+            if (vehicle is not null)
             {
                 if (!vehicle.IsInitialized)
                 {
@@ -271,14 +272,21 @@
 
                 if (isRunning)
                 {
-                    var moveSpeedMultiplier = characterFinalStateCache[StatName.MoveSpeedRunMultiplier];
-                    if (moveSpeedMultiplier > 0)
+                    if (characterFinalStateCache.HasPerk(StatName.PerkCannotRun))
                     {
-                        moveSpeed = moveSpeed * moveSpeedMultiplier;
+                        isRunning = false;
                     }
                     else
                     {
-                        isRunning = false;
+                        var moveSpeedMultiplier = characterFinalStateCache[StatName.MoveSpeedRunMultiplier];
+                        if (moveSpeedMultiplier > 0)
+                        {
+                            moveSpeed = moveSpeed * moveSpeedMultiplier;
+                        }
+                        else
+                        {
+                            isRunning = false;
+                        }
                     }
                 }
             }
@@ -366,7 +374,7 @@
         {
             var publicState = GetPublicState(character);
             var vehicle = publicState.CurrentVehicle;
-            hasVehicle = vehicle != null;
+            hasVehicle = vehicle is not null;
 
             if (!hasVehicle
                 || !vehicle.IsInitialized
@@ -393,11 +401,11 @@
             return itemsContainer;
         }
 
-        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, maxCallsPerSecond: 60, avoidBuffer: true)]
+        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, timeInterval: 1 / 60.0, avoidBuffer: true)]
         private void ClientRemote_ServerAckInput(byte inputId)
         {
             var playerCharacter = Client.Characters.CurrentPlayerCharacter;
-            if (playerCharacter != null)
+            if (playerCharacter is not null)
             {
                 var clientState = GetClientState(playerCharacter);
                 clientState?.ComponentPlayerInputSender.OnServerAck(inputId);

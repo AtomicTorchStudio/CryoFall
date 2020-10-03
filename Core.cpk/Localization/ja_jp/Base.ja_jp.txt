@@ -214,3 +214,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 燃料消費量
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+走れません
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+攻撃できません
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+医薬品のクールタイムが残っているので使用できません
+

@@ -51,7 +51,7 @@
             get
             {
                 var window = WindowConstructionMenu.Instance;
-                return window != null
+                return window is not null
                        && (window.WindowState == GameWindowState.Opened
                            || window.WindowState == GameWindowState.Opening);
             }
@@ -77,7 +77,7 @@
                 return;
             }
 
-            if (ClientCurrentCharacterHelper.PublicState.CurrentVehicle != null)
+            if (ClientCurrentCharacterHelper.PublicState.CurrentVehicle is not null)
             {
                 Logger.Important("Construction menu is not accessible while in a vehicle");
                 return;
@@ -133,7 +133,7 @@
                 tilePosition,
                 byCharacter: byCharacter);
 
-            if (byCharacter == null)
+            if (byCharacter is null)
             {
                 return;
             }
@@ -194,7 +194,7 @@
             }
 
             // construction window is closed
-            if (componentObjectPlacementHelper != null)
+            if (componentObjectPlacementHelper is not null)
             {
                 // construction location selector is active - destroy it and don't open the construction menu
                 ClientDisableConstructionPlacement();
@@ -231,13 +231,13 @@
 
             var itemTool = (from item in ClientHotbarSelectedItemManager.ContainerHotbar.Items
                             let protoToolbox = item.ProtoItem as IProtoItemToolToolbox
-                            where protoToolbox != null
+                            where protoToolbox is not null
                             // find best tool
                             orderby protoToolbox.ConstructionSpeedMultiplier descending,
                                 item.ContainerSlotId ascending
                             select item).FirstOrDefault();
 
-            if (itemTool == null)
+            if (itemTool is null)
             {
                 throw new Exception("Cannot build - the required tool is not available in the hotbar");
             }
@@ -377,7 +377,7 @@
             IProtoObjectStructure protoStructure,
             ICharacter byCharacter)
         {
-            if (protoStructure == null)
+            if (protoStructure is null)
             {
                 throw new ArgumentNullException(nameof(protoStructure));
             }

@@ -9,6 +9,8 @@
         public override string Description =>
             "You have a broken leg, which affects your movement ability. Attempting to run with a broken leg will result in severe pain. Use a splint to heal the fracture.";
 
+        public override StatusEffectDisplayMode DisplayMode => StatusEffectDisplayMode.None;
+
         // this status effect is not auto-decreased
         public override double IntensityAutoDecreasePerSecondValue => 0;
 

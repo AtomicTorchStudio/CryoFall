@@ -6,6 +6,7 @@
     using System.Text;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
@@ -204,7 +205,7 @@
                 throw new Exception("Impossible");
             }
 
-            if (viewModelServerInfo == null)
+            if (viewModelServerInfo is null)
             {
                 viewModelServerInfo = new ViewModelServerInfo(
                     address,
@@ -290,7 +291,7 @@
         public void ServerInfoReceivedHandler(ServerInfo serverInfo)
         {
             var viewModel = this.serverViewModels.Find(serverInfo.ServerAddress);
-            if (viewModel == null)
+            if (viewModel is null)
             {
                 // unknown server
                 return;
@@ -310,7 +311,18 @@
             viewModel.ModsOnServer = serverInfo.ModsOnServer;
             viewModel.IsPvP = serverInfo.ScriptingTags.Contains("PvP", StringComparer.Ordinal);
             viewModel.IsPvE = serverInfo.ScriptingTags.Contains("PvE", StringComparer.Ordinal);
+            viewModel.IsNoClientModsAllowed = serverInfo.IsNoClientModsAllowed;
             viewModel.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();
+            viewModel.NextScheduledWipeDate = NextWipeDateServerTagHelper.ClientGetServerNextWipeDateUtc(serverInfo);
+
+            if (!viewModel.IsOfficial)
+            {
+                viewModel.IsCommunity = true;
+                if (!viewModel.IsModded)
+                {
+                    viewModel.IsModded = serverInfo.IsModded;
+                }
+            }
 
             viewModel.IsInfoReceived = true;
             viewModel.RefreshVisibilityInList();
@@ -319,7 +331,7 @@
         public void ServerPingUpdatedHandled(ServerAddress address, ushort pingMs, bool isPingMeasurementDone)
         {
             var viewModelServer = this.serverViewModels.Find(address);
-            if (viewModelServer == null)
+            if (viewModelServer is null)
             {
                 return;
             }
@@ -330,7 +342,8 @@
             if (isPingMeasurementDone)
             {
                 viewModelServer.IsPingMeasurementDone = true;
-                this.ScheduleAutoRefresh(viewModelServer);
+                // measure only once
+                //this.ScheduleAutoRefresh(viewModelServer);
             }
         }
 
@@ -339,7 +352,7 @@
             Api.Logger.Info($"Server {address} marked as {(isFavorite ? "favorite" : "non favorite")}");
 
             var viewModelServer = this.serverViewModels.Find(address);
-            if (viewModelServer == null)
+            if (viewModelServer is null)
             {
                 return;
             }
@@ -438,7 +451,7 @@
 
         private void ExecuteCommandRefresh(ViewModelServerInfo viewModelServerInfo, bool forceReset)
         {
-            if (viewModelServerInfo == null
+            if (viewModelServerInfo is null
                 || !this.IsEnabled)
             {
                 return;
@@ -454,7 +467,7 @@
 
             // double-lookup to ensure view model is actual
             var viewModelServer = this.serverViewModels.Find(address);
-            if (viewModelServer == null)
+            if (viewModelServer is null)
             {
                 return;
             }
@@ -496,7 +509,7 @@
         private void ServerCannotConnectHandler(ServerAddress address)
         {
             var viewModelServer = this.serverViewModels.Find(address);
-            if (viewModelServer == null)
+            if (viewModelServer is null)
             {
                 return;
             }
@@ -524,7 +537,7 @@
             if (!isSuccess)
             {
                 Api.Logger.Info("Server public GUID not resolved: " + guid);
-                if (viewModelServer != null)
+                if (viewModelServer is not null)
                 {
                     viewModelServer.Reset();
                     viewModelServer.Title = "[" + InfoServerOfflineTitle + "]";
@@ -534,7 +547,7 @@
                 return;
             }
 
-            if (viewModelServer == null)
+            if (viewModelServer is null)
             {
                 Api.Logger.Info($"Server public GUID resolved but entry not found: {guid}: {hostAddress}");
                 return;
@@ -549,6 +562,7 @@
             viewModelServer.Reset();
 
             viewModelServer.IsOfficial = isOfficial;
+            viewModelServer.IsCommunity = !isOfficial;
             viewModelServer.IsFeatured = isFeatured;
 
             if (this.serversProvider.AreInfoConnectionsEnabled)

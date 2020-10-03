@@ -55,7 +55,7 @@
                     return;
                 }
 
-                if (this.selectedTab != null)
+                if (this.selectedTab is not null)
                 {
                     var optionsCategory = (ProtoOptionsCategory)this.selectedTab.Tag;
                     if (optionsCategory.IsModified)
@@ -81,7 +81,7 @@
 
         public bool CheckCanHide(Action callbackOnHide)
         {
-            if (this.selectedTab == null)
+            if (this.selectedTab is null)
             {
                 return true;
             }
@@ -100,7 +100,7 @@
         {
             base.DisposeViewModel();
 
-            if (this.options == null)
+            if (this.options is null)
             {
                 return;
             }
@@ -146,7 +146,7 @@
 
         private void ShowWindowToApplySettings(Action onContinue)
         {
-            if (this.dialogApplySettings != null)
+            if (this.dialogApplySettings is not null)
             {
                 WindowsManager.BringToFront(this.dialogApplySettings.Window);
                 return;

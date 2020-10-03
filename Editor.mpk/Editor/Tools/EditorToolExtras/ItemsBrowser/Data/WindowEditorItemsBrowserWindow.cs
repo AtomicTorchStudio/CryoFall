@@ -20,7 +20,7 @@
             this.AllItemsList = ClientContainerSortHelper.SortItemPrototypes(
                                                              Api.FindProtoEntities<IProtoItem>().ToList())
                                                          .ToList()
-                                                         .Where(i => i.Icon != null)
+                                                         .Where(i => i.Icon is not null)
                                                          .Select(i => new ViewItemWithIcon(i))
                                                          .ToList();
 

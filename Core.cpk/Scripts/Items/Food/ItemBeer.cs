@@ -14,9 +14,6 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
-        // Restores 1 hp, but given that you cannot drink more than a few of bottles, it cannot be abused
-        public override float HealthRestore => 1;
-
         public override string ItemUseCaption => ItemUseCaptions.Drink;
 
         public override string Name => "Beer";

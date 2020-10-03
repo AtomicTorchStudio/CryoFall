@@ -171,7 +171,7 @@
             Vector2D endPosition,
             bool endsWithHit)
         {
-            if (firingCharacter != null
+            if (firingCharacter is not null
                 && !firingCharacter.IsInitialized)
             {
                 firingCharacter = null;
@@ -202,13 +202,13 @@
                                             worldPositionSource,
                                             endPosition,
                                             hasHit: endsWithHit,
-                                            lastHitData: hitObjects.LastOrDefault(t => t.WorldObject != null));
+                                            lastHitData: hitObjects.LastOrDefault(t => t.WorldObject is not null));
             }
 
             foreach (var hitData in hitObjects)
             {
                 var hitWorldObject = hitData.WorldObject;
-                if (hitWorldObject != null
+                if (hitWorldObject is not null
                     && !hitWorldObject.IsInitialized)
                 {
                     hitWorldObject = null;
@@ -252,7 +252,7 @@
                                                              objectMaterial,
                                                              worldObjectPosition);
 
-                        if (weaponTracePreset != null)
+                        if (weaponTracePreset is not null)
                         {
                             ClientAddHitSparks(weaponTracePreset.HitSparksPreset,
                                                hitData,
@@ -323,7 +323,7 @@
             IProtoCharacter protoCharacter,
             Vector2Ushort fallbackPosition)
         {
-            if (character != null
+            if (character is not null
                 && !character.IsInitialized)
             {
                 character = null;
@@ -356,7 +356,7 @@
             {
                 // play sounds from the skeleton instead
                 ProtoCharacterSkeleton characterSkeleton = null;
-                if (character != null
+                if (character is not null
                     && character.IsInitialized)
                 {
                     var clientState = character.GetClientState<BaseCharacterClientState>();
@@ -397,7 +397,7 @@
                 }
             }
 
-            if (emitter != null)
+            if (emitter is not null)
             {
                 var distance = protoWeapon.SoundPresetWeaponDistance;
                 emitter.CustomMinDistance = distance.min;
@@ -408,7 +408,7 @@
                 emitter.CustomMaxDistance3DSpread = distance3DSpread.max;
             }
 
-            if (character != null
+            if (character is not null
                 && ReferenceEquals(protoWeapon, SharedGetCharacterCurrentWeaponProto(character)))
             {
                 protoWeapon.ClientOnWeaponShot(character);
@@ -569,7 +569,7 @@
             bool hasTrace)
         {
             Vector2D worldPositionSource;
-            if (character != null
+            if (character is not null
                 && character.IsInitialized)
             {
                 if (Api.IsClient
@@ -681,7 +681,7 @@
 
                 skeletonRenderer.RemoveAnimationTrack(trackIndex);
             }
-            else if (currentFireAnimation != null)
+            else if (currentFireAnimation is not null)
             {
                 if (mixWithCurrent)
                 {

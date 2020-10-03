@@ -13,7 +13,7 @@
             {
                 var door = tile.StaticObjects
                                .FirstOrDefault(o => o.ProtoStaticWorldObject is IProtoObjectDoor);
-                if (door != null)
+                if (door is not null)
                 {
                     // the tile already has a door - return the door orientation
                     return door.GetPublicState<ObjectDoorPublicState>()

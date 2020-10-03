@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Save:
 UI/CoreStrings@Button_Upgrade:
 アップグレード
 
+UI/CoreStrings@CannotSelectDateInThePast:
+過去の日付は選択できません。
+
 UI/CoreStrings@CharacterStatName_Food:
 満腹度
 
@@ -162,7 +165,7 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 不適切なメッセージが表示された場合は、メッセージをクリックして「報告」または「ブロック」を選択してください。
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
-二度と聞かないでください
+今後表示しない
 
 UI/CoreStrings@ClanTag_Current:
 クランタグ：
@@ -200,6 +203,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 この建造物は一度建てたら動かせません。
+
+UI/CoreStrings@ConsultServerAdministrator:
+サーバー管理者に相談してください。
 
 UI/CoreStrings@Copy:
 コピー
@@ -699,6 +705,9 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MOD
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+このサーバーはクライアントMODが許可されていません。クライアントMODは全て無効化されます。
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 これは開発者によってホストされるCryoFall公式サーバーの一つです。
 
@@ -1054,7 +1063,7 @@ UI/CoreStrings@Quest_Label_New:
 新規
 
 UI/CoreStrings@Quest_Label_Ready:
-準備完了
+完了
 
 UI/CoreStrings@QuestionAreYouSure:
 よろしいですか？
@@ -1085,6 +1094,19 @@ UI/CoreStrings@ServerPlayersCount:
 
 UI/CoreStrings@ServerWipedDate:
 最終ワイプ
+
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]次回のワイプ:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+ワイプ情報は不明です。
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`このサーバーは定期的にワイプされるわけではなく、新しいゲームのバージョンがリリースされたときにのみワイプされます。新しいメジャーバージョンのリリースについては、公式プロジェクトのアップデートをご覧ください。
+[br]注意：サーバーが新しいメジャーバージョンに更新されると、ワールドデータやキャラクターデータを含むすべてのサーバーデータはリセットされます。`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]サーバー開始:[/b] {0}
 
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 シールド保護されている拠点では、このアクションを行うことはできません。
@@ -1172,6 +1194,9 @@ UI/CoreStrings@ShieldProtection_EstimatedDuration:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 最大期間：
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+この所有地は、独自のシールド保護を提供する別の拠点内にあるため、オフライン中の襲撃保護シールドが利用できません。
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 シールドは中断（拠点の所有者によってキャンセルされたり、襲撃者によって襲撃保護が適用された場合）されない限り、{0}で有効化されます。
@@ -1293,6 +1318,12 @@ UI/CoreStrings@TextBoxSearchPlaceholder:
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
 
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+時間は既にあなたのローカルタイムゾーン(UTC{0})に変換されています。
+
+UI/CoreStrings@TimeRemains:
+残り時間
+
 UI/CoreStrings@Title:
 タイトル
 
@@ -1312,7 +1343,7 @@ UI/CoreStrings@TitleDestructionTimeout:
 破壊タイムアウト
 
 UI/CoreStrings@TitleDurability:
-耐久性
+耐久度
 
 UI/CoreStrings@TitleEnergyCharge:
 充電
@@ -1535,7 +1566,7 @@ UI/CoreStrings@WindowCompletionist_BestFishWeight_Format:
 最重量: {0} kg
 
 UI/CoreStrings@WindowCompletionist_ButtonAccept:
-受諾
+確認
 
 UI/CoreStrings@WindowCompletionist_Notification_FishNewRecord:
 新記録！
@@ -1718,7 +1749,7 @@ UI/CoreStrings@WindowRespawn_MessageDespawned:
 所有地の外にキャラクターを放置しすぎたため、世界から排除されました。通常通り復活させることができます。アイテムは失われません。
 
 UI/CoreStrings@WindowRespawn_MessagePvE:
-この残酷な世界から強制的に排除されてしまったようです…復讐しますか？
+この苛酷な世界から強制的に排除されてしまったようです…。リベンジしますか？
 
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
 他のプレイヤーに殺されてしまったようです。しかし幸運なことに、まだ初心者保護が有効なためアイテムを失わずに済みました。次は気をつけてください！
@@ -1909,6 +1940,11 @@ UI/CoreStrings@WipedDate_JustWiped:
 UI/CoreStrings@WipedDate_Yesterday:
 昨日
 
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`注意：ワイプは自動的に行われません！
+[br]サーバーを手動で停止させ、セーブデータを削除する必要があります。
+[br]このメニューは単純にプレイヤーへの通知を行うことができます。`
+
 UI/CoreStrings@WorldMap_MapExplored:
 探索率
 
@@ -2007,7 +2043,7 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 [br]チャット履歴が保存され後で再度開くことができます。`
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
-初めて殺されました。
+初めて殺しました。
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 初めて釣りました。
@@ -2149,7 +2185,7 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@TitleItemSlotActions:
 アイテムスロットアクション
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleBottom:
-下
+口元
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
 顔
@@ -2164,7 +2200,7 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 肌の色
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
-上
+目元
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
 未選択

@@ -6,6 +6,8 @@
 
     public class ItemAntiRadiationPreExposure : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "This pre-exposure radiation aid could be used to prevent accumulation of radionuclides in the body and mitigate effects of ionizing radiation.";
 

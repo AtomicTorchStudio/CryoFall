@@ -35,7 +35,7 @@
             foreach (var member in members)
             {
                 var character = CharactersServerService.GetPlayerCharacter(member);
-                if (character != null)
+                if (character is not null)
                 {
                     yield return character;
                 }

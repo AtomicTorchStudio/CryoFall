@@ -136,7 +136,7 @@
                     this.isNeedToScrollToHome = false;
                     var firstElement = this.scrollViewer.FindName<FrameworkElement>("GameLogo");
 
-                    if (firstElement == null)
+                    if (firstElement is null)
                     {
                         firstElement = (FrameworkElement)this.scrollViewer.Content;
                     }

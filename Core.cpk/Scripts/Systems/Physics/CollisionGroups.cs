@@ -3,12 +3,15 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data.Physics;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public static class CollisionGroups
     {
         private static CollisionGroup characterInteractionArea;
+
+        private static CollisionGroup characterOrVehicle;
 
         private static CollisionGroup clickArea;
 
@@ -26,6 +29,15 @@
             {
                 InitializeIfNeeded();
                 return characterInteractionArea;
+            }
+        }
+
+        public static CollisionGroup CharacterOrVehicle
+        {
+            get
+            {
+                InitializeIfNeeded();
+                return characterOrVehicle;
             }
         }
 
@@ -68,48 +80,43 @@
         public static CollisionGroup GetCollisionGroup(CollisionGroupId collisionGroupId)
         {
             InitializeIfNeeded();
-            switch (collisionGroupId)
+            return collisionGroupId switch
             {
-                case CollisionGroupId.Default:
-                    return defaultGroup;
-                case CollisionGroupId.HitboxMelee:
-                    return hitboxMelee;
-                case CollisionGroupId.HitboxRanged:
-                    return hitboxRanged;
-                case CollisionGroupId.ClickArea:
-                    return clickArea;
-                case CollisionGroupId.InteractionArea:
-                    return characterInteractionArea;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(collisionGroupId), collisionGroupId, null);
-            }
+                CollisionGroupId.Default => defaultGroup,
+                CollisionGroupId.HitboxMelee => hitboxMelee,
+                CollisionGroupId.HitboxRanged => hitboxRanged,
+                CollisionGroupId.ClickArea => clickArea,
+                CollisionGroupId.InteractionArea => characterInteractionArea,
+                _ => throw new ArgumentOutOfRangeException(nameof(collisionGroupId), collisionGroupId, null)
+            };
         }
 
         public static CollisionGroupId GetCollisionGroupId(CollisionGroup collisionGroup)
         {
             InitializeIfNeeded();
-            if (collisionGroup == null
-                || collisionGroup == defaultGroup)
+            if (collisionGroup is null
+                || ReferenceEquals(collisionGroup, defaultGroup)
+                || ReferenceEquals(collisionGroup, characterOrVehicle))
             {
                 return CollisionGroupId.Default;
             }
 
-            if (collisionGroup == hitboxMelee)
+            if (ReferenceEquals(collisionGroup, hitboxMelee))
             {
                 return CollisionGroupId.HitboxMelee;
             }
 
-            if (collisionGroup == hitboxRanged)
+            if (ReferenceEquals(collisionGroup, hitboxRanged))
             {
                 return CollisionGroupId.HitboxRanged;
             }
 
-            if (collisionGroup == clickArea)
+            if (ReferenceEquals(collisionGroup, clickArea))
             {
                 return CollisionGroupId.ClickArea;
             }
 
-            if (collisionGroup == characterInteractionArea)
+            if (ReferenceEquals(collisionGroup, characterInteractionArea))
             {
                 return CollisionGroupId.InteractionArea;
             }
@@ -128,6 +135,21 @@
 
             defaultGroup = CollisionGroup.GetDefault();
             defaultGroup.SetCollidesWith(defaultGroup);
+
+            if (PveSystem.SharedIsPve(true))
+            {
+                characterOrVehicle = new CollisionGroup("PvE character/vehicle", isSensor: false);
+                //characterOrVehicle.SetCollidesWith(defaultGroup);
+                defaultGroup.SetCollidesWith(characterOrVehicle);
+                characterOrVehicle.SetCollidesWith(defaultGroup);
+                // It doesn't collide with self!
+                // In PvE, player players could pass through each other and vehicles.
+                //characterOrVehicle.SetCollidesWith(characterOrVehicle);
+            }
+            else
+            {
+                characterOrVehicle = defaultGroup;
+            }
 
             hitboxMelee = new CollisionGroup("Hitbox Melee", isSensor: true);
             //hitboxMelee.SetCollidesWith(defaultGroup);

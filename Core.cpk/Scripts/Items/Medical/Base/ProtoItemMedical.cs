@@ -8,12 +8,15 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     /// <summary>
@@ -39,6 +42,8 @@
 
         public override bool CanBeSelectedInVehicle => true;
 
+        public abstract double CooldownDuration { get; }
+
         public IReadOnlyList<EffectAction> Effects { get; private set; }
 
         public virtual float FoodRestore => 0;
@@ -61,20 +66,36 @@
 
         protected override bool ClientItemUseFinish(ClientItemData data)
         {
+            var item = data.Item;
             var character = Client.Characters.CurrentPlayerCharacter;
             var stats = PlayerCharacter.GetPublicState(character).CurrentStatsExtended;
-            if (this.SharedCanUse(character, stats))
+
+            if (!this.SharedCanUse(character, stats))
             {
-                this.CallServer(_ => _.ServerRemote_Use(data.Item));
-                return true;
+                return false;
             }
 
-            return false;
+            if (this.SharedHasActiveCooldown(item, character))
+            {
+                return false;
+            }
+
+            this.CallServer(_ => _.ServerRemote_Use(item));
+            return true;
         }
 
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
             base.ClientTooltipCreateControlsInternal(item, controls);
+
+            if (this.CooldownDuration > 0)
+            {
+                var control = ItemTooltipInfoEntryControl.Create(
+                    Api.GetProtoEntity<StatusEffectMedicalCooldown>().Name,
+                    ClientTimeFormatHelper.FormatTimeDuration(this.CooldownDuration));
+                ((FrameworkElement)control).Margin = new Thickness(0, 7, 0, 7);
+                controls.Add(control);
+            }
 
             if (this.Effects.Count > 0)
             {
@@ -102,9 +123,18 @@
             this.PrepareProtoItemMedical();
 
             var effects = new EffectActionsList();
+
+            if (this.CooldownDuration > 0)
+            {
+                // medical cooldown is added automatically and it's hidden
+                // (the cooldown duration is displayed separately in the tooltip)
+                effects.WillAddEffect<StatusEffectMedicalCooldown>(
+                    intensity: Math.Min(this.CooldownDuration / StatusEffectMedicalCooldown.MaxDuration, 1),
+                    isHidden: true);
+            }
+
             this.PrepareEffects(effects);
             this.Effects = effects.ToReadOnly();
-            ;
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
@@ -158,6 +188,9 @@
             return true;
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableOrdered,
+                            timeInterval: 0.2,
+                            clientMaxSendQueueSize: 20)]
         private void ServerRemote_Use(IItem item)
         {
             var character = ServerRemoteContext.Character;
@@ -169,6 +202,11 @@
                 return;
             }
 
+            if (this.SharedHasActiveCooldown(item, character))
+            {
+                return;
+            }
+
             this.ServerOnUse(character, stats);
 
             Logger.Important(character + " has used " + item);
@@ -176,6 +214,29 @@
             this.ServerNotifyItemUsed(character, item);
             // decrease item count
             Server.Items.SetCount(item, (ushort)(item.Count - 1));
+        }
+
+        private bool SharedHasActiveCooldown(IItem item, ICharacter character)
+        {
+            if (this.CooldownDuration <= 0)
+            {
+                // this item is not subject to the medical cooldown
+                return false;
+            }
+
+            if (!character.SharedHasPerk(StatName.PerkCannotUseMedicalItems))
+            {
+                return false;
+            }
+
+            Logger.Info("Cannot use a medicine - under a medical cooldown: " + item, character);
+
+            if (IsClient)
+            {
+                StatusEffectMedicalCooldown.ClientShowCooldownNotification();
+            }
+
+            return true;
         }
     }
 

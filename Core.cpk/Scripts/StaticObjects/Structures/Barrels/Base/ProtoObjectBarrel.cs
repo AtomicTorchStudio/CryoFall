@@ -143,6 +143,7 @@
                 .AddShapeRectangle((0.7, 1),   offset: (0.15, yOffset),        group: CollisionGroups.ClickArea);
         }
 
+        [RemoteCallSettings(timeInterval: 1)]
         private void ServerRemote_Drain(IStaticWorldObject worldObject)
         {
             this.VerifyGameObject(worldObject);

@@ -46,6 +46,9 @@ Matar: {0}
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 Fabricar: {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+Reubica cualquier estructura
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 Corre durante 10 metros.
 

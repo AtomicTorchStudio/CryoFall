@@ -28,7 +28,7 @@
             foreach (var tileOffset in protoStructure.Layout.TileOffsets)
             {
                 var (front, side, back) = GetSprite(worldObject.OccupiedTile, tileOffset, protoStructure);
-                if (side != null)
+                if (side is not null)
                 {
                     Rendering.CreateSpriteRenderer(
                                  worldObject,
@@ -37,7 +37,7 @@
                              .DrawOrderOffsetY = 1;
                 }
 
-                if (back != null)
+                if (back is not null)
                 {
                     Rendering.CreateSpriteRenderer(
                                  worldObject,
@@ -46,7 +46,7 @@
                              .DrawOrderOffsetY = 1;
                 }
 
-                if (front != null)
+                if (front is not null)
                 {
                     Rendering.CreateSpriteRenderer(
                         worldObject,

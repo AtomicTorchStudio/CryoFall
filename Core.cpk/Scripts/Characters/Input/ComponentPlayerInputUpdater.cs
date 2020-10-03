@@ -86,7 +86,7 @@
         {
             if (WindowsManager.OpenedWindowsCount > 0)
             {
-                // any window is opened - keep latest orientation
+                // any window is opened - keep the previous orientation
                 return this.characterInput.RotationAngleRad;
             }
 
@@ -107,7 +107,7 @@
             this.characterInput.MoveModes = moveModes;
             this.characterInput.RotationAngleRad = rotationAngleRad;
 
-            //// uncomment visualize rotation angle correctness with Physics Visualizer
+            //// uncomment to visualize rotation angle correctness with Physics Visualizer
             //var fromPosition = this.character.Position
             //                   + (0, this.character.ProtoCharacter.CharacterWorldWeaponOffsetRanged);
             //var toPosition = fromPosition + (30, 0).RotateRad(rotationAngleRad);

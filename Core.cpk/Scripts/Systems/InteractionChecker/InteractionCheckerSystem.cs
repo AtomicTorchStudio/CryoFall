@@ -88,7 +88,7 @@
                 s => s.CollisionGroup
                      == CollisionGroups.CharacterInteractionArea);
 
-            if (characterInteractionArea == null)
+            if (characterInteractionArea is null)
             {
                 //Logger.Warning("No character interaction area defined: " + character);
                 return null;
@@ -253,8 +253,8 @@
             {
                 unchecked
                 {
-                    return ((this.Character != null ? this.Character.GetHashCode() : 0) * 397)
-                           ^ (this.WorldObject != null ? this.WorldObject.GetHashCode() : 0);
+                    return ((this.Character is not null ? this.Character.GetHashCode() : 0) * 397)
+                           ^ (this.WorldObject is not null ? this.WorldObject.GetHashCode() : 0);
                 }
             }
         }

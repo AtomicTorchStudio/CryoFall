@@ -50,7 +50,7 @@
             var byCharacter = ServerRemoteContext.IsRemoteCall
                                   ? ServerRemoteContext.Character
                                   : null;
-            if (byCharacter != null)
+            if (byCharacter is not null)
             {
                 protoVehicle.ServerOnBuilt(result, byCharacter);
             }

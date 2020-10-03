@@ -85,7 +85,7 @@
             if (deadCharacter.ProtoCharacter is IProtoCharacterMob protoCharacterMob)
             {
                 onCharacterDeath = CharacterDeath;
-                if (onCharacterDeath != null)
+                if (onCharacterDeath is not null)
                 {
                     Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
                 }
@@ -120,7 +120,7 @@
             }
 
             onCharacterDeath = CharacterDeath;
-            if (onCharacterDeath != null)
+            if (onCharacterDeath is not null)
             {
                 Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
             }
@@ -240,7 +240,7 @@
             }
 
             var lootContainer = ObjectPlayerLootContainer.ServerTryCreateLootContainer(character);
-            if (lootContainer == null)
+            if (lootContainer is null)
             {
                 Api.Logger.Error("Unable to drop loot for dead character", character);
                 return;

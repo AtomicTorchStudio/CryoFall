@@ -104,7 +104,7 @@
             }
 
             // health bar should be visible
-            if (!(this.componentHealthbar is null))
+            if (this.componentHealthbar is not null)
             {
                 return;
             }

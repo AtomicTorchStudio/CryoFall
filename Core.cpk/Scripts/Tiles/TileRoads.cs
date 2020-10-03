@@ -1,14 +1,22 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Tiles
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
 
     public class TileRoads : ProtoTile
     {
+        private static readonly Lazy<string> CachedName
+            = new Lazy<string>(
+                () => GetProtoEntity<TileRoads>().Name);
+
         private static readonly TextureResource GroundTexture1
             = new TextureResource("Terrain/Ruins/TileRuins1.jpg",
                                   isTransparent: false);
+
+        public static string ProtoName
+            => CachedName.Value;
 
         public override byte BlendOrder => 0;
 

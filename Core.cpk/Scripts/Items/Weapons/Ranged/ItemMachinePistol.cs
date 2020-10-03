@@ -41,14 +41,14 @@
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
             return new WeaponFirePatternPreset(
-                initialSequence: new[] { 0.5, -3.0, 4.0 },
-                cycledSequence: new[] { 5.5, -8.5, 5.5, 4.5, -5.5, -8.5, 5.5, 4.5 });
+                initialSequence: new[] { 0.5, 3.0, 4.0 },
+                cycledSequence: new[] { 5.0, 8.0, 7.0 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.PrimitivePistol)
-                       .Set(textureScreenOffset: (0, 6));
+                       .Set(textureScreenOffset: (-1, 7));
         }
 
         protected override void PrepareProtoWeaponRanged(

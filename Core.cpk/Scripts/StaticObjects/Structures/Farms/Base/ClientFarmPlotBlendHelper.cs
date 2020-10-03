@@ -130,7 +130,7 @@
                 data = new TileRenderingData(frameNumber);
                 this.SetupTileRendering(data, tile);
 
-                if (data.SpriteRenderer != null
+                if (data.SpriteRenderer is not null
                     && data.SpriteRenderer.IsEnabled)
                 {
                     this.tileDictionary[tile.Position] = data;
@@ -150,7 +150,7 @@
             data.LastUpdateFrameNumber = frameNumber;
             this.SetupTileRendering(data, tile);
 
-            if (data.SpriteRenderer == null
+            if (data.SpriteRenderer is null
                 || !data.SpriteRenderer.IsEnabled)
             {
                 this.tileDictionary.Remove(tile.Position);
@@ -164,7 +164,7 @@
             if (blendLayers.TileBlendSides == None)
             {
                 // tile rendering not required
-                if (renderer != null)
+                if (renderer is not null)
                 {
                     renderer.IsEnabled = false;
                 }
@@ -172,7 +172,7 @@
                 return;
             }
 
-            if (renderer == null)
+            if (renderer is null)
             {
                 renderer = Api.Client.Rendering.CreateSpriteRenderer(
                     Api.Client.Scene.CreateSceneObject(

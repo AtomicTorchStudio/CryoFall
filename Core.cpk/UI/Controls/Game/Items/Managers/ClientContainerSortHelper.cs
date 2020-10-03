@@ -95,7 +95,7 @@
                                   () =>
                                   {
                                       var hitTestResult = Api.Client.UI.GetVisualInPointedPosition();
-                                      if (hitTestResult == null)
+                                      if (hitTestResult is null)
                                       {
                                           return;
                                       }
@@ -105,7 +105,7 @@
                                                                     typeof(ItemSlotControl)) as
                                                                 ItemSlotControl;
 
-                                      if (itemSlotControl != null)
+                                      if (itemSlotControl is not null)
                                       {
                                           SortItems((IClientItemsContainer)itemSlotControl.Container);
                                           return;
@@ -116,7 +116,7 @@
                                                                           typeof(ItemsContainerControl)) as
                                                                       ItemsContainerControl;
 
-                                      if (itemsContainerControl != null)
+                                      if (itemsContainerControl is not null)
                                       {
                                           SortItems(itemsContainerControl.Container);
                                       }

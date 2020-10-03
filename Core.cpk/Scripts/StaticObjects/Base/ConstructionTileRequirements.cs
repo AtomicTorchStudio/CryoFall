@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -20,6 +21,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     // ReSharper disable SimplifyLinqExpression
     public class ConstructionTileRequirements : IConstructionTileRequirementsReadOnly
@@ -106,7 +108,7 @@
             = new Validator(ErrorCreaturesNearby,
                             c =>
                             {
-                                if (c.CharacterBuilder == null)
+                                if (c.CharacterBuilder is null)
                                 {
                                     // don't perform this check if the action is done by the server only
                                     return true;
@@ -131,6 +133,20 @@
                                 return true;
                             });
 
+        public static readonly Validator ValidatorSameHeightLevelAsPlayer
+            = new Validator(CoreStrings.Notification_TooFar,
+                            c =>
+                            {
+                                if (c.CharacterBuilder is null)
+                                {
+                                    // don't perform this check if the action is done by the server only
+                                    return true;
+                                }
+
+                                return c.Tile.Height
+                                       == c.CharacterBuilder.Tile.Height;
+                            });
+
         /// <summary>
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
@@ -138,7 +154,7 @@
             = new Validator(ErrorPlayerNearby,
                             c =>
                             {
-                                if (c.CharacterBuilder == null)
+                                if (c.CharacterBuilder is null)
                                 {
                                     // don't perform this check if the action is done by the server only
                                     return true;
@@ -224,7 +240,7 @@
                                     return true;
                                 }
 
-                                if (c.CharacterBuilder == null)
+                                if (c.CharacterBuilder is null)
                                 {
                                     // check skipped if there is no character context
                                     // (so scripts can spawn objects in restricted areas)
@@ -270,7 +286,7 @@
             BasicRequirements = new ConstructionTileRequirements()
                                 .Add(ValidatorSolidGround)
                                 .Add(ErrorCannotBuildInRestrictedArea,
-                                     c => c.CharacterBuilder == null
+                                     c => c.CharacterBuilder is null
                                           || !c.Tile.ProtoTile.IsRestrictingConstruction)
                                 .Add(ValidatorNotCliffOrSlope)
                                 .Add(ErrorTooCloseToCliffOrSlope,
@@ -278,6 +294,7 @@
                                 .Add(ErrorTooCloseToWater,
                                      c => c.Tile.EightNeighborTiles.All(
                                          neighbor => neighbor.ProtoTile.Kind != TileKind.Water))
+                                .Add(ValidatorSameHeightLevelAsPlayer)
                                 .Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown)
                                 .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
 
@@ -288,23 +305,23 @@
                                       .AddClientOnly(ValidatorClientOnlyNoCurrentPlayer)
                                       .Add(ValidatorNoPhysicsBodyDynamic);
 
-            DefaultForPlayerStructuresOwnedOrFreeLand = DefaultForStaticObjects
-                                                        .Clone()
-                                                        .Add(ValidatorNotRestrictedArea)
-                                                        .Add(ValidatorNoNpcsAround)
-                                                        .Add(ValidatorNoPlayersNearby)
-                                                        .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
-                                                        .Add(LandClaimSystem.ValidatorNoRaid)
-                                                        .Add(LandClaimSystem.ValidatorNoShieldProtection);
+            var defaultForStructures = DefaultForStaticObjects
+                                       .Clone()
+                                       .Add(ValidatorNotRestrictedArea)
+                                       .Add(ValidatorNoNpcsAround)
+                                       .Add(ValidatorNoPlayersNearby);
 
-            DefaultForPlayerStructures = DefaultForStaticObjects
-                                         .Clone()
-                                         .Add(ValidatorNotRestrictedArea)
-                                         .Add(ValidatorNoNpcsAround)
-                                         .Add(ValidatorNoPlayersNearby)
-                                         .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
-                                         .Add(LandClaimSystem.ValidatorNoRaid)
-                                         .Add(LandClaimSystem.ValidatorNoShieldProtection);
+            DefaultForPlayerStructuresOwnedOrFreeLand
+                = defaultForStructures.Clone()
+                                      .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
+                                      .Add(LandClaimSystem.ValidatorNoRaid)
+                                      .Add(LandClaimSystem.ValidatorNoShieldProtection);
+
+            DefaultForPlayerStructures
+                = defaultForStructures.Clone()
+                                      .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
+                                      .Add(LandClaimSystem.ValidatorNoRaid)
+                                      .Add(LandClaimSystem.ValidatorNoShieldProtection);
         }
 
         public ConstructionTileRequirements(ConstructionTileRequirements toClone)
@@ -354,8 +371,8 @@
 
         public ConstructionTileRequirements Add(Validator validator)
         {
-            if (validator.Function == null
-                || string.IsNullOrEmpty(validator.ErrorMessage))
+            if (validator.Function is null
+                || !validator.HasErrorMessage)
             {
                 throw new ArgumentNullException(
                     nameof(validator),
@@ -410,7 +427,11 @@
                 }
                 else
                 {
-                    var context = new Context(tile, character, proto, tileOffset);
+                    var context = new Context(tile,
+                                              character,
+                                              proto,
+                                              tileOffset,
+                                              startTilePosition);
                     if (this.Check(context, out errorMessage))
                     {
                         // valid tile
@@ -470,13 +491,20 @@
             return new ConstructionTileRequirements(this);
         }
 
-        public struct Context
+        public readonly struct Context
         {
             [NonSerialized]
             public readonly ICharacter CharacterBuilder;
 
             [NonSerialized]
+            [CanBeNull]
+            public readonly IStaticWorldObject ObjectToRelocate;
+
+            [NonSerialized]
             public readonly IProtoStaticWorldObject ProtoStaticObjectToBuild;
+
+            [NonSerialized]
+            public readonly Vector2Ushort StartTilePosition;
 
             [NonSerialized]
             public readonly Tile Tile;
@@ -488,12 +516,16 @@
                 Tile tile,
                 ICharacter characterBuilder,
                 IProtoStaticWorldObject protoStaticObjectToBuild,
-                Vector2Int tileOffset)
+                Vector2Int tileOffset,
+                Vector2Ushort startTilePosition,
+                IStaticWorldObject objectToRelocate = null)
             {
-                this.TileOffset = tileOffset;
+                this.Tile = tile;
                 this.CharacterBuilder = characterBuilder;
                 this.ProtoStaticObjectToBuild = protoStaticObjectToBuild;
-                this.Tile = tile;
+                this.TileOffset = tileOffset;
+                this.StartTilePosition = startTilePosition;
+                this.ObjectToRelocate = objectToRelocate;
             }
         }
 
@@ -529,7 +561,7 @@
             {
                 get
                 {
-                    if (this.errorMessage != null)
+                    if (this.errorMessage is not null)
                     {
                         return this.errorMessage;
                     }
@@ -542,6 +574,10 @@
                     return this.errorMessage = this.errorMessageFunc();
                 }
             }
+
+            public bool HasErrorMessage
+                => this.errorMessage is not null
+                   || this.errorMessageFunc is not null;
 
             public override string ToString()
             {

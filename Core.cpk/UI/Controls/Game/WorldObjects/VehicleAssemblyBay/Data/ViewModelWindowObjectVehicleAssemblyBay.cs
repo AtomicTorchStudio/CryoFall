@@ -45,14 +45,14 @@
                     return;
                 }
 
-                if (this.selectedVehicleSchematic != null)
+                if (this.selectedVehicleSchematic is not null)
                 {
                     this.selectedVehicleSchematic.IsSelected = false;
                 }
 
                 this.selectedVehicleSchematic = value;
 
-                if (this.selectedVehicleSchematic != null)
+                if (this.selectedVehicleSchematic is not null)
                 {
                     this.selectedVehicleSchematic.IsSelected = true;
                 }

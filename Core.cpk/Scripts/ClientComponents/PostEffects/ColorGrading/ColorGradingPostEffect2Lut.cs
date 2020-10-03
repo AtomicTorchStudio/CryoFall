@@ -118,7 +118,7 @@
 
         private void SetEffectParametersTextures()
         {
-            if (this.effectInstance == null)
+            if (this.effectInstance is null)
             {
                 return;
             }

@@ -3,8 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
     using System.Windows.Documents;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientLanguages;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -12,6 +16,8 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     internal static class ClientTextTagFormatter
     {
+        private static readonly Color ColorH1 = Api.Client.UI.GetApplicationResource<Color>("Color7");
+
         private static readonly char[] EndUrlSeparators = { ' ', '\r', '\n' };
 
         public static FormattedTextBlock NewFormattedTextBlock(string text)
@@ -28,7 +34,7 @@
 
                 foreach (var inline in BuildInlines(rawText))
                 {
-                    if (inline != null)
+                    if (inline is not null)
                     {
                         result.Add(inline);
                     }
@@ -59,8 +65,10 @@
             bool modeIsBold = false,
                  modeIsItalic = false,
                  modeIsStrikethrough = false,
-                 modeIsUnderline = false;
+                 modeIsUnderline = false,
+                 modeIsHeader1 = false;
             string modeUrlCurrentUrl = null;
+            Color? modeColor = null;
 
             for (position = 0; position < text.Length; position++)
             {
@@ -103,7 +111,7 @@
 
                         if (tag.StartsWith("url", StringComparison.Ordinal))
                         {
-                            if (modeUrlCurrentUrl != null)
+                            if (modeUrlCurrentUrl is not null)
                             {
                                 throw new Exception(
                                     "Nested [url] elements are not supported. Issue with formatted string:"
@@ -116,6 +124,11 @@
                             // extract url
                             var url = tag.Substring(tag.IndexOf('=') + 1);
                             modeUrlCurrentUrl = url;
+                        }
+                        else if (tag.StartsWith("color", StringComparison.Ordinal))
+                        {
+                            var colorStr = tag.Substring(tag.IndexOf("=#", StringComparison.Ordinal) + 2);
+                            modeColor = TryParseColor(colorStr);
                         }
                         else
                         {
@@ -169,10 +182,32 @@
                                     modeIsUnderline = false;
                                     break;
 
+                                case "h1":
+                                    yield return TryBuildRun();
+
+                                    modeIsHeader1 = true;
+                                    modeIsBold = true;
+                                    modeColor = ColorH1;
+                                    break;
+
+                                case "/h1":
+                                    yield return TryBuildRun();
+
+                                    modeIsHeader1 = false;
+                                    modeIsBold = false;
+                                    modeColor = null;
+                                    break;
+
                                 case "/url":
                                     yield return TryBuildRun();
 
                                     modeUrlCurrentUrl = null;
+                                    break;
+
+                                case "/color":
+                                    yield return TryBuildRun();
+
+                                    modeColor = null;
                                     break;
 
                                 // add bullet point
@@ -185,7 +220,13 @@
                                         yield return new LineBreak();
                                     }
 
-                                    yield return new Run("\u2022") { FontWeight = FontWeights.Bold };
+                                    var bulletPoint = new Run("\u2022") { FontWeight = FontWeights.Bold };
+                                    if (modeColor.HasValue)
+                                    {
+                                        bulletPoint.Foreground = new SolidColorBrush(modeColor.Value);
+                                    }
+
+                                    yield return bulletPoint;
 
                                     // check next char
                                     if (position + 1 < text.Length)
@@ -293,9 +334,28 @@
                     span.TextDecorations = TextDecorations.Strikethrough;
                 }
 
+                if (modeIsHeader1)
+                {
+                    span.SetBinding(TextElement.FontSizeProperty,
+                                    new Binding()
+                                    {
+                                        Converter = FloatMultiplierConverter.Instance,
+                                        ConverterParameter = 1.2,
+                                        Path = new PropertyPath(Control.FontSizeProperty.Name),
+                                        RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor,
+                                                                            typeof(TextBlock),
+                                                                            1)
+                                    });
+                }
+
+                if (modeColor.HasValue)
+                {
+                    span.Foreground = new SolidColorBrush(modeColor.Value);
+                }
+
                 var spanInlines = span.Inlines;
 
-                if (modeUrlCurrentUrl != null)
+                if (modeUrlCurrentUrl is not null)
                 {
                     spanInlines.Add(new Run(strPart));
                     // currently parsing an [url=...] tag content - wrap span into a hyperlink
@@ -348,7 +408,7 @@
                 startPosition = lastStartPosition;
                 position = lastStartPosition + indexOfHttp;
                 var prefix = TryBuildRun();
-                if (prefix != null)
+                if (prefix is not null)
                 {
                     spanInlines.Add(prefix);
                 }
@@ -361,7 +421,7 @@
                 startPosition = lastStartPosition + indexOfHttp + urlLength;
                 position = lastEndPosition;
                 var suffix = TryBuildRun();
-                if (suffix != null)
+                if (suffix is not null)
                 {
                     spanInlines.Add(suffix);
                 }
@@ -430,6 +490,28 @@
             }
 
             return rawText;
+        }
+
+        private static Color TryParseColor(string str)
+        {
+            if (str.Length != 6)
+            {
+                Api.Logger.Error("Incorrect color tag: " + str);
+                return Colors.White;
+            }
+
+            try
+            {
+                return Color.FromArgb(a: byte.MaxValue,
+                                      r: byte.Parse(str.Substring(0, 2), NumberStyles.HexNumber),
+                                      g: byte.Parse(str.Substring(2, 2), NumberStyles.HexNumber),
+                                      b: byte.Parse(str.Substring(4, 2), NumberStyles.HexNumber));
+            }
+            catch
+            {
+                Api.Logger.Error("Incorrect color tag: " + str);
+                return Colors.White;
+            }
         }
     }
 }

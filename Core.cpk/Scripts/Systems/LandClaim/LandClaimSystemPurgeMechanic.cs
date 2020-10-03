@@ -1,7 +1,10 @@
 namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Threading.Tasks;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
@@ -10,7 +13,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -22,15 +24,22 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     [UsedImplicitly]
     public static class LandClaimSystemPurgeMechanic
     {
-        private static void ServerDeleteAllStructures(
+        /// <summary>
+        /// For PvE servers, the structures inside the decayed land claim areas are removed completely.
+        /// </summary>
+        private static async Task<int> ServerDeleteAllStructuresAsync(
             HashSet<IStaticWorldObject> staticWorldObjects,
-            out int objectsDeletedCount)
+            Func<Task> yieldIfOutOfTime)
         {
             var world = Api.Server.World;
-            objectsDeletedCount = 0;
+            var objectsDeletedCount = 0;
+
+            var tempDestroyList = new List<IStaticWorldObject>();
 
             foreach (var worldObject in staticWorldObjects)
             {
+                await yieldIfOutOfTime();
+
                 var protoStaticWorldObject = worldObject.ProtoStaticWorldObject;
                 if (!(protoStaticWorldObject is IProtoObjectStructure)
                     || LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject))
@@ -40,20 +49,52 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
                 world.DestroyObject(worldObject);
                 objectsDeletedCount++;
+
+                // destroy any ground containers that appeared in the released space
+                foreach (var occupiedTilePosition in worldObject.OccupiedTilePositions)
+                {
+                    var tile = world.GetTile(occupiedTilePosition);
+                    foreach (var staticObjectInPlace in tile.StaticObjects)
+                    {
+                        if (staticObjectInPlace.ProtoGameObject is ObjectGroundItemsContainer)
+                        {
+                            tempDestroyList.Add(staticObjectInPlace);
+                        }
+                    }
+                }
+
+                if (tempDestroyList.Count > 0)
+                {
+                    foreach (var staticObjectInPlace in tempDestroyList)
+                    {
+                        world.DestroyObject(staticObjectInPlace);
+                    }
+
+                    tempDestroyList.Clear();
+                }
             }
+
+            return objectsDeletedCount;
         }
 
-        // Please note:
-        // usually this method finishes quickly so it's not spread across multiple frames.
-        private static void ServerPurgeStructuresInDestroyedLandClaimArea(
+        /// <summary>
+        /// This method will purge the land in the decayed land claim area.
+        /// Please note: there is a small chance that the savegame is made right in the middle of the deletion.
+        /// This way when the savegame is loaded the deletion will not resume.
+        /// </summary>
+        private static async void ServerPurgeStructuresInDestroyedLandClaimArea(
             IStaticWorldObject landClaimStructure,
-            in RectangleInt areaBounds)
+            RectangleInt areaBounds)
         {
+            await Api.Server.Core.AwaitEndOfFrame;
+
             var logger = Api.Logger;
             var stopwatch = Stopwatch.StartNew();
             var tempObjects = new HashSet<IStaticWorldObject>();
             var serverWorld = Api.Server.World;
             var serverItems = Api.Server.Items;
+
+            var yieldIfOutOfTime = (Func<Task>)Api.Server.Core.YieldIfOutOfTime;
 
             for (var x = areaBounds.X; x < areaBounds.X + areaBounds.Width; x++)
             for (var y = areaBounds.Y; y < areaBounds.Y + areaBounds.Height; y++)
@@ -71,6 +112,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 {
                     tempObjects.Add(worldObject);
                 }
+
+                await yieldIfOutOfTime();
             }
 
             var objectsDeletedCount = 0;
@@ -78,6 +121,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
             foreach (var worldObject in tempObjects)
             {
+                await yieldIfOutOfTime();
+
                 var protoStaticWorldObject = worldObject.ProtoStaticWorldObject;
                 if (!(protoStaticWorldObject is IProtoObjectStructure)
                     || LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject))
@@ -122,16 +167,16 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
             if (PveSystem.ServerIsPvE)
             {
                 // on PvE server, delete all the structures within the decayed land claim area
-                ServerDeleteAllStructures(tempObjects, out objectsDeletedCount);
+                objectsDeletedCount = await ServerDeleteAllStructuresAsync(tempObjects, yieldIfOutOfTime);
             }
 
             stopwatch.Stop();
-            logger.Important(
-                $"Land claim destroyed: {landClaimStructure}. Objects deleted: {objectsDeletedCount}. Items containers purged: {purgedContainersCount}. Time spent: {stopwatch.Elapsed.TotalMilliseconds}ms");
+            logger.Dev(
+                $"Land claim destroyed: {landClaimStructure}. Objects deleted: {objectsDeletedCount}. Item containers purged: {purgedContainersCount}. Time spent: {stopwatch.Elapsed.TotalMilliseconds}ms (spread across multiple frames)");
 
             void PurgeContainer(IItemsContainer container)
             {
-                if (container == null
+                if (container is null
                     || container.OccupiedSlotsCount == 0)
                 {
                     return;
@@ -183,8 +228,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                     return;
                 }
 
-                ServerPurgeStructuresInDestroyedLandClaimArea(landClaimStructure,
-                                                              areaBounds);
+                ServerPurgeStructuresInDestroyedLandClaimArea(landClaimStructure, areaBounds);
             }
         }
     }

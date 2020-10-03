@@ -71,7 +71,7 @@
         public void SetDurationFromCurrentRecipe()
         {
             var craftingQueueItem = this.QueueItems.FirstOrDefault();
-            if (craftingQueueItem == null)
+            if (craftingQueueItem is null)
             {
                 this.TimeRemainsToComplete = double.MaxValue;
                 return;

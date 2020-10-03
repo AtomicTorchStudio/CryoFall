@@ -61,7 +61,7 @@
         public SoundResource GetSound(TSoundKey key, object repetitionProtectionKey = null)
         {
             var set = this.dictionary.Find(key);
-            if (set == null)
+            if (set is null)
             {
                 return SoundResource.NoSound;
             }
@@ -184,7 +184,7 @@
         {
             var soundResource = this.GetSound(key);
             this.WriteLog($"Play sound: {key} (\"{soundResource}\") (2D)");
-            if (soundResource == null)
+            if (soundResource is null)
             {
                 Api.ValidateIsClient();
                 return false;

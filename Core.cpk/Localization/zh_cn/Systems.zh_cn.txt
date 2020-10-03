@@ -382,47 +382,30 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `此服务器的管理员已将其设置为仅限邀请进入。
 [br]请查看服务器说明以了解其他详细信息。`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`欢迎来到CryoFall官方服务器！
-[br]
-[br]
-[b]重要:[/b]
-[br]
-这是一个PVE服务器。在本服务器上玩家不能以任何方式伤害其他玩家。此服务器致力于玩家的和平探索，对抗自然环境。玩家无法杀死其他玩家，摧毁其建筑或盗取物品。除此之外，此服务器和正常的游戏体验一致，有着危险的怪物，可解锁的科技和奇幻的世界。去冒险吧。
-[br]
-[br]
-如果你希望获得更加刺激，不受限制的游戏体验，请考虑加入PVP服务器。
-[br]
-[br]
-[b]服务器规则:[/b]
-[*]尊重其他玩家。我们不会容忍任何的滥用以及歧视行为。
-[*]遵从服务器管理员的安排。
-[*]不要在聊天栏刷屏或发送不雅内容。
-[*]不要滥用PVE限制。
-[*]不要滥用游戏规则或游戏机制来对其他玩家造成麻烦。
-[br]
-[br]
-祝大家游戏愉快! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+此社区服务器已安装社区模组。我们不保证它能顺利运行或为您提供标准的CryoFall游戏体验。如果您遇到了任何问题 - 请联系该社区服务器的管理员。
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`欢迎来到CryoFall官方服务器！
-[br]
-[br]
-[b]重要:[/b]
-[br]
-这是一个PVP服务器。请记住在PVP服务器上，你将遭遇来自其他玩家的敌对行为。你要努力作战，保护自己。你需要做好准备，时刻警惕。你也可以与其他玩家合作来提高自己的生存机会。
-[br]
-[br]
-如果你希望获得更加平和的探索体验，尤其如果这是你第一次进行游戏，请考虑加入PVE服务器。
-[br]
-[br]
-[b]服务器规则:[/b]
-[*]尊重其他玩家。我们不会容忍任何的滥用以及歧视行为。
-[*]遵从服务器管理员的安排。
-[*]不要在聊天栏刷屏或发送不雅内容。
-[br]
-[br]
-祝大家游戏愉快! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`此服务器为PvE（玩家对抗环境）服务器。在此服务器上，玩家不可直接或间接相互攻击。此服务器致力于和平探索游戏世界而非玩家冲突。你无法杀死，破坏或攻击其他玩家及他们的物品。除此之外，此服务器将提供标准的CryoFall游戏体验，比如危险生物，科技树和可探索的世界。开始你的旅行吧。
+[br]如果您想要更加紧张刺激的游戏体验 - 请考虑选择PVP服务器。`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+这是一个PVP服务器。请记住在PVP服务器上，你将遭遇来自其他玩家的敌对行为。你要努力作战，保护自己。你需要做好准备，时刻警惕。你也可以与其他玩家合作来提高自己的生存机会。如果你希望获得更加平和的探索体验，尤其如果这是你第一次进行游戏，请考虑加入PVE服务器。
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+PvE服务器
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+PvP服务器
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+模组服务器
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+欢迎信息
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+删档信息
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 欢迎来到{0}

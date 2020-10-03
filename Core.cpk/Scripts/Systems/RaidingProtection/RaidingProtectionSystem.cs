@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -299,7 +300,7 @@
             Logger.Important($"Received raiding window: {gameDayTimeInterval} (UTC time)");
 
             ClientRaidingWindowUTC = gameDayTimeInterval;
-            if (ClientRaidingWindowChanged != null)
+            if (ClientRaidingWindowChanged is not null)
             {
                 Api.SafeInvoke(ClientRaidingWindowChanged);
             }
@@ -310,6 +311,7 @@
             ClientShowNotificationRaidingNotAvailableNow();
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_RequestRaidingWindowInfo()
         {
             this.CallClient(ServerRemoteContext.Character,
@@ -327,7 +329,7 @@
 
                 void Refresh()
                 {
-                    if (Api.Client.Characters.CurrentPlayerCharacter != null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         Instance.CallServer(_ => _.ServerRemote_RequestRaidingWindowInfo());
                     }

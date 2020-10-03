@@ -33,7 +33,7 @@
         private static void EnsureConfigCreated()
         {
             if (IsClient
-                || config != null)
+                || config is not null)
             {
                 return;
             }

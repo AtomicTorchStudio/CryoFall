@@ -1,5 +1,5 @@
 ﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
-&lt;1m
+<1m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
 j

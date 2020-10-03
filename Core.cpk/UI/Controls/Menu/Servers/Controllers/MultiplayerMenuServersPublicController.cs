@@ -58,13 +58,14 @@
 
                 item.IsFeatured = publicServerInfo.IsFeatured;
                 item.IsOfficial = publicServerInfo.IsOfficial;
+                item.IsCommunity = !publicServerInfo.IsOfficial;
 
                 if (!item.IsInfoReceived)
                 {
                     // set info from public info - but never overwrite the data already set from the actual server info
                     item.Title = publicServerInfo.Title;
                     item.IsModded = !publicServerInfo.IsOfficial
-                                                   && publicServerInfo.IsModded;
+                                    && publicServerInfo.IsModded;
                     item.Version = publicServerInfo.Version;
                     item.NetworkProtocolVersion = 0;
                 }

@@ -78,7 +78,7 @@
 
         private void DestroyViewModel()
         {
-            if (this.viewModel == null)
+            if (this.viewModel is null)
             {
                 return;
             }
@@ -98,8 +98,8 @@
 
             var item = this.Item;
             var protoItem = this.Item?.ProtoItem ?? this.ProtoItem;
-            if (item == null
-                && protoItem == null)
+            if (item is null
+                && protoItem is null)
             {
                 return;
             }

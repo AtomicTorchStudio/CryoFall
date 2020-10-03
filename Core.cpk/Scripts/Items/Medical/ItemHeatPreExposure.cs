@@ -5,6 +5,8 @@
 
     public class ItemHeatPreExposure : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "Thermal-resistant gel prevents direct thermal transfer and reflects radiant heat, allowing you to enter high-temperature areas for a short duration.";
 

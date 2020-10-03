@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
-    public struct ProtoPlantTooltipPrivateData : IRemoteCallParameter
+    public readonly struct ProtoPlantTooltipPrivateData : IRemoteCallParameter
     {
         public readonly IProtoItemFertilizer AppliedFertilzerProto;
 

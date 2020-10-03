@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemIngotSteel>(count: 5);
-            inputItems.Add<ItemIngotCopper>(count: 5);
-            inputItems.Add<ItemFormulatedGunpowder>(count: 40);
+            inputItems.Add<ItemIngotCopper>(count: 3);
+            inputItems.Add<ItemIngotSteel>(count: 3);
+            inputItems.Add<ItemFormulatedGunpowder>(count: 30);
 
             outputItems.Add<ItemAmmo300ArmorPiercing>(count: 10);
         }

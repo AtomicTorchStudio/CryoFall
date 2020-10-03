@@ -115,7 +115,7 @@
         public void RegisterArea(ILogicObject area)
         {
             var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            if (areasGroup == null)
+            if (areasGroup is null)
             {
                 // incorrect area (probably LandClaimAreasGroup was set to null but will be set to non-null soon)
                 return;

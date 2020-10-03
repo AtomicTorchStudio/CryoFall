@@ -28,7 +28,7 @@
 
                 if (isHidden)
                 {
-                    if (instance == null)
+                    if (instance is null)
                     {
                         return;
                     }

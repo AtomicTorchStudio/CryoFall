@@ -7,7 +7,7 @@
     <BaseIntermediateOutputPath>.temp\obj\</BaseIntermediateOutputPath>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <Configurations>Debug;Debug_LibsAsProjects</Configurations>
   </PropertyGroup>
 
@@ -36,7 +36,7 @@
 
   <ItemGroup>   
     <!-- Please note - these package references should be added as dependencies to NuGet specification -->
-    <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>

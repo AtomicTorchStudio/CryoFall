@@ -70,7 +70,7 @@
 
         private void RefreshRendering()
         {
-            if (this.control != null)
+            if (this.control is not null)
             {
                 this.control.Visibility = this.isRendering
                                               ? Visibility.Visible

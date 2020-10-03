@@ -60,7 +60,7 @@
                 return false;
             }
 
-            if (character == null)
+            if (character is null)
             {
                 return true;
             }
@@ -117,7 +117,7 @@
 
             NotificationSystem.ServerSendItemsNotification(character, itemsChangedCount);
 
-            if (groundItemsContainer != null)
+            if (groundItemsContainer is not null)
             {
                 // spawned something on the ground
                 NotificationSystem.ServerSendNotificationNoSpaceInInventory(character);

@@ -97,7 +97,7 @@
                 return;
             }
 
-            if (this.characterPublicState.CurrentVehicle != null)
+            if (this.characterPublicState.CurrentVehicle is not null)
             {
                 this.RemoveMarker();
                 return;

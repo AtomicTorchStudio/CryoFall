@@ -13,8 +13,6 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
-        public override float HealthRestore => 1;
-
         public override string Name => "Sandwich";
 
         public override ushort OrganicValue => 5;

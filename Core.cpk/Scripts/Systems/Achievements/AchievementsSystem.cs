@@ -51,18 +51,18 @@
                         return;
                     }
 
-                    if (clientCurrentAchievements != null)
+                    if (clientCurrentAchievements is not null)
                     {
                         var list = clientCurrentAchievements.UnlockedAchievements;
-                        list.ClientElementInserted -= this.ClientUnlockedAchievementAdded;
+                        list.ClientElementInserted -= ClientUnlockedAchievementAdded;
                     }
 
                     clientCurrentAchievements = newAchievements;
 
-                    if (clientCurrentAchievements != null)
+                    if (clientCurrentAchievements is not null)
                     {
                         var list = clientCurrentAchievements.UnlockedAchievements;
-                        list.ClientElementInserted += this.ClientUnlockedAchievementAdded;
+                        list.ClientElementInserted += ClientUnlockedAchievementAdded;
                     }
 
                     ClientSyncAchievements();
@@ -87,7 +87,7 @@
                                                  .GetJoinedString(Environment.NewLine));
             }
 
-            private void ClientUnlockedAchievementAdded(
+            private static void ClientUnlockedAchievementAdded(
                 NetworkSyncList<PlayerCharacterAchievements.CharacterAchievementEntry> source,
                 int index,
                 PlayerCharacterAchievements.CharacterAchievementEntry value)

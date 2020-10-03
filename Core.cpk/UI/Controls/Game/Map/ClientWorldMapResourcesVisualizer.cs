@@ -150,7 +150,7 @@
         {
             var mapControl = GetMapControl(mark);
 
-            if (mapControl == null)
+            if (mapControl is null)
             {
                 Api.Logger.Warning("Unknown world object mark: "
                                    + mark.ProtoWorldObject
@@ -276,7 +276,7 @@
             }
 
             var notification = this.FindNotification(in mark);
-            if (!(notification is null))
+            if (notification is not null)
             {
                 // notification already exist
                 return;

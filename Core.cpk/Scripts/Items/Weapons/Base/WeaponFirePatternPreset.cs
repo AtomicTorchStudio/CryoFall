@@ -18,8 +18,8 @@
             double[] cycledSequence)
         {
             if ((initialSequence is null
-                 && !(cycledSequence is null))
-                || (!(initialSequence is null)
+                 && cycledSequence is not null)
+                || (initialSequence is not null
                     && cycledSequence is null))
             {
                 throw new Exception("One of the arrays is null while the other is not null");
@@ -41,6 +41,6 @@
             this.CycledSequence = cycledSequence;
         }
 
-        public bool IsEnabled => !(this.InitialSequence is null);
+        public bool IsEnabled => this.InitialSequence is not null;
     }
 }

@@ -77,7 +77,7 @@
         {
             if (ReferenceEquals(null, obj))
             {
-                if (this.Path == null)
+                if (this.Path is null)
                 {
                     // no sound
                     return true;
@@ -87,7 +87,7 @@
             }
 
             var sound = obj as SoundUI;
-            return sound != null && this.Equals(sound);
+            return sound is not null && this.Equals(sound);
         }
 
         public override int GetHashCode()

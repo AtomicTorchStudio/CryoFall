@@ -117,7 +117,7 @@
         public void ServerSetCurrentVehicle(IDynamicWorldObject vehicle)
         {
             var character = (ICharacter)this.GameObject;
-            if (this.CurrentVehicle != null)
+            if (this.CurrentVehicle is not null)
             {
                 Api.Server.World.ExitPrivateScope(character, this.CurrentVehicle);
             }

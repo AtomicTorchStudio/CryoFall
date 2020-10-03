@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -79,7 +80,7 @@
 
         public static async Task<bool> ClientSetPowerMode(bool isOn, IStaticWorldObject worldObject)
         {
-            var result = await Instance.CallServer(_ => _.ServerRemote_SetPowerMode(isOn, worldObject));
+            var result = await Instance.CallServer(_ => _.ServerRemote_SetPowerMode(worldObject, isOn));
             if (result == SetPowerModeResult.Success)
             {
                 return true;
@@ -529,7 +530,7 @@
 
             void TryRebuild(ILogicObject areasGroup)
             {
-                if (areasGroup != null)
+                if (areasGroup is not null)
                 {
                     ServerRebuildPowerGrid(SharedGetPowerGrid(areasGroup));
                 }
@@ -636,7 +637,7 @@
             state.ServerIsDirty = false;
 
             var areasGroup = state.ServerAreasGroup;
-            if (areasGroup == null
+            if (areasGroup is null
                 || areasGroup.IsDestroyed)
             {
                 return;
@@ -791,7 +792,7 @@
             }
 
             var powerGrid = SharedGetPowerGrid(worldObject);
-            if (powerGrid == null
+            if (powerGrid is null
                 && newPowerState != ElectricityProducerState.PowerOff)
             {
                 return SetPowerModeResult.NoPowerGridExist;
@@ -837,18 +838,18 @@
             var protoConsumer = protoStructure as IProtoObjectElectricityConsumer;
             var protoProducer = protoStructure as IProtoObjectElectricityProducer;
 
-            if (protoProducer != null
-                || protoConsumer != null)
+            if (protoProducer is not null
+                || protoConsumer is not null)
             {
                 var privateState = structure.GetPrivateState<IObjectElectricityStructurePrivateState>();
                 privateState.ElectricityThresholds = protoProducer?.DefaultGenerationElectricityThresholds
                                                      ?? protoConsumer.DefaultConsumerElectricityThresholds;
             }
 
-            if (protoProducer != null)
+            if (protoProducer is not null)
             {
                 var state = TryGetPowerGridState();
-                if (state == null)
+                if (state is null)
                 {
                     return;
                 }
@@ -858,11 +859,11 @@
                 ServerSetProducerPowerMode(structure, ElectricityProducerState.PowerOnIdle);
             }
 
-            if (protoConsumer != null
+            if (protoConsumer is not null
                 && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0)
             {
                 var state = TryGetPowerGridState();
-                if (state == null)
+                if (state is null)
                 {
                     return;
                 }
@@ -876,7 +877,7 @@
             if (protoStructure is IProtoObjectElectricityStorage)
             {
                 var state = TryGetPowerGridState();
-                if (state == null)
+                if (state is null)
                 {
                     return;
                 }
@@ -888,7 +889,7 @@
             PowerGridPublicState TryGetPowerGridState()
             {
                 var powerGrid = SharedGetPowerGrid(structure);
-                return powerGrid == null
+                return powerGrid is null
                            ? null
                            : PowerGrid.GetPublicState(powerGrid);
             }
@@ -913,7 +914,7 @@
             if (protoStructure is IProtoObjectElectricityStorage)
             {
                 var state = TryGetPowerGridState();
-                if (state != null)
+                if (state is not null)
                 {
                     state.ServerCacheStorage.Remove(structure);
                     ServerRecalculateGridCapacity(powerGrid: (ILogicObject)state.GameObject, state);
@@ -923,7 +924,7 @@
             PowerGridPublicState TryGetPowerGridState()
             {
                 var powerGrid = SharedGetPowerGrid(structure);
-                return powerGrid == null
+                return powerGrid is null
                            ? null
                            : PowerGrid.GetPublicState(powerGrid);
             }
@@ -935,7 +936,7 @@
             IStaticWorldObject worldObject)
         {
             var powerGrid = SharedGetPowerGrid(worldObject);
-            if (powerGrid != null)
+            if (powerGrid is not null)
             {
                 ServerRebuildPowerGrid(powerGrid);
             }
@@ -944,7 +945,7 @@
         private static ILogicObject SharedGetPowerGrid(IStaticWorldObject structure)
         {
             var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(structure.OccupiedTile.Position);
-            if (areasGroup == null)
+            if (areasGroup is null)
             {
                 return null;
             }
@@ -1001,7 +1002,8 @@
             }
         }
 
-        private SetPowerModeResult ServerRemote_SetPowerMode(bool isOn, IStaticWorldObject worldObject)
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1, keyArgIndex: 0)]
+        private SetPowerModeResult ServerRemote_SetPowerMode(IStaticWorldObject worldObject, bool isOn)
         {
             var character = ServerRemoteContext.Character;
             if (!worldObject.ProtoWorldObject.SharedCanInteract(character, worldObject, writeToLog: true))

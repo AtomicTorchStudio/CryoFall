@@ -119,7 +119,7 @@
 
         private void CloseContextMenu()
         {
-            if (this.ContextMenu != null)
+            if (this.ContextMenu is not null)
             {
                 this.ContextMenu.IsOpen = false;
                 this.ContextMenu = null;
@@ -178,7 +178,7 @@
 
         private void MapClickHandler(Vector2D worldPosition)
         {
-            if (this.ContextMenu != null)
+            if (this.ContextMenu is not null)
             {
                 // context menu is still exist, don't process this click
                 return;

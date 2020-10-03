@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -124,6 +125,7 @@
             return PlayerCharacter.GetPrivateState(character).CompletionistData;
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0, avoidBuffer: true)]
         private void ServerRemote_ClaimReward(IProtoEntity prototype)
         {
             var completionistData = SharedGetCompletionistData(ServerRemoteContext.Character);

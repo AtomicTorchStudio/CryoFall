@@ -83,7 +83,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
         {
             this.Validate(byCharacter);
             var method = this.MatchVariant(byCharacter, arguments);
-            if (method == null)
+            if (method is null)
             {
                 Logger.Warning("Incorrect command syntax.");
                 return;
@@ -116,7 +116,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
 
         public string GetNameOrAlias(string startsWith)
         {
-            if (this.Alias != null
+            if (this.Alias is not null
                 && this.Alias.StartsWith(startsWith, StringComparison.OrdinalIgnoreCase))
             {
                 return this.Alias;
@@ -134,7 +134,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
             this.Validate(byCharacter);
 
             var bestMatchedVariant = this.MatchVariant(byCharacter, arguments);
-            if (bestMatchedVariant == null)
+            if (bestMatchedVariant is null)
             {
                 consoleCommandVariant = null;
                 return null;
@@ -150,7 +150,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
 
         public void InitializeIfRequired()
         {
-            if (this.Variants != null)
+            if (this.Variants is not null)
             {
                 return;
             }
@@ -258,7 +258,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
                     bestMatchRating = rating;
                     bestMatchMethod = method;
                 }
-                else if (bestMatchMethod == null)
+                else if (bestMatchMethod is null)
                     //&& method.RequiredParametersCount == 0)
                 {
                     // method without parameters

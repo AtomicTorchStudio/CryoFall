@@ -101,6 +101,9 @@ Sauvegarder
 UI/CoreStrings@Button_Upgrade:
 Améliorer
 
+UI/CoreStrings@CannotSelectDateInThePast:
+Impossible de sélectionner une date dans le passé.
+
 UI/CoreStrings@CharacterStatName_Food:
 Nourriture
 
@@ -200,6 +203,9 @@ Cette structure stocke de l'électricité.
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Cette structure ne peut être déplacée une fois construite.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Veuillez contacter l'administrateur du serveur.
 
 UI/CoreStrings@Copy:
 Copier
@@ -698,6 +704,9 @@ Ce serveur comporte des modifications tierces, et peut donc fortement se disting
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MODDÉ
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+Ce serveur n'autorise pas les modifications du client de jeu. Tous les mods client seront désactivés pour l'ensemble des joueurs.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Il s'agit d'un serveur officiel de CryoFall, hébergé par les développeurs.
 
@@ -1081,6 +1090,19 @@ Joueurs
 UI/CoreStrings@ServerWipedDate:
 Effacé
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Prochain effacement :[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+Informations d'effacement non spécifiées
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`Ce serveur ne suit pas un planning d'effacement régulier. Il n'est effacé que lorsque de nouvelles versions du jeu sont publiées. Veuillez consulter les canaux d'informations officiels du jeu pour être informé de la sortie des nouvelles versions majeures.
+[br]Remarque : toutes les données du serveur (y compris les données d'univers et de personnages) sont réinitialisées quand le serveur est mis à jour vers une nouvelle version majeure.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Démarrage du serveur :[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 Impossible d'effectuer cette action dans une base protégée par un bouclier.
 
@@ -1167,6 +1189,9 @@ Durée estimée :
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Durée maximale :
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+Le bouclier de protection contre les raids en période de hors-ligne n'est pas disponible pour cette revendication territoriale, car elle est pleinement à l'intérieur d'une autre base protégée par son propre bouclier.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 Le bouclier deviendra actif dans {0} si le processus n'est pas interrompu (annulation par le propriétaire de la base ou par un blocus de raid).
@@ -1287,6 +1312,12 @@ Recherche...
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+Heure déjà convertie en fonction de votre fuseau horaire (UTC{0}).
+
+UI/CoreStrings@TimeRemains:
+Temps restant
 
 UI/CoreStrings@Title:
 Titre
@@ -1903,6 +1934,11 @@ Récemment effacé
 
 UI/CoreStrings@WipedDate_Yesterday:
 Hier
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`Attention : l'effacement ne se fera pas automatiquement !
+[br]C'est à vous d'arrêter manuellement le serveur et de supprimer la sauvegarde.
+[br]Ce menu permet uniquement d'en informer les joueurs.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Carte explorée

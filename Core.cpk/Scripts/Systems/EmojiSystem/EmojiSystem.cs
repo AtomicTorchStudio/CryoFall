@@ -57,7 +57,7 @@
                 }
 
                 Api.Logger.Important(
-                    $"Emojis loaded: {EmojiCategories.Count} categories, {EmojiCategories.Sum(c => c.Emojis.Count)}emojis total");
+                    $"Emojis loaded: {EmojiCategories.Count} categories, {EmojiCategories.Sum(c => c.Emojis.Count)} emojis total");
 
                 static EmojisCategory LoadEmojis(string filterFileContent)
                 {

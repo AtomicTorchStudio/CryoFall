@@ -25,7 +25,7 @@
 
         private static LogOverlayControl GetControl()
         {
-            if (ConsoleControl.Instance != null
+            if (ConsoleControl.Instance is not null
                 && ConsoleControl.Instance.IsDisplayed)
             {
                 // error will be logged into the console
@@ -33,7 +33,7 @@
             }
 
             var instance = LogOverlayControl.Instance;
-            if (instance != null)
+            if (instance is not null)
             {
                 return instance;
             }
@@ -67,14 +67,14 @@
 
         private void SetLogEntriesProvider(ILogEntriesProvider newProvider)
         {
-            if (this.currentProvider != null)
+            if (this.currentProvider is not null)
             {
                 this.currentProvider.NewLogEntry -= this.LogEntriesProviderNewLogEntryHandler;
             }
 
             this.currentProvider = newProvider;
 
-            if (this.currentProvider == null)
+            if (this.currentProvider is null)
             {
                 return;
             }
@@ -82,7 +82,7 @@
             this.currentProvider.NewLogEntry += this.LogEntriesProviderNewLogEntryHandler;
 
             var logOverlayControl = GetControl();
-            if (logOverlayControl == null)
+            if (logOverlayControl is null)
             {
                 return;
             }

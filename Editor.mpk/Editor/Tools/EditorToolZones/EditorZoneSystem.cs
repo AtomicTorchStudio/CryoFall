@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Structures;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -73,6 +74,7 @@
             Instance = this;
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_ApplyZoneModififications(IProtoZone protoZone, QuadTreeDiff diff)
         {
             var character = ServerRemoteContext.Character;
@@ -81,6 +83,7 @@
             Logger.Important($"Zone quadtree diff applied: {diff} for {protoZone} by {character}");
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_DeleteZoneMobs(IProtoZone zone)
         {
             Logger.Important("Destroying all spawned mobs at zone: " + zone.ShortId);

@@ -214,3 +214,12 @@ Pesca bem sucedida
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Consumo de combustível
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+Não é possível correr
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+Não é possível atacar
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+Não é possível usar itens médicos que tenham tempo de espera
+

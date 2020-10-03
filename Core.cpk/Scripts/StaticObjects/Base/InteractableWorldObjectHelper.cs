@@ -77,7 +77,7 @@
             }
 
             var menuWindow = SharedGetProto(worldObject).ClientOpenUI(worldObject);
-            if (menuWindow == null)
+            if (menuWindow is null)
             {
                 Logger.Info("Cannot open menu for object interaction with " + worldObject);
                 this.CallServer(_ => _.ServerRemote_OnClientInteractFinish(worldObject));
@@ -156,7 +156,7 @@
         {
             var character = ServerRemoteContext.Character;
 
-            if (worldObject == null
+            if (worldObject is null
                 || !worldObject.ProtoWorldObject.SharedCanInteract(character, worldObject, writeToLog: true))
             {
                 // player is too far from the world object or world object is destroyed

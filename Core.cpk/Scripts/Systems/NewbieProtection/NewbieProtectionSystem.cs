@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -93,6 +94,22 @@
         public static Task<bool> ClientGetLatestDeathIsNewbiePvP()
         {
             return Instance.CallServer(_ => _.ServerRemote_ServerGetLatestDeathIsNewbiePvP());
+        }
+
+        public static void ClientNotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
+        {
+            var icon = iconSource switch
+            {
+                IProtoStaticWorldObject protoStaticWorld => protoStaticWorld.Icon,
+                IProtoItem protoItem                     => protoItem.Icon,
+                _                                        => null
+            };
+
+            NotificationSystem.ClientShowNotification(
+                title: Notification_CannotPerformActionWhileUnderProtection,
+                icon: icon,
+                onClick: Menu.Open<WindowPolitics>,
+                color: NotificationColor.Bad);
         }
 
         public static void ClientShowNewbieCannotDamageOtherPlayersOrLootBags(bool isLootBag)
@@ -185,7 +202,7 @@
                 return;
             }
 
-            Api.Assert(character != null && !character.IsNpc,
+            Api.Assert(character is not null && !character.IsNpc,
                        "Please provide a player character instance");
 
             var isFound = false;
@@ -265,7 +282,7 @@
 
         public static bool SharedIsNewbie(ICharacter character)
         {
-            if (character == null
+            if (character is null
                 || character.IsNpc)
             {
                 return false;
@@ -375,7 +392,7 @@
                 {
                     var tuple = serverNewbies[index];
                     var character = tuple.character;
-                    if (character == null)
+                    if (character is null)
                     {
                         serverNewbies.RemoveAt(index--);
                         continue;
@@ -403,22 +420,6 @@
                 callback: this.ServerUpdate,
                 name: "System." + this.ShortId,
                 interval: TimeSpan.FromSeconds(ServerUpdateInterval));
-        }
-
-        public static void ClientNotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
-        {
-            var icon = iconSource switch
-            {
-                IProtoStaticWorldObject protoStaticWorld => protoStaticWorld.Icon,
-                IProtoItem protoItem                     => protoItem.Icon,
-                _                                        => null
-            };
-
-            NotificationSystem.ClientShowNotification(
-                title: Notification_CannotPerformActionWhileUnderProtection,
-                icon: icon,
-                onClick: Menu.Open<WindowPolitics>,
-                color: NotificationColor.Bad);
         }
 
         private static void ServerSendNewbieProtectionTimeRemaining(ICharacter character)
@@ -459,16 +460,19 @@
                 () => ClientNewbieProtectionTimeRemainingReceived?.Invoke(timeRemaining));
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_GetNewbieProtectionTimeRemaining()
         {
             ServerSendNewbieProtectionTimeRemaining(ServerRemoteContext.Character);
         }
 
+        [RemoteCallSettings(timeInterval: 5)]
         private void ServerRemote_ServerDisableNewbieProtection()
         {
             ServerDisableNewbieProtection(ServerRemoteContext.Character);
         }
 
+        [RemoteCallSettings(timeInterval: 5)]
         private bool ServerRemote_ServerGetLatestDeathIsNewbiePvP()
         {
             var character = ServerRemoteContext.Character;

@@ -309,6 +309,18 @@
 
         [Description("Fuel consumption")]
         [RelatedToSkill(typeof(SkillVehicles))]
-        VehicleFuelConsumptionRate
+        VehicleFuelConsumptionRate,
+
+        [Description("Cannot run")]
+        [StatNameHiddenValue]
+        PerkCannotRun,
+
+        [Description("Cannot attack")]
+        [StatNameHiddenValue]
+        PerkCannotAttack,
+
+        [Description("Cannot use medical items that have a cooldown")]
+        [StatNameHiddenValue]
+        PerkCannotUseMedicalItems
     }
 }

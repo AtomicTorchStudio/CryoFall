@@ -48,14 +48,14 @@
                     return;
                 }
 
-                if (this.item != null)
+                if (this.item is not null)
                 {
                     this.ReleaseSubscriptions();
                 }
 
                 this.item = value;
 
-                if (this.item == null)
+                if (this.item is null)
                 {
                     return;
                 }
@@ -84,7 +84,7 @@
                     return;
                 }
 
-                if (value == null
+                if (value is null
                     || value.Item != this.item)
                 {
                     this.RefillDurationSeconds = 0;

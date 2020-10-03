@@ -73,7 +73,7 @@
 
         private void Update()
         {
-            if (this.character == null
+            if (this.character is null
                 || this.character.IsDestroyed)
             {
                 this.Visibility = Visibility.Collapsed;

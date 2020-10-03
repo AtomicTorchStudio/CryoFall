@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -120,12 +121,13 @@
             clientIsServerOperator = isOperator;
             Logger.Important(
                 $"Server operator status received: current player {(isOperator ? "is" : "is not")} a server operator");
-            if (ClientIsOperatorChanged != null)
+            if (ClientIsOperatorChanged is not null)
             {
                 Api.SafeInvoke(ClientIsOperatorChanged);
             }
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private void ServerRemote_RequestCurrentUserIsOperator()
         {
             var character = ServerRemoteContext.Character;

@@ -56,7 +56,7 @@
                                   protoItemFishCaught,
                                   caughtFishSizeValue);
                     }
-                    else if (protoItemFishCaught != null)
+                    else if (protoItemFishCaught is not null)
                     {
                         fishingVisualizer.FishingCompletedVisualizer
                                          .SetupFish(protoItemFishCaught, caughtFishSizeValue);

@@ -14,7 +14,7 @@
         public ViewModelVehicleSchematic(IProtoVehicle protoVehicle)
         {
             this.ProtoVehicle = protoVehicle;
-            if (protoVehicle == null)
+            if (protoVehicle is null)
             {
                 return;
             }
@@ -48,7 +48,7 @@
         {
             base.DisposeViewModel();
 
-            if (this.ProtoVehicle != null)
+            if (this.ProtoVehicle is not null)
             {
                 this.UnsubscribeFromContainersEvents();
             }

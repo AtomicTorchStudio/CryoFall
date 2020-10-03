@@ -18,7 +18,7 @@
 
         public static WindowCraftingStation Open(IProtoObjectCraftStation protoObjectCraftStation)
         {
-            if (Instance != null
+            if (Instance is not null
                 && Instance.protoObjectCraftStation == protoObjectCraftStation)
             {
                 return Instance;

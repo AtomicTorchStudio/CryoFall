@@ -2,7 +2,7 @@
 {
     using System.ComponentModel;
 
-    public enum ServersListSortType : byte
+    public enum ServersListSortType
     {
         None = 0,
 

@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -85,7 +86,7 @@
         {
             using var objectsInCharacterInteractionArea =
                 InteractionCheckerSystem.SharedGetTempObjectsInCharacterInteractionArea(character);
-            if (objectsInCharacterInteractionArea == null)
+            if (objectsInCharacterInteractionArea is null)
             {
                 return null;
             }
@@ -93,7 +94,7 @@
             foreach (var testResult in objectsInCharacterInteractionArea.AsList())
             {
                 var worldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
-                if (worldObject == null
+                if (worldObject is null
                     || !stationTypes.Contains(worldObject.ProtoWorldObject))
                 {
                     continue;
@@ -135,7 +136,7 @@
             {
                 var recipeForStation = (Recipe.BaseRecipeForStation)recipe;
                 station = SharedFindNearbyStationOfTypes(recipeForStation.StationTypes, character);
-                if (station == null)
+                if (station is null)
                 {
                     Logger.Error(
                         $"No crafting stations of types {recipeForStation.StationTypes.GetJoinedString()} found nearby character {character} at position {character.Position}");
@@ -286,6 +287,7 @@
             Logger.Warning("Cannot find crafting queue entry with localId=" + localId);
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private double ServerRemote_RequestLearningPointsGainMultiplierRate()
         {
             return ServerCraftingSpeedMultiplier;

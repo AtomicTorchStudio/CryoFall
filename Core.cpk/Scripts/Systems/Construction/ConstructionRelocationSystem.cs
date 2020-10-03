@@ -370,8 +370,12 @@
                 }
                 else
                 {
-                    var context =
-                        new ConstructionTileRequirements.Context(tile, character, protoStructure, tileOffset);
+                    var context = new ConstructionTileRequirements.Context(tile,
+                                                                           character,
+                                                                           protoStructure,
+                                                                           tileOffset,
+                                                                           startTilePosition: toPosition,
+                                                                           objectToRelocate: objectStructure);
                     if (tileRequirements.Check(context, out errorMessage))
                     {
                         // valid tile
@@ -428,7 +432,7 @@
                 foreach (var test in obstaclesOnTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
-                    if (testPhysicsBody.AssociatedProtoTile != null)
+                    if (testPhysicsBody.AssociatedProtoTile is not null)
                     {
                         // obstacle tile on the way
                         return true;

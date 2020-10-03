@@ -13,6 +13,8 @@
 
         public const string NotificationNoRadiationPoisoning_Title = "No radiation poisoning";
 
+        public override double CooldownDuration => MedicineCooldownDuration.Short;
+
         public override string Description =>
             "This emergency radiation exposure treatment could immediately reduce any effects of accumulated radiation in the body.";
 

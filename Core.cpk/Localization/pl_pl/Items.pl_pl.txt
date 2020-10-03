@@ -169,8 +169,14 @@ Umieść w studni lub w zbiorniku wodnym, aby napełnić wodą pitną.
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Ogniwa paliwowe zasilają różne pojazdy.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+Przytrzymaj klawisze [b]Alt[/b] lub [b]Ctrl[/b] podczas strzelania, aby strzelać z maksymalnej odległości w kierunku kursora, a nie w miejsce, gdzie znajduje się kursor.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Implanty można instalować tylko w stacji medycznej.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+Nigdy nie spożyto
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Ten element pobiera moc z zamontowanych banków zasilania.
@@ -216,6 +222,12 @@ Zestaw użytecznych narzędzi łowcy sprawia, że szybciej zbierasz łupy z dowo
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Narzędzia łowcy
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Mały celownik laserowy ułatwiający celowanie na duże odległości.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Celownik laserowy
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Przechowuje duże ilości energii podczas podróży. Każde urządzenie lub broń energetyczna może pobierać energię z wyposażonych banków zasilania.

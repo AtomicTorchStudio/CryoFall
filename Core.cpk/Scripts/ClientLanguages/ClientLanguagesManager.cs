@@ -30,7 +30,7 @@
             get => currentLanguageDefinition;
             set
             {
-                if (value == null)
+                if (value is null)
                 {
                     throw new NullReferenceException("Current language definition cannot be null");
                 }

@@ -155,10 +155,10 @@
 
         public void ClientOnItemDrop(IItem item, IItemsContainer itemsContainer = null)
         {
-            if (itemsContainer == null)
+            if (itemsContainer is null)
             {
                 itemsContainer = item.Container;
-                if (itemsContainer == null)
+                if (itemsContainer is null)
                 {
                     Logger.Error($"Item container is null for {item} - perhaps item was deleted");
                     return;
@@ -326,14 +326,14 @@
 
         protected virtual void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
-            if (item != null
+            if (item is not null
                 && this is IProtoItemWithFuel protoItemWithFuel
                 && protoItemWithFuel.ItemFuelConfig.FuelCapacity > 0)
             {
                 controls.Add(ItemTooltipFuelControl.Create(item));
             }
 
-            if (item != null
+            if (item is not null
                 && this is IProtoItemWithDurability protoItemWithDurability
                 && protoItemWithDurability.DurabilityMax > 0)
             {
@@ -414,7 +414,7 @@
 
         protected void ServerValidateItemForRemoteCall(IItem item, ICharacter character)
         {
-            if (item == null)
+            if (item is null)
             {
                 throw new Exception("Item is not found.");
             }

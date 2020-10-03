@@ -244,7 +244,8 @@
                 if (otherCharacter.IsNpc
                     && otherCharacter.ProtoGameObject == protoMobMinion
                     && otherCharacter.Position.DistanceSquaredTo(bossPosition)
-                    <= SpawnMinionsCheckDistance * SpawnMinionsCheckDistance)
+                    <= SpawnMinionsCheckDistance * SpawnMinionsCheckDistance
+                    && !otherCharacter.GetPublicState<CharacterMobPublicState>().IsDead)
                 {
                     minionsHave++;
                 }
@@ -329,7 +330,7 @@
                 // apply the difficulty coefficient
                 damagePostMultiplier /= ServerBossDifficultyCoef;
 
-                if (weaponCache.ProtoExplosive != null)
+                if (weaponCache.ProtoExplosive is not null)
                 {
                     // the boss is massive so it will take increased damage from explosives/grenades
                     if (weaponCache.ProtoExplosive is IAmmoCannonShell)
@@ -352,7 +353,7 @@
 
             if (IsServer
                 && result
-                && byCharacter != null
+                && byCharacter is not null
                 && !byCharacter.IsNpc)
             {
                 var privateState = GetPrivateState((ICharacter)targetObject);
@@ -467,7 +468,7 @@
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
 
             if (lastTargetCharacter is null
-                && privateState.CurrentTargetCharacter != null
+                && privateState.CurrentTargetCharacter is not null
                 // is the last attack happened not too recently?
                 && privateState.TimeToNextNovaAttack < NovaAttackInterval.Max - 8)
             {

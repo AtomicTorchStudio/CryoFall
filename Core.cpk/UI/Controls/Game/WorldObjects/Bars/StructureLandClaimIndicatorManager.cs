@@ -76,7 +76,7 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
                 //    lastHoverIndicator = SetupFor(worldObject, isClaimed: true);
                 //}
             }
-            else if (lastHoverIndicator != null)
+            else if (lastHoverIndicator is not null)
             {
                 // was hovering over that world object, destroy the indicator
                 var control = (StructureLandClaimIndicator)lastHoverIndicator.Control;
@@ -150,7 +150,7 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
 
                 if (isDisplayed)
                 {
-                    if (control != null)
+                    if (control is not null)
                     {
                         continue;
                     }

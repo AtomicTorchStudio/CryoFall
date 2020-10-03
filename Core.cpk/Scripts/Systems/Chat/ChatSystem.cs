@@ -8,6 +8,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerPlayerAccess;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
@@ -105,7 +107,7 @@
         public static async void ClientOpenPrivateChat(string withCharacterName)
         {
             var privateChat = await GetOrCreatePrivateChatAsync();
-            if (privateChat != null)
+            if (privateChat is not null)
             {
                 if (OpenChat(privateChat))
                 {
@@ -163,7 +165,7 @@
                     hasSupporterPack: Api.Client.MasterServer.IsSupporterPackOwner));
 
             var chatRoomHolder = (ILogicObject)chatRoom.GameObject;
-            Instance.CallServer(_ => _.ServerRemote_ClientSendMessage(chatRoomHolder, message));
+            Instance.CallServer(_ => _.ServerRemote_SendMessage(chatRoomHolder, message));
         }
 
         public static void ClientSetPrivateChatRead(ChatRoomPrivate privateChatRoom)
@@ -188,6 +190,32 @@
             return chatRoomHolder;
         }
 
+        [CanBeNull]
+        public static ILogicObject ServerFindPrivateChat(ICharacter character, string otherCharacterName)
+        {
+            if (!ServerPrivateChatRoomsCache.TryGetValue(character, out var currentCharacterChatRooms))
+            {
+                return null;
+            }
+
+            var nameA = character.Name;
+            var nameB = otherCharacterName;
+
+            foreach (var existingChatRoomHolder in currentCharacterChatRooms)
+            {
+                var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(existingChatRoomHolder);
+                if ((chatRoom.CharacterA == nameA
+                     && chatRoom.CharacterB == nameB)
+                    || (chatRoom.CharacterB == nameA
+                        && chatRoom.CharacterA == nameB))
+                {
+                    return existingChatRoomHolder;
+                }
+            }
+
+            return null;
+        }
+
         public static void ServerRemoveChatRoomFromPlayerScope(ICharacter character, ILogicObject chatRoomHolder)
         {
             if (character.ServerIsOnline)
@@ -201,12 +229,18 @@
             ServerSendServiceMessage(sharedGlobalChatRoomHolder, message);
         }
 
-        public static void ServerSendServiceMessage(ILogicObject chatRoomHolder, string message)
+        public static void ServerSendServiceMessage(
+            ILogicObject chatRoomHolder,
+            string message,
+            string forCharacterName = null,
+            ICharacter customDestinationCharacter = null)
         {
-            var charactersDestination = SharedGetChatRoom(chatRoomHolder)
-                .ServerEnumerateMessageRecepients(forPlayer: null);
+            var charactersDestination = customDestinationCharacter is null
+                                            ? SharedGetChatRoom(chatRoomHolder)
+                                                .ServerEnumerateMessageRecepients(forPlayer: null)
+                                            : new[] { customDestinationCharacter };
 
-            var chatEntry = new ChatEntry(from: null,
+            var chatEntry = new ChatEntry(from: forCharacterName,
                                           message,
                                           isService: true,
                                           DateTime.Now,
@@ -222,31 +256,24 @@
             return chatRoomHolder.GetPrivateState<ChatRoomHolder.ChatRoomPrivateState>().ChatRoom;
         }
 
+        [RemoteCallSettings(timeInterval: 1)]
         public ILogicObject ServerRemote_CreatePrivateChatRoom(string inviteeName)
         {
             var currentCharacter = ServerRemoteContext.Character;
             var currentCharacterName = currentCharacter.Name;
 
-            if (ServerPrivateChatRoomsCache.TryGetValue(currentCharacter, out var currentCharacterChatRooms))
+            var existingChatRoomHolder = ServerFindPrivateChat(currentCharacter, inviteeName);
+            if (existingChatRoomHolder is not null)
             {
-                foreach (var existingChatRoomHolder in currentCharacterChatRooms)
-                {
-                    var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(existingChatRoomHolder);
-                    if ((chatRoom.CharacterA == currentCharacterName
-                         && chatRoom.CharacterB == inviteeName)
-                        || (chatRoom.CharacterB == currentCharacterName
-                            && chatRoom.CharacterA == inviteeName))
-                    {
-                        Logger.Warning(
-                            $"Private chat room already exist between players {currentCharacter} and {inviteeName}",
-                            currentCharacter);
-                        return existingChatRoomHolder;
-                    }
-                }
+                Logger.Warning(
+                    $"Private chat room already exist between players {currentCharacter} and {inviteeName}",
+                    currentCharacter);
+
+                return existingChatRoomHolder;
             }
 
             var inviteeCharacter = Server.Characters.GetPlayerCharacter(inviteeName);
-            if (inviteeCharacter == null)
+            if (inviteeCharacter is null)
             {
                 throw new Exception($"Private chat room cannot be created - character not found {inviteeName}");
             }
@@ -273,11 +300,27 @@
             return chatRoomHolder;
         }
 
+        /// <summary>
+        /// This method produces player going online/offline notification messages into the chat rooms.
+        /// </summary>
         private static void ClientPlayerJoinedOrLeftHandler(OnlinePlayersSystem.Entry entry, bool isOnline)
         {
-            var name = entry.Name;
-            if (name == Client.Characters.CurrentPlayerCharacter.Name
+            if (OnlinePlayersSystem.ClientIsListHidden
+                && !ServerOperatorSystem.ClientIsOperator()
+                && !ServerModeratorSystem.ClientIsModerator()
+                && !PartySystem.ClientIsPartyMember(entry.Name))
+            {
+                return;
+            }
+
+            if (!OnlinePlayersSystem.ClientIsReady
                 || sharedGlobalChatRoomHolder is null)
+            {
+                return;
+            }
+
+            var name = entry.Name;
+            if (name == Client.Characters.CurrentPlayerCharacter.Name)
             {
                 return;
             }
@@ -361,7 +404,7 @@
         private static void ServerLogNewChatEntry(uint chatRoomId, string message, string fromPlayerName)
         {
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            var text = $"ChatId={chatRoomId} From=\"{fromPlayerName}\":{Environment.NewLine}{message}";
+            var text = $@"ChatId={chatRoomId} From=""{fromPlayerName}"":{Environment.NewLine}{message}";
             Logger.Important(text);
             Server.Core.AddChatLogEntry(text);
         }
@@ -415,7 +458,6 @@
                               hasSupporterPack: false));
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
         private void ClientRemote_ReceiveMessage(
             [NotNull] ILogicObject chatRoomHolderObject,
             ChatEntry chatEntry)
@@ -431,6 +473,7 @@
             ClientReceiveChatEntry(chatRoomHolderObject, chatEntry);
         }
 
+        [RemoteCallSettings(timeInterval: 0.5)]
         private void ServerRemote_ClientClosePrivateChat(ILogicObject chatRoomHolder)
         {
             var character = ServerRemoteContext.Character;
@@ -447,6 +490,8 @@
             chatRoom.ServerSetCloseByCharacter(character);
         }
 
+        [RemoteCallSettings(timeInterval: 1,
+                            clientMaxSendQueueSize: 60)]
         private void ServerRemote_ClientReadPrivateChat(ILogicObject chatRoomHolder)
         {
             var character = ServerRemoteContext.Character;
@@ -462,12 +507,35 @@
             chatRoom.ServerSetReadByCharacter(character);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
-        private void ServerRemote_ClientSendMessage(
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
+        private void ServerRemote_RequestChatRooms()
+        {
+            var character = ServerRemoteContext.Character;
+
+            ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
+            if (ServerIsTradeChatRoomEnabled)
+            {
+                ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
+            }
+
+            ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
+
+            if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
+            {
+                foreach (var chatRoomHolder in characterPrivateChatRooms)
+                {
+                    ServerAddChatRoomToPlayerScope(character, chatRoomHolder);
+                }
+            }
+        }
+
+        [RemoteCallSettings(timeInterval: 2,
+                            clientMaxSendQueueSize: 20)]
+        private void ServerRemote_SendMessage(
             ILogicObject chatRoomHolder,
             string message)
         {
-            Api.Assert(chatRoomHolder != null, "Chat room not found");
+            Api.Assert(chatRoomHolder is not null, "Chat room not found");
 
             var character = ServerRemoteContext.Character;
             var characterName = character.Name;
@@ -512,27 +580,6 @@
             ServerLogNewChatEntry(chatRoomHolder.Id, message, characterName);
         }
 
-        private void ServerRemote_RequestChatRooms()
-        {
-            var character = ServerRemoteContext.Character;
-
-            ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
-            if (ServerIsTradeChatRoomEnabled)
-            {
-                ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
-            }
-
-            ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
-
-            if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
-            {
-                foreach (var chatRoomHolder in characterPrivateChatRooms)
-                {
-                    ServerAddChatRoomToPlayerScope(character, chatRoomHolder);
-                }
-            }
-        }
-
         private void ServerSendMessage(
             ILogicObject chatRoomHolderObject,
             ChatEntry chatEntry,
@@ -566,7 +613,7 @@
                     sharedGlobalChatRoomHolder = null;
                     sharedTradeChatRoomHolder = null;
 
-                    if (Api.Client.Characters.CurrentPlayerCharacter != null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         Instance.CallServer(_ => _.ServerRemote_RequestChatRooms());
                     }
@@ -629,8 +676,8 @@
                             var characterA = Server.Characters.GetPlayerCharacter(privateChatRoom.CharacterA);
                             var characterB = Server.Characters.GetPlayerCharacter(privateChatRoom.CharacterB);
 
-                            if (characterA == null
-                                || characterB == null)
+                            if (characterA is null
+                                || characterB is null)
                             {
                                 // incorrect private chat room
                                 ServerWorld.DestroyObject(chatRoomHolder);
@@ -641,11 +688,6 @@
                             ServerAddPrivateChatRoomToCharacterCache(characterB, chatRoomHolder);
                         }
                     });
-            }
-
-            private static void ServerWorldBoundsChangedHandler()
-            {
-                ServerLoadSystem();
             }
         }
     }

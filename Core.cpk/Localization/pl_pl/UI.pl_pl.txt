@@ -101,6 +101,9 @@ Zapisz
 UI/CoreStrings@Button_Upgrade:
 Ulepsz
 
+UI/CoreStrings@CannotSelectDateInThePast:
+Nie można wybrać daty w przeszłości.
+
 UI/CoreStrings@CharacterStatName_Food:
 Żywność
 
@@ -200,6 +203,9 @@ Ta struktura magazynuje elektryczność.
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Tej konstrukcji nie można przenieść po wybudowaniu.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Skontaktuj się z administratorem serwera.
 
 UI/CoreStrings@Copy:
 Kopiuj
@@ -699,6 +705,9 @@ Ten serwer jest modyfikowany przez osoby trzecie. Możesz zauważyć istotne zmi
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 ZMODYFIKOWANY
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+Ten serwer nie zezwala na modyfikacje klientów. Wszystkie mody klientów zostaną wyłączone u wszystkich graczy.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Jest to jeden z oficjalnych serwerów CryoFall udostępnianych przez twórców.
 
@@ -1086,6 +1095,19 @@ Gracze
 UI/CoreStrings@ServerWipedDate:
 Czyszczenie
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Następne czyszczenie:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+Nie określono informacji o czyszczeniu.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`Na tym serwerze nie stosuje się standardowego harmonogramu czyszczenia. Jest on czyszczony wyłącznie po premierze nowych wersji gry. Zapoznaj się z oficjalnymi aktualizacjami gry, aby dowiedzieć się więcej na temat premier dużych wersji.
+[br]Uwaga: Wszystkie dane (dotyczy danych postaci i świata) zostaną zresetowane po zaktualizowaniu serwera do nowej dużej wersji.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Uruchomienie serwera:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 Nie można wykonać tej czynności w bazie chronionej tarczą.
 
@@ -1172,6 +1194,9 @@ Szacowany czas:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Maks. czas:
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+Ochrona przed najazdem w trybie offline nie jest dostępna dla tej działki, ponieważ w całości znajduje się na terenie innej bazy zapewniającej własną ochronę.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 Osłona będzie aktywna za {0}, o ile operacja nie zostanie przerwana (np. anulowana przez właściciela bazy lub przerwana przez najeźdźców z blokadą najazdów).
@@ -1292,6 +1317,12 @@ Wyszukaj...
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+Godzinę przeliczono na czas lokalny (UTC{0}).
+
+UI/CoreStrings@TimeRemains:
+Pozostały czas
 
 UI/CoreStrings@Title:
 Nazwa
@@ -1908,6 +1939,11 @@ Właśnie wyczyszczono
 
 UI/CoreStrings@WipedDate_Yesterday:
 Wczoraj
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`Uwaga: Czyszczenie serwera nie odbywa się automatycznie!
+[br]Należy ręcznie zatrzymać jego działanie i usunąć zapis gry.
+[br]W tym menu można po prostu poinformować graczy.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Poznana mapa

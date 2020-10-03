@@ -68,7 +68,7 @@
         protected void DisposeCollection<TItem>(IReadOnlyCollection<TItem> collection)
             where TItem : BaseViewModel
         {
-            if (collection == null
+            if (collection is null
                 || collection.Count == 0)
             {
                 return;
@@ -127,12 +127,12 @@
                 }
 
                 var fieldValue = fieldInfo.GetValue(this);
-                if (fieldValue == null)
+                if (fieldValue is null)
                 {
                     continue;
                 }
 
-                if (fieldInfo.GetCustomAttribute<ViewModelNotAutoDisposeField>() != null)
+                if (fieldInfo.GetCustomAttribute<ViewModelNotAutoDisposeField>() is not null)
                 {
                     continue;
                 }

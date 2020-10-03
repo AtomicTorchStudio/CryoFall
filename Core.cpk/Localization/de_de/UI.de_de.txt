@@ -101,6 +101,9 @@ Speichern
 UI/CoreStrings@Button_Upgrade:
 Erweitern
 
+UI/CoreStrings@CannotSelectDateInThePast:
+Kein zurückliegendes Datum auswählbar.
+
 UI/CoreStrings@CharacterStatName_Food:
 Nahrung
 
@@ -200,6 +203,9 @@ Diese Konstruktion speichert Strom.
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Dieses Gebäude kann nach dem Bau nicht mehr verschoben werden.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Bitte wende dich an den Server-Administrator.
 
 UI/CoreStrings@Copy:
 Kopieren
@@ -699,6 +705,9 @@ Dieser Server benutzt Fremdmodifikationen. Möglicherweise gibt es wesentliche A
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 GEMODDET
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+Dieser Server erlaubt keine Client-Modifikationen. Client-Mods sind für alle Spieler deaktiviert.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Dies ist einer der offiziellen CryoFall-Server, der von den Entwicklern gehostet wird.
 
@@ -1086,6 +1095,19 @@ Spieler
 UI/CoreStrings@ServerWipedDate:
 Letzter Wipe
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Nächster Wipe:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+Wipe-Informationen sind nicht angegeben.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`Dieser Server folgt keinem regelmäßigen Wipe-Zeitplan. Ein Wipe findet nur statt, wenn eine neue Spielversion veröffentlicht wurde. Bitte achte auf offizielle Projektupdates, um von neuen, wichtigen Projektversionen zu erfahren.
+[br]Achtung: Alle Serverdaten (einschließlich der Welt- und Charakterdaten) werden zurückgesetzt, sobald der Server auf eine neue Hautpversion geuptdatet wird.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Server gestartet:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 Diese Aktion kann auf einer durch ein Schild geschützten Basis nicht ausgeführt werden.
 
@@ -1172,6 +1194,9 @@ Geschätzte Dauer:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Max. Dauer:
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+Das Offline-Raid-Schutzschild steht diesem Land Claim nicht zur Verfügung, da es sich vollständig in einer anderen Basis befindet, die über ihr eigenes Schutzschild verfügt.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 Dieses Schild aktiviert sich in {0}, sofern der Vorgang nicht abgebrochen wird (beispielsweise durch den Besitzer der Basis oder indem Angreifer den Vorgang durch einen Raidblock unterbrechen).
@@ -1292,6 +1317,12 @@ Suche ...
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+Uhrzeit entspricht bereits deiner lokalen Zeitzone (UTC{0}).
+
+UI/CoreStrings@TimeRemains:
+Verbleibende Zeit
 
 UI/CoreStrings@Title:
 Titel
@@ -1908,6 +1939,11 @@ Gerade gewiped
 
 UI/CoreStrings@WipedDate_Yesterday:
 Gestern
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`Achtung: Der Wipe wird nicht automatisch ausgeführt!
+[br]Du musst den Server manuell stoppen und den Spielstand löschen.
+[br]Dieses Menü erlaubt es dir lediglich, Spieler zu informieren.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Karte erkundet

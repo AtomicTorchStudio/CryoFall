@@ -27,7 +27,7 @@
 
         public void SelectFirstTab()
         {
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 this.viewModel.SelectedTab = (TabItem)this.tabControl.Items[0];
             }
@@ -46,7 +46,7 @@
             // local helper method for getting options tab order
             IEnumerable<ProtoOptionsCategory> GetOptionsCategoryOrder(ProtoOptionsCategory tab)
             {
-                if (tab.OrderAfterCategory != null)
+                if (tab.OrderAfterCategory is not null)
                 {
                     yield return tab.OrderAfterCategory;
                 }

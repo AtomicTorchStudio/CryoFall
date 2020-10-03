@@ -41,7 +41,7 @@
             isInitialized = true;
             clientStorageListBlocked = Client.Storage.GetStorage(nameof(ClientChatBlockList));
             if (!clientStorageListBlocked.TryLoad(out clientListBlocked)
-                || clientListBlocked == null)
+                || clientListBlocked is null)
             {
                 clientListBlocked = new HashSet<string>();
             }

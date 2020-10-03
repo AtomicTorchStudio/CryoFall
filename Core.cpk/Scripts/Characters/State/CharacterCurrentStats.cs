@@ -42,7 +42,7 @@
                 return;
             }
 
-            if (damageSource != null)
+            if (damageSource is not null)
             {
                 // it's important to register the damage source before the damage is applied
                 // (to use it in case of the subsequent death)
@@ -78,7 +78,7 @@
                 return;
             }
 
-            if (damageSource != null)
+            if (damageSource is not null)
             {
                 // it's important to register the damage source before the damage is applied
                 // (to use it in case of the subsequent death)

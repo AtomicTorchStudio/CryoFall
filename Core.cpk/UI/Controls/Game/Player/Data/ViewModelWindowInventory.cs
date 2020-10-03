@@ -147,7 +147,7 @@
         private void RefreshItemInHandUseText()
         {
             var protoUsableItem = this.containerHand.GetItemAtSlot(0)?.ProtoItem as IProtoItemUsableFromContainer;
-            if (protoUsableItem == null)
+            if (protoUsableItem is null)
             {
                 this.ItemInHandUseText = null;
                 return;
@@ -159,14 +159,14 @@
         private void RefreshVisibilityHeadAndLegsSlots()
         {
             var chestItem = this.ContainerEquipment.GetItemAtSlot((byte)EquipmentType.Armor);
-            var hasFullBodyArmor = chestItem != null
+            var hasFullBodyArmor = chestItem is not null
                                    && chestItem.ProtoGameObject is IProtoItemEquipment protoEquipment
                                    && protoEquipment.EquipmentType == EquipmentType.FullBody;
 
             // hide head and legs slot when full body armor is equipped
             this.IsHeadSlotBlocked = hasFullBodyArmor;
 
-            var hasHeadEquipment = this.ContainerEquipment.GetItemAtSlot((byte)EquipmentType.Head) != null;
+            var hasHeadEquipment = this.ContainerEquipment.GetItemAtSlot((byte)EquipmentType.Head) is not null;
             this.HasHeadEquipmentOrFullBodyArmorEquipped = hasFullBodyArmor || hasHeadEquipment;
         }
     }

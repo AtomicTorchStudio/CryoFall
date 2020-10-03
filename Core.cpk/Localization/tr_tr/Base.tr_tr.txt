@@ -214,3 +214,12 @@ Balıkçılık başarısı
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Yakıt tüketimi
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+Koşamaz
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+Saldıramaz
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+Soğuma süresindeyken medikal eşya kullanamaz
+

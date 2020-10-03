@@ -171,7 +171,7 @@
 
                 foreach (var chunk in selectedChunks)
                 {
-                    if (chunk.Layers != null
+                    if (chunk.Layers is not null
                         && chunk.LayersHashCode == newChunkLayersHashCode
                         && chunk.Layers.SequenceEqual(newChunkLayers))
                     {
@@ -187,7 +187,7 @@
                     }
                 }
 
-                if (wallChunkPreset == null)
+                if (wallChunkPreset is null)
                 {
                     // new chunk preset
                     wallChunkPreset =
@@ -229,7 +229,7 @@
                     "Floor combinations calculated, total: {0} all combinations, {1} selected combinations, with unique atlas chunks {2} combinations.",
                     allCombinations.Count,
                     selectedChunks.Count,
-                    selectedChunks.Count(c => c.Layers != null)));
+                    selectedChunks.Count(c => c.Layers is not null)));
             return wallChunkTypes;
         }
 
@@ -329,7 +329,7 @@
 
             foreach (var variant in wallChunkTypes.Values)
             {
-                if (variant.Layers == null)
+                if (variant.Layers is null)
                 {
                     // reusing layers from another chunk
                     continue;

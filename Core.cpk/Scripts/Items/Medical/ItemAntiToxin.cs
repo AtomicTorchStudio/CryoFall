@@ -13,6 +13,8 @@
 
         public const string NotificationNoToxins_Title = "No toxins";
 
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "This emergency toxin exposure treatment could immediately reduce any effects of accumulated toxins in the body.";
 
@@ -23,7 +25,7 @@
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.40);
+                .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.50);
         }
 
         protected override bool SharedCanUse(ICharacter character, PlayerCharacterCurrentStats currentStats)

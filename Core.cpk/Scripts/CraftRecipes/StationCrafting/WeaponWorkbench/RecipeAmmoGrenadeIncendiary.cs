@@ -23,7 +23,7 @@
             inputItems.Add<ItemNitrocellulosePowder>(count: 30);
             inputItems.Add<ItemCanisterGasoline>(count: 2);
 
-            outputItems.Add<ItemAmmoGrenadeIncendiary>(count: 4);
+            outputItems.Add<ItemAmmoGrenadeIncendiary>(count: 5);
             outputItems.Add<ItemCanisterEmpty>(count: 2);
         }
     }

@@ -12,8 +12,6 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
-        public override float HealthRestore => 3;
-
         public override string Name => "Meat and mushrooms stew";
 
         public override ushort OrganicValue => 10;

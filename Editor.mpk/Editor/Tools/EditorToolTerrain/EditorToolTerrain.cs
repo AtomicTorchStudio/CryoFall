@@ -4,11 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes;
+    using AtomicTorch.CBND.CoreMod.Tiles;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -39,7 +42,7 @@
         public override FrameworkElement CreateSettingsControl()
         {
             var control = new EditorToolTerrainSettings();
-            if (this.settings == null)
+            if (this.settings is null)
             {
                 this.settings = new ViewModelEditorToolTerrainSettings();
                 this.settings.BrushSettingsChanged += this.BrushSettingsChangedHandler;
@@ -61,10 +64,17 @@
             items.Add(new EditorToolTerrainItem(null));
 
             foreach (var protoTile in groundProtos
-                                      .Where(t => t.EditorIconTexture != null)
+                                      .Where(t => t.EditorIconTexture is not null)
                                       .OrderBy(t => t.Kind)
                                       .ThenBy(t => t.ShortId))
             {
+                if (protoTile is IProtoTileWater protoTileWater
+                    && ReferenceEquals(protoTileWater.BridgeProtoTile, protoTile))
+                {
+                    // ignore bridges
+                    continue;
+                }
+                
                 items.Add(new EditorToolTerrainItem(protoTile));
             }
         }
@@ -303,6 +313,7 @@
                             chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk))));
         }
 
+        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceAt(IList<TileModifyRequest> modifyRequests)
         {
             if (modifyRequests.Count == 0)

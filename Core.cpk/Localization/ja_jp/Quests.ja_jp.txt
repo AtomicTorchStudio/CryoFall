@@ -153,8 +153,8 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
 始めたばかりのときからお世話になっている松明も良いですが、より使いやすいもの（明るいもの）にアップグレードしたいと思います。ランタンとフロアランプを作る時が来ました！
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
-`[*] ランタンは、松明よりもはるかに[b]広い範囲[/b]を照らし、より安定した光を提供します。
-[*] ランタンもフロアランプもキャンプの燃料を使って光を作り出しています。燃え尽きるだけの松明とは異なり、[b]何度も補充できます[/b]。
+`[*] ランタンは、松明よりもはるかに[b]広い範囲を照らし[/b]、より安定した光を提供します。
+[*] ランタンもフロアランプもキャンプ燃料を使って光を作り出しています。燃え尽きるだけの松明とは異なり、[b]何度も補充できます[/b]。
 [*] キャンプ用燃料（ランプオイルとも呼ばれる）を作る方法は2つあります。動物性脂肪と石油製品のどちらかからです。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:

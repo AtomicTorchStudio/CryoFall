@@ -151,7 +151,7 @@
                     }
 
                     var inputItemRecipe = RecipesHelper.FindFirstRecipe(inputItem.ProtoItem);
-                    if (inputItemRecipe == null)
+                    if (inputItemRecipe is null)
                     {
                         // no recipe
                         var entry = new ProtoItemWithCountFractional(inputItem.ProtoItem,

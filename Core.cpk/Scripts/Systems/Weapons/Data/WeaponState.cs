@@ -33,7 +33,7 @@
 
         public double ReadySecondsRemains;
 
-        public uint? ServerLastClientReportedShotsDoneCount;
+        public uint ServerLastClientReportedShotsDoneCount;
 
         public uint ShotsDone;
 
@@ -65,6 +65,14 @@
             }
         }
 
+        public void ClearFiringStateData()
+        {
+            this.ShotsDone = 0;
+            this.ServerLastClientReportedShotsDoneCount = 0;
+            this.CustomTargetPosition = null;
+            //Api.Logger.Dev("ClearFiringStateData()");
+        }
+
         public bool SharedGetInputIsFiring()
         {
             if (Api.IsClient)
@@ -77,33 +85,21 @@
                 return true;
             }
 
-            return this.ServerLastClientReportedShotsDoneCount.HasValue
-                   && this.ShotsDone < this.ServerLastClientReportedShotsDoneCount;
+            return this.ShotsDone < this.ServerLastClientReportedShotsDoneCount;
         }
 
-        public void SharedSetInputIsFiring(
-            bool inputIsFiring,
-            uint? shotsDone = null)
+        public void SharedSetInputIsFiring(bool inputIsFiring)
         {
             this.inputIsFiring = inputIsFiring;
             //Api.Logger.Dev($"Set is firing: {inputIsFiring}, ServerLastClientReportedShotsDoneCount: {shotsDone}");
-
-            if (inputIsFiring
-                || Api.IsClient)
-            {
-                this.ServerLastClientReportedShotsDoneCount = null;
-                return;
-            }
-
-            this.ServerLastClientReportedShotsDoneCount = shotsDone;
         }
 
         public void SharedSetWeaponItem(IItem item, IProtoItemWeapon protoItem)
         {
-            if (item != null)
+            if (item is not null)
             {
                 protoItem = item.ProtoGameObject as IProtoItemWeapon;
-                item = protoItem != null ? item : null;
+                item = protoItem is not null ? item : null;
             }
 
             if (this.ItemWeapon == item
@@ -119,12 +115,8 @@
             this.IsEventWeaponStartSent = false;
             this.IsIdleAutoReloadingAllowed = true;
 
-            this.ShotsDone = 0;
-            this.ServerLastClientReportedShotsDoneCount = 0;
-            this.CustomTargetPosition = null;
-
-            // cancel firing input
             this.SharedSetInputIsFiring(false);
+            this.ClearFiringStateData();
 
             if (Api.IsClient)
             {

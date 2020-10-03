@@ -24,7 +24,7 @@
         {
             var infos = this.StructureInfos;
             this.StructureInfos = null;
-            if (infos != null)
+            if (infos is not null)
             {
                 this.DisposeCollection(infos);
             }
@@ -90,7 +90,7 @@
                     return;
                 }
 
-                if (protoStructure != null)
+                if (protoStructure is not null)
                 {
                     this.Icon = Client.UI.GetTextureBrush(this.ProtoStructure.Icon);
                 }

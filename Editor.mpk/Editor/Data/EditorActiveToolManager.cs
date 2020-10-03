@@ -15,13 +15,13 @@
 
         public static void SetActiveTool(BaseEditorTool tool, BaseEditorToolItem item)
         {
-            if (activeTool != null)
+            if (activeTool is not null)
             {
                 activeTool.Dispose();
                 activeTool = null;
             }
 
-            if (tool == null)
+            if (tool is null)
             {
                 return;
             }

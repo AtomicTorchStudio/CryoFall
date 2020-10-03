@@ -22,7 +22,7 @@
 
         public event Action IsOpenedChanged;
 
-        public bool IsOpened => currentMenuWindow != null;
+        public bool IsOpened => currentMenuWindow is not null;
 
         public static void Open()
         {

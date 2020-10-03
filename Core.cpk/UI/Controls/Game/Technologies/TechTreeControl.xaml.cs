@@ -59,13 +59,13 @@
 
         private void UpdateTechGroup()
         {
-            if (this.viewModel == null)
+            if (this.viewModel is null)
             {
                 return;
             }
 
             this.viewModel.TechGroup = this.TechGroup?.TechGroup;
-            if (this.viewModel.TechGroup == null)
+            if (this.viewModel.TechGroup is null)
             {
                 return;
             }

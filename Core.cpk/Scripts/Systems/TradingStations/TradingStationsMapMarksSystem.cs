@@ -257,7 +257,7 @@
                 void ClientTryRequestMarks()
                 {
                     ClientTradingStationMarksList.Clear();
-                    if (Api.Client.Characters.CurrentPlayerCharacter != null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         Instance.CallServer(_ => _.ServerRemote_RequestMarks());
                     }

@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Save:
 UI/CoreStrings@Button_Upgrade:
 업그레이드
 
+UI/CoreStrings@CannotSelectDateInThePast:
+과거 날짜는 선택할 수 없습니다.
+
 UI/CoreStrings@CharacterStatName_Food:
 식량
 
@@ -200,6 +203,9 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 이 구조물은 지어지면 이동시킬 수 없습니다.
+
+UI/CoreStrings@ConsultServerAdministrator:
+서버 관리자에게 문의하시기 바랍니다.
 
 UI/CoreStrings@Copy:
 복사
@@ -699,6 +705,9 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 모드
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+이 서버는 클라이언트 수정을 허용하지 않습니다. 모든 플레이어의 클라이언트 모드가 전부 비활성화됩니다.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 개발자들이 호스트하는 CryoFall 공식 서버 중 하나입니다.
 
@@ -1086,6 +1095,19 @@ UI/CoreStrings@ServerPlayersCount:
 UI/CoreStrings@ServerWipedDate:
 청소
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]다음 비우기:[/b] {0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+정보 비우기를 설정하지 않습니다.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`이 서버는 정기적인 정보 비우기 일정을 따르지 않고 새 게임 버전이 나올 때만 정보를 비웁니다. 새로운 메이저 버전에 대해 알고 싶으시다면, 공식 프로젝트 업데이트를 확인해주시기 바랍니다.
+[br]참고: 서버가 새로운 메이저 버전으로 업데이트되면, (월드와 캐릭터 데이터를 포함한) 모든 서버 데이터가 초기화됩니다.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]서버 시작:[/b] {0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 실드 보호를 받고 있는 기지에서는 이 작업을 수행할 수 없습니다.
 
@@ -1172,6 +1194,9 @@ UI/CoreStrings@ShieldProtection_EstimatedDuration:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 최대 지속 시간:
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+이 토지 점유소가 자체적으로 오프라인 습격 보호 실드를 제공하는 다른 기지 안에 있으므로 오프라인 습격 보호 실드를 사용할 수 없습니다.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 지장(예: 기지 주인이 취소하거나 습격 방해 상태인 습격자의 방해 등)을 받지 않는 한 실드가 {0} 후에 활성화됩니다. unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).
@@ -1292,6 +1317,12 @@ UI/CoreStrings@TextBoxSearchPlaceholder:
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+시간 이 이미 현지 표준시간대(UTC{0})로 변환되었습니다.
+
+UI/CoreStrings@TimeRemains:
+남은 시간
 
 UI/CoreStrings@Title:
 제목
@@ -1908,6 +1939,11 @@ UI/CoreStrings@WipedDate_JustWiped:
 
 UI/CoreStrings@WipedDate_Yesterday:
 어제
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`참고: 정보 비우기 작업이 자동으로 수행되지 않습니다!
+[br]서버를 수동으로 정지한 후, 저장된 게임을 삭제해야 합니다.
+[br]이 메뉴는 플레이어에게 단순히 알리기만 할 뿐, 그 밖의 작업은 수행하지 않습니다.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 탐험한 지도

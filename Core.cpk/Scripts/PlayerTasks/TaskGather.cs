@@ -66,7 +66,7 @@
         private void ServerOnGatherHandler(ICharacter character, IStaticWorldObject worldObject)
         {
             var context = this.GetActiveContext(character, out var state);
-            if (context == null)
+            if (context is null)
             {
                 return;
             }

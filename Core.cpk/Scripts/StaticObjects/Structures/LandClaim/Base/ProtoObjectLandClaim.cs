@@ -293,7 +293,7 @@
             var founderName = LandClaimArea.GetPrivateState(currentLandClaimArea).LandClaimFounder;
 
             var result = ObjectLandClaimCanUpgradeCheckResult.Success;
-            if (upgradeEntry == null)
+            if (upgradeEntry is null)
             {
                 result = ObjectLandClaimCanUpgradeCheckResult.ErrorUnknown;
             }
@@ -417,7 +417,7 @@
                 damageApplied = 0;
 
                 if (IsServer
-                    && weaponCache.Character != null)
+                    && weaponCache.Character is not null)
                 {
                     var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
                     areaPrivateState.IsDestroyedByPlayers = true;
@@ -436,7 +436,7 @@
         void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
             var area = LandClaimSystem.ServerGetLandClaimArea((IStaticWorldObject)worldObject);
-            if (area == null)
+            if (area is null)
             {
                 // area could be null in the Editor for the land claim without owners
                 return;
@@ -456,7 +456,7 @@
         void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
             var area = LandClaimSystem.ServerGetLandClaimArea((IStaticWorldObject)worldObject);
-            if (area == null)
+            if (area is null)
             {
                 // area could be null in the Editor for the land claim without owners
                 return;
@@ -590,7 +590,7 @@
 
             var worldObject = (IStaticWorldObject)targetObject;
             var publicState = GetPublicState(worldObject);
-            if (byCharacter != null
+            if (byCharacter is not null
                 && (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, byCharacter)
                     || CreativeModeSystem.SharedIsInCreativeMode(byCharacter)))
             {
@@ -607,7 +607,7 @@
                 }
             }
 
-            if (byCharacter != null)
+            if (byCharacter is not null)
             {
                 var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
                 areaPrivateState.IsDestroyedByPlayers = true;

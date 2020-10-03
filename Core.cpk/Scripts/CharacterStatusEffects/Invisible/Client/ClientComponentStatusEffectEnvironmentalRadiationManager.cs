@@ -38,7 +38,7 @@
                 targetIntensity = value;
 
                 if (targetIntensity > 0
-                    && instance == null)
+                    && instance is null)
                 {
                     // ensure instance exist       
                     instance = Client.Scene.CreateSceneObject("Radiation visualizer")

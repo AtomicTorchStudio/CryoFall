@@ -183,7 +183,7 @@
             {
                 var character = (ICharacter)targetObject;
                 var vehicle = GetPublicState(character).CurrentVehicle;
-                if (vehicle != null)
+                if (vehicle is not null)
                 {
                     var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
                     protoVehicle.ServerOnPilotDamage(weaponCache,
@@ -308,12 +308,12 @@
                                       .SharedGetItemSoundPreset();
                 previousSelectedProtoItem = currentItem?.ProtoItem;
 
-                if (itemSoundPreset != null)
+                if (itemSoundPreset is not null)
                 {
                     itemSoundPreset.PlaySound(ItemSound.Select, character);
 
                     var idleSoundResource = itemSoundPreset.GetSound(ItemSound.Idle);
-                    if (idleSoundResource != null)
+                    if (idleSoundResource is not null)
                     {
                         currentItemIdleSoundEmitter.SoundResource = idleSoundResource;
                         currentItemIdleSoundEmitter.Delay = 0.1;
@@ -556,10 +556,10 @@
             var physicsBody = data.PhysicsBody;
             var currentVehicle = publicState.CurrentVehicle;
             var protoVehicle = currentVehicle?.ProtoGameObject as IProtoVehicle;
-            if (protoVehicle != null)
+            if (protoVehicle is not null)
             {
                 protoVehicle.SharedGetSkeletonProto(currentVehicle, out var skeleton, out _);
-                if (skeleton != null)
+                if (skeleton is not null)
                 {
                     // do not create any physics for a character in vehicle (vehicle has its own physics)
                     physicsBody.AttachedToPhysicsBody = currentVehicle.PhysicsBody;
@@ -607,7 +607,7 @@
             out ProtoCharacterSkeleton protoSkeleton,
             ref double scale)
         {
-            if (character == null)
+            if (character is null)
             {
                 protoSkeleton = SkeletonHumanMale.Value;
                 return;

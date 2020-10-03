@@ -32,7 +32,7 @@
         {
             get
             {
-                if (this.cachedIcon != null)
+                if (this.cachedIcon is not null)
                 {
                     return this.cachedIcon.Value;
                 }
@@ -56,7 +56,7 @@
             get => this.taskTarget;
             set
             {
-                if (this.taskTarget != null)
+                if (this.taskTarget is not null)
                 {
                     throw new Exception("Target object is already associated with this task");
                 }
@@ -67,7 +67,10 @@
 
         protected virtual string AutoDescription { get; }
 
-        public virtual ITextureResource ClientCreateIcon() => null;
+        public virtual ITextureResource ClientCreateIcon()
+        {
+            return null;
+        }
 
         public PlayerTaskState CreateState()
         {
@@ -84,7 +87,7 @@
             if (state.IsCompleted
                 && !this.IsReversible)
             {
-                // was already completed - don't change
+                // was already completed and cannot be reversed - don't change
                 return;
             }
 
@@ -95,14 +98,13 @@
                 return;
             }
 
-            if (!wasCompleted)
-            {
-                Api.Logger.Info("Task completed: " + this, character);
-            }
-            else
-            {
-                Api.Logger.Info("Reversible task became incomplete: " + this, character);
-            }
+            Api.Logger.Info((wasCompleted
+                                 ? "Reversible task became incomplete: "
+                                 : "Task completed: ")
+                            + this
+                            + " for "
+                            + this.taskTarget,
+                            character);
         }
 
         public void ServerRegisterOrUnregisterContext(ServerPlayerActiveTask context)
@@ -138,7 +140,7 @@
 
         protected ServerPlayerActiveTask GetActiveContext(ICharacter character, out TState state)
         {
-            if (character == null)
+            if (character is null)
             {
                 state = default;
                 return null;

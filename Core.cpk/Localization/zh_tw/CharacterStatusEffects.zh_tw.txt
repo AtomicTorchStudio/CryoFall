@@ -163,6 +163,15 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 嗨
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+請等待冷卻時間結束。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+你剛剛使用過了醫療物品。在冷卻時間結束前無法再次使用。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+醫療冷卻
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 你過量使用了醫療道具，現在受到了生命值損傷。
 

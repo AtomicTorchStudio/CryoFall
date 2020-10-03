@@ -66,10 +66,10 @@
         {
             this.ViewModel = new ViewModelRecipesBrowserRecipeDetails(
                 onSelected:
-                this.CommandRecipeSelected == null
+                this.CommandRecipeSelected is null
                     ? (Action)null
                     : () => this.CommandRecipeSelected.Execute(this.Recipe.Recipe),
-                onCancel: this.CommandCancel == null ? (Action)null : () => this.CommandCancel.Execute(null));
+                onCancel: this.CommandCancel is null ? (Action)null : () => this.CommandCancel.Execute(null));
 
             this.layoutRoot.DataContext = this.ViewModel;
 

@@ -51,7 +51,7 @@
                 return 0;
             }
 
-            if (weaponCache.ProtoExplosive != null
+            if (weaponCache.ProtoExplosive is not null
                 && targetObject is IStaticWorldObject targetStaticWorldObject)
             {
                 // special case - apply the explosive damage to static object
@@ -97,7 +97,7 @@
                 // apply PvP damage multiplier
                 totalDamage *= WeaponConstants.DamagePvpMultiplier;
             }
-            else if (damagingCharacter != null
+            else if (damagingCharacter is not null
                      && !damagingCharacter.IsNpc
                      && targetObject.ProtoGameObject
                          is IProtoCharacterMob protoCharacterMob
@@ -106,17 +106,23 @@
                 // apply PvE damage multiplier
                 totalDamage *= WeaponConstants.DamagePveMultiplier;
             }
-            else if (damagingCharacter != null
+            else if (damagingCharacter is not null
                      && damagingCharacter.IsNpc)
             {
                 // apply creature damage multiplier
                 totalDamage *= WeaponConstants.DamageCreaturesMultiplier;
 
-                if (targetObject is ICharacter victim
-                    && !victim.ServerIsOnline
-                    && !victim.IsNpc)
+                if (damagingCharacter.ProtoGameObject
+                        is IProtoCharacterMob protoCharacterMob2
+                    && protoCharacterMob2.IsBoss)
                 {
-                    // don't deal creature damage to offline players
+                    // boss could always apply damage (even to offline player characters)
+                }
+                else if (targetObject is ICharacter victim
+                         && !victim.ServerIsOnline
+                         && !victim.IsNpc)
+                {
+                    // don't deal creature damage to offline player characters
                     totalDamage = 0;
                 }
             }
@@ -142,7 +148,7 @@
 
             var damagingCharacter = weaponCache.Character;
             if (!targetCharacter.IsNpc
-                && damagingCharacter != null
+                && damagingCharacter is not null
                 && NewbieProtectionSystem.SharedIsNewbie(damagingCharacter))
             {
                 // no PvP damage by newbie
@@ -158,7 +164,7 @@
             if (Api.IsClient)
             {
                 // we don't simulate the damage on the client side
-                if (damagingCharacter != null)
+                if (damagingCharacter is not null)
                 {
                     // potentially a PvP case
                     PveSystem.ClientShowDuelModeRequiredNotificationIfNecessary(
@@ -169,7 +175,7 @@
                 return true;
             }
 
-            if (damagingCharacter != null
+            if (damagingCharacter is not null
                 && damagingCharacter.IsNpc
                 && targetCharacter.IsNpc)
             {
@@ -248,11 +254,11 @@
             totalDamage = Math.Min(totalDamage, 5 * targetCurrentStats.HealthMax);
 
             // apply damage
-            if (!(attackerCharacter is null))
+            if (attackerCharacter is not null)
             {
                 targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: attackerCharacter);
             }
-            else if (weaponCache.ProtoExplosive != null)
+            else if (weaponCache.ProtoExplosive is not null)
             {
                 targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: weaponCache.ProtoExplosive);
             }
@@ -372,9 +378,9 @@
                                               .PilotCharacter;
             }
 
-            isPvPcase = targetCharacter != null
+            isPvPcase = targetCharacter is not null
                         && !targetCharacter.IsNpc
-                        && damagingCharacter != null
+                        && damagingCharacter is not null
                         && !damagingCharacter.IsNpc;
 
             if (!isPvPcase)
@@ -406,7 +412,7 @@
             // Let's check whether the players in the same party
             // to detect the friendly fire in a non-explosive damage case.
             var targetParty = PartySystem.ServerGetParty(targetCharacter);
-            if (targetParty == null)
+            if (targetParty is null)
             {
                 // PvP damage allowed as it's not a friendly fire case
                 return false;

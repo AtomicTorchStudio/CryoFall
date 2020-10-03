@@ -6,6 +6,7 @@
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -87,9 +88,25 @@
             private set => this.SetProperty(ref this.isFlickerScheduled, value);
         }
 
-        public bool IsIntensityPercentVisible => this.protoStatusEffect.IsIntensityPercentVisible;
+        public bool IsIconIntensityPercentVisible
+            => this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.IconShowIntensityPercent);
+
+        public bool IsIconPlaceholderVisible
+            => !this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.IconShowIntensityPercent)
+               && !this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.IconShowTimeRemains);
+
+        public bool IsIconTimeRemainsVisible
+            => this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.IconShowTimeRemains);
+
+        public bool IsTooltipIntensityPercentVisible
+            => this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.TooltipShowIntensityPercent);
+
+        public bool IsTooltipTimeRemainsVisible
+            => this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.TooltipShowTimeRemains);
 
         public IProtoStatusEffect ProtoStatusEffect => this.protoStatusEffect;
+
+        public string TimeRemains { get; private set; }
 
         public string Title => this.protoStatusEffect.Name;
 
@@ -207,8 +224,17 @@
         private void UpdateIntensity()
         {
             var intensity = this.publicState.Intensity;
-            var percent = (byte)Math.Ceiling(intensity * 100);
-            this.IntensityPercent = percent;
+
+            if (this.protoStatusEffect.IntensityAutoDecreasePerSecondValue > 0)
+            {
+                var secondsRemains = intensity / this.protoStatusEffect.IntensityAutoDecreasePerSecondValue;
+                this.TimeRemains = secondsRemains > 60
+                                       ? ClientTimeFormatHelper.FormatTimeDuration(secondsRemains)
+                                       : Math.Ceiling(secondsRemains).ToString("F0")
+                                         + ClientTimeFormatHelper.SuffixSeconds;
+            }
+
+            this.IntensityPercent = (byte)Math.Ceiling(intensity * 100);
 
             var wasVisible = this.Visibility == Visibility.Visible;
             var isVisible = intensity >= this.protoStatusEffect.VisibilityIntensityThreshold;

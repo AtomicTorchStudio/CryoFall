@@ -169,7 +169,7 @@
         {
             var textureResource = this.DefaultTexture;
             var textureAtlas = textureResource as TextureAtlasResource;
-            if (textureAtlas == null)
+            if (textureAtlas is null)
             {
                 // not a texture atlas - always use whole texture
                 return textureResource;
@@ -218,7 +218,7 @@
             clientState.LastGrowthStage = publicState.GrowthStage;
             clientState.Renderer.TextureResource = this.ClientGetTexture(worldObject, publicState);
 
-            if (clientState.RendererShadow != null)
+            if (clientState.RendererShadow is not null)
             {
                 clientState.RendererShadow.Scale = this.CalculateShadowScale(clientState);
             }
@@ -310,7 +310,7 @@
             float currentStructurePoints)
         {
             var character = weaponCache.Character;
-            if (character != null
+            if (character is not null
                 && !(weaponCache.ProtoWeapon is IProtoItemWeaponRanged)
                 && WorldObjectClaimSystem.SharedIsEnabled)
             {
@@ -343,7 +343,7 @@
                                                           weaponCache.ProtoExplosive);
 
                 var objectDrone = weaponCache.Drone;
-                if (objectDrone != null)
+                if (objectDrone is not null)
                 {
                     // drop resources into the internal storage of the drone
                     var storageItemsContainer = ((IProtoDrone)objectDrone.ProtoGameObject)

@@ -33,7 +33,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
         public string Execute()
         {
             var player = this.ExecutionContextCurrentCharacter;
-            if (player == null)
+            if (player is null)
             {
                 return "This command cannot be executed directly from the server console";
             }

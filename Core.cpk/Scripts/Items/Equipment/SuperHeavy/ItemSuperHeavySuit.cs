@@ -116,10 +116,9 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            // cannot run
-            effects.AddPercent(this, StatName.MoveSpeedRunMultiplier, -100);
+            effects.AddPerk(this, StatName.PerkCannotRun);
 
-            // movement speed
+            // -10% movement speed
             effects.AddPercent(this, StatName.MoveSpeed, -10);
         }
 
@@ -176,7 +175,7 @@
             if (!clientState.IsNightVisionActive)
             {
                 // turn effect off
-                if (component != null)
+                if (component is not null)
                 {
                     component.Destroy();
                     skeletonComponents.Remove(component);
@@ -186,7 +185,7 @@
             }
 
             // turn effect on
-            if (component != null)
+            if (component is not null)
             {
                 return;
             }

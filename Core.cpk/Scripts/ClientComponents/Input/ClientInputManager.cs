@@ -178,14 +178,14 @@
             {
                 var memberInfo = enumType.ScriptingGetMember(button.ToString())[0];
                 var buttonInfo = memberInfo.GetCustomAttribute<ButtonInfoAttribute>();
-                if (buttonInfo == null)
+                if (buttonInfo is null)
                 {
                     throw new Exception(
                         $"There is no {nameof(ButtonInfoAttribute)} on button {button} (enum {enumType.FullName})");
                 }
 
                 var description = memberInfo.GetCustomAttribute<DescriptionAttribute>();
-                if (description == null)
+                if (description is null)
                 {
                     throw new Exception(
                         $"There is no {nameof(DescriptionAttribute)} on button {button} (enum {enumType.FullName})");

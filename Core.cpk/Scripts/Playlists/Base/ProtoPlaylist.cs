@@ -51,7 +51,7 @@
 
                 foreach (var track in tracks)
                 {
-                    if (track == null)
+                    if (track is null)
                     {
                         throw new Exception("Null reference provided as track");
                     }

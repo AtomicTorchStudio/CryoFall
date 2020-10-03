@@ -91,7 +91,7 @@
         {
             var enumType = typeof(TFlag);
             var declaringType = enumType.DeclaringType;
-            if (declaringType == null)
+            if (declaringType is null)
             {
                 throw new Exception(
                     $"Cannot use this enum type for HasSkillFlag check - {enumType.FullName} - it should be created as the inner type for skill class");

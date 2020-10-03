@@ -11,8 +11,17 @@
     {
         public const double MinimumIntensityWhenLowHealth = 0.1;
 
+        /// <summary>
+        /// Pain intensity drops quickly when it's high.
+        /// </summary>
         public const double PainIntensityAutoDecreasePerSecondFraction
-            = 1.0 / 100.0; // 100 seconds
+            = 1.0 / 100.0; // drops on 1% (from current pain intensity) per second
+
+        /// <summary>
+        /// Additionally pain intensity drops every second on a fixed amount.
+        /// </summary>
+        private const double PainIntensityAutoDecreasePerSecondValue
+            = 2.0 / 100.0; // drops on 2% (fixed amount) per second 
 
         public override string Description =>
             "You are in severe pain, which reduces your stamina regeneration and prevents health regeneration. Find some painkillers or tough it out.";
@@ -21,7 +30,7 @@
 
         public override string Name => "Severe pain";
 
-        public override double ServerUpdateIntervalSeconds => 0.5;
+        public override double ServerUpdateIntervalSeconds => 1.0;
 
         protected override void ClientDeinitialize(StatusEffectData data)
         {
@@ -70,10 +79,15 @@
             }
         }
 
+        /// <summary>
+        /// Please note that this method is called once a second (see ServerUpdateIntervalSeconds)
+        /// so multiplication on deltaTime is not necessary.
+        /// </summary>
         protected override void ServerUpdate(StatusEffectData data)
         {
             // calculate new intensity
-            var newIntensity = data.Intensity * (1 - PainIntensityAutoDecreasePerSecondFraction) - 0.01;
+            var newIntensity = data.Intensity * (1 - PainIntensityAutoDecreasePerSecondFraction)
+                               - PainIntensityAutoDecreasePerSecondValue;
             var minIntensity = IsLowHealth(data.Character) ? MinimumIntensityWhenLowHealth : 0;
             data.Intensity = Math.Max(minIntensity, newIntensity);
         }

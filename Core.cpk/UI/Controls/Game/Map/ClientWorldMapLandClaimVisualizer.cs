@@ -124,7 +124,7 @@
 
             public void Dispose()
             {
-                if (this.markControl != null)
+                if (this.markControl is not null)
                 {
                     this.worldMapController.RemoveControl(this.markControl);
                     this.markControl = null;

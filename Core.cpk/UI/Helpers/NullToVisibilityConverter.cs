@@ -12,7 +12,7 @@
             // ReSharper disable once PossibleNullReferenceException
             var isAvailable = value is string str
                                   ? !string.IsNullOrEmpty(str)
-                                  : value != null;
+                                  : value is not null;
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             if (parameter as string == "Reverse")
             {

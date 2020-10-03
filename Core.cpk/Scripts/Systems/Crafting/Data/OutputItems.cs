@@ -35,7 +35,7 @@
                 }
 
                 CreateItemResult createItemResult;
-                if (character != null)
+                if (character is not null)
                 {
                     createItemResult = character.ProtoCharacter.ServerCreateItem(character,
                                                                                  outputItem.ProtoItem,

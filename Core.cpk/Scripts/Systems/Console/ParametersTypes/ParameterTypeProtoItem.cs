@@ -14,7 +14,7 @@
         protected override List<IProtoItem> GetProtoEntitiesList()
         {
             return FindProtoEntities<IProtoItem>()
-                   .Where(e => e.Icon != null)
+                   .Where(e => e.Icon is not null)
                    .OrderBy(i => i.ShortId, StringComparer.OrdinalIgnoreCase)
                    .ToList();
         }

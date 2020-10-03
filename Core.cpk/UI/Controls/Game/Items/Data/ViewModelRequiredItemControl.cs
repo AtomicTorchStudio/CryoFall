@@ -68,14 +68,14 @@
         public void Refresh()
         {
             this.RefreshCount();
-            this.CountVisibility = this.protoItemWithCount != null ? Visibility.Visible : Visibility.Hidden;
+            this.CountVisibility = this.protoItemWithCount is not null ? Visibility.Visible : Visibility.Hidden;
             this.Icon = Client.UI.GetTextureBrush(this.protoItemWithCount?.ProtoItem.Icon);
             this.NotifyPropertyChanged(nameof(this.Title));
         }
 
         public void RefreshCount()
         {
-            if (this.protoItemWithCount == null)
+            if (this.protoItemWithCount is null)
             {
                 this.VisualStateName = StateNameDefault;
                 this.CountString = "--";

@@ -19,8 +19,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         public string Execute([CurrentCharacterIfNull] ICharacter character)
         {
+            if (ServerOperatorSystem.ServerIsOperator(character.Name))
+            {
+                return character.Name + " is already a server operator";
+            }
+
             ServerOperatorSystem.ServerAdd(character);
-            return null;
+            return character.Name + " added to the server operators list";
         }
     }
 }

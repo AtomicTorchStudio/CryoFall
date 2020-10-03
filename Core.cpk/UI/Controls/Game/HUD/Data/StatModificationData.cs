@@ -32,7 +32,7 @@
         }
 
         public Visibility EffectTextVisibility
-            => this.StatName.GetAttribute<StatNameHiddenValueAttribute>() == null
+            => this.StatName.GetAttribute<StatNameHiddenValueAttribute>() is null
                    ? Visibility.Visible
                    : Visibility.Collapsed;
 

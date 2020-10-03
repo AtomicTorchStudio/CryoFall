@@ -37,7 +37,7 @@
 
         private void DestroyViewModel()
         {
-            if (this.viewModel == null)
+            if (this.viewModel is null)
             {
                 return;
             }
@@ -55,7 +55,7 @@
                 return;
             }
 
-            if (this.viewModel != null)
+            if (this.viewModel is not null)
             {
                 if (this.privateState == this.viewModel.PrivateState)
                 {
@@ -66,7 +66,7 @@
                 this.DestroyViewModel();
             }
 
-            if (this.privateState == null)
+            if (this.privateState is null)
             {
                 return;
             }

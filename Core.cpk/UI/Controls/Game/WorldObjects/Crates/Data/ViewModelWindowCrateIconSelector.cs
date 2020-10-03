@@ -113,7 +113,7 @@
         private List<ViewItemWithIcon> ApplyFilter(List<IProtoItem> items)
         {
             // and all items without icons (which are not really actual items):
-            items.RemoveAll(i => i.Icon == null);
+            items.RemoveAll(i => i.Icon is null);
 
             var search = this.searchText.Trim();
             if (search.Length > 0)

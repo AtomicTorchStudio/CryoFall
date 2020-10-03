@@ -19,7 +19,7 @@
             this.craftingQueue = ClientCurrentCharacterHelper.PrivateState?.CraftingQueue;
             this.DestroyViewModel();
 
-            if (this.craftingQueue != null
+            if (this.craftingQueue is not null
                 && this.isLoaded)
             {
                 this.CreateViewModel();
@@ -54,7 +54,7 @@
 
         private void DestroyViewModel()
         {
-            if (this.viewModel == null)
+            if (this.viewModel is null)
             {
                 return;
             }

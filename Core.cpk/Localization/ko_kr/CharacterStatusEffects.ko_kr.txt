@@ -163,6 +163,15 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 들뜸
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+쿨타임이 끝날 때까지 기다려주세요.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+최근에 의료 아이템을 사용하였습니다. 쿨타임이 끝날 때까지 의료 아이템을 다시 사용할 수 없습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+의료 아이템 쿨타임
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 약물 아이템을 과용하여 체력에 대미지를 입었습니다.
 

@@ -169,8 +169,14 @@ Coloque-a num poço ou coletor de água para enchê-la de água limpa.
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Células de combustível são usadas para alimentar veículos distintos.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+Segure \[b]Alt\[/b] ou \[b]Ctrl\[/b] enquanto atira para disparar a uma distância máxima na direção do cursor em vez de atirar na posição do cursor.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Implantes só podem ser instalados no posto médico.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+Nunca consumido
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Este item usa energia dos carregadores portáteis equipados.
@@ -216,6 +222,12 @@ Este pacote de ferramentas úteis de caçador agiliza saquear qualquer criatura.
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Ferramentas de caçador
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Pequeno designador laser de alvos usado para facilitar a mira de longo alcance.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Mira laser
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Armazena grandes quantidades de energia para uso conveniente em movimento. Qualquer dispositivo ou arma de energia pode extrair energia dos carregadores portáteis equipados.

@@ -166,7 +166,7 @@
 
         private void OnPositionChanged()
         {
-            if (this.validateCallback == null)
+            if (this.validateCallback is null)
             {
                 return;
             }
@@ -187,7 +187,7 @@
                 return;
             }
 
-            if (this.validateCallback == null
+            if (this.validateCallback is null
                 || this.validateCallback(positions))
             {
                 this.selectedCallback(positions, isRepeat);

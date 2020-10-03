@@ -53,7 +53,7 @@
         {
             get
             {
-                if (this.item == null)
+                if (this.item is null)
                 {
                     return Visibility.Collapsed;
                 }
@@ -73,7 +73,7 @@
 
         public string Title => this.item?.ProtoItem.Name ?? "Item title";
 
-        public Visibility Visibility => this.item == null && !IsDesignTime
+        public Visibility Visibility => this.item is null && !IsDesignTime
                                             ? Visibility.Collapsed
                                             : Visibility.Visible;
 
@@ -94,7 +94,7 @@
 
         private void UnsubscribeFromEvents()
         {
-            if (this.item != null)
+            if (this.item is not null)
             {
                 this.item.CountChanged -= this.ItemCountChangedHandler;
             }

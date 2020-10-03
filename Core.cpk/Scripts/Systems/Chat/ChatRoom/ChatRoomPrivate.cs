@@ -99,13 +99,13 @@
         public override IEnumerable<ICharacter> ServerEnumerateMessageRecepients(ICharacter forPlayer)
         {
             var characterA = Api.Server.Characters.GetPlayerCharacter(this.CharacterA);
-            if (characterA != null)
+            if (characterA is not null)
             {
                 yield return characterA;
             }
 
             var characterB = Api.Server.Characters.GetPlayerCharacter(this.CharacterB);
-            if (characterB != null)
+            if (characterB is not null)
             {
                 yield return characterB;
             }

@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -54,7 +55,7 @@
             }
 
             var container = item.Container;
-            if (container == null)
+            if (container is null)
             {
                 // should be impossible - abandoned item
                 return;
@@ -126,7 +127,7 @@
             var privateState = item.GetPrivateState<IItemWithFreshnessPrivateState>();
 
             var container = item.Container;
-            if (container == null)
+            if (container is null)
             {
                 // should be impossible - abandoned item
                 return double.NaN;
@@ -228,7 +229,7 @@
         public static bool SharedIsRefrigerated(IItem item)
         {
             var container = item.Container;
-            if (container == null)
+            if (container is null)
             {
                 // should be impossible - abandoned item
                 return false;
@@ -251,12 +252,14 @@
             return freshnessDecreaseCoefficient < 1.0;
         }
 
-        // TODO: move this to separate system in A28
+        // TODO: move this to separate system in A29
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         public double ServerRemote_RequestFarmPlantsSpoilSpeedMultiplier()
         {
             return FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier;
         }
 
+        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         public double ServerRemote_RequestFreshnessDecaySpeedMultiplier()
         {
             return ServerFreshnessDecaySpeedMultiplier;

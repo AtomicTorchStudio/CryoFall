@@ -23,7 +23,7 @@
 
         private static HudNotificationControl currentNotification;
 
-        public static bool IsNearOrInsideBaseUnderRaidblock => !(currentNotification is null);
+        public static bool IsNearOrInsideBaseUnderRaidblock => currentNotification is not null;
 
         private static string GetNotificationText(double timeRemains)
         {
@@ -42,7 +42,7 @@
             var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(position,    addGracePadding: false)
                              ?? LandClaimSystem.SharedGetLandClaimAreasGroup(position, addGracePadding: true);
 
-            var lastRaidTime = areasGroup != null
+            var lastRaidTime = areasGroup is not null
                                    ? LandClaimAreasGroup.GetPublicState(areasGroup).LastRaidTime ?? double.MinValue
                                    : double.MinValue;
 
@@ -61,7 +61,7 @@
 
             // raid here, display/update notification
             var text = GetNotificationText(timeRemainsToRaidEnd);
-            if (currentNotification != null
+            if (currentNotification is not null
                 && !currentNotification.IsHiding)
             {
                 currentNotification.Message = text;

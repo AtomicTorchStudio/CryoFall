@@ -48,7 +48,7 @@
 
                 this.selectedTool = value;
 
-                if (this.selectedTool != null)
+                if (this.selectedTool is not null)
                 {
                     this.selectedTool.IsSelected = true;
                 }

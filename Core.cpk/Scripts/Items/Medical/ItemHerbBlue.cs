@@ -7,6 +7,8 @@
 
     public class ItemHerbBlue : ProtoItemMedical, IProtoItemOrganic
     {
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+
         public override string Description =>
             "Medicinal herb used as a catalyst for complex medical recipes. Should not be taken raw, as it contains toxins.";
 

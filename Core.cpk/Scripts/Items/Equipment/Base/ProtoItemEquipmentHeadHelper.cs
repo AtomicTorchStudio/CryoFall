@@ -21,7 +21,7 @@
             var skeletonName = skeletonResource?.SkeletonName;
             foreach (var slot in slotAttachments)
             {
-                if (slot.SkeletonName != null
+                if (slot.SkeletonName is not null
                     && slot.SkeletonName != skeletonName)
                 {
                     continue;

@@ -81,7 +81,7 @@
                     return;
                 }
 
-                if (this.source != null)
+                if (this.source is not null)
                 {
                     this.source.ClientElementInserted -= this.SourceListElementInsertedHandler;
                     this.source.ClientElementRemoved -= this.SourceListElementRemovedHandler;
@@ -215,7 +215,7 @@
                     }
 
                     ClientTimersSystem.AddAction(
-                        1.5,
+                        ViewModelWindowCompletionist.NewEntryNotificationDelay,
                         () =>
                         {
                             NotificationSystem.ClientShowNotification(

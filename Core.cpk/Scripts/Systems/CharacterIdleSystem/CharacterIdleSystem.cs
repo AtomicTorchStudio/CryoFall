@@ -137,7 +137,7 @@
             }
 
             // idle player
-            if (this.clientNotificationIsIdle != null
+            if (this.clientNotificationIsIdle is not null
                 && !this.clientNotificationIsIdle.IsHiding)
             {
                 return;

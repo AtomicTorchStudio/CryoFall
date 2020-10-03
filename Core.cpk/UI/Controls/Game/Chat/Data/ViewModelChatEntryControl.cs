@@ -52,7 +52,7 @@
             this.chatEntry = chatEntry;
             ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
 
-            if (brushFromCurrentPlayer == null)
+            if (brushFromCurrentPlayer is null)
             {
                 brushFromCurrentPlayer = (Brush)resources.TryFindResource("ChatBrushFromCurrentPlayer");
                 brushFromOtherPlayer = (Brush)resources.TryFindResource("ChatBrushFromOtherPlayer");
@@ -302,7 +302,7 @@
                                       : brushFromOtherPlayer;
 
             // convert timestamp of the chat entry to the local DateTime
-            var date = TimeZone.CurrentTimeZone.ToLocalTime(this.chatEntry.UtcDate);
+            var date = this.chatEntry.UtcDate.ToLocalTime();
             inlines.Add(new Run(date.ToString(ShortTimePattern)
                                     .Replace(' ', NoBreakSpace)
                                 + NoBreakSpace)

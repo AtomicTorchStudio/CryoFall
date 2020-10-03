@@ -112,7 +112,7 @@
         public virtual double RangeMultiplier => 1;
 
         /// <inheritdoc />
-        public virtual double ReadyDelayDuration => 1;
+        public abstract double ReadyDelayDuration { get; }
 
         public IProtoItemAmmo ReferenceAmmoProto
         {
@@ -211,7 +211,7 @@
             var projectilesCount = fireScatterPreset.ProjectileAngleOffets.Length;
             volume *= (float)Math.Pow(1.0 / projectilesCount, 0.35);
 
-            if (hitWorldObject != null)
+            if (hitWorldObject is not null)
             {
                 this.SoundPresetHit.PlaySound(
                     objectMaterial,
@@ -253,7 +253,7 @@
 
         public virtual void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)
         {
-            if (container == null
+            if (container is null
                 || container.IsDestroyed)
             {
                 return;
@@ -276,7 +276,7 @@
                 count: ammoCount,
                 slotId: slotId);
             if (result.IsEverythingCreated
-                || container.OwnerAsCharacter == null)
+                || container.OwnerAsCharacter is null)
             {
                 // spawned successfully or the owner is not a character
                 return;
@@ -311,13 +311,13 @@
                 return;
             }
 
-            if (weaponItem != null)
+            if (weaponItem is not null)
             {
                 ServerItemUseObserver.NotifyItemUsed(character, weaponItem);
             }
 
             var shouldDegrade = true;
-            if (this.WeaponSkillProto != null)
+            if (this.WeaponSkillProto is not null)
             {
                 // get degradation probability
                 var probability = character.SharedGetFinalStatMultiplier(
@@ -345,7 +345,7 @@
 
             // weapon uses ammo
             var itemWeapon = weaponState.ItemWeapon;
-            if (itemWeapon == null)
+            if (itemWeapon is null)
             {
                 return false;
             }
@@ -588,7 +588,7 @@
                 }
 
                 var traceTexture = tracePreset.TraceTexture;
-                if (traceTexture != null)
+                if (traceTexture is not null)
                 {
                     Client.Rendering.PreloadTextureAsync(traceTexture);
                 }
@@ -603,7 +603,7 @@
 
             var hasAmmo = this.CompatibleAmmoProtos.Count > 0;
 
-            if (item != null
+            if (item is not null
                 && hasAmmo)
             {
                 controls.Add(ItemTooltipCurrentAmmoControl.Create(item));
@@ -667,7 +667,7 @@
             }
 
             if (this.CompatibleAmmoProtos.Count == 0
-                && overrideDamageDescription == null)
+                && overrideDamageDescription is null)
             {
                 throw new Exception(
                     $"The weapon {this} doesn't have ammo and overrideDamageDescription is null.");
@@ -757,10 +757,10 @@
                 || probability > 0 && RandomHelper.RollWithProbability(probability))
             {
                 // the special effect has been rolled - try to apply it
-                if (weapon != null)
+                if (weapon is not null)
                 {
                     var protoItemAmmo = GetPrivateState(weapon).CurrentProtoItemAmmo;
-                    if (protoItemAmmo == null
+                    if (protoItemAmmo is null
                         || !protoItemAmmo.IsSuppressWeaponSpecialEffect)
                     {
                         // call special effect for the weapon proto

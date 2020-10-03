@@ -130,7 +130,7 @@
                 tempStatsCache.AddPercent(this, statName, statEffect.CalcTotalPercentBonus(level));
             }
 
-            if (tempStatsCache != null)
+            if (tempStatsCache is not null)
             {
                 statsCache.Merge(tempStatsCache);
                 tempStatsCache.Dispose();
@@ -435,17 +435,17 @@
             {
                 try
                 {
-                    if (this.Category == null)
+                    if (this.Category is null)
                     {
                         throw new Exception("Skill category is not set");
                     }
 
-                    if (this.FormulaExperiencePerLevel == null)
+                    if (this.FormulaExperiencePerLevel is null)
                     {
                         throw new Exception(nameof(this.FormulaExperiencePerLevel) + " is not set");
                     }
 
-                    if (this.MaxLevel == null)
+                    if (this.MaxLevel is null)
                     {
                         throw new Exception("MaxLevel is not set");
                     }

@@ -71,7 +71,7 @@
 
             <DataTemplate x:Key="ServerInfoEntryItemTemplateMenuHome"
                           DataType="{x:Type data1:ViewModelServerInfoListEntry}">
-                <!-- Enter sound is bugged due to the template reusing -->
+                <!-- Enter sound sounds not good when hovering over a long list -->
                 <!--core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"-->
                 <Grid Background="Transparent"
                       core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
@@ -88,11 +88,13 @@
                         <ColumnDefinition Width="{StaticResource ColumnWidthFavorite}" />
                     </Grid.ColumnDefinitions>
 
-                    <Rectangle Width="{StaticResource ServerIconSize}"
+                    <Rectangle Grid.Column="0"
+                               Width="{StaticResource ServerIconSize}"
                                Height="{StaticResource ServerIconSize}"
                                Fill="#11FFFFFF" />
 
-                    <Rectangle Width="{StaticResource ServerIconSize}"
+                    <Rectangle Grid.Column="0"
+                               Width="{StaticResource ServerIconSize}"
                                Height="{StaticResource ServerIconSize}"
                                Fill="{Binding Icon}" />
 
@@ -113,19 +115,24 @@
                                      Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                             <Control Template="{StaticResource BlockCommunityMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+                                     Visibility="{Binding IsCommunity, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                            <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                            <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
-                                     Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <!-- In order to save some space, don't display this tag -->
+                            <!-- <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}" -->
+                            <!--          Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" /> -->
+                            
+                            <!-- In order to save some space, don't display this tag -->
+                            <!-- <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}" -->
+                            <!--          Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" /> -->
 
                             <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
                                      Visibility="{Binding IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                             <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
                                      Visibility="{Binding IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            
+                            <Control Template="{StaticResource BlockNoClientModsMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsNoClientModsAllowed, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </StackPanel>
                     </Grid>
 
@@ -138,7 +145,8 @@
                                Text="{Binding PlayersText}"
                                Style="{StaticResource TextBlockServerStatStyle}" />
 
-                    <Rectangle Grid.ColumnSpan="8"
+                    <Rectangle Grid.Column="0"
+                               Grid.ColumnSpan="7"
                                Visibility="{Binding IncompatibleVisibility}"
                                Fill="#77330000"
                                Margin="-2,-1"

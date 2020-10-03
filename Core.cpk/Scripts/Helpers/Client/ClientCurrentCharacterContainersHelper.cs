@@ -27,7 +27,7 @@
                     return;
                 }
 
-                if (subscribedContainers != null)
+                if (subscribedContainers is not null)
                 {
                     // unsubscribe
                     foreach (var container in subscribedContainers)
@@ -41,7 +41,7 @@
 
                 subscribedContainers = value;
 
-                if (subscribedContainers != null)
+                if (subscribedContainers is not null)
                 {
                     // subscribe
                     foreach (var container in subscribedContainers)
@@ -57,7 +57,7 @@
 
         public static void Init(ICharacter newCurrentCharacter)
         {
-            if (currentCharacter != null)
+            if (currentCharacter is not null)
             {
                 throw new Exception("Already initialized");
             }
@@ -76,7 +76,7 @@
 
         public static void Reset()
         {
-            if (currentCharacter == null)
+            if (currentCharacter is null)
             {
                 return;
             }

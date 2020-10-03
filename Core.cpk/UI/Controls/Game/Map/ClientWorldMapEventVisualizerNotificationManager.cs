@@ -173,7 +173,7 @@
 
             private void TryCreateNotification()
             {
-                if (this.notification != null)
+                if (this.notification is not null)
                 {
                     return;
                 }
@@ -184,7 +184,7 @@
                     return;
                 }
 
-                if (!(this.notification is null))
+                if (this.notification is not null)
                 {
                     // notification already exist
                     return;

@@ -13,7 +13,7 @@
         {
             get
             {
-                if (this.componentPlayerInputSender == null)
+                if (this.componentPlayerInputSender is null)
                 {
                     // create and attach input sender component to the player scene object
                     var sceneObject = ((IWorldObject)this.GameObject).ClientSceneObject;

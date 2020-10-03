@@ -15,11 +15,18 @@
 
         public override string Description => "You are dazed! Give it a few moments to get your senses back.";
 
+        public override StatusEffectDisplayMode DisplayMode
+            => StatusEffectDisplayMode.IconShowTimeRemains
+               | StatusEffectDisplayMode.TooltipShowIntensityPercent
+               | StatusEffectDisplayMode.TooltipShowTimeRemains;
+
         public override double IntensityAutoDecreasePerSecondValue => 1 / MaxDuration;
 
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
         public override string Name => "Dazed";
+
+        public override double ServerUpdateIntervalSeconds => 0.1;
 
         public static bool SharedIsCharacterDazed(ICharacter character, string clientMessageIfDazed)
         {
@@ -52,11 +59,10 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            // -50% move speed
-            effects.AddPercent(this, StatName.MoveSpeed, -50);
+            effects.AddPerk(this, StatName.PerkCannotRun);
 
-            // cannot run
-            effects.AddPercent(this, StatName.MoveSpeedRunMultiplier, -100);
+            // -50% movement speed
+            effects.AddPercent(this, StatName.MoveSpeed, -50);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)

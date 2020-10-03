@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Scripts
 {
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -15,7 +16,7 @@
         public static void ClientTeleport(Vector2D worldPosition)
         {
             Client.World.SetPosition(Client.Characters.CurrentPlayerCharacter, worldPosition, forceReset: true);
-            instance.CallServer(_ => _.ServerRemote_ServerTeleport(worldPosition));
+            instance.CallServer(_ => _.ServerRemote_Teleport(worldPosition));
         }
 
         protected override void PrepareProto()
@@ -24,7 +25,8 @@
             instance = this;
         }
 
-        private void ServerRemote_ServerTeleport(Vector2D worldPosition)
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
+        private void ServerRemote_Teleport(Vector2D worldPosition)
         {
             Server.World.SetPosition(ServerRemoteContext.Character, worldPosition);
         }

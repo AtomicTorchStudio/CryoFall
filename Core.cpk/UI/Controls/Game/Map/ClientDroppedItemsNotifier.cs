@@ -26,7 +26,7 @@
 
         public static void Init(ICharacter character)
         {
-            if (droppedItemsLocations != null)
+            if (droppedItemsLocations is not null)
             {
                 droppedItemsLocations.ClientElementInserted -= MarkerAddedHandler;
                 droppedItemsLocations.ClientElementRemoved -= MarkerRemovedHandler;

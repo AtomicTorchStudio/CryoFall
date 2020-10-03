@@ -24,11 +24,8 @@
         private static readonly List<IWorldObject> TempResult
             = new List<IWorldObject>(capacity: 512);
 
-        public sealed override double IntensityAutoDecreasePerSecondFraction =>
-            0; // doesn't decrease via base implementation
-
-        public sealed override double IntensityAutoDecreasePerSecondValue =>
-            0; // doesn't decrease via base implementation
+        public sealed override double IntensityAutoDecreasePerSecondValue
+            => 0; // doesn't decrease via base implementation
 
         public override double ServerUpdateIntervalSeconds => 0.5;
 

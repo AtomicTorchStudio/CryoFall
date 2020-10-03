@@ -6,6 +6,8 @@
 
     public class ItemStrengthBoostSmall : ProtoItemMedical
     {
+        public override double CooldownDuration => MedicineCooldownDuration.None;
+
         public override string Description =>
             "Strength-boost medicine makes you temporarily stronger, increasing performance in physical tasks.";
 

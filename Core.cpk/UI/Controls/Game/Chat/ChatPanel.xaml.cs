@@ -11,7 +11,9 @@
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -239,6 +241,7 @@
             this.MouseDown += this.MouseButtonDownHandler;
             ClientInputManager.ButtonKeyMappingUpdated += this.ClientInputManagerButtonKeyMappingUpdatedHandler;
             Api.Client.CurrentGame.ConnectionStateChanged += this.CurrentGameOnConnectionStateChangedHandler;
+            ClientUpdateHelper.UpdateCallback += this.Update;
 
             this.RefreshState();
         }
@@ -251,6 +254,7 @@
             this.MouseDown -= this.MouseButtonDownHandler;
             ClientInputManager.ButtonKeyMappingUpdated -= this.ClientInputManagerButtonKeyMappingUpdatedHandler;
             Api.Client.CurrentGame.ConnectionStateChanged -= this.CurrentGameOnConnectionStateChangedHandler;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
         }
 
         private static int CompareTabs(TabItem tabA, TabItem tabB)
@@ -421,6 +425,21 @@
             else
             {
                 this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Update()
+        {
+            if (!this.IsActive
+                || WindowsManager.OpenedWindowsCount > 0
+                || !MainMenuOverlay.IsHidden)
+            {
+                return;
+            }
+
+            foreach (var entry in this.chatRooms)
+            {
+                entry.Value.ChatRoomControl.FocusInputIfNecessary();
             }
         }
 

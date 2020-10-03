@@ -56,7 +56,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
                 }
 
                 var character = ServerTrySpawnMob(position);
-                if (character == null)
+                if (character is null)
                 {
                     // cannot spawn there
                     continue;

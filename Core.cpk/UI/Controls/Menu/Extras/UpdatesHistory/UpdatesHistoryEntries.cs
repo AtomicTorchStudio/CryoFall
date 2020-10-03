@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Windows.Media;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -11,6 +12,10 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
+            new Entry("A28—Justice Update",
+                      new DateTime(2020, month: 9, day: 25),
+                      "Updates/A28.jpg"),
+
             new Entry("A27—Total Overhaul Update",
                       new DateTime(2020, month: 7, day: 16),
                       "Updates/A27.jpg"),
@@ -63,7 +68,8 @@
             public DateTime DateValue { get; }
 
             public TextureBrush Image
-                => Api.Client.UI.GetTextureBrush(new TextureResource(this.TextureImagePath));
+                => Api.Client.UI.GetTextureBrush(new TextureResource(this.TextureImagePath), 
+                                                 Stretch.Uniform);
 
             public string TextureImagePath { get; }
 

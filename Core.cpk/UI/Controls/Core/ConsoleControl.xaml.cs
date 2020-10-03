@@ -115,7 +115,7 @@
                 // 2) Player is not a server operator or moderator.
                 // 3) And developer mode is off.
                 // Close console if opened, never open it.
-                if (Instance != null)
+                if (Instance is not null)
                 {
                     Instance.IsDisplayed = false;
                 }
@@ -123,13 +123,13 @@
                 return;
             }
 
-            if (ChatPanel.Instance != null
+            if (ChatPanel.Instance is not null
                 && ChatPanel.Instance.IsActive)
             {
                 return;
             }
 
-            if (Instance != null)
+            if (Instance is not null)
             {
                 Instance.IsDisplayed = !Instance.IsDisplayed;
                 return;
@@ -217,7 +217,7 @@
                     continue;
                 }
 
-                if (this.filterText != null
+                if (this.filterText is not null
                     && logEntry.Message.IndexOf(this.filterText, StringComparison.OrdinalIgnoreCase) == -1)
                 {
                     // doesn't contain filter text
@@ -444,7 +444,7 @@
                 () =>
                 {
                     var selectedItem = this.listViewSuggestionsList.SelectedItem;
-                    if (selectedItem != null)
+                    if (selectedItem is not null)
                     {
                         this.listViewSuggestionsList.ScrollIntoView(selectedItem);
                     }

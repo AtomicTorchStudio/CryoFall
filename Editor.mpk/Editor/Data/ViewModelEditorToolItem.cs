@@ -39,6 +39,6 @@
 
         public string Name => this.ToolItem.Name;
 
-        public string ShortName => this.ToolItem.ShortName;
+        public virtual string ShortName => this.ToolItem.ShortName;
     }
 }

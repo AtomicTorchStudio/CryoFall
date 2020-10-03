@@ -27,7 +27,7 @@
         {
             result = this.GetProtoEntities()
                          .FirstOrDefault(pi => pi.ShortId.Equals(value, StringComparison.OrdinalIgnoreCase));
-            return result != null;
+            return result is not null;
         }
 
         protected IReadOnlyList<TProto> GetProtoEntities()
@@ -42,7 +42,7 @@
 
         protected IReadOnlyList<string> GetProtoEntitiesShortIds()
         {
-            if (protoEntitiesShortIds == null)
+            if (protoEntitiesShortIds is null)
             {
                 protoEntitiesShortIds = this.GetProtoEntities().Select(p => p.ShortId).ToList();
             }

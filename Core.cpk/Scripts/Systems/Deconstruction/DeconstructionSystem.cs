@@ -27,7 +27,7 @@
         {
             var privateState = ClientCurrentCharacterHelper.PrivateState;
             var actionState = privateState.CurrentActionState as DeconstructionActionState;
-            if (actionState == null)
+            if (actionState is null)
             {
                 return false;
             }
@@ -61,7 +61,7 @@
             ICharacter character,
             IWorldObject worldObject)
         {
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 return;
             }
@@ -69,7 +69,7 @@
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
 
             var actionState = characterPrivateState.CurrentActionState as DeconstructionActionState;
-            if (actionState == null
+            if (actionState is null
                 || actionState.WorldObject != worldObject)
             {
                 // not deconstructing or deconstructing another object
@@ -133,7 +133,7 @@
             IWorldObject worldObject,
             bool writeToLog)
         {
-            if (worldObject == null
+            if (worldObject is null
                 || worldObject.IsDestroyed)
             {
                 return false;
@@ -148,7 +148,7 @@
 
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
         {
-            if (worldObject == null)
+            if (worldObject is null)
             {
                 return;
             }
@@ -230,7 +230,7 @@
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
 
             var actionState = characterPrivateState.CurrentActionState as DeconstructionActionState;
-            if (actionState == null
+            if (actionState is null
                 || actionState.WorldObject != worldObject)
             {
                 // not deconstructing or deconstructing another object

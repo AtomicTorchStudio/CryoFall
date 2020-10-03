@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Achievements;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
@@ -115,8 +114,11 @@
                 this.serverLockedAchievements.Add(achievementEntry);
             }
 
-            Api.Logger.Info($"Achievement added: {achievement.ShortId} as {(isUnlocked ? "unlocked" : "locked")}",
-                                 this.Character);
+            if (isUnlocked)
+            {
+                Api.Logger.Important($"Achievement unlocked: {achievement.ShortId}",
+                                     this.Character);
+            }
 
             if (isUnlocked)
             {
@@ -140,7 +142,7 @@
                 }
             }
 
-            if (foundAchievementEntry == null)
+            if (foundAchievementEntry is null)
             {
                 return;
             }
@@ -249,8 +251,7 @@
 
                 var tasks = this.Achievement.Tasks;
 
-                this.serverActiveTasks =
-                    new List<ServerPlayerActiveTask>(tasks.Count);
+                this.serverActiveTasks = new List<ServerPlayerActiveTask>(tasks.Count);
 
                 // refresh the task states
                 for (byte index = 0; index < tasks.Count; index++)

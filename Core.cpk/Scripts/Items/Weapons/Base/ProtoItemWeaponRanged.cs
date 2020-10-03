@@ -41,6 +41,8 @@
 
         public virtual double CharacterAnimationAimingRecoilPowerAddCoef => 1;
 
+        public override double ReadyDelayDuration => WeaponReadyDelays.DefaultRanged;
+
         public override CollisionGroup CollisionGroup => CollisionGroups.HitboxRanged;
 
         public override DamageStatsComparisonPreset DamageStatsComparisonPreset
@@ -75,7 +77,7 @@
             WeaponSystemClientDisplay.ClientCreateMuzzleFlash(this, character, skeletonRenderer);
 
             var recoilAnimationName = this.CharacterAnimationAimingRecoilName;
-            if (recoilAnimationName != null
+            if (recoilAnimationName is not null
                 && this.CharacterAnimationAimingRecoilPower > 0
                 && this.CharacterAnimationAimingRecoilDuration > 0)
             {

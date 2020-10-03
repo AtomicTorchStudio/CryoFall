@@ -37,10 +37,10 @@
         {
             build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemClay>(count: 20);
+            build.AddStageRequiredItem<ItemClay>(count: 10);
             build.AddStageRequiredItem<ItemSand>(count: 5);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemClay>(count: 1);
         }

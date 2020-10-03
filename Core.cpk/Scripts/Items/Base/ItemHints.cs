@@ -48,10 +48,13 @@
             "Fuel cells are used to power different vehicles.";
 
         public const string HintShootGrenadeLauncher =
-            "Hold [b]Alt[/b] or [b]Ctrl[/b] key while shooting to fire at maximum distance in the cursor direction instead of the cursor position.";
+            "Hold [b]Alt[/b] or [b]Ctrl[/b] while shooting to fire at maximum distance in the cursor's direction, instead of at the cursor's position.";
 
         public const string ImplantApplication =
             "Implants can only be installed in the medical station.";
+
+        public const string NeverConsumed =
+            "Never consumed";
 
         public const string UsesPowerBanks =
             "This item draws power from the equipped powerbanks.";

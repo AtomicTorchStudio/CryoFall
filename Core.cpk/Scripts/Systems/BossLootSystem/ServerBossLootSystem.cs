@@ -258,7 +258,7 @@
                 }
 
                 var spawnedCharacter = ServerCharacters.SpawnCharacter(minionProto, worldPosition);
-                return spawnedCharacter != null;
+                return spawnedCharacter is not null;
             }
         }
 

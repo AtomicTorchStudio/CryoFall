@@ -21,7 +21,7 @@
         /// </summary>
         public static List<IClientItemsContainer> GetTargetContainers(IItemsContainer forAbstractContainer)
         {
-            if (forAbstractContainer == null)
+            if (forAbstractContainer is null)
             {
                 return new List<IClientItemsContainer>(0);
             }
@@ -89,7 +89,7 @@
 
             var clientItemsContainer = (IClientItemsContainer)container;
             var wrappedContainer = list.FirstOrDefault(p => p.Container == clientItemsContainer);
-            if (wrappedContainer == null)
+            if (wrappedContainer is null)
             {
                 wrappedContainer = new WrappedContainer(clientItemsContainer);
                 list.Add(wrappedContainer);
@@ -113,7 +113,7 @@
                 ActiveContainersReferencesCount[clientItemsContainer] = referencesCount;
             }
 
-            if (allowedTargets != null)
+            if (allowedTargets is not null)
             {
                 wrappedContainer.AddAllowedTargetContainers(allowedTargets);
 
@@ -179,11 +179,11 @@
                 this.Container = container;
             }
 
-            public bool IsHasAllowRequirements => this.allowedTargetContainers != null;
+            public bool IsHasAllowRequirements => this.allowedTargetContainers is not null;
 
             public void AddAllowedTargetContainers(IItemsContainer[] containersList)
             {
-                if (containersList == null
+                if (containersList is null
                     || containersList.Length == 0)
                 {
                     return;

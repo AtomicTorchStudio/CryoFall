@@ -41,7 +41,7 @@
 
         private void DestroyControl()
         {
-            if (this.currentBedMark == null)
+            if (this.currentBedMark is null)
             {
                 return;
             }
@@ -59,7 +59,7 @@
                 return;
             }
 
-            if (this.currentBedMark == null)
+            if (this.currentBedMark is null)
             {
                 this.currentBedMark = new WorldMapMarkCurrentBed();
                 Panel.SetZIndex(this.currentBedMark, 9);

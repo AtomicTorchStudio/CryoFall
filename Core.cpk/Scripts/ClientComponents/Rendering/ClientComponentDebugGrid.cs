@@ -15,7 +15,7 @@
         {
             get
             {
-                if (instance == null)
+                if (instance is null)
                 {
                     instance = Client.Scene.CreateSceneObject("Debug Grid")
                                      .AddComponent<ClientComponentDebugGrid>();

@@ -136,7 +136,7 @@
             // setup input container to allow only power banks on input
             var itemsContainer = privateState.ItemsContainer;
             var itemsSlotsCount = this.ContainerInputSlotsCount;
-            if (itemsContainer != null)
+            if (itemsContainer is not null)
             {
                 // container already created - update slots count
                 Server.Items.SetSlotsCount(itemsContainer, slotsCount: itemsSlotsCount);

@@ -154,7 +154,7 @@
 
         private void Reset()
         {
-            if (EditorHUDLayoutControl.Instance != null)
+            if (EditorHUDLayoutControl.Instance is not null)
             {
                 Api.Client.UI.LayoutRootChildren.Remove(EditorHUDLayoutControl.Instance);
             }

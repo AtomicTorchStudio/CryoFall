@@ -37,36 +37,37 @@
 
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskState state)
         {
-            var completedCount = 0;
-            var techNodes = character.SharedGetTechnologies().Nodes;
-            foreach (var techNode in techNodes)
+            var unlockedCount = 0;
+
+            var unlockedTechNodes = character.SharedGetTechnologies().Nodes;
+            foreach (var techNode in unlockedTechNodes)
             {
-                if (techNode.Group == this.TechGroup)
+                if (ReferenceEquals(techNode.Group, this.TechGroup))
                 {
-                    completedCount++;
+                    unlockedCount++;
                 }
             }
 
-            return completedCount >= this.TechGroup.Nodes.Count;
+            return unlockedCount >= this.TechGroup.Nodes.Count;
         }
 
         protected override void SetTriggerActive(bool isActive)
         {
             if (isActive)
             {
-                PlayerCharacterTechnologies.ServerCharacterTechNodeAddedOrRemoved +=
-                    this.ServerCharacterTechNodeAddedOrRemovedHandler;
+                PlayerCharacterTechnologies.ServerCharacterTechNodeAddedOrRemoved
+                    += this.ServerCharacterTechNodeAddedOrRemovedHandler;
             }
             else
             {
-                PlayerCharacterTechnologies.ServerCharacterTechNodeAddedOrRemoved -=
-                    this.ServerCharacterTechNodeAddedOrRemovedHandler;
+                PlayerCharacterTechnologies.ServerCharacterTechNodeAddedOrRemoved
+                    -= this.ServerCharacterTechNodeAddedOrRemovedHandler;
             }
         }
 
         private void ServerCharacterTechNodeAddedOrRemovedHandler(ICharacter character, TechNode techNode, bool isAdded)
         {
-            if (techNode.Group != this.TechGroup)
+            if (!ReferenceEquals(techNode.Group, this.TechGroup))
             {
                 return;
             }

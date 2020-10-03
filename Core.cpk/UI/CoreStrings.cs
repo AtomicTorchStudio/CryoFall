@@ -85,6 +85,8 @@
 
         public const string Button_Upgrade = "Upgrade";
 
+        public const string CannotSelectDateInThePast = "Cannot select a date in the past.";
+
         // visible in HUD bar title
         public const string CharacterStatName_Food = "Food";
 
@@ -174,6 +176,8 @@
         // an info message for a structure that cannot be relocated in the base once it's built
         public const string ConstructionMetaInfo_Unmovable =
             "This structure is unmovable once built.";
+
+        public const string ConsultServerAdministrator = "Please consult the server administrator.";
 
         // used like in "copy-paste"
         public const string Copy = "Copy";
@@ -545,6 +549,9 @@
 
         public const string MenuServers_ServerTag_Modded_Title = "MODDED";
 
+        public const string MenuServers_ServerTag_NoClientMods_Description =
+            "This server does not allow client modifications. All client mods will be disabled for all players.";
+
         public const string MenuServers_ServerTag_Official_Description =
             "This is one of the official CryoFall servers hosted by the developers.";
 
@@ -861,6 +868,16 @@
 
         public const string ServerWipedDate = "Wiped";
 
+        public const string ServerWipeInfoNextWipeDate_Format = "[b]Next wipe:[/b] {0}";
+
+        public const string ServerWipeInfoNotSpecified = "Wipe information is not specified.";
+
+        public const string ServerWipeInfoOnMajorUpdatesOnly =
+            @"This server does not follow a regular wiping schedule; it is only wiped when new game versions are released. Please follow official project updates to learn about new major version releases.
+              [br]Please note: All server data (including world and character data) is reset when the server is updated to a new major version.";
+
+        public const string ServerWipeInfoStartedDate_Format = "[b]Server started:[/b] {0}";
+
         public const string ShieldProtection_ActionRestrictedBaseUnderShieldProtection =
             "You cannot perform this action on a base under shield protection.";
 
@@ -940,7 +957,7 @@
         public const string ShieldProtection_MaxDuration = "Max duration:";
 
         public const string ShieldProtection_NotAvailableInsideAnotherBase =
-            @"Offline raiding protection shield is not available for this land claim as it's completely inside another base that provides its own shield protection.";
+            "Offline raiding protection shield is not available for this land claim, as it's completely inside another base that provides its own shield protection.";
 
         public const string ShieldProtection_NotificationBaseActivatingShield_Message_Format =
             "Shield will become active in {0} unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).";
@@ -1038,6 +1055,12 @@
 
         // used in case when the game needs to display a text like: "(item requires something)"
         public const string TextInParenthesisFormat = "({0})";
+
+        public const string TimeAlreadyConvertedToLocalTimeZone_Format =
+            "Time is already converted to your local time zone (UTC{0}).";
+
+        // example: Time remains: 2h 50m 15s
+        public const string TimeRemains = "Time remains";
 
         public const string Title = "Title";
 
@@ -1511,6 +1534,11 @@
 
         // the game server has been wiped yesterday (more than 24 hours but less than 2 days ago)
         public const string WipedDate_Yesterday = "Yesterday";
+
+        public const string WipeInfoEditor_WipeManual =
+            @"Please note: The wipe is not performed automatically!
+              [br]You have to manually stop the server and delete the savegame.
+              [br]This menu simply allows you to inform the players.";
 
         public const string WorldMap_MapExplored = "Map explored";
 

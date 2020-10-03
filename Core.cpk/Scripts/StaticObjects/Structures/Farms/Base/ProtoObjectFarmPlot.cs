@@ -93,7 +93,7 @@
             this.clientBlendHelper.Update(tile);
 
             var plant = SharedGetFarmPlantWorldObject(tile);
-            if (plant != null)
+            if (plant is not null)
             {
                 // Add extra sprites for watered and fertilized plants.
                 // Please note - the farm plot is re-initialized by plant object when its state changed.

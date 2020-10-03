@@ -31,7 +31,7 @@
                                      isPreview);
 
             if (isPreview
-                || character == null
+                || character is null
                 || !character.IsCurrentClientCharacter)
             {
                 return;

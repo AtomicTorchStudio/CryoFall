@@ -46,6 +46,9 @@ Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
 Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 制造: {0}
 
+Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
+移动任意建筑
+
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 冲刺10米
 

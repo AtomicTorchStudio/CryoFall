@@ -29,7 +29,7 @@
                     return;
                 }
 
-                if (this.staticObjectServerPublicState != null)
+                if (this.staticObjectServerPublicState is not null)
                 {
                     this.ReleaseSubscriptions();
                 }

@@ -11,7 +11,7 @@
         {
             // prepare tile sounds presets
             var ambientSoundPresetDay = daySoundPreset;
-            if (ambientSoundPresetDay == null)
+            if (ambientSoundPresetDay is null)
             {
                 ambientSoundPresetDay = new AmbientSoundPreset(SoundResource.NoSound);
             }

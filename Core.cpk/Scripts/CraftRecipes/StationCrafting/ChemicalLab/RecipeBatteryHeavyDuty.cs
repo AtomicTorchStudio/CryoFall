@@ -20,7 +20,7 @@
 
             inputItems.Add<ItemIngotCopper>(count: 40);
             inputItems.Add<ItemPlastic>(count: 5);
-            inputItems.Add<ItemIngotLithium>(count: 5);
+            inputItems.Add<ItemIngotLithium>(count: 3);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
 
             outputItems.Add<ItemBatteryHeavyDuty>(count: 10);

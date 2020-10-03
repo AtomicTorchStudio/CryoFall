@@ -196,7 +196,7 @@
             foreach (var entry in this.entries)
             {
                 var includedList = entry.Value.EntryNestedList;
-                if (includedList != null
+                if (includedList is not null
                     && includedList.ContainsDroplist(other))
                 {
                     return true;
@@ -212,7 +212,7 @@
 
             foreach (var entry in this.frozenEntries)
             {
-                if (entry.Value.EntryNestedList != null)
+                if (entry.Value.EntryNestedList is not null)
                 {
                     foreach (var item in entry.Value.EntryNestedList.EnumerateAllItems())
                     {
@@ -220,7 +220,7 @@
                     }
                 }
 
-                if (entry.Value.EntryItem != null)
+                if (entry.Value.EntryItem is not null)
                 {
                     yield return entry.Value.EntryItem.ProtoItem;
                 }
@@ -317,7 +317,7 @@
             double probabilityMultiplier,
             DelegateSpawnDropItem delegateSpawnDropItem)
         {
-            if (entry.Condition != null)
+            if (entry.Condition is not null)
             {
                 try
                 {
@@ -337,7 +337,7 @@
             }
 
             probabilityMultiplier *= entry.Probability;
-            createItemResult = entry.EntryNestedList != null
+            createItemResult = entry.EntryNestedList is not null
                                    ? entry.EntryNestedList.Execute(delegateSpawnDropItem,
                                                                    dropItemContext,
                                                                    probabilityMultiplier)
@@ -451,7 +451,7 @@
             for (var index = 0; index < availableEntries.Count; index++)
             {
                 var v = availableEntries[index];
-                if (v.Value.Condition != null
+                if (v.Value.Condition is not null
                     && !v.Value.Condition(dropItemContext))
                 {
                     availableEntries.RemoveAt(index);

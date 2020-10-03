@@ -382,47 +382,31 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `이 서버의 관리자가 초대만 가능하도록 설정했습니다.
 [br]자세한 사항은 서버 설명을 확인하십시오.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
-`CryoFall 공식 서버에 오신 것을 환영합니다!
-[br]
-[br]
-[b]중요:[/b]
-[br]
-본 서버는 PvE (플레이어 대 환경) 서버입니다. 이곳에서는 플레이어들이 서로를 공격할 수 없습니다. 적대적인 플레이어와의 교전이 없는 평화적인 탐험이 중심이 된 서버입니다. 당신은 다른 플레이어들을 죽이거나 파괴하거나 약탈하거나 그 밖의 다른 방법으로 공격할 수 없습니다. 이 외에도 이 서버에서는 위험한 생명체들과 잠금 해제할 수 있는 기술들, 탐험할 수 있는 세계가 포함된 완전한 CryoFall 경험을 제공하고 있습니다. 당신의 여정은 과연 어디까지 이어질 수 있을까요?
-[br]
-[br]
-보다 짜릿하고 제한 없는 경험을 하고 싶다면, PvP 서버를 권장해 드립니다.
-[br]
-[br]
-[b]서버 규칙:[/b]
-[*]다른 플레이어들을 공손하고 정중하게 대하십시오. 저희는 어떠한 형태의 괴롭힘이나 차별 등을 용납하지 않습니다.
-[*]서버 관리자의 모든 요청 사항들을 준수하십시오.
-[*]채팅을 사용할시, 스팸이나 도배, 과도한 비속어 사용을 자제해주십시오.
-[*]PvE 제한 사항을 회피하거나 부당하게 이용하지 마십시오.
-[*]게임의 규칙이나 메커니즘을 악용하여 다른 플레이어들의 마음을 상하게 하거나 불편하게 하지 마십시오.
-[br]
-[br]
-행운을 빕니다! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
+이 커뮤니티 서버에는 제3자의 수정이 설치되어 있습니다. CryoFall의 정상적인 실행과 적합한 경험 제공이 보장되지 않습니다. 문제가 발생할 경우, 커뮤니티 서버장에게 해당 내용을 전달해 주십시오.
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-`CryoFall 공식 서버에 오신 것을 환영합니다!
-[br]
-[br]
-[b]중요:[/b]
-[br]
-본 서버는 무한 경쟁이 이루어지는 PvP 서버입니다. PvP 중심 서버에서는 다른 플레이어들의 공격과 마주하게 된다는 점을 명심하십시오. 스스로 방어하며 싸우게 될 것입니다. 항상 경계하며, 자기 자신을 제대로 보호해야 합니다. 물론, 자신의 생존 확률을 높이기 위해 다른 생존자들과 힘을 합치는 것도 고려해볼 수 있습니다.
-[br]
-[br]
-게임을 보다 편안하게 경험하고 싶고, 특히 처음 플레이한다면 , PvE 서버를 권장해 드립니다.
-[br]
-[br]
-[b]서버 규칙:[/b]
-[*]다른 플레이어들을 공손하고 정중하게 대하십시오. 저희는 어떠한 형태의 괴롭힘이나 차별 등을 용납하지 않습니다.
-[*]서버 관리자의 모든 요청 사항들을 준수하십시오.
-[*]채팅을 사용할시, 스팸이나 도배, 과도한 비속어 사용을 자제해주십시오.
-[br]
-[br]
-행운을 빕니다! :)`
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
+`이 서버는 PvE (플레이어 대 환경) 서버입니다. 이 서버에서는 플레이어들끼리 직접 또는 간접적으로 서로를 공격할 수 없습니다. 이곳에서는 적대적인 플레이어의 개입 없이 게임을 평화롭게 탐험하는 것에 중점을 두고 있습니다. 다른 플레이어를 죽이거나 파괴하거나, 또는 도둑질하거나 공격할 수 없습니다. 또한 이 서버에서는 위험한 생명체와 잠금 해제할 수 있는 기술, 탐험할 수 있는 세계를 포함하는 완벽한 CryoFall 경험을 제공합니다. 이 여정을 따라가 보십시오.
+[br]좀 더 긴장감 넘치고 제한 없는 경험을 원하신다면, PvP 서버에 참가하는 것을 고려해 보시기 바랍니다..`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
+`이 서버는 혼돈, 그 자체인 PvP 서버입니다. PvP 서버에서는, 다른 플레이어들의 [b]공격을 받게 됩니다[/b]. 이곳에서는 스스로 방어하고 싸우며, 항상 경계를 늦춰선 안 됩니다. 이는 숙련된 플레이어를 위한 게임 모드입니다.
+[br]좀 더 편안한 경험을 하고 싶거나 특히 처음하시는 플레이어라면, PvE 서버에 참가하는 것을 고려해 보시기 바랍니다.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
+PvE 서버
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
+PvP 서버
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
+모드 서버
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
+환영 메시지
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
+정보 비우기
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}에 오신 것을 환영합니다

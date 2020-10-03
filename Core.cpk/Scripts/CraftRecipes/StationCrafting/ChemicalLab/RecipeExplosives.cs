@@ -23,7 +23,7 @@
             inputItems.Add<ItemGlue>(count: 1);
             inputItems.Add<ItemPlastic>(count: 1);
 
-            outputItems.Add<ItemExplosives>(count: 20);
+            outputItems.Add<ItemExplosives>(count: 25);
         }
     }
 }

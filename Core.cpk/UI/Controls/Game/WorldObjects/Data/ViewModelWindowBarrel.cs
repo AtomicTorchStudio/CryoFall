@@ -133,7 +133,7 @@
             var recipe = this.ViewModelManufacturingState.SelectedRecipe;
             this.IsProgressBarInverted = recipe is IRecipeBarrelAddLiquid;
             this.ProgressBarVisibility =
-                recipe != null
+                recipe is not null
                 && this.ViewModelManufacturingState.ManufacturingState.HasActiveRecipe
                     ? Visibility.Visible
                     : Visibility.Hidden;

@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -19,17 +20,46 @@
         private static readonly HashSet<Entry> ClientOnlinePlayersList
             = Api.IsClient ? new HashSet<Entry>() : null;
 
+        private static readonly bool ServerIsListHidden;
+
+        private static int clientReceivedOnlinePlayersCountWhenListHidden;
+
         private static int serverLastTotalPlayersCount;
+
+        static OnlinePlayersSystem()
+        {
+            if (IsClient)
+            {
+                return;
+            }
+
+            ServerIsListHidden
+                = ServerRates.Get(
+                      "PvP.IsOnlinePlayersListHidden",
+                      defaultValue: 0,
+                      @"For PvP servers you can hide the online players list.
+                        Please note: it's always visible for players with administrator and moderator access.")
+                  != 0;
+        }
 
         public delegate void OnlinePlayedAddedOrRemoved(Entry entry, bool isOnline);
 
         public static event Action<Entry> ClientOnlinePlayerClanTagChanged;
 
+        public static event Action<int> ClientOnlinePlayersCountChanged;
+
         public static event OnlinePlayedAddedOrRemoved ClientPlayerAddedOrRemoved;
 
         public static event Action<int> ClientTotalServerPlayersCountChanged;
 
-        public static int ClientOnlinePlayersCount => ClientOnlinePlayersList.Count;
+        public static bool ClientIsListHidden { get; private set; }
+
+        public static bool ClientIsReady { get; private set; }
+
+        public static int ClientOnlinePlayersCount
+            => ClientIsListHidden
+                   ? clientReceivedOnlinePlayersCountWhenListHidden
+                   : ClientOnlinePlayersList.Count + 1;
 
         /// <summary>
         /// Please note: this property will return zero in case the player is not a server operator.
@@ -38,14 +68,14 @@
 
         public override string Name => "Online players system";
 
-        public static bool ClientContains(string name)
-        {
-            return ClientOnlinePlayersList.Contains(new Entry(name, null));
-        }
-
         public static IEnumerable<Entry> ClientEnumerateOnlinePlayers()
         {
             return ClientOnlinePlayersList;
+        }
+
+        public static bool ClientIsOnline(string name)
+        {
+            return ClientOnlinePlayersList.Contains(new Entry(name, null));
         }
 
         protected override void PrepareSystem()
@@ -71,6 +101,7 @@
             if (isChanged)
             {
                 ClientPlayerAddedOrRemoved?.Invoke(entry, isOnline);
+                ClientOnlinePlayersCountChanged?.Invoke(ClientOnlinePlayersCount);
             }
         }
 
@@ -80,6 +111,57 @@
             return string.IsNullOrEmpty(clanTag)
                        ? null
                        : clanTag;
+        }
+
+        private static List<ICharacter> ServerGetOnlineStatusChangeReceivers(
+            ICharacter aboutPlayerCharacter)
+        {
+            var list = Server.Characters
+                             .EnumerateAllPlayerCharacters(onlyOnline: true)
+                             .ToList();
+
+            for (var index = 0; index < list.Count; index++)
+            {
+                var character = list[index];
+                if (ReferenceEquals(character, aboutPlayerCharacter))
+                {
+                    list.RemoveAt(index);
+                    break;
+                }
+            }
+
+            var aboutPlayerCharacterParty = PartySystem.ServerGetParty(aboutPlayerCharacter);
+
+            List<ICharacter> onlineStatusChangeReceivers;
+            if (ServerIsListHidden)
+            {
+                // only server operators, moderators, and party members will receive a notification
+                onlineStatusChangeReceivers = new List<ICharacter>(list.Count);
+                foreach (var character in list)
+                {
+                    if (ServerIsOperatorOrModerator(character)
+                        || (aboutPlayerCharacterParty is not null
+                            && ReferenceEquals(aboutPlayerCharacterParty,
+                                               PartySystem.ServerGetParty(character))))
+                    {
+                        onlineStatusChangeReceivers.Add(character);
+                    }
+                }
+            }
+            else
+            {
+                // all players will receive a notification about the status change for this player
+                onlineStatusChangeReceivers = list;
+            }
+
+            return onlineStatusChangeReceivers;
+        }
+
+        private static bool ServerIsOperatorOrModerator(ICharacter playerCharacter)
+        {
+            var name = playerCharacter.Name;
+            return ServerOperatorSystem.ServerIsOperator(name)
+                   || ServerModeratorSystem.ServerIsModerator(name);
         }
 
         private static void ServerRefreshTotalPlayersCount()
@@ -92,11 +174,11 @@
 
             serverLastTotalPlayersCount = totalPlayersCount;
 
-            // provide the updated info about the total players count only to the server operators
+            // provide the updated info about the total players count only to the server operators and moderators
             using var tempList = Api.Shared.GetTempList<ICharacter>();
             foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
             {
-                if (ServerOperatorSystem.ServerIsOperator(character.Name))
+                if (ServerIsOperatorOrModerator(character))
                 {
                     tempList.Add(character);
                 }
@@ -106,30 +188,57 @@
                                 _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
         }
 
-        private void ClientRemote_OnlineList(List<Entry> onlineList)
-        {
-            Logger.Important(
-                "Online players list received from server: " + onlineList.GetJoinedString());
-
-            if (ClientOnlinePlayersList.Count > 0)
-            {
-                foreach (var name in ClientOnlinePlayersList.ToList())
-                {
-                    ClientProcessPlayerStatusChange(name, isOnline: false);
-                }
-
-                ClientOnlinePlayersList.Clear();
-            }
-
-            foreach (var entry in onlineList)
-            {
-                ClientProcessPlayerStatusChange(entry, isOnline: true);
-            }
-        }
-
         private void ClientRemote_OnlinePlayerClanTagChanged(Entry entry)
         {
             ClientOnlinePlayerClanTagChanged?.Invoke(entry);
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        private void ClientRemote_OnlinePlayersCountWhenListHidden(int charactersOnlinePlayersCount)
+        {
+            clientReceivedOnlinePlayersCountWhenListHidden = charactersOnlinePlayersCount;
+            ClientOnlinePlayersCountChanged?.Invoke(ClientOnlinePlayersCount);
+        }
+
+        private void ClientRemote_OnlinePlayersList(
+            IReadOnlyList<Entry> list,
+            bool isListHidden,
+            int totalOnlineCountIfListHidden)
+        {
+            ClientIsReady = false;
+
+            try
+            {
+                ClientIsListHidden = isListHidden;
+                clientReceivedOnlinePlayersCountWhenListHidden = totalOnlineCountIfListHidden;
+
+                Logger.Important(
+                    "Online players list received from server. Is list hidden: "
+                    + isListHidden
+                    + Environment.NewLine
+                    + "List:"
+                    + Environment.NewLine
+                    + list.GetJoinedString());
+
+                if (ClientOnlinePlayersList.Count > 0)
+                {
+                    foreach (var name in ClientOnlinePlayersList.ToList())
+                    {
+                        ClientProcessPlayerStatusChange(name, isOnline: false);
+                    }
+
+                    ClientOnlinePlayersList.Clear();
+                }
+
+                foreach (var entry in list)
+                {
+                    ClientProcessPlayerStatusChange(entry, isOnline: true);
+                }
+            }
+            finally
+            {
+                ClientIsReady = true;
+            }
         }
 
         private void ClientRemote_OnlineStatusChanged(Entry entry, bool isOnline)
@@ -144,39 +253,61 @@
             ClientTotalServerPlayersCountChanged?.Invoke(totalPlayerCharactersCount);
         }
 
-        private void ServerCharacterJoinedOrLeftPartyHandler(ICharacter playerCharacter)
+        private void ServerCharacterJoinedOrLeftPartyHandler(
+            ICharacter playerCharacter,
+            ILogicObject party,
+            bool isJoined)
         {
-            this.ServerForceRefreshPlayerEntry(playerCharacter);
-        }
+            if (!playerCharacter.ServerIsOnline)
+            {
+                // it's not in online players list so no notifications necessary
+                return;
+            }
 
-        private void ServerForceRefreshPlayerEntry(ICharacter playerCharacter)
-        {
-            var isOnline = playerCharacter.ServerIsOnline;
-            if (!isOnline)
+            var onlineStatusChangeReceivers = ServerGetOnlineStatusChangeReceivers(playerCharacter);
+            this.CallClient(onlineStatusChangeReceivers,
+                            _ => _.ClientRemote_OnlinePlayerClanTagChanged(
+                                new Entry(playerCharacter.Name,
+                                          ServerGetClanTag(playerCharacter))));
+
+            if (!ServerIsListHidden)
             {
                 return;
             }
 
-            var charactersDestination = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
-            this.CallClient(charactersDestination.ExceptOne(playerCharacter),
-                            _ => _.ClientRemote_OnlinePlayerClanTagChanged(
-                                new Entry(playerCharacter.Name,
-                                          ServerGetClanTag(playerCharacter))));
+            // refresh online lists completely for the party members
+            var serverCharacters = Api.Server.Characters;
+            foreach (var characterName in PartySystem.ServerGetPartyMembersReadOnly(party))
+            {
+                var character = serverCharacters.GetPlayerCharacter(characterName);
+                if (character is not null
+                    && character.ServerIsOnline)
+                {
+                    this.ServerSendOnlineListAndOtherInfo(character);
+                }
+            }
         }
 
         private void ServerOnPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
         {
             ServerRefreshTotalPlayersCount();
 
-            var charactersDestination = Server.Characters
-                                              .EnumerateAllPlayerCharacters(onlyOnline: true);
-
-            // ReSharper disable once PossibleMultipleEnumeration
-            this.CallClient(charactersDestination.ExceptOne(playerCharacter),
+            var onlineStatusChangeReceivers = ServerGetOnlineStatusChangeReceivers(playerCharacter);
+            this.CallClient(onlineStatusChangeReceivers,
                             _ => _.ClientRemote_OnlineStatusChanged(
                                 new Entry(playerCharacter.Name,
                                           ServerGetClanTag(playerCharacter)),
                                 isOnline));
+
+            if (ServerIsListHidden)
+            {
+                this.CallClient(Server.Characters
+                                      .EnumerateAllPlayerCharacters(onlyOnline: true)
+                                      .ExceptOne(playerCharacter)
+                                      .Except(onlineStatusChangeReceivers),
+                                _ => _.ClientRemote_OnlinePlayersCountWhenListHidden(
+                                    Server.Characters.OnlinePlayersCount));
+            }
 
             if (!isOnline)
             {
@@ -184,11 +315,70 @@
                 return;
             }
 
-            // send to this character the list of online characters
-            // ReSharper disable once PossibleMultipleEnumeration
-            var onlineList = charactersDestination.Select(c => new Entry(c.Name,
-                                                                         ServerGetClanTag(c)))
-                                                  .ToList();
+            this.ServerSendOnlineListAndOtherInfo(playerCharacter);
+        }
+
+        private void ServerPartyClanTagChanged(ILogicObject party)
+        {
+            // notify other players that have this player in the online players list
+            var serverCharacters = Server.Characters;
+            foreach (var playerCharacterName in PartySystem.ServerGetPartyMembersReadOnly(party))
+            {
+                var playerCharacter = serverCharacters.GetPlayerCharacter(playerCharacterName);
+                if (playerCharacter is null
+                    || !playerCharacter.ServerIsOnline)
+                {
+                    continue;
+                }
+
+                var onlineStatusChangeReceivers = ServerGetOnlineStatusChangeReceivers(playerCharacter);
+                this.CallClient(onlineStatusChangeReceivers,
+                                _ => _.ClientRemote_OnlinePlayerClanTagChanged(
+                                    new Entry(playerCharacter.Name,
+                                              ServerGetClanTag(playerCharacter))));
+            }
+        }
+
+        private void ServerSendOnlineListAndOtherInfo(ICharacter playerCharacter)
+        {
+            if (!playerCharacter.ServerIsOnline)
+            {
+                return;
+            }
+
+            var isOperatorOrModerator = ServerIsOperatorOrModerator(playerCharacter);
+            var isListHidden = ServerIsListHidden
+                               && !isOperatorOrModerator;
+
+            IReadOnlyList<Entry> onlinePlayersList;
+            if (isListHidden)
+            {
+                // send only the party members
+                var party = PartySystem.ServerGetParty(playerCharacter);
+                if (party is null)
+                {
+                    onlinePlayersList = Array.Empty<Entry>();
+                }
+                else
+                {
+                    onlinePlayersList = Server.Characters
+                                              .EnumerateAllPlayerCharacters(onlyOnline: true)
+                                              .ExceptOne(playerCharacter)
+                                              .Where(c => party == PartySystem.ServerGetParty(c))
+                                              .Select(c => new Entry(c.Name,
+                                                                     ServerGetClanTag(c)))
+                                              .ToList();
+                }
+            }
+            else
+            {
+                onlinePlayersList = Server.Characters
+                                          .EnumerateAllPlayerCharacters(onlyOnline: true)
+                                          .ExceptOne(playerCharacter)
+                                          .Select(c => new Entry(c.Name,
+                                                                 ServerGetClanTag(c)))
+                                          .ToList();
+            }
 
             // uncomment to test the online players list with some fake data
             //onlineList.Add(new Entry("Aaa1", "XXX"));
@@ -201,28 +391,20 @@
             //onlineList.Add(new Entry("Ссс2", "YYY"));
             //onlineList.Add(new Entry("Bbb2", "YYY"));
 
-            this.CallClient(playerCharacter, _ => _.ClientRemote_OnlineList(onlineList));
+            this.CallClient(playerCharacter,
+                            _ => _.ClientRemote_OnlinePlayersList(onlinePlayersList,
+                                                                  isListHidden,
+                                                                  isListHidden
+                                                                      ? Server.Characters.OnlinePlayersCount
+                                                                      : 0));
 
-            // provide info about the total players count only to a server operator
-            var totalPlayersCount = ServerOperatorSystem.ServerIsOperator(playerCharacter.Name)
+            // provide info about the total players count only to a server operator or moderator
+            var totalPlayersCount = isOperatorOrModerator
                                         ? serverLastTotalPlayersCount
                                         : 0;
 
             this.CallClient(playerCharacter,
                             _ => _.ClientRemote_TotalPlayerCharactersCountChanged(totalPlayersCount));
-        }
-
-        private void ServerPartyClanTagChanged(ILogicObject party)
-        {
-            var serverCharacters = Server.Characters;
-            foreach (var playerCharacterName in PartySystem.ServerGetPartyMembersReadOnly(party))
-            {
-                var playerCharacter = serverCharacters.GetPlayerCharacter(playerCharacterName);
-                if (playerCharacter != null)
-                {
-                    this.ServerForceRefreshPlayerEntry(playerCharacter);
-                }
-            }
         }
 
         [NotPersistent]
@@ -323,7 +505,7 @@
 
             public override int GetHashCode()
             {
-                return (this.Name != null ? this.Name.GetHashCode() : 0);
+                return (this.Name is not null ? this.Name.GetHashCode() : 0);
             }
 
             public override string ToString()

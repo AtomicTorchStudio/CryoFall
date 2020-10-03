@@ -32,7 +32,7 @@
 
         public static bool ServerIsInvincible(ICharacter character)
         {
-            if (character == null
+            if (character is null
                 || character.IsNpc)
             {
                 return false;

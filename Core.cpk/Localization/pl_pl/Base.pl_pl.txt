@@ -214,3 +214,12 @@ Sukces rybacki
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Zużycie paliwa
 
+Scripts/Base/Stats/StatName@PerkCannotRun:
+Nie można biegać
+
+Scripts/Base/Stats/StatName@PerkCannotAttack:
+Nie można atakować
+
+Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
+Nie można używać przedmiotów leczniczych z czasem odnowienia
+

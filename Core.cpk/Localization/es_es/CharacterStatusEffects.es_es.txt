@@ -163,6 +163,15 @@ Algo te ha provocado un colocón. Por algún motivo, te sientes muy feliz...
 Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 Colocón
 
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Notification_UnderCooldown_Message:
+Espera hasta que el período de recarga haya terminado.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Description:
+Has usado un objeto médico hace poco. No podrás usar más hasta el final del tiempo de recarga.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicalCooldown@Name:
+Recarga médica
+
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 Has abusado de los objetos médicos y, por tanto, has sufrido daños a la salud.
 

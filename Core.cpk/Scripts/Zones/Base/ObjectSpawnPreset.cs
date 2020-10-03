@@ -78,7 +78,7 @@
         {
             get
             {
-                if (this.frozenCustomObjectPadding != null)
+                if (this.frozenCustomObjectPadding is not null)
                 {
                     return this.frozenCustomObjectPadding;
                 }
@@ -193,7 +193,7 @@
 
         public void MakeReadOnly()
         {
-            if (this.frozenArray != null)
+            if (this.frozenArray is not null)
             {
                 // already made frozen
                 return;
@@ -260,7 +260,7 @@
         public ObjectSpawnPreset Remove<TProtoSpawnableObject>()
             where TProtoSpawnableObject : IProtoSpawnableObject
         {
-            if (this.list == null)
+            if (this.list is null)
             {
                 throw new Exception("Cannot exclude types - there is only one type added in the preset.");
             }
@@ -386,7 +386,7 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void VerifyIsFrozen()
         {
-            if (this.frozenArray == null)
+            if (this.frozenArray is null)
             {
                 throw new Exception("Object spawn preset must be frozen in order to use this method");
             }
@@ -395,7 +395,7 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void VerifyIsNotFrozen()
         {
-            if (this.frozenArray != null)
+            if (this.frozenArray is not null)
             {
                 throw new Exception("Object spawn preset must be NOT frozen in order to use this method");
             }

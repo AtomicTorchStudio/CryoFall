@@ -7,6 +7,10 @@
         public override string Description =>
             "You have applied a splint to your fracture and it is slowly healing. You cannot really run with your leg in that condition, though. Give it some time.";
 
+        public override StatusEffectDisplayMode DisplayMode
+            => StatusEffectDisplayMode.IconShowTimeRemains
+               | StatusEffectDisplayMode.TooltipShowTimeRemains;
+
         public override double IntensityAutoDecreasePerSecondValue
             => 1.0 / 600.0; // 10 minutes
 
@@ -18,8 +22,7 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            // cannot run
-            effects.AddPercent(this, StatName.MoveSpeedRunMultiplier, -100);
+            effects.AddPerk(this, StatName.PerkCannotRun);
         }
 
         protected override void ServerSetup(StatusEffectData data)

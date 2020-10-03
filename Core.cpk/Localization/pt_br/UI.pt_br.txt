@@ -101,6 +101,9 @@ Salvar
 UI/CoreStrings@Button_Upgrade:
 Melhorar
 
+UI/CoreStrings@CannotSelectDateInThePast:
+Não é possível selecionar uma data no passado.
+
 UI/CoreStrings@CharacterStatName_Food:
 Comida
 
@@ -200,6 +203,9 @@ Esta estrutura armazena eletricidade.
 
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Esta estrutura não pode ser movida depois de construída.
+
+UI/CoreStrings@ConsultServerAdministrator:
+Consulte o administrador do servidor.
 
 UI/CoreStrings@Copy:
 Copiar
@@ -699,6 +705,9 @@ Este servidor tem modificações de terceiros. Talvez você perceba mudanças si
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 COM MODS
 
+UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
+Este servidor não permite modificações de cliente. Todos os mods de cliente serão desativados para todos os jogadores.
+
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Este é um dos servidores oficiais do CryoFall, hospedado pelos desenvolvedores.
 
@@ -1086,6 +1095,19 @@ Jogadores
 UI/CoreStrings@ServerWipedDate:
 Zerado
 
+UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
+[b]Próxima limpeza:[/b] \{0}
+
+UI/CoreStrings@ServerWipeInfoNotSpecified:
+As informações de limpeza não estão especificadas.
+
+UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
+`Este servidor não segue um horário de limpeza regular; só é limpo quando novas versões de jogos são lançadas. Siga as atualizações oficiais do projeto para saber sobre novos lançamentos de versões de grande porte.
+[br]Queira observar: todos os dados do servidor (inclusive dados do mundo e de personagens) são zerados quando o servidor é atualizado para uma nova versão principal.`
+
+UI/CoreStrings@ServerWipeInfoStartedDate_Format:
+[b]Servidor iniciado:[/b] \{0}
+
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 Você não pode realizar essa ação numa base protegida por um escudo.
 
@@ -1172,6 +1194,9 @@ Estimativa de duração:
 
 UI/CoreStrings@ShieldProtection_MaxDuration:
 Duração máxima:
+
+UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
+O escudo de proteção contra invasão offline está indisponível para esta posse de terra, pois está completamente dentro de outra base que fornece sua própria proteção de escudo.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
 O escudo será ativado em {0} a menos que sofra uma interrupção (cancelado pelo dono da base ou interrompido por invasores aplicando um bloqueio por invasão).
@@ -1292,6 +1317,12 @@ Procurar...
 
 UI/CoreStrings@TextInParenthesisFormat:
 ({0})
+
+UI/CoreStrings@TimeAlreadyConvertedToLocalTimeZone_Format:
+O tempo já está convertido para seu fuso horário local (UTC\{0}).
+
+UI/CoreStrings@TimeRemains:
+O tempo permanece
 
 UI/CoreStrings@Title:
 Título
@@ -1907,6 +1938,11 @@ Recém-zerado
 
 UI/CoreStrings@WipedDate_Yesterday:
 Ontem
+
+UI/CoreStrings@WipeInfoEditor_WipeManual:
+`Atenção: a limpeza não é feita automaticamente!
+[br]Você deve interromper manualmente o servidor e apagar o jogo salvo.
+[br]Este menu simplesmente permite que você informe os jogadores.`
 
 UI/CoreStrings@WorldMap_MapExplored:
 Mapa explorado

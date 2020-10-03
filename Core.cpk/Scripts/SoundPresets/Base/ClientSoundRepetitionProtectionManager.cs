@@ -45,7 +45,7 @@
                 }
             }
 
-            if (entry == null)
+            if (entry is null)
             {
                 // no entry found - create new
                 entry = new Entry(key, CalculateMaxRepeatCount(soundsSet));
@@ -128,11 +128,11 @@
             {
                 unchecked
                 {
-                    var hashCode = this.repetitionProtectionKey != null
+                    var hashCode = this.repetitionProtectionKey is not null
                                        ? this.repetitionProtectionKey.GetHashCode()
                                        : 0;
-                    hashCode = (hashCode * 397) ^ (this.soundPreset != null ? this.soundPreset.GetHashCode() : 0);
-                    hashCode = (hashCode * 397) ^ (this.soundsSet != null ? this.soundsSet.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ (this.soundPreset is not null ? this.soundPreset.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ (this.soundsSet is not null ? this.soundsSet.GetHashCode() : 0);
                     return hashCode;
                 }
             }

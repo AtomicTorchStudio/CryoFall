@@ -137,7 +137,7 @@
                     return false;
                 }
 
-                if (requiredGroundTextures != null)
+                if (requiredGroundTextures is not null)
                 {
                     // check constraint for the ground texture
                     if (!IsTileMatchGroundTextures(tileToCheck, requiredGroundTextures)

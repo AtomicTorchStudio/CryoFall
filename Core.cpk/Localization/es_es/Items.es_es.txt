@@ -169,8 +169,14 @@ Ponla dentro de un pozo o de un recolector de agua para llenarla de agua potable
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Las células de combustible se usan para dar energía a diversos vehículos.
 
+Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
+Mantén pulsado [b]Alt[/b] o [b]Ctrl[/b] mientras disparas para disparar a la distancia máxima posible en la dirección del cursor en vez de apuntar a la posición exacta del cursor.
+
 Scripts/Items/Base/ItemHints@ImplantApplication:
 Los implantes tan solo se pueden instalar en un puesto médico.
+
+Scripts/Items/Base/ItemHints@NeverConsumed:
+No lo has probado nunca
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Este objeto extrae energía de los cargadores portátiles equipados.
@@ -216,6 +222,12 @@ Un puñado de herramientas útiles para cazadores, las cuales facilitan y aceler
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Herramientas de cazador
+
+Scripts/Items/Devices/ItemLaserSight@Description:
+Un pequeño marcador láser que se usa para que sea más fácil apuntar a larga distancia.
+
+Scripts/Items/Devices/ItemLaserSight@Name:
+Mira láser
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Almacena una gran cantidad de energía para transportarla fácilmente. Todos los dispositivos y armas de energía podrán usar la energía de las baterías portátiles equipadas.
