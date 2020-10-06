@@ -14,9 +14,10 @@
 
     public abstract class ProtoObjectMineralMeteorite
         : ProtoObjectMineral
-            <EmptyPrivateState,
-                ObjectMineralMeteoritePublicState,
-                DefaultMineralClientState>
+          <EmptyPrivateState,
+              ObjectMineralMeteoritePublicState,
+              DefaultMineralClientState>,
+          IProtoObjectEventEntry
     {
         public override bool IsAllowDroneMining => false;
 

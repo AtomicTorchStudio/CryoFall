@@ -7,7 +7,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
     using System.Linq;
     using System.Text;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ConsoleConsoleHelp : BaseConsoleCommand
     {
@@ -23,13 +25,21 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
             [CustomSuggestions(nameof(GetCommandNameSuggestions))]
             string searchCommand = null)
         {
-            IEnumerable<BaseConsoleCommand> allCommands = ConsoleCommandsSystem.AllCommands;
+            var allCommands = ConsoleCommandsSystem.AllCommands.ToList();
 
-            if (this.ExecutionContextCurrentCharacter is not null
-                && !ServerOperatorSystem.SharedIsOperator(this.ExecutionContextCurrentCharacter))
+            if (Api.IsServer)
             {
-                // not a server operator - exclude server operator commands
-                allCommands = allCommands.Where(c => c.Kind != ConsoleCommandKinds.ServerOperator);
+                allCommands.RemoveAll(
+                    // exclude client commands on Server-side
+                    c => (c.Kind ^ ConsoleCommandKinds.Client) == default);
+            }
+
+            var currentCharacter = this.ExecutionContextCurrentCharacter;
+            if (currentCharacter is not null)
+            {
+                var isOperator = ServerOperatorSystem.SharedIsOperator(currentCharacter);
+                var isModerator = ServerModeratorSystem.SharedIsModerator(currentCharacter);
+                ConsoleCommandsSystem.SharedFilterAvailableCommands(allCommands, isOperator, isModerator);
             }
 
             var sb = new StringBuilder(capacity: 2047);

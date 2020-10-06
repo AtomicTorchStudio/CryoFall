@@ -6,7 +6,7 @@
     public class ConsoleDebugSave : BaseConsoleCommand
     {
         public override string Description =>
-            "Invoke server autosave. You should not normally use it, normally the server should automatically do a snapshot as it's configured. When the server is shutting down it should also perform an autosave.";
+            "Invoke server autosave. You should not normally use it—the server should automatically do a snapshot as it's configured. When the server is shutting down it should also performs an autosave.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 

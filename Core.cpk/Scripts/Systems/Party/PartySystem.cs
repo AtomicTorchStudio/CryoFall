@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.Systems.ServerPlayerAccess;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -791,7 +792,13 @@
 
                 if (!invitee.ServerIsOnline)
                 {
-                    return InvitationCreateResult.ErrorInviteeOffline;
+                    if (!OnlinePlayersSystem.ServerIsListHidden)
+                    {
+                        return InvitationCreateResult.ErrorInviteeOffline;
+                    }
+
+                    // In case of a hidden online players list server cannot disclose whether the invitee is offline
+                    // so the server will allow invitations to offline players though they will expire quickly.
                 }
 
                 return ServerInviteMember(invitee, inviter: ServerRemoteContext.Character);
@@ -926,7 +933,7 @@
 
             public static InvitationCreateResult AddInvitation(ICharacter invitee, ICharacter inviter)
             {
-                if (ServerPlayerMuteSystem.IsMuted(invitee.Name, out _))
+                if (ServerPlayerMuteSystem.IsMuted(inviter.Name, out _))
                 {
                     return InvitationCreateResult.ErrorMuted;
                 }

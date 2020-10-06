@@ -17,10 +17,10 @@
 
     public class OnlinePlayersSystem : ProtoSystem<OnlinePlayersSystem>
     {
+        public static readonly bool ServerIsListHidden;
+
         private static readonly HashSet<Entry> ClientOnlinePlayersList
             = Api.IsClient ? new HashSet<Entry>() : null;
-
-        private static readonly bool ServerIsListHidden;
 
         private static int clientReceivedOnlinePlayersCountWhenListHidden;
 

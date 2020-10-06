@@ -19,7 +19,13 @@
 
         private ViewModelHUDItemNotificationControl viewModel;
 
+        public int DeltaCount => this.viewModel?.DeltaCount ?? 0;
+
         public bool IsHiding { get; set; }
+
+        public IProtoItem ProtoItem => this.viewModel?.ProtoItem;
+
+        public ViewModelHUDItemNotificationControl ViewModel => this.viewModel;
 
         public static HUDItemNotificationControl Create(IProtoItem protoItem, int deltaCount)
         {

@@ -7,7 +7,8 @@
 
     public interface IProtoObjectHackableContainer
         : IProtoStaticWorldObject,
-          IProtoWorldObjectCustomInteractionCursor
+          IProtoWorldObjectCustomInteractionCursor,
+          IProtoObjectEventEntry
     {
         double HackingStageDuration { get; }
 

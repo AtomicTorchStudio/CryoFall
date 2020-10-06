@@ -5,9 +5,11 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -18,6 +20,7 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
+    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -34,6 +37,8 @@
 
         public const string Error_UnsuitableGround_Title =
             "Unsuitable ground type";
+
+        public const string ErrorCannotBuildEventNearby = "Cannot build—too close to the event location.";
 
         public const string ErrorCannotBuildInRestrictedArea = "Cannot build in restricted areas.";
 
@@ -279,6 +284,44 @@
             = new Validator(ErrorCannotBuildOnCliffOrSlope,
                             c => !c.Tile.IsCliffOrSlope);
 
+        public static readonly Validator ValidatorCheckNoEventObjectNearby
+            = new Validator(
+                ErrorCannotBuildEventNearby,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter is null)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    var position = context.Tile.Position;
+                    var world = Api.IsServer
+                                    ? (IWorldService)Api.Server.World
+                                    : (IWorldService)Api.Client.World;
+
+                    var eventObjects = world.GetStaticWorldObjectsOfProto<IProtoObjectEventEntry>();
+                    var maxDistanceSqr = LandClaimSystem.MaxLandClaimSize.Value / 2;
+                    maxDistanceSqr *= maxDistanceSqr;
+
+                    foreach (var eventObject in eventObjects)
+                    {
+                        if (position.TileSqrDistanceTo(eventObject.TilePosition)
+                            <= maxDistanceSqr)
+                        {
+                            // too close to an event object
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+
         private readonly List<Validator> checkFunctions = new List<Validator>();
 
         static ConstructionTileRequirements()
@@ -296,7 +339,8 @@
                                          neighbor => neighbor.ProtoTile.Kind != TileKind.Water))
                                 .Add(ValidatorSameHeightLevelAsPlayer)
                                 .Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown)
-                                .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
+                                .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE)
+                                .Add(ValidatorCheckNoEventObjectNearby);
 
             DefaultForStaticObjects = BasicRequirements
                                       .Clone()

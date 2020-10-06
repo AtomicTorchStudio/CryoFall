@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
@@ -16,7 +17,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using JetBrains.Annotations;
 
     public class WeaponAmmoSystem : ProtoSystem<WeaponAmmoSystem>
     {
@@ -336,10 +336,10 @@
             if (weaponReloadingState.Item != weapon)
             {
                 Logger.Info("Weapon reloading cannot be aborted: weapon doesn't match - currently reloading "
-                            + weaponReloadingState.Item
-                            + " requested reloading for "
-                            + weapon,
-                            character);
+                           + weaponReloadingState.Item
+                           + " requested reloading for "
+                           + weapon,
+                           character);
                 return;
             }
 
@@ -364,14 +364,22 @@
                 isReloadingNow = false;
                 return;
             }
+            
+            if (reloadingState.Item != weaponState.ItemWeapon)
+            {
+                Logger.Info("Can reload only the current weapon. Reloading aborted");
+                SharedTryAbortReloading(character, reloadingState.Item);
+                isReloadingNow = false;
+                return;
+            }
 
-            if (IsServer 
+            if (IsServer
                 && weaponState.SharedGetInputIsFiring()
                 && weaponState.ItemWeapon is not null
                 && weaponState.ItemWeapon.GetPrivateState<WeaponPrivateState>().AmmoCount > 0)
             {
                 var shotsRemains = (long)weaponState.ServerLastClientReportedShotsDoneCount - weaponState.ShotsDone;
-                if (shotsRemains > 0 
+                if (shotsRemains > 0
                     && weaponState.ServerLastClientReportedShotsDoneCount > 0)
                 {
                     // sometimes the client reloading requests are received by the server 
@@ -551,8 +559,13 @@
 
             // remove weapon reloading state
             weaponState.WeaponReloadingState = null;
-
+            
             var itemWeapon = weaponReloadingState.Item;
+            if (itemWeapon != weaponState.ItemWeapon)
+            {
+                throw new Exception("Can reload only the current weapon");
+            }
+            
             var itemWeaponProto = (IProtoItemWeapon)itemWeapon.ProtoGameObject;
             var itemWeaponPrivateState = itemWeapon.GetPrivateState<WeaponPrivateState>();
             var weaponAmmoCount = (int)itemWeaponPrivateState.AmmoCount;
@@ -564,8 +577,7 @@
 
             if (weaponAmmoCount > 0)
             {
-                if (selectedProtoItemAmmo != currentProtoItemAmmo
-                    && weaponAmmoCount > 0)
+                if (selectedProtoItemAmmo != currentProtoItemAmmo)
                 {
                     // unload current ammo
                     if (IsServer)
@@ -737,7 +749,7 @@
                 return;
             }
 
-            Logger.Info(
+            Logger.Important(
                 $"Weapon reloaded: {itemWeapon} - ammo {weaponAmmoCount}/{weaponAmmoCapacity} {selectedProtoItemAmmo?.ToString() ?? "<no ammo>"}",
                 character);
 
@@ -801,18 +813,14 @@
                                                     SoundConstants.VolumeWeapon);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced,
-                            timeInterval: 1 / 120.0,
-                            groupName: "reloading")]
+        [RemoteCallSettings(timeInterval: 1 / 60.0)]
         private void ServerRemote_AbortReloading(IItem weapon)
         {
             var character = ServerRemoteContext.Character;
             SharedTryAbortReloading(character, weapon);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced,
-                            timeInterval: 1 / 120.0,
-                            groupName: "reloading")]
+        [RemoteCallSettings(timeInterval: 1 / 60.0)]
         private void ServerRemote_ReloadWeapon(
             ReloadWeaponRequest args,
             uint clientShotsDone)
@@ -863,7 +871,7 @@
             var selectedProtoItemAmmo = args.ProtoItemAmmo;
             var ammoCurrent = privateState.AmmoCount;
             var ammoMax = itemProto.AmmoCapacity;
-            
+
             if (weaponState.WeaponReloadingState is null
                 && ammoCurrent == ammoMax
                 && privateState.CurrentProtoItemAmmo == selectedProtoItemAmmo)

@@ -118,6 +118,44 @@
             SharedExecuteConsoleCommand(text, byCharacter);
         }
 
+        public static void SharedFilterAvailableCommands(
+            List<BaseConsoleCommand> suggestedCommands,
+            bool isOperator,
+            bool isModerator)
+        {
+            if (!isOperator)
+            {
+                // remove operator-only commands
+                if (IsServer)
+                {
+                    suggestedCommands.RemoveAll(
+                        sc => (sc.Kind & ConsoleCommandKinds.ServerOperator) != 0);
+                }
+                else // if client
+                {
+                    suggestedCommands.RemoveAll(
+                        sc => (sc.Kind & ConsoleCommandKinds.ServerOperator) != 0
+                              && (sc.Kind & ConsoleCommandKinds.Client) == 0);
+                }
+            }
+
+            if (!isModerator)
+            {
+                // remove moderator-only commands
+                if (IsServer)
+                {
+                    suggestedCommands.RemoveAll(
+                        sc => (sc.Kind & ConsoleCommandKinds.ServerModerator) != 0);
+                }
+                else // if client
+                {
+                    suggestedCommands.RemoveAll(
+                        sc => (sc.Kind & ConsoleCommandKinds.ServerModerator) != 0
+                              && (sc.Kind & ConsoleCommandKinds.Client) == 0);
+                }
+            }
+        }
+
         public static TConsoleCommand SharedGetCommand<TConsoleCommand>()
             where TConsoleCommand : BaseConsoleCommand, new()
         {
@@ -374,40 +412,18 @@
                 }
 
                 var suggestedCommands = SharedGetCommandNamesSuggestions(parsedCommandName ?? string.Empty);
-
-                if (!isOperator)
-                {
-                    // remove operator-only commands
-                    if (IsServer)
-                    {
-                        suggestedCommands.RemoveAll(
-                            sc => (sc.Kind & ConsoleCommandKinds.ServerOperator) != 0);
-                    }
-                    else // if client
-                    {
-                        suggestedCommands.RemoveAll(
-                            sc => (sc.Kind & ConsoleCommandKinds.ServerOperator) != 0
-                                  && (sc.Kind & ConsoleCommandKinds.Client) == 0);
-                    }
-                }
-
-                if (!isModerator)
-                {
-                    // remove moderator-only commands
-                    if (IsServer)
-                    {
-                        suggestedCommands.RemoveAll(
-                            sc => (sc.Kind & ConsoleCommandKinds.ServerModerator) != 0);
-                    }
-                }
+                SharedFilterAvailableCommands(suggestedCommands, isOperator, isModerator);
 
                 suggestions = suggestedCommands.Select(sc => sc.GetNameOrAlias(parsedCommandName)).ToList();
                 consoleCommandVariant = suggestedCommands.FirstOrDefault()?.Variants.FirstOrDefault();
             }
             else // parsed command - suggest parameters for this command
             {
+                var consoleCommandKind = commandData.ConsoleCommand.Kind;
                 if (!isOperator
-                    && (commandData.ConsoleCommand.Kind & ConsoleCommandKinds.ServerOperator) != 0)
+                    && consoleCommandKind.HasFlag(ConsoleCommandKinds.ServerOperator)
+                    && (IsServer
+                        || !consoleCommandKind.HasFlag(ConsoleCommandKinds.Client)))
                 {
                     // cannot suggest anything to the non-operator player for an operator-only command
                     consoleCommandVariant = null;
@@ -415,9 +431,11 @@
                 }
 
                 if (!isModerator
-                    && (commandData.ConsoleCommand.Kind & ConsoleCommandKinds.ServerModerator) != 0)
+                    && consoleCommandKind.HasFlag(ConsoleCommandKinds.ServerModerator)
+                    && (IsServer
+                        || !consoleCommandKind.HasFlag(ConsoleCommandKinds.Client)))
                 {
-                    // cannot suggest anything to the non-moderator player for an moderator-only command
+                    // cannot suggest anything to the non-moderator player for a moderator-only command
                     consoleCommandVariant = null;
                     return EmptySuggestionsArray;
                 }

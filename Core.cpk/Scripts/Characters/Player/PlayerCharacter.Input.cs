@@ -420,6 +420,7 @@
             privateState.ServerLastAckClientInputId = 0;
         }
 
+        [RemoteCallSettings(timeInterval: 1 / 60.0)]
         private void ServerRemote_SelectHotbarSlotId(byte? slotId)
         {
             SharedSelectHotbarSlotId(ServerRemoteContext.Character, slotId, isByPlayer: true);

@@ -171,7 +171,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
             }
 
             stopwatch.Stop();
-            logger.Dev(
+            logger.Important(
                 $"Land claim destroyed: {landClaimStructure}. Objects deleted: {objectsDeletedCount}. Item containers purged: {purgedContainersCount}. Time spent: {stopwatch.Elapsed.TotalMilliseconds}ms (spread across multiple frames)");
 
             void PurgeContainer(IItemsContainer container)

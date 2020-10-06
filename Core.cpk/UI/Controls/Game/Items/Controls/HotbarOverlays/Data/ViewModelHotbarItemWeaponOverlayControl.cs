@@ -183,6 +183,7 @@
         {
             if (this.item != this.weaponState.ItemWeapon)
             {
+                this.IsReloading = false;
                 // stop any countdown animation
                 this.WeaponReadyCountdownDuration = 0;
                 return;

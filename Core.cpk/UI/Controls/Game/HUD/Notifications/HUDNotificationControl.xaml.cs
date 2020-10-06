@@ -68,6 +68,8 @@
             }
         }
 
+        public ViewModelHudNotificationControl ViewModel => this.viewModel;
+
         public static HudNotificationControl Create(
             string title,
             string message,
