@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -77,6 +78,8 @@
             this.ServerNotifyItemUsed(character, item);
             // decrease item count
             Server.Items.SetCount(item, (ushort)(item.Count - 1));
+
+            NotificationSystem.ServerSendItemsNotification(character, createItemResult);
         }
     }
 }

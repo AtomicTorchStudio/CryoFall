@@ -93,7 +93,7 @@
                     var pragmiumSources = world.GetStaticWorldObjectsOfProto<ObjectMineralPragmiumSource>();
                     var maxDistanceSqr = 5 + LandClaimSystem.MaxLandClaimSize.Value / 2;
                     maxDistanceSqr *= maxDistanceSqr;
-                    
+
                     foreach (var objectPragmiumSource in pragmiumSources)
                     {
                         if (position.TileSqrDistanceTo(objectPragmiumSource.TilePosition)

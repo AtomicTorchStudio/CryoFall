@@ -2,7 +2,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -118,11 +117,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         private void ServerRemote_SetMode(IWorldObject worldObject, WorldObjectAccessMode mode)
         {
             var character = ServerRemoteContext.Character;
-            if (!InteractionCheckerSystem.SharedHasInteraction(character,
-                                                               worldObject,
-                                                               requirePrivateScope: true))
+
+            if (!worldObject.ProtoWorldObject.SharedCanInteract(character,
+                                                                worldObject,
+                                                                writeToLog: true))
             {
-                throw new Exception("The player character is not interacting with " + worldObject);
+                return;
             }
 
             if (!WorldObjectOwnersSystem.SharedIsOwner(character, worldObject)

@@ -2147,10 +2147,10 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Нет топлива
 
 Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-Этот хрупкий прагмиевый топорик использует молекулярно-резонансную механику, что делает его гораздо более быстрым, чем любые аналоги.
+Этот хрупкий прагмиевый молот использует молекулярно-резонансную механику, что делает его гораздо более мощным, чем любые аналоги.
 
 Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Прагмиевый топорик
+Прагмиевый молот
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Железная кирка используется для добычи минералов. Она более эффективна и крепка по сравнению с каменной киркой.

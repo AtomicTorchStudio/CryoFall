@@ -60,14 +60,13 @@
             WeaponHitData hitData,
             out bool isDamageStop)
         {
-            if (!(damagedObject is ICharacter))
-            {
-                isDamageStop = true;
-            }
-            else
+            if (damagedObject is ICharacter)
             {
                 base.SharedOnHit(weaponCache, damagedObject, damage, hitData, out isDamageStop);
             }
+
+            // make arrows to always stop on the first hit and have a chance to drop on the ground
+            isDamageStop = true;
 
             if (IsServer
                 && isDamageStop

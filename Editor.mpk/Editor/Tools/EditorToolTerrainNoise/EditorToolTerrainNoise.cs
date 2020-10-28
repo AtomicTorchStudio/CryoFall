@@ -36,8 +36,8 @@
             IProtoTile protoTileTarget,
             IProtoTile protoTileNoise)
         {
-            Api.Assert(protoTileTarget is not null,                "Please select target tile proto");
-            Api.Assert(protoTileNoise is not null,                 "Please select noise tile proto");
+            Api.Assert(protoTileTarget is not null,            "Please select target tile proto");
+            Api.Assert(protoTileNoise is not null,             "Please select noise tile proto");
             Api.Assert(selectionBounds.Size.LengthSquared > 0, "Please select world area");
             Api.Assert(noiseProbability >= 0 || noiseProbability <= 1,
                        "Noise probability must be in range from 0 to 1 inclusive.");
@@ -90,7 +90,9 @@
             return settingsControl;
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceAt(IList<Vector2Ushort> modifyRequests, IProtoTile protoTile)
         {
             if (modifyRequests.Count == 0)

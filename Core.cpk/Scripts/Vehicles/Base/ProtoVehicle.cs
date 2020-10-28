@@ -157,6 +157,8 @@
 
         public override double ServerUpdateIntervalSeconds => 0; // every frame
 
+        public override double ServerUpdateRareIntervalSeconds => 10; // once in 10 seconds
+
         public override string ShortId { get; }
 
         public virtual SoundResource SoundResourceLightsToggle { get; }
@@ -449,6 +451,7 @@
         {
             var privateState = GetPrivateState((IDynamicWorldObject)worldObject);
             privateState.ServerTimeSinceLastUse = 0;
+            this.ServerSetUpdateRate(worldObject, isRare: false);
         }
 
         public override void ServerOnDestroy(IDynamicWorldObject gameObject)
@@ -1138,6 +1141,7 @@
             var pilotCharacter = data.PublicState.PilotCharacter;
             pilotCharacter?.ProtoWorldObject.SharedCreatePhysics(pilotCharacter);
 
+            this.ServerSetUpdateRate(data.GameObject, isRare: pilotCharacter is null);
             this.ServerInitializeVehicle(data);
         }
 
@@ -1252,6 +1256,14 @@
 
                 // remember how long the vehicle is standing without the pilot
                 privateState.ServerTimeSinceLastUse += data.DeltaTime;
+
+                if (!data.GameObject.ServerIsRareUpdateRate
+                    && (privateState.IsInGarage
+                        || !InteractionCheckerSystem.ServerHasAnyInteraction(data.GameObject)))
+                {
+                    // has no pilot, not in garage and no interactions
+                    this.ServerSetUpdateRate(data.GameObject, isRare: true);
+                }
             }
             else
             {

@@ -375,7 +375,8 @@
             ClientFishingSoundsHelper.PlaySoundFail(ClientCurrentCharacterHelper.Character);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0)]
+        // TODO: for A29 remove fishing session argument as it could be taken from the context 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ServerRemote_PullFish(ILogicObject fishingSession)
         {
             var character = ServerRemoteContext.Character;

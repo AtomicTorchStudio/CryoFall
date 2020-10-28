@@ -149,7 +149,7 @@
             if (privateState.CharacterOwner is not null)
             {
                 groundContainer = ObjectPlayerLootContainer.ServerTryCreateLootContainer(privateState.CharacterOwner,
-                                                                                         objectDrone.Position);
+                    objectDrone.Position);
 
                 if (groundContainer is not null)
                 {
@@ -276,6 +276,7 @@
 
             privateState.CharacterOwner = character;
             privateState.IsDespawned = false;
+            objectDrone.ProtoGameObject.ServerSetUpdateRate(objectDrone, isRare: false);
             privateState.IsStartedFromHotbarContainer = isFromHotbarContainer;
             privateState.StartedFromSlotIndex = fromSlotIndex;
             Server.World.SetPosition(objectDrone, character.Position, writeToLog: false);
@@ -424,12 +425,13 @@
 
         protected override void ServerInitialize(ServerInitializeData data)
         {
+            var objectDrone = data.GameObject;
             base.ServerInitialize(data);
 
             if (data.IsFirstTimeInit)
             {
                 data.PrivateState.StorageItemsContainer
-                    = Api.Server.Items.CreateContainer<ItemsContainerDefault>(data.GameObject,
+                    = Api.Server.Items.CreateContainer<ItemsContainerDefault>(objectDrone,
                                                                               slotsCount: 255);
             }
         }
@@ -488,6 +490,7 @@
 
             if (privateState.IsDespawned)
             {
+                this.ServerSetUpdateRate(objectDrone, isRare: true);
                 return;
             }
 
@@ -500,7 +503,7 @@
 
             if (hasMiningTargets
                 && !(CharacterDroneControlSystem.SharedIsValidDroneOperationDistance(objectDrone.TilePosition,
-                                                                                     characterOwner.TilePosition)
+                         characterOwner.TilePosition)
                      && objectDrone.Tile.Height == characterOwner.Tile.Height))
             {
                 Logger.Info("The drone is beyond operation distance or has different tile height and will be recalled: "

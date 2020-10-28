@@ -31,7 +31,7 @@
             }
 
             // the order of calls is important here
-            Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
+            Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitialize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterMob>());
         }
 
@@ -48,7 +48,7 @@
             }
 
             // the order of calls is important here
-            Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
+            Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitialize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacter>());
         }
 

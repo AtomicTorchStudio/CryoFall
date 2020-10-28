@@ -232,7 +232,7 @@
                 .AddShapeRectangle((0.9, 0.85),  offset: (0.05, 0.4), group: CollisionGroups.ClickArea);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 3, keyArgIndex: 0)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1.5, keyArgIndex: 0)]
         private void ServerRemote_SetIconSource(IStaticWorldObject worldObjectCrate, IProtoEntity iconSource)
         {
             this.VerifyGameObject(worldObjectCrate);

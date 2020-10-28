@@ -60,7 +60,8 @@
 
         public IReadOnlyItemLightConfig ItemLightConfig { get; private set; }
 
-        public override double ServerUpdateIntervalSeconds => 1;
+        // slowly consume fuel for the light helmet
+        public override double ServerUpdateIntervalSeconds => 5;
 
         public bool ClientCanStartRefill(IItem item)
         {
@@ -252,14 +253,14 @@
 
             var playerCharacter = Client.Characters.CurrentPlayerCharacter;
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(playerCharacter)
-                is not null)
+                    is not null)
             {
                 return;
             }
 
             ClientTryRefill(item);
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(playerCharacter)
-                is not null)
+                    is not null)
             {
                 return;
             }
@@ -338,6 +339,12 @@
         {
             var item = data.GameObject;
             var publicState = data.PublicState;
+
+            if (!publicState.IsActive)
+            {
+                this.ServerSetUpdateRate(item, isRare: true);
+                return;
+            }
 
             if (!this.SharedUpdateActiveState(item, publicState))
             {
@@ -420,6 +427,7 @@
             }
 
             publicState.IsActive = setIsActive;
+
             Logger.Info($"Player switched head equipment light mode: {item}, isActive={setIsActive}");
             this.CallServer(_ => _.ServerRemote_SetMode(item, setIsActive));
 
@@ -464,6 +472,7 @@
             }
 
             publicState.IsActive = setIsActive;
+            this.ServerSetUpdateRate(item, isRare: !setIsActive);
             Logger.Info($"Player switched light mode: {item}, isActive={setIsActive}", character);
         }
 

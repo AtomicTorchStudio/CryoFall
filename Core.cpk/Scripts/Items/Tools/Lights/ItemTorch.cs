@@ -130,24 +130,23 @@
 
         protected override void ServerUpdate(ServerUpdateData data)
         {
-            if (data.PrivateState.FuelAmount <= 0)
+            if (data.PrivateState.FuelAmount > 0)
             {
-                // no charge left - destroy torch
-                var item = data.GameObject;
-                var owner = item.Container.OwnerAsCharacter;
-
-                Server.Items.DestroyItem(item);
-
-                if (owner is not null)
-                {
-                    // notify owner
-                    this.CallClient(owner, _ => _.ClientRemote_TorchBurned());
-                }
-
+                base.ServerUpdate(data);
                 return;
             }
 
-            base.ServerUpdate(data);
+            // the torch has burned out - destroy the item
+            var item = data.GameObject;
+            var owner = item.Container.OwnerAsCharacter;
+
+            Server.Items.DestroyItem(item);
+
+            if (owner is not null)
+            {
+                // notify owner
+                this.CallClient(owner, _ => _.ClientRemote_TorchBurned());
+            }
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

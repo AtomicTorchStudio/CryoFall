@@ -6,7 +6,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Items;
 
     public class ConsolePlayerItemsReset : BaseConsoleCommand
     {
@@ -18,13 +17,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         public string Execute([CurrentCharacterIfNull] ICharacter player = null)
         {
-            var allContainers = new AggregatedItemsContainers(
-                player.SharedGetPlayerContainerInventory(),
-                player.SharedGetPlayerContainerEquipment(),
-                player.SharedGetPlayerContainerHotbar(),
-                player.SharedGetPlayerContainerHand());
-
-            foreach (var container in allContainers.ItemsContainers)
+            foreach (var container
+                in new[]
+                {
+                    player.SharedGetPlayerContainerInventory(),
+                    player.SharedGetPlayerContainerEquipment(),
+                    player.SharedGetPlayerContainerHotbar(),
+                    player.SharedGetPlayerContainerHand()
+                })
             {
                 foreach (var item in container.Items.ToList())
                 {

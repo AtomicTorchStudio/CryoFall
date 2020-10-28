@@ -561,6 +561,25 @@
             the container.
             </summary>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.Containers">
+            <summary>
+            Enumerates all the nested item containers (if there are many, or simply returns the current container).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.ContainersForAddingIntoExistingStacksOnly">
+            <summary>
+            Enumerates all the nested item containers (if there are many, or simply returns the current container)
+            with a purpose to add into the existing stacks only.
+            Could be empty.
+            This is useful in case when it's necessary to prioritize
+            certain containers for adding newly created items into their existing stacks.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.EmptySlotsCount">
+            <summary>
+            Gets how many empty slots are available.
+            </summary>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3">
             <summary>
             Base class for items container type with specific generics parameters for states.
@@ -858,16 +877,6 @@
             <param name="item"></param>
             <param name="countToMove"></param>
             <returns>true - if operation performed and item.Count become 0 (fully moved).</returns>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.EmptySlotsCount">
-            <summary>
-            Gets how many empty slots are available.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.ItemsContainers">
-            <summary>
-            Enumerators all the nested item containers (if there are many, or simply returns the current container).
-            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.ILogicObject">
             <summary>
@@ -3124,14 +3133,14 @@
             Gets mouse screen position (in screen pixels).
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService.TooltipDelay">
-            <summary>
-            Tooltip appearance delay (in seconds).
-            </summary>
-        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService.MouseWorldPosition">
             <summary>
             Gets mouse world position (in world units).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService.TooltipDelay">
+            <summary>
+            Tooltip appearance delay (in seconds).
             </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService.IsKeyDown(AtomicTorch.CBND.GameApi.ServicesClient.InputKey,System.Boolean)">

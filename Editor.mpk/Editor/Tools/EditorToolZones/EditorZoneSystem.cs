@@ -74,7 +74,9 @@
             Instance = this;
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_ApplyZoneModififications(IProtoZone protoZone, QuadTreeDiff diff)
         {
             var character = ServerRemoteContext.Character;
@@ -83,7 +85,9 @@
             Logger.Important($"Zone quadtree diff applied: {diff} for {protoZone} by {character}");
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_DeleteZoneMobs(IProtoZone zone)
         {
             Logger.Important("Destroying all spawned mobs at zone: " + zone.ShortId);

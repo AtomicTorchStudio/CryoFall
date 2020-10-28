@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -505,7 +506,7 @@
             var countToFindRemains = (int)count;
 
             result = new List<IItem>();
-            foreach (var container in containers.ItemsContainers)
+            foreach (var container in containers.Containers)
             {
                 foreach (var item in container.Items)
                 {
@@ -582,14 +583,14 @@
                 return ServerExecuteTrade(
                     lot,
                     sellerContainers: new AggregatedItemsContainers(tradingStationItemsContainer),
-                    buyerContainers: new AggregatedItemsContainers(character, includeEquipmentContainer: false),
+                    buyerContainers: new CharacterContainersProvider(character, includeEquipmentContainer: false),
                     isPlayerBuying: true);
             }
 
             // station buying
             return ServerExecuteTrade(
                 lot,
-                sellerContainers: new AggregatedItemsContainers(character, includeEquipmentContainer: false),
+                sellerContainers: new CharacterContainersProvider(character, includeEquipmentContainer: false),
                 buyerContainers: new AggregatedItemsContainers(tradingStationItemsContainer),
                 isPlayerBuying: false);
         }

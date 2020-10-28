@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterUnstuck;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -38,14 +37,31 @@
             }
         }
 
+        public static bool ServerHasAnyInteraction(IWorldObject worldObject)
+        {
+            foreach (var pair in RegisteredActions.Keys)
+            {
+                if (!ReferenceEquals(pair.WorldObject, worldObject))
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public static IEnumerable<ICharacter> SharedEnumerateCurrentInteractionCharacters(IWorldObject worldObject)
         {
             foreach (var pair in RegisteredActions.Keys)
             {
-                if (pair.WorldObject == worldObject)
+                if (!ReferenceEquals(pair.WorldObject, worldObject))
                 {
-                    yield return pair.Character;
+                    continue;
                 }
+
+                yield return pair.Character;
             }
         }
 
@@ -53,7 +69,7 @@
         {
             foreach (var pair in RegisteredActions.Keys)
             {
-                if (pair.Character != character)
+                if (!ReferenceEquals(pair.Character, character))
                 {
                     continue;
                 }
@@ -259,7 +275,7 @@
             }
         }
 
-        private struct PairAction
+        private readonly struct PairAction
         {
             public readonly DelegateFinishAction FinishAction;
 

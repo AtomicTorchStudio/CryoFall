@@ -57,7 +57,9 @@
                 onUndo: () => this.CallServer(_ => _.ServerRemote_PlaceAt(tilePosition, previousIsSlope)));
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceAt(Vector2Ushort tilePosition, bool isSlope)
         {
             var worldService = Server.World;

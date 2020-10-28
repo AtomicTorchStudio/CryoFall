@@ -196,6 +196,8 @@
                 Server.World.SetDynamicObjectPhysicsMovement(vehicle, Vector2D.Zero, targetVelocity: 0);
                 Server.World.SetDynamicObjectMoveSpeed(vehicle, 0);
                 Server.World.StopPhysicsBody(vehicle.PhysicsBody);
+                // no need to do this here, as it's done automatically by vehicle's ServerUpdate method
+                //protoVehicle.ServerSetUpdateRate(vehicle, isRare: true);
                 protoVehicle.ServerOnCharacterExitVehicle(vehicle, character);
             }
 
@@ -410,6 +412,7 @@
             vehicle.ProtoWorldObject.SharedCreatePhysics(vehicle);
             Server.World.SetPosition(character, vehicle.Position, writeToLog: false);
 
+            protoVehicle.ServerSetUpdateRate(vehicle, isRare: false);
             protoVehicle.ServerOnCharacterEnterVehicle(vehicle, character);
 
             PlayerCharacter.SharedForceRefreshCurrentItem(character);

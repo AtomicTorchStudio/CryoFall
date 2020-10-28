@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
@@ -336,10 +335,10 @@
             if (weaponReloadingState.Item != weapon)
             {
                 Logger.Info("Weapon reloading cannot be aborted: weapon doesn't match - currently reloading "
-                           + weaponReloadingState.Item
-                           + " requested reloading for "
-                           + weapon,
-                           character);
+                            + weaponReloadingState.Item
+                            + " requested reloading for "
+                            + weapon,
+                            character);
                 return;
             }
 
@@ -364,7 +363,7 @@
                 isReloadingNow = false;
                 return;
             }
-            
+
             if (reloadingState.Item != weaponState.ItemWeapon)
             {
                 Logger.Info("Can reload only the current weapon. Reloading aborted");
@@ -559,13 +558,13 @@
 
             // remove weapon reloading state
             weaponState.WeaponReloadingState = null;
-            
+
             var itemWeapon = weaponReloadingState.Item;
             if (itemWeapon != weaponState.ItemWeapon)
             {
                 throw new Exception("Can reload only the current weapon");
             }
-            
+
             var itemWeaponProto = (IProtoItemWeapon)itemWeapon.ProtoGameObject;
             var itemWeaponPrivateState = itemWeapon.GetPrivateState<WeaponPrivateState>();
             var weaponAmmoCount = (int)itemWeaponPrivateState.AmmoCount;

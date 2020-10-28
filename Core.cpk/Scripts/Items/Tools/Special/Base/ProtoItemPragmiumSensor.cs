@@ -57,6 +57,8 @@
 
         public override double ServerUpdateIntervalSeconds => 0.1;
 
+        public override double ServerUpdateRareIntervalSeconds => 10;
+
         protected virtual SoundResource SoundResourcePing { get; }
             = new SoundResource("Items/Tools/PragmiumSensor/Ping");
 
@@ -78,6 +80,7 @@
             if (isSelected)
             {
                 GetPrivateState(item).ServerTimeToPing = 0;
+                this.ServerSetUpdateRate(item, isRare: false);
             }
         }
 
@@ -90,6 +93,7 @@
             if (!IsItemSelectedByPlayer(character, item))
             {
                 // not a selected player item
+                this.ServerSetUpdateRate(item, isRare: true);
                 return;
             }
 

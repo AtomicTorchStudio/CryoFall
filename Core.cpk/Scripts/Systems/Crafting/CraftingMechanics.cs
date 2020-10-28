@@ -268,28 +268,46 @@
 
                 if (isCreativeMode)
                 {
-                    // destroy only available count
-                    var availableCount = inputContainers.Sum(
-                        c => c.Items.Where(i => ReferenceEquals(i.ProtoItem, inputItemProto))
-                              .Sum(i => i.Count));
-                    if (availableCount == 0)
+                    CreativeModeAdjustCountToDestroy(inputItemProto, ref countToDestroy);
+                    if (countToDestroy == 0)
                     {
-                        // nothing to destroy
                         continue;
-                    }
-
-                    if (countToDestroy > availableCount)
-                    {
-                        // limit count to destroy
-                        countToDestroy = (ushort)availableCount;
                     }
                 }
 
-                ServerDestroyItemsOfType(
-                    inputContainers,
-                    inputItemProto,
-                    countToDestroy,
-                    out _);
+                ServerDestroyItemsOfType(inputContainers,
+                                         inputItemProto,
+                                         countToDestroy,
+                                         out _);
+            }
+
+            void CreativeModeAdjustCountToDestroy(IProtoItem inputItemProto, ref ushort countToDestroy)
+            {
+                // destroy only available count
+                var availableCount = 0;
+                foreach (var c in inputContainers.Containers)
+                {
+                    foreach (var item in c.Items)
+                    {
+                        if (ReferenceEquals(item.ProtoItem, inputItemProto))
+                        {
+                            availableCount += item.Count;
+                        }
+                    }
+                }
+
+                if (availableCount == 0)
+                {
+                    // nothing to destroy
+                    countToDestroy = 0;
+                    return;
+                }
+
+                if (countToDestroy > availableCount)
+                {
+                    // limit count to destroy
+                    countToDestroy = (ushort)availableCount;
+                }
             }
         }
 
@@ -343,9 +361,9 @@
             using var tempAllItemsOfType = Api.Shared.GetTempList<IItem>();
             var allItemsOfType = tempAllItemsOfType.AsList();
 
-            foreach (var itemsContainer in containers)
+            foreach (var container in containers.Containers)
             {
-                foreach (var item in itemsContainer.Items)
+                foreach (var item in container.Items)
                 {
                     if (ReferenceEquals(item.ProtoItem, protoItem))
                     {
@@ -379,7 +397,7 @@
             if (destroyedCount != countToDestroy)
             {
                 Api.Logger.Error(
-                    $"Cannot remove all required to remove count. Containers {containers.GetJoinedString()}, item type {protoItem}, count destroyed {destroyedCount}, count to destroy remains {countToDestroy - destroyedCount}");
+                    $"Cannot remove all required to remove count. Containers {containers.Containers.GetJoinedString()}, item type {protoItem}, count destroyed {destroyedCount}, count to destroy remains {countToDestroy - destroyedCount}");
             }
 
             static void SortItems(IProtoItem protoItem, List<IItem> items)

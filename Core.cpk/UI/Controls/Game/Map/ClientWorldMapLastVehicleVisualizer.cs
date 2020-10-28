@@ -42,7 +42,7 @@
 
                 if (this.isEnabled)
                 {
-                    this.Initilialize();
+                    this.Initialize();
                 }
                 else
                 {
@@ -71,7 +71,7 @@
             this.marker = mapControl;
         }
 
-        private void Initilialize()
+        private void Initialize()
         {
             this.Reset();
 

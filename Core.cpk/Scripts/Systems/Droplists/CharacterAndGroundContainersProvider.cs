@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Droplists
 {
-    using System.Collections;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -19,12 +18,7 @@
 
         public ICharacter Character { get; }
 
-        // always report that there is at least a single empty slot
-        public int EmptySlotsCount => 1;
-
-        public IItemsContainer GroundContainer { get; private set; }
-
-        public IEnumerable<IItemsContainer> ItemsContainers
+        public IEnumerable<IItemsContainer> Containers
         {
             get
             {
@@ -39,17 +33,23 @@
             }
         }
 
+        public IEnumerable<IItemsContainer> ContainersForAddingIntoExistingStacksOnly
+        {
+            get
+            {
+                if (!this.Character.IsNpc)
+                {
+                    yield return this.Character.SharedGetPlayerContainerHotbar();
+                }
+            }
+        }
+
+        // always report that there is at least a single empty slot
+        public int EmptySlotsCount => 1;
+
+        public IItemsContainer GroundContainer { get; private set; }
+
         public Vector2Ushort TilePosition { get; }
-
-        public IEnumerator<IItemsContainer> GetEnumerator()
-        {
-            return this.ItemsContainers.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
 
         private void CreateGroundContainer()
         {

@@ -500,7 +500,7 @@
             return plantObjectsToWater;
         }
 
-        [RemoteCallSettings(timeInterval: WateringCooldownSeconds)]
+        [RemoteCallSettings(timeInterval: 1)]
         private SprinklerWateringRequestResult ServerRemote_WaterNow(IStaticWorldObject worldObject)
         {
             this.VerifyGameObject(worldObject);

@@ -123,15 +123,6 @@
             }
         }
 
-        public override CreateItemResult ServerCreateItem(
-            ICharacter character,
-            IProtoItem protoItem,
-            uint countToSpawn = 1)
-        {
-            // no containers - cannot create items
-            throw new NotImplementedException();
-        }
-
         public virtual void ServerOnDeath(ICharacter character)
         {
             this.ServerSendDeathSoundEvent(character);
@@ -463,7 +454,7 @@
             {
                 ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
                                              () => ClientSoundCueManager.OnSoundEvent(soundCuePosition,
-                                                                                      isPartyMember: false));
+                                                 isPartyMember: false));
             }
         }
 

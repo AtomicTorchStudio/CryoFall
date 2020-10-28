@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -51,14 +52,14 @@
 
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskStateWithCount state)
         {
-            var characterContainers = new AggregatedItemsContainers(character, includeEquipmentContainer: true);
+            var containers = new CharacterContainersProvider(character, includeEquipmentContainer: true);
 
             if (this.RequiredCount == 1)
             {
                 // only one item is required
                 foreach (var protoItem in this.List)
                 {
-                    if (characterContainers.ContainsItemsOfType(protoItem, requiredCount: 1))
+                    if (containers.ContainsItemsOfType(protoItem, requiredCount: 1))
                     {
                         // found at least one item of the required item type
                         state.SetCountCurrent(1, countMax: 1);
@@ -74,7 +75,7 @@
             var availableCount = 0;
             foreach (var protoItem in this.List)
             {
-                availableCount += characterContainers.CountItemsOfType(protoItem);
+                availableCount += containers.CountItemsOfType(protoItem);
                 if (availableCount >= this.RequiredCount)
                 {
                     break;

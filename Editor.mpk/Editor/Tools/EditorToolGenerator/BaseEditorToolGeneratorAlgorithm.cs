@@ -123,7 +123,9 @@
             return (byte)this.heightSettings.Count;
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_ApplyMap(IReadOnlyCollection<TileModifyRequest> modifyRequests)
         {
             var worldService = Server.World;

@@ -147,6 +147,7 @@
             {
                 // we don't need this debug data but it might be useful someday 
                 return;
+
                 var sb = new StringBuilder("Coverage array: (Y is reversed)").AppendLine();
                 for (var y = 0; y < arraySizeY; y++)
                 {

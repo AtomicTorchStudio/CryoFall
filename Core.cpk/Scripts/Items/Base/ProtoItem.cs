@@ -437,7 +437,7 @@
             }
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableOrdered, keyArgIndex: 0)]
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, keyArgIndex: 0)]
         private void ClientRemote_CharacterUsedItem(ICharacter character)
         {
             Logger.Important($"Other character used {this}: {character}");
@@ -453,9 +453,6 @@
 
             public readonly bool IsSelected;
 
-            /// <summary>
-            /// Item.
-            /// </summary>
             public readonly IItem Item;
 
             private TClientState clientState;
@@ -473,18 +470,18 @@
             }
 
             /// <summary>
-            /// Client state of item.
+            /// Client state of the item.
             /// </summary>
             public TClientState ClientState => this.clientState ??= GetClientState(this.Item);
 
             /// <summary>
-            /// Synchronized server private state for this item.<br />
+            /// Synchronized server private state for the item.
             /// It will throw exception if you don't have this game object in your private state.
             /// </summary>
             public TPrivateState PrivateState => this.privateState ??= GetPrivateState(this.Item);
 
             /// <summary>
-            /// Synchronized server public state for this item.
+            /// Synchronized server public state for the item.
             /// </summary>
             public TPublicState PublicState => this.publicState ??= GetPublicState(this.Item);
         }
@@ -494,9 +491,6 @@
         /// </summary>
         protected struct ClientItemData
         {
-            /// <summary>
-            /// Item.
-            /// </summary>
             public readonly IItem Item;
 
             private TClientState clientState;
@@ -516,13 +510,13 @@
             public TClientState ClientState => this.clientState ??= GetClientState(this.Item);
 
             /// <summary>
-            /// Synchronized server private state for this item.<br />
+            /// Synchronized server private state for the item.
             /// It will throw exception if you don't have this game object in your private state.
             /// </summary>
             public TPrivateState PrivateState => this.privateState ??= GetPrivateState(this.Item);
 
             /// <summary>
-            /// Synchronized server public state for this item.
+            /// Synchronized server public state for the item.
             /// </summary>
             public TPublicState PublicState => this.publicState ??= GetPublicState(this.Item);
         }

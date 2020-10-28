@@ -39,6 +39,8 @@
             set => this.SetValue(ColumnsSpacingWidthProperty, value);
         }
 
+        public bool IsEmpty => this.currentRowsCount == 0;
+
         public void Add(FrameworkElement controlKey, FrameworkElement controlValue)
         {
             this.rows.Add(new RowDefinition());

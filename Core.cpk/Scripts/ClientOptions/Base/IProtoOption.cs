@@ -7,6 +7,8 @@
     {
         ProtoOptionsCategory Category { get; }
 
+        string Description { get; }
+
         string Id { get; }
 
         bool IsHidden { get; }

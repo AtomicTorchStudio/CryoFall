@@ -5,11 +5,13 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     /// <summary>
@@ -95,28 +97,67 @@
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            tableControl.Loaded += (_, e) =>
-                                   {
-                                       // populate options
-                                       tableControl.Clear();
+            tableControl.Loaded
+                += (_, e) =>
+                   {
+                       if (!tableControl.IsEmpty)
+                       {
+                           return;
+                       }
 
-                                       // local helper method for getting option order
-                                       IEnumerable<IProtoOption> GetOptionOrder(IProtoOption tab)
-                                       {
-                                           if (tab.OrderAfterOption is not null)
-                                           {
-                                               yield return tab.OrderAfterOption;
-                                           }
-                                       }
+                       // populate options
+                       tableControl.Clear();
 
-                                       foreach (var option in options.OrderBy(o => o.ShortId)
-                                                                     .TopologicalSort(GetOptionOrder)
-                                                                     .Where(o => !o.IsHidden))
-                                       {
-                                           option.CreateControl(out var labelControl, out var optionControl);
-                                           tableControl.Add(labelControl, optionControl);
-                                       }
-                                   };
+                       // local helper method for getting option order
+                       IEnumerable<IProtoOption> GetOptionOrder(IProtoOption tab)
+                       {
+                           if (tab.OrderAfterOption is not null)
+                           {
+                               yield return tab.OrderAfterOption;
+                           }
+                       }
+
+                       foreach (var option in options.OrderBy(o => o.ShortId)
+                                                     .TopologicalSort(GetOptionOrder)
+                                                     .Where(o => !o.IsHidden))
+                       {
+                           option.CreateControl(out var labelControl, out var optionControl);
+                           optionControl.Focusable = false;
+
+                           if (!string.IsNullOrEmpty(option.Description))
+                           {
+                               // wrap into a stackpanel with an info tooltip control
+                               var controlInfoPoint = new Control
+                               {
+                                   Style = Api.Client.UI.GetApplicationResource<Style>(
+                                       "ControlInfoQuestionPointStyle"),
+                                   VerticalAlignment = VerticalAlignment.Bottom,
+                                   Margin = new Thickness(0, 0, 0, 3)
+                               };
+
+                               var stackPanel = new StackPanel
+                               {
+                                   Orientation = Orientation.Horizontal,
+                                   Background = Brushes.Transparent
+                               };
+
+                               stackPanel.Children.Add(optionControl);
+                               stackPanel.Children.Add(controlInfoPoint);
+                               optionControl = stackPanel;
+
+                               var tooltipContent = new FormattedTextBlock()
+                               {
+                                   Content = option.Description,
+                                   MaxWidth = 300
+                               };
+
+                               ToolTipServiceExtend.SetToolTip(stackPanel,   tooltipContent);
+                               ToolTipServiceExtend.SetToolTip(labelControl, tooltipContent);
+                           }
+
+                           tableControl.Add(labelControl, optionControl);
+                       }
+                   };
 
             return new ScrollViewer()
             {

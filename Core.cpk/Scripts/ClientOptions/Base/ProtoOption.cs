@@ -53,6 +53,8 @@
 
         public abstract TValue Default { get; }
 
+        public virtual string Description => null;
+
         public string Id => this.GetType().FullName;
 
         public virtual bool IsHidden => false;

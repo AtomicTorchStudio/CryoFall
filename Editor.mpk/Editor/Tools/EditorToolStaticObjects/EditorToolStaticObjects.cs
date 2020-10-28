@@ -155,7 +155,9 @@
             return new TextureResource($"{this.ToolTexturesPath}Filters/{textureName}.png");
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_Destroy(IProtoStaticWorldObject protoStaticWorldObject, Vector2Ushort tilePosition)
         {
             var worldService = Server.World;
@@ -168,7 +170,9 @@
             }
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceStaticObject(
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort tilePosition)

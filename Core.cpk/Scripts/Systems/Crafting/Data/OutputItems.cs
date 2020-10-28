@@ -37,9 +37,9 @@
                 CreateItemResult createItemResult;
                 if (character is not null)
                 {
-                    createItemResult = character.ProtoCharacter.ServerCreateItem(character,
-                                                                                 outputItem.ProtoItem,
-                                                                                 count);
+                    createItemResult = itemsService.CreateItem(outputItem.ProtoItem,
+                                                               character,
+                                                               count);
                 }
                 else
                 {

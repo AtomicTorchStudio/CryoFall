@@ -1,8 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Player
 {
-    using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -25,7 +23,7 @@
             uint countToSpawn,
             ref IItemsContainer groundContainer)
         {
-            var result = character.ProtoCharacter.ServerCreateItem(character, protoItem, countToSpawn);
+            var result = Server.Items.CreateItem(protoItem, character, countToSpawn);
             if (result.IsEverythingCreated)
             {
                 // successfully spawned at character
@@ -46,10 +44,19 @@
                     return;
                 }
             }
-            
+
             ServerItemsService.CreateItem(protoItem,
                                           groundContainer,
                                           count: countToSpawn);
+
+            if (groundContainer.OccupiedSlotsCount > 0)
+            {
+                return;
+            }
+
+            // nothing is spawned, the ground container should be destroyed
+            Server.World.DestroyObject(groundContainer.OwnerAsStaticObject);
+            groundContainer = null;
         }
 
         public override MoveItemsResult ClientTryTakeAllItems(
@@ -114,77 +121,13 @@
             return result;
         }
 
-        public override CreateItemResult ServerCreateItem(
-            ICharacter character,
-            IProtoItem protoItem,
-            uint countToSpawn = 1)
-        {
-            if (character is null)
-            {
-                throw new ArgumentNullException(nameof(character));
-            }
-
-            if (protoItem is null)
-            {
-                throw new ArgumentNullException(nameof(protoItem));
-            }
-
-            if (countToSpawn == 0)
-            {
-                throw new Exception("Cannot add item to character: item count is 0");
-            }
-
-            var countToSpawnRemains = countToSpawn;
-            var privateState = GetPrivateState(character);
-            var containerHotbar = privateState.ContainerHotbar;
-            var containerInventory = privateState.ContainerInventory;
-            var serverItemsService = Server.Items;
-            var result = new CreateItemResult();
-
-            // define a function for spawning item at specified container
-            bool TrySpawnItem(IItemsContainer container, bool onlyToExistingStacks)
-            {
-                var createItemResult = serverItemsService.CreateItem(
-                    protoItem,
-                    container,
-                    countToSpawnRemains,
-                    slotId: null,
-                    onlyAddToExistingStacks: onlyToExistingStacks);
-
-                if (createItemResult.TotalCreatedCount == 0)
-                {
-                    // cannot create item
-                    return false;
-                }
-
-                // something created (perhaps all)
-                result.MergeWith(createItemResult);
-                countToSpawnRemains = (ushort)(countToSpawnRemains - createItemResult.TotalCreatedCount);
-                var isEverythingCreated = countToSpawnRemains == 0;
-                return isEverythingCreated;
-            }
-
-            // 1. Try to add to existing stacks in hotbar.
-            // 3. Try to add to existing stacks or spawn as new stacks in inventory.
-            // 3. Try to spawn as new stacks in hotbar.
-            // TODO: 4. Try to spawn on the ground. (actually implemented separately via scripting)
-            if (TrySpawnItem(containerHotbar,       onlyToExistingStacks: true)
-                || TrySpawnItem(containerInventory, onlyToExistingStacks: false)
-                || TrySpawnItem(containerHotbar,    onlyToExistingStacks: false))
-            {
-                // all items are created!
-                result.IsEverythingCreated = true;
-            }
-
-            return result;
-        }
-
         public override IEnumerable<IItemsContainer> SharedEnumerateAllContainers(
             ICharacter character,
             bool includeEquipmentContainer)
         {
             var publicState = GetPublicState(character);
-            if (IsClient && Client.Characters.CurrentPlayerCharacter != character)
+            if (IsClient
+                && !ReferenceEquals(character, Client.Characters.CurrentPlayerCharacter))
             {
                 // not a current player character - return only the equipment container
                 if (includeEquipmentContainer)
@@ -197,13 +140,12 @@
 
             var privateState = GetPrivateState(character);
             yield return privateState.ContainerInventory;
-
+            yield return privateState.ContainerHotbar;
+            
             if (includeEquipmentContainer)
             {
                 yield return publicState.ContainerEquipment;
             }
-
-            yield return privateState.ContainerHotbar;
 
             // hand container is not included
             //yield return privateState.ContainerHand;

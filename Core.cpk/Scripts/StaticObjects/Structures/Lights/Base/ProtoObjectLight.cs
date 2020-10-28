@@ -339,13 +339,15 @@
             return false;
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, keyArgIndex: 0)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1.5, keyArgIndex: 0)]
         private void ServerRemote_SetLightMode(IStaticWorldObject lightObject, ObjectLightMode mode)
         {
             var character = ServerRemoteContext.Character;
-            if (!InteractionCheckerSystem.SharedHasInteraction(character, lightObject, requirePrivateScope: true))
+            if (!this.SharedCanInteract(character,
+                                        lightObject,
+                                        writeToLog: true))
             {
-                throw new Exception("The player character is not interacting with the light object");
+                return;
             }
 
             var privateState = GetPrivateState(lightObject);

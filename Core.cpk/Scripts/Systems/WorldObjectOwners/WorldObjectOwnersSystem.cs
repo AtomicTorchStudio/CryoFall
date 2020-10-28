@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -94,7 +93,6 @@
         public static string ServerSetOwners(
             IWorldObject worldObject,
             List<string> newOwners,
-            NetworkSyncList<string> currentOwners,
             ICharacter byOwner)
         {
             var protoObject = (IProtoObjectWithOwnersList)worldObject.ProtoGameObject;
@@ -103,13 +101,7 @@
                 throw new Exception("This object doesn't support owners list: " + worldObject);
             }
 
-            if (!InteractionCheckerSystem.SharedHasInteraction(ServerRemoteContext.Character,
-                                                               worldObject,
-                                                               requirePrivateScope: true))
-            {
-                throw new Exception("The player character is not interacting with " + worldObject);
-            }
-
+            var currentOwners = GetPrivateState(worldObject).Owners;
             if (!currentOwners.Contains(byOwner.Name)
                 && !CreativeModeSystem.SharedIsInCreativeMode(byOwner))
             {
@@ -289,15 +281,21 @@
             var maxOwners = worldObject.ProtoGameObject is IProtoObjectDoor
                                 ? StructureConstants.SharedDoorOwnersMax
                                 : byte.MaxValue;
-            
+
             if (newOwners.Count > maxOwners)
             {
                 return DialogCannotSetOwners_AccessListSizeLimitExceeded;
             }
 
-            var owner = ServerRemoteContext.Character;
-            var currentOwners = GetPrivateState(worldObject).Owners;
-            return ServerSetOwners(worldObject, newOwners, currentOwners, owner);
+            var character = ServerRemoteContext.Character;
+            if (!worldObject.ProtoWorldObject.SharedCanInteract(character,
+                                                                worldObject,
+                                                                writeToLog: false))
+            {
+                throw new Exception("The player character cannot interact with " + worldObject);
+            }
+
+            return ServerSetOwners(worldObject, newOwners, byOwner: character);
         }
     }
 }

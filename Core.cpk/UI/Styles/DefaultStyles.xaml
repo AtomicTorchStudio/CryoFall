@@ -1549,6 +1549,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2" />
                                 <ColumnDefinition Width="20" />
                             </Grid.ColumnDefinitions>
                             <Border x:Name="BackgroundDisabled" Grid.ColumnSpan="2"
@@ -1556,7 +1557,7 @@
                                     Visibility="Collapsed" />
                             <ToggleButton
                                 x:Name="DropDownButton"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="3"
                                 ClickMode="Press"
                                 Focusable="False"
                                 Template="{StaticResource ComboBoxToggleButtonTemplate}"
@@ -1570,7 +1571,13 @@
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 ContentSource="SelectionBoxItem"
-                                IsHitTestVisible="False" />
+                                IsHitTestVisible="False">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
                             <TextBox
                                 x:Name="PART_EditableTextBox"
                                 Margin="{TemplateBinding Padding}"

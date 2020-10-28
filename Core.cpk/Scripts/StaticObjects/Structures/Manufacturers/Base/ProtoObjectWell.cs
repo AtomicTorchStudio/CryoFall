@@ -162,7 +162,7 @@
                        showNotificationIfNauseous: true);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableOrdered, keyArgIndex: 0)]
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered, keyArgIndex: 0)]
         private void ClientRemote_CharacterDrankWater(ICharacter character)
         {
             ItemsSoundPresets.ItemFoodDrink.PlaySound(ItemSound.Use,

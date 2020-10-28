@@ -2383,7 +2383,7 @@
                 color: NotificationColor.Bad);
         }
 
-        [RemoteCallSettings(timeInterval: 1, keyArgIndex: 0)]
+        [RemoteCallSettings(timeInterval: 1)]
         private LandClaimsGroupDecayInfo ServerRemote_GetDecayInfo(IStaticWorldObject landClaimStructure)
         {
             var character = ServerRemoteContext.Character;

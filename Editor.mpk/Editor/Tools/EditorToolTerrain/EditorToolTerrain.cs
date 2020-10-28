@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
@@ -74,7 +73,7 @@
                     // ignore bridges
                     continue;
                 }
-                
+
                 items.Add(new EditorToolTerrainItem(protoTile));
             }
         }
@@ -313,7 +312,9 @@
                             chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk))));
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_PlaceAt(IList<TileModifyRequest> modifyRequests)
         {
             if (modifyRequests.Count == 0)

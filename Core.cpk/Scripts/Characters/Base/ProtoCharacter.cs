@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -17,7 +18,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient;
-    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
@@ -59,6 +59,8 @@
 
         public override double ServerUpdateIntervalSeconds => 0; // every frame
 
+        public override double ServerUpdateRareIntervalSeconds => 2; // every 2 seconds (for offline players usually)
+
         public virtual double StatDefaultHealthMax => 100;
 
         public abstract double StatHealthRegenerationPerSecond { get; }
@@ -84,22 +86,16 @@
             throw new NotImplementedException();
         }
 
-        public abstract CreateItemResult ServerCreateItem(
-            ICharacter character,
-            IProtoItem protoItem,
-            uint countToSpawn = 1);
-
-        public CreateItemResult ServerCreateItem<TProtoItem>(
-            ICharacter character,
-            uint countToSpawn = 1)
-            where TProtoItem : class, IProtoItem, new()
-        {
-            return this.ServerCreateItem(character, GetProtoEntity<TProtoItem>(), countToSpawn);
-        }
-
         public abstract IEnumerable<IItemsContainer> SharedEnumerateAllContainers(
             ICharacter character,
             bool includeEquipmentContainer);
+
+        public IItemsContainerProvider SharedGetItemContainersProvider(
+            ICharacter character,
+            bool includeEquipmentContainer)
+        {
+            return new CharacterContainersProvider(character, includeEquipmentContainer);
+        }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

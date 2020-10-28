@@ -105,7 +105,7 @@
             return true;
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, keyArgIndex: 0, avoidBuffer: true)]
+        [RemoteCallSettings(avoidBuffer: true)]
         private void ServerRemote_ClaimReward(IProtoQuest quest)
         {
             var character = ServerRemoteContext.Character;

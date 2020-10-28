@@ -57,18 +57,22 @@
             }
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, groupName: "PlayerMode")]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            groupName: "PlayerMode")]
         public void ServerRemote_SwitchToEditorMode()
         {
             var character = ServerRemoteContext.Character;
             VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
             // the order of calls is important here
-            Server.Characters.SetSpectatorMode(character, isSpectator: true, reinitilize: false);
+            Server.Characters.SetSpectatorMode(character, isSpectator: true, reinitialize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterEditorMode>());
             character.ServerRemoveAllStatusEffects();
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 2, groupName: "PlayerMode")]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            groupName: "PlayerMode")]
         public void ServerRemote_SwitchToPlayerMode()
         {
             var character = ServerRemoteContext.Character;
@@ -78,7 +82,7 @@
             }
 
             // the order of calls is important here
-            Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
+            Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitialize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacter>());
         }
 
@@ -117,7 +121,7 @@
         {
             base.ServerPrepareCharacter(data);
             // ensure the character is in spectator mode
-            Server.Characters.SetSpectatorMode(data.GameObject, isSpectator: true, reinitilize: false);
+            Server.Characters.SetSpectatorMode(data.GameObject, isSpectator: true, reinitialize: false);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)

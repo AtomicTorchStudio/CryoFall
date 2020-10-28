@@ -262,6 +262,11 @@
             var currentCharacter = ServerRemoteContext.Character;
             var currentCharacterName = currentCharacter.Name;
 
+            if (inviteeName == currentCharacterName)
+            {
+                throw new Exception("Cannot create a private chat with self");
+            }
+
             var existingChatRoomHolder = ServerFindPrivateChat(currentCharacter, inviteeName);
             if (existingChatRoomHolder is not null)
             {

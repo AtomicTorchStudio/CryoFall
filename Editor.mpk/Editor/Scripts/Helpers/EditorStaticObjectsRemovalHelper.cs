@@ -69,7 +69,9 @@
                 canGroupWithPreviousAction: false);
         }
 
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_DeleteObjects(List<Vector2Ushort> positionsToDeleteObjects)
         {
             var worldService = Server.World;
@@ -92,7 +94,9 @@
         /// Tradeoff: we cannot restore deleted objects, but we can spawn the same objects again.
         /// Of course their IDs and state will be new.
         /// </summary>
-        [RemoteCallSettings(DeliveryMode.Default, clientMaxSendQueueSize: byte.MaxValue)]
+        [RemoteCallSettings(DeliveryMode.Default,
+                            timeInterval: 0,
+                            clientMaxSendQueueSize: byte.MaxValue)]
         private void ServerRemote_RestoreObjects(IReadOnlyList<RestoreObjectRequest> request)
         {
             foreach (var restoreObjectRequest in request)

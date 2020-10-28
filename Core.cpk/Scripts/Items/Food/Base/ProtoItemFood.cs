@@ -228,11 +228,6 @@
             item2State.FreshnessCurrent = (uint)MathHelper.Clamp(newItem2Freshness, 0, uint.MaxValue);
         }
 
-        protected override void ServerUpdate(ServerUpdateData data)
-        {
-            ItemFreshnessSystem.ServerUpdateFreshness(data.GameObject, data.DeltaTime);
-        }
-
         protected virtual bool SharedCanEat(ItemEatData data)
         {
             return !StatusEffectNausea.SharedCheckIsNauseous(

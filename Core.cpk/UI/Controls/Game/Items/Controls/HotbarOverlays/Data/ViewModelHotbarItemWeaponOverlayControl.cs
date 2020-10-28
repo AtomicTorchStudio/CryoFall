@@ -27,10 +27,12 @@
             this.weaponState = ClientCurrentCharacterHelper.PrivateState.WeaponState;
 
             ClientCurrentCharacterContainersHelper.ContainersItemsReset += this.ContainersItemsResetHandler;
-            ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged += this.ItemAddedOrRemovedOrCountChangedHandler;
+            ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged +=
+                this.ItemAddedOrRemovedOrCountChangedHandler;
 
             ClientCurrentCharacterVehicleContainersHelper.ContainersItemsReset += this.ContainersItemsResetHandler;
-            ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged += this.ItemAddedOrRemovedOrCountChangedHandler;
+            ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged +=
+                this.ItemAddedOrRemovedOrCountChangedHandler;
 
             if (this.weaponState is null)
             {
@@ -123,10 +125,12 @@
         protected override void DisposeViewModel()
         {
             ClientCurrentCharacterContainersHelper.ContainersItemsReset -= this.ContainersItemsResetHandler;
-            ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged -= this.ItemAddedOrRemovedOrCountChangedHandler;
+            ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged -=
+                this.ItemAddedOrRemovedOrCountChangedHandler;
 
             ClientCurrentCharacterVehicleContainersHelper.ContainersItemsReset -= this.ContainersItemsResetHandler;
-            ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged -= this.ItemAddedOrRemovedOrCountChangedHandler;
+            ClientCurrentCharacterVehicleContainersHelper.ItemAddedOrRemovedOrCountChanged -=
+                this.ItemAddedOrRemovedOrCountChangedHandler;
 
             if (this.weaponState is not null)
             {

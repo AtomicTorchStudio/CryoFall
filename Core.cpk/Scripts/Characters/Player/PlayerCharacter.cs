@@ -422,6 +422,8 @@
 
             // re-select hotbar slot
             SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
+            
+            character.ProtoGameObject.ServerSetUpdateRate(character, isRare: !character.ServerIsOnline);
         }
 
         protected override void ServerInitializeCharacterFirstTime(ServerInitializeData data)

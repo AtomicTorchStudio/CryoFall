@@ -50,6 +50,11 @@
         {
             get
             {
+                if (!ClientIsInitialized)
+                {
+                    return 0;
+                }
+
                 var realTime = Api.IsServer
                                    ? Api.Server.Game.FrameTime
                                    : Api.Client.CurrentGame.ServerFrameTimeApproximated;
@@ -162,6 +167,8 @@
 
                 void Refresh()
                 {
+                    ClientIsInitialized = false;
+
                     if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
                         this.CallServer(_ => _.ServerRemote_RequestGetTimeOfDayOffset());
@@ -201,7 +208,7 @@
         private void ClientRemote_ServerTimeOfDayOffsetUpdate(double offsetSeconds)
         {
             // Please note: no need to correct the offsetSeconds by RTT/2 time
-            // because this correction is done automatically when current time of day is requsted.
+            // because this correction is done automatically when current time of day is requested.
             serverTimeOfDayOffsetSeconds = offsetSeconds;
             ClientIsInitialized = true;
             SharedWriteToLogCurrentTimeOfDay();

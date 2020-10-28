@@ -303,7 +303,7 @@
             var item = data.Item;
 
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(Client.Characters.CurrentPlayerCharacter)
-                is not null)
+                    is not null)
             {
                 // no need for notification - after refilling it will turn on automatically
                 return;
@@ -405,13 +405,14 @@
 
         protected override void ServerUpdate(ServerUpdateData data)
         {
+            var item = data.GameObject;
             var publicState = data.PublicState;
             if (!publicState.IsActive)
             {
+                this.ServerSetUpdateRate(item, isRare: true);
                 return;
             }
 
-            var item = data.GameObject;
             ItemDurabilitySystem.ServerModifyDurability(item,
                                                         -this.DurabilityDecreasePerSecond * data.DeltaTime,
                                                         roundUp: true);
@@ -480,6 +481,7 @@
             }
 
             publicState.IsActive = setIsActive;
+            this.ServerSetUpdateRate(item, isRare: !setIsActive);
             Logger.Info($"Player switched light mode: {item}, isActive={setIsActive}", character);
         }
     }

@@ -5,8 +5,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
     using System;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -24,9 +24,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
             [CurrentCharacterIfNull] ICharacter character = null)
         {
             var freshnessFraction = MathHelper.Clamp(freshnessPercent / 100, min: 0, max: 1);
-            var containers = new AggregatedItemsContainers(character, includeEquipmentContainer: true);
+            var containers = new CharacterContainersProvider(character, includeEquipmentContainer: true);
 
-            foreach (var container in containers)
+            foreach (var container in containers.Containers)
             {
                 foreach (var item in Api.Shared.WrapInTempList(container.Items).EnumerateAndDispose())
                 {
