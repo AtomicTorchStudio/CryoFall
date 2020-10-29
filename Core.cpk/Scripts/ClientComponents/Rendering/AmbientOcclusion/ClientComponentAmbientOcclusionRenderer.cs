@@ -102,6 +102,12 @@
             }
 
             var viewportSize = Rendering.ViewportSize;
+            if (viewportSize == (1, 1))
+            {
+                // the game is minimized
+                return;
+            }
+            
             var surfaceFormat = ClientAmbientOcclusion.IsDisplayMask
                                     ? SurfaceFormat.Color
                                     : SurfaceFormat.SingleColor;

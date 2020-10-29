@@ -107,17 +107,25 @@
 
         private static void PostEffectsRenderingHandler()
         {
-            var hasAtLeastOnePostEffect = false;
-            if (IsPostEffectsEnabled)
+            if (!IsPostEffectsEnabled)
             {
-                // check if there is at least one post-effect which could be rendered
-                foreach (var effect in ActivePostEffects)
+                return;
+            }
+
+            if (Api.Client.Rendering.ViewportSize == (1, 1))
+            {
+                // the game is minimized
+                return;
+            }
+
+            var hasAtLeastOnePostEffect = false;
+            // check if at least one post-effect could be rendered
+            foreach (var effect in ActivePostEffects)
+            {
+                if (effect.IsCanRenderAndNotSuppressed)
                 {
-                    if (effect.IsCanRenderAndNotSuppressed)
-                    {
-                        hasAtLeastOnePostEffect = true;
-                        break;
-                    }
+                    hasAtLeastOnePostEffect = true;
+                    break;
                 }
             }
 

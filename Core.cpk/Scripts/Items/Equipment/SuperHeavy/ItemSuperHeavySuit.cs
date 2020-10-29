@@ -85,7 +85,7 @@
                 return;
             }
 
-            Api.GetProtoEntity<ItemHelmetNightVision>()
+            Api.GetProtoEntity<ItemHelmetNightVisionAdvanced>()
                .SoundPresetItem
                .PlaySound(ItemSound.Use);
 
@@ -93,12 +93,6 @@
             clientState.IsNightVisionActive = !clientState.IsNightVisionActive;
 
             ClientRefreshNightVisionState(item);
-        }
-
-        protected override void ClientInitialize(ClientInitializeData data)
-        {
-            base.ClientInitialize(data);
-            ClientAutoLightToggle(data.GameObject);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
@@ -152,6 +146,13 @@
             clientState.IsNightVisionActive = isLightRequired;
             // active state changed - invalidate skeleton renderer (so it will be rebuilt)
             character.ClientInvalidateSkeletonRenderer();
+
+            if (clientState.IsNightVisionActive)
+            {
+                Api.GetProtoEntity<ItemHelmetNightVisionAdvanced>()
+                   .SoundPresetItem
+                   .PlaySound(ItemSound.Use);
+            }
         }
 
         private static void ClientRefreshNightVisionState(IItem item)

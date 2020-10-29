@@ -86,6 +86,12 @@
         public void Refresh()
         {
             var technologies = ClientComponentTechnologiesWatcher.CurrentTechnologies;
+            if (technologies is null)
+            {
+                // perhaps changing the game server so it's not yet obtained
+                return;
+            }
+            
             var isUnlocked = technologies.SharedIsGroupUnlocked(this.TechGroup);
             this.IsUnlocked = isUnlocked;
 

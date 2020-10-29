@@ -134,6 +134,12 @@
                 return;
             }
 
+            if (Rendering.ViewportSize == (1, 1))
+            {
+                // the game is minimized
+                return;
+            }
+
             var renderTargetSize = GetRenderTargetSize();
 
             if (renderTargetLightMap is null

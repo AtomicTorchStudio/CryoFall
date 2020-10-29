@@ -27,7 +27,7 @@
 
         public static event Action TechNodesChanged;
 
-        public static PlayerCharacterTechnologies CurrentTechnologies => instance.technologies;
+        public static PlayerCharacterTechnologies CurrentTechnologies => instance?.technologies;
 
         public void Setup(PlayerCharacterPrivateState privateState)
         {

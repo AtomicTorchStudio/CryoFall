@@ -50,7 +50,8 @@
         {
             get
             {
-                if (!ClientIsInitialized)
+                if (IsClient 
+                    && !ClientIsInitialized)
                 {
                     return 0;
                 }
