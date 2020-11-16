@@ -61,10 +61,9 @@
             droplist.Add(
                 new DropItemsListPreset(
                         outputs: 1,
-                        probability: 1 / 25.0,
+                        probability: 1 / 50.0,
                         useGuaranteedProbabilityAlgorithm: true,
                         storageKey: "SeedsFromGrass")
-                    .Add<ItemSeedsMilkmelon>(count: 1, weight: 5.0)
                     .Add<ItemSeedsCarrot>(count: 1)
                     .Add<ItemSeedsCucumber>(count: 1)
                     .Add<ItemSeedsTomato>(count: 1)

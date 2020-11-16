@@ -26,6 +26,11 @@
                 CharacterMobPublicState,
                 CharacterMobClientState>
     {
+        // The boss is regenerating fast only if it didn't receive a significant damage for a while.
+        private const double BossHealthRegenerationPerSecondFast = 100;
+
+        private const double BossHealthRegenerationPerSecondSlow = 40;
+
         private const int DeathSpawnLootObjectsDefaultCount = 16;
 
         private const double DeathSpawnLootObjectsRadius = 19;
@@ -33,9 +38,6 @@
         private const int DeathSpawnMinionsDefaultCount = 8;
 
         private const double DeathSpawnMinionsRadius = 17;
-
-        // The boss is regenerating only if it didn't receive any serious damage for a while.
-        private const double HealthRegenerationPerSecond = 40;
 
         // The boss can move within the area in configured radius only.
         private const double MovementMaxRadius = 9;
@@ -133,7 +135,7 @@
 
         public override double StatDefaultHealthMax => 6500;
 
-        // boss using different regeneration mechanism (much faster)
+        // Please note: boss using different regeneration mechanism.
         public override double StatHealthRegenerationPerSecond => 0;
 
         public override double StatMoveSpeed => 2.25;
@@ -431,18 +433,24 @@
             var lastTargetCharacter = privateState.CurrentTargetCharacter;
             var deltaTime = data.DeltaTime;
 
-            // Regenerate the health points a bit on every frame
+            data.PrivateState.DamageTracker.Update(deltaTime);
+
+            // Regenerate the health points fast on every frame
             // if there was no damage dealt to boss recently.
             // Please note: the difficulty coefficient doesn't apply there
             // as the boss HP doesn't change with difficulty - only damage
             // to it is modified by the difficulty coefficient.
-            if (Server.Game.FrameTime
-                >= privateState.LastDamageTime + RegenerationDelaySeconds)
-            {
-                publicState.CurrentStats.ServerSetHealthCurrent(
-                    (float)(publicState.CurrentStats.HealthCurrent
-                            + HealthRegenerationPerSecond * deltaTime));
-            }
+            var isRegeneratingFast = Server.Game.FrameTime
+                                     >= privateState.LastDamageTime + RegenerationDelaySeconds;
+
+            var regenerationPerSecond
+                = isRegeneratingFast
+                      ? BossHealthRegenerationPerSecondFast
+                      : BossHealthRegenerationPerSecondSlow;
+
+            publicState.CurrentStats.ServerSetHealthCurrent(
+                (float)(publicState.CurrentStats.HealthCurrent
+                        + regenerationPerSecond * deltaTime));
 
             var weaponList = this.ServerSelectWeaponsList(privateState,
                                                           deltaTime,

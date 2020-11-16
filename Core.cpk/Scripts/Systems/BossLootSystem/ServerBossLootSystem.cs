@@ -54,15 +54,15 @@
                 ServerSelectWinnersByDamage(allCharactersByDamage,
                                             maxLootWinners));
 
-            var winnerEntries = winners.Select(
-                                           c => new WinnerEntry(
-                                               c.Character,
-                                               damagePercent: (byte)Math.Max(1,
-                                                                             Math.Round(c.Score * 100,
-                                                                                        MidpointRounding
-                                                                                            .AwayFromZero)),
-                                               lootCount: CalculateLootCountForScore(c.Score)))
-                                       .ToList();
+            var winnerEntries = winners
+                                .Select(
+                                    c => new WinnerEntry(
+                                        c.Character,
+                                        damagePercent: (byte)Math.Max(
+                                            1,
+                                            Math.Round(c.Score * 100, MidpointRounding.AwayFromZero)),
+                                        lootCount: CalculateLootCountForScore(c.Score)))
+                                .ToList();
 
             if (PveSystem.ServerIsPvE)
             {
@@ -79,7 +79,7 @@
             }
 
             ServerSpawnLoot();
-            
+
             // send victory announcement notification
             var winnerNamesWithClanTags = winnerEntries
                                           .Select(w => (Name: w.Character.Name,
@@ -251,7 +251,7 @@
             {
                 var worldPosition = spawnPosition.ToVector2D();
                 if (!ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(worldPosition,
-                                                                                 isPlayer: false))
+                        isPlayer: false))
                 {
                     // position is not valid for spawning
                     return false;
@@ -291,6 +291,8 @@
             IReadOnlyList<(ICharacter Character, double Damage)> allDamageByCharacter,
             int maxWinners)
         {
+            // Please note: the players in the list are already sorted by the damage
+            // they've dealt to the boss and its minions, from highest to lowest.
             var list = allDamageByCharacter.ToList();
 
             ApplyPercentileThreshold();
@@ -306,8 +308,8 @@
             void ApplyPercentileThreshold()
             {
                 // There could be some players that dealt a very low damage.
-                // Let's remove players that cumulatively dealt less than 10% of total damage to the boss.
-                var thresholdTotalDamage = 0.9 * list.Sum(p => p.Damage);
+                // Let's remove players that cumulatively dealt less than 5% of total damage to the boss.
+                var thresholdTotalDamage = 0.95 * list.Sum(p => p.Damage);
 
                 var accumulatorTotalDamage = 0.0;
 

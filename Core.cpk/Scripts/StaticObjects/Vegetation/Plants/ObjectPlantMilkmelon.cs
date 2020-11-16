@@ -15,7 +15,7 @@
     {
         public override string Name => "Milkmelon";
 
-        public override byte NumberOfHarvests => 1;
+        public override byte NumberOfHarvests => 2;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
@@ -23,7 +23,7 @@
 
         protected override TimeSpan TimeToGiveHarvest { get; } = TimeSpan.FromHours(2);
 
-        protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(3);
+        protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(6);
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

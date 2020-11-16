@@ -12,11 +12,6 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
-            new Entry("Halloween Event",
-                      new DateTime(2020, month: 10, day: 28),
-                      // we're officially reusing the assets from the last year's event
-                      "Updates/A23-halloween.jpg"),
-
             new Entry("A28—Justice Update",
                       new DateTime(2020, month: 9, day: 25),
                       "Updates/A28.jpg"),
@@ -73,7 +68,7 @@
             public DateTime DateValue { get; }
 
             public TextureBrush Image
-                => Api.Client.UI.GetTextureBrush(new TextureResource(this.TextureImagePath),
+                => Api.Client.UI.GetTextureBrush(new TextureResource(this.TextureImagePath), 
                                                  Stretch.Uniform);
 
             public string TextureImagePath { get; }
