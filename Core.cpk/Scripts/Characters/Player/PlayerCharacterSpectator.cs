@@ -109,7 +109,7 @@
             var privateState = data.PrivateState;
             var publicState = data.PublicState;
 
-            this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
+            this.SharedRebuildFinalCacheIfNeeded(privateState, publicState);
             this.SharedApplyInput(character, privateState, publicState);
         }
 
@@ -121,7 +121,7 @@
 
             publicState.IsOnline = false; // spectators are always offline
 
-            this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
+            this.SharedRebuildFinalCacheIfNeeded(privateState, publicState);
             this.SharedApplyInput(character, privateState, publicState);
         }
 

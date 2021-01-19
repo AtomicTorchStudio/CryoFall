@@ -23,7 +23,7 @@
             ownerType: typeof(SoundUI),
             defaultMetadata: new PropertyMetadata(default(SoundUI), MouseEnterSoundPropertyChanged));
 
-        public static readonly SoundUI NoSound = new SoundUI() { Path = null };
+        public static readonly SoundUI NoSound = new() { Path = null };
 
         public string Path { get; set; }
 

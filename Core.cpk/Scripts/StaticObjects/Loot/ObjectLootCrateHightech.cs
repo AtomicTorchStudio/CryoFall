@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -49,27 +50,30 @@
 
             // rare loot
             droplist.Add(
-                nestedList:
-                new DropItemsList(outputs: 1)
-                    // components
-                    .Add<ItemComponentsMechanical>(count: 10, countRandom: 20, weight: 1)
-                    .Add<ItemComponentsElectronic>(count: 5, countRandom: 10, weight: 1)
-                    .Add<ItemComponentsOptical>(count: 5,    countRandom: 10, weight: 1 / 5.0)
-                    .Add<ItemComponentsHighTech>(count: 2,   countRandom: 3,  weight: 1 / 10.0)
-                    // items
-                    .Add<ItemBatteryDisposable>(count: 1, countRandom: 2, weight: 1)
-                    .Add<ItemBatteryHeavyDuty>(count: 1,  countRandom: 2, weight: 1 / 10.0)
-                    .Add<ItemPowerCell>(count: 1,         countRandom: 1, weight: 1 / 10.0)
-                    // equipment
-                    .Add<ItemHelmetRespirator>(count: 1, weight: 1 / 25.0)
-                    // drones
-                    .Add<ItemDroneIndustrialStandard>(count: 1, weight: 1 / 20.0, condition: T3Specialized)
-                    .Add<ItemDroneControlStandard>(count: 1,    weight: 1 / 30.0, condition: T3Specialized)
-                    .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1 / 30.0, condition: T4Specialized)
-                    .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 50.0, condition: T4Specialized)
-                    // devices
-                    .Add<ItemPowerBankStandard>(count: 1, weight: 1 / 50.0)
-                    .Add<ItemPowerBankLarge>(count: 1,    weight: 1 / 100.0));
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // components
+                        .Add<ItemComponentsMechanical>(count: 10, countRandom: 20, weight: 1)
+                        .Add<ItemComponentsElectronic>(count: 5,  countRandom: 10, weight: 1)
+                        .Add<ItemComponentsOptical>(count: 5,     countRandom: 10, weight: 1 / 5.0)
+                        .Add<ItemComponentsHighTech>(count: 2,    countRandom: 3,  weight: 1 / 10.0)
+                        // items
+                        .Add<ItemBatteryDisposable>(count: 1, countRandom: 2, weight: 1)
+                        .Add<ItemBatteryHeavyDuty>(count: 1,  countRandom: 2, weight: 1 / 10.0)
+                        .Add<ItemPowerCell>(count: 1,         countRandom: 1, weight: 1 / 10.0)
+                        // equipment
+                        .Add<ItemHelmetRespirator>(count: 1, weight: 1 / 25.0)
+                        // drones
+                        .Add<ItemDroneIndustrialStandard>(count: 1, weight: 1 / 20.0, condition: T3Specialized)
+                        .Add<ItemDroneControlStandard>(count: 1,    weight: 1 / 30.0, condition: T3Specialized)
+                        .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1 / 30.0, condition: T4Specialized)
+                        .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 50.0, condition: T4Specialized)
+                        // devices
+                        .Add<ItemPowerBankStandard>(count: 1, weight: 1 / 50.0)
+                        .Add<ItemPowerBankLarge>(count: 1,    weight: 1 / 100.0)
+                        // misc
+                        .Add<ItemTeleportLocationData>(count: 1, weight: 1 / 10.0)
+                );
 
             // extra loot from skill
             droplist.Add(

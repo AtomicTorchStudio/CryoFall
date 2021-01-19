@@ -132,7 +132,7 @@
                             Command="{Binding CommandContinue}"
                             Visibility="{Binding IsExpired, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                             Focusable="False"
-                            Padding="7,9"  />
+                            Padding="7,9" />
 
                     <Button Grid.Column="1"
                             Content="{x:Static loc:CoreStrings.Demo_Button_BuyGameOnSteam}"

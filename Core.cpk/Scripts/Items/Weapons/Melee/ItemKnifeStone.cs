@@ -8,6 +8,8 @@
 
     public class ItemKnifeStone : ProtoItemWeaponMelee
     {
+        public override double DamageApplyDelay => 0.075;
+
         public override string Description => "Basic knife. Better than fists, but not by much.";
 
         // high penalty when hitting buildings such as a claimed wall/door
@@ -15,6 +17,8 @@
             => base.DurabilityDecreaseMultiplierWhenHittingBuildings * 1.5;
 
         public override uint DurabilityMax => 60;
+
+        public override double FireAnimationDuration => 0.6;
 
         public override string Name => "Stone knife";
 

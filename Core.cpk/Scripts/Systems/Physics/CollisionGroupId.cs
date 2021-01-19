@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Physics
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum CollisionGroupId : byte
     {
         Default = 0,
@@ -10,6 +13,6 @@
 
         ClickArea = 3,
 
-        InteractionArea = 4,
+        InteractionArea = 4
     }
 }

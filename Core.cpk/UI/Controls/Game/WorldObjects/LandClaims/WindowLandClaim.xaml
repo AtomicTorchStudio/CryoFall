@@ -6,16 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:landClaims="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.LandClaims"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.LandClaims.Data"
-    mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data:ViewModelWindowLandClaim, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid"
-    xmlns:shieldProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection">
+    xmlns:shieldProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowLandClaim, IsDesignTimeCreatable=True}">
 
     <landClaims:WindowLandClaimBase.Resources>
         <Style x:Key="TextBlockTitleStyle" TargetType="TextBlock">
@@ -24,6 +25,9 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextDecorations" Value="Underline" />
+            <Setter Property="noesis:Text.Stroke" Value="#BB000000" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="1.5" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Margin" Value="0,0,0,5" />
         </Style>
@@ -122,7 +126,7 @@
                             <!-- Description text -->
                             <TextBlock Text="{Binding ViewModelStructure.Description}"
                                        Style="{StaticResource TextBlockDescriptionStyle}"
-                                       Margin="0,0,0,5" />
+                                       Margin="0,0,0,10" />
 
                             <!-- Stats -->
                             <landClaims:ProtoLandClaimStatsControl />
@@ -183,7 +187,7 @@
 
                                     <Grid HorizontalAlignment="Center">
                                         <Grid
-                                            Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            Visibility="{Binding IsPlayerHasUpgradeRight, Converter={StaticResource BoolToVisibilityConverter}}">
                                             <Grid MinWidth="130"
                                                   Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                                                 <Grid.RowDefinitions>
@@ -202,12 +206,12 @@
 
                                                 <!-- Display icons for required items (total) -->
                                                 <controls:RequiredItemsPanelControl Grid.Row="1"
-                                                                                    Items="{Binding ViewModelStructureUpgrade.RequiredItems}"
-                                                                                    CountMultiplier="1"
-                                                                                    IconSize="40"
-                                                                                    FontSize="11"
-                                                                                    TextStrokeThickness="1"
-                                                                                    HorizontalAlignment="Center" />
+                                                    Items="{Binding ViewModelStructureUpgrade.RequiredItems}"
+                                                    CountMultiplier="1"
+                                                    IconSize="40"
+                                                    FontSize="11"
+                                                    TextStrokeThickness="1"
+                                                    HorizontalAlignment="Center" />
                                             </Grid>
 
                                             <!-- Text: Upgrading this structure requires learning relevant technology. -->
@@ -230,7 +234,7 @@
                                             Foreground="{StaticResource BrushColor6}"
                                             FontWeight="Bold"
                                             FontSize="11"
-                                            Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                            Visibility="{Binding IsPlayerHasUpgradeRight, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                             HorizontalAlignment="Stretch"
                                             Margin="3,0"
                                             TextWrapping="Wrap"
@@ -244,12 +248,13 @@
                                     <Button Content="{x:Static loc:CoreStrings.Button_Upgrade}"
                                             Command="{Binding CommandUpgrade}"
                                             HorizontalAlignment="Center"
-                                            IsEnabled="{Binding ViewModelStructureUpgrade.IsCanUpgrade}" />
+                                            IsEnabled="{Binding ViewModelStructureUpgrade.IsCanUpgrade}"
+                                            Visibility="{Binding IsPlayerHasUpgradeRight, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                                    <ui:ToolTipServiceExtend.ToolTip>
+                                    <base:ToolTipServiceExtend.ToolTip>
                                         <landClaims:ProtoLandClaimStatsControl
                                             DataContext="{Binding ViewModelProtoLandClaimInfoUpgrade}" />
-                                    </ui:ToolTipServiceExtend.ToolTip>
+                                    </base:ToolTipServiceExtend.ToolTip>
                                 </ContentControl>
                             </Grid>
                         </Grid>
@@ -360,8 +365,9 @@
                     </ScrollViewer>
                 </TabItem>
 
-                <!-- Text: Owners -->
-                <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}">
+                <!-- Owners tab (when not in faction) -->
+                <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}"
+                         Visibility="{Binding IsOwnedByFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -399,6 +405,16 @@
                                            Foreground="{StaticResource BrushColor6}"
                                            VerticalAlignment="Center" />
                             </StackPanel>
+
+                            <Button Command="{Binding CommandTransferLandClaimToFactionOwnership}"
+                                    Content="{x:Static loc:CoreStrings.WindowLandClaim_TransferToFactionOwnership}"
+                                    IsEnabled="{Binding CanTransferToFactionOwnership}"
+                                    Focusable="False"
+                                    Margin="0,5,0,0"
+                                    FontSize="13"
+                                    MinHeight="0"
+                                    Padding="10,3"
+                                    MinWidth="70" />
                         </StackPanel>
 
                         <worldObjects:WorldObjectOwnersEditorControl
@@ -406,6 +422,25 @@
                             DataContext="{Binding ViewModelOwnersEditor}"
                             Visibility="{Binding IsMaxOwnersMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </Grid>
+                </TabItem>
+
+                <!-- Owners tab (when in faction) -->
+                <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}"
+                         Visibility="{Binding IsOwnedByFaction, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <core:FormattedTextBlock
+                            Text="{Binding OwnedByFactionClanTag, StringFormat={}{x:Static loc:CoreStrings.WindowLandClaim_ManagedByFaction_Format}}"
+                            Style="{StaticResource TextBlockMenuPlaceholderStyle}"
+                            HorizontalAlignment="Left" />
+                        <core:FormattedTextBlock
+                            Text="{x:Static loc:CoreStrings.WindowLandClaim_ManagedByFaction_Description}"
+                            Style="{StaticResource TextBlockMenuPlaceholderStyle}"
+                            Foreground="{StaticResource BrushColor6}"
+                            HorizontalAlignment="Left"
+                            Margin="0,5,0,0" />
+                    </StackPanel>
                 </TabItem>
 
             </TabControl>

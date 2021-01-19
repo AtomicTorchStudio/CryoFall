@@ -5,11 +5,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data"
+    xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
+    xmlns:faction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction"
     mc:Ignorable="d"
     d:DesignHeight="80" d:DesignWidth="850"
-    d:DataContext="{d:DesignInstance data:ViewModelWindowSocial, IsDesignTimeCreatable=True}"
-    xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics">
+    d:DataContext="{d:DesignInstance data:ViewModelWindowPolitics, IsDesignTimeCreatable=True}">
 
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"
@@ -17,54 +21,185 @@
                      FocusOnControl="{Binding ElementName=GameWindow}"
                      FontSize="13"
                      Foreground="{StaticResource BrushColor7}"
-                     Padding="35,10,35,5">
+                     IsCached="False">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="70" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <!-- row for tabs -->
                 <RowDefinition />
+                <!-- row for active join cooldown -->
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <politics:OfflineRaidingProtectionControl
-                x:Name="OfflineRaidingProtectionControl"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="40,0" />
+            <core:TabControlCached x:Name="TabControl"
+                                   ForceContentPreloading="True"
+                                   Style="{StaticResource TabControlCachedCompactStyle}"
+                                   Margin="0,-5">
 
-            <politics:PartyManagementControl Grid.Row="2"
-                                             Grid.Column="0"
-                                             VerticalAlignment="Top" />
+                <core:TabControlCached.Resources>
+                    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemCompactStyle}">
+                        <Setter Property="MinWidth" Value="90" />
+                    </Style>
+                </core:TabControlCached.Resources>
 
-            <politics:NewbieProtectionControl Grid.Row="2"
-                                              Grid.Column="2"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Top" />
+                <!-- this is a special placeholder tab that is used
+                     as a hack to switch away from the other tabs when the window is closed -->
+                <TabItem Visibility="Collapsed" />
 
-            <politics:DuelModeControl Grid.Row="2"
-                                      Grid.Column="2"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Top" />
+                <TabItem Header="{x:Static loc:CoreStrings.Faction_Leaderboard}"
+                         IsSelected="{Binding IsLeaderboardSelected}"
+                         x:Name="TabFactionsLeaderboard">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <faction:FactionsListControl Grid.Row="0"
+                                                     Mode="Leaderboard"
+                                                     EmptyListMessage="{x:Static loc:CoreStrings.FactionsBrowser_TabLeaderboard_EmptyList}"
+                                                     IsActive="{Binding IsSelected, ElementName=TabFactionsLeaderboard}" />
+                        <Control Grid.Row="1"
+                                 Style="{StaticResource ControlHorizontalSeparator}" />
 
-            <Control Grid.Row="1"
-                     Grid.Column="0"
-                     Grid.ColumnSpan="3"
-                     Style="{StaticResource ControlHorizontalSeparator}"
-                     Visibility="{Binding Visibility, ElementName=OfflineRaidingProtectionControl}"
-                     Height="20" />
+                        <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,-2">
+                            <StackPanel.Resources>
+                                <Style x:Key="TextSmall" TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="13" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="noesis:Text.Stroke" Value="Black" />
+                                    <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+                                </Style>
+                                <Style x:Key="TextBig" TargetType="TextBlock"
+                                       BasedOn="{StaticResource TextSmall}">
+                                    <Setter Property="FontSize" Value="15" />
+                                    <Setter Property="Margin" Value="0,-1.5,0,0" />
+                                </Style>
+                            </StackPanel.Resources>
 
-            <Control Grid.Row="2"
-                     Grid.Column="1"
-                     Style="{StaticResource ControlVerticalSeparator}" />
+                            <TextBlock Text="{x:Static loc:CoreStrings.Faction_Leaderboard_NextUpdateIn}"
+                                       Style="{StaticResource TextSmall}" />
 
+                            <TextBlock Text=" "
+                                       Style="{StaticResource TextSmall}" />
+
+                            <TextBlock Text="{Binding LeaderboardNextUpdateInText}"
+                                       Style="{StaticResource TextBig}" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.FactionsBrowser_TabAllFactions_Title}"
+                         x:Name="TabAllFactions">
+                    <faction:FactionsListControl Mode="AllFactionsList"
+                                                 EmptyListMessage="{x:Static loc:CoreStrings.FactionsBrowser_TabAllFactions_EmptyList}"
+                                                 IsActive="{Binding IsSelected, ElementName=TabAllFactions}" />
+                </TabItem>
+
+                <TabItem x:Name="TabInvitations"
+                         Visibility="{Binding HasFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                    <TabItem.Resources>
+                        <ControlTemplate x:Key="ControlTemplateTabBadge">
+                            <Border
+                                Visibility="{Binding ReceivedInvitationsCount, Converter={StaticResource CountToVisibilityConverter}}"
+                                Margin="4,0,0,2"
+                                CornerRadius="5"
+                                Background="{StaticResource BrushColorAlt0}"
+                                BorderBrush="{Binding (TextElement.Foreground), RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter}}"
+                                BorderThickness="0.75"
+                                Padding="2,0"
+                                VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding ReceivedInvitationsCount}"
+                                           Foreground="White"
+                                           FontSize="10"
+                                           MinWidth="10"
+                                           FontFamily="{StaticResource DigitsFontFamily}"
+                                           TextAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </TabItem.Resources>
+
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Static loc:CoreStrings.FactionsBrowser_TabInvitations_Title}"
+                                       Style="{StaticResource TextBlockTabStyle}" />
+                            <Control Template="{StaticResource ControlTemplateTabBadge}" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <faction:FactionsListControl Mode="InvitationsList"
+                                                 EmptyListMessage="{x:Static loc:CoreStrings.FactionsBrowser_TabInvitations_EmptyList}"
+                                                 IsActive="{Binding IsSelected, ElementName=TabInvitations}" />
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.FactionsBrowser_TabApplications_Title}"
+                         x:Name="TabApplications"
+                         Visibility="{Binding HasFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                    <faction:FactionsListControl Mode="ApplicationsList"
+                                                 EmptyListMessage="{x:Static loc:CoreStrings.FactionsBrowser_TabApplications_EmptyList}"
+                                                 IsActive="{Binding IsSelected, ElementName=TabApplications}" />
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.FactionsBrowser_NewFaction_Title}">
+                    <politics:NewFactionControl />
+                </TabItem>
+            </core:TabControlCached>
+
+            <ContentControl Grid.Row="1"
+                            Visibility="{Binding IsLeaderboardSelected, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,-7">
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding JoinCooldownRemainsText, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}">
+                    <Control Style="{StaticResource ControlHorizontalSeparator}" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style x:Key="TextSmall" TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="13" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                                <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="noesis:Text.Stroke" Value="Black" />
+                                <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+                            </Style>
+                            <Style x:Key="TextBig" TargetType="TextBlock"
+                                   BasedOn="{StaticResource TextSmall}">
+                                <Setter Property="FontSize" Value="15" />
+                                <Setter Property="Margin" Value="0,-1.5,0,0" />
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <TextBlock Text="{x:Static loc:CoreStrings.Faction_JoinCooldownRemains}"
+                                   Style="{StaticResource TextSmall}" />
+
+                        <TextBlock Text=" "
+                                   Style="{StaticResource TextSmall}" />
+
+                        <TextBlock Text="{Binding JoinCooldownRemainsText}"
+                                   Style="{StaticResource TextBig}" />
+                        <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
+                                 Width="12"
+                                 Height="12"
+                                 FontSize="12">
+                            <base:ToolTipServiceExtend.ToolTip>
+                                <!-- Tooltip explaining how the join cooldown works  -->
+                                <core:FormattedTextBlock
+                                    Content="{x:Static loc:CoreStrings.Faction_JoinCooldown_Description}"
+                                    MaxWidth="300" />
+                            </base:ToolTipServiceExtend.ToolTip>
+                        </Control>
+                    </StackPanel>
+                </StackPanel>
+            </ContentControl>
         </Grid>
     </core:GameWindow>
 </core:BaseWindowMenu>

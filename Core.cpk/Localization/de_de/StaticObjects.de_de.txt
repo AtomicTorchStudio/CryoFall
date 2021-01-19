@@ -16,6 +16,9 @@ Nicht bebaubar auf:
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 Ungeeigneter Bodentyp
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+Kein Bau möglich – zu nah am Event-Bereich.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Kein Bau in eingeschränkten Bereichen möglich.
 
@@ -75,6 +78,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Aufheben
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+Drücken
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Aufhebeln
@@ -148,6 +154,15 @@ Gras
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 Müllhaufen
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+Mineralhalde
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+Steinhaufen
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+Holzstapel
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Stein
 
@@ -217,6 +232,9 @@ Schwefelvorkommen
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Benutze eine Spitzhacke, um diese Ressource abzubauen.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+Alien-Teleporter
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Kluft
 
@@ -225,6 +243,9 @@ Meteorit
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 Überreste der Pragmiumkönigin
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+Überreste eines Sandtyrannen
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 Weltraumschrott
@@ -398,11 +419,23 @@ Fernöstlich anmutender Altar zum Entzünden von Räucherwerk.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 Räucheraltar
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+Ein einzigartiges Banner, das dein Fraktionsemblem zur Schau stellt.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+Fraktionsbanner
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Was auch immer dieses Banner symbolisiert – es sieht cool aus!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 Banner
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+Den meisten Leuten dient sie allenfalls als Dekoration ...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+Hantelbank
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 Klassische Badewanne für all deine hygienischen Bedürfnisse.
@@ -410,11 +443,32 @@ Klassische Badewanne für all deine hygienischen Bedürfnisse.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 Badewanne
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+Ein kleiner, praktischer Ort, um dein Handy vorm Schlafengehen abzulegen.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+Nachttisch
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 Was wäre ein Zimmer nur ohne ein Bücherregal?
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 Bücherregal
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+Eine von vielen Figuren, mit denen du dein Zimmer dekorieren oder Schach und Dame spielen kannst.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+Bauer
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+Königin
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+Erwartest du plötzlichen, bewaffneten Besuch? Da kommt diese draußen platzierte Türklingel gerade richtig.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+Türklingel
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 Raumteiler mit der klassischen Darstellung eines Tigers, ganz wie in den alten Sagen und Legenden.
@@ -428,11 +482,23 @@ Beeindruckender Goldhaufen. Verwahre ihn sicher in deinem Tresor!
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 Ein Haufen Gold
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+Ein integraler Bestandteil deines Flurs.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+Garderobe
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 Ein hübsches und meisterhaft gefertigtes, rabenschwarzes Klavier.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 Klavier
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+Was wären schon die besinnlichsten Festivitäten ohne einen großen Haufen Geschenke?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+Geschenke
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 Stelle unter Beweis, dass du ein echter Jäger bist, und dekoriere dein Zimmer mit diesem luxuriösen Fell.
@@ -494,6 +560,12 @@ Am besten macht sie sich in einem separaten und gut belüfteten Raum für ein Ma
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 Toilette
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+Das Prunkstück eines jeden gut eingerichteten Wohnzimmers. Schaue mit Freunden ein paar Filme und entspanne dich.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+Fernseher
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 Sehr wertvolle und dekorative Vase.
 
@@ -502,6 +574,33 @@ Vase
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Es gibt bereits eine Fußbodendekoration.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+Ein vollautomatischer Geschützturm, der Ziele mit einem kohärenten Energiestrahl angreift.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+Energiegeschütz
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+Ein vollautomatischer schwerer Geschützturm.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+Schweres Geschütz
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+Ein vollautomatischer leichter Geschützturm.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+Leichtes Geschütz
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+Deaktiviert
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+Feinde angreifen, Feuer auf neutrale Gegner erwidern
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+Feinde und Eindringlinge angreifen
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 Gute Verteidigung gegen die meisten Eindringlinge. Nicht sonderlich beständig, was Sprengstoff anbetrifft.
@@ -533,10 +632,10 @@ Kann zum Anbau einer Vielzahl von Getreide- und anderen Pflanzenarten benutzt we
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 Farmland
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
-Kann mit Blumen bepflanzt werden, mit denen du unter anderen dein Haus schmücken kannst. An jedem Ort herstellbar.
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
+Kann mit Blumen bepflanzt werden. Dient zur Dekoration deines Hauses oder zum Sammeln von Blumen für andere Zwecke. Überall herstellbar.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 Blumentopf
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1006,6 +1105,12 @@ Verstärkte, dicke Betonwand mit zusätzlicher Stützkraft. Wesentlich beständi
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 Betonwand
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+Dieser Metallzaun hindert zwar am Betreten, kann gegen Geschosse jedoch nichts ausrichten. Als strategische Verteidigungsmaßnahme geeignet, hält jedoch nicht viel aus.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+Maschendrahtzaun
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 Deutlich besser als eine Holzwand. Sollte die meisten Eindringlinge von Einbruchsversuchen abhalten. Gegen gut ausgerüstete Angreifer lässt sich damit jedoch nicht viel ausrichten.
 
@@ -1076,8 +1181,14 @@ Blauer Salbei
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oniblume
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+Gelbe Blume
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 Milchmelone
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+Kartoffel
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 Reis

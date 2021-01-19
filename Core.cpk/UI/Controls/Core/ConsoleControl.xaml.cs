@@ -26,13 +26,13 @@
     {
         private const int SuggestionsListPageUpDownItemsDistance = 19;
 
-        private static readonly ClientConsoleCommandsHistory CommandsHistory = new ClientConsoleCommandsHistory();
+        private static readonly ClientConsoleCommandsHistory CommandsHistory = new();
 
         private static readonly IInputClientService Input = Api.Client.Input;
 
-        private readonly List<LogEntryWithOrigin> logEntriesQueue = new List<LogEntryWithOrigin>();
+        private readonly List<LogEntryWithOrigin> logEntriesQueue = new();
 
-        private readonly HashSet<LogSeverity> selectedLogSeverities = new HashSet<LogSeverity>();
+        private readonly HashSet<LogSeverity> selectedLogSeverities = new();
 
         private string filterText;
 
@@ -53,10 +53,6 @@
         private TextBox textBoxSearch;
 
         private ViewModelConsoleControl viewModel;
-
-        public ConsoleControl()
-        {
-        }
 
         public static ConsoleControl Instance { get; private set; }
 

@@ -15,7 +15,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public class ClientWorldMapResourcesVisualizer : IWorldMapVisualizer
+    public class ClientWorldMapResourcesVisualizer : BaseWorldMapVisualizer
     {
         // {0} is the object name (Oil seep or Geothermal spring), {1} and {2} are coordinate numbers, {3} is the time remaining
         public const string Notification_NewResourceAvailable_MessageFormat =
@@ -34,22 +34,19 @@
         private readonly bool enableNotifications;
 
         private readonly List<(WorldMapResourceMark mark, HudNotificationControl notification)> notifications
-            = new List<(WorldMapResourceMark mark, HudNotificationControl notification)>();
+            = new();
 
         private readonly List<(WorldMapResourceMark mark, FrameworkElement mapControl)> visualizedMarks
-            = new List<(WorldMapResourceMark, FrameworkElement)>();
+            = new();
 
         private readonly List<(WorldMapResourceMark mark, FrameworkElement mapControl)> visualizedSearchAreas
-            = new List<(WorldMapResourceMark, FrameworkElement)>();
-
-        private readonly WorldMapController worldMapController;
+            = new();
 
         public ClientWorldMapResourcesVisualizer(
             WorldMapController worldMapController,
             bool enableNotifications,
-            bool drawSearchAreas = true)
+            bool drawSearchAreas = true) : base(worldMapController)
         {
-            this.worldMapController = worldMapController;
             this.enableNotifications = enableNotifications;
             this.drawSearchAreas = drawSearchAreas;
 
@@ -64,9 +61,7 @@
             }
         }
 
-        public bool IsEnabled { get; set; }
-
-        public void Dispose()
+        protected override void DisposeInternal()
         {
             WorldMapResourceMarksSystem.ClientMarkAdded -= this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved -= this.MarkRemovedHandler;
@@ -86,11 +81,11 @@
         {
             switch (mark.ProtoWorldObject)
             {
-                case ObjectDepositOilSeep _:
+                case ObjectDepositOilSeep:
                     return new WorldMapMarkResourceOil()
                         { IsInfiniteSource = mark.ProtoWorldObject is ObjectDepositOilSeepInfinite };
 
-                case ObjectDepositGeothermalSpring _:
+                case ObjectDepositGeothermalSpring:
                     return new WorldMapMarkResourceLithium()
                         { IsInfiniteSource = mark.ProtoWorldObject is ObjectDepositGeothermalSpringInfinite };
 
@@ -158,12 +153,12 @@
                 return;
             }
 
-            var canvasPosition = this.worldMapController.WorldToCanvasPosition(mark.Position.ToVector2D());
+            var canvasPosition = this.WorldToCanvasPosition(mark.Position.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);
             Panel.SetZIndex(mapControl, 16);
 
-            this.worldMapController.AddControl(mapControl);
+            this.AddControl(mapControl);
             this.visualizedMarks.Add((mark, mapControl));
 
             if (mark.SearchAreaCirclePosition != default
@@ -173,19 +168,19 @@
                 var circleRadius = mark.SearchAreaCircleRadius;
                 var control = new WorldMapMarkEvent
                 {
-                    Width = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
-                    Height = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    Width = 2 * circleRadius * WorldMapSectorProvider.WorldTileTextureSize,
+                    Height = 2 * circleRadius * WorldMapSectorProvider.WorldTileTextureSize,
                     EllipseColorStroke = Color.FromArgb(0xDD, 0xCC, 0x66, 0x66),
                     EllipseColorStart = Color.FromArgb(0x00,  0xCC, 0x66, 0x66),
                     EllipseColorEnd = Color.FromArgb(0x77,    0xCC, 0x66, 0x66)
                 };
 
-                var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(
+                var circleCanvasPosition = this.WorldToCanvasPosition(
                     mark.SearchAreaCirclePosition.ToVector2D());
                 Canvas.SetLeft(control, circleCanvasPosition.X - control.Width / 2);
                 Canvas.SetTop(control, circleCanvasPosition.Y - control.Height / 2);
                 Panel.SetZIndex(control, 1);
-                this.worldMapController.AddControl(control, scaleWithZoom: false);
+                this.AddControl(control, scaleWithZoom: false);
                 this.visualizedSearchAreas.Add((mark, control));
                 ToolTipServiceExtend.SetToolTip(control,
                                                 string.Format(TooltipDepositSearchAreaFormat,
@@ -214,7 +209,7 @@
                 }
 
                 this.visualizedMarks.RemoveAt(index);
-                this.worldMapController.RemoveControl(entry.mapControl);
+                this.RemoveControl(entry.mapControl);
                 this.RemoveNotification(mark, quick: true);
             }
 
@@ -227,7 +222,7 @@
                 }
 
                 this.visualizedSearchAreas.RemoveAt(index);
-                this.worldMapController.RemoveControl(entry.mapControl);
+                this.RemoveControl(entry.mapControl);
             }
         }
 
@@ -263,11 +258,6 @@
             }
 
             // resource spawned recently
-            if (Api.IsEditor)
-            {
-                return;
-            }
-
             if (!PerkClaimDeposits.Instance
                                   .SharedIsPerkUnlocked(Api.Client.Characters.CurrentPlayerCharacter))
             {
@@ -288,7 +278,9 @@
                 message: GetUpdatedRecentResourceNotificationText(mark,
                                                                   timeRemains),
                 icon: mark.ProtoWorldObject.Icon,
-                autoHide: false);
+                autoHide: false,
+                playSound: true,
+                color: NotificationColor.Event);
 
             this.AddNotification(mark, notification);
             this.UpdateNotification(mark, notification);

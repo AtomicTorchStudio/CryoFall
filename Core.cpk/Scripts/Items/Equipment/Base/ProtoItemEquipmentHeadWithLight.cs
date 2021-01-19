@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemFuelRefill;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -19,7 +20,6 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     /// <summary>
@@ -48,9 +48,7 @@
         public const string NotificationOutOfFuel_Title = "Out of fuel";
 
         public const string NotificationPressKeyToActivate =
-            "To activate the helmet light, please equip this item and press [{0}] key.";
-
-        public const string TitleButtonNotSet = "button not set";
+            "To activate the helmet light, please equip this item and press \\[{0}\\] key.";
 
         private ClientInputContext helperInputListener;
 
@@ -265,17 +263,11 @@
                 return;
             }
 
-            var inputKey = ClientInputManager.GetKeyForAbstractButton(
-                WrappedButton<GameButton>.GetWrappedButton(GameButton.HeadEquipmentLightToggle));
+            var inputKey = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
 
-            var key = inputKey != InputKey.None
-                          ? inputKey.ToString()
-                          : "<" + TitleButtonNotSet + ">";
-
+            var key = InputKeyNameHelper.GetKeyText(inputKey);
             NotificationSystem.ClientShowNotification(
-                string.Format(NotificationPressKeyToActivate, key)
-                      .Replace("[", "") // TODO: here is a workaround to remove the false BB code (press [F] key)
-                      .Replace("]", ""),
+                string.Format(NotificationPressKeyToActivate, key),
                 icon: this.Icon);
         }
 

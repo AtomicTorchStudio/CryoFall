@@ -35,7 +35,7 @@
 
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
-            return new WeaponFirePatternPreset(
+            return new(
                 initialSequence: new[] { 0.0, 0.3, 0.4 },
                 cycledSequence: new[] { 0.5, 0.3, 0.4, 0.5, 0.4 });
         }

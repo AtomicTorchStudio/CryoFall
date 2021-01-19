@@ -46,7 +46,9 @@
 
         public abstract ushort LiquidCapacity { get; }
 
-        public override double ServerUpdateIntervalSeconds => 0.5;
+        public override double ServerUpdateIntervalSeconds => 0.25;
+
+        public override double ServerUpdateRareIntervalSeconds => 2;
 
         public void ClientDrainBarrel(IStaticWorldObject worldObject)
         {

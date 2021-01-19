@@ -2,6 +2,7 @@
 {
     using System.Collections.ObjectModel;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Quests;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
@@ -13,12 +14,14 @@
     public class ViewModelWindowQuests : BaseViewModel
     {
         private static readonly SoundResource SoundResourceQuestUnlocked =
-            new SoundResource("UI/Quests/QuestUnlocked.ogg");
+            new("UI/Quests/QuestUnlocked.ogg");
 
         private static ulong lastQuestUnlockedFrame;
 
         public ViewModelWindowQuests()
         {
+            GeneralOptionHideQuestsPanel.IsQuestsPanelHiddenChanged += this.OptionIsQuestsPanelHiddenChangedHandler;
+
             this.TotalQuestsCount = Api.FindProtoEntities<IProtoQuest>().Count;
 
             var questsList = ClientCurrentCharacterHelper.PrivateState.Quests.Quests;
@@ -45,6 +48,8 @@
 
         public ObservableCollection<ViewModelQuestEntry> CompletedQuests { get; }
 
+        public bool IsQuestsPanelHidden => GeneralOptionHideQuestsPanel.IsQuestsPanelHidden;
+
         public int TotalQuestsCount { get; }
 
         public int UnlockedQuestsCount => this.ActiveQuests.Count
@@ -60,6 +65,17 @@
                     viewModelQuestEntry.RemoveNewFlag();
                 }
             }
+        }
+
+        protected override void DisposeViewModel()
+        {
+            GeneralOptionHideQuestsPanel.IsQuestsPanelHiddenChanged -= this.OptionIsQuestsPanelHiddenChangedHandler;
+            base.DisposeViewModel();
+        }
+
+        private void OptionIsQuestsPanelHiddenChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.IsQuestsPanelHidden));
         }
 
         private void QuestsListElementInserted(

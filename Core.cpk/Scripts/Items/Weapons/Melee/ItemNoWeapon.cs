@@ -17,10 +17,14 @@
     {
         public static ItemNoWeapon Instance { get; private set; }
 
+        public override double DamageApplyDelay => 0.075;
+
         [NotLocalizable]
         public override string Description => "Fallback weapon prototype in case no weapon selected.";
 
         public override uint DurabilityMax => 0;
+
+        public override double FireAnimationDuration => 0.6;
 
         public override ITextureResource Icon => null;
 

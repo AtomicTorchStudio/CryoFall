@@ -63,6 +63,11 @@
         {
             get
             {
+                if (IsServer)
+                {
+                    return default;
+                }
+
                 if (this.icon is not null)
                 {
                     return this.icon;
@@ -278,7 +283,13 @@
             return true;
         }
 
-        internal static string SharedGetRelativeFolderPath(Type type, Type baseType)
+        protected static string GenerateTexturePath(Type type)
+        {
+            var folderPath = SharedGetRelativeFolderPath(type, typeof(ProtoStaticWorldObject<,,>));
+            return $"StaticObjects/{folderPath}/{type.Name}";
+        }
+
+        protected static string SharedGetRelativeFolderPath(Type type, Type baseType)
         {
             var ns = type.Namespace;
             var defaultNamespace = baseType.Namespace;
@@ -297,12 +308,6 @@
 
             var folderPath = ns.Substring(defaultNamespace.Length + 1).Replace('.', '/');
             return folderPath;
-        }
-
-        protected static string GenerateTexturePath(Type type)
-        {
-            var folderPath = SharedGetRelativeFolderPath(type, typeof(ProtoStaticWorldObject<,,>));
-            return $"StaticObjects/{folderPath}/{type.Name}";
         }
 
         protected void ClientAddAutoStructurePointsBar(ClientInitializeData data)

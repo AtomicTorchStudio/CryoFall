@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.SoundPresets
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum GroundSoundMaterial
     {
         /// <summary>
@@ -40,6 +43,6 @@
         /// <summary>
         /// Normal snow, such as in northern regions.
         /// </summary>
-        Snow,
+        Snow
     }
 }

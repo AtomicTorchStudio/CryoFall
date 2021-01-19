@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -30,6 +31,13 @@
         protected override void ClientObserving(ClientObjectData data, bool isObserving)
         {
             ClientMeteoriteTooltipHelper.Refresh(data.GameObject, isObserving);
+        }
+
+        protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
+        {
+            base.PrepareTileRequirements(tileRequirements);
+            tileRequirements.Add(LandClaimSystem.ValidatorFreeLandEvenForServer)
+                            .Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

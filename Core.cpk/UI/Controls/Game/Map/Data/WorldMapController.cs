@@ -2,10 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Shapes;
@@ -21,29 +22,45 @@
 
     public class WorldMapController : IDisposable
     {
-        private const ushort SectorSize = 100;
+        private const double CoordinateLettersMarginBase = 2.5;
 
         protected static readonly IWorldClientService World = Api.Client.World;
 
+        private static readonly Brush BrushCoordinateGridOverlay
+            = new SolidColorBrush(Color.FromRgb(0x66, 0x66, 0x66));
+
+        private static readonly double CoordinateGridLineThickess
+            = WorldMapSectorProvider.WorldTileTextureSize / 6.0;
+
         public Action<Vector2D> MapClickCallback;
 
-        protected readonly Dictionary<Vector2Ushort, SectorControl> canvasMapSectorControls;
+        protected readonly UIElementCollection canvasMapChildren;
 
-        protected readonly HashSet<Vector2Ushort> newChunksHashSet
-            = new HashSet<Vector2Ushort>();
+        protected readonly Dictionary<Vector2Ushort, Sector> canvasMapSectors;
 
-        protected readonly List<Vector2Ushort> queueChunks
-            = new List<Vector2Ushort>(capacity: 10000);
+        protected readonly HashSet<Vector2Ushort> newChunksHashSet = new();
 
-        private readonly CancellationToken cancellationToken;
-
-        private readonly CancellationTokenSource cancellationTokenSource;
+        protected readonly List<Vector2Ushort> queueChunks = new(capacity: 10000);
 
         private readonly Canvas canvasMap;
 
-        private readonly UIElementCollection canvasMapChildren;
+        private readonly List<Line> controlsCoordinateGridLines = new();
 
-        private readonly List<UIElement> extraControls = new List<UIElement>();
+        private readonly List<FrameworkElement> controlsCoordinateLettersAll = new();
+
+        private readonly List<FrameworkElement> controlsCoordinateLettersBottomSide = new();
+
+        private readonly List<FrameworkElement> controlsCoordinateLettersLeftSide = new();
+
+        private readonly List<FrameworkElement> controlsCoordinateLettersRightSide = new();
+
+        private readonly List<FrameworkElement> controlsCoordinateLettersTopSide = new();
+
+        private readonly FrameworkElement coordinateLettersMarginSource = new();
+
+        private readonly ScaleTransform coordinateLettersScaleTransform = new();
+
+        private readonly List<UIElement> extraControls = new();
 
         private readonly bool isListeningToInput;
 
@@ -71,6 +88,8 @@
 
         private bool isVisibleMapBoundsDirty = true;
 
+        private Vector2D lastCoordinateLettersCanvasPositionBottomRight;
+
         private Vector2Ushort lastCurrentMapPosition;
 
         private double lastExtraControlsScale = 1;
@@ -81,10 +100,13 @@
 
         private IClientSceneObject sceneObject;
 
+        private WorldMapSectorProvider sectorProvider;
+
         private BoundsUshort worldBounds;
 
         public WorldMapController(
             PanningPanel panningPanel,
+            WorldMapSectorProvider sectorProvider,
             ViewModelControlWorldMap viewModelControlWorldMap,
             bool isPlayerMarkDisplayed,
             bool isCurrentCameraViewDisplayed,
@@ -92,25 +114,23 @@
             int paddingChunks,
             ControlTemplate customControlTemplatePlayerMark = null)
         {
-            this.cancellationTokenSource = new CancellationTokenSource();
-            this.cancellationToken = CancellationTokenSource
-                                     .CreateLinkedTokenSource(this.cancellationTokenSource.Token, Api.CancellationToken)
-                                     .Token;
-
+            sectorProvider.UsageCounter++;
             this.panningPanel = panningPanel;
             this.viewModelControlWorldMap = viewModelControlWorldMap;
             this.isPlayerMarkDisplayed = isPlayerMarkDisplayed;
             this.isCurrentCameraViewDisplayed = isCurrentCameraViewDisplayed;
             this.isListeningToInput = isListeningToInput;
             this.paddingChunks = paddingChunks;
+            this.sectorProvider = sectorProvider;
             this.customControlTemplatePlayerMark = customControlTemplatePlayerMark;
 
             this.canvasMap = new Canvas();
             this.canvasMapChildren = this.canvasMap.Children;
-            this.canvasMapSectorControls = new Dictionary<Vector2Ushort, SectorControl>();
+            this.canvasMapSectors = new Dictionary<Vector2Ushort, Sector>();
 
             this.panningPanel.Items.Clear();
             this.panningPanel.Items.Add(this.canvasMap);
+            this.panningPanel.Items.Add(this.coordinateLettersMarginSource);
 
             // create current character display
             this.CreateCurrentCharacterControl();
@@ -133,7 +153,7 @@
             this.sceneObject.AddComponent<ClientComponentWorldMapCurrentCameraViewUpdater>()
                 .Setup(this,
                        controlCurrentCameraView,
-                       WorldMapTexturesProvider.WorldTileTextureSize);
+                       WorldMapSectorProvider.WorldTileTextureSize);
 
             panningPanel.CallbackGetSliderZoomCanvasPosition =
                 () => this.isAutocenterOnPlayer
@@ -188,11 +208,13 @@
             }
         }
 
-        public Vector2Ushort PointedMapPositionWithOffset
-            => this.PointedMapPositionWithoutOffset - this.worldBounds.Offset;
+        public virtual bool IsCoordinateGridOverlayEnabled => true;
 
-        public Vector2Ushort PointedMapPositionWithoutOffset
+        public Vector2Ushort PointedMapWorldPositionAbsolute
             => this.ScreenToWorldPosition();
+
+        public Vector2Ushort PointedMapWorldPositionRelative
+            => this.PointedMapWorldPositionAbsolute - this.worldBounds.Offset;
 
         public static IEnumerable<Vector2Ushort> OrderChunksByProximityToPlayer(
             IEnumerable<Vector2Ushort> worldChunksAvailable)
@@ -224,12 +246,12 @@
             this.isAutocenterOnPlayer = true;
             var canvasPosition = this.componentCurrentCharacterUpdater.CanvasPosition;
             this.lastPlayerCanvasPosition = canvasPosition;
-            //Api.Logger.Write("Centering on player at canvas position: " + canvasPosition);
+            //Api.Logger.Dev("Centering on player at canvas position: " + canvasPosition);
 
-            if (resetZoomIfBelowThreshold
-                && this.panningPanel.CurrentTargetZoom < 0.5)
+            if (resetZoomIfBelowThreshold)
             {
-                this.panningPanel.SetZoom(0.5);
+                /*&& this.panningPanel.CurrentTargetZoom < this.panningPanel.DefaultZoom)*/
+                this.panningPanel.SetZoom(this.panningPanel.DefaultZoom);
             }
 
             this.panningPanel.CenterOnPoint(canvasPosition);
@@ -245,6 +267,8 @@
             this.isDisposed = true;
             this.IsActive = false;
 
+            this.sectorProvider.UsageCounter--;
+
             this.sceneObject.Destroy();
             this.queueChunks.Clear();
             this.newChunksHashSet.Clear();
@@ -254,7 +278,12 @@
             this.panningPanel.MouseLeftButtonClick -= this.PanningPanelMouseLeftButtonClickHandler;
             ClientUpdateHelper.UpdateCallback -= this.Update;
 
-            this.cancellationTokenSource.Cancel();
+            foreach (var sector in this.canvasMapSectors.Values)
+            {
+                this.canvasMapChildren.Remove(sector.SectorRectangle);
+            }
+
+            this.canvasMapSectors.Clear();
         }
 
         public void RemoveControl(UIElement control)
@@ -268,8 +297,8 @@
         public Vector2Ushort ScreenToWorldPosition()
         {
             var canvasPosition = Mouse.GetPosition(this.canvasMap);
-            var x = canvasPosition.X / WorldMapTexturesProvider.WorldTileTextureSize;
-            var y = canvasPosition.Y / WorldMapTexturesProvider.WorldTileTextureSize;
+            var x = canvasPosition.X / WorldMapSectorProvider.WorldTileTextureSize;
+            var y = canvasPosition.Y / WorldMapSectorProvider.WorldTileTextureSize;
 
             x = MathHelper.Clamp(x, 0, this.worldBounds.Size.X);
             y = MathHelper.Clamp(y, 0, this.worldBounds.Size.Y);
@@ -289,57 +318,22 @@
             var y = this.worldBounds.Offset.Y - worldPosition.Y;
             y += this.worldBounds.Size.Y;
 
-            return (x * WorldMapTexturesProvider.WorldTileTextureSize,
-                    y * WorldMapTexturesProvider.WorldTileTextureSize);
+            return (x * WorldMapSectorProvider.WorldTileTextureSize,
+                    y * WorldMapSectorProvider.WorldTileTextureSize);
         }
 
         protected void AddOrRefreshChunk(Vector2Ushort chunkStartPosition)
         {
-            var sectorPosition = this.CalculateSectorPosition(chunkStartPosition);
-            if (!this.canvasMapSectorControls.TryGetValue(sectorPosition, out var sector))
+            var sectorPosition = WorldMapSectorHelper.CalculateSectorStartPosition(chunkStartPosition);
+            if (!this.canvasMapSectors.TryGetValue(sectorPosition, out var sector))
             {
-                var sectorCanvas = new Canvas();
                 var sectorVisualPosition = this.WorldToCanvasPosition(sectorPosition.ToVector2D());
-                Canvas.SetLeft(sectorCanvas, sectorVisualPosition.X);
-                Canvas.SetTop(sectorCanvas, sectorVisualPosition.Y);
-
-                sector = new SectorControl(sectorCanvas, sectorPosition);
-                this.canvasMapChildren.Add(sectorCanvas);
-                this.canvasMapSectorControls.Add(sectorPosition, sector);
+                sector = new Sector(this.sectorProvider, sectorPosition, sectorVisualPosition);
+                this.canvasMapChildren.Add(sector.SectorRectangle);
+                this.canvasMapSectors.Add(sectorPosition, sector);
             }
 
-            var checksum = World.GetWorldChunkChecksum(chunkStartPosition);
-            if (sector.TryGetTileRectangle(chunkStartPosition, out var tileRectangle))
-            {
-                // already added - need to refresh the texture
-                Load(tileRectangle, chunkStartPosition, checksum, this.cancellationToken);
-                return;
-            }
-
-            // need to create a new rectangle and add it to Canvas
-            // to fix NoesisGUI rendering issue (1 px holes between rectangles)
-            const double squareSize = WorldMapTexturesProvider.WorldChunkMapTextureSize + 1;
-            tileRectangle = new Rectangle
-            {
-                Width = squareSize,
-                Height = squareSize,
-            };
-            //RenderOptions.SetBitmapScalingMode(tileRectangle, BitmapScalingMode.NearestNeighbor);
-
-            var chunkCanvasPosition = this.WorldToCanvasPosition(chunkStartPosition.ToVector2D())
-                                      - this.WorldToCanvasPosition(sectorPosition.ToVector2D());
-
-            Canvas.SetLeft(tileRectangle, chunkCanvasPosition.X);
-            Canvas.SetTop(tileRectangle, chunkCanvasPosition.Y - squareSize);
-
-            sector.AddTileRectangle(chunkStartPosition, tileRectangle);
-            Load(tileRectangle, chunkStartPosition, checksum, this.cancellationToken);
-        }
-
-        protected Vector2Ushort CalculateSectorPosition(in Vector2Ushort position)
-        {
-            return new Vector2Ushort((ushort)((position.X / SectorSize) * SectorSize),
-                                     (ushort)((position.Y / SectorSize) * SectorSize));
+            this.sectorProvider.AddOrRefreshChunk(sector.SectorRenderer, chunkStartPosition);
         }
 
         protected void MarkDirty()
@@ -365,8 +359,7 @@
                 this.queueChunks.SortBy(c => c.TileDistanceTo(currentWorldPosition));
             }
 
-            if (this.queueChunks.Count == 0
-                || WorldMapTexturesProvider.IsBusy)
+            if (this.queueChunks.Count == 0)
             {
                 return;
             }
@@ -378,11 +371,6 @@
                 var chunkStartPosition = this.queueChunks[index];
                 this.AddOrRefreshChunk(chunkStartPosition);
                 index++;
-
-                if (WorldMapTexturesProvider.IsBusy)
-                {
-                    break;
-                }
             }
             while (index < this.queueChunks.Count);
 
@@ -390,26 +378,90 @@
             this.queueChunks.RemoveRange(0, index);
         }
 
-        private static async void Load(
-            Rectangle tileRectangle,
-            Vector2Ushort chunkStartPosition,
-            uint checksum,
-            CancellationToken cancellationToken)
+        private void AddCoordinateLetters()
         {
-            var imageBrush = await WorldMapTexturesProvider.LoadMapChunkImageBrush(chunkStartPosition,
-                                 checksum,
-                                 cancellationToken);
-            if (imageBrush is null)
+            var (start, end) = this.GetSectorWorldBounds();
+            var textBlockCoordinateStyle = Api.Client.UI.GetApplicationResource<Style>("TextBlockCoordinateStyle");
+            var sectorSize = WorldMapSectorProvider.SectorWorldSize;
+            var sectorCanvasSize = WorldMapSectorProvider.SectorPixelSize;
+
+            var coordinateLetterX = 'A';
+            for (var x = start.X; x < end.X; x += sectorSize)
             {
-                // cancelled
-                return;
+                var letter = (coordinateLetterX++).ToString();
+                var controlTop = CreateCoordinateLetterControl(letter,
+                                                               HorizontalAlignment.Center,
+                                                               VerticalAlignment.Top);
+                var canvasPosition = this.WorldToCanvasPosition((x, end.Y + sectorSize));
+                Canvas.SetLeft(controlTop, canvasPosition.X);
+                // the top coordinate is calculated and set dynamically
+                this.controlsCoordinateLettersTopSide.Add(controlTop);
+
+                var controlBottom = CreateCoordinateLetterControl(letter,
+                                                                  HorizontalAlignment.Center,
+                                                                  VerticalAlignment.Bottom);
+                canvasPosition = this.WorldToCanvasPosition((x, start.Y));
+                Canvas.SetLeft(controlBottom, canvasPosition.X);
+                this.controlsCoordinateLettersBottomSide.Add(controlBottom);
             }
 
-            // verify if this is an actual chunk
-            var currentChecksum = World.GetWorldChunkChecksum(chunkStartPosition);
-            if (currentChecksum == checksum)
+            var coordinateLetterY = 1;
+            for (var y = start.Y; y < end.Y; y += sectorSize)
             {
-                tileRectangle.Fill = imageBrush;
+                var letter = (coordinateLetterY++).ToString();
+                var controlLeft = CreateCoordinateLetterControl(letter,
+                                                                HorizontalAlignment.Left,
+                                                                VerticalAlignment.Center);
+                var canvasPosition = this.WorldToCanvasPosition((start.X, y + sectorSize));
+                Canvas.SetTop(controlLeft, canvasPosition.Y);
+                // the left coordinate is calculated and set dynamically
+                this.controlsCoordinateLettersLeftSide.Add(controlLeft);
+
+                var controlRight = CreateCoordinateLetterControl(letter,
+                                                                 HorizontalAlignment.Right,
+                                                                 VerticalAlignment.Center);
+                canvasPosition = this.WorldToCanvasPosition((end.X, y + sectorSize));
+                Canvas.SetTop(controlRight, canvasPosition.Y);
+                this.controlsCoordinateLettersRightSide.Add(controlRight);
+            }
+
+            this.lastCoordinateLettersCanvasPositionBottomRight = default;
+            this.UpdateCoordinateLetters();
+
+            ContentControl CreateCoordinateLetterControl(
+                string text,
+                HorizontalAlignment horizontalAlignment,
+                VerticalAlignment verticalAlignment)
+            {
+                var textBlock = new TextBlock()
+                {
+                    Text = text,
+                    Style = textBlockCoordinateStyle,
+                    HorizontalAlignment = horizontalAlignment,
+                    VerticalAlignment = verticalAlignment,
+                    LayoutTransform = this.coordinateLettersScaleTransform
+                };
+
+                var control = new ContentControl()
+                {
+                    Width = sectorCanvasSize,
+                    Height = sectorCanvasSize,
+                    Content = textBlock
+                };
+
+                BindingOperations.SetBinding(
+                    textBlock,
+                    FrameworkElement.MarginProperty,
+                    new Binding(FrameworkElement.MarginProperty.Name)
+                    {
+                        Source = this.coordinateLettersMarginSource,
+                        Mode = BindingMode.OneWay
+                    });
+
+                Panel.SetZIndex(control, 100);
+                this.canvasMapChildren.Add(control);
+                this.controlsCoordinateLettersAll.Add(control);
+                return control;
             }
         }
 
@@ -420,8 +472,8 @@
 
         private Vector2D CanvasToWorldPosition(Vector2D canvasPosition)
         {
-            var x = canvasPosition.X / WorldMapTexturesProvider.WorldTileTextureSize;
-            var y = canvasPosition.Y / WorldMapTexturesProvider.WorldTileTextureSize;
+            var x = canvasPosition.X / WorldMapSectorProvider.WorldTileTextureSize;
+            var y = canvasPosition.Y / WorldMapSectorProvider.WorldTileTextureSize;
             y -= this.worldBounds.Size.Y;
 
             x += this.worldBounds.Offset.X;
@@ -432,10 +484,10 @@
 
         private void CreateCurrentCharacterControl()
         {
-            Control controlCurrentCharacter = this.customControlTemplatePlayerMark is not null
-                                                  ? new Control() { Template = this.customControlTemplatePlayerMark }
-                                                  : new WorldMapMarkCurrentCharacter();
-            Panel.SetZIndex(controlCurrentCharacter, 10);
+            var controlCurrentCharacter = this.customControlTemplatePlayerMark is not null
+                                              ? new Control() { Template = this.customControlTemplatePlayerMark }
+                                              : new WorldMapMarkCurrentCharacter();
+            Panel.SetZIndex(controlCurrentCharacter, 30);
             if (this.isPlayerMarkDisplayed)
             {
                 // show current character only on the non-Editor map
@@ -448,18 +500,41 @@
             this.componentCurrentCharacterUpdater.Setup(this, controlCurrentCharacter);
         }
 
+        private (Vector2Ushort startPosition, Vector2Ushort endPosition) GetSectorWorldBounds()
+        {
+            var start = WorldMapSectorHelper.CalculateSectorStartPosition(this.worldBounds.Offset);
+            var end = WorldMapSectorHelper.CalculateSectorStartPosition(
+                (this.worldBounds.Offset + this.worldBounds.Size).ToVector2Ushort());
+
+            var max = this.worldBounds.Offset + this.worldBounds.Size;
+
+            if ((max.X - end.X) / (double)WorldMapSectorProvider.SectorWorldSize > 0.2)
+            {
+                // add an extra sector space by X
+                end = ((ushort)(end.X + WorldMapSectorProvider.SectorWorldSize), end.Y);
+            }
+
+            if ((max.Y - end.Y) / (double)WorldMapSectorProvider.SectorWorldSize > 0.2)
+            {
+                // add an extra sector space by Y
+                end = (end.X, (ushort)(end.Y + WorldMapSectorProvider.SectorWorldSize));
+            }
+
+            return (start, end);
+        }
+
         private void InitMap()
         {
             this.worldBounds = World.WorldBounds;
-            this.panningPanel.PanningWidth = this.worldBounds.Size.X * WorldMapTexturesProvider.WorldTileTextureSize;
-            this.panningPanel.PanningHeight = this.worldBounds.Size.Y * WorldMapTexturesProvider.WorldTileTextureSize;
+            this.panningPanel.PanningWidth = this.worldBounds.Size.X * WorldMapSectorProvider.WorldTileTextureSize;
+            this.panningPanel.PanningHeight = this.worldBounds.Size.Y * WorldMapSectorProvider.WorldTileTextureSize;
 
-            foreach (var sectorControl in this.canvasMapSectorControls.Values)
+            foreach (var sector in this.canvasMapSectors.Values)
             {
-                this.canvasMapChildren.Remove(sectorControl.Canvas);
+                this.canvasMapChildren.Remove(sector.SectorRectangle);
             }
 
-            this.canvasMapSectorControls.Clear();
+            this.canvasMapSectors.Clear();
 
             this.queueChunks.Clear();
             this.newChunksHashSet.Clear();
@@ -468,7 +543,80 @@
             this.isVisibleMapBoundsDirty = true;
             this.UpdateMapBoundsIfDirty();
 
+            this.InitMapCoordinateGridOverlay();
+            this.UpdateExtraControlsZoom(force: true);
+
+            this.CenterMapOnPlayerCharacter(true);
+
             //Api.Logger.WriteDev($"Map init: total world chunks available count: {World.WorldChunksAvailable.Count}");
+        }
+
+        [SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
+        private void InitMapCoordinateGridOverlay()
+        {
+            foreach (var control in this.controlsCoordinateGridLines)
+            {
+                this.canvasMapChildren.Remove(control);
+            }
+
+            foreach (var control in this.controlsCoordinateLettersAll)
+            {
+                this.canvasMapChildren.Remove(control);
+            }
+
+            this.controlsCoordinateGridLines.Clear();
+            this.controlsCoordinateLettersAll.Clear();
+            this.controlsCoordinateLettersLeftSide.Clear();
+            this.controlsCoordinateLettersRightSide.Clear();
+            this.controlsCoordinateLettersTopSide.Clear();
+            this.controlsCoordinateLettersBottomSide.Clear();
+
+            if (!this.IsCoordinateGridOverlayEnabled)
+            {
+                return;
+            }
+
+            this.worldBounds = World.WorldBounds;
+            var worldTileTextureSize = WorldMapSectorProvider.WorldTileTextureSize;
+            var (sectorsStartPosition, sectorsEndPosition) = this.GetSectorWorldBounds();
+            var (minX, minY) = this.WorldToCanvasPosition((sectorsStartPosition.X, sectorsEndPosition.Y));
+            var (maxX, maxY) = this.WorldToCanvasPosition((sectorsEndPosition.X, sectorsStartPosition.Y));
+
+            var stepSize = WorldMapSectorProvider.SectorWorldSize * worldTileTextureSize;
+
+            for (var y = minY; y <= maxY; y += stepSize)
+            for (var x = minX; x <= maxX; x += stepSize)
+            {
+                var lineVertical = new Line
+                {
+                    Stroke = BrushCoordinateGridOverlay,
+                    X1 = x,
+                    X2 = x,
+                    Y1 = minY,
+                    Y2 = maxY
+                };
+
+                var lineHorizontal = new Line
+                {
+                    Stroke = BrushCoordinateGridOverlay,
+                    Y1 = y,
+                    Y2 = y,
+                    X1 = minX,
+                    X2 = maxX
+                };
+
+                Panel.SetZIndex(lineHorizontal, 1);
+                Panel.SetZIndex(lineVertical,   1);
+
+                this.canvasMapChildren.Add(lineHorizontal);
+                this.canvasMapChildren.Add(lineVertical);
+
+                this.controlsCoordinateGridLines.Add(lineHorizontal);
+                this.controlsCoordinateGridLines.Add(lineVertical);
+            }
+
+            this.UpdateCoordinateGridLines();
+            this.AddCoordinateLetters();
         }
 
         private void PanningPanelMouseHoldHandler()
@@ -511,6 +659,7 @@
 
             this.UpdateMapBoundsIfDirty();
             this.UpdateExtraControlsZoom();
+            this.UpdateCoordinateLetters();
 
             this.UpdateMapExplorationProgress();
 
@@ -519,7 +668,12 @@
             if (currentMapPosition != this.lastCurrentMapPosition)
             {
                 this.lastCurrentMapPosition = currentMapPosition;
-                this.viewModelControlWorldMap.CurrentPositionText = currentMapPosition.ToString();
+                this.viewModelControlWorldMap.CurrentPositionText
+                    = string.Format("{0}-{1},{2}",
+                                    WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(
+                                        currentMapPosition),
+                                    currentMapPosition.X,
+                                    currentMapPosition.Y);
 
                 if (this.newChunksHashSet.Count == 0)
                 {
@@ -532,17 +686,22 @@
                 }
             }
 
-            var pointedMapPosition = this.PointedMapPositionWithOffset;
+            var pointedMapPosition = this.PointedMapWorldPositionRelative;
             if (pointedMapPosition != this.lastPointedMapPosition)
             {
                 this.lastPointedMapPosition = pointedMapPosition;
 
                 if (this.isListeningToInput)
                 {
-                    this.viewModelControlWorldMap.PointedPositionText = pointedMapPosition.ToString();
+                    this.viewModelControlWorldMap.PointedPositionText
+                        = string.Format("{0}-{1},{2}",
+                                        WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(
+                                            pointedMapPosition),
+                                        pointedMapPosition.X,
+                                        pointedMapPosition.Y);
 
                     var protoTile = this.panningPanel.IsMouseOver
-                                        ? Api.Client.World.GetTile(this.PointedMapPositionWithoutOffset).ProtoTile
+                                        ? Api.Client.World.GetTile(this.PointedMapWorldPositionAbsolute).ProtoTile
                                         : null;
                     if (protoTile is null
                         || protoTile is TilePlaceholder)
@@ -577,24 +736,106 @@
 
             AutoCenterMapOnPlayerCharacter();
 
-            if (WorldMapTexturesProvider.IsBusy)
+            this.RefreshQueue(currentWorldPosition);
+        }
+
+        private void UpdateCoordinateGridLines()
+        {
+            if (this.controlsCoordinateGridLines.Count == 0)
             {
                 return;
             }
 
-            this.RefreshQueue(currentWorldPosition);
+            var scale = this.CalculateExtraControlsScale();
+            var strokeThickness = scale * CoordinateGridLineThickess;
+
+            foreach (var line in this.controlsCoordinateGridLines)
+            {
+                line.StrokeThickness = strokeThickness;
+            }
         }
 
-        private void UpdateExtraControlsZoom()
+        private void UpdateCoordinateLetters()
+        {
+            if (this.controlsCoordinateLettersAll.Count == 0)
+            {
+                return;
+            }
+
+            var canvasPositionBottomRight = this.canvasMap.PointFromScreen(
+                                                    this.panningPanel.PointToScreen(
+                                                        new Point(this.panningPanel.ActualWidth,
+                                                                  this.panningPanel.ActualHeight)))
+                                                .ToVector2D();
+
+            if (this.lastCoordinateLettersCanvasPositionBottomRight == canvasPositionBottomRight)
+            {
+                return;
+            }
+
+            this.lastCoordinateLettersCanvasPositionBottomRight = canvasPositionBottomRight;
+
+            var canvasPositionTopLeft = this.canvasMap.PointFromScreen(
+                                                this.panningPanel.PointToScreen(new Point(0, 0)))
+                                            .ToVector2D();
+
+            var (sectorsStartPosition, sectorsEndPosition) = this.GetSectorWorldBounds();
+            {
+                var worldPositionTopLeft = this.CanvasToWorldPosition(canvasPositionTopLeft);
+                worldPositionTopLeft = (Math.Max(sectorsStartPosition.X, worldPositionTopLeft.X),
+                                        Math.Min(sectorsEndPosition.Y, worldPositionTopLeft.Y));
+                canvasPositionTopLeft = this.WorldToCanvasPosition(worldPositionTopLeft);
+            }
+
+            {
+                var worldPositionBottomRight = this.CanvasToWorldPosition(canvasPositionBottomRight);
+
+                worldPositionBottomRight = (Math.Min(sectorsEndPosition.X, worldPositionBottomRight.X),
+                                            Math.Max(sectorsStartPosition.Y, worldPositionBottomRight.Y));
+                worldPositionBottomRight += (-WorldMapSectorProvider.SectorWorldSize,
+                                             (WorldMapSectorProvider.SectorWorldSize));
+                canvasPositionBottomRight = this.WorldToCanvasPosition(worldPositionBottomRight);
+            }
+
+            foreach (var controlLeft in this.controlsCoordinateLettersLeftSide)
+            {
+                Canvas.SetLeft(controlLeft, canvasPositionTopLeft.X);
+            }
+
+            foreach (var controlTop in this.controlsCoordinateLettersTopSide)
+            {
+                Canvas.SetTop(controlTop, canvasPositionTopLeft.Y);
+            }
+
+            foreach (var controlRight in this.controlsCoordinateLettersRightSide)
+            {
+                Canvas.SetLeft(controlRight, canvasPositionBottomRight.X);
+            }
+
+            foreach (var controlBottom in this.controlsCoordinateLettersBottomSide)
+            {
+                Canvas.SetTop(controlBottom, canvasPositionBottomRight.Y);
+            }
+        }
+
+        private void UpdateExtraControlsZoom(bool force = false)
         {
             var scale = this.CalculateExtraControlsScale();
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (this.lastExtraControlsScale == scale)
+            if (this.lastExtraControlsScale == scale
+                && !force)
             {
                 return;
             }
 
             this.lastExtraControlsScale = scale;
+            this.coordinateLettersScaleTransform.ScaleX
+                = this.coordinateLettersScaleTransform.ScaleY
+                      = scale / 10.0;
+
+            this.coordinateLettersMarginSource.SetCurrentValue(FrameworkElement.MarginProperty,
+                                                               new Thickness(CoordinateLettersMarginBase * scale));
+
             foreach (var extraControl in this.extraControls)
             {
                 var transform = extraControl.RenderTransform;
@@ -603,6 +844,8 @@
                     scaleTransform.ScaleX = scaleTransform.ScaleY = scale;
                 }
             }
+
+            this.UpdateCoordinateGridLines();
         }
 
         private void UpdateMapBoundsIfDirty()
@@ -675,7 +918,7 @@
             }
 
             // don't allow scale closer than that
-            this.panningPanel.MaxZoom = 1;
+            this.panningPanel.MaxZoom = 4.0 / WorldMapSectorProvider.WorldTileTextureSize;
 
             this.panningPanel.PanningBounds = new BoundsDouble(
                 minX: this.WorldToCanvasPosition((boundsVisible.MinX, 0)).X,
@@ -711,49 +954,32 @@
             this.isVisibleMapBoundsDirty = true;
         }
 
-        protected class SectorControl
+        protected class Sector
         {
-            public readonly Canvas Canvas;
+            public readonly FrameworkElement SectorRectangle;
 
-            public readonly Vector2Ushort SectorPosition;
+            public readonly WorldMapSectorProvider.SectorRenderer SectorRenderer;
 
-            private readonly UIElementCollection canvasChildren;
+            public readonly Vector2Ushort SectorWorldPosition;
 
-            private readonly Dictionary<Vector2Ushort, Rectangle> chunkVisualizers
-                = new Dictionary<Vector2Ushort, Rectangle>();
-
-            public SectorControl(Canvas canvas, Vector2Ushort sectorPosition)
+            public Sector(
+                WorldMapSectorProvider sectorProvider,
+                Vector2Ushort sectorWorldPosition,
+                Vector2D sectorVisualPosition)
             {
-                this.SectorPosition = sectorPosition;
-                this.Canvas = canvas;
-                this.canvasChildren = canvas.Children;
-            }
-
-            public Dictionary<Vector2Ushort, Rectangle>.KeyCollection Visualizers
-                => this.chunkVisualizers.Keys;
-
-            public void AddTileRectangle(in Vector2Ushort chunkStartPosition, Rectangle rectangle)
-            {
-                this.chunkVisualizers.Add(chunkStartPosition, rectangle);
-                this.canvasChildren.Add(rectangle);
-            }
-
-            public void RemoveTileRectangle(in Vector2Ushort chunkStartPosition)
-            {
-                if (this.chunkVisualizers.TryGetValue(chunkStartPosition, out var rectangle))
+                this.SectorWorldPosition = sectorWorldPosition;
+                this.SectorRenderer = sectorProvider.GetSectorRenderer(sectorWorldPosition);
+                var sectorRectangle = new Rectangle()
                 {
-                    this.chunkVisualizers.Remove(chunkStartPosition);
-                    this.canvasChildren.Remove(rectangle);
-                }
-                else
-                {
-                    Api.Logger.Error("Chunk not found: " + chunkStartPosition);
-                }
-            }
+                    // + 1 is required to prevent a seam from appearing between sector rectangles
+                    Width = WorldMapSectorProvider.SectorPixelSize + 1,
+                    Height = WorldMapSectorProvider.SectorPixelSize + 1,
+                    Fill = Api.Client.UI.GetTextureBrush(this.SectorRenderer.RenderTexture)
+                };
 
-            public bool TryGetTileRectangle(in Vector2Ushort chunkStartPosition, out Rectangle rectangle)
-            {
-                return this.chunkVisualizers.TryGetValue(chunkStartPosition, out rectangle);
+                Canvas.SetLeft(sectorRectangle, sectorVisualPosition.X);
+                Canvas.SetTop(sectorRectangle, sectorVisualPosition.Y - WorldMapSectorProvider.SectorPixelSize);
+                this.SectorRectangle = sectorRectangle;
             }
         }
     }

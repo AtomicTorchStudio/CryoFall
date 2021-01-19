@@ -19,7 +19,10 @@
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
         <TabControl Margin="10,5"
-                    Style="{StaticResource TabControlCompactStyle}">
+                    Style="{StaticResource TabControlCompactStyle}"
+                    FontSize="12"
+                    FontWeight="Bold"
+                    FontFamily="{StaticResource CondensedFontFamily}">
 
             <!-- Text: Lot config -->
             <TabItem Header="{x:Static loc:CoreStrings.WindowTradingStationAdmin_LotConfig}" IsSelected="True">
@@ -32,14 +35,13 @@
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                Margin="0,10,0,10">
+                                Margin="0,15,0,10">
                         <!-- Text: This trading station will be -->
                         <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationAdmin_RadioButton_GroupTitle}"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   Margin="0,2,0,0" />
+                                   Foreground="{StaticResource BrushColor6}" />
                         <TextBlock Text=": "
                                    Foreground="{StaticResource BrushColor6}" />
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="0,-5,0,0">
                             <StackPanel.Resources>
                                 <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
                                     <Setter Property="FontSize" Value="13" />
@@ -135,7 +137,8 @@
             </TabItem>
 
             <!-- Text: Owners -->
-            <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}">
+            <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}"
+                     Visibility="{Binding IsInsideFactionClaim, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                 <worldObjects:WorldObjectOwnersEditorControl DataContext="{Binding ViewModelOwnersEditor}" />
             </TabItem>
 

@@ -20,8 +20,8 @@
         where TClientState : StaticObjectClientState, new()
     {
         public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 1,
-                                               shutdownPercent: 0);
+            => new(startupPercent: 1,
+                   shutdownPercent: 0);
 
         public abstract double ElectricityConsumptionPerSecondWhenActive { get; }
 
@@ -56,7 +56,6 @@
 
             PowerGridSystem.ClientInitializeConsumerOrProducer(data.GameObject);
 
-            // create sound emitter
             var soundEmitter = Client.Audio.CreateSoundEmitter(
                 data.GameObject,
                 new SoundResource("Objects/Structures/ObjectFridge/Active"),

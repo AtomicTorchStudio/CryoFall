@@ -13,8 +13,7 @@
         public const string DescriptionText = "Sort inventory items";
 
         // a singleton requirement
-        public static readonly IPlayerTask Require
-            = new TaskSortItemsContainer();
+        public static readonly TaskSortItemsContainer Require = new();
 
         private TaskSortItemsContainer()
             : base(DescriptionText)

@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -20,8 +19,9 @@
 
         public ObjectDisplayCaseLarge()
         {
-            this.textureResourceFront = new TextureResource(this.GenerateTexturePath() + "Front");
-            this.textureResourceBack = new TextureResource(this.GenerateTexturePath() + "Back");
+            var texturePath = this.GenerateTexturePath();
+            this.textureResourceFront = new TextureResource(texturePath + "Front");
+            this.textureResourceBack = new TextureResource(texturePath + "Back");
         }
 
         public override string Description => GetProtoEntity<ObjectDisplayCase>().Description;
@@ -48,7 +48,7 @@
         {
             return base.SharedGetObjectCenterWorldOffset(worldObject) + (0, 0.275);
         }
-        
+
         protected override ITextureResource ClientCreateIcon()
         {
             return ClientProceduralTextureHelper.CreateComposedTexture(
@@ -101,7 +101,9 @@
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
-            => this.textureResourceFront;
+        {
+            return this.textureResourceFront;
+        }
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

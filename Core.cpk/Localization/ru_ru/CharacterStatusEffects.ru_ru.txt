@@ -1,5 +1,5 @@
 ﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
-Вы приняли стимуляторы, ваша выносливость восстанавливается быстрее.
+Вы приняли стимуляторы, ваша выносливость регенерируется быстрее.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
 Прилив энергии
@@ -27,6 +27,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Сытная пища
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Увеличивает скорость крафта, создавая изолированное квантовое пространство вокруг персонажа.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Квантовое ускорение
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Вы недавно поели вкусной еды. Теперь жизнь представляется вам более приятной.
@@ -64,9 +70,6 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Сломанная нога
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-Невозможно атаковать при оглушении.
-
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Вы оглушены! Потребуется несколько мгновений, чтобы прийти в себя.
 
@@ -101,7 +104,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
 Тошнота
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
-Вас терзает боль, снижающая восстановление выносливости и блокирующая исцеление. Терпите или найдите обезболивающие средства.
+Вас терзает боль, снижающая регенерацию выносливости и блокирующая исцеление. Терпите или найдите обезболивающие средства.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
 Острая боль
@@ -180,6 +183,12 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Передозировка
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Похоже, вы съели больше, чем следовало. Если вы съедите что-то еще, вам станет плохо.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Переедание
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Подождите окончания приема передозина.

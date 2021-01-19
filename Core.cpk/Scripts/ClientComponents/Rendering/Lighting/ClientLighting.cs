@@ -45,7 +45,7 @@
         public static BaseClientComponentLightSource CreateLightSourceSpot(
             IClientSceneObject sceneObject,
             IReadOnlyItemLightConfig itemLightConfig,
-            Vector2D? positionOffset = null)
+            Vector2D? overrideWorldOffset = null)
         {
             if (!itemLightConfig.IsLightEnabled)
             {
@@ -57,7 +57,7 @@
                 itemLightConfig.Color,
                 size: itemLightConfig.Size,
                 logicalSize: itemLightConfig.LogicalSize,
-                positionOffset: positionOffset);
+                positionOffset: overrideWorldOffset ?? itemLightConfig.WorldOffset);
         }
     }
 }

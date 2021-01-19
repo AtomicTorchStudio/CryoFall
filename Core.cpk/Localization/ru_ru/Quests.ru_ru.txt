@@ -389,12 +389,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Мастерство охотника: часть вторая
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+Когда вы обнаруживаете что-то новое, оно появляется в вашем [b]меню коллекционера[/b]! В нем вы сможете следить за своим прогрессом и получать [u]дополнительные ОТ[/u] за знакомство с миром CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Чтобы отсортировать инвентарь, просто откройте его и нажмите [u]{0}[/u] или [u]{1}[/u] при наведении курсора на ячейки инвентаря. Этим способом вы можете отсортировать [b]ЛЮБОЙ[/b] инвентарь (например, сундуки и пр.)
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Чтобы побежать, просто нажмите и удерживайте [u]клавишу Shift[/u] во время движения. Пробегите несколько метров, чтобы потренироваться. Бег поможет вам спастись от опасных хищников.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 Есть еще несколько вещей, которые важно знать, чтобы полноценно играть в CryoFall: например, как сортировать любой инвентарь и как заставить персонажа побежать!
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Чтобы отсортировать инвентарь, просто откройте его и нажмите [u]среднюю кнопку мыши[/u] или [u]клавишу Z[/u] (если вы не меняли управление) при наведении курсора на ячейки инвентаря. Этим способом вы можете отсортировать [b]ЛЮБОЙ[/b] инвентарь (например, сундуки и пр.)
-[*] Чтобы побежать, просто нажмите и удерживайте [u]клавишу Shift[/u] во время движения. Пробегите несколько метров, чтобы потренироваться. Бег поможет вам спастись от опасных хищников.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Выполнение базовых действий
@@ -490,6 +495,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Разведка климатических зон: часть четвертая
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Обыщите несколько контейнеров
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 В старых руинах можно отыскать редкие компоненты и особые ресурсы. Наткнувшись на такое место, обязательно исследуйте его, особенно если у вас есть необходимое снаряжение.
 
@@ -501,8 +509,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Исследовать старые руины
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Обыщите несколько контейнеров
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+Чем [b]больше[/b] телепортов вы найдете, тем [b]шире[/b] будут ваши возможности для быстрого перемещения.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+Найдите хотя бы [b]два[/b] телепорта, чтобы перемещаться между ними.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+Возможно, бывают даже [b]спрятанные[/b] телепорты!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+Бегать на своих двоих, конечно, полезно, но для путешествий на очень большие расстояния стоит использовать инопланетные телепорты.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Быстрое перемещение
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 Рыбное [u]филе[/u] можно [u]добыть[/u] с пойманной рыбы с помощью действия [b]использовать[/b] (т. е. так же, как использовать предмет).
@@ -585,6 +605,9 @@ Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Добыча дроном
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Мастерство охотника: часть шестая
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 Рекомендуется [u]увеличивать энергоемкость вашей базы[/u] по мере того, как она растет, чтобы у вас всегда был [u]запас электроэнергии[/u].

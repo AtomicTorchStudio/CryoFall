@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -117,7 +116,8 @@
                 if (LandClaimShieldProtectionSystem.SharedIsAreaUnderShieldProtection(area))
                 {
                     Logger.Info("Cannot unstuck when located in an area under shield protection", character);
-                    LandClaimShieldProtectionSystem.SharedSendNotificationActionForbiddenUnderShieldProtection(character);
+                    LandClaimShieldProtectionSystem.SharedSendNotificationActionForbiddenUnderShieldProtection(
+                        character);
                     return false;
                 }
             }
@@ -279,7 +279,8 @@
             }
 
             var delay = LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(character.TilePosition,
-                                                                              character)
+                                                                              character,
+                                                                              requireFactionPermission: false)
                             ? UnstuckDelaySecondsTotal
                             : UnstuckDelaySecondsOnEnemyBaseTotal;
 

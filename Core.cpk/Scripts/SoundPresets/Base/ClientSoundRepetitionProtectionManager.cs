@@ -15,7 +15,7 @@
 
         private static readonly ICoreClientService ClientCore = Api.IsClient ? Api.Client.Core : null;
 
-        private static readonly List<Entry> List = new List<Entry>(capacity: 8);
+        private static readonly List<Entry> List = new(capacity: 8);
 
         static ClientSoundRepetitionProtectionManager()
         {

@@ -59,7 +59,7 @@
                 .Add<ItemSlime>(count: 10,        countRandom: 10)
                 .Add<ItemToxin>(count: 5,         countRandom: 5)
                 .Add<ItemSalt>(count: 5,          countRandom: 5)
-                .Add<ItemRubberRaw>(count: 8,     countRandom: 2);
+                .Add<ItemRubberRaw>(count: 8,     countRandom: 3);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
@@ -74,7 +74,7 @@
         {
             base.ServerInitializeCharacterMob(data);
 
-            var weaponProto = GetProtoEntity<ItemWeaponFloaterNova>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobFloaterNova>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -85,6 +85,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,

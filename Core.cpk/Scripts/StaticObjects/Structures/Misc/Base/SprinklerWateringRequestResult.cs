@@ -2,7 +2,9 @@
 {
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum SprinklerWateringRequestResult : byte
     {
         Success = 0,

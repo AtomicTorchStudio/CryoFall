@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -25,12 +26,17 @@
 
         private IDynamicWorldObject vehicle;
 
+        private VehiclePublicState vehiclePublicState;
+
+        public bool IsArmorBarDisplayedWhenPiloted { get; set; }
+
         public bool IsDisplayedOnlyOnMouseOver { get; set; }
 
         public void Setup(IDynamicWorldObject vehicle)
         {
             this.Unsubscribe();
             this.vehicle = vehicle;
+            this.vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
             this.Subscribe();
             this.Refresh();
         }
@@ -63,6 +69,14 @@
                 return false;
             }
 
+            var currentPlayerCharacter = Api.Client.Characters.CurrentPlayerCharacter;
+            if (ReferenceEquals(this.vehiclePublicState.PilotCharacter,
+                                currentPlayerCharacter))
+            {
+                return this.IsArmorBarDisplayedWhenPiloted
+                       && GeneralOptionDisplayHealthbarAboveCurrentCharacter.IsDisplay;
+            }
+
             if (ClientInputManager.IsButtonHeld(GameButton.DisplayLandClaim)
                 || Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true)
                 || Api.IsEditor && Client.Characters.IsCurrentPlayerCharacterSpectator
@@ -71,6 +85,12 @@
                     < ClientComponentAutoDisplayStructurePointsBar.SecondsToDisplayHealthbarAfterDamage))
             {
                 return true;
+            }
+
+            if (!this.IsArmorBarDisplayedWhenPiloted
+                && this.vehiclePublicState.PilotCharacter is not null)
+            {
+                return false;
             }
 
             if (this.IsDisplayedOnlyOnMouseOver

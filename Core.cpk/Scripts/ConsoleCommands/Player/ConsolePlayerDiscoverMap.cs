@@ -4,6 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.TeleportsSystem;
     using AtomicTorch.CBND.CoreMod.Systems.WorldDiscovery;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -22,7 +23,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
                 player,
                 new List<Vector2Ushort>(Server.World.GetAllChunkTilePositions()));
 
-            return $"{player} now discovered whole map.";
+            TeleportsSystem.ServerDiscoverAllTeleports(player);
+
+            return $"{player} now discovered the whole map and teleports.";
         }
     }
 }

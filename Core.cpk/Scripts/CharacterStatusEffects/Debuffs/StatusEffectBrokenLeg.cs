@@ -31,7 +31,7 @@
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            if (data.Character.SharedGetFinalStatValue(StatName.ReinforcedBones) > 0)
+            if (data.Character.SharedGetFinalStatValue(StatName.PerkCannotBreakBones) > 0)
             {
                 // the character has reinforced bones so they cannot break
                 return;
@@ -47,7 +47,15 @@
 
         protected override void ServerUpdate(StatusEffectData data)
         {
-            var appliedMoveMode = data.CharacterPublicState.AppliedInput.MoveModes;
+            var characterPublicState = data.CharacterPublicState;
+            if (characterPublicState is PlayerCharacterPublicState playerCharacterPublicState
+                && playerCharacterPublicState.CurrentVehicle is not null)
+            {
+                // player in a vehicle
+                return;
+            }
+
+            var appliedMoveMode = characterPublicState.AppliedInput.MoveModes;
             if ((appliedMoveMode & CharacterMoveModes.ModifierRun)
                 == CharacterMoveModes.ModifierRun)
             {

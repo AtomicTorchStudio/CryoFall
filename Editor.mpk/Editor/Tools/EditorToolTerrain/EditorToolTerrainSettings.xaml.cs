@@ -15,10 +15,6 @@
             }
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             base.OnLoaded();

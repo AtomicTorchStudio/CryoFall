@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -46,6 +47,8 @@
 
         public const string DestructionTimeoutOnlyInPvP = "only in PvP";
 
+        private readonly ILogicObject area;
+
         private readonly IStaticWorldObject landClaimWorldObject;
 
         private readonly LandClaimAreaPrivateState privateState;
@@ -59,24 +62,28 @@
             ILogicObject area)
         {
             this.landClaimWorldObject = landClaimWorldObject;
+            this.area = area;
             this.privateState = LandClaimArea.GetPrivateState(area);
 
             var protoLandClaim = (IProtoObjectLandClaim)landClaimWorldObject.ProtoStaticWorldObject;
             var canEditOwners = protoLandClaim
                 .SharedCanEditOwners(landClaimWorldObject, ClientCurrentCharacterHelper.Character);
 
-            this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
-                this.privateState.LandOwners,
-                callbackServerSetOwnersList: ownersList => LandClaimSystem.ClientSetAreaOwners(
-                                                 area,
-                                                 ownersList),
-                title: AccessListTitle + ":",
-                emptyListMessage: AccessListEmpty,
-                canEditOwners: canEditOwners,
-                // exclude founder name
-                ownersListFilter: name => name != this.FounderName,
-                maxOwnersListLength: LandClaimSystemConstants.SharedLandClaimOwnersMax,
-                displayedOwnersNumberAdjustment: -1);
+            if (!this.IsOwnedByFaction)
+            {
+                this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
+                    this.privateState.DirectLandOwners,
+                    callbackServerSetOwnersList: ownersList => LandClaimSystem.ClientSetAreaOwners(
+                                                     area,
+                                                     ownersList),
+                    title: AccessListTitle + ":",
+                    emptyListMessage: AccessListEmpty,
+                    canEditOwners: canEditOwners,
+                    // exclude founder name
+                    ownersListFilter: name => name != this.FounderName,
+                    maxOwnersListLength: LandClaimSystemConstants.SharedLandClaimOwnersMax,
+                    displayedOwnersNumberAdjustment: -1);
+            }
 
             this.protoObjectLandClaim =
                 (IProtoObjectLandClaim)this.landClaimWorldObject.ProtoStaticWorldObject;
@@ -108,8 +115,16 @@
                 LandClaimSystem.SharedGetLandClaimAreasGroup(area));
         }
 
+        public bool CanTransferToFactionOwnership
+            => !this.IsOwnedByFaction
+               && this.FounderName == ClientCurrentCharacterHelper.Character.Name
+               && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement);
+
         public BaseCommand CommandConfirmLandClaimDecayMessage
             => new ActionCommand(this.ExecuteCommandConfirmLandClaimDecayMessage);
+
+        public BaseCommand CommandTransferLandClaimToFactionOwnership
+            => new ActionCommand(this.ExecuteCommandTransferLandClaimToFactionOwnership);
 
         public BaseCommand CommandUpgrade
             => new ActionCommand(this.ExecuteCommandUpgrade);
@@ -121,8 +136,14 @@
         public bool IsLandClaimDecayInfoConfirmed
             => LandClaimDecayInfoConfirmationHelper.IsConfirmedForCurrentServer;
 
-        public bool IsOwner => this.FounderName == ClientCurrentCharacterHelper.Character.Name
-                               || CreativeModeSystem.ClientIsInCreativeMode();
+        public bool IsOwnedByFaction
+            => LandClaimSystem.SharedIsAreaOwnedByFaction(this.area);
+
+        public bool IsPlayerHasUpgradeRight
+            => this.FounderName == ClientCurrentCharacterHelper.Character.Name
+               || (this.IsOwnedByFaction
+                   && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement))
+               || CreativeModeSystem.ClientIsInCreativeMode();
 
         public bool IsSafeStorageAvailable => ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity > 0;
 
@@ -144,6 +165,9 @@
                 this.NotifyThisPropertyChanged();
             }
         }
+
+        public string OwnedByFactionClanTag
+            => LandClaimSystem.SharedGetAreaOwnerFactionClanTag(this.area);
 
         public ViewModelWorldObjectOwnersEditor ViewModelOwnersEditor { get; }
 
@@ -193,6 +217,11 @@
             this.NotifyPropertyChanged(nameof(this.IsLandClaimDecayInfoConfirmed));
         }
 
+        private void ExecuteCommandTransferLandClaimToFactionOwnership()
+        {
+            LandClaimSystem.ClientTransferLandClaimToFactionOwnership(this.area);
+        }
+
         private void ExecuteCommandUpgrade()
         {
             var upgradeStructure = this.ViewModelStructureUpgrade.ViewModelUpgradedStructure.ProtoStructure;
@@ -205,9 +234,7 @@
 
         private void RefreshSafeStorageAndPowerGrid()
         {
-            var objectPublicState = this.landClaimWorldObject.GetPublicState<ObjectLandClaimPublicState>();
-            var area = objectPublicState.LandClaimAreaObject;
-            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(this.area);
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
 
             // setup power grid
@@ -221,10 +248,9 @@
 
             this.ViewModelSafeStorageItemsContainerExchange = new ViewModelItemsContainerExchange(
                     areasGroupPrivateState.ItemsContainerSafeStorage,
-                    callbackTakeAllItemsSuccess: () => { },
                     enableShortcuts: this.IsSafeStorageAvailable)
                 {
-                    IsContainerTitleVisible = false,
+                    IsContainerTitleVisible = false
                 };
 
             var container = this.ViewModelSafeStorageItemsContainerExchange.Container;

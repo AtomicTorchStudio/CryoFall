@@ -10,32 +10,23 @@
     mc:Ignorable="d"
     IsHitTestVisible="False"
     d:DataContext="{d:DesignInstance data:ViewModelStructurePointsBarControl, IsDesignTimeCreatable=True}">
+
     <base:BaseUserControl.Resources>
         <Geometry x:Key="IconGeometryPathUnclaimedStructure">m -115.56413,847.40246 -10.37109,10.37989 c -14.82318,-5.63586 -17.59717,-9.58008 -17.59717,-9.58008 0,0 -3.03224,4.36416 -19.92334,10.47216 -16.8911,6.108 -23.3877,4.36231 -23.3877,4.36231 v 41.00976 c 0,2.07552 -0.044,6.66071 1.89112,12.80566 l -9.8335,9.84229 3.99317,3.9961 79.22167,-79.29199 z m 20.626465,20.64697 -79.220205,79.29052 4.65673,4.6626 6.19629,-6.20214 c 10.95254,7.52561 19.77246,6.23877 19.77246,6.23877 v 0.082 c 0,0 13.48582,1.96537 27.84082,-13.09863 15.839996,-16.622 15.65918,-30.78412 15.65918,-34.93212 v -21.61817 l 9.75293,-9.76171 c -0.393982,-0.39995 -9.212954,-9.21589 -4.658205,-4.66114 z</Geometry>
-        <Geometry x:Key="IconGeometryPathClaimedStructure">M 61.730469 974.51758 C 61.730469 974.51758 57.408655 980.72597 33.333984 989.41797 C 9.2593155 998.1113 0 995.62695 0 995.62695 L 0 1053.9883 C 0 1059.8869 -0.25574986 1080.0222 22.222656 1103.6582 C 42.593586 1125.0782 61.730469 1122.2852 61.730469 1122.2852 L 61.730469 1122.4004 C 61.730469 1122.4004 80.950157 1125.1977 101.41016 1103.7617 C 123.98616 1080.1071 123.73047 1059.9554 123.73047 1054.0527 L 123.73047 995.64453 C 123.73047 995.64453 114.43 998.12835 90.25 989.42969 C 66.069999 980.73102 61.730469 974.51758 61.730469 974.51758 z M 28.253906 1001.8594 L 37.330078 1001.8594 L 37.330078 1012.4277 C 37.486378 1012.3303 48.970971 1005.1855 57.298828 1005.1855 C 65.723898 1005.1855 76.418217 1012.4434 85.435547 1012.4434 C 95.762878 1012.4434 103.89062 1008.209 103.89062 1008.209 L 103.89062 1051.7598 C 103.89063 1051.7598 96.079016 1055.9941 86.041016 1055.9941 C 76.466346 1055.9941 64.865231 1048.7363 56.087891 1048.7363 C 48.384947 1048.7363 37.486935 1055.8736 37.330078 1055.9766 L 37.330078 1092.5879 L 28.253906 1092.5879 L 28.253906 1001.8594 z</Geometry>
     </base:BaseUserControl.Resources>
 
-    <Grid>
-        <Path
-            Visibility="{Binding IsClaimed, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}"
-            Data="{StaticResource IconGeometryPathClaimedStructure}"
-            Fill="#DD44BF44"
-            Stroke="Black"
-            StrokeThickness="1"
-            Stretch="Uniform"
-            Width="38"
-            Height="38"
-            UseLayoutRounding="False" />
-        <Path
-            Visibility="{Binding IsClaimed, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-            Data="{StaticResource IconGeometryPathUnclaimedStructure}"
-            Fill="#DDDF3333"
-            Stroke="Black"
-            StrokeThickness="1"
-            Stretch="Uniform"
-            Width="38"
-            Height="38"
-            UseLayoutRounding="False" />
-    </Grid>
+    <Path
+        Visibility="{Binding IsClaimed, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+        Data="{StaticResource IconGeometryPathUnclaimedStructure}"
+        Stroke="Black"
+        StrokeThickness="1"
+        Stretch="Uniform"
+        Width="38"
+        Height="38"
+        UseLayoutRounding="False">
+        <Path.Fill>
+            <SolidColorBrush Color="{StaticResource ColorRed5}" Opacity="0.85" />
+        </Path.Fill>
+    </Path>
 
 </base:BaseUserControl>

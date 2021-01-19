@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem
 {
     using System.ComponentModel;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum TakeVehicleResult : byte
     {
         Success,

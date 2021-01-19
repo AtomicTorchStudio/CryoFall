@@ -45,9 +45,9 @@
             lootDroplist
                 .Add<ItemInsectMeatRaw>(count: 1)
                 .Add(nestedList: new DropItemsList(outputs: 1)
-                                         .Add<ItemToxin>(count: 1)
-                                         .Add<ItemBones>(count: 1)
-                                         .Add<ItemSlime>(count: 1));
+                                 .Add<ItemToxin>(count: 1)
+                                 .Add<ItemBones>(count: 1)
+                                 .Add<ItemSlime>(count: 1));
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
@@ -62,7 +62,7 @@
         {
             base.ServerInitializeCharacterMob(data);
 
-            var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalWeak>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobCrawlerClaws>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -74,6 +74,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 3,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,

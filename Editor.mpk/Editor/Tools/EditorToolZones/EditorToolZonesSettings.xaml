@@ -126,6 +126,7 @@
                  MaxHeight="325"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Stretch"
+                 Foreground="{StaticResource BrushColor7}"
                  ItemsSource="{Binding Zones}"
                  SelectedItem="{Binding SelectedZoneForBrush}">
             <ItemsControl.ItemsPanel>
@@ -133,6 +134,20 @@
                     <StackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Grid>
+                        <Border Background="#88000000"
+                                CornerRadius="3" />
+                        <ScrollViewer Focusable="false"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Visible">
+                            <ItemsPresenter Margin="3"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </ItemsControl.Template>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -151,14 +166,15 @@
                                   Margin="0,0,3,0" />
 
                         <TextBlock Text="{Binding Name}"
-                                   Margin="0,1,0,0"
                                    FontWeight="Bold"
-                                   FontSize="10"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   FontSize="11"
                                    Grid.Column="1" />
-                        <!-- Under cursor indicator -->
+                        
+                        <!-- Zone is under mouse cursor indicator -->
                         <Path Grid.Column="2"
                               HorizontalAlignment="Right"
-                              Visibility="{Binding VisibilityIsUnderCursor}"
+                              Visibility="{Binding IsUnderCursor, Converter={StaticResource BoolToVisibilityConverter}}"
                               Width="12"
                               Fill="White"
                               Data="M 259.63354,718.54442 1.260357,-2.3797657 709.40074,281.6214 506.20555,377.87175 770.00282,641.66901 641.66901,770.00282 367.17727,502.64073 Z"

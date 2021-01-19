@@ -17,7 +17,7 @@
     public class ItemLaserRifle : ProtoItemWeaponRangedEnergy
     {
         private static readonly TextureResource TextureResourceBeam
-            = new TextureResource("FX/WeaponTraces/BeamLaser.png");
+            = new("FX/WeaponTraces/BeamLaser.png");
 
         public override double CharacterAnimationAimingRecoilDuration => 0.3;
 

@@ -3,11 +3,11 @@
     using System.Collections.Generic;
     using System.Text;
 
-    internal static class EmojiHelper
+    public static class EmojiHelper
     {
         // partially based on https://stackoverflow.com/a/33516763
         private static readonly Dictionary<string, string> Dictionary
-            = new Dictionary<string, string>
+            = new()
             {
                 { ":(", "😦" },
                 { ":)", "😃" },

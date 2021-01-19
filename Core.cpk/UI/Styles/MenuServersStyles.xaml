@@ -7,7 +7,7 @@
                     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
                     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                     mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
                     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <ResourceDictionary.MergedDictionaries>
@@ -75,19 +75,10 @@
         <Setter Property="Padding" Value="3,1" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <!-- Bug in NoesisGUI https://www.noesisengine.com/bugs/view.php?id=1686 -->
         <Setter Property="CornerRadius" Value="2" />
+        <!-- A cheap way to add a shadow -->
         <Setter Property="BorderThickness" Value="0,0,1,1" />
-        <!-- A cheap way to create a drop shadow effect -->
         <Setter Property="BorderBrush" Value="#66000000" />
-        <!-- <Setter Property="Effect"> -->
-        <!--     <Setter.Value> -->
-        <!--         <DropShadowEffect BlurRadius="7" -->
-        <!--                           ShadowDepth="0" -->
-        <!--                           Opacity="0.75" -->
-        <!--                           Color="Black" /> -->
-        <!--     </Setter.Value> -->
-        <!-- </Setter> -->
     </Style>
 
     <Style x:Key="TextBlockTagStyle" TargetType="TextBlock">
@@ -121,10 +112,10 @@
             </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Community_Title}"
                        Style="{StaticResource TextBlockTagStyle}" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Community_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -141,10 +132,10 @@
             </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Title}"
                        Style="{StaticResource TextBlockTagStyle}" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -161,10 +152,10 @@
             </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Title}"
                        Style="{StaticResource TextBlockTagStyle}" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -181,10 +172,10 @@
             </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Title}"
                        Style="{StaticResource TextBlockTagStyle}" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -201,10 +192,10 @@
             </Border.Background>
             <Image Source="/UI/Images/Icons/MenuServers/ServerTagNoMods.png"
                    Stretch="Uniform" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_NoClientMods_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -221,10 +212,10 @@
             </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Title}"
                        Style="{StaticResource TextBlockTagStyle}" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -241,10 +232,10 @@
             </Border.Background>
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Title}"
                        Style="{StaticResource TextBlockTagStyle}" />
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Description}"
                            Style="{StaticResource TextBlockTagTooltipStyle}" />
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 
@@ -262,7 +253,7 @@
                     <Border Background="Transparent" Padding="{TemplateBinding Padding}">
                         <Path x:Name="path"
                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                              Data="M4.99999984331992,0.5L6.06224730203582,3.93777866404501L9.49999966842804,3.93769414858025L6.71875233598545,6.06227369329452L7.78115268460533,9.50000012390973L4.99999984331992,7.37528383030091L2.21884700203453,9.50000012390973L3.2812473506544,6.06227369329452L0.500000018211808,3.93769414858025L3.93775238460403,3.93777866404501z"
+                              Data="{StaticResource IconGeometryPathStar}"
                               Stretch="Fill"
                               Fill="Transparent"
                               StrokeThickness="1">

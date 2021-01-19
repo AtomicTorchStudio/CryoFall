@@ -1,0 +1,113 @@
+{
+"skeleton": { "hash": "e9uotn32UWWtzFEgfoAUDuXNSRY", "spine": "3.7.94", "width": 333.83, "height": 352.71 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "TurretBarrel", "parent": "root", "length": 217.69, "rotation": 179.38, "y": 184.09 },
+	{ "name": "Recoil", "parent": "TurretBarrel", "length": 95.62, "rotation": 0.08, "x": 30.13, "y": -0.21 }
+],
+"slots": [
+	{ "name": "TurretBottom1", "bone": "root", "attachment": "TurretBottom1" },
+	{ "name": "TurretBarrel1", "bone": "Recoil", "attachment": "TurretBarrel1" },
+	{ "name": "TurretTop1", "bone": "root", "attachment": "TurretTop1" }
+],
+"skins": {
+	"default": {
+		"TurretBarrel1": {
+			"TurretBarrel1": { "x": 62.64, "y": -0.15, "rotation": -179.46, "width": 186, "height": 40 }
+		},
+		"TurretBottom1": {
+			"TurretBottom1": { "x": 2.07, "y": 68.23, "width": 292, "height": 317 }
+		},
+		"TurretTop1": {
+			"TurretTop1": { "x": 0.64, "y": 195.95, "width": 167, "height": 133 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"TurretBarrel": {
+				"rotate": [
+					{ "time": 0, "angle": 0.1 },
+					{ "time": 0.6667, "angle": 90.62 },
+					{ "time": 1.3333, "angle": -179.38 },
+					{ "time": 2, "angle": -89.38 },
+					{ "time": 2.6667, "angle": 0.62 }
+				],
+				"scale": [
+					{
+						"time": 0,
+						"x": 1,
+						"y": 1,
+						"curve": [ 0.269, 0.01, 0.493, 1.01 ]
+					},
+					{
+						"time": 0.6667,
+						"x": 0.7,
+						"y": 1,
+						"curve": [ 0.346, 0.03, 0.679, 0.38 ]
+					},
+					{
+						"time": 1.3333,
+						"x": 1,
+						"y": 1,
+						"curve": [ 0.269, 0.01, 0.55, 0.99 ]
+					},
+					{
+						"time": 2,
+						"x": 0.7,
+						"y": 1,
+						"curve": [ 0.345, 0.03, 0.678, 0.38 ]
+					},
+					{ "time": 2.6667, "x": 1, "y": 1 }
+				]
+			}
+		}
+	},
+	"recoil": {
+		"bones": {
+			"TurretBarrel": {
+				"rotate": [
+					{ "time": 0, "angle": 0.1 },
+					{ "time": 0.6667, "angle": 90.62 },
+					{ "time": 1.3333, "angle": -179.38 },
+					{ "time": 2, "angle": -89.38 },
+					{ "time": 2.6667, "angle": 0.62 }
+				],
+				"scale": [
+					{
+						"time": 0,
+						"x": 1,
+						"y": 1,
+						"curve": [ 0.269, 0.01, 0.493, 1.01 ]
+					},
+					{
+						"time": 0.6667,
+						"x": 0.7,
+						"y": 1,
+						"curve": [ 0.346, 0.03, 0.679, 0.38 ]
+					},
+					{
+						"time": 1.3333,
+						"x": 1,
+						"y": 1,
+						"curve": [ 0.269, 0.01, 0.55, 0.99 ]
+					},
+					{
+						"time": 2,
+						"x": 0.7,
+						"y": 1,
+						"curve": [ 0.345, 0.03, 0.678, 0.38 ]
+					},
+					{ "time": 2.6667, "x": 1, "y": 1 }
+				]
+			},
+			"Recoil": {
+				"translate": [
+					{ "time": 0, "x": -31.51, "y": -0.28 }
+				]
+			}
+		}
+	}
+}
+}

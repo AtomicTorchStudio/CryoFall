@@ -28,6 +28,12 @@ Yakın zamanda doyurucu bir yemek yedin. Yaptığın her iş artık daha kolay h
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Doyurucu yemek
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Kullanıcı esnasında izole kuantum boşluğu yaratarak üretim hızını artırır.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Kuantum hızlanması
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Son zamanlarda leziz bir yemek yedin. Bu hayatını daha hoş kılıyor.
 
@@ -63,9 +69,6 @@ Bacağın kırık ve hareket kabiliyetini etkiliyor. Kırık bir bacakla koşmay
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Kırık bacak
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-Sersemlemişken saldırılamaz.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Sersemledin! Duyularını geri kazanmak için biraz bekle.
@@ -180,6 +183,12 @@ Kısa sürede çok fazla ilaç kullandın. Biraz ara ver, yoksa bunun sağlığ�
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Aşırı ilaç kullanımı
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Muhtemelen yemen gerekenden daha fazla yedin. Biraz daha yersen hasta hissedeceksin.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Aşırı yeme
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Peredozin uygulaması bitene dek lütfen bekle.

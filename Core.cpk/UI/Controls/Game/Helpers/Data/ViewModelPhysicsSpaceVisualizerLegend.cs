@@ -32,9 +32,9 @@
             : this(
                 new List<ViewModelPhysicsGroup>()
                 {
-                    new ViewModelPhysicsGroup("Test 1", CollisionGroupId.Default,     true,  Brushes.White),
-                    new ViewModelPhysicsGroup("Test 2", CollisionGroupId.Default,     false, Brushes.GreenYellow),
-                    new ViewModelPhysicsGroup("Test 3", CollisionGroupId.HitboxMelee, true,  Brushes.Red)
+                    new("Test 1", CollisionGroupId.Default,     true,  Brushes.White),
+                    new("Test 2", CollisionGroupId.Default,     false, Brushes.GreenYellow),
+                    new("Test 3", CollisionGroupId.HitboxMelee, true,  Brushes.Red)
                 },
                 isClientTestRendered: true,
                 isServerTestRendered: true,

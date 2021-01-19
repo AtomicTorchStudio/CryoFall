@@ -60,7 +60,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
         private static Vector2D? FindClosestPosition(Vector2D position)
         {
             var physicsSpace = ServerWorldService.GetPhysicsSpace();
-            var collisionGroup = CollisionGroup.GetDefault();
+            var collisionGroup = CollisionGroup.Default;
 
             if (IsValidPosition(
                 // round position

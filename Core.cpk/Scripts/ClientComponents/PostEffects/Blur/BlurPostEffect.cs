@@ -14,7 +14,7 @@
     public class BlurPostEffect : BasePostEffect
     {
         private static readonly EffectResource EffectResourceGaussianBlur
-            = new EffectResource("PostEffects/GaussianBlur");
+            = new("PostEffects/GaussianBlur");
 
         private double blurAmountHorizontal = 4;
 

@@ -4,8 +4,5 @@
 
     public partial class TechNodeTooltipControl : BaseUserControl
     {
-        protected override void InitControl()
-        {
-        }
     }
 }

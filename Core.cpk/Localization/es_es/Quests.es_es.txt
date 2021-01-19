@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Dominio de la caza, parte 2
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+¡Cuando descubres algo nuevo, aparece en tu [b]menú de completista[/b]! Usa dicho menú para controlar tus progresos y recibir [u]PA extra[/u] al aprender más sobre el mundo de CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Para ordenar el inventario, tan solo tendrás que abrirlo y pulsar [u]{0}[/u] o la tecla [u]{1}[/u] mientras pasas con el ratón sobre las casillas del inventario. Podrás hacer esto para ordenar [b]CUALQUIER[/b] casilla del inventario (por ejemplo, los cofres).
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Para correr, tan solo tendrás que mantener pulsada la [u]tecla Mayús.[/u] mientras te mueves. Corre unos metros para practicar. Correr podría salvarte de esos peligrosos depredadores.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 Hay un par de cosas más que deberías saber para disfrutar de CryoFall al máximo. Por ejemplo, cómo ordenar el inventario o cómo hacer que tu personaje corra.
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Para ordenar el inventario, tan solo tendrás que abrirlo y pulsar el [u]botón central del ratón[/u] o la [u]tecla Z[/u] (en los controles predeterminados) mientras pasas con el ratón sobre las casillas del inventario. Podrás hacer esto para ordenar [b]CUALQUIER[/b] casilla del inventario (por ejemplo, los cofres).
-[*] Para correr, tan solo tendrás que mantener pulsada la [u]tecla Mayús.[/u] mientras te mueves. Corre unos metros para practicar. Correr podría salvarte de esos peligrosos depredadores.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Lleva a cabo acciones básicas
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Explorar biomedios, parte 4
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Saquea unos contenedores
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Las ruinas antiguas son el mejor lugar para encontrar componentes raros y determinados recursos. Suele ser buena idea explorarlas cada cierto tiempo, sobre todo si tienes el equipo necesario.
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Explora las ruinas antiguas
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Saquea unos contenedores
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+Cuantos [b]más[/b] ubicaciones de teletransporte encuentres, más [b]extensa[/b] será tu red de viaje.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+Para poder viajar entre ubicaciones de teletransporte, tienes que encontrar un mínimo de [b]dos[/b].
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+¡Puede que haya ubicaciones de teletransporte [b]ocultas[/b]!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+No pasa nada por ir a los sitios andando, pero igual te interesa usar estos teletransportes alienígenas para recorrer distancias muy largas.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Viaje rápido
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 Los [u]filetes[/u] de pescado se pueden [u]obtener[/u] a partir de los peces que hayas pescado. Bastará con que utilices la acción [b]Usar[/b] (igual que al usar cualquier objeto).
@@ -586,6 +606,9 @@ Extraer minerales y talar árboles a mano es una labor tediosa, así que es reco
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Minería con drones
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Dominio de la caza, parte 6
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 Suele ser buena idea [u]ampliar la capacidad de almacenamiento de energía[/u] a medida que tu base crece. De este modo, te aseguras de tener siempre [u]energía suficiente[/u].

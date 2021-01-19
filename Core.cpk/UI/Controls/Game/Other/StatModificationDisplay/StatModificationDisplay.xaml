@@ -1,0 +1,57 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay.StatModificationDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelStatModificationDisplay}"
+    Visibility="{Binding DataContext.Entries, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ElementName=LayoutRoot}">
+
+    <ItemsControl x:Name="LayoutRoot"
+                  ItemsSource="{Binding Entries}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Grid Margin="0,2"
+                      HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground"
+                                    Value="{StaticResource BrushColor6}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="11" />
+                            <Setter Property="LineHeight" Value="12" />
+                            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <!-- Bullet point -->
+                    <Ellipse Width="4"
+                             Height="4"
+                             Fill="{StaticResource BrushColor5}"
+                             VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding StatTitle}"
+                               TextWrapping="Wrap"
+                               Margin="3,0,0,0" />
+
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding EffectText}"
+                               Visibility="{Binding EffectTextVisibility}"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"
+                               Margin="3,0,0,0" />
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</base:BaseUserControl>

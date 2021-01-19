@@ -127,6 +127,9 @@ Top mermisi
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Bu eşyayı çabuk kullanmak veya tüketmek için Alt tuşuna basılı tutarken eşyanın üstüne tıkla.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Seçili olan silahtaki mühimmat tipini [b]\[{0}\][/b] tuşuyla değiştirebilirsin.
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Sökmek istediğin herhangi bir eşyanın üstüne tıkla.
 
@@ -138,6 +141,9 @@ Bir kuyuyu veya su toplayıcıyı suyla doldurmak için üstüne tıkla.
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Tamir etmek veya inşa etmek için herhangi bir yapının üstüne tıkla.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Hasarlı bir araca tıklayarak onu onarabilirsin.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Herhangi bir çiftlik bitkisini sulamak için üstüne tıkla.
@@ -169,6 +175,9 @@ Temiz suyla doldurmak için bir kuyunun veya su toplayıcının içine yerleşti
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Yakıt hücreleri farklı araçlara enerji sağlamak için kullanılır.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+[b]\[{0}\][/b] tuşuna basarak fener ışığı ve gece görüşü arasında geçiş yapabilirsin.
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 İmlecin bulunduğu noktaya değil de imlecin gösterdiği yönde ateş edilebilecek en uzağa ateş etmek için ateş ederken [b]Alt[/b] tuşuna veya [b]Ctrl[/b] tuşuna basılı tutun.
 
@@ -184,6 +193,12 @@ Bu eşya kullanılan güç bankalarından enerji alır.
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Bu silah sadece araç [b]{0}[/b] sabit noktasına kurulup kullanılabilir.
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Gece görüşü (Nesil I)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Gece görüşü (Nesil II)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Kes
 
@@ -195,6 +210,9 @@ Scripts/Items/Base/ItemUseCaptions@Drink:
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Ye
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Aç
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Oku
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Yakıt bitti
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Kask ışığını etkinleştirmek için lütfen bu eşyayı kuşan ve [{0}] tuşuna bas.
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-Düğme ayarlanmadı
+Kask ışığını etkinleştirmek için lütfen bu eşyayı kuşan ve \[{0}\] tuşuna bas.
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 Kemik zırh, fiyatı göz önüne alındığında iyi bir koruma sağlar ve ilk zamanlar için oldukça kullanışlı olabilir.
@@ -402,6 +417,12 @@ Askerî zırh
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Askeri kask
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Patlayıcılarla dolu özel bir yelek. Giyen kişi öldükten sonra intikamını almak amacıyla otomatik olarak patlar.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+İntikam yeleği
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Taşınabilir ışık kaynağı sunarak ellerinizin serbest kalması sağlayan kullanışlı bir kask. Tek kullanımlık pil gerektirir.
@@ -520,6 +541,15 @@ Yeni yakalanan balıklar pişirilmeden önce temizlenmelidir.
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Levrek
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Siyah kayabalığı
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Bu dünyanın yerlisi olan eşsiz pragmium bazlı deniz yaşam formu.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Mavi kayıcı
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Çipura
 
@@ -532,8 +562,14 @@ Kedibalığı
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Kefal
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Crappie
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Grunt
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Koi
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Uskumru
@@ -561,6 +597,9 @@ Sardalya
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Alabalık
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Sarıkanatton
 
 Scripts/Items/Food/ItemBanana@Description:
 Muzlara maymunlar da ulaşabilir fakat yıldızlara yalnızca insanlar ulaşabilir.
@@ -717,6 +756,12 @@ Bir fincan sıcak espresso. Şimdi aptalca şeyler yapmak için daha fazla enerj
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Bir fincan kahve
+
+Scripts/Items/Food/ItemCookingOil@Description:
+Yemek yapmak için kullanılan doğal yağ.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Yemek yağı
 
 Scripts/Items/Food/ItemCorn@Description:
 Özellikle korku yazarları tarafından tercih edilen bir tahıl bitkisi.
@@ -924,6 +969,24 @@ Kutsal savaş bugün bile sürüyor...
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Ananaslı pizza
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Yanında güzel kıtırlar ve et bulunan taze patates.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Etle pişirilmiş patates
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Klasik fast-food tarzı kızartılmış patatesler.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Patates kızartmaları
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Yenmeden önce pişirilmelidir.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Patates
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Olduğu gibi de yenebilir, daha karışık bir yemeğe de katılabilir.
@@ -1183,6 +1246,12 @@ Düşük değerli madeni para. Bu madeni parayı doğrudan diğer oyuncularla ta
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Madeni para
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Eski sikke çantası. Belki içinde bir şey vardır?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Sikke çantası
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Yüksek değerli madeni para.  Bu madeni parayı doğrudan diğer oyuncularla takas edebilir veya takas makinelerindeki pahalı ürünleri almak için kullanabilirsin.
 
@@ -1277,6 +1346,12 @@ Kırmızı oni çiçeği. Adını kırmızı şeytandan aldı.
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Oni çiçeği
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Yemekte kullanmak veya süs amacıyla yağ çıkarmak için kullanışlıdır.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Sarı çiçek
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 Yüksek kalite metallerin üretilmesi için kullanılan eritme tozu.
 
@@ -1306,6 +1381,12 @@ Sıvı pragmimum ile dolu yakıt hücresi. Aşırı uzun süre dayanır.
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Pragmium yakıt hücresi
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Patlayıcı sıvı taşıyan yabancı bir yaratığın özel organı.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Yakıt çuvalı
 
 Scripts/Items/Generic/ItemFur@Description:
 Kürk. Sıcak tutan kış kıyafetlerinin yapımında kullanılabilir.
@@ -1343,10 +1424,10 @@ Parlak sarı topaz!
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Topaz
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 Parlak mor turmalin!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Turmalin
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Yerden veya ağaçlardan toplanabilen dallar. Basit aletlerin yapımında kullan
 Scripts/Items/Generic/ItemTwigs@Name:
 Dal
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Bilinmeyen bir yaşam formuna ait tuhaf, süngerimsi bir organ. Çürürken egzotik parçacıklar yayıyor.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Kum Tiranı kalbi
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Manyetik gücü hareketi için kullanan aşırı esnek ve çok güçlü bir uyarıcı.
 
@@ -1853,6 +1940,12 @@ Kalitesiz ve hızlıca üretilmiş puro. Uyarıcı.
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Kalitesiz puro
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Dünya dışı sigara markası.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Sigara Paketi
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Aromalı düzgün bir puro. Uyarıcı.
 
@@ -1975,6 +2068,12 @@ Peredozin, sık ilaç kullanımının olumsuz etkilerini hafifletmeye yardımcı
 Scripts/Items/Medical/ItemPeredozin@Name:
 Peredozin
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+Alçı, kırık kemiği sabitlemek ve çabuk iyileşmesini sağlamak amacıyla kullanılır.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Alçı
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Psi alanına maruz kalmaktan kaynaklanan nöral hasarı hafifletmeye yardımcı olan nöro değiştirici kimyasal.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Bitkisel ilaç
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-Kırık bir kemiğin yok. Şu anda atel kullanmanın bir yararı yok.
+Kırık bir kemiğin yok. Şu an alçı kullanmanın yararı yok.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Kırık kemik yok
@@ -2062,8 +2161,14 @@ Mavi ada çayı tohumları
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Oni çiçeği tohumları
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Sarı çiçek tohumları
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Sütkavun tohumları
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Patates tohumları
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Pirinç tohumları
@@ -2088,6 +2193,12 @@ Bu fidanı dikebilmek için diğer ağaçlarla arasında en az bir boşluk bulun
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Gerektirir
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Birçok ışınlanma noktalarından birinin koordinatlarını ve navigasyon frekansı kayıtlarını barındırır.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Işınlanma konumu verisi
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Demir balta ağaçları kesmek için oldukça iyidir. Taş baltadan daha hızlı ve dayanıklıdır.
@@ -2146,11 +2257,11 @@ Yeniden doldurma gerekli.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Yakıt bitti
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-Bu kırılgan pragmium baltası moleküler rezonans mekanikleri kullanarak geleneksel alternatiflerinden çok daha hızlı olur.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+Bu kırılgan pragmium çekici moleküler rezonans mekanikleri kullanarak geleneksel alternatiflerinden çok daha hızlı olur.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Pragmium balta
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+Pragmimum çekici
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Demir kazma maden yataklarını kazmak için kullanılabilir. Taş kazmadan daha hızlı ve dayanıklıdır.
@@ -2175,6 +2286,12 @@ Bu sensör sayesinde büyük uzaklıklarda bile büyük pragmium kristallerinin 
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Pragmium sensörü
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Evrensel atılabilir araç tamir kiti.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Araç tamir kiti
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Yapılarını inşa etmen veya tamir etmen için alet çantası gereklidir. Kuşandığına ve seçili olduğuna emin ol.
@@ -2262,6 +2379,12 @@ Lazer kılıç (beyaz)
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Lazer kılıç (sarı)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+Rakipleri sersemletmek için içindeki bataryaların elektriğini kullanır.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Elektroşok cihazı
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 İnanılmaz derecede güçlü kısa menzilli silah. Çalıştırmak için enerji gereklidir.

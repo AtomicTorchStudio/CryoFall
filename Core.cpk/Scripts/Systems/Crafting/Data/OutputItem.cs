@@ -39,7 +39,7 @@
 
         public new OutputItem WithRate(byte rateModifier)
         {
-            return new OutputItem(
+            return new(
                 this.ProtoItem,
                 count: (ushort)Math.Min(ushort.MaxValue,       (ulong)this.Count * (ulong)rateModifier),
                 countRandom: (ushort)Math.Min(ushort.MaxValue, (ulong)this.CountRandom * (ulong)rateModifier),

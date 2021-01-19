@@ -32,14 +32,8 @@
             set => this.SetValue(ScaleProperty, value);
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
-            base.OnLoaded();
-
             var templateRoot = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
             this.contentPresenter = templateRoot.GetByName<ContentPresenter>("ContentPresenter");
             this.contentPresenterScaleTransform = new ScaleTransform(1f, 1f);
@@ -55,7 +49,6 @@
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
             this.SizeChanged -= this.SizeChangedHandler;
         }
 

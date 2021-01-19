@@ -36,7 +36,7 @@
         public override string Description =>
             "Light autocannon designed for hand-mounted hardpoints on mechanized battle armor. Uses light-caliber ammo.";
 
-        public override uint DurabilityMax => 600;
+        public override uint DurabilityMax => 800;
 
         public override double FireInterval => 1 / 10.0; // 10 per second
 
@@ -70,7 +70,7 @@
 
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {
-            return new WeaponFirePatternPreset(
+            return new(
                 initialSequence: new[] { 0.0, 0.5, 0.5 },
                 cycledSequence: new[] { 1.5, 3.0, 2.5, 0.0, 3.5 });
         }

@@ -3,15 +3,22 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     [PrepareOrder(afterType: typeof(IProtoTrigger))]
@@ -41,7 +48,7 @@
             }
 
             this.ShortId = name;
-            this.Icon = new TextureResource($"StatusEffects/{name}.png");
+            this.IconTextureResource = new TextureResource($"StatusEffects/{name}.png");
 
             var displayMode = StatusEffectDisplayMode.IconShowIntensityPercent
                               | StatusEffectDisplayMode.TooltipShowIntensityPercent;
@@ -59,11 +66,28 @@
 
         public abstract string Description { get; }
 
+        public IReadOnlyList<string> DescriptionHints
+        {
+            get
+            {
+                if (IsServer)
+                {
+                    // the game cannot provide hints on the server and there is no need for it
+                    // (some hints may contain button binding key names, etc)
+                    return Array.Empty<string>();
+                }
+
+                var hints = new List<string>();
+                this.PrepareHints(hints);
+                return hints;
+            }
+        }
+
         public virtual StatusEffectDisplayMode DisplayMode { get; private set; }
 
         public bool HasStatEffects { get; private set; }
 
-        public virtual ITextureResource Icon { get; }
+        public ITextureResource Icon => this.GetColorizedIcon(effectIntensity: 1.0);
 
         public virtual double IntensityAutoDecreasePerSecondValue => 0;
 
@@ -86,6 +110,8 @@
 
         public virtual double VisibilityIntensityThreshold => 0;
 
+        protected virtual ITextureResource IconTextureResource { get; }
+
         public sealed override void ClientDeinitialize(ILogicObject gameObject)
         {
             if (Client.Characters.IsCurrentPlayerCharacterSpectator)
@@ -102,13 +128,37 @@
             }
         }
 
+        public void ClientTooltipCreateControls(List<UIElement> controls)
+        {
+            this.ClientTooltipCreateControlsInternal(controls);
+
+            if (this.DescriptionHints.Count == 0)
+            {
+                return;
+            }
+
+            controls.Add(new Control() { Height = 5 }); // padding before the hints
+            foreach (var hint in this.DescriptionHints)
+            {
+                controls.Add(new ItemTooltipHintControl() { Text = hint });
+            }
+        }
+
+        public ITextureResource GetColorizedIcon(double effectIntensity)
+        {
+            return ClientStatusEffectIconColorizer.GetColorizedIcon(
+                this.IconTextureResource,
+                this.Kind,
+                effectIntensity);
+        }
+
         public void ServerAddIntensity(ILogicObject statusEffect, double intensityToAdd)
         {
             var effectData = new StatusEffectData(statusEffect, deltaTime: 0);
             var previousIntensity = effectData.Intensity;
-     
+
             this.ServerAddIntensity(effectData, intensityToAdd);
-            
+
             if (effectData.Intensity <= 0)
             {
                 // didn't add any intensity or intensity is zero - delete this status effect
@@ -186,6 +236,10 @@
             Logger.Info($"Status effect initialized: {data.StatusEffect} for {data.Character}");
         }
 
+        protected virtual void ClientTooltipCreateControlsInternal(List<UIElement> controls)
+        {
+        }
+
         protected sealed override void ClientUpdate(ClientUpdateData data)
         {
             if (Client.Characters.IsCurrentPlayerCharacterSpectator)
@@ -202,6 +256,46 @@
 
         protected virtual void PrepareEffects(Effects effects)
         {
+        }
+
+        protected virtual void PrepareHints(List<string> hints)
+        {
+            if (this.Kind != StatusEffectKind.Debuff)
+            {
+                return;
+            }
+
+            var thisType = this.GetType();
+            using var tempSelectedProtoItems = Api.Shared.GetTempList<IProtoItemMedical>();
+            var allMedicalItems = FindProtoEntities<IProtoItemMedical>();
+
+            foreach (var protoItemMedical in allMedicalItems)
+            {
+                foreach (var effectAction in protoItemMedical.Effects)
+                {
+                    if (effectAction.Intensity < 0
+                        && thisType.IsInstanceOfType(effectAction.ProtoStatusEffect))
+                    {
+                        // this medicine can cure current status effect
+                        tempSelectedProtoItems.Add(protoItemMedical);
+                        break;
+                    }
+                }
+            }
+
+            if (tempSelectedProtoItems.Count == 0)
+            {
+                return;
+            }
+
+            tempSelectedProtoItems.AsList().SortBy(s => s.Name);
+
+            hints.Add(
+                string.Format(
+                    StatusEffectHints.CanBeRemediedWith_Format,
+                    ClientListFormatHelper.Format(tempSelectedProtoItems.AsList()
+                                                                        .Select(p => p.Name)
+                                                                        .ToList())));
         }
 
         protected sealed override void PrepareProto()

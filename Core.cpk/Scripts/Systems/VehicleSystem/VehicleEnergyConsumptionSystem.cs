@@ -20,7 +20,7 @@
         public const string Notification_EnergyDepleted_Message = "Energy depleted.";
 
         public static readonly SoundResource SoundResourceNoEnergy
-            = new SoundResource("Objects/Vehicles/NoEnergy");
+            = new("Objects/Vehicles/NoEnergy");
 
         [NotLocalizable]
         public override string Name => "Vehicle energy consumption system";

@@ -4,8 +4,5 @@
 
     public partial class HUDPerformanceIndicatorsPanel : BaseUserControl
     {
-        protected override void InitControl()
-        {
-        }
     }
 }

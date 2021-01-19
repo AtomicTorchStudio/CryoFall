@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -51,7 +50,7 @@
 
         public BaseCommand CommandUnlockTechGroup => new ActionCommand(this.ExecuteCommandUnlockTechGroup);
 
-        public int LearningPoints => this.technologies.LearningPoints;
+        public uint LearningPoints => this.technologies.LearningPoints;
 
         public ViewModelTechGroup SelectedTechGroup
         {

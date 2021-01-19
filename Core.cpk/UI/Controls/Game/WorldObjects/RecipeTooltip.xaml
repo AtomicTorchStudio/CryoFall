@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <controls:RequiredItemsPanelControl Grid.Row="0" 
+            <controls:RequiredItemsPanelControl Grid.Row="0"
                                                 MaxWidth="340"
                                                 Items="{Binding InputItems}"
                                                 CountMultiplier="{Binding CountToCraft}"
@@ -34,7 +34,7 @@
                             VerticalAlignment="Center"
                             Margin="0,0,5,0">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="../../../Images/Icons/Clock.png"
+                        <Image Source="/UI/Images/Icons/Clock.png"
                                VerticalAlignment="Center"
                                Margin="0,0,1,0"
                                Width="22"

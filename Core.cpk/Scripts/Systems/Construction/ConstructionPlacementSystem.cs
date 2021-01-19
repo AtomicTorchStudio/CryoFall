@@ -44,6 +44,8 @@
 
         public event Action IsOpenedChanged;
 
+        public static bool ClientConstructionCooldownIsWaitingButtonRelease { get; private set; }
+
         public static bool IsInObjectPlacementMode => componentObjectPlacementHelper?.IsEnabled ?? false;
 
         public bool IsOpened
@@ -58,8 +60,6 @@
         }
 
         public override string Name => "Construction placement system";
-
-        public static bool ClientConstructionCooldownIsWaitingButtonRelease { get; private set; }
 
         public static void ClientDisableConstructionPlacement()
         {
@@ -247,7 +247,7 @@
 
         private static void ClientUpdate()
         {
-            if (ClientConstructionCooldownIsWaitingButtonRelease 
+            if (ClientConstructionCooldownIsWaitingButtonRelease
                 && !ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem))
             {
                 ClientConstructionCooldownIsWaitingButtonRelease = false;
@@ -327,7 +327,7 @@
             }
 
             Logger.Info(
-                $"Cannot place {protoStructure} at {tilePosition}: player character is too far.",
+                $"Cannot place {protoStructure} at {tilePosition}: player character is too far",
                 character);
 
             if (IsClient)
@@ -401,7 +401,7 @@
             return constructionSite;
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
+        [RemoteCallSettings(DeliveryMode.ReliableOrdered, timeInterval: 0.05)]
         private void ServerRemote_PlaceStructure(
             IProtoObjectStructure protoStructure,
             Vector2Ushort tilePosition)
@@ -410,7 +410,7 @@
 
             if (!protoStructure.SharedIsTechUnlocked(character))
             {
-                Logger.Error(
+                Logger.Warning(
                     $"Cannot build {protoStructure} at {tilePosition}: player character doesn't have unlocked tech node for this structure.",
                     character);
                 return;
@@ -434,7 +434,7 @@
             var configBuild = protoStructure.ConfigBuild;
             if (!configBuild.CheckStageCanBeBuilt(character))
             {
-                Logger.Error(
+                Logger.Warning(
                     $"Cannot build {protoStructure} at {tilePosition}: player character doesn't have enough resources (or not allowed).",
                     character);
                 return;
@@ -443,7 +443,7 @@
             var selectedHotbarItem = PlayerCharacter.GetPublicState(character).SelectedItem;
             if (!(selectedHotbarItem?.ProtoItem is IProtoItemToolToolbox))
             {
-                Logger.Error(
+                Logger.Warning(
                     $"Cannot build {protoStructure} at {tilePosition}: player character doesn't have selected construction tool.",
                     character);
                 return;

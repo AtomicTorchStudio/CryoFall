@@ -127,6 +127,9 @@ Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 이 아이템을 빠르게 사용하거나 소모하려면 Alt 키를 누른 상태에서 아이템을 클릭하세요.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+[b]\[{0}\][/b] 키로 현재 선택된 무기의 탄약 유형을 전환할 수 있습니다.
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 해체하고 싶은 구조물을 클릭하세요.
 
@@ -138,6 +141,9 @@ Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 수리하거나 지을 구조물을 클릭하세요.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+손상된 차량을 수리하려면 클릭하세요.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 물을 주고 싶은 농장의 작물을 클릭하세요.
@@ -169,6 +175,9 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 연료 전지는 다양한 탈것에 동력을 공급하는 데 사용됩니다.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+[b]\[{0}\][/b] 키로 주간/야간 시야로 전환할 수 있습니다.
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 [b]Alt[/b] 또는 [b]Ctrl[/b] 키를 오래 누르고 있으면, 커서 위치가 아닌 커서 방향을 향해 최대 거리로 발사됩니다.
 
@@ -184,6 +193,12 @@ Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 이 무기는 탈것의 [b]{0}[/b] 장착대에만 사용할 수 있습니다.
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+야간 투시경 (I 세대)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+야간 투시경 (II 세대)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 손질하기
 
@@ -195,6 +210,9 @@ Scripts/Items/Base/ItemUseCaptions@Drink:
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 먹기
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+열기
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 읽기
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 연료 고갈
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-헬멧 전등을 켜려면, 해당 아이템을 장비하고 [{0}] 키를 누르십시오.
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-버튼이 설정되지 않음
+헬멧 전등을 켜려면, 해당 아이템을 장비하고 \[{0}\] 키를 누르십시오.
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 뼈 방어구는 가격이 적당하고, 적당한 방어력을 제공하여 초기에 매우 유용합니다.
@@ -402,6 +417,12 @@ Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 군용 헬멧
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+폭발물이 장착된 특수 조끼. 착용자가 사망한 뒤, 자동으로 폭발합니다. 복수의 수단입니다.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+복수 조끼
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 휴대용 발광체가 달려 있어서 손이 자유로워지는 편리한 헬멧. 일회용 배터리가 필요합니다.
@@ -520,6 +541,15 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Description:
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 농어
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+검은 망둥이
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+이 세계에서 자생하는 프라그뮴 기반의 독특한 수생 생물입니다.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+푸른 활수어
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 도미
 
@@ -532,8 +562,14 @@ Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 잉어
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+크래피
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 벤자리
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+잉어
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 고등어
@@ -561,6 +597,9 @@ Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 송어
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+황다랑어
 
 Scripts/Items/Food/ItemBanana@Description:
 어떤 원숭이든지 바나나에 닿을 수 있지만, 오직 인간만이 별에 닿을 수 있습니다.
@@ -717,6 +756,12 @@ Scripts/Items/Food/ItemCoffeeCup@Description:
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 커피 한 잔
+
+Scripts/Items/Food/ItemCookingOil@Description:
+요리에 사용되는 천연 기름.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+식용유
 
 Scripts/Items/Food/ItemCorn@Description:
 공포 소설 작가가 특히 좋아하는 맛있는 곡물.
@@ -924,6 +969,24 @@ Scripts/Items/Food/ItemPizzaPineapple@Description:
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 파인애플 피자
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+바삭한 껍질이 붙은 신선한 감자 요리. 고기를 곁들였습니다.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+구운 감자와 고기
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+전형적인 패스트 푸드 스타일의 튀긴 감자.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+감자튀김
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+먹기 전에 요리해야 합니다.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+감자
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 그대로 먹어도 좋고 요리 재료로 사용해도 좋습니다.
@@ -1183,6 +1246,12 @@ Scripts/Items/Generic/ItemCoinPenny@Description:
 Scripts/Items/Generic/ItemCoinPenny@Name:
 티끌 주화
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+오래된 동전 지갑. 혹시 아직도 뭔가 들어 있지 않을까요?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+동전 지갑
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 액면가가 높은 주화. 거래 기계에서 값싼 아이템을 구매하거나 다른 생존자들과 직접 거래하는 데 사용됩니다.
 
@@ -1277,6 +1346,12 @@ Scripts/Items/Generic/ItemFlowerOni@Description:
 Scripts/Items/Generic/ItemFlowerOni@Name:
 도깨비꽃
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+요리에 사용되는 기름을 추출하거나 장식에 사용할 수 있습니다.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+노란 꽃
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 융제 가루는 고품질의 금속을 만들기 위한 야금에 유용합니다.
 
@@ -1306,6 +1381,12 @@ Scripts/Items/Generic/ItemFuelCellPragmium@Description:
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 프라그뮴 연료 전지
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+휘발성 액체를 저장하고 있는 외계 생명체의 특수 장기.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+연료 주머니
 
 Scripts/Items/Generic/ItemFur@Description:
 동물의 털가죽. 따뜻한 겨울옷을 만드는 데 유용합니다.
@@ -1343,10 +1424,10 @@ Scripts/Items/Generic/ItemGemTopaz@Description:
 Scripts/Items/Generic/ItemGemTopaz@Name:
 토파즈
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 반짝이는 보랏빛 투르말린!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 투르말린
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Scripts/Items/Generic/ItemTwigs@Description:
 Scripts/Items/Generic/ItemTwigs@Name:
 잔가지
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+알려지지 않은 생명체의 이상한 스펀지 같은 장기. 부패하면 외래의 입자를 내뿜습니다.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+모래 폭군의 심장
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 자기력으로 움직이는 매우 유연하며 강력한 작동기.
 
@@ -1848,22 +1935,28 @@ Scripts/Items/Medical/ItemBandage@Name:
 붕대
 
 Scripts/Items/Medical/ItemCigarCheap@Description:
-저렴하고 빠르게 만들어진 담배. 자극제.
+저렴하고 빠르게 만들어진 시가. 자극제.
 
 Scripts/Items/Medical/ItemCigarCheap@Name:
-싸구려 담배
+싸구려 시가
+
+Scripts/Items/Medical/ItemCigarettes@Description:
+다른 세계의 궐련 브랜드.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+궐련
 
 Scripts/Items/Medical/ItemCigarNormal@Description:
-향이 좋은 담배. 자극제.
+향이 좋은 시가. 자극제.
 
 Scripts/Items/Medical/ItemCigarNormal@Name:
-담배
+시가
 
 Scripts/Items/Medical/ItemCigarPremium@Description:
-절묘한 향과 맛을 지닌 고급 담배. 자극제.
+절묘한 향과 맛을 지닌 고급 시가. 자극제.
 
 Scripts/Items/Medical/ItemCigarPremium@Name:
-고급 담배
+고급 시가
 
 Scripts/Items/Medical/ItemEnergyTablets@Description:
 피로를 빠르게 회복할 수 있는 단순한 약.
@@ -1975,6 +2068,12 @@ Scripts/Items/Medical/ItemPeredozin@Description:
 Scripts/Items/Medical/ItemPeredozin@Name:
 페레도진
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+석고 붕대는 부러진 뼈를 접골한 후에 빠르게 치료하는 데 사용됩니다.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+석고 붕대
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 초능력장 노출로 인한 신경 손상을 완화시키는 데 도움이 되는 특수 신경 조절 화학 물질.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 약초 치료
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-뼈가 부러지지 않았습니다. 지금은 부목을 사용할 필요가 없습니다.
+뼈가 부러지지 않았습니다. 지금은 석고 붕대를 사용할 필요가 없습니다.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 골절 없음
@@ -2062,8 +2161,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 도깨비꽃 씨앗
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+노란 꽃 씨앗
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 우유멜론 씨앗
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+감자 씨앗
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 볍씨
@@ -2088,6 +2193,12 @@ Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 필요
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+여러 순간 이동 장소 중 한 곳의 좌표와 내비게이션 주파수에 대한 기록을 담고 있습니다.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+순간 이동 장소 데이터
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 쇠도끼는 나무를 자르기에 좋습니다. 돌도끼보다 빠르고 내구도가 뛰어납니다.
@@ -2146,11 +2257,11 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 연료 고갈
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-이 프라그뮴 도끼는 부서지기 쉽지만, 분자 공명 기술을 사용하여 기존의 도끼보다 더 빠른 속도를 자랑합니다.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+이 프라그뮴 망치는 부서지기 쉽지만, 분자 공명 기술을 사용하여 기존의 도끼보다 더 빠른 속도를 자랑합니다.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-프라그뮴 도끼
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+프라그뮴 망치
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 철곡괭이는 매장된 광물을 채굴하는 데 사용할 수 있습니다. 돌곡괭이보다 빠르고 내구도가 뛰어납니다.
@@ -2175,6 +2286,12 @@ Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 프라그뮴 감지기
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+범용 일회용 탈것 수리 세트.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+탈것 수리 세트
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 공구함은 구조물을 짓거나 수리할 때 필요합니다. 장착 및 선택하였는지 확인하십시오.
@@ -2262,6 +2379,12 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 레이저 레이피어 (노란색)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+내장된 배터리의 전기로 상대를 기절시킵니다.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+기절봉
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 엄청나게 강력한 단거리 무기. 작동시키려면 에너지가 필요합니다.

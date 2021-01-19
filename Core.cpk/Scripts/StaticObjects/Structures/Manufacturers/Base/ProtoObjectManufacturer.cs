@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
@@ -45,8 +46,8 @@
         public abstract byte ContainerOutputSlotsCount { get; }
 
         public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 20,
-                                               shutdownPercent: 10);
+            => new(startupPercent: 20,
+                   shutdownPercent: 10);
 
         public virtual double ElectricityConsumptionPerSecondWhenActive => 0;
 
@@ -75,6 +76,18 @@
             this.CallServer(_ => _.ServerRemote_SelectRecipe(worldObject, recipe));
         }
 
+        public void ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (this.ServerUpdateRareIntervalSeconds == double.MaxValue)
+            {
+                // this object doesn't support rare updates
+                return;
+            }
+
+            this.ServerSetUpdateRate(worldObject, isRare: false);
+        }
+
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
             base.ServerOnDestroy(gameObject);
@@ -93,6 +106,22 @@
                 privateState.FuelBurningState?.ContainerFuel);
         }
 
+        public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (this.ServerUpdateRareIntervalSeconds == double.MaxValue)
+            {
+                // this object doesn't support rare updates
+                return;
+            }
+
+            if (!InteractionCheckerSystem.SharedHasAnyInteraction(worldObject))
+            {
+                // no active interactions - perform server updates rarely
+                this.ServerSetUpdateRate(worldObject, isRare: true);
+            }
+        }
+
         public virtual double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
         {
             return GetPublicState(worldObject).IsActive
@@ -103,14 +132,6 @@
         BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
             return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
-        }
-
-        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
-        {
-        }
-
-        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
-        {
         }
 
         IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
@@ -276,6 +297,12 @@
 
             var worldObject = data.GameObject;
             var privateState = data.PrivateState;
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (this.ServerUpdateRareIntervalSeconds != double.MaxValue)
+            {
+                this.ServerSetUpdateRate(data.GameObject, isRare: true);
+            }
 
             // configure manufacturing state
             var manufacturingState = privateState.ManufacturingState;

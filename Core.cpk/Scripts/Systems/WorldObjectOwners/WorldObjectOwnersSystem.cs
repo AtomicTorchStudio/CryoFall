@@ -2,13 +2,21 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
+    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -28,34 +36,58 @@
         public const string DialogCannotSetOwners_MessageCannotRemoveLastOwner
             = "You cannot remove the last owner.";
 
-        public const string DialogCannotSetOwners_MessageCannotRemoveSelf =
-            "You cannot remove yourself from the owners list. Please ask another player to do so.";
-
-        public const string DialogCannotSetOwners_MessageFormatPlayerNotFound
-            = "Player with name [b]{0}[/b] is not found.";
+        public const string DialogCannotSetOwners_MessageCannotRemoveSelf
+            = "You cannot remove yourself from the owners list. Please ask another player to do so.";
 
         public const string DialogCannotSetOwners_MessageNotOwner
             = "You're not the owner.";
 
         public static event Action<IWorldObject> ServerOwnersChanged;
 
+        [RemoteEnum]
+        public enum SetOwnersResult : byte
+        {
+            Success,
+
+            [Description(CoreStrings.PlayerNotFound)]
+            ErrorPlayerNotFound,
+
+            [Description(DialogCannotSetOwners_MessageNotOwner)]
+            ErrorNotOwner,
+
+            [Description(DialogCannotSetOwners_MessageCannotEdit)]
+            ErrorCannotEdit,
+
+            [Description(DialogCannotSetOwners_MessageCannotRemoveSelf)]
+            ErrorCannotRemoveSelf,
+
+            [Description(DialogCannotSetOwners_MessageCannotRemoveLastOwner)]
+            ErrorCannotRemoveLastOwner,
+
+            [Description(DialogCannotSetOwners_AccessListSizeLimitExceeded)]
+            ErrorAccessListSizeLimitExceeded
+        }
+
         public override string Name => "World object owners system";
 
-        public static void ClientOnCannotInteractNotOwner(IWorldObject worldObject)
+        public static void ClientOnCannotInteractNotOwner(IWorldObject worldObject, bool isFactionAccess)
         {
+            var message = isFactionAccess
+                              ? WorldObjectAccessModeSystem.NotificationDontHaveAccess
+                              : DialogCannotSetOwners_MessageNotOwner;
             CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
-                                                                DialogCannotSetOwners_MessageNotOwner,
+                                                                message,
                                                                 isOutOfRange: false);
         }
 
         public static async void ClientSetOwners(IWorldObject worldObject, List<string> newOwners)
         {
-            var errorMessage = await Instance.CallServer(_ => _.ServerRemote_SetOwners(worldObject, newOwners));
-            if (errorMessage is not null)
+            var result = await Instance.CallServer(_ => _.ServerRemote_SetOwners(worldObject, newOwners));
+            if (result != SetOwnersResult.Success)
             {
                 NotificationSystem.ClientShowNotification(
                     title: null,
-                    message: errorMessage,
+                    message: result.GetDescription(),
                     color: NotificationColor.Bad);
             }
         }
@@ -66,7 +98,7 @@
             privateState.Owners ??= new NetworkSyncList<string>();
         }
 
-        public static void ServerNotifyNotOwner(ICharacter character, IWorldObject worldObject)
+        public static void ServerNotifyNotOwner(ICharacter character, IWorldObject worldObject, bool isFactionAccess)
         {
             Logger.Warning(
                 $"Character cannot interact with {worldObject} - not the owner.",
@@ -74,7 +106,7 @@
 
             Instance.CallClient(
                 character,
-                _ => _.ClientRemote_OnCannotInteractNotOwner(worldObject));
+                _ => _.ClientRemote_OnCannotInteractNotOwner(worldObject, isFactionAccess));
         }
 
         public static void ServerOnBuilt(IWorldObject structure, ICharacter byCharacter)
@@ -90,7 +122,7 @@
             ServerInvokeOwnersChangedEvent(structure);
         }
 
-        public static string ServerSetOwners(
+        public static SetOwnersResult ServerSetOwners(
             IWorldObject worldObject,
             List<string> newOwners,
             ICharacter byOwner)
@@ -105,25 +137,25 @@
             if (!currentOwners.Contains(byOwner.Name)
                 && !CreativeModeSystem.SharedIsInCreativeMode(byOwner))
             {
-                return DialogCannotSetOwners_MessageNotOwner;
+                return SetOwnersResult.ErrorNotOwner;
             }
 
             if (!((IProtoObjectWithOwnersList)worldObject.ProtoGameObject)
                     .SharedCanEditOwners(worldObject, byOwner))
             {
-                return DialogCannotSetOwners_MessageCannotEdit;
+                return SetOwnersResult.ErrorCannotEdit;
             }
 
             currentOwners.GetDiff(newOwners, out var ownersToAdd, out var ownersToRemove);
             if (ownersToRemove.Count > 0
                 && currentOwners.Count == ownersToRemove.Count)
             {
-                return DialogCannotSetOwners_MessageCannotRemoveLastOwner;
+                return SetOwnersResult.ErrorCannotRemoveLastOwner;
             }
 
             if (ownersToRemove.Contains(byOwner.Name))
             {
-                return DialogCannotSetOwners_MessageCannotRemoveSelf;
+                return SetOwnersResult.ErrorCannotRemoveSelf;
             }
 
             if (ownersToAdd.Count == 0
@@ -133,7 +165,7 @@
                     "No need to change the owners - the new owners list is the same as the current owners list: "
                     + worldObject,
                     characterRelated: byOwner);
-                return null;
+                return SetOwnersResult.Success;
             }
 
             foreach (var n in ownersToAdd)
@@ -142,7 +174,7 @@
                 var playerToAdd = Api.Server.Characters.GetPlayerCharacter(name);
                 if (playerToAdd is null)
                 {
-                    return string.Format(DialogCannotSetOwners_MessageFormatPlayerNotFound, name);
+                    return SetOwnersResult.ErrorPlayerNotFound;
                 }
 
                 // get proper player name
@@ -172,7 +204,7 @@
             }
 
             ServerInvokeOwnersChangedEvent(worldObject);
-            return null;
+            return SetOwnersResult.Success;
         }
 
         public static bool SharedCanInteract(
@@ -186,7 +218,7 @@
                 return true;
             }
 
-            if (SharedIsOwner(character, worldObject)
+            if (SharedIsOwner(character, worldObject, out var isFactionAccess)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
@@ -195,7 +227,7 @@
             // not an owner
             if (writeToLog)
             {
-                ServerNotifyNotOwner(character, worldObject);
+                ServerNotifyNotOwner(character, worldObject, isFactionAccess);
             }
 
             return false;
@@ -208,8 +240,30 @@
 
         public static bool SharedIsOwner(ICharacter who, IWorldObject worldObject)
         {
-            return SharedGetOwners(worldObject)
-                .Contains(who.Name);
+            return SharedIsOwner(who, worldObject, out _);
+        }
+
+        public static bool SharedIsOwner(ICharacter who, IWorldObject worldObject, out bool isFactionAccess)
+        {
+            isFactionAccess = false;
+            if (worldObject is IStaticWorldObject staticWorldObject)
+            {
+                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(staticWorldObject);
+                if (areasGroup is not null
+                    && LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction is var faction
+                    && faction is not null)
+                {
+                    isFactionAccess = true;
+                    // the static object is inside the faction-owned land claim,
+                    // verify permission
+                    return FactionSystem.ServerHasAccessRights(who,
+                                                               FactionMemberAccessRights.LandClaimManagement,
+                                                               out var characterFaction)
+                           && ReferenceEquals(faction, characterFaction);
+                }
+            }
+
+            return SharedGetOwners(worldObject).Contains(who.Name);
         }
 
         public byte ServerRemote_GetDoorOwnersMax()
@@ -271,12 +325,13 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_OnCannotInteractNotOwner(IWorldObject worldObject)
+        private void ClientRemote_OnCannotInteractNotOwner(IWorldObject worldObject, bool isFactionAccess)
         {
-            ClientOnCannotInteractNotOwner(worldObject);
+            ClientOnCannotInteractNotOwner(worldObject, isFactionAccess);
         }
 
-        private string ServerRemote_SetOwners(IWorldObject worldObject, List<string> newOwners)
+        [RemoteCallSettings(timeInterval: 1)]
+        private SetOwnersResult ServerRemote_SetOwners(IWorldObject worldObject, List<string> newOwners)
         {
             var maxOwners = worldObject.ProtoGameObject is IProtoObjectDoor
                                 ? StructureConstants.SharedDoorOwnersMax
@@ -284,15 +339,35 @@
 
             if (newOwners.Count > maxOwners)
             {
-                return DialogCannotSetOwners_AccessListSizeLimitExceeded;
+                return SetOwnersResult.ErrorAccessListSizeLimitExceeded;
             }
 
             var character = ServerRemoteContext.Character;
-            if (!worldObject.ProtoWorldObject.SharedCanInteract(character,
-                                                                worldObject,
-                                                                writeToLog: false))
+            if (worldObject is IStaticWorldObject staticWorldObject)
             {
-                throw new Exception("The player character cannot interact with " + worldObject);
+                InteractionCheckerSystem.SharedValidateIsInteracting(character,
+                                                                     worldObject,
+                                                                     requirePrivateScope: true);
+
+                if (!SharedIsOwner(character, worldObject))
+                {
+                    throw new Exception("Not an owner");
+                }
+
+                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(staticWorldObject);
+                if (areasGroup is not null
+                    && LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction is not null)
+                {
+                    throw new Exception(
+                        "Cannot modify owners list for an object within a faction land claim area");
+                }
+            }
+            else // dynamic world object (a vehicle, etc)
+            {
+                if (!worldObject.ProtoWorldObject.SharedCanInteract(character, worldObject, writeToLog: false))
+                {
+                    throw new Exception("Cannot interact with " + worldObject);
+                }
             }
 
             return ServerSetOwners(worldObject, newOwners, byOwner: character);

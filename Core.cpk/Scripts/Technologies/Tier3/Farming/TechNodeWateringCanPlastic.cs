@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeWateringCanPlastic>();
 
-            config.SetRequiredNode<TechNodeTobacco>();
+            config.SetRequiredNode<TechNodeSpices>();
         }
     }
 }

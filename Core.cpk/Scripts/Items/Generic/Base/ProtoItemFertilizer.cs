@@ -207,12 +207,12 @@
 
             public static GetPlantResult Fail(string errorTitle, string errorMessage)
             {
-                return new GetPlantResult(errorTitle, errorMessage);
+                return new(errorTitle, errorMessage);
             }
 
             public static GetPlantResult Success(IStaticWorldObject objectPlant)
             {
-                return new GetPlantResult(objectPlant);
+                return new(objectPlant);
             }
         }
     }

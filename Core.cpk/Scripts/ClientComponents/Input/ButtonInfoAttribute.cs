@@ -19,7 +19,7 @@
 
         public string Category { get; set; }
 
-        public ButtonMapping DefaultButtonMapping => new ButtonMapping(this.KeyPrimary, this.KeySecondary);
+        public ButtonMapping DefaultButtonMapping => new(this.KeyPrimary, this.KeySecondary);
 
         public string Title { get; set; }
     }

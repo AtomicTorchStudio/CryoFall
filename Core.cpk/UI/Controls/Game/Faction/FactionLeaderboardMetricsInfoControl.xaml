@@ -1,0 +1,74 @@
+﻿<ui:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.FactionLeaderboardMetricsInfoControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelFactionLeaderboardMetricsInfoControl}">
+    <Grid x:Name="LayoutRoot">
+        <core:LoadingDisplayControl Width="48"
+                                    Height="48"
+                                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
+
+        <Grid
+            Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+            IsSharedSizeScope="True">
+            <ItemsControl ItemsSource="{Binding Entries}"
+                          Visibility="{Binding Entries, Converter={StaticResource NullToVisibilityConverter}}"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Padding="0,0,2,0"
+                          Margin="0,-2"
+                          VirtualizingStackPanel.IsVirtualizing="False"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          ScrollViewer.CanContentScroll="False"
+                          ScrollViewer.PanningMode="VerticalOnly">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel IsItemsHost="True" Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- <core:FormattedTextBlock Text="{Binding Text}" /> -->
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="ScoreNameColumn" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text=": " />
+                            </StackPanel>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Value}"
+                                       FontWeight="Bold" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                    </ControlTemplate>
+                </ItemsControl.Template>
+            </ItemsControl>
+
+            <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.EmptyList}"
+                                     Visibility="{Binding Entries, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Reverse}"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" />
+        </Grid>
+    </Grid>
+</ui:BaseUserControl>

@@ -5,41 +5,27 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
-    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ObjectPragmiumQueenRemains
-        : ProtoObjectMineral
-            <ObjectPragmiumQueenRemains.PrivateState,
-                StaticObjectPublicState,
-                DefaultMineralClientState>
+    public class ObjectPragmiumQueenRemains : ProtoObjectBossLoot
     {
-        // The remains destruction will be postponed on this duration
-        // if it cannot be destroy because there are characters observing it.
-        private static readonly double DestructionTimeoutPostponeSeconds
-            = TimeSpan.FromMinutes(2).TotalSeconds;
-
-        // The remains will destroy after this duration if there are no characters observing it.
-        private static readonly double DestructionTimeoutSeconds
-            = TimeSpan.FromMinutes(30).TotalSeconds;
-
         private TextureResource[] textures;
-
-        public override bool IsAllowDroneMining => false;
-
-        public override bool IsAllowQuickMining => false;
 
         public override string Name => "Pragmium Queen remains";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override float StructurePointsMax => 1500;
+
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: -1,
+                                                             maxX: 1,
+                                                             maxY: 2);
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
@@ -54,6 +40,12 @@
                                                       minInclusive: 0,
                                                       maxExclusive: this.textures.Length,
                                                       seed: 791838756)];
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            ObjectMineralPragmiumHelper.ClientInitializeLightForNode(data.GameObject);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
@@ -95,82 +87,12 @@
                   .Add<ItemOreLithium>(count: 5,  countRandom: 2);
         }
 
-        protected override void ServerInitialize(ServerInitializeData data)
-        {
-            base.ServerInitialize(data);
-
-            // reset the destroy timer (even if object is already initialized (e.g. loading a savegame))
-            data.PrivateState.DestroyAtTime = Server.Game.FrameTime + DestructionTimeoutSeconds;
-        }
-
-        protected override void ServerUpdate(ServerUpdateData data)
-        {
-            base.ServerUpdate(data);
-
-            if (Api.IsEditor)
-            {
-                // do not destroy by timeout in Editor
-                return;
-            }
-
-            var privateState = data.PrivateState;
-            var timeNow = Server.Game.FrameTime;
-
-            // Destroy Pragmium node if the timeout is exceeded
-            // and there is no Pragmium Source node nearby
-            // and there are no player characters observing it.
-            if (timeNow < privateState.DestroyAtTime)
-            {
-                return;
-            }
-
-            // should destroy because timed out
-            var worldObject = data.GameObject;
-            if (Server.World.IsObservedByAnyPlayer(worldObject))
-            {
-                // cannot destroy - there are players observing it
-                privateState.DestroyAtTime = timeNow + DestructionTimeoutPostponeSeconds;
-                return;
-            }
-
-            Server.World.DestroyObject(worldObject);
-        }
-
-        protected override double SharedCalculateDamageByWeapon(
-            WeaponFinalCache weaponCache,
-            double damagePreMultiplier,
-            IStaticWorldObject targetObject,
-            out double obstacleBlockDamageCoef)
-        {
-            if (NewbieProtectionSystem.SharedIsNewbie(weaponCache.Character))
-            {
-                // don't allow mining a boss loot while under newbie protection
-                if (IsClient)
-                {
-                    NewbieProtectionSystem.ClientNotifyNewbieCannotPerformAction(this);
-                }
-
-                obstacleBlockDamageCoef = 0;
-                return 0;
-            }
-
-            return base.SharedCalculateDamageByWeapon(weaponCache,
-                                                      damagePreMultiplier,
-                                                      targetObject,
-                                                      out obstacleBlockDamageCoef);
-        }
-
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.3,  center: (0.5, 0.4))
                 .AddShapeCircle(radius: 0.45, center: (0.5, 0.5), group: CollisionGroups.HitboxMelee);
             // no ranged hitbox
-        }
-
-        public class PrivateState : BasePrivateState
-        {
-            public double DestroyAtTime { get; set; }
         }
     }
 }

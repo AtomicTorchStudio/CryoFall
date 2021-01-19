@@ -15,6 +15,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -35,6 +36,7 @@
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
 
+        [RemoteEnum]
         public enum SetPowerModeResult : byte
         {
             Success = 0,
@@ -334,36 +336,35 @@
                     producerPrivateState.PowerGridChargePercent = gridElectricityAmountPercentByte;
 
                     var producerPublicState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
-                    if (producerPublicState.ElectricityProducerState == ElectricityProducerState.PowerOff)
+                    switch (producerPublicState.ElectricityProducerState)
                     {
-                        continue;
-                    }
-
-                    // refresh power active/idle state for generator
-                    if (producerPublicState.ElectricityProducerState == ElectricityProducerState.PowerOnIdle)
-                    {
-                        // this generator is idle (not generating energy)
-                        if (gridElectricityAmountPercent > producerPrivateState.ElectricityThresholds.StartupPercent)
-                        {
-                            // no need to turn it on as threshold is not reached
+                        case ElectricityProducerState.PowerOff:
                             continue;
-                        }
 
-                        producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
-                        numberProducersActive++;
-                    }
-                    else if (producerPublicState.ElectricityProducerState == ElectricityProducerState.PowerOnActive)
-                    {
-                        var shutdownPercent = producerPrivateState.ElectricityThresholds.ShutdownPercent;
-                        if (gridElectricityAmountPercent >= shutdownPercent
-                            && (shutdownPercent < 100
-                                || shutdownPercent == 100
-                                && (productionCurrent > powerDemand || powerDemand == 0)))
+                        case ElectricityProducerState.PowerOnIdle:
                         {
-                            // this generator is not necessary now - go idle
-                            producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
-                            //Logger.Dev("Producer is not required now and was deactivated: "
-                            //           + producerObject);
+                            // this generator is idle (not generating energy)
+                            if (gridElectricityAmountPercent
+                                <= producerPrivateState.ElectricityThresholds.StartupPercent)
+                            {
+                                // startup threshold is reached
+                                producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
+                                numberProducersActive++;
+                            }
+
+                            break;
+                        }
+                        case ElectricityProducerState.PowerOnActive:
+                        {
+                            // this generator is active
+                            if (gridElectricityAmountPercent
+                                >= producerPrivateState.ElectricityThresholds.ShutdownPercent)
+                            {
+                                // shutdown threshold is reached
+                                producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
+                            }
+
+                            break;
                         }
                     }
                 }
@@ -384,14 +385,14 @@
                 foreach (var consumerObject in state.ServerCacheConsumers)
                 {
                     var consumerPublicState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                    if (consumerPublicState.ElectricityConsumerState == ElectricityConsumerState.PowerOff)
+                    switch (consumerPublicState.ElectricityConsumerState)
                     {
-                        continue;
-                    }
+                        case ElectricityConsumerState.PowerOff:
+                            continue;
 
-                    if (consumerPublicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive)
-                    {
-                        consumerPublicState.ElectricityConsumerState = ElectricityConsumerState.PowerOnIdle;
+                        case ElectricityConsumerState.PowerOnActive:
+                            consumerPublicState.ElectricityConsumerState = ElectricityConsumerState.PowerOnIdle;
+                            break;
                     }
 
                     numberConsumersOutage++;
@@ -643,7 +644,7 @@
                 return;
             }
 
-            var boundingBox = LandClaimSystem.SharedGetLandClaimGroupsBoundingArea(areasGroup);
+            var boundingBox = LandClaimSystem.SharedGetLandClaimGroupBoundingArea(areasGroup);
             if (boundingBox == default)
             {
                 return;
@@ -981,7 +982,7 @@
 
             switch (worldObject.ProtoGameObject)
             {
-                case IProtoObjectElectricityProducer _:
+                case IProtoObjectElectricityProducer:
                     worldObject.GetPrivateState<IObjectElectricityStructurePrivateState>()
                                .ElectricityThresholds = thresholds;
                     return;
@@ -991,7 +992,7 @@
                     Logger.Error("This consumer doesn't consume any energy (defined consumption is 0): " + worldObject);
                     return;
 
-                case IProtoObjectElectricityConsumer _:
+                case IProtoObjectElectricityConsumer:
                     worldObject.GetPrivateState<IObjectElectricityStructurePrivateState>()
                                .ElectricityThresholds = thresholds;
                     return;
@@ -1013,7 +1014,7 @@
 
             switch (worldObject.ProtoStaticWorldObject)
             {
-                case IProtoObjectElectricityProducer _:
+                case IProtoObjectElectricityProducer:
                     // producer
                     return ServerSetProducerPowerMode(worldObject,
                                                       isOn
@@ -1025,7 +1026,7 @@
                     Logger.Error("This consumer doesn't consume any energy (defined consumption is 0): " + worldObject);
                     return SetPowerModeResult.CannotInteractWithObject;
 
-                case IProtoObjectElectricityConsumer _:
+                case IProtoObjectElectricityConsumer:
                     return ServerSetConsumerPowerMode(worldObject, isOn);
 
                 default:
@@ -1036,7 +1037,7 @@
         private class ObjectConsumerOrderComparer : IComparer<IStaticWorldObject>
         {
             // ReSharper disable once MemberHidesStaticFromOuterClass
-            public static readonly ObjectConsumerOrderComparer Instance = new ObjectConsumerOrderComparer();
+            public static readonly ObjectConsumerOrderComparer Instance = new();
 
             private ObjectConsumerOrderComparer()
             {
@@ -1055,7 +1056,7 @@
         private class ObjectProducerOrderComparer : IComparer<IStaticWorldObject>
         {
             // ReSharper disable once MemberHidesStaticFromOuterClass
-            public static readonly ObjectProducerOrderComparer Instance = new ObjectProducerOrderComparer();
+            public static readonly ObjectProducerOrderComparer Instance = new();
 
             private ObjectProducerOrderComparer()
             {

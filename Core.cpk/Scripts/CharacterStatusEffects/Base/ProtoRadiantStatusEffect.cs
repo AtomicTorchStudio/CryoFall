@@ -22,7 +22,7 @@
         protected const double DefensePotentialMultiplier = 0.75;
 
         private static readonly List<IWorldObject> TempResult
-            = new List<IWorldObject>(capacity: 512);
+            = new(capacity: 512);
 
         public sealed override double IntensityAutoDecreasePerSecondValue
             => 0; // doesn't decrease via base implementation

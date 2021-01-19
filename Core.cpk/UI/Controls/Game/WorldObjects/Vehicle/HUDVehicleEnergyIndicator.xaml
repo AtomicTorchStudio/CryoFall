@@ -14,7 +14,7 @@
     VerticalAlignment="Stretch"
     d:DesignHeight="50" d:DesignWidth="30"
     d:DataContext="{d:DesignInstance data:ViewModelHUDVehicleEnergyIndicator}"
-    Visibility="{Binding IndicatorVisibility}" 
+    Visibility="{Binding IndicatorVisibility}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <base:BaseUserControl.Resources>
         <system:Double x:Key="BarCornerRadius">4</system:Double>
@@ -27,6 +27,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top">
             <Rectangle Fill="{Binding Icon}"
+                       UseLayoutRounding="True"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Top"
                        Width="16"
@@ -43,21 +44,13 @@
                         VerticalAlignment="Stretch"
                         BorderBrush="Black"
                         BorderThickness="1"
-                        CornerRadius="5"
-                        Background="#FF224455">
+                        CornerRadius="5">
+                    <Border.Background>
+                        <SolidColorBrush
+                            Color="{Binding Source={StaticResource ColorVehicleEnergy}, Converter={StaticResource ColorMultiplyConverter}, ConverterParameter=0.333}" />
+                    </Border.Background>
 
                     <Grid>
-                        <!-- Background overlay semi-transparent vertical overlay -->
-                        <Border CornerRadius="5" Margin="-1">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.2">
-                                    <GradientStop Color="Transparent" Offset="0" />
-                                    <GradientStop Color="Black" Offset="0.07" />
-                                    <GradientStop Color="#77000000" Offset="0.7" />
-                                    <GradientStop Color="Transparent" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
                         <Grid Margin="1">
                             <core:ValueBarControl
                                 IsDisplayLabel="True"
@@ -87,23 +80,6 @@
                                                                        RadiusX="{StaticResource BarCornerRadius}"
                                                                        RadiusY="{StaticResource BarCornerRadius}" />
                                                 </ContentControl.Clip>
-                                                <Canvas ClipToBounds="False"
-                                                        VerticalAlignment="Top"
-                                                        IsHitTestVisible="False">
-                                                    <Grid Height="{Binding ActualHeight, ElementName=ContentPresenter}"
-                                                          Canvas.Left="{TemplateBinding CurrentValueBarWidth}">
-                                                        <Rectangle Width="1"
-                                                                   Margin="-0.5,-0.5,0,-0.5">
-                                                            <Rectangle.Fill>
-                                                                <RadialGradientBrush>
-                                                                    <GradientStop Color="#FFAADDFF" Offset="0.5" />
-                                                                    <GradientStop Color="#FF22AAFF" Offset="0.75" />
-                                                                    <GradientStop Color="#0022AAFF" Offset="1" />
-                                                                </RadialGradientBrush>
-                                                            </Rectangle.Fill>
-                                                        </Rectangle>
-                                                    </Grid>
-                                                </Canvas>
                                             </ContentControl>
                                         </Grid>
                                     </ControlTemplate>
@@ -113,7 +89,7 @@
                                     <!-- Primary color -->
                                     <Rectangle RadiusX="{StaticResource BarCornerRadius}"
                                                RadiusY="{StaticResource BarCornerRadius}"
-                                               Fill="#FF22AAFF" />
+                                               Fill="{StaticResource BrushVehicleEnergy}" />
 
                                     <!-- Ticks overlay -->
                                     <Rectangle RadiusX="{StaticResource BarCornerRadius}"
@@ -126,20 +102,6 @@
                                                 <GradientStop Color="Black" Offset="0.7" />
                                                 <GradientStop Color="White" Offset="0.8" />
                                                 <GradientStop Color="Transparent" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
-
-                                    <!-- Shadow gradient overlay -->
-                                    <Rectangle RadiusX="{StaticResource BarCornerRadius}"
-                                               RadiusY="{StaticResource BarCornerRadius}">
-                                        <Rectangle.Fill>
-                                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.45">
-                                                <GradientStop Color="Transparent" Offset="0" />
-                                                <GradientStop Color="#99000000" Offset="0.4" />
-                                                <GradientStop Color="#FF000000" Offset="0.75" />
-                                                <GradientStop Color="#FF000000" Offset="0.9" />
-                                                <GradientStop Color="#00000000" Offset="1" />
                                             </LinearGradientBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>

@@ -22,7 +22,8 @@
 
             inputItems.Add<ItemCarrot>(count: 5);
             inputItems.Add<ItemChiliPepper>(count: 3);
-            inputItems.Add<ItemSalt>(count: 2);
+            inputItems.Add<ItemCookingOil>(count: 1);
+            inputItems.Add<ItemSalt>(count: 3);
 
             outputItems.Add<ItemCarrotGrilled>(count: 3);
         }

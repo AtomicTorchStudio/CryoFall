@@ -9,12 +9,12 @@
     public class TileBeachTemperate : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Beach/TileSand1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Beach/TileSand1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/Beach/TileSand2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Beach/TileSand2.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 2;
 

@@ -8,12 +8,11 @@
     public class TileRoads : ProtoTile
     {
         private static readonly Lazy<string> CachedName
-            = new Lazy<string>(
-                () => GetProtoEntity<TileRoads>().Name);
+            = new(() => GetProtoEntity<TileRoads>().Name);
 
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Ruins/TileRuins1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Ruins/TileRuins1.jpg",
+                  isTransparent: false);
 
         public static string ProtoName
             => CachedName.Value;

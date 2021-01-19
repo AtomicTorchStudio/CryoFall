@@ -2,123 +2,116 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.GameApi.Data;
-    using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.CoreMod.Editor.Data;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    [RemoteAuthorizeServerOperator]
-    public class EditorStaticObjectsRemovalHelper : ProtoEntity
+    public static class EditorStaticObjectsRemovalHelper
     {
-        private static EditorStaticObjectsRemovalHelper instance;
+        private const int RecentlyDeletedObjectIdsMaxEntriesCount = 5000;
 
-        public override string Name => "Editor static objects removal helper";
+        private static readonly List<uint> RecentlyDeletedObjectIds
+            = new();
 
         public static void ClientDelete(IReadOnlyCollection<IStaticWorldObject> worldObjectsToDelete)
         {
-            instance.ClientDeleteInternal(worldObjectsToDelete);
+            ClientDeleteInternal(worldObjectsToDelete);
         }
 
         public static void ClientDelete(BoundsUshort worldBoundsToDeleteObjects)
         {
-            var staticObjects = Client.World.GetStaticObjectsAtBounds(worldBoundsToDeleteObjects);
-            instance.ClientDeleteInternal(staticObjects);
+            var staticObjects = Api.Client.World.GetStaticObjectsAtBounds(worldBoundsToDeleteObjects);
+            ClientDeleteInternal(staticObjects);
         }
 
-        protected override void PrepareProto()
+        private static void ClientDeleteInternal(IReadOnlyCollection<IStaticWorldObject> worldObjectsToDelete)
         {
-            base.PrepareProto();
-            instance = this;
-        }
+            worldObjectsToDelete = worldObjectsToDelete.Where(o => !RecentlyDeletedObjectIds.Contains(o.Id))
+                                                       .ToList();
+            if (worldObjectsToDelete.Count == 0)
+            {
+                return;
+            }
 
-        private void ClientDeleteInternal(IReadOnlyCollection<IStaticWorldObject> worldObjectsToDelete)
-        {
             worldObjectsToDelete = worldObjectsToDelete.Distinct().ToList();
+            var storageEntry = new ActionStorageEntry(
+                undoDeleteBatches: worldObjectsToDelete.Select(o => new SpawnObjectRequest(o))
+                                                       .Batch(20000)
+                                                       .Select(b => b.ToList())
+                                                       .ToList(),
+                deleteBatches: worldObjectsToDelete.Select(o => o.Id)
+                                                   .Batch(20000)
+                                                   .Select(b => b.ToList())
+                                                   .ToList());
 
-            var restoreRequests = worldObjectsToDelete.Select(o => new RestoreObjectRequest(o))
-                                                      .Batch(20000)
-                                                      .Select(b => b.ToList())
-                                                      .ToList();
-
-            var tilePositions = worldObjectsToDelete
-                                .GroupBy(_ => _.TilePosition)
-                                .Select(g => g.Key)
-                                .Batch(20000)
-                                .Select(b => b.ToList())
-                                .ToList();
-
-            EditorClientSystem.DoAction(
+            EditorClientActionsHistorySystem.DoAction(
                 "Delete objects",
                 onDo: () =>
                       {
-                          foreach (var batch in tilePositions)
+                          var countDeleted = 0;
+                          foreach (var batch in storageEntry.DeleteBatches)
                           {
-                              this.CallServer(_ => _.ServerRemote_DeleteObjects(batch));
+                              countDeleted += batch.Count;
+                              RecentlyDeletedObjectIds.AddRange(batch);
+                              WorldObjectsEditingSystem.Instance.CallServer(
+                                  _ => _.ServerRemote_DeleteObjects(batch));
+                              // the delete batch is no longer valid
+                              batch.Clear();
+                          }
+
+                          NotificationSystem.ClientShowNotification(
+                              title: null,
+                              message: countDeleted + " objects(s) removed!",
+                              color: NotificationColor.Good);
+
+                          // trim the list
+                          if (RecentlyDeletedObjectIds.Count > RecentlyDeletedObjectIdsMaxEntriesCount)
+                          {
+                              RecentlyDeletedObjectIds.RemoveRange(
+                                  0,
+                                  RecentlyDeletedObjectIds.Count - RecentlyDeletedObjectIdsMaxEntriesCount);
                           }
                       },
-                onUndo: () =>
+                onUndo: async () =>
                         {
-                            foreach (var batch in restoreRequests)
+                            var spawnBatches = storageEntry.UndoDeleteBatches;
+                            for (var index = 0; index < spawnBatches.Count; index++)
                             {
-                                this.CallServer(_ => _.ServerRemote_RestoreObjects(batch));
+                                var batch = spawnBatches[index];
+                                var spawnedObjectsIds =
+                                    await WorldObjectsEditingSystem.Instance.CallServer(
+                                        _ => _.ServerRemote_SpawnObjects(batch));
+                                // record spawned objects IDs so they could be removed on undo
+                                var undoSpawnBatch = storageEntry.DeleteBatches[index];
+                                undoSpawnBatch.Clear();
+                                undoSpawnBatch.AddRange(spawnedObjectsIds);
                             }
+
+                            NotificationSystem.ClientShowNotification(
+                                title: null,
+                                message: spawnBatches.Sum(r => r.Count) + " object(s) restored!",
+                                color: NotificationColor.Good);
                         },
                 canGroupWithPreviousAction: false);
         }
 
-        [RemoteCallSettings(DeliveryMode.Default,
-                            timeInterval: 0,
-                            clientMaxSendQueueSize: byte.MaxValue)]
-        private void ServerRemote_DeleteObjects(List<Vector2Ushort> positionsToDeleteObjects)
+        private class ActionStorageEntry
         {
-            var worldService = Server.World;
-
-            var worldObjectsToDelete = new List<IStaticWorldObject>(
-                capacity: positionsToDeleteObjects.Count * 2);
-
-            foreach (var tilePosition in positionsToDeleteObjects)
+            public ActionStorageEntry(
+                List<List<SpawnObjectRequest>> undoDeleteBatches,
+                List<List<uint>> deleteBatches)
             {
-                worldObjectsToDelete.AddRange(worldService.GetStaticObjects(tilePosition));
+                this.UndoDeleteBatches = undoDeleteBatches;
+                this.DeleteBatches = deleteBatches;
             }
 
-            foreach (var worldObject in worldObjectsToDelete)
-            {
-                worldService.DestroyObject(worldObject);
-            }
-        }
+            public List<List<uint>> DeleteBatches { get; }
 
-        /// <summary>
-        /// Tradeoff: we cannot restore deleted objects, but we can spawn the same objects again.
-        /// Of course their IDs and state will be new.
-        /// </summary>
-        [RemoteCallSettings(DeliveryMode.Default,
-                            timeInterval: 0,
-                            clientMaxSendQueueSize: byte.MaxValue)]
-        private void ServerRemote_RestoreObjects(IReadOnlyList<RestoreObjectRequest> request)
-        {
-            foreach (var restoreObjectRequest in request)
-            {
-                var prototype = restoreObjectRequest.Prototype;
-                Server.World.CreateStaticWorldObject(
-                    prototype,
-                    restoreObjectRequest.TilePosition);
-            }
-        }
-
-        internal struct RestoreObjectRequest : IRemoteCallParameter
-        {
-            public readonly IProtoStaticWorldObject Prototype;
-
-            public readonly Vector2Ushort TilePosition;
-
-            public RestoreObjectRequest(IStaticWorldObject staticWorldObject)
-            {
-                this.Prototype = staticWorldObject.ProtoStaticWorldObject;
-                this.TilePosition = staticWorldObject.TilePosition;
-            }
+            public List<List<SpawnObjectRequest>> UndoDeleteBatches { get; }
         }
     }
 }

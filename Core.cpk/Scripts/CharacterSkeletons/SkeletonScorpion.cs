@@ -15,10 +15,10 @@
         public override double IconScale => 0.46;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Scorpion/Back");
+            = new("Scorpion/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Scorpion/Front");
+            = new("Scorpion/Front");
 
         public override double WorldScale => 0.4;
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -17,7 +18,7 @@
         public static readonly double DropListItemsCountMultiplier;
 
         private readonly List<ValueWithWeight<Entry>> entries
-            = new List<ValueWithWeight<Entry>>();
+            = new();
 
         private ArrayWithWeights<Entry> frozenEntries;
 
@@ -227,31 +228,6 @@
             }
         }
 
-        public CreateItemResult Execute(
-            DelegateSpawnDropItem delegateSpawnDropItem,
-            DropItemContext dropItemContext,
-            double probabilityMultiplier)
-        {
-            this.Freeze();
-
-            var result = new CreateItemResult() { IsEverythingCreated = true };
-            using var selectedEntries = Api.Shared.GetTempList<Entry>();
-            this.SelectRandomEntries(selectedEntries, dropItemContext);
-
-            // execute selected entries
-            foreach (var entry in selectedEntries.AsList())
-            {
-                ExecuteEntry(entry,
-                             dropItemContext,
-                             out var entryResult,
-                             probabilityMultiplier,
-                             delegateSpawnDropItem);
-                result.MergeWith(entryResult);
-            }
-
-            return result;
-        }
-
         public CreateItemResult TryDropToCharacter(
             ICharacter character,
             DropItemContext context,
@@ -310,6 +286,15 @@
                 out groundContainer);
         }
 
+        CreateItemResult IReadOnlyDropItemsList.Execute(
+            DelegateSpawnDropItem delegateSpawnDropItem,
+            DropItemContext dropItemContext,
+            double probabilityMultiplier)
+        {
+            probabilityMultiplier *= DropListItemsCountMultiplier;
+            return this.ExecuteInternal(delegateSpawnDropItem, dropItemContext, probabilityMultiplier);
+        }
+
         private static void ExecuteEntry(
             Entry entry,
             DropItemContext dropItemContext,
@@ -336,14 +321,33 @@
                 }
             }
 
-            probabilityMultiplier *= entry.Probability;
-            createItemResult = entry.EntryNestedList is not null
-                                   ? entry.EntryNestedList.Execute(delegateSpawnDropItem,
-                                                                   dropItemContext,
-                                                                   probabilityMultiplier)
-                                   : ExecuteSpawnItem(entry.EntryItem,
-                                                      delegateSpawnDropItem,
-                                                      probabilityMultiplier);
+            var entryProbability = probabilityMultiplier * entry.Probability;
+            if (entry.EntryNestedList is null)
+            {
+                createItemResult = ExecuteSpawnItem(entry.EntryItem,
+                                                    delegateSpawnDropItem,
+                                                    probability: entryProbability);
+                return;
+            }
+
+            if (!RandomHelper.RollWithProbability(probability: entryProbability))
+            {
+                // nested droplist is not rolled
+                Log($"Nested droplist not rolled - its probability is x{entryProbability:F3}");
+                createItemResult = null;
+                return;
+            }
+
+            // nested droplist rolled
+            Log("Nested droplist rolled - its probability is x" + entryProbability.ToString("F3"));
+            // calculate its contents probability multiplier based on the remaining outstanding probability (>1.0)
+            probabilityMultiplier = Math.Max(1, entryProbability);
+
+            Log("Outstanding probability multiplier is x" + probabilityMultiplier.ToString("F3"));
+            createItemResult = ((DropItemsList)entry.EntryNestedList)
+                .ExecuteInternal(delegateSpawnDropItem,
+                                 dropItemContext,
+                                 probabilityMultiplier);
         }
 
         private static CreateItemResult ExecuteSpawnItem(
@@ -351,10 +355,10 @@
             DelegateSpawnDropItem delegateSpawnDropItem,
             double probability)
         {
-            probability *= DropListItemsCountMultiplier;
-
             if (!RandomHelper.RollWithProbability(probability))
             {
+                Log(
+                    $"Droplist spawn item ({dropItem.ProtoItem.ShortId}) not rolled - its probability is x{probability:F3}");
                 return new CreateItemResult() { IsEverythingCreated = true };
             }
 
@@ -364,8 +368,12 @@
             if (countToSpawn <= 0)
             {
                 // nothing to spawn this time
+                Log(
+                    $"Droplist spawn item ({dropItem.ProtoItem.ShortId}) rolled with probability x{probability:F3} but its end count is zero");
                 return new CreateItemResult() { IsEverythingCreated = true };
             }
+
+            Log($"Droplist spawn item ({dropItem.ProtoItem.ShortId}) rolled with probability x{probability:F3}");
 
             if (probability > 1)
             {
@@ -385,6 +393,39 @@
             }
 
             return delegateSpawnDropItem(dropItem.ProtoItem, (ushort)countToSpawn);
+        }
+
+        [Conditional("LOGGING")]
+        private static void Log(string message)
+        {
+            Api.Logger.Dev(message);
+        }
+
+        private CreateItemResult ExecuteInternal(
+            DelegateSpawnDropItem delegateSpawnDropItem,
+            DropItemContext dropItemContext,
+            double probabilityMultiplier)
+        {
+            this.Freeze();
+
+            var result = new CreateItemResult() { IsEverythingCreated = true };
+            using var selectedEntries = Api.Shared.GetTempList<Entry>();
+            this.SelectRandomEntries(selectedEntries, dropItemContext);
+
+            Log($"Starting rolling a droplist with probability multiplier x{probabilityMultiplier:F3}");
+
+            // execute selected entries
+            foreach (var entry in selectedEntries.AsList())
+            {
+                ExecuteEntry(entry,
+                             dropItemContext,
+                             out var entryResult,
+                             probabilityMultiplier,
+                             delegateSpawnDropItem);
+                result.MergeWith(entryResult);
+            }
+
+            return result;
         }
 
         private void Freeze()
@@ -425,7 +466,7 @@
                             break;
                         }
 
-                        // condition not match, select another entry
+                        // condition doesn't match, select another entry
                         continue;
                     }
                     catch (Exception ex)

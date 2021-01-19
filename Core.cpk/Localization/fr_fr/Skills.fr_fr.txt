@@ -25,6 +25,9 @@ De meilleures techniques agricoles vous permettent d'augmenter votre efficacité
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Exploitation agricole
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Nécessite : compétence Pêche niveau {0}.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Probabilité de récupérer votre appât
 
@@ -98,7 +101,7 @@ Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
 Affinité cybernétique
 
 Scripts/Skills/Skills/Personal/SkillLearning@Description:
-Survivre en environnement inconnu dans un monde extra-terrestre est difficile, mais cela offre des opportunités uniques d'apprendre des choses à côté desquelles vous seriez passé dans un autre contexte.
+Survivre en environnement inconnu dans un monde extraterrestre est difficile, mais cela offre des opportunités uniques d'apprendre des choses à côté desquelles vous seriez passé dans un autre contexte.
 
 Scripts/Skills/Skills/Personal/SkillLearning@Name:
 Apprentissage

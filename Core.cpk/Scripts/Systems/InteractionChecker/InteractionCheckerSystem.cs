@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -16,13 +17,23 @@
     {
         private const double CheckTimeIntervalSeconds = 1 / 5d;
 
-        private static readonly Dictionary<Pair, PairAction> RegisteredActions = new Dictionary<Pair, PairAction>();
+        private static readonly Dictionary<Pair, DelegateFinishAction> RegisteredActions
+            = new();
 
         public delegate void DelegateFinishAction(bool isAbort);
 
+        public static IWorldObject ClientCurrentInteraction
+            => SharedGetCurrentInteraction(ClientCurrentCharacterHelper.Character);
+
         public override string Name => "Interaction checker system";
 
-        public static void CancelCurrentInteraction(ICharacter character)
+        public static void ClientOnServerForceFinishInteraction(IWorldObject worldObject)
+        {
+            var pair = new Pair(ClientCurrentCharacterHelper.Character, worldObject);
+            RegisteredActions.Remove(pair);
+        }
+
+        public static void SharedAbortCurrentInteraction(ICharacter character)
         {
             foreach (var action in RegisteredActions)
             {
@@ -35,21 +46,6 @@
                 SharedUnregister(character, action.Key.WorldObject, isAbort: true);
                 return;
             }
-        }
-
-        public static bool ServerHasAnyInteraction(IWorldObject worldObject)
-        {
-            foreach (var pair in RegisteredActions.Keys)
-            {
-                if (!ReferenceEquals(pair.WorldObject, worldObject))
-                {
-                    continue;
-                }
-
-                return true;
-            }
-
-            return false;
         }
 
         public static IEnumerable<ICharacter> SharedEnumerateCurrentInteractionCharacters(IWorldObject worldObject)
@@ -119,7 +115,22 @@
             return tempObjectsInCharacterInteractionArea;
         }
 
-        public static bool SharedHasInteraction(
+        public static bool SharedHasAnyInteraction(IWorldObject worldObject)
+        {
+            foreach (var pair in RegisteredActions.Keys)
+            {
+                if (!ReferenceEquals(pair.WorldObject, worldObject))
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool SharedIsInteracting(
             ICharacter character,
             IWorldObject worldObject,
             bool requirePrivateScope)
@@ -147,8 +158,8 @@
             IWorldObject worldObject,
             DelegateFinishAction finishAction)
         {
-            CancelCurrentInteraction(character);
-            RegisteredActions[new Pair(character, worldObject)] = new PairAction(finishAction);
+            SharedAbortCurrentInteraction(character);
+            RegisteredActions[new Pair(character, worldObject)] = finishAction;
         }
 
         public static bool SharedUnregister(ICharacter character, IWorldObject worldObject, bool isAbort)
@@ -161,7 +172,11 @@
 
             try
             {
-                action.FinishAction?.Invoke(isAbort);
+                action?.Invoke(isAbort);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
             }
             finally
             {
@@ -169,6 +184,19 @@
             }
 
             return true;
+        }
+
+        public static void SharedValidateIsInteracting(
+            ICharacter character,
+            IWorldObject worldObject,
+            bool requirePrivateScope)
+        {
+            if (!SharedIsInteracting(character,
+                                     worldObject,
+                                     requirePrivateScope))
+            {
+                throw new Exception("Don't have an active interaction with " + worldObject);
+            }
         }
 
         protected override void PrepareSystem()
@@ -224,10 +252,10 @@
                 // remove if cannot interact
                 removeCondition: pair => !SharedIsValidInteraction(pair),
                 // abort action when pair removed due to the interaction check failed
-                removeCallback: pair => pair.Value.FinishAction?.Invoke(isAbort: true));
+                removeCallback: pair => pair.Value?.Invoke(isAbort: true));
         }
 
-        private struct Pair : IEquatable<Pair>
+        private readonly struct Pair : IEquatable<Pair>
         {
             public readonly ICharacter Character;
 
@@ -272,16 +300,6 @@
                     return ((this.Character is not null ? this.Character.GetHashCode() : 0) * 397)
                            ^ (this.WorldObject is not null ? this.WorldObject.GetHashCode() : 0);
                 }
-            }
-        }
-
-        private readonly struct PairAction
-        {
-            public readonly DelegateFinishAction FinishAction;
-
-            public PairAction(DelegateFinishAction finishAction)
-            {
-                this.FinishAction = finishAction;
             }
         }
     }

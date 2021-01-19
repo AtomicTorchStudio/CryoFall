@@ -185,7 +185,6 @@
                         }
 
                         var attackedTile = Client.World.GetTile((Vector2Ushort)testResultPhysicsBody.Position);
-
                         if (attackedTile.Height < characterTileHeight)
                         {
                             // attacked tile is below - ignore it
@@ -206,7 +205,14 @@
                         continue;
                     }
 
-                    if (!(damagedObject.ProtoGameObject is IDamageableProtoWorldObject))
+                    if (damagedObject.ProtoGameObject is not IDamageableProtoWorldObject protoDamageableWorldObject)
+                    {
+                        // shoot through this object
+                        continue;
+                    }
+
+                    if (protoDamageableWorldObject.ObstacleBlockDamageCoef < 1
+                        && protoDamageableWorldObject is not IProtoCharacter)
                     {
                         // shoot through this object
                         continue;
@@ -252,13 +258,13 @@
             private const double SpotScale = 4.0;
 
             private static readonly EffectResource BeamEffectResource
-                = new EffectResource("AdditiveColorEffect");
+                = new("AdditiveColorEffect");
 
             private static readonly TextureResource TextureResourceBeam
-                = new TextureResource("FX/WeaponTraces/BeamLaser.png");
+                = new("FX/WeaponTraces/BeamLaser.png");
 
             private static readonly TextureResource TextureResourceSpot
-                = new TextureResource("FX/Special/LaserSightSpot.png");
+                = new("FX/Special/LaserSightSpot.png");
 
             private readonly RenderingMaterial renderingMaterial
                 = RenderingMaterial.Create(BeamEffectResource);

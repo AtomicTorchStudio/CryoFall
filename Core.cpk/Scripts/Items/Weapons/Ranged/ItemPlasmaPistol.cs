@@ -27,7 +27,7 @@
 
         protected override WeaponFireScatterPreset PrepareFireScatterPreset()
         {
-            return new WeaponFireScatterPreset(
+            return new(
                 new[] { -1.5, -0.5, 0.5, 1.5 });
         }
 

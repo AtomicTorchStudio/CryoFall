@@ -61,11 +61,11 @@
                                             Container="{Binding MechEquipmentItemsContainer}"
                                             SlotId="1" />-->
 
-        <TextBlock  Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Text="{Binding VehicleWeaponSlotCaption}"
-                    Style="{StaticResource TextBlockVehicleMenuCaption}" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Text="{Binding VehicleWeaponSlotCaption}"
+                   Style="{StaticResource TextBlockVehicleMenuCaption}" />
 
         <controls:ItemSlotControlForBinding Grid.Row="1"
                                             Grid.Column="1"

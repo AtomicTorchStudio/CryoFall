@@ -22,6 +22,12 @@ Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCateg
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 操控
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+启动后将确保鼠标在窗口化游戏时不会跑到界面之外，除非按住Ctrl键。在多屏幕或者窗口化游戏时很有用。
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+鼠标捕获
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 开启
 
@@ -36,11 +42,26 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 开发者模式
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+通常游戏只会在其他角色头顶显示其生命条。你可以启用此选项启用你的角色的生命条。
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`显示生命条
+[br]于自己角色头顶`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 显示物品互动提示
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 显示物品名称提示
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`任务是游戏中的重要一环，尤其是对新玩家来说还能作为教程。
+[br]
+[br]确定禁用任务面板？`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+隐藏任务面板
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 摄像机缩放

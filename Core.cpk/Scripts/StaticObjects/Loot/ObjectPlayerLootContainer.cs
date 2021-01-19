@@ -21,6 +21,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Windows;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -101,17 +102,6 @@
                                                            position.Value,
                                                            ensureNoWallsOnTheWay: false,
                                                            ensureNoClosedDoorsOnTheWay: false);
-        }
-
-        public override string ClientGetTitle(IWorldObject worldObject)
-        {
-            var ownerName = GetPublicState((IStaticWorldObject)worldObject).OwnerName;
-            if (ownerName == ClientCurrentCharacterHelper.Character?.Name)
-            {
-                return MessageLootFromCurrentPlayer;
-            }
-
-            return string.Format(MessageFormatLootFromAnotherPlayer, ownerName);
         }
 
         public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
@@ -219,7 +209,7 @@
                 if (writeToLog)
                 {
                     NewbieProtectionSystem.SharedShowNewbieCannotDamageOtherPlayersOrLootBags(character,
-                                                                                              isLootBag: true);
+                        isLootBag: true);
                 }
 
                 return false;
@@ -231,7 +221,9 @@
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.15);
+        {
+            return (0.5, 0.15);
+        }
 
         public override bool SharedOnDamage(
             WeaponFinalCache weaponCache,
@@ -265,13 +257,27 @@
             //base.ClientInitialize(data);
 
             var sceneObject = data.GameObject.ClientSceneObject;
-            Client.Rendering.CreateSpriteRenderer(
-                sceneObject,
-                this.DefaultTexture,
-                drawOrder: DrawOrder.Default,
-                positionOffset: (0.5, 0.5),
-                spritePivotPoint: (0.5, 0.5),
-                scale: 0.5);
+            Client.Rendering.CreateSpriteRenderer(sceneObject,
+                                                  this.DefaultTexture,
+                                                  drawOrder: DrawOrder.Default,
+                                                  positionOffset: (0.5, 0.5),
+                                                  spritePivotPoint: (0.5, 0.5),
+                                                  scale: 0.5);
+
+            // attach a message about the loot owner
+            var ownerName = data.PublicState.OwnerName;
+            var message = ownerName == ClientCurrentCharacterHelper.Character?.Name
+                              ? MessageLootFromCurrentPlayer
+                              : string.Format(MessageFormatLootFromAnotherPlayer, ownerName);
+            var positionOffset = this.SharedGetObjectCenterWorldOffset(data.GameObject)
+                                 + (0, 0.8);
+            var control = new WorldObjectTitleTooltip();
+            control.Setup(message);
+
+            Client.UI.AttachControl(sceneObject,
+                                    control,
+                                    positionOffset: positionOffset,
+                                    isFocusable: false);
         }
 
         protected override void ClientInteractStart(ClientObjectData data)

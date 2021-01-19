@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -76,26 +77,32 @@
                 this.isAwaitingServerInteraction = false;
             }
 
-            var menuWindow = SharedGetProto(worldObject).ClientOpenUI(worldObject);
-            if (menuWindow is null)
+            var objectWindow = SharedGetProto(worldObject).ClientOpenUI(worldObject);
+            if (objectWindow is null)
             {
                 Logger.Info("Cannot open menu for object interaction with " + worldObject);
                 this.CallServer(_ => _.ServerRemote_OnClientInteractFinish(worldObject));
                 return;
             }
 
-            Api.SafeInvoke(() => ClientMenuCreated?.Invoke(worldObject, menuWindow));
-
-            ClientCurrentInteractionMenu.RegisterMenuWindow(menuWindow);
+            Api.SafeInvoke(() => ClientMenuCreated?.Invoke(worldObject, objectWindow));
+            if (!(objectWindow is IMenu))
+            {
+                ClientCurrentInteractionMenu.RegisterMenuWindow(objectWindow);
+            }
+            else
+            {
+                ClientCurrentInteractionMenu.TryCloseCurrentMenu();
+            }
 
             InteractionCheckerSystem.SharedRegister(
                 character,
                 worldObject,
-                finishAction: _ => menuWindow.CloseWindow());
+                finishAction: _ => objectWindow.CloseWindow());
 
             ClientInteractionUISystem.Register(
                 worldObject,
-                menuWindow,
+                objectWindow,
                 onMenuClosedByClient:
                 () =>
                 {
@@ -108,12 +115,21 @@
                 });
 
             Logger.Info("Started object interaction with " + worldObject);
-            ClientCurrentInteractionMenu.Open();
+            if (objectWindow is IMenu objectMenu)
+            {
+                if (!objectMenu.IsOpened)
+                {
+                    objectMenu.Toggle();
+                }
+            }
+            else
+            {
+                ClientCurrentInteractionMenu.Open();
+            }
         }
 
         private void ClientRemote_FinishInteraction(IWorldObject worldObject)
         {
-            Logger.Info($"Server informed that the object interaction with {worldObject} is finished");
             ClientInteractionUISystem.OnServerForceFinishInteraction(worldObject);
         }
 
@@ -163,7 +179,7 @@
                 return false;
             }
 
-            InteractionCheckerSystem.CancelCurrentInteraction(character);
+            InteractionCheckerSystem.SharedAbortCurrentInteraction(character);
 
             var proto = SharedGetProto(worldObject);
 

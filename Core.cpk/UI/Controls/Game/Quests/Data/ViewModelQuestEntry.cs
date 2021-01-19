@@ -12,14 +12,11 @@
 
     public class ViewModelQuestEntry : BaseViewModel
     {
-        private readonly bool showRequirementIcons;
-
         public ViewModelQuestEntry(
             PlayerCharacterQuests.CharacterQuestEntry questEntry,
             Action<ViewModelQuestEntry> callbackOnFinishedStateChanged,
             bool showRequirementIcons = true)
         {
-            this.showRequirementIcons = showRequirementIcons;
             this.QuestEntry = questEntry;
 
             var requirements = questEntry.Quest.Tasks;

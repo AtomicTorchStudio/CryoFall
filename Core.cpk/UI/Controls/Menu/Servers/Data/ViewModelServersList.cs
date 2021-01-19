@@ -45,9 +45,9 @@
             this.ServersList = new SuperObservableCollection<ViewModelServerInfoListEntry>(
                 new List<ViewModelServerInfoListEntry>()
                 {
-                    new ViewModelServerInfoListEntry(),
-                    new ViewModelServerInfoListEntry(),
-                    new ViewModelServerInfoListEntry()
+                    new(),
+                    new(),
+                    new()
                 });
         }
 

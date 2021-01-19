@@ -35,6 +35,7 @@
                 character,
                 sceneObjectCamera,
                 sceneObjectSkeleton,
+                camera,
                 renderTarget,
                 renderingTag,
                 textureWidth,

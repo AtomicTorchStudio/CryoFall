@@ -5,17 +5,18 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelItemEnergyCharge : BaseViewModel
     {
         private static readonly Brush BrushGreen
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0x20, 0xC0, 0x20));
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorGreen6");
 
         private static readonly Brush BrushRed
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xE0, 0x10, 0x10));
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed6");
 
         private static readonly Brush BrushYellow
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xE0, 0xE0, 0x10));
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColor6");
 
         private IItem item;
 

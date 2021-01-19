@@ -8,7 +8,7 @@ namespace AtomicTorch.CBND.CoreMod.Characters
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera;
 
-    internal static class ClientSpriteLutColorRemappingHelper
+    public static class ClientSpriteLutColorRemappingHelper
     {
         private static readonly IRenderingClientService Renderer = Api.Client.Rendering;
 
@@ -69,7 +69,7 @@ namespace AtomicTorch.CBND.CoreMod.Characters
                              qualityScaleCoef: Renderer.CalculateCurrentQualityScaleCoefWithOffset(
                                  spriteQualityOffset),
                              customName: request.TextureName);
-            
+
             renderTarget2D.Dispose();
 
             return result;

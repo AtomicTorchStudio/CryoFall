@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -20,13 +21,13 @@
         public const string DialogCannotConnect_Title = "Cannot connect";
 
         public static readonly SolidColorBrush BrushPingDefault
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+            = new(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
 
         public static readonly SolidColorBrush BrushPingRed
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0x66, 0x66));
+            = new(Color.FromArgb(0xFF, 0xFF, 0x66, 0x66));
 
         public static readonly SolidColorBrush BrushPingYellow
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xEE, 0x88));
+            = new(Color.FromArgb(0xFF, 0xFF, 0xEE, 0x88));
 
         public static readonly Brush IconPlaceholderBrush
             = IsDesignTime ? Brushes.LightSlateGray : null;
@@ -140,6 +141,8 @@
 
         public Visibility IncompatibleVisibility { get; private set; }
 
+        public bool IsCommunity { get; set; }
+
         public bool? IsCompatible
         {
             get => this.isCompatible;
@@ -206,8 +209,6 @@
         public bool IsNoClientModsAllowed { get; set; }
 
         public bool IsOfficial { get; set; }
-        
-        public bool IsCommunity { get; set; }
 
         public bool IsPingMeasurementDone { get; set; }
 
@@ -293,8 +294,7 @@
         public Visibility RefreshButtonVisibility { get; private set; }
 
         public string TimeAlreadyConvertedToLocalTimeZoneText
-            => string.Format(CoreStrings.TimeAlreadyConvertedToLocalTimeZone_Format,
-                             WelcomeMessageSystem.GetCurrentUtcOffsetText());
+            => ClientLocalTimeZoneHelper.GetTextTimeAlreadyConvertedToLocalTimeZone();
 
         public string Title
         {

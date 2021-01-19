@@ -24,7 +24,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesClient;
 
     public class PveSystem : ProtoSystem<PveSystem>
     {
@@ -60,7 +59,7 @@
         private static bool? clientIsPvE;
 
         private static TaskCompletionSource<bool> clientPvErequestTask
-            = new TaskCompletionSource<bool>();
+            = new();
 
         static PveSystem()
         {
@@ -224,7 +223,9 @@
                 return false;
             }
 
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject, character))
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject,
+                                                                    character,
+                                                                    requireFactionPermission: false))
             {
                 if (isProtectedVegetation)
                 {
@@ -346,7 +347,9 @@
                 return false;
             }
 
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject,
+                                                                    character,
+                                                                    requireFactionPermission: false)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
@@ -356,8 +359,8 @@
             // allow interacting with anything except player-built structures and plants
             switch (worldObject.ProtoStaticWorldObject)
             {
-                case IProtoObjectStructure _:
-                case IProtoObjectPlant _:
+                case IProtoObjectStructure:
+                case IProtoObjectPlant:
                     if (IsClient && writeToLog)
                     {
                         ClientShowNotificationActionForbidden();
@@ -426,7 +429,7 @@
             Logger.Important("Switched PvE duel mode to " + (isEnabled ? "enabled" : "disabled"), character);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 5)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1)]
         private void ServerRemote_SetDuelMode(bool isEnabled)
         {
             ServerSetDuelMode(ServerRemoteContext.Character, isEnabled);
@@ -446,7 +449,7 @@
                     {
                         return;
                     }
-                    
+
                     clientPvErequestTask?.TrySetCanceled();
                     clientPvErequestTask = new TaskCompletionSource<bool>();
                     var isPvE = serverInfo.ScriptingTags.Contains(ServerTagPvE);

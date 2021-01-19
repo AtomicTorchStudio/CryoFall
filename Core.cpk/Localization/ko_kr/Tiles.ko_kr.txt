@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+외계
+
+Scripts/Tiles/TileBarren@Name:
 불모지
 
 Scripts/Tiles/TileBeachBoreal@Name:

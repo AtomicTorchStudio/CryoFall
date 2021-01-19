@@ -54,7 +54,7 @@
 
         // ReSharper disable once StaticMemberInGenericType
         private static readonly List<ICharacter> TempListPlayersInView
-            = new List<ICharacter>();
+            = new();
 
         private ProtoCharacterSkeleton protoSkeleton;
 
@@ -76,7 +76,9 @@
 
         public virtual double BiomaterialValueMultiplier => 1.0;
 
-        public ITextureResource Icon
+        public virtual double CorpseInteractionAreaScale => 1.0;
+
+        public virtual ITextureResource Icon
         {
             get
             {
@@ -205,8 +207,7 @@
         {
             if (IsServer)
             {
-                this.ServerRebuildFinalCacheIfNeeded(character,
-                                                     GetPrivateState(character),
+                this.ServerRebuildFinalCacheIfNeeded(GetPrivateState(character),
                                                      GetPublicState(character));
             }
         }
@@ -216,7 +217,7 @@
             if (this.IsBoss)
             {
                 Client.UI.LayoutRootChildren.Add(
-                    new CharacterBossInfoControl(character));
+                    new CharacterBossHealthbarControl(character));
                 return;
             }
 
@@ -246,6 +247,17 @@
             out ProtoCharacterSkeleton skeleton,
             ref double scale,
             DropItemsList lootDroplist);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void ServerForceBuildFinalStatsCache(
+            TPrivateState privateState,
+            TPublicState publicState)
+        {
+            SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(
+                this.ProtoCharacterDefaultEffects,
+                publicState,
+                privateState);
+        }
 
         protected override void ServerInitializeCharacter(ServerInitializeData data)
         {
@@ -299,20 +311,20 @@
             Vector2F movementDirection,
             double rotationAngleRad)
         {
-            var movementDirectionNormalized = new Vector2D(
-                ClampDirection(movementDirection.X),
-                ClampDirection(movementDirection.Y)).Normalized;
+            Vector2D movementDirectionNormalized;
 
             double moveSpeed;
             if (movementDirection.X != 0
-                && movementDirection.Y != 0)
+                || movementDirection.Y != 0)
             {
                 moveSpeed = character.SharedGetFinalStatValue(StatName.MoveSpeed);
                 moveSpeed *= ProtoTile.SharedGetTileMoveSpeedMultiplier(character.Tile);
+                movementDirectionNormalized = movementDirection.ToVector2D().Normalized;
             }
             else
             {
                 moveSpeed = 0;
+                movementDirectionNormalized = default;
             }
 
             Server.World.SetDynamicObjectMoveSpeed(character, moveSpeed);
@@ -327,26 +339,11 @@
             statePublic.AppliedInput.Set(
                 new CharacterInput()
                 {
-                    MoveModes = CharacterMoveModesHelper.CalculateMoveModes(movementDirectionNormalized),
-                    RotationAngleRad = (float)rotationAngleRad,
+                    MoveModes =
+                        CharacterMoveModesHelper.GetPrevailingMoveModesForDirection(movementDirectionNormalized),
+                    RotationAngleRad = (float)rotationAngleRad
                 },
                 moveSpeed);
-
-            static double ClampDirection(double dir)
-            {
-                const double directionThreshold = 0.1;
-                if (dir > directionThreshold)
-                {
-                    return 1;
-                }
-
-                if (dir < -directionThreshold)
-                {
-                    return -1;
-                }
-
-                return 0;
-            }
         }
 
         protected sealed override void ServerUpdate(ServerUpdateData data)
@@ -360,7 +357,7 @@
                 return;
             }
 
-            this.ServerRebuildFinalCacheIfNeeded(character, privateState, publicState);
+            this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
 
             ServerUpdateAgroState(privateState, data.DeltaTime);
             this.ServerUpdateMob(data);
@@ -460,9 +457,8 @@
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ServerRebuildFinalCacheIfNeeded(
-            ICharacter character,
-            BaseCharacterPrivateState privateState,
-            ICharacterPublicState publicState)
+            TPrivateState privateState,
+            TPublicState publicState)
         {
             if (!privateState.FinalStatsCache.IsDirty)
             {
@@ -470,9 +466,7 @@
             }
 
             // rebuild stats cache
-            SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(this.ProtoCharacterDefaultEffects,
-                                                                       publicState,
-                                                                       privateState);
+            this.ServerForceBuildFinalStatsCache(privateState, publicState);
         }
 
         private void ServerUpdateMobDespawn(ICharacter characterMob, TPrivateState privateState, double deltaTime)

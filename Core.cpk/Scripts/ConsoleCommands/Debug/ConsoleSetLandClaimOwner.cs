@@ -24,10 +24,17 @@
             var landClaimsModified = 0;
             foreach (var area in tempList.AsList())
             {
+                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
+                if (LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction is not null)
+                {
+                    // cannot change an owner of the faction land claim
+                    continue;
+                }
+
                 var privateState = LandClaimArea.GetPrivateState(area);
                 privateState.LandClaimFounder = newOwnerName;
-                privateState.LandOwners.Clear();
-                privateState.LandOwners.Add(newOwnerName);
+                privateState.DirectLandOwners.Clear();
+                privateState.DirectLandOwners.Add(newOwnerName);
                 landClaimsModified++;
             }
 

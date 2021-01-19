@@ -10,24 +10,24 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using JetBrains.Annotations;
 
     public class ItemFuelConfig : IReadOnlyItemFuelConfig
     {
-        public ItemFuelConfig()
-        {
-        }
-
         public double FuelAmountInitial { get; set; }
 
         public double FuelCapacity { get; set; }
 
         public ITextureResource FuelCustomIcon { get; set; }
 
-        public FuelProtoItemsList FuelProtoItemsList { get; } = new FuelProtoItemsList();
+        public FuelProtoItemsList FuelProtoItemsList { get; } = new();
 
         public string FuelTitle => this.IsElectricity
                                        ? CoreStrings.TitleEnergyCharge
                                        : CoreStrings.TitleFuel;
+
+        [CanBeNull]
+        public Type FuelType => this.FuelProtoItemsList.FirstOrDefault()?.GetType();
 
         public double FuelUsePerSecond { get; set; }
 
@@ -45,7 +45,7 @@
                 return this.FuelCustomIcon;
             }
 
-            var fuelType = this.FuelProtoItemsList.FirstOrDefault()?.GetType();
+            var fuelType = this.FuelType;
             if (fuelType is null)
             {
                 Api.Logger.Error("No fuel icon is overridden for " + this);

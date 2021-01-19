@@ -12,9 +12,9 @@
     d:DataContext="{d:DesignInstance data:ViewModelStructurePointsBarControl, IsDesignTimeCreatable=True}">
 
     <core:ValueBarControl
-        Background="#BB001133"
-        BorderBrush="#CC0088AA"
-        BarBrush="#CC00DDFF"
+        BarBrush="{StaticResource BrushColorAlt6}"
+        BorderBrush="{StaticResource BrushColorAlt6}"
+        Background="{StaticResource BrushColorAlt1}"
         DataContext="{Binding StatBar}"
         MaxValue="{Binding ValueMax}"
         Value="{Binding ValueCurrent}"

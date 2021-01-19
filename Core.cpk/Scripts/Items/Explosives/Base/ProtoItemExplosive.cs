@@ -17,6 +17,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -123,13 +124,37 @@
             {
                 if (logErrors)
                 {
-                    Logger.Warning("Newbie cannot plant bombs");
                     NewbieProtectionSystem.SharedNotifyNewbieCannotPerformAction(character, this);
                 }
 
                 canPlace = false;
                 isTooFar = false;
                 return;
+            }
+
+            // check whether somebody nearby is already placing a bomb there
+            var tempCharactersNearby = Api.Shared.GetTempList<ICharacter>();
+            if (IsServer)
+            {
+                Server.World.GetScopedByPlayers(character, tempCharactersNearby);
+            }
+            else
+            {
+                Client.Characters.GetKnownPlayerCharacters(tempCharactersNearby);
+            }
+
+            foreach (var otherCharacter in tempCharactersNearby.AsList())
+            {
+                if (otherCharacter != character
+                    && otherCharacter.IsInitialized
+                    && PlayerCharacter.GetPublicState(otherCharacter).CurrentPublicActionState
+                        is ItemExplosiveActionPublicState explosiveActionState
+                    && explosiveActionState.TargetPosition == targetPosition)
+                {
+                    canPlace = false;
+                    isTooFar = false;
+                    return;
+                }
             }
 
             // check if there is a direct line of sight
@@ -144,7 +169,7 @@
                 using var obstaclesOnTheWay = physicsSpace.TestLine(
                     characterCenter,
                     toPosition,
-                    CollisionGroup.GetDefault(),
+                    CollisionGroup.Default,
                     sendDebugEvent: false);
                 foreach (var test in obstaclesOnTheWay.AsList())
                 {
@@ -164,8 +189,8 @@
 
                     switch (testWorldObject.ProtoWorldObject)
                     {
-                        case IProtoObjectDeposit _: // allow deposits
-                        case ObjectWallDestroyed _: // allow destroyed walls
+                        case IProtoObjectDeposit: // allow deposits
+                        case ObjectWallDestroyed: // allow destroyed walls
                             continue;
                     }
 

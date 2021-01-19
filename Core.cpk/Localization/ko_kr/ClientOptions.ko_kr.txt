@@ -22,6 +22,12 @@ Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCateg
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 컨트롤
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+활성화 시, 게임 창이 선택된 상태에서 Ctrl 키를 누르고 있지 않다면, 게임 창 밖으로 마우스 커서를 이동할 수 없게 됩니다. 멀티 모니터 또는 창 모드로 플레이할 때 유용합니다.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+커서 계류
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 무시하고 활성화
 
@@ -36,6 +42,13 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 개발자 모드
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+게임에서는 기본적으로 다른 캐릭터에게만 체력 바를 표시합니다. 이 설정을 활성화하여 자신의 캐릭터 위에도 체력 바를 표시할 수 있습니다.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`내 캐릭터 위에
+[br]체력 막대 표시`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 `오브젝트 상호 작용
 [br]말풍선 표시`
@@ -43,6 +56,14 @@ Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 `오브젝트 이름
 [br]말풍선 표시`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`퀘스트는 새로운 플레이어들을 위한 길잡이와 튜토리얼 역할을 하기 때문에 특히 처음으로 플레이하는 사람이라면 게임의 필수적인 부분이라고 할 수 있습니다.
+[br]
+[br]정말로 퀘스트 패널을 비활성화하시겠습니까?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+퀘스트 패널 숨기기
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 카메라 확대/축소

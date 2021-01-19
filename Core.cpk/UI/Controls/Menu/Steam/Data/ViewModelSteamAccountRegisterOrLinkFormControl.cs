@@ -29,6 +29,8 @@
             this.PasswordInputControl = Client.UI.CreateSecurePasswordInputControl();
         }
 
+        public bool CanRegister { get; private set; }
+
         public BaseCommand CommandRegisterAccount
             => new ActionCommand(this.ExecuteCommandRegisterAccount);
 
@@ -49,10 +51,12 @@
                     domain => this.email.IndexOf(domain, StringComparison.OrdinalIgnoreCase) >= 0))
                 {
                     this.EmailRegistrationErrorMessage = EmailPleaseUseAnotherEmailService;
+                    this.CanRegister = false;
                 }
                 else
                 {
                     this.EmailRegistrationErrorMessage = null;
+                    this.CanRegister = !string.IsNullOrEmpty(this.email);
                 }
             }
         }

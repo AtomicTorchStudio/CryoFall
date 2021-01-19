@@ -28,9 +28,9 @@
                 <TextBlock Text=": "
                            FontWeight="Bold"
                            Foreground="{StaticResource WindowTitleForeground}" />
-                <TextBlock Text="{Binding ButtonTitle}"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource WindowTitleForeground}" />
+                <core:FormattedTextBlock Content="{Binding ButtonTitle}"
+                                         FontWeight="Bold"
+                                         Foreground="{StaticResource WindowTitleForeground}" />
             </StackPanel>
 
             <core:FormattedTextBlock Content="{Binding Message}"

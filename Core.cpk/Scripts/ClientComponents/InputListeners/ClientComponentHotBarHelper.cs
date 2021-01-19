@@ -19,7 +19,7 @@
         private static readonly IInputClientService Input = Client.Input;
 
         private static readonly Dictionary<GameButton, byte> KeysMapping
-            = new Dictionary<GameButton, byte>()
+            = new()
             {
                 { GameButton.HotbarSelectSlot1, 0 },
                 { GameButton.HotbarSelectSlot2, 1 },

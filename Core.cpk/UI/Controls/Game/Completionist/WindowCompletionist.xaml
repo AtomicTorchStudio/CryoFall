@@ -6,7 +6,7 @@
                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist.Data"
                      xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-                     xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                      mc:Ignorable="d"
                      d:DesignHeight="300" d:DesignWidth="300"
                      d:DataContext="{d:DesignInstance data:ViewModelWindowCompletionist, IsDesignTimeCreatable=True}">
@@ -37,9 +37,10 @@
                     Fill="{Binding Icon}"
                     Width="{Binding DataContext.IconSize, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                     Height="{Binding DataContext.IconSize, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    UseLayoutRounding="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    ui:ToolTipServiceExtend.ToolTip="{Binding TooltipControl}" />
+                    base:ToolTipServiceExtend.ToolTip="{Binding TooltipControl}" />
 
                 <!-- Title -->
                 <TextBlock Grid.Row="1"
@@ -55,20 +56,22 @@
                 <StackPanel Grid.Row="2"
                             Orientation="Vertical"
                             Visibility="{Binding IsRewardClaimed, Converter={StaticResource BoolToHiddenVisibilityConverter}}">
-                    <TextBlock Text="{Binding MaxWeightText, StringFormat={}{x:Static loc:CoreStrings.WindowCompletionist_BestFishWeight_Format}}"
-                               Style="{StaticResource TextBlockItemTitleStyle}"
-                               HorizontalAlignment="Center"
-                               TextAlignment="Center"
-                               Foreground="{StaticResource BrushColor5}"
-                               LineHeight="10"
-                               Margin="0,3,0,0" />
-                    <TextBlock Text="{Binding MaxLengthText, StringFormat={}{x:Static loc:CoreStrings.WindowCompletionist_BestFishLength_Format}}"
-                               Style="{StaticResource TextBlockItemTitleStyle}"
-                               HorizontalAlignment="Center"
-                               TextAlignment="Center"
-                               Foreground="{StaticResource BrushColor5}"
-                               LineHeight="10"
-                               Margin="0,2,0,0" />
+                    <TextBlock
+                        Text="{Binding MaxWeightText, StringFormat={}{x:Static loc:CoreStrings.WindowCompletionist_BestFishWeight_Format}}"
+                        Style="{StaticResource TextBlockItemTitleStyle}"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        Foreground="{StaticResource BrushColor5}"
+                        LineHeight="10"
+                        Margin="0,3,0,0" />
+                    <TextBlock
+                        Text="{Binding MaxLengthText, StringFormat={}{x:Static loc:CoreStrings.WindowCompletionist_BestFishLength_Format}}"
+                        Style="{StaticResource TextBlockItemTitleStyle}"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        Foreground="{StaticResource BrushColor5}"
+                        LineHeight="10"
+                        Margin="0,2,0,0" />
                 </StackPanel>
 
                 <!-- Locked title -->
@@ -114,9 +117,10 @@
                     Fill="{Binding Icon}"
                     Width="{Binding DataContext.IconSize, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                     Height="{Binding DataContext.IconSize, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    UseLayoutRounding="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    ui:ToolTipServiceExtend.ToolTip="{Binding TooltipControl}" />
+                    base:ToolTipServiceExtend.ToolTip="{Binding TooltipControl}" />
 
                 <!-- Title -->
                 <TextBlock Grid.Row="1"
@@ -175,23 +179,21 @@
                                          Columns="{Binding ColumnsCount}"
                                          HorizontalAlignment="Stretch"
                                          VerticalAlignment="Top"
-                                         Margin="0,-8,0,-6" />
+                                         Margin="0,-8,0,2" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.Template>
                         <ControlTemplate>
-                            <Border
-                                BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                Padding="{TemplateBinding Control.Padding}"
-                                BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                Background="{TemplateBinding Panel.Background}"
-                                SnapsToDevicePixels="True">
-                                <ScrollViewer
+                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
                                     Padding="{TemplateBinding Control.Padding}"
-                                    Focusable="False"
-                                    HorizontalScrollBarVisibility="Disabled"
-                                    VerticalScrollBarVisibility="Auto"
-                                    Style="{StaticResource VerticalScrollViewerWithFadeStyle}">
+                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                    Background="{TemplateBinding Panel.Background}"
+                                    SnapsToDevicePixels="True">
+                                <ScrollViewer Padding="{TemplateBinding Control.Padding}"
+                                              Focusable="False"
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Auto"
+                                              Style="{StaticResource VerticalScrollViewerWithFadeStyle}">
                                     <ItemsPresenter
                                         SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
                                 </ScrollViewer>
@@ -210,6 +212,7 @@
                         <Style x:Key="TextBlockProgressStyle" TargetType="TextBlock">
                             <Setter Property="Foreground" Value="{StaticResource BrushColorAlt5}" />
                             <Setter Property="FontSize" Value="13" />
+                            <Setter Property="FontWeight" Value="Bold" />
                             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                         </Style>
                     </Grid.Resources>
@@ -234,14 +237,16 @@
                         Padding="2"
                         IsDisplayLabel="False"
                         IsDisplayTooltip="False"
-                        BorderBrush="#77FFFF00"
+                        BorderBrush="{StaticResource BrushColorAlt3}"
                         BorderThickness="1">
 
                         <!-- bar -->
-                        <Border Background="#AAFFFF00" CornerRadius="2" />
+                        <Border Background="{StaticResource BrushColorAlt4}"
+                                CornerRadius="2" />
 
                         <core:ValueBarControl.Background>
-                            <SolidColorBrush Color="{StaticResource Color4}" Opacity="0.2" />
+                            <SolidColorBrush Color="{StaticResource ColorAlt1}"
+                                             Opacity="0.6" />
                         </core:ValueBarControl.Background>
 
                         <core:ValueBarControl.Template>
@@ -269,26 +274,13 @@
                                                                  MappingMode="Absolute">
                                                 <GradientStop Color="Transparent" Offset="0" />
                                                 <GradientStop Color="Transparent" Offset="0.9" />
-                                                <GradientStop Color="#FFFFFF00" Offset="0.901" />
-                                                <GradientStop Color="#FFFFFF00" Offset="0.95" />
+                                                <GradientStop Color="{StaticResource ColorAlt4}" Offset="0.901" />
+                                                <GradientStop Color="{StaticResource ColorAlt4}" Offset="0.95" />
                                                 <GradientStop Color="Black" Offset="0.951" />
                                                 <GradientStop Color="Black" Offset="1.0" />
                                             </LinearGradientBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-
-                                    <!-- Shadow gradient overlay -->
-                                    <Border Margin="2" CornerRadius="1">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1"
-                                                                 Opacity="0.45">
-                                                <GradientStop Color="Transparent" Offset="0" />
-                                                <GradientStop Color="#99000000" Offset="0.5" />
-                                                <GradientStop Color="#FF000000" Offset="0.75" />
-                                                <GradientStop Color="#FF000000" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
                                 </Grid>
                             </ControlTemplate>
                         </core:ValueBarControl.Template>
@@ -304,17 +296,19 @@
 
         <ControlTemplate x:Key="ControlTemplateTabBadge">
             <Canvas VerticalAlignment="Top">
-                <Border Visibility="{Binding HasPendingEntries, Converter={StaticResource BoolToVisibilityConverter}}"
-                        Canvas.Left="5"
-                        Canvas.Top="1.5"
-                        CornerRadius="5"
-                        Background="{StaticResource BrushColorAlt0}"
-                        BorderBrush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"
-                        BorderThickness="0.75"
-                        Padding="2,0">
+                <Border
+                    Visibility="{Binding PendingEntriesCount, Converter={StaticResource CountToVisibilityConverter}}"
+                    Canvas.Left="4"
+                    Canvas.Top="1.5"
+                    CornerRadius="5"
+                    Background="{StaticResource BrushColorAlt0}"
+                    BorderBrush="{Binding (TextElement.Foreground), RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter}}"
+                    BorderThickness="0.75"
+                    Padding="2,0">
                     <TextBlock Text="{Binding PendingEntriesCount}"
                                Foreground="White"
                                FontSize="10"
+                               FontWeight="Bold"
                                MinWidth="10"
                                FontFamily="{StaticResource DigitsFontFamily}"
                                TextAlignment="Center" />
@@ -357,7 +351,8 @@
             <TabItem DataContext="{Binding EntriesFish}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabFish}" />
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabFish}"
+                                   Style="{StaticResource TextBlockTabStyle}" />
                         <Control Template="{StaticResource ControlTemplateTabBadge}" />
                     </StackPanel>
                 </TabItem.Header>
@@ -367,7 +362,8 @@
             <TabItem DataContext="{Binding EntriesFood}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabFood}" />
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabFood}"
+                                   Style="{StaticResource TextBlockTabStyle}" />
                         <Control Template="{StaticResource ControlTemplateTabBadge}" />
                     </StackPanel>
                 </TabItem.Header>
@@ -378,7 +374,8 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabCreatures}" />
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabCreatures}"
+                                       Style="{StaticResource TextBlockTabStyle}" />
                             <Control Template="{StaticResource ControlTemplateTabBadge}" />
                         </StackPanel>
                     </StackPanel>
@@ -390,7 +387,8 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabLoot}" />
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabLoot}"
+                                       Style="{StaticResource TextBlockTabStyle}" />
                             <Control Template="{StaticResource ControlTemplateTabBadge}" />
                         </StackPanel>
                     </StackPanel>

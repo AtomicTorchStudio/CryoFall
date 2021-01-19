@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -23,21 +24,27 @@
             ObjectTradingStationPublicState publicState)
         {
             this.worldObjectTradingStation = worldObjectTradingStation;
-            this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
-                privateState.Owners,
-                callbackServerSetOwnersList:
-                ownersList => WorldObjectOwnersSystem.ClientSetOwners(worldObjectTradingStation, ownersList),
-                title: CoreStrings.ObjectOwnersList_Title);
+
+            this.IsInsideFactionClaim = LandClaimSystem.SharedIsWorldObjectOwnedByFaction(worldObjectTradingStation);
+            if (!this.IsInsideFactionClaim)
+            {
+                this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
+                    privateState.Owners,
+                    callbackServerSetOwnersList:
+                    ownersList => WorldObjectOwnersSystem.ClientSetOwners(worldObjectTradingStation, ownersList),
+                    title: CoreStrings.ObjectOwnersList_Title);
+            }
 
             this.ViewModelStockContainerExchange = new ViewModelItemsContainerExchange(
-                privateState.StockItemsContainer,
-                callbackTakeAllItemsSuccess: () => { });
+                privateState.StockItemsContainer);
 
             this.Lots = publicState.Lots.Select(l => new ViewModelTradingStationLot(l, this.LotEditorSaveHandler))
                                    .ToList();
 
             this.isStationSellingMode = publicState.Mode == TradingStationMode.StationSelling;
         }
+
+        public bool IsInsideFactionClaim { get; }
 
         public bool IsStationSellingMode
         {

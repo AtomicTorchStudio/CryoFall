@@ -22,7 +22,6 @@
 
             // trees with stuff & food
             spawnList.CreatePreset(interval: 8, padding: 1.5)
-                     .Add<ObjectTreeRubber>()
                      .Add<ObjectTreeBanana>()
                      .Add<ObjectTreeDurian>()
                      .SetCustomPaddingWithSelf(5)

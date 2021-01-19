@@ -5,15 +5,15 @@
     using System.Diagnostics.CodeAnalysis;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-    internal static class SuperObservableCollectionEventArgsCache
+    public static class SuperObservableCollectionEventArgsCache
     {
         public static readonly PropertyChangedEventArgs EventArgsCountPropertyChanged
-            = new PropertyChangedEventArgs("Count");
+            = new("Count");
 
         public static readonly PropertyChangedEventArgs EventArgsIndexerPropertyChanged
-            = new PropertyChangedEventArgs("Item[]");
+            = new("Item[]");
 
         public static readonly NotifyCollectionChangedEventArgs EventArgsResetCollection
-            = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+            = new(NotifyCollectionChangedAction.Reset);
     }
 }

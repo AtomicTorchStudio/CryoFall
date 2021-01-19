@@ -15,7 +15,7 @@
         public static readonly string[] EmptySuggestions = new string[0];
 
         private static readonly Dictionary<Type, BaseConsoleCommandParameterType> ParameterTypes =
-            new Dictionary<Type, BaseConsoleCommandParameterType>();
+            new();
 
         /// <summary>
         /// Extracts segments from text.

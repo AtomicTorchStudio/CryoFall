@@ -43,12 +43,27 @@
         public int SoundsCount
             => this.dictionary.Sum(v => v.Value.Count);
 
+        public void ApplyCustomDistance(IComponentSoundEmitter emitter)
+        {
+            if (this.CustomDistance.HasValue)
+            {
+                emitter.CustomMinDistance = this.CustomDistance.Value.min;
+                emitter.CustomMaxDistance = this.CustomDistance.Value.max;
+            }
+
+            if (this.CustomDistance3DSpread.HasValue)
+            {
+                emitter.CustomMinDistance3DSpread = this.CustomDistance3DSpread.Value.min;
+                emitter.CustomMaxDistance3DSpread = this.CustomDistance3DSpread.Value.max;
+            }
+        }
+
         /// <summary>
         /// Create editable sound preset.
         /// </summary>
         public SoundPreset<TSoundKey> Clone()
         {
-            return new SoundPreset<TSoundKey>(
+            return new(
                 this.dictionary.ToDictionary(p => p.Key, p => p.Value.Clone()),
                 this.CustomDistance,
                 this.CustomDistance3DSpread);
@@ -191,7 +206,7 @@
             }
 
             if (limitOnePerFrame
-                && this.CheckLimit())
+                && CheckLimit())
             {
                 // limited, but sound is present
                 return true;
@@ -246,30 +261,15 @@
             (float min, float max)? customDistance,
             (float min, float max)? customDistance3DSpread)
         {
-            return new ReadOnlySoundPreset<TSoundKey>(dictionary,
-                                                      customDistance,
-                                                      customDistance3DSpread);
-        }
-
-        private void ApplyCustomDistance(IComponentSoundEmitter emitter)
-        {
-            if (this.CustomDistance.HasValue)
-            {
-                emitter.CustomMinDistance = this.CustomDistance.Value.min;
-                emitter.CustomMaxDistance = this.CustomDistance.Value.max;
-            }
-
-            if (this.CustomDistance3DSpread.HasValue)
-            {
-                emitter.CustomMinDistance3DSpread = this.CustomDistance3DSpread.Value.min;
-                emitter.CustomMaxDistance3DSpread = this.CustomDistance3DSpread.Value.max;
-            }
+            return new(dictionary,
+                       customDistance,
+                       customDistance3DSpread);
         }
 
         /// <summary>
         /// Play sound limited to one sound per frame (applies only to 2D sounds).
         /// </summary>
-        private bool CheckLimit()
+        private static bool CheckLimit()
         {
             var currentFrameNumber = ClientGame.ServerFrameNumber;
             if (currentFrameNumber == lastPlayedWithLimitFrameNumber)

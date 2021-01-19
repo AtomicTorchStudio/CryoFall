@@ -58,7 +58,7 @@
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)
         {
             base.ServerInitializeCharacterMob(data);
-            var weaponProto = GetProtoEntity<ItemWeaponLizardFangs>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobLizardFangs>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -70,6 +70,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 4,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 10,

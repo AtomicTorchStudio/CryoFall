@@ -7,70 +7,61 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
-    d:DesignHeight="600" d:DesignWidth="600"
     x:Name="UserControl"
-    Background="Black"
+    d:DesignHeight="600" d:DesignWidth="600"
+    d:DataContext="{d:DesignInstance data:ViewModelLoadingSplashScreen}"
     Panel.ZIndex="8900"
-    d:DataContext="{d:DesignInstance data:ViewModelLoadingSplashScreen, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    UseLayoutRounding="True">
+
     <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <Color x:Key="ColorBackgroundPrimary">Black</Color>
+        </Grid.Resources>
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop x:Name="ColorBackgroundB" Color="Black" Offset="0.667" />
+                <GradientStop x:Name="ColorBackgroundA" Color="{StaticResource ColorBackgroundPrimary}" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualStateGroup.Transitions>
-                    <VisualTransition GeneratedDuration="0:0:0.5" To="Shown" />
-                    <VisualTransition GeneratedDuration="0:0:0.5" To="Hidden" />
+                    <VisualTransition GeneratedDuration="0:0:1.0" To="Shown" />
+                    <VisualTransition GeneratedDuration="0:0:1.0" To="Hidden" />
                 </VisualStateGroup.Transitions>
                 <VisualState x:Name="Shown">
                     <Storyboard>
-                        <ColorAnimationUsingKeyFrames
-                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                            Storyboard.TargetName="UserControl">
-                            <EasingColorKeyFrame Value="#FF000000" KeyTime="0" />
-                        </ColorAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames
-                            Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)"
-                            Storyboard.TargetName="TextBlockLoadingPhrase">
-                            <EasingDoubleKeyFrame Value="1" KeyTime="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"
-                                                       Storyboard.TargetName="Logo1">
-                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Opacity)"
-                                                       Storyboard.TargetName="StructureInfos">
-                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"
-                                                       Storyboard.TargetName="Logo2">
-                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                        </DoubleAnimationUsingKeyFrames>-->
+                        <!-- It's intentionally empty -->
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Hidden">
                     <Storyboard>
-                        <ColorAnimationUsingKeyFrames
-                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                            Storyboard.TargetName="UserControl">
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="ColorBackgroundA"
+                                                      Storyboard.TargetProperty="Color">
+                            <EasingColorKeyFrame
+                                Value="{Binding Source={StaticResource ColorBackgroundPrimary}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x00}"
+                                KeyTime="0" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="ColorBackgroundB"
+                                                      Storyboard.TargetProperty="Color">
                             <EasingColorKeyFrame Value="#00000000" KeyTime="0" />
                         </ColorAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames
-                            Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)"
-                            Storyboard.TargetName="TextBlockLoadingPhrase">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TextBlockLoadingPhrase"
+                                                       Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)">
                             <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"
-                                                       Storyboard.TargetName="Logo1">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Logo1"
+                                                       Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)">
                             <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Opacity)"
-                                                       Storyboard.TargetName="StructureInfos">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="StructureInfos"
+                                                       Storyboard.TargetProperty="(Control.Opacity)">
                             <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"
-                                                       Storyboard.TargetName="Logo2">
-                            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                        </DoubleAnimationUsingKeyFrames>-->
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -85,7 +76,7 @@
                             <ImageBrush ImageSource="/UI/Images/Logo/icon_512.png" Stretch="Uniform" />
                         </Rectangle.Fill>
                     </Rectangle>
-                    
+
                     <!-- Text: LOADING -->
                     <TextBlock x:Name="TextBlockLoadingPhrase"
                                Text="{x:Static loc:CoreStrings.LoadingSplashScreen_Title}"
@@ -98,6 +89,7 @@
 
                     <ItemsControl x:Name="StructureInfos"
                                   ItemsSource="{Binding StructureInfos}"
+                                  Visibility="{Binding DisplayStructureInfos, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
                                   Margin="0,65,0,0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -113,6 +105,7 @@
                                         Fill="{Binding Icon}"
                                         Width="140"
                                         Height="140"
+                                        UseLayoutRounding="True"
                                         HorizontalAlignment="Center"
                                         Margin="10,0" />
 

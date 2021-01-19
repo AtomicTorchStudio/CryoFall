@@ -9,7 +9,7 @@
 
     /// <summary>
     /// This system will decrease food/water bars for online active players.
-    /// If player is online but idle for over ThresholdIdleSeconds, food/water decrease will be suspended.
+    /// If player is online but idle (AFK), food/water decrease will be suspended.
     /// </summary>
     public class CharacterHungerThirstSystem : ProtoSystem<CharacterHungerThirstSystem>
     {

@@ -41,6 +41,9 @@
             var zoneQuadTree = clientZoneProvider.GetQuadTree();
             var zoneBounds = zoneQuadTree.Bounds;
 
+            // TODO: it would be great if we can make that it will delete the map objects
+            // that were spawned only by spawn scripts and not by hand/during loading the map from the map file.
+            // Unfortunately, it's not possible to determine.
             var worldBoundsToDeleteObjects =
                 worldService.GetStaticObjectsAtBounds(zoneBounds)
                             .Where(o => zoneQuadTree.IsPositionFilled(o.TilePosition))

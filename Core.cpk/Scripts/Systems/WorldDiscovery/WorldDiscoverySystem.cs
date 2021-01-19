@@ -15,9 +15,9 @@
     {
         private const string DatabaseKeyPlayerDiscoveredChunkTiles = "PlayerDiscoveredChunkTiles";
 
-        private int clientLastRequestIndex;
+        private static int clientLastRequestIndex;
 
-        private Dictionary<ICharacter, HashSet<Vector2Ushort>> serverPlayerDiscoveredChunkTiles;
+        private static Dictionary<ICharacter, HashSet<Vector2Ushort>> serverPlayerDiscoveredChunkTiles;
 
         public override string Name => "World discovery system";
 
@@ -45,13 +45,13 @@
                 return;
             }
 
-            var clientRequestIndex = ++this.clientLastRequestIndex;
+            var clientRequestIndex = ++clientLastRequestIndex;
 
             Client.World.ClearDiscoveredWorldChunks();
 
             // request discovered tiles
             var resultDiscoveredTiles = await this.CallServer(_ => _.ServerRemote_GetDiscoveredTiles());
-            if (clientRequestIndex != this.clientLastRequestIndex)
+            if (clientRequestIndex != clientLastRequestIndex)
             {
                 return;
             }
@@ -67,10 +67,10 @@
 
         public void ServerDiscoverWorldChunks(ICharacter character, IReadOnlyList<Vector2Ushort> chunkTilePositions)
         {
-            if (!this.serverPlayerDiscoveredChunkTiles.TryGetValue(character, out var hashSet))
+            if (!serverPlayerDiscoveredChunkTiles.TryGetValue(character, out var hashSet))
             {
                 hashSet = new HashSet<Vector2Ushort>();
-                this.serverPlayerDiscoveredChunkTiles[character] = hashSet;
+                serverPlayerDiscoveredChunkTiles[character] = hashSet;
             }
 
             var world = Api.Server.World;
@@ -136,23 +136,23 @@
             if (Api.Server.Database.TryGet(
                 nameof(WorldDiscoverySystem),
                 DatabaseKeyPlayerDiscoveredChunkTiles,
-                out this.serverPlayerDiscoveredChunkTiles))
+                out serverPlayerDiscoveredChunkTiles))
             {
                 Logger.Important(
                     "Observed chunk tiles system loaded - characters count: "
                     + Environment.NewLine
-                    + this.serverPlayerDiscoveredChunkTiles.Count
+                    + serverPlayerDiscoveredChunkTiles.Count
                     /*this.serverPlayerDiscoveredChunkTiles.Select(c => $"{c.Key} - {c.Value.Count} chunks")
                               .GetJoinedString(Environment.NewLine)*/);
                 return;
             }
 
             // the list is not stored, create a new one
-            this.serverPlayerDiscoveredChunkTiles = new Dictionary<ICharacter, HashSet<Vector2Ushort>>();
+            serverPlayerDiscoveredChunkTiles = new Dictionary<ICharacter, HashSet<Vector2Ushort>>();
             Api.Server.Database.Set(
                 nameof(WorldDiscoverySystem),
                 DatabaseKeyPlayerDiscoveredChunkTiles,
-                this.serverPlayerDiscoveredChunkTiles);
+                serverPlayerDiscoveredChunkTiles);
         }
 
         private void ServerPlayerCharacterObservedTilesHandler(
@@ -167,12 +167,12 @@
         [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
         private HashSet<Vector2Ushort> ServerRemote_GetDiscoveredTiles()
         {
-            return this.serverPlayerDiscoveredChunkTiles.Find(ServerRemoteContext.Character);
+            return serverPlayerDiscoveredChunkTiles.Find(ServerRemoteContext.Character);
         }
 
         private bool ServerValidatePlayerDiscoveredWorldChunk(ICharacter character, Vector2Ushort chunkStartPosition)
         {
-            return this.serverPlayerDiscoveredChunkTiles.TryGetValue(character, out var hashSet)
+            return serverPlayerDiscoveredChunkTiles.TryGetValue(character, out var hashSet)
                    && hashSet.Contains(chunkStartPosition);
         }
 

@@ -16,7 +16,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ClientWorldMapLandClaimsGroupVisualizer : IWorldMapVisualizer
+    public class ClientWorldMapLandClaimsGroupVisualizer : BaseWorldMapVisualizer
     {
         public const string NotificationBaseUnderAttack_MessageFormat
             = @"One of your bases is being raided!
@@ -27,28 +27,12 @@
         private static readonly IWorldClientService World = Api.Client.World;
 
         private readonly Dictionary<ILogicObject, Controller> groupControllers
-            = new Dictionary<ILogicObject, Controller>();
-
-        private readonly WorldMapController worldMapController;
+            = new();
 
         public ClientWorldMapLandClaimsGroupVisualizer(WorldMapController worldMapController)
+            : base(worldMapController)
         {
-            this.worldMapController = worldMapController;
             World.LogicObjectInitialized += this.LogicObjectInitializedHandler;
-        }
-
-        public bool IsEnabled { get; set; }
-
-        public void Dispose()
-        {
-            World.LogicObjectInitialized -= this.LogicObjectInitializedHandler;
-
-            foreach (var controller in this.groupControllers)
-            {
-                controller.Value.Dispose();
-            }
-
-            this.groupControllers.Clear();
         }
 
         public void Register(ILogicObject area)
@@ -63,7 +47,7 @@
                 }
             }
 
-            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
             if (areasGroup is null)
             {
                 return;
@@ -71,7 +55,7 @@
 
             if (!this.groupControllers.TryGetValue(areasGroup, out controller))
             {
-                controller = new Controller(areasGroup, this.worldMapController);
+                controller = new Controller(areasGroup, this);
                 this.groupControllers[areasGroup] = controller;
             }
 
@@ -99,6 +83,18 @@
             }
         }
 
+        protected override void DisposeInternal()
+        {
+            World.LogicObjectInitialized -= this.LogicObjectInitializedHandler;
+
+            foreach (var controller in this.groupControllers)
+            {
+                controller.Value.Dispose();
+            }
+
+            this.groupControllers.Clear();
+        }
+
         private void LogicObjectInitializedHandler(ILogicObject logicObject)
         {
             if (this.groupControllers.TryGetValue(logicObject, out var controller))
@@ -113,7 +109,7 @@
 
             private readonly ILogicObject areasGroup;
 
-            private readonly WorldMapController worldMapController;
+            private readonly ClientWorldMapLandClaimsGroupVisualizer visualizer;
 
             private bool isRaided;
 
@@ -125,10 +121,10 @@
 
             public Controller(
                 ILogicObject areasGroup,
-                WorldMapController worldMapController)
+                ClientWorldMapLandClaimsGroupVisualizer visualizer)
             {
                 this.areasGroup = areasGroup;
-                this.worldMapController = worldMapController;
+                this.visualizer = visualizer;
                 this.ReInitialize();
             }
 
@@ -168,17 +164,16 @@
                 this.stateSubscriptionStorage = null;
             }
 
-            private Vector2Ushort GetAreasGroupCanvasPosition(Vector2D worldPosition)
+            private Vector2Ushort GetAreasGroupCanvasPosition(Vector2Ushort worldPosition)
             {
-                return this.worldMapController.WorldToCanvasPosition(worldPosition)
+                return this.visualizer
+                           .WorldToCanvasPosition(worldPosition.ToVector2D())
                            .ToVector2Ushort();
             }
 
-            private Vector2D GetAreasGroupWorldPosition()
+            private Vector2Ushort GetAreasGroupWorldPosition()
             {
-                var bounds = LandClaimSystem.SharedGetLandClaimGroupsBoundingArea(this.areasGroup);
-                return (bounds.X + bounds.Width / 2.0,
-                        bounds.Y + bounds.Height / 2.0);
+                return LandClaimSystem.SharedGetLandClaimGroupCenterPosition(this.areasGroup);
             }
 
             private void RaidRefreshTimerCallback()
@@ -224,16 +219,18 @@
                 Canvas.SetLeft(this.markRaidControl, canvasPosition.X);
                 Canvas.SetTop(this.markRaidControl, canvasPosition.Y);
                 Panel.SetZIndex(this.markRaidControl, 11);
-                this.worldMapController.AddControl(this.markRaidControl);
+                this.visualizer.AddControl(this.markRaidControl);
 
                 // show notification message
-                var localPosition = worldPosition.ToVector2Ushort()
+                var localPosition = worldPosition
                                     - Api.Client.World.WorldBounds.Offset;
 
                 this.raidNotification = NotificationSystem.ClientShowNotification(
                     NotificationBaseUnderAttack_Title,
                     string.Format(NotificationBaseUnderAttack_MessageFormat,
-                                  localPosition.X,
+                                  WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(localPosition)
+                                  + "-"
+                                  + localPosition.X,
                                   localPosition.Y),
                     NotificationColor.Bad,
                     autoHide: false,
@@ -254,7 +251,7 @@
                     return;
                 }
 
-                this.worldMapController.RemoveControl(this.markRaidControl);
+                this.visualizer.RemoveControl(this.markRaidControl);
                 this.markRaidControl = null;
             }
         }

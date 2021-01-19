@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -40,14 +39,20 @@
 
         public static string GetTierLetterOnly(TechTier tier)
         {
-            return tier switch
+            return (byte)tier switch
             {
-                TechTier.Tier1 => Tier1Letter,
-                TechTier.Tier2 => Tier2Letter,
-                TechTier.Tier3 => Tier3Letter,
-                TechTier.Tier4 => Tier4Letter,
-                TechTier.Tier5 => Tier5Letter,
-                _              => throw new ArgumentOutOfRangeException()
+                1 => Tier1Letter,
+                2 => Tier2Letter,
+                3 => Tier3Letter,
+                4 => Tier4Letter,
+                5 => Tier5Letter,
+                // not supported by the vanilla game as we don't use more than 5 tiers 
+                6  => "VI",
+                7  => "VII",
+                8  => "VIII",
+                9  => "IX",
+                10 => "X",
+                _  => tier.ToString()
             };
         }
 

@@ -37,7 +37,7 @@
             var technologies = character.SharedGetTechnologies();
             technologies.ServerAddLearningPoints(UsageGivesLearningPointsAmount
                                                  * TechConstants.ServerLearningPointsGainMultiplier,
-                                                 allowModifyingByStat: false);
+                                                 allowModifyingByStatsAndRates: false);
 
             // notify player
             this.CallClient(character, _ => _.ClientRemote_DisplayUseNotification());

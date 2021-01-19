@@ -12,22 +12,18 @@ namespace AtomicTorch.CBND.CoreMod.Damage
     public static class DamageStatsComparisonData
     {
         public static readonly Lazy<IReadOnlyList<IProtoItemAmmo>> AllAvailableAmmoExceptGrenades
-            = new Lazy<IReadOnlyList<IProtoItemAmmo>>(
-                () => Api.FindProtoEntities<IProtoItemAmmo>()
+            = new(() => Api.FindProtoEntities<IProtoItemAmmo>()
                          .Where(p => !(p is IAmmoGrenade))
                          .ToArray());
 
         public static readonly Lazy<IReadOnlyList<IProtoItemAmmo>> AllAvailableAmmoGrenadesOnly
-            = new Lazy<IReadOnlyList<IProtoItemAmmo>>(
-                Api.FindProtoEntities<IAmmoGrenade>);
+            = new(Api.FindProtoEntities<IAmmoGrenade>);
 
         public static readonly Lazy<IReadOnlyList<IProtoItemWeapon>> AllAvailableWeaponsMelee
-            = new Lazy<IReadOnlyList<IProtoItemWeapon>>(
-                () => Process(Api.FindProtoEntities<IProtoItemWeaponMelee>()));
+            = new(() => Process(Api.FindProtoEntities<IProtoItemWeaponMelee>()));
 
         public static readonly Lazy<IReadOnlyList<IProtoItemWeapon>> AllAvailableWeaponsRanged
-            = new Lazy<IReadOnlyList<IProtoItemWeapon>>(
-                () => Process(Api.FindProtoEntities<IProtoItemWeaponRanged>()));
+            = new(() => Process(Api.FindProtoEntities<IProtoItemWeaponRanged>()));
 
         private static IReadOnlyList<IProtoItemWeapon> Process(IReadOnlyList<IProtoItemWeapon> protoWeapons)
         {
@@ -37,10 +33,11 @@ namespace AtomicTorch.CBND.CoreMod.Damage
             {
                 switch (protoWeapon)
                 {
-                    case IProtoItemTool _:
-                    case ProtoItemMobWeaponMelee _:
-                    case ProtoItemMobWeaponRanged _:
-                    case ProtoItemMobWeaponNova _:
+                    case IProtoItemTool:
+                    case ProtoItemMobWeaponMelee:
+                    case ProtoItemMobWeaponRanged:
+                    case ProtoItemMobWeaponRangedNoAim:
+                    case ProtoItemMobWeaponNova:
                         // ignore these
                         continue;
 

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeCampFuelSynthetic>();
 
-            config.SetRequiredNode<TechNodeComponentsIndustrialChemicals>();
+            config.SetRequiredNode<TechNodeComponentsPharmaceutical>();
         }
     }
 }

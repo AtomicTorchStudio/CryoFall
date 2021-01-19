@@ -4,11 +4,10 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -18,16 +17,13 @@
     using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Technologies;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -46,10 +42,6 @@
         where TClientState : StaticObjectClientState, new()
     {
         public const string NotificationUseWeaponOrTool = "Use a weapon or a tool to damage this structure.";
-
-        private static IComponentAttachedControl currentDisplayedRelocateTooltip;
-
-        private static IComponentAttachedControl currentDisplayedRepairTooltip;
 
         private List<TechNode> listedInTechNodes;
 
@@ -115,37 +107,19 @@
             StructureLandClaimIndicatorManager.ClientDeinitialize(gameObject);
 
             base.ClientDeinitialize(gameObject);
-
-            if (currentDisplayedRepairTooltip is not null)
-            {
-                var tooltipDisplayedForObject =
-                    ((ConstructionOrRepairRequirementsTooltip)currentDisplayedRepairTooltip.Control).WorldObject;
-                if (ReferenceEquals(gameObject, tooltipDisplayedForObject))
-                {
-                    // destroy tooltip
-                    currentDisplayedRepairTooltip.Destroy();
-                    currentDisplayedRepairTooltip = null;
-                }
-            }
-
-            if (currentDisplayedRelocateTooltip is not null)
-            {
-                var tooltipDisplayedForObject =
-                    ((ConstructionRelocationTooltip)currentDisplayedRelocateTooltip.Control).WorldObject;
-                if (ReferenceEquals(gameObject, tooltipDisplayedForObject))
-                {
-                    // destroy tooltip
-                    currentDisplayedRelocateTooltip.Destroy();
-                    currentDisplayedRelocateTooltip = null;
-                }
-            }
-
             this.ClientDeinitializeStructure(gameObject);
         }
 
         public override string ClientGetTitle(IWorldObject worldObject)
         {
             return this.Name;
+        }
+
+        public virtual bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
+            IStaticWorldObject worldObject)
+        {
+            return this.ConfigRepair.IsAllowed
+                   && GetPublicState(worldObject).StructurePointsCurrent < this.StructurePointsMax;
         }
 
         public virtual IConstructionStageConfigReadOnly GetStructureActiveConfig(IStaticWorldObject staticWorldObject)
@@ -279,6 +253,28 @@
             return false;
         }
 
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            double damagePreMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            var isDamaged = base.SharedOnDamage(weaponCache,
+                                                targetObject,
+                                                damagePreMultiplier,
+                                                out obstacleBlockDamageCoef,
+                                                out damageApplied);
+            if (isDamaged
+                && damageApplied > 0)
+            {
+                ServerLandClaimAreasGroupHostileCharactersTracker.OnHostility(weaponCache.Character,
+                                                                              targetObject.TilePosition);
+            }
+
+            return isDamaged;
+        }
+
         public virtual void SharedOnDeconstructionStage(
             IStaticWorldObject worldObject,
             ICharacter byCharacter,
@@ -332,65 +328,6 @@
         {
             base.ClientInitialize(data);
             StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
-        }
-
-        protected virtual bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
-            TPublicState publicState)
-        {
-            return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject
-                   && this.ConfigRepair.IsAllowed
-                   && publicState.StructurePointsCurrent < this.StructurePointsMax
-                   && ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem is IProtoItemToolToolbox;
-        }
-
-        protected override void ClientUpdate(ClientUpdateData data)
-        {
-            base.ClientUpdate(data);
-
-            var worldObject = data.GameObject;
-
-            if (currentDisplayedRepairTooltip is null)
-            {
-                if (this.ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
-                {
-                    // display build/repair tooltip
-                    currentDisplayedRepairTooltip =
-                        ConstructionOrRepairRequirementsTooltip.CreateAndAttach(worldObject);
-                }
-            }
-            else
-            {
-                var tooltipDisplayedForObject =
-                    ((ConstructionOrRepairRequirementsTooltip)currentDisplayedRepairTooltip.Control).WorldObject;
-                if (ReferenceEquals(worldObject, tooltipDisplayedForObject)
-                    && !this.ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
-                {
-                    // destroy tooltip
-                    currentDisplayedRepairTooltip?.Destroy();
-                    currentDisplayedRepairTooltip = null;
-                }
-            }
-
-            if (currentDisplayedRelocateTooltip is null)
-            {
-                if (ClientCanRelocateStructure(worldObject))
-                {
-                    currentDisplayedRelocateTooltip =
-                        ConstructionRelocationTooltip.CreateAndAttach(worldObject);
-                }
-            }
-            else
-            {
-                var tooltipDisplayedForObject =
-                    ((ConstructionRelocationTooltip)currentDisplayedRelocateTooltip.Control).WorldObject;
-                if (ReferenceEquals(worldObject, tooltipDisplayedForObject)
-                    && !ClientCanRelocateStructure(worldObject))
-                {
-                    // destroy tooltip
-                    currentDisplayedRelocateTooltip?.Destroy();
-                    currentDisplayedRelocateTooltip = null;
-                }
-            }
         }
 
         protected abstract void PrepareConstructionConfig(
@@ -519,22 +456,14 @@
                 && !(this is ProtoObjectConstructionSite))
             {
                 damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnclaimedBuilding(weaponCache,
-                                                                                            targetObject,
-                                                                                            damagePreMultiplier);
+                    targetObject,
+                    damagePreMultiplier);
             }
 
             return base.SharedCalculateDamageByWeapon(weaponCache,
                                                       damagePreMultiplier,
                                                       targetObject,
                                                       out obstacleBlockDamageCoef);
-        }
-
-        private static bool ClientCanRelocateStructure(IStaticWorldObject worldObject)
-        {
-            return ClientComponentObjectInteractionHelper.MouseOverObject == worldObject
-                   && ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem is IProtoItemToolToolbox
-                   && !ConstructionRelocationSystem.IsInObjectPlacementMode
-                   && ConstructionRelocationSystem.SharedIsRelocatable(worldObject);
         }
 
         private void ClientPlayDeconstructionSound(Vector2D worldPosition, bool isByCurrentCharacter)

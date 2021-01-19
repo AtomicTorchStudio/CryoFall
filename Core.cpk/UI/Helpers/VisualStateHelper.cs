@@ -20,7 +20,7 @@
             obj.SetValue(StateNameProperty, value);
         }
 
-        internal static void StateNameChanged(DependencyObject target, DependencyPropertyChangedEventArgs args)
+        private static void StateNameChanged(DependencyObject target, DependencyPropertyChangedEventArgs args)
         {
             if (args.NewValue is string stateName)
             {

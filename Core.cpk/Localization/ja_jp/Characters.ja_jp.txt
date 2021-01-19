@@ -4,6 +4,12 @@
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 ブラックビートル
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+プラグミウムクイーン
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+サンドタイラント
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 穴掘虫
 
@@ -37,8 +43,8 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 プラグミウムビートル
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-プラグミウムクイーン
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+サイグローブ
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 カタツムリ
@@ -55,8 +61,14 @@ Scripts/Characters/Mobs/MobSnakeBrown@Name:
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 グリーンスネーク
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+スピッター
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 ヒトデ
+
+Scripts/Characters/Mobs/MobThumper@Name:
+サンパー
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 熱帯イノシシ

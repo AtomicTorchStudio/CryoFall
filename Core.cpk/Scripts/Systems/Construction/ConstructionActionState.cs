@@ -3,7 +3,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -61,16 +60,17 @@
 
         public bool IsRepair => !(this.WorldObject.ProtoGameObject is ProtoObjectConstructionSite);
 
-        public double StructurePointsMax
-        {
-            get => this.structurePointsMax;
-        }
+        public double StructurePointsMax => this.structurePointsMax;
 
         public override IWorldObject TargetWorldObject => this.WorldObject;
 
         public bool CheckIsAllowed()
         {
-            return LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(this.WorldObject, this.Character);
+            return LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(
+                this.WorldObject,
+                this.Character,
+                // players can progress construction and repair structures without a faction permission
+                requireFactionPermission: false);
         }
 
         public bool CheckIsNeeded()

@@ -27,7 +27,7 @@
         private const double FloatMovementMaxSpeed = 1;
 
         private static readonly Dictionary<ICharacter, ComponentFishingVisualizer> ComponentCharacterBinding
-            = new Dictionary<ICharacter, ComponentFishingVisualizer>();
+            = new();
 
         private static readonly Vector2D FloatLineConnectionOffsetDown = (0.027, 0.001);
 
@@ -42,7 +42,7 @@
                                        isTransparent: true);
 
         private static readonly TextureResource TextureResourceFishingLine
-            = new TextureResource("FX/Fishing/Line.png");
+            = new("FX/Fishing/Line.png");
 
         private ICharacter character;
 

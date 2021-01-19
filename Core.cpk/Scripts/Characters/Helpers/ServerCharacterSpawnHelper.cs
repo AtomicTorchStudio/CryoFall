@@ -15,10 +15,11 @@
 
         public const double SpawnNoPhysicsObjectsRadius = 1;
 
-        public const double SpawnNoPlayerBuiltStructuresRadius = 8;
-
         // no mobs distance for spawning a player character
         public const double SpawnPlayerNoMobsRadius = 8;
+
+        public static readonly double SpawnNoPlayerBuiltStructuresRadius
+            = Api.IsEditor ? 1 : 8;
 
         private static readonly IWorldServerService ServerWorldService = Api.Server.World;
 

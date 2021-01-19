@@ -10,8 +10,8 @@
     public class TileRuins : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Ruins/TileRuins1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Ruins/TileRuins1.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 30;
 
@@ -44,7 +44,7 @@
             var bricksSize = new Vector2Ushort(2, 2);
             var bricksNoiseSelector = new CombinedNoiseSelector(
                 new NoiseSelector(
-                    from: 0.63,
+                    from: 0.6,
                     to: 0.65,
                     noise: new PerlinNoise(seed: 324921396,
                                            scale: 5,
@@ -52,7 +52,7 @@
                                            persistance: 0.6,
                                            lacunarity: 1.7)),
                 new NoiseSelector(
-                    from: 0.63,
+                    from: 0.6,
                     to: 0.65,
                     noise: new PerlinNoise(seed: 324534534,
                                            scale: 8,
@@ -60,15 +60,10 @@
                                            persistance: 0.6,
                                            lacunarity: 1.7)));
 
-            for (ushort x = 0; x <= 1; x++)
-            for (ushort y = 0; y <= 1; y++)
-            {
-                settings.AddDecal(
-                    new ProtoTileDecal(bricksTextures,
-                                       size: bricksSize,
-                                       offset: (x, y),
-                                       noiseSelector: bricksNoiseSelector));
-            }
+            settings.AddDecalDoubleWithOffset(
+                bricksTextures,
+                size: bricksSize,
+                noiseSelector: bricksNoiseSelector);
 
             // add various single tile garbage decals
             settings.AddDecal(
@@ -78,7 +73,7 @@
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new CombinedNoiseSelector(
                                        new NoiseSelector(
-                                           from: 0.985,
+                                           from: 0.98,
                                            to: 1,
                                            noise: new WhiteNoise(seed: 69435135)))));
 
@@ -94,11 +89,11 @@
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new CombinedNoiseSelector(
                                        new NoiseSelector(
-                                           from: 0.97,
+                                           from: 0.95,
                                            to: 1,
                                            noise: new WhiteNoise(seed: 73453423)),
                                        new NoiseSelector(
-                                           from: 0.98,
+                                           from: 0.95,
                                            to: 1,
                                            noise: new WhiteNoise(seed: 12983622)))));
         }

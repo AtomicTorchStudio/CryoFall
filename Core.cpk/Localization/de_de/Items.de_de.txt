@@ -127,6 +127,9 @@ Artilleriegeschoss
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Klicke auf diesen Gegenstand, während du die Alt-Taste gedrückt hältst, um diesen schnell zu benutzen oder zu verzehren.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Du kannst den Munitionstyp der aktuell ausgewählten Waffe mit der [b]\{0}\[/b] Taste ändern.
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Klicke auf ein beliebiges Gebäude, um es einzureißen.
 
@@ -138,6 +141,9 @@ Klicke auf einen Brunnen oder Wasserkollektor, um sie mit Wasser zu füllen.
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Klicke auf ein beliebiges Gebäude, um es zu reparieren oder zu bauen.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Klicke auf ein beschädigtes Fahrzeug, um es zu reparieren.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Klicke auf eine beliebige Nutzpflanze, um diese zu bewässern.
@@ -169,6 +175,9 @@ In einem Brunnen oder Wasserkollektor platzieren, um sauberes Wasser zu erhalten
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Brennstoffzellen werden zum Antrieb verschiedener Fahrzeuge benutzt.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+Du kannst das Licht/die Nachtsicht durch Drücken der [b]\[{0}\][/b] Taste ein- und ausschalten.
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 Während du schießt, halte [b]Alt[/b] oder [b]Strg[/b] gedrückt, um in maximaler Reichweite über die Position des Mauszeigers hinaus zu feuern.
 
@@ -184,6 +193,12 @@ Dieser Gegenstand bezieht Strom aus den ausgerüsteten Powerbanks.
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Diese Waffe lässt sich nur an einer Fahrzeug-Außenlaststation ([b]{0}[/b]) installieren und benutzen.
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Nachtsicht (Gen I)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Nachtsicht (Gen II)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Schneiden
 
@@ -195,6 +210,9 @@ Trinken
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Essen
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Öffnen
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Lesen
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Brennstoff aufgebraucht
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Um das Helmlicht einzuschalten, rüste den Helm bitte aus und drücke die [{0}] Taste.
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-Taste nicht festgelegt
+Um das Helmlicht einzuschalten, rüste den Helm bitte aus und drücke die \[{0}\] Taste.
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 Bedenkt man einmal den Preis, bietet Knochenrüstung ausreichenden Schutz und kann sich schon früh als nützlich erweisen.
@@ -402,6 +417,12 @@ Militärrüstung
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Militärhelm
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Eine spezielle, mit Sprengstoff bestückte Weste, die nach dem Tod des Trägers explodiert, um so Rache zu üben.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+Revanche-Weste
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Ein bequemer Helm, der mit einer tragbaren Lichtquelle ausgestattet ist, die die Hände freihält. Benötigt Einwegbatterien.
@@ -520,6 +541,15 @@ Frisch gefangener Fisch muss zunächst gesäubert werden, bevor man ihn zum Koch
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Barsch
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Schwarzgrundel
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Eine einzigartige, auf Pragmium basierende hier heimische Lebensform.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Blauer Segler
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Brasse
 
@@ -532,8 +562,14 @@ Wels
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Döbel
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Sonnenbarsch
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Grunzer
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Koi
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Makrele
@@ -561,6 +597,9 @@ Sardine
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Forelle
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Gelbflossenthunfisch
 
 Scripts/Items/Food/ItemBanana@Description:
 Jeder Affe kann nach einer Banane greifen, aber nur Menschen greifen nach den Sternen.
@@ -717,6 +756,12 @@ Eine Tasse mit heißem Espresso. Hilft dir dabei, noch energiegeladenere Dummhei
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Tasse Kaffee
+
+Scripts/Items/Food/ItemCookingOil@Description:
+Ein natürliches, zum Kochen verwendetes Öl.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Speiseöl
 
 Scripts/Items/Food/ItemCorn@Description:
 Ein schmackhaftes Getreide, das besonders von Horrorschriftstellern geschätzt wird.
@@ -924,6 +969,24 @@ Der Heilige Krieg dauert noch bis zum heutigen Tag an ...
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Pizza Hawaii
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Frische Kartoffeln mit einer leckeren Kruste und etwas Fleisch als Beilage.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Backkartoffel mit Fleischbeilage
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Klassisches Fast-Food-Gericht aus frittierten Kartoffeln.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Pommes Frites
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Muss vor dem Verzehr gekocht werden.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Kartoffel
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Zum sofortigen Verzehr oder als Teil einer komplexeren Mahlzeit.
@@ -1183,6 +1246,12 @@ Münzen niedrigen Werts. Diese Münzen können zum Kauf preiswerter Produkte in 
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Penny
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Eine alte Geldbörse. Vielleicht steckt ja noch etwas drin?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Geldbörse
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Münzen hohen Werts. Diese Münzen können zum Kauf von Produkten in Handelsstationen oder im direkten Handel mit anderen Überlebenden verwendet werden.
 
@@ -1277,6 +1346,12 @@ Rote Oniblume. Benannt nach dem roten Dämon.
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Oniblume
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Nützlich zur Gewinnung von Speiseöl oder als Dekoration.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Gelbe Blume
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 Flussmittel findet in der Metallurgie zur Herstellung hochwertiger Metalle Verwendung.
 
@@ -1306,6 +1381,12 @@ Eine mit flüssigem Pragmium gefüllte Brennstoffzelle. Extrem ergiebig.
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Pragmiumbrennstoffzelle
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Das spezielle Organ einer außerirdischen Kreatur. Enthält eine leichtflüchtige Flüssigkeit.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Treibstoffsack
 
 Scripts/Items/Generic/ItemFur@Description:
 Tierfell. Könnte als Basis für warme Winterkleidung dienen.
@@ -1343,10 +1424,10 @@ Funkelnder gelber Topas!
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Topas
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 Funkelnder violetter Turmalin!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Turmalin
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Nur ein paar vom Boden auf- oder von Bäumen abgesammelte Zweige. Könnten bei d
 Scripts/Items/Generic/ItemTwigs@Name:
 Zweige
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Das seltsame, schwammartige Organ einer unbekannten Lebensform. Stößt während der Verwesung exotische Partikel aus.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Sandtyrannenherz
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Hochflexibler und extrem leistungsfähiger Servomotor, der Magnetkraft zur Fortbewegung benutzt.
 
@@ -1853,6 +1940,12 @@ Billige, eilig gerollte Zigarre. Genussmittel.
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Billige Zigarre
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Eine Zigarettenmarke aus fernen Welten.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Zigaretten
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Herkömmliche Zigarre mit einem vollmundigen Geschmack. Genussmittel.
 
@@ -1975,6 +2068,12 @@ Peredozin hilft, die negativen Nachwirkungen häufig eingenommener, starker Medi
 Scripts/Items/Medical/ItemPeredozin@Name:
 Peredozin
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+Gipsverband wird zum Fixieren von Knochenbrüchen verwendet und fördert deren Heilung.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Gipsverband
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Spezielle neuromodulierende Chemikalie, die durch PSI-Felder ausgelöste Nervenschäden lindern kann.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Pflanzliches Heilmittel
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-Du hast keine Knochenbrüche. Es hat keinen Zweck, jetzt eine Schiene anzulegen.
+Du hast keine Knochenbrüche. Es hat keinen Zweck, jetzt einen Gipsverband anzulegen.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Keine gebrochenen Knochen
@@ -2062,8 +2161,14 @@ Samen des Blauen Salbeis
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Oniblumensamen
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Gelbe Blumensamen
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Milchmelonensamen
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Kartoffelsaat
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Reissamen
@@ -2088,6 +2193,12 @@ Um diesen Setzling zu pflanzen, muss sich zwischen ihm und anderen Bäumen minde
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Erfordert
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Enthält Koordinaten und Navigationsfrequenzen für eine von vielen Teleport-Stationen.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Teleport-Stationsdaten
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Eisenaxt, ideal zum Fällen von Bäumen. Schneller und langlebiger als eine Steinaxt.
@@ -2146,11 +2257,11 @@ Muss nachgefüllt werden.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Leer
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-Dieses fragile Pragmiumbeil bedient sich molekularer Resonanzmechanik und ist so viel schneller als herkömmliche Alternativen.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+Dieser fragile Pragmiumhammer bedient sich molekularer Resonanzmechanik und ist so viel schneller als herkömmliche Alternativen.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Pragmiumbeil
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+Pragmiumhammer
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Eiserne Spitzhacke, die zum Abbauen von Bodenschätzen verwendet werden kann. Schneller und langlebiger als eine Spitzhacke aus Stein.
@@ -2175,6 +2286,12 @@ Dieser Sensor ermöglicht es, nach großen Pragmiumkristallen zu suchen, indem i
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Pragmiumsensor
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Universales Fahrzeugreparaturset zur einmaligen Verwendung.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Fahrzeugreparaturset
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Der Werkzeugkoffer wird zum Bauen oder Reparieren deiner Gebäudekonstruktionen benötigt. Stelle sicher, dass du ihn ausgerüstet und ausgewählt hast.
@@ -2262,6 +2379,12 @@ Laserrapier (weiß)
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Laserrapier (gelb)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+Nutzt Elektrizität aus eingebauten Batterien, um Gegner zu betäuben.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Elektroschlagstock
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Erstaunlich starke Nahkampfwaffe. Benötigt Energie.

@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Windows;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -23,7 +24,10 @@
         private LoadingSplashScreenState currentState = LoadingSplashScreenState.Hidden;
 
         private TaskCompletionSource<bool> ticketIsHidden
-            = new TaskCompletionSource<bool>(true);
+            = new(true);
+
+        private TaskCompletionSource<bool> ticketIsShown
+            = new(true);
 
         public LoadingSplashScreenManager()
         {
@@ -83,6 +87,23 @@
                         this.ticketIsHidden = new TaskCompletionSource<bool>();
                     }
                 }
+
+                if (value == LoadingSplashScreenState.Shown)
+                {
+                    // showing completed
+                    if (!this.ticketIsShown.Task.IsCompleted)
+                    {
+                        this.ticketIsShown.SetResult(true);
+                    }
+                }
+                else
+                {
+                    // not shown anymore - create new ticket if required
+                    if (this.ticketIsShown.Task.IsCompleted)
+                    {
+                        this.ticketIsShown = new TaskCompletionSource<bool>();
+                    }
+                }
             }
         }
 
@@ -91,14 +112,19 @@
             Instance.Hide();
         }
 
-        public static void Show(string reason)
+        public static void Show(string reason, bool displayStructureInfos = true)
         {
-            Instance.Show(reason);
+            Instance.Show(reason, displayStructureInfos);
         }
 
         public static Task WaitHiddenAsync()
         {
             return instance.ticketIsHidden.Task;
+        }
+
+        public static Task WaitShownAsync()
+        {
+            return instance.ticketIsShown.Task;
         }
 
         public void OnHideAnimationCompleted()
@@ -119,7 +145,8 @@
         {
             if (!isCanHide
                 || this.CurrentState == LoadingSplashScreenState.Hidden
-                || this.CurrentState == LoadingSplashScreenState.Hiding)
+                || this.CurrentState == LoadingSplashScreenState.Hiding
+                || this.CurrentState == LoadingSplashScreenState.Showing)
             {
                 return;
             }
@@ -157,21 +184,25 @@
             isCanHide = true;
             Api.Logger.Info("Loading splash screen allowed to be hidden - awaiting while everything is loaded");
             framesRemainsAfterEverythingIsLoaded = DelayAfterEverythingIsLoadedFrames;
-            //this.CurrentState = LoadingSplashScreenState.Hiding;
-            //this.instanceControl.Refresh();
         }
 
-        void ILoadingSplashScreenManager.Show(string reason)
+        void ILoadingSplashScreenManager.Show(string reason, bool displayStructureInfos)
         {
+            isCanHide = false;
+
             if (this.CurrentState == LoadingSplashScreenState.Shown
                 || this.CurrentState == LoadingSplashScreenState.Showing)
             {
+                Api.Logger.Info(
+                    "Loading splash screen already showing, requested to show it again because: " + reason);
                 return;
             }
 
-            Api.Logger.Info("Loading splash screen start showing: " + reason);
+            Api.Logger.Info(
+                $"Loading splash screen start showing: {reason} (display structure info: {displayStructureInfos})");
             this.CurrentState = LoadingSplashScreenState.Showing;
             this.instanceControl.Visibility = Visibility.Visible;
+            this.instanceControl.DisplayStructureInfos = displayStructureInfos;
             this.instanceControl.Refresh();
         }
 
@@ -183,11 +214,23 @@
                 return false;
             }
 
-            if (Client.CurrentGame.ConnectionState == ConnectionState.Connected
-                && !TimeOfDaySystem.ClientIsInitialized)
+            if (Client.CurrentGame.ConnectionState == ConnectionState.Connected)
             {
-                // not yet received the current time from the server
-                return false;
+                if (!TimeOfDaySystem.ClientIsInitialized)
+                {
+                    // not yet received the current time from the server
+                    return false;
+                }
+
+                if (!Api.IsEditor)
+                {
+                    if (Api.Client.World.AvailableWorldChunksCount == 0
+                        && ClientCurrentCharacterHelper.PrivateState.IsAppearanceSelected)
+                    {
+                        // some world chunks are not yet loaded
+                        return false;
+                    }
+                }
             }
 
             return true;

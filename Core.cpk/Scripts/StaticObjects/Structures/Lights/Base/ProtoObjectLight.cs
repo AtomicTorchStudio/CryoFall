@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -82,7 +81,9 @@
                 return false;
             }
 
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject,
+                                                                    character,
+                                                                    requireFactionPermission: false)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
@@ -118,9 +119,11 @@
         }
 
         protected override ITextureResource ClientCreateIcon()
-            => this.textureAtlas is null
-                   ? this.DefaultTexture
-                   : this.textureAtlas.Chunk(1, 0);
+        {
+            return this.textureAtlas is null
+                       ? this.DefaultTexture
+                       : this.textureAtlas.Chunk(1, 0);
+        }
 
         protected virtual BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
         {

@@ -11,8 +11,7 @@
         public const string DescriptionText = "Sprint for 10 meters";
 
         // a singleton requirement
-        public static readonly IPlayerTask Require
-            = new TaskRun();
+        public static readonly TaskRun Require = new();
 
         private ServerWrappedTriggerTimeInterval serverUpdater;
 

@@ -42,7 +42,7 @@
             IReadOnlyList<IProtoItemEquipment> protoItems,
             string description = null)
         {
-            return new TaskHaveItemEquipped(protoItems, description);
+            return new(protoItems, description);
         }
 
         public override ITextureResource ClientCreateIcon()

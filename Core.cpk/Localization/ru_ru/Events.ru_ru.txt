@@ -2,12 +2,19 @@
 `Прагмиевая королева выползла на поверхность.
 [br]Храбрейших из героев ждет ценная добыча!`
 
+Scripts/Events/EventBossSandTyrant@Description:
+`Песчаный тиран выполз на поверхность.
+[br]Храбрейших из героев ждет ценная добыча!`
+
 Scripts/Events/EventMeteoriteDrop@Description:
 `В зону, обозначенную на карте, упали метеориты.
 [br]Поспешите добыть редкие минералы!`
 
 Scripts/Events/EventMigration@Description:
 Похоже, местные биологические виды мигрируют в другую зону. Это отличная возможность для охоты.
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+В горных районах появились странные инопланетные поросли, поэтому добыча минералов там почти невозможна, но это шанс добыть редкие ресурсы.
 
 Scripts/Events/EventSpaceDrop@Description:
 `В зону, отмеченную на карте, упали обломки из космоса.
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Прогресс: {0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+Косяк редкой рыбы под названием {0} только что появился у океанского побережья! Воспользуйтесь шансом поймать этот редкий вид, ведь его можно встретить только во время нереста.
 

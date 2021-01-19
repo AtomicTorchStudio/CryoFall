@@ -46,10 +46,6 @@
         where TPublicState : ObjectDoorPublicState, new()
         where TClientState : ObjectDoorClientState, new()
     {
-        private const double DrawWorldOffsetYHorizontalDoor = 0.17;
-
-        private const double DrawWorldOffsetYVerticalDoor = 0.1;
-
         // carefully selected so even players standing close to it cannot receive a ranged weapon damage
         private const double HorizontalDoorPhysicsHeight = 0.64;
 
@@ -65,7 +61,7 @@
 
         // ReSharper disable once StaticMemberInGenericType
         private static readonly List<ICharacter> StaticTempCharactersNearby
-            = new List<ICharacter>(capacity: 64);
+            = new(capacity: 64);
 
         private readonly Lazy<ProceduralTexture> lazyHorizontalDoorBlueprintTexture;
 
@@ -119,6 +115,8 @@
 
         public virtual bool HasOwnersList => true;
 
+        public virtual double HorizontalDoorBorderWidth => 0.125;
+
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
@@ -137,21 +135,21 @@
         public override double ServerUpdateIntervalSeconds => 0.2; // 5 times per second
 
         public virtual SoundResource SoundResourceDoorEnd { get; }
-            = new SoundResource("Objects/Structures/Doors/DoorEnd");
+            = new("Objects/Structures/Doors/DoorEnd");
 
         public virtual SoundResource SoundResourceDoorProcess { get; }
-            = new SoundResource("Objects/Structures/Doors/DoorProcess");
+            = new("Objects/Structures/Doors/DoorProcess");
 
         public virtual SoundResource SoundResourceDoorStart { get; }
-            = new SoundResource("Objects/Structures/Doors/DoorStart");
+            = new("Objects/Structures/Doors/DoorStart");
 
         public override float StructurePointsMaxForConstructionSite
             => this.StructurePointsMax / 25;
 
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: -1,
-                                                                       maxX: 1,
-                                                                       maxY: 1);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: -1,
+                                                             maxX: 1,
+                                                             maxY: 1);
 
         protected ITextureAtlasResource AtlasTextureHorizontal { get; set; }
 
@@ -159,10 +157,18 @@
 
         protected virtual double DoorOpenCloseAnimationDuration => 0.2;
 
+        protected virtual double DrawWorldOffsetYHorizontalDoor => 0.17;
+
+        protected virtual double DrawWorldOffsetYVerticalDoor => 0.1;
+
         // Large bases have multiple doors so making them a little quiet is a good idea.
         protected virtual float SoundsVolume => 0.5f;
 
         protected TextureResource TextureBaseHorizontal { get; set; }
+
+        protected virtual double VerticalDoorExpansionSide => 0.125;
+
+        protected virtual double VerticalDoorOpenedColliderHeight => 0.125;
 
         public void ClientRefreshRenderer(IStaticWorldObject door)
         {
@@ -176,8 +182,8 @@
                                    ?? DoorHelper.IsHorizontalDoorNeeded(tile, checkExistingDoor: true);
             renderer.PositionOffset = (0,
                                        isHorizontalDoor
-                                           ? DrawWorldOffsetYHorizontalDoor
-                                           : DrawWorldOffsetYVerticalDoor);
+                                           ? this.DrawWorldOffsetYHorizontalDoor
+                                           : this.DrawWorldOffsetYVerticalDoor);
 
             renderer.TextureResource = isHorizontalDoor
                                            ? this.lazyHorizontalDoorBlueprintTexture.Value
@@ -349,7 +355,6 @@
                 _ => _.IsOpened,
                 newIsOpened =>
                 {
-                    clientState.IsOpened = newIsOpened;
                     this.SharedCreatePhysics(staticWorldObject);
                     clientState.SpriteAnimator.Start(isPositiveDirection: newIsOpened);
                     Client.Audio.PlayOneShot(
@@ -392,16 +397,91 @@
             InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
-        protected override void ClientObserving(ClientObjectData data, bool isObserving)
-        {
-            base.ClientObserving(data, isObserving);
-            StructureLandClaimIndicatorManager.ClientObserving(data.GameObject, isObserving);
-        }
-
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {
             return WindowDoor.Open(
                 new ViewModelWindowDoor(data.GameObject));
+        }
+
+        protected virtual void ClientSetupDoor(ClientInitializeData data)
+        {
+            var sceneObject = data.GameObject.ClientSceneObject;
+            var publicState = data.PublicState;
+            var clientState = data.ClientState;
+            var isHorizontalDoor = publicState.IsHorizontalDoor;
+            var isOpened = publicState.IsOpened;
+
+            var atlas = isHorizontalDoor
+                            ? this.AtlasTextureHorizontal
+                            : this.AtlasTextureVertical;
+            var renderer = Client.Rendering.CreateSpriteRenderer(
+                sceneObject,
+                atlas.Chunk(0, 0),
+                drawOrder: DrawOrder.Default);
+
+            renderer.PositionOffset = (0,
+                                       isHorizontalDoor
+                                           ? this.DrawWorldOffsetYHorizontalDoor
+                                           : this.DrawWorldOffsetYVerticalDoor);
+            renderer.DrawOrderOffsetY = isHorizontalDoor
+                                            ? WallPatterns.DrawOffsetNormal - this.DrawWorldOffsetYHorizontalDoor
+                                            : this.DoorSizeTiles + 0.1 - this.DrawWorldOffsetYVerticalDoor;
+
+            var spriteSheetAnimator = sceneObject.AddComponent<ClientComponentDoorSpriteSheetAnimator>();
+            var atlasColumnsCount = atlas.AtlasSize.ColumnsCount;
+
+            clientState.Renderer?.Destroy();
+            clientState.Renderer = renderer;
+            clientState.SpriteAnimator?.Destroy();
+            clientState.SpriteAnimator = spriteSheetAnimator;
+
+            clientState.DoorBaseRenderer?.Destroy();
+            clientState.DoorBaseRenderer = null;
+
+            clientState.DoorVerticalFrontPartRenderer?.Destroy();
+            clientState.DoorVerticalFrontPartRenderer = null;
+
+            if (isHorizontalDoor)
+            {
+                // add extra sprite renderer for horizontal door - door base
+                clientState.DoorBaseRenderer = Client.Rendering.CreateSpriteRenderer(
+                    sceneObject,
+                    this.TextureBaseHorizontal,
+                    drawOrder: DrawOrder.Floor + 1,
+                    positionOffset: (0, this.DrawWorldOffsetYHorizontalDoor),
+                    spritePivotPoint: (0, 0));
+            }
+            else
+            {
+                // add extra sprite renderer for vertical door - door base
+                clientState.DoorBaseRenderer = Client.Rendering.CreateSpriteRenderer(
+                    sceneObject,
+                    atlas.Chunk((byte)(atlasColumnsCount - 1), 0),
+                    drawOrder: DrawOrder.Floor + 1,
+                    positionOffset: (0, this.DrawWorldOffsetYVerticalDoor));
+
+                // add extra sprite renderer for vertical door - side door front sprite
+                clientState.DoorVerticalFrontPartRenderer = Client.Rendering.CreateSpriteRenderer(
+                    sceneObject,
+                    atlas.Chunk((byte)(atlasColumnsCount - 2), 0),
+                    drawOrder: DrawOrder.Default,
+                    positionOffset:
+                    (0, this.DrawWorldOffsetYVerticalDoor));
+            }
+
+            var framesCount = isHorizontalDoor
+                                  ? atlasColumnsCount
+                                  : atlasColumnsCount - 2;
+            spriteSheetAnimator.Setup(
+                renderer,
+                ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
+                    atlas,
+                    columns: (byte)framesCount),
+                frameDurationSeconds: this.DoorOpenCloseAnimationDuration / (double)framesCount);
+
+            // re-create physics
+            this.SharedCreatePhysics(data.GameObject);
+            spriteSheetAnimator.SetCurrentFrame(isOpened ? spriteSheetAnimator.FramesTextureResources.Length : 0);
         }
 
         protected sealed override void PrepareConstructionConfig(
@@ -451,6 +531,94 @@
             this.PrepareProtoDoor();
         }
 
+        protected virtual bool ServerCheckIsDoorShouldBeOpened(
+            IStaticWorldObject worldObject,
+            TPrivateState privateState)
+        {
+            if (privateState.IsBlockedByShield)
+            {
+                return false;
+            }
+
+            var directAccessMode = privateState.DirectAccessMode;
+            var factionAccessMode = privateState.FactionAccessMode;
+            if (directAccessMode == WorldObjectDirectAccessMode.Closed
+                && factionAccessMode == WorldObjectFactionAccessModes.Closed)
+            {
+                return false;
+            }
+
+            Server.World.GetInViewScopeByPlayers(worldObject, StaticTempCharactersNearby);
+            if (StaticTempCharactersNearby.Count == 0)
+            {
+                // no characters nearby
+                return false;
+            }
+
+            var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
+            foreach (var character in StaticTempCharactersNearby)
+            {
+                if (!character.ServerIsOnline
+                    || CharacterIdleSystem.ServerIsIdlePlayer(character)
+                    || character.ProtoCharacter is PlayerCharacterSpectator)
+                {
+                    continue;
+                }
+
+                if (!objectOpeningBounds.Contains(character.Position))
+                {
+                    // too far from this door
+                    continue;
+                }
+
+                if (!WorldObjectAccessModeSystem.ServerHasAccess(worldObject,
+                                                                 character,
+                                                                 directAccessMode,
+                                                                 factionAccessMode,
+                                                                 writeToLog: false))
+                {
+                    continue;
+                }
+
+                // we don't do this check because it requires character to be the door owner
+                //if (!this.SharedCanInteract(character, gameObject, writeToLog: false))
+                //{
+                //    return false;
+                //}
+
+                // we do this check instead:
+                // ensure the character is alive and there is a direct line of sight between the character and the door
+                var characterPublicState = character.GetPublicState<ICharacterPublicState>();
+                if (characterPublicState.IsDead)
+                {
+                    // dead
+                    continue;
+                }
+
+                if (!this.IsHeavyVehicleCanPass
+                    && characterPublicState is PlayerCharacterPublicState playerCharacterPublicState
+                    && playerCharacterPublicState.CurrentVehicle?.ProtoGameObject is IProtoVehicle protoVehicle
+                    && protoVehicle.IsHeavyVehicle)
+                {
+                    // in a heavy vehicle and cannot pass
+                    continue;
+                }
+
+                var characterPhysicsBody = character.PhysicsBody;
+                var characterCenter = character.Position + characterPhysicsBody.CenterOffset;
+                if (!ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+                                                                   characterPhysicsBody.PhysicsSpace,
+                                                                   worldObject,
+                                                                   sendDebugEvents: true))
+                {
+                    return true;
+                }
+            }
+
+            // the door should be closed
+            return false;
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
@@ -463,16 +631,18 @@
             {
                 if (!this.HasOwnersList)
                 {
-                    privateState.AccessMode = WorldObjectAccessMode.OpensToEveryone;
+                    privateState.DirectAccessMode = WorldObjectDirectAccessMode.OpensToEveryone;
                 }
 
                 return;
             }
 
             var publicState = data.PublicState;
-            privateState.AccessMode = this.HasOwnersList
-                                          ? WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners
-                                          : WorldObjectAccessMode.OpensToEveryone;
+            privateState.DirectAccessMode = this.HasOwnersList
+                                                ? WorldObjectDirectAccessMode.OpensToObjectOwnersOrAreaOwners
+                                                : WorldObjectDirectAccessMode.OpensToEveryone;
+
+            privateState.FactionAccessMode = WorldObjectFactionAccessModes.AllFactionMembers;
 
             // refresh door type
             publicState.IsHorizontalDoor = this.IsHorizontalDoorOnly
@@ -543,7 +713,7 @@
                 // horizontal door physics
                 if (isOpened)
                 {
-                    const double horizontalDoorBorderWidth = 0.125;
+                    var horizontalDoorBorderWidth = this.HorizontalDoorBorderWidth;
                     physicsBody.AddShapeRectangle(
                                    size: (horizontalDoorBorderWidth, HorizontalDoorPhysicsHeight),
                                    offset: (0, WallPatterns.PhysicsOffset))
@@ -580,18 +750,18 @@
             }
 
             // vertical door physics
-            const double verticalDoorOpenedColliderHeight = 0.125,
-                         verticalDoorExpansionSide = 0.125;
-
+            double verticalDoorOpenedColliderHeight = this.VerticalDoorOpenedColliderHeight,
+                   verticalDoorExpansionSide = this.VerticalDoorExpansionSide,
+                   verticalDoorPhysicsWidthOpened = VerticalDoorPhysicsWidthOpened;
             if (isOpened)
             {
                 physicsBody.AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidthOpened,
+                               size: (verticalDoorPhysicsWidthOpened,
                                       verticalDoorOpenedColliderHeight + verticalDoorExpansionSide),
                                offset: (VerticalDoorPhysicsWidthOpenedOffsetX,
                                         -verticalDoorExpansionSide))
                            .AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidthOpened,
+                               size: (verticalDoorPhysicsWidthOpened,
                                       verticalDoorOpenedColliderHeight + verticalDoorExpansionSide),
                                offset: (VerticalDoorPhysicsWidthOpenedOffsetX,
                                         doorSize - verticalDoorOpenedColliderHeight));
@@ -607,11 +777,11 @@
             {
                 // add closed vertical door hitboxes (please note: we're using the collider width of the opened door)
                 physicsBody.AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidthOpened, doorSize + 0.76),
+                               size: (verticalDoorPhysicsWidthOpened, doorSize + 0.76),
                                offset: (VerticalDoorPhysicsWidthOpenedOffsetX, 0),
                                group: CollisionGroups.HitboxMelee)
                            .AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidthOpened, doorSize + 0.86),
+                               size: (verticalDoorPhysicsWidthOpened, doorSize + 0.86),
                                offset: (VerticalDoorPhysicsWidthOpenedOffsetX, 0),
                                group: CollisionGroups.HitboxRanged);
             }
@@ -654,89 +824,6 @@
                     boundsOffset.X + offset.X + tilePosition.X,
                     boundsOffset.Y + offset.Y + tilePosition.Y),
                 objectOpeningBounds.Size);
-        }
-
-        private void ClientSetupDoor(ClientInitializeData data)
-        {
-            var sceneObject = data.GameObject.ClientSceneObject;
-            var publicState = data.PublicState;
-            var clientState = data.ClientState;
-            var isHorizontalDoor = publicState.IsHorizontalDoor;
-            var isOpened = publicState.IsOpened;
-
-            var atlas = isHorizontalDoor
-                            ? this.AtlasTextureHorizontal
-                            : this.AtlasTextureVertical;
-            var renderer = Client.Rendering.CreateSpriteRenderer(
-                sceneObject,
-                atlas.Chunk(0, 0),
-                drawOrder: DrawOrder.Default);
-
-            renderer.PositionOffset = (0,
-                                       isHorizontalDoor
-                                           ? DrawWorldOffsetYHorizontalDoor
-                                           : DrawWorldOffsetYVerticalDoor);
-            renderer.DrawOrderOffsetY = isHorizontalDoor
-                                            ? WallPatterns.DrawOffsetNormal - DrawWorldOffsetYHorizontalDoor
-                                            : this.DoorSizeTiles + 0.1 - DrawWorldOffsetYVerticalDoor;
-
-            var spriteSheetAnimator = sceneObject.AddComponent<ClientComponentDoorSpriteSheetAnimator>();
-            var atlasColumnsCount = atlas.AtlasSize.ColumnsCount;
-
-            clientState.Renderer?.Destroy();
-            clientState.Renderer = renderer;
-            clientState.SpriteAnimator?.Destroy();
-            clientState.SpriteAnimator = spriteSheetAnimator;
-
-            clientState.DoorBaseRenderer?.Destroy();
-            clientState.DoorBaseRenderer = null;
-
-            clientState.DoorVerticalFrontPartRenderer?.Destroy();
-            clientState.DoorVerticalFrontPartRenderer = null;
-
-            if (isHorizontalDoor)
-            {
-                // add extra sprite renderer for horizontal door - door base
-                clientState.DoorBaseRenderer = Client.Rendering.CreateSpriteRenderer(
-                    sceneObject,
-                    this.TextureBaseHorizontal,
-                    drawOrder: DrawOrder.Floor + 1,
-                    positionOffset: (0, DrawWorldOffsetYHorizontalDoor),
-                    spritePivotPoint: (0, 0));
-            }
-            else
-            {
-                // add extra sprite renderer for vertical door - door base
-                clientState.DoorBaseRenderer = Client.Rendering.CreateSpriteRenderer(
-                    sceneObject,
-                    atlas.Chunk((byte)(atlasColumnsCount - 1), 0),
-                    drawOrder: DrawOrder.Floor + 1,
-                    positionOffset: (0, DrawWorldOffsetYVerticalDoor));
-
-                // add extra sprite renderer for vertical door - side door front sprite
-                clientState.DoorVerticalFrontPartRenderer = Client.Rendering.CreateSpriteRenderer(
-                    sceneObject,
-                    atlas.Chunk((byte)(atlasColumnsCount - 2), 0),
-                    drawOrder: DrawOrder.Default,
-                    positionOffset:
-                    (0, DrawWorldOffsetYVerticalDoor));
-            }
-
-            var framesCount = isHorizontalDoor
-                                  ? atlasColumnsCount
-                                  : atlasColumnsCount - 2;
-            spriteSheetAnimator.Setup(
-                renderer,
-                ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
-                    atlas,
-                    columns: (byte)framesCount),
-                frameDurationSeconds: this.DoorOpenCloseAnimationDuration / (double)framesCount);
-
-            // refresh opened/closed state
-            clientState.IsOpened = isOpened;
-            // re-create physics
-            this.SharedCreatePhysics(data.GameObject);
-            spriteSheetAnimator.SetCurrentFrame(isOpened ? spriteSheetAnimator.FramesTextureResources.Length : 0);
         }
 
         private bool ServerCanCloseDoor(
@@ -794,95 +881,13 @@
             // no obstacles, can be closed
             return true;
         }
-
-        private bool ServerCheckIsDoorShouldBeOpened(
-            IStaticWorldObject worldObject,
-            TPrivateState privateState)
-        {
-            if (privateState.IsBlockedByShield)
-            {
-                return false;
-            }
-
-            var mode = privateState.AccessMode;
-            if (mode == WorldObjectAccessMode.Closed)
-            {
-                return false;
-            }
-
-            Server.World.GetInViewScopeByPlayers(worldObject, StaticTempCharactersNearby);
-            if (StaticTempCharactersNearby.Count == 0)
-            {
-                // no characters nearby
-                return false;
-            }
-
-            var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
-            foreach (var character in StaticTempCharactersNearby)
-            {
-                if (!character.ServerIsOnline
-                    || CharacterIdleSystem.ServerIsIdlePlayer(character)
-                    || character.ProtoCharacter is PlayerCharacterSpectator)
-                {
-                    continue;
-                }
-
-                if (!objectOpeningBounds.Contains(character.Position))
-                {
-                    // too far from this door
-                    continue;
-                }
-
-                if (!WorldObjectAccessModeSystem.ServerHasAccess(worldObject,
-                                                                 character,
-                                                                 mode,
-                                                                 writeToLog: false))
-                {
-                    continue;
-                }
-
-                // we don't do this check because it requires character to be the door owner
-                //if (!this.SharedCanInteract(character, gameObject, writeToLog: false))
-                //{
-                //    return false;
-                //}
-
-                // we do this check instead:
-                // ensure the character is alive and there is a direct line of sight between the character and the door
-                var characterPublicState = character.GetPublicState<ICharacterPublicState>();
-                if (characterPublicState.IsDead)
-                {
-                    // dead
-                    continue;
-                }
-
-                if (!this.IsHeavyVehicleCanPass
-                    && characterPublicState is PlayerCharacterPublicState playerCharacterPublicState
-                    && playerCharacterPublicState.CurrentVehicle?.ProtoGameObject is IProtoVehicle protoVehicle
-                    && protoVehicle.IsHeavyVehicle)
-                {
-                    // in a heavy vehicle and cannot pass
-                    continue;
-                }
-
-                var characterPhysicsBody = character.PhysicsBody;
-                var characterCenter = character.Position + characterPhysicsBody.CenterOffset;
-                if (!ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
-                                                                   characterPhysicsBody.PhysicsSpace,
-                                                                   worldObject,
-                                                                   sendDebugEvents: true))
-                {
-                    return true;
-                }
-            }
-
-            // the door should be closed
-            return false;
-        }
     }
 
     public abstract class ProtoObjectDoor
-        : ProtoObjectDoor<ObjectDoorPrivateState, ObjectDoorPublicState, ObjectDoorClientState>
+        : ProtoObjectDoor<
+            ObjectDoorPrivateState,
+            ObjectDoorPublicState,
+            ObjectDoorClientState>
     {
     }
 }

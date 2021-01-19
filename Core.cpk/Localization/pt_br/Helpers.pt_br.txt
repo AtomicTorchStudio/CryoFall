@@ -1,4 +1,13 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
+,
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
+, e {0}
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_TwoEntries_Format:
+{0} e {1}
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
 <1m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
@@ -12,6 +21,9 @@ m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 s
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ClientHasModifiedCore:
+Você está usando um cliente de jogo com um arquivo Core.cpk modificado ou descompactado, o que não é permitido neste servidor de jogo. Reinstale o jogo.
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `Versão de rede incompatível.

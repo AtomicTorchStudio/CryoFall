@@ -4,6 +4,12 @@
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 검은 딱정벌레
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+프라그뮴 여왕
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+모래 폭군
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 땅굴벌레
 
@@ -37,8 +43,8 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 프라그뮴 딱정벌레
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-프라그뮴 여왕
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+초능력 수풀
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 달팽이
@@ -55,8 +61,14 @@ Scripts/Characters/Mobs/MobSnakeBrown@Name:
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 초록 뱀
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+스피터
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 불가사리
+
+Scripts/Characters/Mobs/MobThumper@Name:
+썸퍼
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 열대 멧돼지

@@ -10,13 +10,12 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelHUDItemNotificationControl, d:IsDesignTimeCreatable=True}"
     HorizontalAlignment="Right"
-    Margin="0,2"
     Focusable="True">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
             <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardShow" TargetName="Border">
+            <Storyboard x:Key="StoryboardShow" TargetName="LayoutRoot">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                     <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.05" />
@@ -30,7 +29,7 @@
             </Storyboard>
 
             <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardHide" TargetName="Border">
+            <Storyboard x:Key="StoryboardHide" TargetName="LayoutRoot">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                     <EasingDoubleKeyFrame Value="1" KeyTime="0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:1.5" />
@@ -40,13 +39,13 @@
                                  From="{Binding RequiredHeight}"
                                  To="0"
                                  BeginTime="0:0:1.5"
-                                 Duration="0:0:0.175" />
+                                 Duration="0:0:0.3" />
             </Storyboard>
 
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="3,0" />
-                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontWeight" Value="Normal" />
                 <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
                 <Setter Property="Foreground" Value="White" />
@@ -58,19 +57,29 @@
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border x:Name="Border"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left"
-            Padding="2"
-            CornerRadius="3"
-            Background="{Binding BackgroundBrush}">
+    <ContentControl x:Name="LayoutRoot"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Padding="0,4">
+        <ContentControl.Effect>
+            <DropShadowEffect
+                BlurRadius="6"
+                Direction="315"
+                ShadowDepth="3"
+                Opacity="0.8"
+                Color="Black" />
+        </ContentControl.Effect>
+
         <StackPanel Orientation="Horizontal"
                     Background="Transparent"
                     base:ToolTipServiceExtend.ToolTip="{Binding TooltipText}">
-            <Rectangle Width="40"
+            <Rectangle Fill="{Binding Icon}"
+                       Width="40"
                        Height="40"
-                       Fill="{Binding Icon}" />
-            <TextBlock Text="{Binding DeltaCountText}" />
+                       UseLayoutRounding="True" />
+            <TextBlock Text="{Binding DeltaCountText}"
+                       Foreground="{Binding ForegroundBrush}" />
         </StackPanel>
-    </Border>
+    </ContentControl>
+
 </base:BaseUserControl>

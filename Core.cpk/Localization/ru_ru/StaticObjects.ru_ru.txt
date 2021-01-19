@@ -16,6 +16,9 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_M
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 Неподходящий тип почвы
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+Нельзя построить — слишком близко к зоне события.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Нельзя построить в запретной зоне.
 
@@ -75,6 +78,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Подобрать
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+Нажать
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Вскрыть
@@ -148,6 +154,15 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 Куча мусора
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+Кучка минералов
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+Кучка камней
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+Кучка дров
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Камень
 
@@ -217,6 +232,9 @@ Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Примените кирку, чтобы добыть этот минерал.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+Телепорт древних
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Трещина
 
@@ -225,6 +243,9 @@ Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 Останки прагмиевой королевы
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+Останки песчаного тирана
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 Космический мусор
@@ -398,11 +419,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 Алтарь благовоний
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+Индивидуальный вымпел, на котором будет изображена эмблема вашей фракции.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+Вымпел фракции
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Что бы этот вымпел ни символизировал — выглядит здорово!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 Вымпел
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+Многие заканчивают тем, что используют ее лишь как украшение...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+Скамья со штангой
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 Ванна в классическом стиле для всех ваших гигиенических потребностей.
@@ -410,11 +443,32 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 Ванна
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+Удобное место для вашего телефона, когда вы ложитесь спать.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+Прикроватная тумбочка
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 Стеллаж с книгами отлично дополнит любую комнату.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 Книжный стеллаж
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+Одна из многих фигур, которыми можно украсить комнату или сыграть в шахматы и шашки.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+Пешка
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+Королева
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+Ждете незваных вооруженных гостей? Тогда повесьте этот колокольчик снаружи.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+Дверной колокольчик
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 Ширма с классическим изображением тигра, как в старинной сказке.
@@ -428,11 +482,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Descr
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 Горы золота
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+Важнейший предмет мебели для вашей прихожей.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+Напольная вешалка
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 Стильное и искусно выполненное пианино угольно-черного цвета.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 Пианино
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+Ну что за праздник без огромной горы подарков?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+Подарки
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 Покажите всем, что вы настоящий охотник, и украсьте свое жилище этой шикарной шкурой.
@@ -494,6 +560,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 Унитаз
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+Центральный элемент любой гостиной. Смотрите кино с друзьями и расслабляйтесь.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+Телевизор
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 Очень ценная декоративная ваза.
 
@@ -502,6 +574,33 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Здесь уже есть напольное украшение.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+Полностью автоматическая охранная турель, которая использует энергетический луч для атаки цели.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+Энергетическая турель
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+Полностью автоматическая тяжелая охранная турель.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+Тяжелая турель
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+Полностью автоматическая легкая охранная турель.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+Легкая турель
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+Отключено
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+Атака врагов, ответный огонь по нейтралам
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+Атака врагов и нарушителей
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 Хорошая защита от большинства грабителей. Правда, ее можно сломать с помощью взрывчатки.
@@ -533,10 +632,10 @@ Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 Фермерский участок
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
 В нем можно выращивать цветы для украшения дома или для любых других целей. Можно размещать где угодно.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 Цветочный горшок
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1006,6 +1105,12 @@ Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 Бетонная стена
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+Этот металлический забор задержит наступление противника, но не остановит летящие пули — при его использовании стоит продумать стратегию. Не слишком долговечный.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+Проволочное ограждение
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 Значительно крепче, чем деревянная стена. Задержит большую часть грабителей, но против хорошо экипированного мародера она не устоит.
 
@@ -1076,8 +1181,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Красноцвет
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+Желтый цветок
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 Молодыня
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+Картофель
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 Рис

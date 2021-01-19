@@ -155,6 +155,192 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Невозможно разобрать
 
+Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
+Количество участников
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeAlreadySameFactionMember:
+Игрок уже является участником вашей фракции.
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeMemberAnotherFaction:
+Игрок является участником другой фракции и не может быть приглашен.
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Date_Format:
+[b]Дата:[/b] {0}
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Name_Format:
+[b]Инициатор:[/b] {0}
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@EditDescription:
+Менять описание фракции
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@Recruitment:
+Вербовать
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@SetMemberRole:
+Назначать роли участников
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
+Исключать участников
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
+Управлять дипломатией
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
+Заместитель
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Recruiter:
+Вербовщик
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Diplomat:
+Дипломат
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Treasurer:
+Казначей
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Officer:
+Офицер
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Manager:
+Менеджер
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Minister:
+Министр
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Name:
+Описание фракции изменено
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Text:
+Описание фракции изменено.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Name:
+Статус дипломатии изменен
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByOther_Format:
+Фракция [b]\[{0}\][/b] приняла мирный договор.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByUs_Format:
+Мы заключили мирный договор с фракцией [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarByUs_Format:
+Мы объявили войну фракции [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarOnUs_Format:
+Фракция [b]\[{0}\][/b] объявила нам войну.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceByUs_Format:
+Мы вышли из союза с фракцией [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceWithUs_Format:
+Фракция [b]\[{0}\][/b] вышла из союза с нами.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarByUs_Format:
+Мы больше не находимся в состоянии войны с фракцией [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarOnUs_Format:
+Фракция [b]\[{0}\][/b] больше не находится в состоянии войны с нами.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualOtherResponded_Format:
+Фракция [b]\[{0}\][/b] объявила нам войну в ответ на наше объявление войны им.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualWeResponded_Format:
+Мы объявили войну фракции [b]\[{0}\][/b] в ответ на их объявление войны нам.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Name:
+База фракции атакована
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Text_Format:
+Наша база в {0} атакована [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Name:
+Фракция создана
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Text:
+Фракция создана.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Name:
+Повышен уровень фракции
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Text_Format:
+Уровень фракции повышен до [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Name:
+Точка контроля фракции изветшала
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Text_Format:
+Точка контроля фракции изветшала в {0} и будет удалена.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Name:
+Лидер изменен
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Text_Format:
+Лидером фракции становится [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Name:
+Участник присоединился
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Text_Format:
+[b]{0}[/b] присоединяется к фракции.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Name:
+Участник покинул фракцию
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Text_Format:
+[b]{0}[/b] покидает фракцию.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Name:
+Участник исключен
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Text_Format:
+Офицер исключил из фракции игрока [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@CurrentPlayerRoleChangedText_Format:
+Ваша роль во фракции сменилась на: [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Name:
+Изменена роль участника
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Text_Format:
+[b]{0}[/b] получает новую роль: [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@CurrentPlayerAccessRightsChangedText:
+Ваши права доступа во фракции изменены.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Name:
+Изменены права доступа
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Text_Format:
+Права доступа для роли [b]{0}[/b] изменились.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Name:
+Роль переименована
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Text_Format:
+Роль [b]{0}[/b] переименована в [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Name:
+Изменена территория фракции
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expanded_Format:
+Территория фракции расширена в {0}.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
+Территория фракции удалена в {0}.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
+Богатство баз фракции
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
+Уровень фракции
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
+Очки за победу над боссами
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
+Очки за охоту
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
+Общие накопленные ОТ
+
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 У вас в инвентаре нет наживки, которая подойдет для рыбной ловли.
 
@@ -245,11 +431,14 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescript
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 Защита новичка закончится через:
 
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CanCancelProtection:
+Вы можете отменить эту защиту в любой момент в меню Игроки.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Под защитой новичка вы не можете атаковать других игроков и забирать себе их выпавшие вещи. Но вы можете отменить защиту в любой момент в меню Дипломатия.
+Под защитой новичка вы не можете атаковать других игроков и забирать себе их выпавшие вещи.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-Вы не можете совершить это действие под защитой новичка. Но вы можете отменить защиту в любой момент в меню Дипломатия.
+Вы не можете совершить это действие под защитой новичка.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Этот мешок под защитой новичка, только владелец может ее взять.
@@ -298,9 +487,6 @@ Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundO
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
 Вы опоздали, группа набрана.
-
-Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
-Приглашенный игрок не найден.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
 Группа набрана.
@@ -382,6 +568,10 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Оператор этого сервера установил подключение по приглашениям.
 [br]Пожалуйста, читайте описание сервера, чтобы узнать подробности.`
 
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionCommunity:
+`Этот сервер создан членом сообщества. Он [b]не[/b] управляется, [b]не[/b] связан и [b]не[/b] поддерживается разработчиками или издателем игры.
+[br]Вас могут заблокировать или исключить за нарушение правил сервера — прочитайте их внимательно и, если будут вопросы, обращайтесь к владельцу сервера.`
+
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
 Этот сервер имеет сторонние модификации. Нет гарантий, что он будет работать корректно и что вы получите наилучшее представление о CryoFall. При возникновении проблем или багов, пожалуйста, обращайтесь к владельцу сервера.
 
@@ -392,6 +582,9 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
 `Это сервер PvP (игрок против игроков), без каких-либо ограничений. Здесь [b]вы можете столкнуться с агрессией[/b] со стороны других игроков. Вам придется все время защищаться и быть начеку. Этот режим рекомендуется для опытных игроков.
 [br] Если вы предпочитаете более спокойный игровой процесс, особенно в начале знакомства с игрой, то рекомендуем вам перейти на сервер PvE.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionCommunity:
+Сервер сообщества
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
 PvE-сервер
@@ -498,20 +691,26 @@ Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
 Нет боеприпасов
 
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
-Открыто для владельцев
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
-Открыто для владельцев или хозяев зоны контроля
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
-Открыто для всех
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
-Всегда закрыто
-
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 У вас нет права доступа!
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwners:
+Открыто для владельцев
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Открыто для владельцев или хозяев зоны контроля
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToEveryone:
+Открыто для всех
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@Closed:
+Всегда закрыто
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllFactionMembers:
+Открыто для участников фракции
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllyFactionMembers:
+Открыто для союзных фракций
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
 Размер списка доступа превышен.
@@ -524,9 +723,6 @@ Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
 Вы не можете удалить себя из списка владельцев. Попросите другого игрока это сделать.
-
-Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
-Игрок с именем [b]{0}[/b] не найден.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
 Вы не являетесь владельцем.

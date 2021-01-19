@@ -14,9 +14,6 @@
     {
         private const float MaxVolume = 0.2f;
 
-        private static readonly SoundResource SoundResource
-            = new SoundResource("Objects/Vehicles/Mech/Aiming");
-
         private ICharacterPublicState characterPublicState;
 
         private double? cooldownRemains;
@@ -98,14 +95,18 @@
                                                                            rate: 80);
         }
 
-        public void Setup(IComponentSkeleton skeleton, ICharacter characterPilot)
+        public void Setup(
+            IComponentSkeleton skeleton,
+            ICharacter characterRotationSource,
+            SoundResource soundResourceAimingProcess)
         {
             this.skeleton = skeleton;
-            this.characterPublicState = characterPilot.GetPublicState<ICharacterPublicState>();
+            this.characterPublicState = characterRotationSource.GetPublicState<ICharacterPublicState>();
 
             this.soundEmitter = Api.Client.Audio.CreateSoundEmitter(this.SceneObject,
-                                                                    SoundResource,
-                                                                    is3D: !characterPilot.IsCurrentClientCharacter,
+                                                                    soundResourceAimingProcess,
+                                                                    is3D: !characterRotationSource
+                                                                              .IsCurrentClientCharacter,
                                                                     isLooped: true,
                                                                     isPlaying: true,
                                                                     volume: 0);

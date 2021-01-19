@@ -52,10 +52,10 @@
         public override double MaxDistanceToInteract => 0.5;
 
         public override SoundResource SoundResourceVehicleDismount { get; }
-            = new SoundResource("Objects/Vehicles/Hoverboard/Dismount");
+            = new("Objects/Vehicles/Hoverboard/Dismount");
 
         public override SoundResource SoundResourceVehicleMount { get; }
-            = new SoundResource("Objects/Vehicles/Hoverboard/Mount");
+            = new("Objects/Vehicles/Hoverboard/Mount");
 
         public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
@@ -75,7 +75,7 @@
         {
             if (damageApplied > 0)
             {
-                // drop from hoverboard on any damage
+                // drop from hoverboard on any character damage
                 VehicleSystem.ServerCharacterExitCurrentVehicle(pilotCharacter, force: true);
             }
         }
@@ -126,12 +126,6 @@
                 positionOffset: this.LightPositionOffset);
         }
 
-        protected virtual void ClientSetupEngineAudio(
-            IDynamicWorldObject vehicle,
-            ComponentHoverboardEngineSoundEmitter component)
-        {
-        }
-
         protected override void ClientSetupRendering(ClientInitializeData data)
         {
             var vehicle = data.GameObject;
@@ -158,12 +152,11 @@
                        textureResourceHoverboard: this.TextureResourceHoverboard,
                        textureResourceLight: this.TextureResourceHoverboardLight,
                        this.StatMoveSpeed);
+            data.ClientState.SpriteRenderer = componentHoverboardVisualManager.SpriteRendererHoverboard;
 
-            var componentHoverboardSoundEmitter = HoverboardEngineSoundEmittersManager.CreateSoundEmitter(
-                vehicle,
-                this.EngineSoundResource,
-                this.EngineSoundVolume);
-            this.ClientSetupEngineAudio(vehicle, componentHoverboardSoundEmitter);
+            HoverboardEngineSoundEmittersManager.CreateSoundEmitter(vehicle,
+                                                                    this.EngineSoundResource,
+                                                                    this.EngineSoundVolume);
         }
 
         protected override void PrepareProtoVehicleDestroyedExplosionPreset(
@@ -171,7 +164,7 @@
             out ExplosionPreset explosionPreset,
             out DamageDescription damageDescriptionCharacters)
         {
-            damageRadius = 5;
+            damageRadius = 2.1;
             explosionPreset = ExplosionPresets.Large;
 
             damageDescriptionCharacters = new DamageDescription(
@@ -180,6 +173,25 @@
                 finalDamageMultiplier: 1,
                 rangeMax: damageRadius,
                 damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
+        }
+
+        protected override void ServerOnDynamicObjectDamageApplied(
+            WeaponFinalCache weaponCache,
+            IDynamicWorldObject targetObject,
+            float previousStructurePoints,
+            float currentStructurePoints)
+        {
+            base.ServerOnDynamicObjectDamageApplied(weaponCache,
+                                                    targetObject,
+                                                    previousStructurePoints,
+                                                    currentStructurePoints);
+
+            // drop from hoverboard on any vehicle damage
+            var pilotCharacter = GetPublicState(targetObject).PilotCharacter;
+            if (pilotCharacter is not null)
+            {
+                VehicleSystem.ServerCharacterExitCurrentVehicle(pilotCharacter, force: true);
+            }
         }
 
         protected override double SharedCalculateDamageByWeapon(

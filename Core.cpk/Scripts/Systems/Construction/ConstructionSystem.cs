@@ -77,7 +77,7 @@
                 if (writeToLog)
                 {
                     Logger.Warning(
-                        $"Character cannot interact with {worldObject} for (de)construction - too far.",
+                        $"Character cannot interact with {worldObject} for (de)construction - too far",
                         character);
 
                     if (IsClient)
@@ -399,26 +399,28 @@
 
             foreach (var worldObject in worldObjects)
             {
-                if (!ConstructionRelocationSystem.SharedIsRelocatable((IStaticWorldObject)worldObject))
+                if (!(worldObject is IStaticWorldObject staticWorldObject)
+                    || !ConstructionRelocationSystem.SharedIsRelocatable(staticWorldObject))
                 {
                     continue;
                 }
 
                 if (selectedObject is not null)
                 {
-                    switch (worldObject.ProtoGameObject)
+                    switch (staticWorldObject.ProtoGameObject)
                     {
-                        case IProtoObjectFloor _:
+                        case IProtoObjectFloor:
                             // don't select floor when selected anything else
                             continue;
-                        case ProtoObjectDecorationFloor _
+
+                        case ProtoObjectDecorationFloor
                             when !(selectedObject.ProtoGameObject is IProtoObjectFloor):
                             // don't select decoration when selected anything else except the floor
                             continue;
                     }
                 }
 
-                selectedObject = (IStaticWorldObject)worldObject;
+                selectedObject = staticWorldObject;
             }
 
             return selectedObject;
@@ -442,27 +444,6 @@
                    .Concat(
                        Api.Client.World.GetTile(Api.Client.Input.MouseWorldPosition.ToVector2Ushort())
                           .StaticObjects.OrderByDescending(o => o.ProtoStaticWorldObject.Kind));
-        }
-
-        private static IEnumerable<IWorldObject> ClientGetObjectsAtCurrentTilePosition()
-        {
-            var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
-            var objects = ClientComponentObjectInteractionHelper
-                          // find by click area
-                          .FindObjectsAtCurrentMousePosition(
-                              currentCharacter,
-                              CollisionGroups.ClickArea)
-                          // find by default collider
-                          .Concat(
-                              ClientComponentObjectInteractionHelper
-                                  .FindObjectsAtCurrentMousePosition(
-                                      currentCharacter,
-                                      CollisionGroups.Default))
-                          //find object in the pointed tile
-                          .Concat(
-                              Api.Client.World.GetTile(Api.Client.Input.MouseWorldPosition.ToVector2Ushort())
-                                 .StaticObjects.OrderByDescending(o => o.ProtoStaticWorldObject.Kind));
-            return objects;
         }
 
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
@@ -503,7 +484,7 @@
                         title: PveSystem.Notification_StuffBelongsToAnotherPlayer_Message,
                         LandClaimSystem.ErrorNotLandOwner_Message,
                         NotificationColor.Bad,
-                        selectedHotbarItem?.ProtoItem.Icon);
+                        selectedHotbarItem.ProtoItem.Icon);
                 }
 
                 return;

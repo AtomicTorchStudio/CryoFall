@@ -8,8 +8,49 @@
     x:Name="UserControl"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
+
+    <base:BaseUserControl.Resources>
+        <Storyboard x:Key="StoryboardAnimation"
+                    AutoReverse="True"
+                    RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                Storyboard.TargetName="LayoutRoot">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                Storyboard.TargetName="LayoutRoot">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </base:BaseUserControl.Resources>
+
+    <base:BaseUserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource StoryboardAnimation}" />
+        </EventTrigger>
+    </base:BaseUserControl.Triggers>
+
     <Canvas>
-        <Image Source="Images/Player.png"
-               Style="{StaticResource WorldMapMarkImagePinStyle}" />
+        <Image x:Name="LayoutRoot"
+               Source="Images/Player.png"
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               RenderTransformOrigin="0.5,0.914">
+            <Image.RenderTransform>
+                <ScaleTransform />
+            </Image.RenderTransform>
+        </Image>
     </Canvas>
 </base:BaseUserControl>

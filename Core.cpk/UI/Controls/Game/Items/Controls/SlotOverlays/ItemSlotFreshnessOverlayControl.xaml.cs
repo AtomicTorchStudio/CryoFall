@@ -12,7 +12,7 @@
 
         public static ItemSlotFreshnessOverlayControl Create(IItem item)
         {
-            return new ItemSlotFreshnessOverlayControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

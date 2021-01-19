@@ -18,46 +18,18 @@
 
     public class NotificationSystem : ProtoSystem<NotificationSystem>
     {
-        public const byte BackgroundAlpha = 0xBB;
-
-        public const byte BorderAlpha = 0xEE;
-
         public const string NotificationNoFreeSpace = "No free space in inventory";
 
         public const string NotificationSomeItemsDropped = "Some items were dropped to the ground!";
 
-        public static readonly Lazy<Brush> BrushBackgroundBad =
-            new Lazy<Brush>(() => new SolidColorBrush(ColorBad.WithAlpha(BackgroundAlpha)));
-
-        public static readonly Lazy<Brush> BrushBackgroundGood =
-            new Lazy<Brush>(() => new SolidColorBrush(ColorGood.WithAlpha(BackgroundAlpha)));
-
-        public static readonly Lazy<Brush> BrushBackgroundNeutral =
-            new Lazy<Brush>(() => new SolidColorBrush(ColorNeutral.WithAlpha(BackgroundAlpha)));
-
-        public static readonly Lazy<Brush> BrushBorderBad =
-            new Lazy<Brush>(() => new SolidColorBrush(ColorBad.WithAlpha(BorderAlpha)));
-
-        public static readonly Lazy<Brush> BrushBorderGood =
-            new Lazy<Brush>(() => new SolidColorBrush(ColorGood.WithAlpha(BorderAlpha)));
-
-        public static readonly Lazy<Brush> BrushBorderNeutral =
-            new Lazy<Brush>(() => new SolidColorBrush(ColorNeutral.WithAlpha(BorderAlpha)));
-
         public static readonly SoundResource SoundResourceBad
-            = new SoundResource("UI/Notifications/NotificationBad");
+            = new("UI/Notifications/NotificationBad");
 
         public static readonly SoundResource SoundResourceGood
-            = new SoundResource("UI/Notifications/NotificationGood");
+            = new("UI/Notifications/NotificationGood");
 
         public static readonly SoundResource SoundResourceNeutral
-            = new SoundResource("UI/Notifications/NotificationNeutral");
-
-        private static readonly Color ColorBad = Color.FromRgb(0x99, 0x33, 0x33);
-
-        private static readonly Color ColorGood = Color.FromRgb(0x33, 0x88, 0x33);
-
-        private static readonly Color ColorNeutral = Color.FromRgb(0x33, 0x66, 0x88);
+            = new("UI/Notifications/NotificationNeutral");
 
         public static event Action<HUDItemNotificationControl> ClientItemNotificationDisplayed;
 
@@ -330,18 +302,23 @@
             switch (notificationColor)
             {
                 case NotificationColor.Neutral:
-                    background = BrushBackgroundNeutral.Value;
-                    border = BrushBorderNeutral.Value;
+                    background = NotificationBrushes.BrushBackgroundNeutral;
+                    border = NotificationBrushes.BrushBorderNeutral;
                     break;
 
                 case NotificationColor.Good:
-                    background = BrushBackgroundGood.Value;
-                    border = BrushBorderGood.Value;
+                    background = NotificationBrushes.BrushBackgroundGood;
+                    border = NotificationBrushes.BrushBorderGood;
                     break;
 
                 case NotificationColor.Bad:
-                    background = BrushBackgroundBad.Value;
-                    border = BrushBorderBad.Value;
+                    background = NotificationBrushes.BrushBackgroundBad;
+                    border = NotificationBrushes.BrushBorderBad;
+                    break;
+
+                case NotificationColor.Event:
+                    background = NotificationBrushes.BrushBackgroundEvent;
+                    border = NotificationBrushes.BrushBorderEvent;
                     break;
 
                 default:
@@ -353,17 +330,15 @@
 
         private static SoundResource GetSound(NotificationColor color)
         {
-            switch (color)
+            return color switch
             {
-                case NotificationColor.Neutral:
-                    return SoundResourceNeutral;
-                case NotificationColor.Good:
-                    return SoundResourceGood;
-                case NotificationColor.Bad:
-                    return SoundResourceBad;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(color), color, null);
-            }
+                NotificationColor.Neutral => SoundResourceNeutral,
+                NotificationColor.Good    => SoundResourceGood,
+                NotificationColor.Bad     => SoundResourceBad,
+                // most events have their own sound but it's a fallback
+                NotificationColor.Event => SoundResourceNeutral,
+                _                       => throw new ArgumentOutOfRangeException(nameof(color), color, null)
+            };
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]

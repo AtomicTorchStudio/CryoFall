@@ -7,7 +7,9 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:notifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.LearningPointsNotifications"
     mc:Ignorable="d">
-    <StackPanel x:Name="StackPanel" Orientation="Vertical">
+    <StackPanel x:Name="StackPanel"
+                Orientation="Vertical"
+                Margin="0,0,3,0">
         <notifications:HUDLearningPointsNotificationControl />
         <notifications:HUDLearningPointsNotificationControl />
         <notifications:HUDLearningPointsNotificationControl />

@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Meisterjäger – Teil 2
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+Sobald du etwas Neues entdeckst, erscheint es in deinem [b]Komplettisten-Menü[/b]! So kannst du deinen Fortschritt nachverfolgen und [u]zusätzliche LP[/u] für das Lernen über die Welt von CryoFall erhalten.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Um dein Inventar zu sortieren, öffne dieses und drücke die [u]{0}[/u] oder [u]{1}[/u] Taste, während du den Mauszeiger über das Inventar-Raster bewegst. Du kannst [b]JEDES[/b] Inventar-Raster auf diese Art sortieren (z.B. Kisten).
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Um zu rennen, halte beim Laufen die [u]Umschalttaste[/u] gedrückt. Probiere nun, ein paar Meter zu rennen. Rennen kann dir dabei helfen, vor gefährlichen Feinden zu fliehen.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 Es gibt noch ein paar andere Dinge, die du wissen musst, um CryoFall in vollen Zügen genießen zu können, zum Beispiel das Sortieren deines Inventars oder wie du deinen Charakter rennen lässt!
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Um dein Inventar zu sortieren, öffne es und drücke die [u]mittlere Maustaste[/u] oder die [u]Z-Taste[/u] (sofern du nichts an der Tastaturbelegung geändert hast), während du den Mauszeiger über das Inventargitter bewegst. [b]JEDES[/b] Inventargitter (z.B. Truhen) ist auf diese Weise sortierbar.
-[*] Um zu rennen, halte die [u]Umschalttaste[/u] gedrückt, während du dich bewegst. Versuche einmal, ein paar Meter zu rennen. Wegzurennen kann dir dabei helfen, gefährlichen Raubtieren zu entkommen.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Erlerne die Grundlagen
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Biome erkunden – Teil 4
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Durchsuche einige Container
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Alte Ruinen sind der beste Ort, um seltene Komponenten und Ressourcen zu finden. Es bietet sich an, sie gelegentlich zu erkunden, vor allem wenn du die dafür notwendige Ausrüstung besitzt.
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Erkunde alte Ruinen
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Durchsuche einige Container
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+Umso [b]mehr[/b] Teleport-Stationen du findest, desto [b]umfangreicher[/b] ist dein Transport-Netzwerk.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+Finde mindestens [b]zwei[/b] Teleport-Stationen, um zwischen ihnen hin und her zu reisen.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+Einige Teleport-Stationen können [b]versteckt[/b] sein!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+Sich auf den eigenen zwei Beinen fortzubewegen, mag ja ganz nett sein, aber um weite Distanzen zu überwinden, ist es praktischer, außerirdische Teleporter zu benutzen.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Schnellreise
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 [u]Filet[/u] kann mithilfe der [b]Benutzen[/b]-Aktion (siehe jeden anderen benutzbaren Gegenstand) aus gefangenem Fisch [u]gewonnen[/u] werden.
@@ -586,6 +606,9 @@ Nach Bodenschätzen zu graben und Bäume selbst zu fällen, ist mühsam, also so
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Abbau durch Drohnen
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Meisterjäger – Teil 6
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 Während deine Basis wächst, ist es von Vorteil, [u]deine Stromspeicherkapazität zu erweitern[/u], damit du stets einen [u]ausreichenden Überschuss[/u] besitzt.

@@ -2,14 +2,13 @@
 {
     using AtomicTorch.CBND.GameApi.Resources;
 
-    internal static class MuzzleFlashAtlases
+    public static class MuzzleFlashAtlases
     {
         /// <summary>
         /// Used for artillery cannot equipped on a mech.
         /// </summary>
         public static readonly TextureAtlasResource AtlasArtillery
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasArtillery",
+            = new("FX/MuzzleFlash/AtlasArtillery",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -18,8 +17,7 @@
         /// Used for blue laser weapons.
         /// </summary>
         public static readonly TextureAtlasResource AtlasLaserBlue
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasLaserBlue",
+            = new("FX/MuzzleFlash/AtlasLaserBlue",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -28,8 +26,7 @@
         /// Used for red laser weapons.
         /// </summary>
         public static readonly TextureAtlasResource AtlasLaserRed
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasLaserRed",
+            = new("FX/MuzzleFlash/AtlasLaserRed",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -38,8 +35,7 @@
         /// Used for modern military firearms such as machine pistols and rifles.
         /// </summary>
         public static readonly TextureAtlasResource AtlasNoSmokeLarge
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasNoSmokeLarge",
+            = new("FX/MuzzleFlash/AtlasNoSmokeLarge",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -48,8 +44,7 @@
         /// Used for modern small arms such as handgun.
         /// </summary>
         public static readonly TextureAtlasResource AtlasNoSmokeSmall
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasNoSmokeSmall",
+            = new("FX/MuzzleFlash/AtlasNoSmokeSmall",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -58,8 +53,7 @@
         /// Used for modern firearms with wider bore diameter, such as shotguns.
         /// </summary>
         public static readonly TextureAtlasResource AtlasNoSmokeWide
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasNoSmokeWide",
+            = new("FX/MuzzleFlash/AtlasNoSmokeWide",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -68,8 +62,7 @@
         /// Used for plasma weapons.
         /// </summary>
         public static readonly TextureAtlasResource AtlasPlasma
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasPlasma",
+            = new("FX/MuzzleFlash/AtlasPlasma",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -78,8 +71,7 @@
         /// Used for primitive rifles such as musket.
         /// </summary>
         public static readonly TextureAtlasResource AtlasSmokeLarge
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasSmokeLarge",
+            = new("FX/MuzzleFlash/AtlasSmokeLarge",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -88,8 +80,7 @@
         /// Used for primitive pistols such as flintlock pistol.
         /// </summary>
         public static readonly TextureAtlasResource AtlasSmokeSmall1
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasSmokeSmall1",
+            = new("FX/MuzzleFlash/AtlasSmokeSmall1",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);
@@ -98,8 +89,7 @@
         /// Used for black powder pistols such as luger and revolver.
         /// </summary>
         public static readonly TextureAtlasResource AtlasSmokeSmall2
-            = new TextureAtlasResource(
-                "FX/MuzzleFlash/AtlasSmokeSmall2",
+            = new("FX/MuzzleFlash/AtlasSmokeSmall2",
                 columns: 6,
                 rows: 2,
                 isTransparent: true);

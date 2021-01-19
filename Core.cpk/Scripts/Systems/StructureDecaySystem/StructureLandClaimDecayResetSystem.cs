@@ -1,12 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem
 {
-    using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
 
     /// The game server should check/poll whether there are any land claim owners inside the land claim area
@@ -16,29 +18,19 @@
         private static readonly ICharactersServerService ServerCharacters
             = IsServer ? Server.Characters : null;
 
-        private static readonly ICoreServerService ServerCore
-            = IsServer ? Server.Core : null;
-
-        private static readonly List<ILogicObject> TempList
-            = new List<ILogicObject>(capacity: 1000);
-
-        private static bool isUpdatingNow;
-
         public override string Name => "Structure land claim reset system";
 
         protected override void PrepareSystem()
         {
-            if (IsClient)
+            if (IsClient
+                || !StructureConstants.IsStructuresDecayEnabled)
             {
-                // only server will refresh
                 return;
             }
 
             // configure time interval trigger
-            TriggerTimeInterval.ServerConfigureAndRegister(
-                interval: TimeSpan.FromSeconds(StructureConstants
-                                                   .StructureDecayLandClaimResetSystemUpdateIntervalSeconds),
-                callback: ServerTimerTickCallback,
+            TriggerEveryFrame.ServerRegister(
+                callback: ServerUpdate,
                 name: "System." + this.ShortId);
         }
 
@@ -49,7 +41,15 @@
             foreach (var area in areas)
             {
                 var areaPrivateState = LandClaimArea.GetPrivateState(area);
-                var founder = ServerCharacters.GetPlayerCharacter(areaPrivateState.LandClaimFounder);
+                var landClaimFounder = areaPrivateState.LandClaimFounder;
+
+                if (string.IsNullOrEmpty(landClaimFounder))
+                {
+                    // there is no founder (transferred to the faction)
+                    return false;
+                }
+
+                var founder = ServerCharacters.GetPlayerCharacter(landClaimFounder);
 
                 if (founder.ServerIsDemoVersion)
                 {
@@ -65,99 +65,66 @@
             return isFounderDemoPlayer;
         }
 
-        private static void ServerRefreshLandClaimAreasGroup(ILogicObject areasGroup)
+        private static void ServerResetDecayTimerForLandClaimAreasGroup(ILogicObject areasGroup)
         {
-            if (areasGroup.IsDestroyed)
-            {
-                return;
-            }
-
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
             var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             var areas = areasGroupPrivateState.ServerLandClaimsAreas;
+
             // TODO: it's better to move this code to another place as this property is used in several other places
             areasGroupPublicState.IsFounderDemoPlayer = ServerGetIsFounderDemoPlayer(areas);
 
-            // check every area in the group
-            // if any of them has an online owner, reset the decay timer
+            // reset the decay timer for all land claim buildings inside this areas group
+            var decayDelayDuration = LandClaimSystem.ServerGetDecayDelayDurationForLandClaimAreas(
+                areas,
+                areasGroupPublicState.IsFounderDemoPlayer,
+                out _);
+
             foreach (var area in areas)
             {
-                var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area, addGracePadding: true);
-                var areaPrivateState = LandClaimArea.GetPrivateState(area);
-                var owners = areaPrivateState.LandOwners;
+                var worldObject = LandClaimArea.GetPrivateState(area)
+                                               .ServerLandClaimWorldObject;
 
-                foreach (var owner in owners)
-                {
-                    var character = ServerCharacters.GetPlayerCharacter(owner);
-                    if (character is null
-                        || !character.ServerIsOnline)
-                    {
-                        continue;
-                    }
-
-                    if (!areaBounds.Contains(character.TilePosition))
-                    {
-                        continue;
-                    }
-
-                    // the land claim area contains an online owner character
-                    ServerResetDecayTimer();
-                    return;
-                }
-            }
-
-            // helper method to reset the decay timer for all land claim buildings inside this areas group
-            void ServerResetDecayTimer()
-            {
-                var decayDelayDuration = LandClaimSystem.ServerGetDecayDelayDurationForLandClaimAreas(
-                    areas,
-                    areasGroupPublicState.IsFounderDemoPlayer,
-                    out _);
-
-                foreach (var area in areas)
-                {
-                    var worldObject = LandClaimArea.GetPrivateState(area)
-                                                   .ServerLandClaimWorldObject;
-
-                    StructureDecaySystem.ServerResetDecayTimer(
-                        worldObject.GetPrivateState<StructurePrivateState>(),
-                        decayDelayDuration);
-                }
+                StructureDecaySystem.ServerResetDecayTimer(
+                    worldObject.GetPrivateState<StructurePrivateState>(),
+                    decayDelayDuration);
             }
         }
 
-        // try reset land claim decay timer
-        private static async void ServerTimerTickCallback()
+        /// <summary>
+        /// Enumerate online players and reset the decay timer for
+        /// the owned land claims areas when they're inside them.
+        /// </summary>
+        private static void ServerUpdate()
         {
-            if (isUpdatingNow)
-            {
-                Logger.Warning(
-                    "Cannot process land claim reset decay system tick - not finished the previous update yet");
-                return;
-            }
+            var spreadDeltaTime = StructureConstants.StructureDecayLandClaimResetSystemUpdateIntervalSeconds;
 
-            if (!StructureConstants.IsStructuresDecayEnabled)
-            {
-                return;
-            }
+            using var tempListPlayers = Api.Shared.GetTempList<ICharacter>();
+            PlayerCharacter.Instance
+                           .EnumerateGameObjectsWithSpread(tempListPlayers.AsList(),
+                                                           spreadDeltaTime: spreadDeltaTime,
+                                                           Server.Game.FrameNumber,
+                                                           Server.Game.FrameRate);
 
-            // We will time-slice this update just in case there are too many areas.
-            isUpdatingNow = true;
-            TempList.AddRange(Server.World.GetGameObjectsOfProto<ILogicObject, LandClaimAreasGroup>());
-            await ServerCore.AwaitEndOfFrame;
-
-            try
+            foreach (var character in tempListPlayers.AsList())
             {
-                foreach (var areasGroup in TempList)
+                if (!character.ServerIsOnline)
                 {
-                    ServerRefreshLandClaimAreasGroup(areasGroup);
-                    await ServerCore.YieldIfOutOfTime();
+                    continue;
                 }
-            }
-            finally
-            {
-                isUpdatingNow = false;
-                TempList.Clear();
+
+                if (!LandClaimSystem.SharedIsOwnedLand(character.TilePosition,
+                                                       character,
+                                                       requireFactionPermission: false,
+                                                       out var ownedArea))
+                {
+                    // the player is not inside an owned land claim area
+                    continue;
+                }
+
+                // the land claim area contains an online owner character
+                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(ownedArea);
+                ServerResetDecayTimerForLandClaimAreasGroup(areasGroup);
             }
         }
     }

@@ -6,7 +6,7 @@
 
     public class SpawnedMobsTrackingManager
     {
-        private readonly List<WeakReference<ICharacter>> spawnedList = new List<WeakReference<ICharacter>>();
+        private readonly List<WeakReference<ICharacter>> spawnedList = new();
 
         public void Add(ICharacter mob)
         {

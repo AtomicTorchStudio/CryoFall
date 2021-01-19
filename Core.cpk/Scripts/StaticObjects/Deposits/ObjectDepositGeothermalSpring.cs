@@ -14,7 +14,7 @@
     public class ObjectDepositGeothermalSpring : ProtoObjectDeposit
     {
         private static readonly SoundResource SoundResourceActive
-            = new SoundResource("Objects/Deposits/ObjectGeothermalSpring/Active");
+            = new("Objects/Deposits/ObjectGeothermalSpring/Active");
 
         private TextureAtlasResource textureAtlas1;
 

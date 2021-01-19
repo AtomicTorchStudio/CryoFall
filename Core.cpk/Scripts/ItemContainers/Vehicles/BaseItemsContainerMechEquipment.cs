@@ -81,15 +81,15 @@
                     when p.WeaponHardpoint == this.WeaponHardpointName:
                     return ByteSequence(0, this.WeaponSlotsCount);
 
-                case IProtoItemWeapon _:
+                case IProtoItemWeapon:
                     // cannot equip any other weapon
                     return null;
 
-                case IAmmoArrow _:
+                case IAmmoArrow:
                     // no arrows in the mech for sure
                     return null;
 
-                case IProtoItemAmmo _:
+                case IProtoItemAmmo:
                     return ByteSequence(this.WeaponSlotsCount, this.TotalSlotsCount);
 
                 default:

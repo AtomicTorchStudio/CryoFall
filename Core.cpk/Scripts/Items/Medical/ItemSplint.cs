@@ -10,7 +10,7 @@
     public class ItemSplint : ProtoItemMedical
     {
         public const string NotificationNoBrokenBones_Message =
-            "You don't have any broken bones. There's no point in using a splint now.";
+            "You don't have any broken bones. There's no point in using it now.";
 
         public const string NotificationNoBrokenBones_Title = "No broken bones";
 

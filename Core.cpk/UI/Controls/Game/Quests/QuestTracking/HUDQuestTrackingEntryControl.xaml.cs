@@ -28,7 +28,7 @@
 
         public static HUDQuestTrackingEntryControl Create(PlayerCharacterQuests.CharacterQuestEntry questEntry)
         {
-            return new HUDQuestTrackingEntryControl() { QuestEntry = questEntry };
+            return new() { QuestEntry = questEntry };
         }
 
         public void Hide(bool quick)

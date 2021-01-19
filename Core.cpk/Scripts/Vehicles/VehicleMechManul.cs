@@ -90,7 +90,7 @@
             out ExplosionPreset explosionPreset,
             out DamageDescription damageDescriptionCharacters)
         {
-            damageRadius = 6;
+            damageRadius = 2.1;
             explosionPreset = ExplosionPresets.VeryLarge;
 
             damageDescriptionCharacters = new DamageDescription(
@@ -119,7 +119,7 @@
                 // no pilot
                 physicsBody.AddShapeRectangle(size: (0.9, 1.5),
                                               offset: (-0.45, -0.4),
-                                              @group: CollisionGroups.ClickArea);
+                                              group: CollisionGroups.ClickArea);
             }
         }
 

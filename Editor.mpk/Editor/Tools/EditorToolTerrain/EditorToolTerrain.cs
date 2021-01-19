@@ -10,10 +10,8 @@
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes;
     using AtomicTorch.CBND.CoreMod.Tiles;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class EditorToolTerrain : BaseEditorTool<EditorToolTerrainItem>
@@ -205,138 +203,73 @@
             this.lastTargetHeight = targetHeight;
             this.lastTargetProto = targetProto;
 
-            var tilesToModify = new List<List<TileModifyRequest>>();
-            var tilesToRevert = new List<List<TileModifyRequest>>();
+            var tilesToModify = new List<TerrainEditingSystem.TileModifyRequest>();
 
-            // separate on groups of world chunk size
-            var worldChunkSize = 10 * ScriptingConstants.WorldChunkSize;
-            var groups = tilePositions
-                         .GroupBy(g => new Vector2Ushort((ushort)(g.X / worldChunkSize),
-                                                         (ushort)(g.Y / worldChunkSize)))
-                         .ToList();
-
-            // gather tile modifications for each group
-            foreach (var group in groups)
+            foreach (var tilePosition in tilePositions)
             {
-                var groupTilesToModify = new List<TileModifyRequest>();
-                var groupTilesToRevert = new List<TileModifyRequest>();
+                var tile = worldService.GetTile(tilePosition);
+                var previousProtoTile = tile.ProtoTile;
+                var previousTileHeight = tile.Height;
+                var previousIsSlope = tile.IsSlope;
 
-                foreach (var tilePosition in group)
+                var newProtoTile = selectedProtoTile ?? previousProtoTile;
+                var newIsSlope = tile.IsSlope;
+
+                if (isApplyOnlyOnTheSameTileProto
+                    && previousProtoTile != targetProto)
                 {
-                    var tile = worldService.GetTile(tilePosition);
-                    var previousProtoTile = tile.ProtoTile;
-                    var previousTileHeight = tile.Height;
-                    var previousIsSlope = tile.IsSlope;
-
-                    var newProtoTile = selectedProtoTile ?? previousProtoTile;
-                    var newIsSlope = tile.IsSlope;
-
-                    if (isApplyOnlyOnTheSameTileProto
-                        && previousProtoTile != targetProto)
-                    {
-                        continue;
-                    }
-
-                    if (isAllowTileProtoChangeOnlyOnTheSameHeight
-                        && this.lastTargetHeight != previousTileHeight)
-                    {
-                        continue;
-                    }
-
-                    if (!isAllowTileKindChange
-                        && previousProtoTile.Kind != newProtoTile.Kind
-                        && previousProtoTile.Kind != TileKind.Placeholder)
-                    {
-                        continue;
-                    }
-
-                    var newTileHeight = previousTileHeight;
-                    if (terrainHeightMode == TerrainHeightMode.Flatten)
-                    {
-                        if (IsValidHeightFotTile(tile, targetHeight))
-                        {
-                            // can set tile height to target height
-                            newTileHeight = targetHeight;
-                        }
-                    }
-                    else if (terrainHeightMode == TerrainHeightMode.Increase
-                             || terrainHeightMode == TerrainHeightMode.Decrease)
-                    {
-                        newTileHeight = this.CalculateNewTileHeight(tile, terrainHeightMode);
-                        if (newTileHeight != targetHeight)
-                        {
-                            // cannot change tile height
-                            newTileHeight = previousTileHeight;
-                        }
-                    }
-
-                    if (previousProtoTile == newProtoTile
-                        && newTileHeight == previousTileHeight
-                        && newIsSlope == previousIsSlope)
-                    {
-                        // nothing to change - the tile is already as desired
-                        continue;
-                    }
-
-                    groupTilesToModify.Add(new TileModifyRequest(tilePosition,
-                                                                 newProtoTile.SessionIndex,
-                                                                 newTileHeight,
-                                                                 newIsSlope));
-                    groupTilesToRevert.Add(new TileModifyRequest(tilePosition,
-                                                                 previousProtoTile.SessionIndex,
-                                                                 previousTileHeight,
-                                                                 previousIsSlope));
-                }
-
-                if (groupTilesToModify.Count == 0)
-                {
-                    // nothing to modify in this group
                     continue;
                 }
 
-                tilesToModify.Add(groupTilesToModify);
-                tilesToRevert.Add(groupTilesToRevert);
+                if (isAllowTileProtoChangeOnlyOnTheSameHeight
+                    && this.lastTargetHeight != previousTileHeight)
+                {
+                    continue;
+                }
+
+                if (!isAllowTileKindChange
+                    && previousProtoTile.Kind != newProtoTile.Kind
+                    && previousProtoTile.Kind != TileKind.Placeholder)
+                {
+                    continue;
+                }
+
+                var newTileHeight = previousTileHeight;
+                if (terrainHeightMode == TerrainHeightMode.Flatten)
+                {
+                    if (IsValidHeightFotTile(tile, targetHeight))
+                    {
+                        // can set tile height to target height
+                        newTileHeight = targetHeight;
+                    }
+                }
+                else if (terrainHeightMode == TerrainHeightMode.Increase
+                         || terrainHeightMode == TerrainHeightMode.Decrease)
+                {
+                    newTileHeight = this.CalculateNewTileHeight(tile, terrainHeightMode);
+                    if (newTileHeight != targetHeight)
+                    {
+                        // cannot change tile height
+                        newTileHeight = previousTileHeight;
+                    }
+                }
+
+                if (previousProtoTile == newProtoTile
+                    && newTileHeight == previousTileHeight
+                    && newIsSlope == previousIsSlope)
+                {
+                    // nothing to change - the tile is already as desired
+                    continue;
+                }
+
+                tilesToModify.Add(new TerrainEditingSystem.TileModifyRequest(
+                                      tilePosition,
+                                      newProtoTile.SessionIndex,
+                                      newTileHeight,
+                                      newIsSlope));
             }
 
-            if (tilesToModify.Count == 0)
-            {
-                // nothing to modify
-                return;
-            }
-
-            EditorClientSystem.DoAction(
-                "Modify terrain tiles",
-                onDo: () => tilesToModify.ForEach(
-                          chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk))),
-                onUndo: () => tilesToRevert.ForEach(
-                            chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk))));
-        }
-
-        [RemoteCallSettings(DeliveryMode.Default,
-                            timeInterval: 0,
-                            clientMaxSendQueueSize: byte.MaxValue)]
-        private void ServerRemote_PlaceAt(IList<TileModifyRequest> modifyRequests)
-        {
-            if (modifyRequests.Count == 0)
-            {
-                throw new Exception("Incorrect modify request - at least one tile is required");
-            }
-
-            //Logger.Write("Modify terrain at " + modifyRequests[0].TilePosition);
-
-            var worldService = Server.World;
-            foreach (var request in modifyRequests)
-            {
-                var protoTile = worldService.GetProtoTileBySessionIndex(request.ProtoTileSessionIndex);
-                worldService.SetTileData(
-                    request.TilePosition,
-                    protoTile,
-                    tileHeight: request.SetHeight,
-                    isSlope: request.SeIsSlope,
-                    isCliff: false);
-            }
-
-            worldService.FixMapTilesRecentlyModified();
+            TerrainEditingSystem.ClientModifyTerrain(tilesToModify);
         }
 
         private void SetupActiveTool(EditorActiveToolTileBrush tool)
@@ -344,29 +277,6 @@
             var brushSize = this.settings.SelectedBrushSize;
             var brush = this.settings.SelectedBrushShape.Value;
             tool.SetBrush(brush, brushSize);
-        }
-
-        private struct TileModifyRequest : IRemoteCallParameter
-        {
-            public readonly byte ProtoTileSessionIndex;
-
-            public readonly bool SeIsSlope;
-
-            public readonly byte SetHeight;
-
-            public readonly Vector2Ushort TilePosition;
-
-            public TileModifyRequest(
-                Vector2Ushort tilePosition,
-                byte protoTileSessionIndex,
-                byte setHeight,
-                bool seIsSlope)
-            {
-                this.TilePosition = tilePosition;
-                this.SetHeight = setHeight;
-                this.SeIsSlope = seIsSlope;
-                this.ProtoTileSessionIndex = protoTileSessionIndex;
-            }
         }
     }
 }

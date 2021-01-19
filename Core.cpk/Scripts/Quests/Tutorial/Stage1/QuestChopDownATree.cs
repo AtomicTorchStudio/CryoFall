@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestChopDownATree : ProtoQuest
     {
@@ -21,7 +21,8 @@
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
-                .Add(TaskDestroy.Require<IProtoObjectTree>(count: 3, description: this.Name));
+                .Add(TaskDestroy.Require<IProtoObjectTree>(count: 3, description: this.Name)
+                                .WithIcon(Api.GetProtoEntity<ObjectTreeOak>().Icon));
 
             prerequisites
                 .Add<QuestCraftAnAxe>();

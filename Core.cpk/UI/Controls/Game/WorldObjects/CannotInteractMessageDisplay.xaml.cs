@@ -56,7 +56,7 @@
             var positionOffset = worldObject.ProtoWorldObject?.SharedGetObjectCenterWorldOffset(worldObject)
                                  ?? (0, 0);
 
-            positionOffset += (0, 1.025);
+            positionOffset += (0, 1.125);
 
             lastControl = new CannotInteractMessageDisplay();
             lastControl.Setup(message);
@@ -73,10 +73,6 @@
         public void Setup(string message)
         {
             this.DataContext = message;
-        }
-
-        protected override void InitControl()
-        {
         }
 
         protected override void OnUnloaded()

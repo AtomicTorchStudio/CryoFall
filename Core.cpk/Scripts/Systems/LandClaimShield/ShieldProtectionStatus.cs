@@ -2,7 +2,9 @@
 {
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum ShieldProtectionStatus : byte
     {
         [Description(CoreStrings.ShieldProtection_Status_Inactive)]

@@ -11,7 +11,7 @@
     public class PostEffectPain : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/StatusEffects/Pain");
+            = new("PostEffects/StatusEffects/Pain");
 
         private IGraphicsDevice device;
 

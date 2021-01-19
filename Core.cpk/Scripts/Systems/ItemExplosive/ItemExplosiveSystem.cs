@@ -14,7 +14,7 @@
             ItemExplosiveSystem,
             ItemExplosiveRequest,
             ItemExplosiveActionState,
-            ItemExplosiveActionState.PublicState>
+            ItemExplosiveActionPublicState>
     {
         public override string Name => "Explosive Items System";
 

@@ -32,13 +32,18 @@
 
         public ViewModelItemsContainerExchange(
             IItemsContainer container,
-            [CanBeNull] Action callbackTakeAllItemsSuccess,
+            [CanBeNull] Action callbackTakeAllItemsSuccess = null,
             bool enableShortcuts = true)
         {
             this.callbackTakeAllItemsSuccess = callbackTakeAllItemsSuccess;
             this.Container = (IClientItemsContainer)container;
 
             this.enableShortcuts = enableShortcuts;
+
+            if (!enableShortcuts)
+            {
+                this.IsManagementButtonsVisible = false;
+            }
 
             this.IsActive = !ItemsContainerExchangeControl.IsEnabledOnlyWhenLoaded;
         }

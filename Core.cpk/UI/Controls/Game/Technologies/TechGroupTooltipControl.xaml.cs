@@ -16,9 +16,5 @@
             get => (bool)this.GetValue(RequirementsOnlyProperty);
             set => this.SetValue(RequirementsOnlyProperty, value);
         }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

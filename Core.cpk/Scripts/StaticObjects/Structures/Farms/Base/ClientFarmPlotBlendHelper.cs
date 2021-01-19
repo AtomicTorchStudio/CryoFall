@@ -14,7 +14,7 @@
     public class ClientFarmPlotBlendHelper
     {
         private readonly Dictionary<TileBlendSides, RenderingMaterial> cachedBlendMaskMaterials
-            = new Dictionary<TileBlendSides, RenderingMaterial>();
+            = new();
 
         private readonly TextureAtlasResource maskTexture;
 
@@ -23,7 +23,7 @@
         private readonly string sceneObjectsName;
 
         private readonly Dictionary<Vector2Ushort, TileRenderingData> tileDictionary
-            = new Dictionary<Vector2Ushort, TileRenderingData>();
+            = new();
 
         public ClientFarmPlotBlendHelper(IProtoObjectFarmPlot protoFarmPlot)
         {
@@ -202,7 +202,7 @@
 
         internal class BlendLayers
         {
-            public static readonly BlendLayers Empty = new BlendLayers();
+            public static readonly BlendLayers Empty = new();
 
             public TileBlendSides TileBlendSides;
         }

@@ -20,8 +20,8 @@
         public override byte ContainerInputSlotsCount => 0;
 
         public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 20,
-                                               shutdownPercent: 10);
+            => new(startupPercent: 20,
+                   shutdownPercent: 10);
 
         public abstract double ElectricityConsumptionPerSecondWhenActive { get; }
 

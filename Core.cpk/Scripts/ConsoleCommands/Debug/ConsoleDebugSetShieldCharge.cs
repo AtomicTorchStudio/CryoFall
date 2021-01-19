@@ -33,24 +33,24 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
             var chargeFraction = MathHelper.Clamp(chargePercent / 100, min: 0, max: 1);
 
-            using var tempLandClaims = Api.Shared.GetTempList<ILogicObject>();
+            using var tempAreas = Api.Shared.GetTempList<ILogicObject>();
             LandClaimSystem.SharedGetAreasInBounds(
                 new RectangleInt(character.TilePosition, (1, 1)),
-                tempLandClaims,
+                tempAreas,
                 addGracePadding: false);
 
-            var landClaim = tempLandClaims.AsList().FirstOrDefault();
-            if (landClaim is null)
+            var area = tempAreas.AsList().FirstOrDefault();
+            if (area is null)
             {
                 return "No base exist near " + character.Name;
             }
 
-            var landClaimAreasGroup = LandClaimArea.GetPublicState(landClaim).LandClaimAreasGroup;
-            LandClaimShieldProtectionSystem.SharedGetShieldProtectionMaxStatsForBase(landClaimAreasGroup,
-                                                                                     out _,
-                                                                                     out var electricityCapacity);
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
+            LandClaimShieldProtectionSystem.SharedGetShieldProtectionMaxStatsForBase(areasGroup,
+                out _,
+                out var electricityCapacity);
 
-            var privateState = LandClaimAreasGroup.GetPrivateState(landClaimAreasGroup);
+            var privateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
             privateState.ShieldProtectionCurrentChargeElectricity = electricityCapacity * chargeFraction;
             privateState.ShieldProtectionCooldownExpirationTime = 0; // reset the cooldown
 

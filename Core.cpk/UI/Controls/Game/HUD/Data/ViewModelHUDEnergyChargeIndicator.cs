@@ -27,7 +27,7 @@
             }
 
             this.containerEquipment = (IClientItemsContainer)ClientCurrentCharacterHelper.Character
-                                                                                         .SharedGetPlayerContainerEquipment();
+                .SharedGetPlayerContainerEquipment();
             this.containerEquipment.ItemAdded += this.ContainerEquipmentItemAddedHandler;
             this.containerEquipment.ItemRemoved += this.ContainerEquipmentItemRemovedHandler;
             this.containerEquipment.ItemsReset += this.ContainerEquipmentItemsResetHandler;

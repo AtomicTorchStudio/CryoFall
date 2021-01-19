@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelWindowInventory : BaseViewModel
@@ -61,12 +60,12 @@
         public IClientItemsContainer ContainerInventory { get; }
 
         public ViewModelCharacterDefenseStats DefenseStats { get; }
-            = new ViewModelCharacterDefenseStats();
+            = new();
 
         public bool HasHeadEquipmentOrFullBodyArmorEquipped { get; set; }
 
         public ViewModelInventorySkeleton InventorySkeleton { get; }
-            = new ViewModelInventorySkeleton();
+            = new();
 
         public bool IsActive
         {

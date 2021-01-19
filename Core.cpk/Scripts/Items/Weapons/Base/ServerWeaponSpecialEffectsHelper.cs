@@ -146,5 +146,11 @@
                     intensity: 1.0 / StatusEffectDazed.MaxDuration); // 1 second
             }
         }
+
+        public static void OnStunBatonHit(ICharacter damagedCharacter, double damage)
+        {
+            damagedCharacter.ServerAddStatusEffect<StatusEffectDazed>(intensity: 1.00); // full
+            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.10);
+        }
     }
 }

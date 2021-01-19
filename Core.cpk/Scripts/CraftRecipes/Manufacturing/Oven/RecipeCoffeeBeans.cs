@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemCoffeeBerries>(count: 10);
+            inputItems.Add<ItemCoffeeBerries>(count: 5);
 
-            outputItems.Add<ItemCoffeeBeans>(count: 10);
+            outputItems.Add<ItemCoffeeBeans>(count: 5);
         }
     }
 }

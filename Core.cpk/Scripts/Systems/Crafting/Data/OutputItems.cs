@@ -10,7 +10,7 @@
 
     public class OutputItems : IReadOnlyOutputItems
     {
-        private readonly List<OutputItem> items = new List<OutputItem>();
+        private readonly List<OutputItem> items = new();
 
         public int Count => this.items.Count;
 

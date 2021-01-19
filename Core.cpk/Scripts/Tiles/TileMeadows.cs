@@ -9,12 +9,12 @@
     public class TileMeadows : ProtoTile, IProtoTileFarmAllowed, IProtoTileWellAllowed
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Meadows/TileMeadows1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Meadows/TileMeadows1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/Meadows/TileMeadows2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Meadows/TileMeadows2.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 20;
 

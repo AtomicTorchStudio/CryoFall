@@ -29,10 +29,6 @@
                 new FrameworkPropertyMetadata(typeof(TableControl)));
         }
 
-        public TableControl()
-        {
-        }
-
         public double ColumnsSpacingWidth
         {
             get => (double)this.GetValue(ColumnsSpacingWidthProperty);

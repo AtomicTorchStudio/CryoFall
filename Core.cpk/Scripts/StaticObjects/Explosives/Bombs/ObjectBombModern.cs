@@ -47,7 +47,7 @@
             DamageDistribution damageDistribution)
         {
             damageValue = 120;
-            armorPiercingCoef = 0;
+            armorPiercingCoef = 0.5;
             finalDamageMultiplier = 1;
             damageDistribution.Set(DamageType.Kinetic, 1);
         }

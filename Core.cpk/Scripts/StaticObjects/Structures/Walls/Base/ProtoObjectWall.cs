@@ -39,10 +39,10 @@
 
         public virtual string TextureAtlasPrimaryPath => this.GenerateTexturePath();
 
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: -1,
-                                                                       maxX: 1,
-                                                                       maxY: 1);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: -1,
+                                                             maxX: 1,
+                                                             maxY: 1);
 
         public void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {
@@ -100,12 +100,6 @@
             Client.Rendering.PreloadTextureAsync(this.TextureAtlasDestroyed);
 
             StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
-        }
-
-        protected override void ClientObserving(ClientObjectData data, bool isObserving)
-        {
-            base.ClientObserving(data, isObserving);
-            StructureLandClaimIndicatorManager.ClientObserving(data.GameObject, isObserving);
         }
 
         protected sealed override void PrepareConstructionConfig(

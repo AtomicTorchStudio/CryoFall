@@ -210,15 +210,16 @@
                                 Visibility="{Binding LoadingDisplayVisibility}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <core:LoadingDisplayControl Width="48" Height="48"
-                                                    HorizontalAlignment="Center"
-                                                    Margin="0,0,0,10" />
+                        <core:LoadingDisplayControl Width="48"
+                                                    Height="48"
+                                                    HorizontalAlignment="Center" />
                         <!-- Text: Awaiting server list... -->
-                        <core:FormattedTextBlock
+                        <!--<core:FormattedTextBlock
                             Content="{x:Static loc:CoreStrings.MenuServers_AwaitingServerList}"
                             Style="{StaticResource ServersLoadingTextBlockStyle}"
-                            FontSize="14"
-                            FontFamily="{StaticResource CondensedFontFamily}" />
+                            FontFamily="{StaticResource CondensedFontFamily}"
+                            Foreground="{StaticResource BrushColorAlt6}"
+                            FontWeight="Bold" />-->
                     </StackPanel>
 
                     <StackPanel Grid.Row="2"
@@ -526,6 +527,7 @@
                     <Control Template="{StaticResource ServersListDataTemplate}" />
                 </TabItem>
 
+                <!-- It's a spacer between the left and right parts of the dock panel tabs -->
                 <TabItem DockPanel.Dock="Right"
                          IsEnabled="False" />
 

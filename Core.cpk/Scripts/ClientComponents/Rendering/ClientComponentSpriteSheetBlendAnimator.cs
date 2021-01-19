@@ -12,7 +12,7 @@
     public class ClientComponentSpriteSheetBlendAnimator : ClientComponent
     {
         private static readonly EffectResource EffectResourceDrawBlendAnimation
-            = new EffectResource("DrawBlendAnimation");
+            = new("DrawBlendAnimation");
 
         private double currentTime;
 

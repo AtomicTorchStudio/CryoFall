@@ -22,8 +22,8 @@
         public override byte ContainerOutputSlotsCount => 1;
 
         public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 90,
-                                               shutdownPercent: 100);
+            => new(startupPercent: 90,
+                   shutdownPercent: 100);
 
         public override string Description =>
             "This large generator uses gasoline fuel to produce electrical energy.";

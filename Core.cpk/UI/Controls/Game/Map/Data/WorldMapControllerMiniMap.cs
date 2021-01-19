@@ -1,20 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data
 {
-    using System.Collections.Generic;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Extensions;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class WorldMapControllerMiniMap : WorldMapController
     {
-        public Vector2Ushort mapAreaSize;
+        /*private readonly HashSet<Vector2Ushort> currentObservedSectors
+            = new HashSet<Vector2Ushort>();*/
 
-        private readonly HashSet<Vector2Ushort> currentObservedChunks
-            = new HashSet<Vector2Ushort>();
+        private Vector2Ushort mapAreaSize;
 
         public WorldMapControllerMiniMap(
             PanningPanel panningPanel,
@@ -24,8 +19,10 @@
             bool isListeningToInput,
             int paddingChunks,
             Vector2Ushort mapAreaSize,
-            ControlTemplate customControlTemplatePlayerMark)
+            WorldMapSectorProvider sectorProvider,
+            ControlTemplate customControlTemplatePlayerMark = null)
             : base(panningPanel,
+                   sectorProvider,
                    viewModelControlWorldMap,
                    isPlayerMarkDisplayed,
                    isCurrentCameraViewDisplayed,
@@ -36,17 +33,9 @@
             this.mapAreaSize = mapAreaSize;
         }
 
-        public Vector2Ushort MapAreaSize
-        {
-            get => this.mapAreaSize;
-            set
-            {
-                this.mapAreaSize = value;
-                this.MarkDirty();
-            }
-        }
+        public override bool IsCoordinateGridOverlayEnabled => false;
 
-        protected override void RefreshQueue(Vector2Ushort currentWorldPosition)
+        /*protected override void RefreshQueue(Vector2Ushort currentWorldPosition)
         {
             this.newChunksHashSet.Clear();
             this.queueChunks.Clear();
@@ -71,11 +60,9 @@
 
             // remove processed chunks
             this.queueChunks.RemoveRange(0, index);
+        }*/
 
-            // TODO: unload now invisible map sectors/chunks?
-        }
-
-        private BoundsUshort CalculateMapBounds(Vector2Ushort currentWorldPosition)
+        /*private BoundsUshort CalculateMapBounds(Vector2Ushort currentWorldPosition)
         {
             var halfSizeX = this.mapAreaSize.X / 2;
             var halfSizeY = this.mapAreaSize.Y / 2;
@@ -90,66 +77,87 @@
                                     (ushort)MathHelper.Clamp(endPositionX,   0, ushort.MaxValue),
                                     (ushort)MathHelper.Clamp(endPositionY,   0, ushort.MaxValue));
         }
+        */
 
-        private void UpdateObservedChunks(Vector2Ushort currentWorldPosition)
+        /*private void UpdateObservedChunks(Vector2Ushort currentWorldPosition)
         {
             var bounds = this.CalculateMapBounds(currentWorldPosition);
 
-            this.currentObservedChunks.Clear();
+            this.currentObservedSectors.Clear();
 
-            using var tempWorldChunks = Api.Shared.GetTempList<Vector2Ushort>();
-            ScriptingWorldChunkHelper.CalculateRequiredWorldChunks(bounds, tempWorldChunks);
+            using var tempSectorsList = Api.Shared.GetTempList<Vector2Ushort>();
+            WorldMapSectorHelper.CalculateRequiredSectors(bounds, tempSectorsList);
 
-            foreach (var chunkStartPosition in tempWorldChunks.AsList())
+            foreach (var sectorPosition in tempSectorsList.AsList())
             {
-                this.currentObservedChunks.Add(chunkStartPosition);
-
-                var sectorPosition = this.CalculateSectorPosition(chunkStartPosition);
-                if (this.canvasMapSectorControls.TryGetValue(sectorPosition, out var sector)
-                    && sector.TryGetTileRectangle(chunkStartPosition, out var tileRectangle))
+                this.currentObservedSectors.Add(sectorPosition);
+                if (this.canvasMapSectors.TryGetValue(sectorPosition, out var sector))
                 {
+                    // sector already loaded
                     continue;
                 }
 
-                if (!World.IsWorldChunkAvailable(chunkStartPosition))
-                {
-                    continue;
-                }
+                Api.Logger.Dev("[Minimap] Started observing sector: " + sectorPosition);
 
-                this.queueChunks.AddIfNotContains(chunkStartPosition);
-                //Api.Logger.Dev("Started observing chunk: " + chunkStartPosition);
+                for (var y = sectorPosition.Y;
+                     y < sectorPosition.Y + WorldMapSectorProvider.SectorWorldSize;
+                     y += ScriptingConstants.WorldChunkSize)
+                for (var x = sectorPosition.X;
+                     x < sectorPosition.X + WorldMapSectorProvider.SectorWorldSize;
+                     x += ScriptingConstants.WorldChunkSize)
+                {
+                    var chunkPosition = (x, y);
+                    if (World.IsWorldChunkAvailable(chunkPosition))
+                    {
+                        this.queueChunks.AddIfNotContains(chunkPosition);
+                        Api.Logger.Dev("[Minimap] Observing world chunk: " + chunkPosition);
+                    }
+                }
             }
 
-            // find chunks which are no longer visible
-            tempWorldChunks.Clear();
-
-            foreach (var mapSectorControl in this.canvasMapSectorControls)
+            // find sectors which are no longer visible
+            tempSectorsList.Clear();
+            foreach (var mapSectorControl in this.canvasMapSectors)
             {
                 var sectorControl = mapSectorControl.Value;
-                foreach (var chunkStartPosition in sectorControl.Visualizers)
+                var sectorPosition = sectorControl.SectorWorldPosition;
+                if (this.currentObservedSectors.Contains(sectorPosition))
                 {
-                    if (this.currentObservedChunks.Contains(chunkStartPosition))
-                    {
-                        continue;
-                    }
-
-                    // need to remove this chunk as it's no longer visible
-                    tempWorldChunks.Add(chunkStartPosition);
+                    continue;
                 }
+
+                // need to remove this chunk as it's no longer visible
+                tempSectorsList.Add(sectorPosition);
             }
 
-            if (tempWorldChunks.Count == 0)
+            if (tempSectorsList.Count == 0)
             {
                 return;
             }
 
-            // remove chunks which are no longer visible
-            foreach (var chunkStartPosition in tempWorldChunks.AsList())
+            // remove sectors which are no longer visible
+            foreach (var chunkStartPosition in tempSectorsList.AsList())
             {
-                var sectorPosition = this.CalculateSectorPosition(chunkStartPosition);
-                var sector = this.canvasMapSectorControls[sectorPosition];
-                sector.RemoveTileRectangle(chunkStartPosition);
-                //Api.Logger.Dev("Removed chunk: " + chunkStartPosition);
+                var sectorPosition = WorldMapSectorHelper.CalculateSectorStartPosition(chunkStartPosition);
+                var sector = this.canvasMapSectors[sectorPosition];
+                this.canvasMapChildren.Remove(sector.SectorRectangle);
+                this.canvasMapSectors.Remove(sectorPosition);
+                Api.Logger.Dev("[Minimap] No longer observing sector: " + sectorPosition);
+            }
+        }*/
+
+        public Vector2Ushort MapAreaSize
+        {
+            get => this.mapAreaSize;
+            set
+            {
+                if (this.mapAreaSize == value)
+                {
+                    return;
+                }
+
+                this.mapAreaSize = value;
+                this.MarkDirty();
             }
         }
     }

@@ -1,11 +1,16 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Notifications
 {
-    public enum NotificationColor
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
+    public enum NotificationColor : byte
     {
         Neutral,
 
         Good,
 
-        Bad
+        Bad,
+
+        Event
     }
 }

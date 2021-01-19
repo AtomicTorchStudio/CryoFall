@@ -1,4 +1,13 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
+,
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
+, ve {0}
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_TwoEntries_Format:
+{0} ve {1}
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
 <1d
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
@@ -12,6 +21,9 @@ m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 s
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ClientHasModifiedCore:
+Kullandığınız oyun oturumunda modifiye edilmiş veya açılmamış Core.cpk bulunuyor ve buna bu oyun sunucusunda müsaade edilmiyor. Lütfen oyunu yeniden yükleyin.
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `Uyumsuz ağ sürümü.

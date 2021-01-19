@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -39,7 +40,8 @@
         public static void ClientTryStartAction()
         {
             var worldObject = ClientWorldObjectInteractHelper.ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure))
+            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure protoObjectStructure)
+                || !protoObjectStructure.ConfigRepair.IsAllowed)
             {
                 return;
             }
@@ -186,7 +188,7 @@
             }
 
             actionState = new DeconstructionActionState(character, (IStaticWorldObject)worldObject, selectedHotbarItem);
-            if (!actionState.CheckIsAllowed())
+            if (!actionState.CheckIsAllowed(out var hasNoFactionPermission))
             {
                 // not allowed to deconstruct
                 Logger.Warning(
@@ -195,11 +197,23 @@
 
                 if (Api.IsClient)
                 {
-                    NotificationSystem.ClientShowNotification(
-                        NotificationCannotDeconstruct_Title,
-                        LandClaimSystem.ErrorNotLandOwner_Message,
-                        NotificationColor.Bad,
-                        selectedHotbarItem?.ProtoItem.Icon);
+                    if (hasNoFactionPermission)
+                    {
+                        NotificationSystem.ClientShowNotification(
+                            title: CoreStrings.Notification_ActionForbidden,
+                            string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                          CoreStrings.Faction_Permission_LandClaimManagement_Title),
+                            NotificationColor.Bad,
+                            selectedHotbarItem?.ProtoItem.Icon);
+                    }
+                    else
+                    {
+                        NotificationSystem.ClientShowNotification(
+                            NotificationCannotDeconstruct_Title,
+                            LandClaimSystem.ErrorNotLandOwner_Message,
+                            NotificationColor.Bad,
+                            selectedHotbarItem?.ProtoItem.Icon);
+                    }
                 }
 
                 return;

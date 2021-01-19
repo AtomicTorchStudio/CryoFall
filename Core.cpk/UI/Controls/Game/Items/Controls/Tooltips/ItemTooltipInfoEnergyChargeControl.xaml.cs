@@ -12,7 +12,7 @@
 
         public static ItemTooltipInfoEnergyChargeControl Create(IItem item)
         {
-            return new ItemTooltipInfoEnergyChargeControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

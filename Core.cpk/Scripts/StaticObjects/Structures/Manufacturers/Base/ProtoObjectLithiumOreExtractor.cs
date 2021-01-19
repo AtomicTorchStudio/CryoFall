@@ -21,8 +21,7 @@
             = "Too close to another extractor.";
 
         private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrGeothermalSpring
-            = new ConstructionTileRequirements.Validator(
-                () => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}[*]{4}[*]{5}",
+            = new(() => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}[*]{4}[*]{5}",
                                     ConstructionTileRequirements.Error_UnsuitableGround_Title,
                                     ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
                                     Api.GetProtoEntity<TileForestTropical>().Name,
@@ -53,8 +52,7 @@
                 });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherExtractor
-            = new ConstructionTileRequirements.Validator(
-                ErrorTooCloseToAnotherExtractor,
+            = new(ErrorTooCloseToAnotherExtractor,
                 c =>
                 {
                     if (PveSystem.SharedIsPve(false))
@@ -74,11 +72,11 @@
 
                         switch (obj.ProtoStaticWorldObject)
                         {
-                            case ProtoObjectLithiumOreExtractor _:
+                            case ProtoObjectLithiumOreExtractor:
                                 // found another extractor nearby
                                 return false;
 
-                            case ProtoObjectConstructionSite _
+                            case ProtoObjectConstructionSite
                                 when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
                                          ProtoObjectLithiumOreExtractor:
                                 // found a blueprint for another extractor nearby
@@ -90,8 +88,7 @@
                 });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
-            = new ConstructionTileRequirements.Validator(
-                Error_CannotBuildTooCloseToDeposit,
+            = new(Error_CannotBuildTooCloseToDeposit,
                 c =>
                 {
                     var startPosition = c.StartTilePosition;
@@ -116,8 +113,8 @@
         public override byte ContainerOutputSlotsCount => 1;
 
         public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 30,
-                                               shutdownPercent: 20);
+            => new(startupPercent: 30,
+                   shutdownPercent: 20);
 
         protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {

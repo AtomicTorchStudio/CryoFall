@@ -10,7 +10,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    internal static class LandClaimShieldProtectionHelper
+    public static class LandClaimShieldProtectionHelper
     {
         /// <summary>
         /// This check prevents the abuse of the shield mechanic for this layout:

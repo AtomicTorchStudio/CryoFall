@@ -50,7 +50,7 @@
                    .Add(ErrorSoilNotSuitable, c => c.Tile.ProtoTile is IProtoTileFarmAllowed)
                    .Add(ConstructionTileRequirements.ValidatorNoFloor)
                    .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
-                   .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
+                   .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLandNoFactionPermissionsRequired)
                    .Add(ErrorTooCloseToOtherTrees,
                         context => context.Tile
                                           .EightNeighborTiles

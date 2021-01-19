@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 溫馨食物
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+通過在使用者身邊創造孤立量子空間來提高建造速度。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+量子加速
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 你剛剛飽餐一頓，感覺很棒。你感覺生活充滿了光彩。
 
@@ -63,9 +69,6 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 斷腿
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-無法在暈眩時進行攻擊。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 你暈眩了！請等待其恢復。
@@ -180,6 +183,12 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 藥物濫用
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+你吃太多了。繼續吃的話恐怕就要難受了。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+進食過量
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 請等待申請完成。

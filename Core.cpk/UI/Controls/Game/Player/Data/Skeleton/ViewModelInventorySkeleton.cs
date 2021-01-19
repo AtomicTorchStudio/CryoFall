@@ -34,11 +34,31 @@
                     this.IsActive = false;
                 }
 
+                if (this.control is not null)
+                {
+                    this.control.SizeChanged -= this.ControlSizeChangedHandler;
+                    Api.Client.UI.ScreenSizeChanged -= this.UISizeHelperScreenSizeChangedHandler;
+                    this.DestroyImageBrushForSkeleton();
+                }
+
                 this.control = value;
+
+                if (this.control is not null)
+                {
+                    this.control.UpdateLayout();
+                    this.control.SizeChanged += this.ControlSizeChangedHandler;
+                    Api.Client.UI.ScreenSizeChanged += this.UISizeHelperScreenSizeChangedHandler;
+                }
 
                 if (reactivate)
                 {
                     this.IsActive = true;
+                }
+
+                if (this.inventorySkeletonViewData is null
+                    && this.control is not null)
+                {
+                    this.CreateImageBrushForSkeleton();
                 }
             }
         }
@@ -65,20 +85,21 @@
                             $"Cannot activate {nameof(ViewModelInventorySkeleton)} when no {nameof(this.Control)} is assigned");
                     }
 
-                    this.control.UpdateLayout();
-                    this.CreateImageBrushForSkeleton();
+                    if (this.inventorySkeletonViewData is null)
+                    {
+                        this.CreateImageBrushForSkeleton();
+                    }
 
-                    this.control.SizeChanged += this.ControlSizeChangedHandler;
                     this.control.MouseLeftButtonUp += this.ControlMouseLeftButtonUpHandler;
-                    Api.Client.UI.ScreenSizeChanged += this.UISizeHelperScreenSizeChangedHandler;
                 }
                 else
                 {
-                    this.DestroyImageBrushForSkeleton();
-
-                    this.control.SizeChanged -= this.ControlSizeChangedHandler;
                     this.control.MouseLeftButtonUp -= this.ControlMouseLeftButtonUpHandler;
-                    Api.Client.UI.ScreenSizeChanged -= this.UISizeHelperScreenSizeChangedHandler;
+                }
+
+                if (this.inventorySkeletonViewData is not null)
+                {
+                    this.inventorySkeletonViewData.IsActive = this.isActive;
                 }
 
                 this.NotifyThisPropertyChanged();
@@ -87,8 +108,10 @@
 
         protected override void DisposeViewModel()
         {
-            base.DisposeViewModel();
+            this.DestroyImageBrushForSkeleton();
+            this.Control = null;
             this.IsActive = false;
+            base.DisposeViewModel();
         }
 
         private void ControlMouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)
@@ -107,13 +130,12 @@
 
         private void CreateImageBrushForSkeleton()
         {
-            if (!this.isActive
-                || this.control is null)
+            this.DestroyImageBrushForSkeleton();
+
+            if (this.control is null)
             {
                 return;
             }
-
-            this.DestroyImageBrushForSkeleton();
 
             // Alas, we cannot use this method - because the window might be just opening
             // now and the current rendering size is not representing the final rendering size due to scale animation.
@@ -136,6 +158,8 @@
                 this.CurrentCharacter,
                 textureWidth: (ushort)Math.Ceiling(renderingSize.X),
                 textureHeight: (ushort)Math.Ceiling(renderingSize.Y));
+
+            this.inventorySkeletonViewData.IsActive = this.isActive;
 
             switch (this.control)
             {
@@ -162,9 +186,11 @@
                 case Shape s:
                     s.Fill = null;
                     break;
+
                 case Control c:
                     c.Background = null;
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }

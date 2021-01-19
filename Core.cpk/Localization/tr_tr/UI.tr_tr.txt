@@ -28,6 +28,9 @@ Kaydediliyor...
 UI/CoreStrings@AutosaveNotification_Title:
 Sunucu anlık görüntü
 
+UI/CoreStrings@BbCodeFormattingDescription:
+Uygun etiketler [b], [u], [i], [url=example.com]link[/url], [color=#FF0000]renkler[/color], madde işaretleri [*], satır bölmeler [br] gibi kodlar. (Yeni satırlar için satır bölmeler otomatik olarak eklenir.)
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Yok edildi
 
@@ -166,6 +169,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Tekrar sorma
+
+UI/CoreStrings@ClanTag:
+Klan etiketi
 
 UI/CoreStrings@ClanTag_Current:
 Klan etiketi:
@@ -331,6 +337,9 @@ Derin yatak (düşük verim, sonsuz)
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Yüzey yatağı (yüksek verim)
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+Patlama zamanlayıcısı alan tutucu yok edildiğinde, yapı puanı sıfıra indiğinde başlar.
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 {0} kullanmak istediğine emin misin?
 
@@ -357,6 +366,12 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Şu etkileri kaldırır:
+
+UI/CoreStrings@EmptyList:
+Bu liste boş.
+
+UI/CoreStrings@EmptyText:
+Bu metin boş.
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 EB
@@ -385,6 +400,371 @@ Bütün CryoFall güncelleme notları (Sadece İngilizce)
 UI/CoreStrings@Extras_RoadmapTooltip:
 CryoFall geliştirme yol haritası (Sadece İngilizce)
 
+UI/CoreStrings@Faction_Admin:
+Yönetici
+
+UI/CoreStrings@Faction_Application_Accept:
+Kabul Et
+
+UI/CoreStrings@Faction_Application_Cancel:
+İptal Et
+
+UI/CoreStrings@Faction_Application_Reject:
+Reddet
+
+UI/CoreStrings@Faction_Applications:
+Başvurular
+
+UI/CoreStrings@Faction_Applications_Empty:
+Aktif başvuru yok.
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+Tüm başvuruları reddet
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+Bu gruptan ayrıldın veya atıldın. Sadece davetle katılabilirsin.
+
+UI/CoreStrings@Faction_CopyTag:
+Klan etiketini kopyala
+
+UI/CoreStrings@Faction_CreateFaction:
+Grup yarat
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+Her şeyi doğru girdiğinden emin misin?
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+Grup yaratıldıktan sonra grup türünü ve sunumunu değiştiremezsin.
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+Rolün:
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+Mevcut rolün sana yönetimsel ayrıcalıklar sağlamıyor.
+
+UI/CoreStrings@Faction_Description_Private:
+Özel açıklama
+
+UI/CoreStrings@Faction_Description_Public:
+Herkese açık açıklama
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+Grup üyelerinin çevrimiçilik durumlarını ve harita konumlarını gösterir.
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+[b]{0}[/b] kişisini gruptan atmak istediğine emin misin?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+Grubu [b]dağıtmak[/b] istediğime eminim.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+Bu grup üyelerinin [b]{0}[/b] süre boyunca başka bir gruba [b]katılamayacağını[/b] anlıyorum.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+Lütfen öncelikle grubun sahip olduğu tüm alan tutucuları sök.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+Grubu dağıtmak istediğine emin misin?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+Grubu dağıt
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+Önemli: [b]{0}[/b] katılmak üzeresin.
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+[b]{0}[/b] süre boyunca bu gruba katılamayacağımı ve [b]{1}[/b] süre boyunca başka bir gruba katılamayacağımı anlıyorum.
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+Grubu terk etmek istediğinden emin misin?
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+Lütfen mevcut grup üyeleri arasından yeni grup lideri olarak ismi gir.
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+Grup sahipliğini naklet
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+Önemli: [b]{0}[/b] grubuna katılma başvurusunda bulunacaksın.
+
+UI/CoreStrings@Faction_Diplomacy:
+Diplomasi
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+Müttefiklik teklifini kabul et
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+Müttefiklik teklifini iptal et
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+Müttefiklik teklifini reddet
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+Gelen teklifler
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+Giden teklifler
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+Barış anlaşmaları
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+Müttefik
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+Müttefikliği boz
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+Savaş ilan et
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+Savaş ilan ettik:
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+Bize savaş ilan ettiler:
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+Karşılıklı savaş ilanı
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+Tarafsız
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+Barış teklif et
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`Bu gruba kısa süre önce barış teklif ettin.
+[br]{0} süre boyunca bunu tekrarlayamazsın.`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+Savaş ilanları
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+Savaş ilanını geri çek
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+Herhangi bir gruba üye değilsin.
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+Seçilen amblem zaten kullanılıyor. Başka seç.
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+Grup bulunamadı.
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+Kısa zaman önce bir gruptan ayrıldın.
+
+UI/CoreStrings@Faction_Events:
+Etkinlikler
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+Etkinlik tipi
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+Hepsi
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+Üye adı
+
+UI/CoreStrings@Faction_Events_Recent:
+Kısa süre önceki etkinlikler
+
+UI/CoreStrings@Faction_FactionFull:
+Grup dolu.
+
+UI/CoreStrings@Faction_FactionKind_Current:
+Grup türü:
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+Katılmak için başvuru veya davetiye gerekir.
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+Grup subayları başvuruları onaylama ve reddetme kararlarını verebilir.
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+Özel
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+Herkes özgürce katılabilir.
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+Herkese açık
+
+UI/CoreStrings@Faction_Invite:
+Davet
+
+UI/CoreStrings@Faction_Invite_Accept:
+Kabul Et
+
+UI/CoreStrings@Faction_Invite_Cancel:
+İptal Et
+
+UI/CoreStrings@Faction_Invite_Decline:
+Reddet
+
+UI/CoreStrings@Faction_Invites:
+Davetler
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+Tüm davetleri iptal et
+
+UI/CoreStrings@Faction_Invites_Empty:
+Aktif davet yok.
+
+UI/CoreStrings@Faction_InviteToFaction:
+Gruba davet et
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+Başvuruları kabul ediyor
+
+UI/CoreStrings@Faction_Join:
+Katıl
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+Bir grubu terk ettiğinde soğuma süresi dolana kadar yeni bir gruba katılamaz veya yeni bir grup yaratamazsın.
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+Şu kadar süre sonra bir gruba katılabilir veya bir grup yaratabilirsin:
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+Alan tutucu sayısı sınırı grup seviyesi yükseltmeleriyle artırılabilir.
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+Alan tutucu grubu: {0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+Grup alan tutucu sayısı sınırına ulaşıldı.
+
+UI/CoreStrings@Faction_Leaderboard:
+Lider tablosu
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+Lider tablosunda.
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+Sonraki güncelleme:
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+Lider tablosu sıralaması
+
+UI/CoreStrings@Faction_LeaderField:
+Lider:
+
+UI/CoreStrings@Faction_LeaveFaction:
+Gruptan ayrıl
+
+UI/CoreStrings@Faction_Level:
+Seviye
+
+UI/CoreStrings@Faction_Level_Format:
+Seviye: [b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+Maksimum üye: [b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+Son çevrimiçi: {0}
+
+UI/CoreStrings@Faction_Members:
+Üyeler
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+Üyeler: [b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+Başvuru kabul etmiyor
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+{0}  {1} katılım başvurunu kabul etti! Hoş geldin!
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0} seni gruptan çıkardı.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+Düşük itibar sebebiyle gruptan otomatik olarak çıkarıldın.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+Grup üyelerini ve müttefikleri öldürmek mevcut grubunun içindeki itibarını düşürür.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+Grup itibarı düştü
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+Sürekli oyunculara kötü davanırsan gruptan otomatik olarak atılırsın.
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+Alan tutucu yönetimi
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+Grup alan tutucu bölgesindeki inşaatlar ve sökümler. Ayrıca: erişim hakları, tutucu geliştirmeleri, alan tutucu güvenli deposuna erişme, K.A.L.K.A.N.'ı aktif etme, tutucuları gruba aktarma yeri.
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+Grup izni {0} gerekli.
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+Grup liderine özel mesaj
+
+UI/CoreStrings@Faction_Recruitment:
+Üye katma
+
+UI/CoreStrings@Faction_RemoveMember:
+Üye çıkarma
+
+UI/CoreStrings@Faction_Role_Leader:
+Lider
+
+UI/CoreStrings@Faction_Role_Member:
+Üye
+
+UI/CoreStrings@Faction_Score_Format:
+Grup skoru: [b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+Rol belirle
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+{0} için rol belirle
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+Grup bilgisini göster
+
+UI/CoreStrings@Faction_SubmitApplication:
+Başvuru gönder
+
+UI/CoreStrings@Faction_Title:
+Grup
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+Bir başvuruda bulundun.
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+Hâlihazırda grup üyesisin. Yeni bir grup yaratmak veya başka bir gruba katılmak istiyorsan ayrılman gerek.
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+Yeni grup
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+Arama kriterine uyan bir grup yok.
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+Tüm gruplar
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`Aktif bir başvuru yok.
+[br]Grup listesinden bir başvuruda bulunabilirsin.`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+Başvurular
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+Aktif bir davet yok.
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+Davetler
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+Lider tablosu şu an boş.
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 Sulanmamış
 
@@ -406,6 +786,9 @@ Bozulmuş
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 Sulandı
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+Mevcut sunucuda bu özellik kapalı.
+
 UI/CoreStrings@Field_Email:
 E-posta
 
@@ -417,6 +800,9 @@ Kadın
 
 UI/CoreStrings@Gender_Male:
 Erkek
+
+UI/CoreStrings@HealthPointsAbbreviation:
+SP
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Araçtan in
@@ -432,6 +818,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 Teçhizat
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+Grup
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Harita
@@ -523,6 +912,9 @@ Eğitim puanları
 UI/CoreStrings@LearningPointsAbbreviation:
 EP
 
+UI/CoreStrings@LearningPointsCost_Format:
+Bedel: [b]{0}[/b] LP
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steam hesabını bağlamak için lütfen [url=atomictorch.com]AtomicTorch.com[/url] hesap detaylarınızı girin.
 
@@ -579,6 +971,12 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 
 UI/CoreStrings@MasterServer:
 Ana Sunucu
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+Görünüşünü daha sonra ekipman menüsünden değiştirebilirsin.
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+Karakterinin görünüşünü değiştir
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Çıkış yap
@@ -759,6 +1157,14 @@ UI/CoreStrings@Network_Jitter_SeverityYellow:
 `Görünüşe göre sunucuyla olan İnternet bağlantınızda bir titreme yaşanıyor.
 [br]Sonuç olarak hafif oynatma sorunları (ara sıra takılmalar gibi) yaşayabilirsiniz veya sunucuyla olan uyuşmazlıktan dolayı vuruşlarınız sıkça ıskalayabilir.`
 
+UI/CoreStrings@Network_PacketLoss:
+Paket kaybı
+
+UI/CoreStrings@Network_PacketLoss_Description:
+`Sunucuyla olan internet bağlantın ciddi bir paket kaybı yaşıyor.
+[br]Lag, donma, hatta sunucudan düşme sorunları yaşayabilirsin.
+[br]Genelde bunun sebebi kötü kablosuz bağlantı veya router/modem problemidir.`
+
 UI/CoreStrings@Network_Perfect:
 `İnternet bağlantınız güzel gözüküyor.
 [br]Oyunun tadını çıkarın!`
@@ -826,6 +1232,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Güncel erişim modu
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+Açılacağı kişi: {0}
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 Erişim modu
@@ -921,6 +1330,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 VRAM kullanımı
+
+UI/CoreStrings@PlayerNotFound:
+Oyuncu bulunamadı.
 
 UI/CoreStrings@PleaseWait:
 Lütfen bekleyin…
@@ -1078,6 +1490,9 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 SEÇ
+
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+Bir saatten kısa süre önce
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Ekran görüntüsü hazır: {0} (açmak için tıkla)
@@ -1239,6 +1654,9 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 Yetenek
 
+UI/CoreStrings@SortBy:
+Sırala
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Yoğunluk
 
@@ -1313,6 +1731,24 @@ Araçlar:
 
 UI/CoreStrings@Technology:
 Teknoloji
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+Kanınla öde
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+Bir pragmium kalbiyle öde
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+Hedefe ışınlan
+
+UI/CoreStrings@Teleport_Discovered:
+Yeni ışınlanma konumu keşfedildi.
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+Yakınlarda kurtulanlar varmış gibi görünüyor.
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+Sana ait olan ve pilotu olmayan araçlar da ışınlanma bölgesine konulduklarında ışınlanacaktır.
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Araştır…
@@ -1635,6 +2071,9 @@ GÜNEŞ PANELLERİ
 UI/CoreStrings@WindowInventory_Button_Customize:
 Özelleştir
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+Karakter görünüşünü özelleştir.
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 Sıkışıklıktan kurtar!
 
@@ -1647,8 +2086,17 @@ UI/CoreStrings@WindowLandClaim_DecayInfo:
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 Çürüme sistemini farkındayım
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+Grup rolleri ve izinlerine göre kapılara ve diğer yapılara erişim.
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+Bu alan tutucu [b]\\[{0}\\][/b] grubu tarafından yönetiliyor.
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Güvenli depolanan eşyalar bu üsteki bütün alan tutucu yapılar arasında paylaştırılır.
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+Grup sahipliğini naklet
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Bu yapıyı sadece sahibi geliştirebilir.
@@ -1688,6 +2136,9 @@ Boş
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 Işık modu
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+Hedefleme modu
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 Baskın aralığı artık açık ({0} kaldı).
@@ -1740,6 +2191,9 @@ Dünyada yeniden doğ
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 Yatağının yakınlarında yeniden doğ
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+Düşman gruplara karşı savaşta yardım almak için bir gruba katılmayı düşün.
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 En son zarar kaynakları:
@@ -1802,6 +2256,9 @@ Araç
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 Şimdi çevrimiçi
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+Çevrim içi oyuncular listesi bu sunucuda herkesin görünümüne kapatılmıştır.
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 Sunucu istatistikleri
@@ -1995,6 +2452,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Petrol birikintisi[/b]
 [br]Ham petrol yağı yatağı`
 
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+Başka bir uzaylı ışınlanma konumuna hızlı seyahat için kullanabilirsin.
+
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]Ticaret istasyonu[/b]
 [br]Bu ticaret istasyonunun sahibi başka bir oyuncu.`
@@ -2060,6 +2520,24 @@ Bu tarifte parçalanabilir bileşenler bulunduğu için iptal edemezsin.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 Bu tarifi iptal edemezsin
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+Arka plan
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+Ap. rengi 1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+Ap. rengi 2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+Amblem
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+Amblem rengi
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+Şekil
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 Bu eşyayı doğrudan kullanamazsın.
@@ -2203,9 +2681,6 @@ Cilt tonu
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Üst
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-seçilmedi
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Takımdan çıkmak istediğine emin misin?
 
@@ -2317,97 +2792,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `Mevcut üretim {0} EB/s.
 [br]Maksimum çıktı {1} EB/s.`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-CryoFall'a Hoş Geldiniz!
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-Bu fırsattan istifade ederek sizi, oyunda bekleyebileceğiniz bazı özelliklerle tanıştırmak istiyoruz! CryoFall hâlâ gelişim hâlindedir ama bahsedeceklerimiz şu an oynanabilir durumda.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-Tarım & yemek yapma
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-Gübre ve tarım aletleri kullanarak kendi mahsullerinizi üretin. Daha sonra uğraşınızın meyveleriyle farklı yiyecekler pişirin, bu da karakterinize aktif faydalar sağlasın.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-Karakter simülasyon & tıp
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-Sadece klasik açlık ve susuzluk mekanikleriyle değil, çeşitli ilaçlarla çözülebilecek çeşitli etki ve hastalıkların da bulunduğu kompleks karakter simülasyonu.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-Sanayi
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-CryoFall dünyasındaki doğal kaynaklardan yararlan. Petrol çıkar ve rafine et veya bataryalar ve elektronikler yapmak için jeotermal kaynaklardan lityum çıkar.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-Ekonomi
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-Para bas ve diğer hayatta kalanlarla ticaret yapabilmek için tamamen otomatik ticaret istasyonları kur.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-Balıkçılık
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-Farklı türde yemler kullanarak çeşitli tatlı su ve tuzlu su balıkları tut. Rekorunu kırmaya çalış ve başkalarıyla rekabet et.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-Sibernetik implantlar
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-Yeni yetenekler kazanmak ve özelliklerini yükseltmek için çeşitli biyonik ve sibernetik implantlar al.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-Yetenekler
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-Karakterinin çeşitli yeteneklerini keşfet, kilidini aç ve geliştir. Böylece verimliliğin artar ve yeni yetenekler kazanırsın.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+Karakterinin görünüşünü özelleştir ve çeşitli ekipmanlar ve aletler kullanarak kendini farklı kıl.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 Karakter özelleştirmesi
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-Karakterinin görünüşünü özelleştir ve çeşitli ekipmanlar ve aletler kullanarak kendini farklı kıl.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-Teknoloji
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-Eğitim puanları kazan ve onları kullanarak yeni teknolojileri, tarifleri ve yapıları öğren. Böylece oyunu, en çok ilgini çeken alana odaklayarak oynayabilirsin.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-Elektrik
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-Üssünü, elektrik şebekesi planıyla tasarla. Birçok jeneratör, depo ve elektrik tüketici inşa edebilirsin.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Araçlar
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Dünyayı daha hızlı keşfetmek ve onları savaşta kullanmak için çeşitli fütüristik araçlar yap ve geliştir.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-Dünya etkinlikleri
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-CryoFall dünyasına yaşanan birçok etkinliğe katıl. İster meteorit çarpma alanını keşfet ister tehlikeli bir düşmanı yenmek için bir grup insan olarak toplanın.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+Birçok farklı biyom ve fantastik yaratık bulunduran kapsamlı bir dünyayı keşfet.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Fantastik yaratıklar
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-Birçok farklı biyom ve fantastik yaratık bulunduran kapsamlı bir dünyayı keşfet.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+Para bas ve diğer hayatta kalanlarla ticaret yapabilmek için tamamen otomatik ticaret istasyonları kur.
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-Son söz
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+Ekonomi
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+Üssünü, elektrik şebekesi planıyla tasarla. Birçok jeneratör, depo ve elektrik tüketici inşa edebilirsin.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+Elektrik
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+CryoFall dünyasına yaşanan birçok etkinliğe katıl. İster meteorit çarpma alanını keşfet ister tehlikeli bir düşmanı yenmek için bir grup insan olarak toplanın.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Dünya etkinlikleri
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+Gübre ve tarım aletleri kullanarak kendi mahsullerinizi üretin. Daha sonra uğraşınızın meyveleriyle farklı yiyecekler pişirin, bu da karakterinize aktif faydalar sağlasın.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+Tarım & yemek yapma
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Farklı türde yemler kullanarak çeşitli tatlı su ve tuzlu su balıkları tut. Rekorunu kırmaya çalış ve başkalarıyla rekabet et.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Balıkçılık
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+Yeni yetenekler kazanmak ve özelliklerini yükseltmek için çeşitli biyonik ve sibernetik implantlar al.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+Sibernetik implantlar
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+CryoFall dünyasındaki doğal kaynaklardan yararlan. Petrol çıkar ve rafine et veya bataryalar ve elektronikler yapmak için jeotermal kaynaklardan lityum çıkar.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+Sanayi
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `Son olarak, lütfen CryoFall'un yapım aşamasında olan bir oyun olduğunu, daha birçok ilerlemenin ve geliştirmenin planlandığını aklınızda tutun. Yine de mevcut hâliyle gayet iyi bir oyun ve umarız bunun sonunda dek tadını çıkarırsınız![br][br]
 Discord'da ve forumlarımızda hep ulaşılabilir durumdayız. Gelin ve selam verin! :)[br][br]
 Herhangi bir zorluk yaşıyorsanız veya bir hatayı, açığı bildirmek istiyorsanız, dinlemeye ve yardım etmeye açığız!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+Son söz
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+Sadece klasik açlık ve susuzluk mekanikleriyle değil, çeşitli ilaçlarla çözülebilecek çeşitli etki ve hastalıkların da bulunduğu kompleks karakter simülasyonu.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+Karakter simülasyon & tıp
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+Karakterinin çeşitli yeteneklerini keşfet, kilidini aç ve geliştir. Böylece verimliliğin artar ve yeni yetenekler kazanırsın.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+Yetenekler
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+Eğitim puanları kazan ve onları kullanarak yeni teknolojileri, tarifleri ve yapıları öğren. Böylece oyunu, en çok ilgini çeken alana odaklayarak oynayabilirsin.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+Teknoloji
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Dünyayı daha hızlı keşfetmek ve onları savaşta kullanmak için çeşitli fütüristik araçlar yap ve geliştir.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Araçlar
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+Bu fırsattan istifade ederek sizi, oyunda bekleyebileceğiniz bazı özelliklerle tanıştırmak istiyoruz! CryoFall hâlâ gelişim hâlindedir ama bahsedeceklerimiz şu an oynanabilir durumda.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+CryoFall'a Hoş Geldiniz!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 Oyunu başlat
@@ -2451,6 +2926,9 @@ Sağ fare tuşu
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 Boşluk tuşu
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+atanmamış
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 [b]{0}[/b] seçeneklerini sıfırlamak istiyor musun? [br]Varsayılan değerler yüklenip kaydedilecek.

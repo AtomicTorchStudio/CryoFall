@@ -202,7 +202,7 @@
         {
             if (this.publicState.HasHarvest)
             {
-                this.HarvestInTimePercent = 100;
+                this.HarvestInTimePercent = 0; // 0 instead of 100 as the value is bar is reversed
                 this.HarvestInTimeText = null; // not used
             }
             else
@@ -219,7 +219,7 @@
 
             if (this.publicState.IsSpoiled)
             {
-                this.SpoiledInTimePercent = 100;
+                this.SpoiledInTimePercent = 0; // 0 instead of 100 as the value is bar is reversed
                 this.SpoiledInTimeText = null; // not used
                 this.IsSpoiling = true;
             }
@@ -228,7 +228,8 @@
                 // update rotten time
                 var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
                     this.nextHarvestOrSpoilTime,
-                    this.protoPlant.TimeToHarvestSpoilTotalSeconds / FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier,
+                    this.protoPlant.TimeToHarvestSpoilTotalSeconds
+                    / FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier,
                     out var timeRemainingSeconds);
 
                 this.SpoiledInTimeText = ClientTimeFormatHelper.FormatTimeDuration(Math.Max(0, timeRemainingSeconds));

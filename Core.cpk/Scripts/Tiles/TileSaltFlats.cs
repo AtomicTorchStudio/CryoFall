@@ -10,8 +10,8 @@
     public class TileSaltFlats : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/SaltFlats/TileSaltFlats1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/SaltFlats/TileSaltFlats1.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 9;
 

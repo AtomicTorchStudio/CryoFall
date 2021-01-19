@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using System.Collections.Generic;
 
     public class ItemAmmoPaperCartridge : ProtoItemAmmo, IAmmoPaperCartrige
     {
@@ -30,6 +31,11 @@
         protected override WeaponFireTracePreset PrepareFireTracePreset()
         {
             return WeaponFireTracePresets.Blackpowder;
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            // no hints for this ammo caliber since there is only one type
         }
     }
 }

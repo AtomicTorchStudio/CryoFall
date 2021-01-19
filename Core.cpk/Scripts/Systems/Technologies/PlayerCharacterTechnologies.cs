@@ -11,7 +11,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class PlayerCharacterTechnologies : BaseNetObject
     {
@@ -40,13 +39,21 @@
 
         [SyncToClient]
         public NetworkSyncList<TechGroup> Groups { get; }
-            = new NetworkSyncList<TechGroup>();
+            = new();
 
         [SyncToClient]
         public bool IsTechTreeChanged { get; set; }
 
         [SyncToClient]
-        public ushort LearningPoints { get; private set; }
+        public uint LearningPoints { get; private set; }
+
+        /// <summary>
+        /// Amount of total LP accumulated. It only goes up.
+        /// It's used for LP refund when resetting the tech.
+        /// It's included in a faction application to display how many LP the applicant has accumulated.
+        /// </summary>
+        [SyncToClient]
+        public uint LearningPointsAccumulatedTotal { get; private set; }
 
         /// <summary>
         /// Accumulator for the remainder (less than 1.0) amount of learning points.
@@ -59,7 +66,7 @@
         /// Do not modify as all modifications should go through PlayerCharacterTechnologies.
         /// </summary>
         [SyncToClient]
-        public NetworkSyncList<TechNode> Nodes { get; } = new NetworkSyncList<TechNode>();
+        public NetworkSyncList<TechNode> Nodes { get; } = new();
 
         public void ServerAddGroup(TechGroup techGroup)
         {
@@ -79,14 +86,14 @@
             Api.SafeInvoke(() => ServerCharacterGroupAddedOrRemoved?.Invoke(character, techGroup, isAdded: true));
         }
 
-        public void ServerAddLearningPoints(double points, bool allowModifyingByStat = true)
+        public void ServerAddLearningPoints(double points, bool allowModifyingByStatsAndRates = true)
         {
             if (points <= 0)
             {
                 return;
             }
 
-            if (allowModifyingByStat)
+            if (allowModifyingByStatsAndRates)
             {
                 points *= this.Character.SharedGetFinalStatMultiplier(StatName.LearningsPointsGainMultiplier);
             }
@@ -109,16 +116,16 @@
             }
 
             // add points
+            this.LearningPointsAccumulatedTotal = (uint)(Math.Min(int.MaxValue,
+                                                                  this.LearningPointsAccumulatedTotal + pointsToAdd));
+
             var result = this.LearningPoints + pointsToAdd;
-            if (result > ushort.MaxValue)
-            {
-                result = ushort.MaxValue;
-            }
+            result = Math.Min(int.MaxValue, result);
 
             var learningPointsWas = this.LearningPoints;
-            this.LearningPoints = (ushort)result;
+            this.LearningPoints = (uint)result;
 
-            pointsToAdd = this.LearningPoints - learningPointsWas;
+            pointsToAdd = (int)(this.LearningPoints - learningPointsWas);
             if (pointsToAdd <= 0)
             {
                 // max LP reached
@@ -128,7 +135,9 @@
             Api.Logger.Info($"Learning points gained: +{pointsToAdd} (total: {result})", this.Character);
 
             Api.SafeInvoke(
-                () => ServerCharacterGainedLearningPoints?.Invoke(this.Character, pointsToAdd, allowModifyingByStat));
+                () => ServerCharacterGainedLearningPoints?.Invoke(this.Character,
+                                                                  pointsToAdd,
+                                                                  allowModifyingByStatsAndRates));
 
             this.Character.ServerAddSkillExperience<SkillLearning>(
                 pointsToAdd * SkillLearning.ExperienceAddedPerLPEarned);
@@ -147,15 +156,6 @@
         public void ServerInit()
         {
             TechnologiesSystem.ServerInitCharacterTechnologies(this);
-        }
-
-        public void ServerRefundLearningPoints(int lpToRefund)
-        {
-            var pointsToAdd = Math.Max(0, lpToRefund);
-            this.LearningPoints = (ushort)Math.Min(ushort.MaxValue,
-                                                   this.LearningPoints + pointsToAdd);
-            Api.Logger.Important(
-                $"Learning points refunded: +{pointsToAdd} (total: {this.LearningPoints}) for {this.Character}");
         }
 
         public void ServerRemoveAllTechnologies()
@@ -213,16 +213,16 @@
             }
         }
 
-        public void ServerRemoveLearningPoints(ushort points)
+        public void ServerRemoveLearningPoints(uint points)
         {
-            var result = this.LearningPoints - points;
+            var result = this.LearningPoints - (long)points;
             if (result < 0)
             {
                 throw new Exception(
                     $"Not enough learning points: has {this.LearningPoints} need to remove {points}");
             }
 
-            this.LearningPoints = (ushort)result;
+            this.LearningPoints = (uint)result;
             Api.Logger.Info($"Learning points removed: -{points} (total: {result})", this.Character);
         }
 
@@ -247,17 +247,35 @@
             }
         }
 
-        public void ServerResetLearningPointsRemainder()
+        public void ServerResetTechTreeAndRefundLearningPoints()
         {
-            this.LearningPointsRemainderAccumulator = 0;
+            this.Nodes.Clear();
+            this.Groups.Clear();
+
+            this.LearningPoints = Math.Min(int.MaxValue,
+                                           this.LearningPointsAccumulatedTotal);
+            this.IsTechTreeChanged = true;
+
+            Api.Logger.Important(
+                $"Learning points refunded: {this.LearningPoints} LP available",
+                this.Character);
+
+            TechnologiesSystem.ServerEnsureFreeTechGroupsUnlocked(this);
         }
 
-        public void ServerSetLearningPoints(int points)
+        public void ServerSetLearningPoints(uint points)
         {
-            var pointsUshort = (ushort)MathHelper.Clamp(points, 0, ushort.MaxValue);
-            this.LearningPoints = pointsUshort;
+            points = Math.Min(int.MaxValue, points);
+            this.LearningPoints = points;
             this.LearningPointsRemainderAccumulator = 0;
-            Api.Logger.Info("Learning points reset to " + pointsUshort, this.Character);
+            Api.Logger.Info("Learning points reset to " + points, this.Character);
+        }
+
+        public void ServerSetTotalAccumulatedLearningPoints(uint points)
+        {
+            this.LearningPointsAccumulatedTotal = points;
+            Api.Logger.Info("Total accumulated learning points reset to " + this.LearningPointsAccumulatedTotal,
+                            this.Character);
         }
 
         public int SharedGetUnlockedNodesCount(TechGroup techGroup)

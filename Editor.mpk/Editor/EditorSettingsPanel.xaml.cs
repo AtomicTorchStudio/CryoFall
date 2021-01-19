@@ -5,14 +5,6 @@
 
     public partial class EditorSettingsPanel : BaseUserControl
     {
-        public EditorSettingsPanel()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             if (IsDesignTime)

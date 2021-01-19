@@ -9,12 +9,9 @@
 
         private float valueMax = 100;
 
-        public ViewModelHUDStatBar(string title, Color foregroundColor, Color backgroundColor, Color fireColor)
+        public ViewModelHUDStatBar(string title, Color foregroundColor, Color backgroundColor)
         {
             this.Title = title;
-
-            this.FireColor = fireColor;
-            this.FireTransparentColor = Color.FromArgb(0, fireColor.R, fireColor.G, fireColor.B);
 
             this.ForegroundBrush = new SolidColorBrush(foregroundColor);
             this.BackgroundBrush = new SolidColorBrush(backgroundColor);
@@ -26,10 +23,6 @@
         }
 
         public Brush BackgroundBrush { get; }
-
-        public Color FireColor { get; }
-
-        public Color FireTransparentColor { get; }
 
         public Brush ForegroundBrush { get; }
 

@@ -28,10 +28,9 @@
               [br][br]To improve performance in [b][u]Editor Mode[/u][/b], please uncheck [b]""Terrain blending""[/b] in the bottom right corner.";
 
         private static readonly Interval<double> ZoomBoundsEditorMode
-            = new Interval<double>(
-                min: 0.05,
-                // please note - in Editor mode we allow to zoom closer (to check HiDPI sprites)
-                max: Api.IsEditor ? 8 : 1);
+            = new(min: 0.05,
+                  // please note - in Editor mode we allow to zoom closer (to check HiDPI sprites)
+                  max: Api.IsEditor ? 8 : 1);
 
         private ClientInputContext inputContextEditorMapMenu;
 
@@ -41,7 +40,7 @@
         {
             ClientInputManager.RegisterButtonsEnum<EditorButton>();
 
-            ClientUpdateHelper.UpdateCallback += this.ClientUpdateCallback;
+            ClientUpdateHelper.UpdateCallback += ClientUpdateCallback;
             BootstrapperClientGame.InitCallback += this.Init;
             BootstrapperClientGame.ResetCallback += this.Reset;
 
@@ -72,15 +71,15 @@
                 okAction: () => { sessionStorage.Save(true, writeToLog: false); });
         }
 
-        private void ClientUpdateCallback()
+        private static void ClientUpdateCallback()
         {
             if (!ClientInputManager.IsButtonDown(EditorButton.ToggleEditorMode))
             {
                 return;
             }
 
-            var currentPlayerCharacter = Client.Characters.CurrentPlayerCharacter;
-            if (currentPlayerCharacter is null)
+            var currentCharacter = Client.Characters.CurrentPlayerCharacter;
+            if (currentCharacter is null)
             {
                 return;
             }
@@ -89,7 +88,7 @@
             Client.UI.BlurFocus();
 
             var protoCharacterEditorMode = Api.GetProtoEntity<PlayerCharacterEditorMode>();
-            if (currentPlayerCharacter.ProtoCharacter is PlayerCharacterEditorMode)
+            if (currentCharacter.ProtoCharacter is PlayerCharacterEditorMode)
             {
                 // switch to player mode
                 EditorActiveToolManager.Deactivate();
@@ -135,19 +134,18 @@
                           {
                               if (input.IsKeyHeld(InputKey.Shift))
                               {
-                                  EditorClientSystem.Redo();
+                                  EditorClientActionsHistorySystem.Redo();
                                   return;
                               }
 
-                              EditorClientSystem.Undo();
+                              EditorClientActionsHistorySystem.Undo();
                               return;
                           }
 
                           if (input.IsKeyDown(InputKey.Y)
                               && input.IsKeyHeld(InputKey.Control))
                           {
-                              EditorClientSystem.Redo();
-                              return;
+                              EditorClientActionsHistorySystem.Redo();
                           }
                       });
         }

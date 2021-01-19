@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="500"
     d:DataContext="{d:DesignInstance data:ViewModelEditorToolsPanel, IsDesignTimeCreatable=True}">
@@ -16,55 +18,27 @@
                 <ResourceDictionary Source="EditorStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <system:Double x:Key="IconSize">40</system:Double>
+
             <Style x:Key="ItemsControlStyle" TargetType="ItemsControl">
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,-5,0" />
+                            <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="ItemTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <RadioButton base:ToolTipServiceExtend.ToolTip="{Binding Name}"
-                                         IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="0,0,5,0">
-                                <RadioButton.Content>
-                                    <Grid>
-                                        <Border x:Name="Border" CornerRadius="3"
-                                                Background="#FF262626">
-                                            <Rectangle Fill="{Binding Icon}" Width="40" Height="40" Stretch="Uniform" />
-                                        </Border>
-
-                                        <Border x:Name="BorderSelected" BorderBrush="#CCFFFF66" BorderThickness="2"
-                                                CornerRadius="3" />
-                                    </Grid>
-                                </RadioButton.Content>
-                                <RadioButton.Template>
-                                    <ControlTemplate>
-                                        <ContentPresenter />
-                                    </ControlTemplate>
-                                </RadioButton.Template>
-                            </RadioButton>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding IsSelected}" Value="False">
-                                    <Setter TargetName="BorderSelected" Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#66FFFF66" />
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="ItemTemplate"
+                        Value="{StaticResource DataTemplateEditorEntryWithIcon}" />
             </Style>
-
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border VerticalAlignment="Top" Style="{StaticResource EditorPanelStyle}">
+    <Grid VerticalAlignment="Top">
+        <core:WidgetPanel InnerGlowSize="10" />
+
         <ItemsControl ItemsSource="{Binding ToolsCollection}"
                       Style="{StaticResource ItemsControlStyle}"
-                      Background="Transparent" />
-    </Border>
+                      Margin="2" />
+    </Grid>
 </base:BaseUserControl>

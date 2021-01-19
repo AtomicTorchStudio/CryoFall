@@ -25,6 +25,9 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 農業
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+必要条件：釣りのスキルレベル{0}
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 餌を節約するチャンス
 

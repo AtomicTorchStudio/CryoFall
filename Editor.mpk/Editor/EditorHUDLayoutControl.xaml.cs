@@ -5,10 +5,6 @@
 
     public partial class EditorHUDLayoutControl : BaseUserControl
     {
-        public EditorHUDLayoutControl()
-        {
-        }
-
         public static EditorHUDLayoutControl Instance { get; private set; }
 
         protected override void InitControl()

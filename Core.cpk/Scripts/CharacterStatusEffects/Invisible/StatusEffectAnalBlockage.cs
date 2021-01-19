@@ -11,9 +11,6 @@
     {
         public override string Description => string.Empty;
 
-        // an icon is not necessary (since this is an invisible effect)
-        public override ITextureResource Icon => TextureResource.NoTexture;
-
         public override double IntensityAutoDecreasePerSecondValue => 1.0 / 600.0; // total of 10 minutes for max time
 
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
@@ -21,5 +18,8 @@
         public override string Name => this.ShortId;
 
         public override double VisibilityIntensityThreshold => double.MaxValue;
+
+        // an icon is not necessary (since this is an invisible effect)
+        protected override ITextureResource IconTextureResource => TextureResource.NoTexture;
     }
 }

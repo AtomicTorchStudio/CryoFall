@@ -57,8 +57,8 @@
 
         // Switch item mode (for example, switch/alternate the ammo type for current weapon)
         [Description(@"Switch item mode
-  [br]/switch ammo")]
-        [ButtonInfo(InputKey.B)]
+                       [br]/switch ammo")]
+        [ButtonInfo(InputKey.T)]
         ItemSwitchMode,
 
         // Toggle currently equipped helmet light (if you have equipped a helmet with the light source)
@@ -119,7 +119,7 @@
         OpenChat,
 
         [Description(CoreStrings.HUDButtonsBar_MenuTitle_Equipment)]
-        [ButtonInfo(InputKey.E)]
+        [ButtonInfo(InputKey.Tab, InputKey.E)]
         InventoryMenu,
 
         [Description(CoreStrings.HUDButtonsBar_MenuTitle_Crafting)]
@@ -131,7 +131,7 @@
         MapMenu,
 
         [Description(CoreStrings.HUDButtonsBar_MenuTitle_Construction)]
-        [ButtonInfo(InputKey.Tab)]
+        [ButtonInfo(InputKey.B)]
         ConstructionMenu,
 
         [Description(CoreStrings.HUDButtonsBar_MenuTitle_Skills)]
@@ -153,6 +153,10 @@
         [Description(CoreStrings.HUDButtonsBar_MenuTitle_Politics)]
         [ButtonInfo(InputKey.P)]
         PoliticsMenu,
+
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Faction)]
+        [ButtonInfo(InputKey.U)]
+        FactionMenu,
 
         [Description(CoreStrings.HUDButtonsBar_MenuTitle_Completionist)]
         [ButtonInfo(InputKey.N)]

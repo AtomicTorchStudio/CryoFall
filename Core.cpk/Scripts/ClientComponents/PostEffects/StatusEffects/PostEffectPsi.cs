@@ -10,7 +10,7 @@
     public class PostEffectPsi : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/StatusEffects/Psi");
+            = new("PostEffects/StatusEffects/Psi");
 
         private IGraphicsDevice device;
 

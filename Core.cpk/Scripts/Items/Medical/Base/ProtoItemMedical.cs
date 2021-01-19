@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
@@ -90,11 +93,32 @@
 
             if (this.CooldownDuration > 0)
             {
-                var control = ItemTooltipInfoEntryControl.Create(
-                    Api.GetProtoEntity<StatusEffectMedicalCooldown>().Name,
+                var stackPanel = new StackPanel();
+                stackPanel.Orientation = Orientation.Horizontal;
+
+                var statusEffectMedicalCooldown = Api.GetProtoEntity<StatusEffectMedicalCooldown>();
+                var icon = new Rectangle()
+                {
+                    Fill = Api.Client.UI.GetTextureBrush(
+                        ((IProtoStatusEffect)statusEffectMedicalCooldown).Icon),
+                    Width = 26,
+                    Height = 26,
+                    UseLayoutRounding = true
+                };
+
+                var controlInfoEntry = ItemTooltipInfoEntryControl.Create(
+                    statusEffectMedicalCooldown.Name,
                     ClientTimeFormatHelper.FormatTimeDuration(this.CooldownDuration));
-                ((FrameworkElement)control).Margin = new Thickness(0, 7, 0, 7);
-                controls.Add(control);
+                controlInfoEntry.Margin = new Thickness(4, 0, 0, -5);
+                controlInfoEntry.VerticalAlignment = VerticalAlignment.Center;
+                controlInfoEntry.Foreground
+                    = controlInfoEntry.ValueBrush
+                          = Api.Client.UI.GetApplicationResource<Brush>("BrushColorAltLabelForeground");
+
+                stackPanel.Children.Add(icon);
+                stackPanel.Children.Add(controlInfoEntry);
+                stackPanel.Margin = new Thickness(0, 7, 0, 7);
+                controls.Add(stackPanel);
             }
 
             if (this.Effects.Count > 0)

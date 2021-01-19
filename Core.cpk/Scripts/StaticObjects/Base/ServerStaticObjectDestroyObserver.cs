@@ -8,11 +8,11 @@
     {
         public delegate void StructureDestroyedDelegate(ICharacter character, IStaticWorldObject worldObject);
 
-        public static event StructureDestroyedDelegate StructureDestroyed;
+        public static event StructureDestroyedDelegate ObjectDestroyed;
 
         public static void NotifyObjectDestroyed(ICharacter character, IStaticWorldObject worldObject)
         {
-            Api.SafeInvoke(() => StructureDestroyed?.Invoke(character, worldObject));
+            Api.SafeInvoke(() => ObjectDestroyed?.Invoke(character, worldObject));
         }
     }
 }

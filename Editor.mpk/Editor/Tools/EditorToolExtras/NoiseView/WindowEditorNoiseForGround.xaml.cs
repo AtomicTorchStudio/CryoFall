@@ -10,10 +10,6 @@
 
         private ViewModelWindowEditorNoiseForGround viewModel;
 
-        public WindowEditorNoiseForGround()
-        {
-        }
-
         protected override void WindowClosing()
         {
             this.suppressInputContext.Stop();

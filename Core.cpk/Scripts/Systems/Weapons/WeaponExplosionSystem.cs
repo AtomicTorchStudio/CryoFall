@@ -133,8 +133,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                         }
 
                         weaponFinalCache.ProtoExplosive?.ServerOnObjectHitByExplosion(damagedObject,
-                                                                                      damageApplied,
-                                                                                      weaponFinalCache);
+                            damageApplied,
+                            weaponFinalCache);
                     }
                 }
             }
@@ -149,7 +149,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             bool isDamageThroughObstacles,
             Func<double, double> callbackCalculateDamageCoefByDistanceForStaticObjects,
             Func<double, double> callbackCalculateDamageCoefByDistanceForDynamicObjects,
-            [CanBeNull] CollisionGroup collisionGroup = null)
+            [CanBeNull] CollisionGroup[] collisionGroups = null)
         {
             var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
             var protoWeaponSkill = playerCharacterSkills is not null
@@ -158,12 +158,20 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             // collect all damaged objects via physics space
             var damageCandidates = new HashSet<IWorldObject>();
-            collisionGroup ??= CollisionGroups.Default;
 
-            var defaultCollisionGroup = collisionGroup;
-            CollectDamagedPhysicalObjects(defaultCollisionGroup);
-            CollectDamagedPhysicalObjects(CollisionGroups.HitboxMelee);
-            CollectDamagedPhysicalObjects(CollisionGroups.HitboxRanged);
+            collisionGroups ??= new[]
+            {
+                CollisionGroup.Default,
+                CollisionGroups.HitboxMelee,
+                CollisionGroups.HitboxRanged
+            };
+
+            var defaultCollisionGroup = collisionGroups[0];
+
+            foreach (var collisionGroup in collisionGroups)
+            {
+                CollectDamagedPhysicalObjects(collisionGroup);
+            }
 
             void CollectDamagedPhysicalObjects(CollisionGroup collisionGroup)
             {
@@ -249,7 +257,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             // order by distance to explosion center
             var orderedDamageCandidates = damageCandidates.OrderBy(
-                ServerExplosionGetDistanceToEpicenter(positionEpicenter, collisionGroup));
+                ServerExplosionGetDistanceToEpicenter(positionEpicenter, defaultCollisionGroup));
 
             var hitCharacters = new List<WeaponHitData>();
 
@@ -266,7 +274,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 }
 
                 var distanceToDamagedObject = ServerCalculateDistanceToDamagedObject(positionEpicenter,
-                                                                                     damagedObject);
+                    damagedObject);
                 var damagePreMultiplier =
                     damagedObject is IDynamicWorldObject
                         ? callbackCalculateDamageCoefByDistanceForDynamicObjects(distanceToDamagedObject)
@@ -455,7 +463,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 return worldObject switch
                 {
                     IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
-                    IStaticWorldObject _                   => worldObject.TilePosition.ToVector2D(),
+                    IStaticWorldObject                     => worldObject.TilePosition.ToVector2D(),
                     _                                      => hitData.FallbackTilePosition.ToVector2D()
                 };
             }
@@ -468,8 +476,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 case IDynamicWorldObject dynamicWorldObject:
                     // find the closest dynamicObject position inside the explosion area by checking its hitbox
                     var closestPosition = dynamicWorldObject.PhysicsBody.ClampPointInside(fromPosition,
-                                                                                          CollisionGroups.HitboxRanged,
-                                                                                          out var isSuccess);
+                        CollisionGroups.HitboxRanged,
+                        out var isSuccess);
                     if (!isSuccess)
                     {
                         closestPosition = dynamicWorldObject.Position;
@@ -646,14 +654,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 return worldObject.TilePosition.ToVector2D()
                        + worldObject.PhysicsBody.CenterOffset;
             }
-        }
-
-        private static void ServerOnObjectHitByNova(
-            IWorldObject damagedObject,
-            double damageApplied,
-            WeaponFinalCache weaponFinalCache)
-        {
-            throw new NotImplementedException();
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]

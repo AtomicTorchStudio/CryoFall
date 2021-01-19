@@ -8,11 +8,13 @@
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:crates="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowCrateContainer, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:crates="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates">
+    FontFamily="{StaticResource CondensedFontFamily}"
+    FontWeight="Bold">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
                                   SoundOpening="{StaticResource SoundWindowContainerOpen}"
@@ -38,7 +40,7 @@
                 <!-- Text: Items -->
                 <TabItem Header="{x:Static loc:CoreStrings.ItemsContainer_Title}"
                          IsSelected="True">
-                    <Grid Margin="0,-7,0,0" >
+                    <Grid Margin="0,-7,0,0">
                         <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}" />
                         <crates:CrateIconControl WorldObjectCrate="{Binding WorldObjectCrate}"
                                                  HorizontalAlignment="Right"
@@ -48,7 +50,8 @@
                 </TabItem>
 
                 <!-- Text: Owners -->
-                <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}">
+                <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}"
+                         Visibility="{Binding ViewModelOwnersEditor, Converter={StaticResource NullToVisibilityConverter}}">
                     <Grid HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           Margin="0,20,0,0">
@@ -69,11 +72,19 @@
                             <StackPanel Orientation="Vertical"
                                         Grid.Column="2"
                                         VerticalAlignment="Center"
-                                        DataContext="{Binding ViewModelAccessModeEditor}">
-                                <worldObjects:WorldObjectAccessModeEditorControl />
+                                        DataContext="{Binding ViewModelDirectAccessEditor}">
+                                <worldObjects:WorldObjectDirectAccessEditorControl />
                             </StackPanel>
                         </Grid>
                     </Grid>
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.ObjectAccessModeEditor_TitleAccessModeSelection}"
+                         Visibility="{Binding ViewModelFactionAccessEditor, Converter={StaticResource NullToVisibilityConverter}}">
+                    <worldObjects:WorldObjectFactionAccessEditorControl
+                        DataContext="{Binding ViewModelFactionAccessEditor}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
                 </TabItem>
             </TabControl>
         </Grid>

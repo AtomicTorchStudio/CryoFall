@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations
 {
     using System.ComponentModel;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum TradingStationLotState : byte
     {
         [Description("Available")]

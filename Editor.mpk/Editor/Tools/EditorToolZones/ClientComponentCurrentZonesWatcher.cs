@@ -12,7 +12,7 @@
     /// </summary>
     public class ClientComponentCurrentZonesWatcher : ClientComponent
     {
-        private readonly HashSet<IProtoZone> zonesAtCurrentBrush = new HashSet<IProtoZone>();
+        private readonly HashSet<IProtoZone> zonesAtCurrentBrush = new();
 
         private ClientComponentEditorToolActiveTileBrush brushComponent;
 

@@ -94,7 +94,7 @@
             private const float Volume = 0.75f;
 
             private static readonly SoundResource SoundResourceDazedProcess
-                = new SoundResource("StatusEffects/Debuffs/Dazed/Process");
+                = new("StatusEffects/Debuffs/Dazed/Process");
 
             private double intensity;
 

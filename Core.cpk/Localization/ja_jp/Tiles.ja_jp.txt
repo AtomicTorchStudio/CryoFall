@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+エイリアン
+
+Scripts/Tiles/TileBarren@Name:
 不毛地
 
 Scripts/Tiles/TileBeachBoreal@Name:

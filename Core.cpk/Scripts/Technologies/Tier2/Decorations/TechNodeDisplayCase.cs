@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDisplayCase>();
 
-            config.SetRequiredNode<TechNodeDecorationSkull>();
+            config.SetRequiredNode<TechNodeDecorationDoorBell>();
         }
     }
 }

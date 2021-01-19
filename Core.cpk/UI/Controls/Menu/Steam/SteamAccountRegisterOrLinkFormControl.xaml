@@ -89,6 +89,7 @@
             <!-- Text: Continue -->
             <Button Content="{x:Static loc:CoreStrings.Button_Continue}"
                     Command="{Binding CommandRegisterAccount}"
+                    IsEnabled="{Binding CanRegister}"
                     IsTabStop="True"
                     FontSize="18"
                     HorizontalAlignment="Left" />

@@ -15,8 +15,7 @@
         private static readonly IRenderingClientService RenderingService = Api.Client.Rendering;
 
         private readonly Stack<IComponentSpriteRenderer> cacheRenderers
-            = new Stack<IComponentSpriteRenderer>(
-                capacity: 512); // initial capacity is a bit large as we need a lot of renderers
+            = new(capacity: 512); // initial capacity is a bit large as we need a lot of renderers
 
         private readonly Func<IComponentSpriteRenderer> callbackGetRendererFromCache;
 
@@ -114,7 +113,7 @@
 
         public void RegisterArea(ILogicObject area)
         {
-            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
             if (areasGroup is null)
             {
                 // incorrect area (probably LandClaimAreasGroup was set to null but will be set to non-null soon)

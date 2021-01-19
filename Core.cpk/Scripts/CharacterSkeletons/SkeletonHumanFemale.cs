@@ -6,10 +6,10 @@
     public class SkeletonHumanFemale : ProtoCharacterSkeletonHuman
     {
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Human/FemaleBack");
+            = new("Human/FemaleBack");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Human/FemaleFront");
+            = new("Human/FemaleFront");
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {

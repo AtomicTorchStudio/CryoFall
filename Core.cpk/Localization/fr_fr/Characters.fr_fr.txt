@@ -4,6 +4,12 @@ Ours
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Scarabée noir
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Reine du pragmium
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Tyran des sables
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Enfouisseur
 
@@ -37,8 +43,8 @@ Pangolin
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Scarabée de pragmium
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Reine du pragmium
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+Bosquet psi
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Escargot
@@ -55,8 +61,14 @@ Serpent brun
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Serpent vert
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Cracheur
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Étoile de mer
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Rosseur
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Cochon tropical

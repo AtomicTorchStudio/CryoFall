@@ -7,10 +7,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     Margin="0,0,100,3"
     HorizontalAlignment="Left">
+
+    <base:BaseUserControl.Resources>
+        <Style TargetType="{x:Type tooltips:ItemTooltipInfoEntryControl}">
+            <Setter Property="ValueBrush" Value="{StaticResource TooltipForegroundBrushDark}" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
     <!-- The 100 right margin is necessary to not overflow the item icon in the item tooltip -->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +38,7 @@
         <core:FormattedTextBlock
             Grid.Column="2"
             Content="{Binding Value, ElementName=UserControl}"
-            Foreground="{StaticResource TooltipForegroundBrushDark}"
+            Foreground="{Binding ValueBrush, ElementName=UserControl}"
             FontSize="11"
             LineHeight="11"
             FontWeight="Bold"

@@ -8,7 +8,7 @@
     public partial class FeaturesSlideshow : BaseUserControl
     {
         private static readonly IClientStorage Storage
-            = Api.Client.Storage.GetStorage("FeaturesSlideshowFinished");
+            = Api.Client.Storage.GetStorage("FeaturesSlideshowFinished-A29");
 
         private static FeaturesSlideshow instance;
 

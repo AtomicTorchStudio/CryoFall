@@ -4,17 +4,17 @@
 
     public class MineralDropItemsConfig
     {
-        public readonly DropItemsList Stage1 = new DropItemsList();
+        public readonly DropItemsList Stage1 = new();
 
-        public readonly DropItemsList Stage2 = new DropItemsList();
+        public readonly DropItemsList Stage2 = new();
 
-        public readonly DropItemsList Stage3 = new DropItemsList();
+        public readonly DropItemsList Stage3 = new();
 
-        public readonly DropItemsList Stage4 = new DropItemsList();
+        public readonly DropItemsList Stage4 = new();
 
         public ReadOnlyMineralDropItemsConfig AsReadOnly()
         {
-            return new ReadOnlyMineralDropItemsConfig(this);
+            return new(this);
         }
     }
 }

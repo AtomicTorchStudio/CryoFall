@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Mestre caçador: parte 2
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+Quando você descobrir algo novo, aparecerá no seu menu [b]completista[/b]! Use-o para acompanhar seu progresso e receba [u]PA extra[/u] por descobrir mais sobre o mundo do CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Para organizar seu inventário, basta abri-lo e pressionar [u]{0}[/u] ou [u]{1}[/u] enquanto passa o mouse sobre a grade do inventário. É possível classificar [b]QUALQUER[/b] grade do inventário assim (por exemplo: baús).
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Para correr, basta simplesmente segurar a [u]tecla Shift[/u] enquanto se move. Teste correr por alguns metros. Correr é excelente para fugir de predadores perigosos.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 Para aproveitar CryoFall ao máximo, tem mais umas coisas que você precisa saber, como organizar qualquer inventário e fazer o personagem correr!
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Para organizar seu inventário, basta abri-lo e pressionar o [u]botão do meio do mouse[/u] ou a [u]tecla Z[/u] (se você não alterou os controles) enquanto passa o mouse sobre a grade do inventário. É possível classificar [b]QUALQUER[/b] grade do inventário assim (por exemplo, baús).
-[*] Para correr, basta simplesmente segurar a [u]tecla Shift[/u] enquanto se move. Teste correr por alguns metros. Correr é excelente para fugir de predadores perigosos.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Executar ações básicas
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Explorar os biomas: parte 4
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Saqueie alguns recipientes
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Ruínas antigas são o melhor lugar para encontrar certos recursos e componentes raros. É sempre uma boa ideia explorá-las de vez em quando, especialmente se você tiver os equipamentos necessários.
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Explorar ruínas antigas
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Saqueie alguns recipientes
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+Quanto [b]mais[/b] locais de teletransporte você descobrir, [b]maior[/b] será sua rede de deslocamento.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+Encontre no mínimo [b]2 (dois)[/b] locais de teletransporte para poder viajar entre eles.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+Talvez também haja locais de teletransporte [b]escondidos[/b]!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+Não há nenhum problema em correr com as próprias pernas, mas para cruzar distâncias muito longas talvez você queira usar teletransportes alienígenas.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Viagem rápida
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 Você pode [u]extrair[/u] [u]filés[/u] dos peixes que pescou com a ação de [b]usar[/b] (a mesma para usar os demais itens).
@@ -586,6 +606,9 @@ Garimpar minerais e cortar árvores à mão é cansativo, então use drones auto
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Garimpo com drones
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Mestre caçador: parte 6
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 É uma boa ideia [u]expandir sua capacidade de armazenamento de energia[/u] conforme sua base cresce para sempre ter [u]carga adicional suficiente[/u].

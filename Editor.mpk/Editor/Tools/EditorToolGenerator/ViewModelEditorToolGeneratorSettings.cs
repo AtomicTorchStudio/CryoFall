@@ -26,8 +26,8 @@
             this.heightSettings = new ObservableCollection
                 <ViewModelHeightSetting>()
                 {
-                    new ViewModelHeightSetting(0.5, this.CommandDeleteHeight),
-                    new ViewModelHeightSetting(0.9, this.CommandDeleteHeight),
+                    new(0.5, this.CommandDeleteHeight),
+                    new(0.9, this.CommandDeleteHeight)
                 };
 
             if (!IsDesignTime)

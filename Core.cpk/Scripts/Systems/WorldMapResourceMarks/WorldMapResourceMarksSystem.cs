@@ -265,9 +265,8 @@
 
         private ILogicObject ServerRemote_AcquireManagerInstance()
         {
-            var character = ServerRemoteContext.Character;
-            Logger.Important("World map resources requested from server");
-            Server.World.ForceEnterScope(character, serverManagerInstance);
+            Logger.Info("World map resources requested from server");
+            Server.World.ForceEnterScope(ServerRemoteContext.Character, serverManagerInstance);
             return serverManagerInstance;
         }
 
@@ -279,6 +278,8 @@
         [PrepareOrder(afterType: typeof(BootstrapperServerCore))]
         public class Bootstrapper : BaseBootstrapper
         {
+            private static int clientLastRequestId;
+
             public override void ClientInitialize()
             {
                 Client.Characters.CurrentPlayerCharacterChanged += ClientTryRequestWorldResourcesAsync;
@@ -287,17 +288,19 @@
 
                 async void ClientTryRequestWorldResourcesAsync()
                 {
+                    var requestId = ++clientLastRequestId;
                     if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         return;
                     }
 
-                    // researched technologies might be still not received so let's wait a bit
+                    // researched technologies may be still not received so let's wait a bit
                     ClientTimersSystem.AddAction(
                         delaySeconds: 3,
                         async () =>
                         {
-                            if (Api.Client.Characters.CurrentPlayerCharacter is null)
+                            if (requestId != clientLastRequestId
+                                || Api.Client.Characters.CurrentPlayerCharacter is null)
                             {
                                 return;
                             }

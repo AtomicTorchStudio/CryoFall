@@ -8,10 +8,13 @@
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:pve="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.PvE"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelHUDDuelModeControl, d:IsDesignTimeCreatable=True}"
     d:DesignHeight="300" d:DesignWidth="300"
-    Visibility="{Binding Visibility}">
+    Visibility="{Binding Visibility}"
+    Margin="0,0,0,5">
+
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">
@@ -24,13 +27,11 @@
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border Background="#66000000"
-            BorderBrush="#AA000000"
-            BorderThickness="1"
-            CornerRadius="3"
-            Padding="5,3"
-            Margin="0,0,0,5">
-        <Grid>
+    <Grid>
+        <core:WidgetPanel InnerGlowSize="10"
+                          WidgetBackground="{StaticResource WidgetBackgroundBlueBrush}" />
+
+        <Grid Margin="7,3">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
@@ -43,7 +44,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Path Data="{StaticResource IconGeometryPathDuelMode}"
-                      Fill="#FFFF1111"
+                      Fill="{StaticResource BrushColorRed7}"
                       Stroke="#AA000000"
                       StrokeThickness="1"
                       Width="24"
@@ -57,10 +58,11 @@
                            Grid.Column="1"
                            Text="{x:Static pve:PveSystem.DuelMode_Title}"
                            FontSize="18"
-                           Foreground="#FFFF1111"
                            TextWrapping="Wrap"
+                           Foreground="{StaticResource BrushColorRed7}"
                            VerticalAlignment="Center" />
             </Grid>
         </Grid>
-    </Border>
+    </Grid>
+
 </base:BaseUserControl>

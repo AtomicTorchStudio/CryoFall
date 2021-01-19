@@ -27,6 +27,7 @@
         Padding="1"
         IsDisplayLabel="False"
         IsDisplayTooltip="False">
+
         <core:ValueBarControl.LayoutTransform>
             <RotateTransform Angle="-90" />
         </core:ValueBarControl.LayoutTransform>
@@ -34,18 +35,18 @@
         <core:ValueBarControl.Template>
             <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
                 <Grid x:Name="LayoutRoot">
-                    <Border x:Name="Border"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5" />
+                    <Ellipse Fill="#88000000"
+                             StrokeThickness="{TemplateBinding BorderThickness}"
+                             Stroke="{TemplateBinding BorderBrush}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" />
                     <ContentPresenter
                         Margin="{TemplateBinding Padding}"
                         HorizontalAlignment="Left" />
                 </Grid>
             </ControlTemplate>
         </core:ValueBarControl.Template>
+
         <Border Background="{Binding Brush}" CornerRadius="4" />
     </core:ValueBarControl>
-
 </base:BaseUserControl>

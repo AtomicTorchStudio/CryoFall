@@ -8,7 +8,7 @@
     public class PerkClaimDeposits : ProtoPerk
     {
         private static readonly Lazy<PerkClaimDeposits> LazyInstance
-            = new Lazy<PerkClaimDeposits>(Api.GetProtoEntity<PerkClaimDeposits>);
+            = new(Api.GetProtoEntity<PerkClaimDeposits>);
 
         public static PerkClaimDeposits Instance => LazyInstance.Value;
 

@@ -25,6 +25,9 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Фермерство
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Требование: Рыбная ловля {0} уровня.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Шанс сохранить наживку
 
@@ -131,7 +134,7 @@ Scripts/Skills/Skills/Production/SkillProspecting@Description:
 Чем больше вы знаете о месторождениях, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы.
 
 Scripts/Skills/Skills/Production/SkillProspecting@Name:
-Старательство
+Горное дело
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
 Высокий уровень строительного навыка помогает строить быстрее. Действует для всех задач (строительства и ремонта), где используется набор инструментов.

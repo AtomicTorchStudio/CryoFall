@@ -9,7 +9,7 @@
 
     public class BootstrapperClientLearningPointsNotifier : BaseBootstrapper
     {
-        private static ushort lastLearningPoints;
+        private static uint lastLearningPoints;
 
         private static PlayerCharacterTechnologies playerTechnologies;
 
@@ -41,7 +41,7 @@
 
         private static void LearningPointsChangedHandler()
         {
-            var delta = playerTechnologies.LearningPoints - lastLearningPoints;
+            var delta = playerTechnologies.LearningPoints - (long)lastLearningPoints;
             lastLearningPoints = playerTechnologies.LearningPoints;
 
             if (delta != 0)

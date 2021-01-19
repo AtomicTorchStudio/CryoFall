@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data
 {
-    using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
@@ -79,8 +78,6 @@
                 this.NotifyThisPropertyChanged();
             }
         }
-
-        public Visibility Visibility { get; private set; }
 
         private void AmmoCountChanged(ushort ammoCount)
         {

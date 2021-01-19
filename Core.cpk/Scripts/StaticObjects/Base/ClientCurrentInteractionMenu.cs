@@ -31,7 +31,7 @@
 
         public static void RegisterMenuWindow(BaseUserControlWithWindow menuWindow)
         {
-            currentMenuWindow?.CloseWindow();
+            TryCloseCurrentMenu();
             currentMenuWindow = menuWindow;
 
             menuWindow.EventWindowClosing += CloseHandler;
@@ -49,6 +49,11 @@
                     MenuInstance.IsOpenedChanged?.Invoke();
                 }
             }
+        }
+
+        public static void TryCloseCurrentMenu()
+        {
+            currentMenuWindow?.CloseWindow();
         }
 
         public void Dispose()

@@ -4,12 +4,5 @@
 
     public partial class EditorToolsPanel : BaseUserControl
     {
-        public EditorToolsPanel()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

@@ -45,7 +45,7 @@
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public ViewModelHUDStatBar StatBar { get; }
-            = new ViewModelHUDStatBar("Structure");
+            = new("Structure");
 
         /// <summary>
         /// This method is required to set the initial value from which the value bar control will interpolate to current value.

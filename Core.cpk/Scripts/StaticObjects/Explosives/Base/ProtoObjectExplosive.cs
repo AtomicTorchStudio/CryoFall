@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
@@ -33,21 +32,23 @@
         where TClientState : StaticObjectClientState, new()
     {
         protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintBorderBrush
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x44, 0x00)));
+            = new(() => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x44, 0x00)));
 
         protected static readonly Lazy<RadialGradientBrush> ExplosionBlueprintFillBrush
-            = new Lazy<RadialGradientBrush>(
-                () => new RadialGradientBrush()
+            = new(() => new RadialGradientBrush()
+            {
+                GradientStops = new GradientStopCollection()
                 {
-                    GradientStops = new GradientStopCollection()
-                    {
-                        new GradientStop() { Color = Color.FromArgb(0x20, 0xEE, 0x44, 0x00), Offset = 1 },
-                        new GradientStop() { Color = Color.FromArgb(0x3C, 0xEE, 0x44, 0x00), Offset = 0 }
-                    }
-                });
+                    new() { Color = Color.FromArgb(0x20, 0xEE, 0x44, 0x00), Offset = 1 },
+                    new() { Color = Color.FromArgb(0x3C, 0xEE, 0x44, 0x00), Offset = 0 }
+                }
+            });
 
         private DamageDescription damageDescriptionCharacters;
+
+        public virtual bool AllowNpcToNpcDamage => false;
+
+        public DamageDescription DamageDescriptionCharacters => this.damageDescriptionCharacters;
 
         public abstract double DamageRadius { get; }
 
@@ -74,6 +75,12 @@
         public double StructureDefensePenetrationCoef { get; private set; }
 
         public sealed override float StructurePointsMax => 9001; // it's non-damageable anyway
+
+        // has a massive light source
+        public override BoundsInt ViewBoundsExpansion => new(minX: -12,
+                                                             minY: -12,
+                                                             maxX: 12,
+                                                             maxY: 12);
 
         public virtual float VolumeExplosion => 1;
 
@@ -129,6 +136,24 @@
             var damage = this.StructureDamage
                          * (1 - structureExplosiveDefenseCoef * (1 - explosiveDefensePenetrationCoef));
             return damage;
+        }
+
+        public virtual void ServerExecuteExplosion(
+            Vector2D positionEpicenter,
+            IPhysicsSpace physicsSpace,
+            WeaponFinalCache weaponFinalCache)
+        {
+            WeaponExplosionSystem.ServerProcessExplosionCircle(
+                positionEpicenter: positionEpicenter,
+                physicsSpace: physicsSpace,
+                damageDistanceMax: this.DamageRadius,
+                weaponFinalCache: weaponFinalCache,
+                damageOnlyDynamicObjects: false,
+                isDamageThroughObstacles: this.IsDamageThroughObstacles,
+                callbackCalculateDamageCoefByDistanceForStaticObjects:
+                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects: this
+                    .ServerCalculateDamageCoefByDistanceForDynamicObjects);
         }
 
         public virtual void ServerOnObjectHitByExplosion(
@@ -193,16 +218,16 @@
                 Client.Audio.PreloadSoundAsync(soundResource, is3D: true);
             }
 
-            Client.Rendering.PreloadEffectAsync(ExplosionHelper.EffectResourceAdditiveColorEffect);
+            Client.Rendering.PreloadEffectAsync(SharedExplosionHelper.EffectResourceAdditiveColorEffect);
         }
 
         protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             //base.ClientOnObjectDestroyed(tilePosition);
             Logger.Important(this + " exploded at " + position);
-            ExplosionHelper.ClientExplode(position: position + this.Layout.Center,
-                                          this.ExplosionPreset,
-                                          this.VolumeExplosion);
+            SharedExplosionHelper.ClientExplode(position: position + this.Layout.Center,
+                                                this.ExplosionPreset,
+                                                this.VolumeExplosion);
         }
 
         protected virtual void ClientSetupExplosionBlueprint(Tile tile, IClientBlueprint blueprint)
@@ -299,31 +324,13 @@
                                                   switch (t.PhysicsBody.AssociatedWorldObject
                                                            ?.ProtoWorldObject)
                                                   {
-                                                      case IProtoObjectDeposit _: // allow deposits
-                                                      case ObjectWallDestroyed _: // allow destroyed walls
+                                                      case IProtoObjectDeposit: // allow deposits
+                                                      case ObjectWallDestroyed: // allow destroyed walls
                                                           return false;
                                                   }
 
                                                   return true;
                                               })));
-        }
-
-        protected virtual void ServerExecuteExplosion(
-            Vector2D positionEpicenter,
-            IPhysicsSpace physicsSpace,
-            WeaponFinalCache weaponFinalCache)
-        {
-            WeaponExplosionSystem.ServerProcessExplosionCircle(
-                positionEpicenter: positionEpicenter,
-                physicsSpace: physicsSpace,
-                damageDistanceMax: this.DamageRadius,
-                weaponFinalCache: weaponFinalCache,
-                damageOnlyDynamicObjects: false,
-                isDamageThroughObstacles: this.IsDamageThroughObstacles,
-                callbackCalculateDamageCoefByDistanceForStaticObjects:
-                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
-                callbackCalculateDamageCoefByDistanceForDynamicObjects: this
-                    .ServerCalculateDamageCoefByDistanceForDynamicObjects);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -369,7 +376,7 @@
                 Logger.Important(worldObject + " exploded");
                 this.ServerSendObjectDestroyedEvent(worldObject);
 
-                ExplosionHelper.ServerExplode(
+                SharedExplosionHelper.ServerExplode(
                     character: character,
                     protoExplosive: this,
                     protoWeapon: null,
@@ -377,7 +384,8 @@
                     epicenterPosition: worldObject.TilePosition.ToVector2D() + this.Layout.Center,
                     damageDescriptionCharacters: this.damageDescriptionCharacters,
                     physicsSpace: worldObject.PhysicsBody.PhysicsSpace,
-                    executeExplosionCallback: this.ServerExecuteExplosion);
+                    executeExplosionCallback: this.ServerExecuteExplosion,
+                    allowNpcToNpcDamage: this.AllowNpcToNpcDamage);
 
                 if (this.IsActivatesRaidModeForLandClaim)
                 {
@@ -397,7 +405,7 @@
                     {
                         // Raiding is not possible now due to raiding window
                         // Find if there is any land claim and in that case notify nearby players
-                        // that the damage to objects there were not applied.
+                        // that the damage to objects there was not applied.
                         if (LandClaimSystem.SharedIsLandClaimedByAnyone(bounds))
                         {
                             using var tempPlayers = Api.Shared.GetTempList<ICharacter>();

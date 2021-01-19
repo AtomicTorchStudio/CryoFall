@@ -15,8 +15,8 @@
         private const int DrawOrderOffsetY = 1;
 
         public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 99,
-                                               shutdownPercent: 100);
+            => new(startupPercent: 99,
+                   shutdownPercent: 100);
 
         public override string Description =>
             "Basic installation for solar power generation. Requires individual solar panels to operate.";

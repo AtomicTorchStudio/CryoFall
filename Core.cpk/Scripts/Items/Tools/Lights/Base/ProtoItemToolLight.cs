@@ -257,8 +257,8 @@
                         return;
                     }
 
-                    // don't enable the light automatically if it's not night
-                    var isLightRequired = TimeOfDaySystem.IsNight;
+                    // enable the light automatically if it's night
+                    var isLightRequired = TimeOfDaySystem.NightFraction > 0.1;
                     Logger.Info(string.Format("Light auto selection! Time: {0:hh\\:mm}, is light required: {1}",
                                               TimeSpan.FromHours(TimeOfDaySystem.CurrentTimeOfDayHours),
                                               isLightRequired));

@@ -22,7 +22,7 @@
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
 
         private readonly Dictionary<IItem, SlotRenderer> slotRenderers
-            = new Dictionary<IItem, SlotRenderer>();
+            = new();
 
         private bool isObjectSackMode;
 

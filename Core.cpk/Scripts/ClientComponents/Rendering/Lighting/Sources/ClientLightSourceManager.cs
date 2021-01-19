@@ -5,7 +5,7 @@
     public static class ClientLightSourceManager
     {
         private static readonly List<BaseClientComponentLightSource> allLightSources
-            = new List<BaseClientComponentLightSource>();
+            = new();
 
         /// <summary>
         /// Please do NOT modify! It's exposed as List to ensure faster iteration only.

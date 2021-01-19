@@ -13,20 +13,18 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ClientWorldMapLandClaimVisualizer : IWorldMapVisualizer
+    public class ClientWorldMapLandClaimVisualizer : BaseWorldMapVisualizer
     {
         private readonly ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer;
 
         private readonly Dictionary<ILogicObject, LandClaimMapData> visualizedAreas
-            = new Dictionary<ILogicObject, LandClaimMapData>();
-
-        private readonly WorldMapController worldMapController;
+            = new();
 
         public ClientWorldMapLandClaimVisualizer(
             WorldMapController worldMapController,
             ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer)
+            : base(worldMapController)
         {
-            this.worldMapController = worldMapController;
             this.landClaimGroupVisualizer = landClaimGroupVisualizer;
 
             ClientLandClaimAreaManager.AreaAdded += this.AreaAddedHandler;
@@ -38,9 +36,7 @@
             }
         }
 
-        public bool IsEnabled { get; set; }
-
-        public void Dispose()
+        protected override void DisposeInternal()
         {
             ClientLandClaimAreaManager.AreaAdded -= this.AreaAddedHandler;
             ClientLandClaimAreaManager.AreaRemoved -= this.AreaRemovedHandler;
@@ -56,7 +52,7 @@
 
         private void AreaAddedHandler(ILogicObject area)
         {
-            if (!LandClaimSystem.ClientIsOwnedArea(area))
+            if (!LandClaimSystem.ClientIsOwnedArea(area, requireFactionPermission: false))
             {
                 return;
             }
@@ -71,10 +67,18 @@
                                           ClientCurrentCharacterHelper.Character.Name,
                                           StringComparison.Ordinal);
 
+            var areaClanTag = LandClaimSystem.SharedGetAreaOwnerFactionClanTag(area);
+            var isFactionOwned = !string.IsNullOrEmpty(areaClanTag);
+            // it's not necessary to check as client can see on the map only the owned land claims
+            // however, the reason we've disabled this check is due to the timing issue
+            // when player joins the faction its clan tag may arrive after the land claims
+            //&& FactionSystem.ClientCurrentFactionClanTag == areaClanTag;
+
             this.visualizedAreas[area] = new LandClaimMapData(area,
-                                                              this.worldMapController,
+                                                              this,
                                                               this.landClaimGroupVisualizer,
-                                                              isFounder: isFounder);
+                                                              isFounder,
+                                                              isFactionOwned);
         }
 
         private void AreaRemovedHandler(ILogicObject area)
@@ -94,29 +98,36 @@
 
             private readonly ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer;
 
-            private readonly WorldMapController worldMapController;
+            private readonly ClientWorldMapLandClaimVisualizer visualizer;
 
             private WorldMapMarkLandClaim markControl;
 
             public LandClaimMapData(
                 ILogicObject area,
-                WorldMapController worldMapController,
+                ClientWorldMapLandClaimVisualizer visualizer,
                 ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer,
-                bool isFounder)
+                bool isFounder,
+                bool isFactionOwned)
             {
                 this.area = area;
 
-                this.worldMapController = worldMapController;
+                this.visualizer = visualizer;
                 this.landClaimGroupVisualizer = landClaimGroupVisualizer;
 
                 // add land claim mark control to map
-                this.markControl = new WorldMapMarkLandClaim() { IsFounder = isFounder, Area = area };
+                this.markControl = new WorldMapMarkLandClaim()
+                {
+                    IsFounder = isFounder,
+                    IsFactionOwned = isFactionOwned,
+                    Area = area
+                };
+
                 var canvasPosition = this.GetAreaCanvasPosition();
                 Canvas.SetLeft(this.markControl, canvasPosition.X);
                 Canvas.SetTop(this.markControl, canvasPosition.Y);
                 Panel.SetZIndex(this.markControl, 12);
 
-                worldMapController.AddControl(this.markControl);
+                visualizer.AddControl(this.markControl);
                 this.landClaimGroupVisualizer.Register(this.area);
 
                 ClientUpdateHelper.UpdateCallback += this.UpdateCallback;
@@ -126,7 +137,7 @@
             {
                 if (this.markControl is not null)
                 {
-                    this.worldMapController.RemoveControl(this.markControl);
+                    this.visualizer.RemoveControl(this.markControl);
                     this.markControl = null;
                 }
 
@@ -137,7 +148,7 @@
 
             private Vector2D GetAreaCanvasPosition()
             {
-                return this.worldMapController.WorldToCanvasPosition(this.GetAreaWorldPosition());
+                return this.visualizer.WorldToCanvasPosition(this.GetAreaWorldPosition());
             }
 
             private Vector2D GetAreaWorldPosition()
@@ -149,7 +160,7 @@
 
             private void UpdateCallback()
             {
-                var areasGroup = LandClaimArea.GetPublicState(this.area).LandClaimAreasGroup;
+                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(this.area);
                 var status = LandClaimShieldProtectionSystem.SharedGetShieldPublicStatus(areasGroup);
 
                 switch (status)

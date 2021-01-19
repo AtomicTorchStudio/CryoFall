@@ -17,7 +17,7 @@
 
         public static HUDItemNotificationControl Show(IProtoItem protoItem, int deltaCount)
         {
-            return instance.ShowInternal(protoItem, deltaCount);
+            return instance?.ShowInternal(protoItem, deltaCount);
         }
 
         protected override void InitControl()

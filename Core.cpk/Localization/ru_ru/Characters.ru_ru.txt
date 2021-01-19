@@ -4,6 +4,12 @@
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Черный жук
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Прагмиевая королева
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Песчаный тиран
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Кротожук
 
@@ -37,8 +43,8 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Прагмиевый жук
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Прагмиевая королева
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+Пси-поросль
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Улитка
@@ -55,8 +61,14 @@ Scripts/Characters/Mobs/MobSnakeBrown@Name:
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Зеленая змея
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Плевальщик
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Морская звезда
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Крушитель
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Тропический кабан

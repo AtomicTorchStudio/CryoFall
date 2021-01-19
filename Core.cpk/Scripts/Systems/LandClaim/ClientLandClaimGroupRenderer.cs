@@ -12,11 +12,11 @@
     public class ClientLandClaimGroupRenderer
     {
         public static readonly TextureResource TextureResourceLandClaimAreaCell
-            = new TextureResource("FX/LandClaimAreaCell",
-                                  qualityOffset: -100);
+            = new("FX/LandClaimAreaCell",
+                  qualityOffset: -100);
 
         private readonly List<ILogicObject> areas
-            = new List<ILogicObject>();
+            = new();
 
         private readonly Func<IComponentSpriteRenderer> callbackGetRendererFromCache;
 
@@ -27,7 +27,7 @@
         private readonly RenderingMaterial material;
 
         private readonly List<IComponentSpriteRenderer> renderers
-            = new List<IComponentSpriteRenderer>();
+            = new();
 
         private IProtoObjectLandClaim blueprintProtoObjectLandClaim;
 

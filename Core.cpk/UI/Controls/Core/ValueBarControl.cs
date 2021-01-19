@@ -178,10 +178,6 @@
                 new FrameworkPropertyMetadata(typeof(ValueBarControl)));
         }
 
-        public ValueBarControl()
-        {
-        }
-
         public Brush BarBrush
         {
             get => (Brush)this.GetValue(BarBrushProperty);

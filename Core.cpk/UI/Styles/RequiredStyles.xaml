@@ -8,7 +8,9 @@
     xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers">
 
     <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <helpers:AnyBoolMultiConverter x:Key="AnyBoolMultiConverter" />
     <helpers:AnyBoolToVisibilityMultiConverter x:Key="AnyBoolToVisibilityMultiConverter" />
+    <helpers:AllBoolMultiConverter x:Key="AllBoolMultiConverter" />
     <helpers:AllBoolToVisibilityMultiConverter x:Key="AllBoolToVisibilityMultiConverter" />
     <helpers:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibilityConverter" />
     <helpers:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
@@ -19,6 +21,9 @@
     <helpers:BoolReverseConverter x:Key="BoolReverseConverter" />
     <helpers:InstanceToBooleanConverter x:Key="InstanceToBooleanConverter" />
     <helpers:NumberToHexStringConverter x:Key="NumberToHexStringConverter" />
+    <helpers:ValuesAdditionMultiConverter x:Key="ValuesAdditionMultiConverter" />
+    <helpers:ColorAlphaConverter x:Key="ColorAlphaConverter" />
+    <helpers:ColorMultiplyConverter x:Key="ColorMultiplyConverter" />
 
     <Style TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{x:Null}" />
@@ -179,8 +184,24 @@
                         </Border>
                         <ContentPresenter Grid.Column="1"
                                           VerticalAlignment="Center" />
-                        <!--TextTrimming="CharacterEllipsis"-->
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type core:PopupWithDataContext}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:PopupWithDataContext}">
+                    <ContentControl>
+                        <Popup x:Name="Popup">
+                            <ContentControl Background="Transparent">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </ContentControl>
+                        </Popup>
+                    </ContentControl>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -53,7 +53,7 @@
                 level: 20,
                 percentBonus: 10);
 
-            // add 2 extra slots at lvl 15 and 10
+            // add 2 extra slots
             config.AddStatEffect(
                 StatName.CraftingQueueMaxSlotsCount,
                 level: 5,

@@ -28,6 +28,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -48,16 +49,21 @@
                 PlayerCharacterPublicState,
                 PlayerCharacterClientState>
     {
+        /// <summary>
+        /// Uncomment to let CryoFall Editor launch with the character customization menu.
+        /// </summary>
+        public const bool IsEditorModeAutoSelectingAppearance = true;
+
         private const double InteractionRadius = 1.5;
 
         public static readonly Lazy<PlayerCharacter> LazyInstance
-            = new Lazy<PlayerCharacter>(Api.GetProtoEntity<PlayerCharacter>);
+            = new(Api.GetProtoEntity<PlayerCharacter>);
 
         private static readonly Lazy<SkeletonHumanFemale> SkeletonHumanFemale
-            = new Lazy<SkeletonHumanFemale>(GetProtoEntity<SkeletonHumanFemale>);
+            = new(GetProtoEntity<SkeletonHumanFemale>);
 
         private static readonly Lazy<SkeletonHumanMale> SkeletonHumanMale
-            = new Lazy<SkeletonHumanMale>(GetProtoEntity<SkeletonHumanMale>);
+            = new(GetProtoEntity<SkeletonHumanMale>);
 
         public static PlayerCharacter Instance => LazyInstance.Value;
 
@@ -126,7 +132,8 @@
             {
                 // reset game
                 BootstrapperClientGame.Init(null);
-                WindowRespawn.EnsureClosed();
+                MenuRespawn.EnsureClosed();
+                MenuCharacterCreation.Reset();
             }
         }
 
@@ -198,7 +205,7 @@
 
         public override void SharedRefreshFinalCacheIfNecessary(ICharacter character)
         {
-            this.ServerRebuildFinalCacheIfNeeded(GetPrivateState(character),
+            this.SharedRebuildFinalCacheIfNeeded(GetPrivateState(character),
                                                  GetPublicState(character));
         }
 
@@ -355,7 +362,7 @@
 
             ClientCharacterEquipmentHelper.ClientRefreshEquipment(character, clientState, publicState);
 
-            this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
+            this.SharedRebuildFinalCacheIfNeeded(privateState, publicState);
             this.SharedApplyInput(character, privateState, publicState);
 
             ClientCharacterAnimationHelper.ClientUpdateAnimation(
@@ -363,15 +370,21 @@
                 clientState,
                 publicState);
 
+            if (!privateState.IsAppearanceSelected)
+            {
+                MenuCharacterCreation.Open();
+                return;
+            }
+
             if (publicState.IsDead)
             {
                 // dead - stops processing character
-                WindowRespawn.EnsureOpened();
+                MenuRespawn.EnsureOpened();
                 return;
             }
 
             // character is alive - can process its actions
-            WindowRespawn.EnsureClosed();
+            MenuRespawn.EnsureClosed();
             // update weapon state (fires the weapon if needed)
             WeaponSystem.SharedUpdateCurrentWeapon(character, privateState.WeaponState, data.DeltaTime);
             // update current action state (if any)
@@ -422,7 +435,7 @@
 
             // re-select hotbar slot
             SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
-            
+
             character.ProtoGameObject.ServerSetUpdateRate(character, isRare: !character.ServerIsOnline);
         }
 
@@ -448,6 +461,7 @@
                 publicState.FaceStyle = SharedCharacterFaceStylesProvider
                                         .GetForGender(publicState.IsMale)
                                         .GetDefaultFaceInEditor();
+                data.PrivateState.IsAppearanceSelected = IsEditorModeAutoSelectingAppearance;
             }
 
             ServerPlayerSpawnManager.ServerAddTorchItemIfNoItems(character);
@@ -465,7 +479,7 @@
             // add all the technologies
             ConsoleCommandsSystem.SharedGetCommand<ConsoleTechAddAll>().Execute(player: character);
 
-            this.ServerRebuildFinalCacheIfNeeded(data.PrivateState, publicState);
+            this.SharedRebuildFinalCacheIfNeeded(data.PrivateState, publicState);
 
             // add all the quests (and complete them)
             ConsoleCommandsSystem.SharedGetCommand<ConsoleQuestCompleteAll>().Execute(player: character);
@@ -487,23 +501,6 @@
             privateState.Technologies.ServerInit();
             privateState.Quests.ServerInit();
             privateState.Achievements.ServerInit();
-        }
-
-        protected void ServerRebuildFinalCacheIfNeeded(
-            PlayerCharacterPrivateState privateState,
-            PlayerCharacterPublicState publicState)
-        {
-            if (!privateState.FinalStatsCache.IsDirty
-                && publicState.ContainerEquipment.StateHash == privateState.ContainerEquipmentLastStateHash)
-            {
-                return;
-            }
-
-            // rebuild stats cache
-            SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(
-                this.ProtoCharacterDefaultEffects,
-                publicState,
-                privateState);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -533,7 +530,7 @@
             }
 
             // character is alive
-            this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
+            this.SharedRebuildFinalCacheIfNeeded(privateState, publicState);
             this.SharedApplyInput(character, privateState, publicState);
 
             // update weapon state (fires the weapon if needed)
@@ -578,14 +575,14 @@
             if (IsServer)
             {
                 // allow a little bigger interaction area on server
-                // (because the client position could differ from server position with some threshold)
-                characterInteractionRadius += 2
+                // (because the client position could differ from the server position with some threshold)
+                characterInteractionRadius += 2.2
                                               * ClientCurrentCharacterLagPredictionManager
                                                   .MaxPredictionErrorDistanceToInterpolateWhenStaying;
 
                 // increase the interaction radius a bit to counter
-                // the networked positions quantization due to coordinate packing
-                // (in tile position is encoded as 0-255 (byte.MaxValue) for each axis)
+                // the networked position quantization due to coordinate packing
+                // (in-tile position is encoded as 0-255 (byte.MaxValue) integer value for each axis)
                 characterInteractionRadius += 1 / 255.0;
             }
 
@@ -628,13 +625,35 @@
                                 : (ProtoCharacterSkeletonHuman)SkeletonHumanFemale.Value;
         }
 
+        protected void SharedRebuildFinalCacheIfNeeded(
+            PlayerCharacterPrivateState privateState,
+            PlayerCharacterPublicState publicState)
+        {
+            if (!privateState.FinalStatsCache.IsDirty
+                && publicState.ContainerEquipment.StateHash == privateState.ContainerEquipmentLastStateHash)
+            {
+                return;
+            }
+
+            // rebuild stats cache
+            SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(
+                this.ProtoCharacterDefaultEffects,
+                publicState,
+                privateState);
+
+            if (IsServer)
+            {
+                CraftingMechanics.ServerRecalculateTimeToFinish(privateState.CraftingQueue);
+            }
+        }
+
         private void ClientInitializeCurrentCharacter(ClientInitializeData data)
         {
             var character = data.GameObject;
             var privateState = data.PrivateState;
             var publicState = data.PublicState;
 
-            this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
+            this.SharedRebuildFinalCacheIfNeeded(privateState, publicState);
 
             var sceneObject = character.ClientSceneObject;
             sceneObject
@@ -668,7 +687,7 @@
             // re-select hotbar slot
             SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
 
-            WindowRespawn.EnsureClosed();
+            MenuRespawn.EnsureClosed();
         }
 
         private void ClientInitializeOtherCharacter(ClientInitializeData data)

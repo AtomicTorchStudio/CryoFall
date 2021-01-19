@@ -12,7 +12,7 @@
     internal static class ProtoTileBlendOrdersCalculator
     {
         private static readonly List<(byte blendOrder, int texturesCount)> BlendOrdering
-            = new List<(byte, int)>();
+            = new();
 
         public static int CalculateBlendOrder(ProtoTile protoTile)
         {

@@ -4,6 +4,12 @@ Oso
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Escarabajo negro
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Reina de pragmio
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Tirano de las arenas
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Excavador
 
@@ -37,8 +43,8 @@ Pangolín
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Escarabajo de pragmio
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Reina de pragmio
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+Psicoarboleda
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Caracol
@@ -55,8 +61,14 @@ Serpiente marrón
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Serpiente verde
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Escupidor
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Estrella de mar
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Aporreador
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Jabalí tropical

@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.ItemExplosive
 {
     using AtomicTorch.CBND.CoreMod.Items.Explosives;
-    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -12,7 +11,7 @@
             ItemExplosiveSystem,
             ItemExplosiveRequest,
             ItemExplosiveActionState,
-            ItemExplosiveActionState.PublicState>
+            ItemExplosiveActionPublicState>
     {
         public readonly IItem ItemExplosive;
 
@@ -62,31 +61,11 @@
                 this.IsCancelled);
         }
 
-        protected override void SetupPublicState(PublicState state)
+        protected override void SetupPublicState(ItemExplosiveActionPublicState state)
         {
             base.SetupPublicState(state);
             state.ProtoItemExplosive = (IProtoItemExplosive)this.ItemExplosive.ProtoItem;
-        }
-
-        public class PublicState : BasePublicActionState
-        {
-            public IProtoItemExplosive ProtoItemExplosive { get; set; }
-
-            protected override void ClientOnCompleted()
-            {
-                if (this.IsCancelled)
-                {
-                    return;
-                }
-
-                this.ProtoItemExplosive?.SharedGetItemSoundPreset()
-                    .PlaySound(ItemSound.Use, this.Character);
-            }
-
-            protected override void ClientOnStart()
-            {
-                // TODO: play animation
-            }
+            state.TargetPosition = this.TargetPosition;
         }
     }
 }

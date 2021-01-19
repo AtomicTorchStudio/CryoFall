@@ -127,6 +127,9 @@ Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 按住Alt鍵並點擊此物品來進行快速使用。
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+你可以使用[b]\[{0}\][/b]鍵為當前選擇的武器切換彈藥類型。
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 用於任何建築來將其拆除。
 
@@ -138,6 +141,9 @@ Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 點擊任何建築以修復或建造。
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+點擊受損載具以進行修復。
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 點擊任何農作物來澆水。
@@ -169,8 +175,11 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 用於驅動各種載具的燃料電池。
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+您可以通過按下[b]\[{0}\][/b]鍵來切換夜視。
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
-按住 [b]Alt[/b] 或 [b]Ctrl[/b] 來向鼠標方向進行最遠距離射擊，而非射擊至鼠標位置。
+按住[b]Alt[/b] 或[b]Ctrl[/b] 來向滑鼠方向進行最遠距離射擊，而非射擊至滑鼠位置。
 
 Scripts/Items/Base/ItemHints@ImplantApplication:
 只能在醫療站安裝植入物。
@@ -184,6 +193,12 @@ Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 此物品只能被安裝在載具[b]{0}[/b]槽位上。
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+夜視儀(一代)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+夜視儀(二代)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 割傷
 
@@ -195,6 +210,9 @@ Scripts/Items/Base/ItemUseCaptions@Drink:
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 吃
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+打開
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 閱讀
@@ -224,10 +242,10 @@ Scripts/Items/Devices/ItemHuntersTools@Name:
 獵人工具
 
 Scripts/Items/Devices/ItemLaserSight@Description:
-用於輔助瞄準的小型激光瞄準器。
+用於輔助瞄準的小型鐳射瞄準器。
 
 Scripts/Items/Devices/ItemLaserSight@Name:
-激光瞄準器
+鐳射瞄準器
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 儲存大量能量並能便攜使用。所有使用能量的設備和武器都可以從裝備的移動電源中提取能量。
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 燃料耗盡
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-要啟動頭盔燈，請裝備此物品並按下[{0}] 鍵。
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-按鍵未設定
+要啟動頭盔燈，請裝備此物品並按下\[{0}\] 鍵。
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 骨質頭盔提供廉價的防禦性能，在早期很有用。
@@ -402,6 +417,12 @@ Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 軍用頭盔
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+裝有炸藥的特殊戰術背心。會在穿戴者死亡時自動引爆以進行復仇。
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+復仇背心
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 方便的頭盔, 還提供了一個可擕式光源, 讓你能夠騰出手來。需要一次性電池。
@@ -520,6 +541,15 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Description:
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 鱸魚
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+黑蝦虎魚
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+一種這個世界獨有的普拉格魚類。
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+藍飛魚
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 鯛魚
 
@@ -532,8 +562,14 @@ Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 鰷魚
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+刺蓋太陽魚
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 石鱸魚
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+錦鯉
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 鯖魚
@@ -561,6 +597,9 @@ Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 鱒魚
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+黃鰭金槍魚
 
 Scripts/Items/Food/ItemBanana@Description:
 任何猴子都會伸手去拿香蕉，但只有人類會掌向群星。
@@ -717,6 +756,12 @@ Scripts/Items/Food/ItemCoffeeCup@Description:
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 一杯咖啡
+
+Scripts/Items/Food/ItemCookingOil@Description:
+烹飪用天然油。
+
+Scripts/Items/Food/ItemCookingOil@Name:
+食用油
 
 Scripts/Items/Food/ItemCorn@Description:
 一種高產的美味穀物，恐怖小說家的最愛。
@@ -924,6 +969,24 @@ Scripts/Items/Food/ItemPizzaPineapple@Description:
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 鳳梨披薩
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+炸的酥脆的新鮮土豆，旁邊還配有一些肉。
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+土豆肉排
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+經典的速食式炸薯條。
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+炸薯條
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+必須經過烹飪才能食用。
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+土豆
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 可以直接吃，也可以進一步加工成更加複雜的餐點。
@@ -1183,6 +1246,12 @@ Scripts/Items/Generic/ItemCoinPenny@Description:
 Scripts/Items/Generic/ItemCoinPenny@Name:
 硬幣
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+一個舊錢包。也許裡面還有點東西？
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+錢包
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 高面額硬幣。可以用來在自動售貨機購買商品，或者用來與其他倖存者交易。
 
@@ -1277,6 +1346,12 @@ Scripts/Items/Generic/ItemFlowerOni@Description:
 Scripts/Items/Generic/ItemFlowerOni@Name:
 鬼花
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+可用於榨取食用油或用於裝飾。
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+黃花
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 製造高品質金屬時使用的冶金粉塵。
 
@@ -1306,6 +1381,12 @@ Scripts/Items/Generic/ItemFuelCellPragmium@Description:
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 普拉格燃料電池
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+異星生物體內用於儲存不穩定液體特殊器官。
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+燃料袋
 
 Scripts/Items/Generic/ItemFur@Description:
 動物皮毛。可以被用來製造保暖的冬衣。
@@ -1343,10 +1424,10 @@ Scripts/Items/Generic/ItemGemTopaz@Description:
 Scripts/Items/Generic/ItemGemTopaz@Name:
 黃寶石
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 閃亮的紫碧璽！
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 碧璽
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Scripts/Items/Generic/ItemTwigs@Description:
 Scripts/Items/Generic/ItemTwigs@Name:
 樹枝
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+從一種未知生命體體內取出的彈性器官。會在腐敗時釋放特殊粒子。
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+沙漠暴君心臟
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 靈活而強勁的促動器，使用磁力進行活動。
 
@@ -1853,6 +1940,12 @@ Scripts/Items/Medical/ItemCigarCheap@Description:
 Scripts/Items/Medical/ItemCigarCheap@Name:
 廉價雪茄
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+異界香煙品牌。
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+香煙
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 味道不錯的雪茄。刺激劑。
 
@@ -1975,6 +2068,12 @@ Scripts/Items/Medical/ItemPeredozin@Description:
 Scripts/Items/Medical/ItemPeredozin@Name:
 裴羅多辛
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+石膏板用於矯正斷骨，允許其更快恢復。
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+石膏板
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 特殊的神經調整化合物，能夠減少暴露於靈能場帶來的神經損傷。
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 草藥湯
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-你沒有骨折症狀。沒有必要使用夾板。
+你沒有斷骨。沒必要使用。
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 無骨折症狀
@@ -2062,8 +2161,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 鬼花種子
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+黃花種子
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 奶瓜種子
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+土豆種子
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 大米種子
@@ -2088,6 +2193,12 @@ Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 需要任何
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+記載了多個傳送點地點和頻率的記錄。
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+傳送點數據
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 鐵斧可以用來砍樹。效率和耐久度都高於石斧。
@@ -2146,11 +2257,11 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 沒油了
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-這種脆弱的普拉格手斧使用了原子震動技術，使其效率遠高於傳統工具。
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+這種脆弱的普拉格錘使用了原子震動技術，使其效率遠高於傳統工具。
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-普拉格手斧
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+普拉格錘
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 鐵鎬可以用來採集礦物。效率和耐久度都高於石鎬。
@@ -2175,6 +2286,12 @@ Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 普拉格感應器
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+通用一次性載具修理套件。
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+載具修理包
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 對於修復和建造建築來說工具箱必不可少。記得將其裝備並選中。
@@ -2262,6 +2379,12 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 鐳射刺劍(黃)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+使用內置電源擊暈敵人。
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+電擊棒
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 非常強大的近距離武器。需要能量才能開火。

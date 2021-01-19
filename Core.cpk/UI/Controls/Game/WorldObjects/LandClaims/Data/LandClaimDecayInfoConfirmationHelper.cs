@@ -21,6 +21,11 @@
         {
             get
             {
+                if (Api.IsEditor)
+                {
+                    return true;
+                }
+
                 if (!Storage.TryLoad(
                         out Dictionary<ServerAddress, bool> dictionary))
                 {

@@ -12,6 +12,10 @@
 
         public const int PingSubstantialValue = 125;
 
+        private const int PacketLossSeverePercent = 15;
+
+        private const int PacketLossSubstantialPercent = 5;
+
         private static readonly ICurrentGameService Game = Api.Client.CurrentGame;
 
         public ViewModelNetworkPerformanceStats()
@@ -24,9 +28,25 @@
             this.RefreshCallback();
         }
 
+        public ViewModelPerformanceMetric PacketLoss { get; }
+            = new(CoreStrings.Network_PacketLoss,
+                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                "%",
+                new PerformanceMetricCondition(
+                    range => range > PacketLossSeverePercent,
+                    metricSeverity: Red,
+                    indicatorSeverity: Red,
+                    description:
+                    CoreStrings.Network_PacketLoss_Description),
+                new PerformanceMetricCondition(
+                    range => range > PacketLossSubstantialPercent,
+                    metricSeverity: Yellow,
+                    indicatorSeverity: Yellow,
+                    description:
+                    CoreStrings.Network_PacketLoss_Description));
+
         public ViewModelPerformanceMetric PingAverage { get; }
-            = new ViewModelPerformanceMetric(
-                CoreStrings.Network_PingAverage,
+            = new(CoreStrings.Network_PingAverage,
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                 "ms",
                 new PerformanceMetricCondition(
@@ -43,8 +63,7 @@
                     CoreStrings.Network_PingAverage_SeverityYellow));
 
         public ViewModelPerformanceMetric PingFluctuationRange { get; }
-            = new ViewModelPerformanceMetric(
-                CoreStrings.Network_PingFluctuationRange,
+            = new(CoreStrings.Network_PingFluctuationRange,
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                 "ms",
                 new PerformanceMetricCondition(
@@ -61,8 +80,7 @@
                     CoreStrings.Network_PingFluctuationRange_SeverityYellow));
 
         public ViewModelPerformanceMetric PingGame { get; }
-            = new ViewModelPerformanceMetric(
-                CoreStrings.Network_PingGame,
+            = new(CoreStrings.Network_PingGame,
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                 "ms",
                 new PerformanceMetricCondition(
@@ -77,8 +95,7 @@
                     description: null));
 
         public ViewModelPerformanceMetric PingJitter { get; }
-            = new ViewModelPerformanceMetric(
-                CoreStrings.Network_Jitter,
+            = new(CoreStrings.Network_Jitter,
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                 "ms",
                 new PerformanceMetricCondition(
@@ -122,6 +139,8 @@
                 this.PingGame.Reset();
                 this.PingJitter.Reset();
                 this.PingFluctuationRange.Reset();
+                this.PacketLoss.Reset();
+                this.PacketLoss.IsValueAvailable = false;
                 return;
             }
 
@@ -137,13 +156,21 @@
             var pingFluctuationRangeMs = SecondsToMs(Game.PingFluctuationRangeSeconds);
             this.PingFluctuationRange.Update(pingFluctuationRangeMs);
 
-            var maxIndicatorSeverity = (PerformanceMetricSeverityLevel)Math.Max(
-                (byte)this.PingAverage.IndicatorSeverity,
+            var packetLossPercent = Game.PacketLossPercent;
+            this.PacketLoss.Update((int)Math.Round(packetLossPercent ?? 0, MidpointRounding.AwayFromZero));
+            this.PacketLoss.IsValueAvailable = packetLossPercent.HasValue;
+
+            var maxIndicatorSeverity =
+                (PerformanceMetricSeverityLevel)
                 Math.Max(
-                    (byte)this.PingGame.IndicatorSeverity,
+                    (byte)this.PingAverage.IndicatorSeverity,
                     Math.Max(
-                        (byte)this.PingJitter.IndicatorSeverity,
-                        (byte)this.PingFluctuationRange.IndicatorSeverity)));
+                        Math.Max(
+                            (byte)this.PingGame.IndicatorSeverity,
+                            (byte)this.PingJitter.IndicatorSeverity),
+                        Math.Max(
+                            (byte)this.PingFluctuationRange.IndicatorSeverity,
+                            (byte)this.PacketLoss.IndicatorSeverity)));
 
             this.IndicatorSeverity = maxIndicatorSeverity;
         }

@@ -20,8 +20,14 @@
         <ControlTemplate x:Key="HeaderTemplate">
             <StackPanel Orientation="Horizontal"
                         d:DataContext="{d:DesignInstance data2:ViewModelOptionsCategory}">
-                <Rectangle Fill="{Binding Icon}" Width="24" Height="24" Margin="0,0,5,-2" />
-                <TextBlock Text="{Binding Name}" FontSize="17" VerticalAlignment="Center" />
+                <Rectangle Fill="{Binding Icon}"
+                           Width="24"
+                           Height="24"
+                           UseLayoutRounding="True"
+                           Margin="0,0,5,-2" />
+                <TextBlock Text="{Binding Name}"
+                           FontSize="17"
+                           VerticalAlignment="Center" />
             </StackPanel>
         </ControlTemplate>
 
@@ -37,7 +43,16 @@
 
             <core:TabControlCached x:Name="TabControl"
                                    Margin="0,3,0,0"
-                                   SelectedItem="{Binding SelectedTab}" />
+                                   SelectedItem="{Binding SelectedTab}">
+                <TabControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid IsItemsHost="True"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     Rows="1" />
+                    </ItemsPanelTemplate>
+                </TabControl.ItemsPanel>
+            </core:TabControlCached>
 
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"

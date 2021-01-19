@@ -64,7 +64,7 @@
         {
             base.ServerInitializeCharacterMob(data);
 
-            var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalWeak>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobTropicalBoar>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -75,6 +75,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,

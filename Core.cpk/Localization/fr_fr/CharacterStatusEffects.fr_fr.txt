@@ -28,6 +28,12 @@ Vous avez récemment fait un repas copieux. Toutes les tâches que vous entrepre
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Nourriture copieuse
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Augmente la vitesse de fabrication en générant un espace quantique isolé autour de l'utilisateur.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Accélération quantique
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Vous avez récemment mangé un repas savoureux. Cela rend la vie plus légère.
 
@@ -63,9 +69,6 @@ Vous vous êtes cassé la jambe : votre capacité de déplacement s'en trouve a
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Jambe cassée
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-Attaque impossible quand étourdi.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Vous êtes étourdi ! Donnez-vous quelques instants pour reprendre vos esprits.
@@ -180,6 +183,12 @@ Vous avez utilisé trop de médicaments en un court laps de temps : faites une 
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Overdose médicamenteuse
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Vous avez mangé bien plus que vous n'auriez dû. Si vous avalez encore une miette, vous vous rendrez malade.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Gavé
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Veuillez attendre que l'application de la Pérédozine soit terminée.

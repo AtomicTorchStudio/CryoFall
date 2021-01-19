@@ -164,7 +164,8 @@
 
                 this.selectedServer = value;
                 this.NotifyThisPropertyChanged();
-                this.SelectedServerVisibility = this.selectedServer is not null ? Visibility.Visible : Visibility.Collapsed;
+                this.SelectedServerVisibility =
+                    this.selectedServer is not null ? Visibility.Visible : Visibility.Collapsed;
 
                 //foreach (var viewModelServersList in this.allServersLists)
                 //{

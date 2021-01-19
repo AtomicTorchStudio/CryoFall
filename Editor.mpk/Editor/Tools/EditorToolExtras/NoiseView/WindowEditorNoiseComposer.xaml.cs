@@ -10,10 +10,6 @@
 
         private ViewModelWindowEditorNoiseComposer viewModel;
 
-        public WindowEditorNoiseComposer()
-        {
-        }
-
         protected override void WindowClosing()
         {
             this.suppressInputContext.Stop();

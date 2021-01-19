@@ -29,8 +29,7 @@
             this.publicState = publicState;
 
             this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(
-                    publicState.PanelsContainer,
-                    callbackTakeAllItemsSuccess: null)
+                    publicState.PanelsContainer)
                 {
                     IsContainerTitleVisible = false,
                     IsManagementButtonsVisible = false

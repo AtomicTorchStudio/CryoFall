@@ -14,59 +14,76 @@
     d:DataContext="{d:DesignInstance data:ViewModelWindowMulchbox, IsDesignTimeCreatable=True}">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-        <StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
 
-                <StackPanel Orientation="Vertical"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center">
-                    <!-- Text: Input -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
-                               Style="{StaticResource TextBlockStyleCraftingCaption}"
-                               HorizontalAlignment="Center"
-                               Margin="0" />
-                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
-                                                    MaxWidth="100"
-                                                    HorizontalAlignment="Center"
-                                                    DesignTimeSlotsCount="1" />
-                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
 
-                <core:ValueBarControl
-                    Value="{Binding OrganicAmount}"
-                    MaxValue="{Binding OrganicCapacity}"
-                    Margin="20,0,20,0"
-                    Style="{StaticResource LiquidMediumValueBar}"
-                    Foreground="{StaticResource BrushOrganic}" />
-
-                <StackPanel Orientation="Vertical"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center">
-                    <!-- Text: Output -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
-                               Style="{StaticResource TextBlockStyleCraftingCaption}"
-                               HorizontalAlignment="Center"
-                               Margin="0" />
-
-                    <StackPanel Orientation="Horizontal">
-                        <core:ValueBarControl
-                            Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
-                            Style="{StaticResource ItemSlotCraftingProgressVerticalBar}"
-                            Foreground="{StaticResource BrushOrganic}"
-                            Visibility="{Binding ViewModelManufacturingState.SelectedRecipe, ConverterParameter={StaticResource BoolToVisibilityConverter}}"
-                            Margin="-6,-1,0,0" />
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <!-- Text: Input -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
                         <controls:ItemsContainerControl
-                            Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                            Container="{Binding ViewModelManufacturingState.ContainerInput}"
                             MaxWidth="100"
                             HorizontalAlignment="Center"
                             DesignTimeSlotsCount="1" />
                     </StackPanel>
+
+                    <core:ValueBarControl
+                        Value="{Binding OrganicAmount}"
+                        MaxValue="{Binding OrganicCapacity}"
+                        Margin="20,0,20,0"
+                        Style="{StaticResource LiquidMediumValueBar}"
+                        Foreground="{StaticResource BrushOrganic}" />
+
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <!-- Text: Output -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <core:ValueBarControl
+                                Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                                Style="{StaticResource ItemSlotCraftingProgressVerticalBar}"
+                                Foreground="{StaticResource BrushOrganic}"
+                                Visibility="{Binding ViewModelManufacturingState.SelectedRecipe, ConverterParameter={StaticResource BoolToVisibilityConverter}}"
+                                Margin="-6,-1,0,0" />
+                            <controls:ItemsContainerControl
+                                Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                                MaxWidth="100"
+                                HorizontalAlignment="Center"
+                                DesignTimeSlotsCount="1" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
+
             </StackPanel>
 
-        </StackPanel>
+            <Image Grid.Column="2"
+                   Source="Images/MulchboxInfo.png"
+                   Width="200"
+                   Height="200"
+                   UseLayoutRounding="True"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        </Grid>
     </core:WindowMenuWithInventory>
 </manufacturers:WindowMulchboxBase>

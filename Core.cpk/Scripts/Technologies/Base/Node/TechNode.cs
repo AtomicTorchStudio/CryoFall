@@ -23,7 +23,7 @@
             = new TechNode[0];
 
         protected static readonly TextureResource IconPlaceholder
-            = new TextureResource("Technologies/TempNodeIcon.png");
+            = new("Technologies/TempNodeIcon.png");
 
         private ushort? cachedLearningPointsPrice;
 
@@ -193,9 +193,12 @@
                 throw new Exception("No effects provided");
             }
 
-            foreach (var effect in effects)
+            if (this.AvailableIn != FeatureAvailability.None)
             {
-                effect.PrepareEffect(this);
+                foreach (var effect in effects)
+                {
+                    effect.PrepareEffect(this);
+                }
             }
 
             this.lazyHierarchyLevel = new Lazy<byte>(
@@ -303,7 +306,7 @@
         where TProtoTechGroup : TechGroup, new()
     {
         private static readonly Lazy<TechGroup> LazyGroup
-            = new Lazy<TechGroup>(GetProtoEntity<TProtoTechGroup>);
+            = new(GetProtoEntity<TProtoTechGroup>);
 
         public sealed override TechGroup Group => LazyGroup.Value;
 
@@ -321,7 +324,7 @@
 
         protected class Config
         {
-            public readonly Effects Effects = new Effects();
+            public readonly Effects Effects = new();
 
             private TechNode<TProtoTechGroup> requiredNode;
 

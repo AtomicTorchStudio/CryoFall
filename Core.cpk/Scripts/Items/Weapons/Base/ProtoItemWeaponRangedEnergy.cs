@@ -34,7 +34,7 @@
         public override bool SharedCanFire(ICharacter character, WeaponState weaponState)
         {
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(character,
-                                                                                        this.EnergyUsePerShot);
+                this.EnergyUsePerShot);
             if (CharacterEnergySystem.SharedHasEnergyCharge(character, requiredEnergyAmount))
             {
                 return true;
@@ -60,7 +60,7 @@
             }
 
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(character,
-                                                                                        this.EnergyUsePerShot);
+                this.EnergyUsePerShot);
             return CharacterEnergySystem.ServerDeductEnergyCharge(character, requiredEnergyAmount);
         }
 

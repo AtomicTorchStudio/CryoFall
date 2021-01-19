@@ -15,7 +15,9 @@
         <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
     </base:BaseUserControl.Resources>
 
-    <core:DialogWindow x:Name="DialogWindow" WindowTitle="Create new world" CloseByEscapeKey="True">
+    <core:DialogWindow x:Name="DialogWindow"
+                       WindowTitle="Create new world"
+                       CloseByEscapeKey="True">
         <StackPanel Orientation="Vertical">
 
             <TextBlock Text="World settings"

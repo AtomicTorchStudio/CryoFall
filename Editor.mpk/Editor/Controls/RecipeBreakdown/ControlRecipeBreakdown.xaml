@@ -9,6 +9,8 @@
     xmlns:recipeBreakdown="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Controls.RecipeBreakdown"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;assembly=Core"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
+    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;assembly=Core"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;assembly=Core"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelControlRecipeBreakdown, IsDesignTimeCreatable=True}"
     Visibility="{Binding ViewModelRecipeBreakdown, Converter={StaticResource NullToVisibilityConverter}}">
@@ -195,89 +197,27 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-
             <!-- Nutrition value -->
             <Grid Grid.Row="8"
-                  Visibility="{Binding OutputTotalNutritionValue.HasAny, Converter={StaticResource BoolToVisibilityConverter }}"
+                  Visibility="{Binding OutputTotalFoodNutritionValue.HasAny, Converter={StaticResource BoolToVisibilityConverter}}"
                   Margin="0,10,0,0">
-                <Grid.Resources>
-                    <ControlTemplate x:Key="NutritionValueDisplay"
-                                     TargetType="Control">
-                        <Grid d:DataContext="{d:DesignInstance data:NutritionValueInfo}">
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="14" />
-                                    <Setter Property="Foreground" Value="White" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
-                                </Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Width" Value="22" />
-                                    <Setter Property="Height" Value="22" />
-                                    <Setter Property="Stretch" Value="Uniform" />
-                                </Style>
-                            </Grid.Resources>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="1" Text="{Binding HealthRestore, StringFormat=0.##}" />
-                            <TextBlock Grid.Column="3" Text="{Binding StaminaRestore, StringFormat=0.##}" />
-                            <TextBlock Grid.Column="5" Text="{Binding FoodRestore, StringFormat=0.##}" />
-                            <TextBlock Grid.Column="7" Text="{Binding WaterRestore, StringFormat=0.##}" />
-
-                            <Image Grid.Column="0"
-                                   Source="/UI/Images/Icons/icon_health.png"
-                                   Margin="0,0,4,0" />
-
-                            <Image Grid.Column="2"
-                                   Source="/UI/Images/Icons/icon_stamina.png"
-                                   Margin="0,0,-4,0" />
-
-                            <Image Grid.Column="4"
-                                   Source="/UI/Images/Icons/icon_hunger.png"
-                                   Margin="0,0,-9,0" />
-
-                            <Image Grid.Column="6"
-                                   Source="/UI/Images/Icons/icon_thirst.png"
-                                   Margin="0,0,-13,0" />
-                        </Grid>
-                    </ControlTemplate>
-                </Grid.Resources>
-
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-
-                <Control Grid.Row="0"
-                         Style="{StaticResource ControlHorizontalSeparator}" />
-
-                <TextBlock Grid.Row="1"
+                <TextBlock Grid.Row="0"
                            Text="Input total nutrition value:"
                            Margin="0,5,0,0" />
-                <Control Grid.Row="2"
-                         DataContext="{Binding InputTotalNutritionValue}"
-                         Template="{StaticResource NutritionValueDisplay}" />
-
-                <TextBlock Grid.Row="3"
+                <controls:FoodNutritionValueControl Grid.Row="1"
+                                                    DataContext="{Binding InputTotalFoodNutritionValue}" />
+                <TextBlock Grid.Row="2"
                            Text="Output total nutrition value:"
                            Margin="0,5,0,0" />
-                <Control Grid.Row="4"
-                         DataContext="{Binding OutputTotalNutritionValue}"
-                         Template="{StaticResource NutritionValueDisplay}" />
+                <controls:FoodNutritionValueControl Grid.Row="3"
+                                                    DataContext="{Binding OutputTotalFoodNutritionValue}" />
             </Grid>
-
         </Grid>
     </Grid>
 

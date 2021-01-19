@@ -141,7 +141,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 農業是可持續的食物來源，並且能給你帶來大量收穫。準備下地幹活吧！
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] [b]種子[/b]可以在收集草時獲得。部分特殊種子可以在遺跡中獲得。
+`[*][b]種子[/b]可以在收集草時獲得。部分特殊種子可以在遺跡中獲得。
 [*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。
 [*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
 [*] 你可以在未來研究肥料等科技來進一步提升農業效率。`
@@ -161,7 +161,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 光源
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@HintStructureRelocation:
-要[b]搬遷[/b]現有建築—選擇一個 [b]工具箱[/b]並對建築使用。 請注意，一些建築是不可移動的。
+要[b]搬遷[/b]現有建築—選擇一個[b]工具箱[/b]並對建築使用。 請注意，一些建築是不可移動的。
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `學會如何保護你的基地是非常重要的！如果沒有正確的方法，很容易就會被其他狡猾的倖存者襲擊劫掠。
@@ -390,12 +390,18 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 狩獵大師 - 第二部分
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+`當發現新東西時，它就會出現在你的[b]生涯菜單[/b]中! 
+ 使用此功能表來追蹤你的進度，並通過探索CryoFall的世界來獲取[u]額外知識點[/u]。`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+要整理物品欄，只需打開物品欄後將滑鼠懸浮至物品欄上，然後按下[u]{0}[/u]或[u]{1}[/u]鍵即可。你可以以此方法整理任何物品欄，例如箱子。
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+移動時按住[u]Shift[/u]即可跑動。試試看吧！跑步能讓你快速脫離危險。
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 在開始享受遊戲之前，你還有幾件事要學，例如整理物品欄和衝刺！
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] 要整理物品欄，先將物品欄打開，然後按下[u]滑鼠中鍵[/u]或者[u]Z鍵[/u]。你可以通過此方式整理[b]任何[/b]物品欄介面(例如箱子)。
-[*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 進行基礎行動
@@ -467,7 +473,7 @@ Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintThresholds:
 你可以自訂基地裡每個電力消耗或生產建築的[u]啟動和關閉[/u]電力[b]閾值[/b]。
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintUnitedGrid:
-數個相連的佔領區域將使用 [b]同一個電網[/b]。
+數個相連的佔領區域將使用[b]同一個電網[/b]。
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 為基地建立電網是提升效率的重要步驟。 有許多高級建築需要電力才能運轉。
@@ -491,6 +497,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 探索生態圈 - 第四部分
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+掠奪一些容器
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 遺址是尋找稀有元件和某些資源的最佳地點。如果你有所需裝備的話可以去經常探索。
 
@@ -502,8 +511,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 探索遺址
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-掠奪一些容器
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+你發現的傳送點越多，你的交通網絡就越龐大。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+找到至少兩個傳送點以進行傳送。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+遊戲中甚至還有隱藏傳送點！
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+徒步旅行雖然沒什麼問題，但遠距離的話還是外星傳送點好使。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+快速旅行
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 用“使用”動作來獲得魚肉。
@@ -587,8 +608,11 @@ Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 無人機開採
 
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+狩獵大師 - 第六部分
+
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
-你應該隨基地擴張[u]不斷擴大電能儲量[/u]，以確保有 [u]足夠的多餘電能[/u]。
+你應該隨基地擴張[u]不斷擴大電能儲量[/u]，以確保有[u]足夠的多餘電能[/u]。
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@Description:
 現在你已經為電網打下了堅實的基礎，可以用更多的設備來拓展它，讓你的生活更加便利。

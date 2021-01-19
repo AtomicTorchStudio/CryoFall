@@ -25,11 +25,6 @@
 
         private IReadOnlyList<IProtoItemDataLog> dataLogCandidates;
 
-        protected ProtoItemDataLogUnknown()
-        {
-            //this.Icon = new TextureResource("Items/DataLogs/Unknown.png");
-        }
-
         public override ITextureResource Icon => null;
 
         public string ItemUseCaption => ItemUseCaptions.Decrypt;
@@ -156,7 +151,7 @@
                     character,
                     sendNoFreeSpaceNotification: true,
                     probabilityMultiplier: 1,
-                    context: new DropItemContext(character, null));
+                    context: new DropItemContext(character));
             }
 
             if (!result.IsEverythingCreated)
@@ -181,7 +176,7 @@
 
         protected class ItemDataLogList
         {
-            private readonly HashSet<IProtoItemDataLog> hashset = new HashSet<IProtoItemDataLog>();
+            private readonly HashSet<IProtoItemDataLog> hashset = new();
 
             public void Add<TProtoItemDataLog>()
                 where TProtoItemDataLog : IProtoItemDataLog, new()

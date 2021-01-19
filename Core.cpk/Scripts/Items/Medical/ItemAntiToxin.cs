@@ -13,7 +13,7 @@
 
         public const string NotificationNoToxins_Title = "No toxins";
 
-        public override double CooldownDuration => MedicineCooldownDuration.Medium;
+        public override double CooldownDuration => MedicineCooldownDuration.Short;
 
         public override string Description =>
             "This emergency toxin exposure treatment could immediately reduce any effects of accumulated toxins in the body.";

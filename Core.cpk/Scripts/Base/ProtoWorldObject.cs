@@ -42,7 +42,7 @@
     {
         public virtual string InteractionTooltipText => InteractionTooltipTexts.Interact;
 
-        public bool IsInteractableObject { get; private set; }
+        public virtual bool IsInteractableObject { get; private set; }
 
         /// <summary>
         /// Gets sound material of object (used for damage/hit sounds).
@@ -185,9 +185,10 @@
                 }
                 else // PvP servers have newbie protection system
                 {
-                    if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(character,
-                                                                                        staticWorldObject,
-                                                                                        writeToLog))
+                    if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(
+                            character,
+                            staticWorldObject,
+                            writeToLog))
                     {
                         // action forbidden by newbie protection system
                         return false;

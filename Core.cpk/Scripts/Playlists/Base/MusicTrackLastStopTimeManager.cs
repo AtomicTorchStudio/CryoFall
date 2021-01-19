@@ -7,7 +7,7 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
     public static class MusicTrackLastStopTimeManager
     {
         private static readonly Dictionary<MusicResource, TrackStopTime> LastStopTime
-            = new Dictionary<MusicResource, TrackStopTime>();
+            = new();
 
         public static void RememberLastTrack(MusicResource musicTrack, double stopAtPosition)
         {

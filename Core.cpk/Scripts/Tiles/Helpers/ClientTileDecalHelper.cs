@@ -234,7 +234,7 @@
             IReadOnlyList<ProtoTileGroundTexture> requiredGroundTextures)
         {
             var proto = (ProtoTile)tile.ProtoTile;
-            var tileGroundTexture = proto.GetGroundTexture(tile.Position);
+            var tileGroundTexture = proto.GetGroundTexture(tile.Position, tile.Height);
             if (!requiredGroundTextures.Contains(tileGroundTexture))
             {
                 // the decal cannot be added to this ground texture

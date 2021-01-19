@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items
 {
+    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -15,6 +16,8 @@
         IReadOnlyList<IProtoItem> FuelProtoItemsList { get; }
 
         string FuelTitle { get; }
+
+        Type FuelType { get; }
 
         double FuelUsePerSecond { get; }
 

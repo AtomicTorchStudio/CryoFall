@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationToilet>();
 
-            config.SetRequiredNode<TechNodeDecorationBookshelf>();
+            config.SetRequiredNode<TechNodeDecorationVaseRed>();
         }
     }
 }

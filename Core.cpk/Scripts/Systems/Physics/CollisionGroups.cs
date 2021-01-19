@@ -133,7 +133,7 @@
 
             isInitialized = true;
 
-            defaultGroup = CollisionGroup.GetDefault();
+            defaultGroup = CollisionGroup.Default;
             defaultGroup.SetCollidesWith(defaultGroup);
 
             if (PveSystem.SharedIsPve(true))

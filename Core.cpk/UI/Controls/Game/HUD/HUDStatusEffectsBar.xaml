@@ -10,14 +10,17 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelHUDStatusEffectsBar, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:statModificationDisplay="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay">
 
     <ItemsControl ItemsSource="{Binding CurrentStatusEffects}"
                   HorizontalAlignment="Center">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <!-- max width calculated to fit 5 icons -->
-                <WrapPanel Orientation="Horizontal" MaxWidth="275" />
+                <!-- max width calculated to fit 4 icons -->
+                <WrapPanel Orientation="Horizontal"
+                           MaxWidth="280"
+                           RenderTransformOrigin="0.5,0.5" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
 
@@ -25,10 +28,10 @@
             <DataTemplate>
                 <Border
                     Width="50"
-                    Height="61"
-                    Padding="3,3,3,3"
+                    Height="65"
+                    Padding="0"
                     Margin="0,0,5,5"
-                    Background="{Binding BackgroundBrush}"
+                    BorderThickness="0"
                     CornerRadius="5"
                     Visibility="{Binding Visibility}"
                     RenderTransformOrigin="0.5,0.5">
@@ -81,26 +84,61 @@
                     </Border.Style>
 
                     <Grid>
-                        <Rectangle Fill="{Binding Icon}"
+                        <Border CornerRadius="3" Style="{StaticResource WidgetBorderShadowStyle}" />
+                        <Border CornerRadius="3" Background="{StaticResource WidgetBackgroundBlueBrush}" />
+                        <Border CornerRadius="3" Background="{StaticResource WidgetBackgroundImageTexture}" />
+                        <Border VerticalAlignment="Top" Height="10" CornerRadius="3"
+                                Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
+                        <Border VerticalAlignment="Bottom" Height="10" CornerRadius="3"
+                                Background="{StaticResource WidgetBackgroundGradientHorizontal}"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleY="-1" />
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border HorizontalAlignment="Left" Width="10" CornerRadius="3"
+                                Background="{StaticResource WidgetBackgroundGradientVertical}" />
+                        <Border HorizontalAlignment="Right" Width="10" CornerRadius="3"
+                                Background="{StaticResource WidgetBackgroundGradientVertical}"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="-1" />
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border Style="{StaticResource WidgetBorderStyle}" />
+
+                        <Rectangle Fill="{Binding ColorizedIcon}"
                                    UseLayoutRounding="True"
                                    VerticalAlignment="Top"
                                    HorizontalAlignment="Center"
                                    Width="44"
-                                   Height="44" />
+                                   Height="44"
+                                   Margin="0,3,0,0">
+                            <Rectangle.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="7"
+                                    Direction="0"
+                                    ShadowDepth="0"
+                                    Opacity="1"
+                                    Color="Black" />
+                            </Rectangle.Effect>
+                        </Rectangle>
 
                         <Grid HorizontalAlignment="Center"
                               VerticalAlignment="Bottom"
-                              Margin="0,0,-4,-4">
+                              Margin="0,0,0,1">
                             <Grid.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontWeight" Value="Bold" />
                                     <Setter Property="FontSize" Value="13" />
-                                    <Setter Property="Foreground" Value="White" />
-                                    <Setter Property="Opacity" Value="0.7" />
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColorAltLabelForeground}" />
                                     <Setter Property="Padding" Value="0" />
-                                    <Setter Property="Margin" Value="-4,0,0,0" />
+                                    <Setter Property="Margin" Value="0" />
                                     <Setter Property="noesis:Text.Stroke" Value="Black" />
                                     <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                                    <!-- In order to correctly draw the stroke ensure there is enough width -->
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                    <Setter Property="Width" Value="50" />
                                 </Style>
                             </Grid.Resources>
 
@@ -110,7 +148,7 @@
                                        FontSize="14"
                                        FontWeight="Normal" />
 
-                            <TextBlock Text="{Binding IntensityPercent, StringFormat={} {0}% }"
+                            <TextBlock Text="{Binding IntensityPercent, StringFormat={}{0}% }"
                                        Visibility="{Binding IsIconIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                        FontFamily="{StaticResource DigitsFontFamily}" />
 
@@ -148,14 +186,15 @@
                                     <TextBlock Text=": " />
                                     <TextBlock Text="{Binding IntensityPercent}" FontWeight="Bold" />
                                     <TextBlock Text="%" FontWeight="Bold" />
-                                    <TextBlock Text=" (" />
 
                                     <!-- Text: Time remains -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.TimeRemains}" />
-                                    <TextBlock Text=": " />
+                                    <Image Source="/UI/Images/Icons/Clock.png"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,1,-1"
+                                           Width="15"
+                                           Height="15" />
                                     <TextBlock Text="{Binding TimeRemains}"
                                                FontWeight="Bold" />
-                                    <TextBlock Text=")" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Vertical">
@@ -180,9 +219,11 @@
                                     <StackPanel
                                         Visibility="{Binding IsTooltipTimeRemainsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                         Orientation="Horizontal">
-                                        <!-- Text: Time remains -->
-                                        <TextBlock Text="{x:Static loc:CoreStrings.TimeRemains}" />
-                                        <TextBlock Text=": " />
+                                        <Image Source="/UI/Images/Icons/Clock.png"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,1,-1"
+                                               Width="15"
+                                               Height="15" />
                                         <TextBlock Text="{Binding TimeRemains}"
                                                    FontWeight="Bold" />
                                     </StackPanel>
@@ -196,48 +237,28 @@
                                        LineStackingStrategy="BlockLineHeight"
                                        Margin="0,2,0,0" />
 
+                            <statModificationDisplay:StatModificationDisplay
+                                StatsDictionary="{Binding StatsDictionary}"
+                                Margin="0,2,0,-1" />
+
                             <ItemsControl
-                                Visibility="{Binding Effects, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
-                                ItemsSource="{Binding Effects}"
-                                Margin="0,2,0,-1">
+                                Visibility="{Binding InfoControls, Converter={StaticResource NullToVisibilityConverter}}"
+                                ItemsSource="{Binding InfoControls}"
+                                Margin="0,5,-100,0"
+                                HorizontalAlignment="Stretch">
+                                <ItemsControl.Template>
+                                    <ControlTemplate>
+                                        <ItemsPresenter />
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical" Margin="0,-1" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="0,2"
-                                              HorizontalAlignment="Left">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.Resources>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Foreground"
-                                                            Value="{StaticResource BrushColor6}" />
-                                                    <Setter Property="FontWeight" Value="Bold" />
-                                                    <Setter Property="FontSize" Value="11" />
-                                                    <Setter Property="LineHeight" Value="12" />
-                                                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
-                                                </Style>
-                                            </Grid.Resources>
-
-                                            <!-- Bullet point -->
-                                            <Ellipse Width="4"
-                                                     Height="4"
-                                                     Fill="{StaticResource BrushColor5}"
-                                                     VerticalAlignment="Center" />
-
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding StatTitle}"
-                                                       TextWrapping="Wrap"
-                                                       Margin="3,0,0,0" />
-
-                                            <TextBlock Grid.Column="2"
-                                                       Text="{Binding EffectText}"
-                                                       Visibility="{Binding EffectTextVisibility}"
-                                                       TextWrapping="Wrap"
-                                                       VerticalAlignment="Center"
-                                                       Margin="3,0,0,0" />
-                                        </Grid>
+                                        <ContentControl Content="{Binding}" Margin="0,1" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

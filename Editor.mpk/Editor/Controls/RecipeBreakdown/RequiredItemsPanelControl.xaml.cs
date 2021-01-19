@@ -38,7 +38,7 @@
                 typeof(RequiredItemsPanelControl),
                 new PropertyMetadata(1d));
 
-        private readonly List<RequiredItemControl> slotsControls = new List<RequiredItemControl>();
+        private readonly List<RequiredItemControl> slotsControls = new();
 
         private UIElementCollection wrapPanelChildren;
 

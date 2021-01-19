@@ -1,23 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
 {
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
-    using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public partial class VehicleArmorBarControl : BaseUserControl, ICacheableControl
+    public partial class VehicleArmorBarControl : BaseUserControl
     {
         private float initialStructurePoints;
 
         private ObjectStructurePointsData objectStructurePointsData;
 
         private ViewModelStructurePointsBarControl viewModel;
-
-        public void ResetControlForCache()
-        {
-            this.viewModel.ObjectStructurePointsData
-                = this.objectStructurePointsData
-                      = default;
-        }
 
         public void Setup(
             ObjectStructurePointsData data,
@@ -30,21 +22,30 @@
             }
 
             this.objectStructurePointsData = data;
-            if (this.viewModel is not null)
-            {
-                this.RefreshViewModelData();
-            }
+            this.RefreshViewModelData();
         }
 
-        protected override void InitControl()
+        protected override void OnLoaded()
         {
             this.viewModel = new ViewModelStructurePointsBarControl();
-            this.DataContext = this.viewModel;
             this.RefreshViewModelData();
+            this.DataContext = this.viewModel;
+        }
+
+        protected override void OnUnloaded()
+        {
+            this.DataContext = null;
+            this.viewModel.Dispose();
+            this.viewModel = null;
         }
 
         private void RefreshViewModelData()
         {
+            if (this.viewModel is null)
+            {
+                return;
+            }
+
             this.viewModel.ObjectStructurePointsData = this.objectStructurePointsData;
             this.viewModel.SetInitialStructurePoints(this.initialStructurePoints);
         }

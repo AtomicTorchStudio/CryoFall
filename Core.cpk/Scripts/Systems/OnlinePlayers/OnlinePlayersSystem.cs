@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
@@ -75,7 +77,8 @@
 
         public static bool ClientIsOnline(string name)
         {
-            return ClientOnlinePlayersList.Contains(new Entry(name, null));
+            return ClientOnlinePlayersList.Contains(new Entry(name, null))
+                   || name == ClientCurrentCharacterHelper.Character?.Name;
         }
 
         protected override void PrepareSystem()
@@ -87,8 +90,8 @@
 
             // listen to player online state changed event
             Server.Characters.PlayerOnlineStateChanged += this.ServerOnPlayerOnlineStateChangedHandler;
-            PartySystem.ServerCharacterJoinedOrLeftParty += this.ServerCharacterJoinedOrLeftPartyHandler;
-            PartySystem.ServerPartyClanTagChanged += this.ServerPartyClanTagChanged;
+            PartySystem.ServerCharacterJoinedOrLeftParty += this.ServerCharacterJoinedOrLeftPartyOrFactionHandler;
+            FactionSystem.ServerCharacterJoinedOrLeftFaction += this.ServerCharacterJoinedOrLeftPartyOrFactionHandler;
 
             ServerRefreshTotalPlayersCount();
         }
@@ -107,14 +110,13 @@
 
         private static string ServerGetClanTag(ICharacter playerCharacter)
         {
-            var clanTag = PlayerCharacter.GetPublicState(playerCharacter).ClanTag;
-            return string.IsNullOrEmpty(clanTag)
+            var playerClanTag = PlayerCharacter.GetPublicState(playerCharacter).ClanTag;
+            return string.IsNullOrEmpty(playerClanTag)
                        ? null
-                       : clanTag;
+                       : playerClanTag;
         }
 
-        private static List<ICharacter> ServerGetOnlineStatusChangeReceivers(
-            ICharacter aboutPlayerCharacter)
+        private static List<ICharacter> ServerGetOnlineStatusChangeReceivers(ICharacter aboutPlayerCharacter)
         {
             var list = Server.Characters
                              .EnumerateAllPlayerCharacters(onlyOnline: true)
@@ -131,6 +133,21 @@
             }
 
             var aboutPlayerCharacterParty = PartySystem.ServerGetParty(aboutPlayerCharacter);
+            string aboutPlayerCharacterFactionClanTag = null;
+            {
+                var faction = FactionSystem.ServerGetFaction(aboutPlayerCharacter);
+                if (faction is not null)
+                {
+                    if (FactionSystem.SharedGetFactionKind(faction) == FactionKind.Public)
+                    {
+                        // public faction doesn't provide online status of faction members
+                    }
+                    else
+                    {
+                        aboutPlayerCharacterFactionClanTag = FactionSystem.SharedGetClanTag(faction);
+                    }
+                }
+            }
 
             List<ICharacter> onlineStatusChangeReceivers;
             if (ServerIsListHidden)
@@ -140,6 +157,9 @@
                 foreach (var character in list)
                 {
                     if (ServerIsOperatorOrModerator(character)
+                        || (aboutPlayerCharacterFactionClanTag is not null
+                            && string.Equals(aboutPlayerCharacterFactionClanTag,
+                                             PlayerCharacter.GetPublicState(character).ClanTag))
                         || (aboutPlayerCharacterParty is not null
                             && ReferenceEquals(aboutPlayerCharacterParty,
                                                PartySystem.ServerGetParty(character))))
@@ -216,9 +236,12 @@
                     "Online players list received from server. Is list hidden: "
                     + isListHidden
                     + Environment.NewLine
+                    + "Total entries: "
+                    + list.Count
+                    /*+ Environment.NewLine
                     + "List:"
                     + Environment.NewLine
-                    + list.GetJoinedString());
+                    + list.GetJoinedString()*/);
 
                 if (ClientOnlinePlayersList.Count > 0)
                 {
@@ -253,7 +276,7 @@
             ClientTotalServerPlayersCountChanged?.Invoke(totalPlayerCharactersCount);
         }
 
-        private void ServerCharacterJoinedOrLeftPartyHandler(
+        private void ServerCharacterJoinedOrLeftPartyOrFactionHandler(
             ICharacter playerCharacter,
             ILogicObject party,
             bool isJoined)
@@ -275,17 +298,12 @@
                 return;
             }
 
-            // refresh online lists completely for the party members
-            var serverCharacters = Api.Server.Characters;
-            foreach (var characterName in PartySystem.ServerGetPartyMembersReadOnly(party))
-            {
-                var character = serverCharacters.GetPlayerCharacter(characterName);
-                if (character is not null
-                    && character.ServerIsOnline)
-                {
-                    this.ServerSendOnlineListAndOtherInfo(character);
-                }
-            }
+            // need to notify current party and faction members that this player is online
+            this.CallClient(onlineStatusChangeReceivers,
+                            _ => _.ClientRemote_OnlineStatusChanged(
+                                new Entry(playerCharacter.Name,
+                                          ServerGetClanTag(playerCharacter)),
+                                true));
         }
 
         private void ServerOnPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
@@ -318,27 +336,6 @@
             this.ServerSendOnlineListAndOtherInfo(playerCharacter);
         }
 
-        private void ServerPartyClanTagChanged(ILogicObject party)
-        {
-            // notify other players that have this player in the online players list
-            var serverCharacters = Server.Characters;
-            foreach (var playerCharacterName in PartySystem.ServerGetPartyMembersReadOnly(party))
-            {
-                var playerCharacter = serverCharacters.GetPlayerCharacter(playerCharacterName);
-                if (playerCharacter is null
-                    || !playerCharacter.ServerIsOnline)
-                {
-                    continue;
-                }
-
-                var onlineStatusChangeReceivers = ServerGetOnlineStatusChangeReceivers(playerCharacter);
-                this.CallClient(onlineStatusChangeReceivers,
-                                _ => _.ClientRemote_OnlinePlayerClanTagChanged(
-                                    new Entry(playerCharacter.Name,
-                                              ServerGetClanTag(playerCharacter))));
-            }
-        }
-
         private void ServerSendOnlineListAndOtherInfo(ICharacter playerCharacter)
         {
             if (!playerCharacter.ServerIsOnline)
@@ -350,24 +347,43 @@
             var isListHidden = ServerIsListHidden
                                && !isOperatorOrModerator;
 
-            IReadOnlyList<Entry> onlinePlayersList;
+            var onlinePlayersList = new List<Entry>();
             if (isListHidden)
             {
-                // send only the party members
-                var party = PartySystem.ServerGetParty(playerCharacter);
-                if (party is null)
+                // send only the party and faction members
+                var faction = FactionSystem.ServerGetFaction(playerCharacter);
+                if (faction is not null
+                    && FactionSystem.SharedGetFactionKind(faction) != FactionKind.Public)
                 {
-                    onlinePlayersList = Array.Empty<Entry>();
+                    var factionClanTag = FactionSystem.SharedGetClanTag(faction);
+                    onlinePlayersList.AddRange(
+                        Server.Characters
+                              .EnumerateAllPlayerCharacters(onlyOnline: true)
+                              .ExceptOne(playerCharacter)
+                              .Where(c => factionClanTag == PlayerCharacter.GetPublicState(c).ClanTag)
+                              .Select(c => new Entry(c.Name, factionClanTag)));
                 }
-                else
+
+                var party = PartySystem.ServerGetParty(playerCharacter);
+                if (party is not null)
                 {
-                    onlinePlayersList = Server.Characters
-                                              .EnumerateAllPlayerCharacters(onlyOnline: true)
-                                              .ExceptOne(playerCharacter)
-                                              .Where(c => party == PartySystem.ServerGetParty(c))
-                                              .Select(c => new Entry(c.Name,
-                                                                     ServerGetClanTag(c)))
-                                              .ToList();
+                    var partyMembers = Server.Characters
+                                             .EnumerateAllPlayerCharacters(onlyOnline: true)
+                                             .ExceptOne(playerCharacter)
+                                             .Where(c => party == PartySystem.ServerGetParty(c))
+                                             .Select(c => new Entry(c.Name,
+                                                                    ServerGetClanTag(c)));
+                    if (onlinePlayersList.Count == 0)
+                    {
+                        onlinePlayersList.AddRange(partyMembers);
+                    }
+                    else
+                    {
+                        foreach (var entry in partyMembers)
+                        {
+                            onlinePlayersList.AddIfNotContains(entry);
+                        }
+                    }
                 }
             }
             else

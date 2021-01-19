@@ -22,7 +22,7 @@
 
         public static event Action IsDrawingChanged;
 
-        public static ClientDebugGuidesManager Instance { get; } = new ClientDebugGuidesManager();
+        public static ClientDebugGuidesManager Instance { get; } = new();
 
         public bool IsGuidesEnabled
         {

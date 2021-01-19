@@ -20,12 +20,12 @@
 
         public override float StructurePointsMax => 500;
 
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(0, 0, 0, maxY: 2);
+        public override BoundsInt ViewBoundsExpansion => new(0, 0, 0, maxY: 2);
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.PositionOffset = (0.5, 0.2);
+            renderer.PositionOffset = (0.51, 0.2);
             renderer.DrawOrderOffsetY = 0.25;
         }
 

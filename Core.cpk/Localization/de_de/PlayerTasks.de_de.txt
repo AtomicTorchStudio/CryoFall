@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 Baue: {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+Komplettist: Nehme eine Belohnung an
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 Vollende: {0} (Tech.-Gruppe)
 
@@ -10,8 +13,14 @@ an {0}
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 Stelle her
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+Boss besiegen: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 Zerstöre: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+Entdecken: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 Sammle: {0}

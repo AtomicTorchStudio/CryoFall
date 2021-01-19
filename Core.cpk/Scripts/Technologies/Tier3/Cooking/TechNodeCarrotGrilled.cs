@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeCarrotGrilled>();
 
-            config.SetRequiredNode<TechNodeCactusDrink>();
+            config.SetRequiredNode<TechNodeCookingOilFromCorn>();
         }
     }
 }

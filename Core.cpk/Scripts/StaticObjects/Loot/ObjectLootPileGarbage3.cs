@@ -26,7 +26,7 @@
         // It's much easier to find and search these piles so they will provide much less skill experience.
         public override double SearchingSkillExperienceMultiplier => 0.2;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 0;
 
         protected override bool CanFlipSprite => true;
 
@@ -64,7 +64,6 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.32, center: (0.5, 0.35))
-                .AddShapeCircle(radius: 0.32, center: (0.5, 0.4),  group: CollisionGroups.HitboxMelee)
                 .AddShapeCircle(radius: 0.35, center: (0.5, 0.35), group: CollisionGroups.ClickArea);
         }
     }

@@ -21,8 +21,9 @@
 
         public ObjectWell()
         {
-            this.textureResourceBack = new TextureResource(this.GenerateTexturePath() + "Back");
-            this.textureResourceFront = new TextureResource(this.GenerateTexturePath() + "Front");
+            var texturePath = this.GenerateTexturePath();
+            this.textureResourceBack = new TextureResource(texturePath + "Back");
+            this.textureResourceFront = new TextureResource(texturePath + "Front");
         }
 
         public override string Description =>

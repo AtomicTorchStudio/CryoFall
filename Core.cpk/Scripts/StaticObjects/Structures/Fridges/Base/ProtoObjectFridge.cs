@@ -25,7 +25,7 @@
     {
         // ReSharper disable once StaticMemberInGenericType
         private static readonly Lazy<IProtoItemsContainer> LazyFridgeContainer
-            = new Lazy<IProtoItemsContainer>(Api.GetProtoEntity<ItemsContainerFridge>);
+            = new(Api.GetProtoEntity<ItemsContainerFridge>);
 
         public abstract double FreshnessDurationMultiplier { get; }
 

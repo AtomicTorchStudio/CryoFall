@@ -43,7 +43,7 @@
                                                                    out var maxProduction);
 
                 var rate = ObjectGeneratorSteam.SharedGetElectricityProductionRate(this.WorldObjectManufacturer,
-                                                                                   out var temperature);
+                    out var temperature);
 
                 this.NotifyPropertyChanged(nameof(this.TemperatureCurrent));
 

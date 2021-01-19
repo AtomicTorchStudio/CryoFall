@@ -17,7 +17,7 @@
                                         new PropertyMetadata(false, PropertyChangedHandler));
 
         // cannot use weak references here as they will be lost immediately due to how C# SDK NoesisGUI works
-        private static readonly List<Grid> RegisteredGrids = new List<Grid>();
+        private static readonly List<Grid> RegisteredGrids = new();
 
         private static bool isRefreshScheduled;
 

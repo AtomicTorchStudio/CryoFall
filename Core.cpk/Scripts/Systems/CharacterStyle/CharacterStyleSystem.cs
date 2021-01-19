@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -23,17 +24,30 @@
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 5)]
         private void ServerRemote_ChangeStyle(CharacterHumanFaceStyle style, bool isMale)
         {
+            var character = ServerRemoteContext.Character;
+
             style = style.EmptyStringsToNulls();
             if (!SharedCharacterFaceStylesProvider.GetForGender(isMale)
                                                   .SharedIsValidFaceStyle(style))
             {
-                Logger.Warning("An invalid face style received", ServerRemoteContext.Character);
+                Logger.Warning("An invalid face style received");
                 return;
             }
 
-            var publicState = PlayerCharacter.GetPublicState(ServerRemoteContext.Character);
+            var publicState = PlayerCharacter.GetPublicState(character);
             publicState.IsMale = isMale;
             publicState.FaceStyle = style;
+
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            if (privateState.IsAppearanceSelected)
+            {
+                Logger.Info("Character appearance changed");
+                return;
+            }
+
+            privateState.IsAppearanceSelected = true;
+            Logger.Info("Character appearance selected - spawning in the world");
+            CharacterRespawnSystem.ServerOnCharacterAppearanceSelected(character);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1)]

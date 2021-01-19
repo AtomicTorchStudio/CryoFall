@@ -4,6 +4,12 @@ Urso
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Besouro negro
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Rainha de Prágmio
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Tirano da Areia
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Entocado
 
@@ -37,8 +43,8 @@ Pangolim
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Besouro de prágmio
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Rainha de Prágmio
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+Bosque psíquico
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Lesma
@@ -55,8 +61,14 @@ Cobra marrom
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Cobra verde
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Cuspidor
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Estrela do mar
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Tambor
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Javali tropical

@@ -9,7 +9,7 @@
     {
         public override string Description => "Simple but fiery dish.";
 
-        public override float FoodRestore => 15;
+        public override float FoodRestore => 20;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
@@ -20,7 +20,7 @@
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillAddEffect<StatusEffectSavoryFood>(intensity: 0.15);
+                .WillAddEffect<StatusEffectSavoryFood>(intensity: 0.20);
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

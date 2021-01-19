@@ -11,7 +11,7 @@
     public class PostEffectPragmiumSourceExplosion : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/Special/PragmiumSourceExplosion");
+            = new("PostEffects/Special/PragmiumSourceExplosion");
 
         private IGraphicsDevice device;
 

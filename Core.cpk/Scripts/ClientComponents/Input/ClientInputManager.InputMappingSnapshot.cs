@@ -10,9 +10,9 @@
         private class InputMappingSnapshot
         {
             private readonly Dictionary<string, ButtonMapping> abstractMapping
-                = new Dictionary<string, ButtonMapping>(capacity: 256);
+                = new(capacity: 256);
 
-            private readonly HashSet<string> knownEnumTypeNames = new HashSet<string>();
+            private readonly HashSet<string> knownEnumTypeNames = new();
 
             public Dictionary<IWrappedButton, ButtonMapping> GetMapping(
                 IReadOnlyCollection<Type> buttonEnumTypes,

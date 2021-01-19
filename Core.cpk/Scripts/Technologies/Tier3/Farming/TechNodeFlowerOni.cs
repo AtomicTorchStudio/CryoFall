@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeSeedsFlowerOni>();
 
-            config.SetRequiredNode<TechNodePlantPot>();
+            config.SetRequiredNode<TechNodeFlowerYellow>();
         }
     }
 }

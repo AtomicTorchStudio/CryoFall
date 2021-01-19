@@ -39,6 +39,8 @@
 
         IConstructionTileRequirementsReadOnly TileRequirements { get; }
 
+        bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(IStaticWorldObject worldObject);
+
         /// <summary>
         /// Returns actual config - for constructed object this is repair config (because it's constructed),
         /// for a construction site it's a build config of the building structure!

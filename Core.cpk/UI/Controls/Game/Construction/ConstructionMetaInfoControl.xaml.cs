@@ -15,7 +15,7 @@
                                         new PropertyMetadata(default(List<ControlTemplate>)));
 
         public static List<ConstructionMetaInfoTemplateDefinition> Templates
-            = new List<ConstructionMetaInfoTemplateDefinition>();
+            = new();
 
         public static readonly DependencyProperty ProtoObjectStructureProperty =
             DependencyProperty.Register(nameof(ProtoObjectStructure),
@@ -23,10 +23,6 @@
                                         typeof(ConstructionMetaInfoControl),
                                         new PropertyMetadata(default(IProtoObjectStructure),
                                                              DependencyPropertyChanged));
-
-        public ConstructionMetaInfoControl()
-        {
-        }
 
         public List<ControlTemplate> Entries
         {

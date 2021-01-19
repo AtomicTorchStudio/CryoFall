@@ -10,8 +10,8 @@
     public class TileClay : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Clay/TileClay1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Clay/TileClay1.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 9;
 

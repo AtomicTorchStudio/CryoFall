@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Defenses;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -208,13 +210,15 @@
 
             switch (targetObject.ProtoGameObject)
             {
-                case IProtoObjectWall _:
-                case IProtoObjectDoor _:
-                    // only doors and walls are protected
+                case IProtoObjectWall:
+                case IProtoObjectDoor:
+                case IProtoObjectTurret:
+                case ObjectPsionicFieldGenerator:
+                    // only doors, walls, and defense structures are protected
                     break;
 
                 default:
-                    // other objects could be always damaged
+                    // other objects could be damaged always
                     return true;
             }
 
@@ -311,7 +315,7 @@
                 return false;
             }
 
-            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
             return SharedGetShieldPublicStatus(areasGroup) == ShieldProtectionStatus.Active;
         }
 
@@ -322,7 +326,7 @@
                 return false;
             }
 
-            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(worldObject.Bounds);
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(worldObject);
             if (areasGroup is null)
             {
                 return false;
@@ -358,29 +362,39 @@
                 return;
             }
 
-            LandClaimSystem.ServerAreasGroupChanged += ServerLandClaimsGroupChangedHandler;
-            LandClaimSystem.ServerBaseMerge += ServerBaseMergeHandler;
-            TriggerEveryFrame.ServerRegister(ServerUpdate, this.ShortId);
+            // cannot immediately process as the world objects currently are not loaded
+            // process after delay
+            ServerTimersSystem.AddAction(0, ProcessAllBases);
 
             if (!SharedIsEnabled)
             {
                 return;
             }
 
-            // cannot immediately process as the world objects currently are not loaded
-            // process after delay
-            ServerTimersSystem.AddAction(0, ProcessAllBases);
+            LandClaimSystem.ServerAreasGroupCreated += ServerAreasGroupCreatedHandler;
+            LandClaimSystem.ServerBaseMerge += ServerBaseMergeHandler;
+            TriggerEveryFrame.ServerRegister(ServerUpdate, this.ShortId);
 
             static void ProcessAllBases()
             {
+                var isSystemEnabled = SharedIsEnabled;
+
                 // Apply lockdown to all doors inside the shield-protected bases
                 // as doors don't store the blocked-by-shield status.
                 var allGroups = Server.World.GetGameObjectsOfProto<ILogicObject, LandClaimAreasGroup>();
                 foreach (var areasGroup in allGroups)
                 {
-                    if (SharedGetShieldPublicStatus(areasGroup) == ShieldProtectionStatus.Active)
+                    if (isSystemEnabled)
                     {
-                        ServerSetDoorsLockdownStatus(areasGroup, areDoorsBlocked: true);
+                        if (SharedGetShieldPublicStatus(areasGroup) == ShieldProtectionStatus.Active)
+                        {
+                            ServerSetDoorsLockdownStatus(areasGroup, areDoorsBlocked: true);
+                        }
+                    }
+                    else // when system inactive all shields should be disabled
+                    if (SharedGetShieldPublicStatus(areasGroup) != ShieldProtectionStatus.Inactive)
+                    {
+                        ServerDeactivateShield(areasGroup);
                     }
                 }
             }
@@ -421,6 +435,12 @@
             }
         }
 
+        private static void ServerAreasGroupCreatedHandler(ILogicObject areasGroup)
+        {
+            var privateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            privateState.ShieldProtectionCooldownExpirationTime = Server.Game.FrameTime + SharedCooldownDuration;
+        }
+
         private static void ServerBaseMergeHandler(ILogicObject areasGroupFrom, ILogicObject areasGroupTo)
         {
             var fromPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroupFrom);
@@ -456,23 +476,9 @@
             ServerSetDoorsLockdownStatus(areasGroup, areDoorsBlocked: false);
         }
 
-        private static void ServerLandClaimsGroupChangedHandler(
-            ILogicObject area,
-            ILogicObject areasGroupFrom,
-            ILogicObject areasGroupTo)
-        {
-            if (areasGroupTo is null)
-            {
-                return;
-            }
-
-            var privateState = LandClaimAreasGroup.GetPrivateState(areasGroupTo);
-            privateState.ShieldProtectionCooldownExpirationTime = Server.Game.FrameTime + SharedCooldownDuration;
-        }
-
         private static void ServerSetDoorsLockdownStatus(ILogicObject areasGroup, bool areDoorsBlocked)
         {
-            var boundingBox = LandClaimSystem.SharedGetLandClaimGroupsBoundingArea(areasGroup);
+            var boundingBox = LandClaimSystem.SharedGetLandClaimGroupBoundingArea(areasGroup);
             if (boundingBox == default)
             {
                 return;
@@ -525,8 +531,8 @@
 
         private static void ServerUpdate()
         {
-            // perform update once per 10 seconds per base
-            const double spreadDeltaTime = 1; // 10;
+            // perform update once per 1 second per base
+            const double spreadDeltaTime = 1;
             var serverTime = Server.Game.FrameTime;
 
             using var tempListAreasGroups = Api.Shared.GetTempList<ILogicObject>();
@@ -564,7 +570,8 @@
 
                     var allOwners = LandClaimAreasGroup.GetPrivateState(areasGroup)
                                                        .ServerLandClaimsAreas
-                                                       .SelectMany(a => LandClaimArea.GetPrivateState(a).LandOwners)
+                                                       .SelectMany(
+                                                           a => LandClaimArea.GetPrivateState(a).ServerGetLandOwners())
                                                        .Distinct(StringComparer.Ordinal)
                                                        .Select(a => Server.Characters.GetPlayerCharacter(a))
                                                        .ToList();
@@ -619,12 +626,15 @@
             }
         }
 
-        private static bool ServerValidateCharacterAccessToAreasGroup(ILogicObject areasGroup, ICharacter character)
+        private static bool ServerValidateCharacterAccessToAreasGroup(
+            ILogicObject areasGroup,
+            ICharacter character,
+            bool requireFactionPermission)
         {
             var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
             foreach (var area in areas)
             {
-                if (LandClaimSystem.ServerIsOwnedArea(area, character))
+                if (LandClaimSystem.ServerIsOwnedArea(area, character, requireFactionPermission))
                 {
                     return true;
                 }
@@ -681,7 +691,9 @@
             }
 
             var character = ServerRemoteContext.Character;
-            if (!ServerValidateCharacterAccessToAreasGroup(areasGroup, character))
+            if (!ServerValidateCharacterAccessToAreasGroup(areasGroup,
+                                                           character,
+                                                           requireFactionPermission: false))
             {
                 return;
             }
@@ -752,7 +764,9 @@
         private void ServerRemote_DeactivateShield(ILogicObject areasGroup)
         {
             var character = ServerRemoteContext.Character;
-            if (!ServerValidateCharacterAccessToAreasGroup(areasGroup, character))
+            if (!ServerValidateCharacterAccessToAreasGroup(areasGroup,
+                                                           character,
+                                                           requireFactionPermission: false))
             {
                 return;
             }
@@ -778,7 +792,21 @@
             }
 
             var character = ServerRemoteContext.Character;
-            if (!ServerValidateCharacterAccessToAreasGroup(areasGroup, character))
+            var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
+            if (currentInteractionObject is null
+                || (areasGroup
+                    != LandClaimSystem.SharedGetLandClaimAreasGroup(
+                        ProtoObjectLandClaim.GetPublicState((IStaticWorldObject)currentInteractionObject)
+                                            .LandClaimAreaObject)))
+            {
+                Logger.Warning("Player not interacting with the land claim to recharge the shield: " + areasGroup,
+                               character);
+                return;
+            }
+
+            if (!ServerValidateCharacterAccessToAreasGroup(areasGroup,
+                                                           character,
+                                                           requireFactionPermission: false))
             {
                 return;
             }

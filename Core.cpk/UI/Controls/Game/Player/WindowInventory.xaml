@@ -10,7 +10,8 @@
     mc:Ignorable="d"
     d:DesignHeight="80" d:DesignWidth="850"
     d:DataContext="{d:DesignInstance player:ViewModelWindowInventory, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
 
     <core:BaseWindowMenu.Resources>
         <Style x:Key="ItemSlotDelimiterHorizontalControlStyle" TargetType="Control">
@@ -65,19 +66,25 @@
                            Fill="{StaticResource WidgetBackgroundImageTexture}" />
 
                 <!-- Skeleton image preview -->
-                <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="5"
+                <Grid Grid.Column="1"
+                      Grid.Row="0"
+                      Grid.RowSpan="5"
                       UseLayoutRounding="True"
-                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                      Margin="0,-5">
-                    <Rectangle Margin="25,25,25,0">
-                        <Rectangle.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Color="#000088BB" Offset="1" />
-                                <GradientStop Color="#440077DD" Offset="0.4" />
-                            </RadialGradientBrush>
-                        </Rectangle.Fill>
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Margin="0,-5,0,3">
+
+                    <Rectangle x:Name="SkeletonViewControl">
+                        <Rectangle.Effect>
+                            <!-- Glow effect -->
+                            <DropShadowEffect
+                                BlurRadius="50"
+                                Direction="0"
+                                ShadowDepth="0"
+                                Opacity="0.4"
+                                Color="#FF41858E" />
+                        </Rectangle.Effect>
                     </Rectangle>
-                    <Rectangle x:Name="SkeletonViewControl" />
 
                     <player:DropItemToUseControl
                         Visibility="{Binding ItemInHandUseText, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
@@ -87,37 +94,68 @@
                         Margin="0,0,0,6" />
                 </Grid>
 
-                <StackPanel Grid.Row="0"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            Orientation="Horizontal">
-                    <StackPanel.Resources>
+                <Grid Grid.Row="0"
+                      Grid.RowSpan="5"
+                      Grid.Column="1"
+                      Margin="3,0">
+                    <Grid.Resources>
                         <Style x:Key="InventoryExtraButton"
                                TargetType="Button"
                                BasedOn="{StaticResource SmallButtonStyle}">
-                            <Setter Property="MinWidth" Value="50" />
-                            <Setter Property="MaxWidth" Value="50" />
-                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="MinWidth" Value="24" />
+                            <Setter Property="MinHeight" Value="24" />
+                            <Setter Property="Padding" Value="1" />
                         </Style>
-                    </StackPanel.Resources>
-                    <!-- Text: Unstuck! -->
-                    <Button Content="{x:Static loc:CoreStrings.WindowInventory_Button_Unstuck}"
-                            Style="{StaticResource InventoryExtraButton}"
-                            Command="{Binding CommandOpenUnstuckMenu}" />
+                    </Grid.Resources>
 
-                    <!-- Text: Customize -->
-                    <Button Content="{x:Static loc:CoreStrings.WindowInventory_Button_Customize}"
+                    <Button Command="{Binding CommandOpenStyleMenu}"
                             Style="{StaticResource InventoryExtraButton}"
-                            Margin="5,0"
-                            Command="{Binding CommandOpenStyleMenu}" />
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top">
+                        <ui:ToolTipServiceExtend.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <core:FormattedTextBlock
+                                    Content="{x:Static loc:CoreStrings.WindowInventory_Button_Customize}"
+                                    FontWeight="Bold" />
+                                <core:FormattedTextBlock
+                                    Content="{x:Static loc:CoreStrings.WindowInventory_Button_Customize_Tooltip}" />
+                            </StackPanel>
+                        </ui:ToolTipServiceExtend.ToolTip>
+                        <Image Source="/UI/Images/Icons/icon_customize.png"
+                               Width="33"
+                               Height="33" />
+                    </Button>
 
-                    <!-- Text: Help -->
-                    <Button Content="{x:Static loc:CoreStrings.Button_Help}"
-                            Style="{StaticResource InventoryExtraButton}"
-                            Command="{Binding CommandOpenHelpMenu}" />
-                </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom">
+                        <Button Command="{Binding CommandOpenUnstuckMenu}"
+                                Style="{StaticResource InventoryExtraButton}">
+                            <ui:ToolTipServiceExtend.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <core:FormattedTextBlock
+                                        Content="{x:Static loc:CoreStrings.WindowInventory_Button_Unstuck}"
+                                        FontWeight="Bold" />
+                                    <core:FormattedTextBlock
+                                        Content="{x:Static player:WindowCharacterUnstuckHelper.DialogUnstuck_Message}" />
+                                </StackPanel>
+                            </ui:ToolTipServiceExtend.ToolTip>
+                            <Image Source="/UI/Images/Icons/icon_stuck.png"
+                                   Width="22"
+                                   Height="22" />
+                        </Button>
+
+                        <Button Command="{Binding CommandOpenHelpMenu}"
+                                Style="{StaticResource InventoryExtraButton}"
+                                ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Button_Help}"
+                                Margin="0,5,0,0">
+                            <Image Source="/UI/Images/Icons/icon_help.png"
+                                   Width="22"
+                                   Height="22" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="0">
                     <Image Source="/UI/Images/Icons/Equipment/icon_equipment_head.png" />
@@ -319,7 +357,9 @@
                                       TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Psi}" />
             </Grid>
 
-            <Control Grid.RowSpan="2" Grid.ColumnSpan="2" Template="{StaticResource PlayerMenuContainerWithLines}" />
+            <Control Grid.RowSpan="2"
+                     Grid.ColumnSpan="2"
+                     Template="{StaticResource PlayerMenuContainerWithLines}" />
 
         </Grid>
     </core:GameWindow>

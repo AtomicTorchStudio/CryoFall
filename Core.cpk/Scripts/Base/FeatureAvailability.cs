@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum FeatureAvailability : byte
     {
         None = 0,

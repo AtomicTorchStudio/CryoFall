@@ -64,8 +64,7 @@
             => new ActionCommand(this.ExecuteCommandAddPartyMembers);
 
         public ActionCommandWithParameter CommandRemoveOwner
-            => new ActionCommandWithParameter(
-                arg => this.ExecuteCommandRemoveOwner((string)arg));
+            => new(arg => this.ExecuteCommandRemoveOwner((string)arg));
 
         public string EmptyListMessage { get; }
 

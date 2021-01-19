@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.SoundPresets
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum ObjectSound
     {
         /// <summary>

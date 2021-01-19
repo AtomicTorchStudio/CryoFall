@@ -40,12 +40,10 @@
         private const double WateringIntervalSeconds = 60 * 60; // once an hour
 
         private static readonly Lazy<SolidColorBrush> BlueprintBorderBrush
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x99, 0x66, 0xCC, 0xFF)));
+            = new(() => new SolidColorBrush(Color.FromArgb(0x99, 0x66, 0xCC, 0xFF)));
 
         private static readonly Lazy<SolidColorBrush> BlueprintFillBrush
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x22, 0x66, 0xCC, 0xFF)));
+            = new(() => new SolidColorBrush(Color.FromArgb(0x22, 0x66, 0xCC, 0xFF)));
 
         /// <summary>
         /// This object is not actually a manufacturer but it's more convenient to use the manufacturing mechanic
@@ -56,8 +54,8 @@
         private ITextureAtlasResource textureAtlas;
 
         public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 20,
-                                               shutdownPercent: 10);
+            => new(startupPercent: 20,
+                   shutdownPercent: 10);
 
         // this value is actually never used as the consumption rate is always zero
         public double ElectricityConsumptionPerSecondWhenActive => 0.01;
@@ -84,8 +82,7 @@
         {
             base.ClientSetupBlueprint(tile, blueprint);
 
-            if (!ConstructionPlacementSystem.IsInObjectPlacementMode
-                && !ConstructionRelocationSystem.IsInObjectPlacementMode)
+            if (blueprint.IsConstructionSite)
             {
                 return;
             }
@@ -102,7 +99,7 @@
                     Height = sizeY * ScriptingConstants.TileSizeVirtualPixels,
                     Fill = BlueprintFillBrush.Value,
                     Stroke = BlueprintBorderBrush.Value,
-                    StrokeThickness = 4,
+                    StrokeThickness = 4
                 },
                 isFocusable: false,
                 isScaleWithCameraZoom: true);

@@ -232,7 +232,8 @@
             this.sceneObjectForComponents
                 .AddComponent<SceneObjectPositionSynchronizer>()
                 .Setup(this.SceneObject);
-            this.blueprintRenderer = new ClientBlueprintRenderer(this.sceneObjectForComponents);
+            this.blueprintRenderer = new ClientBlueprintRenderer(this.sceneObjectForComponents,
+                                                                 isConstructionSite: false);
             this.blueprintRenderer.IsEnabled = false;
             this.tilesBlueprint = new ClientBlueprintTilesRenderer(this.sceneObjectForComponents);
             this.tilesBlueprint.Setup(this.protoStaticWorldObject.Layout);

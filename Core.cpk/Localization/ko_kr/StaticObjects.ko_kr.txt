@@ -16,6 +16,9 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_M
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 부적합한 지형
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+건설 불가—이벤트 장소와 너무 가까움.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 제한된 구역에는 지을 수 없습니다.
 
@@ -75,6 +78,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 줍기
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+누르기
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 강제로 열기
@@ -148,6 +154,15 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 쓰레기 더미
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+광물 더미
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+돌더미
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+나뭇더미
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 돌
 
@@ -217,6 +232,9 @@ Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 이 자원을 채굴하려면 곡괭이를 사용하세요.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+외계 순간 이동
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 틈
 
@@ -225,6 +243,9 @@ Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 프라그뮴 여왕의 유해
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+모래 폭군의 유해
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 우주 쓰레기
@@ -398,11 +419,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 향단
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+파벌의 상징을 표시한 독특한 기치.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+파벌 기치
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 이 현수막이 무엇을 상징하든, 멋집니다!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 깃발
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+대부분의 사람들의 장식으로 사용하는 물건입니다...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+바벨 벤치
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 위생적 욕구를 만족시켜주는 고전적인 욕조.
@@ -410,11 +443,32 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 욕조
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+잠들기 전에 핸드폰을 놓을 수 있는 작고 편리한 곳.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+침대 옆 탁자
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 책꽂이 없는 방을 완벽한 방이라 할 수 있을까요?
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 책꽂이
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+방을 꾸미거나 체스와 체커를 할 수 있는 말 중 하나.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+폰
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+퀸
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+예고도 없이 총을 든 손님이 올까 걱정되시나요? 그렇다면 이 초인종을 문밖에 둬 보세요.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+초인종
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 옛날 이야기에 등장하는 호랑이를 고전적 모습으로 그린 병풍.
@@ -428,11 +482,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Descr
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 황금 더미
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+복도에 꼭 필요한 가구.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+모자걸이
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 아름답고 훌륭하게 만들어진 칠흑빛 피아노.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 피아노
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+거대한 선물 더미가 없다면 축하 파티가 아니겠죠?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+선물
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 진정한 사냥꾼임을 증명하여 이 화려한 깔개로 방을 장식하세요.
@@ -494,6 +560,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 변기
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+제대로 된 거실의 중앙축을 맡고 있습니다. 친구들과 함께 영화를 보면서 휴식을 취하세요.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+TV
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 값비싼 장식용 꽃병.
 
@@ -502,6 +574,33 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 바닥이 이미 장식되어 있습니다.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+간섭성 에너지 빔으로 표적에 대미지를 주는 전자동 경계 포탑.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+에너지 포탑
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+전자동 경계 중포탑.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+중포탑
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+전자동 경계 경포탑.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+경포탑
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+정지
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+적은 공격하고, 중립에겐 반격합니다
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+적과 모든 침입자를 공격합니다
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 대부분의 침입자들을 막는 훌륭한 방어책. 하지만 폭탄은 거의 막아주지 못합니다.
@@ -533,10 +632,10 @@ Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 농경지
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
-집을 꾸미거나 그 밖의 다른 목적으로 사용할 수 있는 꽃을 키울 수 있습니다. 어디든 만들어 놓을 수 있습니다.
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
+집을 꾸미거나 그밖의 다른 목적으로 사용할 수 있는 꽃을 키울 수 있습니다. 어디든 만들어 놓을 수 있습니다.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 화분
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1005,6 +1104,12 @@ Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 콘크리트벽
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+이 철체 울타리는 움직임은 봉쇄하지만, 총알은 통과시키기 때문에 전략적 방어 수단으로서 좋은 선택이 될 수 있습니다. 내구성이 매우 낮습니다.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+철망 울타리
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 나무벽보다는 훨씬 낫습니다. 대부분의 침입자들을 막아주긴 하지만, 제대로 장비를 갖춘 침입자들에겐 속수무책입니다.
 
@@ -1075,8 +1180,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 도깨비꽃
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+노란 꽃
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 우유멜론
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+감자
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 쌀

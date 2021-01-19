@@ -8,11 +8,14 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -23,6 +26,10 @@
 
     public class WelcomeMessageSystem : ProtoSystem<WelcomeMessageSystem>
     {
+        public const string DescriptionCommunity =
+            @"This server is run by a community member. It's [b]not[/b] managed, connected to or endorsed by the developer or publisher of the game.
+              [br]You may get blocked or kicked for violating the server rules—read them carefully and if you have any problems please reach the server owner.";
+
         public const string DescriptionModded =
             "This community server has third-party modifications installed. There is no guarantee that it will run correctly and offer you the proper CryoFall experience. If you encounter any issues—please direct them to this community server's owner.";
 
@@ -33,6 +40,8 @@
         public const string DescriptionPvP =
             @"This is a free-for-all PvP server. Please remember that on PvP-centered servers, [b]you will encounter aggression[/b] from other players. You are expected to fight and defend yourself. You will have to properly protect yourself and exercise vigilance at all times. This game mode is only meant for experienced players.
               [br]If you'd rather have a more relaxed experience, especially if this is your first time playing—please consider joining a PvE server.";
+
+        public const string HeaderDescriptionCommunity = "Community server";
 
         public const string HeaderDescriptionPvE = "PvE server";
 
@@ -45,6 +54,10 @@
         public const string HeaderWipeInformation = "Wipe information";
 
         public const string WelcomeToServerTitleFormat = "Welcome to {0}";
+
+        private const int MaxDescriptionLength = 350;
+
+        private const int MaxWelcomeMessageLength = 4096;
 
         private const string ServerDatabaseScheduledWipeDateUtcPrefixAndKey = "ScheduledWipeDateUtc";
 
@@ -73,14 +86,15 @@
         public static async void ClientEditDescription()
         {
             var originalText = await Instance.CallServer(_ => _.ServerRemote_GetDescriptionMessage());
-            ClientOpenTextEditor(originalText,
-                                 maxLength: 350,
-                                 onSave: async text =>
-                                         {
-                                             await Instance.CallServer(
-                                                 _ => _.ServerRemote_SetDescription(text));
-                                             RefreshDescription();
-                                         });
+            BbTextEditorHelper.ClientOpenTextEditor(originalText,
+                                                    maxLength: MaxDescriptionLength,
+                                                    windowHeight: 200,
+                                                    onSave: async text =>
+                                                            {
+                                                                await Instance.CallServer(
+                                                                    _ => _.ServerRemote_SetDescription(text));
+                                                                RefreshDescription();
+                                                            });
         }
 
         public static async void ClientEditScheduledWipeDate()
@@ -108,14 +122,15 @@
         {
             var welcomeMessageData = await Instance.CallServer(_ => _.ServerRemote_GetInfo());
 
-            ClientOpenTextEditor(welcomeMessageData.WelcomeMessage,
-                                 maxLength: 4096,
-                                 onSave: async text =>
-                                         {
-                                             await Instance.CallServer(
-                                                 _ => _.ServerRemote_SetWelcomeMessage(text));
-                                             RefreshWelcomeMessage();
-                                         });
+            BbTextEditorHelper.ClientOpenTextEditor(welcomeMessageData.WelcomeMessage,
+                                                    maxLength: MaxWelcomeMessageLength,
+                                                    windowHeight: 530,
+                                                    onSave: async text =>
+                                                            {
+                                                                await Instance.CallServer(
+                                                                    _ => _.ServerRemote_SetWelcomeMessage(text));
+                                                                RefreshWelcomeMessage();
+                                                            });
         }
 
         public static async void ClientShowWelcomeMessage()
@@ -143,8 +158,8 @@
         {
             if (IsServer)
             {
-                serverWelcomeMessageText = TrimSpacesOnEachLine(Api.Server.Core.WelcomeMessageText);
-                serverDescriptionText = TrimSpacesOnEachLine(Api.Server.Core.DescriptionMessageText);
+                serverWelcomeMessageText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.WelcomeMessageText);
+                serverDescriptionText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.DescriptionMessageText);
                 Api.Server.Database.TryGet(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
                                            ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
                                            out DateTime? wipeDateUtc);
@@ -187,6 +202,15 @@
 
             var welcomeMessage = data.WelcomeMessage;
             await PveSystem.ClientAwaitPvEModeFromServer();
+
+            // Header 0 - Community server
+            if (!Client.CurrentGame.IsConnectedToOfficialServer)
+            {
+                sb.AppendLine(h1s + HeaderDescriptionCommunity + h1c)
+                  .AppendLine(br)
+                  .AppendLine(DescriptionCommunity)
+                  .AppendLine(brbr);
+            }
 
             // Header 1 - Server welcome message (section displayed only when available)
             if (!string.IsNullOrWhiteSpace(welcomeMessage))
@@ -235,8 +259,7 @@
                   .AppendLine(string.Format(CoreStrings.ServerWipeInfoNextWipeDate_Format,
                                             FormatDate(data.ScheduledWipeDateUtc.Value.ToLocalTime())))
                   .AppendLine(br)
-                  .AppendLine(string.Format(CoreStrings.TimeAlreadyConvertedToLocalTimeZone_Format,
-                                            GetCurrentUtcOffsetText()));
+                  .AppendLine(ClientLocalTimeZoneHelper.GetTextTimeAlreadyConvertedToLocalTimeZone());
             }
             else if (Client.CurrentGame.IsConnectedToOfficialServer
                      && isPveServer)
@@ -251,91 +274,6 @@
             }
 
             return new WelcomeMessageRemoteData(sb.ToString(), data.ScheduledWipeDateUtc);
-        }
-
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        private static void ClientOpenTextEditor(
-            string originalText,
-            int maxLength,
-            Action<string> onSave)
-        {
-            ScrollViewer scrollviewer;
-            TextBox textBox;
-
-            {
-                scrollviewer = new ScrollViewer()
-                {
-                    Height = 530,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch,
-                    VerticalScrollBarVisibility = ScrollBarVisibility.Visible,
-                };
-
-                var grid = new Grid();
-                scrollviewer.Content = grid;
-
-                var textBlockInfo = new TextBlock()
-                {
-                    Text =
-                        "Available tags: BB code like [b], [u], [i], [url=example.com]links[/url], [color=#FF0000]colors[/color], bullet points [*], and line breaks [br] (line breaks are added automatically for new lines).",
-                    TextWrapping = TextWrapping.Wrap,
-                    Margin = new Thickness(10, 0, 10, 0),
-                    FontSize = 11,
-                    LineHeight = 12,
-                    LineStackingStrategy = LineStackingStrategy.BlockLineHeight,
-                    FontWeight = FontWeights.Bold
-                };
-
-                originalText = originalText.Trim()
-                                           .Replace("\r",   string.Empty)
-                                           .Replace("\n",   string.Empty)
-                                           .Replace("[br]", "\n")
-                                           .Replace("[*]",  "\n[*]");
-
-                textBox = new TextBox
-                {
-                    Text = originalText,
-                    TextWrapping = TextWrapping.Wrap,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch,
-                    FontSize = 13,
-                    TextAlignment = TextAlignment.Left,
-                    HorizontalContentAlignment = HorizontalAlignment.Left,
-                    VerticalContentAlignment = VerticalAlignment.Top,
-                    AcceptsReturn = true,
-                    Margin = default,
-                    MaxLength = maxLength,
-                    BorderThickness = default
-                };
-
-                grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(7) });
-                grid.RowDefinitions.Add(new RowDefinition());
-                grid.Children.Add(textBlockInfo);
-                Grid.SetRow(textBox, 2);
-                grid.Children.Add(textBox);
-            }
-
-            var dialogWindow = DialogWindow.ShowDialog(
-                title: null,
-                content: scrollviewer,
-                okAction: () =>
-                          {
-                              var text = textBox.Text
-                                                .Trim()
-                                                .Replace("\r",     string.Empty)
-                                                .Replace("\n[br]", "\n")
-                                                .Replace("\n[*]",  "[*]")
-                                                .Replace("\n",     "\n[br]")
-                                                .Replace("[*]",    "\n[*]");
-                              onSave(text);
-                          },
-                cancelAction: () => { },
-                okText: CoreStrings.Button_Save,
-                focusOnCancelButton: true);
-
-            dialogWindow.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-            dialogWindow.GameWindow.Width = 530;
         }
 
         private static async void ClientShowWelcomeMessageInternal(string welcomeMessage)
@@ -372,18 +310,6 @@
             dialogWindow.GameWindow.FocusOnControl = null;
             dialogWindow.GameWindow.Width = 530;
             dialogWindow.GameWindow.UpdateLayout();
-        }
-
-        public static string GetCurrentUtcOffsetText()
-        {
-            var utcOffset = TimeZoneInfo.Local.GetUtcOffset(DateTime.Now);
-            var result = utcOffset.ToString("hh\\:mm");
-            if (utcOffset.TotalSeconds > 0)
-            {
-                result = "+" + result;
-            }
-
-            return result;
         }
 
         private static async void RefreshDescription()
@@ -431,26 +357,6 @@
             ClientShowWelcomeMessageInternal(welcomeMessage);
         }
 
-        private static string TrimSpacesOnEachLine(string text)
-        {
-            if (string.IsNullOrEmpty(text))
-            {
-                return null;
-            }
-
-            text = text.Replace("\r", "");
-            var split = text.Split('\n');
-            for (var index = 0; index < split.Length; index++)
-            {
-                var line = split[index];
-                line = line.Trim();
-                split[index] = line;
-            }
-
-            text = string.Join(Environment.NewLine, split);
-            return text;
-        }
-
         [RemoteCallSettings(timeInterval: 1)]
         private string ServerRemote_GetDescriptionMessage()
         {
@@ -475,7 +381,14 @@
         private bool ServerRemote_SetDescription(string text)
         {
             text = text?.Trim() ?? string.Empty;
-            text = TrimSpacesOnEachLine(text);
+            text = SharedTextHelper.TrimSpacesOnEachLine(text);
+
+            if (text.Length > MaxDescriptionLength)
+            {
+                throw new Exception("Max description length exceeded");
+            }
+
+            text = ProfanityFilteringSystem.SharedApplyFilters(text);
             Api.Server.Core.DescriptionMessageText = serverDescriptionText = text;
 
             Logger.Important("Server description message changed to:"
@@ -511,7 +424,14 @@
         private bool ServerRemote_SetWelcomeMessage(string text)
         {
             text = text?.Trim() ?? string.Empty;
-            text = TrimSpacesOnEachLine(text);
+            text = SharedTextHelper.TrimSpacesOnEachLine(text);
+
+            if (text.Length > MaxWelcomeMessageLength)
+            {
+                throw new Exception("Max welcome message length exceeded");
+            }
+
+            text = ProfanityFilteringSystem.SharedApplyFilters(text);
             Api.Server.Core.WelcomeMessageText = serverWelcomeMessageText = text;
 
             Logger.Important("Server welcome message changed to:"

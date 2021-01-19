@@ -65,8 +65,8 @@
             base.ServerInitializeCharacterMob(data);
 
             this.weaponPresets = new AiWeaponPresetList()
-                                 .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponLizardFangs>()))
-                                 .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponLizardPoison>()))
+                                 .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponMobLizardFangs>()))
+                                 .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponMobLizardPoison>()))
                                  .ToReadReadOnly();
 
             ServerMobWeaponHelper.TrySetWeapon(data.GameObject,
@@ -80,6 +80,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: false,
                 distanceRetreat: 0,

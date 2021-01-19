@@ -30,6 +30,9 @@
 
         public const string AutosaveNotification_Title = "Server snapshot";
 
+        public const string BbCodeFormattingDescription =
+            "Available tags: BB code like [b], [u], [i], [url=example.com]links[/url], [color=#FF0000]colors[/color], bullet points [*], and line breaks [br] (line breaks are added automatically for new lines).";
+
         public const string BrokenObjectLandClaimTooltip_TitleDestroyCountdown = "Destroyed in";
 
         public const string Button_Accept = "Accept";
@@ -143,6 +146,8 @@
             @"If you encounter any inappropriate messages—please click on the message and select ""Report"" or ""Block.""";
 
         public const string Checkbox_DoNotAskAgain = "Do not ask me again";
+
+        public const string ClanTag = "Clan tag";
 
         public const string ClanTag_Current = "Clan tag:";
 
@@ -279,6 +284,9 @@
 
         public const string DepositCapacityStats_TitleLimited = "Surface deposit (high yield)";
 
+        public const string DestructionTimeout_Tooltip =
+            "The destruction timer starts when the land claim is destroyed—when structure points reaches zero.";
+
         public const string Dialog_AreYouSureWantToUse_Format =
             "Are you sure want to use {0}?";
 
@@ -299,6 +307,10 @@
         public const string EffectActionDescription_AddsEffects = "Adds effects:";
 
         public const string EffectActionDescription_RemovesEffects = "Removes effects:";
+
+        public const string EmptyList = "This list is empty.";
+
+        public const string EmptyText = "The text is empty.";
 
         public const string EnergyUnitAbbreviation = "EU";
 
@@ -321,6 +333,298 @@
 
         public const string Extras_RoadmapTooltip = "CryoFall development roadmap (English only)";
 
+        public const string Faction_Admin = "Admin";
+
+        public const string Faction_Application_Accept = "Accept";
+
+        // Player can cancel/revoke their submitted application to join a faction.
+        public const string Faction_Application_Cancel = "Cancel";
+
+        public const string Faction_Application_Reject = "Reject";
+
+        public const string Faction_Applications = "Applications";
+
+        public const string Faction_Applications_Empty = "There are no active applications.";
+
+        public const string Faction_Applications_RejectAll = "Reject all applications";
+
+        public const string Faction_CannotRejoinInvitationRequired =
+            "You have left this faction or were removed from it. You can rejoin it only by an invite.";
+
+        public const string Faction_CopyTag = "Copy clan tag";
+
+        public const string Faction_CreateFaction = "Create faction";
+
+        public const string Faction_CreateFaction_ConfirmationDialog1
+            = "Are you sure you've entered everything correctly?";
+
+        public const string Faction_CreateFaction_ConfirmationDialog2
+            = "You cannot change faction type and presentation once the faction is created.";
+
+        public const string Faction_CurrentRole_Field = "Your role:";
+
+        public const string Faction_CurrentRole_Permissions_None =
+            "Your current role doesn't provide you any administrative privileges.";
+
+        public const string Faction_Description_Private = "Private description";
+
+        public const string Faction_Description_Public = "Public description";
+
+        public const string Faction_Description_ShowsOnlineStatusAndMapLocation =
+            "Shows online status and map position of faction members.";
+
+        public const string Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat
+            = "Are you sure you want to remove [b]{0}[/b] from the faction?";
+
+        public const string Faction_DialogDissolveFaction_Checkbox1Format =
+            "I'm certain that I want to [b]dissolve[/b] the faction.";
+
+        public const string Faction_DialogDissolveFaction_Checkbox2Format =
+            "I understand this faction's members will be [b]unable to join[/b] any other faction for [b]{0}[/b].";
+
+        public const string Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims =
+            "Please deconstruct all the land claims owned by the faction first.";
+
+        // Dissolve/disband/dismantle the faction (could be done only by its leader).
+        public const string Faction_DialogDissolveFaction_Message = "Are you sure you want to dissolve the faction?";
+
+        public const string Faction_DialogDissolveFaction_Title = "Dissolve faction";
+
+        public const string Faction_DialogJoinConfirmation_Message_Format =
+            "Important: You're about to join [b]{0}[/b].";
+
+        public const string Faction_DialogLeaveFaction_CheckboxFormat =
+            "I understand I will be unable to rejoin this faction for [b]{0}[/b] and will be unable to join any other faction for [b]{1}[/b].";
+
+        public const string Faction_DialogLeaveFaction_Message
+            = "Are you sure you want to leave the faction?";
+
+        public const string Faction_DialogOwnershipTransfer_Message =
+            "Please enter the name among current faction members who will become the new faction leader.";
+
+        public const string Faction_DialogOwnershipTransfer_Title = "Transfer faction ownership";
+
+        public const string Faction_DialogSubmitApplication_Message_Format =
+            "Important: You're about to submit an application to join [b]{0}[/b].";
+
+        public const string Faction_Diplomacy = "Diplomacy";
+
+        public const string Faction_Diplomacy_AllianceRequest_AcceptIncoming = "Accept alliance proposal";
+
+        public const string Faction_Diplomacy_AllianceRequest_CancelOutgoing = "Cancel alliance proposal";
+
+        public const string Faction_Diplomacy_AllianceRequest_RejectIncoming = "Reject alliance proposal";
+
+        // List of incoming alliance proposals
+        public const string Faction_Diplomacy_AllianceRequests_Incoming = "Incoming proposals";
+
+        // List of outgoing alliance proposals
+        public const string Faction_Diplomacy_AllianceRequests_Outgoing = "Outgoing proposals";
+
+        // List of allies of the current faction
+        public const string Faction_Diplomacy_Allies = "Peace treaties";
+
+        public const string Faction_Diplomacy_Ally = "Ally";
+
+        public const string Faction_Diplomacy_BreakAlliance = "Break alliance";
+
+        public const string Faction_Diplomacy_DeclareWar = "Declare war";
+
+        // List of factions that has declared war on the current player faction
+        public const string Faction_Diplomacy_Enemies_DeclaredByCurrentFaction = "We declared war on";
+
+        // List of factions that current player faction has declared as enemies
+        public const string Faction_Diplomacy_Enemies_DeclaredByOtherFaction = "War declared on us";
+
+        // List of factions that has declared war on the current player faction
+        public const string Faction_Diplomacy_Enemies_Mutual = "Mutual declaration of war";
+
+        public const string Faction_Diplomacy_Neutral = "Neutral";
+
+        public const string Faction_Diplomacy_ProposeAlliance = "Propose peace";
+
+        public const string Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format
+            = @"You've recently proposed a peace treaty to this faction.
+  [br]You cannot do this again for {0}.";
+
+        public const string Faction_Diplomacy_WarDeclarations = "War declarations";
+
+        public const string Faction_Diplomacy_WithdrawWarDeclaration = "Withdraw war declaration";
+
+        public const string Faction_ErrorDontHaveFaction
+            = "You are not a member of any faction.";
+
+        public const string Faction_ErrorEmblemUsed = "The selected emblem is already in use. Choose another one.";
+
+        public const string Faction_ErrorFactionNotFound = "Faction not found.";
+
+        public const string Faction_ErrorUnderJoinCooldown = "You've left a faction recently.";
+
+        // Faction events log
+        public const string Faction_Events = "Events";
+
+        public const string Faction_Events_Filter_ByEventKind = "Event type";
+
+        public const string Faction_Events_Filter_ByEventKind_All = "All";
+
+        public const string Faction_Events_Filter_ByMemberName = "Member name";
+
+        public const string Faction_Events_Recent = "Recent events";
+
+        public const string Faction_FactionFull = "Faction is full.";
+
+        public const string Faction_FactionKind_Current = "Faction type:";
+
+        public const string Faction_FactionKind_Private_ApplicationOrInvitationRequired =
+            "Application or invitation is required to join.";
+
+        public const string Faction_FactionKind_Private_Description =
+            "Faction officers make the decision to approve or reject applications.";
+
+        public const string Faction_FactionKind_Private_Title = "Private";
+
+        public const string Faction_FactionKind_Public_Description = "Anyone can join freely.";
+
+        public const string Faction_FactionKind_Public_Title = "Public";
+
+        // Send an invite to the faction
+        public const string Faction_Invite = "Invite";
+
+        // Accept an invite to a faction
+        public const string Faction_Invite_Accept = "Accept";
+
+        // Invite could be cancelled/revoked by faction officers
+        public const string Faction_Invite_Cancel = "Cancel";
+
+        // Decline an invite to a faction
+        public const string Faction_Invite_Decline = "Decline";
+
+        public const string Faction_Invites = "Invites";
+
+        public const string Faction_Invites_CancelAll = "Cancel all invites";
+
+        public const string Faction_Invites_Empty = "No active invites.";
+
+        // A menu entry (such as for chat menu) for inviting a player into the faction 
+        public const string Faction_InviteToFaction = "Invite to faction";
+
+        public const string Faction_IsAcceptingApplications_Checkbox = "Accepting applications";
+
+        public const string Faction_Join = "Join";
+
+        public const string Faction_JoinCooldown_Description =
+            "When you leave a faction, you cannot join or create a faction until the cooldown expires.";
+
+        public const string Faction_JoinCooldownRemains = "You can join or create a faction in:";
+
+        public const string Faction_LandClaimNumberLimit_CanIncrease =
+            "Land claim number limit can be increased with faction level upgrades.";
+
+        public const string Faction_LandClaimNumberLimit_Format = "Faction land claims: {0}/{1}";
+
+        public const string Faction_LandClaimNumberLimit_Reached = "Faction land claim number limit has been reached.";
+
+        public const string Faction_Leaderboard = "Leaderboard";
+
+        public const string Faction_Leaderboard_FactionParticipates = "Participates in leaderboard.";
+
+        public const string Faction_Leaderboard_NextUpdateIn = "Next update in:";
+
+        public const string Faction_Leaderboard_Rank = "Leaderboard rank";
+
+        public const string Faction_LeaderField = "Leader:";
+
+        public const string Faction_LeaveFaction = "Leave faction";
+
+        public const string Faction_Level = "Level";
+
+        public const string Faction_Level_Format = "Level: [b]{0}[/b]";
+
+        public const string Faction_MaxMembers_Format = "Maximum members: [b]{0}[/b]";
+
+        // {0} is something like "5 days ago" or "less than an hour ago"
+        public const string Faction_Member_LastOnlineDate_Format = "Last online: {0}";
+
+        public const string Faction_Members = "Members";
+
+        public const string Faction_MembersNumber_Format = "Members: [b]{0}/{1}[/b]";
+
+        public const string Faction_NotAcceptingApplications = "Not accepting applications";
+
+        public const string Faction_NotificationCurrentPlayerApproved_Format
+            = "{0} has approved you to join {1}! Welcome!";
+
+        public const string Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format
+            = "{0} has removed you from the faction.";
+
+        // Displayed to player when kicked from the faction due to low reputation (killing members/allies).
+        public const string Faction_NotificationCurrentPlayerRemoved_LowStanding
+            = "You were automatically removed from the faction due to low standing.";
+
+        public const string Faction_NotificationCurrentPlayerStandingDecreased_Description =
+            "Killing faction members and allies decreases your standing in the current faction.";
+
+        public const string Faction_NotificationCurrentPlayerStandingDecreased_Title = "Faction standing decreased";
+
+        public const string Faction_OffendingPlayersAutomaticallyRemoved =
+            "Repeatedly offending players are automatically removed from the faction.";
+
+        public const string Faction_Permission_LandClaimManagement_Title = "Land claim management";
+
+        public const string Faction_Permission_LandClaimManagement_Tooltip =
+            "Construction and deconstruction within the faction land claim area. Also: assigning access rights, upgrading claims, accessing land claim safe storage, activating S.H.I.E.L.D., transferring claims to faction.";
+
+        public const string Faction_Permission_Required_Format = "Faction permission {0} required.";
+
+        public const string Faction_PrivateMessageToLeader = "Private message to faction leader";
+
+        public const string Faction_Recruitment = "Recruitment";
+
+        public const string Faction_RemoveMember = "Remove member";
+
+        public const string Faction_Role_Leader = "Leader";
+
+        public const string Faction_Role_Member = "Member";
+
+        public const string Faction_Score_Format = "Faction score: [b]{0}[/b]";
+
+        public const string Faction_SetRole = "Set role";
+
+        // {0} is a username
+        public const string Faction_SetRole_DialogHeader_Format = "Set role for {0}";
+
+        public const string Faction_ShowFactionInformation = "Show faction information";
+
+        public const string Faction_SubmitApplication = "Submit application";
+
+        public const string Faction_Title = "Faction";
+
+        public const string Faction_YouHaveSubmittedApplication = "You have submitted an application.";
+
+        public const string FactionsBrowser_AlreadyInFaction =
+            "You're already a member of a faction. You need to leave it if you wish to create a new faction or join another faction.";
+
+        public const string FactionsBrowser_NewFaction_Title = "New faction";
+
+        public const string FactionsBrowser_TabAllFactions_EmptyList =
+            "There are no factions matching your search criteria.";
+
+        public const string FactionsBrowser_TabAllFactions_Title = "All factions";
+
+        public const string FactionsBrowser_TabApplications_EmptyList =
+            @"No active applications.
+              [br]You can submit an application from the factions list.";
+
+        // List of the faction applications submitted by the player. 
+        public const string FactionsBrowser_TabApplications_Title = "Applications";
+
+        public const string FactionsBrowser_TabInvitations_EmptyList = "No active invitations.";
+
+        // List of the faction invitations received by the player. 
+        public const string FactionsBrowser_TabInvitations_Title = "Invitations";
+
+        public const string FactionsBrowser_TabLeaderboard_EmptyList = "The leaderboard is currently empty.";
+
         public const string FarmPlantTooltip_NotWatered = "Not watered";
 
         public const string FarmPlantTooltip_PossibleHarvestsCount = "Possible harvests";
@@ -335,6 +639,9 @@
 
         public const string FarmPlantTooltip_WateredForDuration = "Watered for";
 
+        // When a feature is disabled by server administrator, it may appear with this label
+        public const string FeatureDisabledForCurrentServer = "This feature is disabled for the current server.";
+
         public const string Field_Email = "Email";
 
         public const string Field_Password = "Password";
@@ -342,6 +649,8 @@
         public const string Gender_Female = "Female";
 
         public const string Gender_Male = "Male";
+
+        public const string HealthPointsAbbreviation = "HP";
 
         public const string HUDButtonsBar_DismountVehicle = "Dismount vehicle";
 
@@ -352,6 +661,8 @@
         public const string HUDButtonsBar_MenuTitle_Crafting = "Crafting";
 
         public const string HUDButtonsBar_MenuTitle_Equipment = "Equipment";
+
+        public const string HUDButtonsBar_MenuTitle_Faction = "Faction";
 
         public const string HUDButtonsBar_MenuTitle_Map = "Map";
 
@@ -417,6 +728,8 @@
 
         public const string LearningPointsAbbreviation = "LP";
 
+        public const string LearningPointsCost_Format = "Cost: [b]{0}[/b] LP";
+
         public const string LinkSteamAccountForm_Title =
             "Please enter your [url=atomictorch.com]AtomicTorch.com[/url] account details to link your Steam account.";
 
@@ -457,6 +770,11 @@
         public const string MainMenuOverlay_YouAreLoggedInAs = "You are logged in as";
 
         public const string MasterServer = "Master Server";
+
+        public const string MenuCharacterCreation_CanChangeAppearanceLater =
+            "You can change your appearance later in the equipment menu.";
+
+        public const string MenuCharacterCreation_Title = "Choose your character's appearance";
 
         public const string MenuCurrentGame_Button_Disconnect = "Disconnect";
 
@@ -596,6 +914,13 @@
             @"Looks like your Internet connection to the server is experiencing substantial jitter.
               [br]As a consequence, you might experience slight movement issues (such as occasional rubber banding), or your hits might miss occasionally due to substantial discrepancy with the server.";
 
+        public const string Network_PacketLoss = "Packet loss";
+
+        public const string Network_PacketLoss_Description =
+            @"Looks like your Internet connection to the server is experiencing significant packet loss.
+              [br]You may experience lags, random game freezes or even server disconnects.
+              [br]Most often the reason for this problem is a bad Wi-Fi signal or a router/modem fault.";
+
         public const string Network_Perfect =
             @"Looks like your network connection is fine.
               [br]Enjoy the game!";
@@ -652,6 +977,8 @@
         public const string Notification_TooFar = "Too far!";
 
         public const string ObjectAccessModeEditor_CurrentAccessMode = "Current access mode";
+
+        public const string ObjectAccessModeEditor_OpensTo_Format = "Opens to {0}";
 
         public const string ObjectAccessModeEditor_TitleAccessModeSelection = "Access mode";
 
@@ -730,6 +1057,9 @@
               [br]Please reduce the [b]Texture Quality[/b] option in the [b]Video Options[/b] menu.";
 
         public const string Performance_VRAMUsage = "VRAM usage";
+
+        // used for notifications when attempting to add a player
+        public const string PlayerNotFound = "Player not found.";
 
         public const string PleaseWait = "Please wait...";
 
@@ -852,6 +1182,9 @@
         public const string RecipesBrowserRecipeDetails_Button_CancelRecipeSelection = "CANCEL";
 
         public const string RecipesBrowserRecipeDetails_Button_SelectRecipe = "SELECT";
+
+        // Used for last online date and in other cases when we need to communicate that something happened recently.
+        public const string RelativeDate_LessThanHourAgo = "Less than an hour ago";
 
         // After clicking on this notification player will be navigated into the screenshots folder.
         public const string ScreenshotNotification_NotificationFormat =
@@ -992,6 +1325,8 @@
 
         public const string Skill = "Skill";
 
+        public const string SortBy = "Sort by";
+
         public const string StatusEffect_TitleIntensity = "Intensity";
 
         public const string SteamAccountLinkingBenefitsDescription_Message =
@@ -1050,6 +1385,19 @@
         public const string TechNodeTooltip_Vehicles = "Vehicles:";
 
         public const string Technology = "Technology";
+
+        public const string Teleport_ConfirmationDialog_PayWithBlood = "Pay with your blood";
+
+        public const string Teleport_ConfirmationDialog_PayWithPragmiumHeart = "Pay with a pragmium heart";
+
+        public const string Teleport_ConfirmationDialog_Title = "Teleport to destination";
+
+        public const string Teleport_Discovered = "New teleport location discovered.";
+
+        public const string Teleport_OtherPlayersNearby = "There appear to be other survivors nearby.";
+
+        public const string Teleport_VehiclesTeleportedAutomatically =
+            "Vehicles that belong to you and have no pilots will also be teleported when placed inside the teleport area.";
 
         public const string TextBoxSearchPlaceholder = "Search...";
 
@@ -1287,6 +1635,8 @@
 
         public const string WindowInventory_Button_Customize = "Customize";
 
+        public const string WindowInventory_Button_Customize_Tooltip = "Customize your character appearance.";
+
         public const string WindowInventory_Button_Unstuck = "Unstuck!";
 
         public const string WindowLandClaim_AllowedItemsDescription =
@@ -1297,8 +1647,16 @@
         public const string WindowLandClaim_DecayInfo_ConfirmationCheckbox =
             "I'm aware of the decay system";
 
+        public const string WindowLandClaim_ManagedByFaction_Description =
+            "Access to doors and other structures is determined by faction roles and permissions.";
+
+        public const string WindowLandClaim_ManagedByFaction_Format =
+            "This land claim is managed by [b]\\\\[{0}\\\\][/b] faction.";
+
         public const string WindowLandClaim_SafeStorageIsShared =
             "The safe storage items are shared between all the land claim structures on this base.";
+
+        public const string WindowLandClaim_TransferToFactionOwnership = "Transfer to faction ownership";
 
         public const string WindowLandClaim_UpgradingOnlyOwnerCanDo = "Only the owner can upgrade this structure.";
 
@@ -1330,6 +1688,8 @@
         public const string WindowManufacturer_TitleOutputEmpty = "Empty";
 
         public const string WindowObjectLight_TitleLightMode = "Light mode";
+
+        public const string WindowObjectTurret_TitleTurretMode = "Targeting mode";
 
         public const string WindowPolitics_RaidingRestriction_CurrentRaidWindow =
             "Raiding window is now open ({0} left).";
@@ -1374,6 +1734,10 @@
         public const string WindowRespawn_Button_RespawnInTheWorld = "Respawn in the world";
 
         public const string WindowRespawn_Button_RespawnNearYourBed = "Respawn near your bed";
+
+        // displayed when player is not a member of any faction and was killed by a member of any faction
+        public const string WindowRespawn_ConsiderJoiningFaction =
+            "Consider joining a faction to get help in fighting against hostile factions.";
 
         public const string WindowRespawn_DamageSources = "Recent damage sources:";
 
@@ -1424,6 +1788,9 @@
         public const string WindowsObjectVehicle_TabVehicleTitle = "Vehicle";
 
         public const string WindowSocial_OnlineNow = "Online now";
+
+        public const string WindowSocial_OnlinePlayersList_Hidden =
+            "The list of online players is hidden for all players on this server by the server setting.";
 
         public const string WindowSocial_ServerStatistics = "Server statistics";
 
@@ -1584,6 +1951,9 @@
         public const string WorldMapMarkResourceOil_Tooltip =
             @"[b]Oil seep[/b]
               [br]Raw petroleum oil deposit.";
+
+        public const string WorldMapMarkTeleport_Inactive_Tooltip =
+            "You can use it to fast travel to any other alien teleport location.";
 
         public const string WorldMapMarkTradingTerminal_OtherPlayer_Tooltip =
             @"[b]Trading station[/b]

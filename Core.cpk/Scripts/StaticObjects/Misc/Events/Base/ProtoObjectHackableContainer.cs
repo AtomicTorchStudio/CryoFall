@@ -2,12 +2,14 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Hacking;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -44,7 +46,7 @@
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
-        public override float StructurePointsMax => 0; // it's non-damageable
+        public override float StructurePointsMax => 0; // non-damageable
 
         protected virtual bool CanFlipSprite => true;
 
@@ -82,6 +84,7 @@
                 character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
             }
 
+            ServerObjectUseObserver.NotifyObjectUsed(character, worldObject);
             return true;
         }
 
@@ -166,6 +169,13 @@
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
         {
             return ObjectsSoundsPresets.ObjectHackableContainer;
+        }
+
+        protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
+        {
+            base.PrepareTileRequirements(tileRequirements);
+            tileRequirements.Add(LandClaimSystem.ValidatorFreeLandEvenForServer)
+                            .Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
         }
     }
 }

@@ -9,8 +9,6 @@
 
         public IComponentSpriteRenderer DoorVerticalFrontPartRenderer { get; set; }
 
-        public bool IsOpened { get; set; }
-
         public ClientComponentDoorSpriteSheetAnimator SpriteAnimator { get; set; }
     }
 }

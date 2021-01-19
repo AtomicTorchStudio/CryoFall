@@ -23,10 +23,10 @@ Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
 Снижение выносливости при беге
 
 Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
-Восстановление выносливости
+Регенерация выносливости
 
 Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
-Восстановление здоровья
+Регенерация здоровья
 
 Scripts/Base/Stats/StatName@MiningSpeed:
 Скорость добычи
@@ -149,10 +149,7 @@ Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
 Скорость потребления воды
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
-Восстановление заряда энергии (в мин.)
-
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Способность есть испорченную еду
+Регенерация заряда энергии (в мин.)
 
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Урон от радиационного поражения
@@ -214,6 +211,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Потребление топлива
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Способность есть испорченную еду
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Способность переедать без последствий
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 Невозможно бежать
 
@@ -222,4 +225,7 @@ Scripts/Base/Stats/StatName@PerkCannotAttack:
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 Невозможно использовать медицинские предметы, которые имеют задержку
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+Переломы костей невозможны
 

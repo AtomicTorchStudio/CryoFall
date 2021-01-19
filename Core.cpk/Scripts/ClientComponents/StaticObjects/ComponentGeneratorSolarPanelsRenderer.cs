@@ -15,7 +15,7 @@
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
 
         private readonly Dictionary<IItem, IComponentSpriteRenderer> slotRenderers
-            = new Dictionary<IItem, IComponentSpriteRenderer>();
+            = new();
 
         private double baseDrawOrderOffsetY;
 

@@ -19,7 +19,7 @@
 
         public SoundResourceSet Clone()
         {
-            return new SoundResourceSet(this.sounds.ToList());
+            return new(this.sounds.ToList());
         }
 
         public IEnumerator<SoundResource> GetEnumerator()

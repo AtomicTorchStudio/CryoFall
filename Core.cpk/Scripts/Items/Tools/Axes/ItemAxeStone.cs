@@ -2,6 +2,8 @@
 {
     public class ItemAxeStone : ProtoItemToolAxe
     {
+        public override double DamageApplyDelay => 0.075;
+
         public override double DamageToNonTree => 12;
 
         public override double DamageToTree => 45;
@@ -14,6 +16,8 @@
             => base.DurabilityDecreaseMultiplierWhenHittingBuildings * 3;
 
         public override uint DurabilityMax => 500;
+
+        public override double FireAnimationDuration => 0.6;
 
         public override string Name => "Stone axe";
     }

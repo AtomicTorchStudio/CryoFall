@@ -12,7 +12,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelShieldProtectionControl}"
-    Foreground="{StaticResource BrushColor7}">
+    Foreground="{StaticResource BrushColor7}"
+    FontFamily="{StaticResource CondensedFontFamily}">
 
     <base:BaseUserControl.Resources>
         <Style TargetType="TextBlock">
@@ -26,7 +27,7 @@
 
         <Style x:Key="TextBlockValue" TargetType="TextBlock"
                BasedOn="{StaticResource {x:Type TextBlock}}">
-            <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
         </Style>
 
         <Style TargetType="{x:Type core:FormattedTextBlock}">
@@ -239,7 +240,7 @@
                             Value="{Binding ElectricityAmount}"
                             MaxValue="{Binding ElectricityCapacity}"
                             Background="Transparent"
-                            BorderBrush="#AAFFAA10"
+                            BorderBrush="{StaticResource BrushElectricityDarker}"
                             BorderThickness="1"
                             Margin="0"
                             HorizontalAlignment="Stretch"
@@ -261,7 +262,7 @@
                                     </Grid>
                                 </ControlTemplate>
                             </core:ValueBarControl.Template>
-                            <Border Background="#AAFFAA10" CornerRadius="1" />
+                            <Border Background="{StaticResource BrushElectricityDarker}" CornerRadius="1" />
                         </core:ValueBarControl>
 
                         <StackPanel Orientation="Horizontal"

@@ -9,9 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
-    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class MobPragmiumBeetle : ProtoCharacterMob
     {
@@ -39,7 +37,12 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            var result = base.SharedOnDamage(weaponCache, targetObject, damagePreMultiplier, damagePostMultiplier, out obstacleBlockDamageCoef, out damageApplied);
+            var result = base.SharedOnDamage(weaponCache,
+                                             targetObject,
+                                             damagePreMultiplier,
+                                             damagePostMultiplier,
+                                             out obstacleBlockDamageCoef,
+                                             out damageApplied);
 
             if (!result)
             {
@@ -86,7 +89,7 @@
         {
             base.ServerInitializeCharacterMob(data);
 
-            var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalStrong>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobPragmiumBeetleClaws>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -97,6 +100,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,

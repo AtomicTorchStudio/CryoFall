@@ -14,7 +14,7 @@
 
     public static class ClientItemsManager
     {
-        private static readonly HashSet<ItemSlotControl> AllSlotControls = new HashSet<ItemSlotControl>();
+        private static readonly HashSet<ItemSlotControl> AllSlotControls = new();
 
         private static ClientInputContext clientInputContextDropItem;
 

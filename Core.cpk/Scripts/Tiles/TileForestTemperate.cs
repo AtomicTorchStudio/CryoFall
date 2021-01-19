@@ -10,16 +10,16 @@
     public class TileForestTemperate : ProtoTile, IProtoTileFarmAllowed, IProtoTileWellAllowed
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/ForestTemperate/TileForest1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/ForestTemperate/TileForest1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/ForestTemperate/TileForest2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/ForestTemperate/TileForest2.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTextureAtlas3
-            = new TextureResource("Terrain/ForestTemperate/TileForest3.jpg",
-                                  isTransparent: false);
+            = new("Terrain/ForestTemperate/TileForest3.jpg",
+                  isTransparent: false);
 
         //public AmbientSoundPreset AdditiveAmbientSoundResourceDayTrees { get; }
         //    = new AmbientSoundPreset(new SoundResource("Ambient/TemperateForest"));

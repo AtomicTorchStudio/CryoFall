@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
@@ -15,6 +16,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.LandClaims;
@@ -71,7 +73,7 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
-        public override bool IsRelocatable 
+        public override bool IsRelocatable
             => false; // land claims relocation is not possible as it will cause multiple issues
 
         public virtual bool IsShortRaidblockOnHit => false;
@@ -133,8 +135,22 @@
                 }
             }
 
+            string errorMessage = checkResult switch
+            {
+                ObjectLandClaimCanUpgradeCheckResult.ErrorFactionPermissionRequired
+                    => string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                     CoreStrings.Faction_Permission_LandClaimManagement_Title),
+
+                ObjectLandClaimCanUpgradeCheckResult.ErrorFactionLandClaimNumberLimitWillBeExceeded
+                    => CoreStrings.Faction_LandClaimNumberLimit_Reached
+                       + "[br]"
+                       + CoreStrings.Faction_LandClaimNumberLimit_CanIncrease,
+
+                _ => checkResult.GetDescription()
+            };
+
             DialogWindow.ShowDialog(DialogCannotUpgrade,
-                                    text: checkResult.GetDescription(),
+                                    text: errorMessage,
                                     textAlignment: TextAlignment.Left,
                                     closeByEscapeKey: true);
         }
@@ -150,12 +166,30 @@
 
             base.ServerApplyDecay(worldObject, deltaTime);
 
-            if (publicState.StructurePointsCurrent <= 0)
+            if (publicState.StructurePointsCurrent > 0)
             {
-                // decayed to the point of starting the destroy timer
-                var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
-                areaPrivateState.IsDestroyedByPlayers = false;
+                return;
             }
+
+            // decayed to the point of starting the destroy timer
+            var area = publicState.LandClaimAreaObject;
+            var areaPrivateState = LandClaimArea.GetPrivateState(area);
+            areaPrivateState.IsDestroyedByPlayers = false;
+
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
+            if (areasGroup is null)
+            {
+                return;
+            }
+
+            var faction = LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction;
+            if (faction is null)
+            {
+                return;
+            }
+
+            var centerTilePosition = LandClaimArea.GetPublicState(area).LandClaimCenterTilePosition;
+            FactionSystem.ServerOnLandClaimDecayed(faction, centerTilePosition);
         }
 
         public sealed override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
@@ -235,30 +269,40 @@
                 return true;
             }
 
-            var publicState = GetPublicState(worldObject);
-            if (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, character))
-            {
-                return true;
-            }
-
             if (PlayerCharacterSpectator.SharedIsSpectator(character)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
             }
 
-            // not the land owner
+            var publicState = GetPublicState(worldObject);
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(worldObject);
+            if (areasGroup is not null
+                && LandClaimAreasGroup.GetPublicState(areasGroup).FactionClanTag is var claimFactionClanTag
+                && !string.IsNullOrEmpty(claimFactionClanTag))
+            {
+                // the land claim is owned by faction - verify permission
+                if (claimFactionClanTag == PlayerCharacter.GetPublicState(character).ClanTag
+                    && FactionSystem.SharedHasAccessRight(character, FactionMemberAccessRights.LandClaimManagement))
+                {
+                    return true;
+                }
+            }
+            else if (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject,
+                                                       character,
+                                                       requireFactionPermission: false))
+            {
+                return true;
+            }
+
+            // has no access to the land claim
             if (writeToLog)
             {
-                Logger.Warning(
-                    $"Character cannot interact with {worldObject} - not the land owner.",
-                    character);
-
+                Logger.Warning($"Character cannot interact with {worldObject} - not the land owner.");
                 this.CallClient(
                     character,
-                    _ => _.ClientRemote_OnCannotInteract(
-                        worldObject,
-                        LandClaimMenuOpenResult.FailPlayerIsNotOwner));
+                    _ => _.ClientRemote_OnCannotInteract(worldObject,
+                                                         LandClaimMenuOpenResult.FailPlayerIsNotOwner));
             }
 
             return false;
@@ -298,10 +342,19 @@
                 result = ObjectLandClaimCanUpgradeCheckResult.ErrorUnknown;
             }
 
+            var isOwnedByFaction = LandClaimSystem.SharedIsAreaOwnedByFaction(currentLandClaimArea);
             if (result == ObjectLandClaimCanUpgradeCheckResult.Success)
             {
-                if (character.Name != founderName
-                    && !CreativeModeSystem.SharedIsInCreativeMode(character))
+                if (isOwnedByFaction)
+                {
+                    if (!FactionSystem.SharedHasAccessRight(character, FactionMemberAccessRights.LandClaimManagement))
+                    {
+                        // don't have a faction permission to upgrade the land claim
+                        result = ObjectLandClaimCanUpgradeCheckResult.ErrorUnknown;
+                    }
+                }
+                else if (character.Name != founderName
+                         && !CreativeModeSystem.SharedIsInCreativeMode(character))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorNotFounder;
                 }
@@ -341,9 +394,12 @@
                 if (!LandClaimSystem.SharedCheckCanPlaceOrUpgradeLandClaimThere(
                         protoUpgradedLandClaim,
                         landClaimCenterTilePosition,
-                        character))
+                        character,
+                        out bool hasNoFactionPermission))
                 {
-                    result = ObjectLandClaimCanUpgradeCheckResult.ErrorAreaIntersection;
+                    result = hasNoFactionPermission
+                                 ? ObjectLandClaimCanUpgradeCheckResult.ErrorFactionPermissionRequired
+                                 : ObjectLandClaimCanUpgradeCheckResult.ErrorAreaIntersection;
                 }
 
                 if (!LandClaimSystem.SharedCheckNoLandClaimByDemoPlayers(
@@ -356,20 +412,32 @@
                 }
 
                 if (IsServer
-                    && !LandClaimSystem.ServerCheckFutureBaseWillExceedSafeStorageCapacity(
+                    && !LandClaimSystem.ServerCheckFutureBaseWillNotExceedSafeStorageCapacity(
                         protoUpgradedLandClaim,
                         landClaimCenterTilePosition,
                         character))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorExceededSafeStorageCapacity;
                 }
+
+                if (!LandClaimSystem.SharedCheckFutureBaseWillNotExceedFactionLandClaimLimit(
+                        protoUpgradedLandClaim,
+                        landClaimCenterTilePosition,
+                        character,
+                        isForNewLandClaim: false))
+                {
+                    // a non faction base will link with faction-controlled bases during the upgrade
+                    // and exceed the faction land claim number limit
+                    result = ObjectLandClaimCanUpgradeCheckResult
+                        .ErrorFactionLandClaimNumberLimitWillBeExceeded;
+                }
             }
 
             if (result == ObjectLandClaimCanUpgradeCheckResult.Success)
             {
-                if (!InteractionCheckerSystem.SharedHasInteraction(character,
-                                                                   worldObjectLandClaim,
-                                                                   requirePrivateScope: true))
+                if (!InteractionCheckerSystem.SharedIsInteracting(character,
+                                                                  worldObjectLandClaim,
+                                                                  requirePrivateScope: true))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorNoActiveInteraction;
                 }
@@ -401,16 +469,41 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            if (IsServer)
+            var publicState = GetPublicState(targetObject);
+            var area = publicState.LandClaimAreaObject;
+
+            if (IsServer
+                && weaponCache.Character is not null
+                && !weaponCache.Character.IsNpc)
             {
-                LandClaimSystem.ServerOnRaid(targetObject.Bounds,
-                                             weaponCache.Character,
-                                             isShort: this.IsShortRaidblockOnHit);
+                // land claim structure hit
+                var landOwnerFaction = LandClaimSystem.ServerGetLandOwnerFactionOrFounderFaction(area);
+                if (landOwnerFaction is null)
+                {
+                    // trigger raid block when a non-faction owned land claim is hit
+                    LandClaimSystem.ServerOnRaid(targetObject.Bounds,
+                                                 weaponCache.Character,
+                                                 isShort: this.IsShortRaidblockOnHit);
+                }
+                else
+                {
+                    var attackerFaction = FactionSystem.ServerGetFaction(weaponCache.Character);
+                    // or faction-owned land claims, a raid block will not trigger on a land claim hit
+                    // by a faction member or an ally faction member
+                    if (attackerFaction is null
+                        || (landOwnerFaction != attackerFaction
+                            && (FactionSystem.ServerGetFactionDiplomacyStatus(attackerFaction, landOwnerFaction)
+                                != FactionDiplomacyStatus.Ally)))
+                    {
+                        LandClaimSystem.ServerOnRaid(targetObject.Bounds,
+                                                     weaponCache.Character,
+                                                     isShort: this.IsShortRaidblockOnHit);
+                    }
+                }
             }
 
-            var publicState = GetPublicState(targetObject);
             var previousStructurePoints = publicState.StructurePointsCurrent;
-            if (previousStructurePoints <= 0f)
+            if (previousStructurePoints <= 0)
             {
                 // already destroyed land claim object (waiting for the destroy timer)
                 obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
@@ -419,7 +512,7 @@
                 if (IsServer
                     && weaponCache.Character is not null)
                 {
-                    var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
+                    var areaPrivateState = LandClaimArea.GetPrivateState(area);
                     areaPrivateState.IsDestroyedByPlayers = true;
                 }
 
@@ -442,8 +535,8 @@
                 return;
             }
 
-            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            if (!LandClaimSystem.ServerIsOwnedArea(area, who)
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
+            if (!LandClaimSystem.ServerIsOwnedArea(area, who, requireFactionPermission: false)
                 && (PlayerCharacterSpectator.SharedIsSpectator(who)
                     || CreativeModeSystem.SharedIsInCreativeMode(who)))
             {
@@ -462,8 +555,8 @@
                 return;
             }
 
-            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            if (!LandClaimSystem.ServerIsOwnedArea(area, who)
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
+            if (!LandClaimSystem.ServerIsOwnedArea(area, who, requireFactionPermission: false)
                 && (PlayerCharacterSpectator.SharedIsSpectator(who)
                     || CreativeModeSystem.SharedIsInCreativeMode(who)))
             {
@@ -558,6 +651,7 @@
                 .Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown)
                 .Add(LandClaimSystem.ValidatorCheckLandClaimBaseSizeLimitNotExceeded)
                 .Add(LandClaimSystem.ValidatorNewLandClaimSafeStorageCapacityNotExceeded)
+                .Add(LandClaimSystem.ValidatorNewLandClaimFactionLandClaimLimitNotExceeded)
                 .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
 
             this.PrepareLandClaimConstructionConfig(tileRequirements, build, repair, upgrade, out category);
@@ -591,20 +685,20 @@
             var worldObject = (IStaticWorldObject)targetObject;
             var publicState = GetPublicState(worldObject);
             if (byCharacter is not null
-                && (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, byCharacter)
+                && byCharacter.SharedGetPlayerSelectedHotbarItemProto() is ProtoItemToolCrowbar
+                && (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject,
+                                                      byCharacter,
+                                                      requireFactionPermission: true)
                     || CreativeModeSystem.SharedIsInCreativeMode(byCharacter)))
             {
                 // this is the owner of the area or the player is in a creative mode
-                if (byCharacter.SharedGetPlayerSelectedHotbarItemProto() is ProtoItemToolCrowbar)
-                {
-                    publicState.ServerTimeForDestruction = 0;
-                    Logger.Important(
-                        $"Land claim object {targetObject} destroyed by the owner with a crowbar - no destruction timer",
-                        byCharacter);
+                publicState.ServerTimeForDestruction = 0;
+                Logger.Important(
+                    $"Land claim object {targetObject} destroyed by the owner with a crowbar - no destruction timer",
+                    byCharacter);
 
-                    this.ServerForceUpdate(worldObject, publicState);
-                    return;
-                }
+                this.ServerForceUpdate(worldObject, publicState);
+                return;
             }
 
             if (byCharacter is not null)
@@ -656,7 +750,7 @@
                                    offset: (offsetX, 0.6 + offsetY),
                                    group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((width, 0.25),
-                                   offset: (offsetX, 0.85 + offsetY),
+                                   offset: (offsetX, 1.05 + offsetY),
                                    group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle((1.2, height + 0.2),
                                    offset: (0.4, offsetY),

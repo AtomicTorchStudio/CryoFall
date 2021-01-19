@@ -2,33 +2,41 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <LinearGradientBrush x:Key="ItemBackgroundNormalBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Color="#FF003F57" Offset="0.667" />
-        <GradientStop Color="#00003F57" Offset="1" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ItemBackgroundNormalDiagonalBrush" Opacity="0.4" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#FF003F57" Offset="0.5" />
-        <GradientStop Color="#00003F57" Offset="1" />
+        <GradientStop Color="{StaticResource ColorAlt1}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorAlt1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="ItemBackgroundNormalHoverBrush" Color="{StaticResource ColorAlt3}" Opacity="0.4" />
     <SolidColorBrush x:Key="ItemBackgroundNormalActiveBrush" Color="{StaticResource ColorAlt4}" Opacity="0.4" />
 
     <LinearGradientBrush x:Key="ItemBackgroundRedBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Color="#FF570000" Offset="0.667" />
-        <GradientStop Color="#00570000" Offset="1" />
+        <GradientStop Color="{StaticResource ColorRed1}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorRed1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="ItemBackgroundRedHoverBrush" Color="{StaticResource ColorRed3}" Opacity="0.4" />
     <SolidColorBrush x:Key="ItemBackgroundRedActiveBrush" Color="{StaticResource ColorRed4}" Opacity="0.4" />
 
     <LinearGradientBrush x:Key="ItemBorderNormalBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Color="#FF0094CC" Offset="0.667" />
-        <GradientStop Color="#000094CC" Offset="1" />
+        <GradientStop Color="{StaticResource ColorAlt5}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
     </LinearGradientBrush>
     <StaticResource x:Key="ItemBorderNormalHoverBrush" ResourceKey="BrushColorAlt5" />
     <StaticResource x:Key="ItemBorderNormalActiveBrush" ResourceKey="BrushColorAlt6" />
 
     <LinearGradientBrush x:Key="ItemBorderRedBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Color="#FFCC0000" Offset="0.667" />
-        <GradientStop Color="#00CC0000" Offset="1" />
+        <GradientStop Color="{StaticResource ColorRed5}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorRed5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="ItemBorderRedHoverBrush" Color="{StaticResource ColorRed5}" />
     <SolidColorBrush x:Key="ItemBorderRedActiveBrush" Color="{StaticResource ColorRed6}" />

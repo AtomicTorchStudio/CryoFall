@@ -29,6 +29,8 @@
 
         public event Action ShowAnimationCompleted;
 
+        public bool DisplayStructureInfos { get; set; }
+
         public void Refresh()
         {
             if (!this.isLoaded)
@@ -49,7 +51,6 @@
                 || state == LoadingSplashScreenState.Shown)
             {
                 controlState = "Shown";
-                this.viewModel.RandomizeInfo();
             }
             else
             {
@@ -64,6 +65,16 @@
 
             this.currentControlState = controlState;
             VisualStateManager.GoToElementState(this.layoutRoot, controlState, useTransitions);
+
+            if (state == LoadingSplashScreenState.Showing
+                || state == LoadingSplashScreenState.Shown)
+            {
+                this.viewModel.DisplayStructureInfos = this.DisplayStructureInfos;
+                if (this.DisplayStructureInfos)
+                {
+                    this.viewModel.RandomizeInfo();
+                }
+            }
 
             Api.Logger.Important(
                 $"Loading splash screen: go to state {controlState} with{(useTransitions ? " transitions" : "out any transitions")}");
@@ -87,6 +98,8 @@
 
             this.DataContext = this.viewModel = new ViewModelLoadingSplashScreen();
             this.Refresh();
+
+            this.UpdateLayout();
         }
 
         protected override void OnUnloaded()

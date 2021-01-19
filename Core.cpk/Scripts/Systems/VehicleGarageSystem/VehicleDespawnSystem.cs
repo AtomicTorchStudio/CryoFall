@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem
 {
     using System;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -10,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     /// <summary>
     /// Vehicles should be placed into garage on PvE servers after some delay.
@@ -31,12 +31,16 @@
             }
 
             var vehicleOwners = vehicle.GetPrivateState<VehiclePrivateState>().Owners;
-            foreach (var area in LandClaimAreasGroup.GetPrivateState(vehicleCurrentBase).ServerLandClaimsAreas)
+            foreach (var area in LandClaimAreasGroup.GetPrivateState(vehicleCurrentBase)
+                                                    .ServerLandClaimsAreas)
             {
-                var areaOwners = LandClaimArea.GetPrivateState(area).LandOwners;
+                using var areaOwners = Api.Shared.WrapInTempList(
+                    LandClaimArea.GetPrivateState(area)
+                                 .ServerGetLandOwners());
+
                 foreach (var ownerName in vehicleOwners)
                 {
-                    if (areaOwners.Contains(ownerName, StringComparer.Ordinal))
+                    if (areaOwners.Contains(ownerName))
                     {
                         return true;
                     }

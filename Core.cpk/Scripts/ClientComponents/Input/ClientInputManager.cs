@@ -19,7 +19,7 @@
         public static readonly IInputClientService RawInput = Api.Client.Input;
 
         private static readonly InputMappingSnapshot CurrentInputMappingSnapshot
-            = new InputMappingSnapshot();
+            = new();
 
         private static readonly Func<InputKey, bool, bool> DelegateRawInputIsKeyDown = RawInput.IsKeyDown;
 
@@ -28,12 +28,12 @@
         private static readonly Func<InputKey, bool, bool> DelegateRawInputIsKeyUp = RawInput.IsKeyUp;
 
         private static readonly Dictionary<IWrappedButton, ButtonMapping> MappingButtonToKeys
-            = new Dictionary<IWrappedButton, ButtonMapping>();
+            = new();
 
-        private static readonly HashSet<Type> RegisteredButtonEnums = new HashSet<Type>();
+        private static readonly HashSet<Type> RegisteredButtonEnums = new();
 
         private static readonly Dictionary<IWrappedButton, ButtonInfoAttribute> RegisteredButtons
-            = new Dictionary<IWrappedButton, ButtonInfoAttribute>();
+            = new();
 
         private static readonly IClientStorage Storage;
 
@@ -62,7 +62,7 @@
 
         public static Dictionary<IWrappedButton, ButtonMapping> CloneMapping()
         {
-            return new Dictionary<IWrappedButton, ButtonMapping>(MappingButtonToKeys);
+            return new(MappingButtonToKeys);
         }
 
         public static void ConsumeAllButtons()
@@ -117,7 +117,14 @@
             return RegisteredButtons.Find(button);
         }
 
-        public static InputKey GetKeyForAbstractButton(IWrappedButton button)
+        public static InputKey GetKeyForButton<TButton>(TButton button)
+            where TButton : struct, Enum
+        {
+            return GetKeyForButton(
+                WrappedButton<TButton>.GetWrappedButton(button));
+        }
+
+        public static InputKey GetKeyForButton(IWrappedButton button)
         {
             var mapping = GetMappingForAbstractButton(button);
             return mapping.PrimaryKey != InputKey.None

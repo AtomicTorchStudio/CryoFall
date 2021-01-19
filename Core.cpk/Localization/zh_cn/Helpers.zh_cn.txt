@@ -1,4 +1,13 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
+,
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
+,以及{0}
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_TwoEntries_Format:
+{0}以及{1}
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
 <1m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
@@ -12,6 +21,9 @@ Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 秒
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ClientHasModifiedCore:
+您正在使用被修改或拆包的Core.cpk文件进行游戏，这是不允许的。请重新安装游戏。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `网络版本不匹配。

@@ -51,7 +51,7 @@
         }
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-        public ViewModelHUDStatBar StatBar { get; } = new ViewModelHUDStatBar("Health");
+        public ViewModelHUDStatBar StatBar { get; } = new("Health");
 
         protected override void DisposeViewModel()
         {

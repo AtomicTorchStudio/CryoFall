@@ -3,10 +3,12 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemFish : ProtoItemWithFreshness, IProtoItemFish
     {
@@ -30,6 +32,14 @@
         public abstract float MaxWeight { get; }
 
         public abstract byte RequiredFishingKnowledgeLevel { get; }
+
+        /// <summary>
+        /// Use this method to define additional condition when this fish could be caught.
+        /// </summary>
+        public virtual bool ServerCanCatch(ICharacter character, Vector2Ushort fishingTilePosition)
+        {
+            return true;
+        }
 
         protected override bool ClientItemUseFinish(ClientItemData data)
         {
@@ -66,7 +76,7 @@
             this.ServerValidateItemForRemoteCall(item, character);
 
             var createItemResult = this.DropItemsList.TryDropToCharacter(character,
-                                                                         new DropItemContext(character, null));
+                                                                         new DropItemContext(character));
             if (!createItemResult.IsEverythingCreated)
             {
                 createItemResult.Rollback();

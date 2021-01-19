@@ -16,6 +16,9 @@ Brak możliwości budowania:
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 Nieodpowiedni rodzaj gruntu
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+Nie można zabudować – znajdujesz się zbyt blisko miejsca zdarzenia.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Nie można budować w miejscach o ograniczonym dostępie.
 
@@ -75,6 +78,9 @@ Otwórz
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Podnieś
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+Naciśnij
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Podważ
@@ -148,6 +154,15 @@ Trawa
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 Sterta śmieci
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+Sterta minerałów
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+Sterta kamieni
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+Sterta drewna
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Kamień
 
@@ -217,6 +232,9 @@ Złoże siarki
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Użyj kilofu do wydobycia tego zasobu.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+Teleport obcych
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Szczelina
 
@@ -225,6 +243,9 @@ Meteoryt
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 Szczątki Królowej pragmium
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+Resztki Piaskowego tyrana
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 Kosmiczne śmieci
@@ -398,11 +419,23 @@ Ołtarz na wschodnią modłę. Można tu umieścić kadzidło.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 Ołtarz na kadzidło
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+Unikatowa flaga z godłem twojej frakcji.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+Flaga frakcji
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Ta flaga fajnie wygląda!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 Flaga
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+Służy jako dekoracja...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+Ławeczka treningowa
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 Klasyczna wanna kąpielowa.
@@ -410,11 +443,32 @@ Klasyczna wanna kąpielowa.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 Wanna
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+Miejsce na odłożenie telefonu przed snem.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+Stolik nocny
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 W każdym pomieszczeniu musi być półka.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 Półka
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+Jeden z wielu elementów dekoracyjnych w pokoju; może też służyć do gry w szachy i warcaby.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+Pionek
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+Hetman
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+Spodziewasz się niezapowiedzianych uzbrojonych gości? Lepiej zamontuj ten dzwonek przed drzwiami.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+Dzwonek do drzwi
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 Parawan z klasycznym motywem tygrysa, jak ze starych opowieści.
@@ -428,11 +482,23 @@ Imponująca sterta złota. Schowaj ją szybko!
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 Sterta złota
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+Podstawowy mebel w przedpokoju.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+Wieszak
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 Pięknie wykonane, czarne pianino.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 Pianino
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+Nie ma dobrej uroczystości bez ogromnej sterty prezentów.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+Prezenty
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 Pokaż żyłkę prawdziwego łowcy i połóż na podłodze ten luksus.
@@ -494,6 +560,12 @@ Ustaw w oddzielnym pomieszczeniu z dobrą wentylacją i ciesz się chwilą prywa
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 Toaleta
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+Najważniejszy sprzęt w dobrze zaprojektowanym salonie. Oglądaj filmy ze znajomymi i relaksuj się.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+TV
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 Bardzo cenna waza.
 
@@ -502,6 +574,33 @@ Waza
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Podłoga już jest ozdobiona.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+W pełni zautomatyzowana wieżyczka wartownicza, która niszczy cele wiązką skoncentrowanej energii.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+Wieżyczka energetyczna
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+W pełni zautomatyzowana ciężka wieżyczka wartownicza.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+Ciężka wieżyczka
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+W pełni zautomatyzowana lekka wieżyczka wartownicza.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+Lekka wieżyczka
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+Wył.
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+Atakuj wrogów i odpowiadaj ogniem na ostrzał neutralnych
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+Atakuj wrogów i wszystkich intruzów
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 Dobrze chronią przed większością intruzów, ale nie oprą się materiałom wybuchowym.
@@ -533,10 +632,10 @@ Można tu zasiać zboża i roślinność. Działkę rolną można wytyczyć tylk
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 Działka rolna
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
 Można ja postawić w dowolnym miejscu i hodować w niej kwiaty ozdobne lub służące do innych zastosowań.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 Doniczka
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1005,6 +1104,12 @@ Gruba ściana żelbetowa z dodatkowymi podporami. Znacznie trwalsza niż inne ko
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 Ściana betonowa
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+To metalowe ogrodzenie zapewni ochronę przed wtargnięciem, ale nie zatrzyma pocisków, więc nie daje najlepszej osłony. Niezbyt trwałe.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+Siatka ogrodzeniowa
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 Znacznie lepsza niż drewniana ściana. Powinna powstrzymać większość intruzów przed włamaniem, ale nie stanowi przeszkody dla dobrze wyposażonych agresorów.
 
@@ -1075,8 +1180,14 @@ Niebieska szałwia
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Kwiat Oni
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+Żółty kwiat
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 Mlelon
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+Ziemniak
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 Ryż

@@ -28,6 +28,9 @@ UI/CoreStrings@AutosaveNotification_Saving:
 UI/CoreStrings@AutosaveNotification_Title:
 서버 스냅 사진
 
+UI/CoreStrings@BbCodeFormattingDescription:
+사용 가능한 태그: [b], [u], [i], [url=example.com]링크[/url], [color=#FF0000]색상[/color], 글머리 기호 [*], 줄 바꿈 [br] (새 줄일 경우 자동으로 줄 바꿈 적용)과 같은 BB 코드.
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 파괴까지 남은 시간:
 
@@ -166,6 +169,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 다시 묻지 않기
+
+UI/CoreStrings@ClanTag:
+클랜 태그
 
 UI/CoreStrings@ClanTag_Current:
 클랜 태그:
@@ -331,6 +337,9 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 표층 매장지 (높은 생산량)
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+파괴 타이머는 토지 점유소가 파괴된 시점(내구도가 0에 도달)에 시작됩니다.
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 {0}을/를 사용하시겠습니까?
 
@@ -357,6 +366,12 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 제거되는 효과:
+
+UI/CoreStrings@EmptyList:
+이 목록은 비어 있습니다.
+
+UI/CoreStrings@EmptyText:
+텍스트가 비어 있습니다.
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 EU
@@ -385,6 +400,371 @@ UI/CoreStrings@Extras_PatchnotesTooltip:
 UI/CoreStrings@Extras_RoadmapTooltip:
 CryoFall 개발 로드맵 (영어)
 
+UI/CoreStrings@Faction_Admin:
+관리자
+
+UI/CoreStrings@Faction_Application_Accept:
+수락
+
+UI/CoreStrings@Faction_Application_Cancel:
+취소
+
+UI/CoreStrings@Faction_Application_Reject:
+거절
+
+UI/CoreStrings@Faction_Applications:
+신청
+
+UI/CoreStrings@Faction_Applications_Empty:
+처리되지 않은 신청이 없습니다.
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+모든 신청 거절
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+플레이어는 이 파벌을 떠났거나 추방되었습니다. 초대를 받아야만 다시 가입할 수 있습니다.
+
+UI/CoreStrings@Faction_CopyTag:
+클랜 태그 복사
+
+UI/CoreStrings@Faction_CreateFaction:
+파벌 생성
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+모든 사항을 정확히 입력하셨습니까?
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+파벌이 생성된 뒤에는 유형과 외양을 변경할 수 없습니다.
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+당신의 역할:
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+현재의 역할에는 관리 권한이 없습니다.
+
+UI/CoreStrings@Faction_Description_Private:
+비공개 설명
+
+UI/CoreStrings@Faction_Description_Public:
+공개 설명
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+파벌 구성원들의 온라인 상태 및 지도 위치를 표시합니다.
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+[b]{0}[/b]님을 파벌에서 삭제하시겠습니까?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+저는 파벌을 [b]해체[/b]하고 싶습니다.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+저는 이 파벌의 구성원들이 [b]{0}[/b]동안 다른 파벌에 [b]가입할 수 없다[/b]는 것을 이해하였습니다.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+우선 파벌의 모든 토지 점유소를 해체하십시오.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+정말로 파벌을 해체하시겠습니까?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+파벌 해체
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+중요: [b]{0}[/b] 파벌에 가입하려 합니다.
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+나는 [b]{0}[/b] 동안 이 파벌에 다시 가입할 수 없으며, [b]{1}[/b] 동안 다른 파벌에 가입할 수 없다는 것을 이해하였습니다.
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+정말로 파벌을 떠나시겠습니까?
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+현재 파벌 구성원 중에서 파벌의 새로운 지도자가 될 플레이어의 이름을 입력하십시오.
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+파벌 소유권 양도
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+중요: [b]{0}[/b] 파벌에 가입하기 위한 신청을 제출하려 합니다.
+
+UI/CoreStrings@Faction_Diplomacy:
+외교
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+동맹 제안 수락
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+동맹 제안 취소
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+동맹 제안 거절
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+수신 중인 제안
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+발신 중인 제안
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+평화 조약
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+동맹
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+동맹 파기
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+선전포고
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+선전보고 보냄
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+선전포고 받음
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+상호 선전포고
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+중립
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+평화 제안
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`최근 이 파벌에 평화 조약을 제안했습니다.
+[br]{0}동안 이 작업을 다시 수행할 수 없습니다.`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+선전포고
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+선전포고 철회
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+플레이어는 속해 있는 파벌이 없습니다.
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+선택한 상징이 이미 사용 중입니다. 다른 것을 선택하세요.
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+파벌을 찾을 수 없습니다.
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+최근 파벌을 떠났습니다.
+
+UI/CoreStrings@Faction_Events:
+이벤트
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+이벤트 유형
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+전부
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+구성원 이름
+
+UI/CoreStrings@Faction_Events_Recent:
+최근 이벤트
+
+UI/CoreStrings@Faction_FactionFull:
+파벌이 꽉 찼습니다.
+
+UI/CoreStrings@Faction_FactionKind_Current:
+파벌 유형:
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+가입하려면 신청 또는 초대가 필요합니다.
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+파벌의 간부들이 신청을 승인하거나 거절하는 결정을 합니다.
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+비공개
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+아무나 자유롭게 가입할 수 있습니다.
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+공개
+
+UI/CoreStrings@Faction_Invite:
+초대
+
+UI/CoreStrings@Faction_Invite_Accept:
+수락
+
+UI/CoreStrings@Faction_Invite_Cancel:
+취소
+
+UI/CoreStrings@Faction_Invite_Decline:
+거절
+
+UI/CoreStrings@Faction_Invites:
+초대
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+모든 초대 취소
+
+UI/CoreStrings@Faction_Invites_Empty:
+받은 초대가 없습니다.
+
+UI/CoreStrings@Faction_InviteToFaction:
+파벌에 초대
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+신청 수락
+
+UI/CoreStrings@Faction_Join:
+가입
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+파벌을 떠나면, 쿨타임이 끝날 때까지 파벌에 가입하거나 파벌을 생성할 수 없습니다.
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+파벌 가입 및 생성 가능까지 남은 시간:
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+파벌 레벨이 업그레이드될수록 토지 점유소 개수 제한이 증가합니다.
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+파벌의 토지 점유소: {0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+파벌 토지 점유소 개수 제한에 도달했습니다.
+
+UI/CoreStrings@Faction_Leaderboard:
+점수판
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+점수판에 참가합니다.
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+다음 업데이트까지 남은 시간:
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+점수판 순위
+
+UI/CoreStrings@Faction_LeaderField:
+지도자:
+
+UI/CoreStrings@Faction_LeaveFaction:
+파벌 떠나기
+
+UI/CoreStrings@Faction_Level:
+레벨
+
+UI/CoreStrings@Faction_Level_Format:
+레벨: [b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+최대 구성원 수: [b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+마지막 온라인: {0}
+
+UI/CoreStrings@Faction_Members:
+구성원
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+구성원: [b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+신청을 수락하지 않았습니다
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+{0} 님이 {1} 파벌 가입을 승인했습니다! 환영합니다!
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0}님이 당신을 파벌에서 추방했습니다.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+지위가 낮아서 파벌에서 자동으로 추방되었습니다.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+파벌 구성원 및 동맹을 죽일 경우, 현재 파벌에서의 지위가 낮아집니다.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+파벌 지위 하락
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+반복적으로 불쾌감을 주는 플레이어는 자동으로 파벌에서 추방됩니다.
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+점유 토지 관리
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+파벌 점유지 내의 건설과 해체, 접근 권한 할당, 토지 점유소 업그레이드, 토지 점유소 금고 접근권, 실드 활성화, 파벌의 점유지 이전.
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+파벌의 {0} 권한이 필요합니다.
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+파벌의 지도자에게 비공개 메시지
+
+UI/CoreStrings@Faction_Recruitment:
+모집
+
+UI/CoreStrings@Faction_RemoveMember:
+구성원 추방
+
+UI/CoreStrings@Faction_Role_Leader:
+지도자
+
+UI/CoreStrings@Faction_Role_Member:
+구성원
+
+UI/CoreStrings@Faction_Score_Format:
+파벌 점수: [b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+역할 설정
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+{0} 님의 역할 설정
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+파벌 정보 표시
+
+UI/CoreStrings@Faction_SubmitApplication:
+신청 제출
+
+UI/CoreStrings@Faction_Title:
+파벌
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+신청을 제출했습니다.
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+이미 파벌의 구성원입니다. 새로운 파벌을 만들거나 다른 파벌에 가입하려면 현재 파벌에서 떠나야 합니다.
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+새로운 파벌
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+검색 기준에 맞는 파벌이 없습니다.
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+모든 파벌
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`처리되지 않은 신청이 없습니다.
+[br]파벌 목록에서 신청을 제출하면 됩니다.`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+신청
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+받은 초대가 없습니다.
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+초대
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+점수판이 현재 비어 있습니다.
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 물 주지 않음
 
@@ -406,6 +786,9 @@ UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 물 주기
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+이 기능은 현재 서버에서 이용할 수 없습니다.
+
 UI/CoreStrings@Field_Email:
 이메일
 
@@ -417,6 +800,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 남성
+
+UI/CoreStrings@HealthPointsAbbreviation:
+HP
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 탈것에서 내리기
@@ -432,6 +818,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 장비
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+파벌
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 지도
@@ -523,6 +912,9 @@ UI/CoreStrings@LearningPoints:
 UI/CoreStrings@LearningPointsAbbreviation:
 LP
 
+UI/CoreStrings@LearningPointsCost_Format:
+소모: [b]{0}[/b] LP
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steam 계정과 연결하려면 [url=atomictorch.com]AtomicTorch.com[/url] 계정의 세부 정보를 입력하십시오.
 
@@ -579,6 +971,12 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 
 UI/CoreStrings@MasterServer:
 마스터 서버
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+나중에 장비 메뉴에서 외모를 변경할 수 있습니다.
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+캐릭터의 외모를 선택하세요.
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 연결 해제
@@ -759,6 +1157,14 @@ UI/CoreStrings@Network_Jitter_SeverityYellow:
 `서버에 연결된 네트워크가 상당한 지터를 겪고 있는 것 같습니다.
 [br]이로 인해 (가끔씩 발생하는 고무줄 현상과 같은) 약간의 이동 문제를 경험할 수도 있고, 서버와의 상당한 차이로 타격이 가끔씩 빗나갈 수도 있습니다.`
 
+UI/CoreStrings@Network_PacketLoss:
+패킷 손실
+
+UI/CoreStrings@Network_PacketLoss_Description:
+`서버에 대한 인터넷 접속이 상당한 패킷 손실을 겪고 있는 것 같습니다.
+[br]지연이나 무작위한 게임 멈춤, 심지어 서버와의 연결이 끊어질 수도 있습니다.
+[br]이러한 문제의 원인 대부분은 잘못된 Wi-Fi 신호 또는 라우터/모뎀의 결함입니다.`
+
 UI/CoreStrings@Network_Perfect:
 `네트워크 연결 상태가 좋은 것 같습니다.
 [br]즐거운 게임되시기 바랍니다!`
@@ -824,6 +1230,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 현재 접근 방식
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+{0}에게 개방
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 접근 방식
@@ -919,6 +1328,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 VRAM 사용량
+
+UI/CoreStrings@PlayerNotFound:
+플레이어를 찾을 수 없습니다.
 
 UI/CoreStrings@PleaseWait:
 기다려 주십시오...
@@ -1076,6 +1488,9 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 선택
+
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+한 시간 이내
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 스크린샷 준비: {0} (열려면 클릭)
@@ -1237,6 +1652,9 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 기술
 
+UI/CoreStrings@SortBy:
+정렬 기준
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 정도
 
@@ -1311,6 +1729,24 @@ UI/CoreStrings@TechNodeTooltip_Vehicles:
 
 UI/CoreStrings@Technology:
 기술
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+자신의 피로 지불
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+프라그뮴 심장으로 지불
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+목적지로 순간 이동
+
+UI/CoreStrings@Teleport_Discovered:
+새로운 순간 이동 장소가 발견되었습니다.
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+근처에 다른 생존자들이 있는 것 같습니다.
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+자신이 소유하고 있고, 조종사가 없는 탈것이 순간 이동 범위 내에 있다면, 함께 순간 이동됩니다.
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 검색...
@@ -1394,7 +1830,7 @@ UI/CoreStrings@TitlePowerGrid:
 전력망
 
 UI/CoreStrings@TitleSafeStorage:
-금고 용량
+금고
 
 UI/CoreStrings@TitleShieldProtection:
 실드
@@ -1633,6 +2069,9 @@ UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 UI/CoreStrings@WindowInventory_Button_Customize:
 커스터마이즈
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+캐릭터의 외모를 커스터마이즈하세요.
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 끼임 탈출!
 
@@ -1645,8 +2084,17 @@ UI/CoreStrings@WindowLandClaim_DecayInfo:
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 부식 시스템에 대해 이해했습니다
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+문과 다른 구조물에 대한 접근권의 파벌 역할과 권한에 따라 결정됩니다.
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+이 토지 점유소는 [b]\\[{0}\\][/b] 파벌이 관리하고 있습니다.
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 이 기지의 모든 토지 점유소 구조물 간 금고 저장 아이템이 공유됩니다.
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+파벌 소유권 양도
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 오직 소유자만 이 구조물을 업그레이드할 수 있습니다.
@@ -1686,6 +2134,9 @@ UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 빛 방식
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+표적 모드
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 습격 시간대가 시작되었습니다 ({0} 남음).
@@ -1738,6 +2189,9 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 잠자리 근처에서 부활
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+적대적인 파벌과의 싸움에서 도움을 받기 위해 파벌 가입을 고려해 봅시다.
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 최근 대미지 원인:
@@ -1800,6 +2254,9 @@ UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 온라인
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+온라인 플레이어의 목록은 서버 설정으로 인해 이 서버에 있는 모든 플레이어에 대해 숨겨져 있습니다.
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 서버 통계
@@ -1993,6 +2450,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]유전[/b]
 [br]원유 매장지.`
 
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+다른 외계 순간 이동 장소로 빠르게 이동하는 데 사용할 수 있습니다.
+
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]거래소[/b]
 [br]다른 플레이어가 이 거래소를 소유하고 있습니다.`
@@ -2058,6 +2518,24 @@ UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradea
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 제조법 취소 불가
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+배경
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+배경색 1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+배경색 2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+상징
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+상징색
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+모양
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 이 아이템을 바로 사용할 수 없습니다.
@@ -2201,9 +2679,6 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 상안
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-미지정
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 파티를 떠나시겠습니까?
 
@@ -2315,97 +2790,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `현재 발전량 {0} EU/s.
 [br]최대 생산량 {1} EU/s.`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-CryoFall에 오신 것을 환영합니다!
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-이번 기회를 통해 여러분께서 게임에 기대하고 계신 몇 가지 기능을 소개하고자 합니다! CryoFall은 계속 개발 중에 있지만, 다음 사항들은 모두 이용하실 수 있습니다.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-농사 & 요리
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-비료와 농기구로 직접 작물을 재배해보십시오. 그리고 노동의 산물로 캐릭터에게 긍정적인 효과를 제공해 주는 다양한 요리를 만들어보십시오.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-캐릭터 시뮬레이션 & 약물
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-일반적인 굶주림과 갈증에 대한 역학뿐만 아니라 다양한 약물 아이템으로 치료할 수 있는 수많은 상태 효과와 고통을 실험해 볼 수 있는 복합적인 캐릭터 시뮬레이션.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-공업
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-CryoFall의 세계에서 사용할 수 있는 천연 자원을 개발해보십시오. 원유를 뽑아내 정제하거나 온천에서 리튬을 추출하여 배터리와 전자 장치를 만들어 보십시오.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-경제
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-다른 생존자들과의 거래를 원활히하기 위해 주화를 만들고 완전 자동화된 거래소를 건설하십시오.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-낚시
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-여러 가지 미끼를 사용하여 다양한 민물고기와 바닷물고기를 잡아보세요. 자신의 기록을 경신해 나가면서, 다른 플레이어들과도 경쟁하세요.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-인공두뇌학적 임플란트
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-다양한 생체 공학적 및 인공두뇌학적 임플란트를 캐릭터에게 설치하여 새로운 능력을 얻게나 능력치를 높여보십시오.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-스킬
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-자신의 캐릭터를 위한 다양한 스킬을 찾고 잠금을 해제하며, 향상시켜서 효율성을 높이고 새로운 기능을 얻어보십시오.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+캐릭터의 외모를 커스터마이즈하고 다양한 장비와 도구로 자신을 남들과 차별화하십시오.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 캐릭터 커스터마이즈
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-캐릭터의 외모를 커스터마이즈하고 다양한 장비와 도구로 자신을 남들과 차별화하십시오.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-기술
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-획득한 학습 포인트를 사용해서 새로운 기술과 조리법, 건물에 대해 학습하여 가장 관심있는 분야에 집중해 게임을 원하는 대로 커스터마이즈하십시오.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-전기
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-전력망을 고려하여 기지를 설계하십시오. 많은 발전기와 저장소, 전기 소비 장치를 지을 수 있습니다.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-탈것
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-다양한 미래형 탈것을 제작 및 업그레이드하여 세계를 보다 빠르게 탐험하거나 전투에 이용할 수 있습니다.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-월드 이벤트
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-CryoFall 월드에서 일어나는 많은 이벤트에 자주 참여해주세요. 운석이 떨어진 곳을 탐사하거나 생존자 무리를 모아 위험한 보스를 처치해보시기 바랍니다.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+각양각색의 환경과 수십 종의 환상의 생명체들이 살고 있는 다양한 세계를 탐험하십시오.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 환상의 생명체
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-각양각색의 환경과 수십 종의 환상의 생명체들이 살고 있는 다양한 세계를 탐험하십시오.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+다른 생존자들과의 거래를 원활히하기 위해 주화를 만들고 완전 자동화된 거래소를 건설하십시오.
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-마지막으로 드리는 말씀
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+경제
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+전력망을 고려하여 기지를 설계하십시오. 많은 발전기와 저장소, 전기 소비 장치를 지을 수 있습니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+전기
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+CryoFall 월드에서 일어나는 많은 이벤트에 자주 참여해주세요. 운석이 떨어진 곳을 탐사하거나 생존자 무리를 모아 위험한 보스를 처치해보시기 바랍니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+월드 이벤트
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+비료와 농기구로 직접 작물을 재배해보십시오. 그리고 노동의 산물로 캐릭터에게 긍정적인 효과를 제공해 주는 다양한 요리를 만들어보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+농사 & 요리
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+여러 가지 미끼를 사용하여 다양한 민물고기와 바닷물고기를 잡아보세요. 자신의 기록을 경신해 나가면서, 다른 플레이어들과도 경쟁하세요.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+낚시
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+다양한 생체 공학적 및 인공두뇌학적 임플란트를 캐릭터에게 설치하여 새로운 능력을 얻게나 능력치를 높여보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+인공두뇌학적 임플란트
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+CryoFall의 세계에서 사용할 수 있는 천연 자원을 개발해보십시오. 원유를 뽑아내 정제하거나 온천에서 리튬을 추출하여 배터리와 전자 장치를 만들어 보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+공업
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `마지막으로, CryoFall은 계속 개발 중이며, 많은 개선 및 변화가 계획되어 있다는 것을 유념해주시기 바랍니다. 하지만 CryoFall은 이미 실속 있는 게임이니 재밌게 즐겨주신다면 저희는 더할 나위 없이 기쁠 것입니다![br][br]
 저희는 Discord와 토론장에서 항상 여러분을 기다리고 있답니다. 오셔서 저희에게 인사해주세요! :)[br][br]
 불편함을 겪으셨거나 버그나 취약점을 발견하셨다면, 저희에게 말씀해주세요. 기꺼이 도와드리겠습니다!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+마지막으로 드리는 말씀
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+일반적인 굶주림과 갈증에 대한 역학뿐만 아니라 다양한 약물 아이템으로 치료할 수 있는 수많은 상태 효과와 고통을 실험해 볼 수 있는 복합적인 캐릭터 시뮬레이션.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+캐릭터 시뮬레이션 & 약물
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+자신의 캐릭터를 위한 다양한 스킬을 찾고 잠금을 해제하며, 향상시켜서 효율성을 높이고 새로운 기능을 얻어보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+스킬
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+획득한 학습 포인트를 사용해서 새로운 기술과 조리법, 건물에 대해 학습하여 가장 관심있는 분야에 집중해 게임을 원하는 대로 커스터마이즈하십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+기술
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+다양한 미래형 탈것을 제작 및 업그레이드하여 세계를 보다 빠르게 탐험하거나 전투에 이용할 수 있습니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+탈것
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+이번 기회를 통해 여러분께서 게임에 기대하고 계신 몇 가지 기능을 소개하고자 합니다! CryoFall은 계속 개발 중에 있지만, 다음 사항들은 모두 이용하실 수 있습니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+CryoFall에 오신 것을 환영합니다!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 게임 시작
@@ -2449,6 +2924,9 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 스페이스 바
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+할당되지 않음
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 [b]{0}[/b] 설정을 초기화하시겠습니까?[br]기본값으로 적용된 후 저장됩니다.

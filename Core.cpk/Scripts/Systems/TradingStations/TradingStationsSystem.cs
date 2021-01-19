@@ -45,10 +45,10 @@
             = TimeSpan.FromMinutes(15);
 
         private static readonly Lazy<IProtoItem> ProtoItemCoinPenny
-            = new Lazy<IProtoItem>(GetProtoEntity<ItemCoinPenny>);
+            = new(GetProtoEntity<ItemCoinPenny>);
 
         private static readonly Lazy<IProtoItem> ProtoItemCoinShiny
-            = new Lazy<IProtoItem>(GetProtoEntity<ItemCoinShiny>);
+            = new(GetProtoEntity<ItemCoinShiny>);
 
         private static readonly IItemsServerService ServerItems = IsServer ? Server.Items : null;
 

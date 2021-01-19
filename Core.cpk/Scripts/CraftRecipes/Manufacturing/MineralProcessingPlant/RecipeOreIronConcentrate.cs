@@ -21,7 +21,7 @@
             inputItems.Add<ItemOreIron>(count: 3);
 
             outputItems.Add<ItemOreIronConcentrate>(count: 1);
-            outputItems.Add<ItemSand>(count: 1);
+            outputItems.Add<ItemSand>(count: 2);
         }
     }
 }

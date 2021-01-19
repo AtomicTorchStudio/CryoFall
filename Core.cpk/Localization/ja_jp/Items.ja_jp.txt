@@ -127,6 +127,9 @@ Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 このアイテムをAltキーを押しながらクリックすると、素早く使用したり、消費したりできます。
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+現在選択されている武器の弾薬の種類は、[b]\[{0}\][/b]キーで切り替えることができます。
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 構造物をクリックすると解体できます。
 
@@ -138,6 +141,9 @@ Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 構造物をクリックすると修理または建築できます。
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+破損した車両をクリックして修理します。
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 農場の植物をクリックすると水やりができます。
@@ -169,6 +175,9 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 燃料電池は、さまざまな乗り物の動力源として使用されます。
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+[b]\[{0}\][/b]キーで、照明とナイトビジョンを切り替えることができます。
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 射撃の際に[b]Alt[/b]か[b]Ctrl[/b]を押しながら撃つと、カーソル位置ではなく、カーソル方向に最大距離で発射されます。
 
@@ -184,6 +193,12 @@ Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 この武器は、乗り物の[b]{0}[/b]ハードポイントにのみ装着して使用することができます。
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+ナイトビジョン（一号機）
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+ナイトビジョン（二号機）
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 切る
 
@@ -195,6 +210,9 @@ Scripts/Items/Base/ItemUseCaptions@Drink:
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 食べる
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+開く
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 読む
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 燃料不足
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-ヘッドライトを有効にするには、アイテムを装備して[{0}]キーを押してください。
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-ボタンが設定されていません
+ヘッドライトを有効にするには、アイテムを装備して\[{0}\]キーを押してください。
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 骨の防具は、その価格に見合う防御力を提供し、序盤では非常に役に立ちます。
@@ -402,6 +417,12 @@ Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 ミリタリーヘルメット
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+爆発物を装備した特殊なベスト。復讐の手段として着用者の死後に自動的に爆発します。
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+リベンジベスト
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 携帯用の照明を提供し、両手を自由に使うことができる便利なヘルメット。電池が必要です。
@@ -520,6 +541,15 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Description:
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 バス
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+黒ハゼ
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+この世界に自生する独特なプラグミウムベースの水生生物。
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+ブルーグライダー
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 ブリーム
 
@@ -532,8 +562,14 @@ Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 ウグイ
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+クラッピー
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 イサキ
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+コイ
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 サバ
@@ -561,6 +597,9 @@ Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 マス
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+キハダマグロ
 
 Scripts/Items/Food/ItemBanana@Description:
 バナナを手に入れるのは猿でもできますが、星を手に入れられるのは人間だけです。
@@ -717,6 +756,12 @@ Scripts/Items/Food/ItemCoffeeCup@Description:
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 コーヒー
+
+Scripts/Items/Food/ItemCookingOil@Description:
+料理に使われる天然の油。
+
+Scripts/Items/Food/ItemCookingOil@Name:
+食用油
 
 Scripts/Items/Food/ItemCorn@Description:
 歯に挟まるけどとってもおいしい穀物。
@@ -924,6 +969,24 @@ Scripts/Items/Food/ItemPizzaPineapple@Description:
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 パイナップルピザ
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+新鮮な皮付きポテトに美味しいお肉が付いています。
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+肉とポテト炒め
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+クラシカルなファストフード風フライドポテト。
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+フライドポテト
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+食べる前に調理する必要があります。
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+ジャガイモ
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 そのまま食べてもいいし、料理の材料に使ってもいいです。
@@ -1183,6 +1246,12 @@ Scripts/Items/Generic/ItemCoinPenny@Description:
 Scripts/Items/Generic/ItemCoinPenny@Name:
 銅貨
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+古い小銭入れ。まだ何か入ってるかも？
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+小銭入れ
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 高額のコイン。トレーディングマシンでアイテムを購入するために使用したり、他の生存者と直接取引する時に使います。
 
@@ -1277,6 +1346,12 @@ Scripts/Items/Generic/ItemFlowerOni@Description:
 Scripts/Items/Generic/ItemFlowerOni@Name:
 オニフラワー
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+食用油を抽出したり観賞用として装飾するのに便利です。
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+黄色い花
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 フラックス粉末は、高品質の金属を製造するための冶金学において有用です。
 
@@ -1306,6 +1381,12 @@ Scripts/Items/Generic/ItemFuelCellPragmium@Description:
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 プラグミウム燃料電池
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+揮発性の液体を貯蔵している異星生物の特殊器官。
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+燃料嚢
 
 Scripts/Items/Generic/ItemFur@Description:
 動物の毛皮。暖かい冬服を作るのに便利でしょう。
@@ -1343,10 +1424,10 @@ Scripts/Items/Generic/ItemGemTopaz@Description:
 Scripts/Items/Generic/ItemGemTopaz@Name:
 トパーズ
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 紫色に輝くトルマリン！
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 トルマリン
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Scripts/Items/Generic/ItemTwigs@Description:
 Scripts/Items/Generic/ItemTwigs@Name:
 小枝
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+未知の生命体の奇妙な海綿状の器官。腐ると外来粒子を放出する。
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+サンドタイラントの心臓
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 磁力で動く非常に柔軟で強力な駆動装置。
 
@@ -1853,6 +1940,12 @@ Scripts/Items/Medical/ItemCigarCheap@Description:
 Scripts/Items/Medical/ItemCigarCheap@Name:
 安い葉巻
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+外界のタバコブランド。
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+タバコ
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 香りの良い普通の葉巻。興奮剤。
 
@@ -1975,6 +2068,12 @@ Scripts/Items/Medical/ItemPeredozin@Description:
 Scripts/Items/Medical/ItemPeredozin@Name:
 ペレドジン
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+石膏ギプスは、骨折した骨を固定して早く治すために使用します。
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+石膏ギプス
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 サイオニック磁場による神経障害を軽減するのに役立つ特別な神経調節化学物質。
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 ハーブ薬
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-骨折はありません。添え木を使う意味はありません。
+骨折している個所はありません。今使う意味がありません。
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 骨折なし
@@ -2062,8 +2161,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 オニフラワーの種
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+黄色い花の種
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 ミルクメロンの種
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+ジャガイモの種
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 米の種
@@ -2088,6 +2193,12 @@ Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 必要な物
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+多くのテレポート場所のうちの1か所の座標とナビゲーション周波数の記録が含まれています。
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+テレポート位置情報
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 鉄の斧は木を伐るのに最適です。石造りの斧より速く、より耐久性があります。
@@ -2146,11 +2257,11 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 燃料切れ
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-この壊れやすいプラグミウムの斧は分子共鳴力学を使用しており、従来の代替品よりもはるかに作業速度が速くなります。
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+この壊れやすいプラグミウムハンマーは分子共鳴力学を使用しており、従来の代替品よりもはるかに作業速度が速くなります。
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-プラグミウムの斧
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+プラグミウムハンマー
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 鉄のつるはしは、鉱物を採掘するために使用することができます。石のつるはしよりも速くて丈夫です。
@@ -2175,6 +2286,12 @@ Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 プラグミウムセンサー
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+一般的な使い捨ての乗り物修理キット。
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+乗り物修理キット
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 工具箱は持ち物を修理したり建築する際に不可欠です。選択および装備されていることを確認しましょう。
@@ -2262,6 +2379,12 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 レーザーレイピア（黄）
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+内蔵バッテリーの電気を利用して相手を気絶させます。
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+スタンバトン
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 信じられないほど強力な短距離武器。作動するのにエネルギーが必要です。

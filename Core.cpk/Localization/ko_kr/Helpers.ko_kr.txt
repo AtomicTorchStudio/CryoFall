@@ -1,4 +1,13 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
+,
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
+, 및 {0}
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_TwoEntries_Format:
+{0} 및 {1}
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
 <1m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
@@ -12,6 +21,9 @@ Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 초
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ClientHasModifiedCore:
+이 게임 서버에서 허용되지 않는 Core.cpk를 수정하거나 압축을 푼 게임 클라이언트를 사용하고 있습니다. 게임을 다시 설치하십시오.
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `호환되지 않는 네트워크 버전입니다.

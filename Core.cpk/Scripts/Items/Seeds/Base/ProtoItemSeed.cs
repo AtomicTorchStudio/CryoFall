@@ -175,7 +175,7 @@
                    .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                    .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
                    .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
-                   .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand);
+                   .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLandNoFactionPermissionsRequired);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

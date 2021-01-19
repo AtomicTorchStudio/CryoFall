@@ -28,6 +28,9 @@ UI/CoreStrings@AutosaveNotification_Saving:
 UI/CoreStrings@AutosaveNotification_Title:
 服务器快照
 
+UI/CoreStrings@BbCodeFormattingDescription:
+可用特殊编辑符号：[b], [u], [i], [url], [color=#FF0000]颜色[/color], [*], 以及换行符[br]
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 摧毁于
 
@@ -166,6 +169,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 不要再次提示
+
+UI/CoreStrings@ClanTag:
+氏族标签：
 
 UI/CoreStrings@ClanTag_Current:
 氏族标签：
@@ -330,6 +336,9 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 表层矿点（高采集量）
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+当主权建筑被摧毁时毁灭倒计时将会开始。
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 您确定要使用{0}吗？
 
@@ -356,6 +365,12 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 移除效果：
+
+UI/CoreStrings@EmptyList:
+列表为空
+
+UI/CoreStrings@EmptyText:
+文字为空
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
@@ -384,6 +399,371 @@ UI/CoreStrings@Extras_PatchnotesTooltip:
 UI/CoreStrings@Extras_RoadmapTooltip:
 CryoFall开发布局(仅限英文)
 
+UI/CoreStrings@Faction_Admin:
+管理员
+
+UI/CoreStrings@Faction_Application_Accept:
+接受
+
+UI/CoreStrings@Faction_Application_Cancel:
+取消
+
+UI/CoreStrings@Faction_Application_Reject:
+拒绝
+
+UI/CoreStrings@Faction_Applications:
+申请
+
+UI/CoreStrings@Faction_Applications_Empty:
+无可用申请。
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+拒绝所有申请
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+你已经离开此派系或被踢出。你只能通过被邀请才能再次加入。
+
+UI/CoreStrings@Faction_CopyTag:
+复制氏族标签：
+
+UI/CoreStrings@Faction_CreateFaction:
+创建派系
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+确定输入内容？
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+你无法在完成创建后修改派系类型和描述。
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+你的身份：
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+你当前的身份没有任何管理权限。
+
+UI/CoreStrings@Faction_Description_Private:
+私人描述
+
+UI/CoreStrings@Faction_Description_Public:
+公开描述
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+显示派系成员的在线状况以及位置。
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+确定从派系移除 [b]{0}[/b]？
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+我确定要解散派系。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+我明白此派系成员将在[b]{0}[/b]内[b]无法加入[/b]任何其他派系。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+请先拆解此派系拥有的所有主权建筑。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+确定要解散此派系？
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+解散派系
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+重要：你即将加入 [b]{0}[/b]。
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+我明白我将在 [b]{0}[/b] 内无法重新加入此派系，并且在 [b]{1}[/b] 内无法加入其他派系。
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+确定离开派系？
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+请输入将要成为新派系领导人的派系成员名称。
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+转移派系所有权
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+注意：你即将发起加入[b]{0}[/b]的申请。
+
+UI/CoreStrings@Faction_Diplomacy:
+外交
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+接受同盟提议
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+取消同盟提议
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+拒绝同盟提议
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+收到提议
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+进行中的提议
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+和谈
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+同盟
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+解除同盟
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+宣战
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+宣战对象
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+被宣战
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+相互宣战
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+中立
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+和谈提议
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`你最近已经向此派系发起了一次和谈提议。
+[br]你必须等待 {0} 才能再次发起提议。`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+宣战
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+撤回宣战
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+你不属于任何派系
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+所选徽记已被其他玩家使用。请使用其他徽记。
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+派系未找到。
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+你近期离开了一个派系。
+
+UI/CoreStrings@Faction_Events:
+事件
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+事件类型
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+所有
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+成员名称
+
+UI/CoreStrings@Faction_Events_Recent:
+近期事件
+
+UI/CoreStrings@Faction_FactionFull:
+派系人数已满
+
+UI/CoreStrings@Faction_FactionKind_Current:
+派系类型：
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+已发送加入邀请或请求。
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+派系管理员可决定是否接受加入请求。
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+私人
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+任何人都可以随意加入。
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+公开
+
+UI/CoreStrings@Faction_Invite:
+邀请
+
+UI/CoreStrings@Faction_Invite_Accept:
+接受
+
+UI/CoreStrings@Faction_Invite_Cancel:
+取消
+
+UI/CoreStrings@Faction_Invite_Decline:
+拒绝
+
+UI/CoreStrings@Faction_Invites:
+邀请
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+取消所有邀请
+
+UI/CoreStrings@Faction_Invites_Empty:
+无可用邀请。
+
+UI/CoreStrings@Faction_InviteToFaction:
+邀请至派系
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+正在接受申请
+
+UI/CoreStrings@Faction_Join:
+加入
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+离开派系时，你将暂时无法创建派系或加入另一个派系。
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+加入/创建派系冷却：
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+主权建筑数量限制可以由派系等级提高。
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+派系主权建筑：{0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+派系主权建筑数量已达上限。
+
+UI/CoreStrings@Faction_Leaderboard:
+排行榜
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+参与排行。
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+下次更新：
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+排名
+
+UI/CoreStrings@Faction_LeaderField:
+领导人:
+
+UI/CoreStrings@Faction_LeaveFaction:
+离开派系
+
+UI/CoreStrings@Faction_Level:
+等级
+
+UI/CoreStrings@Faction_Level_Format:
+等级: [b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+最大成员数量：[b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+上次在线: {0}
+
+UI/CoreStrings@Faction_Members:
+成员
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+成员: [b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+不接受申请
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+{0} 同意了你加入 {1} 的申请！欢迎！
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0}已将你踢出了派系。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+由于低声望，你已自动被踢出派系。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+杀死派系和同盟成员将是你在当前派系中的声望降低。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+派系声望降低
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+反复侵犯他人的玩家将被自动从派系踢出。
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+主权建筑管理
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+在派系主权区域内进行建造和拆除的权限。其他权限：分配使用权限，升级主权建筑，使用主权建筑仓库，激活护盾，转移主权建筑所有权。
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+需要 {0} 派系权限。
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+向派系领导人发送私信
+
+UI/CoreStrings@Faction_Recruitment:
+招募
+
+UI/CoreStrings@Faction_RemoveMember:
+移除成员
+
+UI/CoreStrings@Faction_Role_Leader:
+领导人
+
+UI/CoreStrings@Faction_Role_Member:
+成员
+
+UI/CoreStrings@Faction_Score_Format:
+派系分值：[b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+设置身份
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+为 {0} 设置身份
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+显示派系信息
+
+UI/CoreStrings@Faction_SubmitApplication:
+提交申请
+
+UI/CoreStrings@Faction_Title:
+派系
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+你提交了一个申请。
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+你已经是一个派系的成员了。你必须先退出该派系，才能加入另一个派系，或自建派系。
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+新派系
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+没有满足搜索条件的派系。
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+所有派系
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`无可用派系。
+[br]你可向派系列表中的派系发起申请。`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+申请
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+无可用邀请。
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+邀请
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+排行榜当前为空。
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 未浇水
 
@@ -405,6 +785,9 @@ UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 已浇水
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+此功能在此服务器上不可用。
+
 UI/CoreStrings@Field_Email:
 电子邮件
 
@@ -416,6 +799,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 男
+
+UI/CoreStrings@HealthPointsAbbreviation:
+HP
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 离开载具
@@ -431,6 +817,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 装备
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+派系
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 地图
@@ -522,6 +911,9 @@ UI/CoreStrings@LearningPoints:
 UI/CoreStrings@LearningPointsAbbreviation:
 LP
 
+UI/CoreStrings@LearningPointsCost_Format:
+花费：[b]{0}[/b]知识点
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 请输入您的[url=atomictorch.com]AtomicTorch.com[/url]帐户详细信息以链接您的Steam帐户。
 
@@ -578,6 +970,12 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 
 UI/CoreStrings@MasterServer:
 主服务器
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+你可以随后在装备界面修改外观。
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+选择角色外观
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 断开
@@ -758,6 +1156,14 @@ UI/CoreStrings@Network_Jitter_SeverityYellow:
 `看起来你与服务器的网络连接正在经历波动。
 [br]因此，您可能会遇到角色移动问题（例如偶尔的角色瞬移），或者由于与服务器的严重不同步，您的操作可能会丢失。`
 
+UI/CoreStrings@Network_PacketLoss:
+丢包率
+
+UI/CoreStrings@Network_PacketLoss_Description:
+`您当前与服务器的连接似乎丢包率较高。
+[br]您可能遭遇延迟，游戏卡死或与服务器连接断开。
+[br]此问题的主要原因可能是无线网络信号差，或路由器出现问题。`
+
 UI/CoreStrings@Network_Perfect:
 `看起来你的网络连接很好。
 [br]享受游戏吧！`
@@ -825,6 +1231,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 当前访问模式
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+向{0}开放
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 访问模式
@@ -920,6 +1329,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 显存使用
+
+UI/CoreStrings@PlayerNotFound:
+玩家未找到。
 
 UI/CoreStrings@PleaseWait:
 请耐心等待...
@@ -1077,6 +1489,9 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 选择
+
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+一小时内
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 截图完成: {0} (点击打开)
@@ -1238,6 +1653,9 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 技能
 
+UI/CoreStrings@SortBy:
+排序：
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 强度
 
@@ -1312,6 +1730,24 @@ UI/CoreStrings@TechNodeTooltip_Vehicles:
 
 UI/CoreStrings@Technology:
 科技
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+以鲜血支付
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+以普拉格之心支付
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+传送到目的地
+
+UI/CoreStrings@Teleport_Discovered:
+发现新传送点。
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+似乎附近有其他幸存者。
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+停在传送区内的属于你且没有驾驶员的载具将一起被传送。
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 搜索...
@@ -1634,6 +2070,9 @@ UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 UI/CoreStrings@WindowInventory_Button_Customize:
 自定义
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+自定义角色外观。
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 解除卡死！
 
@@ -1646,8 +2085,17 @@ UI/CoreStrings@WindowLandClaim_DecayInfo:
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 我已了解腐化系统
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+门和建筑的访问权限基于派系身份与许可。
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+此主权建筑受[b]\\[{0}\\][/b]派系管理。
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 保险箱内的物品将向此主权中的所有建筑共享。
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+转移派系所有权
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 只有所有者才能升级此建筑。
@@ -1687,6 +2135,9 @@ UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 灯光模式
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+瞄准模式
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 劫掠期现在已开始（剩余{0}）
@@ -1739,6 +2190,9 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 在床边重生
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+考虑加入一个派系以对抗另一个敌对派系。
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 最近伤害来源：
@@ -1801,6 +2255,9 @@ UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 当前在线
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+服务器设置隐藏了在线玩家列表。
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 服务器统计
@@ -1994,6 +2451,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]天然油田[/b]
 [br]可采集原油。`
 
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+快速旅行至其他传送点。
+
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]交易站[/b]
 [br]由另一位玩家所有的交易站。`
@@ -2059,6 +2519,24 @@ UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradea
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 无法取消此食谱
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+背景
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+背景色1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+背景色2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+徽记
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+徽记颜色
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+形状
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 不能直接使用此项目。
@@ -2202,9 +2680,6 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 顶部
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-未选择
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 你确定要离开小组吗？
 
@@ -2316,97 +2791,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `当前发电{0} EU/s 
 [br]最高输出 {1} EU/s。`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-欢迎来到CryoFall!
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-我们想借此机会向你介绍一些游戏内的功能！ CryoFall仍然在开发中，但以下所有功能已经可以使用。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-农业&烹饪
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-使用肥料和农具种植你自己的作物。然后再把辛劳的成果烹饪成各种美食，能够提供不同加成。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-角色模拟&药物
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-复杂的角色模拟，不仅能体现出常见的饥饿和口渴状态，更能测试各种异常状态效果，而它们则可以用各种药品治疗。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-工业
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-探索在CryoFall中可以利用的自然资源。开采石油，从温泉采集锂矿，来制造电池和电器。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-经济
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-铸造硬币，建造全自动贸易站来与其他幸存者进行交易。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-钓鱼
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-使用不同种类的鱼饵钓上各种鱼类。看看你能不能钓上破纪录的大鱼！
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-植入物
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-将植入物植入你的角色体内，获得新的能力或者提高你的属性。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-技能
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-发现，解锁并强化你角色的一系列技巧，帮助你提高生存效率，以及进一步发现新技能。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+使用各种不同装备和工具来定制你的角色，让你显得与众不同。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 角色定制
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-使用各种不同装备和工具来定制你的角色，让你显得与众不同。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-科技
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-获得的学习点并使用它们来学习新科技、食谱和建筑，通过根据自己的喜好加点来定制属于你的游戏体验。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-电力
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-设计基地时要考虑到电网。你可以建造数个发电机，储存建筑以及电力消耗建筑。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-载具
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-建立和升级的各种未来车辆，以更快的探索这个世界或在战斗中使用它们。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-世界事件
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-请多多参加发生在CryoFall世界的事件。 也许是探索陨石坠落点，或聚集一群幸存者打败一个危险的Boss。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+探索拥有各种不同自然环境的世界与这里数十种神奇生物。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 神奇动物
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-探索拥有各种不同自然环境的世界与这里数十种神奇生物。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+铸造硬币，建造全自动贸易站来与其他幸存者进行交易。
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-写在最后
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+经济
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+设计基地时要考虑到电网。你可以建造数个发电机，储存建筑以及电力消耗建筑。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+电力
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+请多多参加发生在CryoFall世界的事件。 也许是探索陨石坠落点，或聚集一群幸存者打败一个危险的Boss。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+世界事件
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+使用肥料和农具种植你自己的作物。然后再把辛劳的成果烹饪成各种美食，能够提供不同加成。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+农业&烹饪
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+使用不同种类的鱼饵钓上各种鱼类。看看你能不能钓上破纪录的大鱼！
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+钓鱼
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+将植入物植入你的角色体内，获得新的能力或者提高你的属性。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+植入物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+探索在CryoFall中可以利用的自然资源。开采石油，从温泉采集锂矿，来制造电池和电器。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+工业
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `最后，请记住，《末日觉醒》仍然出于开发当中，并且还有着大量的更新和改动计划。 尽管如此，当前的游戏内容已经十分充实，希望大家喜欢！[br][br]
 另外我们有在论坛和discord全程值班，欢迎来和我们打个招呼！ :)[br][br]
 如果你遇到任何困难或希望报告游戏中的错误或漏洞，我们愿意聆听并提供帮助！`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+写在最后
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+复杂的角色模拟，不仅能体现出常见的饥饿和口渴状态，更能测试各种异常状态效果，而它们则可以用各种药品治疗。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+角色模拟&药物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+发现，解锁并强化你角色的一系列技巧，帮助你提高生存效率，以及进一步发现新技能。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+技能
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+获得的学习点并使用它们来学习新科技、食谱和建筑，通过根据自己的喜好加点来定制属于你的游戏体验。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+科技
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+建立和升级的各种未来车辆，以更快的探索这个世界或在战斗中使用它们。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+载具
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+我们想借此机会向你介绍一些游戏内的功能！ CryoFall仍然在开发中，但以下所有功能已经可以使用。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+欢迎来到CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 开始游戏
@@ -2450,6 +2925,9 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 空格键
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+未分配
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 是否要重置[b]{0}[/b]选项？[br]将保存默认值并应用。

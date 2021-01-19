@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
@@ -12,48 +11,23 @@
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using JetBrains.Annotations;
 
     public class ViewModelStatusEffect : BaseViewModel
     {
-        private const byte BackgroundOpacity = 0x88;
-
-        public static readonly Brush BrushBuffTier0
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0x44, 0xAA, 0x44));
-
-        public static readonly Brush BrushBuffTier1
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0x33, 0xBB, 0x33));
-
-        public static readonly Brush BrushBuffTier2
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0x00, 0xCC, 0x00));
-
-        public static readonly Brush BrushDebuffTier0
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xFF, 0xCC, 0x33));
-
-        public static readonly Brush BrushDebuffTier1
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xFF, 0x88, 0x22));
-
-        public static readonly Brush BrushDebuffTier2
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xFF, 0x11, 0x11));
-
-        public static readonly Brush BrushNeutral
-            = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xBB, 0xBB, 0xBB));
-
-        private readonly Lazy<IReadOnlyList<StatModificationData>> lazyEffects;
-
         private readonly IProtoStatusEffect protoStatusEffect;
 
         private readonly StatusEffectPublicState publicState;
 
-        private readonly ILogicObject statusEffect;
-
         private bool isFlickerScheduled;
+
+        private Brush lastBrush;
+
+        private double lastIntensity;
 
         public ViewModelStatusEffect(ILogicObject statusEffect)
         {
-            this.statusEffect = statusEffect;
             this.protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
-            this.lazyEffects = new Lazy<IReadOnlyList<StatModificationData>>(this.CreateEffectsList);
+            this.StatsDictionary = this.protoStatusEffect.ProtoEffects;
 
             this.publicState = statusEffect.GetPublicState<StatusEffectPublicState>();
             this.publicState.ClientSubscribe(
@@ -64,16 +38,23 @@
             this.UpdateIntensity();
 
             this.IsFlickerScheduled = true;
+
+            var controls = new List<UIElement>();
+            this.PopulateControls(controls);
+
+            if (controls.Count > 0)
+            {
+                this.InfoControls = controls;
+            }
         }
 
-        public Brush BackgroundBrush { get; private set; }
+        public Brush ColorizedIcon
+            => Api.Client.UI.GetTextureBrush(
+                this.protoStatusEffect.GetColorizedIcon(this.lastIntensity));
 
         public string Description => this.protoStatusEffect.Description;
 
-        [CanBeNull]
-        public IReadOnlyList<StatModificationData> Effects => this.lazyEffects.Value;
-
-        public Brush Icon => Api.Client.UI.GetTextureBrush(this.protoStatusEffect.Icon);
+        public IReadOnlyList<UIElement> InfoControls { get; }
 
         public byte IntensityPercent { get; private set; }
 
@@ -104,7 +85,11 @@
         public bool IsTooltipTimeRemainsVisible
             => this.protoStatusEffect.DisplayMode.HasFlag(StatusEffectDisplayMode.TooltipShowTimeRemains);
 
+        public string Name => this.protoStatusEffect.Name;
+
         public IProtoStatusEffect ProtoStatusEffect => this.protoStatusEffect;
+
+        public IReadOnlyStatsDictionary StatsDictionary { get; }
 
         public string TimeRemains { get; private set; }
 
@@ -112,113 +97,14 @@
 
         public Visibility Visibility { get; private set; } = Visibility.Collapsed;
 
-        public static Brush GetBrush(StatusEffectKind kind, double intensity)
-        {
-            byte tier;
-            if (intensity < 0.333)
-            {
-                tier = 0;
-            }
-            else if (intensity < 0.667)
-            {
-                tier = 1;
-            }
-            else
-            {
-                tier = 2;
-            }
-
-            switch (kind)
-            {
-                case StatusEffectKind.Buff:
-                    switch (tier)
-                    {
-                        case 0:
-                            return BrushBuffTier0;
-                        case 1:
-                            return BrushBuffTier1;
-                        case 2:
-                            return BrushBuffTier2;
-                    }
-
-                    break;
-
-                case StatusEffectKind.Debuff:
-                    switch (tier)
-                    {
-                        case 0:
-                            return BrushDebuffTier0;
-                        case 1:
-                            return BrushDebuffTier1;
-                        case 2:
-                            return BrushDebuffTier2;
-                    }
-
-                    break;
-
-                case StatusEffectKind.Neutral:
-                    return BrushNeutral;
-            }
-
-            throw new Exception("Impossible");
-        }
-
         public void Flicker()
         {
             this.IsFlickerScheduled = true;
         }
 
-        private IReadOnlyList<StatModificationData> CreateEffectsList()
+        private void PopulateControls(List<UIElement> controls)
         {
-            var effects = this.protoStatusEffect.ProtoEffects;
-            var multipliers = effects.Multipliers;
-            var totalEntriesCount = multipliers.Count + effects.Values.Count;
-
-            if (totalEntriesCount == 0)
-            {
-                return null;
-            }
-
-            var result = new Dictionary<StatName, StatModificationData>(capacity: totalEntriesCount);
-
-            foreach (var entry in effects.Values)
-            {
-                AppendValue(entry.Key, entry.Value);
-            }
-
-            foreach (var entry in multipliers)
-            {
-                AppendPercent(entry.Key, entry.Value);
-            }
-
-            return result.Values.OrderBy(p => p.StatName)
-                         .ToList();
-
-            void AppendValue(StatName key, double value)
-            {
-                if (result.TryGetValue(key, out var entry))
-                {
-                    entry.Value += value;
-                    return;
-                }
-
-                result[key] = new StatModificationData(key,
-                                                       value,
-                                                       percent: 1.0);
-            }
-
-            void AppendPercent(StatName key, double percent)
-            {
-                if (result.TryGetValue(key, out var entry))
-                {
-                    entry.Percent += percent;
-                    return;
-                }
-
-                result[key] = new StatModificationData(key,
-                                                       value: 0,
-                                                       percent);
-            }
+            this.protoStatusEffect.ClientTooltipCreateControls(controls);
         }
 
         private void UpdateIntensity()
@@ -234,6 +120,7 @@
                                          + ClientTimeFormatHelper.SuffixSeconds;
             }
 
+            this.lastIntensity = intensity;
             this.IntensityPercent = (byte)Math.Ceiling(intensity * 100);
 
             var wasVisible = this.Visibility == Visibility.Visible;
@@ -247,7 +134,14 @@
                 this.IsFlickerScheduled = true;
             }
 
-            this.BackgroundBrush = GetBrush(this.protoStatusEffect.Kind, intensity);
+            var brush = ClientStatusEffectIconColorizer.GetBrush(this.protoStatusEffect.Kind, intensity);
+            if (this.lastBrush == brush)
+            {
+                return;
+            }
+
+            this.lastBrush = brush;
+            this.NotifyPropertyChanged(nameof(this.ColorizedIcon));
         }
     }
 }

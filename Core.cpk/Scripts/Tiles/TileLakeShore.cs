@@ -9,12 +9,12 @@
     public class TileLakeShore : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/LakeShore/TileLakeshoreSand1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/LakeShore/TileLakeshoreSand1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/LakeShore/TileLakeshoreSand2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/LakeShore/TileLakeshoreSand2.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 3;
 

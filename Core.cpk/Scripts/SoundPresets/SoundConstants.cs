@@ -37,9 +37,9 @@
 
         public const float AudioListenerMaxDistanceObjectHit = 20;
 
-        public const float AudioListenerMaxDistanceRangedShotFirearms = 45;
-
         public const float AudioListenerMaxDistanceRangedShotBows = 15;
+
+        public const float AudioListenerMaxDistanceRangedShotFirearms = 45;
 
         public const float AudioListenerMaxDistanceRangedShotMobs = 15;
 

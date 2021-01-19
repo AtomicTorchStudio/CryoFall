@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
@@ -7,11 +7,11 @@
 
     public interface IProtoEvent : IProtoGameObject
     {
+        bool ConsolidateNotifications { get; }
+
         string Description { get; }
 
         ITextureResource Icon { get; }
-
-        bool ConsolidateNotifications { get; }
 
         void ServerForceCreateAndStart();
 

@@ -14,11 +14,11 @@
         {
             base.PrepareEffects(effects);
 
-            // will consume 100% more food
-            effects.AddPercent(this, StatName.FoodConsumptionSpeedMultiplier, 100);
-
             // will produce some energy (EU) every minute
             effects.AddValue(this, StatName.EnergyChargeRegenerationPerMinute, 60);
+
+            // will consume 100% more food
+            effects.AddPercent(this, StatName.FoodConsumptionSpeedMultiplier, 100);
         }
     }
 }

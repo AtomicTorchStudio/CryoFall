@@ -1,0 +1,104 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.FactionInvitationEntryControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.Data"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:FactionInvitationOfficerViewEntry}">
+
+    <base:BaseUserControl.Resources>
+        <Style x:Key="BorderPlayerNamePanelStyle" TargetType="Border">
+            <Setter Property="Width" Value="230" />
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Padding" Value="12,5,12,5" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#00003F57" Offset="0" />
+                        <GradientStop Color="#FF003F57" Offset="0.07" />
+                        <GradientStop Color="#FF003F57" Offset="0.75" />
+                        <GradientStop Color="#00003F57" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#00007AA8" Offset="0" />
+                        <GradientStop Color="#FF007AA8" Offset="0.07" />
+                        <GradientStop Color="#FF007AA8" Offset="0.75" />
+                        <GradientStop Color="#00007AA8" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TextBlockPlayerNameStyle" TargetType="TextBlock">
+            <Setter Property="Text" Value="{Binding InviteeName}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="LineHeight" Value="11" />
+            <Setter Property="LineStackingStrategy" Value="MaxHeight" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+    </base:BaseUserControl.Resources>
+
+    <Border Style="{StaticResource BorderPlayerNamePanelStyle}">
+        <Control>
+            <Control.Template>
+                <ControlTemplate>
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource TextBlockPlayerNameStyle}" />
+
+                        <StackPanel Grid.Column="2"
+                                    x:Name="OptionsPanel"
+                                    Orientation="Horizontal"
+                                    Margin="3,0,0,0">
+                            <Button Command="{Binding CommandRemoveInvitation}"
+                                    CommandParameter="{Binding InviteeName}"
+                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Faction_Invite_Cancel}"
+                                    Style="{StaticResource SmallButtonStyle}"
+                                    FontSize="12"
+                                    MinWidth="12"
+                                    MinHeight="12"
+                                    Padding="3.5">
+                                <Button.Content>
+                                    <Control Style="{StaticResource CrossControlStyle}"
+                                             Foreground="{StaticResource BrushColorRed6}" />
+                                </Button.Content>
+                            </Button>
+                            <Control Style="{StaticResource OptionsThreeDotsControlStyle}"
+                                     Margin="-2,2,0,-2" />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=UserControl}"
+                                     Value="False">
+                            <Setter TargetName="OptionsPanel"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Control.Template>
+        </Control>
+    </Border>
+
+</base:BaseUserControl>

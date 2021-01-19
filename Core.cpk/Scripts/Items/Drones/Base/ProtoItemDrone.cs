@@ -25,7 +25,7 @@
         where TObjectDrone : IProtoDrone, new()
     {
         private static readonly Lazy<TObjectDrone> LazyProtoDrone
-            = new Lazy<TObjectDrone>(Api.GetProtoEntity<TObjectDrone>);
+            = new(Api.GetProtoEntity<TObjectDrone>);
 
         private readonly Lazy<double> lazyDurabilityToStructurePointsConversionCoefficient;
 

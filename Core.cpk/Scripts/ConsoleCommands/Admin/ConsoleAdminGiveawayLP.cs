@@ -13,7 +13,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         public override string Name => "admin.giveawayLP";
 
-        public string Execute(ushort learningPoints)
+        public string Execute(uint learningPoints)
         {
             var playersProcessed = 0;
             foreach (var player in Server.Characters.EnumerateAllPlayerCharacters(
@@ -21,7 +21,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
                 exceptSpectators: false))
             {
                 var technologies = player.SharedGetTechnologies();
-                technologies.ServerSetLearningPoints(technologies.LearningPoints + learningPoints);
+                technologies.ServerAddLearningPoints(learningPoints, allowModifyingByStatsAndRates: false);
                 playersProcessed++;
             }
 

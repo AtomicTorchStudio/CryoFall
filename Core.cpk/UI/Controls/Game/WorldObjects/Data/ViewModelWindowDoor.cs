@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -11,23 +12,32 @@
     {
         private readonly ObjectDoorPrivateState privateState;
 
-        public ViewModelWindowDoor(
-            IStaticWorldObject worldObjectDoor)
+        public ViewModelWindowDoor(IStaticWorldObject worldObjectDoor)
         {
             var protoObjectDoor = (IProtoObjectDoor)worldObjectDoor.ProtoStaticWorldObject;
             this.privateState = protoObjectDoor.GetPrivateState(worldObjectDoor);
 
-            this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
-                this.privateState.Owners,
-                callbackServerSetOwnersList:
-                ownersList => WorldObjectOwnersSystem.ClientSetOwners(worldObjectDoor,
-                                                                      ownersList),
-                title: CoreStrings.ObjectOwnersList_Title2,
-                maxOwnersListLength: StructureConstants.SharedDoorOwnersMax);
+            this.IsInsideFactionClaim = LandClaimSystem.SharedIsWorldObjectOwnedByFaction(worldObjectDoor);
+            if (this.IsInsideFactionClaim)
+            {
+                this.ViewModelFactionAccessEditor = new ViewModelWorldObjectFactionAccessEditorControl(
+                    worldObjectDoor,
+                    canSetAccessMode: true);
+            }
+            else
+            {
+                this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
+                    this.privateState.Owners,
+                    callbackServerSetOwnersList:
+                    ownersList => WorldObjectOwnersSystem.ClientSetOwners(worldObjectDoor,
+                                                                          ownersList),
+                    title: CoreStrings.ObjectOwnersList_Title2,
+                    maxOwnersListLength: StructureConstants.SharedDoorOwnersMax);
 
-            this.ViewModelAccessModeEditor = new ViewModelWorldObjectAccessModeEditor(
-                worldObjectDoor,
-                canSetAccessMode: true);
+                this.ViewModelDirectAccessEditor = new ViewModelWorldObjectDirectAccessEditor(
+                    worldObjectDoor,
+                    canSetAccessMode: true);
+            }
 
             this.privateState.ClientSubscribe(_ => _.IsBlockedByShield,
                                               _ => this.NotifyPropertyChanged(nameof(this.IsBlockedByShield)),
@@ -36,7 +46,11 @@
 
         public bool IsBlockedByShield => this.privateState.IsBlockedByShield;
 
-        public ViewModelWorldObjectAccessModeEditor ViewModelAccessModeEditor { get; }
+        public bool IsInsideFactionClaim { get; set; }
+
+        public ViewModelWorldObjectDirectAccessEditor ViewModelDirectAccessEditor { get; }
+
+        public ViewModelWorldObjectFactionAccessEditorControl ViewModelFactionAccessEditor { get; }
 
         public ViewModelWorldObjectOwnersEditor ViewModelOwnersEditor { get; }
     }

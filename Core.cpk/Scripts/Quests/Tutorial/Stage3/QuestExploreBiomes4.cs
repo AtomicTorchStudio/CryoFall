@@ -22,7 +22,7 @@
                 .Add(TaskVisitTile.Require<TileVolcanic>());
 
             prerequisites
-                .Add<QuestExploreBiomes3>()
+                .Add<QuestFastTravel>()
                 .Add<QuestFishing>();
         }
     }

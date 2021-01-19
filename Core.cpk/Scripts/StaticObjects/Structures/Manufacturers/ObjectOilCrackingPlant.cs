@@ -17,8 +17,8 @@
         public override byte ContainerOutputSlotsCount => 1;
 
         public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 30,
-                                               shutdownPercent: 20);
+            => new(startupPercent: 30,
+                   shutdownPercent: 20);
 
         public override string Description =>
             "This plant enables chemical cracking of mineral oil into lighter hydrocarbons yielding gasoline specifically.";

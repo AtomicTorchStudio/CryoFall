@@ -11,20 +11,22 @@
     [Serializable]
     public class ServerCharacterDamageSourcesStats : IRemoteCallParameter
     {
-        // we store the damage sources for the last two minutes - 12 chunks per 10 seconds
-        private const double ChunkDuration = 10;
+        // we store the damage sources for the last two minutes - 24 chunks per 5 seconds
+        public const double ChunkDuration = 5;
 
-        private const int ChunksCount = 12;
+        public const int ChunksCount = 24;
+
+        public const double MaxStorageDuration = ChunksCount * ChunkDuration;
 
         private static readonly IGameServerService ServerGameService = Api.IsServer
                                                                            ? Api.Server.Game
                                                                            : null;
 
         private static readonly Dictionary<ServerDamageSourceEntry, double> TempRemoteStatsBuilderDictionary
-            = new Dictionary<ServerDamageSourceEntry, double>(capacity: 32);
+            = new(capacity: 32);
 
         private readonly CycledArrayStorage<ServerDamageSourcesStatsChunk> storage
-            = new CycledArrayStorage<ServerDamageSourcesStatsChunk>(length: ChunksCount);
+            = new(length: ChunksCount);
 
         public ServerCharacterDamageSourcesStats()
         {
@@ -35,17 +37,16 @@
             }
         }
 
-        public List<DamageSourceRemoteEntry> BuildRemoteStats(double untilTime)
+        public List<DamageSourceRemoteEntry> BuildRemoteStatsAfter(double timeThreshold)
         {
             var tempDictionary = TempRemoteStatsBuilderDictionary;
             try
             {
-                var timeThreshold = untilTime - ChunkDuration * ChunksCount;
                 foreach (var chunk in this.storage.CurrentEntries)
                 {
                     if (chunk.StartingTime < timeThreshold)
                     {
-                        // too old chunk
+                        // the chunk is too old
                         continue;
                     }
 
@@ -78,8 +79,10 @@
                 foreach (var pair in tempDictionary)
                 {
                     var fraction = pair.Value / totalDamage;
-                    list.Add(new DamageSourceRemoteEntry(pair.Key.ProtoEntity,
-                                                         pair.Key.Name,
+                    var entry = pair.Key;
+                    list.Add(new DamageSourceRemoteEntry(entry.ProtoEntity,
+                                                         entry.Name,
+                                                         entry.ClanTag,
                                                          fraction: (float)fraction));
                 }
 
@@ -89,6 +92,12 @@
             {
                 tempDictionary.Clear();
             }
+        }
+
+        public List<DamageSourceRemoteEntry> BuildRemoteStatsBeforeDeath(double deathTime)
+        {
+            var timeThreshold = deathTime - MaxStorageDuration;
+            return this.BuildRemoteStatsAfter(timeThreshold);
         }
 
         public void ClearStats()
@@ -120,7 +129,7 @@
         private class ServerDamageSourcesStatsChunk : IRemoteCallParameter
         {
             public readonly Dictionary<ServerDamageSourceEntry, double> DictionaryDamageBySource
-                = new Dictionary<ServerDamageSourceEntry, double>(capacity: 6);
+                = new(capacity: 6);
 
             public double StartingTime;
 

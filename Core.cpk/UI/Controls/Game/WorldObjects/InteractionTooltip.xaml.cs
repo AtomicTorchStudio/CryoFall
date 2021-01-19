@@ -63,11 +63,11 @@
             Vector2D positionOffset;
             switch (worldObject)
             {
-                case ICharacter _:
+                case ICharacter:
                     goto default;
 
-                case IStaticWorldObject _:
-                case IDynamicWorldObject _:
+                case IStaticWorldObject:
+                case IDynamicWorldObject:
                     positionOffset = worldObject.ProtoWorldObject.SharedGetObjectCenterWorldOffset(worldObject);
                     break;
 
@@ -94,10 +94,6 @@
             this.CanInteract = canInteract;
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
@@ -109,7 +105,7 @@
                                           if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem,
                                                                               evenIfHandled: true)
                                               || ClientInputManager.IsButtonDown(GameButton.ActionInteract,
-                                                                                 evenIfHandled: true))
+                                                  evenIfHandled: true))
                                           {
                                               HideInternal();
                                           }

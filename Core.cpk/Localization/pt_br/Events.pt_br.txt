@@ -2,12 +2,19 @@
 `A Rainha de Prágmio apareceu na superfície.
 [br]Espólios valiosos aguardam os sobreviventes mais corajosos!`
 
+Scripts/Events/EventBossSandTyrant@Description:
+`O Tirano da Areia apareceu na superfície.
+[br]Espólios valiosos aguardam os sobreviventes mais corajosos!`
+
 Scripts/Events/EventMeteoriteDrop@Description:
 `Caíram meteoritos na área do mapa em destaque.
 [br]Corra para garimpar minerais raros!`
 
 Scripts/Events/EventMigration@Description:
 As formas de vida nativas deste mundo parecem estar migrando para uma área diferente, proporcionando uma grande oportunidade de caça.
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+Um estranho crescimento alienígena surgiu na região das montanhas, impossibilitando a prospecção na região, mas é uma ótima oportunidade de se obter recursos raros.
 
 Scripts/Events/EventSpaceDrop@Description:
 `O lixo espacial caiu na área do mapa em destaque.
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Progresso: {0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+Um cardume de uma espécie rara de peixe, o {0}, apareceu próximo à costa! Aproveite para pegar essa espécie única, encontrada apenas durante o período de desova.
 

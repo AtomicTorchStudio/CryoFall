@@ -59,10 +59,10 @@
 
             if (isUseRequested)
             {
-                var amountToDeduce = config.AmountAutoDecreasePerSecondWhenUse * deltaTime;
-                if (amount >= amountToDeduce)
+                var amountToDeduct = config.AmountAutoDecreasePerSecondWhenUse * deltaTime;
+                if (amount >= amountToDeduct)
                 {
-                    amount -= amountToDeduce;
+                    amount -= amountToDeduct;
                     wasUsed = true;
                 }
                 else if (resetAmountToZeroWhenNotEnoughToUse)

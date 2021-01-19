@@ -15,7 +15,7 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist.Data
             = Api.Client.Rendering;
 
         private static readonly Dictionary<float, RenderingMaterial> RenderingMaterialLockedEntryByOutlineSize
-            = new Dictionary<float, RenderingMaterial>();
+            = new();
 
         public static async Task<ITextureResource> CreateIconForLockedEntry(
             ProceduralTextureRequest request,

@@ -127,6 +127,9 @@ Obus d'artillerie
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Cliquez sur cet objet en maintenant la touche Alt enfoncée pour l'utiliser ou le consommer rapidement.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Vous pouvez modifier le type de munitions de l'arme actuellement sélectionnée avec la touche [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Cliquez sur n'importe quelle structure pour la démonter.
 
@@ -138,6 +141,9 @@ Cliquez sur un puits ou un collecteur d'eau pour le remplir d'eau.
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Cliquez sur n'importe quelle structure pour réparer ou construire.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Cliquez sur un véhicule endommagé pour le réparer.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Cliquez sur n'importe quelle plante de ferme pour l'arroser.
@@ -169,6 +175,9 @@ Placez-la dans un puits ou un collecteur d'eau pour la remplir d'eau propre.
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Les cellules d'alimentation permettent de faire fonctionner différents véhicules.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+Vous pouvez activer l'éclairage ou la vision nocturne en appuyant sur [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 Maintenez [b]Alt[/b] ou [b]Ctrl[/b] enfoncé tout en tirant pour lancer le projectile le plus loin possible dans la direction du pointeur au lieu de viser l'endroit où se trouve le pointeur.
 
@@ -184,6 +193,12 @@ Pour alimenter cet objet, vous devez y connecter une batterie.
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Cette arme ne peut être installée et utilisée que sur un point d'attache [b]{0}[/b] de véhicule.
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Vision nocturne (Gen I)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Vision nocturne (Gen II)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Découper
 
@@ -195,6 +210,9 @@ Boire
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Manger
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Ouvrir
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Lire
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Plus de combustible
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Pour activer l'éclairage du casque, veuillez équiper cet objet et appuyer sur [{0}].
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-bouton non configuré
+Pour activer l'éclairage du casque, veuillez équiper cet objet et appuyer sur \[{0}\].
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 Une armure en os offrant une protection décente compte tenu de son coût, et qui peut s'avérer très utile pour démarrer.
@@ -402,6 +417,12 @@ Armure militaire
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Casque militaire
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Un gilet spécial bourré d'explosifs. Il explose automatiquement après la mort du porteur, par pur désir de vengeance.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+Gilet de vengeance
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Un casque pratique qui offre également une source d'éclairage portative qui vous permet de garder les mains libres. Nécessite des piles.
@@ -520,6 +541,15 @@ Le poisson fraîchement pêché doit être nettoyé avant de pouvoir être cuisi
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Bar
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Gobie noir
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Une forme de vie aquatique à base de pragmium, donc spécifique à ce monde.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Glisseur bleu
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Daurade
 
@@ -532,8 +562,14 @@ Poisson-chat
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Chevesne
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Pomoxis
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Gorette blanche
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Koï
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Maquereau
@@ -561,6 +597,9 @@ Sardine
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Truite
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Thon jaune
 
 Scripts/Items/Food/ItemBanana@Description:
 N'importe quel singe peut atteindre une banane, mais seuls les hommes peuvent atteindre les étoiles.
@@ -717,6 +756,12 @@ Un expresso serré et bien chaud. Octroie un net regain d'énergie pour continue
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Tasse de café
+
+Scripts/Items/Food/ItemCookingOil@Description:
+De l'huile naturelle utilisable en cuisine.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Huile de cuisine
 
 Scripts/Items/Food/ItemCorn@Description:
 Une plante qui donne des céréales très nourrissantes, et qui a souvent été utilisée dans des histoires d'épouvante.
@@ -924,6 +969,24 @@ Le débat fait toujours rage...
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Pizza à l'ananas
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Des pommes de terre sautées, avec un morceau de viande bien tendre.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Viande et pommes de terre sautées
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Des frites tout ce qu'il y a de plus classiques.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Frites
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Cuisson impérative avant consommation.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Pomme de terre
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Peut être mangé tel quel ou être intégré à un plat plus élaboré.
@@ -1183,6 +1246,12 @@ Une pièce de faible valeur. Peut servir à acheter de petits articles dans un d
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Penny
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Une vieille bourse. Peut-être contient-elle encore quelque chose ?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Bourse
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Une pièce de grande valeur. Peut servir à acheter des articles dans un distributeur, ou peut être directement échangée avec d'autres survivants.
 
@@ -1277,6 +1346,12 @@ Une fleur d'Oni rouge. Tire son nom du démon rouge.
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Fleur d'Oni
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Utilisable pour en extraire de l'huile de cuisine, ou bien comme décoration.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Fleur jaune
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 Le flux en poudre est utile en métallurgie pour créer des métaux de haute qualité.
 
@@ -1306,6 +1381,12 @@ Cellule d'alimentation remplie de pragmium liquide. Dure extrêmement longtemps.
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Cellule d'alimentation au pragmium
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Un organe spécifique de créature extraterrestre, utilisé pour le stockage de liquide volatil.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Poche à combustible
 
 Scripts/Items/Generic/ItemFur@Description:
 De la fourrure animale. Utilisable pour fabriquer des vêtements d'hiver bien chauds.
@@ -1343,10 +1424,10 @@ Une topaze jaune scintillante !
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Topaze
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 Une tourmaline violette scintillante !
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Tourmaline
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Quelques brindilles ramassées par terre ou sur un arbre. Utilisables pour fabri
 Scripts/Items/Generic/ItemTwigs@Name:
 Brindilles
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Un étrange organe spongieux ayant appartenu à une forme de vie inconnue. Émet des particules exotiques au fil de sa décomposition.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Cœur de Tyran des sables
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Un actionneur très versatile et puissant utilisant la force magnétique pour ses mouvements.
 
@@ -1853,6 +1940,12 @@ Un cigare bon marché et bricolé rapidement. Stimulant.
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Cigare bon marché
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Des cigarettes de marque, produites sur un monde lointain.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Cigarettes
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Un cigare décent, très aromatique. Stimulant.
 
@@ -1975,6 +2068,12 @@ La Pérédozine permet de réduire les effets négatifs liés à une utilisation
 Scripts/Items/Medical/ItemPeredozin@Name:
 Pérédozine
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+Un plâtre permet d'immobiliser un os cassé, afin de l'aider à se réparer plus rapidement.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Plâtre
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Une substance spéciale neuro-modulante qui aide à limiter les dégâts neuraux liés à une exposition à un champ psi.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Remède végétal
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-Vous n'avez pas d'os cassé. Vous n'avez pas besoin d'utiliser une attelle actuellement.
+Vous ne vous êtes rien cassé. Il ne servirait à rien d'utiliser ceci actuellement.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Pas d'os cassé
@@ -2062,8 +2161,14 @@ Semences de sauge bleue
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Semences de fleur d'Oni
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Semences de fleur jaune
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Graines de melon à lait
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Semences de pomme de terre
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Graines de riz
@@ -2088,6 +2193,12 @@ Pour planter cette pousse, vous devez laisser au moins une case d'espace entre e
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Nécessite
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Contient des enregistrements des coordonnées et des fréquences de navigation de l'un des nombreux sites de téléportation.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Données de site de téléportation
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Cette hache est très efficace pour couper des arbres. Plus rapide et plus durable que la hache en pierre.
@@ -2146,11 +2257,11 @@ Remplissage requis.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 À court de combustible
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-Une fragile hachette en pragmium tirant parti du principe de résonance moléculaire pour considérablement accélérer le travail par rapport aux alternatives conventionnelles.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+Un fragile marteau en pragmium tirant parti du principe de résonance moléculaire pour considérablement accélérer le travail par rapport aux alternatives conventionnelles.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Hachette en pragmium
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+Marteau en pragmium
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 La pioche en fer peut être utilisée pour exploiter les gisements de minerai. Plus rapide et plus durable que la pioche en pierre.
@@ -2175,6 +2286,12 @@ Cet appareil permet d'identifier la présence de larges cristaux de pragmium en 
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Détecteur de pragmium
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Un kit universel de réparation de véhicule.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Kit de réparation de véhicule
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Une boîte à outils est nécessaire pour construire ou réparer toutes vos structures. Vérifiez qu'elle est bien équipée et sélectionnée.
@@ -2262,6 +2379,12 @@ Rapière laser (blanche)
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Rapière laser (jaune)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+Utilise une charge électrique fournie par des piles afin d'étourdir les adversaires.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Matraque électrique
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Une arme à courte portée d'une incroyable puissance. Nécessite de l'énergie pour fonctionner.

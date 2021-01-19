@@ -155,6 +155,192 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 無法拆除
 
+Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
+成員數
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeAlreadySameFactionMember:
+玩家已經屬於你的派系。
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeMemberAnotherFaction:
+玩家已經加入另一派系，無法邀請。
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Date_Format:
+[b]日期:[/b] {0}
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Name_Format:
+[b]創建者:[/b] {0}
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@EditDescription:
+編輯派系描述
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@Recruitment:
+招募
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@SetMemberRole:
+分配成員身份
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
+移除成員
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
+外交管理
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
+代理人
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Recruiter:
+招募官
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Diplomat:
+外交大使
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Treasurer:
+司庫
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Officer:
+管理員
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Manager:
+經理
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Minister:
+部長
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Name:
+派系描述已修改
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Text:
+派系描述已修改。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Name:
+外交狀態已修改
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByOther_Format:
+[b]\[{0}\][/b] 接受了我們的和談提議。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByUs_Format:
+我們接受了來自[b]\[{0}\][/b] 的和談提議。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarByUs_Format:
+我們對[b]\[{0}\][/b] 宣戰了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarOnUs_Format:
+[b]\[{0}\][/b] 對我們宣戰了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceByUs_Format:
+我們終止了與[b]\[{0}\][/b]的同盟。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceWithUs_Format:
+[b]\[{0}\][/b] 終止了與我們的同盟。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarByUs_Format:
+我們與[b]\[{0}\][/b] 不再處於宣戰狀態。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarOnUs_Format:
+[b]\[{0}\][/b] 不再與我們處於宣戰狀態。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualOtherResponded_Format:
+因為我們的宣戰，[b]\[{0}\][/b] 也對我們宣戰了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualWeResponded_Format:
+因為[b]\[{0}\][/b] 對我們宣戰，我們也對他們宣戰了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Name:
+派系基地被掠奪
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Text_Format:
+我們位於{0}的基地被[b]{1}[/b]掠奪。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Name:
+派系已創建
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Text:
+派系已創建。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Name:
+派系升級
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Text_Format:
+派系等級升級至[b]{0}[/b]。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Name:
+派系領地建築已朽壞
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Text_Format:
+位於{0}的派系領地建築已朽壞並將被移除。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Name:
+領導許可權已轉移
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Text_Format:
+派系領導許可權已轉移至[b]{0}[/b]。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Name:
+新成員加入
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Text_Format:
+[b]{0}[/b] 加入了派系。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Name:
+成員退出
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Text_Format:
+[b]{0}[/b] 退出了派系。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Name:
+成員踢出
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Text_Format:
+管理員將[b]{0}[/b]踢出了派系。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@CurrentPlayerRoleChangedText_Format:
+你的派系身份被修改為[b]{0}[/b]。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Name:
+成員身份變更
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Text_Format:
+[b]{0}[/b]的派系身份被修改為[b]{1}[/b]。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@CurrentPlayerAccessRightsChangedText:
+你的派系存取權限變更了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Name:
+派系存取權限變更
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Text_Format:
+[b]{0}[/b] 的派系存取權限變更了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Name:
+身份重命名
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Text_Format:
+身份[b]{0}[/b] 被重命名為[b]{1}[/b]。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Name:
+派系領地變更
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expanded_Format:
+位於{0}的派系領地擴張了。
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
+派系位於{0} 的領地被移除。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
+派系基地財富
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
+派系等級
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
+Boss分數
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
+狩獵分數
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
+總累計知識點
+
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 你的物品欄中缺少魚餌。
 
@@ -245,11 +431,14 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescript
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 新手保護結束于: {0}
 
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CanCancelProtection:
+你可以隨時在社交功能表取消此保護。
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-處於新手保護狀態下時無法攻擊其他玩家或是拾取他們的物品。但是你可以在任意時刻從政治功能表關閉新手保護狀態。
+處於新手保護狀態下時無法攻擊其他玩家或是拾取他們的物品。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-你無法在新手保護狀態下進行此行動。但是你可以在任意時刻從政治功能表關閉新手保護狀態。
+你無法在新手保護狀態下進行此行動。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 此包裹處於新手保護狀態下，只有其所有者可以拾取。
@@ -298,9 +487,6 @@ Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundO
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
 隊伍已滿。
-
-Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
-被邀請人未找到。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
 隊伍已滿。
@@ -382,31 +568,37 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `此伺服器的管理員已將其設置為僅限邀請進入。
 [br]請查看伺服器說明以瞭解其他詳細資訊。`
 
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionCommunity:
+`此伺服器由社區玩家創建，不受本遊戲開發者或發行商管理。
+[br]您可能會因為違反伺服器規則而被踢出或封禁，因此請在遊戲前仔細閱讀伺服器規則，如果遇到問題請聯繫該伺服器的管理員。`
+
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
-此社區服務器已安裝社區模組。我們不保證它能順利運行或為您提供標準的CryoFall遊戲體驗。如果您遇到了任何問題 - 請聯繫該社區服務器的管理員。
+此社區伺服器已安裝社區模組。我們不保證它能順利運行或為您提供標準的CryoFall遊戲體驗。如果您遇到了任何問題 - 請聯繫該社區伺服器的管理員。
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
-`此服務器為PvE（玩家對抗環境）服務器。在此服務器上，玩家不可直接或間接相互攻擊。此服務器致力於和平探索遊戲世界而非玩家衝突。你無法殺死，破壞或攻擊其他玩家及他們的物品。除此之外，此服務器將提供標準的CryoFall遊戲體驗，比如危險生物，科技樹和可探索的世界。開始你的旅行吧。
-[br]如果您想要更加緊張刺激的遊戲體驗 - 請考慮選擇PVP服務器。`
+`此伺服器為PvE（玩家對抗環境）伺服器。在此伺服器上，玩家不可直接或間接相互攻擊。此伺服器致力於和平探索遊戲世界而非玩家衝突。你無法殺死，破壞或攻擊其他玩家及他們的物品。除此之外，此伺服器將提供標準的CryoFall遊戲體驗，比如危險生物，科技樹和可探索的世界。開始你的旅行吧。
+[br]如果您想要更加緊張刺激的遊戲體驗 - 請考慮選擇PVP伺服器。`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
-`這是一個PVP服務器。請記住在PVP服務器上，[b]你將遭遇來自其他玩家的敵對行為[/b]。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。
-[br]如果你希望獲得更加平和的探索體驗，尤其如果這是你第一次進行遊戲，請考慮加入PVE服務器。`
+這是一個PVP伺服器。請記住在PVP伺服器上，你將遭遇來自其他玩家的敵對行為。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。如果你希望獲得更加平和的探索體驗，尤其如果這是你第一次進行遊戲，請考慮加入PVE伺服器。
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionCommunity:
+社區伺服器
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
-PvE服務器
+PvE伺服器
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvP:
-PvP服務器
+PvP伺服器
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderModded:
-模組服務器
+模組伺服器
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWelcomeMessage:
-歡迎信息
+歡迎資訊
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
-抹除數據
+刪檔信息
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 歡迎來到{0}
@@ -498,20 +690,26 @@ Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
 沒有彈藥
 
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
-向所有者開放
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
-向所有者或土地所有者開放
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
-向所有人開放
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
-一直關閉
-
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 你沒有存取權限！
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwners:
+向所有者開放
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwnersOrAreaOwners:
+向所有者或土地所有者開放
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToEveryone:
+向所有人開放
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@Closed:
+一直關閉
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllFactionMembers:
+對所有派系成員開放
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllyFactionMembers:
+對同盟派系成員開放
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
 可訪問列表超過限制。
@@ -524,9 +722,6 @@ Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
 您無法從所有者列表中刪除自己。請讓其他玩家這樣做。
-
-Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
-找不到名為[b]{0}[/b]的玩家。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
 你不是所有者。

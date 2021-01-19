@@ -26,11 +26,11 @@
             = "Party invitation";
 
         private static readonly TextureResource IconPartyInvitation
-            = new TextureResource("Icons/IconPartyInvitation");
+            = new("Icons/IconPartyInvitation");
 
         private static readonly Dictionary<string, WeakReference<HudNotificationControl>>
             NotificationsFromInviteeDictionary
-                = new Dictionary<string, WeakReference<HudNotificationControl>>(StringComparer.Ordinal);
+                = new(StringComparer.Ordinal);
 
         public override string Name => "Party invitations (client) system";
 

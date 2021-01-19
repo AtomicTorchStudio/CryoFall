@@ -20,7 +20,7 @@
         public const string NotificationItemsDropped_Title = "Your items were dropped";
 
         private static readonly Dictionary<DroppedLootInfo, HudNotificationControl> Notifications
-            = new Dictionary<DroppedLootInfo, HudNotificationControl>();
+            = new();
 
         private static NetworkSyncList<DroppedLootInfo> droppedItemsLocations;
 

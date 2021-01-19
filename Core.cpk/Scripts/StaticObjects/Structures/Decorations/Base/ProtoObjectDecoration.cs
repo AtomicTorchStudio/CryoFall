@@ -2,7 +2,17 @@
 {
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
 
-    public abstract class ProtoObjectDecoration : ProtoObjectStructure
+    public abstract class ProtoObjectDecoration
+        <TPrivateState,
+         TPublicState,
+         TClientState>
+        : ProtoObjectStructure
+            <TPrivateState,
+                TPublicState,
+                TClientState>
+        where TPrivateState : StructurePrivateState, new()
+        where TPublicState : StaticObjectPublicState, new()
+        where TClientState : StaticObjectClientState, new()
     {
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
@@ -27,5 +37,13 @@
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
             ConstructionStageConfig repair);
+    }
+
+    public abstract class ProtoObjectDecoration
+        : ProtoObjectDecoration<
+            StructurePrivateState,
+            StaticObjectPublicState,
+            StaticObjectClientState>
+    {
     }
 }

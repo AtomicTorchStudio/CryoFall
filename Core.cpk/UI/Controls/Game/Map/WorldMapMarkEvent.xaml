@@ -10,13 +10,22 @@
     d:DesignHeight="300" d:DesignWidth="300">
 
     <base:BaseUserControl.Resources>
-        <Storyboard x:Key="StoryboardAnimation"
-                    AutoReverse="False"
-                    RepeatBehavior="Forever"
-                    Duration="0:1:00">
+        <Storyboard x:Key="StoryboardAnimationEllipseInnerBackground"
+                    AutoReverse="True"
+                    RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                Storyboard.TargetName="Ellipse">
+                Storyboard.TargetName="EllipseInnerBackground"
+                Storyboard.TargetProperty="(Ellipse.Fill).(RadialGradientBrush.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.667" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryboardAnimationEllipseOuterStroke"
+                    AutoReverse="False"
+                    RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="EllipseOuterStroke"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                 <EasingDoubleKeyFrame KeyTime="0:1:00" Value="360" />
             </DoubleAnimationUsingKeyFrames>
@@ -25,7 +34,8 @@
 
     <base:BaseUserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource StoryboardAnimation}" />
+            <BeginStoryboard Storyboard="{StaticResource StoryboardAnimationEllipseOuterStroke}" />
+            <BeginStoryboard Storyboard="{StaticResource StoryboardAnimationEllipseInnerBackground}" />
         </EventTrigger>
     </base:BaseUserControl.Triggers>
 
@@ -34,30 +44,31 @@
         <Ellipse Stretch="Fill"
                  RenderTransformOrigin="0.5,0.5"
                  Stroke="Transparent"
-                 StrokeThickness="4"
+                 StrokeThickness="5"
                  Margin="1"
                  Fill="#20000000" />
 
-        <!-- Inner static ellipse (to outer stroke is done as a separate ellipse) -->
-        <Ellipse Stretch="Fill"
+        <!-- Inner static ellipse -->
+        <Ellipse x:Name="EllipseInnerBackground"
+                 Stretch="Fill"
                  RenderTransformOrigin="0.5,0.5"
                  Stroke="Transparent"
-                 StrokeThickness="4"
+                 StrokeThickness="5"
                  Margin="1">
             <Ellipse.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="{Binding EllipseColorStart, ElementName=UserControl}" Offset="0" />
+                <RadialGradientBrush Opacity="1">
+                    <GradientStop Color="{Binding EllipseColorStart, ElementName=UserControl}" Offset="0.333" />
                     <GradientStop Color="{Binding EllipseColorEnd, ElementName=UserControl}" Offset="1" />
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
 
         <!-- Rotating ellipse with outer stroke -->
-        <Ellipse x:Name="Ellipse"
+        <Ellipse x:Name="EllipseOuterStroke"
                  Stretch="Fill"
                  RenderTransformOrigin="0.5,0.5"
-                 StrokeThickness="4"
-                 StrokeDashArray="1.5,1.5">
+                 StrokeThickness="5"
+                 StrokeDashArray="2,2">
             <Ellipse.Stroke>
                 <SolidColorBrush Color="{Binding EllipseColorStroke, ElementName=UserControl}" />
             </Ellipse.Stroke>

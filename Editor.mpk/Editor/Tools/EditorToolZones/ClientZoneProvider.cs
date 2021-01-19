@@ -15,8 +15,8 @@
 
         private static readonly IQuadTreeNode[] EmptyNodes = new IQuadTreeNode[0];
 
-        private static readonly Dictionary<IProtoZone, ClientZoneProvider> Providers =
-            new Dictionary<IProtoZone, ClientZoneProvider>();
+        private static readonly Dictionary<IProtoZone, ClientZoneProvider> Providers
+            = new();
 
         public readonly IProtoZone ProtoZone;
 
@@ -47,6 +47,8 @@
 
         public event Action ZoneReset;
 
+        public static IEnumerable<ClientZoneProvider> AllProviders => Providers.Values;
+
         public bool IsDataReceived => this.quadTree is not null;
 
         public static ClientZoneProvider Get(IProtoZone protoZone)
@@ -76,7 +78,7 @@
             }
 
             var redo = false;
-            EditorClientSystem.DoAction(
+            EditorClientActionsHistorySystem.DoAction(
                 "Modify zone " + this.ProtoZone.Id,
                 onDo: () =>
                       {
@@ -94,7 +96,8 @@
                             var diffRedo = diffDo.ReverseDiff();
                             this.quadTree.ApplyDiff(diffRedo);
                             OnDiffApplied(diffRedo);
-                        });
+                        },
+                canGroupWithPreviousAction: true);
 
             // helper local function
             void OnDiffApplied(QuadTreeDiff appliedDiff)

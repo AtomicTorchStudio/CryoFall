@@ -41,7 +41,7 @@
                 <Setter Property="FontSize" Value="11" />
                 <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                 <Setter Property="TextWrapping" Value="Wrap" />
-                <Setter Property="Foreground" Value="#FFCCCCCC" />
+                <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
             </Style>
 
             <data:DateToStringConverter x:Key="DateToStringConverter" />
@@ -96,7 +96,8 @@
                     <Rectangle Grid.Column="0"
                                Width="{StaticResource ServerIconSize}"
                                Height="{StaticResource ServerIconSize}"
-                               Fill="{Binding Icon}" />
+                               Fill="{Binding Icon}"
+                               UseLayoutRounding="True" />
 
                     <Grid Grid.Column="1"
                           Margin="5,0,5,0"
@@ -120,7 +121,7 @@
                             <!-- In order to save some space, don't display this tag -->
                             <!-- <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}" -->
                             <!--          Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" /> -->
-                            
+
                             <!-- In order to save some space, don't display this tag -->
                             <!-- <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}" -->
                             <!--          Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" /> -->
@@ -130,7 +131,7 @@
 
                             <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
                                      Visibility="{Binding IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
-                            
+
                             <Control Template="{StaticResource BlockNoClientModsMultiplayerServerTemplate}"
                                      Visibility="{Binding IsNoClientModsAllowed, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </StackPanel>
@@ -221,7 +222,8 @@
                 <!-- Text: News -->
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_News}"
                            Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
-                <Control Grid.Row="1" Template="{StaticResource MainMenuWidgetLineTemplate}" />
+                <Control Grid.Row="1"
+                         Style="{StaticResource MainMenuWidgetLineStyle}" />
                 <ScrollViewer Grid.Row="2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible"
                               Margin="0,3,-2,0">
                     <ItemsControl ItemsSource="{Binding NewsItemsList}" Background="Transparent" Margin="0,-5,0,0">
@@ -230,12 +232,21 @@
                                 <StackPanel Orientation="Vertical"
                                             d:DataContext="{d:DesignInstance servicesClient:RssFeedEntry}"
                                             Margin="0,5,0,5">
-                                    <core:HyperlinkControl Content="{Binding Title}" FontSize="17" Url="{Binding Url}"
-                                                           Foreground="White" />
+                                    <core:HyperlinkControl
+                                        FontSize="17"
+                                        Url="{Binding Url}"
+                                        Foreground="{StaticResource BrushColorLabelForeground}">
+                                        <core:HyperlinkControl.Content>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding Title}"
+                                                           TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Margin="0,-1,0,0"
+                                                           Text="{Binding Date, Converter={StaticResource DateToStringConverter}}"
+                                                           Style="{StaticResource DateTextBlockStyle}" />
+                                            </StackPanel>
+                                        </core:HyperlinkControl.Content>
+                                    </core:HyperlinkControl>
 
-                                    <TextBlock Margin="0,-1,0,0"
-                                               Text="{Binding Date, Converter={StaticResource DateToStringConverter}}"
-                                               Style="{StaticResource DateTextBlockStyle}" />
 
                                     <!-- Commented out as Steam RSS doesn't provide proper short description -->
                                     <!--<TextBlock Text="{Binding Description}"
@@ -265,7 +276,8 @@
                 <!-- Text: Forums -->
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_Forums}"
                            Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
-                <Control Grid.Row="1" Template="{StaticResource MainMenuWidgetLineTemplate}" />
+                <Control Grid.Row="1"
+                         Style="{StaticResource MainMenuWidgetLineStyle}" />
 
                 <ScrollViewer Grid.Row="2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible"
                               Margin="0,3,-2,0">
@@ -275,12 +287,14 @@
                                 <StackPanel Orientation="Vertical"
                                             d:DataContext="{d:DesignInstance servicesClient:RssFeedEntry}"
                                             Margin="0,3,0,3">
-                                    <core:HyperlinkControl Url="{Binding Url}" Foreground="White">
+                                    <core:HyperlinkControl Url="{Binding Url}"
+                                                           Foreground="{StaticResource BrushColorLabelForeground}">
                                         <core:HyperlinkControl.Content>
                                             <StackPanel Orientation="Vertical">
-                                                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis"
+                                                <TextBlock Text="{Binding Title}"
+                                                           TextTrimming="CharacterEllipsis"
                                                            FontSize="14" />
-                                                <StackPanel Orientation="Horizontal" Margin="1,-2,0,0">
+                                                <StackPanel Orientation="Horizontal" Margin="1,0,0,0">
                                                     <TextBlock Style="{StaticResource DateTextBlockStyle}"
                                                                FontSize="10">
                                                         <TextBlock.Text>
@@ -343,6 +357,7 @@
             <TextBlock Text="{Binding UpdateTitle}"
                        FontSize="35" />
             <TextBlock Text="{Binding UpdateReleaseDateText}"
+                       Foreground="{StaticResource BrushColorAlt7}"
                        FontSize="22"
                        Margin="0,-5,0,0" />
         </StackPanel>
@@ -352,12 +367,12 @@
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="3"
                     VerticalAlignment="Bottom"
-                    Opacity="0.75"
                     Margin="20"
-                    Orientation="Vertical">
+                    Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
                     <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                     <Setter Property="FontSize" Value="16" />
                     <Setter Property="FontWeight" Value="Bold" />
@@ -365,9 +380,9 @@
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect BlurRadius="4"
-                                              ShadowDepth="2"
+                                              ShadowDepth="3"
                                               Direction="-45"
-                                              Opacity="0.75"
+                                              Opacity="1"
                                               Color="Black" />
                         </Setter.Value>
                     </Setter>
@@ -377,7 +392,7 @@
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect BlurRadius="4"
-                                              ShadowDepth="2"
+                                              ShadowDepth="3"
                                               Direction="-45"
                                               Opacity="0.75"
                                               Color="Black" />
@@ -385,6 +400,7 @@
                     </Setter>
                 </Style>
             </StackPanel.Resources>
+
             <core:HyperlinkControl Command="{Binding CommandShowFeaturesSlideshow}"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_FeaturesTooltip}">
                 <StackPanel Orientation="Horizontal"
@@ -398,7 +414,7 @@
             </core:HyperlinkControl>
 
             <core:HyperlinkControl Url="https://trello.com/b/B5ckffAW"
-                                   Margin="0,10,0,0"
+                                   Margin="15,0,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_RoadmapTooltip}">
                 <StackPanel Orientation="Horizontal"
                             Background="Transparent">
@@ -411,7 +427,7 @@
             </core:HyperlinkControl>
 
             <core:HyperlinkControl Url="http://forums.atomictorch.com/index.php?board=2.0"
-                                   Margin="0,10,0,0"
+                                   Margin="15,0,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_PatchnotesTooltip}">
                 <StackPanel Orientation="Horizontal"
                             Background="Transparent">
@@ -424,7 +440,7 @@
             </core:HyperlinkControl>
 
             <core:HyperlinkControl Url="https://discord.gg/pRMGjRz"
-                                   Margin="0,10,0,0"
+                                   Margin="15,0,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_DiscordTooltip}">
                 <StackPanel Orientation="Horizontal"
                             Background="Transparent">
@@ -455,7 +471,7 @@
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_RecentServers}"
                            Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
                 <Control Grid.Row="1"
-                         Template="{StaticResource MainMenuWidgetLineTemplate}" />
+                         Style="{StaticResource MainMenuWidgetLineStyle}" />
                 <Control Grid.Row="2"
                          DataContext="{Binding HistoryServers}"
                          Template="{StaticResource HistoryServersListDataTemplate}"
@@ -474,7 +490,8 @@
                 <!-- Text: Social -->
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_Social}"
                            Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
-                <Control Grid.Row="1" Template="{StaticResource MainMenuWidgetLineTemplate}" />
+                <Control Grid.Row="1"
+                         Style="{StaticResource MainMenuWidgetLineStyle}" />
 
                 <Grid Grid.Row="2" VerticalAlignment="Stretch" Margin="0,5,0,2">
                     <Grid.Resources>

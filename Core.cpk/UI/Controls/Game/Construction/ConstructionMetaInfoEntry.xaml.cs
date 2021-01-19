@@ -24,10 +24,6 @@
                                         typeof(ConstructionMetaInfoEntry),
                                         new PropertyMetadata(default(string)));
 
-        public ConstructionMetaInfoEntry()
-        {
-        }
-
         public Brush IconFill
         {
             get => (Brush)this.GetValue(IconFillProperty);
@@ -44,10 +40,6 @@
         {
             get => (string)this.GetValue(TextProperty);
             set => this.SetValue(TextProperty, value);
-        }
-
-        protected override void InitControl()
-        {
         }
     }
 }

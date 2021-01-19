@@ -1,4 +1,13 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
+,
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
+i {0}
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_TwoEntries_Format:
+{0} i {1}
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
 < 1 m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
@@ -12,6 +21,9 @@ m
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 s
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ClientHasModifiedCore:
+Używasz klienta gry ze zmodyfikowanym lub rozpakowanym plikiem Core.cpk – nie jest to dozwolone na tym serwerze gry. Ponownie zainstaluj grę.
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `Niezgodna wersja sieciowa.

@@ -4,6 +4,12 @@ Ayı
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Kara böcek
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Pragmium Kraliçesi
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Kum Tiranı
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Tünelci
 
@@ -37,8 +43,8 @@ Karıncayiyen
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Pragmium böceği
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Pragmium Kraliçesi
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+Psişik Ağaç
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Salyangoz
@@ -55,8 +61,14 @@ Kahverengi yılan
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Yeşil yılan
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Tükürücü
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Deniz yıldızı
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Çarpıcı
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Tropik yaban domuzu

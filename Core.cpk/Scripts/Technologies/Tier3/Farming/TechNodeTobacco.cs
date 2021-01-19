@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeSeedsTobacco>();
 
-            config.SetRequiredNode<TechNodeSpices>();
+            config.SetRequiredNode<TechNodeHygroscopicGranules>();
         }
     }
 }

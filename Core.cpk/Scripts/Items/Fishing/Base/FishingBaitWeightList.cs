@@ -7,7 +7,7 @@
     public class FishingBaitWeightList
     {
         private readonly List<ValueWithWeight<IProtoItemFishingBait>> entries
-            = new List<ValueWithWeight<IProtoItemFishingBait>>();
+            = new();
 
         public FishingBaitWeightList Add<TProtoItemFishingBait>(double weight)
             where TProtoItemFishingBait : class, IProtoItemFishingBait, new()
@@ -24,7 +24,7 @@
 
         public FishingBaitWeightReadOnlyList ToReadOnly()
         {
-            return new FishingBaitWeightReadOnlyList(this.entries.ToArray());
+            return new(this.entries.ToArray());
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations
 {
     using System.ComponentModel;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum TradingResult : byte
     {
         Success = 0,
@@ -34,6 +36,6 @@
         ErrorNotEnoughSpaceOnPlayerForPurchasedItem = 50,
 
         [Description("Not enough space on station to store the item you want to sell.")]
-        ErrorNotEnoughSpaceOnStationForSoldItem = 55,
+        ErrorNotEnoughSpaceOnStationForSoldItem = 55
     }
 }

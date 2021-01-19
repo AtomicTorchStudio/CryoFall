@@ -213,19 +213,21 @@
         public Brush StatusTextBrush { get; private set; }
 
         private static Brush GetStatusTextBrush(ShieldProtectionStatus status)
-            => status switch
+        {
+            return status switch
             {
                 ShieldProtectionStatus.Inactive   => StatusTextBrushRed,
                 ShieldProtectionStatus.Activating => StatusTextBrushYellow,
                 ShieldProtectionStatus.Active     => StatusTextBrushGreen,
                 _                                 => throw new ArgumentOutOfRangeException(nameof(status), status, null)
             };
+        }
 
         private double EstimateDuration(double charge)
         {
             return LandClaimShieldProtectionSystem.SharedCalculateShieldEstimatedDuration(charge,
-                                                                                          this.durationMax,
-                                                                                          this.ElectricityCapacity);
+                this.durationMax,
+                this.ElectricityCapacity);
         }
 
         private void ExecuteCommandActivateShield()
@@ -319,7 +321,11 @@
                 this.ActivationTimeRemainsText = null;
             }
 
-            var remainingCooldown = LandClaimShieldProtectionSystem.SharedCalculateCooldownRemains(this.areasGroup);
+            var remainingCooldown = this.areasGroup.ClientHasPrivateState
+                                        ? LandClaimShieldProtectionSystem.SharedCalculateCooldownRemains(
+                                            this.areasGroup)
+                                        : 0;
+
             if (this.shieldStatus == ShieldProtectionStatus.Inactive
                 && remainingCooldown > 0)
             {

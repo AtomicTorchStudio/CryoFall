@@ -13,7 +13,7 @@
     public class ObjectDepositOilSeep : ProtoObjectDeposit
     {
         private static readonly SoundResource SoundResourceActive
-            = new SoundResource("Objects/Deposits/ObjectOilSeep/Active");
+            = new("Objects/Deposits/ObjectOilSeep/Active");
 
         private TextureResource texture1;
 

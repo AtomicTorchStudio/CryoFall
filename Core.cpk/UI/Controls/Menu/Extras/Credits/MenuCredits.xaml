@@ -100,6 +100,9 @@
                 <TextBlock Style="{StaticResource Title}">Music</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Konstantin Glazunov</TextBlock>
 
+                <TextBlock Style="{StaticResource Title}">Lead QA, Community Management</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Nikita Gukov</TextBlock>
+
                 <TextBlock Style="{StaticResource Title}">VFX, alpha trailer</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Konstantin Lapenko</TextBlock>
 
@@ -214,7 +217,7 @@
                            FontSize="11"
                            LineHeight="12.5"
                            Margin="0,5,0,0">
-                    Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, AkvoMaster, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth,
+                    Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth,
                     <LineBreak />David Parfitt aka Daitallica, Kane&#160;Hart, IndignoPlay,
                     <LineBreak />Djekke, Kawasoe, PanBanan, KaypeX
                     <LineBreak />Adrian, Robin and Mathias of toneworx GmbH
@@ -234,7 +237,7 @@
                 <TextBlock Style="{StaticResource Title}">AtomicSerializer</TextBlock>
                 <TextBlock Style="{StaticResource Name}">AtomicTorch Studio's serialization library</TextBlock>
 
-                <TextBlock Style="{StaticResource Title}">.NET Framework &amp; .NET Core</TextBlock>
+                <TextBlock Style="{StaticResource Title}">.NET Core</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Software framework</TextBlock>
 
                 <TextBlock Style="{StaticResource Title}">NoesisGUI</TextBlock>
@@ -243,8 +246,8 @@
                 <TextBlock Style="{StaticResource Title}">MonoGame</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Game framework</TextBlock>
 
-                <TextBlock Style="{StaticResource Title}">Lidgren Network</TextBlock>
-                <TextBlock Style="{StaticResource Name}">Networking library</TextBlock>
+                <TextBlock Style="{StaticResource Title}">LiteNetLib</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Reliable UDP network library</TextBlock>
 
                 <TextBlock Style="{StaticResource Title}">FMOD Sound System</TextBlock>
                 <TextBlock Style="{StaticResource Name}">by Firelight Technologies Pty Ltd</TextBlock>
@@ -257,6 +260,9 @@
 
                 <TextBlock Style="{StaticResource Title}">SharpDX</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Open-source .NET wrapper of the DirectX API</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Facepunch.Steamworks</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Open-source .NET wrapper of the Steam API</TextBlock>
 
                 <TextBlock Style="{StaticResource Title}">Fonts</TextBlock>
                 <TextBlock Style="{StaticResource Name}"

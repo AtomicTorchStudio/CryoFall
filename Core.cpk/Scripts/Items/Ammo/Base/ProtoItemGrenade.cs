@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
@@ -31,13 +30,13 @@
 
         public ExplosionPreset ExplosionPreset { get; private set; }
 
-        public virtual float ExplosionVolume => 0.5f;
-
         public abstract double FireRangeMax { get; }
 
         public double StructureDamage { get; private set; }
 
         public double StructureDefensePenetrationCoef { get; private set; }
+
+        public virtual float VolumeExplosion => 0.5f;
 
         public sealed override void ClientOnMiss(WeaponFinalCache weaponCache, Vector2D endPosition)
         {
@@ -68,8 +67,8 @@
             explosiveDefensePenetrationCoef = MathHelper.Clamp(explosiveDefensePenetrationCoef, 0, 1);
 
             if (!PveSystem.SharedIsAllowStaticObjectDamage(byCharacter,
-                                                        targetStaticWorldObject,
-                                                        showClientNotification: false))
+                                                           targetStaticWorldObject,
+                                                           showClientNotification: false))
             {
                 return 0;
             }
@@ -193,7 +192,7 @@
                 isDamageThroughObstacles: false,
                 callbackCalculateDamageCoefByDistanceForStaticObjects: CalcDamageCoefByDistance,
                 callbackCalculateDamageCoefByDistanceForDynamicObjects: CalcDamageCoefByDistance,
-                collisionGroup: CollisionGroups.HitboxRanged);
+                collisionGroups: new[] { CollisionGroups.HitboxRanged, CollisionGroup.Default });
 
             double CalcDamageCoefByDistance(double distance)
             {
@@ -237,7 +236,7 @@
             {
                 null                                   => hitData.FallbackTilePosition.ToVector2D(), // tile hit
                 IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
-                _                                      => damagedObject.TilePosition.ToVector2D(),
+                _                                      => damagedObject.TilePosition.ToVector2D()
             };
 
             return explosionWorldPosition + hitData.HitPoint;
@@ -267,9 +266,9 @@
                                                                                explosionWorldPosition);
 
             ClientTimersSystem.AddAction(timeToHit,
-                                         () => ExplosionHelper.ClientExplode(explosionWorldPosition,
-                                                                             this.ExplosionPreset,
-                                                                             this.ExplosionVolume));
+                                         () => SharedExplosionHelper.ClientExplode(explosionWorldPosition,
+                                             this.ExplosionPreset,
+                                             this.VolumeExplosion));
         }
 
         private void ClientRemote_OnExplosion(
@@ -322,7 +321,7 @@
                     timeToHit,
                     () =>
                     {
-                        ExplosionHelper.ServerExplode(
+                        SharedExplosionHelper.ServerExplode(
                             character: character,
                             protoExplosive: this,
                             protoWeapon: protoWeapon,

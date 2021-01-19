@@ -73,7 +73,11 @@
                                  .IsFishBiting)
             {
                 // fish baiting, request pulling
-                FishingSystem.ClientPullFish(this.SharedFishingSession);
+                FishingSystem.ClientPullFish();
+                // it's no longer possible to abort this action
+                this.clientIsAbortSent = true;
+                return;
+
                 // Alas we don't know what the fish was caught yet
                 // so the game cannot stop action immediately and display a pulling animation.
                 // (Please note that players with high ping are not penalized for having
@@ -165,10 +169,23 @@
                 return;
             }
 
-            if (this.SharedFishingSession is not null
-                && this.SharedFishingSession.IsDestroyed)
+            if (Api.IsServer)
             {
-                this.Complete();
+                // the fishing session cannot be null on the server side
+                if (this.SharedFishingSession is null
+                    || this.SharedFishingSession.IsDestroyed)
+                {
+                    this.Complete();
+                }
+            }
+            else
+            {
+                // the fishing session is null on the client side until it's received from the server side
+                if (this.SharedFishingSession is not null
+                    && this.SharedFishingSession.IsDestroyed)
+                {
+                    this.Complete();
+                }
             }
         }
 

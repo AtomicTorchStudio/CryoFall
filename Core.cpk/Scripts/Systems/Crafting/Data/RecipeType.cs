@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum RecipeType : byte
     {
         /// <summary>

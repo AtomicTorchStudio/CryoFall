@@ -47,7 +47,7 @@
                             <Ellipse
                                 Width="12"
                                 Height="12"
-                                Stroke="{StaticResource BrushColor4}"
+                                Stroke="{StaticResource BrushColor5}"
                                 StrokeThickness="1" />
 
                             <Ellipse
@@ -56,7 +56,7 @@
                                 Height="8"
                                 Canvas.Top="2"
                                 Canvas.Left="2"
-                                Fill="{StaticResource BrushColor5}" />
+                                Fill="{StaticResource BrushColor6}" />
                         </Canvas>
 
                         <Rectangle Grid.Column="2"
@@ -64,6 +64,7 @@
                                    Visibility="{Binding HasIcon, Converter={StaticResource BoolToVisibilityConverter}}"
                                    Width="48"
                                    Height="48"
+                                   UseLayoutRounding="True"
                                    Margin="3,0,0,0"
                                    HorizontalAlignment="Left" />
 
@@ -81,14 +82,14 @@
                                                         <ColorAnimationUsingKeyFrames
                                                             Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
                                                             <EasingColorKeyFrame KeyTime="0"
-                                                                                 Value="{StaticResource Color6}" />
+                                                                Value="{StaticResource Color6}" />
                                                             <EasingColorKeyFrame KeyTime="0:0:0.15" Value="White">
                                                                 <EasingColorKeyFrame.EasingFunction>
                                                                     <QuadraticEase EasingMode="EaseInOut" />
                                                                 </EasingColorKeyFrame.EasingFunction>
                                                             </EasingColorKeyFrame>
                                                             <EasingColorKeyFrame KeyTime="0:0:1.1"
-                                                                                 Value="{StaticResource Color6}" />
+                                                                Value="{StaticResource Color6}" />
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
                                                 </BeginStoryboard>

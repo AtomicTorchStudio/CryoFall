@@ -64,8 +64,7 @@
         private const int ServerSpawnNodesMaxCountPerIteration = 1; // spawn at max 1 nodes per iteration
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckNoPragmiumSourceNearbyOnPvE
-            = new ConstructionTileRequirements.Validator(
-                ErrorCannotBuild_PragmiumSourceTooCloseOnPvE,
+            = new(ErrorCannotBuild_PragmiumSourceTooCloseOnPvE,
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
@@ -108,15 +107,13 @@
                 });
 
         private static readonly Lazy<IProtoCharacter> LazyProtoMob
-            = new Lazy<IProtoCharacter>(
-                GetProtoEntity<MobPragmiumBeetle>);
+            = new(GetProtoEntity<MobPragmiumBeetle>);
 
         private static readonly double LifetimeTotalDurationSeconds
             = TimeSpan.FromHours(12).TotalSeconds;
 
         private static readonly Lazy<ObjectMineralPragmiumNode> ProtoNodeLazy
-            = new Lazy<ObjectMineralPragmiumNode>(
-                GetProtoEntity<ObjectMineralPragmiumNode>);
+            = new(GetProtoEntity<ObjectMineralPragmiumNode>);
 
         public override bool IsAllowDroneMining => false;
 
@@ -138,10 +135,10 @@
         public override float StructurePointsMax => 5000;
 
         // has light source
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -6,
-                                                                       minY: -2,
-                                                                       maxX: 6,
-                                                                       maxY: 4);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -6,
+                                                             minY: -2,
+                                                             maxX: 6,
+                                                             maxY: 4);
 
         public static bool ServerTryClaimPragmiumClusterNearCharacter(ICharacter character)
         {
@@ -229,7 +226,7 @@
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
-            return new Vector2D(1, 2.2);
+            return new(1, 2.2);
         }
 
         public override bool SharedOnDamage(
@@ -658,7 +655,7 @@
         public class PrivateState : BasePrivateState
         {
             [TempOnly]
-            public List<ICharacter> MobsList { get; } = new List<ICharacter>();
+            public List<ICharacter> MobsList { get; } = new();
         }
 
         public class PublicState : StaticObjectPublicState

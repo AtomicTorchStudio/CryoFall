@@ -25,7 +25,7 @@
 
         private ViewModelHUDMiniMap viewModel;
 
-        private IWorldMapVisualizer[] visualisers;
+        private BaseWorldMapVisualizer[] visualizers;
 
         private WorldMapControllerMiniMap worldMapController;
 
@@ -38,28 +38,26 @@
         protected override void InitControl()
         {
             this.panningPanel = this.GetByName<PanningPanel>("PanningPanel");
-            var controlTemplatePlayerMark = this.GetResource<ControlTemplate>("PlayerMarkControlTemplate");
-            
-            var viewModelControlWorldMap = new ViewModelControlWorldMap();
-            this.worldMapController = new WorldMapControllerMiniMap(
-                this.panningPanel,
-                viewModelControlWorldMap,
-                isPlayerMarkDisplayed: true,
-                isCurrentCameraViewDisplayed: true,
-                isListeningToInput: false,
-                paddingChunks: 1,
-                // map area size will be changed later anyway
-                mapAreaSize: (100, 100),
-                controlTemplatePlayerMark);
-            this.ViewModelControlWorldMap = viewModelControlWorldMap;
+            this.ViewModelControlWorldMap = new ViewModelControlWorldMap();
         }
 
         protected override void OnLoaded()
         {
-            var controller = this.worldMapController;
+            var controller = new WorldMapControllerMiniMap(
+                this.panningPanel,
+                this.ViewModelControlWorldMap,
+                isPlayerMarkDisplayed: true,
+                isCurrentCameraViewDisplayed: true,
+                isListeningToInput: false,
+                paddingChunks: 10,
+                // map area size will be changed later anyway
+                mapAreaSize: (100, 100),
+                sectorProvider: WorldMapSectorProviderHelper.GetProvider(isEditor: false),
+                customControlTemplatePlayerMark: this.GetResource<ControlTemplate>("PlayerMarkControlTemplate"));
 
+            this.worldMapController = controller;
             var landClaimGroupVisualizer = new ClientWorldMapLandClaimsGroupVisualizer(controller);
-            this.visualisers = new IWorldMapVisualizer[]
+            this.visualizers = new BaseWorldMapVisualizer[]
             {
                 landClaimGroupVisualizer,
                 new ClientWorldMapLandClaimVisualizer(controller, landClaimGroupVisualizer),
@@ -67,14 +65,15 @@
                 new ClientWorldMapDroppedItemsVisualizer(controller),
                 new ClientWorldMapTradingTerminalsVisualizer(controller),
                 new ClientWorldMapResourcesVisualizer(controller, enableNotifications: false),
-                new ClientWorldMapEventVisualizer(controller, enableNotifications: false),
-                new ClientWorldMapPartyMembersVisualizer(controller),
-                new ClientWorldMapLastVehicleVisualizer(controller)
+                new ClientWorldMapEventVisualizer(controller),
+                new ClientWorldMapMembersVisualizer(controller),
+                new ClientWorldMapLastVehicleVisualizer(controller),
+                new ClientWorldMapTeleportsVisualizer(controller, isActiveMode: false)
             };
 
-            foreach (var visualiser in this.visualisers)
+            foreach (var visualizer in this.visualizers)
             {
-                visualiser.IsEnabled = true;
+                visualizer.IsEnabled = true;
             }
 
             this.viewModel = new ViewModelHUDMiniMap(this,
@@ -86,6 +85,7 @@
             controller.CenterMapOnPlayerCharacter(resetZoomIfBelowThreshold: false);
 
             this.MouseWheel += this.MouseWheelHandler;
+            ClientUpdateHelper.UpdateCallback += this.Update;
         }
 
         protected override void OnUnloaded()
@@ -94,13 +94,14 @@
             this.viewModel?.Dispose();
             this.viewModel = null;
 
-            this.worldMapController.IsActive = false;
+            this.worldMapController.Dispose();
+            this.worldMapController = null;
 
-            foreach (var visualiser in this.visualisers)
+            foreach (var visualizer in this.visualizers)
             {
                 try
                 {
-                    visualiser.Dispose();
+                    visualizer.Dispose();
                 }
                 catch (Exception ex)
                 {
@@ -108,9 +109,10 @@
                 }
             }
 
-            this.visualisers = Array.Empty<IWorldMapVisualizer>();
+            this.visualizers = Array.Empty<BaseWorldMapVisualizer>();
 
             this.MouseWheel -= this.MouseWheelHandler;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
         }
 
         private void MouseWheelHandler(object sender, MouseWheelEventArgs e)
@@ -144,10 +146,33 @@
             var isActive = this.viewModel.IsMapVisible;
             this.worldMapController.IsActive = isActive;
 
-            foreach (var visualiser in this.visualisers)
+            foreach (var visualizer in this.visualizers)
             {
-                visualiser.IsEnabled = isActive;
+                visualizer.IsEnabled = isActive;
             }
+
+            this.worldMapController.CenterMapOnPlayerCharacter(resetZoomIfBelowThreshold: false);
+        }
+
+        private void Update()
+        {
+            if (!this.viewModel.IsMouseOverIncludingHidden)
+            {
+                return;
+            }
+
+            var delta = -100 * Api.Client.Input.MouseScrollDeltaValue;
+            if (delta == 0)
+            {
+                return;
+            }
+
+            Api.Client.Input.ConsumeMouseScrollDeltaValue();
+            var wheelRotation = delta * 0.5 * PanningPanel.MouseScrollWheelZoomSpeed;
+            // use exponential scale https://www.gamedev.net/forums/topic/666225-equation-for-zooming/?tab=comments#comment-5213633
+            var zoom = Math.Exp(Math.Log(this.viewModel.Zoom) + wheelRotation);
+            zoom = MathHelper.Clamp(zoom, this.viewModel.ZoomMin, this.viewModel.ZoomMax);
+            this.viewModel.Zoom = zoom;
         }
     }
 }

@@ -52,6 +52,8 @@
 
         SoundResource SoundResourceVehicleMount { get; }
 
+        double VehicleWorldHeight { get; }
+
         void ClientOnVehicleDismounted(IDynamicWorldObject vehicle);
 
         void ClientRequestBuild();
@@ -105,7 +107,7 @@
 
         VehicleCanBuildCheckResult SharedPlayerCanBuild(ICharacter character);
 
-        VehicleCanRepairCheckResult SharedPlayerCanRepair(ICharacter character);
+        VehicleCanRepairCheckResult SharedPlayerCanRepairInVehicleAssemblyBay(ICharacter character);
 
         bool SharedPlayerHasRequiredItemsToBuild(ICharacter character, bool allowIfAdmin = true);
 

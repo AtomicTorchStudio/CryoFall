@@ -17,10 +17,10 @@
         public override string Name => "Pink mushroom";
 
         // has light source
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
-                                                                       minY: -3,
-                                                                       maxX: 3,
-                                                                       maxY: 3);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -3,
+                                                             minY: -3,
+                                                             maxX: 3,
+                                                             maxY: 3);
 
         protected override TimeSpan TimeToMature => TimeSpan.FromMinutes(30);
 

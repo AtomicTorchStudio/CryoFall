@@ -13,7 +13,7 @@
     public class ColorGradingPostEffect2Lut : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/ColorGrading2Lut");
+            = new("PostEffects/ColorGrading2Lut");
 
         private double blendFactor;
 

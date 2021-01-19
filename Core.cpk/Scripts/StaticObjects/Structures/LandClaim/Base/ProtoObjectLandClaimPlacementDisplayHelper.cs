@@ -18,10 +18,10 @@
     public static class ProtoObjectLandClaimPlacementDisplayHelper
     {
         private static readonly SolidColorBrush BrushBoundBlack
-            = new SolidColorBrush(Color.FromArgb(0x99, 0x00, 0x00, 0x00));
+            = new(Color.FromArgb(0x99, 0x00, 0x00, 0x00));
 
         private static readonly SolidColorBrush BrushBoundWhite
-            = new SolidColorBrush(Color.FromArgb(0x99, 0xCC, 0xCC, 0xCC));
+            = new(Color.FromArgb(0x99, 0xCC, 0xCC, 0xCC));
 
         private static readonly RenderingMaterial ClientBlueprintRestrictedTileRenderingMaterial;
 
@@ -61,7 +61,7 @@
                 protoObjectLandClaim);
             var sizeWithGraceArea = protoObjectLandClaim.LandClaimWithGraceAreaSize;
             var blueprintAreaBounds = LandClaimSystem.SharedCalculateLandClaimAreaBounds(startTilePosition,
-                                                                                         sizeWithGraceArea);
+                sizeWithGraceArea);
 
             SetupBoundsForLandClaimsInScope(sceneObject,
                                             sceneObjectPosition: tile.Position.ToVector2D(),
@@ -102,9 +102,13 @@
                     return;
                 }
 
-                var isRestrictedTile = IsRestrictedTile(checkTile);
+                var isRestrictedTile = checkTile.ProtoTile.IsRestrictingConstruction
+                                       || IsRestrictedTile(checkTile);
+
                 if (!isRestrictedTile)
                 {
+                    // if the tile is not restricted but any neighbour tile is restricted,
+                    // restrict construction here
                     foreach (var neighborTile in checkTile.EightNeighborTiles)
                     {
                         if (IsRestrictedTile(neighborTile))
@@ -132,13 +136,16 @@
                 tileRenderer.PositionOffset = (offsetX + 1, offsetY + 1);
             }
 
+            // Please note:
+            // ProtoTile.IsRestrictingConstruction is not checked here
+            // as it's checked separately only for the current tile.
             bool IsRestrictedTile(Tile t)
                 => t.IsCliffOrSlope
                    || t.ProtoTile.Kind != TileKind.Solid
-                   || t.ProtoTile.IsRestrictingConstruction
                    || !LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(
                        t.Position,
                        character,
+                       requireFactionPermission: false,
                        addGracePaddingWithoutBuffer: true);
         }
 

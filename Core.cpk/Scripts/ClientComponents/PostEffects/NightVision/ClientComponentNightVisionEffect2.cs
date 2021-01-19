@@ -5,6 +5,6 @@
     public class ClientComponentNightVisionEffect2 : ClientComponentNightVisionEffect
     {
         protected override EffectResource EffectResource
-            => new EffectResource("PostEffects/NightVision2");
+            => new("PostEffects/NightVision2");
     }
 }

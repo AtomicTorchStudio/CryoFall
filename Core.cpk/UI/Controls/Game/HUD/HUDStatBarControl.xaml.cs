@@ -4,12 +4,5 @@
 
     public partial class HUDStatBarControl : BaseUserControl
     {
-        public HUDStatBarControl()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

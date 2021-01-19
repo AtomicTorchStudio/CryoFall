@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 건설: {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+완벽주의자: 모든 보상을 받습니다.
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 완료: {0} (기술 그룹)
 
@@ -10,8 +13,14 @@ Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 제작
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+보스 처치: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 파괴: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+발견: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 채집: {0}

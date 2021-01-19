@@ -12,7 +12,7 @@
     public class BootstrapperRecipeBreakdownInjector : BaseBootstrapper
     {
         private static readonly Dictionary<Control, Control> InjectedControls
-            = new Dictionary<Control, Control>();
+            = new();
 
         public override void ClientInitialize()
         {

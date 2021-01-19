@@ -11,7 +11,7 @@
     public partial class ItemTooltipInfoDamageDescription : BaseUserControl
     {
         private static readonly Lazy<double> LazyMaxFireSpread
-            = new Lazy<double>(CalculateFireSpreadMax);
+            = new(CalculateFireSpreadMax);
 
         private DamageStatsComparisonPreset comparisonPreset;
 
@@ -35,7 +35,7 @@
             DamageStatsComparisonPreset comparisonPreset,
             bool displayRange)
         {
-            return new ItemTooltipInfoDamageDescription()
+            return new()
             {
                 damageDescription = damageDescription,
                 fireScatterPreset = fireScatterPreset,

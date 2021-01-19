@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
@@ -32,8 +33,7 @@
     public static class BootstrapperClientGame
     {
         private static readonly Interval<double> ZoomBoundsGameplayMode
-            = new Interval<double>(
-                min: 0.5,
+            = new(min: 0.5,
                 max: Api.IsEditor ? 2 : 1);
 
         private static ClientInputContext gameplayInputContext;
@@ -120,6 +120,14 @@
                     .HandleButtonDown(GameButton.PoliticsMenu,      Menu.Toggle<WindowPolitics>)
                     .HandleButtonDown(GameButton.QuestsMenu,        Menu.Toggle<WindowQuests>)
                     .HandleButtonDown(GameButton.CompletionistMenu, Menu.Toggle<WindowCompletionist>)
+                    .HandleButtonDown(GameButton.FactionMenu,
+                                      () =>
+                                      {
+                                          if (Menu.Exist<WindowFaction>())
+                                          {
+                                              Menu.Toggle<WindowFaction>();
+                                          }
+                                      })
                     .HandleButtonDown(GameButton.OpenChat,
                                       () =>
                                       {

@@ -1,0 +1,54 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.FoodNutritionValueControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid d:DataContext="{d:DesignInstance data:FoodNutritionValueData}">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
+            </Style>
+            <Style TargetType="Image">
+                <Setter Property="Width" Value="22" />
+                <Setter Property="Height" Value="22" />
+                <Setter Property="Stretch" Value="Uniform" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0"
+                    Orientation="Horizontal"
+                    Margin="0,0,25,0">
+            <Image Source="/UI/Images/Icons/icon_hunger.png"
+                   Margin="0,0,1,0" />
+            <TextBlock Text="{Binding FoodRestore, StringFormat=0.##}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    Orientation="Horizontal"
+                    Margin="0,0,25,0">
+            <Image Source="/UI/Images/Icons/icon_thirst.png" />
+            <TextBlock Text="{Binding WaterRestore, StringFormat=0.##}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="2"
+                    Orientation="Horizontal">
+            <Image Source="/UI/Images/Icons/icon_stamina.png"
+                   Margin="0,0,4,0" />
+            <TextBlock Text="{Binding StaminaRestore, StringFormat=0.##}" />
+        </StackPanel>
+    </Grid>
+</base:BaseUserControl>

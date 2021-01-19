@@ -40,7 +40,8 @@
                         Margin="0,5">
                     <Rectangle Width="160"
                                Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-                               Fill="{Binding Icon}" />
+                               Fill="{Binding Icon}"
+                               UseLayoutRounding="True" />
                 </Border>
 
                 <Grid Margin="0,5"

@@ -13,7 +13,7 @@
             PPAA = 1,
 
             [Description("Auto MSAA (best)")]
-            MSAA = 2,
+            MSAA = 2
         }
 
         public override UIAntiAliasingMode DefaultEnumValue => UIAntiAliasingMode.MSAA;

@@ -17,6 +17,8 @@
 
         public override float CharacterWorldWeaponOffsetRanged => 0.45f;
 
+        public override double CorpseInteractionAreaScale => 1.25;
+
         public override double MobKillExperienceMultiplier => 1.0;
 
         public override string Name => "Bear";
@@ -61,7 +63,7 @@
         {
             base.ServerInitializeCharacterMob(data);
 
-            var weaponProto = GetProtoEntity<ItemWeaponBearClaws>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobBearClaws>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -72,6 +74,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,

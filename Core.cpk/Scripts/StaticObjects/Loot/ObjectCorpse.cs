@@ -48,7 +48,7 @@
 
         public override double ServerUpdateIntervalSeconds => 10;
 
-        public override float StructurePointsMax => 9001; // non-damageable
+        public override float StructurePointsMax => 0; // non-damageable
 
         public static void ServerSetupCorpse(
             IStaticWorldObject objectCorpse,
@@ -63,7 +63,8 @@
             publicState.DeathTime = Server.Game.FrameTime;
 
             // re-initialize the object physics
-            // (it's required because the physics should use a proper tile offset we've just set)
+            // (it's required because the physics should use
+            // a proper tile offset and CorpseInteractionAreaScale from the mob prototype)
             objectCorpse.ProtoStaticWorldObject.SharedCreatePhysics(objectCorpse);
         }
 
@@ -164,11 +165,12 @@
                 data.GameObject,
                 new[] { protoSkeleton.SkeletonResourceFront },
                 protoSkeleton.SkeletonResourceFront,
-                "Idle",
+                protoSkeleton.DefaultAnimationName,
                 positionOffset: worldOffset,
                 worldScale: scaleMultiplier
                             * protoSkeleton.WorldScale);
 
+            // play death animation
             skeletonRenderer.SetAnimation(AnimationTrackIndexes.Primary, "Death", isLooped: false);
 
             if (Client.CurrentGame.ServerFrameTimeRounded - publicState.DeathTime > 5)
@@ -233,9 +235,15 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var publicState = data.PublicState;
+            if (publicState.ProtoCharacterMob is null)
+            {
+                return;
+            }
+
             data.PhysicsBody
-                .AddShapeCircle(radius: 0.6,
-                                center: data.PublicState.TileOffset.ToVector2D() + (0, 0.33),
+                .AddShapeCircle(radius: 0.6 * publicState.ProtoCharacterMob.CorpseInteractionAreaScale,
+                                center: publicState.TileOffset.ToVector2D() + (0, 0.33),
                                 group: CollisionGroups.ClickArea);
         }
 

@@ -70,7 +70,7 @@
                             DataContext = new ViewModelOptionsCategory(protoOptionsCategory)
                         },
                         Content = control,
-                        Tag = protoOptionsCategory,
+                        Tag = protoOptionsCategory
                     });
             }
 

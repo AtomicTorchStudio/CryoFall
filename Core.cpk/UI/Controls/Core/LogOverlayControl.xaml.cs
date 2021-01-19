@@ -14,7 +14,7 @@
     public partial class LogOverlayControl : BaseUserControl
     {
         private readonly List<LogEntryWithOrigin> logEntriesQueue
-            = new List<LogEntryWithOrigin>();
+            = new();
 
         private bool isAutoScrollToBottom = true;
 

@@ -4,17 +4,9 @@
 
     public partial class EditorToolMapSettings : BaseUserControl
     {
-        public EditorToolMapSettings()
-        {
-        }
-
         public void Setup(ViewModelEditorToolMapSettings settingsViewModel)
         {
             this.DataContext = settingsViewModel;
-        }
-
-        protected override void InitControl()
-        {
         }
     }
 }

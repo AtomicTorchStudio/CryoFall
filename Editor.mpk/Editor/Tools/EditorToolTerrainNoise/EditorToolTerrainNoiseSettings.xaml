@@ -15,7 +15,8 @@
         <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
     </base:BaseUserControl.Resources>
 
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical"
+                Margin="-5,0">
         <brushes:SelectLocationControl ViewModel="{Binding ViewModelLocationSettings}" />
 
         <Border Background="#FF222222" Padding="5" Margin="5" CornerRadius="3">
@@ -24,7 +25,7 @@
                            Foreground="{StaticResource BrushColor6}" />
 
                 <ScrollViewer Style="{StaticResource ItemsScrollViewerStyle}"
-                              MaxHeight="130">
+                              MaxHeight="115">
                     <ItemsControl ItemsSource="{Binding ProtoTilesForTarget}"
                                   Style="{StaticResource ItemsControlStyleForEditorToolItems}"
                                   Background="Transparent" />
@@ -38,7 +39,7 @@
                            Foreground="{StaticResource BrushColor6}" />
 
                 <ScrollViewer Style="{StaticResource ItemsScrollViewerStyle}"
-                              MaxHeight="130">
+                              MaxHeight="115">
                     <ItemsControl ItemsSource="{Binding ProtoTilesForNoise}"
                                   Style="{StaticResource ItemsControlStyleForEditorToolItems}"
                                   Background="Transparent" />

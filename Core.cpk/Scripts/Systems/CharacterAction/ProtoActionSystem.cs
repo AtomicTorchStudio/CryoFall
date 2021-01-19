@@ -136,7 +136,7 @@
             }
 
             state.Request = request;
-            InteractionCheckerSystem.CancelCurrentInteraction(character);
+            InteractionCheckerSystem.SharedAbortCurrentInteraction(character);
             characterPrivateState.SetCurrentActionState(state);
 
             Logger.Info("Action started: " + request, character);

@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data"
     xmlns:tradingStations="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowTradingStationUser, IsDesignTimeCreatable=True}"
@@ -86,7 +86,7 @@
                                                 Margin="0,3">
                                         <StackPanel Orientation="Horizontal"
                                                     Background="Transparent"
-                                                    ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsShiny}">
+                                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsShiny}">
                                             <Rectangle Fill="{Binding IconCoinShiny}" UseLayoutRounding="True"
                                                        Width="16"
                                                        Height="16" />
@@ -96,7 +96,7 @@
 
                                         <StackPanel Orientation="Horizontal"
                                                     Background="Transparent"
-                                                    ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsPenny}">
+                                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsPenny}">
                                             <Rectangle Fill="{Binding IconCoinPenny}" UseLayoutRounding="True"
                                                        Width="16"
                                                        Height="16" />

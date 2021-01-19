@@ -9,16 +9,16 @@
     public class TileForestTropical : ProtoTile, IProtoTileFarmAllowed, IProtoTileWellAllowed
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/ForestTropical/TileJungle1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/ForestTropical/TileJungle1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/ForestTropical/TileJungle2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/ForestTropical/TileJungle2.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTextureAtlas3
-            = new TextureResource("Terrain/ForestTropical/TileJungle3.jpg",
-                                  isTransparent: false);
+            = new("Terrain/ForestTropical/TileJungle3.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 8;
 

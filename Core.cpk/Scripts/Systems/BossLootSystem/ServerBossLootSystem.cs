@@ -1,12 +1,12 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Characters
+﻿namespace AtomicTorch.CBND.CoreMod.Systems.BossLootSystem
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Events.Base;
-    using AtomicTorch.CBND.CoreMod.Systems;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
@@ -29,12 +29,19 @@
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Api.Server.World : null;
 
+        public delegate void BossDefeatedDelegate(
+            IProtoCharacterMob protoCharacterBoss,
+            Vector2Ushort bossPosition,
+            List<WinnerEntry> winnerEntries);
+
+        public static event BossDefeatedDelegate BossDefeated;
+
         [NotLocalizable]
         public override string Name => "Boss loot system";
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         public static void ServerCreateBossLoot(
-            Vector2Ushort epicenterPosition,
+            Vector2Ushort bossPosition,
             IProtoCharacterMob protoCharacterBoss,
             ServerBossDamageTracker damageTracker,
             double bossDifficultyCoef,
@@ -105,6 +112,11 @@
                 + winners.Select(p => $" * {p.Character}: {(p.Score * 100):F1}%")
                          .GetJoinedString(Environment.NewLine));
 
+            Api.SafeInvoke(
+                () => BossDefeated?.Invoke(protoCharacterBoss,
+                                           bossPosition,
+                                           winnerEntries));
+
             byte CalculateLootCountForScore(double score)
             {
                 var result = Math.Ceiling(approximatedTotalLootCountToSpawn * score);
@@ -159,8 +171,8 @@
 
                     var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
                     var spawnPosition = new Vector2Ushort(
-                        (ushort)(epicenterPosition.X + distance * Math.Cos(angle)),
-                        (ushort)(epicenterPosition.Y + distance * Math.Sin(angle)));
+                        (ushort)(bossPosition.X + distance * Math.Cos(angle)),
+                        (ushort)(bossPosition.Y + distance * Math.Sin(angle)));
 
                     if (ServerTrySpawnLootObject(spawnPosition, forCharacter))
                     {
@@ -207,10 +219,6 @@
 
             // apply difficulty coefficient
             countToSpawnRemains = (int)Math.Ceiling(countToSpawnRemains * bossDifficultyCoef);
-            if (countToSpawnRemains < 2)
-            {
-                countToSpawnRemains = 2;
-            }
 
             var attemptsRemains = 3000;
 
@@ -386,21 +394,22 @@
                                   icon: protoCharacterBoss.Icon)
                               .HideAfterDelay(60);
 
-            string GetFormattedName((string Name, string ClanTag) entry)
+            static string GetFormattedName((string Name, string ClanTag) entry)
             {
                 if (string.IsNullOrEmpty(entry.ClanTag))
                 {
                     return entry.Name;
                 }
 
-                var result = string.Format(CoreStrings.ClanTag_FormatWithName, entry.ClanTag, entry.Name);
-                // escape formatting
-                return result.Replace("[", @"\[")
+                return string.Format(CoreStrings.ClanTag_FormatWithName, entry.ClanTag, entry.Name)
+                             // escape formatting
+                             .Replace("[", @"\[")
                              .Replace("]", @"\]");
             }
         }
 
-        private readonly struct WinnerEntry
+        [NotPersistent]
+        public readonly struct WinnerEntry
         {
             public readonly ICharacter Character;
 

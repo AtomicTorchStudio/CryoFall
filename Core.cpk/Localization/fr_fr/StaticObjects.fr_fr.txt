@@ -16,6 +16,9 @@ Vous ne pouvez pas construire sur :
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 Le type de sol ne convient pas
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+Construction impossible : trop proche de l'emplacement d'un évènement.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Construction impossible en zone interdite.
 
@@ -75,6 +78,9 @@ Ouvrir
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Ramasser
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+Appuyer
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Forcer
@@ -148,6 +154,15 @@ Herbe
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 Tas d'ordures
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+Tas de minéraux
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+Tas de pierres
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+Tas de bois
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Pierre
 
@@ -217,6 +232,9 @@ Gisement de soufre
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Utilisez une pioche pour exploiter cette ressource.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+Téléporteur extraterrestre
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fissure
 
@@ -225,6 +243,9 @@ Météorite
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 Restes de la Reine du pragmium
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+Restes de Tyran des sables
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 Débris spatial
@@ -398,11 +419,23 @@ Un autel de style oriental qui permet de faire brûler de l'encens.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 Autel à encens
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+Une bannière unique qui représente l'emblème de votre faction.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+Bannière de faction
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Quoi que puisse représenter cette bannière, elle a l'air cool !
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 Bannière
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+La plupart des gens finissent par ne s'en servir que pour décorer...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+Banc de musculation
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 Une baignoire classique qui permet de conserver une bonne hygiène.
@@ -410,11 +443,32 @@ Une baignoire classique qui permet de conserver une bonne hygiène.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 Baignoire
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+Un petit coin pratique où déposer votre téléphone quand vous allez dormir.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+Table de chevet
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 À quoi ressemblerait une pièce sans la moindre étagère ?
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 Étagère
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+Une pièce de jeu pouvant servir de décoration, à défaut de pouvoir jouer aux échecs ou aux dames.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+Pion
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+Reine
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+Vous attendez-vous à la visite d'importuns armés jusqu'aux dents ? Pensez à installer cette sonnette à l'entrée !
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+Sonnette
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 Un paravent orné d'un dessin traditionnel de tigre, comme dans les contes d'antan.
@@ -428,11 +482,23 @@ Un impressionnant tas d'or. Rangez-le dans votre chambre forte pour le mettre à
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 Tas d'or
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+Le meuble le plus utile dans un hall d'entrée.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+Porte-manteau
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 Un superbe piano noir, à la finition particulièrement soignée.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 Piano
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+Que serait une fête sans un énorme tas de cadeaux ?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+Cadeaux
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 Montrez à tout le monde que vous êtes un véritable chasseur en décorant votre chambre avec cette luxueuse carpette.
@@ -494,6 +560,12 @@ Assurez-vous d'installer ceci dans une pièce à part et bien ventilée.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 Toilettes
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+L'élément central de tout living-room bien conçu. Détendez-vous avec vos amis devant un bon film !
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+TV
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 Un vase décoratif de grande valeur.
 
@@ -502,6 +574,33 @@ Vase
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Il y a déjà une décoration de sol.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+Une tourelle automatisée qui utilise un rayon cohérent d'énergie pour endommager sa cible.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+Tourelle à énergie
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+Une tourelle automatisée lourde.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+Tourelle lourde
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+Une tourelle automatisée légère.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+Tourelle légère
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+Désactivée
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+Attaquer les ennemis, riposter contre les neutres
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+Attaquer les ennemis et tout intrus
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 Une défense efficace contre les plupart des intrus. Elle ne fera cependant pas long feu face à des explosifs...
@@ -533,10 +632,10 @@ Utilisable pour faire pousser diverses plantes et cultures. Les parcelles agrico
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 Parcelle agricole
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
 Peut servir à faire pousser des fleurs et à décorer votre maison, ou à récupérer des fleurs destinées à d'autres choses. Peut être construit n'importe où.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 Pot de fleurs
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -621,7 +720,7 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Générateur à vapeur
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
-Vous aide à rendre votre base plus sûre en empêchant les autres survivants de construire ou de démonter quelque chose dans les alentours. Les revendications territoriales évitent également à vos structures de se détériorer au fil du temps.
+Vous aide à rendre votre base plus sûre en empêchant les autres survivants de construire ou de démonter quelque chose dans les alentours. Les revendications territoriales évitent également à vos structures de se délabrer au fil du temps.
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
 Revendication de territoire (Rang 1)
@@ -1005,6 +1104,12 @@ Un mur en ciment renforcé par des soutiens. Nettement plus robuste que les autr
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 Mur de ciment
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+Cette clôture métallique bloque le passage, tout en laissant passer les balles, ce qui peut s'avérer être un choix de stratégie défensive intéressant. Sa solidité est cependant assez relative.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+Clôture grillagée
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 Nettement meilleur que le mur de bois. Devrait être en mesure d'empêcher les intrus d'entrer, mais ne sera pas d'une grande aide contre des pillards bien équipés.
 
@@ -1075,8 +1180,14 @@ Sauge bleue
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Fleur d'Oni
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+Fleur jaune
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 Melon à lait
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+Pomme de terre
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 Riz

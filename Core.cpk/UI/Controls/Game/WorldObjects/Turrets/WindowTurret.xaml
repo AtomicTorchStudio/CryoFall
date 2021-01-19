@@ -1,0 +1,128 @@
+﻿<turrets:WindowTurretBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets.WindowTurret"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:items="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
+    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets.Data"
+    xmlns:turrets="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data1:ViewModelWindowTurret, IsDesignTimeCreatable=True}"
+    FontFamily="{StaticResource CondensedFontFamily}"
+    FontWeight="Bold">
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,3">
+                    <!-- Text: Targeting mode -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowObjectTurret_TitleTurretMode}"
+                               FontSize="14" />
+                    <TextBlock Text=":"
+                               FontSize="14" />
+                </StackPanel>
+
+                <!-- Radiobuttons for the turret mode selection -->
+                <ListBox ItemsSource="{Binding TurretModes}"
+                         SelectedItem="{Binding SelectedTurretMode}"
+                         FontSize="12">
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <RadioButton
+                                            IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                                            Margin="0,2">
+                                            <RadioButton.Content>
+                                                <TextBlock Text="{Binding Description}"
+                                                           TextWrapping="Wrap" />
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </StackPanel>
+
+            <!-- Ammo container -->
+            <ContentControl Grid.Column="2"
+                            Visibility="{Binding ViewModelItemsContainerExchange, Converter={StaticResource NullToVisibilityConverter}}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <items:ItemsContainerExchangeControl Grid.ColumnSpan="3"
+                                                         DataContext="{Binding ViewModelItemsContainerExchange}"
+                                                         MaxWidth="220"
+                                                         FontSize="12" />
+                    <tooltips:ItemTooltipCompatibleAmmoControl Grid.Row="2"
+                                                               Grid.Column="0"
+                                                               ProtoItemWeapon="{Binding ProtoItemWeapon}" />
+                    <!-- Current ammo display -->
+                    <Grid Grid.Row="2"
+                          Grid.Column="2"
+                          Visibility="{Binding ProtoItemAmmo, Converter={StaticResource NullToHiddenVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static loc:CoreStrings.Weapon_CurrentAmmo}"
+                                   Grid.ColumnSpan="2"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,-3"
+                                   Foreground="{StaticResource TooltipForegroundBrush}"
+                                   Opacity="0.7" />
+
+                        <Rectangle Grid.Row="1"
+                                   Grid.Column="0"
+                                   Fill="{Binding AmmoIcon}"
+                                   Width="48"
+                                   Height="48"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                    </Grid>
+                </Grid>
+            </ContentControl>
+        </Grid>
+    </core:WindowMenuWithInventory>
+</turrets:WindowTurretBase>

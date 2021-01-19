@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data
 {
-    using System;
     using System.Globalization;
     using System.Windows;
     using System.Windows.Controls;
@@ -10,6 +9,7 @@
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.PlayerReportSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -68,6 +68,8 @@
 
         public BaseCommand CommandCopyName => new ActionCommand(this.ExecuteCommandCopyName);
 
+        public BaseCommand CommandInviteToFaction => new ActionCommand(this.ExecuteCommandInviteToFaction);
+
         public BaseCommand CommandInviteToParty => new ActionCommand(this.ExecuteCommandInviteToParty);
 
         public BaseCommand CommandMention => new ActionCommand(this.ExecuteCommandMention);
@@ -100,33 +102,6 @@
                 if (ClientChatBlockList.IsBlocked(name))
                 {
                     // already blocked
-                    return Visibility.Collapsed;
-                }
-
-                return Visibility.Visible;
-            }
-        }
-
-        public Visibility VisibilityCanInviteToParty
-        {
-            get
-            {
-                var name = this.chatEntry.From;
-                if (string.IsNullOrEmpty(name))
-                {
-                    // not character related
-                    return Visibility.Collapsed;
-                }
-
-                if (name == Api.Client.Characters.CurrentPlayerCharacter?.Name)
-                {
-                    // cannot invite self
-                    return Visibility.Collapsed;
-                }
-
-                if (PartySystem.ClientIsPartyMember(name))
-                {
-                    // already in party
                     return Visibility.Collapsed;
                 }
 
@@ -207,7 +182,7 @@
             var grid = new Grid()
             {
                 Background = Brushes.Transparent,
-                Margin = new Thickness(1, 0, 0, -4),
+                Margin = new Thickness(1, 0, 0, -4)
             };
 
             grid.Children.Add(hiddenTextBlock);
@@ -250,6 +225,11 @@
         {
             var name = this.chatEntry.From;
             Api.Client.Core.CopyToClipboard(name);
+        }
+
+        private void ExecuteCommandInviteToFaction()
+        {
+            FactionSystem.ClientOfficerInviteMember(this.chatEntry.From);
         }
 
         private void ExecuteCommandInviteToParty()

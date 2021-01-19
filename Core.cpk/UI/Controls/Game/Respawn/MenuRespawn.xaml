@@ -1,0 +1,209 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn.MenuRespawn"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn.Data"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="80" d:DesignWidth="850"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowRespawn, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    Background="Black"
+    Foreground="{StaticResource WindowForeground}"
+    Opacity="1"
+    Panel.ZIndex="1000"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch">
+
+    <Grid HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Width="348">
+        <core:WidgetPanel InnerGlowSize="10"
+                          VisibilityBackgroundImage="Collapsed"
+                          WidgetBackground="{StaticResource WindowBackgroundBrush}" />
+
+        <StackPanel Orientation="Vertical"
+                    Margin="15,15">
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="8" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      UseLayoutRounding="True"
+                      Margin="-10,0,0,0">
+                    <Image Source="/UI/Images/Icons/icon_death.png"
+                           Visibility="{Binding IsRegularDeath, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Width="64"
+                           Height="64"
+                           Stretch="Uniform" />
+
+                    <Image Source="/UI/Images/Icons/icon_death_protection.png"
+                           Visibility="{Binding IsNewbiePvPdeath, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Width="64"
+                           Height="64"
+                           Stretch="Uniform" />
+
+                    <Image Source="/UI/Images/Icons/icon_despawned.png"
+                           Visibility="{Binding IsDespawned, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Width="64"
+                           Height="64"
+                           Stretch="Uniform" />
+                </Grid>
+
+                <core:FormattedTextBlock
+                    Grid.Column="2"
+                    Content="{Binding Message}"
+                    FontFamily="{StaticResource CondensedFontFamily}"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    LineHeight="15"
+                    LineStackingStrategy="BlockLineHeight"
+                    TextWrapping="Wrap"
+                    TextTrimming="None"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    TextAlignment="Left" />
+            </Grid>
+
+            <!-- Damage sources report -->
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding DamageSourcesList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                        HorizontalAlignment="Center"
+                        Margin="0,25,0,0">
+                <TextBlock Text="{x:Static loc:CoreStrings.WindowRespawn_DamageSources}"
+                           FontSize="12"
+                           FontWeight="Bold" />
+                <ItemsControl ItemsSource="{Binding DamageSourcesList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DataTemplate.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="11" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </DataTemplate.Resources>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,2">
+                                <!-- Bullet point -->
+                                <Ellipse
+                                    Width="6"
+                                    Height="6"
+                                    Fill="{Binding Foreground}"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,3,0" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}"
+                                               TextWrapping="Wrap"
+                                               TextTrimming="CharacterEllipsis"
+                                               Foreground="{Binding Foreground}" />
+
+                                    <TextBlock Text="{Binding Percent, StringFormat={}({0}%)}"
+                                               Margin="3,0,0,0"
+                                               Foreground="{Binding Foreground}"
+                                               Opacity="0.75" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.WindowRespawn_ConsiderJoiningFaction}"
+                    Visibility="{Binding IsKilledBySomeFactionWhileHasNoFaction, Converter={StaticResource BoolToVisibilityConverter}}"
+                    FontSize="11"
+                    LineHeight="11.5"
+                    LineStackingStrategy="BlockLineHeight"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource BrushColorRed6}"
+                    TextWrapping="Wrap"
+                    MaxWidth="180"
+                    Margin="0,7,0,0" />
+            </StackPanel>
+
+            <!-- Buttons to select the respawn location -->
+            <Grid VerticalAlignment="Center"
+                  HorizontalAlignment="Stretch"
+                  Margin="0,10,0,5"
+                  IsEnabled="{Binding IsRespawnButtonsEnabled}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!-- Bed respawn cooldown timer -->
+                <StackPanel Grid.Row="0"
+                            Visibility="{Binding VisibilityBedCooldownTimer}"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Background="Transparent">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Image Source="/UI/Images/Icons/Clock.png"
+                           VerticalAlignment="Center"
+                           Margin="0,0,3,0"
+                           Width="15"
+                           Height="15" />
+                    <TextBlock Text="{Binding TextCooldownSecondsRemains}" />
+
+                    <base:ToolTipServiceExtend.ToolTip>
+                        <!-- Cooldown explanation tooltip -->
+                        <core:FormattedTextBlock
+                            Content="{x:Static loc:CoreStrings.WindowRespawn_TooltipCooldownExplanation}" />
+                    </base:ToolTipServiceExtend.ToolTip>
+                </StackPanel>
+
+                <!-- Text: Respawn at your bed -->
+                <Button Grid.Row="1"
+                        Content="{x:Static loc:CoreStrings.WindowRespawn_Button_RespawnAtYourBed}"
+                        Command="{Binding CommandRespawnAtBed}"
+                        Margin="0,10,0,0"
+                        IsEnabled="{Binding CanRespawnAtBed}"
+                        HorizontalAlignment="Center"
+                        Width="160"
+                        MinWidth="160" />
+
+                <!-- Text: Respawn near your bed -->
+                <Button Grid.Row="2"
+                        Content="{x:Static loc:CoreStrings.WindowRespawn_Button_RespawnNearYourBed}"
+                        Command="{Binding CommandRespawnNearBed}"
+                        Margin="0,10,0,0"
+                        IsEnabled="{Binding CanRespawnAtBed}"
+                        HorizontalAlignment="Center"
+                        Width="160"
+                        MinWidth="160" />
+
+                <!-- Text: Respawn in the world -->
+                <Button Grid.Row="3"
+                        Content="{x:Static loc:CoreStrings.WindowRespawn_Button_RespawnInTheWorld}"
+                        Command="{Binding CommandRespawnInWorld}"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"
+                        Width="160"
+                        MinWidth="160" />
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</base:BaseUserControl>

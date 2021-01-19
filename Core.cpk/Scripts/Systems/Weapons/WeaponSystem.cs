@@ -237,25 +237,42 @@
                 {
                     foreach (var testResult in tempLineTestResults.AsList())
                     {
-                        var worldObject = testResult.PhysicsBody.AssociatedWorldObject;
-                        if (ReferenceEquals(worldObject, character))
+                        var damagedObject = testResult.PhysicsBody.AssociatedWorldObject;
+                        if (ReferenceEquals(damagedObject, character))
                         {
                             continue;
                         }
 
                         if (currentCharacterVehicle is not null
-                            && ReferenceEquals(worldObject, currentCharacterVehicle))
+                            && ReferenceEquals(damagedObject, currentCharacterVehicle))
                         {
                             continue;
                         }
 
+                        if (damagedObject is not null)
+                        {
+                            if (damagedObject.ProtoGameObject is not IDamageableProtoWorldObject
+                                    protoDamageableWorldObject)
+                            {
+                                // shoot through this object
+                                continue;
+                            }
+
+                            if (protoDamageableWorldObject.ObstacleBlockDamageCoef < 1
+                                && protoDamageableWorldObject is not IProtoCharacter)
+                            {
+                                // shoot through this object
+                                continue;
+                            }
+                        }
+
                         hitPosition = testResult.PhysicsBody.Position;
 
-                        if (worldObject is not null)
+                        if (damagedObject is not null)
                         {
                             hitPosition += SharedOffsetHitWorldPositionCloserToObjectCenter(
-                                worldObject,
-                                worldObject.ProtoWorldObject,
+                                damagedObject,
+                                damagedObject.ProtoWorldObject,
                                 hitPoint: testResult.Penetration,
                                 isRangedWeapon: true);
                         }
@@ -298,6 +315,21 @@
             }
 
             return damageDescription;
+        }
+
+        public static void SharedBuildWeaponCache(
+            ICharacter character,
+            WeaponState weaponState,
+            IProtoItemAmmo protoAmmo,
+            DamageDescription damageDescription)
+        {
+            weaponState.WeaponCache = new WeaponFinalCache(
+                character,
+                character.SharedGetFinalStatsCache(),
+                weaponState.ItemWeapon,
+                weaponState.ProtoWeapon,
+                protoAmmo,
+                damageDescription);
         }
 
         public static void SharedCastLine(
@@ -468,13 +500,7 @@
                                                                 protoItem,
                                                                 out var protoAmmo);
 
-            weaponState.WeaponCache = new WeaponFinalCache(
-                character,
-                character.SharedGetFinalStatsCache(),
-                weaponState.ItemWeapon,
-                weaponState.ProtoWeapon,
-                protoAmmo,
-                damageDescription);
+            SharedBuildWeaponCache(character, weaponState, protoAmmo, damageDescription);
         }
 
         public static void SharedUpdateCurrentWeapon(
@@ -724,7 +750,7 @@
             var hitWorldPosition = worldObject switch
             {
                 IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
-                _                                      => worldObject.TilePosition.ToVector2D(),
+                _                                      => worldObject.TilePosition.ToVector2D()
             };
             return hitWorldPosition + hitPoint;
         }

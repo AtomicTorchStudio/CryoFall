@@ -17,8 +17,6 @@
             => StatusEffectDisplayMode.IconShowTimeRemains
                | StatusEffectDisplayMode.TooltipShowTimeRemains;
 
-        public override ITextureResource Icon => Api.GetProtoEntity<ItemPeredozin>().Icon;
-
         public override double IntensityAutoDecreasePerSecondValue
             => 1.0 / ItemPeredozin.MedicalCooldownDuration;
 

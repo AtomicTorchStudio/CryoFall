@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 푸짐한 음식
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+사용자 주변에 분리된 양자 공간을 만들어 제작 속도를 높입니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+양자 가속
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 최근에 맛있는 식사를 했습니다. 삶이 더욱 만족스러운 느낌입니다.
 
@@ -63,9 +69,6 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 다리 골절
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-기절 상태일 때는 공격할 수 없습니다.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 기절했습니다! 감각이 돌아오려면 잠시 기다려야 합니다.
@@ -180,6 +183,12 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 약물 남용
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+필요한 양보다 더 많이 먹었습니다. 계속 음식을 먹으면 속만 버릴 뿐입니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+과식
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 페레도진 투여가 끝날 때까지 기다려주세요.

@@ -19,47 +19,47 @@
 
         private const double ZoomAnimationDurationSeconds = 0.1;
 
-        public static readonly DependencyProperty DefaultZoomProperty = DependencyProperty.Register(
-            nameof(DefaultZoom),
-            typeof(double),
-            typeof(PanningPanel),
-            new PropertyMetadata(1d, DefaultZoomPropertyChanged));
+        public static readonly DependencyProperty DefaultZoomProperty
+            = DependencyProperty.Register(nameof(DefaultZoom),
+                                          typeof(double),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(1.0, DefaultZoomPropertyChanged));
 
-        public static readonly DependencyProperty MaxZoomProperty = DependencyProperty.Register(
-            nameof(MaxZoom),
-            typeof(double),
-            typeof(PanningPanel),
-            new PropertyMetadata(1d, MinOrMaxZoomPropertyChanged));
+        public static readonly DependencyProperty MaxZoomProperty
+            = DependencyProperty.Register(nameof(MaxZoom),
+                                          typeof(double),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(1.0, MinOrMaxZoomPropertyChanged));
 
-        public static readonly DependencyProperty VisibilityZoomSliderProperty =
-            DependencyProperty.Register(nameof(VisibilityZoomSlider),
-                                        typeof(Visibility),
-                                        typeof(PanningPanel),
-                                        new PropertyMetadata(default(Visibility)));
+        public static readonly DependencyProperty VisibilityZoomSliderProperty
+            = DependencyProperty.Register(nameof(VisibilityZoomSlider),
+                                          typeof(Visibility),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(default(Visibility)));
 
-        public static readonly DependencyProperty MinZoomProperty = DependencyProperty.Register(
-            nameof(MinZoom),
-            typeof(double),
-            typeof(PanningPanel),
-            new PropertyMetadata(0.5, MinOrMaxZoomPropertyChanged));
+        public static readonly DependencyProperty MinZoomProperty
+            = DependencyProperty.Register(nameof(MinZoom),
+                                          typeof(double),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(0.5, MinOrMaxZoomPropertyChanged));
 
-        public static readonly DependencyProperty PanningHeightProperty = DependencyProperty.Register(
-            nameof(PanningHeight),
-            typeof(double),
-            typeof(PanningPanel),
-            new PropertyMetadata(default(double), PanningSizeChangedHandler));
+        public static readonly DependencyProperty PanningHeightProperty
+            = DependencyProperty.Register(nameof(PanningHeight),
+                                          typeof(double),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(default(double), PanningSizeChangedHandler));
 
-        public static readonly DependencyProperty PanningWidthProperty = DependencyProperty.Register(
-            nameof(PanningWidth),
-            typeof(double),
-            typeof(PanningPanel),
-            new PropertyMetadata(default(double), PanningSizeChangedHandler));
+        public static readonly DependencyProperty PanningWidthProperty
+            = DependencyProperty.Register(nameof(PanningWidth),
+                                          typeof(double),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(default(double), PanningSizeChangedHandler));
 
-        public static readonly DependencyProperty IsAutoCalculatingMinZoomProperty =
-            DependencyProperty.Register(nameof(IsAutoCalculatingMinZoom),
-                                        typeof(bool),
-                                        typeof(PanningPanel),
-                                        new PropertyMetadata(defaultValue: true));
+        public static readonly DependencyProperty IsAutoCalculatingMinZoomProperty
+            = DependencyProperty.Register(nameof(IsAutoCalculatingMinZoom),
+                                          typeof(bool),
+                                          typeof(PanningPanel),
+                                          new PropertyMetadata(defaultValue: true));
 
         private ClickHandlerHelper clickHandlerHelper;
 
@@ -68,8 +68,6 @@
         private RectangleGeometry clippingRect;
 
         private Canvas content;
-
-        private UIElement contentItems;
 
         private Storyboard contentScaleStoryboard;
 
@@ -80,6 +78,8 @@
         private TranslateTransform contentTranslateTransform;
 
         private Canvas contentWrapper;
+
+        private double currentTargetZoom = 1;
 
         private bool isListeningToScaleEvents = true;
 
@@ -118,7 +118,20 @@
 
         public double CurrentAnimatedZoom => this.contentScaleTransform.ScaleX;
 
-        public double CurrentTargetZoom { get; private set; } = 1;
+        public double CurrentTargetZoom
+        {
+            get => this.currentTargetZoom;
+            private set
+            {
+                if (this.currentTargetZoom == value)
+                {
+                    return;
+                }
+
+                this.currentTargetZoom = value;
+                //Api.Logger.Dev("Current target zoom changed: " + value);
+            }
+        }
 
         public double DefaultZoom
         {
@@ -198,8 +211,8 @@
 
         public void CenterCanvasContent()
         {
-            var centerPoint = (this.panningWidth / 2d,
-                               this.panningHeight / 2d);
+            var centerPoint = (this.panningWidth / 2.0,
+                               this.panningHeight / 2.0);
             this.CenterOnPoint(centerPoint);
         }
 
@@ -213,8 +226,8 @@
             }
 
             var scale = this.contentScaleTransform.ScaleX;
-            point = ((this.clipperSize.X - point.X * 2d * scale) / 2d,
-                     (this.clipperSize.Y - point.Y * 2d * scale) / 2d);
+            point = ((this.clipperSize.X - point.X * 2.0 * scale) / 2.0,
+                     (this.clipperSize.Y - point.Y * 2.0 * scale) / 2.0);
 
             point = this.ClampOffset(point);
             this.SetOffset(point, isInstant: true);
@@ -248,6 +261,12 @@
 
         public void SetZoom(double newScale)
         {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (this.CurrentTargetZoom == newScale)
+            {
+                return;
+            }
+
             this.contentScaleStoryboard?.Remove(this.content);
             this.contentScaleStoryboard?.Stop(this.content);
             this.contentScaleStoryboard = null;
@@ -284,7 +303,6 @@
 
             this.contentWrapper = layoutRoot.GetByName<Canvas>("CanvasContentWrapper");
             this.content = layoutRoot.GetByName<Canvas>("CanvasContent");
-            this.contentItems = layoutRoot.GetByName<Canvas>("CanvasContentItems");
 
             this.mouseEventsRoot = IsDesignTime ? layoutRoot : Api.Client.UI.LayoutRoot;
 
@@ -307,7 +325,9 @@
         {
             this.UpdatePanningSize();
 
-            this.SetZoom(this.CurrentTargetZoom);
+            var targetZoom = this.CurrentTargetZoom;
+            this.currentTargetZoom = 0;
+            this.SetZoom(targetZoom);
 
             if (!IsDesignTime)
             {
@@ -508,7 +528,6 @@
             }
 
             this.ZoomToPoint(newScale, this.GetMouseCanvasPosition(), isInstant: false);
-            //Api.Logger.Write("Current zoom: " + currentZoom.ToString("F2"), LogSeverity.Dev);
         }
 
         private void ContentWrapperOnMouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
@@ -576,6 +595,7 @@
 
         private void OnZoomChanged(bool isByPlayersInput)
         {
+            //Api.Logger.Dev("Current zoom: " + this.CurrentTargetZoom.ToString("F10"));
             this.ZoomChanged?.Invoke((this.CurrentTargetZoom, isByPlayersInput));
         }
 

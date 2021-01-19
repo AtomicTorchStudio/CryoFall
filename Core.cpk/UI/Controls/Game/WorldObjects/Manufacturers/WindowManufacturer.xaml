@@ -8,7 +8,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:crafting="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator"
     xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
     xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data"
@@ -43,7 +43,10 @@
                                     <Border.BorderBrush>
                                         <SolidColorBrush Color="{StaticResource ColorAlt5}" Opacity="0.5" />
                                     </Border.BorderBrush>
-                                    <Rectangle Fill="{Binding Icon}" Width="32" Height="32" />
+                                    <Rectangle Fill="{Binding Icon}"
+                                               Width="32"
+                                               Height="32"
+                                               UseLayoutRounding="True" />
                                 </Border>
 
                                 <TextBlock Text="{Binding Title}"
@@ -53,9 +56,9 @@
                                            MaxWidth="90"
                                            VerticalAlignment="Center" />
                             </StackPanel>
-                            <ui:ToolTipServiceExtend.ToolTip>
+                            <base:ToolTipServiceExtend.ToolTip>
                                 <worldObjects:RecipeTooltip Recipe="{Binding}" />
-                            </ui:ToolTipServiceExtend.ToolTip>
+                            </base:ToolTipServiceExtend.ToolTip>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

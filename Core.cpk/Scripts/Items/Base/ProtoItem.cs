@@ -79,7 +79,22 @@
         /// </summary>
         public abstract string Description { get; }
 
-        public IReadOnlyList<string> DescriptionHints { get; private set; }
+        public IReadOnlyList<string> DescriptionHints
+        {
+            get
+            {
+                if (IsServer)
+                {
+                    // the game cannot provide hints on the server and there is no need for it
+                    // (some hints may contain button binding key names, etc)
+                    return Array.Empty<string>();
+                }
+
+                var hints = new List<string>();
+                this.PrepareHints(hints);
+                return hints;
+            }
+        }
 
         public virtual ITextureResource GroundIcon => this.Icon;
 
@@ -359,10 +374,6 @@
                                 || type.HasOverride(nameof(ClientItemUseFinish), isPublic: false);
 
             this.SoundPresetItem = this.PrepareSoundPresetItem();
-
-            var hints = new List<string>();
-            this.PrepareHints(hints);
-            this.DescriptionHints = hints;
 
             this.PrepareProtoItem();
         }

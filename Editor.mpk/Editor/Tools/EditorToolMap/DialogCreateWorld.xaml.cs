@@ -4,9 +4,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    /// <summary>
-    /// Interaction logic for DialogCreateWorld.xaml
-    /// </summary>
     public partial class DialogCreateWorld : BaseUserControl
     {
         public Action OkCallback;

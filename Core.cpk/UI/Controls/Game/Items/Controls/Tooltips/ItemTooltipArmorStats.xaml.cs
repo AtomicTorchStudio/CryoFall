@@ -12,7 +12,7 @@
 
         public static ItemTooltipArmorStats Create(IProtoItemEquipment protoItem)
         {
-            return new ItemTooltipArmorStats() { protoItem = protoItem };
+            return new() { protoItem = protoItem };
         }
 
         protected override void OnLoaded()

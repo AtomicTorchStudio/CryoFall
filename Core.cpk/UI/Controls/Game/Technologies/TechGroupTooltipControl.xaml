@@ -23,7 +23,8 @@
 
             <DataTemplate DataType="{x:Type data:ViewModelTechGroupRequirementGroupUnlocked}">
                 <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Left"
+                            Margin="0,2">
                     <Border Width="75"
                             Height="10">
                         <Grid>
@@ -48,20 +49,6 @@
 
                                                     <ContentPresenter HorizontalAlignment="Left"
                                                                       Margin="{TemplateBinding Padding}" />
-
-                                                    <Border CornerRadius="3"
-                                                            Margin="{TemplateBinding Padding}">
-                                                        <Border.Background>
-                                                            <LinearGradientBrush StartPoint="0.5,0"
-                                                                                 EndPoint="0.5,1"
-                                                                                 Opacity="0.15">
-                                                                <GradientStop Color="Transparent" Offset="0" />
-                                                                <GradientStop Color="#99000000" Offset="0.5" />
-                                                                <GradientStop Color="#FF000000" Offset="0.75" />
-                                                                <GradientStop Color="#FF000000" Offset="1" />
-                                                            </LinearGradientBrush>
-                                                        </Border.Background>
-                                                    </Border>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -77,18 +64,27 @@
                             </Grid.Resources>
 
                             <core:ValueBarControl
-                                Visibility="{Binding VisibilityIsNotSatisfied}"
-                                Value="{Binding RequiredGroupRequiredNodesUnlockedPercent}"
-                                BarBrush="#FFFF3300"
-                                BorderBrush="#FFFF3300"
-                                Style="{StaticResource ValueBarControlStyle}" />
+                                Value="{Binding RequiredGroupRequiredNodesUnlockedPercent}">
+                                <core:ValueBarControl.Style>
+                                    <Style BasedOn="{StaticResource ValueBarControlStyle}"
+                                           TargetType="{x:Type core:ValueBarControl}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding VisibilityIsNotSatisfied}" Value="Visible">
+                                                <Setter Property="Background" Value="{StaticResource BrushColorRed0}" />
+                                                <Setter Property="BarBrush" Value="{StaticResource BrushColorRed5}" />
+                                                <Setter Property="BorderBrush" Value="{StaticResource BrushColorRed5}" />
+                                            </DataTrigger>
 
-                            <core:ValueBarControl
-                                Visibility="{Binding VisibilityIsSatisfied}"
-                                Value="{Binding RequiredGroupRequiredNodesUnlockedPercent}"
-                                BarBrush="#FF99CC00"
-                                BorderBrush="#FF99CC00"
-                                Style="{StaticResource ValueBarControlStyle}" />
+                                            <DataTrigger Binding="{Binding VisibilityIsSatisfied}" Value="Visible">
+                                                <Setter Property="Background" Value="{StaticResource BrushColorGreen0}" />
+                                                <Setter Property="BarBrush" Value="{StaticResource BrushColorGreen5}" />
+                                                <Setter Property="BorderBrush"
+                                                        Value="{StaticResource BrushColorGreen5}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </core:ValueBarControl.Style>
+                            </core:ValueBarControl>
 
                             <!-- Ticks overlay -->
                             <Rectangle RadiusX="3"
@@ -100,31 +96,18 @@
                                                          EndPoint="15,0" MappingMode="Absolute">
                                         <GradientStop Color="Transparent" Offset="0" />
                                         <GradientStop Color="Transparent" Offset="0.9" />
-                                        <GradientStop Color="White" Offset="0.901" />
-                                        <GradientStop Color="White" Offset="0.95" />
+                                        <GradientStop Color="#99FFFFFF" Offset="0.901" />
+                                        <GradientStop Color="#99FFFFFF" Offset="0.95" />
                                         <GradientStop Color="Black" Offset="0.951" />
                                         <GradientStop Color="Black" Offset="1.0" />
                                     </LinearGradientBrush>
                                 </Rectangle.Fill>
                             </Rectangle>
-
-                            <!-- Shadow gradient overlay -->
-                            <Border CornerRadius="1">
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1"
-                                                         Opacity="0.15">
-                                        <GradientStop Color="Transparent" Offset="0" />
-                                        <GradientStop Color="#99000000" Offset="0.5" />
-                                        <GradientStop Color="#FF000000" Offset="0.75" />
-                                        <GradientStop Color="#FF000000" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                            </Border>
-
                         </Grid>
                     </Border>
 
                     <TextBlock Text="{Binding RequiredGroupTitle}"
+                               FontWeight="Bold"
                                Margin="5,0,0,0" />
                 </StackPanel>
             </DataTemplate>
@@ -175,10 +158,10 @@
                             </Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsSatisfied}" Value="True">
-                                    <Setter Property="Foreground" Value="#FF99CC00" />
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColorGreen5}" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding IsSatisfied}" Value="False">
-                                    <Setter Property="Foreground" Value="#FFFF3300" />
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColorRed5}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

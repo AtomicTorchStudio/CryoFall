@@ -5,15 +5,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.NewbieProtection"
+    xmlns:newbieProtection="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.NewbieProtection"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelNewbieProtectionControl, d:IsDesignTimeCreatable=True}"
     d:DesignHeight="300" d:DesignWidth="300"
-    Visibility="{Binding Visibility}">
+    Visibility="{Binding Visibility}"
+    Margin="0,0,0,5">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-        <Grid HorizontalAlignment="Center">
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center">
+        <Grid HorizontalAlignment="Center"
+              Margin="0,0,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
@@ -26,20 +30,52 @@
                    UseLayoutRounding="True"
                    Margin="0,0,5,0" />
             <TextBlock Grid.Column="1"
-                       Text="{x:Static loc:NewbieProtectionSystem.Title_NewbieProtection}"
+                       Text="{x:Static newbieProtection:NewbieProtectionSystem.Title_NewbieProtection}"
                        HorizontalAlignment="Center"
                        FontFamily="{StaticResource CondensedFontFamily}"
                        FontSize="16"
                        FontWeight="Bold"
                        TextWrapping="Wrap"
+                       TextDecorations="Underline"
+                       noesis:Text.Stroke="#BB000000"
+                       noesis:Text.StrokeThickness="1.5"
                        VerticalAlignment="Center" />
         </Grid>
 
+        <TextBlock Text="{x:Static newbieProtection:NewbieProtectionSystem.NewbieProtectionDescription}"
+                   FontSize="12"
+                   LineHeight="13"
+                   LineStackingStrategy="BlockLineHeight"
+                   HorizontalAlignment="Left"
+                   TextAlignment="Left"
+                   TextWrapping="Wrap" />
+
+        <TextBlock
+            Text="{x:Static newbieProtection:NewbieProtectionSystem.Notification_CannotDamageOtherPlayersOrLootBags}"
+            FontSize="12"
+            LineHeight="13"
+            LineStackingStrategy="BlockLineHeight"
+            HorizontalAlignment="Left"
+            TextAlignment="Left"
+            TextWrapping="Wrap"
+            Margin="0,5,0,0" />
+
+        <TextBlock
+            Text="{x:Static newbieProtection:NewbieProtectionSystem.Notification_CanCancelProtection}"
+            FontSize="12"
+            LineHeight="13"
+            LineStackingStrategy="BlockLineHeight"
+            HorizontalAlignment="Left"
+            TextAlignment="Left"
+            TextWrapping="Wrap"
+            Margin="0,5,0,0" />
+
         <Button Command="{Binding CommandCancelNewbieProtection}"
+                Focusable="False"
                 HorizontalAlignment="Center"
-                Margin="0,5,0,0">
+                Margin="0,10,0,0">
             <Button.Content>
-                <TextBlock Text="{x:Static loc:NewbieProtectionSystem.Button_CancelNewbieProtection}"
+                <TextBlock Text="{x:Static newbieProtection:NewbieProtectionSystem.Button_CancelNewbieProtection}"
                            TextWrapping="Wrap" />
             </Button.Content>
         </Button>

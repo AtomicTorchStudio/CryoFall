@@ -5,7 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Resources;
 
-    public class ObjectDoorSteel : ProtoObjectDoor
+    public sealed class ObjectDoorSteel : ProtoObjectDoor
     {
         public ObjectDoorSteel()
         {

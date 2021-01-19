@@ -34,35 +34,43 @@
             var protoItemRemoteControlStandard = Api.GetProtoEntity<ItemDroneControlStandard>();
 
             // require crafting any drone control
-            tasks.Add(TaskCraftRecipe.RequireStationRecipe(
-                          new List<Recipe.RecipeForStationCrafting>()
-                          {
-                              recipeDroneControlStandard,
-                              recipeDroneControlAdvanced
-                          },
-                          count: 1,
-                          description: TaskCraftRecipe.AppendRecipeLocationIfNecessary(
-                              TaskCraftRecipe.DescriptionTitlePrefix + " " + recipeDroneControlStandard.Name,
-                              recipeDroneControlStandard)));
+            tasks.Add(
+                TaskCraftRecipe.RequireStationRecipe(
+                                   new List<Recipe.RecipeForStationCrafting>()
+                                   {
+                                       recipeDroneControlStandard,
+                                       recipeDroneControlAdvanced
+                                   },
+                                   count: 1,
+                                   description: TaskCraftRecipe.AppendRecipeLocationIfNecessary(
+                                       TaskCraftRecipe.DescriptionTitlePrefix + " " + recipeDroneControlStandard.Name,
+                                       recipeDroneControlStandard))
+                               .WithIcon(recipeDroneControlStandard.Icon));
 
             // require crafting any drone (an item)
-            tasks.Add(TaskCraftRecipe.RequireStationRecipe(
-                          new List<Recipe.RecipeForStationCrafting>()
-                          {
-                              recipeDroneIndustrialStandard,
-                              recipeDroneIndustrialAdvanced
-                          },
-                          count: 1,
-                          description: TaskCraftRecipe.AppendRecipeLocationIfNecessary(
-                              TaskCraftRecipe.DescriptionTitlePrefix + " " + recipeDroneIndustrialStandard.Name,
-                              recipeDroneIndustrialStandard)));
+            tasks.Add(
+                TaskCraftRecipe.RequireStationRecipe(
+                                   new List<Recipe.RecipeForStationCrafting>()
+                                   {
+                                       recipeDroneIndustrialStandard,
+                                       recipeDroneIndustrialAdvanced
+                                   },
+                                   count: 1,
+                                   description: TaskCraftRecipe.AppendRecipeLocationIfNecessary(
+                                       TaskCraftRecipe.DescriptionTitlePrefix
+                                       + " "
+                                       + recipeDroneIndustrialStandard.Name,
+                                       recipeDroneIndustrialStandard))
+                               .WithIcon(recipeDroneIndustrialStandard.Icon));
 
             // require using any drone item
-            tasks.Add(TaskUseItem.Require(
-                          Api.FindProtoEntities<IProtoItemDroneControl>(),
-                          count: 1,
-                          description: string.Format(TaskUseItem.DescriptionFormat,
-                                                     protoItemRemoteControlStandard.Name)));
+            tasks.Add(
+                TaskUseItem.Require(
+                               Api.FindProtoEntities<IProtoItemDroneControl>(),
+                               count: 1,
+                               description: string.Format(TaskUseItem.DescriptionFormat,
+                                                          protoItemRemoteControlStandard.Name))
+                           .WithIcon(Api.GetProtoEntity<ItemDroneControlStandard>().Icon));
 
             prerequisites
                 .Add<QuestAdvancedResourcesAcquisition>();

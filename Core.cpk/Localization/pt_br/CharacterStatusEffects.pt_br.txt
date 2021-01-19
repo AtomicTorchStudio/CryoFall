@@ -28,6 +28,12 @@ Você comeu uma refeição saudável há pouco tempo. Todas as tarefas que execu
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Comida saudável
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Aumenta a velocidade de produção criando um espaço quântico isolado ao redor do usuário.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Aceleração quântica
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Há pouco tempo, você comeu uma refeição saborosa. Isso faz sua vida parecer mais alegre.
 
@@ -63,9 +69,6 @@ Você quebrou uma perna, o que afeta sua capacidade de movimento. Tentar correr 
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Perna quebrada
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-Não é possível atacar estando atordoado.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Você está atordoado! Espere um pouco para recuperar os sentidos.
@@ -180,6 +183,12 @@ Você anda usando muitos remédios em um curto espaço de tempo. Descanse um pou
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Abuso de remédios
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Você provavelmente comeu mais do que deveria. Se ingerir mais comida, vai se sentir mal.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Gula
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Aguarde até que a aplicação de peredozinol seja concluída.

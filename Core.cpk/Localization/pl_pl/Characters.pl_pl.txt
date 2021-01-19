@@ -4,6 +4,12 @@ Niedźwiedź
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Czarny żuk
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Królowa pragmium
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Piaskowy tyran
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Kopacz
 
@@ -37,8 +43,8 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Żuk pragmiumowy
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Królowa pragmium
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+Drzewa psi
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Ślimak
@@ -55,8 +61,14 @@ Brązowy wąż
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Zielony wąż
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Plujacz
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Rozgwiazda
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Tratownik
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Knur tropikalny

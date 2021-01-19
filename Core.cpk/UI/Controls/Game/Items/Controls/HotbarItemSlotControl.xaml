@@ -59,32 +59,38 @@
         <!-- Shortcut key label -->
         <Canvas HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                Visibility="{Binding IsShortcutAvailable, ElementName=UserControl}">
-            <Border Canvas.Top="-5"
-                    Canvas.Left="-8"
-                    Style="{StaticResource WidgetBackgroundBorder}"
-                    CornerRadius="2"
-                    BorderThickness="0.75"
-                    Width="16"
-                    BorderBrush="{StaticResource WidgetBorderBrush}"
-                    UseLayoutRounding="False">
-                <Grid>
-                    <Border CornerRadius="2"
-                            Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
-                    <TextBlock Text="{Binding ShortcutKey}"
-                               Foreground="{StaticResource BrushColorAltLabelForeground}"
-                               FontSize="10"
-                               FontWeight="Bold"
-                               FontFamily="{StaticResource DigitsFontFamily}"
-                               Margin="0.5,-1,0,0"
-                               IsHitTestVisible="False"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               noesis:Text.Stroke="#BB000000"
-                               noesis:Text.StrokeThickness="1.5"
-                               UseLayoutRounding="False" />
-                </Grid>
-            </Border>
+                Visibility="{Binding IsShortcutAvailable, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Canvas.Top="-5"
+                  Canvas.Left="-8">
+                <Border Style="{StaticResource WidgetBorderShadowStyle}"
+                        CornerRadius="2"
+                        BorderThickness="0.75"
+                        Margin="{StaticResource WidgetShadowMarginThin}" />
+                <Border Style="{StaticResource WidgetBackgroundBorder}"
+                        Background="Black"
+                        CornerRadius="2"
+                        BorderThickness="0.75"
+                        Width="16"
+                        BorderBrush="{StaticResource WidgetBorderBrush}"
+                        UseLayoutRounding="False">
+                    <Grid>
+                        <Border CornerRadius="2"
+                                Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
+                        <TextBlock Text="{Binding ShortcutKey}"
+                                   Foreground="{StaticResource BrushColorAltLabelForeground}"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   FontFamily="{StaticResource DigitsFontFamily}"
+                                   Margin="0.5,-1,0,0"
+                                   IsHitTestVisible="False"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   noesis:Text.Stroke="#BB000000"
+                                   noesis:Text.StrokeThickness="1.5"
+                                   UseLayoutRounding="False" />
+                    </Grid>
+                </Border>
+            </Grid>
         </Canvas>
     </Grid>
 </base:BaseUserControl>

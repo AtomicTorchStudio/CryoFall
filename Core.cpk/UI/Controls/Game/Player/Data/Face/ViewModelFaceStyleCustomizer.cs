@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -26,6 +27,9 @@
 
         private readonly Action<ViewModelFaceStyleCustomizer> onStyleSet;
 
+        private readonly Stack<CharacterHumanFaceStyle> previousStyles
+            = new();
+
         private readonly ViewModelCharacterStyleSetting settingBottom;
 
         private readonly ViewModelCharacterStyleSetting settingFace;
@@ -41,23 +45,6 @@
         private CharacterHumanFaceStyle? currentStyle;
 
         private bool isHandlersSuppressed;
-
-        // design-time constructor
-        public ViewModelFaceStyleCustomizer()
-        {
-            if (!IsDesignTime)
-            {
-                throw new Exception("Use another constructor in the game.");
-            }
-
-            this.StyleSettings = new ObservableCollection<ViewModelCharacterStyleSetting>()
-            {
-                new ViewModelCharacterStyleSetting(TitleFace,   5),
-                new ViewModelCharacterStyleSetting(TitleTop,    2),
-                new ViewModelCharacterStyleSetting(TitleBottom, 3),
-                new ViewModelCharacterStyleSetting(TitleHair,   5),
-            };
-        }
 
         public ViewModelFaceStyleCustomizer(bool isMale, Action<ViewModelFaceStyleCustomizer> onStyleSet)
         {
@@ -133,13 +120,28 @@
             }
         }
 
+        public bool IsRandomUndoAvailable => this.previousStyles.Count > 0;
+
         public bool IsStyleSet => this.currentStyle.HasValue;
 
         public ObservableCollection<ViewModelCharacterStyleSetting> StyleSettings { get; }
 
         public void GenerateRandomFace()
         {
+            if (this.currentStyle.HasValue)
+            {
+                this.previousStyles.Push(this.currentStyle.Value);
+            }
+
             this.CurrentStyle = this.faceStylesProvider.GenerateRandomFace();
+        }
+
+        public void UndoRandomFace()
+        {
+            if (this.IsRandomUndoAvailable)
+            {
+                this.CurrentStyle = this.previousStyles.Pop();
+            }
         }
 
         private void RefreshCurrentStyle()

@@ -1,6 +1,10 @@
 ﻿Scripts/Events/EventBossPragmiumQueen@Description:
-`La Reine du pragmium a fait son apparition à la surface.
-[br]Un butin précieux attend les survivants les plus courageux !`
+`La Reine du pragmium a fait surface !
+[br]Un précieux butin attend les survivants les plus courageux !`
+
+Scripts/Events/EventBossSandTyrant@Description:
+`Le Tyran des sables a fait surface !
+[br]Un précieux butin attend les survivants les plus courageux !`
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `Des météorites sont tombées dans la zone en surbrillance sur la carte.
@@ -8,6 +12,9 @@ Scripts/Events/EventMeteoriteDrop@Description:
 
 Scripts/Events/EventMigration@Description:
 Des formes de vies indigènes semblent avoir entamé une migration vers un autre secteur. Voilà une belle opportunité pour la chasse !
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+Des pousses étranges ont fait leur apparition dans certaines zones montagneuses, ce qui y rend toute prospection impossible. Mais cela constitue également une bonne opportunité d'obtenir des ressources rares.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Des débris spatiaux sont tombés dans la zone en surbrillance sur la carte.
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Progression : {0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+Un banc de poissons rares ({0}) vient de se former à proximité du rivage ! Saisissez cette chance d'aller pêcher une espèce unique, que l'on ne peut trouver que pendant sa période de reproduction.
 

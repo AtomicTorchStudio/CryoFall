@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -32,6 +33,13 @@
 
         private static void ToggleHelmetLight()
         {
+            if (ClientCurrentCharacterHelper.Character?.ProtoCharacter.GetType()
+                != typeof(PlayerCharacter))
+            {
+                // perhaps in Editor or Spectator mode
+                return;
+            }
+
             var characterPublicState = ClientCurrentCharacterHelper.PublicState;
 
             // check whether a vehicle is overriding the helmet light switch

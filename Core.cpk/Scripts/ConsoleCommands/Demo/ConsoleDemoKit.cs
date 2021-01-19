@@ -237,7 +237,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemPickaxeStone>();
                     CreateItem<ItemPickaxeIron>();
                     CreateItem<ItemPickaxeSteel>();
-                    CreateItem<ItemHatchetPragmium>();
+                    CreateItem<ItemHammerPragmium>();
                     CreateItem<ItemToolboxT1>();
                     CreateItem<ItemToolboxT2>();
                     CreateItem<ItemToolboxT3>();

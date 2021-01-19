@@ -55,7 +55,9 @@
         public override string Name => "Character idle system";
 
         public static bool ServerIsIdlePlayer(ICharacter character)
-            => PlayerCharacter.GetPrivateState(character).IsIdle;
+        {
+            return PlayerCharacter.GetPrivateState(character).IsIdle;
+        }
 
         protected override void PrepareSystem()
         {
@@ -139,6 +141,12 @@
             // idle player
             if (this.clientNotificationIsIdle is not null
                 && !this.clientNotificationIsIdle.IsHiding)
+            {
+                return;
+            }
+
+            if (Api.IsEditor
+                && !CharacterHungerThirstSystem.IsEnabledInEditor)
             {
                 return;
             }

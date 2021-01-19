@@ -32,11 +32,11 @@
             = Client.Storage.GetStorage("Gameplay/CameraLastZoomValue");
 
         private static readonly Interval<double> ZoomDefaultBounds
-            = new Interval<double>(0.5, 1.0);
+            = new(0.5, 1.0);
 
         private static readonly Interval<double> ZoomDefaultBoundsLog
-            = new Interval<double>(Math.Log(ZoomDefaultBounds.Min),
-                                   Math.Log(ZoomDefaultBounds.Max));
+            = new(Math.Log(ZoomDefaultBounds.Min),
+                  Math.Log(ZoomDefaultBounds.Max));
 
         private static readonly double ZoomDefaultValueLog
             = (ZoomDefaultBoundsLog.Max + ZoomDefaultBoundsLog.Min) / 2;

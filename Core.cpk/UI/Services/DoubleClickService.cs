@@ -25,7 +25,7 @@
                 new PropertyMetadata(default(object)));
 
         private static readonly List<ElementLastClickTime> RecentlyClickedList
-            = new List<ElementLastClickTime>();
+            = new();
 
         public static BaseCommand GetCommandOnDoubleClick(DependencyObject element)
         {

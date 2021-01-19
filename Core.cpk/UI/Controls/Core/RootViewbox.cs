@@ -22,10 +22,6 @@
                 new FrameworkPropertyMetadata(typeof(RootViewbox)));
         }
 
-        public RootViewbox()
-        {
-        }
-
         public void RefreshSize()
         {
             this.Refresh();

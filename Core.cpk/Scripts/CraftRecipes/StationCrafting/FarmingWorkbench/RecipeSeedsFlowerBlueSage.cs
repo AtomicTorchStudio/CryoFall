@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectFarmingWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemFlowerBlueSage>(count: 1);
             inputItems.Add<ItemSand>(count: 5);

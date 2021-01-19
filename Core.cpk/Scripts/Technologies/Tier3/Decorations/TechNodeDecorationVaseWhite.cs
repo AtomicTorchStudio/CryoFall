@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationVaseWhite>();
 
-            //config.SetRequiredNode<TechNodeBed>();
+            config.SetRequiredNode<TechNodeDisplayCaseLarge>();
         }
     }
 }

@@ -24,7 +24,7 @@
         // Faster decay speed for blueprints outside the land claim areas to prevent world overcrowding with the blueprints.
         public const double DecaySpeedMultiplier = 4;
 
-        private static readonly Lazy<RenderingMaterial> BlueprintMaterial = new Lazy<RenderingMaterial>(
+        private static readonly Lazy<RenderingMaterial> BlueprintMaterial = new(
             () =>
             {
                 var material = RenderingMaterial.Create(new EffectResource("ConstructionBlueprint"));
@@ -158,7 +158,7 @@
             var publicState = data.PublicState;
 
             var protoStructure = publicState.ConstructionProto;
-            var blueprint = new ClientBlueprintRenderer(worldObject.ClientSceneObject);
+            var blueprint = new ClientBlueprintRenderer(worldObject.ClientSceneObject, isConstructionSite: true);
             protoStructure.ClientSetupBlueprint(worldObject.OccupiedTile, blueprint);
             blueprint.SpriteRenderer.DrawOrder = DrawOrder.Default;
             blueprint.SpriteRenderer.RenderingMaterial = BlueprintMaterial.Value;

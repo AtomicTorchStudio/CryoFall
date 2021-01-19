@@ -61,14 +61,14 @@
         private static readonly Random Random = Api.Random;
 
         // one for all ProtoZoneSpawnScript instances - used to chain/queue spawn tasks
-        private static readonly SemaphoreSlim ServerSpawnTasksSemaphore = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim ServerSpawnTasksSemaphore = new(1, 1);
 
         private static readonly IWorldServerService ServerWorldService = IsServer ? Server.World : null;
 
-        private static readonly List<IStaticWorldObject> TempListAllStaticWorldObjects = new List<IStaticWorldObject>();
+        private static readonly List<IStaticWorldObject> TempListAllStaticWorldObjects = new();
 
         // one per ProtoZoneSpawnScript instance
-        private readonly HashSet<CurrentlyExecutingTaskKey> executingEntries = new HashSet<CurrentlyExecutingTaskKey>();
+        private readonly HashSet<CurrentlyExecutingTaskKey> executingEntries = new();
 
         private bool hasServerOnObjectSpawnedMethodOverride;
 
@@ -90,12 +90,12 @@
 
         protected virtual double MaxSpawnAttemptsMultiplier => 1;
 
-        public IZoneScriptConfig Configure(double densityMultiplier)
+        public SpawnConfig Configure(double densityMultiplier)
         {
-            return new SpawnConfig(this, densityMultiplier);
+            return new(this, densityMultiplier);
         }
 
-        public sealed override async void ServerInvoke(SpawnConfig config, IProtoTrigger trigger, IServerZone zone)
+        public sealed override async Task ServerInvoke(SpawnConfig config, IProtoTrigger trigger, IServerZone zone)
         {
             var key = new CurrentlyExecutingTaskKey(config, trigger, zone);
             if (!this.executingEntries.Add(key))
@@ -109,9 +109,7 @@
             // Don't use tasks semaphore during the initial spawn.
             // This way new players cannot connect to the server until the spawn scripts have ended
             // (the initial spawn is not async anyway so semaphore doesn't do anything good here).
-            var isInitialSpawn = trigger is null
-                                 || trigger is TriggerWorldInit;
-
+            var isInitialSpawn = trigger is TriggerWorldInit;
             if (!isInitialSpawn)
             {
                 await ServerSpawnTasksSemaphore.WaitAsync(Api.CancellationToken);
@@ -310,8 +308,7 @@
 
             // if spawned a vegetation on the world initialization - set random growth progress
             if (protoStaticWorldObject is IProtoObjectVegetation protoVegetation
-                && (trigger is null
-                    || trigger is TriggerWorldInit))
+                && trigger is TriggerWorldInit)
             {
                 var growthProgress = RandomHelper.RollWithProbability(0.85)
                                          ? 1 // 85% are spawned in full grown state during initial spawn
@@ -338,17 +335,17 @@
             IReadOnlyDictionary<Vector2Ushort, SpawnZoneArea> spawnZoneAreas)
         {
             const int size = SpawnZoneAreaSize;
-            var topLeft = startPosition - new Vector2Int(-size, -size);
-            var topCenter = startPosition - new Vector2Int(0,   -size);
-            var topRight = startPosition - new Vector2Int(size, -size);
+            var topLeft = (startPosition - new Vector2Int(-size, -size)).ToVector2Ushort();
+            var topCenter = (startPosition - new Vector2Int(0,   -size)).ToVector2Ushort();
+            var topRight = (startPosition - new Vector2Int(size, -size)).ToVector2Ushort();
 
-            var middleLeft = startPosition - new Vector2Int(-size, 0);
+            var middleLeft = (startPosition - new Vector2Int(-size, 0)).ToVector2Ushort();
             var middleCenter = startPosition; // self
-            var middleRight = startPosition - new Vector2Int(size, 0);
+            var middleRight = (startPosition - new Vector2Int(size, 0)).ToVector2Ushort();
 
-            var bottomLeft = startPosition - new Vector2Int(-size, size);
-            var bottomCenter = startPosition - new Vector2Int(0,   size);
-            var bottomRight = startPosition - new Vector2Int(size, size);
+            var bottomLeft = (startPosition - new Vector2Int(-size, size)).ToVector2Ushort();
+            var bottomCenter = (startPosition - new Vector2Int(0,   size)).ToVector2Ushort();
+            var bottomRight = (startPosition - new Vector2Int(size, size)).ToVector2Ushort();
 
             if (spawnZoneAreas.TryGetValue(topLeft, out var r1))
             {
@@ -810,8 +807,7 @@
                 return;
             }
 
-            var isInitialSpawn = trigger is null
-                                 || trigger is TriggerWorldInit;
+            var isInitialSpawn = trigger is TriggerWorldInit;
             var yieldIfOutOfTime = isInitialSpawn
                                        ? () => Task.CompletedTask
                                        : (Func<Task>)Core.YieldIfOutOfTime;
@@ -1132,7 +1128,7 @@
             public readonly Vector2Ushort StartPosition;
 
             public readonly Dictionary<ObjectSpawnPreset, List<Vector2Ushort>> WorldObjectsByPreset
-                = new Dictionary<ObjectSpawnPreset, List<Vector2Ushort>>();
+                = new();
 
             /// <summary>
             /// Gets the zone tiles count in the area (the area can not fully include the zone tiles).
@@ -1147,7 +1143,7 @@
 
             public static Vector2Ushort CalculateStartPosition(Vector2Ushort tilePosition)
             {
-                return new Vector2Ushort(
+                return new(
                     (ushort)(SpawnZoneAreaSize * (tilePosition.X / SpawnZoneAreaSize)),
                     (ushort)(SpawnZoneAreaSize * (tilePosition.Y / SpawnZoneAreaSize)));
             }

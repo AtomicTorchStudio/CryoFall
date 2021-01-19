@@ -8,7 +8,7 @@
     [DebuggerStepThrough]
     public class SpawnList
     {
-        private List<ObjectSpawnPreset> presets = new List<ObjectSpawnPreset>();
+        private List<ObjectSpawnPreset> presets = new();
 
         /// <summary>
         /// Adds proto entity (or entities) to the spawn list.

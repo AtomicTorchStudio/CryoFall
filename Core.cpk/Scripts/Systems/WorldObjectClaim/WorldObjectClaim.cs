@@ -2,7 +2,6 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi;
@@ -188,19 +187,15 @@
         public class PublicState : BasePublicState
         {
             [SyncToClient(DeliveryMode.ReliableSequenced, maxUpdatesPerSecond: 1)]
-            [TempOnly]
             public double ExpirationTime { get; set; }
 
             [SyncToClient]
-            [TempOnly]
             public uint PlayerCharacterId { get; set; }
 
             [SyncToClient]
-            [TempOnly]
             public uint PlayerPartyId { get; set; }
 
             [SyncToClient]
-            [TempOnly]
             public IWorldObject WorldObject { get; set; }
         }
     }

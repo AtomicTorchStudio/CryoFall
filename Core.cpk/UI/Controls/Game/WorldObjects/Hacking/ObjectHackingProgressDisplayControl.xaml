@@ -15,7 +15,7 @@
 
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{x:Static loc:CoreStrings.LootHacking_Progress}"
-                   Foreground="#FFFFCC00"
+                   Foreground="{StaticResource BrushCanInteract}"
                    FontSize="21"
                    LineHeight="19"
                    LineStackingStrategy="BlockLineHeight"
@@ -36,9 +36,9 @@
                 x:Name="ValueBarControl"
                 Value="{Binding HackingProgress}"
                 MaxValue="100"
-                BarBrush="#FFFFCC00"
+                BarBrush="{StaticResource BrushCanInteract}"
                 Background="#66000000"
-                BorderBrush="#FFFFCC00"
+                BorderBrush="{StaticResource BrushCanInteract}"
                 Width="128"
                 Height="14"
                 BorderThickness="1"
@@ -56,31 +56,6 @@
 
                             <ContentPresenter HorizontalAlignment="Left"
                                               Margin="{TemplateBinding Padding}" />
-
-                            <Border CornerRadius="3"
-                                    Margin="{TemplateBinding Padding}">
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0.5,0"
-                                                         EndPoint="0.5,1"
-                                                         Opacity="0.15">
-                                        <GradientStop Color="Transparent" Offset="0" />
-                                        <GradientStop Color="#99000000" Offset="0.5" />
-                                        <GradientStop Color="#FF000000" Offset="0.75" />
-                                        <GradientStop Color="#FF000000" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                            </Border>
-
-                            <!--<TextBlock x:Name="TextBlockValueDisplay"
-                                   Text="100/100"
-                                   FontSize="13"
-                                   Margin="0,-2,0,0"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontFamily="{StaticResource DigitsFontFamily}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   noesis:Text.Stroke="Black"
-                                   noesis:Text.StrokeThickness="2" />-->
                         </Grid>
                     </ControlTemplate>
                 </core:ValueBarControl.Template>

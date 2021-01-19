@@ -105,7 +105,7 @@
             }
 
             this.currentExtendMode = CalculateExtendMode(ref position, selectionBounds);
-            //Logger.WriteDev("Selection rectangle extending started: " + this.currentExtendMode);
+            //Logger.Dev("Selection rectangle extending started: " + this.currentExtendMode);
 
             // normalize start-end positions
             this.SelectionRectStartPosition = selectionBounds.Offset;
@@ -201,16 +201,14 @@
 
         private void ChangeSelectionEnd(ushort? newX = null, ushort? newY = null)
         {
-            this.SelectionRectEndPosition = (
-                                                newX ?? this.SelectionRectEndPosition.X,
-                                                newY ?? this.SelectionRectEndPosition.Y);
+            this.SelectionRectEndPosition = (newX ?? this.SelectionRectEndPosition.X,
+                                             newY ?? this.SelectionRectEndPosition.Y);
         }
 
         private void ChangeSelectionStart(ushort? newX = null, ushort? newY = null)
         {
-            this.SelectionRectStartPosition = (
-                                                  newX ?? this.SelectionRectStartPosition.X,
-                                                  newY ?? this.SelectionRectStartPosition.Y);
+            this.SelectionRectStartPosition = (newX ?? this.SelectionRectStartPosition.X,
+                                               newY ?? this.SelectionRectStartPosition.Y);
         }
     }
 }

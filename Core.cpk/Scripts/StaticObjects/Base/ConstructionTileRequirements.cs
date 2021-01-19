@@ -4,12 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -74,7 +76,7 @@
 
         public static readonly IConstructionTileRequirementsReadOnly DefaultForStaticObjects;
 
-        private static readonly CollisionGroup DefaultCollisionGroup = CollisionGroup.GetDefault();
+        private static readonly CollisionGroup DefaultCollisionGroup = CollisionGroup.Default;
 
         private static readonly IWorldService WorldService = Api.IsServer
                                                                  ? (IWorldService)Api.Server.World
@@ -84,245 +86,254 @@
         /// Checks if there is no dynamic objects in the tile.
         /// </summary>
         public static readonly Validator ValidatorNoPhysicsBodyDynamic
-            = new Validator(
-                ErrorNoFreeSpace,
-                c =>
-                {
-                    return !TileHasAnyPhysicsObjectsWhere(c.Tile,
-                                                          CheckIsNotStaticBody,
-                                                          CollisionGroups.Default)
-                           && !TileHasAnyPhysicsObjectsWhere(c.Tile,
-                                                             CheckIsNotStaticBodyAndNoDefaultCollider,
-                                                             CollisionGroups.HitboxRanged)
-                           && !TileHasAnyPhysicsObjectsWhere(c.Tile,
-                                                             CheckIsNotStaticBodyAndNoDefaultCollider,
-                                                             CollisionGroups.HitboxMelee);
+            = new(ErrorNoFreeSpace,
+                  c =>
+                  {
+                      return !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                            CheckIsNotStaticBody,
+                                                            CollisionGroups.Default)
+                             && !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                               CheckIsNotStaticBodyAndNoDefaultCollider,
+                                                               CollisionGroups.HitboxRanged)
+                             && !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                               CheckIsNotStaticBodyAndNoDefaultCollider,
+                                                               CollisionGroups.HitboxMelee);
 
-                    static bool CheckIsNotStaticBody(TestResult t)
-                        => !t.PhysicsBody.IsStatic;
+                      static bool CheckIsNotStaticBody(TestResult t)
+                          => !t.PhysicsBody.IsStatic;
 
-                    static bool CheckIsNotStaticBodyAndNoDefaultCollider(TestResult t)
-                        => !t.PhysicsBody.IsStatic
-                           && !t.PhysicsBody.HasAnyShapeCollidingWithGroup(CollisionGroups.Default);
-                });
+                      static bool CheckIsNotStaticBodyAndNoDefaultCollider(TestResult t)
+                          => !t.PhysicsBody.IsStatic
+                             && !t.PhysicsBody.HasAnyShapeCollidingWithGroup(CollisionGroups.Default);
+                  });
 
         /// <summary>
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
         public static readonly Validator ValidatorNoNpcsAround
-            = new Validator(ErrorCreaturesNearby,
-                            c =>
-                            {
-                                if (c.CharacterBuilder is null)
-                                {
-                                    // don't perform this check if the action is done by the server only
-                                    return true;
-                                }
+            = new(ErrorCreaturesNearby,
+                  c =>
+                  {
+                      if (c.CharacterBuilder is null)
+                      {
+                          // don't perform this check if the action is done by the server only
+                          return true;
+                      }
 
-                                var physicsSpace = WorldService.GetPhysicsSpace();
-                                using var tempList = physicsSpace.TestCircle(
-                                    position: c.Tile.Position.ToVector2D() + (0.5, 0.5),
-                                    radius: RequirementNoNpcsRadius,
-                                    collisionGroup: DefaultCollisionGroup,
-                                    sendDebugEvent: false);
-                                foreach (var entry in tempList.AsList())
-                                {
-                                    if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
-                                        && character.IsNpc)
-                                    {
-                                        // found npc nearby
-                                        return false;
-                                    }
-                                }
+                      var physicsSpace = WorldService.GetPhysicsSpace();
+                      using var tempList = physicsSpace.TestCircle(
+                          position: c.Tile.Position.ToVector2D() + (0.5, 0.5),
+                          radius: RequirementNoNpcsRadius,
+                          collisionGroup: DefaultCollisionGroup,
+                          sendDebugEvent: false);
+                      foreach (var entry in tempList.AsList())
+                      {
+                          if (entry.PhysicsBody.AssociatedWorldObject
+                                  is ICharacter { IsNpc: true, ProtoGameObject: IProtoCharacterMob })
+                          {
+                              // found npc nearby
+                              return false;
+                          }
+                      }
 
-                                return true;
-                            });
+                      return true;
+                  });
 
         public static readonly Validator ValidatorSameHeightLevelAsPlayer
-            = new Validator(CoreStrings.Notification_TooFar,
-                            c =>
-                            {
-                                if (c.CharacterBuilder is null)
-                                {
-                                    // don't perform this check if the action is done by the server only
-                                    return true;
-                                }
+            = new(CoreStrings.Notification_TooFar,
+                  c =>
+                  {
+                      if (c.CharacterBuilder is null)
+                      {
+                          // don't perform this check if the action is done by the server only
+                          return true;
+                      }
 
-                                return c.Tile.Height
-                                       == c.CharacterBuilder.Tile.Height;
-                            });
+                      return c.Tile.Height
+                             == c.CharacterBuilder.Tile.Height;
+                  });
 
         /// <summary>
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
         public static readonly Validator ValidatorNoPlayersNearby
-            = new Validator(ErrorPlayerNearby,
-                            c =>
-                            {
-                                if (c.CharacterBuilder is null)
-                                {
-                                    // don't perform this check if the action is done by the server only
-                                    return true;
-                                }
+            = new(ErrorPlayerNearby,
+                  c =>
+                  {
+                      if (c.CharacterBuilder is null)
+                      {
+                          // don't perform this check if the action is done by the server only
+                          return true;
+                      }
 
-                                var tilePosition = c.Tile.Position;
-                                if (LandClaimSystem.SharedIsOwnedLand(tilePosition, c.CharacterBuilder, out _))
-                                {
-                                    // don't perform this check if this is the owned land
-                                    return true;
-                                }
+                      var tilePosition = c.Tile.Position;
+                      if (LandClaimSystem.SharedIsOwnedLand(tilePosition,
+                                                            c.CharacterBuilder,
+                                                            requireFactionPermission: false,
+                                                            out _))
+                      {
+                          // don't perform this check if this is the owned land
+                          return true;
+                      }
 
-                                var physicsSpace = WorldService.GetPhysicsSpace();
-                                using var tempList = physicsSpace.TestCircle(
-                                    position: tilePosition.ToVector2D() + (0.5, 0.5),
-                                    radius: RequirementNoPlayersRadius,
-                                    collisionGroup: DefaultCollisionGroup,
-                                    sendDebugEvent: false);
-                                foreach (var entry in tempList.AsList())
-                                {
-                                    if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
-                                        && !character.IsNpc
-                                        && !PartySystem.SharedArePlayersInTheSameParty(
-                                            c.CharacterBuilder,
-                                            character))
-                                    {
-                                        // found player nearby and they're not a party member
-                                        return false;
-                                    }
-                                }
+                      var physicsSpace = WorldService.GetPhysicsSpace();
+                      using var tempList = physicsSpace.TestCircle(
+                          position: tilePosition.ToVector2D() + (0.5, 0.5),
+                          radius: RequirementNoPlayersRadius,
+                          collisionGroup: DefaultCollisionGroup,
+                          sendDebugEvent: false);
+                      foreach (var entry in tempList.AsList())
+                      {
+                          if (entry.PhysicsBody.AssociatedWorldObject is ICharacter { IsNpc: false } character
+                              && !PartySystem.SharedArePlayersInTheSameParty(c.CharacterBuilder, character)
+                              && !FactionSystem.SharedArePlayersInTheSameFaction(c.CharacterBuilder, character))
+                          {
+                              // found player nearby and they're not a party member
+                              return false;
+                          }
+                      }
 
-                                return true;
-                            });
+                      return true;
+                  });
 
         /// <summary>
         /// (Client only) Checks if there is no current player in the cell.
         /// </summary>
         public static readonly Validator ValidatorClientOnlyNoCurrentPlayer
-            = new Validator(ErrorStandingInCell,
-                            c =>
-                            {
-                                if (Api.IsServer)
-                                {
-                                    // this is a client-only check
-                                    return true;
-                                }
+            = new(ErrorStandingInCell,
+                  c =>
+                  {
+                      if (Api.IsServer)
+                      {
+                          // this is a client-only check
+                          return true;
+                      }
 
-                                var currentPlayerCharacter = Api.Client.Characters.CurrentPlayerCharacter;
-                                return !TileHasAnyPhysicsObjectsWhere(c.Tile,
-                                                                      t => currentPlayerCharacter
-                                                                           == t.PhysicsBody.AssociatedWorldObject);
-                            });
+                      var currentPlayerCharacter = Api.Client.Characters.CurrentPlayerCharacter;
+                      return !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                            t => currentPlayerCharacter
+                                                                 == t.PhysicsBody.AssociatedWorldObject);
+                  });
 
         public static readonly Validator ValidatorNoStaticObjectsExceptFloor
-            = new Validator(ErrorNoFreeSpace,
-                            c => c.Tile.StaticObjects.All(
-                                o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
-                                     || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
+            = new(ErrorNoFreeSpace,
+                  c =>
+                  {
+                      if (c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.Floor
+                          && c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.FloorDecal)
+                      {
+                          return c.Tile.StaticObjects.All(
+                              o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal);
+                      }
+
+                      return c.Tile.StaticObjects.All(
+                          o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
+                               && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal);
+                  });
 
         public static readonly Validator ValidatorNoStaticObjectsExceptPlayersStructures
-            = new Validator(ErrorNoFreeSpace,
-                            c => c.Tile.StaticObjects.All(
-                                o => o.ProtoStaticWorldObject is IProtoObjectStructure
-                                     || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
+            = new(ErrorNoFreeSpace,
+                  c => c.Tile.StaticObjects.All(
+                      o => o.ProtoStaticWorldObject is IProtoObjectStructure
+                           || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
 
         public static readonly Validator ValidatorNoFarmPlot
-            = new Validator(ErrorCannotBuildOnFarmPlot,
-                            c => !c.Tile.StaticObjects.Any(
-                                     o => o.ProtoStaticWorldObject is IProtoObjectFarmPlot));
+            = new(ErrorCannotBuildOnFarmPlot,
+                  c => !c.Tile.StaticObjects.Any(
+                           o => o.ProtoStaticWorldObject is IProtoObjectFarmPlot));
 
         public static readonly Validator ValidatorNoFloor
-            = new Validator(ErrorCannotBuildOnFloor,
-                            c => !c.Tile.StaticObjects.Any(
-                                     o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor));
+            = new(ErrorCannotBuildOnFloor,
+                  c => !c.Tile.StaticObjects.Any(
+                           o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor));
 
         public static readonly Validator ValidatorNotRestrictedArea
-            = new Validator(ErrorCannotBuildInRestrictedArea,
-                            c =>
-                            {
-                                if (Api.IsClient)
-                                {
-                                    // check skipped on client
-                                    return true;
-                                }
+            = new(ErrorCannotBuildInRestrictedArea,
+                  c =>
+                  {
+                      if (Api.IsClient)
+                      {
+                          // check skipped on client
+                          return true;
+                      }
 
-                                if (c.CharacterBuilder is null)
-                                {
-                                    // check skipped if there is no character context
-                                    // (so scripts can spawn objects in restricted areas)
-                                    return true;
-                                }
+                      if (c.CharacterBuilder is null)
+                      {
+                          // check skipped if there is no character context
+                          // (so scripts can spawn objects in restricted areas)
+                          return true;
+                      }
 
-                                return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
-                            });
+                      return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
+                  });
 
         public static readonly Validator ValidatorNotRestrictedAreaEvenForServer
-            = new Validator(ErrorCannotBuildInRestrictedArea,
-                            c =>
-                            {
-                                if (Api.IsClient)
-                                {
-                                    // check skipped on client
-                                    return true;
-                                }
+            = new(ErrorCannotBuildInRestrictedArea,
+                  c =>
+                  {
+                      if (Api.IsClient)
+                      {
+                          // check skipped on client
+                          return true;
+                      }
 
-                                return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
-                            });
+                      return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
+                  });
 
         public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructures;
 
         public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructuresOwnedOrFreeLand;
 
         private static readonly Lazy<IServerZone> ServerZoneRestrictedArea
-            = new Lazy<IServerZone>(
-                () => ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance);
+            = new(() => ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance);
 
         public static readonly Validator ValidatorSolidGround
-            = new Validator(ErrorNotSolidGround,
-                            c => c.Tile.ProtoTile.Kind == TileKind.Solid);
+            = new(ErrorNotSolidGround,
+                  c => c.Tile.ProtoTile.Kind == TileKind.Solid);
 
         public static readonly Validator ValidatorNotCliffOrSlope
-            = new Validator(ErrorCannotBuildOnCliffOrSlope,
-                            c => !c.Tile.IsCliffOrSlope);
+            = new(ErrorCannotBuildOnCliffOrSlope,
+                  c => !c.Tile.IsCliffOrSlope);
 
         public static readonly Validator ValidatorCheckNoEventObjectNearby
-            = new Validator(
-                ErrorCannotBuildEventNearby,
-                context =>
-                {
-                    var forCharacter = context.CharacterBuilder;
-                    if (forCharacter is null)
-                    {
-                        return true;
-                    }
+            = new(ErrorCannotBuildEventNearby,
+                  context =>
+                  {
+                      var forCharacter = context.CharacterBuilder;
+                      if (forCharacter is null)
+                      {
+                          return true;
+                      }
 
-                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
-                    {
-                        return true;
-                    }
+                      if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                      {
+                          return true;
+                      }
 
-                    var position = context.Tile.Position;
-                    var world = Api.IsServer
-                                    ? (IWorldService)Api.Server.World
-                                    : (IWorldService)Api.Client.World;
+                      var position = context.Tile.Position;
+                      var world = Api.IsServer
+                                      ? (IWorldService)Api.Server.World
+                                      : (IWorldService)Api.Client.World;
 
-                    var eventObjects = world.GetStaticWorldObjectsOfProto<IProtoObjectEventEntry>();
-                    var maxDistanceSqr = LandClaimSystem.MaxLandClaimSize.Value / 2;
-                    maxDistanceSqr *= maxDistanceSqr;
+                      var eventObjects = world.GetStaticWorldObjectsOfProto<IProtoObjectEventEntry>();
+                      var maxDistanceSqr = LandClaimSystem.MaxLandClaimSize.Value / 2;
+                      maxDistanceSqr *= maxDistanceSqr;
 
-                    foreach (var eventObject in eventObjects)
-                    {
-                        if (position.TileSqrDistanceTo(eventObject.TilePosition)
-                            <= maxDistanceSqr)
-                        {
-                            // too close to an event object
-                            return false;
-                        }
-                    }
+                      foreach (var eventObject in eventObjects)
+                      {
+                          if (position.TileSqrDistanceTo(eventObject.TilePosition)
+                              <= maxDistanceSqr)
+                          {
+                              // too close to an event object
+                              return false;
+                          }
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
-        private readonly List<Validator> checkFunctions = new List<Validator>();
+        private readonly List<Validator> checkFunctions = new();
 
         static ConstructionTileRequirements()
         {
@@ -379,6 +390,8 @@
 
         public delegate bool DelegateCheck(Context context);
 
+        public delegate string DelegateGetErrorMessage(Context context);
+
         public static bool TileHasAnyPhysicsObjectsWhere(
             Tile tile,
             Func<TestResult, bool> check,
@@ -415,7 +428,7 @@
 
         public ConstructionTileRequirements Add(Validator validator)
         {
-            if (validator.Function is null
+            if (validator.CheckFunction is null
                 || !validator.HasErrorMessage)
             {
                 throw new ArgumentNullException(
@@ -453,12 +466,12 @@
         }
 
         public bool Check(
-            IProtoStaticWorldObject proto,
+            IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort startTilePosition,
             ICharacter character,
             bool logErrors)
         {
-            foreach (var tileOffset in proto.Layout.TileOffsets)
+            foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
             {
                 var tile = WorldService.GetTile(startTilePosition.X + tileOffset.X,
                                                 startTilePosition.Y + tileOffset.Y,
@@ -473,7 +486,7 @@
                 {
                     var context = new Context(tile,
                                               character,
-                                              proto,
+                                              protoStaticWorldObject,
                                               tileOffset,
                                               startTilePosition);
                     if (this.Check(context, out errorMessage))
@@ -492,7 +505,7 @@
                 if (Api.IsServer)
                 {
                     Api.Logger.Warning(
-                        $"Cannot place {proto} at {startTilePosition} - check failed:"
+                        $"Cannot place {protoStaticWorldObject} at {startTilePosition} - check failed:"
                         + Environment.NewLine
                         + errorMessage);
                 }
@@ -500,7 +513,7 @@
                 ConstructionSystem.SharedShowCannotPlaceNotification(
                     character,
                     errorMessage,
-                    proto);
+                    protoStaticWorldObject);
 
                 return false;
             }
@@ -513,9 +526,9 @@
         {
             foreach (var function in this.checkFunctions)
             {
-                if (!function.Function(context))
+                if (!function.CheckFunction(context))
                 {
-                    errorMessage = function.ErrorMessage;
+                    errorMessage = function.GetErrorMessage(context);
                     return false;
                 }
             }
@@ -532,7 +545,7 @@
 
         public ConstructionTileRequirements Clone()
         {
-            return new ConstructionTileRequirements(this);
+            return new(this);
         }
 
         public readonly struct Context
@@ -576,56 +589,63 @@
         [NotPersistent]
         public class Validator
         {
-            public readonly DelegateCheck Function;
+            public readonly DelegateCheck CheckFunction;
 
             private readonly bool cacheTheErrorMessageFuncResult;
 
             private readonly Func<string> errorMessageFunc;
 
+            private readonly DelegateGetErrorMessage errorMessageWithContextFunc;
+
             private string errorMessage;
 
-            public Validator(string errorMessage, DelegateCheck function)
+            public Validator(string errorMessage, DelegateCheck check)
             {
-                this.Function = function;
+                this.CheckFunction = check;
                 this.errorMessage = errorMessage;
-                this.errorMessageFunc = null;
             }
 
             public Validator(
                 Func<string> errorMessageFunc,
-                DelegateCheck function,
+                DelegateCheck check,
                 bool cacheTheErrorMessageFuncResult = true)
             {
-                this.Function = function;
+                this.CheckFunction = check;
                 this.errorMessageFunc = errorMessageFunc;
                 this.cacheTheErrorMessageFuncResult = cacheTheErrorMessageFuncResult;
             }
 
-            public string ErrorMessage
+            public Validator(
+                DelegateCheck check,
+                DelegateGetErrorMessage getErrorMessage)
             {
-                get
-                {
-                    if (this.errorMessage is not null)
-                    {
-                        return this.errorMessage;
-                    }
-
-                    if (!this.cacheTheErrorMessageFuncResult)
-                    {
-                        return this.errorMessageFunc();
-                    }
-
-                    return this.errorMessage = this.errorMessageFunc();
-                }
+                this.CheckFunction = check;
+                this.errorMessageWithContextFunc = getErrorMessage;
             }
 
             public bool HasErrorMessage
                 => this.errorMessage is not null
-                   || this.errorMessageFunc is not null;
+                   || this.errorMessageFunc is not null
+                   || this.errorMessageWithContextFunc is not null;
 
-            public override string ToString()
+            public string GetErrorMessage(Context context)
             {
-                return this.ErrorMessage;
+                if (this.errorMessage is not null)
+                {
+                    return this.errorMessage;
+                }
+
+                if (this.errorMessageWithContextFunc is not null)
+                {
+                    return this.errorMessageWithContextFunc(context);
+                }
+
+                if (!this.cacheTheErrorMessageFuncResult)
+                {
+                    return this.errorMessageFunc();
+                }
+
+                return this.errorMessage = this.errorMessageFunc();
             }
         }
     }

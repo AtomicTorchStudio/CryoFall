@@ -3,23 +3,17 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
-    internal static class StructureLandClaimIndicatorManager
+    public static class StructureLandClaimIndicatorManager
     {
-        private static readonly Dictionary<IStaticWorldObject, StructureLandClaimIndicator>
-            initializedOverlays
-                = new Dictionary<IStaticWorldObject, StructureLandClaimIndicator>(capacity: 128);
-
-        private static IComponentAttachedControl lastHoverIndicator;
+        private static readonly Dictionary<IStaticWorldObject, StructureLandClaimIndicator> InitializedOverlays
+            = new(capacity: 128);
 
         static StructureLandClaimIndicatorManager()
         {
@@ -28,63 +22,22 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
 
         public static void ClientDeinitialize(IStaticWorldObject worldObject)
         {
-            if (!initializedOverlays.TryGetValue(worldObject, out var control))
+            if (!InitializedOverlays.TryGetValue(worldObject, out var control))
             {
                 return;
             }
 
-            initializedOverlays.Remove(worldObject);
-            if (control is null)
+            InitializedOverlays.Remove(worldObject);
+            if (control is not null)
             {
-                return;
+                DestroyControl(control);
             }
-
-            DestroyControl(control);
         }
 
         public static void ClientInitialize(IStaticWorldObject worldObject)
         {
-            // ensure there is no existing entry for it
-            ClientDeinitialize(worldObject);
-
-            var playerPosition = ClientCurrentCharacterHelper.Character?.TilePosition ?? Vector2Ushort.Zero;
-            StructureLandClaimIndicator control = null;
-
-            if (IsNearby(worldObject, playerPosition))
-            {
-                var isLandClaimedByAnyone = LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
-                if (!isLandClaimedByAnyone)
-                {
-                    var component = SetupFor(worldObject, isClaimed: false);
-                    control = (StructureLandClaimIndicator)component.Control;
-                }
-            }
-
-            initializedOverlays[worldObject] = control;
-        }
-
-        // This method is currently used only for doors and walls to display an indicator
-        public static void ClientObserving(IStaticWorldObject worldObject, bool isObserving)
-        {
-            if (isObserving)
-            {
-                // do not display the green indicator as it may be misleading to some players
-                //var isLandClaimed = LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
-                //if (isLandClaimed)
-                //{
-                //    // display only the green indicator when hover (as the red indicator is always displayed)
-                //    lastHoverIndicator = SetupFor(worldObject, isClaimed: true);
-                //}
-            }
-            else if (lastHoverIndicator is not null)
-            {
-                // was hovering over that world object, destroy the indicator
-                var control = (StructureLandClaimIndicator)lastHoverIndicator.Control;
-                lastHoverIndicator.Destroy();
-                lastHoverIndicator = null;
-                control.AttachedToComponent = null;
-                ControlsCache<StructureLandClaimIndicator>.Instance.Push(control);
-            }
+            ClientDeinitialize(worldObject); // ensure there is no existing entry for it
+            InitializedOverlays[worldObject] = null;
         }
 
         private static void DestroyControl(StructureLandClaimIndicator control)
@@ -92,13 +45,6 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
             control.AttachedToComponent?.Destroy();
             control.AttachedToComponent = null;
             ControlsCache<StructureLandClaimIndicator>.Instance.Push(control);
-        }
-
-        private static bool IsNearby(IStaticWorldObject worldObject, Vector2Ushort playerPosition)
-        {
-            return (worldObject.TilePosition.TileSqrDistanceTo(playerPosition)
-                    <= (ClientComponentAutoDisplayStructurePointsBar.MaxDistance
-                        * ClientComponentAutoDisplayStructurePointsBar.MaxDistance));
         }
 
         private static IComponentAttachedControl SetupFor(IStaticWorldObject worldObject, bool isClaimed)
@@ -126,9 +72,7 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
             var forceDisplayAll = ClientInputManager.IsButtonHeld(GameButton.DisplayLandClaim)
                                   || Api.Client.Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true);
 
-            var playerPosition = ClientCurrentCharacterHelper.Character?.TilePosition ?? Vector2Ushort.Zero;
-
-            foreach (var pair in initializedOverlays)
+            foreach (var pair in InitializedOverlays)
             {
                 var worldObject = pair.Key;
                 if ((frameNumber + worldObject.Id) % 10 != 0)
@@ -140,9 +84,9 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
                 var isDisplayed = false;
 
                 if (forceDisplayAll
-                    || IsNearby(worldObject, playerPosition))
+                    || ReferenceEquals(ClientComponentObjectInteractionHelper.MouseOverObject, worldObject))
                 {
-                    // can display only if close enough of if Alt/L key is held
+                    // can display only if mouse over of Alt/L key is held
                     isDisplayed = !LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
                 }
 
@@ -172,7 +116,7 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
 
             foreach (var entry in tempChangesList.AsList())
             {
-                initializedOverlays[entry.worldObject] = entry.control;
+                InitializedOverlays[entry.worldObject] = entry.control;
             }
         }
     }

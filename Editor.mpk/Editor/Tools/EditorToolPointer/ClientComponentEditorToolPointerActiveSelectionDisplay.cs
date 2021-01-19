@@ -15,7 +15,7 @@
         public static readonly ITextureResource SelectionTexture = new TextureResource("Editor/SelectedTileOverlay");
 
         private readonly Dictionary<Vector2Ushort, List<IStaticWorldObject>> selectedTileObjects =
-            new Dictionary<Vector2Ushort, List<IStaticWorldObject>>();
+            new();
 
         private readonly IDictionary<Vector2Ushort, IClientSceneObject> tileRenderers =
             new Dictionary<Vector2Ushort, IClientSceneObject>();

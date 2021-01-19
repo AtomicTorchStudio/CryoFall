@@ -205,10 +205,7 @@
             var clientState = data.ClientState;
             var publicState = data.PublicState;
 
-            if (!character.IsCurrentClientCharacter)
-            {
-                this.ClientCreateOverlayControl(character);
-            }
+            this.ClientCreateOverlayControl(character);
 
             publicState.ClientSubscribe(_ => _.IsDead,
                                         isDead =>
@@ -253,9 +250,10 @@
 
         protected virtual void FillDefaultEffects(Effects effects)
         {
+            var constMoveSpeedMultiplier = GameplayConstants.CharacterMoveSpeedMultiplier;
             effects.AddValue(this, StatName.HealthMax, this.StatDefaultHealthMax)
                    .AddValue(this, StatName.HealthRegenerationPerSecond, this.StatHealthRegenerationPerSecond)
-                   .AddValue(this, StatName.MoveSpeed,                   this.StatMoveSpeed)
+                   .AddValue(this, StatName.MoveSpeed,                   this.StatMoveSpeed * constMoveSpeedMultiplier)
                    .AddValue(this, StatName.MoveSpeedRunMultiplier,      this.StatMoveSpeedRunMultiplier);
         }
 

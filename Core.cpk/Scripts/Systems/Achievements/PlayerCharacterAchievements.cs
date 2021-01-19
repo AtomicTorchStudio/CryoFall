@@ -14,19 +14,19 @@
     public class PlayerCharacterAchievements : BaseNetObject, IPlayerActiveTasksHolder
     {
         private readonly List<CharacterAchievementEntry> serverLockedAchievements
-            = new List<CharacterAchievementEntry>();
+            = new();
 
         public ICharacter Character => (ICharacter)this.GameObject;
 
         [SyncToClient]
         public NetworkSyncList<CharacterAchievementEntry> UnlockedAchievements { get; }
-            = new NetworkSyncList<CharacterAchievementEntry>();
+            = new();
 
         public void OnActiveTaskCompletedStateChanged(ServerPlayerActiveTask activeTask)
         {
             var quest = (IProtoAchievement)activeTask.PlayerTask.TaskTarget;
             var achievementEntry = this.SharedFindAchievementEntry(quest, out _);
-            achievementEntry.OnActiveTaskCompleted(activeTask);
+            achievementEntry.OnActiveTaskCompletedStateChanged(activeTask);
         }
 
         public void ServerInit()
@@ -211,7 +211,7 @@
 
             private IReadOnlyList<PlayerTaskState> TaskStates { get; set; }
 
-            public void OnActiveTaskCompleted(ServerPlayerActiveTask activeTask)
+            public void OnActiveTaskCompletedStateChanged(ServerPlayerActiveTask activeTask)
             {
                 var isCompleted = activeTask.PlayerTaskState.IsCompleted;
                 for (var index = 0; index < this.serverActiveTasks.Count; index++)
@@ -223,7 +223,8 @@
                     }
 
                     // found entry
-                    if (isCompleted)
+                    if (isCompleted
+                        && !activeTask.PlayerTask.IsReversible)
                     {
                         // remove this active task entry as it's completed and cannot be reversed
                         activeTask.IsActive = false;
@@ -260,17 +261,19 @@
                     var taskState = this.TaskStates[index];
                     task.ServerRefreshIsCompleted(character, taskState);
 
-                    if (!taskState.IsCompleted
-                        || task.IsReversible)
+                    if (taskState.IsCompleted
+                        && !task.IsReversible)
                     {
-                        // create active task entry
-                        var achievementTask = new ServerPlayerActiveTask(task,
-                                                                         taskState,
-                                                                         activeTasksHolder,
-                                                                         character);
-                        this.serverActiveTasks.Add(achievementTask);
-                        achievementTask.IsActive = true;
+                        continue;
                     }
+
+                    // create active task entry
+                    var achievementTask = new ServerPlayerActiveTask(task,
+                                                                     taskState,
+                                                                     activeTasksHolder,
+                                                                     character);
+                    this.serverActiveTasks.Add(achievementTask);
+                    achievementTask.IsActive = true;
                 }
 
                 this.ServerRefreshAllTasksCompleted(character);

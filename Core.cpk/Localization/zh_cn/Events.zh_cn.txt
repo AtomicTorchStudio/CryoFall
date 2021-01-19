@@ -2,12 +2,19 @@
 `普拉格女皇已出现在地表。
 [br]珍贵的宝藏等待着勇敢的幸存者！`
 
+Scripts/Events/EventBossSandTyrant@Description:
+`沙漠暴君出现了。
+[br]珍贵的宝藏等待着勇敢的幸存者！`
+
 Scripts/Events/EventMeteoriteDrop@Description:
 `陨石已落在高亮地区。
 [br]快去挖掘罕见的矿物!`
 
 Scripts/Events/EventMigration@Description:
 此世界的生物似乎正在迁徙，这是狩猎的好机会。
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+一种奇异的灵能植物出现在了山区，令开发变得困难，但同时这也是获得稀有资源的好机会。
 
 Scripts/Events/EventSpaceDrop@Description:
 `太空残骸已落在高亮地区。
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 进度：{0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+一类被称为{0}的罕见鱼类出现在了海岸边！它们只会在此阶段出没，所以赶紧去钓鱼吧！
 

@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+異星
+
+Scripts/Tiles/TileBarren@Name:
 荒地
 
 Scripts/Tiles/TileBeachBoreal@Name:

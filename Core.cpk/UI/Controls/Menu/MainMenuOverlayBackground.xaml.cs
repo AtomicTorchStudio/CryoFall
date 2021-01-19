@@ -10,10 +10,6 @@
 
         private static bool isHidden = true;
 
-        public MainMenuOverlayBackground()
-        {
-        }
-
         public static bool IsHidden
         {
             get => isHidden;
@@ -42,10 +38,6 @@
                     Api.Client.UI.LayoutRootChildren.Insert(0, instance);
                 }
             }
-        }
-
-        protected override void InitControl()
-        {
         }
     }
 }

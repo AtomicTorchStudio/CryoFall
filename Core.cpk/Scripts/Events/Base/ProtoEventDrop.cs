@@ -1,8 +1,9 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -23,8 +24,6 @@
         public override bool ConsolidateNotifications => true;
 
         public abstract double MinDistanceBetweenSpawnedObjects { get; }
-
-        public override double ServerUpdateIntervalSeconds => 1;
 
         public IReadOnlyList<IProtoWorldObject> SpawnPreset { get; private set; }
 
@@ -104,8 +103,8 @@
             {
                 switch (protoWorldObject)
                 {
-                    case IProtoCharacterMob _:
-                    case IProtoStaticWorldObject _:
+                    case IProtoCharacterMob:
+                    case IProtoStaticWorldObject:
                         // supported types
                         continue;
 
@@ -135,7 +134,10 @@
                     var attempts = 2_000;
                     do
                     {
-                        var spawnPosition = SharedSelectRandomPositionInsideTheCircle(circlePosition, circleRadius);
+                        var spawnPosition =
+                            SharedCircleLocationHelper.SharedSelectRandomPositionInsideTheCircle(
+                                circlePosition,
+                                circleRadius);
                         if (!this.ServerIsValidSpawnPosition(spawnPosition))
                         {
                             // doesn't match any specific checks determined by the inheritor (such as a zone test)
@@ -160,10 +162,9 @@
                             continue;
                         }
 
-                        if (!ServerCheckCanSpawn(protoObjectToSpawn, spawnPosition)
-                            || LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition))
+                        if (!ServerCheckCanSpawn(protoObjectToSpawn, spawnPosition))
                         {
-                            // doesn't match the tile requirements or inside the claimed land area
+                            // doesn't match the tile requirements or inside a claimed land area
                             continue;
                         }
 
@@ -231,19 +232,23 @@
 
         private static bool ServerCheckCanSpawn(IProtoWorldObject protoObjectToSpawn, Vector2Ushort spawnPosition)
         {
-            switch (protoObjectToSpawn)
+            return protoObjectToSpawn switch
             {
-                case IProtoCharacterMob _:
-                    return ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(spawnPosition.ToVector2D(),
-                                                                                       isPlayer: false);
-                case IProtoStaticWorldObject protoStaticWorldObject:
-                    return protoStaticWorldObject.CheckTileRequirements(spawnPosition,
-                                                                        character: null,
-                                                                        logErrors: false);
+                IProtoCharacterMob
+                    => ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(
+                           spawnPosition.ToVector2D(),
+                           isPlayer: false)
+                       && !LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition),
 
-                default:
-                    throw new Exception("Unknown object type to spawn: " + protoObjectToSpawn);
-            }
+                IProtoStaticWorldObject protoStaticWorldObject
+                    // Please note: land claim check must be integrated in the object tile requirements
+                    => protoStaticWorldObject.CheckTileRequirements(
+                        spawnPosition,
+                        character: null,
+                        logErrors: false),
+
+                _ => throw new ArgumentOutOfRangeException("Unknown object type to spawn: " + protoObjectToSpawn)
+            };
         }
 
         private static void ServerRefreshEventState(ILogicObject activeEvent)
@@ -268,17 +273,19 @@
 
         private static IWorldObject ServerTrySpawn(IProtoWorldObject protoObjectToSpawn, Vector2Ushort spawnPosition)
         {
-            switch (protoObjectToSpawn)
+            return protoObjectToSpawn switch
             {
-                case IProtoCharacterMob protoCharacterMob:
-                    return Server.Characters.SpawnCharacter(protoCharacterMob,
-                                                            spawnPosition.ToVector2D());
-                case IProtoStaticWorldObject protoStaticWorldObject:
-                    return Server.World.CreateStaticWorldObject(protoStaticWorldObject, spawnPosition);
+                IProtoCharacterMob protoCharacterMob
+                    => Server.Characters.SpawnCharacter(protoCharacterMob,
+                                                        spawnPosition.ToVector2D()),
 
-                default:
-                    throw new Exception("Unknown object type to spawn: " + protoObjectToSpawn);
-            }
+                IProtoStaticWorldObject protoStaticWorldObject
+                    => Server.World.CreateStaticWorldObject(
+                        protoStaticWorldObject,
+                        spawnPosition),
+
+                _ => throw new Exception("Unknown object type to spawn: " + protoObjectToSpawn)
+            };
         }
     }
 }

@@ -10,10 +10,6 @@
 
         private ViewModelWindowEditorItemsBrowserWindow viewModel;
 
-        public WindowEditorItemsBrowserWindow()
-        {
-        }
-
         protected override void WindowClosing()
         {
             this.suppressInputContext.Stop();

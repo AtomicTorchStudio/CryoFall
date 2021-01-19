@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite
 {
-    using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
     public class ObjectConstructionSite : ProtoObjectConstructionSite
     {
@@ -14,10 +14,10 @@
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        protected override bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
-            ConstructionSitePublicState publicState)
+        public override bool ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
+            IStaticWorldObject worldObject)
         {
-            return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject;
+            return true;
         }
 
         protected override void PrepareConstructionConfig(

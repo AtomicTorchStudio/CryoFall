@@ -23,8 +23,7 @@
         public const string NotificationNoBait_Title = "No bait";
 
         private static readonly Lazy<IReadOnlyCollection<IProtoItemFishingBait>> AllBaitProtos
-            = new Lazy<IReadOnlyCollection<IProtoItemFishingBait>>(
-                () => new HashSet<IProtoItemFishingBait>(Api.FindProtoEntities<IProtoItemFishingBait>()));
+            = new(() => new HashSet<IProtoItemFishingBait>(Api.FindProtoEntities<IProtoItemFishingBait>()));
 
         [NotLocalizable]
         public override string Name => "Fishing bait refill system";

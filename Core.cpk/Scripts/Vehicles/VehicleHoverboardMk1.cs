@@ -37,15 +37,15 @@
         public override float StructurePointsMax => 300;
 
         public override TextureResource TextureResourceHoverboard { get; }
-            = new TextureResource("Vehicles/HoverboardMk1");
+            = new("Vehicles/HoverboardMk1");
 
         public override TextureResource TextureResourceHoverboardLight { get; }
-            = new TextureResource("Vehicles/HoverboardMk1Light");
+            = new("Vehicles/HoverboardMk1Light");
 
         public override double VehicleWorldHeight => 0.5;
 
         protected override SoundResource EngineSoundResource { get; }
-            = new SoundResource("Objects/Vehicles/Hoverboard/Engine1");
+            = new("Objects/Vehicles/Hoverboard/Engine1");
 
         protected override double EngineSoundVolume => 0.4;
 

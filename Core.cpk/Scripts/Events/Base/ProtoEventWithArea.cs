@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,6 @@
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoEventWithArea
@@ -25,6 +24,8 @@
         where TEventPublicState : EventWithAreaPublicState, new()
         where TEventClientState : BaseClientState, new()
     {
+        public abstract ushort AreaRadius { get; }
+
         protected static bool ServerCheckNoEventsInZone(IServerZone zoneInstance, List<ILogicObject> events)
         {
             foreach (var activeEvent in events)
@@ -136,25 +137,6 @@
                                                              out circlePosition,
                                                              maxAttempts: 100,
                                                              waterMaxRatio: 0.1);
-        }
-
-        protected bool ServerHasAnyEventOfType<TProtoEvent>()
-            where TProtoEvent : class, IProtoEvent
-        {
-            using var tempEvents =
-                Api.Shared.WrapInTempList(
-                    Server.World.GetGameObjectsOfProto<ILogicObject, TProtoEvent>());
-
-            return tempEvents.Count > 0;
-        }
-
-        protected bool ServerIsSameEventExist()
-        {
-            using var tempEvents =
-                Api.Shared.WrapInTempList(
-                    Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEvent>(this));
-
-            return tempEvents.Count > 0;
         }
 
         protected abstract bool ServerIsValidEventPosition(Vector2Ushort tilePosition);

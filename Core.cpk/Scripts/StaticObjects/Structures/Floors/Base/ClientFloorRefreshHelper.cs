@@ -14,7 +14,7 @@
     /// </summary>
     public static class ClientFloorRefreshHelper
     {
-        private static readonly HashSet<Tile> Queue = new HashSet<Tile>(TileComparer.Instance);
+        private static readonly HashSet<Tile> Queue = new(TileComparer.Instance);
 
         private static bool isProcessingQueueNow;
 
@@ -111,7 +111,7 @@
 
         private class TileComparer : IEqualityComparer<Tile>
         {
-            public static readonly TileComparer Instance = new TileComparer();
+            public static readonly TileComparer Instance = new();
 
             public bool Equals(Tile a, Tile b)
             {

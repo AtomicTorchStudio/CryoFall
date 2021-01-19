@@ -41,10 +41,6 @@
             }
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             this.ViewModel = this.viewModel = new ViewModelCooldownIndicatorControl();

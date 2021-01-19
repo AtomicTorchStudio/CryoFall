@@ -20,7 +20,7 @@
                    manufacturingConfig)
         {
             this.ViewModelLiquidContainerState = new ViewModelLiquidContainerState(liquidContainerState,
-                                                                                   liquidContainerConfig);
+                liquidContainerConfig);
 
             this.ViewModelDepositCapacityStatsControl
                 = new ViewModelDepositCapacityStatsControl(worldObjectDeposit,

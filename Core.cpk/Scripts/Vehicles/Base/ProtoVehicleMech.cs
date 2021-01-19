@@ -46,13 +46,13 @@
         public override float ObjectSoundRadius => 2;
 
         public override SoundResource SoundResourceLightsToggle { get; }
-            = new SoundResource("Objects/Vehicles/Mech/ToggleLight");
+            = new("Objects/Vehicles/Mech/ToggleLight");
 
         public override SoundResource SoundResourceVehicleDismount { get; }
-            = new SoundResource("Objects/Vehicles/Mech/Dismount");
+            = new("Objects/Vehicles/Mech/Dismount");
 
         public override SoundResource SoundResourceVehicleMount { get; }
-            = new SoundResource("Objects/Vehicles/Mech/Mount");
+            = new("Objects/Vehicles/Mech/Mount");
 
         public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
@@ -86,7 +86,7 @@
 
             // try drop extra containers on the ground
             var privateState = GetPrivateState(gameObject);
-            
+
             ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 gameObject.Tile,
                 privateState.EquipmentItemsContainer,

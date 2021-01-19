@@ -12,21 +12,29 @@
     d:DataContext="{d:DesignInstance data:ViewModelHotbarItemWeaponOverlayControl, IsDesignTimeCreatable=True}">
 
     <Canvas>
-        <Border Canvas.Top="-34" Canvas.Left="5" Width="42" Height="34"
-                Style="{StaticResource WidgetBackgroundBorder}"
-                CornerRadius="3,3,0,0"
-                BorderThickness="1,1,1,0"
-                BorderBrush="{StaticResource WidgetBorderBrush}">
-            <Grid>
-                <Border CornerRadius="3,3,0,0"
-                        Background="{StaticResource WidgetBackgroundImageTexture}" />
-                <Border CornerRadius="3,3,0,0"
-                        Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
-                <Border CornerRadius="3,3,0,0"
-                        ClipToBounds="True">
-                    <ContentPresenter Content="{Binding SlotContent, ElementName=UserControl}" />
-                </Border>
-            </Grid>
-        </Border>
+        <Grid Canvas.Top="-34"
+              Canvas.Left="5"
+              Width="42"
+              Height="34">
+            <Border Style="{StaticResource WidgetBorderShadowStyle}"
+                    CornerRadius="3,3,0,0"
+                    BorderThickness="0,0,1,0"
+                    Margin="1.5,1.5,-1,0" />
+            <Border Style="{StaticResource WidgetBackgroundBorder}"
+                    CornerRadius="3,3,0,0"
+                    BorderThickness="1,1,1,0"
+                    BorderBrush="{StaticResource WidgetBorderBrush}">
+                <Grid>
+                    <Border CornerRadius="3,3,0,0"
+                            Background="{StaticResource WidgetBackgroundImageTexture}" />
+                    <Border CornerRadius="3,3,0,0"
+                            Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
+                    <Border CornerRadius="3,3,0,0"
+                            ClipToBounds="True">
+                        <ContentPresenter Content="{Binding SlotContent, ElementName=UserControl}" />
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
     </Canvas>
 </base:BaseUserControl>

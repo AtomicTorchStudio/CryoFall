@@ -51,12 +51,12 @@
             Type<IProtoItemLiquidStorage>(),
             Type<IProtoItemSeed>(),
             Type<IProtoItemFertilizer>(),
-            Type<IProtoItemFood>(),
+            Type<IProtoItemFood>()
             // and generic items come after all (no special type for that)
         };
 
         private static readonly SoundResource SortContainerSoundResource
-            = new SoundResource("UI/Container/Sort");
+            = new("UI/Container/Sort");
 
         // Here we specify the sort order for items.
 
@@ -156,22 +156,29 @@
                                   .ToList()
                                   .OrderBy(item => GetProtoItemSortIndex(item.ProtoItem))
                                   .ThenBy(item => item.ProtoItem.Id)
-                                  .ThenByDescending(item =>
-                                                    {
-                                                        if (item.ProtoItem is IProtoItemWithDurability)
-                                                        {
-                                                            return item
-                                                                   .GetPrivateState<IItemWithDurabilityPrivateState>()
-                                                                   .DurabilityCurrent;
-                                                        }
+                                  .ThenByDescending(
+                                      item =>
+                                      {
+                                          switch (item.ProtoItem)
+                                          {
+                                              case IProtoItemWithDurability _:
+                                                  return item
+                                                         .GetPrivateState<IItemWithDurabilityPrivateState>()
+                                                         .DurabilityCurrent;
 
-                                                        if (item.ProtoItem.IsStackable)
-                                                        {
-                                                            return item.Count;
-                                                        }
+                                              case IProtoItemWithFreshness _:
+                                                  return item
+                                                         .GetPrivateState<IItemWithFreshnessPrivateState>()
+                                                         .FreshnessCurrent;
+                                          }
 
-                                                        return 0u;
-                                                    })
+                                          if (item.ProtoItem.IsStackable)
+                                          {
+                                              return item.Count;
+                                          }
+
+                                          return 0u;
+                                      })
                                   .ToList();
 
             //Api.Logger.WriteDev("Sorted:"

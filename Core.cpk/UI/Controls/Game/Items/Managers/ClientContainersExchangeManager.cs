@@ -8,13 +8,13 @@
     public static class ClientContainersExchangeManager
     {
         private static readonly List<IClientItemsContainer> ActiveContainersList
-            = new List<IClientItemsContainer>();
+            = new();
 
         private static readonly Dictionary<IClientItemsContainer, int> ActiveContainersReferencesCount
-            = new Dictionary<IClientItemsContainer, int>();
+            = new();
 
         private static readonly ListDictionary<object, List<WrappedContainer>> ContainersOpenedBy
-            = new ListDictionary<object, List<WrappedContainer>>();
+            = new();
 
         /// <summary>
         /// Returns collection of containers with fast move action available from.

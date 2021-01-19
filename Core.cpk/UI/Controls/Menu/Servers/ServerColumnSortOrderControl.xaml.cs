@@ -100,7 +100,7 @@
             viewModelServersList.IsSortOrderReversed = !viewModelServersList.IsSortOrderReversed;
         }
 
-        private void ListSortTypeOrOrderChangedHander()
+        private void ListSortTypeOrOrderChangedHandler()
         {
             this.RefreshViewModel();
         }
@@ -137,7 +137,7 @@
 
             if (this.lastViewModelServersList is not null)
             {
-                this.lastViewModelServersList.SortTypeOrOrderChanged += this.ListSortTypeOrOrderChangedHander;
+                this.lastViewModelServersList.SortTypeOrOrderChanged += this.ListSortTypeOrOrderChangedHandler;
             }
         }
 
@@ -149,7 +149,7 @@
             }
 
             this.isEventSubscribed = false;
-            this.lastViewModelServersList.SortTypeOrOrderChanged -= this.ListSortTypeOrOrderChangedHander;
+            this.lastViewModelServersList.SortTypeOrOrderChanged -= this.ListSortTypeOrOrderChangedHandler;
         }
     }
 }

@@ -2,41 +2,45 @@
 {
     using System.Windows;
     using System.Windows.Input;
-    using System.Windows.Media.Animation;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.NewbieProtection.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class HUDNewbieProtectionInfo : BaseUserControl
     {
-        private Storyboard storyboardHide;
+        private const double ExpandOrCollapseDelay = 0.1;
 
-        private Storyboard storyboardShow;
+        private int expandedStateRefreshScheduledNumber;
+
+        private FrameworkElement layoutRoot;
 
         private ViewModelHUDNewbieProtectionInfo viewModel;
 
         protected override void InitControl()
         {
-            this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
-            this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
-
-            this.MouseEnter += this.MouseEnterOrLeaveHandler;
-            this.MouseLeave += this.MouseEnterOrLeaveHandler;
-
-            NewbieProtectionSystem.ClientNewbieProtectionTimeRemainingReceived += _ => this.Refresh();
+            this.layoutRoot = this.GetByName<FrameworkElement>("LayoutRoot");
         }
 
         protected override void OnLoaded()
         {
             this.UpdateLayout();
-            this.storyboardHide.Begin();
 
             this.viewModel = new ViewModelHUDNewbieProtectionInfo();
             this.viewModel.RequiredHeight = (float)this.GetByName<FrameworkElement>("Description")
                                                        .ActualHeight;
             this.DataContext = this.viewModel;
 
-            this.Refresh();
+            this.expandedStateRefreshScheduledNumber = 0;
+            this.RefreshTimeRemaining();
+
+            VisualStateManager.GoToElementState(this.layoutRoot,
+                                                "Collapsed",
+                                                useTransitions: false);
+
+            NewbieProtectionSystem.ClientNewbieProtectionTimeRemainingReceived
+                += this.NewbieProtectionTimeRemainingReceivedHandler;
+            this.MouseEnter += this.MouseEnterOrLeaveHandler;
+            this.MouseLeave += this.MouseEnterOrLeaveHandler;
         }
 
         protected override void OnUnloaded()
@@ -44,23 +48,40 @@
             this.DataContext = null;
             this.viewModel.Dispose();
             this.viewModel = null;
+
+            NewbieProtectionSystem.ClientNewbieProtectionTimeRemainingReceived
+                -= this.NewbieProtectionTimeRemainingReceivedHandler;
+            this.MouseEnter -= this.MouseEnterOrLeaveHandler;
+            this.MouseLeave -= this.MouseEnterOrLeaveHandler;
         }
 
         private void MouseEnterOrLeaveHandler(object sender, MouseEventArgs e)
         {
-            if (this.IsMouseOver)
-            {
-                this.storyboardHide.Stop();
-                this.storyboardShow.Begin();
-            }
-            else
-            {
-                this.storyboardShow.Stop();
-                this.storyboardHide.Begin();
-            }
+            var refreshNumber = ++this.expandedStateRefreshScheduledNumber;
+            ClientTimersSystem.AddAction(ExpandOrCollapseDelay,
+                                         () => this.RefreshState(refreshNumber));
         }
 
-        private void Refresh()
+        private void NewbieProtectionTimeRemainingReceivedHandler(double obj)
+        {
+            this.RefreshTimeRemaining();
+        }
+
+        private void RefreshState(int refreshNumber)
+        {
+            if (this.expandedStateRefreshScheduledNumber != refreshNumber)
+            {
+                return;
+            }
+
+            VisualStateManager.GoToElementState(this.layoutRoot,
+                                                this.IsMouseOver
+                                                    ? "Expanded"
+                                                    : "Collapsed",
+                                                useTransitions: true);
+        }
+
+        private void RefreshTimeRemaining()
         {
             this.viewModel?.Setup(NewbieProtectionSystem.ClientNewbieProtectionTimeRemaining);
         }

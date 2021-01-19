@@ -8,10 +8,10 @@
 
     public static class ClientGrassRenderingHelper
     {
-        private static readonly EffectResource EffectResource = new EffectResource("Grass");
+        private static readonly EffectResource EffectResource = new("Grass");
 
         private static readonly Dictionary<GrassAnimationPreset, RenderingMaterial> Materials
-            = new Dictionary<GrassAnimationPreset, RenderingMaterial>();
+            = new();
 
         public static void Setup(
             IComponentSpriteRenderer renderer,

@@ -22,6 +22,12 @@ Geral
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Controles
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+Ao ativar a opção, o cursor do mouse não poderá ser movido para fora da janela de jogo enquanto ela estiver ativa, a menos que pressione a tecla Ctrl. Esta opção é útil para sistemas com vários monitores ou para quando você joga no modo em janela.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+Cursor de captura
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Ativar mesmo assim
 
@@ -36,11 +42,26 @@ Recomenda-se fortemente que você NÃO faça isso a menos que saiba exatamente o
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Modo de desenvolvedor
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Normalmente, o jogo só exibe as barras de vida acima de outros personagens. Você pode habilitar essa opção para exibi-la sobre o seu personagem, também.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Exibir barra de vida
+[br]acima do meu personagem`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Exibir dica de[br]interação de objeto
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Exibir dica de[br]nome de objeto
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`As missões são parte fundamental do jogo, principalmente se você está jogando pela primeira vez, pois elas servem de guia e de tutorial para novos jogadores.
+[br]
+[br]Quer mesmo desativar o painel de missões?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Ocultar painel de missões
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Zoom da câmera

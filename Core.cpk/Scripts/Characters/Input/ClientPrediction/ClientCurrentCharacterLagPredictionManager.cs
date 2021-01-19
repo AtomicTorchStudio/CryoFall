@@ -236,7 +236,7 @@
             var physicsSpace = World.GetPhysicsSpace();
             tempList = physicsSpace.TestLine(worldObject.Position,
                                              predictedPosition,
-                                             CollisionGroup.GetDefault(),
+                                             CollisionGroup.Default,
                                              sendDebugEvent: false);
             var list = tempList.AsList();
 

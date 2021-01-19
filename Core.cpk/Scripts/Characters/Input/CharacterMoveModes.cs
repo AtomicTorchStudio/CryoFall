@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Input
 {
     using System;
+    using AtomicTorch.CBND.GameApi;
 
     [Flags]
+    [RemoteEnum]
     public enum CharacterMoveModes : byte
     {
         None = 0,

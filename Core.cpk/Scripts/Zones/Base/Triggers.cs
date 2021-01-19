@@ -5,7 +5,7 @@
 
     public class Triggers
     {
-        private readonly List<BaseTriggerConfig> triggers = new List<BaseTriggerConfig>();
+        private readonly List<BaseTriggerConfig> triggers = new();
 
         public Triggers Add(BaseTriggerConfig configuredTrigger)
         {

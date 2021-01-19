@@ -11,9 +11,11 @@
     d:DesignWidth="224"
     d:DataContext="{d:DesignInstance data:ViewModelRecipesBrowserRecipeDetails, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
-            <Style x:Key="ButtonStyle" TargetType="Button"
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button"
                    BasedOn="{StaticResource DefaultButtonStyle}">
                 <Setter Property="Focusable" Value="False" />
                 <Setter Property="FontSize" Value="12" />
@@ -58,7 +60,7 @@
                 <Viewbox Width="50">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../../../Images/Icons/Clock.png"
+                            <Image Source="/UI/Images/Icons/Clock.png"
                                    VerticalAlignment="Center"
                                    Margin="0,0,1,0"
                                    Width="22"

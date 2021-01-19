@@ -18,13 +18,13 @@
         private const IntermediateBuffer DisplayedBuffer = IntermediateBuffer.FinalResult;
 
         private static readonly EffectResource EffectResourceBloomCombine
-            = new EffectResource("PostEffects/BloomCombine");
+            = new("PostEffects/BloomCombine");
 
         private static readonly EffectResource EffectResourceBloomExtract
-            = new EffectResource("PostEffects/BloomExtract");
+            = new("PostEffects/BloomExtract");
 
         private static readonly EffectResource EffectResourceGaussianBlur
-            = new EffectResource("PostEffects/GaussianBlur");
+            = new("PostEffects/GaussianBlur");
 
         private IGraphicsDevice device;
 
@@ -35,6 +35,8 @@
         private EffectInstance effectBlurHorizontal;
 
         private EffectInstance effectBlurVertical;
+
+        private double intensity = 1.0;
 
         private bool isBlurParametersDirty = true;
 
@@ -52,7 +54,28 @@
 
             BlurredBothWays,
 
-            FinalResult,
+            FinalResult
+        }
+
+        public double Intensity
+        {
+            get => this.intensity;
+            set
+            {
+                if (this.intensity == value)
+                {
+                    return;
+                }
+
+                this.intensity = value;
+
+                if (this.effectBloomCombine is not null
+                    && this.settings is not null)
+                {
+                    this.effectBloomCombine.Parameters
+                        .Set("BloomIntensity", this.settings.BloomIntensity * (float)this.Intensity);
+                }
+            }
         }
 
         public override bool IsCanRender
@@ -143,7 +166,7 @@
         {
             this.settings = newSettings;
             this.effectBloomCombine.Parameters
-                .Set("BloomIntensity",  this.settings.BloomIntensity)
+                .Set("BloomIntensity",  this.settings.BloomIntensity * (float)this.Intensity)
                 .Set("BaseIntensity",   this.settings.BaseIntensity)
                 .Set("BloomSaturation", this.settings.BloomSaturation)
                 .Set("BaseSaturation",  this.settings.BaseSaturation);

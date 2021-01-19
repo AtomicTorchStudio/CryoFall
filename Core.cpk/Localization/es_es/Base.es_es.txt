@@ -151,9 +151,6 @@ Velocidad de consumo de agua
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneración de carga energética (por minuto)
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Capacidad para comer comida podrida
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Daño de envenenamiento por radiación
 
@@ -214,6 +211,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Consumo de combustible
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Capacidad para comer comida podrida
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Capacidad para comer más de la cuenta sin consecuencias
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 No puedes correr
 
@@ -222,4 +225,7 @@ No puedes atacar
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 No puedes usar objetos médicos que tengan recarga
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+No puede romper huesos
 

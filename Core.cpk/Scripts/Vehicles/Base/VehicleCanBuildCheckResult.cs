@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Vehicles
 {
     using System.ComponentModel;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum VehicleCanBuildCheckResult : byte
     {
         Success = 0,

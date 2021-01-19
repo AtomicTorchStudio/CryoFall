@@ -16,6 +16,9 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_M
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 不適切な地形
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+イベント場所に近すぎるため建てることができません。
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 制限区域内には建てられません。
 
@@ -75,6 +78,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 拾う
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+押す
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 開ける
@@ -148,6 +154,15 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 ゴミの山
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+鉱物の山
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+石の山
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+木材の山
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石
 
@@ -217,6 +232,9 @@ Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 つるはしを使って資源を採掘してください。
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+エイリアンテレポート
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 亀裂
 
@@ -225,6 +243,9 @@ Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 プラグミウムクイーンの残骸
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+サンドタイラントの残骸
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 宇宙ゴミ
@@ -398,11 +419,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 香壇
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+派閥のエンブレムを表示する固有のバナー。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+派閥バナー
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 どんな意味があるかわからないけど、カッコイイ！
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 旗じるし
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+ほとんどの人はただの飾りとして使うだけで満足してしまいます…。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+バーベルベンチ
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 衛生面によいクラシカルなスタイルのバスタブ。
@@ -410,11 +443,32 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 バスタブ
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+小さくて便利な就寝時のスマホの置き場所。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+ベッドサイドテーブル
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 本棚がないと部屋っぽくないでしょう？
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 本棚
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+部屋に飾ったり、チェスやチェッカーをしたりするための駒のうちの一つ。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+ポーン
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+クイーン
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+銃を持った突然の訪問者をお望みですか？このドアベルを外に置いた方がいいでしょう。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+ドアベル
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 昔話に出てくるような古典的な虎が描かれた屏風。
@@ -428,11 +482,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Descr
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 金の山
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+玄関に欠かせない家具です。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+帽子掛け
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 美しく、高級感あふれる漆黒のピアノ。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 ピアノ
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+プレゼントの山もないまま、どんなお祝いができるというのでしょうか？
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+プレゼント
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 あなたが本物のハンターであることを示し、この豪華なラグで部屋を飾りましょう。
@@ -494,6 +560,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 トイレ
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+デザイン性の高いリビングの主人公。友達と一緒に映画を見たり、リラックスしたり。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+テレビ
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 高価そうな装飾用の壺。
 
@@ -502,6 +574,33 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 すでに床が装飾されています。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+コヒーレントエネルギービームで標的にダメージを与える全自動セントリータレット。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+エネルギータレット
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+全自動ヘビーセントリータレット。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+ヘビータレット
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+全自動ライトセントリータレット
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+ライトタレット
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+無効化
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+敵を攻撃し、中立者に反撃します
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+敵と全ての不法侵入者を攻撃します
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 ほとんどの侵入者に対する優れた防御手段。爆発物に耐えられるほどは強くありません。
@@ -533,10 +632,10 @@ Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 農耕地
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
 花を育て、家を飾ったり、花を集めるのに使うことができます。どこでも設置できます。
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 植物用の敷地
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1005,6 +1104,12 @@ Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 コンクリートの壁
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+この金属製のフェンスは動きを封じますが、弾は通しますので、戦略的な防衛としては良い選択かもしれません。耐久性はあまりありません。
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+金網フェンス
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 木製の壁よりもかなり優れています。ほとんどの侵入者を防ぎますが、装備の整った侵入者に対してはそれほど役に立ちません。
 
@@ -1075,8 +1180,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 オニフラワー
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+黄色い花
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 ミルクメロン
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+ジャガイモ
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 米

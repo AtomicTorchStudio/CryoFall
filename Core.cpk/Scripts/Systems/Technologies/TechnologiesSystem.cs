@@ -58,6 +58,23 @@
             return false;
         }
 
+        /// <summary>
+        /// This method ensures that free tech groups are added automatically.
+        /// </summary>
+        public static void ServerEnsureFreeTechGroupsUnlocked(PlayerCharacterTechnologies technologies)
+        {
+            foreach (var techGroup in TechGroup.AvailableTechGroups)
+            {
+                if (techGroup.LearningPointsPrice > 0
+                    || techGroup.GroupRequirements.Count > 0)
+                {
+                    continue;
+                }
+
+                technologies.ServerAddGroup(techGroup);
+            }
+        }
+
         public static void ServerInitCharacterTechnologies(PlayerCharacterTechnologies technologies)
         {
             var needToResetTheTechTree = false;
@@ -94,31 +111,8 @@
 
             if (needToResetTheTechTree)
             {
-                ServerResetTechTreeAndRefundLearningPoints(technologies);
+                technologies.ServerResetTechTreeAndRefundLearningPoints();
             }
-
-            ServerEnsureFreeTechGroupsUnlocked(technologies);
-        }
-
-        public static void ServerResetTechTreeAndRefundLearningPoints(PlayerCharacterTechnologies technologies)
-        {
-            var lpToRefund = 0;
-            foreach (var techNode in technologies.Nodes)
-            {
-                lpToRefund += techNode.LearningPointsPrice;
-            }
-
-            technologies.Nodes.Clear();
-
-            foreach (var techGroup in technologies.Groups)
-            {
-                lpToRefund += techGroup.LearningPointsPrice;
-            }
-
-            technologies.Groups.Clear();
-
-            technologies.ServerRefundLearningPoints(lpToRefund);
-            technologies.IsTechTreeChanged = true;
 
             ServerEnsureFreeTechGroupsUnlocked(technologies);
         }
@@ -144,23 +138,6 @@
             technologies.ServerRemoveLearningPoints(techNode.LearningPointsPrice);
             technologies.ServerAddNode(techNode);
             technologies.IsTechTreeChanged = false;
-        }
-
-        /// <summary>
-        /// This method ensures that free tech groups are added automatically.
-        /// </summary>
-        private static void ServerEnsureFreeTechGroupsUnlocked(PlayerCharacterTechnologies technologies)
-        {
-            foreach (var techGroup in TechGroup.AvailableTechGroups)
-            {
-                if (techGroup.LearningPointsPrice > 0
-                    || techGroup.GroupRequirements.Count > 0)
-                {
-                    continue;
-                }
-
-                technologies.ServerAddGroup(techGroup);
-            }
         }
 
         [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]

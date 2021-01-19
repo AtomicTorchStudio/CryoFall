@@ -57,8 +57,10 @@
         private void UpdateMapping()
         {
             var mapping = ClientInputManager.GetMappingForAbstractButton(this.Button);
-            this.PrimaryKeyText = InputKeyNameHelper.GetKeyText(mapping.PrimaryKey);
-            this.SecondaryKeyText = InputKeyNameHelper.GetKeyText(mapping.SecondaryKey);
+            this.PrimaryKeyText = InputKeyNameHelper.GetKeyText(mapping.PrimaryKey,
+                                                                returnPlaceholderIfNone: false);
+            this.SecondaryKeyText = InputKeyNameHelper.GetKeyText(mapping.SecondaryKey,
+                                                                  returnPlaceholderIfNone: false);
         }
     }
 }

@@ -19,9 +19,9 @@
 
             craftDuration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemInsectMeatRaw>(count: 4);
+            inputItems.Add<ItemInsectMeatRaw>(count: 2);
 
-            outputItems.Add<ItemFishingBaitInsect>(count: 10);
+            outputItems.Add<ItemFishingBaitInsect>(count: 5);
         }
     }
 }

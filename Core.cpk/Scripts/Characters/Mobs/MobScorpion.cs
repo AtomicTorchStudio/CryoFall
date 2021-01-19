@@ -17,6 +17,8 @@
 
         public override float CharacterWorldHeight => 1.0f;
 
+        public override double CorpseInteractionAreaScale => 1.1;
+
         public override double MobKillExperienceMultiplier => 4.0;
 
         public override string Name => "Scorpion";
@@ -33,7 +35,10 @@
 
         public override double StatMoveSpeed => 2.25;
 
-        public bool ServerIsPsiSourceActive(IWorldObject worldObject) => true;
+        public bool ServerIsPsiSourceActive(IWorldObject worldObject)
+        {
+            return true;
+        }
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -75,7 +80,7 @@
         {
             base.ServerInitializeCharacterMob(data);
 
-            var weaponProto = GetProtoEntity<ItemWeaponScorpionClaws>();
+            var weaponProto = GetProtoEntity<ItemWeaponMobScorpionClaws>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
@@ -86,6 +91,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
+                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,

@@ -92,9 +92,9 @@
                          .Replace(Broken, "Weapons/Ranged/Broken");
 
         public static readonly SoundResource SoundResourceOtherPlayerDropItem
-            = new SoundResource("Items/OtherPlayerDrop");
+            = new("Items/OtherPlayerDrop");
 
         public static readonly SoundResource SoundResourceOtherPlayerPickItem
-            = new SoundResource("Items/OtherPlayerPick");
+            = new("Items/OtherPlayerPick");
     }
 }

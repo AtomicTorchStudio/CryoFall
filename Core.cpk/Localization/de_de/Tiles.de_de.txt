@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+Außerirdisch
+
+Scripts/Tiles/TileBarren@Name:
 Ödland
 
 Scripts/Tiles/TileBeachBoreal@Name:

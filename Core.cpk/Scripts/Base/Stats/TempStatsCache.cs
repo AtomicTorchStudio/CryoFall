@@ -9,7 +9,7 @@
     /// </summary>
     public sealed class TempStatsCache : BaseStatsDictionary, IDisposable
     {
-        private static readonly Stack<TempStatsCache> Pool = new Stack<TempStatsCache>(capacity: 10);
+        private static readonly Stack<TempStatsCache> Pool = new(capacity: 10);
 
         /// <summary>
         /// You cannot create it yourself - please use <see cref="GetFromPool" />.

@@ -5,7 +5,8 @@
 
     [Flags]
     [NotPersistent]
-    public enum StatusEffectDisplayMode : ushort
+    [NotNetworkAvailable]
+    public enum StatusEffectDisplayMode : byte
     {
         None = 0,
 

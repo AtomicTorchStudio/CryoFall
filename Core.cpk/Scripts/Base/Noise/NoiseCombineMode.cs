@@ -1,6 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Noise
 {
-    public enum NoiseCombineMode
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
+    public enum NoiseCombineMode : byte
     {
         Max,
 

@@ -22,6 +22,12 @@ Allgemein
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Steuerung
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+Wenn aktiviert, kann der Mauszeiger nicht mehr außerhalb des Spielfensters bewegt werden, sofern sich dieses im Vordergrund befindet, es sei denn die Strg-Taste wird gedrückt gehalten. Nützlich beim Benutzen mehrerer Monitore oder beim Spielen im Fenstermodus.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+Mauszeiger festhalten
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Dennoch aktivieren
 
@@ -36,11 +42,26 @@ Es wird dringend empfohlen, diese Option NUR DANN auszuwählen, wenn du wirklich
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Entwicklermodus
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Normalerweise werden Gesundheitsbalken nur über anderen Charakteren angezeigt. Du kannst diese Option auch über deinem eigenen Charakter aktivieren.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Gesundheitsbalken
+[br]über dem Charakter`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Objektinteraktions[br]Tooltip anzeigen
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Objektname[br]Tooltip anzeigen
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`Quests sind ein wesentlicher Bestandteil dieses Spiels, besonders wenn du zum ersten Mal spielst und sie neuen Spielern als Guide und Tutorial dienen.
+[br]
+[br]Bist du sicher, dass du das Quest-Panel verbergen möchtest?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Quest-Panel verbergen
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Kamerazoom

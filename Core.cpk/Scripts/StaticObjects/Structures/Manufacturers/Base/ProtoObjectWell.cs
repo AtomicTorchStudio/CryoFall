@@ -26,7 +26,7 @@
               StaticObjectClientState>,
           IProtoObjectWell
     {
-        // water table is a technical term, google it
+        // water table is a technical term
         public const string ErrorWellNotAllowed = "This ground type doesn't offer access to the water table.";
 
         public override byte ContainerFuelSlotsCount => 0;
@@ -39,8 +39,9 @@
 
         public override bool IsFuelProduceByproducts => false;
 
-        // So quick update interval is necessary to quickly fill the bottles with water by ManufacturingSystem.
-        public override double ServerUpdateIntervalSeconds => 0.5;
+        public override double ServerUpdateIntervalSeconds => 0.25;
+
+        public override double ServerUpdateRareIntervalSeconds => 2;
 
         public abstract double WaterCapacity { get; }
 

@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectGeneratorEngine>();
 
-            config.SetRequiredNode<TechNodePowerStorageLarge>();
+            config.SetRequiredNode<TechNodeRechargingStation>();
         }
     }
 }

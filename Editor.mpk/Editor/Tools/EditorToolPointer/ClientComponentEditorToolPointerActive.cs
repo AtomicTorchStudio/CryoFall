@@ -7,19 +7,25 @@
     using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Extensions;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientComponentEditorToolPointerActive : BaseClientComponentEditorToolSelectLocation
     {
         private readonly List<IStaticWorldObject> lastStaticWorldObjectsAtMousePointedTile
-            = new List<IStaticWorldObject>();
+            = new();
 
-        private readonly HashSet<IStaticWorldObject> selectedWorldObjects = new HashSet<IStaticWorldObject>();
+        private readonly HashSet<IStaticWorldObject> selectedWorldObjects = new();
+
+        private Action<Vector2Ushort> clientPasteCallback;
+
+        private Action<IReadOnlyCollection<IStaticWorldObject>> copyCallback;
 
         private Action<IReadOnlyCollection<IStaticWorldObject>> deleteCallback;
 
@@ -33,9 +39,26 @@
 
         public IReadOnlyCollection<IStaticWorldObject> SelectedWorldObjects => this.selectedWorldObjects;
 
-        public void Setup(Action<IReadOnlyCollection<IStaticWorldObject>> deleteCallback)
+        public void Setup(
+            Action<IReadOnlyCollection<IStaticWorldObject>> deleteCallback,
+            Action<IReadOnlyCollection<IStaticWorldObject>> copyCallback,
+            Action<Vector2Ushort> clientPasteCallback)
         {
             this.deleteCallback = deleteCallback;
+            this.copyCallback = copyCallback;
+            this.clientPasteCallback = clientPasteCallback;
+        }
+
+        public override void Update(double deltaTime)
+        {
+            if (ClientEditorAreaSelectorHelper.Instance is not null)
+            {
+                // in an area selection mode
+                this.OnSelectionEnded();
+                return;
+            }
+
+            base.Update(deltaTime);
         }
 
         protected override void OnEnable()
@@ -109,6 +132,31 @@
             if (ClientInputManager.IsButtonDown(EditorButton.EditorDeleteSelectedObjects))
             {
                 this.deleteCallback(this.SelectedWorldObjects);
+                return;
+            }
+
+            var input = Api.Client.Input;
+            if (input.IsKeyHeld(InputKey.Control, evenIfHandled: true))
+            {
+                if (input.IsKeyDown(InputKey.C))
+                {
+                    // Ctrl+C
+                    input.ConsumeKey(InputKey.C);
+                    this.copyCallback(this.SelectedWorldObjects);
+                }
+                else if (input.IsKeyDown(InputKey.X))
+                {
+                    // Ctrl+X
+                    input.ConsumeKey(InputKey.X);
+                    this.copyCallback(this.SelectedWorldObjects);
+                    this.deleteCallback(this.SelectedWorldObjects);
+                }
+                else if (input.IsKeyDown(InputKey.V))
+                {
+                    // Ctrl+V
+                    input.ConsumeKey(InputKey.V);
+                    this.clientPasteCallback(this.CurrentMouseTilePosition);
+                }
             }
 
             this.selectedWorldObjects.RemoveWhere(
@@ -135,8 +183,9 @@
             var worldObjects = this.GetWorldObjectsInRectangle();
 
             var input = Api.Client.Input;
-            var isAddMode = input.IsKeyHeld(InputKey.Shift) || input.IsKeyHeld(InputKey.Control);
-            var isRemoveMode = input.IsKeyHeld(InputKey.Alt);
+            var isAddMode = input.IsKeyHeld(InputKey.Shift,      evenIfHandled: true)
+                            || input.IsKeyHeld(InputKey.Control, evenIfHandled: true);
+            var isRemoveMode = input.IsKeyHeld(InputKey.Alt, evenIfHandled: true);
 
             if (!isAddMode
                 && !isRemoveMode)

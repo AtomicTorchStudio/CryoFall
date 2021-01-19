@@ -30,16 +30,16 @@
         private const int MaxChatEntriesCount = 120;
 
         private static readonly SoundResource SoundResourceActivity
-            = new SoundResource("UI/Chat/Activity");
+            = new("UI/Chat/Activity");
 
         private static readonly SoundResource SoundResourceGenericMessageReceived
-            = new SoundResource("UI/Chat/Received");
+            = new("UI/Chat/Received");
 
         private static readonly SoundResource SoundResourceMessageSend
-            = new SoundResource("UI/Chat/Send");
+            = new("UI/Chat/Send");
 
         private static readonly SoundResource SoundResourcePrivateMessageReceived
-            = new SoundResource("UI/Chat/Private");
+            = new("UI/Chat/Private");
 
         private static uint lastMessageReceivedSoundPlayerFrameNumber;
 

@@ -14,7 +14,7 @@
         private const double TimeoutSeconds = 6;
 
         private static readonly ConditionalWeakTable<ICharacter, CharacterLocalChatMessageDisplay> DisplayedMessages
-            = new ConditionalWeakTable<ICharacter, CharacterLocalChatMessageDisplay>();
+            = new();
 
         private IComponentAttachedControl attachedComponent;
 

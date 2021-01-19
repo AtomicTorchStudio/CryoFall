@@ -30,8 +30,8 @@
         public override byte ContainerOutputSlotsCount => 1;
 
         public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 30,
-                                               shutdownPercent: 20);
+            => new(startupPercent: 30,
+                   shutdownPercent: 20);
 
         public override string Description =>
             "Refines raw petroleum oil into more useful components, such as fuel and mineral oil.";

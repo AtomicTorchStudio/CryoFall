@@ -7,7 +7,7 @@
 
     public class EffectActionsList
     {
-        private readonly List<EffectAction> list = new List<EffectAction>();
+        private readonly List<EffectAction> list = new();
 
         public EffectActionsList Clear()
         {

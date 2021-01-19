@@ -88,9 +88,9 @@
 
         public SoundPreset<TSoundKey> Clone()
         {
-            return new SoundPreset<TSoundKey>(this.dictionary.ToDictionary(p => p.Key, p => p.Value.Clone()),
-                                              this.customDistance,
-                                              this.customDistance3DSpread);
+            return new(this.dictionary.ToDictionary(p => p.Key, p => p.Value.Clone()),
+                       this.customDistance,
+                       this.customDistance3DSpread);
         }
 
         /// <summary>

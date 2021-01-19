@@ -19,28 +19,28 @@
 
         public static readonly WallPattern[] PatternsOverlay =
         {
-            new WallPattern(
+            new(
                 "End top",
                 atlasChunk: (5, 1),
                 drawOffsetNormal: DrawOffsetNormal,
                 drawOffsetDestroyed: DrawOffsetDestroyed,
                 requiresNeighbors: Bottom),
 
-            new WallPattern(
+            new(
                 "End bottom",
                 atlasChunk: (6, 1),
                 drawOffsetNormal: DrawOffsetNormal,
                 drawOffsetDestroyed: DrawOffsetDestroyed,
                 requiresNeighbors: Top),
 
-            new WallPattern(
+            new(
                 "End left",
                 atlasChunk: (6, 2),
                 drawOffsetNormal: DrawOffsetNormal,
                 drawOffsetDestroyed: DrawOffsetDestroyed,
                 requiresNeighbors: Right),
 
-            new WallPattern(
+            new(
                 "End right",
                 atlasChunk: (5, 2),
                 drawOffsetNormal: DrawOffsetNormal,
@@ -50,7 +50,7 @@
 
         public static readonly WallPattern[] PatternsPrimary =
         {
-            new WallPattern(
+            new(
                 "Cross",
                 atlasChunk: (4, 0),
                 requiresNeighbors: Top | Left | Right | Bottom,
@@ -63,7 +63,7 @@
                                          size: (1 - 2 * PhysicsOffset, 1),
                                          offset: (PhysicsOffset, 0))),
 
-            new WallPattern(
+            new(
                 "T top",
                 atlasChunk: (2, 2),
                 requiresNeighbors: Left | Right | Bottom,
@@ -85,7 +85,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                             offset: (1 - PhysicsOffsetDestroyed, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "T bottom (inverse T)",
                 atlasChunk: (3, 2),
                 requiresNeighbors: Top | Left | Right,
@@ -107,7 +107,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                             offset: (1 - PhysicsOffsetDestroyed, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "T left",
                 atlasChunk: (0, 2),
                 requiresNeighbors: Top | Right | Bottom,
@@ -129,7 +129,7 @@
                                             size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
                                             offset: (PhysicsOffset, 1 - PhysicsOffsetDestroyed))),
 
-            new WallPattern(
+            new(
                 "T right",
                 atlasChunk: (1, 2),
                 requiresNeighbors: Top | Left | Bottom,
@@ -151,7 +151,7 @@
                                             size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
                                             offset: (PhysicsOffset, 1 - PhysicsOffsetDestroyed))),
 
-            new WallPattern(
+            new(
                 "Corner top left",
                 atlasChunk: (5, 0),
                 requiresNeighbors: Right | Bottom,
@@ -167,7 +167,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - PhysicsOffset),
                                             offset: (1 - PhysicsOffsetDestroyed, 0))),
 
-            new WallPattern(
+            new(
                 "Corner top right",
                 atlasChunk: (6, 0),
                 requiresNeighbors: Left | Bottom,
@@ -183,7 +183,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - PhysicsOffset),
                                             offset: (0, 0))),
 
-            new WallPattern(
+            new(
                 "Corner bottom left",
                 atlasChunk: (3, 1),
                 requiresNeighbors: Top | Right,
@@ -199,7 +199,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - PhysicsOffset),
                                             offset: (1 - PhysicsOffsetDestroyed, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "Corner bottom right",
                 atlasChunk: (4, 1),
                 requiresNeighbors: Top | Left,
@@ -215,7 +215,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - PhysicsOffset),
                                             offset: (0, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "Vertical",
                 atlasChunk: (2, 1),
                 requiresNeighbors: Top | Bottom,
@@ -231,7 +231,7 @@
                                             size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
                                             offset: (PhysicsOffset, 1 - PhysicsOffsetDestroyed))),
 
-            new WallPattern(
+            new(
                 "Horizontal",
                 atlasChunk: (1, 0),
                 requiresNeighbors: Left | Right,
@@ -247,7 +247,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                             offset: (0, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "End top",
                 atlasChunk: Vector2Ushort.One,
                 requiresNeighbors: Bottom,
@@ -260,7 +260,7 @@
                                       size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                       offset: (PhysicsOffset, 0))),
 
-            new WallPattern(
+            new(
                 "End bottom",
                 atlasChunk: (0, 1),
                 requiresNeighbors: Top,
@@ -273,7 +273,7 @@
                                       size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
                                       offset: (PhysicsOffset, 1 - PhysicsOffsetDestroyed))),
 
-            new WallPattern(
+            new(
                 "End left",
                 atlasChunk: (2, 0),
                 requiresNeighbors: Right,
@@ -286,7 +286,7 @@
                                       size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                       offset: (1 - PhysicsOffsetDestroyed, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "End right",
                 atlasChunk: (3, 0),
                 requiresNeighbors: Left,
@@ -299,7 +299,7 @@
                                       size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                       offset: (0, PhysicsOffset))),
 
-            new WallPattern(
+            new(
                 "Standalone",
                 atlasChunk: (0, 0),
                 requiresNeighbors: None,

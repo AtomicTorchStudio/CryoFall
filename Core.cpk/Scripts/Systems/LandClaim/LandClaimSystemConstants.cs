@@ -4,7 +4,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class LandClaimSystemConstants
@@ -19,10 +18,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
             SharedLandClaimOwnersMax = (byte)MathHelper.Clamp(
                 value: ServerRates.Get(
                     key: "LandClaimOwnersMax",
-                    defaultValue: byte.MaxValue,
+                    // by default it's 5 owners only, if players wish to add more they can create a faction
+                    defaultValue: 5,
                     description:
-                    @"This rate determines the max number of land claim's owners (including the founder).
-                      Min value: 1 owner.
+                    @"This rate determines the max number of land claim's owners (including the founder)
+                      for land claims that are not transferred to faction ownership.
+                      If you want to make a server where players must group in factions,
+                      set it to 1 and reduce the faction create cost.
+                      Min value: 1 owner (no access list displayed).
                       Max value: 255 owners (no limit displayed)."),
                 min: 1,
                 max: byte.MaxValue);
@@ -43,10 +46,10 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                     key: "LandClaimsNumberLimitIncrease",
                     defaultValue: 0,
                     description:
-                    @"This rate determines the EXTRA number of land claims ANY player can build.                                
+                    @"This rate determines the EXTRA number of land claims ANY player can own simultaneously.                                
                       Currently in the game every player can build max 3 land claims.
                       This rate allows to increase the number.
-                      Please don't set it too high otherwise players might abuse this in order to block other players.
+                      Please note: it doesn't apply to faction-controlled land claims (see Faction.LandClaimsPerLevel).
                       Min value: 0 (extra 0 land claims, that's the default value).
                       Max value: 50 (extra 50 land claims)."),
                 min: 0,
@@ -55,9 +58,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
         public static event Action ClientRaidBlockDurationSecondsChanged;
 
-        public static ushort SharedLandClaimsNumberLimitIncrease { get; private set; }
-
         public static byte SharedLandClaimOwnersMax { get; private set; } = byte.MaxValue;
+
+        public static ushort SharedLandClaimsNumberLimitIncrease { get; private set; }
 
         /// <summary>
         /// Determines the duration of "raid block" feature - preventing players from
@@ -65,6 +68,29 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
         /// Applies only to bombs (except mining charge).
         /// </summary>
         public static double SharedRaidBlockDurationSeconds { get; private set; }
+
+        public static void ClientSetSystemConstants(
+            byte landClaimOwnersMax,
+            ushort landClaimsNumberLimitIncrease,
+            double raidBlockDurationSeconds)
+        {
+            Api.ValidateIsClient();
+
+            SharedLandClaimOwnersMax = landClaimOwnersMax;
+            SharedLandClaimsNumberLimitIncrease = landClaimsNumberLimitIncrease;
+
+            if (SharedLandClaimsNumberLimitIncrease > 0)
+            {
+                Api.GetProtoEntity<PlayerCharacter>()
+                   .SharedReinitializeDefaultEffects();
+
+                Api.Client.Characters.CurrentPlayerCharacter
+                   .SharedSetFinalStatsCacheDirty();
+            }
+
+            SharedRaidBlockDurationSeconds = raidBlockDurationSeconds;
+            Api.SafeInvoke(ClientRaidBlockDurationSecondsChanged);
+        }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
         private static void EnsureInitialized()
@@ -78,7 +104,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 Client.Characters.CurrentPlayerCharacterChanged += Refresh;
                 Refresh();
 
-                static async void Refresh()
+                static void Refresh()
                 {
                     if (SharedLandClaimsNumberLimitIncrease > 0)
                     {
@@ -87,31 +113,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                     }
 
                     SharedLandClaimsNumberLimitIncrease = 0;
-                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
-                    {
-                        return;
-                    }
-
-                    var (landClaimsNumberLimit, raidBlockDurationSeconds)
-                        = await LandClaimSystem.Instance.CallServer(
-                              _ => _.ServerRemote_RequestLandClaimSystemConstants());
-
-                    SharedLandClaimsNumberLimitIncrease = landClaimsNumberLimit;
-
-                    if (SharedLandClaimsNumberLimitIncrease > 0)
-                    {
-                        Api.GetProtoEntity<PlayerCharacter>()
-                           .SharedReinitializeDefaultEffects();
-
-                        Api.Client.Characters.CurrentPlayerCharacter
-                           .SharedSetFinalStatsCacheDirty();
-                    }
-
-                    SharedRaidBlockDurationSeconds = raidBlockDurationSeconds;
-                    Api.SafeInvoke(ClientRaidBlockDurationSecondsChanged);
-
-                    SharedLandClaimOwnersMax =
-                        await LandClaimSystem.Instance.CallServer(_ => _.ServerRemote_GetLandClaimOwnersMax());
                 }
             }
 

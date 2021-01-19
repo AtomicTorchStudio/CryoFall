@@ -19,11 +19,10 @@
         public const string NotificationBurnedOut = "The torch has burned out.";
 
         private static readonly TextureResource CharacterTextureResourceBurned =
-            new TextureResource("Characters/Tools/ItemTorchBurned");
+            new("Characters/Tools/ItemTorchBurned");
 
         private static readonly TextureAtlasResource TextureAtlasFire
-            = new TextureAtlasResource(
-                "Characters/Tools/ItemTorchFire",
+            = new("Characters/Tools/ItemTorchFire",
                 columns: 4,
                 rows: 2,
                 isTransparent: true);

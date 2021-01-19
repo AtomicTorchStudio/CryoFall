@@ -14,7 +14,7 @@
     public class ViewModelTechRequiredItemsControl : BaseViewModel
     {
         private static readonly SolidColorBrush BrushLockedForeground =
-            new SolidColorBrush(Api.Client.UI.GetApplicationResource<Color>("ColorRed6").WithAlpha(204));
+            new(Api.Client.UI.GetApplicationResource<Color>("ColorRed6").WithAlpha(204));
 
         public ViewModelTechRequiredItemsControl(
             IReadOnlyList<IProtoItem> requiredProtoItems,

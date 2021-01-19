@@ -30,15 +30,15 @@
         /// </summary>
         public const int GameDayHoursCount = 24;
 
-        public static readonly GameTimeInterval IntervalDawn = new GameTimeInterval(fromHour: 4, toHour: 8);
+        public static readonly GameTimeInterval IntervalDawn = new(fromHour: 4, toHour: 8);
 
-        public static readonly GameTimeInterval IntervalDay = new GameTimeInterval(fromHour: 6, toHour: 21);
+        public static readonly GameTimeInterval IntervalDay = new(fromHour: 6, toHour: 21);
 
-        public static readonly GameTimeInterval IntervalDusk = new GameTimeInterval(fromHour: 19, toHour: 23);
+        public static readonly GameTimeInterval IntervalDusk = new(fromHour: 19, toHour: 23);
 
-        public static readonly GameTimeInterval IntervalNight = new GameTimeInterval(fromHour: 21, toHour: 6);
+        public static readonly GameTimeInterval IntervalNight = new(fromHour: 21, toHour: 6);
 
-        private static readonly TimeSpan InitialServerTimeOfDay = new TimeSpan(hours: 12, minutes: 0, seconds: 0);
+        private static readonly TimeSpan InitialServerTimeOfDay = new(hours: 12, minutes: 0, seconds: 0);
 
         private static double serverTimeOfDayOffsetSeconds;
 

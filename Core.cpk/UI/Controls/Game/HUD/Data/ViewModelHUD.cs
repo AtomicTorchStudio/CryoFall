@@ -2,11 +2,12 @@
 {
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
@@ -41,6 +42,9 @@
             this.MenuQuests = Menu.Register<WindowQuests>();
             this.MenuCompletionist = Menu.Register<WindowCompletionist>();
 
+            FactionSystem.ClientCurrentFactionChanged += this.CurrentFactionChangedHandler;
+            this.CurrentFactionChangedHandler();
+
             ClientCurrentCharacterHelper.PublicState
                                         .ClientSubscribe(_ => _.CurrentVehicle,
                                                          _ => this.RefreshVehicleUI(),
@@ -54,6 +58,8 @@
 
         public bool IsConstructionMenuAvailable { get; private set; }
 
+        public bool IsMenuFactionVisible => FactionSystem.ClientHasFaction;
+
         public bool IsPlayersHotbarVisible { get; private set; }
 
         public bool IsQuitVehicleButtonVisible { get; private set; }
@@ -63,6 +69,8 @@
         public Menu MenuConstruction { get; }
 
         public Menu MenuCrafting { get; }
+
+        public Menu MenuFaction { get; private set; }
 
         public Menu MenuInventory { get; }
 
@@ -93,11 +101,30 @@
             this.MenuPolitics.Dispose();
             this.MenuTechTree.Dispose();
             this.MenuQuests.Dispose();
+
+            this.MenuFaction?.Dispose();
+            this.MenuFaction = null;
+
+            FactionSystem.ClientCurrentFactionChanged -= this.CurrentFactionChangedHandler;
         }
 
         private static void ExecuteCommandQuitVehicle()
         {
             VehicleSystem.ClientOnVehicleEnterOrExitRequest();
+        }
+
+        private void CurrentFactionChangedHandler()
+        {
+            var menuFaction = this.MenuFaction;
+            this.MenuFaction = null;
+            menuFaction?.Dispose();
+
+            if (FactionSystem.ClientHasFaction)
+            {
+                this.MenuFaction = Menu.Register<WindowFaction>();
+            }
+
+            this.NotifyPropertyChanged(nameof(this.IsMenuFactionVisible));
         }
 
         private void RefreshVehicleUI()

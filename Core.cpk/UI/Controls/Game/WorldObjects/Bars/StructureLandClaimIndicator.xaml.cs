@@ -7,11 +7,11 @@
 
     public partial class StructureLandClaimIndicator : BaseUserControl, ICacheableControl
     {
-        public static readonly DependencyProperty IsClaimedProperty =
-            DependencyProperty.Register(nameof(IsClaimed),
-                                        typeof(bool),
-                                        typeof(StructureLandClaimIndicator),
-                                        new PropertyMetadata(default(bool)));
+        public static readonly DependencyProperty IsClaimedProperty
+            = DependencyProperty.Register(nameof(IsClaimed),
+                                          typeof(bool),
+                                          typeof(StructureLandClaimIndicator),
+                                          new PropertyMetadata(default(bool)));
 
         public IComponentAttachedControl AttachedToComponent;
 
@@ -28,10 +28,6 @@
         public void Setup(bool isClaimed)
         {
             this.IsClaimed = isClaimed;
-        }
-
-        protected override void InitControl()
-        {
         }
     }
 }

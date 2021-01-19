@@ -28,6 +28,9 @@ UI/CoreStrings@AutosaveNotification_Saving:
 UI/CoreStrings@AutosaveNotification_Title:
 伺服器快照
 
+UI/CoreStrings@BbCodeFormattingDescription:
+可用特殊編輯符號：[b],[u],[i],[url],[color=#FF0000]顏色[/color],[*], 以及分行符號[br]
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 摧毀於
 
@@ -167,6 +170,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 不要再次提示
 
+UI/CoreStrings@ClanTag:
+氏族標籤：
+
 UI/CoreStrings@ClanTag_Current:
 氏族標籤：
 
@@ -205,7 +211,7 @@ UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 此建築建造後不可移動。
 
 UI/CoreStrings@ConsultServerAdministrator:
-請詢問服務器管理員。
+請詢問伺服器管理員。
 
 UI/CoreStrings@Copy:
 複製
@@ -330,6 +336,9 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 表層礦點（高採集量）
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+當主權建築被摧毀時毀滅倒計時將會開始。
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 您確定要使用{0}嗎？
 
@@ -356,6 +365,12 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 移除效果：
+
+UI/CoreStrings@EmptyList:
+列表為空
+
+UI/CoreStrings@EmptyText:
+文字為空
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
@@ -384,6 +399,371 @@ UI/CoreStrings@Extras_PatchnotesTooltip:
 UI/CoreStrings@Extras_RoadmapTooltip:
 CryoFall開發佈局(僅限英文)
 
+UI/CoreStrings@Faction_Admin:
+管理員
+
+UI/CoreStrings@Faction_Application_Accept:
+接受
+
+UI/CoreStrings@Faction_Application_Cancel:
+取消
+
+UI/CoreStrings@Faction_Application_Reject:
+拒絕
+
+UI/CoreStrings@Faction_Applications:
+申請
+
+UI/CoreStrings@Faction_Applications_Empty:
+無可用申請。
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+拒絕所有申請
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+你已經離開此派系或被踢出。你只能通過被邀請才能再次加入。
+
+UI/CoreStrings@Faction_CopyTag:
+複製氏族標籤：
+
+UI/CoreStrings@Faction_CreateFaction:
+創建派系
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+確定輸入內容？
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+你無法在完成創建後修改派系類型和描述。
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+你的身份：
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+你當前的身份沒有任何管理許可權。
+
+UI/CoreStrings@Faction_Description_Private:
+私人描述
+
+UI/CoreStrings@Faction_Description_Public:
+公開描述
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+顯示派系成員的線上狀況以及位置。
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+確定從派系移除[b]{0}[/b]？
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+我確定要解散派系。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+我明白此派系成員將在[b]{0}[/b]內[b]無法加入[/b]任何其他派系。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+請先拆解此派系擁有的所有主權建築。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+確定要解散此派系？
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+解散派系
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+重要：你即將加入[b]{0}[/b]。
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+我明白我將在[b]{0}[/b] 內無法重新加入此派系，並且在[b]{1}[/b] 內無法加入其他派系。
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+確定離開派系？
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+請輸入將要成為新派系領導人的派系成員名稱。
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+轉移派系所有權
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+注意：你即將發起加入[b]{0}[/b]的申請。
+
+UI/CoreStrings@Faction_Diplomacy:
+外交
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+接受同盟提議
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+取消同盟提議
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+拒絕同盟提議
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+收到提議
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+進行中的提議
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+和談
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+同盟
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+解除同盟
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+宣戰
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+宣戰對象
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+被宣戰
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+相互宣戰
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+中立
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+和談提議
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`你最近已經向此派系發起了一次和談提議。
+[br]你必須等待 {0} 才能再次發起提議。`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+宣戰
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+撤回宣戰
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+你不屬於任何派系
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+所選徽記已被其他玩家使用。請使用其他徽記。
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+派系未找到。
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+你近期離開了一個派系。
+
+UI/CoreStrings@Faction_Events:
+事件
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+事件類型
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+所有
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+成員名稱
+
+UI/CoreStrings@Faction_Events_Recent:
+近期事件
+
+UI/CoreStrings@Faction_FactionFull:
+派系人數已滿
+
+UI/CoreStrings@Faction_FactionKind_Current:
+派系類型：
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+已發送加入邀請或請求。
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+派系管理員可決定是否接受加入請求。
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+私人
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+任何人都可以隨意加入。
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+公開
+
+UI/CoreStrings@Faction_Invite:
+邀請
+
+UI/CoreStrings@Faction_Invite_Accept:
+接受
+
+UI/CoreStrings@Faction_Invite_Cancel:
+取消
+
+UI/CoreStrings@Faction_Invite_Decline:
+拒絕
+
+UI/CoreStrings@Faction_Invites:
+邀請
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+取消所有邀請
+
+UI/CoreStrings@Faction_Invites_Empty:
+無可用邀請。
+
+UI/CoreStrings@Faction_InviteToFaction:
+邀請至派系
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+正在接受申請
+
+UI/CoreStrings@Faction_Join:
+加入
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+離開派系時，你將暫時無法創建派系或加入另一個派系。
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+加入/創建派系冷卻：
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+主權建築數量限制可以由派系等級提高。
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+派系主權建築：{0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+派系主權建築數量已達上限。
+
+UI/CoreStrings@Faction_Leaderboard:
+排行榜
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+參與排行。
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+下次更新：
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+排名
+
+UI/CoreStrings@Faction_LeaderField:
+領導人:
+
+UI/CoreStrings@Faction_LeaveFaction:
+離開派系
+
+UI/CoreStrings@Faction_Level:
+等級
+
+UI/CoreStrings@Faction_Level_Format:
+等級:[b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+最大成員數量：[b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+上次線上: {0}
+
+UI/CoreStrings@Faction_Members:
+成員
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+成員:[b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+不接受申請
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+{0} 同意了你加入 {1} 的申請！歡迎！
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0}已將你踢出了派系。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+由於低聲望，你已自動被踢出派系。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+殺死派系和同盟成員將是你在當前派系中的聲望降低。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+派系聲望降低
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+反復侵犯他人的玩家將被自動從派系踢出。
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+主權建築管理
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+在派系主權區域內進行建造和拆除的許可權。其他許可權：分配使用權限，升級主權建築，使用主權建築倉庫，啟動護盾，轉移主權建築所有權。
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+需要 {0} 派系許可權。
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+向派系領導人發送私信
+
+UI/CoreStrings@Faction_Recruitment:
+招募
+
+UI/CoreStrings@Faction_RemoveMember:
+移除成員
+
+UI/CoreStrings@Faction_Role_Leader:
+領導人
+
+UI/CoreStrings@Faction_Role_Member:
+成員
+
+UI/CoreStrings@Faction_Score_Format:
+派系分值：[b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+設置身份
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+為 {0} 設置身份
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+顯示派系資訊
+
+UI/CoreStrings@Faction_SubmitApplication:
+提交申請
+
+UI/CoreStrings@Faction_Title:
+派系
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+你提交了一個申請。
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+你已經是一個派系的成員了。你必須先退出該派系，才能加入另一個派系，或自建派系。
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+新派系
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+沒有滿足搜索條件的派系。
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+所有派系
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`無可用派系。
+[br]你可向派系列表中的派系發起申請。`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+申請
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+無可用邀請。
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+邀請
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+排行榜當前為空。
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 未澆水
 
@@ -405,6 +785,9 @@ UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 已澆水
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+此功能在此伺服器上不可用。
+
 UI/CoreStrings@Field_Email:
 電子郵件
 
@@ -416,6 +799,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 男
+
+UI/CoreStrings@HealthPointsAbbreviation:
+HP
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 離開載具
@@ -431,6 +817,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 裝備
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+派系
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 地圖
@@ -522,6 +911,9 @@ UI/CoreStrings@LearningPoints:
 UI/CoreStrings@LearningPointsAbbreviation:
 LP
 
+UI/CoreStrings@LearningPointsCost_Format:
+花費：[b]{0}[/b]知識點
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細資訊以連結您的Steam帳戶。
 
@@ -578,6 +970,12 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 
 UI/CoreStrings@MasterServer:
 主要伺服器
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+你可以隨後在裝備介面修改外觀。
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+選擇角色外觀
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 斷開
@@ -705,7 +1103,7 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MOD
 
 UI/CoreStrings@MenuServers_ServerTag_NoClientMods_Description:
-此服務器不允許客戶端模組。所有玩家的客戶端模組都將被禁用。
+此伺服器不允許用戶端模組。所有玩家的用戶端模組都將被禁用。
 
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 這是CryoFall官方伺服器開發商進行管理。
@@ -757,6 +1155,14 @@ UI/CoreStrings@Network_Jitter_SeverityRed:
 UI/CoreStrings@Network_Jitter_SeverityYellow:
 `看起來你與伺服器的網路連接正在經歷波動。
 [br]因此，您可能會遇到角色移動問題（例如偶爾的角色瞬移），或者由於與伺服器的嚴重不同步，您的操作可能會丟失。`
+
+UI/CoreStrings@Network_PacketLoss:
+丟包率
+
+UI/CoreStrings@Network_PacketLoss_Description:
+`您當前與伺服器的連接似乎丟包率較高。
+[br]您可能遭遇延遲，遊戲卡死或與伺服器連接斷開。
+[br]此問題的主要原因可能是無線網路信號差，或路由器出現問題。`
 
 UI/CoreStrings@Network_Perfect:
 `看起來你的網路連接很好。
@@ -825,6 +1231,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 當前訪問模式
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+向{0}開放
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 訪問模式
@@ -920,6 +1329,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 顯存使用
+
+UI/CoreStrings@PlayerNotFound:
+玩家未找到。
 
 UI/CoreStrings@PleaseWait:
 請耐心等待...
@@ -1078,6 +1490,9 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 選擇
 
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+一小時內
+
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 截圖完成: {0} (點擊打開)
 
@@ -1097,17 +1512,17 @@ UI/CoreStrings@ServerWipedDate:
 刪檔
 
 UI/CoreStrings@ServerWipeInfoNextWipeDate_Format:
-[b]下一次抹除:[/b] {0}
+[b]下一次刪檔:[/b] {0}
 
 UI/CoreStrings@ServerWipeInfoNotSpecified:
-抹除數據未具體化。
+未設置刪檔資訊。
 
 UI/CoreStrings@ServerWipeInfoOnMajorUpdatesOnly:
-`此服務器不遵循一般的數據抹除日程；只會在新遊戲版本更新時才會進行數據抹除。請查看官方更新日程來獲取詳細信息。
-[br]請注意：所有服務器數據（包括世界和角色數據）將在服務器更新到下一個主版本時重置。`
+`此伺服器不遵循一般的刪檔日程；只會在新遊戲版本更新時才會進行刪檔。請查看官方更新日程來獲取詳細資訊。
+[br]請注意：所有伺服器資料（包括世界和角色資料）將在伺服器更新到下一個主版本時重置。`
 
 UI/CoreStrings@ServerWipeInfoStartedDate_Format:
-[b]服務器啟動:[/b] {0}
+[b]伺服器已暈眩:[/b] {0}
 
 UI/CoreStrings@ShieldProtection_ActionRestrictedBaseUnderShieldProtection:
 你無法對一個啟用了護盾的基地進行此行動。
@@ -1238,6 +1653,9 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 技能
 
+UI/CoreStrings@SortBy:
+排序：
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 強度
 
@@ -1312,6 +1730,24 @@ UI/CoreStrings@TechNodeTooltip_Vehicles:
 
 UI/CoreStrings@Technology:
 科技
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+以鮮血支付
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+以普拉格之心支付
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+傳送到目的地
+
+UI/CoreStrings@Teleport_Discovered:
+發現新傳送點。
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+似乎附近有其他倖存者。
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+停在傳送區內的屬於你且沒有駕駛員的載具將一起被傳送。
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 搜索...
@@ -1634,6 +2070,9 @@ UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 UI/CoreStrings@WindowInventory_Button_Customize:
 自訂
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+自訂角色外觀。
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 解除卡死！
 
@@ -1646,8 +2085,17 @@ UI/CoreStrings@WindowLandClaim_DecayInfo:
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 我已瞭解腐化系統
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+門和建築的存取權限基於派系身份與許可。
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+此主權建築受[b]\\[{0}\\][/b]派系管理。
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 保險箱內的物品將向此主權中的所有建築共用。
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+轉移派系所有權
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 只有所有者才能升級此建築。
@@ -1687,6 +2135,9 @@ UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 燈光模式
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+瞄準模式
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 劫掠期現在已開始（剩餘{0}）
@@ -1739,6 +2190,9 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 在床邊重生
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+考慮加入一個派系以對抗另一個敵對派系。
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 最近傷害來源：
@@ -1801,6 +2255,9 @@ UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 當前線上
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+伺服器設置隱藏了線上玩家列表。
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 伺服器統計
@@ -1942,8 +2399,8 @@ UI/CoreStrings@WipedDate_Yesterday:
 昨天
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
-`請注意：抹除無法自動進行！
-[br]您需要手動關停服務器並刪除存檔。
+`請注意：刪檔無法自動進行！
+[br]您需要手動關停伺服器並刪除存檔。
 [br]此菜單僅用於提醒玩家。`
 
 UI/CoreStrings@WorldMap_MapExplored:
@@ -1993,6 +2450,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]天然油田[/b]
 [br]可採集原油。`
+
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+快速旅行至其他傳送點。
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]交易站[/b]
@@ -2059,6 +2519,24 @@ UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradea
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 無法取消此食譜
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+背景
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+背景色1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+背景色2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+徽記
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+徽記顏色
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+形狀
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 不能直接使用此項目。
@@ -2202,9 +2680,6 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 頂部
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-未選擇
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 你確定要離開小組嗎？
 
@@ -2316,97 +2791,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `當前發電{0} EU/s 
 [br]最高輸出 {1} EU/s。`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-歡迎來到CryoFall!
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-我們想借此機會向你介紹一些遊戲內的功能！ CryoFall仍然在開發中，但以下所有功能已經可以使用。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-農業&烹飪
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-使用肥料和農具種植你自己的作物。然後再把辛勞的成果烹飪成各種美食，能夠提供不同加成。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-角色模擬&藥物
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-複雜的角色模擬，不僅能體現出常見的饑餓和口渴狀態，更能測試各種異常狀態效果，而它們則可以用各種藥品治療。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-工業
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-探索在CryoFall中可以利用的自然資源。開採石油，從溫泉採集鋰礦，來製造電池和電器。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-經濟
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-鑄造硬幣，建造全自動貿易站來與其他倖存者進行交易。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-釣魚
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-使用不同種類的魚餌釣上各種魚類。看看你能不能釣上破紀錄的大魚！
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-植入物
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-將植入物植入你的角色體內，獲得新的能力或者提高你的屬性。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-技能
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-發現，解鎖並強化你角色的一系列技巧，幫助你提高生存效率，以及進一步發現新技能。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+使用各種不同裝備和工具來定制你的角色，讓你顯得與眾不同。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 角色定制
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-使用各種不同裝備和工具來定制你的角色，讓你顯得與眾不同。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-科技
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-獲得的學習點並使用它們來學習新科技、食譜和建築，通過根據自己的喜好加點來定制屬於你的遊戲體驗。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-電力
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-設計基地時要考慮到電網。你可以建造數個發電機，儲存建築以及電力消耗建築。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-載具
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-建立和升級的各種未來車輛，以更快的探索這個世界或在戰鬥中使用它們。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-世界事件
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-請多多參加發生在CryoFall世界的事件。 也許是探索隕石墜落點，或聚集一群倖存者打敗一個危險的Boss。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+探索擁有各種不同自然環境的世界與這裡數十種神奇生物。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 神奇動物
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-探索擁有各種不同自然環境的世界與這裡數十種神奇生物。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+鑄造硬幣，建造全自動貿易站來與其他倖存者進行交易。
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-寫在最後
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+經濟
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+設計基地時要考慮到電網。你可以建造數個發電機，儲存建築以及電力消耗建築。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+電力
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+請多多參加發生在CryoFall世界的事件。 也許是探索隕石墜落點，或聚集一群倖存者打敗一個危險的Boss。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+世界事件
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+使用肥料和農具種植你自己的作物。然後再把辛勞的成果烹飪成各種美食，能夠提供不同加成。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+農業&烹飪
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+使用不同種類的魚餌釣上各種魚類。看看你能不能釣上破紀錄的大魚！
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+釣魚
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+將植入物植入你的角色體內，獲得新的能力或者提高你的屬性。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+植入物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+探索在CryoFall中可以利用的自然資源。開採石油，從溫泉採集鋰礦，來製造電池和電器。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+工業
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `最後，請記住，《末日覺醒》仍然出於開發當中，並且還有著大量的更新和改動計畫。 儘管如此，當前的遊戲內容已經十分充實，希望大家喜歡！[br][br]
 另外我們有在論壇和discord全程值班，歡迎來和我們打個招呼！ :)[br][br]
 如果你遇到任何困難或希望報告遊戲中的錯誤或漏洞，我們願意聆聽並提供幫助！`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+寫在最後
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+複雜的角色模擬，不僅能體現出常見的饑餓和口渴狀態，更能測試各種異常狀態效果，而它們則可以用各種藥品治療。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+角色模擬&藥物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+發現，解鎖並強化你角色的一系列技巧，幫助你提高生存效率，以及進一步發現新技能。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+技能
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+獲得的學習點並使用它們來學習新科技、食譜和建築，通過根據自己的喜好加點來定制屬於你的遊戲體驗。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+科技
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+建立和升級的各種未來車輛，以更快的探索這個世界或在戰鬥中使用它們。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+載具
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+我們想借此機會向你介紹一些遊戲內的功能！ CryoFall仍然在開發中，但以下所有功能已經可以使用。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+歡迎來到CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 開始遊戲
@@ -2450,6 +2925,9 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 空白鍵
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+未分配
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 是否要重置[b]{0}[/b]選項？[br]將保存默認值並應用。

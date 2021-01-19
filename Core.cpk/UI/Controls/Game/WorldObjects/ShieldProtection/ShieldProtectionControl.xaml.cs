@@ -4,8 +4,5 @@
 
     public partial class ShieldProtectionControl : BaseUserControl
     {
-        protected override void InitControl()
-        {
-        }
     }
 }

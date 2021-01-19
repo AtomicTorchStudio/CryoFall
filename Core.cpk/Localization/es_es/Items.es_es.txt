@@ -127,6 +127,9 @@ Proyectil de artillería
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Haz clic sobre este objeto mientras mantienes pulsada la tecla Alt para consumirlo o usarlo rápido.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Puedes usar la tecla [b]\[{0}\][/b] para cambiar el tipo de munición del arma que tengas seleccionada en ese momento.
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Haz clic sobre cualquier estructura para desmontarla.
 
@@ -138,6 +141,9 @@ Haz clic sobre un pozo o un colector de agua para llenarla de agua.
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Haz clic sobre cualquier estructura para repararla o construirla.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Haz clic sobre cualquier vehículo dañado para repararlo.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Haz clic sobre cualquier planta para regarla.
@@ -169,6 +175,9 @@ Ponla dentro de un pozo o de un recolector de agua para llenarla de agua potable
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Las células de combustible se usan para dar energía a diversos vehículos.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+Puedes pulsar la tecla [b]\[{0}\][/b] para activar o desactivar la luz/la visión nocturna.
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 Mantén pulsado [b]Alt[/b] o [b]Ctrl[/b] mientras disparas para disparar a la distancia máxima posible en la dirección del cursor en vez de apuntar a la posición exacta del cursor.
 
@@ -184,6 +193,12 @@ Este objeto extrae energía de los cargadores portátiles equipados.
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Esta arma tan solo se puede instalar y usar en el enganche [b]{0}[/b] de un vehículo.
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Visión nocturna (Gen I)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Visión nocturna (Gen II)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Cortar
 
@@ -195,6 +210,9 @@ Beber
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Comer
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Abrir
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Leer
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Sin combustible
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Para activar la luz del casco, equipa este objeto y pulsa la tecla [{0}].
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-botón no fijado
+Para activar la luz del casco, equipa este objeto y pulsa la tecla \[{0}\].
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 La armadura de hueso ofrece una gran protección para su precio y puede ser bastante útil durante tus primeros pasos.
@@ -402,6 +417,12 @@ Armadura militar
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Casco militar
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Chaleco especial repleto de explosivos. Explota automáticamente al morir el portador, quien se venga así de su muerte.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+Chaleco vengativo
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Casco muy útil, que se convierte en una fuente de luz portátil sin ocuparte las manos. Necesitas pilas desechables.
@@ -520,6 +541,15 @@ Los peces recién pescados hay que limpiarlos antes de cocinar.
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Lubina
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Gobio negro
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Forma de vida acuática basada en el pragmio que es originaria de este mundo.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Mopa azul
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Besugo
 
@@ -532,8 +562,14 @@ Siluro
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Barbo
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Pescado de sartén
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Ronco
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Koi
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Caballa
@@ -561,6 +597,9 @@ Sardina
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Trucha
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Atún de aleta amarilla
 
 Scripts/Items/Food/ItemBanana@Description:
 Cualquier mono puede llegar hasta un plátano, pero solo los humanos pueden llegar hasta las estrellas.
@@ -717,6 +756,12 @@ Una taza de café exprés bien calentito. Te aporta más energía a la hora de h
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Taza de café
+
+Scripts/Items/Food/ItemCookingOil@Description:
+Aceite natural que se usa para cocinar.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Aceite de cocina
 
 Scripts/Items/Food/ItemCorn@Description:
 Una planta muy sabrosa con la que, por algún motivo, están obsesionados los autores de novelas de miedo.
@@ -924,6 +969,24 @@ La llama de la Guerra Santa sigue ardiendo hoy en día...
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Pizza con piña
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Patatas dulces con una piel deliciosa y un poco de carne para acompañarlas.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Patatas al horno con carne
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Patatas fritas al estilo clásico de comida rápida.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Patatas fritas
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Hay que prepararlas antes de comerlas.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Patata
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Ideal para comérselo tal cual o como acompañante de una comida más elaborada.
@@ -1183,6 +1246,12 @@ Monedas de poco valor. Estas monedas pueden usarse para adquirir objetos baratos
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Penique
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Un monedero viejo. Puede que aún haya algo en su interior.
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Monedero
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Monedas de gran valor. Estas monedas pueden usarse para adquirir objetos en máquinas expendedoras o para comerciar con otros supervivientes.
 
@@ -1277,6 +1346,12 @@ Oniflor roja. Recibe su nombre del demonio rojo.
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Oniflor
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Muy útil tanto como elemento decorativo como para extraer aceite de cocina.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Flor amarilla
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 El polvo fundente es útil en la metalurgia para crear metales de gran calidad.
 
@@ -1306,6 +1381,12 @@ Célula de combustible llena de pragmio líquido. Dura muchísimo tiempo.
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Célula de combustible de pragmio
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Órgano especial de una criatura alienígena que almacena un líquido volátil.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Saco de combustible
 
 Scripts/Items/Generic/ItemFur@Description:
 Piel de animal. Podría ser útil para fabricar ropa de invierno calentita.
@@ -1343,10 +1424,10 @@ Scripts/Items/Generic/ItemGemTopaz@Description:
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Topacio
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 ¡Una turmalina morada y brillante!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Turmalina
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Un puñado de ramas aleatorias que has recogido del suelo o de un árbol. Podrí
 Scripts/Items/Generic/ItemTwigs@Name:
 Ramas
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Un extraño órgano esponjoso de una forma de vida desconocida. Emite partículas exóticas a medida que se va pudriendo.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Corazón de Tirano de las arenas
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Activador muy flexible y extremadamente poderoso que usa la fuerza magnética para moverse.
 
@@ -1853,6 +1940,12 @@ Un puro barato y hecho con prisas. Estimulante.
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Puro barato
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Una marca de cigarrillos de otro mundo.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Cigarrillos
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Un puro decente, con mucho cuerpo. Estimulante.
 
@@ -1975,6 +2068,12 @@ El Peredozin ayuda a aliviar los efectos negativos de usar con frecuencia objeto
 Scripts/Items/Medical/ItemPeredozin@Name:
 Peredozin
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+La escayola se usa con los huesos rotos para que se curen lo antes posible.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Escayola
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Producto químico especial neuromodulador, que puede ayudar a mitigar el daño neutral de la exposición a los campos psi.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Remedio de hierbas
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-No tienes ningún hueso roto. No tiene sentido usar una tabilla ahora mismo.
+No tienes ningún hueso roto. No tiene sentido usarla ahora mismo.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Sin huesos rotos
@@ -2062,8 +2161,14 @@ Semillas de salvia azul
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Semillas de oniflor
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Semillas de flor amarilla
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Semillas de lechemelón
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Semillas de patata
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Semillas de arroz
@@ -2088,6 +2193,12 @@ Para plantar este retoño es necesario tener, como mínimo, una casilla de separ
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Necesita
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Contiene un registro de coordenadas y frecuencia de uso de una de las numerosas ubicaciones de teletransporte.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Datos de teletransporte
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 El hacha de hierro es genial para talar árboles. Es más rápida y resistente que el hacha de piedra.
@@ -2146,11 +2257,11 @@ Hay que rellenarlo.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Sin combustible
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-Esta frágil hachuela de pragmio usa mecánicas de resonancia molecular para ser mucho más rápida que las alternativas convencionales.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+Este frágil martillo de pragmio usa mecánicas de resonancia molecular para ser mucho más rápido que las alternativas convencionales.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Hachuela de pragmio
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+Martillo de pragmio
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 El pico de hierro se puede usar para picar depósitos de minerales. Es más rápido y resistente que el pico de piedra.
@@ -2175,6 +2286,12 @@ Este sensor te permite buscar cristales grandes de pragmio, ya que detecta sus h
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Sensor de pragmio
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Kit universal de reparación de vehículos. Es de usar y tirar.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Kit de reparación de vehículos
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Se necesita la caja de herramientas para construir o reparar cualquiera de tus estructuras. Asegúrate de equiparla y seleccionarla.
@@ -2262,6 +2379,12 @@ Espada ropera láser (blanca)
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Espada ropera láser (amarilla)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+La batería que tiene integrada genera electricidad para aturdir a los rivales.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Bastón aturdidor
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Arma de corto alcance con una potencia increíble. Se necesita energía para poder usarla.

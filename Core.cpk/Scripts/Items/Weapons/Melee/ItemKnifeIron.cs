@@ -8,9 +8,13 @@
 
     public class ItemKnifeIron : ProtoItemWeaponMelee
     {
+        public override double DamageApplyDelay => 0.075;
+
         public override string Description => "Military knife. Affectionately known as pig sticker.";
 
         public override uint DurabilityMax => 120;
+
+        public override double FireAnimationDuration => 0.6;
 
         public override string Name => "Iron knife";
 

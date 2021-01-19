@@ -20,7 +20,7 @@
         private readonly CraftingQueue craftingQueue;
 
         private readonly Dictionary<CraftingQueueItem, CraftingQueueItemControl> craftingQueueItemsControls
-            = new Dictionary<CraftingQueueItem, CraftingQueueItemControl>();
+            = new();
 
         private readonly UIElementCollection itemsChildrenCollection;
 

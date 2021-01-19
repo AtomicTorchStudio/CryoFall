@@ -29,7 +29,7 @@
         private string filterString;
 
         private SuperObservableCollection<ViewModelLogEntry> logEntriesCollection =
-            new SuperObservableCollection<ViewModelLogEntry>();
+            new();
 
         private string suggestionsListPaddingText;
 
@@ -181,7 +181,7 @@
         public Visibility ServerLogVisibility { get; } = Api.IsEditor ? Visibility.Visible : Visibility.Collapsed;
 
         public SuperObservableCollection<string> SuggestionsListItems { get; }
-            = new SuperObservableCollection<string>();
+            = new();
 
         public string SuggestionsListPaddingText
         {

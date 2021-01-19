@@ -14,6 +14,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
     using AtomicTorch.CBND.CoreMod.UI.Services;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -21,7 +22,7 @@
     public partial class ChatPanel : BaseUserControl
     {
         private readonly Dictionary<BaseChatRoom, ChatRoomTab> chatRooms
-            = new Dictionary<BaseChatRoom, ChatRoomTab>();
+            = new();
 
         private bool? isActive;
 
@@ -244,6 +245,20 @@
             ClientUpdateHelper.UpdateCallback += this.Update;
 
             this.RefreshState();
+
+            var allChatRoomHolders = new List<ILogicObject>();
+            Api.GetProtoEntity<ChatRoomHolder>().GetAllGameObjects(allChatRoomHolders);
+
+            foreach (var chatRoomHolder in allChatRoomHolders)
+            {
+                if (!chatRoomHolder.IsInitialized)
+                {
+                    continue;
+                }
+
+                var chatRoom = ChatSystem.SharedGetChatRoom(chatRoomHolder);
+                this.ChatRoomAddedHandler(chatRoom);
+            }
         }
 
         protected override void OnUnloaded()
@@ -272,16 +287,16 @@
             {
                 switch (viewModelChatRoom.ChatRoom)
                 {
-                    case ChatRoomGlobal _:
+                    case ChatRoomGlobal:
                         return 0;
 
-                    case ChatRoomLocal _:
+                    case ChatRoomLocal:
                         return 1;
 
-                    case ChatRoomTrade _:
+                    case ChatRoomTrade:
                         return 2;
 
-                    case ChatRoomParty _:
+                    case ChatRoomParty:
                         return 3;
 
                     default:
@@ -454,8 +469,7 @@
                 = string.Format(
                     CoreStrings.Chat_PressKeyToOpen_Format,
                     InputKeyNameHelper.GetKeyText(
-                        ClientInputManager.GetKeyForAbstractButton(
-                            WrappedButton<GameButton>.GetWrappedButton(GameButton.OpenChat))));
+                        ClientInputManager.GetKeyForButton(GameButton.OpenChat)));
         }
 
         private class ChatRoomTab

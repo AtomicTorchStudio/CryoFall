@@ -6,7 +6,7 @@ namespace AtomicTorch.CBND.CoreMod.Characters
     public static class ClientCharacterSkinTexturesCache
     {
         private static readonly Dictionary<(TextureResource, string), ProceduralTexture> Cache
-            = new Dictionary<(TextureResource, string), ProceduralTexture>();
+            = new();
 
         public static ProceduralTexture Get(TextureResource textureResource, string skinToneId)
         {

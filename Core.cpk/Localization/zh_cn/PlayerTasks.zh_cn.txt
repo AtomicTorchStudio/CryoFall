@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 建造： {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+生涯记录：获得任何奖励
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 完成: {0}（科技组）
 
@@ -10,8 +13,14 @@ Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 制作
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+击败boss: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 摧毁: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+探索: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 采集: {0}

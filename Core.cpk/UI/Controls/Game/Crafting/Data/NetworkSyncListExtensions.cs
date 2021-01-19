@@ -8,7 +8,7 @@
         public static NetworkSyncListObservableWrapper<T>
             ToObservableCollection<T>(this NetworkSyncList<T> netList)
         {
-            return new NetworkSyncListObservableWrapper<T>(netList);
+            return new(netList);
         }
 
         public static NetworkSyncListObservableWrapperWithConverter<TKey, TViewModel>
@@ -17,7 +17,7 @@
                 Func<TKey, TViewModel> func)
             where TViewModel : IDisposable
         {
-            return new NetworkSyncListObservableWrapperWithConverter<TKey, TViewModel>(
+            return new(
                 netList,
                 func);
         }

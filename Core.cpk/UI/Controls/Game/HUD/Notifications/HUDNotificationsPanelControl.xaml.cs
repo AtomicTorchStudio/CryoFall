@@ -1,11 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Media;
-    using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class HudNotificationsPanelControl : BaseUserControl
@@ -81,64 +77,6 @@
                     control.Hide(quick: true);
                 }
             }
-        }
-
-        private IHudNotificationControl ShowInternal(
-            string title,
-            string message,
-            Brush brushBackground,
-            Brush brushBorder,
-            ITextureResource icon,
-            Action onClick,
-            bool autoHide,
-            SoundResource soundToPlay,
-            bool writeToLog)
-        {
-            if (writeToLog)
-            {
-                Api.Logger.Important(
-                    string.Format(
-                        "Showing notification:{0}Title: {1}{0}Message: {2}",
-                        Environment.NewLine,
-                        title,
-                        message));
-            }
-
-            var notificationControl = HudNotificationControl.Create(
-                title,
-                message,
-                brushBackground,
-                brushBorder,
-                icon,
-                onClick,
-                autoHide,
-                soundToPlay);
-
-            var instance = this;
-            if (notificationControl.IsAutoHide)
-            {
-                instance.HideSimilarNotifications(notificationControl);
-            }
-
-            instance.stackPanelChildren.Add(notificationControl);
-
-            if (notificationControl.IsAutoHide)
-            {
-                // hide the notification control after delay
-                ClientTimersSystem.AddAction(
-                    NotificationHideDelaySeconds,
-                    () =>
-                    {
-                        if (notificationControl.IsAutoHide) // still configured as auto hide
-                        {
-                            notificationControl.Hide(quick: false);
-                        }
-                    });
-            }
-
-            instance.HideOldNotificationsIfTooManyDisplayed();
-
-            return notificationControl;
         }
     }
 }

@@ -127,6 +127,9 @@ Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 按住Alt键并点击此物品来进行快速使用。
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+你可以使用[b]\[{0}\][/b]键为当前选择的武器切换弹药类型。
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 用于任何建筑来将其拆除。
 
@@ -138,6 +141,9 @@ Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 点击任何建筑以修复或建造。
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+点击受损载具以进行修复。
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 点击任何农作物来浇水。
@@ -169,6 +175,9 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 用于驱动各种载具的燃料电池。
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+您可以通过按下[b]\[{0}\][/b]键来在光照或夜视模式间切换。
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 按住 [b]Alt[/b] 或 [b]Ctrl[/b] 来向鼠标方向进行最远距离射击，而非射击至鼠标位置。
 
@@ -184,6 +193,12 @@ Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 此物品只能被安装在载具[b]{0}[/b]槽位上。
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+夜视仪(一代)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+夜视仪(二代)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 割伤
 
@@ -195,6 +210,9 @@ Scripts/Items/Base/ItemUseCaptions@Drink:
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 吃
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+打开
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 阅读
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 燃料耗尽
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-要激活头盔灯，请装备此物品并按下[{0}] 键。
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-按键未设定
+要激活头盔灯，请装备此物品并按下\[{0}\] 键。
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 骨质头盔提供廉价的防御性能，在早期很有用。
@@ -402,6 +417,12 @@ Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 军用头盔
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+装有炸药的特殊战术背心。会在穿戴者死亡时自动引爆以进行复仇。
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+复仇背心
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 方便的头盔, 还提供了一个便携式光源, 让你能够腾出手来。需要一次性电池。
@@ -520,6 +541,15 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Description:
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 鲈鱼
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+黑虾虎鱼
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+一种这个世界独有的普拉格鱼类。
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+蓝飞鱼
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 鲷鱼
 
@@ -532,8 +562,14 @@ Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 鲦鱼
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+刺盖太阳鱼
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 石鲈鱼
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+锦鲤
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 鲭鱼
@@ -561,6 +597,9 @@ Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 鳟鱼
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+黄鳍金枪鱼
 
 Scripts/Items/Food/ItemBanana@Description:
 任何猴子都会伸手去拿香蕉，但只有人类会掌向群星。
@@ -717,6 +756,12 @@ Scripts/Items/Food/ItemCoffeeCup@Description:
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 一杯咖啡
+
+Scripts/Items/Food/ItemCookingOil@Description:
+烹饪用天然油。
+
+Scripts/Items/Food/ItemCookingOil@Name:
+食用油
 
 Scripts/Items/Food/ItemCorn@Description:
 一种高产的美味谷物，恐怖小说家的最爱。
@@ -924,6 +969,24 @@ Scripts/Items/Food/ItemPizzaPineapple@Description:
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 菠萝披萨
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+炸的酥脆的新鲜土豆，旁边还配有一些肉。
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+土豆肉排
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+经典的快餐式炸薯条。
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+炸薯条
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+必须经过烹饪才能食用。
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+土豆
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 可以直接吃，也可以进一步加工成更加复杂的餐点。
@@ -1183,6 +1246,12 @@ Scripts/Items/Generic/ItemCoinPenny@Description:
 Scripts/Items/Generic/ItemCoinPenny@Name:
 硬币
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+一个旧钱包。也许里面还有点东西？
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+钱包
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 高面额硬币。可以用来在自动售货机购买商品，或者用来与其他幸存者交易。
 
@@ -1277,6 +1346,12 @@ Scripts/Items/Generic/ItemFlowerOni@Description:
 Scripts/Items/Generic/ItemFlowerOni@Name:
 鬼花
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+可用于榨取食用油或用于装饰。
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+黄花
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 制造高质量金属时使用的冶金粉尘。
 
@@ -1306,6 +1381,12 @@ Scripts/Items/Generic/ItemFuelCellPragmium@Description:
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 普拉格燃料电池
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+异星生物体内用于储存不稳定液体特殊器官。
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+燃料袋
 
 Scripts/Items/Generic/ItemFur@Description:
 动物皮毛。可以被用来制造保暖的冬衣。
@@ -1343,10 +1424,10 @@ Scripts/Items/Generic/ItemGemTopaz@Description:
 Scripts/Items/Generic/ItemGemTopaz@Name:
 黄宝石
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 闪亮的紫碧玺！
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 碧玺
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Scripts/Items/Generic/ItemTwigs@Description:
 Scripts/Items/Generic/ItemTwigs@Name:
 树枝
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+从一种未知生命体体内取出的弹性器官。会在腐败时释放特殊粒子。
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+沙漠暴君心脏
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 灵活而强劲的促动器，使用磁力进行活动。
 
@@ -1853,6 +1940,12 @@ Scripts/Items/Medical/ItemCigarCheap@Description:
 Scripts/Items/Medical/ItemCigarCheap@Name:
 廉价雪茄
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+异界香烟品牌。
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+香烟
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 味道不错的雪茄。刺激剂。
 
@@ -1975,6 +2068,12 @@ Scripts/Items/Medical/ItemPeredozin@Description:
 Scripts/Items/Medical/ItemPeredozin@Name:
 裴罗多辛
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+石膏板用于矫正断骨，允许其更快恢复。
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+石膏板
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 特殊的神经调整化合物，能够减少暴露于灵能场带来的神经损伤。
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 草药汤
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-你没有骨折症状。没有必要使用夹板。
+你没有断骨。没必要使用。
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 无骨折症状
@@ -2062,8 +2161,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 鬼花种子
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+黄花种子
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 奶瓜种子
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+土豆种子
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 大米种子
@@ -2088,6 +2193,12 @@ Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 需要任何
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+记载了多个传送点地点和频率的记录。
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+传送点数据
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 铁斧可以用来砍树。效率和耐久度都高于石斧。
@@ -2146,11 +2257,11 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 没油了
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-这种脆弱的普拉格手斧使用了原子震动技术，使其效率远高于传统工具。
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+这种脆弱的普拉格锤使用了原子震动技术，使其效率远高于传统工具。
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-普拉格手斧
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+普拉格锤
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 铁镐可以用来采集矿物。效率和耐久度都高于石镐。
@@ -2175,6 +2286,12 @@ Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 普拉格感应器
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+通用一次性载具修理套件。
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+载具修理包
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 对于修复和建造建筑来说工具箱必不可少。记得将其装备并选中。
@@ -2262,6 +2379,12 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 激光刺剑(黄)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+使用内置电源击晕敌人。
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+电击棒
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 非常强大的近距离武器。需要能量才能开火。

@@ -31,7 +31,7 @@
 
         public static TaskCompleteQuest Require(IProtoQuest quest)
         {
-            return new TaskCompleteQuest(quest);
+            return new(quest);
         }
 
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskState state)

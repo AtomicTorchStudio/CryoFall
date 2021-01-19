@@ -85,7 +85,7 @@
             ushort count = 1,
             string description = null)
         {
-            return new TaskCraftRecipe(list, count, description);
+            return new(list, count, description);
         }
 
         public override ITextureResource ClientCreateIcon()

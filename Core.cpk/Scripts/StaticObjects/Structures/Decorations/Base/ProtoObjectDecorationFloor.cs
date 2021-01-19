@@ -11,8 +11,7 @@
         public const string ErrorHasFloorDecoration = "There is already floor decoration.";
 
         public static readonly ConstructionTileRequirements.Validator ValidatorNoFloorDecoration
-            = new ConstructionTileRequirements.Validator(
-                ErrorHasFloorDecoration,
+            = new(ErrorHasFloorDecoration,
                 c => !c.Tile.StaticObjects.Any(
                          o => o.ProtoStaticWorldObject is ProtoObjectDecorationFloor));
 

@@ -12,7 +12,7 @@
 
         public static ItemTooltipInfoDurabilityControl Create(IItem item)
         {
-            return new ItemTooltipInfoDurabilityControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

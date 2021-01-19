@@ -1,10 +1,10 @@
-﻿<ui:BaseUserControl
+﻿<base:BaseUserControl
     x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.PowerGridStateControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -18,12 +18,15 @@
     HorizontalAlignment="Center"
     VerticalAlignment="Center">
 
-    <ui:BaseUserControl.Resources>
+    <base:BaseUserControl.Resources>
         <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextDecorations" Value="Underline" />
+            <Setter Property="noesis:Text.Stroke" Value="#BB000000" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="1.5" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Margin" Value="0,0,0,1" />
         </Style>
@@ -32,16 +35,16 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="LineHeight" Value="13" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         </Style>
 
         <Style x:Key="TextBlockValue" TargetType="TextBlock"
                BasedOn="{StaticResource {x:Type TextBlock}}">
-            <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
         </Style>
-    </ui:BaseUserControl.Resources>
+    </base:BaseUserControl.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -52,6 +55,12 @@
 
         <Grid VerticalAlignment="Top"
               HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -62,18 +71,11 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="7" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
             <!-- Text: Power grid information -->
             <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="3"
                        Text="{x:Static loc:CoreStrings.PowerGridState_PowerGridInformation}"
                        Style="{StaticResource SectionTitleStyle}" />
-
 
             <!-- Text: Grid size: -->
             <TextBlock Grid.Row="1"
@@ -94,11 +96,11 @@
                          Width="12"
                          Height="12"
                          FontSize="12">
-                    <ui:ToolTipServiceExtend.ToolTip>
+                    <base:ToolTipServiceExtend.ToolTip>
                         <core:FormattedTextBlock
                             Content="{x:Static loc:CoreStrings.PowerGridState_EfficiencyDescription}"
                             MaxWidth="300" />
-                    </ui:ToolTipServiceExtend.ToolTip>
+                    </base:ToolTipServiceExtend.ToolTip>
                 </Control>
             </StackPanel>
 
@@ -156,6 +158,12 @@
         <Grid Grid.Column="2"
               VerticalAlignment="Top"
               HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -165,12 +173,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="7" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
 
             <!-- Text: Energy information -->
             <TextBlock Grid.Row="0"
@@ -190,7 +192,7 @@
                     Value="{Binding ElectricityAmount}"
                     MaxValue="{Binding ElectricityCapacity}"
                     Background="Transparent"
-                    BorderBrush="#AAFFAA10"
+                    BorderBrush="{StaticResource BrushElectricityDarker}"
                     BorderThickness="1"
                     Margin="0"
                     HorizontalAlignment="Stretch"
@@ -213,7 +215,7 @@
                             </Grid>
                         </ControlTemplate>
                     </core:ValueBarControl.Template>
-                    <Border Background="#AAFFAA10" CornerRadius="1" />
+                    <Border Background="{StaticResource BrushElectricityDarker}" CornerRadius="1" />
                 </core:ValueBarControl>
 
                 <StackPanel Orientation="Horizontal"
@@ -324,4 +326,4 @@
         </Grid>
     </Grid>
 
-</ui:BaseUserControl>
+</base:BaseUserControl>

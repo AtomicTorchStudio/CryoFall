@@ -32,19 +32,19 @@
                 // some test RSS content for XAML design preview
                 var rssFeedEntries = new List<RssFeedEntry>()
                 {
-                    new RssFeedEntry("Test title", "Test description", "Lurler", string.Empty, DateTime.Now),
-                    new RssFeedEntry(
+                    new("Test title", "Test description", "Lurler", string.Empty, DateTime.Now),
+                    new(
                         "Test title 2",
                         "Test description 2",
                         "Lurler",
                         string.Empty,
                         DateTime.Today.AddDays(-1)),
-                    new RssFeedEntry(
+                    new(
                         "Test title 2",
                         "Test description 3",
                         "Lurler",
                         string.Empty,
-                        DateTime.Today.AddDays(-2)),
+                        DateTime.Today.AddDays(-2))
                 };
 
                 this.OnNewsRssFeedResult(rssFeedEntries);
@@ -74,12 +74,12 @@
             => new ActionCommand(this.ExecuteCommandShowFeaturesSlideshow);
 
         public SuperObservableCollection<RssFeedEntry> ForumsItemsList { get; }
-            = new SuperObservableCollection<RssFeedEntry>();
+            = new();
 
         public ViewModelServersList HistoryServers { get; }
 
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
-            = new SuperObservableCollection<RssFeedEntry>();
+            = new();
 
         public string UpdateReleaseDateText => UpdatesHistoryEntries.Entries.FirstOrDefault()?
                                                                     .DateValue

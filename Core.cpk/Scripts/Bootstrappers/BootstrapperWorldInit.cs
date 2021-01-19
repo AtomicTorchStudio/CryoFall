@@ -62,7 +62,10 @@
                     continue;
                 }
 
-                if (LandClaimSystem.SharedIsOwnedLand(character.TilePosition, character, out _))
+                if (LandClaimSystem.SharedIsOwnedLand(character.TilePosition,
+                                                      character,
+                                                      requireFactionPermission: false,
+                                                      out _))
                 {
                     // do not despawn as the player is inside the owned land claim area
                     continue;
@@ -146,7 +149,9 @@
                     }
                 }
 
-                if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(neighborTile.Position, character))
+                if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(neighborTile.Position,
+                                                                           character,
+                                                                           requireFactionPermission: false))
                 {
                     // invalid tile - it's claimed by another player
                     continue;

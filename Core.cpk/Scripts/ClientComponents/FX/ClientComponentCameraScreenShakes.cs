@@ -15,7 +15,7 @@
 
         private static ClientComponentCameraScreenShakes instance;
 
-        private readonly List<ShakeTask> shakeTasks = new List<ShakeTask>(capacity: 16);
+        private readonly List<ShakeTask> shakeTasks = new(capacity: 16);
 
         private Vector2F lastShakesOffset;
 

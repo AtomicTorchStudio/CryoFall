@@ -7,7 +7,7 @@
         where TButton : struct, Enum
     {
         private static readonly Dictionary<TButton, WrappedButton<TButton>> WrappedButtons
-            = new Dictionary<TButton, WrappedButton<TButton>>();
+            = new();
 
         public readonly TButton Button;
 

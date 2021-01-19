@@ -22,6 +22,12 @@ Général
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Commandes
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+Si cette option est activée, vous ne pourrez pas déplacer le curseur en dehors de la fenêtre de jeu si cette fenêtre est au premier plan, sauf si vous maintenez la touche Ctrl enfoncée. Utile avec des configurations à plusieurs moniteurs, ou si vous jouez en mode fenêtré.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+Curseur captif
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Activer quand même
 
@@ -36,11 +42,26 @@ Certaines fonctionnalités du mode développeur peuvent faire planter le jeu.
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Mode développeur
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Habituellement, le jeu n'affiche que les barres de santé des autres personnages. Vous pouvez activer cette option afin d'afficher également celle de votre personnage.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Afficher la barre de santé
+[br]de mon personnage`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Afficher bulle d'aide[br]d'interaction objet
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Afficher bulle d'aide[br]de nom d'objet
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`Les quêtes sont un élément crucial du jeu, surtout si vous jouez pour la première fois, puisqu'elles vous servent de guide et de tutoriel.
+[br]
+[br]Souhaitez-vous vraiment désactiver le panneau des quêtes ?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Masquer le panneau des quêtes
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Zoom caméra

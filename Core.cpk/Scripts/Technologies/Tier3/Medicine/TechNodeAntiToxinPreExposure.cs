@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeAntiToxinPreExposure>();
 
-            config.SetRequiredNode<TechNodeHemostatic>();
+            config.SetRequiredNode<TechNodePlasterCast>();
         }
     }
 }

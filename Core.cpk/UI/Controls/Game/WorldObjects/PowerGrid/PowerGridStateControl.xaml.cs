@@ -4,12 +4,5 @@
 
     public partial class PowerGridStateControl : BaseUserControl
     {
-        public PowerGridStateControl()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

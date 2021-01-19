@@ -42,7 +42,7 @@
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public ViewModelHUDStatBar ProgressBar { get; }
-            = new ViewModelHUDStatBar("Action progress") { ValueMax = 100 };
+            = new("Action progress") { ValueMax = 100 };
 
         protected override void DisposeViewModel()
         {

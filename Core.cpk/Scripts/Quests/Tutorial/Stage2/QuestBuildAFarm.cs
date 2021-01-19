@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
@@ -34,7 +33,8 @@
                 .Add(TaskHaveTechNode.Require<TechNodeFarmingBasics>())
                 .Add(TaskBuildStructure.Require<ObjectFarmPlot>())
                 .Add(TaskBuildStructure.Require<ObjectFarmingWorkbench>())
-                .Add(TaskUseItem.Require(listSeeds, description: TaskPlantAnySeeds));
+                .Add(TaskUseItem.Require(listSeeds, description: TaskPlantAnySeeds)
+                                .WithIcon(listSeeds[0].Icon));
 
             prerequisites
                 .Add<QuestCollectHerbsAndCraftMedicine>();

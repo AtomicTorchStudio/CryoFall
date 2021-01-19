@@ -51,7 +51,7 @@
         private static ObjectTinkerTable instance;
 
         private static readonly Lazy<IReadOnlyList<ProtoItemWithCount>> LazyRequiredRepairComponentItems
-            = new Lazy<IReadOnlyList<ProtoItemWithCount>>(SharedSetupRequriedRepairComponents);
+            = new(SharedSetupRequriedRepairComponents);
 
         public static IReadOnlyList<ProtoItemWithCount> RequiredRepairComponentItems
             => LazyRequiredRepairComponentItems.Value;
@@ -246,7 +246,7 @@
 
             privateState.ContainerInput
                 ??= Server.Items.CreateContainer<ItemsContainerTinkerTableInput>(worldObject,
-                                                                                 slotsCount: 2);
+                    slotsCount: 2);
 
             privateState.ContainerOutput
                 ??= Server.Items.CreateContainer<ItemsContainerOutput>(worldObject,
@@ -256,7 +256,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((1.9, 0.8),  offset: (0.05, 0))
+                .AddShapeRectangle((1.9, 0.75), offset: (0.1, 0.1))
                 .AddShapeRectangle((2, 1),      offset: (0, 0),     group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((1.6, 0.25), offset: (0.2, 0.9), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle((2, 1.2),    offset: (0, 0),     group: CollisionGroups.ClickArea);

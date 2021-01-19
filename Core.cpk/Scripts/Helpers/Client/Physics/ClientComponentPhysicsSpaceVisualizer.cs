@@ -103,32 +103,32 @@
         {
             this.legendLayers = new List<ViewModelPhysicsGroup>()
             {
-                new ViewModelPhysicsGroup(
+                new(
                     "Static colliders",
                     CollisionGroupId.Default,
                     EnabledLayers.Contains(CollisionGroupId.Default),
                     BrushStaticCollider),
-                new ViewModelPhysicsGroup(
+                new(
                     "Dynamic colliders",
                     CollisionGroupId.Default,
                     EnabledLayers.Contains(CollisionGroupId.Default),
                     BrushDynamicCollder),
-                new ViewModelPhysicsGroup(
+                new(
                     "Hitbox melee",
                     CollisionGroupId.HitboxMelee,
                     EnabledLayers.Contains(CollisionGroupId.HitboxMelee),
                     BrushHitboxMelee),
-                new ViewModelPhysicsGroup(
+                new(
                     "Hitbox ranged",
                     CollisionGroupId.HitboxRanged,
                     EnabledLayers.Contains(CollisionGroupId.HitboxRanged),
                     BrushHitboxRanged),
-                new ViewModelPhysicsGroup(
+                new(
                     "Click area",
                     CollisionGroupId.ClickArea,
                     EnabledLayers.Contains(CollisionGroupId.ClickArea),
                     BrushClickArea),
-                new ViewModelPhysicsGroup(
+                new(
                     "Interaction area",
                     CollisionGroupId.InteractionArea,
                     EnabledLayers.Contains(CollisionGroupId.InteractionArea),
@@ -299,35 +299,7 @@
             Client.World.WorldBoundsChanged += this.WorldBoundsChangedHandler;
         }
 
-        private static void DestroyPhysicsBodyVisualizer(
-            IPhysicsBody physicsBody,
-            IComponentAttachedControl component)
-        {
-            if (physicsBody.AssociatedProtoTile is not null)
-            {
-                component.SceneObject.Destroy();
-            }
-            else
-            {
-                component.Destroy();
-            }
-        }
-
-        private static void IsServerOperatorChangedHandler()
-        {
-            if (!ServerOperatorSystem.ClientIsOperator())
-            {
-                // non-operator players should have this feature disabled
-                IsVisualizerEnabled = false;
-            }
-        }
-
-        private void ClientDebugShapeTestingHandler(IPhysicsShape physicsShape)
-        {
-            this.DrawPhysicsTest(physicsShape, isClient: true);
-        }
-
-        private Shape CreateShapeControl(IPhysicsShape physicsShape)
+        private static Shape CreateShapeControl(IPhysicsShape physicsShape)
         {
             switch (physicsShape.ShapeType)
             {
@@ -416,6 +388,34 @@
             }
         }
 
+        private static void DestroyPhysicsBodyVisualizer(
+            IPhysicsBody physicsBody,
+            IComponentAttachedControl component)
+        {
+            if (physicsBody.AssociatedProtoTile is not null)
+            {
+                component.SceneObject.Destroy();
+            }
+            else
+            {
+                component.Destroy();
+            }
+        }
+
+        private static void IsServerOperatorChangedHandler()
+        {
+            if (!ServerOperatorSystem.ClientIsOperator())
+            {
+                // non-operator players should have this feature disabled
+                IsVisualizerEnabled = false;
+            }
+        }
+
+        private void ClientDebugShapeTestingHandler(IPhysicsShape physicsShape)
+        {
+            this.DrawPhysicsTest(physicsShape, isClient: true);
+        }
+
         private void DrawPhysicsTest(
             IPhysicsShape physicsShape,
             bool isClient,
@@ -440,7 +440,7 @@
                 brush = BrushDynamicCollder;
             }
 
-            var shapeControl = this.CreateShapeControl(physicsShape);
+            var shapeControl = CreateShapeControl(physicsShape);
             shapeControl.StrokeThickness = StrokeThickness;
             shapeControl.Stroke = brush;
             var title = (isClient ? "[CLIENT]" : "[SERVER]")
@@ -555,21 +555,26 @@
                     continue;
                 }
 
-                var shapeControl = this.CreateShapeControl(shape);
+                var shapeControl = CreateShapeControl(shape);
                 shapeControl.StrokeThickness = StrokeThickness;
                 shapeControl.Stroke = this.GetBrush(physicsBody, shape);
-                if (shape.CollisionGroup != CollisionGroups.CharacterInteractionArea)
+
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                if (IsTooltipsEnabled)
                 {
-                    ToolTipServiceExtend.SetToolTip(
-                        shapeControl,
-                        associatedWorldObject is not null
-                            ? $"{associatedWorldObject.Name} (ID={associatedWorldObject.Id})"
-                            : associatedProtoTile.ToString());
-                }
-                else
-                {
-                    // interaction area doesn't have a tooltip
-                    shapeControl.IsHitTestVisible = false;
+                    if (shape.CollisionGroup != CollisionGroups.CharacterInteractionArea)
+                    {
+                        ToolTipServiceExtend.SetToolTip(
+                            shapeControl,
+                            associatedWorldObject is not null
+                                ? associatedWorldObject.ToString()
+                                : associatedProtoTile.ToString());
+                    }
+                    else
+                    {
+                        // interaction area doesn't have a tooltip
+                        shapeControl.IsHitTestVisible = false;
+                    }
                 }
 
                 this.visualizerControlRootChildren.Add(shapeControl);

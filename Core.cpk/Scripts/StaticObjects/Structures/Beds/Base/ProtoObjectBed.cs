@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -11,6 +12,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectBed
         <TPrivateState,
@@ -104,7 +106,8 @@
                     DialogClaimBed_Message,
                     okText: CoreStrings.Yes,
                     okAction: () => this.ClientMakeCurrentBed(bedObject),
-                    hideCancelButton: false);
+                    hideCancelButton: false,
+                    closeByEscapeKey: true);
                 return;
             }
 
@@ -116,6 +119,21 @@
             this.SoundPresetObject.PlaySound(ObjectSound.InteractSuccess);
         }
 
+        protected virtual void PrepareProtoObjectBed()
+        {
+        }
+
+        protected sealed override void PrepareProtoStaticWorldObject()
+        {
+            base.PrepareProtoStaticWorldObject();
+            this.PrepareProtoObjectBed();
+
+            if (IsServer)
+            {
+                ConstructionRelocationSystem.ServerStructureRelocated += this.ServerStructureRelocatedHandler;
+            }
+        }
+
         private static void ServerSetCurrentBed(IStaticWorldObject bedObject, ICharacter owner)
         {
             var playerPrivateState = PlayerCharacter.GetPrivateState(owner);
@@ -124,6 +142,8 @@
             {
                 // remove from the previous bed the current character
                 GetPrivateState(previousBed).Owner = null;
+                // important! reset the previous bed (required in case when the current bed is relocated)
+                playerPrivateState.CurrentBedObject = null;
             }
 
             playerPrivateState.CurrentBedObject = bedObject;
@@ -187,7 +207,9 @@
             if (privateState.Owner is null)
             {
                 // can set new owner
-                if (!LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bedObject, character))
+                if (!LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bedObject,
+                                                                         character,
+                                                                         requireFactionPermission: false))
                 {
                     return ErrorClaimBed_AnotherPlayersLandClaim;
                 }
@@ -203,6 +225,24 @@
             }
 
             return ErrorClaimBed_AlreadyHasOwner;
+        }
+
+        private void ServerStructureRelocatedHandler(
+            ICharacter character,
+            Vector2Ushort fromPosition,
+            IStaticWorldObject structure)
+        {
+            if (structure.ProtoGameObject != this)
+            {
+                return;
+            }
+
+            var bedPrivateState = GetPrivateState(structure);
+            var currentOwner = bedPrivateState.Owner;
+            if (currentOwner is not null)
+            {
+                ServerSetCurrentBed(structure, currentOwner);
+            }
         }
     }
 

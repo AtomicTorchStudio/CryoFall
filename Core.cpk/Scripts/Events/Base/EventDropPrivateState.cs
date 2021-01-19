@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -7,7 +7,7 @@
     public class EventDropPrivateState : BasePrivateState
     {
         public List<IWorldObject> SpawnedWorldObjects { get; }
-            = new List<IWorldObject>();
+            = new();
 
         public void Init()
         {

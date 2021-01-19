@@ -21,7 +21,7 @@
         public const ushort TextureMaskVerticalArraySlice = 2;
 
         private static readonly Dictionary<MaterialCacheKey, RenderingMaterial> CachedBlendMaskMaterials
-            = new Dictionary<MaterialCacheKey, RenderingMaterial>();
+            = new();
 
         private static readonly IReadOnlyList<EffectResource> EffectForMaskCounts
             = new[]
@@ -290,7 +290,7 @@
         {
             List<BlendLayer> blendLayers = null;
 
-            var tileTexture = tileProto.GetGroundTexture(tile.Position);
+            var tileTexture = tileProto.GetGroundTexture(tile.Position, tile.Height);
             TryBlendWith(tile, tileTexture, isHeightsBlendPhase, tileLeft,      Left,      ref blendLayers);
             TryBlendWith(tile, tileTexture, isHeightsBlendPhase, tileRight,     Right,     ref blendLayers);
             TryBlendWith(tile, tileTexture, isHeightsBlendPhase, tileUp,        Up,        ref blendLayers);
@@ -359,7 +359,8 @@
                 return;
             }
 
-            var otherTileTexture = ((ProtoTile)otherTile.ProtoTile).GetGroundTexture(otherTile.Position);
+            var otherTileTexture = ((ProtoTile)otherTile.ProtoTile)
+                .GetGroundTexture(otherTile.Position, otherTile.Height);
             if (isHeightsBlendPhase)
             {
                 if (currentTile.Height >= otherTile.Height

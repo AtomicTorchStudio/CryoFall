@@ -14,7 +14,7 @@
 
         public override string Name => "Infinite geothermal spring";
 
-        public override float StructurePointsMax => 9001; // it's non-damageable anyway
+        public override float StructurePointsMax => 0; // non-damageable
 
         public override void ServerOnExtractorDestroyedForDeposit(IStaticWorldObject objectDeposit)
         {

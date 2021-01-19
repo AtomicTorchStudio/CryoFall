@@ -61,7 +61,7 @@
         }
 
         public SuperObservableCollection<ViewModelEditorToolItem> FilteredItemsCollection { get; }
-            = new SuperObservableCollection<ViewModelEditorToolItem>();
+            = new();
 
         public IReadOnlyList<ViewModelEditorToolItemFilter> FiltersCollection { get; }
 

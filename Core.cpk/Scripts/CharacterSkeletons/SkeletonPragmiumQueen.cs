@@ -33,10 +33,10 @@
         public override float OrientationThresholdUpHorizontalFlipDeg => 5;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("PragmiumQueen/Back");
+            = new("PragmiumQueen/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("PragmiumQueen/Front");
+            = new("PragmiumQueen/Front");
 
         public override double WorldScale => 0.75;
 

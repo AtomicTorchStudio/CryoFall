@@ -3,8 +3,10 @@
     using System;
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.GameApi;
 
-    public enum StatName
+    [RemoteEnum]
+    public enum StatName : ushort
     {
         [Description("Max health")]
         HealthMax,
@@ -228,9 +230,6 @@
         [Description("Energy charge regeneration (per minute)")]
         EnergyChargeRegenerationPerMinute,
 
-        [Description("Ability to eat spoiled food")]
-        PerkEatSpoiledFood,
-
         [Description("Radiation poisoning damage")]
         RadiationPoisoningEffectMultiplier,
 
@@ -262,11 +261,6 @@
         [Description("Dazed")]
         DazedIncreaseRateMultiplier,
 
-        /// <summary>
-        /// Used in StatusEffectBrokenLeg to determine whether the status effect could be added to the player.
-        /// </summary>
-        ReinforcedBones,
-
         [Description("Maximum number of land claims")]
         LandClaimsMaxNumber,
 
@@ -275,7 +269,7 @@
         /// effects that damage the player.
         /// </summary>
         [Description("Continuous damage")]
-        [StatNameHiddenValue]
+        [StatValueHidden]
         VanityContinuousDamage,
 
         /// <summary>
@@ -283,7 +277,7 @@
         /// effects that damage the player.
         /// </summary>
         [Description("Can't eat or drink")]
-        [StatNameHiddenValue]
+        [StatValueHidden]
         VanityCantEatOrDrink,
 
         [Description("Learning points gain")]
@@ -311,16 +305,31 @@
         [RelatedToSkill(typeof(SkillVehicles))]
         VehicleFuelConsumptionRate,
 
+        [Description("Ability to eat spoiled food")]
+        [StatValueHidden]
+        PerkEatSpoiledFood,
+
+        [Description("Ability to overeat without consequences")]
+        [StatValueHidden]
+        PerkOvereatWithoutConsequences,
+
         [Description("Cannot run")]
-        [StatNameHiddenValue]
+        [StatValueHidden]
         PerkCannotRun,
 
         [Description("Cannot attack")]
-        [StatNameHiddenValue]
+        [StatValueHidden]
         PerkCannotAttack,
 
         [Description("Cannot use medical items that have a cooldown")]
-        [StatNameHiddenValue]
-        PerkCannotUseMedicalItems
+        [StatValueHidden]
+        PerkCannotUseMedicalItems,
+
+        /// <summary>
+        /// Used in StatusEffectBrokenLeg to determine whether the status effect could be added to the player.
+        /// </summary>
+        [Description("Cannot break bones")]
+        [StatValueHidden]
+        PerkCannotBreakBones
     }
 }

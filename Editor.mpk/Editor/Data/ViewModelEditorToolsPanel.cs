@@ -24,6 +24,7 @@
             else
             {
                 foreach (var tool in Api.FindProtoEntities<BaseEditorTool>()
+                                        .Where(t => t.IsEnabled)
                                         .OrderBy(t => t.Order))
                 {
                     var editorToolViewModel = new ViewModelEditorTool(tool);

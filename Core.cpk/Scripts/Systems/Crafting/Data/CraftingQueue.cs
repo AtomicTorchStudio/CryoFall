@@ -55,6 +55,8 @@
         [SyncToClient]
         public NetworkSyncList<CraftingQueueItem> QueueItems { get; }
 
+        public double ServerLastDuration { get; set; }
+
         public ushort ServerLastQueueItemLocalId { get; set; }
 
         [SyncToClient(
@@ -68,23 +70,51 @@
             this.QueueItems.Clear();
         }
 
+        public void ServerRecalculateTimeToFinish()
+        {
+            var queue = this.QueueItems;
+            if (queue.Count == 0)
+            {
+                return;
+            }
+
+            if (!(queue.GameObject is ICharacter character))
+            {
+                return;
+            }
+
+            var lastProgressRemains = this.TimeRemainsToComplete / this.ServerLastDuration;
+            if (!(lastProgressRemains >= 0
+                  && lastProgressRemains <= 1))
+            {
+                // should be impossible, restart the crafting
+                lastProgressRemains = 1;
+            }
+
+            var duration = queue[0].Recipe.SharedGetDurationForPlayer(character);
+            this.ServerLastDuration = duration;
+            this.TimeRemainsToComplete = lastProgressRemains * duration;
+            //Api.Logger.Dev("Recalculated time to complete the crafting: " + this.TimeRemainsToComplete.ToString("F3"));
+        }
+
         public void SetDurationFromCurrentRecipe()
         {
             var craftingQueueItem = this.QueueItems.FirstOrDefault();
             if (craftingQueueItem is null)
             {
                 this.TimeRemainsToComplete = double.MaxValue;
+                this.ServerLastDuration = double.MaxValue;
                 return;
             }
 
             var recipe = craftingQueueItem.Recipe;
             if (this.GameObject is ICharacter character)
             {
-                this.TimeRemainsToComplete = recipe.SharedGetDurationForPlayer(character);
+                this.TimeRemainsToComplete = this.ServerLastDuration = recipe.SharedGetDurationForPlayer(character);
                 return;
             }
 
-            this.TimeRemainsToComplete = recipe.OriginalDuration;
+            this.TimeRemainsToComplete = this.ServerLastDuration = recipe.OriginalDuration;
         }
 
         protected virtual IItemsContainer[] CreateInputContainersArray()

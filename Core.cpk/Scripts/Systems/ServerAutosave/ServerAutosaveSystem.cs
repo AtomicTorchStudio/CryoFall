@@ -7,6 +7,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.ServerAutosave
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     /// <summary>
     /// This system will perform regular world saves in dedicated server mode.
@@ -131,6 +132,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.ServerAutosave
                                                * ServerGame.FrameRate;
 
                 SetNextAutoSaveFrameNumber();
+                // Randomize the next autosave date a bit (up to +60 seconds)
+                // to ensure that if there are several game servers they will not save together
+                // affecting performance of each other.
+                serverNextAutoSaveFrameNumber = (uint)(serverNextAutoSaveFrameNumber
+                                                       + ServerGame.FrameRate * RandomHelper.Next(0, 61));
+
                 TriggerEveryFrame.ServerRegister(Instance.Update, "Autosave manager");
             }
         }

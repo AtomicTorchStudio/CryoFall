@@ -4,12 +4,5 @@
 
     public partial class ProtoLandClaimStatsControl : BaseUserControl
     {
-        public ProtoLandClaimStatsControl()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

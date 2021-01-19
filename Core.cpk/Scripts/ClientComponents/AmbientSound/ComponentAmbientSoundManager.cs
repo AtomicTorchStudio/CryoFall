@@ -17,13 +17,13 @@
         private const int AmbientSoundsScanRadius = SoundConstants.AmbientMaxDistance;
 
         private readonly Dictionary<AmbientSoundPreset, double> dictionarySoundsByDistanceSqr
-            = new Dictionary<AmbientSoundPreset, double>();
+            = new();
 
         private readonly Dictionary<AmbientSoundPreset, ComponentAmbientSoundEmitter> emitters
-            = new Dictionary<AmbientSoundPreset, ComponentAmbientSoundEmitter>();
+            = new();
 
         private readonly List<AmbientSoundPresetByDistance> tempList
-            = new List<AmbientSoundPresetByDistance>();
+            = new();
 
         private ICharacter character;
 

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -62,7 +62,7 @@
                     ItemsSource="{Binding OverlayControls}"
                     Style="{StaticResource ItemIconOverlayItemsControlStyle}" />
             </Grid>
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <Grid>
                     <Grid Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
                         <tooltips:ItemTooltipControl
@@ -78,7 +78,7 @@
                     <TextBlock Text="{x:Static loc:CoreStrings.TradingStationResources_ThisLotIsDisabled}"
                                Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
                 </Grid>
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
         </Border>
     </ControlTemplate>
 

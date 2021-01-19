@@ -17,10 +17,10 @@
         public override float OrientationDownExtraAngle => 5;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Chicken/Back");
+            = new("Chicken/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Chicken/Front");
+            = new("Chicken/Front");
 
         public override double WorldScale => 0.4;
 
@@ -37,8 +37,8 @@
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
             physicsBody
-                .AddShapeRectangle(size: (0.4, 0.2),
-                                   offset: (-0.2, -0.05))
+                .AddShapeCircle(radius: 0.2,
+                                center: (0, 0.125))
                 .AddShapeCircle(radius: 0.3,
                                 center: (0, 0.25),
                                 group: CollisionGroups.HitboxMelee)

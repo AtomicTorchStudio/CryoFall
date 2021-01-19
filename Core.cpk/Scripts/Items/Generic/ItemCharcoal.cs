@@ -8,5 +8,7 @@
         public double FuelAmount => 15;
 
         public override string Name => "Charcoal";
+
+        public override ushort MaxItemsPerStack => ItemStackSize.Big;
     }
 }

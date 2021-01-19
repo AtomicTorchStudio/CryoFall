@@ -265,7 +265,7 @@
                 // ensure it's shown
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                 LoadingSplashScreenManager.Show("not everything is loaded yet");
-                // ensure it's allowed to hide (when everything will be loaded)
+                // auto-hide
                 LoadingSplashScreenManager.Hide();
                 return;
             }

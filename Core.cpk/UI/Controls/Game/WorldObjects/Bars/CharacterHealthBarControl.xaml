@@ -12,11 +12,12 @@
     d:DataContext="{d:DesignInstance data:ViewModelCharacterHealthBarControl, IsDesignTimeCreatable=True}">
 
     <core:ValueBarControl
-        Background="#BB330000"
-        BorderBrush="#CCBB0000"
-        BarBrush="#CCFF0000"
-        MaxValue="{Binding StatBar.ValueMax}"
-        Value="{Binding StatBar.ValueCurrent}"
+        BarBrush="{StaticResource BrushColorRed5}"
+        BorderBrush="{StaticResource BrushColorRed5}"
+        Background="{StaticResource BrushColorRed0}"
+        DataContext="{Binding StatBar}"
+        MaxValue="{Binding ValueMax}"
+        Value="{Binding ValueCurrent}"
         Style="{StaticResource WorldObjectValueBarControlStyle}" />
 
 </base:BaseUserControl>

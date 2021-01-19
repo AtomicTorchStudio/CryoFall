@@ -8,10 +8,13 @@
     xmlns:newbieProtection="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.NewbieProtection"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.NewbieProtection.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelHUDNewbieProtectionInfo, d:IsDesignTimeCreatable=True}"
     d:DesignHeight="300" d:DesignWidth="300"
-    Visibility="{Binding Visibility}">
+    Visibility="{Binding Visibility}"
+    Margin="0,0,0,5">
+
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">
@@ -21,43 +24,48 @@
                 <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
                 <Setter Property="noesis:Text.StrokeThickness" Value="1" />
             </Style>
-
-            <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardShow" TargetName="Description">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
-                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.05" />
-                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
-                </DoubleAnimationUsingKeyFrames>
-
-                <DoubleAnimation Storyboard.TargetProperty="Height"
-                                 From="0" 
-                                 To="{Binding RequiredHeight}"
-                                 Duration="0:0:0.175" />
-            </Storyboard>
-
-            <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardHide" TargetName="Description">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                    <EasingDoubleKeyFrame Value="1" KeyTime="0" />
-                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:1.5" />
-                </DoubleAnimationUsingKeyFrames>
-
-                <DoubleAnimation Storyboard.TargetProperty="Height"
-                                 From="{Binding RequiredHeight}"
-                                 To="0" 
-                                 Duration="0:0:0.175" />
-            </Storyboard>
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border Background="#AA004455"
-            BorderBrush="#EE004455"
-            BorderThickness="1"
-            CornerRadius="3"
-            Padding="5,1"
-            Margin="0,0,0,5">
-        <Grid>
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Expanded">
+                    <Storyboard TargetName="Description">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                            <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                            <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.05" />
+                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
+                        </DoubleAnimationUsingKeyFrames>
+
+                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                         From="0"
+                                         To="{Binding RequiredHeight}"
+                                         Duration="0:0:0.175" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Collapsed">
+                    <Storyboard TargetName="Description">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                            <EasingDoubleKeyFrame Value="1" KeyTime="0" />
+                            <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.15" />
+                        </DoubleAnimationUsingKeyFrames>
+
+                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                         From="{Binding RequiredHeight}"
+                                         To="0"
+                                         Duration="0:0:0.175" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <core:WidgetPanel InnerGlowSize="10"
+                          WidgetBackground="{StaticResource WidgetBackgroundBlueBrush}" />
+
+        <Grid Margin="7,3">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
@@ -81,7 +89,7 @@
                            Grid.Column="1"
                            Text="{x:Static newbieProtection:NewbieProtectionSystem.Title_NewbieProtection}"
                            FontSize="18"
-                           Foreground="{StaticResource BrushColorAlt7}"
+                           Foreground="{StaticResource BrushColorAltLabelForeground}"
                            TextWrapping="Wrap"
                            VerticalAlignment="Center" />
             </Grid>
@@ -97,22 +105,36 @@
                                FontWeight="Bold"
                                LineHeight="13"
                                LineStackingStrategy="BlockLineHeight"
-                               Foreground="{StaticResource BrushColorAltLabelForeground}"
+                               Foreground="{StaticResource BrushColorLabelForeground}"
                                HorizontalAlignment="Left"
                                TextAlignment="Left"
                                TextWrapping="Wrap" />
-                    
-                    <TextBlock Text="{x:Static newbieProtection:NewbieProtectionSystem.Notification_CannotDamageOtherPlayersOrLootBags}"
-                               FontSize="12"
-                               FontFamily="{StaticResource DefaultFontFamily}"
-                               FontWeight="Bold"
-                               LineHeight="13"
-                               LineStackingStrategy="BlockLineHeight"
-                               Foreground="{StaticResource BrushColorAltLabelForeground}"
-                               HorizontalAlignment="Left"
-                               TextAlignment="Left"
-                               TextWrapping="Wrap"
-                               Margin="0,5,0,0" />
+
+                    <TextBlock
+                        Text="{x:Static newbieProtection:NewbieProtectionSystem.Notification_CannotDamageOtherPlayersOrLootBags}"
+                        FontSize="12"
+                        FontFamily="{StaticResource DefaultFontFamily}"
+                        FontWeight="Bold"
+                        LineHeight="13"
+                        LineStackingStrategy="BlockLineHeight"
+                        Foreground="{StaticResource BrushColorLabelForeground}"
+                        HorizontalAlignment="Left"
+                        TextAlignment="Left"
+                        TextWrapping="Wrap"
+                        Margin="0,5,0,0" />
+
+                    <TextBlock
+                        Text="{x:Static newbieProtection:NewbieProtectionSystem.Notification_CanCancelProtection}"
+                        FontSize="12"
+                        FontFamily="{StaticResource DefaultFontFamily}"
+                        FontWeight="Bold"
+                        LineHeight="13"
+                        LineStackingStrategy="BlockLineHeight"
+                        Foreground="{StaticResource BrushColorLabelForeground}"
+                        HorizontalAlignment="Left"
+                        TextAlignment="Left"
+                        TextWrapping="Wrap"
+                        Margin="0,5,0,0" />
 
                     <TextBlock Text="{x:Static newbieProtection:NewbieProtectionSystem.NewbieProtectionExpireInFormat}"
                                Foreground="{StaticResource BrushColor6}"
@@ -131,6 +153,6 @@
                            FontSize="13" />
             </ContentControl>
         </Grid>
-    </Border>
+    </Grid>
 
 </base:BaseUserControl>

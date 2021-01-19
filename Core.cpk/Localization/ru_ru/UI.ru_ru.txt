@@ -28,6 +28,9 @@ UI/CoreStrings@AutosaveNotification_Saving:
 UI/CoreStrings@AutosaveNotification_Title:
 Сохранение сервера
 
+UI/CoreStrings@BbCodeFormattingDescription:
+Доступные теги: форматирование текста, напр. [b], [u], [i], [url=example.com]ссылки[/url], [color=#FF0000]цвета[/color], маркеры списка [*] и переносы строк [br] (перенос строки добавляется автоматически для новых строк).
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Уничтожится через
 
@@ -166,6 +169,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Больше не спрашивать
+
+UI/CoreStrings@ClanTag:
+Тег
 
 UI/CoreStrings@ClanTag_Current:
 Клановый тег:
@@ -331,6 +337,9 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Месторождение на поверхности (быстрая добыча)
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+Таймер уничтожения запустится, когда точка контроля будет уничтожена, т.е. когда ОЗ постройки достигнут нуля.
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Использовать предмет ({0})?
 
@@ -357,6 +366,12 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Снимает эффекты:
+
+UI/CoreStrings@EmptyList:
+Этот список пуст.
+
+UI/CoreStrings@EmptyText:
+Нет текста
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 Эн.
@@ -385,6 +400,371 @@ UI/CoreStrings@Extras_PatchnotesTooltip:
 UI/CoreStrings@Extras_RoadmapTooltip:
 План развития CryoFall (только на английском)
 
+UI/CoreStrings@Faction_Admin:
+Администрирование
+
+UI/CoreStrings@Faction_Application_Accept:
+Принять
+
+UI/CoreStrings@Faction_Application_Cancel:
+Отменить
+
+UI/CoreStrings@Faction_Application_Reject:
+Отказать
+
+UI/CoreStrings@Faction_Applications:
+Заявки
+
+UI/CoreStrings@Faction_Applications_Empty:
+Нет активных заявок на вступление.
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+Отклонить все заявки
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+Вы покинули эту фракцию или были исключены из нее. Вы можете снова вступить в нее только по приглашению.
+
+UI/CoreStrings@Faction_CopyTag:
+Копировать клановый тег
+
+UI/CoreStrings@Faction_CreateFaction:
+Создать фракцию
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+Вы точно ввели все правильно?
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+Как только фракция будет создана, вы не сможете изменить ее тип и презентацию.
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+Ваша роль:
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+В вашей текущей роли у вас нет никаких административных привилегий.
+
+UI/CoreStrings@Faction_Description_Private:
+Внутреннее описание
+
+UI/CoreStrings@Faction_Description_Public:
+Публичное описание
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+Показывается онлайн-статус участников фракции и их местоположение на карте.
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+Вы точно хотите исключить игрока [b]{0}[/b] из фракции?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+Я подтверждаю, что хочу [b]распустить[/b] фракцию.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+Я понимаю, что участники фракции [b]не смогут присоединиться[/b] к другой фракции в течение [b]{0}[/b].
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+Пожалуйста, сначала разберите все точки контроля вашей фракции.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+Вы уверены, что хотите распустить фракцию?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+Распустить фракцию
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+Внимание: вы собираетесь присоединиться к фракции [b]{0}[/b].
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+Я понимаю, что не смогу заново вступить в эту фракцию в течение [b]{0}[/b], а также не смогу вступить в любую другую фракцию в течение [b]{1}[/b].
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+Вы уверены, что хотите покинуть фракцию?
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+Пожалуйста, введите имя участника фракции, которого вы хотите сделать новым лидером.
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+Смена лидера
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+Внимание: вы собираетесь подать заявку на вступление в [b]{0}[/b].
+
+UI/CoreStrings@Faction_Diplomacy:
+Дипломатия
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+Принять предложение союза
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+Отменить предложение союза
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+Отвергнуть предложение союза
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+Полученные предложения
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+Отправленные предложения
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+Мирные договоры
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+Союзник
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+Выйти из союза
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+Объявить войну
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+Мы объявили войну
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+Нам объявили войну
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+Обоюдное объявление войны
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+Нейтралитет
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+Предложить мир
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`Вы недавно предложили мирный договор этой фракции.
+[br]Вы не можете сделать это снова в течение {0}.`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+Объявления войны
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+Отменить объявление войны
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+Вы не являетесь участником фракции.
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+Выбранная эмблема уже используется. Выберите другую.
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+Фракция не найдена.
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+Вы недавно покинули фракцию.
+
+UI/CoreStrings@Faction_Events:
+События
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+Тип события
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+Все
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+Имя участника
+
+UI/CoreStrings@Faction_Events_Recent:
+Недавние события
+
+UI/CoreStrings@Faction_FactionFull:
+Во фракции уже максимум участников.
+
+UI/CoreStrings@Faction_FactionKind_Current:
+Тип фракции:
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+Для вступления требуется заявка или приглашение.
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+Заявки на вступление рассматривают офицеры фракции.
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+Частная
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+Вступить может каждый.
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+Публичная
+
+UI/CoreStrings@Faction_Invite:
+Приглашение
+
+UI/CoreStrings@Faction_Invite_Accept:
+Принять
+
+UI/CoreStrings@Faction_Invite_Cancel:
+Отмена
+
+UI/CoreStrings@Faction_Invite_Decline:
+Отказать
+
+UI/CoreStrings@Faction_Invites:
+Приглашения
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+Отменить все приглашения
+
+UI/CoreStrings@Faction_Invites_Empty:
+Нет активных приглашений.
+
+UI/CoreStrings@Faction_InviteToFaction:
+Пригласить во фракцию
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+Заявки принимаются
+
+UI/CoreStrings@Faction_Join:
+Вступить
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+Когда вы покидаете фракцию, вы не можете вступить в другую или создать новую, пока не пройдет определенное время.
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+Вы можете вступить во фракцию или создать новую через:
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+Количество точек контроля будет увеличиваться по мере повышения уровня фракции.
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+Точки контроля фракции: {0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+Максимальное количество точек контроля фракции достигнуто.
+
+UI/CoreStrings@Faction_Leaderboard:
+Таблица лидеров
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+Участвует в таблице лидеров.
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+Следующее обновление через:
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+Ранг в таблице
+
+UI/CoreStrings@Faction_LeaderField:
+Лидер:
+
+UI/CoreStrings@Faction_LeaveFaction:
+Покинуть фракцию
+
+UI/CoreStrings@Faction_Level:
+Уровень
+
+UI/CoreStrings@Faction_Level_Format:
+Уровень: [b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+Максимум участников: [b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+Последний вход: {0}
+
+UI/CoreStrings@Faction_Members:
+Участники
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+Участники: [b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+Заявки не принимаются
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+{0} одобряет вашу заявку на вступление в {1}! Добро пожаловать!
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0} исключает вас из фракции.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+Вы были автоматически исключены из фракции из-за плохой репутации.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+Убийство участников фракции и союзников снижает вашу репутацию в текущей фракции.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+Репутация во фракции снижена
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+Игроки, часто совершающие нарушения, автоматически исключаются из фракции.
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+Управление точкой контроля
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+Строительство и снос построек в зоне контроля фракции. Также: назначение прав доступа, улучшение точек контроля, доступ к сейфу точки контроля, активация Щ.И.Т.а, передача точки контроля во владение фракции.
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+Требуется разрешение фракции: {0}.
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+Личное сообщение лидеру фракции
+
+UI/CoreStrings@Faction_Recruitment:
+Вербовка
+
+UI/CoreStrings@Faction_RemoveMember:
+Исключить из фракции
+
+UI/CoreStrings@Faction_Role_Leader:
+Лидер
+
+UI/CoreStrings@Faction_Role_Member:
+Участник
+
+UI/CoreStrings@Faction_Score_Format:
+Счет фракции: [b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+Назначить роль
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+Назначить роль для: {0}
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+Показать информацию о фракции
+
+UI/CoreStrings@Faction_SubmitApplication:
+Подать заявку
+
+UI/CoreStrings@Faction_Title:
+Фракция
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+Вы подали заявку.
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+Вы уже являетесь участником фракции. Вам нужно покинуть ее, если вы хотите вступить в другую фракцию или создать новую.
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+Новая фракция
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+Нет фракций, подходящих под ваши критерии поиска.
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+Все фракции
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`Нет активных заявок.
+[br]Вы можете подать заявку в списке фракций.`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+Заявки
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+Нет активных приглашений.
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+Приглашения
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+Таблица лидеров пока пуста.
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 Не полито
 
@@ -406,6 +786,9 @@ UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 Полито на
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+Эта возможность отключена на текущем сервере.
+
 UI/CoreStrings@Field_Email:
 Адрес эл. почты
 
@@ -417,6 +800,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 Мужчина
+
+UI/CoreStrings@HealthPointsAbbreviation:
+ОЗ
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Покинуть транспорт
@@ -432,6 +818,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 Снаряжение
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+Фракция
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Карта
@@ -523,6 +912,9 @@ UI/CoreStrings@LearningPoints:
 UI/CoreStrings@LearningPointsAbbreviation:
 ОТ
 
+UI/CoreStrings@LearningPointsCost_Format:
+Стоимость: [b]{0}[/b] ОТ
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Пожалуйста, введите данные своей учетной записи [url=atomictorch.com]AtomicTorch.com[/url], чтобы связать ее с вашей учетной записью Steam.
 
@@ -579,6 +971,12 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 
 UI/CoreStrings@MasterServer:
 Мастер-сервер
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+Вы сможете изменить внешний вид позднее в меню снаряжения.
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+Настройте внешний вид своего персонажа
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Отключиться
@@ -753,15 +1151,21 @@ UI/CoreStrings@Network_Jitter:
 
 UI/CoreStrings@Network_Jitter_SeverityRed:
 `Похоже, ваше интернет-соединение с сервером работает нестабильно.
-[br]Из-за плохой связи с сервером и неустойчивости сигнала ваш персонаж может двигаться неравномерно, а ваши удары могут часто не достигать цели.`
+[br]Из-за плохой связи с сервером и неустойчивости сигнала ваш персонаж может двигаться неравномерно, а ваши атаки могут часто не достигать цели.`
 
 UI/CoreStrings@Network_Jitter_SeverityYellow:
 `Похоже, ваше интернет-соединение с сервером работает с некоторой неустойчивостью сигнала.
-[br]Из-за плохой связи с сервером и неустойчивости сигнала ваш персонаж иногда может двигаться неравномерно, а ваши удары могут иногда не достигать цели.`
+[br]Из-за плохой связи с сервером и неустойчивости сигнала ваш персонаж иногда может двигаться неравномерно, а ваши атаки могут иногда не достигать цели.`
+
+UI/CoreStrings@Network_PacketLoss:
+Потеря пакетов
+
+UI/CoreStrings@Network_PacketLoss_Description:
+Похоже, в вашем интернет-соединении с сервером происходит значительная потеря пакетов.[br]Вы можете столкнуться с задержками, внезапной заморозкой экрана или даже с отключением от сервера.[br]Чаще всего причиной может быть слабый сигнал Wi-Fi или проблемы с роутером/модемом.
 
 UI/CoreStrings@Network_Perfect:
 `Похоже, ваше интернет-соединение в порядке.
-[br]Желаем успешной игры!`
+[br]Приятной игры!`
 
 UI/CoreStrings@Network_PingAverage:
 Пинг (в среднем)
@@ -769,13 +1173,13 @@ UI/CoreStrings@Network_PingAverage:
 UI/CoreStrings@Network_PingAverage_SeverityRed:
 `Похоже, интернет-соединение с сервером работает с очень долгим откликом (очень большая задержка сигнала).
 [br]В результате некоторые ваши действия в игре, требующие отклика сервера, занимают слишком много времени.
-[br]Например, из-за плохого соединения с сервером ваши удары часто могут не достигать цели.
+[br]Например, из-за плохого соединения с сервером ваши атаки часто могут не достигать цели.
 [br]Также движения вашего персонажа и корректировка его положения в пространстве часто могут быть неравномерными.`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
 `Похоже, интернет-соединение с сервером работает с долгим откликом (большая задержка сигнала).
 [br]В результате некоторые ваши действия в игре, требующие отклика сервера, занимают больше времени, чем обычно.
-[br]Например, из-за плохого соединения с сервером ваши удары иногда могут не достигать цели.
+[br]Например, из-за плохого соединения с сервером ваши атаки иногда могут не достигать цели.
 [br]Также движения вашего персонажа и корректировка его положения в пространстве иногда могут быть неравномерными.`
 
 UI/CoreStrings@Network_PingFluctuationRange:
@@ -787,7 +1191,7 @@ UI/CoreStrings@Network_PingFluctuationRange_SeverityRed:
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityYellow:
 `Кажется, ваше интернет-соединение с сервером дает существенный разброс задержки сигнала.
-[br]Передача некоторых сетевых пакетов иногда занимает много времени, поэтому игра дополнительно буферизирует входящие данные, из-за чего ощущаемое время реакции сервера несколько увеличивается (существенная задержка сигнала).`
+[br]Передача некоторых сетевых пакетов иногда занимает много времени, поэтому игра дополнительно буферизирует входящие данные, из-за чего ощущаемое время реакции сервера несколько увеличивается (как при повышенной задержке сигнала).`
 
 UI/CoreStrings@Network_PingGame:
 Пинг (в игре)
@@ -824,6 +1228,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Текущий режим доступа
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+Открыто для: {0}
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 Режим доступа
@@ -919,6 +1326,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 Использование VRAM
+
+UI/CoreStrings@PlayerNotFound:
+Игрок не найден.
 
 UI/CoreStrings@PleaseWait:
 Пожалуйста, подождите...
@@ -1072,6 +1482,9 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 ВЫБРАТЬ
+
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+Менее часа назад
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Скриншот готов: {0} (щелкните, чтобы открыть)
@@ -1233,6 +1646,9 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 Навык
 
+UI/CoreStrings@SortBy:
+Сортировка
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Интенсивность
 
@@ -1307,6 +1723,24 @@ UI/CoreStrings@TechNodeTooltip_Vehicles:
 
 UI/CoreStrings@Technology:
 Технология
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+Заплатить кровью
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+Заплатить прагмиевым сердцем
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+Перемещение в пункт назначения
+
+UI/CoreStrings@Teleport_Discovered:
+Обнаружен новый телепорт.
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+Похоже, поблизости есть другие выжившие.
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+Принадлежащий вам транспорт без пилота будет телепортирован, если поместить его в телепорт.
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Поиск...
@@ -1629,6 +2063,9 @@ UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 UI/CoreStrings@WindowInventory_Button_Customize:
 Изменить
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+Настройте внешний вид своего персонажа.
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 Спасите!
 
@@ -1641,8 +2078,17 @@ UI/CoreStrings@WindowLandClaim_DecayInfo:
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 Я знаю о системе ветшания
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+Доступ к дверям и другим постройкам определяется ролями и разрешениями фракции.
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+Эта точка контроля управляется фракцией [b]\\[{0}\\][/b].
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Предметы в сейфе доступны из всех точек контроля этой базы.
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+Передать во владение фракции
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Только владелец может улучшить эту постройку.
@@ -1682,6 +2128,9 @@ UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 Режим освещения
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+Режим атаки
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 Период рейда начался (осталось: {0}).
@@ -1734,6 +2183,9 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 Рядом с постелью
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+Возможно, стоит присоединиться к фракции, чтобы получить помощь в борьбе с другими враждебными фракциями.
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 Недавние источники урона:
@@ -1795,6 +2247,9 @@ UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 Игроков онлайн
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+Список игроков онлайн скрыт для всех игроков на этом сервере настройками сервера.
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 Статистика сервера
@@ -1988,6 +2443,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Месторождение нефти[/b]
 [br]Залежь сырой нефти.`
 
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+Поможет быстро переместиться к другому телепорту древних.
+
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]Торговая станция[/b]
 [br]Эта торговая станция принадлежит другому игроку.`
@@ -2053,6 +2511,24 @@ UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradea
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 Невозможно отменить рецепт
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+Фон
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+Цвет фона 1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+Цвет фона 2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+Эмблема
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+Цвет эмблемы
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+Форма
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 Невозможно использовать этот предмет сам по себе.
@@ -2196,9 +2672,6 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Верх
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-не выбран
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Вы точно хотите покинуть группу?
 
@@ -2310,97 +2783,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `Выработка электроэнергии: {0} Эн./с.
 [br]Предельная мощность: {1} Эн./с.`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-Добро пожаловать в CryoFall!
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-Мы хотели бы познакомить вас с некоторыми особенностями нашей игры! CryoFall находится в стадии активной разработки, но все из перечисленного далее уже доступно.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-Фермерство и готовка
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-Выращивайте собственные культуры с помощью удобрений и инструментов. Используйте плоды своего труда для приготовления различных блюд, которые принесут вашему персонажу значительные преимущества.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-Состояние персонажа и лекарства
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-Проработанное моделирование состояния персонажа — не только обычные голод и жажда, но также множество недугов, с которыми помогут справиться разнообразные медицинские препараты.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-Производство
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-Используйте имеющиеся природные ресурсы в мире CryoFall. Качайте и перерабатывайте нефть или добывайте литий из геотермальных источников, чтобы сделать аккумуляторы и электронику.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-Экономика
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-Для развития торговли с другими игроками чеканьте монеты и стройте полностью автоматизированные торговые станции.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-Рыбная ловля
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-Используйте разные виды наживки и ловите разнообразную пресноводную и морскую рыбу. Попробуйте побить собственные рекорды и соревнуйтесь с другими игроками.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-Кибернетические импланты
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-Устанавливайте различные бионические и кибернетические импланты на своего персонажа, чтобы получить новые способности или повысить характеристики.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-Навыки
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-Узнавайте, открывайте и развивайте навыки своего персонажа, чтобы повысить его эффективность и получить новые способности.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+Изменяйте внешний вид своего персонажа и используйте разнообразное снаряжение и инструменты, чтобы сделать его уникальным.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 Настройка персонажа
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-Изменяйте внешний вид своего персонажа и используйте разнообразное снаряжение и инструменты, чтобы сделать его уникальным.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-Технологии
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-Зарабатывайте очки технологий и используйте их для изучения технологий, рецептов и построек, чтобы настроить игру под себя и сконцентрироваться на тех ее областях, которые интересны именно вам.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-Электричество
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-Проектируйте базу с учетом электросетей. Вам доступно множество генераторов, накопителей и потребителей электроэнергии.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Транспорт
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Собирайте и совершенствуйте разнообразный футуристический транспорт, чтобы исследовать мир быстрее или использовать в битве.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-Мировые события
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-Регулярно участвуйте в многочисленных событиях в мире CryoFall: будь то исследование места падения метеорита или сражение с опасным боссом вместе с группой других выживших.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+Исследуйте разнообразный мир с множеством природных зон и десятками фантастических существ.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Фантастические существа
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-Исследуйте разнообразный мир с множеством природных зон и десятками фантастических существ.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+Для развития торговли с другими игроками чеканьте монеты и стройте полностью автоматизированные торговые станции.
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-И напоследок...
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+Экономика
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+Проектируйте базу с учетом электросетей. Вам доступно множество генераторов, накопителей и потребителей электроэнергии.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+Электричество
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Регулярно участвуйте в многочисленных событиях в мире CryoFall: будь то исследование места падения метеорита или сражение с опасным боссом вместе с группой других выживших.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Мировые события
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+Выращивайте собственные культуры с помощью удобрений и инструментов. Используйте плоды своего труда для приготовления различных блюд, которые принесут вашему персонажу значительные преимущества.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+Фермерство и готовка
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Используйте разные виды наживки и ловите разнообразную пресноводную и морскую рыбу. Попробуйте побить собственные рекорды и соревнуйтесь с другими игроками.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Рыбная ловля
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+Устанавливайте различные бионические и кибернетические импланты на своего персонажа, чтобы получить новые способности или повысить характеристики.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+Кибернетические импланты
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+Используйте имеющиеся природные ресурсы в мире CryoFall. Качайте и перерабатывайте нефть или добывайте литий из геотермальных источников, чтобы сделать аккумуляторы и электронику.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+Производство
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `Пожалуйста, не забывайте, что CryoFall по-прежнему находится в разработке и мы планируем внести еще множество изменений и улучшений. Тем не менее, это уже полноценная игра, и мы надеемся, что она вам понравится![br][br]
 Мы всегда доступны на нашем канале Discord и на наших форумах — заходите поздороваться! :)[br][br]
 Если у вас возникнут сложности, или вы захотите сообщить об ошибке или эксплойте, мы всегда готовы выслушать и помочь!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+И напоследок...
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+Проработанное моделирование состояния персонажа — не только обычные голод и жажда, но также множество недугов, с которыми помогут справиться разнообразные медицинские препараты.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+Состояние персонажа и лекарства
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+Узнавайте, открывайте и развивайте навыки своего персонажа, чтобы повысить его эффективность и получить новые способности.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+Навыки
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+Зарабатывайте очки технологий и используйте их для изучения технологий, рецептов и построек, чтобы настроить игру под себя и сконцентрироваться на тех ее областях, которые интересны именно вам.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+Технологии
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Собирайте и совершенствуйте разнообразный футуристический транспорт, чтобы исследовать мир быстрее или использовать в битве.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Транспорт
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+Мы хотели бы познакомить вас с некоторыми особенностями нашей игры! CryoFall находится в стадии активной разработки, но все из перечисленного далее уже доступно.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+Добро пожаловать в CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 Начать игру
@@ -2444,6 +2917,9 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 Пробел
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+не назначено
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 Хотите сбросить настройки [b]{0}[/b]?[br]Будут применены настройки по умолчанию.

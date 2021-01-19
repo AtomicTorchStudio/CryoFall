@@ -5,9 +5,9 @@
     public class SkeletonFireLizard : SkeletonCloakedLizard
     {
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("FireLizard/Back");
+            = new("FireLizard/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("FireLizard/Front");
+            = new("FireLizard/Front");
     }
 }

@@ -38,7 +38,8 @@
             [CanBeNull] IProtoItemAmmo protoAmmo,
             DamageDescription damageDescription,
             IProtoExplosive protoExplosive = null,
-            IDynamicWorldObject objectDrone = null)
+            IDynamicWorldObject objectDrone = null,
+            bool allowNpcToNpcDamage = false)
         {
             this.Character = character;
             this.CharacterFinalStatsCache = characterFinalStatsCache;
@@ -47,6 +48,7 @@
             this.ProtoWeapon = (IProtoItemWeapon)weapon?.ProtoItem ?? protoWeapon;
             this.ProtoAmmo = protoAmmo;
             this.ProtoExplosive = protoExplosive;
+            this.AllowNpcToNpcDamage = allowNpcToNpcDamage;
 
             if (damageDescription is null)
             {
@@ -133,6 +135,8 @@
                 this.SpecialEffectProbability *= coef;
             }
         }
+
+        public bool AllowNpcToNpcDamage { get; }
 
         public ICharacter Character { get; }
 

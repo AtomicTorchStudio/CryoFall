@@ -87,13 +87,13 @@
 
             this.UpdateVisualState(useTransitions: false);
 
-            var badgeContent = this.BadgeContent;
-            if (badgeContent is not null)
-            {
-                // workaround for NoesisGUI 3.0
-                var child = (FrameworkElement)VisualTreeHelper.GetChild(badgeContent, 0);
-                child.DataContext = this.DataContext;
-            }
+            // var badgeContent = this.BadgeContent;
+            // if (badgeContent is not null)
+            // {
+            //     // workaround for NoesisGUI 3.0
+            //     var child = (FrameworkElement)VisualTreeHelper.GetChild(badgeContent, 0);
+            //     child.DataContext = this.DataContext;
+            // }
         }
 
         protected override void OnUnloaded()

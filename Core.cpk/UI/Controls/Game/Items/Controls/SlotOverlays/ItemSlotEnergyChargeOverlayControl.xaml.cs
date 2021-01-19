@@ -12,7 +12,7 @@
 
         public static ItemSlotEnergyChargeOverlayControl Create(IItem item)
         {
-            return new ItemSlotEnergyChargeOverlayControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

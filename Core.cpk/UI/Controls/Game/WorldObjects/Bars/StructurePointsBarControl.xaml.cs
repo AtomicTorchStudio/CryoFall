@@ -38,6 +38,7 @@
 
         protected override void InitControl()
         {
+            // the view model is created once and not disposed in OnUnloaded as this is a cached control
             this.viewModel = new ViewModelStructurePointsBarControl();
             this.DataContext = this.viewModel;
             this.RefreshViewModelData();

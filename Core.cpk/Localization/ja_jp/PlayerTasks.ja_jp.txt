@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 建設：{0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+コンプリート：報酬を受ける
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 習得：{0}（技術群）
 
@@ -10,8 +13,14 @@ Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 製作
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+倒したボス：{0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 破壊：{0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+発見：{0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 採取：{0}

@@ -24,9 +24,9 @@
             this.Items = new ObservableCollection<ViewModelStructure>(
                 new List<ViewModelStructure>()
                 {
-                    new ViewModelStructure(new ObjectCampfire()),
-                    new ViewModelStructure(new ObjectWallWood()),
-                    new ViewModelStructure(new ObjectStove())
+                    new(new ObjectCampfire()),
+                    new(new ObjectWallWood()),
+                    new(new ObjectStove())
                 });
         }
 

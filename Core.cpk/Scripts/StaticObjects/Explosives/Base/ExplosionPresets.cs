@@ -107,6 +107,33 @@
                 screenShakesWorldDistanceMin: 0.2,
                 screenShakesWorldDistanceMax: 0.25);
 
+        public static readonly ExplosionPreset MobSandTyrantMissile
+            = ExplosionPreset.CreatePreset(
+                protoObjectCharredGround: null,
+                serverDamageApplyDelay: 0.8 * 0.25,
+                soundSetPath: "Explosions/ExplosionSmall",
+                spriteAnimationDuration: 0.8,
+                spriteSetPath: "FX/Explosions/ExplosionLarge2",
+                spriteAtlasColumns: 8,
+                spriteAtlasRows: 3,
+                spriteWorldSize: new Size2F(1.5, 1.5),
+                blastwaveDelay: 0.05,
+                blastwaveAnimationDuration: 0.4,
+                blastWaveColor: Color.FromRgb(0xFF, 0xBB, 0x33),
+                blastwaveWorldSizeFrom: 0.25 * new Size2F(3, 2),
+                blastwaveWorldSizeTo: 1 * new Size2F(3,      2),
+                lightDuration: 1,
+                lightWorldSize: 35,
+                lightColor: Color.FromRgb(0xFF, 0xCC, 0x66),
+                screenShakesDuration: 0.2,
+                screenShakesWorldDistanceMin: 0.15,
+                screenShakesWorldDistanceMax: 0.2,
+                spriteColorAdditive: Color.FromRgb(0x22,       0x22, 0x00),
+                spriteColorMultiplicative: Color.FromRgb(0xFF, 0xEE, 0xAA),
+                spriteBrightness: 1.33,
+                spriteDrawOrder: DrawOrder.Light + 1,
+                soundsCuesNumber: 6);
+
         public static readonly ExplosionPreset PragmiumResonanceBomb_Center
             = ExplosionPreset.CreatePreset(
                 protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),

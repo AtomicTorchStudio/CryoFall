@@ -10,9 +10,9 @@
     public readonly struct FinalStatsCache
     {
         public static readonly FinalStatsCache Empty
-            = new FinalStatsCache(new Dictionary<StatName, double>(),
-                                  new Dictionary<StatName, double>(),
-                                  new StatsSources());
+            = new(new Dictionary<StatName, double>(),
+                  new Dictionary<StatName, double>(),
+                  new StatsSources());
 
         public readonly StatsSources Sources;
 
@@ -65,7 +65,7 @@
         /// </summary>
         public FinalStatsCache AsDirty()
         {
-            return new FinalStatsCache(
+            return new(
                 this.dictionaryFinalValues,
                 this.dictionaryMultipliers,
                 this.Sources,

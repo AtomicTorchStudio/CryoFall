@@ -151,9 +151,6 @@ Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 분당 에너지 충전 자동 회복량
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-상한 음식 섭취 능력
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 방사능 중독 대미지
 
@@ -214,6 +211,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 연료 소모량
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+상한 음식 섭취 능력
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+나쁜 영향 없이 과식할 수 있는 능력
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 달릴 수 없습니다
 
@@ -222,4 +225,7 @@ Scripts/Base/Stats/StatName@PerkCannotAttack:
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 의료 아이템의 쿨타임이 남아있어 사용할 수 없습니다
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+뼈가 부러지지 않습니다
 

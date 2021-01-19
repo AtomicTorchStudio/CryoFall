@@ -14,7 +14,7 @@
     public class ColorGradingPostEffect2LutWithLightmap : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/ColorGrading2LutWithLightmap");
+            = new("PostEffects/ColorGrading2LutWithLightmap");
 
         private double blendFactor;
 

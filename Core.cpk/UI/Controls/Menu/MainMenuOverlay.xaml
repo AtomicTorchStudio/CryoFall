@@ -91,9 +91,9 @@
                                         </Viewbox>
 
                                         <language:CurrentLanguageDisplayControl Grid.Column="3"
-                                                                                HorizontalAlignment="Left"
-                                                                                VerticalAlignment="Top"
-                                                                                Margin="25,11,0,0" />
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Margin="25,11,0,0" />
                                     </Grid>
 
                                     <Rectangle Fill="{StaticResource WidgetBorderBrush}"
@@ -269,13 +269,18 @@
                             <!-- Horizontal margin is specially set as overkill value:
                                  we don't want to take any space with this element,
                                  we want it to have 0 logical width -->
-                            <Line StrokeThickness="1.5" Y2="1"
-                                  Stretch="Fill" Margin="-10,1">
+                            <Line StrokeThickness="1.5"
+                                  Y2="1"
+                                  Stretch="Fill"
+                                  Margin="-10,1">
                                 <Line.Stroke>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#000094CC" Offset="0" />
-                                        <GradientStop Color="#FF0094CC" Offset="0.5" />
-                                        <GradientStop Color="#000094CC" Offset="1" />
+                                        <GradientStop Offset="0"
+                                                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+                                        <GradientStop Offset="0.5"
+                                                      Color="{StaticResource ColorAlt5}" />
+                                        <GradientStop Offset="1.0"
+                                                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
                                     </LinearGradientBrush>
                                 </Line.Stroke>
                             </Line>
@@ -323,11 +328,12 @@
             <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabServers}"
                      IsSelected="{Binding IsServersMenuSelected, Mode=TwoWay}"
                      Style="{StaticResource TabItemHeader}"
-                     Visibility="{Binding IsServersMenuVisible}">
+                     Visibility="{Binding IsServersMenuVisible, Converter={StaticResource BoolToVisibilityConverter}}">
                 <servers:MenuServers />
             </TabItem>
 
-            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}"
+                     Visibility="{Binding IsServersMenuVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
 
             <!-- Text: OPTIONS -->
             <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabOptions}"

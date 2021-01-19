@@ -22,7 +22,7 @@
             </DoubleAnimationUsingKeyFrames>
 
             <DoubleAnimation Storyboard.TargetProperty="Height"
-                             From="0" 
+                             From="0"
                              To="{Binding RequiredHeight}"
                              FillBehavior="Stop"
                              Duration="0:0:0.175" />
@@ -50,25 +50,31 @@
             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
+            <Setter Property="noesis:Text.Stroke" Value="#FF000000" />
             <Setter Property="noesis:Text.StrokeThickness" Value="1" />
             <Setter Property="Margin" Value="0" />
         </Style>
 
     </base:BaseUserControl.Resources>
 
-    <Border x:Name="OuterBorder"
-            Padding="0,0,0,7">
-        <Border x:Name="Border"
-                Background="{Binding BrushBackground}"
-                CornerRadius="3"
-                BorderThickness="1"
-                BorderBrush="#99000000">
+    <ContentControl x:Name="OuterBorder"
+                    Padding="0,0,0,7"
+                    UseLayoutRounding="False">
+        <Grid x:Name="LayoutRoot">
+            <Border CornerRadius="3"
+                    Style="{StaticResource WidgetBorderShadowStyle}" />
 
-            <Border Background="{StaticResource WidgetBackgroundImageTexture}"
+            <Border CornerRadius="3"
+                    Background="{StaticResource WidgetBackgroundImageTexture}"
+                    Margin="0.5" />
+
+            <Border CornerRadius="3"
+                    Background="{Binding BrushBackground}"
+                    Margin="0.5" />
+
+            <Border CornerRadius="3"
                     BorderBrush="{Binding BrushBorder}"
                     BorderThickness="1"
-                    CornerRadius="3"
                     Padding="5">
                 <Grid VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
@@ -76,12 +82,28 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Border CornerRadius="3" Background="#AA333333" Padding="3" Margin="0,0,5,0"
+                    <Border Padding="3"
+                            Margin="0,0,5,0"
                             Visibility="{Binding IconVisibility}"
                             VerticalAlignment="Top">
-                        <Rectangle Fill="{Binding Icon}" Width="32" Height="32" />
+                        <Rectangle Fill="{Binding Icon}"
+                                   Width="32"
+                                   Height="32"
+                                   UseLayoutRounding="True">
+                            <Rectangle.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="8"
+                                    Direction="315"
+                                    ShadowDepth="2"
+                                    Opacity="0.8"
+                                    Color="Black" />
+                            </Rectangle.Effect>
+                        </Rectangle>
                     </Border>
-                    <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                VerticalAlignment="Center">
                         <core:FormattedTextBlock Content="{Binding Title}"
                                                  FontSize="14"
                                                  LineHeight="14"
@@ -94,6 +116,6 @@
                     </StackPanel>
                 </Grid>
             </Border>
-        </Border>
-    </Border>
+        </Grid>
+    </ContentControl>
 </base:BaseUserControl>

@@ -10,6 +10,8 @@
     {
         double BiomaterialValueMultiplier { get; }
 
+        double CorpseInteractionAreaScale { get; }
+
         ITextureResource Icon { get; }
 
         bool IsAvailableInCompletionist { get; }

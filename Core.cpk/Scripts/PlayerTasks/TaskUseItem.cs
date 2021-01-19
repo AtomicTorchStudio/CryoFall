@@ -42,7 +42,7 @@
             string description = null)
             where TProtoItem : class, IProtoItem
         {
-            return new TaskUseItem(list, count, description);
+            return new(list, count, description);
         }
 
         public override ITextureResource ClientCreateIcon()

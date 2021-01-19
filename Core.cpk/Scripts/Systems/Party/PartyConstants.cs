@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Party
 {
+    using System;
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -10,7 +11,7 @@
 
         public static readonly double PartyLearningPointsSharePercent;
 
-        public static readonly ushort ServerPartyMembersMax;
+        public static Action ClientPartyMembersMaxChanged;
 
         static PartyConstants()
         {
@@ -19,11 +20,11 @@
                 return;
             }
 
-            ServerPartyMembersMax
+            SharedPartyMembersMax
                 = (ushort)MathHelper.Clamp(
                     ServerRates.Get(
                         "PartyMembersMax",
-                        defaultValue: 10,
+                        defaultValue: 5,
                         @"How many party members are allowed per party.
                           The value should be within 1-100 range."),
                     min: 1,
@@ -46,6 +47,17 @@
                   / 100.0;
 
             PartyLearningPointsSharePercent = MathHelper.Clamp(PartyLearningPointsSharePercent, min: 0, max: 1);
+        }
+
+        public static ushort SharedPartyMembersMax { get; private set; }
+
+        public static void ClientSetSystemConstants(ushort partyMembersMax)
+        {
+            Api.ValidateIsClient();
+
+            SharedPartyMembersMax = partyMembersMax;
+            Api.Logger.Info("Party member max size received from server: " + SharedPartyMembersMax);
+            Api.SafeInvoke(ClientPartyMembersMaxChanged);
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]

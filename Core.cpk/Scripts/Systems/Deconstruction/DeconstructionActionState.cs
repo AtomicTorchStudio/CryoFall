@@ -89,9 +89,11 @@
 
         public override IWorldObject TargetWorldObject => this.WorldObject;
 
-        public bool CheckIsAllowed()
+        public bool CheckIsAllowed(out bool hasNoFactionPermission)
         {
-            return LandClaimSystem.SharedCheckCanDeconstruct(this.WorldObject, this.Character);
+            return LandClaimSystem.SharedCheckCanDeconstruct(this.WorldObject,
+                                                             this.Character,
+                                                             out hasNoFactionPermission);
         }
 
         public bool CheckIsNeeded()
@@ -103,7 +105,7 @@
         {
             if ((this.ItemCrowbarTool is not null
                  && this.ItemCrowbarTool != this.CharacterPublicState.SelectedItem)
-                || !this.CheckIsAllowed())
+                || !this.CheckIsAllowed(out _))
             {
                 // selected hotbar item changed or the action is not allowed anymore
                 this.AbortAction();

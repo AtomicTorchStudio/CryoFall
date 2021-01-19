@@ -5,7 +5,7 @@
 
     public class DropItemsListPreset : IReadOnlyDropItemsListPreset
     {
-        public readonly DropItemsList dropItemsList = new DropItemsList();
+        public readonly DropItemsList dropItemsList = new();
 
         private readonly double probability;
 

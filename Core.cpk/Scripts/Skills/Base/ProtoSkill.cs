@@ -384,9 +384,9 @@
 
             public byte? MaxLevel;
 
-            private readonly List<FlagEffect> flagEffects = new List<FlagEffect>();
+            private readonly List<FlagEffect> flagEffects = new();
 
-            private readonly List<StatEffect> statEffects = new List<StatEffect>();
+            private readonly List<StatEffect> statEffects = new();
 
             public void AddFlagEffect(TFlagEffectsEnum flag, /*string description, */ byte level)
             {

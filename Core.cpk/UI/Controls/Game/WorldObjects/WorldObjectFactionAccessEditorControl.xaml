@@ -1,0 +1,55 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectFactionAccessEditorControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance data:ViewModelWorldObjectFactionAccessEditorControl, IsDesignTimeCreatable=True}"
+    FontWeight="Bold"
+    Foreground="White"
+    FontSize="12">
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="0,0,0,3">
+            <!-- Text: Access mode -->
+            <TextBlock Text="{x:Static loc:CoreStrings.ObjectAccessModeEditor_TitleAccessModeSelection}"
+                       FontSize="14" />
+            <TextBlock Text=":"
+                       FontSize="14" />
+        </StackPanel>
+
+        <!-- Radiobuttons for the access mode selection -->
+        <ListBox ItemsSource="{Binding ViewModelAccessModes}"
+                 FontSize="12"
+                 IsEnabled="{Binding CanSetAccessMode}"
+                 MaxWidth="230">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <CheckBox Margin="0,2"
+                                          Content="{Binding Title}"
+                                          IsChecked="{Binding IsChecked}"
+                                          IsEnabled="{Binding IsEnabled}"
+                                          Focusable="False" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+    </StackPanel>
+</base:BaseUserControl>

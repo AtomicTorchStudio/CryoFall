@@ -28,15 +28,15 @@
             <WeaponPrivateState, WeaponBowPublicState, EmptyClientState>
     {
         private static readonly Dictionary<IProtoItemAmmo, IReadOnlyDropItemsList> ServerCachedDroplists
-            = new Dictionary<IProtoItemAmmo, IReadOnlyDropItemsList>();
+            = new();
 
         public abstract double TimeToReadyAfterReloading { get; }
 
         protected TextureResource CachedWeaponTextureResourceReady { get; private set; }
 
-        protected virtual TextureResource WeaponReadyTextureResource => new TextureResource(
-            "Characters/Weapons/" + this.GetType().Name + "Ready",
-            isProvidesMagentaPixelPosition: true);
+        protected virtual TextureResource WeaponReadyTextureResource
+            => new("Characters/Weapons/" + this.GetType().Name + "Ready",
+                   isProvidesMagentaPixelPosition: true);
 
         public override void ClientSetupSkeleton(
             IItem item,

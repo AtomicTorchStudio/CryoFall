@@ -13,7 +13,8 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
 
-    <Button Style="{StaticResource SmallButtonStyle}"
+    <Button x:Name="LayoutRoot"
+            Style="{StaticResource SmallButtonStyle}"
             Padding="3"
             Command="{Binding CommandOpenCrateIconSelectorWindow}">
         <base:ToolTipServiceExtend.ToolTip>
@@ -34,6 +35,7 @@
                        Visibility="{Binding IsIconAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
                        Width="36"
                        Height="36"
+                       UseLayoutRounding="True"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center" />
         </Grid>

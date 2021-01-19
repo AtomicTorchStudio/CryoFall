@@ -21,7 +21,7 @@
         private static readonly ClientLandClaimGroupsRendererManager RendererManagerOwnedByPlayer;
 
         private static readonly Dictionary<ILogicObject, StateSubscriptionStorage> StateSubscriptionStorages
-            = new Dictionary<ILogicObject, StateSubscriptionStorage>();
+            = new();
 
         static ClientLandClaimAreaManager()
         {
@@ -56,7 +56,7 @@
                                       if (isDisplayed)
                                       {
                                           var isDisplayOverlays = Api.Client.Input.IsKeyHeld(InputKey.Control,
-                                                                                             evenIfHandled: true);
+                                              evenIfHandled: true);
 
                                           RendererManagerOwnedByPlayer.IsDisplayOverlays
                                               = RendererManagerNotOwnedByPlayer.IsDisplayOverlays
@@ -75,6 +75,14 @@
 
         public static event Action<ILogicObject> AreaRemoved;
 
+        public static void AddBlueprintRenderer(
+            Vector2Ushort tilePosition,
+            IProtoObjectLandClaim protoObjectLandClaim)
+        {
+            RendererManagerGraceAreas.RegisterBlueprint(tilePosition, protoObjectLandClaim);
+            RendererManagerOwnedByPlayer.RegisterBlueprint(tilePosition, protoObjectLandClaim);
+        }
+
         public static IEnumerable<ILogicObject> EnumerateAreaObjects()
         {
             return LandClaimSystem.SharedEnumerateAllAreas();
@@ -85,9 +93,15 @@
             OnAreaModified(area);
         }
 
-        public static void OnLandOwnerStateChanged(ILogicObject area, bool isOwned)
+        public static void OnLandOwnerStateChanged(ILogicObject area)
         {
             OnAreaModified(area);
+        }
+
+        public static void RemoveBlueprintRenderer()
+        {
+            RendererManagerGraceAreas.UnregisterBlueprint();
+            RendererManagerOwnedByPlayer.UnregisterBlueprint();
         }
 
         /// <summary>
@@ -107,7 +121,7 @@
             var areaPublicState = LandClaimArea.GetPublicState(area);
             areaPublicState.ClientSubscribe(
                 o => o.LandClaimAreasGroup,
-                newValue =>
+                _ =>
                 {
                     //Api.Logger.Dev($"Received LandClaimAreasGroup changed: {newValue} for {area}");
                     OnAreaModified(area);
@@ -117,7 +131,7 @@
             // register area
             RendererManagerGraceAreas.RegisterArea(area);
 
-            var renderer = LandClaimSystem.ClientIsOwnedArea(area)
+            var renderer = LandClaimSystem.ClientIsOwnedArea(area, requireFactionPermission: false)
                                ? RendererManagerOwnedByPlayer
                                : RendererManagerNotOwnedByPlayer;
 
@@ -155,19 +169,6 @@
 
             RemoveArea(area);
             AddArea(area);
-        }
-
-        public static void AddBlueprintRenderer(Vector2Ushort tilePosition, 
-                                                IProtoObjectLandClaim protoObjectLandClaim)
-        {
-            RendererManagerGraceAreas.RegisterBlueprint(tilePosition, protoObjectLandClaim);
-            RendererManagerOwnedByPlayer.RegisterBlueprint(tilePosition, protoObjectLandClaim);
-        }
-
-        public static void RemoveBlueprintRenderer()
-        {
-            RendererManagerGraceAreas.UnregisterBlueprint();
-            RendererManagerOwnedByPlayer.UnregisterBlueprint();
         }
     }
 }

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeHemostatic>();
 
-            config.SetRequiredNode<TechNodeMedkit>();
+            config.SetRequiredNode<TechNodePlasterCast>();
         }
     }
 }

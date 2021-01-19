@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Zones.Special
+﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;

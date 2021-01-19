@@ -40,10 +40,10 @@
         private const double ThresholdNoPilotSeconds = 5 * 60;
 
         public static readonly SoundResource SoundResourcePutVehicle
-            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/PutVehicle");
+            = new("Objects/Structures/ObjectVehicleAssemblyBay/PutVehicle");
 
         public static readonly SoundResource SoundResourceTakeVehicle
-            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/TakeVehicle");
+            = new("Objects/Structures/ObjectVehicleAssemblyBay/TakeVehicle");
 
         public override string Name => "Vehicle garage system";
 

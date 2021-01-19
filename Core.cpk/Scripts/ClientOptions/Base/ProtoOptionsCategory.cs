@@ -21,7 +21,7 @@
     {
         private readonly IClientStorage clientStorage;
 
-        private readonly List<IProtoOption> options = new List<IProtoOption>();
+        private readonly List<IProtoOption> options = new();
 
         protected ProtoOptionsCategory()
         {
@@ -131,8 +131,8 @@
                                {
                                    Style = Api.Client.UI.GetApplicationResource<Style>(
                                        "ControlInfoQuestionPointStyle"),
-                                   VerticalAlignment = VerticalAlignment.Bottom,
-                                   Margin = new Thickness(0, 0, 0, 3)
+                                   VerticalAlignment = VerticalAlignment.Center,
+                                   Margin = new Thickness(0, 6, 0, -6)
                                };
 
                                var stackPanel = new StackPanel

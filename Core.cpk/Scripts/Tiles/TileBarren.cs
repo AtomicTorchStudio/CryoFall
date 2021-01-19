@@ -10,16 +10,16 @@
     public class TileBarren : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Barren/TileBarren1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Barren/TileBarren1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/Barren/TileBarren2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Barren/TileBarren2.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTextureAtlas3
-            = new TextureResource("Terrain/Barren/TileBarren3.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Barren/TileBarren3.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 7;
 

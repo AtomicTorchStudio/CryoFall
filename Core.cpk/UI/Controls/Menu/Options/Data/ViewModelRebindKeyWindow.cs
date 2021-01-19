@@ -83,7 +83,8 @@
                 case InputKey.Control:
                 case InputKey.Alt:
                     this.Message = string.Format(MessageCannotBindToKey,
-                                                 InputKeyNameHelper.GetKeyText(key));
+                                                 InputKeyNameHelper.GetKeyText(key,
+                                                                               returnPlaceholderIfNone: false));
                     return;
             }
 

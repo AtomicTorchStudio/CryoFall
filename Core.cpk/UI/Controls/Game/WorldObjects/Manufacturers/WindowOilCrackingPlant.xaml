@@ -26,8 +26,8 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Vertical" 
-                                Grid.Row="0" 
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="0"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center">
                         <!-- Text: Mineral oil -->

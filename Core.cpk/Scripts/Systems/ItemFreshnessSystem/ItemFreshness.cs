@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum ItemFreshness : byte
     {
         /// <summary>

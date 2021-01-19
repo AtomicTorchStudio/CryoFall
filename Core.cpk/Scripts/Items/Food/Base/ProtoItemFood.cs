@@ -50,8 +50,6 @@
 
         public virtual float FoodRestore => 0;
 
-        public virtual float HealthRestore => 0;
-
         public override ITextureResource Icon { get; }
 
         public virtual bool IsAvailableInCompletionist => true;
@@ -90,6 +88,15 @@
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
             base.ClientTooltipCreateControlsInternal(item, controls);
+
+            if (this.FoodRestore != 0
+                || this.StaminaRestore != 0
+                || this.WaterRestore != 0)
+            {
+                var tooltip = ItemTooltipFoodNutrition.Create(this);
+                tooltip.Margin = new Thickness(0, 3, 0, 3);
+                controls.Add(tooltip);
+            }
 
             if (this.Effects.Count > 0)
             {
@@ -165,9 +172,6 @@
 
             data.CurrentStats.SharedSetStaminaCurrent(data.CurrentStats.StaminaCurrent
                                                       + ApplyFreshness(this.StaminaRestore));
-
-            data.CurrentStats.ServerSetHealthCurrent(data.CurrentStats.HealthCurrent
-                                                     + ApplyFreshness(this.HealthRestore));
 
             data.CurrentStats.ServerSetFoodCurrent(data.CurrentStats.FoodCurrent
                                                    + ApplyFreshness(this.FoodRestore));

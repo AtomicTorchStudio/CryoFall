@@ -35,8 +35,6 @@
 
         private static Dictionary<IProtoEntity, ViewDataEntryCompletionist> allMobEntries;
 
-        private bool hasPendingEntries;
-
         private int totalPendingEntries;
 
         static ViewModelWindowCompletionist()
@@ -107,7 +105,7 @@
         }
 
         public static ViewModelWindowCompletionist Instance { get; }
-            = new ViewModelWindowCompletionist();
+            = new();
 
         public ViewModelCompletionistPageFish EntriesFish { get; }
 
@@ -117,15 +115,7 @@
 
         public ViewModelCompletionistPageDefault EntriesMobs { get; }
 
-        public bool HasPendingEntries
-        {
-            get => this.hasPendingEntries;
-        }
-
-        public int TotalPendingEntries
-        {
-            get => this.totalPendingEntries;
-        }
+        public int TotalPendingEntries => this.totalPendingEntries;
 
         public void RefreshLists()
         {
@@ -162,17 +152,12 @@
                                        + this.EntriesMobs.PendingEntriesCount
                                        + this.EntriesLoot.PendingEntriesCount
                                        + this.EntriesFish.PendingEntriesCount;
-            this.hasPendingEntries = this.TotalPendingEntries > 0;
 
             ClientTimersSystem.AddAction(
                 delaySeconds: previousNumber < this.totalPendingEntries
                                   ? NewEntryNotificationDelay
                                   : 0,
-                () =>
-                {
-                    this.NotifyPropertyChanged(nameof(this.TotalPendingEntries));
-                    this.NotifyPropertyChanged(nameof(this.HasPendingEntries));
-                });
+                () => this.NotifyPropertyChanged(nameof(this.TotalPendingEntries)));
         }
     }
 }

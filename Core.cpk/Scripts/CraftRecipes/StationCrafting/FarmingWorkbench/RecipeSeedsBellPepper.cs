@@ -18,7 +18,7 @@
         {
             stations.Add<ObjectFarmingWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemBellPepper>(count: 1);
             inputItems.Add<ItemSand>(count: 5);

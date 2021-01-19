@@ -65,13 +65,11 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
             this.containerInventoryControl.DataContext = this.viewModel = new ViewModelWindowMenuWithInventory();
         }
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
             this.containerInventoryControl.DataContext = null;
             this.viewModel.Dispose();
             this.viewModel = null;

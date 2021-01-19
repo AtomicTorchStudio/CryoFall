@@ -76,7 +76,8 @@
                                         <!-- Icon -->
                                         <Rectangle Fill="{Binding Icon}"
                                                    Width="32"
-                                                   Height="32" />
+                                                   Height="32"
+                                                   UseLayoutRounding="True" />
 
                                         <TextBlock Grid.Column="1"
                                                    Text="{Binding Title}"
@@ -281,7 +282,8 @@
                                 Padding="5">
                             <Rectangle Fill="{Binding Icon}"
                                        Width="80"
-                                       Height="80" />
+                                       Height="80"
+                                       UseLayoutRounding="True" />
                         </Border>
 
                         <!-- Vehicle title -->
@@ -420,7 +422,8 @@
                                         <!-- Icon -->
                                         <Rectangle Fill="{Binding Icon}"
                                                    Width="32"
-                                                   Height="32" />
+                                                   Height="32"
+                                                   UseLayoutRounding="True" />
 
                                         <TextBlock Grid.Column="1"
                                                    Text="{Binding Title}"
@@ -454,11 +457,11 @@
                                         </ScrollViewer>
                                         <!-- Text: Take vehicle -->
                                         <Button Grid.Row="1"
-                                            Content="{x:Static loc:CoreStrings.VehicleGarage_ButtonTakeVehicle}"
-                                            Command="{Binding CommandTakeSelectedVehicle}"
-                                            IsEnabled="{Binding CanTakeSelectedVehicle}"
-                                            HorizontalAlignment="Center"
-                                            Focusable="False" />
+                                                Content="{x:Static loc:CoreStrings.VehicleGarage_ButtonTakeVehicle}"
+                                                Command="{Binding CommandTakeSelectedVehicle}"
+                                                IsEnabled="{Binding CanTakeSelectedVehicle}"
+                                                HorizontalAlignment="Center"
+                                                Focusable="False" />
                                     </Grid>
                                 </ControlTemplate>
                             </ListBox.Template>

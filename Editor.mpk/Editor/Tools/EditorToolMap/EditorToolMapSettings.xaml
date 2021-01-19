@@ -30,8 +30,7 @@
 
         <Button Content="New world"
                 Command="{Binding CommandNewWorld}"
-                Style="{StaticResource EditorButtonStyle}"
-                Margin="0" />
+                Style="{StaticResource EditorButtonStyle}" />
 
         <Control Style="{StaticResource Padding}" />
 

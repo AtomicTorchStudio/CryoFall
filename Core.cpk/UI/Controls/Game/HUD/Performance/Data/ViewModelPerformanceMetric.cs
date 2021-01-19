@@ -18,18 +18,18 @@
         private const int ValueBufferTotalDurationSeconds = 8;
 
         private static readonly SolidColorBrush BrushGreen
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0xE0, 0x00));
+            = new(Color.FromArgb(0xFF, 0x00, 0xE0, 0x00));
 
         private static readonly SolidColorBrush BrushRed
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0x22, 0x22));
+            = new(Color.FromArgb(0xFF, 0xFF, 0x22, 0x22));
 
         private static readonly SolidColorBrush BrushYellow
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xEE, 0x44));
+            = new(Color.FromArgb(0xFF, 0xFF, 0xEE, 0x44));
 
         private readonly PerformanceMetricCondition[] metrics;
 
         private readonly CycledArrayStorage<int> valuesBuffer
-            = new CycledArrayStorage<int>((uint)(ValueBufferTotalDurationSeconds / RefreshInterval));
+            = new((uint)(ValueBufferTotalDurationSeconds / RefreshInterval));
 
         private PerformanceMetricSeverityLevel indicatorSeverity;
 
@@ -77,6 +77,8 @@
         }
 
         public string IssueDescription { get; private set; }
+
+        public bool IsValueAvailable { get; set; } = true;
 
         public SolidColorBrush MetricBrush => GetBrush(this.MetricSeverity);
 

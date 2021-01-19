@@ -10,10 +10,6 @@
     {
         private ViewModelMenuHome viewModel;
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             if (IsDesignTime)

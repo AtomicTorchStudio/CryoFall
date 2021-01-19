@@ -16,9 +16,5 @@
             get => (uint)this.GetValue(RequiredElectricityAmountProperty);
             set => this.SetValue(RequiredElectricityAmountProperty, value);
         }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

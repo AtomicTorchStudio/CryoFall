@@ -7,7 +7,7 @@
     public static class GameServerLoginFailedDialogHelper
     {
         public const string ClientHasModifiedCore =
-            "You're using a game client with a modified or unpacked Core.cpk which is not permitted on this game server. Please reinstall the game.";
+            "You're using a game client with a modified or unpacked Core.cpk, which is not permitted on this game server. Please reinstall the game.";
 
         public const string IncompatibleNetworkSchemeVersionHash =
             @"Incompatible network version.

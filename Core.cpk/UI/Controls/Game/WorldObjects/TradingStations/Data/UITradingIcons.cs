@@ -8,11 +8,11 @@
     public static class UITradingIcons
     {
         public static readonly Lazy<TextureBrush> LazyIconCoinPenny
-            = new Lazy<TextureBrush>(() => Api.Client.UI.GetTextureBrush(
-                                         new TextureResource("Icons/Trading/CoinPenny.png")));
+            = new(() => Api.Client.UI.GetTextureBrush(
+                      new TextureResource("Icons/Trading/CoinPenny.png")));
 
         public static readonly Lazy<TextureBrush> LazyIconCoinShiny
-            = new Lazy<TextureBrush>(() => Api.Client.UI.GetTextureBrush(
-                                         new TextureResource("Icons/Trading/CoinShiny.png")));
+            = new(() => Api.Client.UI.GetTextureBrush(
+                      new TextureResource("Icons/Trading/CoinShiny.png")));
     }
 }

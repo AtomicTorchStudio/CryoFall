@@ -21,7 +21,7 @@
             = null;
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Floater/Front");
+            = new("Floater/Front");
 
         public override double WorldScale => 0.8;
 

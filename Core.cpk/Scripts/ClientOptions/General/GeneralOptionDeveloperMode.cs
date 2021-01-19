@@ -38,7 +38,7 @@
         public override string Name => "Developer mode";
 
         public override IProtoOption OrderAfterOption
-            => GetOption<GeneralOptionDisplayObjectInteractionTooltip>();
+            => GetOption<GeneralOptionHideQuestsPanel>();
 
         public override bool ValueProvider { get; set; } // do nothing
 

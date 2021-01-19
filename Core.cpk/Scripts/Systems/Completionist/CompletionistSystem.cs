@@ -22,10 +22,10 @@
     public class CompletionistSystem : ProtoSystem<CompletionistSystem>
     {
         public static readonly SoundResource EntryUnlockedSoundResource
-            = new SoundResource("UI/Completionist/EntryUnlocked");
+            = new("UI/Completionist/EntryUnlocked");
 
         public static readonly SoundResource RewardClaimedSoundResource
-            = new SoundResource("UI/Completionist/RewardClaimed");
+            = new("UI/Completionist/RewardClaimed");
 
         public static IReadOnlyCollection<IProtoItemFish> CompletionistAllFish { get; private set; }
 
@@ -41,6 +41,11 @@
         {
             Client.Audio.PlayOneShot(RewardClaimedSoundResource, 0.5f);
             Instance.CallServer(_ => _.ServerRemote_ClaimReward(prototype));
+        }
+
+        public static PlayerCharacterCompletionistData SharedGetCompletionistData(ICharacter character)
+        {
+            return PlayerCharacter.GetPrivateState(character).CompletionistData;
         }
 
         protected override void PrepareSystem()
@@ -118,11 +123,6 @@
 
             SharedGetCompletionistData(character)
                 .ServerOnLootReceived(protoObjectLoot);
-        }
-
-        private static PlayerCharacterCompletionistData SharedGetCompletionistData(ICharacter character)
-        {
-            return PlayerCharacter.GetPrivateState(character).CompletionistData;
         }
 
         [RemoteCallSettings(avoidBuffer: true)]

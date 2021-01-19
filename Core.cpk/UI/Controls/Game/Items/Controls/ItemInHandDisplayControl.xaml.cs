@@ -17,10 +17,6 @@
 
         private Point? lastPosition;
 
-        public ItemInHandDisplayControl()
-        {
-        }
-
         public void Hide()
         {
             if (!this.isShown)

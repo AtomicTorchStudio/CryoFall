@@ -58,8 +58,8 @@
 
         protected override void InitControl()
         {
-            var root = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
-            this.contentPresenter = root.GetByName<ContentPresenter>("ContentPresenter");
+            var templateRoot = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
+            this.contentPresenter = templateRoot.GetByName<ContentPresenter>("ContentPresenter");
 
             // remap content to internal content presenter (that's a hack!)
             var content = this.Content;

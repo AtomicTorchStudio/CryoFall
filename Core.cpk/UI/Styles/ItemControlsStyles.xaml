@@ -14,7 +14,6 @@
     <system:Double x:Key="IconItemSize">52</system:Double>
 
     <SolidColorBrush x:Key="ItemSlotControlBackgroundBrush" Color="#44444444" />
-    <SolidColorBrush x:Key="ItemSlotControlBorderBrush" Color="Transparent" />
 
     <SolidColorBrush x:Key="ItemCountForeground" Color="{StaticResource ColorAltLabelForeground}" />
 
@@ -55,12 +54,10 @@
         </Setter>
     </Style>
 
-
     <!-- Default item slot control style -->
     <Style TargetType="{x:Type controls:ItemSlotControl}">
         <Setter Property="Background" Value="{StaticResource ItemSlotControlBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="BorderBrush" Value="{StaticResource ItemSlotControlBorderBrush}" />
         <Setter Property="Width" Value="{StaticResource IconItemSize}" />
         <Setter Property="Height" Value="{StaticResource IconItemSize}" />
         <Setter Property="Margin" Value="0,0,1,1" />
@@ -70,7 +67,6 @@
                 <ControlTemplate TargetType="{x:Type controls:ItemSlotControl}">
                     <Border x:Name="Border"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
                             Background="{TemplateBinding Background}"
                             d:DataContext="{d:DesignInstance data:ViewModelItem, IsDesignTimeCreatable=True}">
                         <VisualStateManager.VisualStateGroups>
@@ -81,105 +77,32 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="RectangleMouseOver">
-                                            <EasingColorKeyFrame Value="#10FFFFFF" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="RectangleMouseOver"
+                                            Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="ControlStates">
                                 <VisualState x:Name="Default" />
-                                <VisualState x:Name="Selected">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="Border">
-                                            <EasingColorKeyFrame Value="#FF9D6900" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="RectanglePlaceOverlay">
-                                            <EasingColorKeyFrame Value="#60422A00" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#40422A00" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="PlaceAllowedNormal">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="Border">
-                                            <EasingColorKeyFrame Value="#FF699D00" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="RectanglePlaceOverlay">
-                                            <EasingColorKeyFrame Value="#252A4200" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#0500ff00" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="PlaceAllowedBlinking">
-                                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="Border">
-                                            <EasingColorKeyFrame Value="#FF699D00" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="RectanglePlaceOverlay">
-                                            <EasingColorKeyFrame Value="#252A4200" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#0500ff00" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="Border">
-                                            <EasingColorKeyFrame Value="#FF77B200" KeyTime="0:0:0.5" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="RectanglePlaceOverlay">
-                                            <EasingColorKeyFrame Value="#332A4200" KeyTime="0:0:0.5" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#3300ff00" KeyTime="0:0:0.5" />
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
                                 <VisualState x:Name="PlaceDisallowed">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="Border">
-                                            <EasingColorKeyFrame Value="#FF9D0000" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="RectanglePlaceOverlay">
-                                            <EasingColorKeyFrame Value="#25400000" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#20ff0000" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="RectanglePlaceDisallowed"
+                                            Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="LayoutRoot"
+                                            Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{StaticResource ColorRed5}" Opacity="0.1" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -202,8 +125,17 @@
                                     ItemsSource="{Binding OverlayControls}"
                                     Style="{StaticResource ItemIconOverlayItemsControlStyle}" />
                             </Grid>
-                            <Rectangle x:Name="RectanglePlaceOverlay" Fill="#00000000" />
-                            <Rectangle x:Name="RectangleMouseOver" Fill="#00FFFFFF" />
+
+                            <Rectangle x:Name="RectanglePlaceDisallowed"
+                                       Visibility="Collapsed">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{StaticResource ColorRed5}" Opacity="0.0667" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <Rectangle x:Name="RectangleMouseOver"
+                                       Fill="#10FFFFFF"
+                                       Visibility="Collapsed" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -239,7 +171,9 @@
                     <Border x:Name="Border"
                             d:DataContext="{d:DesignInstance data:ViewModelItem, IsDesignTimeCreatable=True}">
                         <Grid x:Name="LayoutRoot">
-                            <Rectangle x:Name="Icon" Fill="{Binding Icon}"
+                            <Rectangle x:Name="Icon"
+                                       Fill="{Binding Icon}"
+                                       UseLayoutRounding="True"
                                        RenderTransformOrigin="0.5,0.5" />
                             <TextBlock Margin="0,0,2,0"
                                        Style="{StaticResource ItemCountTextBlockStyle}"
@@ -254,12 +188,12 @@
 
 
     <Style TargetType="{x:Type controls:RequiredItemControl}">
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.5" />
+                <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.4" />
             </Setter.Value>
         </Setter>
-        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Width" Value="{StaticResource IconItemSize}" />
         <Setter Property="Height" Value="{StaticResource IconItemSize}" />
         <Setter Property="FontSize" Value="14" />
@@ -279,28 +213,33 @@
                                 <VisualState x:Name="Default" />
                                 <VisualState x:Name="Available">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#AA004444" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                       Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{StaticResource ColorAlt2}" Opacity="0.5" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="TextBlockCount">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource BrushColorAlt7}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unavailable">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                            Storyboard.TargetName="LayoutRoot">
-                                            <EasingColorKeyFrame Value="#AA660000" KeyTime="0" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames
-                                            Storyboard.TargetProperty="(TextBlock.Foreground)"
-                                            Storyboard.TargetName="TextBlockCount">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                       Storyboard.TargetName="Border">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <SolidColorBrush Color="#FFFF3333" />
+                                                    <SolidColorBrush Color="{StaticResource ColorRed1}" Opacity="0.5" />
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="TextBlockCount">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource BrushColorRed7}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -308,17 +247,18 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="LayoutRoot"
                               Background="Transparent">
-                            <Rectangle x:Name="Icon" Margin="2" Fill="{Binding Icon}"
+                            <Rectangle x:Name="Icon"
+                                       Margin="2"
+                                       Fill="{Binding Icon}"
                                        UseLayoutRounding="True" />
-
                             <TextBlock
                                 x:Name="TextBlockCount"
                                 Text="{Binding CountString}"
                                 Visibility="{Binding CountVisibility}"
-                                Margin="0,0,2.5,1"
                                 Style="{StaticResource ItemCountTextBlockStyle}"
                                 FontSize="{TemplateBinding FontSize}"
-                                noesis:Text.StrokeThickness="{TemplateBinding TextStrokeThickness}" />
+                                noesis:Text.StrokeThickness="{TemplateBinding TextStrokeThickness}"
+                                Margin="0,0,2.5,1" />
                         </Grid>
                     </Border>
                 </ControlTemplate>

@@ -40,6 +40,7 @@
                 new DropItemsList(outputs: 2, outputsRandom: 0)
                     // money
                     .Add<ItemCoinPenny>(count: 10, countRandom: 30, probability: 1 / 1.0)
+                    .Add<ItemCoinPurse>(count: 1,  weight: 1 / 5.0)
                     // resources
                     .Add<ItemPlanks>(count: 20,     countRandom: 30, weight: 1 / 1.0)
                     .Add<ItemThread>(count: 10,     countRandom: 10, weight: 1 / 1.0)
@@ -52,7 +53,7 @@
                     .Add<ItemFirelog>(count: 2,     countRandom: 1,  weight: 1 / 10.0)
                     // components
                     .Add<ItemComponentsMechanical>(count: 10, countRandom: 10, weight: 1 / 5.0)
-                    .Add<ItemComponentsElectronic>(count: 5, countRandom: 5, weight: 1 / 5.0)
+                    .Add<ItemComponentsElectronic>(count: 5,  countRandom: 5,  weight: 1 / 5.0)
                     // items
                     .Add<ItemCampFuel>(count: 2, countRandom: 3, weight: 1 / 5.0));
 
@@ -87,13 +88,14 @@
                             )
                         .Add(weight: 1 / 1.0,
                              nestedList:
-                             new DropItemsList(outputs: 1, outputsRandom: 1)
+                             new DropItemsList(outputs: 2, outputsRandom: 1)
                                  // seeds - primary
                                  .Add<ItemSeedsCarrot>(count: 2,     countRandom: 1)
                                  .Add<ItemSeedsCucumber>(count: 2,   countRandom: 1)
                                  .Add<ItemSeedsTomato>(count: 2,     countRandom: 1)
                                  .Add<ItemSeedsBellPepper>(count: 2, countRandom: 1)
                                  .Add<ItemSeedsCorn>(count: 2,       countRandom: 1)
+                                 .Add<ItemSeedsPotato>(count: 2,     countRandom: 1)
                                  // seeds - rare
                                  .Add<ItemSeedsChiliPepper>(count: 2, countRandom: 1)
                                  .Add<ItemSeedsMilkmelon>(count: 2,   countRandom: 1)
@@ -104,6 +106,7 @@
                                  // seeds - misc
                                  .Add<ItemSeedsFlowerOni>(count: 2,      countRandom: 1)
                                  .Add<ItemSeedsFlowerBlueSage>(count: 2, countRandom: 1)
+                                 .Add<ItemSeedsFlowerYellow>(count: 2,   countRandom: 1)
                             )
                 );
 

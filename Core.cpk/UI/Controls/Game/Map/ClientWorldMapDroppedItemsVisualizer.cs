@@ -10,19 +10,16 @@
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientWorldMapDroppedItemsVisualizer : IWorldMapVisualizer
+    public class ClientWorldMapDroppedItemsVisualizer : BaseWorldMapVisualizer
     {
         private readonly NetworkSyncList<DroppedLootInfo> droppedItemsLocations;
 
         private readonly Dictionary<DroppedLootInfo, FrameworkElement> markers
-            = new Dictionary<DroppedLootInfo, FrameworkElement>();
-
-        private readonly WorldMapController worldMapController;
+            = new();
 
         public ClientWorldMapDroppedItemsVisualizer(WorldMapController worldMapController)
+            : base(worldMapController)
         {
-            this.worldMapController = worldMapController;
-
             var playerCharacter = Api.Client.Characters.CurrentPlayerCharacter;
             this.droppedItemsLocations = PlayerCharacter.GetPrivateState(playerCharacter)
                                                         .DroppedLootLocations;
@@ -36,9 +33,7 @@
             }
         }
 
-        public bool IsEnabled { get; set; }
-
-        public void Dispose()
+        protected override void DisposeInternal()
         {
             this.droppedItemsLocations.ClientElementInserted -= this.MarkerAddedHandler;
             this.droppedItemsLocations.ClientElementRemoved -= this.MarkerRemovedHandler;
@@ -61,13 +56,12 @@
             }
 
             var mapControl = new WorldMapMarkDroppedItems();
-            var canvasPosition = this.worldMapController.WorldToCanvasPosition(
-                droppedLootInfo.Position.ToVector2D());
+            var canvasPosition = this.WorldToCanvasPosition(droppedLootInfo.Position.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);
             Panel.SetZIndex(mapControl, 12);
 
-            this.worldMapController.AddControl(mapControl);
+            this.AddControl(mapControl);
 
             this.markers[droppedLootInfo] = mapControl;
         }
@@ -96,7 +90,7 @@
             }
 
             this.markers.Remove(position);
-            this.worldMapController.RemoveControl(control);
+            this.RemoveControl(control);
         }
     }
 }

@@ -33,48 +33,67 @@
         <Storyboard x:Key="StoryboardHighlight"
                     TargetName="InnerBorder"
                     RepeatBehavior="Forever"
-                    Duration="0:0:1.5">
+                    Duration="0:0:5">
             <ColorAnimationUsingKeyFrames
                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
                 Storyboard.TargetName="InnerBorder">
-                <EasingColorKeyFrame KeyTime="0" Value="#BB333333" />
-                <EasingColorKeyFrame KeyTime="0:0:0.15" Value="#FFFFFF66">
+                <EasingColorKeyFrame KeyTime="0"
+                                     Value="{Binding Source={StaticResource Color7}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x00}" />
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Color7}">
                     <EasingColorKeyFrame.EasingFunction>
                         <QuadraticEase EasingMode="EaseInOut" />
                     </EasingColorKeyFrame.EasingFunction>
                 </EasingColorKeyFrame>
-                <EasingColorKeyFrame KeyTime="0:0:1.1" Value="#BB333333" />
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="{StaticResource Color7}" />
+                <EasingColorKeyFrame KeyTime="0:0:1.7"
+                                     Value="{Binding Source={StaticResource Color7}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x00}" />
             </ColorAnimationUsingKeyFrames>
 
             <ColorAnimationUsingKeyFrames
                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                 Storyboard.TargetName="InnerBorder">
-                <EasingColorKeyFrame KeyTime="0" Value="#77333333" />
-                <EasingColorKeyFrame KeyTime="0:0:0.15" Value="#AA777733">
+                <EasingColorKeyFrame KeyTime="0"
+                                     Value="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x00}" />
+                <EasingColorKeyFrame KeyTime="0:0:0.2"
+                                     Value="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x33}">
                     <EasingColorKeyFrame.EasingFunction>
                         <QuadraticEase EasingMode="EaseInOut" />
                     </EasingColorKeyFrame.EasingFunction>
                 </EasingColorKeyFrame>
-                <EasingColorKeyFrame KeyTime="0:0:1.1" Value="#77333333" />
+                <EasingColorKeyFrame KeyTime="0:0:1"
+                                     Value="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x33}" />
+                <EasingColorKeyFrame KeyTime="0:0:1.7"
+                                     Value="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x00}" />
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
 
     </base:BaseUserControl.Resources>
 
-    <ContentControl x:Name="OuterBorder">
-        <ContentControl.LayoutTransform>
-            <ScaleTransform ScaleY="1" />
-        </ContentControl.LayoutTransform>
+    <ContentControl x:Name="LayoutRoot">
+        <ContentControl x:Name="OuterBorder">
+            <ContentControl.LayoutTransform>
+                <ScaleTransform ScaleY="1" />
+            </ContentControl.LayoutTransform>
 
-        <Border x:Name="InnerBorder"
-                Background="#77333333"
-                BorderBrush="#BB333333"
-                BorderThickness="1"
-                CornerRadius="3"
-                Padding="1"
-                Margin="0,0,0,10">
-            <StackPanel x:Name="StackPanel" Orientation="Vertical" />
-        </Border>
+            <ContentControl.Effect>
+                <DropShadowEffect
+                    BlurRadius="4"
+                    Direction="315"
+                    ShadowDepth="2"
+                    Opacity="0.8"
+                    Color="Black" />
+            </ContentControl.Effect>
+
+            <Border x:Name="InnerBorder"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Padding="1"
+                    Margin="0,0,0,10">
+                <StackPanel x:Name="StackPanel" Orientation="Vertical" />
+            </Border>
+        </ContentControl>
     </ContentControl>
 
 </base:BaseUserControl>

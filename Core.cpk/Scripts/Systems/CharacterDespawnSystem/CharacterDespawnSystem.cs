@@ -71,7 +71,10 @@
                 return false;
             }
 
-            if (LandClaimSystem.SharedIsOwnedLand(character.TilePosition, character, out _))
+            if (LandClaimSystem.SharedIsOwnedLand(character.TilePosition,
+                                                  character,
+                                                  requireFactionPermission: false,
+                                                  out _))
             {
                 // do not despawn as the player is inside the owned land claim area
                 return false;

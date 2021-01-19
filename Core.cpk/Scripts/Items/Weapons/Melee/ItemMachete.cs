@@ -8,9 +8,13 @@
 
     public class ItemMachete : ProtoItemWeaponMelee
     {
+        public override double DamageApplyDelay => 0.075;
+
         public override string Description => "Heavy steel machete. Ideal for chopping heads off.";
 
         public override uint DurabilityMax => 180;
+
+        public override double FireAnimationDuration => 0.6;
 
         public override string Name => "Machete";
 

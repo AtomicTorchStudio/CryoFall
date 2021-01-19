@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemStone>(count: 25);
 
-            outputItems.Add<ItemSand>(count: 25);
+            outputItems.Add<ItemSand>(count: 50);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",

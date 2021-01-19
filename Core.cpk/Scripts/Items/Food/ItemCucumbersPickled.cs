@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
 
     public class ItemCucumbersPickled : ProtoItemFood
@@ -20,6 +22,12 @@
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFood;
+        }
+
+        protected override void PrepareEffects(EffectActionsList effects)
+        {
+            effects
+                .WillRemoveEffect<StatusEffectDrunk>(intensityToRemove: 0.05); // just a little bit as a joke :)
         }
     }
 }

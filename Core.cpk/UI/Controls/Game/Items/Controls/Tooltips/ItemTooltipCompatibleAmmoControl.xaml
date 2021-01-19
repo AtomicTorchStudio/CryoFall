@@ -11,8 +11,10 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemTooltipCompatibleAmmoControl, IsDesignTimeCreatable=True}"
     UseLayoutRounding="False"
+    Foreground="{StaticResource TooltipForegroundBrush}"
     Opacity="0.7">
-    <StackPanel Orientation="Vertical">
+    <StackPanel x:Name="LayoutRoot"
+                Orientation="Vertical">
         <TextBlock Text="{x:Static loc:CoreStrings.Weapon_CompatibleAmmo}"
                    FontSize="11"
                    FontWeight="Bold" />
@@ -28,7 +30,7 @@
                                  Opacity="0.7"
                                  VerticalAlignment="Center"
                                  Margin="0,0,2,-1" />
-                        <TextBlock Text="{Binding Name}"
+                        <TextBlock Text="{Binding}"
                                    TextWrapping="Wrap"
                                    Foreground="{StaticResource BrushColor7}"
                                    FontSize="10" />

@@ -58,14 +58,11 @@
             this.ViewModelVehicleEnergy = new ViewModelVehicleEnergy(vehicle);
 
             this.cargoItemsContainer = this.vehiclePrivateState.CargoItemsContainer as IClientItemsContainer;
-            this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(this.cargoItemsContainer,
-                                                                                       callbackTakeAllItemsSuccess:
-                                                                                       null)
+            this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(this.cargoItemsContainer)
             {
-                IsContainerTitleVisible = false
+                IsContainerTitleVisible = false,
+                IsActive = false
             };
-
-            this.ViewModelItemsContainerExchange.IsActive = false;
 
             var isOwner = WorldObjectOwnersSystem.SharedIsOwner(
                 ClientCurrentCharacterHelper.Character,
@@ -219,23 +216,17 @@
 
             ClientTimersSystem.AddAction(delaySeconds: 0.5, this.RefreshCanRepair);
 
-            var checkResult = this.ProtoVehicle.SharedPlayerCanRepair(ClientCurrentCharacterHelper.Character);
+            var checkResult = this.ProtoVehicle.SharedPlayerCanRepairInVehicleAssemblyBay(
+                ClientCurrentCharacterHelper.Character);
             this.IsCanRepair = checkResult == VehicleCanRepairCheckResult.Success;
 
-            switch (checkResult)
+            this.CannotRepairErrorMessage = checkResult switch
             {
-                case VehicleCanRepairCheckResult.Success:
-                    this.CannotRepairErrorMessage = null;
-                    break;
-
-                case VehicleCanRepairCheckResult.NotEnoughPower:
-                    this.CannotRepairErrorMessage = PowerGridSystem.SetPowerModeResult.NotEnoughPower.GetDescription();
-                    break;
-
-                default:
-                    this.CannotRepairErrorMessage = checkResult.GetDescription();
-                    break;
-            }
+                VehicleCanRepairCheckResult.Success => null,
+                VehicleCanRepairCheckResult.NotEnoughPower => PowerGridSystem.SetPowerModeResult.NotEnoughPower
+                                                                             .GetDescription(),
+                _ => checkResult.GetDescription()
+            };
         }
     }
 }

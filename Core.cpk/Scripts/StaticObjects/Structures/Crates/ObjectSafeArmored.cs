@@ -31,7 +31,7 @@
 
         public override float StructurePointsMax => 30000;
 
-        protected override Vector2D ItemIconOffset => (0, 0.25);
+        protected override Vector2D ItemIconOffset => (0.035, 0.9);
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

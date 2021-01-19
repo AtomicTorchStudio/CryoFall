@@ -7,7 +7,7 @@
 
     public class FloatMultiplierConverter : IValueConverter
     {
-        public static readonly FloatMultiplierConverter Instance = new FloatMultiplierConverter();
+        public static readonly FloatMultiplierConverter Instance = new();
 
         public object Convert(
             object value,

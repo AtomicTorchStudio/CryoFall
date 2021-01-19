@@ -10,7 +10,7 @@
     public abstract class ProtoTrigger : ProtoEntity, IProtoTrigger
     {
         private readonly FreezableListWrapper<BaseTriggerConfig> configurations =
-            new FreezableListWrapper<BaseTriggerConfig>(new List<BaseTriggerConfig>());
+            new(new List<BaseTriggerConfig>());
 
         public void ServerRegisterConfiguration(BaseTriggerConfig triggerConfig)
         {

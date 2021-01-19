@@ -11,7 +11,7 @@
     public class PostEffectHeat : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/StatusEffects/Heat");
+            = new("PostEffects/StatusEffects/Heat");
 
         private IGraphicsDevice device;
 

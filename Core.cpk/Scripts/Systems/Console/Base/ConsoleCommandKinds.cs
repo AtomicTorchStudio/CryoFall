@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Console
 {
     using System;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     [Flags]
     public enum ConsoleCommandKinds : byte
     {

@@ -25,8 +25,7 @@
         private static readonly TextureAtlasSize AtlasSize;
 
         private static readonly Lazy<FloorTextureComposer> LazyInstance
-            = new Lazy<FloorTextureComposer>(
-                () => new FloorTextureComposer());
+            = new(() => new FloorTextureComposer());
 
         public readonly ushort AtlasTextureHeight;
 

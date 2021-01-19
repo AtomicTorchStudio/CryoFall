@@ -132,6 +132,9 @@
             }
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableUnordered,
+                            timeInterval: 0.05,
+                            clientMaxSendQueueSize: 100)]
         private TradingStationInfo ServerRemote_GetTradingStationInfo(uint tradingStationId)
         {
             foreach (var tradingStation in ServerActiveTradingStations)

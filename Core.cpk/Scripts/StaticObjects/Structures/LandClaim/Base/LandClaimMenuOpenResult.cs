@@ -1,6 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim
 {
-    internal enum LandClaimMenuOpenResult
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
+    public enum LandClaimMenuOpenResult : byte
     {
         Success,
 

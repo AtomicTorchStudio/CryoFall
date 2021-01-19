@@ -22,10 +22,10 @@
         {
             const double xOffset = 0.2;
             data.PhysicsBody
-                .AddShapeRectangle((1 - xOffset, 0.5), (xOffset, 2),      CollisionGroups.Default)
-                .AddShapeRectangle((1, 0.7),           (1, 2),            CollisionGroups.Default)
-                .AddShapeRectangle((1 - xOffset, 0.5), (xOffset, -0.5),   CollisionGroups.Default)
-                .AddShapeRectangle((1, 1),             (1, -1), CollisionGroups.Default);
+                .AddShapeRectangle((1 - xOffset, 0.5), (xOffset, 2),    CollisionGroups.Default)
+                .AddShapeRectangle((1, 0.7),           (1, 2),          CollisionGroups.Default)
+                .AddShapeRectangle((1 - xOffset, 0.5), (xOffset, -0.5), CollisionGroups.Default)
+                .AddShapeRectangle((1, 1),             (1, -1),         CollisionGroups.Default);
         }
     }
 }

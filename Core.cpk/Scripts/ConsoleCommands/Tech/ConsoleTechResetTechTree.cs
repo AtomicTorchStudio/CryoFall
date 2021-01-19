@@ -2,7 +2,6 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
-    using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ConsoleTechResetTechTree : BaseConsoleCommand
@@ -16,7 +15,7 @@
         public string Execute([CurrentCharacterIfNull] ICharacter player = null)
         {
             var technologies = player.SharedGetTechnologies();
-            TechnologiesSystem.ServerResetTechTreeAndRefundLearningPoints(technologies);
+            technologies.ServerResetTechTreeAndRefundLearningPoints();
             return null;
         }
     }

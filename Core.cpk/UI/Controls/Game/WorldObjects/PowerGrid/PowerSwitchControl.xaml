@@ -7,7 +7,6 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:ui="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
@@ -196,7 +195,7 @@
                     Value="{Binding PowerGridChargePercent}"
                     MaxValue="100"
                     Background="Transparent"
-                    BorderBrush="#AAFFAA10"
+                    BorderBrush="{StaticResource BrushElectricityDarker}"
                     BorderThickness="1"
                     Margin="0"
                     HorizontalAlignment="Stretch"
@@ -230,7 +229,7 @@
                             </Grid>
                         </ControlTemplate>
                     </core:ValueBarControl.Template>
-                    <Border Background="#AAFFAA10" CornerRadius="1" />
+                    <Border Background="{StaticResource BrushElectricityDarker}" CornerRadius="1" />
                 </core:ValueBarControl>
             </Grid>
 
@@ -284,7 +283,7 @@
 
                 <Button Grid.Row="2"
                         Grid.Column="0"
-                        Content="{x:Static ui:CoreStrings.Button_Configure}"
+                        Content="{x:Static loc:CoreStrings.Button_Configure}"
                         Command="{Binding CommandConfigureThresholds}"
                         FontSize="12"
                         Padding="4,2"

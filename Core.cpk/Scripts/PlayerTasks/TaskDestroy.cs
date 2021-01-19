@@ -56,11 +56,11 @@
         {
             if (isActive)
             {
-                ServerStaticObjectDestroyObserver.StructureDestroyed += this.ObjectDestroyedHandler;
+                ServerStaticObjectDestroyObserver.ObjectDestroyed += this.ObjectDestroyedHandler;
             }
             else
             {
-                ServerStaticObjectDestroyObserver.StructureDestroyed -= this.ObjectDestroyedHandler;
+                ServerStaticObjectDestroyObserver.ObjectDestroyed -= this.ObjectDestroyedHandler;
             }
         }
 

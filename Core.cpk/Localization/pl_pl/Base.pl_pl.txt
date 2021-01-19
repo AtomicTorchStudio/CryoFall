@@ -151,9 +151,6 @@ Szybkość spożywania wody
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneracja ładunku energetycznego (na min)
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Możliwość jedzenia zepsutej żywności
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Obrażenia spowodowane promieniowaniem
 
@@ -214,6 +211,12 @@ Sukces rybacki
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Zużycie paliwa
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Możliwość jedzenia zepsutej żywności
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Możliwość przejadania się bez żadnych konsekwencji
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 Nie można biegać
 
@@ -222,4 +225,7 @@ Nie można atakować
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 Nie można używać przedmiotów leczniczych z czasem odnowienia
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+Niełamliwe kości
 

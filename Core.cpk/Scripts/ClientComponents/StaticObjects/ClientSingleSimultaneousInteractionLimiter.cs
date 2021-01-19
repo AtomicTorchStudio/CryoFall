@@ -12,7 +12,7 @@
     public static class ClientSingleSimultaneousInteractionLimiter
     {
         private static readonly HashSet<IGameObject> CurrentlyInteractingWith
-            = new HashSet<IGameObject>();
+            = new();
 
         public static async void InvokeForGameObject(IGameObject gameObject, Func<Task> func)
         {

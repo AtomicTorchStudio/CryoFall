@@ -4,7 +4,8 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
+    using AtomicTorch.CBND.CoreMod.Editor.Data;
+    using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Tiles;
@@ -126,6 +127,8 @@
 
         private void ServerRemote_ApplyWorldSizeSliceExpansion(BoundsUshort insertedArea)
         {
+            EditorClientActionsHistorySystem.Purge();
+
             Logger.Info("Slice-expanding the world map - inserting an area: " + insertedArea);
 
             var oldWorldBounds = Server.World.WorldBounds;
@@ -143,7 +146,7 @@
             Logger.Info("Tile height data gathered");
 
             var oldStaticObjects = Server.World.EditorEnumerateAllStaticObjects()
-                                         .Select(o => new EditorStaticObjectsRemovalHelper.RestoreObjectRequest(o))
+                                         .Select(o => new SpawnObjectRequest(o))
                                          .ToList();
 
             Logger.Info("Static objects gathered");

@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
@@ -21,16 +20,21 @@
 
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
+            var itemClothHelmet = Api.GetProtoEntity<ItemClothHelmet>();
+            var itemClothArmor = Api.GetProtoEntity<ItemClothArmor>();
+
             tasks
                 .Add(TaskHaveTechNode.Require<TechNodeClothArmor>())
                 // suggest cloth hat but require any head item
                 .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentHead>(
-                         string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemClothHelmet>().Name)))
+                                             string.Format(TaskHaveItemEquipped.DescriptionFormat,
+                                                           itemClothHelmet.Name))
+                                         .WithIcon(itemClothHelmet.Icon))
                 // suggest cloth armor but require any armor item
                 .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentArmor>(
-                         string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemClothArmor>().Name)));
+                                             string.Format(TaskHaveItemEquipped.DescriptionFormat,
+                                                           itemClothArmor.Name))
+                                         .WithIcon(itemClothArmor.Icon));
 
             prerequisites
                 .Add<QuestUnlockAndBuildWorkbench>();

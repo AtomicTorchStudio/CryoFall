@@ -12,7 +12,7 @@
 
         public static ItemTooltipFuelControl Create(IItem item)
         {
-            return new ItemTooltipFuelControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

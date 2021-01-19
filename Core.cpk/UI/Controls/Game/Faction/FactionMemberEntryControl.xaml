@@ -1,0 +1,187 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.FactionMemberEntryControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.Data"
+    xmlns:faction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:FactionMemberViewEntry}">
+
+    <base:BaseUserControl.Resources>
+        <Style x:Key="BorderPlayerNamePanelStyle" TargetType="Border">
+            <Setter Property="Width" Value="171" />
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Padding" Value="12,5,12,5" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#00003F57" Offset="0" />
+                        <GradientStop Color="#FF003F57" Offset="0.07" />
+                        <GradientStop Color="#FF003F57" Offset="0.75" />
+                        <GradientStop Color="#00003F57" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#00007AA8" Offset="0" />
+                        <GradientStop Color="#FF007AA8" Offset="0.07" />
+                        <GradientStop Color="#FF007AA8" Offset="0.75" />
+                        <GradientStop Color="#00007AA8" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TextBlockPlayerNameStyle" TargetType="TextBlock">
+            <Setter Property="Text" Value="{Binding Name}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="LineHeight" Value="11" />
+            <Setter Property="LineStackingStrategy" Value="MaxHeight" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="BorderRoleOfficerStyle"
+               TargetType="Border">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource ColorAlt2}" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="3,1" />
+            <Setter Property="Margin" Value="3,0,0,0" />
+            <!-- A cheap way to add a shadow -->
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+            <Setter Property="BorderBrush" Value="#66000000" />
+        </Style>
+
+        <Style x:Key="BorderRoleLeaderStyle"
+               TargetType="Border"
+               BasedOn="{StaticResource BorderRoleOfficerStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource Color2}" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TextBlockRoleStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource TextBlockPlayerNameStyle}">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="1.5"
+                                      ShadowDepth="0.5"
+                                      Direction="-45"
+                                      Color="Black" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <Border Style="{StaticResource BorderPlayerNamePanelStyle}">
+        <Control>
+            <Control.Template>
+                <ControlTemplate>
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource TextBlockPlayerNameStyle}" />
+
+                        <!-- Online indicator (as a bullet point) -->
+                        <Grid Grid.Column="0"
+                              Visibility="{Binding IsOnlineStatusAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
+                              Width="7"
+                              Height="7"
+                              VerticalAlignment="Center"
+                              Margin="0,0,4,-1">
+                            <Ellipse
+                                Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Fill="#AA00EE00" />
+
+                            <Ellipse
+                                Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                Stroke="#AA777777"
+                                StrokeThickness="1" />
+
+                            <!-- Last online date tooltip holder -->
+                            <Border
+                                Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                Background="Transparent"
+                                Margin="-4">
+                                <base:ToolTipServiceExtend.ToolTip>
+                                    <faction:FactionMemberEntryLastOnlineDateControl MemberName="{Binding Name}" />
+                                </base:ToolTipServiceExtend.ToolTip>
+                            </Border>
+                        </Grid>
+
+                        <Border Grid.Column="2"
+                                Visibility="{Binding IsLeader, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Style="{StaticResource BorderRoleLeaderStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Crown icon -->
+                                <Grid Margin="0,0,3,0">
+                                    <!-- Shadow -->
+                                    <Path Data="{StaticResource IconGeometryCrown}"
+                                          Fill="#AA000000"
+                                          Stretch="Uniform"
+                                          Width="11"
+                                          Margin="0,0,-1,-1" />
+                                    <Path Data="{StaticResource IconGeometryCrown}"
+                                          Fill="{StaticResource BrushColor7}"
+                                          Stretch="Uniform"
+                                          Width="11" />
+                                </Grid>
+                                <TextBlock Text="{Binding RoleTitle}"
+                                           Style="{StaticResource TextBlockRoleStyle}"
+                                           Foreground="{StaticResource BrushColor7}" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="2"
+                                Visibility="{Binding IsOfficerExceptLeader, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Style="{StaticResource BorderRoleOfficerStyle}">
+                            <TextBlock Text="{Binding RoleTitle}"
+                                       Style="{StaticResource TextBlockRoleStyle}"
+                                       Foreground="{StaticResource BrushColorAltLabelForeground}" />
+                        </Border>
+
+                        <ContentControl Grid.Column="3"
+                                        Visibility="{Binding IsCurrentPlayerEntry, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                        Margin="-2,2,0,-2">
+                            <Control x:Name="OptionsButton"
+                                     Style="{StaticResource OptionsThreeDotsControlStyle}" />
+                        </ContentControl>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=UserControl}"
+                                     Value="False">
+                            <Setter TargetName="OptionsButton"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Control.Template>
+        </Control>
+    </Border>
+
+</base:BaseUserControl>

@@ -4,10 +4,11 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Media;
     using System.Windows.Media.Animation;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using Menu = AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu.Menu;
 
@@ -15,9 +16,9 @@
     {
         public static readonly DependencyProperty CurrentLearningPointsProperty =
             DependencyProperty.Register(nameof(CurrentLearningPoints),
-                                        typeof(int),
+                                        typeof(uint),
                                         typeof(HUDLearningPointsNotificationControl),
-                                        new PropertyMetadata(default(int)));
+                                        new PropertyMetadata(default(uint)));
 
         public static readonly DependencyProperty RequiredHeightProperty =
             DependencyProperty.Register(nameof(RequiredHeight),
@@ -31,13 +32,19 @@
                                         typeof(HUDLearningPointsNotificationControl),
                                         new PropertyMetadata(default(string)));
 
+        private static readonly SolidColorBrush BrushBackgroundGreen
+            = Api.Client.UI.GetApplicationResource<SolidColorBrush>("BrushColorGreen6");
+
+        private static readonly SolidColorBrush BrushBackgroundRed
+            = Api.Client.UI.GetApplicationResource<SolidColorBrush>("BrushColorRed6");
+
         private Storyboard storyboardHide;
 
         private Storyboard storyboardShow;
 
-        public int CurrentLearningPoints
+        public uint CurrentLearningPoints
         {
-            get => (int)this.GetValue(CurrentLearningPointsProperty);
+            get => (uint)this.GetValue(CurrentLearningPointsProperty);
             set => this.SetValue(CurrentLearningPointsProperty, value);
         }
 
@@ -55,7 +62,7 @@
             set => this.SetValue(TextProperty, value);
         }
 
-        public static HUDLearningPointsNotificationControl Create(int deltaCount, ushort currentLearningPoints)
+        public static HUDLearningPointsNotificationControl Create(long deltaCount, uint currentLearningPoints)
         {
             var deltaCountText = deltaCount > 0 ? '+' + deltaCount.ToString() : deltaCount.ToString();
 
@@ -64,7 +71,10 @@
                 Text = string.Format("{0} {1}",
                                      deltaCountText,
                                      CoreStrings.LearningPointsAbbreviation),
-                CurrentLearningPoints = currentLearningPoints
+                CurrentLearningPoints = currentLearningPoints,
+                Foreground = deltaCount > 0
+                                 ? BrushBackgroundGreen
+                                 : BrushBackgroundRed
             };
         }
 

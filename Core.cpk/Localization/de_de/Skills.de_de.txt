@@ -25,6 +25,9 @@ Bessere Anbaumethoden ermöglichen es dir, deine landwirtschaftliche Effizienz z
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Landwirtschaft
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Voraussetzung: Angel-Fähigkeitslevel {0}.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Chance auf Behalten des Köders
 

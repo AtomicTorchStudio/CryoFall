@@ -39,7 +39,9 @@
                           Fill="{StaticResource WidgetBackgroundImageTexture}" />
                     <Path Style="{StaticResource HUDWidgetStatsPathStyle}">
                         <Path.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush
+                                EndPoint="0.5,1"
+                                StartPoint="0.5,0">
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="0" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
@@ -55,15 +57,20 @@
                             </LinearGradientBrush>
                         </Path.Fill>
                     </Path>
-                    <Path Style="{StaticResource HUDWidgetStatsPathStyle}" Stroke="{StaticResource WidgetBorderBrush}">
+                    <Path Style="{StaticResource HUDWidgetStatsPathStyle}"
+                          Stroke="{StaticResource WidgetBorderBrush}">
                         <Path.Fill>
-                            <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5" Opacity="0.75">
-                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="0" />
+                            <LinearGradientBrush EndPoint="0,0.5"
+                                                 StartPoint="1,0.5"
+                                                 Opacity="0.75">
+                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
+                                              Offset="0" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}"
                                               Offset="0.035" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}"
                                               Offset="0.965" />
-                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="1" />
+                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
+                                              Offset="1" />
                             </LinearGradientBrush>
                         </Path.Fill>
                     </Path>
@@ -83,15 +90,15 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
+
         <core:Scalebox Grid.Row="0" Grid.Column="0" Scale="1">
-            <Border VerticalAlignment="Top" 
+            <Border VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    Margin="5,40,0,0">
+                    Margin="4,40,0,0">
                 <hud:HUDMiniMap />
             </Border>
         </core:Scalebox>
-        
+
         <core:Scalebox Grid.Row="0" Grid.Column="1" Scale="1">
             <Border VerticalAlignment="Top" HorizontalAlignment="Center">
                 <hud:HUDButtonsBar />
@@ -114,6 +121,9 @@
                       Width="270"
                       Margin="5,0,0,5"
                       HorizontalAlignment="Left">
+                    <Path Style="{StaticResource HUDWidgetStatsPathStyle}"
+                          Fill="{StaticResource WidgetShadowBrush}"
+                          Margin="{StaticResource WidgetShadowMargin}" />
                     <ContentControl Template="{StaticResource HUDWidgetStatsBars}" />
                     <Grid Margin="6,0,10,0" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -126,7 +136,8 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Image Source="/UI/Images/Icons/icon_health.png" Width="34" Height="34"
-                               HorizontalAlignment="Left" Grid.Row="0" Stretch="Uniform" />
+                               HorizontalAlignment="Left" Grid.Row="0" Stretch="Uniform"
+                               Margin="0,0,0,-3" />
                         <Image Source="/UI/Images/Icons/icon_stamina.png" Width="34" Height="34"
                                HorizontalAlignment="Left" Grid.Row="1" Stretch="Uniform" />
                         <hud:HUDStatBarControl Grid.Row="0" Grid.Column="2" DataContext="{Binding Stats.Health}"
@@ -158,15 +169,17 @@
                   Margin="0,0,5,5"
                   VerticalAlignment="Bottom"
                   HorizontalAlignment="Right">
-                <ContentControl Template="{StaticResource HUDWidgetStatsBars}" RenderTransformOrigin="0.5,0.5">
-                    <ContentControl.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="1" ScaleX="-1" />
-                            <SkewTransform AngleY="0" AngleX="0" />
-                            <RotateTransform Angle="0" />
-                            <TranslateTransform />
-                        </TransformGroup>
-                    </ContentControl.RenderTransform>
+                <Path Style="{StaticResource HUDWidgetStatsPathStyle}"
+                      Fill="{StaticResource WidgetShadowBrush}"
+                      Margin="1,1.5,-1.5,-1">
+                    <Path.LayoutTransform>
+                        <ScaleTransform ScaleY="1" ScaleX="-1" />
+                    </Path.LayoutTransform>
+                </Path>
+                <ContentControl Template="{StaticResource HUDWidgetStatsBars}">
+                    <ContentControl.LayoutTransform>
+                        <ScaleTransform ScaleY="1" ScaleX="-1" />
+                    </ContentControl.LayoutTransform>
                 </ContentControl>
                 <Grid Margin="10,0,6,0" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
@@ -216,7 +229,7 @@
         <core:Scalebox Grid.Row="1" Grid.Column="0" Scale="0.75">
             <Border VerticalAlignment="Top" HorizontalAlignment="Left"
                     Width="200"
-                    Margin="5,-43,0,0">
+                    Margin="5.5,-43,0,0">
                 <crafting:CraftingQueueControl
                     d:DataContext="{d:DesignInstance data2:ViewModelCraftingQueue, IsDesignTimeCreatable=True}" />
             </Border>

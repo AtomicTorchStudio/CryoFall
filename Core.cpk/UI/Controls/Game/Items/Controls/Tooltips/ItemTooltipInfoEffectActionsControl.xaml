@@ -34,12 +34,12 @@
                             <Border Background="{Binding BackgroundBrush}"
                                     CornerRadius="5">
 
-                                <Rectangle Fill="{Binding Icon}"
+                                <Rectangle Fill="{Binding ColorizedIcon}"
                                            UseLayoutRounding="True"
                                            VerticalAlignment="Top"
                                            HorizontalAlignment="Center"
-                                           Width="24"
-                                           Height="24" />
+                                           Width="26"
+                                           Height="26" />
                             </Border>
 
                             <StackPanel Orientation="Horizontal"

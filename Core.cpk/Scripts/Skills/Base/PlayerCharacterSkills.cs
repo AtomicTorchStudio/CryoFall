@@ -23,7 +23,7 @@
 
         [SyncToClient]
         public NetworkSyncDictionary<IProtoSkill, SkillLevelData> Skills { get; }
-            = new NetworkSyncDictionary<IProtoSkill, SkillLevelData>();
+            = new();
 
         public SkillLevelData ServerAddSkillExperience<TProtoSkill>(double experience)
             where TProtoSkill : IProtoSkill, new()

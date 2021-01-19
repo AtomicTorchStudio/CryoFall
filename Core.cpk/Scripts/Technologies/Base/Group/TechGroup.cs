@@ -23,7 +23,7 @@
         public const string ErrorTechIsAlreadyUnlocked = "The tech is already unlocked";
 
         private static readonly Lazy<List<TechNode>> LazyAllNodesWithoutFiltering
-            = new Lazy<List<TechNode>>(FindProtoEntities<TechNode>);
+            = new(FindProtoEntities<TechNode>);
 
         static TechGroup()
         {

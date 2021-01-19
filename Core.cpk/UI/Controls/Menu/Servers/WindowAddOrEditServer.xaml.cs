@@ -40,10 +40,6 @@
 
         private TextBox textBoxAddress;
 
-        public WindowAddOrEditServer()
-        {
-        }
-
         public string ActionTitle
         {
             get => (string)this.GetValue(ActionTitleProperty);

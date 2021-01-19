@@ -46,7 +46,7 @@
             string description = null)
             where TProtoItemFish : class, IProtoItemFish
         {
-            return new TaskCatchFish(list, count, description);
+            return new(list, count, description);
         }
 
         public override ITextureResource ClientCreateIcon()

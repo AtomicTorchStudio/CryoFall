@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
@@ -13,6 +14,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -36,9 +38,14 @@
 
         private static ClientComponentObjectRelocationHelper componentRelocationHelper;
 
-        public static event Action<ICharacter, Vector2Ushort, IStaticWorldObject> ServerStructureBeforeRelocating;
+        public delegate void DelegateServerStructureRelocation(
+            ICharacter character,
+            Vector2Ushort fromPosition,
+            IStaticWorldObject structure);
 
-        public static event Action<ICharacter, Vector2Ushort, IStaticWorldObject> ServerStructureRelocated;
+        public static event DelegateServerStructureRelocation ServerStructureBeforeRelocating;
+
+        public static event DelegateServerStructureRelocation ServerStructureRelocated;
 
         public static bool IsInObjectPlacementMode => componentObjectPlacementHelper?.IsEnabled ?? false;
 
@@ -70,13 +77,17 @@
             }
 
             if (!CreativeModeSystem.SharedIsInCreativeMode(character)
-                && !LandClaimSystem.SharedIsOwnedLand(objectStructure.TilePosition, character, out _))
+                && !LandClaimSystem.SharedIsOwnedLand(objectStructure.TilePosition,
+                                                      character,
+                                                      requireFactionPermission: true,
+                                                      out var hasNoFactionPermission,
+                                                      out _))
             {
                 // the building location or destination is in an area that is not owned by the player
-                ConstructionSystem.SharedShowCannotPlaceNotification(
+                SharedShowCannotRelocateNotification(
                     character,
-                    LandClaimSystem.ErrorNotLandOwner_Message,
-                    protoStructure);
+                    protoStructure,
+                    hasNoFactionPermission);
                 return;
             }
 
@@ -273,16 +284,20 @@
                 return true;
             }
 
-            if (!LandClaimSystem.SharedIsOwnedLand(objectStructure.TilePosition, character, out _)
-                || !IsOwnedLand(toPosition))
+            if (!LandClaimSystem.SharedIsOwnedLand(objectStructure.TilePosition,
+                                                   character,
+                                                   requireFactionPermission: true,
+                                                   out var hasNoFactionPermission,
+                                                   ownedArea: out _)
+                || !IsOwnedLand(toPosition, out hasNoFactionPermission))
             {
                 // the building location or destination is in an area that is not owned by the player
                 if (logErrors)
                 {
-                    ConstructionSystem.SharedShowCannotPlaceNotification(
+                    SharedShowCannotRelocateNotification(
                         character,
-                        LandClaimSystem.ErrorNotLandOwner_Message,
-                        protoStructure);
+                        protoStructure,
+                        hasNoFactionPermission);
                 }
 
                 return false;
@@ -316,17 +331,24 @@
 
             return true;
 
-            bool IsOwnedLand(Vector2Ushort startTilePosition)
+            bool IsOwnedLand(
+                Vector2Ushort startTilePosition,
+                out bool hasNoFactionPermission)
             {
                 var worldObjectLayoutTileOffsets = objectStructure.ProtoStaticWorldObject.Layout.TileOffsets;
                 foreach (var tileOffset in worldObjectLayoutTileOffsets)
                 {
-                    if (!LandClaimSystem.SharedIsOwnedLand(startTilePosition.AddAndClamp(tileOffset), character, out _))
+                    if (!LandClaimSystem.SharedIsOwnedLand(startTilePosition.AddAndClamp(tileOffset),
+                                                           character,
+                                                           requireFactionPermission: true,
+                                                           out hasNoFactionPermission,
+                                                           out _))
                     {
                         return false;
                     }
                 }
 
+                hasNoFactionPermission = false;
                 return true;
             }
         }
@@ -427,7 +449,7 @@
                 using var obstaclesOnTheWay = character.PhysicsBody.PhysicsSpace.TestLine(
                     characterCenter,
                     toPosition,
-                    CollisionGroup.GetDefault(),
+                    CollisionGroup.Default,
                     sendDebugEvent: false);
                 foreach (var test in obstaclesOnTheWay.AsList())
                 {
@@ -448,8 +470,8 @@
 
                     switch (testWorldObject.ProtoWorldObject)
                     {
-                        case IProtoObjectDeposit _: // allow deposits
-                        case ObjectWallDestroyed _: // allow destroyed walls
+                        case IProtoObjectDeposit: // allow deposits
+                        case ObjectWallDestroyed: // allow destroyed walls
                             continue;
                     }
 
@@ -460,6 +482,50 @@
                 // no obstacles
                 return false;
             }
+        }
+
+        private static void SharedShowCannotRelocateNotification(
+            ICharacter character,
+            IProtoStaticWorldObject protoStructure,
+            bool hasNoFactionPermission)
+        {
+            if (IsServer)
+            {
+                Instance.CallClient(character,
+                                    _ => _.ClientRemote_ShowCannotRelocateNotification(
+                                        protoStructure,
+                                        hasNoFactionPermission));
+                return;
+            }
+
+            if (hasNoFactionPermission)
+            {
+                NotificationSystem.ClientShowNotification(
+                    title: CoreStrings.Notification_ActionForbidden,
+                    string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                  CoreStrings.Faction_Permission_LandClaimManagement_Title),
+                    NotificationColor.Bad,
+                    protoStructure.Icon);
+            }
+            else
+            {
+                NotificationSystem.ClientShowNotification(
+                    title: CoreStrings.Notification_ActionForbidden,
+                    LandClaimSystem.ErrorNotLandOwner_Message,
+                    NotificationColor.Bad,
+                    protoStructure.Icon);
+            }
+
+            return;
+        }
+
+        private void ClientRemote_ShowCannotRelocateNotification(
+            IProtoStaticWorldObject protoStructure,
+            bool hasNoFactionPermission)
+        {
+            SharedShowCannotRelocateNotification(ClientCurrentCharacterHelper.Character,
+                                                 protoStructure,
+                                                 hasNoFactionPermission);
         }
 
         private void ServerRemote_RelocateStructure(IStaticWorldObject objectStructure, Vector2Ushort toPosition)

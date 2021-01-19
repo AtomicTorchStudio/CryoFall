@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public abstract class BaseMultiplayerMenuServersController : IDisposable
     {
@@ -15,7 +16,7 @@
 
         protected readonly List<(ServerAddress server, ViewModelServerInfoListEntry viewModel)>
             ServerAddressToServerViewModel =
-                new List<(ServerAddress, ViewModelServerInfoListEntry)>();
+                new();
 
         protected readonly ServerViewModelsProvider ServerViewModelsProvider;
 
@@ -82,7 +83,7 @@
         }
 
         public SuperObservableCollection<ViewModelServerInfoListEntry> ServersCollection { get; }
-            = new SuperObservableCollection<ViewModelServerInfoListEntry>();
+            = new();
 
         public ServersListSortType SortType
         {
@@ -135,7 +136,7 @@
                         entries.OrderBy(s => !s.ViewModelServerInfo.IsOfficial) // official first
                                .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)  // then featured
                                .ThenBy(s => s.ViewModelServerInfo.Title)),
-                
+
                 ServersListSortType.Title
                     => ReverseIfRequested(entries.Where(s => !IsEmptyOrPlaceholderServerTitle(s))
                                                  .OrderBy(s => s.ViewModelServerInfo.Title))
@@ -170,7 +171,7 @@
             };
 
             // apply further sorting to return incompatible servers last
-            return entries.OrderBy(s => !s.ViewModelServerInfo.IsInfoReceived 
+            return entries.OrderBy(s => !s.ViewModelServerInfo.IsInfoReceived
                                         || s.ViewModelServerInfo.IsCompatible == false);
 
             IEnumerable<ViewModelServerInfoListEntry> ReverseIfRequested(
@@ -236,16 +237,7 @@
             using var tempOrderedList = Api.Shared.WrapInTempList(this.GetOrderedList());
             var currentList = this.ServersCollection;
             var order = tempOrderedList.AsList();
-            for (var index = 0; index < order.Count; index++)
-            {
-                var currentIndex = currentList.IndexOf(order[index]);
-                if (currentIndex == index)
-                {
-                    continue;
-                }
-
-                currentList.Move(currentIndex, index);
-            }
+            currentList.ApplySortOrder(order);
         }
     }
 }

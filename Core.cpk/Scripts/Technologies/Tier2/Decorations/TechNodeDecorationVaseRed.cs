@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationVaseRed>();
 
-            config.SetRequiredNode<TechNodeDecorationSkull>();
+            config.SetRequiredNode<TechNodeDecorationBookshelf>();
         }
     }
 }

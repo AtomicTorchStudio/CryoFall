@@ -5,6 +5,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -14,9 +15,7 @@
     {
         private static double lastContextMenuCloseFrameTime;
 
-        protected override void InitControl()
-        {
-        }
+        public BaseCommand CommandInviteToFaction => new ActionCommand(this.ExecuteCommandInviteToFaction);
 
         protected override void OnLoaded()
         {
@@ -55,6 +54,13 @@
             var viewModel = (ViewModelPlayerEntry)this.DataContext;
             var name = viewModel.Name;
             Api.Client.Core.CopyToClipboard(name);
+        }
+
+        private void ExecuteCommandInviteToFaction()
+        {
+            var viewModel = (ViewModelPlayerEntry)this.DataContext;
+            var name = viewModel.Name;
+            FactionSystem.ClientOfficerInviteMember(name);
         }
 
         private void ExecuteCommandInviteToParty()
@@ -99,6 +105,8 @@
             var contextMenuItems = contextMenu.Items;
 
             var viewModel = (ViewModelPlayerEntry)this.DataContext;
+            var characterName = viewModel.Name;
+
             contextMenuItems.Add(
                 new MenuItem()
                 {
@@ -106,7 +114,14 @@
                     Command = new ActionCommand(this.ExecuteCommandCopyName)
                 });
 
-            if (!PartySystem.ClientIsPartyMember(viewModel.Name))
+            contextMenuItems.Add(
+                new MenuItem()
+                {
+                    Header = CoreStrings.Chat_MessageMenu_PrivateMessage,
+                    Command = new ActionCommand(this.ExecuteCommandOpenPrivateChat)
+                });
+
+            if (PartySystem.ClientCanInvite(characterName))
             {
                 contextMenuItems.Add(
                     new MenuItem()
@@ -116,12 +131,15 @@
                     });
             }
 
-            contextMenuItems.Add(
-                new MenuItem()
-                {
-                    Header = CoreStrings.Chat_MessageMenu_PrivateMessage,
-                    Command = new ActionCommand(this.ExecuteCommandOpenPrivateChat)
-                });
+            if (FactionSystem.ClientCanInviteToFaction(characterName))
+            {
+                contextMenuItems.Add(
+                    new MenuItem()
+                    {
+                        Header = CoreStrings.Faction_InviteToFaction,
+                        Command = new ActionCommand(this.ExecuteCommandInviteToFaction)
+                    });
+            }
 
             contextMenuItems.Add(
                 new MenuItem()
@@ -129,7 +147,7 @@
                     Header = viewModel.IsBlocked
                                  ? CoreStrings.Chat_MessageMenu_Unblock
                                  : CoreStrings.Chat_MessageMenu_Block,
-                    Command = viewModel.CommandToggleBlock,
+                    Command = viewModel.CommandToggleBlock
                 });
 
             this.ContextMenu = contextMenu;

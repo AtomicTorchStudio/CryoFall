@@ -30,7 +30,7 @@
         protected override double DrawVerticalOffset => 0.667;
 
         protected override SoundResource EngineSoundResource { get; }
-            = new SoundResource("Items/Drones/FlyStandard");
+            = new("Items/Drones/FlyStandard");
 
         protected override double EngineSoundVolume => 0.6;
 
@@ -49,7 +49,7 @@
             out ExplosionPreset explosionPreset,
             out DamageDescription damageDescriptionCharacters)
         {
-            damageRadius = 5;
+            damageRadius = 2.1;
             explosionPreset = ExplosionPresets.Large;
 
             damageDescriptionCharacters = new DamageDescription(

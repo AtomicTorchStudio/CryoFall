@@ -25,6 +25,9 @@ Lepsze sposoby uprawy roli pozwalają na zwiększenie wydajności upraw, tempa w
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Rolnictwo
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Wymóg: Wędkarstwo na poziomie {0}.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Szansa na ocalenie przynęty
 

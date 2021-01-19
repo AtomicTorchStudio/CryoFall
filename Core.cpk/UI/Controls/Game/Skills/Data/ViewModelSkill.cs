@@ -60,7 +60,7 @@
             {
                 new ViewModelSkillEffectFlag("Special effect 1", level: 5,  isActive: true),
                 new ViewModelSkillEffectFlag("Special effect 2", level: 10, isActive: true),
-                new ViewModelSkillEffectFlag("Special effect 3", level: 20, isActive: false),
+                new ViewModelSkillEffectFlag("Special effect 3", level: 20, isActive: false)
             };
         }
 

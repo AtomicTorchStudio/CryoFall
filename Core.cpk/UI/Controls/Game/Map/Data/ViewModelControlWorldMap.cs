@@ -8,8 +8,8 @@
 
         public byte MapExploredPercent { get; set; }
 
-        public string PointedPositionText { get; set; }
-
         public string PointedPositionBiomeName { get; set; }
+
+        public string PointedPositionText { get; set; }
     }
 }

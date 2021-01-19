@@ -20,13 +20,13 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
         public const double DuskDawnAmbientLightFraction = 0.6;
 
         private static readonly TextureResource3D TextureResourceColorGradingDay
-            = new TextureResource3D("FX/ColorGrading/Day", depth: 24, isTransparent: false);
+            = new("FX/ColorGrading/Day", depth: 24, isTransparent: false);
 
         private static readonly TextureResource3D TextureResourceColorGradingDuskDawn
-            = new TextureResource3D("FX/ColorGrading/DuskDawn", depth: 24, isTransparent: false);
+            = new("FX/ColorGrading/DuskDawn", depth: 24, isTransparent: false);
 
         private static readonly TextureResource3D TextureResourceColorGradingNight
-            = new TextureResource3D("FX/ColorGrading/Night", depth: 24, isTransparent: false);
+            = new("FX/ColorGrading/Night", depth: 24, isTransparent: false);
 
         private ColorGradingPostEffect2LutWithLightmap colorGrading;
 

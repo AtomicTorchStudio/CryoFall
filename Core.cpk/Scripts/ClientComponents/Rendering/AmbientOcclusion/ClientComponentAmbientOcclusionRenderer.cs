@@ -15,7 +15,7 @@
     public class ClientComponentAmbientOcclusionRenderer : ClientComponent
     {
         private static readonly EffectResource EffectResourceAmbientOcclusionCompose
-            = new EffectResource("AmbientOcclusion/Compose");
+            = new("AmbientOcclusion/Compose");
 
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
 

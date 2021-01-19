@@ -8,6 +8,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
     xmlns:pve="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.PvE"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelDuelModeControl, d:IsDesignTimeCreatable=True}"
     d:DesignHeight="300" d:DesignWidth="300"
@@ -23,7 +24,7 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Column="1"
                        Text="{x:Static pve:PveSystem.DuelMode_Title}"
                        HorizontalAlignment="Center"
@@ -31,6 +32,9 @@
                        FontSize="16"
                        FontWeight="Bold"
                        TextWrapping="Wrap"
+                       TextDecorations="Underline"
+                       noesis:Text.Stroke="#BB000000"
+                       noesis:Text.StrokeThickness="1.5"
                        VerticalAlignment="Center" />
 
             <core:FormattedTextBlock
@@ -46,6 +50,7 @@
 
         <!-- Duel mode toggle button -->
         <Button Command="{Binding CommandToggleDuelMode}"
+                Focusable="False"
                 HorizontalAlignment="Center"
                 Margin="0,13,0,0">
             <Button.Content>

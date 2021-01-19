@@ -4,6 +4,8 @@
 
     public interface IObjectWithAccessModePrivateState : IPrivateState
     {
-        WorldObjectAccessMode AccessMode { get; set; }
+        WorldObjectDirectAccessMode DirectAccessMode { get; set; }
+
+        WorldObjectFactionAccessModes FactionAccessMode { get; set; }
     }
 }

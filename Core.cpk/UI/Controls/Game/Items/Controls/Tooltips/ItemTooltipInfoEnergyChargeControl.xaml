@@ -28,7 +28,7 @@
             Value="{Binding Charge}"
             MaxValue="{Binding Capacity}"
             Background="Transparent"
-            BorderBrush="#AAFFAA10"
+            BorderBrush="{StaticResource BrushElectricityDarker}"
             BorderThickness="1"
             Margin="0"
             Width="100"
@@ -62,7 +62,7 @@
                     </Grid>
                 </ControlTemplate>
             </core:ValueBarControl.Template>
-            <Border Background="#AAFFAA10" CornerRadius="1" />
+            <Border Background="{StaticResource BrushElectricityDarker}" CornerRadius="1" />
         </core:ValueBarControl>
     </StackPanel>
 </base:BaseUserControl>

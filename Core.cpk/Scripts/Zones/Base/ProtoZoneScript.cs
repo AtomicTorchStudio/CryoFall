@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Zones;
@@ -12,7 +13,7 @@
 
         public IReadOnlyList<BaseTriggerConfig> Triggers { get; private set; }
 
-        public abstract void ServerInvoke(TScriptConfig config, IProtoTrigger trigger, IServerZone zone);
+        public abstract Task ServerInvoke(TScriptConfig config, IProtoTrigger trigger, IServerZone zone);
 
         protected sealed override void PrepareProto()
         {

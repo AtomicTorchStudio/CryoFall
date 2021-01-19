@@ -4,6 +4,12 @@
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 黑甲蟲
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+普拉格女皇
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+沙漠暴君
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 鑽地蟲
 
@@ -37,8 +43,8 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 普拉格甲蟲
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-普拉格女皇
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+靈能林地
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 蝸牛
@@ -55,8 +61,14 @@ Scripts/Characters/Mobs/MobSnakeBrown@Name:
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 綠蛇
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+噴吐者
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 海星
+
+Scripts/Characters/Mobs/MobThumper@Name:
+暴走蠻獸
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 熱帶野豬

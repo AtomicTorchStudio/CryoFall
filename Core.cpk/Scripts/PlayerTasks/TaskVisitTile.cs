@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class TaskVisitTile : BasePlayerTaskWithDefaultState
@@ -31,6 +32,11 @@
         {
             var protoTile = Api.GetProtoEntity<TProtoTile>();
             return new TaskVisitTile(protoTile, description);
+        }
+
+        public override ITextureResource ClientCreateIcon()
+        {
+            return this.ProtoTile.EditorIconTexture;
         }
 
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskState state)

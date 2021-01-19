@@ -8,6 +8,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
+    using AtomicTorch.CBND.CoreMod.UI.Helpers;
 
     public class ViewModelOfflineRaidingProtectionControl : BaseViewModel
     {
@@ -48,10 +50,12 @@
                 var inTotal = timeInterval.DurationHours.ToString("0.##") + ClientTimeFormatHelper.SuffixHours;
 
                 return string.Format(
-                    CoreStrings.WindowPolitics_RaidingRestriction_DescriptionFormat,
-                    fromDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
-                    toDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
-                    inTotal);
+                           CoreStrings.WindowPolitics_RaidingRestriction_DescriptionFormat,
+                           fromDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
+                           toDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
+                           inTotal)
+                       + "[br]"
+                       + ClientLocalTimeZoneHelper.GetTextTimeAlreadyConvertedToLocalTimeZone();
             }
         }
 
@@ -69,7 +73,7 @@
                 return;
             }
 
-            if (Menu.IsOpened<WindowPolitics>())
+            if (Menu.IsOpened<WindowSocial>())
             {
                 this.CurrentOrNextRaidingTimeInfo = GetNextRaidingTime();
             }

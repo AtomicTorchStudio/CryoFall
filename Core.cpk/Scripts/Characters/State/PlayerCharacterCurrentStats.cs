@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -60,7 +62,18 @@
         {
             this.SharedTryRefreshFinalCache();
 
-            food = MathHelper.Clamp(food, min: 0, max: this.FoodMax);
+            if (food < 0)
+            {
+                food = 0;
+            }
+
+            var overeatingAmount = food - this.FoodMax;
+            if (overeatingAmount > 0)
+            {
+                ((ICharacter)this.GameObject).ServerAddStatusEffect<StatusEffectOvereating>(overeatingAmount / 100.0);
+                food = this.FoodMax; // clamp current food amount
+            }
+
             this.FoodCurrent = food;
         }
 

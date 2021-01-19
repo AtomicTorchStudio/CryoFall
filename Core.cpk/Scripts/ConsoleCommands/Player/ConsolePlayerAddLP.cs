@@ -14,15 +14,11 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         public override string Name => "player.addLP";
 
-        public string Execute(ushort learningPoints, [CurrentCharacterIfNull] ICharacter player = null)
+        public string Execute(uint learningPoints, [CurrentCharacterIfNull] ICharacter player = null)
         {
             var technologies = player.SharedGetTechnologies();
 
-            // we're not using this method as it will add more LP than asked
-            // due to Learning skill and Savory food buffs 
-            //technologies.ServerAddLearningPoints(learningPoints);
-
-            technologies.ServerSetLearningPoints(technologies.LearningPoints + learningPoints);
+            technologies.ServerAddLearningPoints(learningPoints, allowModifyingByStatsAndRates: false);
             return $"{player} added {learningPoints} LP and now has {technologies.LearningPoints} LP.";
         }
     }

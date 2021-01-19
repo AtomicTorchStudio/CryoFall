@@ -3,8 +3,10 @@
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.GameApi;
 
-    public enum ObjectLandClaimCanUpgradeCheckResult
+    [RemoteEnum]
+    public enum ObjectLandClaimCanUpgradeCheckResult : byte
     {
         Success,
 
@@ -35,6 +37,14 @@
         ErrorAreaIntersectionWithShieldProtectedArea,
 
         [Description(CoreStrings.ShieldProtection_Error_CannotUpgradeLandClaimUnderShieldProtection)]
-        ErrorUnderShieldProtection
+        ErrorUnderShieldProtection,
+
+        /// <summary>
+        /// This error happens when player attempts to upgrade a claim that will join a faction-owned base,
+        /// and this player has no this faction access rights to do so.
+        /// </summary>
+        ErrorFactionPermissionRequired,
+
+        ErrorFactionLandClaimNumberLimitWillBeExceeded
     }
 }

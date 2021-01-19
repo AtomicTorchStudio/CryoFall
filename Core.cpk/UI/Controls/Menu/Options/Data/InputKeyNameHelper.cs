@@ -22,7 +22,10 @@
 
         public const string Title_SpaceBar = "Space bar";
 
-        public static string GetKeyText(InputKey key)
+        // Key or button not assigned (has no binding in the game controls options).
+        public const string TitlePlaceholder = "not assigned";
+
+        public static string GetKeyText(InputKey key, bool returnPlaceholderIfNone = true)
         {
             if (key >= InputKey.D0
                 && key <= InputKey.D9)
@@ -32,7 +35,9 @@
 
             return key switch
             {
-                InputKey.None              => string.Empty,
+                InputKey.None => returnPlaceholderIfNone
+                                     ? TitlePlaceholder
+                                     : string.Empty,
                 InputKey.MouseLeftButton   => Title_LeftMouseButton,
                 InputKey.MouseRightButton  => Title_RightMouseButton,
                 InputKey.MouseScrollButton => Title_MouseScrollButton,

@@ -21,10 +21,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
 
         public string Execute(
             TechGroup techGroup,
-            double completionPercent,
+            byte completionPercent,
             [CurrentCharacterIfNull] ICharacter player = null)
         {
-            completionPercent = MathHelper.Clamp(completionPercent, 0, 1);
+            var completionFraction = MathHelper.Clamp(completionPercent / 100.0, 0, 1);
 
             var technologies = player.SharedGetTechnologies();
             technologies.ServerAddGroup(techGroup);
@@ -37,12 +37,12 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
             }
 
             var nodesToAddCount = (int)Math.Round(
-                completionPercent * techGroup.Nodes.Count,
+                completionFraction * techGroup.Nodes.Count,
                 MidpointRounding.AwayFromZero);
             if (nodesToAddCount <= 0)
             {
                 return
-                    $"{player} tech group {techGroup.NameWithTierName} cannot be added - there are not enough nodes for {completionPercent:F2} completion percent.";
+                    $"{player} tech group {techGroup.NameWithTierName} cannot be added - there are not enough nodes for {completionFraction:F2} completion percent.";
             }
 
             var nodesToAdd = techGroup.Nodes;

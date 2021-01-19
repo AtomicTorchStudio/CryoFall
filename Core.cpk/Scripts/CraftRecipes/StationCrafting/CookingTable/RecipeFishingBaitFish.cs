@@ -22,7 +22,7 @@
             inputItems.Add<ItemFishFilletWhite>(count: 5);
             inputItems.Add<ItemFishFilletRed>(count: 3);
 
-            outputItems.Add<ItemFishingBaitFish>(count: 10);
+            outputItems.Add<ItemFishingBaitFish>(count: 5);
         }
     }
 }

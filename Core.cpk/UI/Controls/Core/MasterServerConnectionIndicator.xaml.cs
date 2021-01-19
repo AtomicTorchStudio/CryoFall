@@ -23,7 +23,7 @@
         private const double StoryboardShowDuration = 1;
 
         private static readonly ViewModelMasterServerConnectionIndicator ViewModel
-            = new ViewModelMasterServerConnectionIndicator();
+            = new();
 
         private static MasterServerConnectionIndicator instance;
 

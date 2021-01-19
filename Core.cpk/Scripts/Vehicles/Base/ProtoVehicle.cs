@@ -14,6 +14,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
@@ -21,7 +22,6 @@
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -180,9 +180,9 @@
         protected virtual IProtoItemsContainer CargoItemsContainerType
             => Api.GetProtoEntity<ItemsContainerDefault>();
 
-        protected ExplosionPreset DestroyedExplosionPreset { get; private set; }
+        protected virtual byte DestroyedExplosionNetworkRadius => 30;
 
-        protected virtual byte DestroyedExplosionRadius => 30;
+        protected ExplosionPreset DestroyedExplosionPreset { get; private set; }
 
         protected IReadOnlyList<Vector2D> DismountPoints { get; private set; }
 
@@ -259,7 +259,7 @@
 
         public async void ClientRequestRepair()
         {
-            var result = this.SharedPlayerCanRepair(ClientCurrentCharacterHelper.Character);
+            var result = this.SharedPlayerCanRepairInVehicleAssemblyBay(ClientCurrentCharacterHelper.Character);
             if (result != VehicleCanRepairCheckResult.Success)
             {
                 this.ClientShowNotificationCannotRepair(result);
@@ -503,12 +503,31 @@
 
         public void ServerOnRepair(IDynamicWorldObject vehicle, ICharacter character)
         {
-            var structurePointsRestorePerRepairStage = this.StructurePointsMax / this.RepairStagesCount;
+            var structurePointsMax = this.SharedGetStructurePointsMax(vehicle);
+            var structurePointsRestorePerRepairStage = structurePointsMax / this.RepairStagesCount;
 
             var publicState = GetPublicState(vehicle);
-            var newStructurePoints = publicState.StructurePointsCurrent + structurePointsRestorePerRepairStage;
-            newStructurePoints = Math.Min(this.StructurePointsMax, newStructurePoints);
+            var previousStructurePoints = publicState.StructurePointsCurrent;
+            var newStructurePoints = previousStructurePoints + structurePointsRestorePerRepairStage;
+            newStructurePoints = Math.Min(structurePointsMax, newStructurePoints);
             publicState.StructurePointsCurrent = newStructurePoints;
+
+            Logger.Important(
+                string.Format("Repaired a vehicle: {0}: {1:F0} -> {2:F0}/{3:F0} structure points",
+                              vehicle,
+                              previousStructurePoints,
+                              newStructurePoints,
+                              structurePointsMax),
+                character);
+
+            // notify other players in scope
+            var soundPosition = vehicle.Position;
+            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(vehicle, tempPlayers);
+            tempPlayers.Remove(character);
+
+            this.CallClient(tempPlayers.AsList(),
+                            _ => _.ServerRemote_OnVehicleRepairByOtherPlayer(soundPosition));
         }
 
         public void ServerRefreshEnergyMax(IDynamicWorldObject vehicle)
@@ -556,7 +575,7 @@
             }
             else
             {
-                moveSpeed = this.StatMoveSpeed;
+                moveSpeed = this.StatMoveSpeed * GameplayConstants.VehicleMoveSpeedMultiplier;
                 moveSpeed *= ProtoTile.SharedGetTileMoveSpeedMultiplier(vehicle.Tile);
 
                 if (isRunning)
@@ -670,7 +689,9 @@
 
             if (writeToLog)
             {
-                WorldObjectOwnersSystem.ServerNotifyNotOwner(character, worldObject);
+                WorldObjectOwnersSystem.ServerNotifyNotOwner(character,
+                                                             worldObject,
+                                                             isFactionAccess: false);
             }
 
             return false;
@@ -707,8 +728,10 @@
             bool writeToLog,
             CollisionGroup requiredCollisionGroup = null)
         {
-            if (!base.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog, requiredCollisionGroup)
-                )
+            if (!base.SharedIsInsideCharacterInteractionArea(character,
+                                                             worldObject,
+                                                             writeToLog,
+                                                             requiredCollisionGroup))
             {
                 return false;
             }
@@ -724,7 +747,7 @@
             if (writeToLog)
             {
                 Logger.Warning(
-                    $"Character cannot interact with {worldObject} - too far.",
+                    $"Character cannot interact with {worldObject} - too far",
                     character);
 
                 if (IsClient)
@@ -782,6 +805,14 @@
                 return false;
             }
 
+            if (weaponCache.ProtoWeapon is ItemNoWeapon)
+            {
+                // cannot hurt a vehicle with fists
+                obstacleBlockDamageCoef = 0;
+                damageApplied = 0;
+                return false;
+            }
+
             return base.SharedOnDamage(weaponCache,
                                        targetObject,
                                        damagePreMultiplier,
@@ -832,7 +863,7 @@
             return VehicleCanBuildCheckResult.Success;
         }
 
-        public VehicleCanRepairCheckResult SharedPlayerCanRepair(ICharacter character)
+        public VehicleCanRepairCheckResult SharedPlayerCanRepairInVehicleAssemblyBay(ICharacter character)
         {
             var vehicle = InteractionCheckerSystem.SharedGetCurrentInteraction(character)
                               as IDynamicWorldObject;
@@ -844,7 +875,7 @@
             this.VerifyGameObject(vehicle);
 
             var publicState = GetPublicState(vehicle);
-            if (publicState.StructurePointsCurrent >= this.StructurePointsMax)
+            if (publicState.StructurePointsCurrent >= this.SharedGetStructurePointsMax(vehicle))
             {
                 return VehicleCanRepairCheckResult.RepairIsNotRequired;
             }
@@ -854,18 +885,6 @@
             {
                 return VehicleCanRepairCheckResult.VehicleIsNotInsideVehicleAssemblyBay;
             }
-
-            if (IsServer
-                && LandClaimSystem.SharedIsUnderRaidBlock(character, vehicleAssemblyBay))
-            {
-                return VehicleCanRepairCheckResult.BaseUnderRaidblock;
-            }
-
-            // tech is not required to repair the vehicle
-            //if (!this.SharedIsTechUnlocked(character))
-            //{
-            //    return VehicleCanRepairCheckResult.TechIsNotResearched;
-            //}
 
             if (!this.SharedPlayerHasRequiredItemsToRepair(character))
             {
@@ -933,9 +952,9 @@
             this.ClientInitializeVehicle(data);
 
             var componentArmorBar = vehicle.ClientSceneObject.AddComponent<ComponentVehicleArmorBarManager>();
+            componentArmorBar.IsDisplayedOnlyOnMouseOver = publicState.PilotCharacter is null;
+            componentArmorBar.IsArmorBarDisplayedWhenPiloted = this.IsArmorBarDisplayedWhenPiloted;
             componentArmorBar.Setup(vehicle);
-
-            RefreshHealthbar();
 
             if (pilotCharacter is not null
                 && pilotCharacter.IsInitialized
@@ -951,22 +970,12 @@
             //// initialize method due to entering/leaving the private scope of the vehicle)
             publicState.ClientSubscribe(
                 _ => _.PilotCharacter,
-                newPilot =>
+                _ =>
                 {
                     // force re-initialize the vehicle
                     vehicle.ClientInitialize();
                 },
                 clientState);
-
-            void RefreshHealthbar()
-            {
-                componentArmorBar.IsEnabled =
-                    publicState.PilotCharacter != Api.Client.Characters.CurrentPlayerCharacter
-                    && (publicState.PilotCharacter is null
-                        || this.IsArmorBarDisplayedWhenPiloted);
-
-                componentArmorBar.IsDisplayedOnlyOnMouseOver = publicState.PilotCharacter is null;
-            }
         }
 
         protected virtual void ClientInitializeVehicle(ClientInitializeData data)
@@ -1216,13 +1225,13 @@
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetCharactersInRadius(vehicle.TilePosition,
                                                scopedBy,
-                                               radius: this.DestroyedExplosionRadius,
+                                               radius: this.DestroyedExplosionNetworkRadius,
                                                onlyPlayers: true);
 
             this.CallClient(scopedBy.AsList(),
                             _ => _.ClientRemote_VehicleExploded(vehicle.Position));
 
-            ExplosionHelper.ServerExplode(
+            SharedExplosionHelper.ServerExplode(
                 character:
                 null, // yes, no damaging character here otherwise it will not receive the damage if staying close
                 protoExplosive: null,
@@ -1259,7 +1268,7 @@
 
                 if (!data.GameObject.ServerIsRareUpdateRate
                     && (privateState.IsInGarage
-                        || !InteractionCheckerSystem.ServerHasAnyInteraction(data.GameObject)))
+                        || !InteractionCheckerSystem.SharedHasAnyInteraction(data.GameObject)))
                 {
                     // has no pilot, not in garage and no interactions
                     this.ServerSetUpdateRate(data.GameObject, isRare: true);
@@ -1358,9 +1367,9 @@
         private void ClientRemote_VehicleExploded(Vector2D position)
         {
             Logger.Important(this + " exploded at " + position);
-            ExplosionHelper.ClientExplode(position: position + this.SharedGetObjectCenterWorldOffset(null),
-                                          this.DestroyedExplosionPreset,
-                                          this.DestroyedExplosionVolume);
+            SharedExplosionHelper.ClientExplode(position: position + this.SharedGetObjectCenterWorldOffset(null),
+                                                this.DestroyedExplosionPreset,
+                                                this.DestroyedExplosionVolume);
         }
 
         private void ClientShowNotificationCannotBuild(VehicleCanBuildCheckResult checkResult)
@@ -1404,10 +1413,10 @@
                     message = PowerGridSystem.SetPowerModeResult.NotEnoughPower.GetDescription();
                     break;
 
-                case VehicleCanRepairCheckResult.BaseUnderRaidblock:
+                /*case VehicleCanRepairCheckResult.BaseUnderRaidblock:
                     LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(
                         ClientCurrentCharacterHelper.Character);
-                    return;
+                    return;*/
 
                 default:
                     message = checkResult.GetDescription();
@@ -1450,7 +1459,7 @@
             if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 Api.Logger.Important(character
-                                     + " is in creative mode - no items and electricity deduction on construction.");
+                                     + " is in creative mode - no items and electricity deduction on construction");
             }
             else
             {
@@ -1494,7 +1503,7 @@
             var vehicle = InteractionCheckerSystem.SharedGetCurrentInteraction(character) as IDynamicWorldObject;
             this.VerifyGameObject(vehicle);
 
-            var checkResult = this.SharedPlayerCanRepair(character);
+            var checkResult = this.SharedPlayerCanRepairInVehicleAssemblyBay(character);
             if (checkResult != VehicleCanRepairCheckResult.Success)
             {
                 Logger.Warning("Cannot repair a vehicle: " + checkResult, character);
@@ -1504,7 +1513,7 @@
             var vehicleAssemblyBay = VehicleSystem.SharedFindVehicleAssemblyBayNearby(character);
             if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                Api.Logger.Important(character + " is in creative mode - no items deduction on repair.");
+                Api.Logger.Important(character + " is in creative mode - no items deduction on repair");
             }
             else
             {
@@ -1514,20 +1523,6 @@
             }
 
             this.ServerOnRepair(vehicle, character);
-
-            Logger.Important("Repaired a vehicle: " + vehicle, character);
-
-            // notify other players in scope
-            var soundPosition = vehicleAssemblyBay.TilePosition.ToVector2D()
-                                + ((IProtoVehicleAssemblyBay)vehicleAssemblyBay.ProtoGameObject)
-                                .PlatformCenterWorldOffset;
-            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
-            Server.World.GetScopedByPlayers(vehicle, tempPlayers);
-            tempPlayers.Remove(character);
-
-            this.CallClient(tempPlayers.AsList(),
-                            _ => _.ServerRemote_OnVehicleRepairByOtherPlayer(soundPosition));
-
             return VehicleCanRepairCheckResult.Success;
         }
 

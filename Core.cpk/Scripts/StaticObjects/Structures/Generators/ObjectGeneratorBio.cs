@@ -15,8 +15,8 @@
         public override byte ContainerInputSlotsCount => 1;
 
         public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 99,
-                                               shutdownPercent: 100);
+            => new(startupPercent: 99,
+                   shutdownPercent: 100);
 
         public override string Description =>
             "Decomposes organic matter into methane gas, which is used to produce small amounts of electrical energy. Not suitable as the primary source of electricity.";

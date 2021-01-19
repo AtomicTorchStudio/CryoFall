@@ -59,7 +59,7 @@
 
         public ProtoItemWithCount WithRate(byte rateModifier)
         {
-            return new ProtoItemWithCount(
+            return new(
                 this.ProtoItem,
                 count: (ushort)Math.Min(ushort.MaxValue, (ulong)this.Count * (ulong)rateModifier));
         }

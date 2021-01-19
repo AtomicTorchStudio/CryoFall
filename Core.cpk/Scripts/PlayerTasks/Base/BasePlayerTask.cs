@@ -12,7 +12,7 @@
         where TState : PlayerTaskState, new()
     {
         private readonly Dictionary<ICharacter, ServerPlayerActiveTask> activeTasks
-            = new Dictionary<ICharacter, ServerPlayerActiveTask>();
+            = new();
 
         private readonly string description;
 

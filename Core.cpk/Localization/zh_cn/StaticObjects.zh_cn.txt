@@ -16,6 +16,9 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_M
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 地表类型不匹配
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+无法建造 - 距离事件地点太近。
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 无法在禁区内建造。
 
@@ -75,6 +78,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 拾起
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+按下
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 撬开
@@ -148,6 +154,15 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 垃圾堆
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+矿物堆
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+石头堆
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+木材堆
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石头
 
@@ -217,6 +232,9 @@ Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 使用镐挖掘此资源。
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+外星传送器
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 裂缝
 
@@ -225,6 +243,9 @@ Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 普拉格女皇尸体
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+沙漠暴君尸体
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 太空残骸
@@ -398,11 +419,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 香坛
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+显示你派系徽记的特殊旗帜。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+派系旗帜
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 无论这个旗帜象征着什么 — 重点是它看起来很酷！
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 旗帜
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+大多数人会拿它来当装饰品...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+杠铃架
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 经典浴缸，满足所有卫生需求。
@@ -410,11 +443,32 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 浴缸
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+用来在睡前放手机的便利家具。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+床头柜
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 没有书架，不算房间。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 书架
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+可用于装饰房间。用来下棋也行。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+卒
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+女皇
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+等待不速之客上门？那就把这个门铃放在外面。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+门铃
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 绘有老虎的古风屏风。
@@ -428,11 +482,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Descr
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 金币堆
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+走廊必不可缺的装饰品。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+衣帽架
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 制作精良，魅力无穷的黑色高级钢琴。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 钢琴
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+没有一大堆礼物怎么叫过节？
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+礼物
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 用这个奢华的地毯展示自己的猎物和狩猎技巧。
@@ -494,6 +560,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 马桶
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+起居室必不可少的家电。和亲朋好友一起观看吧。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+电视
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 极其珍贵的装饰罐。
 
@@ -502,6 +574,33 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 已经有地板装饰。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+使用能量束攻击敌人的全自动哨炮。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+能量炮塔
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+全自动重型哨炮。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+重型炮台
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+全自动轻型哨炮。
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+轻型炮台
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+禁用
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+攻击敌人，被中立单位攻击时还击
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+攻击敌人和所有入侵者
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 足以对大多数入侵者的防御。尽管如此，它面对爆炸物依然没什么办法。
@@ -533,10 +632,10 @@ Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 农田
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
 可用于种植花卉，装饰房屋或收集花卉用于其他目的。可以在任何地方建造。
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 花盆
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1006,6 +1105,12 @@ Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 水泥墙
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+此金属栅栏能阻拦穿越，同时允许子弹穿过。一种战术防御建筑，耐久较低。
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+铁栅栏
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 明显优于木墙。应该能阻止大多数入侵者闯入，但对装备精良的袭击者没有多大帮助。
 
@@ -1076,8 +1181,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 鬼花
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+黄花
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 奶瓜
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+土豆
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 米

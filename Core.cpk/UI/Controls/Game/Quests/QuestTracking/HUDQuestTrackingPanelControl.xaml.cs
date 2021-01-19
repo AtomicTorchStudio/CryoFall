@@ -2,8 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Animation;
+    using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
     using AtomicTorch.CBND.CoreMod.UI.Services;
@@ -13,9 +15,11 @@
 
     public partial class HUDQuestTrackingPanelControl : BaseUserControl
     {
-        private Border innerBorder;
+        private FrameworkElement innerBorder;
 
         private bool? isHidden;
+
+        private FrameworkElement layoutRoot;
 
         private NetworkSyncList<PlayerCharacterQuests.CharacterQuestEntry> questsList;
 
@@ -35,7 +39,8 @@
 
         protected override void InitControl()
         {
-            this.innerBorder = this.GetByName<Border>("InnerBorder");
+            this.layoutRoot = this.GetByName<FrameworkElement>("LayoutRoot");
+            this.innerBorder = this.GetByName<FrameworkElement>("InnerBorder");
             this.stackPanelChildren = this.GetByName<StackPanel>("StackPanel").Children;
             this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
             this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
@@ -57,6 +62,9 @@
             {
                 this.Register(questEntry);
             }
+
+            GeneralOptionHideQuestsPanel.IsQuestsPanelHiddenChanged += this.OptionIsQuestsPanelHiddenChangedHandler;
+            this.UpdateVisibility();
         }
 
         protected override void OnUnloaded()
@@ -71,6 +79,8 @@
 
             this.registeredEntries.Clear();
             this.stackPanelChildren.Clear();
+
+            GeneralOptionHideQuestsPanel.IsQuestsPanelHiddenChanged -= this.OptionIsQuestsPanelHiddenChangedHandler;
         }
 
         private bool IsRequiresHighlight()
@@ -96,6 +106,11 @@
             }
 
             return false;
+        }
+
+        private void OptionIsQuestsPanelHiddenChangedHandler()
+        {
+            this.UpdateVisibility();
         }
 
         private void QuestsListElementInserted(
@@ -210,6 +225,13 @@
 
             this.storyboardHighlightIsPlaying = true;
             this.storyboardHighlight.Begin(this.innerBorder, isControllable: true);
+        }
+
+        private void UpdateVisibility()
+        {
+            this.layoutRoot.Visibility = GeneralOptionHideQuestsPanel.IsQuestsPanelHidden
+                                             ? Visibility.Collapsed
+                                             : Visibility.Visible;
         }
     }
 }

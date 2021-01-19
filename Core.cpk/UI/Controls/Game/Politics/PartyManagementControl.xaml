@@ -9,6 +9,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
     xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelPartyManagementControl, IsDesignTimeCreatable=True}">
@@ -25,45 +26,10 @@
                    FontFamily="{StaticResource CondensedFontFamily}"
                    FontSize="16"
                    FontWeight="Bold"
+                   TextDecorations="Underline"
+                   noesis:Text.Stroke="#BB000000"
+                   noesis:Text.StrokeThickness="1.5"
                    Margin="0,0,0,3" />
-
-        <Grid Grid.Row="1"
-              Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}}"
-              VerticalAlignment="Top"
-              Margin="5,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Text="{x:Static loc:CoreStrings.ClanTag_Current}"
-                       FontFamily="{StaticResource CondensedFontFamily}"
-                       FontSize="12"
-                       FontWeight="Bold"
-                       VerticalAlignment="Center" />
-
-            <TextBlock Grid.Column="1"
-                       Text="{Binding ClanTag}"
-                       FontFamily="{StaticResource CondensedFontFamily}"
-                       FontSize="12"
-                       Foreground="{StaticResource BrushColor5}"
-                       FontWeight="Bold"
-                       Margin="4,0,0,0"
-                       VerticalAlignment="Center" />
-
-            <Button Grid.Column="2"
-                    Content="{x:Static loc:CoreStrings.Button_Edit}"
-                    Command="{Binding CommandEditClanTag}"
-                    Visibility="{Binding IsPartyLeader, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Focusable="False"
-                    FontSize="12"
-                    MinWidth="10"
-                    MinHeight="10"
-                    Padding="3,1"
-                    Margin="4,0,0,0"
-                    VerticalAlignment="Center" />
-        </Grid>
 
         <Grid Grid.Row="2"
               Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -138,7 +104,7 @@
                                    FontFamily="{StaticResource CondensedFontFamily}"
                                    FontWeight="Bold"
                                    Foreground="White" />
-                        <TextBlock Text=": "
+                        <TextBlock Text=":"
                                    FontSize="14"
                                    FontFamily="{StaticResource CondensedFontFamily}"
                                    FontWeight="Bold"
@@ -157,6 +123,7 @@
                         <Button Grid.Column="1"
                                 Content="{x:Static loc:CoreStrings.PartyManagement_Button_Invite}"
                                 Command="{Binding CommandInvite}"
+                                Focusable="False"
                                 MinWidth="0"
                                 Height="16"
                                 Padding="10,0"
@@ -169,6 +136,7 @@
             <Button Grid.Row="3"
                     Content="{x:Static loc:CoreStrings.PartyManagement_Button_Leave}"
                     Command="{Binding CommandLeaveParty}"
+                    Focusable="False"
                     Margin="0,13,0,3" />
         </Grid>
 
@@ -185,6 +153,7 @@
             <!-- Text: Create party -->
             <Button Content="{x:Static loc:CoreStrings.PartyManagement_Button_CreateParty}"
                     Command="{Binding CommandCreateParty}"
+                    Focusable="False"
                     Margin="0,13,0,0" />
         </StackPanel>
 

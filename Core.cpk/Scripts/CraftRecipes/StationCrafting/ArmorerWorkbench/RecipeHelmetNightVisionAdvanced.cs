@@ -20,8 +20,9 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemIngotSteel>(count: 15);
-            inputItems.Add<ItemPlastic>(count: 10);
+            inputItems.Add<ItemPlastic>(count: 15);
             inputItems.Add<ItemComponentsElectronic>(count: 10);
+            inputItems.Add<ItemBallisticPlate>(count: 3);
 
             outputItems.Add<ItemHelmetNightVisionAdvanced>();
         }

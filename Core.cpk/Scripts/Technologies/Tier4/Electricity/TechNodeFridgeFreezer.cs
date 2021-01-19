@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectFridgeFreezer>();
 
-            config.SetRequiredNode<TechNodeWaterPump>();
+            config.SetRequiredNode<TechNodePowerStorageLarge>();
         }
     }
 }

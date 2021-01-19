@@ -195,12 +195,12 @@
 
         public PerlinNoiseSettings GetPerlinNoiseSettings()
         {
-            return new PerlinNoiseSettings(this.Seed,
-                                           this.Scale,
-                                           this.Octaves,
-                                           this.Persistance,
-                                           this.Lacunarity,
-                                           this.SelectedCombineMode.Value);
+            return new(this.Seed,
+                       this.Scale,
+                       this.Octaves,
+                       this.Persistance,
+                       this.Lacunarity,
+                       this.SelectedCombineMode.Value);
         }
 
         public void Randomize()

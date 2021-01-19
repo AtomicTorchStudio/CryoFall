@@ -13,7 +13,7 @@
     public static class ServerSpawnZoneAreasHelper
     {
         private static readonly Dictionary<IServerZone, CachedDict>
-            ZoneAreasCache = new Dictionary<IServerZone, CachedDict>();
+            ZoneAreasCache = new();
 
         public static async ValueTask<CachedDict>
             ServerGetCachedZoneAreaAsync(

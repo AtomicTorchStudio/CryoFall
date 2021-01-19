@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectStoveElectric>();
 
-            config.SetRequiredNode<TechNodeRechargingStation>();
+            config.SetRequiredNode<TechNodeSprinkler>();
         }
     }
 }

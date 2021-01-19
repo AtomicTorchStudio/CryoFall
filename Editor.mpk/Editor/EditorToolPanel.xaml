@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="190"
     d:DataContext="{d:DesignInstance data:ViewModelEditorToolsPanel, IsDesignTimeCreatable=True}"
@@ -20,13 +21,15 @@
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border Style="{StaticResource EditorPanelStyle}"
-            DataContext="{Binding SelectedTool}"
-            Visibility="{Binding ItemsVisibility, FallbackValue=Collapsed}">
+    <Grid DataContext="{Binding SelectedTool}"
+          Visibility="{Binding ItemsVisibility, FallbackValue=Collapsed}">
+        <core:WidgetPanel InnerGlowSize="10" />
+
         <Grid VerticalAlignment="Top"
               HorizontalAlignment="Stretch"
               Background="Transparent"
-              IsHitTestVisible="True">
+              IsHitTestVisible="True"
+              Margin="5">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -58,5 +61,5 @@
             </ScrollViewer>
 
         </Grid>
-    </Border>
+    </Grid>
 </base:BaseUserControl>

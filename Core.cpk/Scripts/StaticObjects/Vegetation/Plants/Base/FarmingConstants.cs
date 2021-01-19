@@ -2,7 +2,9 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
+    using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Systems;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -12,8 +14,6 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants
         public const double WateringGrowthSpeedMultiplier = 2.0;
 
         public static readonly double ServerFarmPlantsGrowthSpeedMultiplier;
-
-        public static double SharedFarmPlantsSpoilSpeedMultiplier;
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         static FarmingConstants()
@@ -56,37 +56,48 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants
             }
 
             SharedFarmPlantsSpoilSpeedMultiplier = clampedValue;
-        }
 
-        // This bootstrapper requests FarmPlantsSpoilSpeedMultiplier rate value from server.
-        private class Bootstrapper : BaseBootstrapper
-        {
-            public override void ClientInitialize()
-            {
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-                Refresh();
-
-                async void Refresh()
-                {
-                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
-                    {
-                        return;
-                    }
-
-                    SharedFarmPlantsSpoilSpeedMultiplier = 1.0;
-                    SharedFarmPlantsSpoilSpeedMultiplier =
-                        await ItemFreshnessSystem.Instance.CallServer(
-                            _ => _.ServerRemote_RequestFarmPlantsSpoilSpeedMultiplier());
-                }
-            }
-
-            public override void ServerInitialize(IServerConfiguration serverConfiguration)
-            {
-                Logger.Important("Farm plants growth speed multiplier: "
+            Api.Logger.Important("Farm plants growth speed multiplier: "
                                  + ServerFarmPlantsGrowthSpeedMultiplier.ToString("0.###")
                                  + Environment.NewLine
                                  + "Farm plants spoil speed multiplier: "
                                  + SharedFarmPlantsSpoilSpeedMultiplier.ToString("0.###"));
+        }
+
+        public static double SharedFarmPlantsSpoilSpeedMultiplier { get; private set; }
+
+        [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
+        private static void EnsureInitialized()
+        {
+        }
+
+        private class FarmingConstantsProvider : ProtoSystem<FarmingConstantsProvider>
+        {
+            public override string Name => nameof(FarmingConstantsProvider);
+
+            protected override void PrepareSystem()
+            {
+                EnsureInitialized();
+                if (IsClient)
+                {
+                    return;
+                }
+
+                Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
+            }
+
+            private static void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
+            {
+                if (isOnline)
+                {
+                    Instance.CallClient(character,
+                                        _ => _.ClientRemote_SetSystemConstants(SharedFarmPlantsSpoilSpeedMultiplier));
+                }
+            }
+
+            private void ClientRemote_SetSystemConstants(double sharedFarmPlantsSpoilSpeedMultiplier)
+            {
+                SharedFarmPlantsSpoilSpeedMultiplier = sharedFarmPlantsSpoilSpeedMultiplier;
             }
         }
     }

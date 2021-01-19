@@ -23,7 +23,7 @@
             = IsServer ? Server.World : null;
 
         private static readonly List<IStaticWorldObject> TempList
-            = new List<IStaticWorldObject>(capacity: 100000);
+            = new(capacity: 100000);
 
         private static IProtoObjectStructure[] ServerDecayingProtoStructures;
 

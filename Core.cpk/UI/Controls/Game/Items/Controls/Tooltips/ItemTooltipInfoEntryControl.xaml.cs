@@ -1,21 +1,28 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips
 {
     using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class ItemTooltipInfoEntryControl : BaseUserControl
     {
-        public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register(nameof(Title),
-                                        typeof(string),
-                                        typeof(ItemTooltipInfoEntryControl),
-                                        new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty TitleProperty
+            = DependencyProperty.Register(nameof(Title),
+                                          typeof(string),
+                                          typeof(ItemTooltipInfoEntryControl),
+                                          new PropertyMetadata(default(string)));
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value",
-            typeof(string),
-            typeof(ItemTooltipInfoEntryControl),
-            new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty ValueBrushProperty
+            = DependencyProperty.Register("ValueBrush",
+                                          typeof(Brush),
+                                          typeof(ItemTooltipInfoEntryControl),
+                                          new PropertyMetadata(default(Brush)));
+
+        public static readonly DependencyProperty ValueProperty
+            = DependencyProperty.Register("Value",
+                                          typeof(string),
+                                          typeof(ItemTooltipInfoEntryControl),
+                                          new PropertyMetadata(default(string)));
 
         public string Title
         {
@@ -29,9 +36,15 @@
             set => this.SetValue(ValueProperty, value);
         }
 
-        public static UIElement Create(string title, string value)
+        public Brush ValueBrush
         {
-            return new ItemTooltipInfoEntryControl() { Title = title, Value = value };
+            get => (Brush)this.GetValue(ValueBrushProperty);
+            set => this.SetValue(ValueBrushProperty, value);
+        }
+
+        public static ItemTooltipInfoEntryControl Create(string title, string value)
+        {
+            return new() { Title = title, Value = value };
         }
     }
 }

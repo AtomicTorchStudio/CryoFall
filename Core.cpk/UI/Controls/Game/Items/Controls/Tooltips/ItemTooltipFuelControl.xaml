@@ -26,7 +26,7 @@
             Value="{Binding FuelAmount}"
             MaxValue="{Binding FuelCapacity}"
             Background="Transparent"
-            BorderBrush="#AAFFAA10"
+            BorderBrush="{Binding FuelBrush}"
             BorderThickness="1"
             Margin="0"
             Width="100"
@@ -60,7 +60,7 @@
                     </Grid>
                 </ControlTemplate>
             </core:ValueBarControl.Template>
-            <Border Background="#AAFFAA10" CornerRadius="1" />
+            <Border Background="{Binding FuelBrush}" CornerRadius="1" />
         </core:ValueBarControl>
     </StackPanel>
 </base:BaseUserControl>

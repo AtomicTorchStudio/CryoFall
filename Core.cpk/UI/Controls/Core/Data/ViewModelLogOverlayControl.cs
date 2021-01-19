@@ -3,7 +3,7 @@
     public class ViewModelLogOverlayControl : BaseViewModel
     {
         private SuperObservableCollection<ViewModelLogEntry> logEntriesCollection
-            = new SuperObservableCollection<ViewModelLogEntry>();
+            = new();
 
         public SuperObservableCollection<ViewModelLogEntry> LogEntriesCollection
         {

@@ -12,7 +12,7 @@
         private readonly ClientComponentCurrentZonesWatcher currentZonesWatcher;
 
         private readonly Dictionary<ViewModelProtoZone, EditorToolZoneRenderer> zoneRenderers
-            = new Dictionary<ViewModelProtoZone, EditorToolZoneRenderer>();
+            = new();
 
         public EditorActiveToolZones(
             ApplyToolDelegate onSelected,
@@ -113,6 +113,16 @@
 
         internal void AddZonesRenderedAtPosition(Vector2Ushort tilePosition, HashSet<IProtoZone> protoZones)
         {
+            // doesn't work properly as not all zones may be loaded at the moment
+            /*foreach (var zoneProvider in ClientZoneProvider.AllProviders)
+            {
+                if (zoneProvider.IsFilledPosition(tilePosition))
+                {
+                    protoZones.Add(zoneProvider.ProtoZone);
+                }
+            }*/
+
+            // enumerate only the rendered zones
             foreach (var zoneRenderer in this.zoneRenderers.Values)
             {
                 if (zoneRenderer.ZoneProvider.IsFilledPosition(tilePosition))

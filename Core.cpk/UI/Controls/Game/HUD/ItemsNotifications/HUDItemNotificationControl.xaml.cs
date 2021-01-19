@@ -29,7 +29,7 @@
 
         public static HUDItemNotificationControl Create(IProtoItem protoItem, int deltaCount)
         {
-            return new HUDItemNotificationControl()
+            return new()
             {
                 viewModel = new ViewModelHUDItemNotificationControl(protoItem, deltaCount)
             };
@@ -63,12 +63,6 @@
 
         protected override void InitControl()
         {
-            if (IsDesignTime)
-            {
-                this.viewModel = new ViewModelHUDItemNotificationControl();
-                return;
-            }
-
             this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
             this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
         }
@@ -77,11 +71,6 @@
         {
             this.viewModel.RequiredHeight = (float)this.ActualHeight;
             this.DataContext = this.viewModel;
-
-            if (IsDesignTime)
-            {
-                return;
-            }
 
             this.storyboardShow.Begin();
             this.storyboardHide.Completed += this.StoryboardHideCompletedHandler;
@@ -94,11 +83,6 @@
 
         protected override void OnUnloaded()
         {
-            if (IsDesignTime)
-            {
-                return;
-            }
-
             this.storyboardHide.Completed -= this.StoryboardHideCompletedHandler;
             this.DataContext = null;
             this.viewModel.Dispose();

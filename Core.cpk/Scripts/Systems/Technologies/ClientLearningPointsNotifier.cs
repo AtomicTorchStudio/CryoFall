@@ -17,9 +17,9 @@
               [br](Click to open the technologies menu.)";
 
         private static readonly TextureResource NotificationIcon
-            = new TextureResource("Technologies/GenericGroupIcon");
+            = new("Technologies/GenericGroupIcon");
 
-        private ushort lastLearningPoints;
+        private uint lastLearningPoints;
 
         private static PlayerCharacterTechnologies CurrentTechnologies
             => ClientComponentTechnologiesWatcher.CurrentTechnologies;
@@ -66,7 +66,7 @@
             this.RefreshLastLearningPointsValue();
         }
 
-        private ushort GetCurrentLearningPoints()
+        private uint GetCurrentLearningPoints()
         {
             return ClientComponentTechnologiesWatcher.CurrentTechnologies?.LearningPoints ?? 0;
         }

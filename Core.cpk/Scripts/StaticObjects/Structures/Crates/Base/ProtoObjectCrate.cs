@@ -2,7 +2,6 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
-    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -37,6 +36,10 @@
         // how long the items dropped on the ground from the destroyed crate should remain there
         private static readonly TimeSpan DestroyedCrateDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
 
+        /// <summary>
+        /// Determines whether this crate has ownership settings or it's accessibly for everyone
+        /// (except in PvE where the land claim ownership is checked anyway).
+        /// </summary>
         public abstract bool HasOwnersList { get; }
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Open;
@@ -99,7 +102,7 @@
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
             return base.SharedCanInteract(character, worldObject, writeToLog)
-                   && (CreativeModeSystem.SharedIsInCreativeMode(character)
+                   && (!this.HasOwnersList
                        || WorldObjectAccessModeSystem.SharedHasAccess(character, worldObject, writeToLog));
         }
 
@@ -155,7 +158,7 @@
                 TextureResource.NoTexture,
                 spritePivotPoint: (0.5, 0.5));
 
-            spriteRenderIconPlate.Scale = 1.2;
+            spriteRenderIconPlate.Scale = 4.0 * this.ItemIconScale;
             spriteRenderIcon.Scale = 1.95 * this.ItemIconScale;
 
             this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIconPlate);
@@ -197,13 +200,15 @@
             var privateState = data.PrivateState;
             if (data.IsFirstTimeInit)
             {
-                privateState.AccessMode = this.HasOwnersList
-                                              ? WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners
-                                              : WorldObjectAccessMode.OpensToEveryone;
+                privateState.DirectAccessMode = this.HasOwnersList
+                                                    ? WorldObjectDirectAccessMode.OpensToObjectOwnersOrAreaOwners
+                                                    : WorldObjectDirectAccessMode.OpensToEveryone;
+
+                privateState.FactionAccessMode = WorldObjectFactionAccessModes.AllFactionMembers;
             }
             else if (!this.HasOwnersList)
             {
-                privateState.AccessMode = WorldObjectAccessMode.OpensToEveryone;
+                privateState.DirectAccessMode = WorldObjectDirectAccessMode.OpensToEveryone;
             }
 
             WorldObjectOwnersSystem.ServerInitialize(worldObject);

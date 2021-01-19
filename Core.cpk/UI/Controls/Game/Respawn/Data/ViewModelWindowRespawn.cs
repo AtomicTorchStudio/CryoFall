@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -59,6 +61,8 @@
 
         public bool IsDespawned { get; private set; }
 
+        public bool IsKilledBySomeFactionWhileHasNoFaction { get; private set; }
+
         public bool IsNewbiePvPdeath { get; private set; }
 
         public bool IsRegularDeath { get; private set; }
@@ -110,20 +114,20 @@
 
         private async void RefreshDamageSources()
         {
-            var serverResult = await CharacterDamageTrackingSystem.ClientGetDamageTrackingStatsAsync();
-            if (serverResult is null)
+            var damageSources = await CharacterDamageTrackingSystem.ClientGetDamageTrackingStatsAsync();
+            if (damageSources is null)
             {
                 this.DamageSourcesList = null;
                 this.callbackRefreshHeght();
                 return;
             }
 
-            var list = new List<ViewModelDamageSource>(capacity: serverResult.Count);
+            var list = new List<ViewModelDamageSource>(capacity: damageSources.Count);
             var index = 0;
             var accumulatedPercent = 0;
-            while (index < serverResult.Count)
+            while (index < damageSources.Count)
             {
-                var entry = serverResult[index];
+                var entry = damageSources[index];
                 if (entry.Fraction < 0.05
                     && list.Count >= 1)
                 {
@@ -140,6 +144,7 @@
 
                 list.Add(new ViewModelDamageSource(entry.ProtoEntity,
                                                    entry.Name,
+                                                   entry.ClanTag,
                                                    roundedPercent));
                 accumulatedPercent += roundedPercent;
                 index++;
@@ -148,12 +153,18 @@
             if (accumulatedPercent < 100)
             {
                 // add "Other" percent
-                list.Add(new ViewModelDamageSource(null,
-                                                   null,
-                                                   100 - accumulatedPercent));
+                list.Add(new ViewModelDamageSource(protoEntity: null,
+                                                   name: null,
+                                                   clanTag: null,
+                                                   percent: 100 - accumulatedPercent));
             }
 
             this.DamageSourcesList = list;
+
+            this.IsKilledBySomeFactionWhileHasNoFaction
+                = FactionSystem.ClientCurrentFaction is null
+                  && damageSources.Any(damageSource => !string.IsNullOrEmpty(damageSource.ClanTag));
+
             this.callbackRefreshHeght();
         }
 

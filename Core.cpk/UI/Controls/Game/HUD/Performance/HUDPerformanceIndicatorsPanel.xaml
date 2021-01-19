@@ -12,7 +12,7 @@
     HorizontalAlignment="Left"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    Panel.ZIndex="8899">
+    Panel.ZIndex="8700">
 
     <StackPanel Orientation="Horizontal">
         <hud:HUDGameTimeIndicator Width="45" />

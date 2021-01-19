@@ -42,7 +42,7 @@
 
         public override string ShortId { get; }
 
-        public override float StructurePointsMax => 0; // it's non-damageable
+        public override float StructurePointsMax => 0; // non-damageable
 
         public sealed override bool SharedOnDamage(
             WeaponFinalCache weaponCache,

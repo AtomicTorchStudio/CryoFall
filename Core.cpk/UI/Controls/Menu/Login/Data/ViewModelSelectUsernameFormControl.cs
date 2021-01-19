@@ -56,10 +56,10 @@
             if (!Api.Client.Core.IsValidUsername(this.username))
             {
                 DialogWindow.ShowDialog(
-                        MasterLoginFailedDialogHelper.UsernameInvalid_Title,
-                        MasterLoginFailedDialogHelper.UsernameRequirements,
-                        closeByEscapeKey: true,
-                        textAlignment: TextAlignment.Left);
+                    MasterLoginFailedDialogHelper.UsernameInvalid_Title,
+                    MasterLoginFailedDialogHelper.UsernameRequirements,
+                    closeByEscapeKey: true,
+                    textAlignment: TextAlignment.Left);
                 return;
             }
 

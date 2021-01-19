@@ -16,12 +16,14 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+            <Setter Property="TextDecorations" Value="Underline" />
             <Setter Property="Margin" Value="0" />
         </Style>
     </core:BaseUserControlWithWindow.Resources>
 
     <core:GameWindow x:Name="GameWindow"
+                     Background="{StaticResource WindowBackgroundLessTransparentBrush}"
                      Width="510"
                      FocusOnControl="{Binding ElementName=GameWindow}"
                      Padding="20,10">

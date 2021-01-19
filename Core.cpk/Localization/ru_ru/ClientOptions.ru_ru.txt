@@ -22,6 +22,12 @@ Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCateg
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Управление
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+При включении гарантирует, что курсор мыши не будет покидать границ игрового окна, когда игра активна (если не удерживается клавиша Ctrl). Полезно для компьютеров с несколькими мониторами или при игре в оконном режиме.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+Захват курсора
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Включить
 
@@ -36,11 +42,26 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Режим разработчика
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Игра показывает шкалу здоровья только над другими персонажами. Вы можете включить эту опцию, чтобы показывать шкалу и для своего персонажа тоже.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Шкала здоровья
+[br]над моим персонажем`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Подсказки о[br]взаимодействии
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Подсказки с[br]названием объекта
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`Квесты являются важнейшей частью игры, особенно если вы играете впервые - тогда они служат путеводителем и обучением для новых игроков.
+[br]
+[br]Вы уверены, что хотите отключить панель квестов?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Скрыть панель квестов
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Приближение камеры

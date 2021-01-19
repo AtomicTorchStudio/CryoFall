@@ -19,10 +19,6 @@
             set => this.SetValue(CaptionProperty, value);
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             this.MouseUp += this.MouseUpHandler;

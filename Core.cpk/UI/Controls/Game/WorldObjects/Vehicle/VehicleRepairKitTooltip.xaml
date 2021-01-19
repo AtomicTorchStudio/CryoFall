@@ -1,0 +1,101 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.VehicleRepairKitTooltip"
+    x:Name="UserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    mc:Ignorable="d"
+    VerticalAlignment="Bottom"
+    Focusable="False">
+
+    <Grid MinWidth="128"
+          MinHeight="192">
+
+        <Grid Margin="0,138,0,0"
+              HorizontalAlignment="Center"
+              IsHitTestVisible="False">
+
+            <i:Interaction.Triggers>
+                <i:DataTrigger
+                    Binding="{Binding CanInteract, ElementName=UserControl}"
+                    Value="False">
+                    <i:ChangePropertyAction PropertyName="Opacity"
+                                            Value="0.667" />
+                </i:DataTrigger>
+                <i:DataTrigger
+                    Binding="{Binding CanInteract, ElementName=UserControl}"
+                    Value="True">
+                    <i:ChangePropertyAction PropertyName="Opacity"
+                                            Value="1.0" />
+                </i:DataTrigger>
+            </i:Interaction.Triggers>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Viewbox Height="25"
+                         Stretch="Uniform"
+                         VerticalAlignment="Center"
+                         Margin="0,-2,4,0">
+                    <Grid>
+                        <Path Stroke="Black"
+                              StrokeThickness="34"
+                              Data="{StaticResource IconGeometryMouseInput}" />
+
+                        <Path Data="{StaticResource IconGeometryMouseInput}">
+                            <i:Interaction.Triggers>
+                                <i:DataTrigger
+                                    Binding="{Binding CanInteract, ElementName=UserControl}"
+                                    Value="True">
+                                    <i:ChangePropertyAction PropertyName="Fill"
+                                                            Value="{StaticResource BrushCanInteract}" />
+                                </i:DataTrigger>
+                                <i:DataTrigger
+                                    Binding="{Binding CanInteract, ElementName=UserControl}"
+                                    Value="False">
+                                    <i:ChangePropertyAction PropertyName="Fill"
+                                                            Value="{StaticResource BrushCannotInteract}" />
+                                </i:DataTrigger>
+                            </i:Interaction.Triggers>
+                        </Path>
+
+                        <Path Fill="White"
+                              Data="{StaticResource IconGeometryMouseInputLeftButton}" />
+                    </Grid>
+                </Viewbox>
+
+                <TextBlock Text="{x:Static loc:CoreStrings.Action_Repair}"
+                           FontSize="27"
+                           LineHeight="24"
+                           LineStackingStrategy="BlockLineHeight"
+                           FontWeight="Bold"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           noesis:Text.Stroke="Black"
+                           noesis:Text.StrokeThickness="3"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:DataTrigger
+                            Binding="{Binding CanInteract, ElementName=UserControl}"
+                            Value="True">
+                            <i:ChangePropertyAction PropertyName="Foreground"
+                                                    Value="{StaticResource BrushCanInteract}" />
+                        </i:DataTrigger>
+                        <i:DataTrigger
+                            Binding="{Binding CanInteract, ElementName=UserControl}"
+                            Value="False">
+                            <i:ChangePropertyAction PropertyName="Foreground"
+                                                    Value="{StaticResource BrushCannotInteract}" />
+                        </i:DataTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+
+</base:BaseUserControl>

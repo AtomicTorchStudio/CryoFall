@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
-    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -23,10 +22,6 @@
     public class ObjectPragmiumQueenDeathExplosion : ProtoObjectExplosive
     {
         public const int ExplosionDamageRadius = 10;
-
-        private readonly Lazy<ObjectMineralPragmiumSource> protoPragmiumSource
-            = new Lazy<ObjectMineralPragmiumSource>(
-                GetProtoEntity<ObjectMineralPragmiumSource>);
 
         public override double DamageRadius => ExplosionDamageRadius; // large radius
 
@@ -50,14 +45,14 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            obstacleBlockDamageCoef = this.protoPragmiumSource.Value.ObstacleBlockDamageCoef;
+            obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
             return true;       // hit
         }
 
         protected override ITextureResource ClientCreateIcon()
         {
-            return Api.GetProtoEntity<MobPragmiumQueen>().Icon;
+            return Api.GetProtoEntity<MobBossPragmiumQueen>().Icon;
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -146,8 +141,6 @@
 
         protected override void SharedProcessCreatedPhysics(CreatePhysicsData data)
         {
-            // inherit physics
-            this.protoPragmiumSource.Value.SharedCreatePhysics(data.GameObject);
         }
 
         private void ClientAddShakes(ClientComponentBombCountdown component)

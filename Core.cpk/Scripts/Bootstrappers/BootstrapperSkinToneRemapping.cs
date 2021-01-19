@@ -30,7 +30,7 @@
             var renderingMaterial = RenderingMaterial.Create(new EffectResource("ColorLutRemap"));
             renderingMaterial.EffectParameters.Set("TextureLut", lutTexture3D);
 
-            var sceneObjectCamera = Client.Scene.CreateSceneObject("Inventory skeleton camera");
+            var sceneObjectCamera = Client.Scene.CreateSceneObject("Skin tone remapping camera");
             var camera = Client.Rendering.CreateCamera(sceneObjectCamera,
                                                        renderingTag: renderingTag,
                                                        drawOrder: -10,
@@ -54,7 +54,7 @@
                 Height = textureHeight,
                 Fill = Api.Client.UI.CreateImageBrushForRenderTarget(camera.RenderTarget),
                 Stretch = Stretch.Uniform,
-                UseLayoutRounding = true,
+                UseLayoutRounding = true
             };
 
             Panel.SetZIndex(rectangle, int.MaxValue);

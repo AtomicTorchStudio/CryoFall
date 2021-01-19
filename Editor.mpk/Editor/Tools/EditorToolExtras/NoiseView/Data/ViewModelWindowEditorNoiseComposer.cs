@@ -32,11 +32,11 @@
 
             this.NoiseViewModels = new ObservableCollection<ViewModelNoiseSettings>()
             {
-                new ViewModelNoiseSettings(this.Refresh,
-                                           this.commandNoiseClone,
-                                           this.commandNoiseDelete,
-                                           isDisplayHeader: true,
-                                           isDisplayCombineModeSetting: true)
+                new(this.Refresh,
+                    this.commandNoiseClone,
+                    this.commandNoiseDelete,
+                    isDisplayHeader: true,
+                    isDisplayCombineModeSetting: true)
             };
 
             this.ViewModelNoiseViewLayers = new ViewModelNoiseLayersSettings(this.Refresh);

@@ -98,7 +98,7 @@
                 this.ServerCalculateDamageCoefficientByDistanceToTarget,
                 callbackCalculateDamageCoefByDistanceForDynamicObjects:
                 this.ServerCalculateDamageCoefficientByDistanceToTarget,
-                collisionGroup: CollisionGroups.HitboxRanged);
+                collisionGroups: new[] { CollisionGroups.HitboxRanged, CollisionGroup.Default });
 
             return true;
         }
@@ -106,7 +106,7 @@
         // no fire scatter and so no hit scan shots
         protected sealed override WeaponFireScatterPreset PrepareFireScatterPreset()
         {
-            return new WeaponFireScatterPreset(Array.Empty<double>());
+            return new(Array.Empty<double>());
         }
 
         protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()

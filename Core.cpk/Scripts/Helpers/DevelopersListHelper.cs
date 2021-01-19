@@ -5,7 +5,7 @@
     public static class DevelopersListHelper
     {
         private static readonly HashSet<string> DeveloperNames
-            = new HashSet<string>()
+            = new()
             {
                 "ai_enabled",
                 "Lurler",

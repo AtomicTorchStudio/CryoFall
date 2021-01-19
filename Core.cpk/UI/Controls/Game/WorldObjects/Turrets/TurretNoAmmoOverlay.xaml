@@ -1,0 +1,48 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets.TurretNoAmmoOverlay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets.Data"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300" d:DesignWidth="300"
+    VerticalAlignment="Top"
+    d:DataContext="{d:DesignInstance data:ViewModelTurretNoAmmoOverlay}"
+    Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+    <base:BaseUserControl.LayoutTransform>
+        <ScaleTransform CenterX="0.5" ScaleX="-1" />
+    </base:BaseUserControl.LayoutTransform>
+
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="PathStyle" TargetType="Path">
+                <Setter Property="Stroke" Value="Black" />
+                <Setter Property="StrokeThickness" Value="1.5" />
+                <Setter Property="Stretch" Value="Uniform" />
+            </Style>
+        </Grid.Resources>
+
+        <Path
+            Data="m 19.668196,45.649194 c 2.317147,4.418409 3.199248,9.82844 7.371458,13.049198 9.43944,9.198457 18.876347,18.399513 28.316719,27.597013 1.631734,-2.83894 7.094424,-4.917962 6.183803,-8.336758 C 51.34777,68.111281 41.156959,58.262264 30.965331,48.414092 27.041066,47.130256 23.117378,45.844649 19.191726,44.565056 c 0.158823,0.361379 0.317647,0.722759 0.47647,1.084138 z M 31.187683,34.129707 c 2.317149,4.418408 3.199248,9.828439 7.371458,13.049198 9.439441,9.198456 18.876347,18.399512 28.316719,27.597012 1.631735,-2.838939 7.094425,-4.917962 6.183804,-8.336758 C 62.867257,56.591794 52.676447,46.742776 42.484819,36.894604 38.560554,35.610768 34.636866,34.325161 30.711214,33.045568 c 0.158823,0.36138 0.317646,0.722759 0.476469,1.084139 z M 42.707171,22.610219 c 2.317147,4.418409 3.199248,9.82844 7.371458,13.049198 9.43944,9.198456 18.876347,18.399512 28.316719,27.597012 1.631735,-2.838939 7.094424,-4.917961 6.183803,-8.336757 C 74.386745,45.072306 64.195934,35.223289 54.004306,25.375117 50.080041,24.091281 46.156353,22.805674 42.230702,21.52608 c 0.158823,0.36138 0.317646,0.722759 0.476469,1.084139 z"
+            Style="{StaticResource PathStyle}"
+            Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+            Fill="#FFFF4400"
+            Width="28"
+            Height="28"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+
+        <Path
+            Data="M 39.669049,101.61789 C 32.544223,100.02955 27.869974,98.032785 21.970436,94.084633 17.205425,90.95334 11.487411,85.326088 8.4014993,80.742601 5.5424926,76.567544 2.5927239,70.032672 1.2312921,64.949993 0.14214669,60.95646 0.00600353,59.68579 0.00600353,52.560964 c 0,-7.215588 0.0907621,-8.350115 1.22528857,-12.479791 C 5.043301,25.876901 15.072515,13.714776 28.096879,7.4068087 35.221706,4.0032292 41.575054,2.5510354 49.879787,2.5510354 c 13.659699,0 24.914202,4.5834869 34.807273,14.0681296 8.032447,7.71478 13.342031,17.925519 14.884987,28.635449 0.862243,5.718013 0.363048,14.658081 -1.134527,20.013046 -4.855773,17.698613 -18.379328,31.086026 -36.395609,35.9418 -5.17344,1.36143 -16.972516,1.58834 -22.372862,0.40843 z M 59.591334,90.181862 C 71.208885,87.232093 81.28348,78.473549 85.866967,67.40057 c 3.766628,-8.985449 3.766628,-20.693763 0.09076,-29.543069 -1.588337,-3.766628 -4.084295,-7.987066 -4.765011,-7.987066 -0.226905,0 -12.615934,12.162123 -27.455541,27.00173 -25.640298,25.640298 -26.910967,27.00173 -26.094108,27.682445 1.951385,1.452194 7.850923,4.26582 10.936835,5.173441 6.580253,1.996767 14.249652,2.178291 21.01143,0.453811 z M 46.294684,48.567431 73.432557,21.611082 72.343412,20.748842 c -2.13291,-1.679099 -9.303117,-4.946537 -12.933602,-5.89954 -5.12806,-1.361431 -13.977366,-1.361431 -19.060045,0 -12.02598,3.222057 -21.828289,11.708315 -26.457157,22.872056 -3.766628,8.985449 -3.766628,20.648381 -0.04538,29.58845 1.497575,3.630485 4.401963,8.531639 4.946535,8.304734 0.181524,-0.09076 12.570554,-12.252886 27.500922,-27.047111 z"
+            Style="{StaticResource PathStyle}"
+            Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+            Fill="#FFFF4400"
+            Width="38"
+            Height="38" />
+
+    </Grid>
+
+</base:BaseUserControl>

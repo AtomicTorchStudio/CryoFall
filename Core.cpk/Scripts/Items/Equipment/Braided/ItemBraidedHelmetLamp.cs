@@ -1,11 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.Braided
 {
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using System.Collections.Generic;
 
     public class ItemBraidedHelmetLamp : ProtoItemEquipmentHeadWithLight
     {
@@ -65,6 +68,14 @@
             return ItemsSoundPresets.ItemGeneric.Clone()
                                     .Replace(ItemSound.Use,          "Items/Equipment/UseLight")
                                     .Replace(ItemSound.CannotSelect, "Items/Equipment/UseLight");
+        }
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+
+            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
+            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
         }
     }
 }

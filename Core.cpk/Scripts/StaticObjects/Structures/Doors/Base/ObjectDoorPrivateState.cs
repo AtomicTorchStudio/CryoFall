@@ -11,7 +11,10 @@
           IObjectWithAccessModePrivateState
     {
         [SyncToClient]
-        public WorldObjectAccessMode AccessMode { get; set; }
+        public WorldObjectDirectAccessMode DirectAccessMode { get; set; }
+
+        [SyncToClient]
+        public WorldObjectFactionAccessModes FactionAccessMode { get; set; }
 
         /// <summary>
         /// (PvP) Is the door blocked by shield protection?

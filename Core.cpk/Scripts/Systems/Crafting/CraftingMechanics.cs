@@ -79,6 +79,11 @@
             }
         }
 
+        public static void ServerRecalculateTimeToFinish(CraftingQueue craftingQueue)
+        {
+            craftingQueue.ServerRecalculateTimeToFinish();
+        }
+
         /// <summary>
         /// Enqueue crafting selected recipe.
         /// </summary>

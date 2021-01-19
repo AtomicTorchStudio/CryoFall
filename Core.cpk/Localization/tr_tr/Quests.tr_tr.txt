@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Usta avcı - ikinci kısım
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+Yeni bir şey keşfettiğinde bu [b]tamamlayıcı menünde[/b] belirecek! Bunu CryoFall dünyas hakkında daha çok şey öğrenerek ilerlemeni takip etmek ve [u]ek EP[/u] kazanmak için kullan.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Envanterini düzenlemek için envanterini aç ve imlecin envanterinin içindeyken  [u]{0}[/u] veya [u]{1}[/u] tuşuna bas. [b]HER[/b] envanteri (mesela sandıkları) bu şekilde düzenleyebilirsin.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Depar atmak (koşmak) için hareket ederken [u]Shift tuşuna[/u] basılı tut. Denemek için birkaç metre koş. Koşmak, tehlikeli yırtıcılardan kaçmanı sağlayabilir.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 CryoFall'ın tadını tam olarak çıkartmak için envanterinizi nasıl sıralayabileceğin veya nasıl depar atabileceğin gibi bilmen gereken bir kaç özellik daha var.
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Envanteri sıralamak için yalnızca envanteri aç ve envanter sisteminde gezinirken [u]orta fare tuşuna[/u] veya [u]Z tuşuna[/u] (kontrol ayarlarını değiştirmediysen) bas. [b]TÜM[/b] envanter sistemini bu şekilde sıralayabilirsin (ör. sandıklar).
-[*] Depar atmak için hareket halindeyken [u]Shift[/u] tuşunu basılı tut. Denemek için  birkaç metre depar at. Depar atmak tehlikeli avcılardan uzaklaşmana yardımcı olur.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Basit eylemler gerçekleştir
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Çevreleri keşfet - dördüncü kısım
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Konteyner yağmala
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Eski harabeler, nadir parçalar ve belirli kaynakları bulmak için en iyi yerlerdir. Arada sırada oraları keşfetmek her zaman iyi bir fikirdir, özellikle gerekli teçhizata sahipsen.
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Eski harabeleri keşfet
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Konteyner yağmala
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+[b]Ne kadar çok[/b] ışınlanma noktası bulursan seyahat ağın o kadar [b]geniş[/b] olacaktır.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+En az [b]iki[/b] ışınlanma noktası bularak aralarında seyahat edebilirsin.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+Ayrıca [b]gizli[/b] ışınlanma noktaları olabilir!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+Koşturmak iyidir ama çok uzun mesafeler arasında seyahat etmek istersen uzaylı ışınlanma cihazlarını kullanabilirsin.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Hızlı seyahat
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 Balık [u]fileto[/u] yakalanan balıktan [b]kullan[/b] tuşu ile [u]çıkarılabilir[/u] (yani her eşyayı kullanırken olduğu gibi).
@@ -586,6 +606,9 @@ Elle maden kazmak ve ağaç kesmek çok yorucudur, bu yüzden fırsat bulur bulm
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Dron madenciliği
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Usta avcı - altıncı kısım
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 Her zaman [u]yeterli fazlalığın[/u] olduğundan emin olmak için üssün büyüdükçe [u]enerji depolama kapasiteni artırmak[/u] iyi bir fikirdir.

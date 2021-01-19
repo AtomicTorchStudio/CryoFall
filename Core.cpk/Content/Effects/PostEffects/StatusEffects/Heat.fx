@@ -33,7 +33,7 @@ float4 MainPS(VSOutput input) : COLOR0
     float3 modifiedColor = originalColor;
 
 	// apply special additive vignetting-like glow effect
-	float vignettingCoef = 1 - distance(float2(0.5, 0.5), input.TexCoord);
+	float vignettingCoef = 1.05 - distance(float2(0.5, 0.5), input.TexCoord);
 	vignettingCoef = pow(vignettingCoef, 0.667);
 	vignettingCoef = 2 * (vignettingCoef - 0.5);
 	vignettingCoef = clamp(vignettingCoef, 0, 1);

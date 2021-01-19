@@ -35,10 +35,6 @@
             this.RefreshScale();
         }
 
-        protected override void OnUnloaded()
-        {
-        }
-
         private void RefreshScale()
         {
             var ui = Api.Client.UI;

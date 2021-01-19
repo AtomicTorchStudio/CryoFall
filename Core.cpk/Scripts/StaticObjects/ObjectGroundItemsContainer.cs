@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
@@ -58,7 +57,7 @@
         private const byte DefaultMaxSlotsCount = 4;
 
         public static readonly TextureResource TextureResourceSack
-            = new TextureResource("StaticObjects/Loot/ObjectSack");
+            = new("StaticObjects/Loot/ObjectSack");
 
         private static readonly IItemsServerService ServerItems = IsServer ? Server.Items : null;
 
@@ -370,7 +369,7 @@
         }
 
         public static IItemsContainer ServerTryDropOnGroundContainerContent(
-            Tile tile, 
+            Tile tile,
             IItemsContainer otherContainer,
             double? destroyTimeout = null)
         {
@@ -806,7 +805,7 @@
                 .AddShapeCircle(
                     radius: ClickAreaRadius,
                     center: (0.5, 0.5),
-                    @group: CollisionGroups.ClickArea);
+                    group: CollisionGroups.ClickArea);
         }
 
         private static void ClientOpenContainerExchangeUI(IStaticWorldObject objectGroundContainer)
@@ -902,7 +901,6 @@
             public int? ItemsContainerLastHash { get; set; }
 
             [SyncToClient]
-            [TempOnly]
             public ILogicObject WorldObjectClaim { get; set; }
         }
     }

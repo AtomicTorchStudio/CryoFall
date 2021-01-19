@@ -18,9 +18,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
             string title = "Notification title",
             string message = "Notification message text")
         {
-            var sound = new[] { NotificationColor.Good, NotificationColor.Neutral, NotificationColor.Bad }
-                .TakeByRandom();
-            NotificationSystem.ClientShowNotification(title, message, sound, playSound: true);
+            var kind = new[]
+            {
+                NotificationColor.Good,
+                NotificationColor.Neutral,
+                NotificationColor.Bad,
+                NotificationColor.Event
+            }.TakeByRandom();
+            NotificationSystem.ClientShowNotification(title, message, kind, playSound: true);
             return null;
         }
     }

@@ -4,12 +4,5 @@
 
     public partial class ImplantSlotOnStationControl : BaseUserControl
     {
-        public ImplantSlotOnStationControl()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

@@ -24,7 +24,7 @@
 
         <Path Visibility="{Binding IsNewbieAndNotPartyMember, Converter={StaticResource BoolToVisibilityConverter}}"
               Data="{StaticResource IconGeometryPathNewbie}"
-              Fill="#FF66DDFF"
+              Fill="{StaticResource BrushColorAlt7}"
               Stroke="Black"
               StrokeThickness="1.5"
               Stretch="Uniform"
@@ -36,7 +36,7 @@
 
         <Path Visibility="{Binding IsDuelModeAndNotPartyMember, Converter={StaticResource BoolToVisibilityConverter}}"
               Data="{StaticResource IconGeometryPathDuelMode}"
-              Fill="#FFFF1111"
+              Fill="{StaticResource BrushColorRed7}"
               Stroke="Black"
               StrokeThickness="1"
               Stretch="Uniform"

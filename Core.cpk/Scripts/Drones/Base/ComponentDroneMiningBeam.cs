@@ -31,16 +31,16 @@
                 new EffectResource("Special/MiningLaserBeam"));
 
         private static readonly SoundResource SourceResourceMiningEnd
-            = new SoundResource("Items/Drones/MiningEnd");
+            = new("Items/Drones/MiningEnd");
 
         private static readonly SoundResource SourceResourceMiningProcessStone
-            = new SoundResource("Items/Drones/MiningProcessStone");
+            = new("Items/Drones/MiningProcessStone");
 
         private static readonly SoundResource SourceResourceMiningProcessWood
-            = new SoundResource("Items/Drones/MiningProcessWood");
+            = new("Items/Drones/MiningProcessWood");
 
         private static readonly SoundResource SourceResourceMiningStart
-            = new SoundResource("Items/Drones/MiningStart");
+            = new("Items/Drones/MiningStart");
 
         private double alpha;
 

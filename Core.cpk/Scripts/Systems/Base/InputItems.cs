@@ -7,7 +7,7 @@
 
     public class InputItems
     {
-        private readonly List<ProtoItemWithCount> items = new List<ProtoItemWithCount>();
+        private readonly List<ProtoItemWithCount> items = new();
 
         public int Count => this.items.Count;
 

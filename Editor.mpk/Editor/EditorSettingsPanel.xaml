@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
     mc:Ignorable="d"
     d:DesignHeight="100" d:DesignWidth="200"
     d:DataContext="{d:DesignInstance data:ViewModelEditorSettingsPanel, IsDesignTimeCreatable=True}">
@@ -22,8 +23,11 @@
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border Style="{StaticResource EditorPanelStyle}">
-        <StackPanel Orientation="Vertical">
+    <Grid>
+        <core:WidgetPanel InnerGlowSize="10" />
+
+        <StackPanel Orientation="Vertical"
+                    Margin="5">
 
             <!-- Pointed world position display -->
             <StackPanel Orientation="Horizontal" Margin="0,-3,0,3">
@@ -34,9 +38,9 @@
                         <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                     </Style>
                 </StackPanel.Resources>
-                <TextBlock Text="Cursor tile: X=" />
+                <TextBlock Text="Cursor pos: " />
                 <TextBlock Text="{Binding CursorWorldPositionX}" />
-                <TextBlock Text=" Y=" />
+                <TextBlock Text=";" />
                 <TextBlock Text="{Binding CursorWorldPositionY}" />
             </StackPanel>
 
@@ -48,5 +52,5 @@
             <CheckBox Content="Physics visualizer" IsChecked="{Binding IsPhysicsSpaceVisualizerEnabled}"
                       Margin="0,5,0,0" />
         </StackPanel>
-    </Border>
+    </Grid>
 </base:BaseUserControl>

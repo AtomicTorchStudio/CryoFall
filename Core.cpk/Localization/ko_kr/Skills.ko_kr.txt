@@ -25,6 +25,9 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 농사
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+필요 조건: 낚시 스킬 레벨 {0}.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 미끼 절약 확률
 

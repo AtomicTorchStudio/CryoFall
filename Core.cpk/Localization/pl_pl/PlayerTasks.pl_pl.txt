@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 Zbuduj: {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+Zdobywacz: Przyjmij dowolną nagrodę
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 Ukończ: {0} (grupa tech.)
 
@@ -10,8 +13,14 @@ Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 Wykonaj
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+Pokonaj bossa: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 Zniszcz: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+Odkryj: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 Zgromadź: {0}

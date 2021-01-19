@@ -12,8 +12,7 @@
     public abstract class ProtoTileWater : ProtoTile, IProtoTileWater
     {
         private static readonly TextureAtlasResource BlendMaskTextureAtlas
-            = new TextureAtlasResource(
-                "Terrain/Water/MaskWater.png",
+            = new("Terrain/Water/MaskWater.png",
                 columns: 4,
                 rows: 1,
                 isTransparent: false);
@@ -28,13 +27,13 @@
             };
 
         private static readonly EffectResource WaterEffectResource
-            = new EffectResource("Terrain/WaterTile.fx");
+            = new("Terrain/WaterTile.fx");
 
         // ReSharper disable once CollectionNeverQueried.Local
-        private readonly List<RenderingMaterial> allMaterials = new List<RenderingMaterial>();
+        private readonly List<RenderingMaterial> allMaterials = new();
 
         private readonly Dictionary<TileBlendSides, RenderingMaterial> cachedBlendMaskMaterials
-            = new Dictionary<TileBlendSides, RenderingMaterial>();
+            = new();
 
         private RenderingMaterial waterPrimaryMaterial;
 
@@ -65,7 +64,7 @@
         protected virtual float WaterSpeed => 2.5f;
 
         protected virtual TextureResource WaterSufraceTexture { get; }
-            = new TextureResource("Terrain/Water/WaterSurface.png");
+            = new("Terrain/Water/WaterSurface.png");
 
         public RenderingMaterial ClientGetWaterBlendMaterial(ClientTileBlendHelper.BlendLayer blendLayer)
         {

@@ -21,6 +21,9 @@
 
         public const string PickUp = "Pick up";
 
+        // press (a button)
+        public const string Press = "Press";
+
         public const string PryOpen = "Pry open";
 
         public const string TogglePower = "Toggle power";

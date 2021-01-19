@@ -27,7 +27,7 @@
         private const double ActionDuration = 1;
 
         private static readonly Lazy<IProtoItem> ProtoItemBottleEmpty
-            = new Lazy<IProtoItem>(GetProtoEntity<ItemBottleEmpty>);
+            = new(GetProtoEntity<ItemBottleEmpty>);
 
         public override string Name => "Bottle refill system";
 
@@ -101,7 +101,7 @@
 
         protected override BottleRefillAction SharedTryCreateState(BottleRefillRequest request)
         {
-            return new BottleRefillAction(
+            return new(
                 request.Character,
                 durationSeconds: ActionDuration,
                 itemEmptyBottle: request.Item,

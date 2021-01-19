@@ -12,8 +12,8 @@
 
     public partial class RequiredItemsPanelControl : BaseUserControl
     {
-        private static readonly IReadOnlyList<ProtoItemWithCount> EmptyList =
-            new List<ProtoItemWithCount>().AsReadOnly();
+        private static readonly IReadOnlyList<ProtoItemWithCount> EmptyList
+            = Array.Empty<ProtoItemWithCount>();
 
         public static readonly DependencyProperty CountMultiplierProperty = DependencyProperty.Register(
             nameof(CountMultiplier),
@@ -54,7 +54,7 @@
                 typeof(RequiredItemsPanelControl),
                 new PropertyMetadata(1d));
 
-        private readonly List<RequiredItemControl> slotsControls = new List<RequiredItemControl>();
+        private readonly List<RequiredItemControl> slotsControls = new();
 
         private UIElementCollection wrapPanelChildren;
 

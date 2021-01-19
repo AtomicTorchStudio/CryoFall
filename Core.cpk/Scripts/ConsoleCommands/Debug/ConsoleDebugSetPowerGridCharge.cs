@@ -40,7 +40,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
                 return "No power grid exist near " + character.Name;
             }
 
-            var landClaimAreasGroup = LandClaimArea.GetPublicState(landClaim).LandClaimAreasGroup;
+            var landClaimAreasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(landClaim);
             var powerGrid = LandClaimAreasGroup.GetPrivateState(landClaimAreasGroup).PowerGrid;
             var powerGridState = PowerGrid.GetPublicState(powerGrid);
             powerGridState.ElectricityAmount = powerGridState.ElectricityCapacity * chargeFraction;

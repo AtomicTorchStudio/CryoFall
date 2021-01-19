@@ -14,7 +14,7 @@
         public const string PerishableItemsStorageDurationFormat =
             "Perishable items store ~{0} times longer.";
 
-        private IObjectElectricityConsumerPublicState publicStatePowerConsumer;
+        private readonly IObjectElectricityConsumerPublicState publicStatePowerConsumer;
 
         public ViewModelWindowFridge(
             IStaticWorldObject worldObjectFridge,

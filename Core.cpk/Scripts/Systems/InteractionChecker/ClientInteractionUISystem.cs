@@ -9,16 +9,20 @@
     public static class ClientInteractionUISystem
     {
         private static readonly Dictionary<IWorldObject, Token> RegisteredWindows
-            = new Dictionary<IWorldObject, Token>();
+            = new();
 
         public static void OnServerForceFinishInteraction(IWorldObject worldObject)
         {
+            Api.Logger.Info($"Server informed that the object interaction with {worldObject} is finished");
+            InteractionCheckerSystem.ClientOnServerForceFinishInteraction(worldObject);
+
             if (!RegisteredWindows.TryGetValue(worldObject, out var token))
             {
                 return;
             }
 
             Unregister(worldObject);
+
             if (!token.Menu.TryGetTarget(out var menu))
             {
                 return;

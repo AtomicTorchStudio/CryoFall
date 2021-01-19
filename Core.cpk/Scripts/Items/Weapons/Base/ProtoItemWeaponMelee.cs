@@ -41,14 +41,10 @@
 
         public override CollisionGroup CollisionGroup => CollisionGroups.HitboxMelee;
 
-        public override double DamageApplyDelay => 0.075;
-
         public override DamageStatsComparisonPreset DamageStatsComparisonPreset
             => DamageStatsComparisonPresets.PresetMelee;
 
         public virtual double DurabilityDecreaseMultiplierWhenHittingBuildings => 10.0;
-
-        public override double FireAnimationDuration => 0.6;
 
         public override double FireInterval => this.FireAnimationDuration;
 

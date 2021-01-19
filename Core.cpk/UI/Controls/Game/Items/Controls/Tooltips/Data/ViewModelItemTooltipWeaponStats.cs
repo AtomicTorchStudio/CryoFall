@@ -12,16 +12,16 @@
     public class ViewModelItemTooltipWeaponStats : BaseViewModel
     {
         private static readonly Lazy<double> LazyInaccuracyAngleMax
-            = new Lazy<double>(CalculateInaccuracyAngleMax);
+            = new(CalculateInaccuracyAngleMax);
 
         private static readonly Lazy<Interval<double>> LazyReloadSpeedRange
-            = new Lazy<Interval<double>>(CalculateReloadSpeedRange);
+            = new(CalculateReloadSpeedRange);
 
         private static readonly Lazy<double> LazyFireRateMaxRanged
-            = new Lazy<double>(() => CalculateFireRateMax(isMelee: false));
+            = new(() => CalculateFireRateMax(isMelee: false));
 
         private static readonly Lazy<double> LazyFireRateMaxMelee
-            = new Lazy<double>(() => CalculateFireRateMax(isMelee: true));
+            = new(() => CalculateFireRateMax(isMelee: true));
 
         private readonly IProtoItemWeapon protoItemWeapon;
 

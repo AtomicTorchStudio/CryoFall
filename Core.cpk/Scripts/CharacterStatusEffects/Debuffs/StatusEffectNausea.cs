@@ -58,7 +58,7 @@
         protected override void PrepareEffects(Effects effects)
         {
             // add info to tooltip
-            effects.AddValue(this, StatName.VanityCantEatOrDrink, 1);
+            effects.AddPerk(this, StatName.VanityCantEatOrDrink);
         }
     }
 }

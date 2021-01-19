@@ -45,8 +45,8 @@
         public override byte ContainerOutputSlotsCount => 1;
 
         public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 90,
-                                               shutdownPercent: 100);
+            => new(startupPercent: 90,
+                   shutdownPercent: 100);
 
         public override string Description =>
             "This generator uses hot steam to drive a turbine and produce electricity. Takes time to boil water until it reaches its maximum output.";

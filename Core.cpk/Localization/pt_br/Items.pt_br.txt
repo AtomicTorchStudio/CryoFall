@@ -127,6 +127,9 @@ Projétil de artilharia
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Clique neste item segurando a tecla Alt para usá-lo ou consumi-lo rapidamente.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Você pode trocar o tipo de munição utilizado pela arma selecionada com a tecla [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Clique numa estrutura para desmontá-la.
 
@@ -138,6 +141,9 @@ Clique num poço ou coletor de água para reabastecê-lo com água.
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Clique numa estrutura para reparar ou construir.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Clique em um veículo danificado para repará-lo.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Clique numa planta de fazenda para regá-la.
@@ -169,6 +175,9 @@ Coloque-a num poço ou coletor de água para enchê-la de água limpa.
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Células de combustível são usadas para alimentar veículos distintos.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+Você pode ativar e desativar a lanterna/visão noturna pressionando [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 Segure \[b]Alt\[/b] ou \[b]Ctrl\[/b] enquanto atira para disparar a uma distância máxima na direção do cursor em vez de atirar na posição do cursor.
 
@@ -184,6 +193,12 @@ Este item usa energia dos carregadores portáteis equipados.
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Esta arma só pode ser instalada e usada num acoplamento [b]{0}[/b] de veículo.
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Visão noturna (Geração I)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Visão noturna (Geração II)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Cortar
 
@@ -195,6 +210,9 @@ Beber
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Comer
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Abrir
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Ler
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Sem combustível
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Para ativar a luz do capacete, equipe este item e aperte a tecla [{0}].
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-botão não configurado
+Para ativar a luz do capacete, equipe este item e pressione a tecla \[{0}\].
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 A armadura de osso oferece uma boa proteção, pelo preço, sendo uma ótima opção inicial.
@@ -402,6 +417,12 @@ Armadura militar
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Capacete militar
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Colete especial repleto de explosivos. Explode automaticamente quando seu usuário morre para que ele possa se vingar.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+Colete da vingança
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Capacete conveniente que vem com uma fonte de luz acoplada, deixando as mãos livres. Requer pilhas.
@@ -520,6 +541,15 @@ Peixes frescos e recém-pescados devem ser limpos antes de serem usados na culin
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Achigã
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Goby preto
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Uma forma de vida única, nativa deste planeta e feita de prágmio.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Peixe-voador azul
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Brema
 
@@ -532,8 +562,14 @@ Bagre
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Esquálio
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Pomoxis
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Biquara
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Carpa koi
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Cavala
@@ -561,6 +597,9 @@ Sardinha
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Truta
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Atum de barbatana amarela
 
 Scripts/Items/Food/ItemBanana@Description:
 Qualquer macaco pode alcançar as bananas, mas apenas os humanos podem alcançar as estrelas.
@@ -717,6 +756,12 @@ Uma xícara de café expresso quente. Ajuda a dar mais energia para fazer bestei
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Xícara de café
+
+Scripts/Items/Food/ItemCookingOil@Description:
+Óleo natural usado para culinária.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Óleo de cozinha
 
 Scripts/Items/Food/ItemCorn@Description:
 Uma planta de grãos saborosa, queridinha dos escritores de terror.
@@ -924,6 +969,24 @@ A guerra santa culinária dura até hoje...
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Pizza de abacaxi
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Batatas frescas com uma deliciosa crosta assada e recheadas com carne.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Batata assada com carne
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Batatas fritas no estilo clássico de fast food.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Batatas fritas
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Devem ser cozidas para o consumo.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Batata
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Bom do jeito que está ou como parte de uma refeição mais complexa.
@@ -1183,6 +1246,12 @@ Moedas de pequeno valor. Podem ser usadas para comprar itens baratos em máquina
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Tostão
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Velho porta-moedas. Talvez ainda haja algo dentro?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Porta-moedas
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Moedas de alto valor. Podem ser usadas para comprar itens em máquinas de venda ou trocadas diretamente com outros sobreviventes.
 
@@ -1277,6 +1346,12 @@ Oniflor vermelha. O nome é uma homenagem ao demônio vermelho.
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Oniflor
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Ela pode ser utilizada na produção de óleo de cozinha ou como decoração.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Flor amarela
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 O pó de fluxo é utilizado na metalurgia para criar metais de alta qualidade.
 
@@ -1306,6 +1381,12 @@ Célula abastecida com prágmio líquido. Tem uma vida útil extremamente longa.
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Célula de combustível com prágmio
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Órgão especial de uma criatura alienígena que contém um líquido volátil.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Bolsa de combustível
 
 Scripts/Items/Generic/ItemFur@Description:
 Pele animal. Pode ser usada para criar roupa quente para o inverno.
@@ -1343,10 +1424,10 @@ Um topázio amarelo e brilhante!
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Topázio
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 Uma turmalina roxa e brilhante!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Turmalina
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Apenas alguns galhos aleatórios juntados do chão ou arrancados de uma árvore.
 Scripts/Items/Generic/ItemTwigs@Name:
 Galhos
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Um estranho órgão esponjoso de uma forma de vida desconhecida. Emite partículas estranhas ao se deteriorar.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Coração de Tirano da Areia
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Acionador altamente flexível e extremamente potente que utiliza força magnética para se movimentar.
 
@@ -1853,6 +1940,12 @@ Charuto barato e feito às pressas. Estimulante.
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Charuto barato
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Marca extraterrestre de cigarros.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Cigarros
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Um bom charuto, com sabor encorpado. Estimulante.
 
@@ -1975,6 +2068,12 @@ O Peredozinol ajuda a aliviar os efeitos negativos do uso frequente de medicamen
 Scripts/Items/Medical/ItemPeredozin@Name:
 Peredozinol
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+A tala de gesso é usada a fim de manter o osso quebrado no lugar para que ele cure mais rapidamente.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Tala de gesso
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Composto especial neuromodulador que ajuda a reduzir o dano neural causado pela exposição ao campo psíquico.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Remédio herbal
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-Você não tem nenhum osso quebrado. Não precisa usar uma tala agora.
+Você não tem nenhum osso quebrado. Não precisa usar agora.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Sem osso quebrado
@@ -2062,8 +2161,14 @@ Sementes de sálvia-azul
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Sementes de oniflor
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Sementes de flor amarela
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Sementes de melancia
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Sementes de batata
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Sementes de arroz
@@ -2088,6 +2193,12 @@ Para plantar esta muda, é preciso ter pelo menos um painel de espaço entre ela
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Requer
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Contém os registros de coordenadas e frequência de navegação para um dos muitos locais de teletransporte.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Dados do local de teletransporte
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 O machado de ferro é ótimo para cortar árvores. É mais rápido e resistente do que o de pedra.
@@ -2146,11 +2257,11 @@ Precisa reabastecer.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Sem combustível
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-Esta frágil machadinha de prágmio utiliza a mecânica de ressonância molecular, tornando-a muito mais rápida do que as alternativas convencionais.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+Este frágil martelo de prágmio utiliza a mecânica de ressonância molecular, tornando-o muito mais rápido do que as alternativas convencionais.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Machadinha de prágmio
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+Martelo de prágmio
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 A picareta de ferro pode ser usada para garimpar depósitos minerais. É mais rápida e resistente do que a de pedra.
@@ -2175,6 +2286,12 @@ Este sensor possibilita a busca por cristais grandes de prágmio através da det
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Sensor de prágmio
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Kit universal de reparo de veículos descartável.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Kit de reparos de veículos
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 A caixa de ferramentas é necessária para construir ou consertar qualquer uma das suas estruturas. Lembre-se de equipá-la e selecioná-la.
@@ -2262,6 +2379,12 @@ Espada-laser (branca)
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Espada-laser (amarela)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+Utiliza a eletricidade de baterias internas para atordoar oponentes.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Bastão de choque
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Arma de curto alcance extremamente poderosa. Requer energia para ser operada.

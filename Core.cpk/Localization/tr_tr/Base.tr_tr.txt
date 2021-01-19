@@ -151,9 +151,6 @@ Su içme hızı
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Enerji yenilenmesi (dakika başına)
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Bozuk yiyecek yeme yeteneği
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Radyasyon zehirlenmesi hasarı
 
@@ -214,6 +211,12 @@ Balıkçılık başarısı
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Yakıt tüketimi
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Bozuk yiyecek yeme yeteneği
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Hiçbir sonucu olmaksızın çok yiyebilme yeteneği
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 Koşamaz
 
@@ -222,4 +225,7 @@ Saldıramaz
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 Soğuma süresindeyken medikal eşya kullanamaz
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+Kemik kıramaz
 

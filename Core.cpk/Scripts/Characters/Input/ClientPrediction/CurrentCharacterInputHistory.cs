@@ -8,13 +8,13 @@
 
     public class CurrentCharacterInputHistory
     {
-        public static readonly CurrentCharacterInputHistory Instance = new CurrentCharacterInputHistory();
+        public static readonly CurrentCharacterInputHistory Instance = new();
 
         private static readonly ICurrentGameService Game = Api.Client.CurrentGame;
 
         // TODO: the capacity should be adjusted to ensure it works for the current ping duration and FPS
         private readonly CycledArrayStorage<ClientPositionData> bufferDeltas
-            = new CycledArrayStorage<ClientPositionData>(length: 300);
+            = new(length: 300);
 
         private Vector2D? lastPosition;
 

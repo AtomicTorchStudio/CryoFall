@@ -20,7 +20,7 @@
                                           new PropertyMetadata(defaultValue: !Api.IsEditor));
 
         private readonly Dictionary<TabItem, FrameworkElement> tabContentPresenters
-            = new Dictionary<TabItem, FrameworkElement>();
+            = new();
 
         private Grid contentGrid;
 

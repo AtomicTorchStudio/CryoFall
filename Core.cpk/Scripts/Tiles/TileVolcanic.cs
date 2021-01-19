@@ -9,18 +9,17 @@
     public class TileVolcanic : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Volcanic/TileVolcanic1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Volcanic/TileVolcanic1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/Volcanic/TileVolcanic2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Volcanic/TileVolcanic2.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 9;
 
         public override TextureAtlasResource CliffAtlas { get; }
-            = new TextureAtlasResource(
-                "Terrain/Cliffs/TerrainCliffsVolcanic.png",
+            = new("Terrain/Cliffs/TerrainCliffsVolcanic.png",
                 columns: 6,
                 rows: 4,
                 isTransparent: true);

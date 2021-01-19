@@ -20,9 +20,9 @@
 
         public SoundResource soundToPlay;
 
-        private Border outerBorder;
+        private Control outerBorder;
 
-        private Border root;
+        private FrameworkElement root;
 
         private Storyboard storyboardFadeOut;
 
@@ -74,7 +74,7 @@
             string title,
             string message,
             Brush brushBackground,
-            Brush brushForeground,
+            Brush brushBorder,
             ITextureResource icon,
             Action onClick,
             bool autoHide,
@@ -90,7 +90,7 @@
                     title,
                     message,
                     brushBackground,
-                    brushForeground,
+                    brushBorder,
                     iconBrush,
                     onClick),
                 IsAutoHide = autoHide,
@@ -150,15 +150,14 @@
         {
             if (IsDesignTime)
             {
-                this.viewModel = new ViewModelHudNotificationControl();
                 return;
             }
 
             this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
             this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
             this.storyboardFadeOut = this.GetResource<Storyboard>("StoryboardFadeOut");
-            this.outerBorder = this.GetByName<Border>("OuterBorder");
-            this.root = this.GetByName<Border>("Border");
+            this.outerBorder = this.GetByName<Control>("OuterBorder");
+            this.root = this.GetByName<FrameworkElement>("LayoutRoot");
             this.DataContext = this.viewModel;
         }
 

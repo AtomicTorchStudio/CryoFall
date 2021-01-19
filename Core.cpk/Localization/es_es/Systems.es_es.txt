@@ -155,6 +155,192 @@ No se puede añadir la nueva receta
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 No se puede desmantelar
 
+Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
+Número de miembros
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeAlreadySameFactionMember:
+El jugador ya forma parte de tu facción.
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeMemberAnotherFaction:
+El jugador es miembro de otra facción y no se le puede invitar.
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Date_Format:
+[b]Fecha:[/b] {0}
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Name_Format:
+[b]Por:[/b] {0}
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@EditDescription:
+Editar descripción de la facción
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@Recruitment:
+Reclutamiento
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@SetMemberRole:
+Asignar roles de miembros
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
+Expulsar miembros
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
+Gestión de diplomacia
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
+Suplente
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Recruiter:
+Reclutador
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Diplomat:
+Diplomático
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Treasurer:
+Tesorero
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Officer:
+Oficial
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Manager:
+Gestor
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Minister:
+Ministro
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Name:
+Descripción de facción cambiada
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Text:
+Ha cambiado la descripción de la facción.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Name:
+Estado de diplomacia cambiado
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByOther_Format:
+[b]\[{0}\][/b] ha aceptado nuestra propuesta de paz.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByUs_Format:
+Hemos aceptado un tratado de paz con [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarByUs_Format:
+Le hemos declarado la guerra a [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarOnUs_Format:
+[b]\[{0}\][/b] nos ha declarado la guerra.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceByUs_Format:
+Hemos roto nuestra alianza con [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceWithUs_Format:
+[b]\[{0}\][/b] ha roto nuestra alianza.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarByUs_Format:
+Ya no estamos en guerra con [b]\[{0}\][/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarOnUs_Format:
+[b]\[{0}\][/b] ya no quiere estar en guerra con nosotros.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualOtherResponded_Format:
+[b]\[{0}\][/b] nos ha declarado la guerra como respuesta a nuestra declaración de guerra.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualWeResponded_Format:
+Le hemos declarado la guerra a [b]\[{0}\][/b], como respuesta a su declaración de guerra.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Name:
+Base de la facción asaltada
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Text_Format:
+Nuestra base de {0} ha sido asaltada por [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Name:
+Facción creada
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Text:
+Se ha creado la facción.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Name:
+Nivel de facción aumentado
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Text_Format:
+El nivel de la facción ha aumentado a [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Name:
+Terreno adjudicado de facción deteriorado
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Text_Format:
+La adjudicación de terreno de la facción se ha deteriorado en {0} y va a ser eliminada.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Name:
+Liderazgo transferido
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Text_Format:
+El liderazgo de la facción ha sido transferido a [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Name:
+Un miembro se ha unido
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Text_Format:
+[b]{0}[/b] se ha unido a la facción.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Name:
+Un miembro se ha ido
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Text_Format:
+[b]{0}[/b] ha abandonado la facción.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Name:
+Miembro expulsado
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Text_Format:
+Un oficial ha echado a [b]{0}[/b] de la facción.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@CurrentPlayerRoleChangedText_Format:
+Tu rol dentro de la facción ha cambiado a [b]{0}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Name:
+Rol de miembro cambiado
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Text_Format:
+El rol de [b]{0}[/b] ha cambiado a [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@CurrentPlayerAccessRightsChangedText:
+Tus derechos de acceso a la facción han cambiado.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Name:
+Derechos de acceso cambiados
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Text_Format:
+Los derechos de acceso del rol [b]{0}[/b] han cambiado.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Name:
+Cambio de nombre de rol
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Text_Format:
+El nombre del rol [b]{0}[/b] se ha cambiado a [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Name:
+Territorio de la facción modificado
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expanded_Format:
+El territorio de la facción se ha expandido en {0}.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
+Se ha eliminado territorio de la facción en {0}.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
+Riqueza de las bases de facción
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
+Nivel de facción
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
+Puntuación de jefe
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
+Puntuación de caza
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
+Total acumulado de PA
+
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 No tenes ningún cebo en el inventario que puedas usar para pescar.
 
@@ -245,11 +431,14 @@ Gozas de protección para novatos. Este sistema impedirá que pierdas tus objeto
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 La protección para novatos se acabará en:
 
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CanCancelProtection:
+Podrás cancelar la protección en cualquier momento a través del menú Social.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Si la protección para novatos está activa, no podrás atacar a otros jugadores ni saquear los objetos que dejen al morir. Podrás cancelar la protección en cualquier momento a través del menú Diplomacia.
+Mientras estés bajo el amparo de la protección para novatos, no podrás atacar a otros jugadores ni saquear sus bolsas u objetos.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-No podrás llevar a cabo esta acción mientras estés usando la protección para novatos. Podrás cancelar la protección en cualquier momento a través del menú Diplomacia.
+No puedes llevar a cabo esta acción mientas estés bajo la protección para novatos.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Esta bolsa está bajo protección para novatos, así que solo el dueño puede cogerla.
@@ -298,9 +487,6 @@ No se ha encontrado ninguna invitación o esta ya ha caducado.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
 Demasiado tarde. El grupo ya está lleno.
-
-Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
-No se ha encontrado a la persona invitada.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
 El grupo está lleno.
@@ -382,6 +568,9 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `El operario de este servidor ha decidido que sea solo por invitación.
 [br]Para más detalles, revisa la descripción del servidor.`
 
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionCommunity:
+Este servidor está gestionado por un miembro de la comunidad. [b]No[/b] está gestionado, respaldado o tiene relación alguna con la desarrolladora o la editora del juego.[br]Puede que te bloqueen o te expulsen por incumplir las normas del servidor. Léelas atentamente y, si tienes cualquier problema, contacta con el propietario del servidor.
+
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
 El servidor de la comunidad tiene modificaciones de terceros instaladas. No podemos garantizar que el juego vaya a ejecutarse correctamente o a ofrecerte la mejor experiencia posible de CryoFall. Si tienes algún problema, comunícaselo al propietario de este servidor de la comunidad.
 
@@ -392,6 +581,9 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
 `Este es un servidor JcJ todos contra todos. Recuerda que en los servidores centrados en el JcJ [b]te encontrarás violencia[/b] por parte de otros jugadores y que la idea es luches y te defiendas. Tendrás que aprender a protegerte y no bajar la guardia en ningún momento. Este modo de juego está pensado únicamente para jugadores experimentados.
 [br]Si prefieres tener una experiencia más relajada, sobre todo si esta es la primera vez que juegas, plantéate la opción de unirte a un servidor JcE.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionCommunity:
+Servidor de la comunidad
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
 Servidor JcE
@@ -498,20 +690,26 @@ No se puede recargar el arma.
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
 Sin munición
 
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
-Abierto a dueños
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
-Abierta a dueños o dueños de terreno
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
-Abierto a todo el mundo
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
-Siempre cerrado
-
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 ¡No tienes acceso!
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwners:
+Abierto a dueños
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Abierta a dueños o dueños de terreno
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToEveryone:
+Abierto a todo el mundo
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@Closed:
+Siempre cerrado
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllFactionMembers:
+Se le abre a todos los miembros de la facción
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllyFactionMembers:
+Se le abre a miembros de la facción aliados
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
 Se ha superado el límite de tamaño de la lista de acceso.
@@ -524,9 +722,6 @@ No puedes quitar al último dueño.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
 No puedes eliminarte a ti mismo de la lista de dueños. Pídele a otro jugador que lo haga.
-
-Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
-No se ha encontrado a un jugador llamado [b]{0}[/b].
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
 No eres el dueño.

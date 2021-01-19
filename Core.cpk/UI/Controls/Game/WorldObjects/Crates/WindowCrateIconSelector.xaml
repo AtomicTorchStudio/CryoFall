@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates.Data"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
@@ -79,7 +79,7 @@
                                         <Border x:Name="Border"
                                                 CornerRadius="3"
                                                 Background="#FF262626"
-                                                ui:ToolTipServiceExtend.ToolTip="{Binding Name}">
+                                                base:ToolTipServiceExtend.ToolTip="{Binding Name}">
                                             <ContentPresenter />
                                         </Border>
 
@@ -180,7 +180,10 @@
                             Padding="3"
                             Margin="0,2,0,5"
                             HorizontalAlignment="Left">
-                        <Rectangle Fill="{Binding Icon}" Width="48" Height="48" />
+                        <Rectangle Fill="{Binding Icon}"
+                                   Width="48"
+                                   Height="48"
+                                   UseLayoutRounding="True" />
                     </Border>
                     <TextBlock Text="{Binding SelectedProtoEntity.Name}"
                                FontWeight="Bold"
@@ -189,9 +192,9 @@
                                VerticalAlignment="Center"
                                MaxWidth="120"
                                Margin="5,0,0,0" />
-                    <ui:ToolTipServiceExtend.ToolTip>
+                    <base:ToolTipServiceExtend.ToolTip>
                         <tooltips:ItemTooltipControl ProtoItem="{Binding SelectedProtoEntity}" />
-                    </ui:ToolTipServiceExtend.ToolTip>
+                    </base:ToolTipServiceExtend.ToolTip>
                 </StackPanel>
             </StackPanel>
 

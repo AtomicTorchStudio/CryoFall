@@ -51,7 +51,7 @@
         public const string Notification_TooLate = "Too late...you let the fish get away";
 
         private static readonly Dictionary<IProtoItemFish, IReadOnlyDropItemsList> ServerCachedDroplists
-            = new Dictionary<IProtoItemFish, IReadOnlyDropItemsList>();
+            = new();
 
         public static event DelegateServerFishCaught ServerFishCaught;
 
@@ -60,10 +60,9 @@
         [NotLocalizable]
         public override string Name => "Fishing system";
 
-        public static void ClientPullFish(ILogicObject fishingSession)
+        public static void ClientPullFish()
         {
-            Instance.CallServer(
-                _ => _.ServerRemote_PullFish(fishingSession));
+            Instance.CallServer(_ => _.ServerRemote_PullFish());
         }
 
         public static void ServerSendNotificationFishSlipOfTheHook(ICharacter character)
@@ -287,16 +286,24 @@
         }
 
         private static ArrayWithWeights<IProtoItemFish> ServerSelectAvailableFishPrototypes(
+            ICharacter character,
             bool isSaltWater,
+            Vector2Ushort fishingTilePosition,
             IProtoItemFishingBait protoItemFishingBait,
             byte characterFishingKnowledgeLevel)
         {
-            var result = new List<ValueWithWeight<IProtoItemFish>>();
+            using var tempList = Api.Shared.GetTempList<ValueWithWeight<IProtoItemFish>>();
+
             foreach (var protoItemFish in AllFishList)
             {
                 if (protoItemFish.IsSaltwaterFish != isSaltWater)
                 {
                     // this fish is for different water type
+                    continue;
+                }
+
+                if (!protoItemFish.ServerCanCatch(character, fishingTilePosition))
+                {
                     continue;
                 }
 
@@ -313,10 +320,10 @@
                     continue;
                 }
 
-                result.Add(new ValueWithWeight<IProtoItemFish>(protoItemFish, weight));
+                tempList.Add(new ValueWithWeight<IProtoItemFish>(protoItemFish, weight));
             }
 
-            return new ArrayWithWeights<IProtoItemFish>(result);
+            return new ArrayWithWeights<IProtoItemFish>(tempList.AsList());
         }
 
         private void ClientRemote_OnFishCaught(
@@ -375,26 +382,20 @@
             ClientFishingSoundsHelper.PlaySoundFail(ClientCurrentCharacterHelper.Character);
         }
 
-        // TODO: for A29 remove fishing session argument as it could be taken from the context 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ServerRemote_PullFish(ILogicObject fishingSession)
+        private void ServerRemote_PullFish()
         {
             var character = ServerRemoteContext.Character;
-
-            var isBiting = FishingSession.GetPublicState(fishingSession).IsFishBiting;
-            //Logger.Dev("Client requested pulling the fish. IsBiting=" + isBiting, character);
-
             if (!(PlayerCharacter.GetPrivateState(character).CurrentActionState
                       is FishingActionState state))
             {
-                // should not be possible as fishing session should be destroyed by then
+                // received too late, the fishing session has ended
                 return;
             }
 
-            if (state.SharedFishingSession != fishingSession)
-            {
-                throw new Exception("Received a wrong fishing session");
-            }
+            var fishingSession = state.SharedFishingSession;
+            var isBiting = FishingSession.GetPublicState(fishingSession).IsFishBiting;
+            //Logger.Dev("Client requested pulling the fish. IsBiting=" + isBiting, character);
 
             try
             {
@@ -437,11 +438,14 @@
                     delaySeconds: 1.5,
                     () => ItemDurabilitySystem.ServerModifyDurability(itemFishingRod, -1));
 
-                var isSaltWater = Server.World.GetTile(state.Request.FishingTargetPosition.ToVector2Ushort())
+                var fishingTilePosition = state.Request.FishingTargetPosition.ToVector2Ushort();
+                var isSaltWater = Server.World.GetTile(fishingTilePosition)
                                         .ProtoTile is TileWaterSea;
 
                 var selectedFishPrototypes = ServerSelectAvailableFishPrototypes(
+                    character,
                     isSaltWater,
+                    fishingTilePosition,
                     rodPublicState.CurrentProtoBait,
                     characterFishingKnowledgeLevel: (byte)(100 * fishingKnowledgeCoef));
 
@@ -450,7 +454,7 @@
                 var createItemResult = droplist.TryDropToCharacterOrGround(
                     character,
                     character.TilePosition,
-                    new DropItemContext(character, null),
+                    new DropItemContext(character),
                     out _,
                     // compensate for the server rate to ensure that
                     // it doesn't affect the number of fish spawned

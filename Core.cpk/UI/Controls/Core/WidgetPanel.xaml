@@ -8,9 +8,11 @@
                       mc:Ignorable="d"
                       d:DesignHeight="300" d:DesignWidth="300">
     <Grid DataContext="{Binding ElementName=UserControl}">
+        <Border Style="{StaticResource WidgetBorderShadowStyle}" />
+
         <Border Style="{StaticResource WidgetBackgroundBorder}"
                 Background="{Binding WidgetBackground, ElementName=UserControl}"
-                Margin="1" />
+                Margin="0.5" />
 
         <Border CornerRadius="3"
                 Background="{StaticResource WidgetBackgroundImageTexture}"

@@ -30,7 +30,7 @@
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource BrushColorAlt6}" />
-            <Setter Property="FontFamily" Value="{StaticResource  CondensedFontFamily}" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="TextWrapping" Value="Wrap" />

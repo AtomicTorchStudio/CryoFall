@@ -1,0 +1,76 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.CharacterCreation.MenuCharacterCreation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:player="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    mc:Ignorable="d"
+    d:DesignHeight="80" d:DesignWidth="850"
+    Foreground="{StaticResource WindowForeground}"
+    Opacity="1"
+    Panel.ZIndex="8800"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    UseLayoutRounding="True">
+    <base:BaseUserControl.Background>
+        <ImageBrush ImageSource="Images/Background.jpg"
+                    Stretch="UniformToFill" />
+    </base:BaseUserControl.Background>
+
+    <Grid HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+        <core:WidgetPanel InnerGlowSize="10"
+                          VisibilityBackgroundImage="Collapsed"
+                          WidgetBackground="{StaticResource WindowBackgroundBrush}" />
+
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuCharacterCreation_Title}"
+                       FontSize="13"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource WindowTitleForeground}"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,5" />
+
+            <player:CharacterCustomizationControl Grid.Row="1"
+                                                  x:Name="CharacterCustomizationControl" />
+
+            <Grid Grid.Row="2"
+                  HorizontalAlignment="Center"
+                  MaxWidth="{Binding ActualWidth, ElementName=CharacterCustomizationControl}"
+                  Margin="0,15,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="3" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Control Style="{StaticResource ControlInfoPointStyle}"
+                         Width="11"
+                         Height="11"
+                         FontSize="11"
+                         Margin="-1,-0.5,0,0"
+                         VerticalAlignment="Center" />
+
+                <core:FormattedTextBlock
+                    Grid.Column="2"
+                    Content="{x:Static loc:CoreStrings.MenuCharacterCreation_CanChangeAppearanceLater}"
+                    Foreground="{StaticResource BrushColorAlt7}"
+                    FontSize="12"
+                    LineHeight="12"
+                    LineStackingStrategy="BlockLineHeight"
+                    TextWrapping="Wrap" />
+            </Grid>
+        </Grid>
+    </Grid>
+</base:BaseUserControl>

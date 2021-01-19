@@ -11,22 +11,23 @@
     d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <StackPanel.Resources>
-            <Style x:Key="Description" TargetType="{x:Type core:FormattedTextBlock}">
-                <Setter Property="TextWrapping" Value="Wrap" />
-                <Setter Property="FontSize" Value="10" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-                <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
-                <Setter Property="Margin" Value="0,-1,0,0" />
-            </Style>
-
             <Style x:Key="Title" TargetType="TextBlock">
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-                <Setter Property="FontSize" Value="11" />
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="Margin" Value="0,8,0,0" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+
+            <Style x:Key="Description" TargetType="{x:Type core:FormattedTextBlock}">
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
+                <Setter Property="LineHeight" Value="13" />
+                <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
             </Style>
         </StackPanel.Resources>
 

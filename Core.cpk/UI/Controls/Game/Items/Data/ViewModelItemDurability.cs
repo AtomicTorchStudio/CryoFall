@@ -6,14 +6,18 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelItemDurability : BaseViewModel
     {
-        public static readonly Brush BrushGreen = new SolidColorBrush(Color.FromArgb(0x99, 0x20, 0xC0, 0x20));
+        private static readonly Brush BrushGreen
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorGreen4");
 
-        public static readonly Brush BrushRed = new SolidColorBrush(Color.FromArgb(0xBB, 0xE0, 0x10, 0x10));
+        private static readonly Brush BrushRed
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed5");
 
-        public static readonly Brush BrushYellow = new SolidColorBrush(Color.FromArgb(0xAA, 0xE0, 0xE0, 0x10));
+        private static readonly Brush BrushYellow
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColor5");
 
         private IItemWithDurabilityPrivateState durabilityPrivateState;
 

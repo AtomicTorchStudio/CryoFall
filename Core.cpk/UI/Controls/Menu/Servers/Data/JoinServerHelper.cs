@@ -3,7 +3,6 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Server;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class JoinServerHelper
@@ -144,7 +143,8 @@
                 return;
             }
 
-            await JoinServerAgreementDialogHelper.Display();
+            // can display a dialog before player joins the server
+            //await JoinServerAgreementDialogHelper.Display();
 
             Api.Client.CurrentGame.ConnectToServer(address);
         }

@@ -83,7 +83,8 @@
                 return;
             }
 
-            var decrease = this.DurabilityDecreasePerMinuteWhenInstalled * (data.DeltaTime / 60.0);
+            var decrease = this.DurabilityDecreasePerMinuteWhenInstalled
+                           * (data.DeltaTime / this.ServerUpdateIntervalSeconds);
             decrease *= rate;
 
             ItemDurabilitySystem.ServerModifyDurability(item,

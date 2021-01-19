@@ -18,7 +18,7 @@
             effects.AddPercent(this, StatName.DazedIncreaseRateMultiplier, -100);
 
             // Broken bones protection.
-            effects.AddValue(this, StatName.ReinforcedBones, 1);
+            effects.AddValue(this, StatName.PerkCannotBreakBones, 1);
         }
     }
 }

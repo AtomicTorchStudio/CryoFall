@@ -20,11 +20,13 @@
         private const string HairRootFolderPath = ContentPaths.Textures + "Characters/Hair/";
 
         private static readonly Dictionary<string, SharedCharacterFaceStylesProvider> Providers =
-            new Dictionary<string, SharedCharacterFaceStylesProvider>();
+            new();
 
         private readonly string facesFolderPath;
 
         private readonly string hairFolderPath;
+
+        private readonly bool isMale;
 
         private IReadOnlyDictionary<string, FaceFolder> allFaceFolders;
 
@@ -36,8 +38,9 @@
 
         private bool isInitialized;
 
-        private SharedCharacterFaceStylesProvider(string subpath)
+        private SharedCharacterFaceStylesProvider(string subpath, bool isMale)
         {
+            this.isMale = isMale;
             this.facesFolderPath = FacesRootFolderPath + subpath;
             this.hairFolderPath = HairRootFolderPath + subpath;
         }
@@ -54,7 +57,7 @@
                 return provider;
             }
 
-            Providers[subpath] = provider = new SharedCharacterFaceStylesProvider(subpath);
+            Providers[subpath] = provider = new SharedCharacterFaceStylesProvider(subpath, isMale);
             return provider;
         }
 
@@ -198,7 +201,10 @@
 
             var sharedApi = Api.Shared;
             this.allHairFolders = sharedApi.GetFolderNamesInFolder(this.hairFolderPath).OrderBy(f => f).ToList();
-            this.allHairFolders.Insert(0, null);
+            if (this.isMale)
+            {
+                this.allHairFolders.Insert(0, null);
+            }
 
             var allFacesFolders = sharedApi.GetFolderNamesInFolder(this.facesFolderPath).OrderBy(f => f).ToList();
             if (allFacesFolders.Count == 0)
@@ -230,22 +236,22 @@
                 var faceFolderName = allFacesFolders[index];
                 var faceFolderPath = this.facesFolderPath + faceFolderName;
 
-                using var availableFiles = sharedApi.GetFilePathsInFolder(
+                using var tempFiles = sharedApi.GetFilePathsInFolder(
                     faceFolderPath,
                     includeSubfolders: false,
                     stripFolderPathFromFilePaths: true,
                     withoutExtensions: true);
 
                 // TODO: rewrite to avoid LINQ
-                var topIds = availableFiles.AsList()
-                                           .Where(_ => _.StartsWith("FrontTop"))
-                                           .Select(_ => _.Substring("FrontTop".Length))
-                                           .ToArray();
+                var topIds = tempFiles.AsList()
+                                      .Where(_ => _.StartsWith("FrontTop"))
+                                      .Select(_ => _.Substring("FrontTop".Length))
+                                      .ToArray();
 
-                var bottomIds = availableFiles.AsList()
-                                              .Where(_ => _.StartsWith("FrontBottom"))
-                                              .Select(_ => _.Substring("FrontBottom".Length))
-                                              .ToArray();
+                var bottomIds = tempFiles.AsList()
+                                         .Where(_ => _.StartsWith("FrontBottom"))
+                                         .Select(_ => _.Substring("FrontBottom".Length))
+                                         .ToArray();
 
                 if (topIds.Length == 0)
                 {

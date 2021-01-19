@@ -76,7 +76,7 @@
 
             var value = this.Button;
             this.TextKey = InputKeyNameHelper.GetKeyText(
-                ClientInputManager.GetKeyForAbstractButton(value.AbstractButton));
+                ClientInputManager.GetKeyForButton(value.AbstractButton));
         }
     }
 }

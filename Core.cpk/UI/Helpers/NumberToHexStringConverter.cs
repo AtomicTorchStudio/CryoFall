@@ -31,23 +31,23 @@
             switch (value)
             {
                 default:
-                case byte _:
-                case sbyte _:
+                case byte:
+                case sbyte:
                     digits = 1;
                     break;
 
-                case short _:
-                case ushort _:
+                case short:
+                case ushort:
                     digits = 2;
                     break;
 
-                case int _:
-                case uint _:
+                case int:
+                case uint:
                     digits = 4;
                     break;
 
-                case long _:
-                case ulong _:
+                case long:
+                case ulong:
                     digits = 8;
                     break;
             }

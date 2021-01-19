@@ -75,7 +75,7 @@
             var camera = rendering.CreateCamera(cameraObject,
                                                 renderingTag,
                                                 drawOrder: -200);
-            camera.ClearColor = Color.FromArgb(0x00, 0x00, 0x00, 0x00); // transparent black
+            camera.ClearColor = Color.FromArgb(0, 0, 0, 0);
             camera.RenderTarget = renderTexture;
             camera.TextureFilter = TextureFilter.Point;
             camera.SetOrthographicProjection(scaledTextureSize.X, scaledTextureSize.Y);

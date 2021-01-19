@@ -3,13 +3,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class ItemFreshnessConstants
     {
-        public static readonly double ServerFreshnessDecaySpeedMultiplier;
-
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         static ItemFreshnessConstants()
         {
@@ -25,57 +22,35 @@
             var description = $@"Adjusts the speed at which the food and some other items lose their freshness.
                                  (allowed range: from {minValue:0.0###} to {maxValue:0.0###})";
 
-            ServerFreshnessDecaySpeedMultiplier = ServerRates.Get(
+            SharedFreshnessDecaySpeedMultiplier = ServerRates.Get(
                 key,
                 defaultValue: defaultValue,
                 description);
 
-            var clampedValue = MathHelper.Clamp(ServerFreshnessDecaySpeedMultiplier, minValue, maxValue);
+            var clampedValue = MathHelper.Clamp(SharedFreshnessDecaySpeedMultiplier, minValue, maxValue);
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (ServerFreshnessDecaySpeedMultiplier != clampedValue)
+            if (SharedFreshnessDecaySpeedMultiplier != clampedValue)
             {
                 // incorrect value, reset to the vanilla value
                 clampedValue = defaultValue;
                 ServerRates.Reset(key, defaultValue, description);
             }
 
-            ServerFreshnessDecaySpeedMultiplier = clampedValue;
+            SharedFreshnessDecaySpeedMultiplier = clampedValue;
         }
 
-        public static double ClientFreshnessDecaySpeedMultiplier { get; private set; }
+        public static double SharedFreshnessDecaySpeedMultiplier { get; private set; }
+
+        public static void ClientSetSystemConstants(double freshnessDecaySpeedMultiplier)
+        {
+            Api.ValidateIsClient();
+            SharedFreshnessDecaySpeedMultiplier = freshnessDecaySpeedMultiplier;
+        }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
         public static void EnsureInitialized()
         {
-        }
-
-        // This bootstrapper requests FreshnessDecaySpeedMultiplier rate value from server.
-        private class Bootstrapper : BaseBootstrapper
-        {
-            public override void ClientInitialize()
-            {
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-                Refresh();
-
-                async void Refresh()
-                {
-                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
-                    {
-                        return;
-                    }
-
-                    ClientFreshnessDecaySpeedMultiplier = 1.0;
-                    ClientFreshnessDecaySpeedMultiplier =
-                        await ItemFreshnessSystem.Instance.CallServer(
-                            _ => _.ServerRemote_RequestFreshnessDecaySpeedMultiplier());
-                }
-            }
-
-            public override void ServerInitialize(IServerConfiguration serverConfiguration)
-            {
-                EnsureInitialized();
-            }
         }
     }
 }

@@ -20,7 +20,7 @@
 
         public static TaskRelocateAnyStructure Require()
         {
-            return new TaskRelocateAnyStructure();
+            return new();
         }
 
         public override ITextureResource ClientCreateIcon()

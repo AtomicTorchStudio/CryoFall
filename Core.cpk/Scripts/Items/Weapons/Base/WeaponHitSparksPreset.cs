@@ -46,7 +46,7 @@
 
         public WeaponHitSparksPreset Clone()
         {
-            return new WeaponHitSparksPreset(this);
+            return new(this);
         }
 
         public HitSparksEntry GetForMaterial(ObjectMaterial material)

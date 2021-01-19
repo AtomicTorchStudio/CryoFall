@@ -226,7 +226,7 @@
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.State.DeliveryMode">
             <summary>
-            (from Lidgren library) How the library deals with resends and handling of late messages.
+            (from Lidgren/LiteNetLib library) How the library deals with resends and handling of late messages.
             Explained there https://github.com/lidgren/lidgren-network-gen3/wiki/Basics
             and there https://github.com/lidgren/lidgren-network-gen3/wiki/Sequence-Channels
             </summary>
@@ -274,8 +274,7 @@
             Remote call settings.
             </summary>
             <param name="deliveryMode">
-            Please read
-            https://github.com/lidgren/lidgren-network-gen3/wiki/Sequence-Channels
+            <see cref="T:AtomicTorch.CBND.GameApi.Data.State.DeliveryMode" />
             </param>
             <param name="timeInterval">
             The interval of sending the remote calls
@@ -492,7 +491,7 @@
             </param>
             <param name="deliveryMode">
             (only for primitive types) Please read
-            https://github.com/lidgren/lidgren-network-gen3/wiki/Sequence-Channels
+            <see cref="T:AtomicTorch.CBND.GameApi.Data.State.DeliveryMode" />
             </param>
             <param name="maxUpdatesPerSecond">(only for primitive types) Max update rate (useful to limit network utilization).</param>
             <param name="networkDataType">
@@ -512,6 +511,11 @@
             <summary>
             (Client-only) Returns true if this character is the current player character.<br />
             If so, you have more access to its properties.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Characters.ICharacter.Name">
+            <summary>
+            Gets the Name.
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.Data.Characters.ICharacter.ProtoCharacter">
@@ -1107,7 +1111,7 @@
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientInitializeData">
             <summary>
-            Data for ClientInitalize() method.
+            Data for ClientInitialize() method.
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientInitializeData.GameObject">
@@ -1290,6 +1294,13 @@
             <summary>
             Gets the texture used for construction place selection (blueprint). Usually the same texture is used for the object
             rendering as well.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.World.StaticObjectKind.FloorDecal">
+            <summary>
+            Floor decals.
+            Please note: these objects are automatically removed from the world when object spawns nearby
+            or a structure is built.
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Data.World.StaticObjectKind.NaturalObject">
@@ -1577,11 +1588,6 @@
         <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObject.Id">
             <summary>
             Gets the Id.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObject.Name">
-            <summary>
-            Gets the Name.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto">
@@ -2609,6 +2615,20 @@
             Renders only on manual request, when all the renders are ready (textures/effects loaded asynchronously).
             </summary>
         </member>
+        <member name="E:AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera.ICamera2D.AfterDraw">
+            <summary>
+            An event which is invoked after the camera finished drawing.
+            </summary>
+        </member>
+        <member name="E:AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera.ICamera2D.BeforeDraw">
+            <summary>
+            An event which is invoked right before the camera draws.
+            Please note: if you create any sprite renderers for this camera
+            in a handler of this event, they may not render properly
+            (will display magenta color) when the textures are not yet loaded into them.
+            Please avoid creating any sprite renders during this event.
+            </summary>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera.ICamera2D.RenderingTag">
             <summary>
             Special rendering tag - this camera will render only the rendering components with the same rendering tag.
@@ -2746,7 +2766,7 @@
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.RemoveAttachmentAnimationsForSlot(System.String)">
             <summary>
             Finds and modifies all animations which contains a timeline which is modifying the slot's current attachment.
-            For example, with this method it's possible to remove all modifications for "Weapon" slot — whi
+            For example, with this method it's possible to remove all modifications for "Weapon" slot.
             </summary>
             <param name="slotName">Slot name.</param>
         </member>
@@ -3456,11 +3476,6 @@
             Gets the tile at current mouse position.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.GetGameObjectsOfProto``2">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.CreateItemResult">
             <summary>
             Item creation API call result.
@@ -3705,6 +3720,16 @@
             Provides properties to access the server API services (available only on Server-side).
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2(``1)">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto``1">
             <summary>
             Please note - this method is not available during Bootstrapper execution.
@@ -3813,16 +3838,6 @@
             excluded).
             </param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2(``1)">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetInViewScopeByPlayers(AtomicTorch.CBND.GameApi.Data.World.IWorldObject,System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter})">
             <summary>
             Gets hashset of characters observing the object directly.
@@ -3893,6 +3908,13 @@
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.ScheduleFixTileHeight(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort)">
             <summary>
             Schedules fixing tile height - it will be called during the next <see cref="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.FixMapTilesRecentlyModified" /> call.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.UpdateWorld(AtomicTorch.CBND.GameApi.Resources.ServerMapResource)">
+            <summary>
+            Updates the world map. All static world objects and zones will be loaded from the map file too.
+            In order to prevent prop objects duplication, remove them before calling this method.
+            (See how it's used in Core.cpk BootstrapperServerWorld)
             </summary>
         </member>
     </members>

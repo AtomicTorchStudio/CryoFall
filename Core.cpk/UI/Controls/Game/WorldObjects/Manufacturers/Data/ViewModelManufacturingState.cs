@@ -411,8 +411,8 @@
             }
 
             this.BestMatchingRecipe = ManufacturingMechanic.SharedMatchBestRecipe(this.ManufacturingState,
-                                                                                  this.ManufacturingConfig,
-                                                                                  this.worldObjectManufacturer);
+                this.ManufacturingConfig,
+                this.worldObjectManufacturer);
         }
 
         private void RefreshCraftingProgressPercents()

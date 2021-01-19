@@ -23,22 +23,22 @@
 
             this.Layers = new ObservableCollection<ViewModelNoiseLayerSettings>()
             {
-                new ViewModelNoiseLayerSettings(0.25,
-                                                Color.FromRgb(0x00, 0x00, 0xFF),
-                                                this.commandDeleteLayer,
-                                                this.callbackRefresh),
-                new ViewModelNoiseLayerSettings(0.5,
-                                                Color.FromRgb(0x00, 0x88, 0x00),
-                                                this.commandDeleteLayer,
-                                                this.callbackRefresh),
-                new ViewModelNoiseLayerSettings(0.75,
-                                                Color.FromRgb(0x99, 0x55, 0x00),
-                                                this.commandDeleteLayer,
-                                                this.callbackRefresh),
-                new ViewModelNoiseLayerSettings(1,
-                                                Color.FromRgb(0xDD, 0xDD, 0xDD),
-                                                this.commandDeleteLayer,
-                                                this.callbackRefresh)
+                new(0.25,
+                    Color.FromRgb(0x00, 0x00, 0xFF),
+                    this.commandDeleteLayer,
+                    this.callbackRefresh),
+                new(0.5,
+                    Color.FromRgb(0x00, 0x88, 0x00),
+                    this.commandDeleteLayer,
+                    this.callbackRefresh),
+                new(0.75,
+                    Color.FromRgb(0x99, 0x55, 0x00),
+                    this.commandDeleteLayer,
+                    this.callbackRefresh),
+                new(1,
+                    Color.FromRgb(0xDD, 0xDD, 0xDD),
+                    this.commandDeleteLayer,
+                    this.callbackRefresh)
             };
         }
 

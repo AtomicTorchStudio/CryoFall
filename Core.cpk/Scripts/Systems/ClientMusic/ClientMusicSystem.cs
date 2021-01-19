@@ -22,7 +22,7 @@
         // we don't need any logging as the system works fine, but it's easy to restore logging
         private static readonly ILogger Logger = Api.NullLogger; // Api.Logger
 
-        private static readonly List<MusicTrack> Queue = new List<MusicTrack>();
+        private static readonly List<MusicTrack> Queue = new();
 
         private static ProtoPlaylist currentPlaylist;
 

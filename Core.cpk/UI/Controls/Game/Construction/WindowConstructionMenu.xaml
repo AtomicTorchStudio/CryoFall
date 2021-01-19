@@ -45,7 +45,6 @@
                 </TabControl.Resources>
             </TabControl>
 
-
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -76,7 +75,8 @@
                                 <!-- Icon -->
                                 <Rectangle Fill="{Binding Icon}"
                                            Width="32"
-                                           Height="32" />
+                                           Height="32"
+                                           UseLayoutRounding="True" />
 
                                 <TextBlock Grid.Column="1"
                                            Text="{Binding Title}"
@@ -263,7 +263,8 @@
                             Padding="5">
                         <Rectangle Fill="{Binding Icon}"
                                    Width="140"
-                                   Height="140" />
+                                   Height="140"
+                                   UseLayoutRounding="True" />
                     </Border>
 
                     <ScrollViewer Grid.Row="2"

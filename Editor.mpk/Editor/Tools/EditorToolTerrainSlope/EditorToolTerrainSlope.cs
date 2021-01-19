@@ -1,13 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolTerrainSlope
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -16,7 +15,7 @@
     {
         public override string Name => "Terrain slope tool";
 
-        public override int Order => 30;
+        public override int Order => 20;
 
         public override BaseEditorActiveTool Activate(BaseEditorToolItem item)
         {
@@ -33,13 +32,13 @@
 
         public override FrameworkElement CreateSettingsControl()
         {
-            return new TextBlock()
+            return new FormattedTextBlock()
             {
-                Text = "Click on a cliff to create a slope."
-                       + Environment.NewLine
-                       + "Click on a slope to remove it.",
+                Content =
+                    @"Click on a cliff to create a slope.
+                      [br]Click on a slope to remove it.",
                 Foreground = Brushes.White,
-                FontSize = 13
+                FontSize = 11
             };
         }
 
@@ -51,10 +50,11 @@
             var previousIsSlope = tile.IsSlope;
             var newIsSlope = !previousIsSlope;
 
-            EditorClientSystem.DoAction(
+            EditorClientActionsHistorySystem.DoAction(
                 "Toggle terrain slope",
                 onDo: () => this.CallServer(_ => _.ServerRemote_PlaceAt(tilePosition,   newIsSlope)),
-                onUndo: () => this.CallServer(_ => _.ServerRemote_PlaceAt(tilePosition, previousIsSlope)));
+                onUndo: () => this.CallServer(_ => _.ServerRemote_PlaceAt(tilePosition, previousIsSlope)),
+                canGroupWithPreviousAction: false);
         }
 
         [RemoteCallSettings(DeliveryMode.Default,

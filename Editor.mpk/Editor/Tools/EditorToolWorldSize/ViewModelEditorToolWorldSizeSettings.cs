@@ -65,7 +65,7 @@
         public EditorToolWorldSizeTileSize[] SizesCollection { get; }
 
         public ViewModelPositionAndSizeSettings ViewModelSelectWorldSizeSliceExpansionLocation { get; }
-            = new ViewModelPositionAndSizeSettings();
+            = new();
 
         public string WorldOffsetText { get; set; } = FormatPosition(new Vector2Ushort(10000, 10000));
 

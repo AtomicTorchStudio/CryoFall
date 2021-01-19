@@ -42,11 +42,11 @@
             }
         }
 
+        public override string ActionTitle => CoreStrings.Action_Build;
+
         public override IReadOnlyList<ProtoItemWithCount> StageRequiredItems
             => this.protoStructure.ConfigBuild.StageRequiredItems;
 
-        public override string ActionTitle => CoreStrings.Action_Build;
-        
         private void UpdateStageCountRemains()
         {
             this.StageCountRemains = this.CalculateStagesCount(

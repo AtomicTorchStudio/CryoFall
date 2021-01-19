@@ -90,9 +90,9 @@
 
                                                 <!-- Icon -->
                                                 <Rectangle Fill="{Binding Icon}"
-                                                           UseLayoutRounding="True"
                                                            Width="24"
-                                                           Height="24" />
+                                                           Height="24"
+                                                           UseLayoutRounding="True" />
 
                                                 <!-- Title -->
                                                 <TextBlock Grid.Column="1"
@@ -169,7 +169,7 @@
                                                 <Setter Property="BorderThickness" Value="0,0,0,1" />
                                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                                                <Setter Property="Padding" Value="5,5" />
+                                                <Setter Property="Padding" Value="5" />
                                                 <Setter Property="Width" Value="Auto" />
                                                 <Setter Property="Margin" Value="0" />
                                                 <Setter Property="Template">
@@ -346,6 +346,13 @@
                                                 Visibility="{Binding VisibilityIsActive}"
                                                 Width="12"
                                                 Height="12"
+                                                Stroke="{StaticResource BrushColor5}"
+                                                StrokeThickness="1" />
+
+                                            <Ellipse
+                                                Visibility="{Binding VisibilityIsNotActive}"
+                                                Width="12"
+                                                Height="12"
                                                 Stroke="{StaticResource BrushColor4}"
                                                 StrokeThickness="1" />
 
@@ -356,23 +363,15 @@
                                                 Canvas.Top="2"
                                                 Canvas.Left="2"
                                                 Fill="{StaticResource BrushColor5}" />
-
-                                            <Ellipse
-                                                Visibility="{Binding VisibilityIsNotActive}"
-                                                Width="12"
-                                                Height="12"
-                                                Stroke="#FF888888"
-                                                StrokeThickness="1" />
                                         </Canvas>
 
                                         <TextBlock Grid.Column="1"
                                                    Text="{Binding Level, StringFormat='{}{x:Static loc:CoreStrings.WindowSkills_CurrentLevelFormat}'}"
-                                                   Foreground="{StaticResource BrushColorRed6}"
+                                                   Foreground="{StaticResource BrushColor4}"
                                                    Visibility="{Binding VisibilityIsNotActive}" />
 
                                         <TextBlock Grid.Column="2"
                                                    Text=" "
-                                                   Foreground="{StaticResource BrushColorRed6}"
                                                    Visibility="{Binding VisibilityIsNotActive}" />
 
                                         <TextBlock Grid.Column="3"
@@ -382,7 +381,7 @@
 
                                         <TextBlock Grid.Column="3"
                                                    Text="{Binding Description}"
-                                                   Foreground="#FFAAAAAA"
+                                                   Foreground="{StaticResource BrushColor5}"
                                                    Visibility="{Binding VisibilityIsNotActive}"
                                                    TextWrapping="Wrap" />
                                     </Grid>

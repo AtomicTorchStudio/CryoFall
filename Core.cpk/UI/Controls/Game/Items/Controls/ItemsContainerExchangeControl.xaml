@@ -8,12 +8,15 @@
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data"
-    VerticalAlignment="Center"
-    HorizontalAlignment="Stretch"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
     d:DataContext="{d:DesignInstance data:ViewModelItemsContainerExchange, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    FontFamily="{StaticResource CondensedFontFamily}"
+    FontWeight="Bold"
+    FontSize="10"
+    VerticalAlignment="Center"
+    HorizontalAlignment="Stretch">
 
     <Grid VerticalAlignment="Center"
           HorizontalAlignment="Stretch">
@@ -26,8 +29,6 @@
                    Visibility="{Binding IsContainerTitleVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                    HorizontalAlignment="Center"
                    Foreground="{StaticResource BrushColor6}"
-                   FontWeight="Bold"
-                   FontSize="10"
                    Margin="0,0,0,5" />
 
         <controls:ItemsContainerControl Grid.Row="1"
@@ -45,8 +46,7 @@
                     Visibility="{Binding IsManagementButtonsVisible, Converter={StaticResource BoolToVisibilityConverter}}">
             <Button Command="{Binding CommandTakeAll}"
                     Style="{StaticResource SmallButtonStyle}"
-                    Margin="0,0,5,0"
-                    Focusable="False">
+                    Margin="0,0,5,0">
                 <!-- Text: Take All -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_TakeAll}">
                     <core:LabelWithButton.Button>
@@ -56,8 +56,7 @@
             </Button>
             <Button Command="{Binding CommandMatch}"
                     CommandParameter="Down"
-                    Style="{StaticResource SmallButtonStyle}"
-                    Focusable="False">
+                    Style="{StaticResource SmallButtonStyle}">
                 <!-- Text: Match Down -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_MatchDown}">
                     <core:LabelWithButton.Button>
@@ -68,8 +67,7 @@
             <Button Command="{Binding CommandMatch}"
                     CommandParameter="Up"
                     Style="{StaticResource SmallButtonStyle}"
-                    Margin="5,0,0,0"
-                    Focusable="False">
+                    Margin="5,0,0,0">
                 <!-- Text: Match Up -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_MatchUp}">
                     <core:LabelWithButton.Button>
@@ -79,8 +77,7 @@
             </Button>
             <Button Command="{Binding CommandOpenHelpMenu}"
                     Style="{StaticResource SmallButtonStyle}"
-                    Margin="25,0,0,0"
-                    Focusable="False">
+                    Margin="25,0,0,0">
                 <!-- Text: Shortcuts -->
                 <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_Button_DisplayShortcuts}" Margin="5,0" />
             </Button>

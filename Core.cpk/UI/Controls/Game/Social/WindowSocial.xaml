@@ -8,6 +8,8 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:social="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social"
+    xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DesignHeight="80"
     d:DesignWidth="850"
@@ -18,117 +20,150 @@
                      Height="{StaticResource GameMenuStandardWindowHeight}"
                      FocusOnControl="{Binding ElementName=GameWindow}"
                      FontSize="13"
-                     Foreground="{StaticResource BrushColor7}"
-                     Padding="12,9">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+                     Foreground="{StaticResource BrushColor7}">
+        <core:TabControlCached ForceContentPreloading="True"
+                               Style="{StaticResource TabControlCachedCompactStyle}"
+                               Margin="0,-5">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemCompactStyle}">
+                    <Setter Property="MinWidth" Value="80" />
+                </Style>
+            </TabControl.Resources>
 
-            <Border Grid.Row="0"
-                    HorizontalAlignment="Left">
+            <core:TabControlCached.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel IsItemsHost="True" HorizontalAlignment="Stretch" />
+                </ItemsPanelTemplate>
+            </core:TabControlCached.ItemsPanel>
 
-                <StackPanel Orientation="Vertical">
-                    <!-- Text: Server statistics -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.WindowSocial_ServerStatistics}"
-                               FontWeight="Bold" />
+            <TabItem Header="{x:Static loc:CoreStrings.MenuHome_Social}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Horizontal"
-                                Margin="8,2,0,0">
-                        <!-- Text: Online now -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.WindowSocial_OnlineNow}"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontSize="12" />
-                        <TextBlock Text=": "
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontSize="12" />
-                        <TextBlock Text="{Binding PlayersOnlineCount}"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontWeight="Bold"
-                                   FontSize="12" />
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal"
-                                Margin="8,2,0,0"
-                                Visibility="{Binding PlayersTotalCountVisibility}">
-                        <!-- Text: Total players -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.WindowSocial_TotalPlayers}"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontSize="12" />
-                        <TextBlock Text=": "
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontSize="12" />
-                        <TextBlock Text="{Binding PlayersTotalCount}"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontWeight="Bold"
-                                   FontSize="12" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+                    <politics:PartyManagementControl Grid.Row="3"
+                                                     Grid.RowSpan="3"
+                                                     Grid.Column="0"
+                                                     VerticalAlignment="Top" />
 
-            <!-- Text: Players online -->
-            <TextBlock Grid.Row="1"
-                       Margin="0,10,0,2"
-                       Text="{x:Static loc:CoreStrings.WindowSocial_TitleOnlinePlayersList}"
-                       Visibility="{Binding PlayersOnlineVisibility}"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Left" />
+                    <!-- Text: Server statistics block -->
+                    <Border Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowSocial_ServerStatistics}"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource CondensedFontFamily}"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       TextDecorations="Underline"
+                                       noesis:Text.Stroke="#BB000000"
+                                       noesis:Text.StrokeThickness="1.5"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center"
+                                       Margin="0,-8,0,2" />
 
-            <ItemsControl Grid.Row="2"
-                          ItemsSource="{Binding PlayersOnline}"
-                          Visibility="{Binding PlayersOnlineVisibility}"
-                          ScrollViewer.CanContentScroll="True"
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch"
-                          Padding="0,3,2,0"
-                          Margin="-5,0">
-                <ItemsControl.Style>
-                    <Style TargetType="ItemsControl">
-                        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
-                        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
-                        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
-                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-                        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-                        <Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
-                    </Style>
-                </ItemsControl.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Text: Online now -->
+                                <TextBlock Text="{x:Static loc:CoreStrings.WindowSocial_OnlineNow}"
+                                           Foreground="{StaticResource BrushColor6}"
+                                           FontSize="12" />
+                                <TextBlock Text=": "
+                                           Foreground="{StaticResource BrushColor6}"
+                                           FontSize="12" />
+                                <TextBlock
+                                    Text="{Binding ViewModel.PlayersOnlineCount, ElementName=OnlinePlayersListControl}"
+                                    Foreground="{StaticResource BrushColor6}"
+                                    FontWeight="Bold"
+                                    FontSize="12" />
+                            </StackPanel>
 
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid IsItemsHost="True"
-                                     Columns="3"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Top" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <social:PlayerEntryControl />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.Template>
-                    <ControlTemplate>
-                        <Border
-                            BorderThickness="{TemplateBinding Border.BorderThickness}"
-                            Padding="{TemplateBinding Control.Padding}"
-                            BorderBrush="{TemplateBinding Border.BorderBrush}"
-                            Background="{TemplateBinding Panel.Background}"
-                            SnapsToDevicePixels="True">
-                            <ScrollViewer
-                                Padding="{TemplateBinding Control.Padding}"
-                                Focusable="False"
-                                HorizontalScrollBarVisibility="Disabled"
-                                VerticalScrollBarVisibility="Auto">
-                                <ItemsPresenter
-                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-                            </ScrollViewer>
-                        </Border>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-            </ItemsControl>
-        </Grid>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,2,0,0"
+                                        Visibility="{Binding ViewModel.PlayersTotalCountVisibility, ElementName=OnlinePlayersListControl}">
+                                <!-- Text: Total players -->
+                                <TextBlock Text="{x:Static loc:CoreStrings.WindowSocial_TotalPlayers}"
+                                           Foreground="{StaticResource BrushColor6}"
+                                           FontSize="12" />
+                                <TextBlock Text=": "
+                                           Foreground="{StaticResource BrushColor6}"
+                                           FontSize="12" />
+                                <TextBlock
+                                    Text="{Binding ViewModel.PlayersTotalCount, ElementName=OnlinePlayersListControl}"
+                                    Foreground="{StaticResource BrushColor6}"
+                                    FontWeight="Bold"
+                                    FontSize="12" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Control Grid.Row="1"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Style="{StaticResource ControlHorizontalSeparator}"
+                             Height="20" />
+
+                    <politics:NewbieProtectionControl Grid.Row="5"
+                                                      Grid.Column="2"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Top" />
+
+                    <politics:DuelModeControl Grid.Row="5"
+                                              Grid.Column="2"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Top" />
+
+                    <Control Grid.Row="3"
+                             Grid.RowSpan="3"
+                             Grid.Column="1"
+                             Style="{StaticResource ControlVerticalSeparator}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{x:Static loc:CoreStrings.WindowSocial_TitleOnlinePlayersList}">
+                <social:OnlinePlayersListControl x:Name="OnlinePlayersListControl" />
+            </TabItem>
+
+            <TabItem Header="{x:Static loc:CoreStrings.WindowPolitics_RaidingRestriction_Title}"
+                     Visibility="{Binding Visibility, ElementName=OfflineRaidingProtectionControl}">
+                <politics:OfflineRaidingProtectionControl
+                    x:Name="OfflineRaidingProtectionControl"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="40,0" />
+            </TabItem>
+
+            <!-- Block list -->
+            <TabItem MinWidth="30"
+                     DockPanel.Dock="Right"
+                     Visibility="Collapsed">
+                <TabItem.Header>
+                    <Path
+                        Data="m 83.333334,247 q 0,-9.04948 -4.622396,-16.92708 l -45.63802,45.63802 q 7.877604,4.62239 16.927082,4.62239 6.770834,0 12.923179,-2.63672 6.152343,-2.63671 10.64453,-7.1289 4.492188,-4.49219 7.128908,-10.64453 Q 83.333334,253.77083 83.333334,247 Z M 21.289062,263.92708 66.927084,218.28906 Q 59.049481,213.66667 50,213.66667 q -6.770832,0 -12.923177,2.63672 -6.152342,2.63671 -10.64453,7.1289 -4.492188,4.49219 -7.128908,10.64453 -2.636718,6.15235 -2.636718,12.92318 0,9.04948 4.622395,16.92708 z M 100,247 q 0,13.60677 -6.705728,25.09766 -6.705729,11.49088 -18.196615,18.19661 Q 63.606772,297 50,297 36.393231,297 24.902345,290.29427 13.411458,283.58854 6.7057291,272.09766 0,260.60677 0,247 0,233.39323 6.7057291,221.90234 13.411458,210.41146 24.902345,203.70573 36.393231,197 50,197 q 13.606772,0 25.097657,6.70573 11.490886,6.70573 18.196615,18.19661 Q 100,233.39323 100,247 Z"
+                        Fill="#AA0ABCFF"
+                        Width="11"
+                        Height="11"
+                        Stretch="Uniform" />
+                </TabItem.Header>
+            </TabItem>
+
+            <!-- It's a spacer between the left and right parts of the dock panel tabs -->
+            <TabItem DockPanel.Dock="Right"
+                     IsEnabled="False" />
+
+        </core:TabControlCached>
     </core:GameWindow>
 </core:BaseWindowMenu>

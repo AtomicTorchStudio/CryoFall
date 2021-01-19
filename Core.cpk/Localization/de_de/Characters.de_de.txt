@@ -4,6 +4,12 @@ Bär
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Schwarzer Käfer
 
+Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
+Pragmiumkönigin
+
+Scripts/Characters/Mobs/MobBossSandTyrant@Name:
+Sandtyrann
+
 Scripts/Characters/Mobs/MobBurrower@Name:
 Erdgräber
 
@@ -37,8 +43,8 @@ Schuppentier
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Pragmiumkäfer
 
-Scripts/Characters/Mobs/MobPragmiumQueen@Name:
-Pragmiumkönigin
+Scripts/Characters/Mobs/MobPsiGrove@Name:
+PSI-Hain
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Schnecke
@@ -55,8 +61,14 @@ Braune Schlange
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
 Grüne Schlange
 
+Scripts/Characters/Mobs/MobSpitter@Name:
+Spitter
+
 Scripts/Characters/Mobs/MobStarfish@Name:
 Seestern
+
+Scripts/Characters/Mobs/MobThumper@Name:
+Hammer
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
 Tropenwildschwein

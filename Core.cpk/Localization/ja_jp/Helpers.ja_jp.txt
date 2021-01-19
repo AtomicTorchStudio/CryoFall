@@ -1,4 +1,13 @@
-﻿Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
+﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
+、
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
+、{0}
+
+Scripts/Helpers/Client/ClientListFormatHelper@Format_TwoEntries_Format:
+{0}と{1}
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@LessThanOneMinute:
 ＜1分
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
@@ -12,6 +21,9 @@ Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 秒
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ClientHasModifiedCore:
+あなたはこのゲームサーバーで許可されていないCore.cpkを改変または解凍したゲームクライアントを使用しています。ゲームを再インストールしてください。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `互換性のないバージョンです。

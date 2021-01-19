@@ -1,17 +1,26 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 Построить: {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+Коллекционер: принять любую награду
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 Завершить: {0} (древо технологий)
 
 Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
-здесь: {0}
+где: {0}
 
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 Изготовить
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+Одолейте босса: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 Уничтожить: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+Найти: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 Собрать: {0}

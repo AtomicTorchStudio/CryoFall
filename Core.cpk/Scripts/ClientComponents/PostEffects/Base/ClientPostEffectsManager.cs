@@ -11,7 +11,7 @@
 
     public static class ClientPostEffectsManager
     {
-        private static readonly List<BasePostEffect> ActivePostEffects = new List<BasePostEffect>();
+        private static readonly List<BasePostEffect> ActivePostEffects = new();
 
         private static readonly IClientStorage SessionStorage;
 

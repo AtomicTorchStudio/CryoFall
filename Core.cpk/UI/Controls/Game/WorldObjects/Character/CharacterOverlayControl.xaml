@@ -30,23 +30,33 @@
                       Margin="0,0,0,4">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <!-- max width calculated to fit 5 icons -->
-                    <WrapPanel Orientation="Horizontal" MaxWidth="195" />
+                    <!-- Should fit 4 icons -->
+                    <WrapPanel IsItemsHost="True"
+                               Orientation="Horizontal"
+                               MaxWidth="232" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="2.5"
-                            Background="{Binding BackgroundBrush}"
-                            CornerRadius="5">
-
-                        <Rectangle Fill="{Binding Icon}"
+                    <Border Margin="3"
+                            CornerRadius="4">
+                        <Rectangle Fill="{Binding ColorizedIcon}"
                                    UseLayoutRounding="True"
                                    VerticalAlignment="Top"
                                    HorizontalAlignment="Center"
-                                   Width="34"
-                                   Height="34" />
+                                   Width="44"
+                                   Height="44"
+                                   Margin="1">
+                            <Rectangle.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="7"
+                                    Direction="0"
+                                    ShadowDepth="0"
+                                    Opacity="1"
+                                    Color="Black" />
+                            </Rectangle.Effect>
+                        </Rectangle>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -103,15 +113,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-        <i:Interaction.Triggers>
-            <i:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
-                <i:GoToStateAction StateName="Visible" />
-            </i:DataTrigger>
-            <i:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
-                <i:GoToStateAction StateName="Collapsed" />
-            </i:DataTrigger>
-        </i:Interaction.Triggers>
     </Grid>
 
 </base:BaseUserControl>

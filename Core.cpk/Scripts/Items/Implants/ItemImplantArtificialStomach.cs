@@ -16,6 +16,9 @@
 
             // adds ability to eat spoiled food, drink dirty water, etc.
             effects.AddPerk(this, StatName.PerkEatSpoiledFood);
+
+            // adds ability to overeat without consequences
+            effects.AddPerk(this, StatName.PerkOvereatWithoutConsequences);
         }
     }
 }

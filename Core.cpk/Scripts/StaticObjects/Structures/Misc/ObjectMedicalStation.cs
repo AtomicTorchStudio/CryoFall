@@ -25,7 +25,7 @@
     public class ObjectMedicalStation : ProtoObjectStructure, IInteractableProtoWorldObject
     {
         private static readonly Lazy<ItemVialBiomaterial> ProtoItemBiomaterialVial
-            = new Lazy<ItemVialBiomaterial>(GetProtoEntity<ItemVialBiomaterial>);
+            = new(GetProtoEntity<ItemVialBiomaterial>);
 
         private static ObjectMedicalStation instance;
 
@@ -140,7 +140,7 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (2.6, 1.9), offset: (0.2, 0.1))
-                .AddShapeRectangle(size: (2.6, 2.1), offset: (0.2, 0.1),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (2.6, 1.1), offset: (0.2, 0.85),  group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (2.5, 1.2), offset: (0.25, 0.95), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle(size: (2.6, 2.5), offset: (0.2, 0.1),   group: CollisionGroups.ClickArea);
         }

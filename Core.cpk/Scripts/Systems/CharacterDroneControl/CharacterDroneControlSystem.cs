@@ -76,7 +76,7 @@
             "Nothing to mine there!";
 
         private static readonly ListDictionary<IItem, Vector2Ushort> ClientDroneStartQueue
-            = new ListDictionary<IItem, Vector2Ushort>();
+            = new();
 
         private static readonly Dictionary<Vector2Ushort, IDynamicWorldObject> ServerCurrentMinedObjectsByDrones
             = IsServer
@@ -527,7 +527,7 @@
         {
             switch (worldObject?.ProtoGameObject)
             {
-                case IProtoObjectTree _:
+                case IProtoObjectTree:
                     return true;
 
                 case IProtoObjectMineral protoMineral
@@ -575,8 +575,8 @@
             {
                 switch (testResult.PhysicsBody.AssociatedWorldObject?.ProtoGameObject)
                 {
-                    case IProtoObjectWall _:
-                    case IProtoObjectDoor _:
+                    case IProtoObjectWall:
+                    case IProtoObjectDoor:
                         // don't allow mining through walls and doors
                         hasObstacles = true;
                         return false;
@@ -586,8 +586,42 @@
             return true;
         }
 
+        protected override void PrepareSystem()
+        {
+            base.PrepareSystem();
+            if (IsClient)
+            {
+                ClientUpdateHelper.UpdateCallback += ClientUpdate;
+
+                static void ClientUpdate()
+                {
+                    ClientSubmitStartDroneCommandsImmediately();
+                }
+            }
+        }
+
+        private void ClientRemote_OnDroneAbandoned(IProtoItemDrone protoItemDrone)
+        {
+            NotificationSystem.ClientShowNotification(
+                                  Notification_DroneDeactivated_Title,
+                                  Notification_DroneDeactivated_Message,
+                                  NotificationColor.Bad,
+                                  protoItemDrone.Icon)
+                              .HideAfterDelay(delaySeconds: 120);
+        }
+
+        private void ClientRemote_OnDroneDestroyed(IProtoItemDrone protoItemDrone)
+        {
+            NotificationSystem.ClientShowNotification(
+                                  Notification_DroneDestroyed_Title,
+                                  message: null,
+                                  NotificationColor.Bad,
+                                  protoItemDrone.Icon)
+                              .HideAfterDelay(delaySeconds: 120);
+        }
+
         [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
-        public void ServerRemote_StartDrone(IItem itemDrone, Vector2Ushort worldPosition)
+        private void ServerRemote_StartDrone(IItem itemDrone, Vector2Ushort worldPosition)
         {
             var character = ServerRemoteContext.Character;
             if (itemDrone.Container.Owner != character)
@@ -692,46 +726,12 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered, timeInterval: 0.2)]
-        public void ServerRemote_StartDrones(List<(IItem Item, Vector2Ushort Position)> drones)
+        private void ServerRemote_StartDrones(List<(IItem Item, Vector2Ushort Position)> drones)
         {
             foreach (var entry in drones)
             {
                 this.ServerRemote_StartDrone(entry.Item, entry.Position);
             }
-        }
-
-        protected override void PrepareSystem()
-        {
-            base.PrepareSystem();
-            if (IsClient)
-            {
-                ClientUpdateHelper.UpdateCallback += ClientUpdate;
-
-                static void ClientUpdate()
-                {
-                    ClientSubmitStartDroneCommandsImmediately();
-                }
-            }
-        }
-
-        private void ClientRemote_OnDroneAbandoned(IProtoItemDrone protoItemDrone)
-        {
-            NotificationSystem.ClientShowNotification(
-                                  Notification_DroneDeactivated_Title,
-                                  Notification_DroneDeactivated_Message,
-                                  NotificationColor.Bad,
-                                  protoItemDrone.Icon)
-                              .HideAfterDelay(delaySeconds: 120);
-        }
-
-        private void ClientRemote_OnDroneDestroyed(IProtoItemDrone protoItemDrone)
-        {
-            NotificationSystem.ClientShowNotification(
-                                  Notification_DroneDestroyed_Title,
-                                  message: null,
-                                  NotificationColor.Bad,
-                                  protoItemDrone.Icon)
-                              .HideAfterDelay(delaySeconds: 120);
         }
     }
 }

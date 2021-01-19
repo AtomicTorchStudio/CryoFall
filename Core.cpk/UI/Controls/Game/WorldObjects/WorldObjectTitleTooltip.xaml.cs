@@ -39,10 +39,6 @@
             this.DataContext = message;
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnUnloaded()
         {
             if (ReferenceEquals(lastControl, this))

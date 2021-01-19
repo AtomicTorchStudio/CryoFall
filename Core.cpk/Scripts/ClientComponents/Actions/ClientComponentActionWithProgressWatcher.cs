@@ -72,7 +72,7 @@
                 targetWorldObject = (IWorldObject)this.privateState.GameObject;
             }
 
-            Vector2D offset = (0, 1.01);
+            Vector2D offset = (0, 1.13);
             switch (targetWorldObject.ProtoWorldObject)
             {
                 case IProtoStaticWorldObject protoStaticWorldObject:

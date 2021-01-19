@@ -47,10 +47,10 @@
         public override float StructurePointsMax => 500;
 
         // has light source
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: -1,
-                                                                       maxX: 1,
-                                                                       maxY: 2);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: -1,
+                                                             maxX: 1,
+                                                             maxY: 2);
 
         public static void ServerRestartDestroyTimer(PrivateState privateState)
         {
@@ -99,6 +99,12 @@
         protected override void PrepareProtoMineral(MineralDropItemsConfig config)
         {
             config.Stage4.Add<ItemOrePragmium>(count: 2);
+        }
+
+        protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
+        {
+            base.PrepareTileRequirements(tileRequirements);
+            tileRequirements.Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
         }
 
         protected override void ServerTryClaimObject(IStaticWorldObject targetObject, ICharacter character)

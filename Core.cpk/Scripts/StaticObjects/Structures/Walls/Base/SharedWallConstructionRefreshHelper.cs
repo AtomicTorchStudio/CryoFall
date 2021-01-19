@@ -17,7 +17,7 @@
     /// </summary>
     public static class SharedWallConstructionRefreshHelper
     {
-        private static readonly HashSet<Tile> Queue = new HashSet<Tile>(TileComparer.Instance);
+        private static readonly HashSet<Tile> Queue = new(TileComparer.Instance);
 
         private static bool isProcessingQueueNow;
 
@@ -43,20 +43,20 @@
             var protoWorldObject = staticWorldObject.ProtoStaticWorldObject;
             switch (protoWorldObject)
             {
-                case IProtoObjectWall _:
-                case IProtoObjectDoor _:
-                case ObjectWallDestroyed _:
+                case IProtoObjectWall:
+                case IProtoObjectDoor:
+                case ObjectWallDestroyed:
                     SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
                     break;
 
-                case ProtoObjectConstructionSite _:
+                case ProtoObjectConstructionSite:
                 {
                     var constructionProto = ProtoObjectConstructionSite.GetPublicState(staticWorldObject)
                                                                        .ConstructionProto;
                     switch (constructionProto)
                     {
-                        case IProtoObjectWall _:
-                        case IProtoObjectDoor _:
+                        case IProtoObjectWall:
+                        case IProtoObjectDoor:
                             SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
                             break;
                     }
@@ -110,20 +110,20 @@
                         var protoWorldObject = obj.ProtoWorldObject;
                         switch (protoWorldObject)
                         {
-                            case IProtoObjectWall _:
-                            case IProtoObjectDoor _:
-                            case ObjectWallDestroyed _:
+                            case IProtoObjectWall:
+                            case IProtoObjectDoor:
+                            case ObjectWallDestroyed:
                                 RefreshWorldObject();
                                 break;
 
-                            case ProtoObjectConstructionSite _:
+                            case ProtoObjectConstructionSite:
                             {
                                 var constructionProto = ProtoObjectConstructionSite.GetPublicState(obj)
-                                                                                   .ConstructionProto;
+                                    .ConstructionProto;
                                 switch (constructionProto)
                                 {
-                                    case IProtoObjectWall _:
-                                    case IProtoObjectDoor _:
+                                    case IProtoObjectWall:
+                                    case IProtoObjectDoor:
                                         RefreshWorldObject();
                                         break;
                                 }
@@ -167,7 +167,7 @@
 
         private class TileComparer : IEqualityComparer<Tile>
         {
-            public static readonly TileComparer Instance = new TileComparer();
+            public static readonly TileComparer Instance = new();
 
             public bool Equals(Tile a, Tile b)
             {

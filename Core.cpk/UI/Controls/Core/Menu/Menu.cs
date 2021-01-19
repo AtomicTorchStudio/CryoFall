@@ -7,7 +7,7 @@
 
     public class Menu : BaseViewModel
     {
-        private static readonly List<Menu> RegisteredMenus = new List<Menu>();
+        private static readonly List<Menu> RegisteredMenus = new();
 
         [ViewModelNotAutoDisposeField]
         private readonly IMenu menu;
@@ -17,6 +17,7 @@
         protected Menu(IMenu menu)
         {
             this.menu = menu;
+
             menu.IsOpenedChanged += this.UpdateIsSelected;
 
             this.CommandToggle = new ActionCommand(this.Toggle);
@@ -69,6 +70,20 @@
             {
                 menu.Close();
             }
+        }
+
+        public static bool Exist<TMenu>()
+            where TMenu : IMenu
+        {
+            foreach (var menu in RegisteredMenus)
+            {
+                if (menu.menu is TMenu)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static TMenu Find<TMenu>()
@@ -135,7 +150,7 @@
         public static Menu Register<TMenu>(TMenu instance)
             where TMenu : IMenu, new()
         {
-            return new Menu(instance);
+            return new(instance);
         }
 
         public static Menu Register<TMenu>()

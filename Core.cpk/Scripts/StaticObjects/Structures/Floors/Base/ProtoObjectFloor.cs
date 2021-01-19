@@ -50,10 +50,10 @@
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: -1,
-                                                                       maxX: 1,
-                                                                       maxY: 1);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: -1,
+                                                             maxX: 1,
+                                                             maxY: 1);
 
         public void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {

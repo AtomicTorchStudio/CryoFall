@@ -5,13 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.ItemsBrowser.Data"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
     d:DataContext="{d:DesignInstance data:ViewModelWindowEditorItemsBrowserWindow, d:IsDesignTimeCreatable=True}">
     <core:BaseUserControlWithWindow.Resources>
-        <Style x:Key="ItemsListBoxStyle" 
+        <Style x:Key="ItemsListBoxStyle"
                TargetType="ListBox"
                BasedOn="{StaticResource {x:Type ListBox}}">
             <Setter Property="Margin" Value="0,5" />
@@ -55,7 +55,7 @@
                                         <Border x:Name="Border"
                                                 CornerRadius="3"
                                                 Background="#FF262626">
-                                            <ui:ToolTipServiceExtend.ToolTip>
+                                            <base:ToolTipServiceExtend.ToolTip>
                                                 <Grid MaxWidth="325">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition />
@@ -81,7 +81,7 @@
                                                                    FontSize="12" />
                                                     </StackPanel>
                                                 </Grid>
-                                            </ui:ToolTipServiceExtend.ToolTip>
+                                            </base:ToolTipServiceExtend.ToolTip>
                                             <ContentPresenter />
                                         </Border>
 

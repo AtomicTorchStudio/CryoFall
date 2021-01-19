@@ -28,6 +28,12 @@ Acabas de comer muy bien. Todo lo que hagas te resultará más fácil.
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Comida vigorizante
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Aumenta la velocidad de fabricación creando espacios cuánticos aislados alrededor del usuario.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Aceleración cuántica
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Hace poco has disfrutado de una comida sabrosa. Eso hace que tu vida parezca mucho más satisfactoria.
 
@@ -63,9 +69,6 @@ Te has roto una pierna, lo cual afecta a tu capacidad de movimiento. Sufrirás u
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Pierna rota
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-No se puede atacar estando aturdido.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 ¡Sufres aturdimiento! Tardarás un ratito en recuperarte.
@@ -180,6 +183,12 @@ Has usado demasiados medicamentos en un período de tiempo muy breve. No abuses 
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Abuso de medicamentos
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Has comido más de lo que deberías. Si comes cualquier otra cosa, vas a enfermar.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Gula
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Espera hasta que se termine de aplicar el Peredozin.

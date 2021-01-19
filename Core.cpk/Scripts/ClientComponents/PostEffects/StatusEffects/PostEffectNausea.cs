@@ -12,7 +12,7 @@
     public class PostEffectNausea : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/StatusEffects/Nausea");
+            = new("PostEffects/StatusEffects/Nausea");
 
         private IGraphicsDevice device;
 

@@ -151,9 +151,6 @@ Geschwindigkeit des Wasserverbrauchs
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneration von Energieladungen (pro Minute)
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Fähigkeit zum Verzehr verdorbener Nahrung
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Strahlenschäden
 
@@ -214,6 +211,12 @@ Angelerfolg
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Kraftstoffverbrauch
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Fähigkeit zum Verzehr verdorbener Nahrung
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Schutz gegen Folgen des Überessens
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 Rennen unmöglich
 
@@ -222,4 +225,7 @@ Angreifen unmöglich
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 Einnehmen von Medizin mit Abklingzeit unmöglich
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+Schutz gegen Knochenbrüche
 

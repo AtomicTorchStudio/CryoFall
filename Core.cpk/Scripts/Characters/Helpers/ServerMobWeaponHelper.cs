@@ -1,4 +1,4 @@
-namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
+namespace AtomicTorch.CBND.CoreMod.Characters
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -29,12 +29,14 @@ namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 
             weaponState.SharedSetWeaponProtoOnly(protoWeapon);
             publicState.SharedSetCurrentWeaponProtoOnly(protoWeapon);
-            
+
             // can use the new selected mob weapon instantly
             weaponState.ReadySecondsRemains = weaponState.CooldownSecondsRemains = 0;
 
             if (!rebuildWeaponsCacheNow)
             {
+                // during the character initialization the weapons cache cannot be built
+                // as the final stats cache is not ready yet 
                 return;
             }
 

@@ -12,10 +12,8 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
-    // TODO: inherit from simple weapon class, not the melee weapon class
-    public abstract class ProtoItemMobWeaponRanged : ProtoItemWeaponMelee
+    public abstract class ProtoItemMobWeaponRanged : ProtoItemWeaponRanged
     {
         public override ushort AmmoCapacity => 0;
 
@@ -60,31 +58,15 @@
             // do nothing
         }
 
-        public override string GetCharacterAnimationNameFire(ICharacter character)
-        {
-            var pi = MathConstants.PI;
-            var piQuarter = pi / 4;
-
-            var angle = character.ProtoCharacter.SharedGetRotationAngleRad(character);
-
-            if (angle > piQuarter
-                && angle < pi - piQuarter)
-            {
-                return "AttackRangedVertical";
-            }
-
-            if (angle > pi + piQuarter
-                && angle < 2 * pi - piQuarter)
-            {
-                return "AttackRangedVertical";
-            }
-
-            return "AttackRangedHorizontal";
-        }
-
         public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {
             return character.ProtoCharacter is IProtoCharacterMob;
+        }
+
+        protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
+        {
+            description.TextureAtlas = null;
+            description.LightPower = 0;
         }
 
         protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()

@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
-    using AtomicTorch.CBND.CoreMod.Events.Base;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
@@ -18,6 +17,8 @@
 
     public class EventMigration : ProtoEventDrop
     {
+        private const double EventDelayHoursSinceWipe = 48;
+
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
@@ -37,7 +38,7 @@
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
             if (trigger is not null
-                && this.ServerHasAnyEventOfType<ProtoEventDrop>())
+                && this.ServerHasAnyEventOfType<IProtoEventWithArea>())
             {
                 return false;
             }
@@ -49,7 +50,7 @@
             }
 
             if (trigger is TriggerTimeInterval
-                && Server.Game.HoursSinceWorldCreation < 24)
+                && Server.Game.HoursSinceWorldCreation < EventDelayHoursSinceWipe)
             {
                 // too early
                 return false;
@@ -89,7 +90,7 @@
             }
             else
             {
-                locationsCount = Api.Server.Characters.OnlinePlayersCount >= 100 ? 4 : 3;
+                locationsCount = Api.Server.Characters.OnlinePlayersCount >= 100 ? 3 : 2;
             }
 
             for (var index = 0; index < locationsCount; index++)
@@ -128,11 +129,8 @@
                 }
                 while (--attempts > 0);
 
-                if (zoneInstance is null)
-                {
-                    zoneInstance = this.ServerSelectRandomZoneWithEvenDistribution(serverSpawnZones.Value)
-                                   ?? throw new Exception("Unable to pick an event position");
-                }
+                zoneInstance ??= this.ServerSelectRandomZoneWithEvenDistribution(serverSpawnZones.Value)
+                                 ?? throw new Exception("Unable to pick an event position");
 
                 // pick up a valid position inside the zone
                 var maxAttempts = 350;
@@ -165,8 +163,8 @@
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
                                  this.ServerGetIntervalForThisEvent(defaultInterval:
-                                                                    (from: TimeSpan.FromHours(4),
-                                                                     to: TimeSpan.FromHours(6)))
+                                                                    (from: TimeSpan.FromHours(6),
+                                                                     to: TimeSpan.FromHours(9)))
                              ));
 
             var mobsToSpawn = PveSystem.ServerIsPvE ? 6 : 12;

@@ -390,12 +390,18 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 狩猎大师 - 第二部分
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+`当发现新东西时，它就会出现在你的[b]生涯菜单[/b]中! 
+使用此菜单来追踪你的进度，并通过探索CryoFall的世界来获取[u]额外知识点[/u]。`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+要整理物品栏，只需打开物品栏后将鼠标悬浮至物品栏上，然后按下[u]{0}[/u]或[u]{1}[/u]键即可。你可以以此方法整理任何物品栏，例如箱子。
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+移动时按住[u]Shift[/u]即可跑动。试试看吧！跑步能让你快速脱离危险。
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 在开始享受游戏之前，你还有几件事要学，例如整理物品栏和冲刺！
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] 要整理物品栏，先将物品栏打开，然后按下[u]鼠标中键[/u]或者[u]Z键[/u]。你可以通过此方式整理[b]任何[/b]物品栏界面(例如箱子)。
-[*] 冲刺只需在移动时按下[u]Shift键[/u]即可进行。冲刺能让你快速逃离危险的捕食者。`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 进行基础行动
@@ -491,6 +497,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 探索生态圈 - 第四部分
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+掠夺一些容器
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 遗址是寻找稀有元件和某些资源的最佳地点。如果你有所需装备的话可以去经常探索。
 
@@ -502,8 +511,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 探索遗址
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-掠夺一些容器
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+你发现的传送点越多，你的交通网络就越庞大。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+找到至少两个传送点以进行传送。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+游戏中甚至还有隐藏传送点！
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+徒步旅行虽然没什么问题，但远距离的话还是外星传送点好使。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+快速旅行
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 用“使用”动作来获得鱼肉。
@@ -586,6 +607,9 @@ Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 无人机开采
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+狩猎大师 - 第六部分
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 你应该随基地扩张[u]不断扩大电能储量[/u]，以确保有 [u]足够的多余电能[/u]。

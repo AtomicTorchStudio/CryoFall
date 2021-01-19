@@ -41,9 +41,15 @@
                                         new PropertyMetadata(defaultValue: TextWrapping.Wrap));
 
         private static readonly Lazy<ControlTemplate> LazyDefaultTemplate
-            = new Lazy<ControlTemplate>(
-                () => Api.Client.UI.GetApplicationResource<ControlTemplate>(
+            = new(() => Api.Client.UI.GetApplicationResource<ControlTemplate>(
                     "DefaultFormattedTextBlockTemplate"));
+
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register(nameof(Text),
+                                        typeof(string),
+                                        typeof(FormattedTextBlock),
+                                        new PropertyMetadata(null,
+                                                             ContentOrTextPropertyChangedHandler));
 
         private TextBlock textBlock;
 
@@ -56,7 +62,7 @@
             ContentProperty.OverrideMetadata(
                 typeof(FormattedTextBlock),
                 new PropertyMetadata(defaultValue: null,
-                                     ContentPropertyChangedHandler));
+                                     ContentOrTextPropertyChangedHandler));
         }
 
         public double LineHeight
@@ -69,6 +75,12 @@
         {
             get => (LineStackingStrategy)this.GetValue(LineStackingStrategyProperty);
             set => this.SetValue(LineStackingStrategyProperty, value);
+        }
+
+        public string Text
+        {
+            get => (string)this.GetValue(TextProperty);
+            set => this.SetValue(TextProperty, value);
         }
 
         public TextAlignment TextAlignment
@@ -110,7 +122,9 @@
             this.textBlock = null;
         }
 
-        private static void ContentPropertyChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void ContentOrTextPropertyChangedHandler(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
         {
             ((FormattedTextBlock)d).Refresh();
         }
@@ -124,8 +138,27 @@
 
             this.textBlock.Inlines.Clear();
 
-            var text = this.Content as string;
-            if (text is null)
+            var text = this.Text;
+            var contentValue = this.Content;
+
+            if (!string.IsNullOrEmpty(text)
+                && contentValue is not null)
+            {
+                Api.Logger.Error(
+                    string.Format(
+                        "Both Text and Content properties are defined for {0}. Only a single property should be defined.{1}Text: {2}{1}Content: {3}",
+                        nameof(FormattedTextBlock),
+                        Environment.NewLine,
+                        text,
+                        contentValue));
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = Convert.ToString(contentValue);
+            }
+
+            if (string.IsNullOrEmpty(text))
             {
                 return;
 

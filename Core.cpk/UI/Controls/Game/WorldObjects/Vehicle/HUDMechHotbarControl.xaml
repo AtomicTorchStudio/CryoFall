@@ -35,17 +35,18 @@
                                       IsDisplayLabel="False"
                                       IsDisplayTooltip="True"
                                       TooltipFormat="{x:Static loc:CoreStrings.Vehicle_Hotbar_ArmorValueFormat}"
-                                      BorderBrush="#BBBBD0EE"
+                                      BorderBrush="{StaticResource BrushVehicleArmor}"
                                       BorderThickness="1">
                     <core:ValueBarControl.LayoutTransform>
                         <ScaleTransform ScaleY="0.75" ScaleX="0.75" />
                     </core:ValueBarControl.LayoutTransform>
 
                     <!-- bar -->
-                    <Border Background="#FFBBD0EE" CornerRadius="2" />
+                    <Border Background="{StaticResource BrushVehicleArmor}" CornerRadius="2" />
 
                     <core:ValueBarControl.Background>
-                        <SolidColorBrush Color="#FF5A7AA8" Opacity="0.2" />
+                        <SolidColorBrush
+                            Color="{Binding Source={StaticResource ColorVehicleArmor}, Converter={StaticResource ColorMultiplyConverter}, ConverterParameter=0.25}" />
                     </core:ValueBarControl.Background>
 
                     <core:ValueBarControl.Template>
@@ -80,19 +81,6 @@
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
-
-                                <!-- Shadow gradient overlay -->
-                                <Border Margin="2" CornerRadius="1">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1"
-                                                             Opacity="0.45">
-                                            <GradientStop Color="Transparent" Offset="0" />
-                                            <GradientStop Color="#99000000" Offset="0.5" />
-                                            <GradientStop Color="#FF000000" Offset="0.75" />
-                                            <GradientStop Color="#FF000000" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                </Border>
                             </Grid>
                         </ControlTemplate>
                     </core:ValueBarControl.Template>
@@ -108,16 +96,17 @@
                                       IsDisplayLabel="False"
                                       IsDisplayTooltip="True"
                                       TooltipFormat="{x:Static loc:CoreStrings.Vehicle_Hotbar_EnergyPercentFormat}"
-                                      BorderBrush="#BB22AAFF"
+                                      BorderBrush="{StaticResource BrushVehicleEnergy}"
                                       BorderThickness="1">
                     <core:ValueBarControl.LayoutTransform>
                         <ScaleTransform ScaleY="0.75" ScaleX="0.75" />
                     </core:ValueBarControl.LayoutTransform>
                     <!-- bar -->
-                    <Border Background="#FF22AAFF" CornerRadius="2" />
+                    <Border Background="{StaticResource BrushVehicleEnergy}" CornerRadius="2" />
 
                     <core:ValueBarControl.Background>
-                        <SolidColorBrush Color="#FF007AA8" Opacity="0.2" />
+                        <SolidColorBrush
+                            Color="{Binding Source={StaticResource ColorVehicleEnergy}, Converter={StaticResource ColorMultiplyConverter}, ConverterParameter=0.333}" />
                     </core:ValueBarControl.Background>
 
                     <core:ValueBarControl.Template>
@@ -145,26 +134,13 @@
                                                              MappingMode="Absolute">
                                             <GradientStop Color="Transparent" Offset="0" />
                                             <GradientStop Color="Transparent" Offset="0.9" />
-                                            <GradientStop Color="#FF22AAFF" Offset="0.901" />
-                                            <GradientStop Color="#FF22AAFF" Offset="0.95" />
+                                            <GradientStop Color="{StaticResource ColorVehicleEnergy}" Offset="0.901" />
+                                            <GradientStop Color="{StaticResource ColorVehicleEnergy}" Offset="0.95" />
                                             <GradientStop Color="Black" Offset="0.951" />
                                             <GradientStop Color="Black" Offset="1.0" />
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
-
-                                <!-- Shadow gradient overlay -->
-                                <Border Margin="2" CornerRadius="1">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1"
-                                                             Opacity="0.45">
-                                            <GradientStop Color="Transparent" Offset="0" />
-                                            <GradientStop Color="#99000000" Offset="0.5" />
-                                            <GradientStop Color="#FF000000" Offset="0.75" />
-                                            <GradientStop Color="#FF000000" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                </Border>
                             </Grid>
                         </ControlTemplate>
                     </core:ValueBarControl.Template>
@@ -184,91 +160,49 @@
                 <!-- Shortcut button -->
                 <Canvas HorizontalAlignment="Center"
                         VerticalAlignment="Bottom">
-                    <Border Canvas.Top="-6"
-                            Canvas.Left="-8"
-                            Style="{StaticResource WidgetBackgroundBorder}"
-                            CornerRadius="2"
-                            BorderThickness="0.75"
-                            Padding="1,2.5,0.5,0.5"
-                            Width="16"
-                            Height="18"
-                            BorderBrush="{StaticResource WidgetBorderBrush}"
-                            UseLayoutRounding="False">
-                        <Grid>
-                            <Border CornerRadius="2"
-                                    Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
+                    <Grid Canvas.Top="-8"
+                          Canvas.Left="-8">
+                        <Border Style="{StaticResource WidgetBorderShadowStyle}"
+                                CornerRadius="2"
+                                BorderThickness="0.75"
+                                Margin="{StaticResource WidgetShadowMarginThin}" />
+                        <Border Style="{StaticResource WidgetBackgroundBorder}"
+                                Background="Black"
+                                CornerRadius="2"
+                                BorderThickness="0.75"
+                                Width="16"
+                                BorderBrush="{StaticResource WidgetBorderBrush}"
+                                UseLayoutRounding="False">
+                            <Grid Height="14"
+                                  Margin="1,2.5,0.5,0.5">
+                                <Border CornerRadius="2"
+                                        Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
 
-                            <Viewbox Stretch="Uniform"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     UseLayoutRounding="False">
-                                <Grid UseLayoutRounding="False">
-                                    <Path Stroke="Black"
-                                          StrokeThickness="34"
-                                          Data="{StaticResource IconGeometryMouseInput}" />
+                                <Viewbox Stretch="Uniform"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         UseLayoutRounding="False">
+                                    <Grid UseLayoutRounding="False">
+                                        <Path Stroke="Black"
+                                              StrokeThickness="34"
+                                              Data="{StaticResource IconGeometryMouseInput}" />
 
-                                    <Path Fill="{StaticResource BrushColorAltLabelForeground}"
-                                          Data="{StaticResource IconGeometryMouseInput}" />
+                                        <Path Fill="{StaticResource BrushColorAltLabelForeground}"
+                                              Data="{StaticResource IconGeometryMouseInput}" />
 
-                                    <Path Fill="White"
-                                          Data="{StaticResource IconGeometryMouseInputLeftButton}" />
-                                </Grid>
-                            </Viewbox>
-                        </Grid>
-                    </Border>
+                                        <Path Fill="White"
+                                              Data="{StaticResource IconGeometryMouseInputLeftButton}" />
+                                    </Grid>
+                                </Viewbox>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Canvas>
             </Grid>
 
-            <Control Template="{StaticResource ItemSlotDelimiterAltVerticalControlTemplate}"
-                     Visibility="{Binding HasSecondWeaponSlot, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <!--<Control Template="{StaticResource ItemSlotDelimiterAltVerticalControlTemplate}"
+                     Visibility="{Binding HasSecondWeaponSlot, Converter={StaticResource BoolToVisibilityConverter}}" />-->
 
-            <Grid Margin="0,1,0,0"
-                  Visibility="{Binding HasSecondWeaponSlot, Converter={StaticResource BoolToVisibilityConverter}}">
-                <!--<controls:ItemSlotControlForBinding IsBackgroundEnabled="False"
-                                                    IsSelectable="False"
-                                                    Container="{Binding EquipmentItemsContainer}"
-                                                    SlotId="1" />-->
-
-                <controls:HotbarItemSlotControl x:Name="HotbarItemSlotControl1"
-                                                IsShortcutAvailable="False" />
-
-                <!-- Shortcut button -->
-                <Canvas HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom">
-                    <Border Canvas.Top="-10"
-                            Canvas.Left="-8"
-                            Style="{StaticResource WidgetBackgroundBorder}"
-                            CornerRadius="2"
-                            BorderThickness="0.75"
-                            Padding="1,2.5,0.5,0.5"
-                            Width="16"
-                            Height="20"
-                            BorderBrush="{StaticResource WidgetBorderBrush}"
-                            UseLayoutRounding="False">
-                        <Grid>
-                            <Border CornerRadius="2"
-                                    Background="{StaticResource WidgetBackgroundGradientHorizontal}" />
-
-                            <Viewbox Stretch="Uniform"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     UseLayoutRounding="False">
-                                <Grid UseLayoutRounding="False">
-                                    <Path Stroke="Black"
-                                          StrokeThickness="34"
-                                          Data="{StaticResource IconGeometryMouseInput}" />
-
-                                    <Path Fill="{StaticResource BrushColorAltLabelForeground}"
-                                          Data="{StaticResource IconGeometryMouseInput}" />
-
-                                    <Path Fill="White"
-                                          Data="{StaticResource IconGeometryMouseInputRightButton}" />
-                                </Grid>
-                            </Viewbox>
-                        </Grid>
-                    </Border>
-                </Canvas>
-            </Grid>
         </StackPanel>
     </Grid>
 

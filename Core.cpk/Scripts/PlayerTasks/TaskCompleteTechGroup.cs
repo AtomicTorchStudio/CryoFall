@@ -32,7 +32,7 @@
 
         public static TaskCompleteTechGroup Require(TechGroup proto)
         {
-            return new TaskCompleteTechGroup(proto);
+            return new(proto);
         }
 
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskState state)

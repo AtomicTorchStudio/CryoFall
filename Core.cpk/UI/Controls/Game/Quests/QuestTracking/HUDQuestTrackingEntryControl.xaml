@@ -27,7 +27,7 @@
                 </DoubleAnimationUsingKeyFrames>
 
                 <DoubleAnimation Storyboard.TargetProperty="Height"
-                                 From="0" 
+                                 From="0"
                                  To="{Binding RequiredHeight}"
                                  Duration="0:0:0.175" />
             </Storyboard>
@@ -70,7 +70,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Margin="0,0,3,0" VerticalAlignment="Top">
-                    <Rectangle Fill="{Binding Icon}" Width="32" Height="32" />
+                    <Rectangle Fill="{Binding Icon}"
+                               Width="32"
+                               Height="32"
+                               UseLayoutRounding="True" />
                 </Border>
 
                 <Grid Grid.Column="1"
@@ -82,18 +85,21 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Grid Margin="0,0,0,2">
+                    <Grid Margin="0,0,0,2"
+                          HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+
                         <TextBlock
                             Text="{Binding Title}"
                             FontSize="13"
                             LineHeight="13"
                             Foreground="{StaticResource BrushColor7}"
                             TextWrapping="NoWrap"
-                            TextTrimming="CharacterEllipsis" />
+                            TextTrimming="CharacterEllipsis"
+                            HorizontalAlignment="Left" />
 
                         <!-- New label -->
                         <Border Grid.Column="1"
@@ -173,6 +179,7 @@
                                 </EventTrigger>
                             </Border.Triggers>
                         </Border>
+
                     </Grid>
 
                     <ItemsControl Grid.Row="1"

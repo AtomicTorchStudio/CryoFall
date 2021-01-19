@@ -2,12 +2,19 @@
 `Na powierzchnię wyszła Królowa pragmium.
 [br]Na najdzielniejszych bohaterów czekają cenne łupy!`
 
+Scripts/Events/EventBossSandTyrant@Description:
+`Na powierzchni pojawił się Piaskowy tyran.
+[br]Cenny łup czeka na najodważniejszych ocalałych!`
+
 Scripts/Events/EventMeteoriteDrop@Description:
 `Na zaznaczony obszar mapy spadł deszcz meteorów.
 [br]Biegnij tam i zdobądź rzadkie minerały!`
 
 Scripts/Events/EventMigration@Description:
 Rdzenne formy życia migrują do innych obszarów – to świetna okazja na polowanie.
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+Na terenach górskich pojawił się dziwny obcy twór, który spowodował, że poszukiwania są prawie niemożliwe, ale jest to też świetna okazja do pozyskania rzadkich zasobów.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Na zaznaczony obszar mapy spadły kosmiczne śmieci.
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Postęp: {0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+Ławica rzadkich ryb z gatunku {0} właśnie pojawiła się w pobliżu brzegu oceanu! Skorzystaj z okazji i złów ten wyjątkowy gatunek, który występuje tylko w okresie tarła.
 

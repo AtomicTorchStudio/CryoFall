@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events
 {
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -79,7 +80,9 @@
         {
             base.ServerInitialize(data);
 
-            if (data.IsFirstTimeInit)
+            if (data.IsFirstTimeInit
+                && !data.GameObject.OccupiedTile.StaticObjects
+                        .Any(o => o.ProtoGameObject is ObjectCrater))
             {
                 Server.World.CreateStaticWorldObject<ObjectCrater>(data.GameObject.TilePosition);
             }

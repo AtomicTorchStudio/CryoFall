@@ -1,0 +1,206 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.NewFactionControl"
+                      x:Name="UserControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
+                      xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      xmlns:faction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:ViewModelNewFactionControl, IsDesignTimeCreatable=True}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+    <Grid>
+        <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.FactionsBrowser_AlreadyInFaction}"
+                                 Visibility="{Binding HasFaction, Converter={StaticResource BoolToVisibilityConverter}}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Margin="50,0" />
+
+        <StackPanel Orientation="Vertical"
+                    Visibility="{Binding HasFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical"
+                        IsEnabled="{Binding IsUnderNewbieProtection, Converter={StaticResource BoolReverseConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical">
+                        <!-- Clan tag -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ClanTag_Current}"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="White" />
+
+                        <TextBox Text="{Binding ClanTag, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,3,0,6"
+                                 MaxLength="4"
+                                 VerticalAlignment="Center" />
+
+                        <core:FormattedTextBlock
+                            Content="{x:Static loc:CoreStrings.ClanTag_Requirements}"
+                            Foreground="{StaticResource BrushColor6}"
+                            FontSize="11"
+                            LineHeight="12"
+                            LineStackingStrategy="BlockLineHeight"
+                            TextWrapping="Wrap" />
+
+                        <!-- Faction type -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.Faction_FactionKind_Current}"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   Margin="0,15,0,0" />
+
+                        <ListBox ItemsSource="{Binding FactionKinds}"
+                                 SelectedValue="{Binding SelectedKind}"
+                                 SelectedValuePath="FactionKind"
+                                 KeyboardNavigation.TabNavigation="Continue">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsEnabled}" Value="False">
+                                            <Setter Property="IsHitTestVisible" Value="False"/>
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Opacity" Value="0.667"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"
+                                                IsItemsHost="True" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type data:FactionKindData}">
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="0,5"
+                                                HorizontalAlignment="Left"
+                                                MaxWidth="250">
+                                        <RadioButton Content="{Binding Title}"
+                                                     IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsEnabled}"
+                                                     FontWeight="Bold"
+                                                     Focusable="False"
+                                                     GroupName="FactionKind"
+                                                     Margin="0" />
+                                        
+                                        <StackPanel Orientation="Vertical"
+                                                    Margin="24,-2,0,0">
+
+                                            <core:FormattedTextBlock
+                                                Content="{Binding Description}"
+                                                Foreground="{StaticResource BrushColor7}"
+                                                FontSize="11"
+                                                LineHeight="12"
+                                                LineStackingStrategy="BlockLineHeight"
+                                                TextWrapping="Wrap" />
+                                            
+                                            <core:FormattedTextBlock Text="{x:Static loc:CoreStrings.FeatureDisabledForCurrentServer}"
+                                                                     Foreground="{StaticResource BrushColorRed6}"
+                                                                     Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                                                     FontSize="11"
+                                                                     LineHeight="12"
+                                                                     LineStackingStrategy="BlockLineHeight"
+                                                                     TextWrapping="Wrap" 
+                                                                     Margin="0,2,0,0" />
+
+                                            <core:FormattedTextBlock
+                                                Content="{Binding MembersListText}"
+                                                Visibility="{Binding MembersMax, Converter={StaticResource CountToVisibilityConverter}}"
+                                                Foreground="{StaticResource BrushColor5}"
+                                                FontSize="11"
+                                                LineHeight="12"
+                                                LineStackingStrategy="BlockLineHeight"
+                                                TextWrapping="Wrap"
+                                                Margin="0,2,0,0" />
+
+                                            <core:FormattedTextBlock
+                                                Visibility="{Binding LeaderboardParticipationLabel, Converter={StaticResource NullToVisibilityConverter}}"
+                                                Content="{Binding LeaderboardParticipationLabel}"
+                                                Foreground="{StaticResource BrushColorGreen6}"
+                                                FontSize="11"
+                                                LineHeight="12"
+                                                LineStackingStrategy="BlockLineHeight"
+                                                TextWrapping="Wrap"
+                                                Margin="0,2,0,0" />
+
+                                            <core:FormattedTextBlock
+                                                Visibility="{Binding DisplaysMembersStatusAndMapLocationLabel, Converter={StaticResource NullToVisibilityConverter}}"
+                                                Content="{Binding DisplaysMembersStatusAndMapLocationLabel}"
+                                                Foreground="{StaticResource BrushColorGreen6}"
+                                                FontSize="11"
+                                                LineHeight="12"
+                                                LineStackingStrategy="BlockLineHeight"
+                                                TextWrapping="Wrap"
+                                                Margin="0,2,0,0" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+
+                    <faction:FactionEmblemEditor Grid.Column="2"
+                                                 DataContext="{Binding ViewModelFactionEmblemEditor}" />
+                </Grid>
+
+                <Button Content="{x:Static loc:CoreStrings.Faction_CreateFaction}"
+                        Focusable="False"
+                        Command="{Binding CommandCreateFaction}"
+                        HorizontalAlignment="Center"
+                        Margin="0,15,0,3"
+                        MinWidth="85" />
+
+                <core:FormattedTextBlock Content="{Binding CostText}"
+                                         FontSize="12"
+                                         FontWeight="Bold"
+                                         Foreground="{StaticResource BrushColorAlt6}"
+                                         HorizontalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+
+        <Border Visibility="{Binding IsUnderNewbieProtection, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border.Background>
+                <RadialGradientBrush Opacity="0.333">
+                    <GradientStop Color="#00000000" Offset="1" />
+                    <GradientStop Color="#FF000000" Offset="0.667" />
+                </RadialGradientBrush>
+            </Border.Background>
+            <Border Width="250"
+                    Padding="5"
+                    Margin="0,5,0,15"
+                    CornerRadius="3"
+                    BorderThickness="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource BrushColorRed0}"
+                    BorderBrush="{StaticResource BrushColorRed4}">
+                <core:FormattedTextBlock Content="{Binding UnderNewbieProtectionText}"
+                                         FontSize="10"
+                                         FontWeight="Normal"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center" />
+            </Border>
+        </Border>
+    </Grid>
+</base:BaseUserControl>

@@ -4,13 +4,12 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using static ItemFreshnessConstants;
 
     public class ItemFreshnessSystem : ProtoSystem<ItemFreshnessSystem>
     {
@@ -47,7 +46,7 @@
             var freshness = (long)privateState.FreshnessCurrent;
             var freshnessDecrease = (uint)(deltaTime
                                            * FreshnessFractionsPerSecond
-                                           * ServerFreshnessDecaySpeedMultiplier);
+                                           * ItemFreshnessConstants.SharedFreshnessDecaySpeedMultiplier);
             if (freshnessDecrease == 0)
             {
                 // no freshness decrease
@@ -135,9 +134,7 @@
 
             var result = privateState.FreshnessCurrent
                          / (FreshnessFractionsPerSecond
-                            * (IsServer
-                                   ? ServerFreshnessDecaySpeedMultiplier
-                                   : ClientFreshnessDecaySpeedMultiplier));
+                            * ItemFreshnessConstants.SharedFreshnessDecaySpeedMultiplier);
 
             if (container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge)
             {
@@ -252,25 +249,34 @@
             return freshnessDecreaseCoefficient < 1.0;
         }
 
-        // TODO: move this to separate system in A29
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        public double ServerRemote_RequestFarmPlantsSpoilSpeedMultiplier()
-        {
-            return FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier;
-        }
-
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        public double ServerRemote_RequestFreshnessDecaySpeedMultiplier()
-        {
-            return ServerFreshnessDecaySpeedMultiplier;
-        }
-
         protected override void PrepareSystem()
         {
-            if (IsServer)
+            ItemFreshnessConstants.EnsureInitialized();
+
+            if (IsClient)
             {
-                protoItemRottenFood = Api.GetProtoEntity<ItemRot>();
+                return;
             }
+
+            protoItemRottenFood = Api.GetProtoEntity<ItemRot>();
+            Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
+        }
+
+        private static void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
+        {
+            if (!isOnline)
+            {
+                return;
+            }
+
+            Instance.CallClient(character,
+                                _ => _.ClientRemote_SetSystemConstants(
+                                    ItemFreshnessConstants.SharedFreshnessDecaySpeedMultiplier));
+        }
+
+        private void ClientRemote_SetSystemConstants(double freshnessDecaySpeedMultiplier)
+        {
+            ItemFreshnessConstants.ClientSetSystemConstants(freshnessDecaySpeedMultiplier);
         }
     }
 }

@@ -17,13 +17,13 @@
             IItem item,
             IProtoItemWeapon protoItem)
         {
-            return new ItemTooltipWeaponStats() { item = item, protoItem = protoItem };
+            return new() { item = item, protoItem = protoItem };
         }
 
         protected override void OnLoaded()
         {
             this.DataContext = this.viewModel = new ViewModelItemTooltipWeaponStats(this.item,
-                                                                                    this.protoItem);
+                                   this.protoItem);
         }
 
         protected override void OnUnloaded()

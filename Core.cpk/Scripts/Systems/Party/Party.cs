@@ -35,14 +35,12 @@
             [SyncToClient]
             public NetworkSyncList<string> Members { get; set; }
 
-            // please note - this instance is not available via party private state
+            // please note - this instance is not available via party private state on client
             public ILogicObject ServerPartyChatHolder { get; set; }
         }
 
         public class PartyPublicState : BasePublicState
         {
-            [SyncToClient]
-            public string ClanTag { get; set; }
         }
     }
 }

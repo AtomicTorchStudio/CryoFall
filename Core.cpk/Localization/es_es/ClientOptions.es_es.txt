@@ -22,6 +22,12 @@ General
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Controles
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+Al activar esta opción, el cursor del ratón no se podrá mover fuera de la ventana de juego mientras la ventana de juego sea la principal. Se podrá mover si se mantiene pulsada la tecla Ctrl. Es útil para cuando se juega en modo ventana o cuando se tienen varios monitores.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+Capturar cursor
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Activar igual
 
@@ -36,11 +42,26 @@ A menos que tengas muy claro lo que estás haciendo, te recomendamos que NO lo h
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Modo de desarrollo
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Por lo general, el juego solo muestra las barras de salud encima de los demás personajes. Puedes activar esta opción para mostrar también la de tu personaje.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Mostrar barra de salud
+[br]sobre mi personaje`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Mostrar consejo de[br]interacción con objetos
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Mostrar consejo de[br]nombre de los objetos
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`Las misiones son una parte fundamental del juego. Sobre todo si es la primera vez que juegas, ya que hacen las veces de guía y tutorial para nuevos jugadores.
+[br]
+[br]¿Seguro que quieres desactivar la ventana de misiones?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Ocultar ventana de misiones
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Zoom de cámara

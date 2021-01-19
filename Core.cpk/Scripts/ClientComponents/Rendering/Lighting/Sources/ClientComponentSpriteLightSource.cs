@@ -7,14 +7,14 @@
     public class ClientComponentSpriteLightSource : BaseClientComponentLightSource
     {
         public static readonly TextureResource DefaultLightSpotTextureResource
-            = new TextureResource("FX/Light",
-                                  isTransparent: false,
-                                  isLinearSpace: true,
-                                  // always use max quality sprite, mipmap will do the job
-                                  qualityOffset: -100);
+            = new("FX/Light",
+                  isTransparent: false,
+                  isLinearSpace: true,
+                  // always use max quality sprite, mipmap will do the job
+                  qualityOffset: -100);
 
         private static readonly EffectResource EffectResourceLightingMaskDrawEffect
-            = new EffectResource("Lighting/LightSourceDrawEffect");
+            = new("Lighting/LightSourceDrawEffect");
 
         private static readonly RenderingMaterial DefaultSpriteRenderingMaterial =
             RenderingMaterial.Create(EffectResourceLightingMaskDrawEffect);

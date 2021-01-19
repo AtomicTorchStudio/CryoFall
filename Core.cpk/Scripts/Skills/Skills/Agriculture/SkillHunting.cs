@@ -18,15 +18,6 @@
         /// </summary>
         public static double ExperienceForGather => 50;
 
-        /*
-         * Not present in the game yet, will be added later, maybe
-        public enum Flags
-        {
-            [Description("Chance to find trophy (such as animal head)")]
-            ChanceToFindTrophy
-        }
-        */
-
         public override string Description =>
             "Being a better hunter increases your chances to get more spoils from each game.";
 

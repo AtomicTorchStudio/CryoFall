@@ -1,9 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolPointer
 {
-    using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
+    using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
-    using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
 
     public class EditorToolPointer : BaseEditorTool
     {
@@ -13,12 +13,22 @@
 
         public override BaseEditorActiveTool Activate(BaseEditorToolItem item)
         {
-            return new EditorToolPointerActive(this.ClientDeleteCallback);
+            return new EditorToolPointerActive();
         }
 
-        private void ClientDeleteCallback(IReadOnlyCollection<IStaticWorldObject> worldObjectsToDelete)
+        public override FrameworkElement CreateSettingsControl()
         {
-            EditorStaticObjectsRemovalHelper.ClientDelete(worldObjectsToDelete);
+            return new FormattedTextBlock()
+            {
+                Content =
+                    @"Hold Shift or Ctrl to add objects to selection.
+                      [br]Hold Alt to exclude objects from selection.
+                      [br]Press Del to delete selected object.
+                      [br]Use Ctrl+C/X/V to copy/cut/paste objects.
+                      [br]Use Ctrl+Z to undo, Ctrl+Y to redo.",
+                Foreground = Brushes.White,
+                FontSize = 11
+            };
         }
     }
 }

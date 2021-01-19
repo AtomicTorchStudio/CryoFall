@@ -52,6 +52,12 @@
 
         public override string Name => "Character respawn system";
 
+        public static void ServerOnCharacterAppearanceSelected(ICharacter character)
+        {
+            ServerPlayerSpawnManager.SpawnPlayer(character, isRespawn: false);
+            ServerOnSuccessfulRespawn(character);
+        }
+
         public static void ServerRemoveInvalidStatusEffects(ICharacter character)
         {
             foreach (var statusEffect in Api.Shared.WrapInTempList(
@@ -191,7 +197,8 @@
         private static bool ServerCanRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
         {
             if (stats.HealthCurrent <= 0
-                || PlayerCharacter.GetPublicState(character).IsDead)
+                || PlayerCharacter.GetPublicState(character).IsDead
+                || !PlayerCharacter.GetPrivateState(character).IsAppearanceSelected)
             {
                 return true;
             }
@@ -206,17 +213,21 @@
             bed = PlayerCharacter.GetPrivateState(character).CurrentBedObject;
             return bed is not null
                    && !bed.IsDestroyed
-                   && LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bed, character);
+                   && LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bed,
+                                                                          character,
+                                                                          requireFactionPermission: false);
         }
 
-        private static void ServerOnSuccessfulRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
+        private static void ServerOnSuccessfulRespawn(ICharacter character)
         {
+            var publicState = PlayerCharacter.GetPublicState(character);
             var privateState = PlayerCharacter.GetPrivateState(character);
+            var stats = PlayerCharacter.GetPublicState(character).CurrentStatsExtended;
+
             if (privateState.IsDespawned)
             {
                 // character was despawned (PvE)
                 privateState.IsDespawned = false;
-                var publicState = PlayerCharacter.GetPublicState(character);
                 if (stats.HealthCurrent > 0)
                 {
                     publicState.IsDead = false;
@@ -231,9 +242,10 @@
                 // if character was actually dead and not simply despawned
                 ResetStatsOnRespawn();
 
-                if (!NewbieProtectionSystem.ServerGetLatestDeathIsNewbiePvP(character))
+                if (PveSystem.ServerIsPvE
+                    || !NewbieProtectionSystem.SharedIsNewbie(character))
                 {
-                    // character is weakened after respawn for some time (except newbies in case of PvP death)
+                    // character is weakened after respawn for some time (except newbies in PvP)
                     // more intensity in PvE as otherwise death is not punishing enough on PvE.
                     character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: PveSystem.ServerIsPvE ? 1.0 : 0.5);
                 }
@@ -319,7 +331,9 @@
                         }
                     }
 
-                    if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(neighborTile.Position, character))
+                    if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(neighborTile.Position,
+                                                                               character,
+                                                                               requireFactionPermission: false))
                     {
                         // invalid tile - it's claimed by another player
                         continue;
@@ -419,7 +433,7 @@
 
             if (ServerTryRespawnAtBed(character, respawnOnlyNearby: false))
             {
-                ServerOnSuccessfulRespawn(stats, character);
+                ServerOnSuccessfulRespawn(character);
             }
         }
 
@@ -436,7 +450,7 @@
             // spawn via spawn manager - will spawn like a new character
             ServerPlayerSpawnManager.SpawnPlayer(character, isRespawn: true);
             Logger.Important($"{character} respawned successfully in world at {character.TilePosition}");
-            ServerOnSuccessfulRespawn(stats, character);
+            ServerOnSuccessfulRespawn(character);
         }
 
         private void ServerRemote_RespawnNearBed()
@@ -451,7 +465,7 @@
 
             if (ServerTryRespawnAtBed(character, respawnOnlyNearby: true))
             {
-                ServerOnSuccessfulRespawn(stats, character);
+                ServerOnSuccessfulRespawn(character);
             }
         }
     }

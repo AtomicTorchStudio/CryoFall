@@ -25,6 +25,9 @@ Daha iyi tarım teknolojileri, tarım etkisini, bitki büyüme hızını, olgunl
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Tarım
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Gereksinim: Balıkçılık yetenek seviyesi {0}.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Yemi kurtarma şansı
 

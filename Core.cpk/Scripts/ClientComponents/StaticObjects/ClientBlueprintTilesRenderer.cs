@@ -19,7 +19,7 @@
         private readonly IClientSceneObject sceneObjectRoot;
 
         private readonly List<IComponentSpriteRenderer> spriteRenderers
-            = new List<IComponentSpriteRenderer>();
+            = new();
 
         private bool? isCanBuild;
 

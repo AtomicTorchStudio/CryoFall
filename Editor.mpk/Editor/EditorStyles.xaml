@@ -1,23 +1,86 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     mc:Ignorable="d"
-                    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
                     xmlns:recipeBreakdownData="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Controls.RecipeBreakdown.Data"
-                    xmlns:recipeBreakdown="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Controls.RecipeBreakdown">
+                    xmlns:recipeBreakdown="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Controls.RecipeBreakdown"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
 
-    <Style x:Key="EditorPanelStyle" TargetType="Border">
-        <Setter Property="CornerRadius" Value="3" />
-        <Setter Property="Background" Value="#FF000000" />
-        <Setter Property="BorderBrush" Value="{StaticResource WidgetBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="IsHitTestVisible" Value="True" />
-    </Style>
+    <system:Double x:Key="IconSize">44</system:Double>
 
+    <DataTemplate x:Key="DataTemplateEditorEntryWithIcon">
+        <RadioButton base:ToolTipServiceExtend.ToolTip="{Binding Name}"
+                     IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                     Focusable="False"
+                     Margin="2">
+            <RadioButton.Content>
+                <Grid>
+                    <Border x:Name="Border"
+                            CornerRadius="3"
+                            Background="#FF111111">
+                        <Border Background="{Binding Icon}"
+                                Width="{DynamicResource IconSize}"
+                                Height="{DynamicResource IconSize}"
+                                CornerRadius="3"
+                                Margin="1" />
+                    </Border>
+
+                    <TextBlock Text="{Binding ShortName}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               TextAlignment="Center"
+                               FontSize="10"
+                               LineHeight="10"
+                               LineStackingStrategy="BlockLineHeight"
+                               FontFamily="{StaticResource CondensedFontFamily}"
+                               noesis:Text.Stroke="#AA000000"
+                               noesis:Text.StrokeThickness="1.5"
+                               Margin="0,0,0,2" />
+
+                    <Border x:Name="BorderSelected"
+                            BorderThickness="1.25"
+                            CornerRadius="3">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{StaticResource Color7}" Opacity="0.75" />
+                        </Border.BorderBrush>
+                    </Border>
+                </Grid>
+            </RadioButton.Content>
+            <RadioButton.Template>
+                <ControlTemplate>
+                    <ContentPresenter />
+                </ControlTemplate>
+            </RadioButton.Template>
+        </RadioButton>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                <Setter TargetName="BorderSelected"
+                        Property="Visibility"
+                        Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter TargetName="Border"
+                        Property="Background"
+                        Value="{StaticResource BrushColor1}" />
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsSelected}" Value="False" />
+                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+
+                <Setter TargetName="BorderSelected"
+                        Property="Visibility"
+                        Value="Visible" />
+                <Setter TargetName="BorderSelected"
+                        Property="BorderBrush"
+                        Value="{StaticResource BrushColor3}" />
+            </MultiDataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
     <Style x:Key="EditorButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="FontSize" Value="12" />
@@ -45,59 +108,15 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <UniformGrid Margin="-3" Columns="3" />
+                    <UniformGrid Margin="-2" Columns="4" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ItemTemplate">
-            <Setter.Value>
-                <DataTemplate DataType="{x:Type data:ViewModelEditorToolItem}">
-                    <RadioButton ui:ToolTipServiceExtend.ToolTip="{Binding Name}"
-                                 IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="3">
-                        <RadioButton.Content>
-                            <Grid>
-                                <Border x:Name="Border" CornerRadius="3"
-                                        Background="#FF262626">
-                                    <Border Background="{Binding Icon}" Width="34" Height="34" CornerRadius="3"
-                                            Margin="1" />
-                                </Border>
-
-                                <TextBlock Text="{Binding ShortName}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Bottom"
-                                           TextAlignment="Center"
-                                           FontSize="10"
-                                           LineHeight="10"
-                                           LineStackingStrategy="BlockLineHeight"
-                                           FontFamily="{StaticResource CondensedFontFamily}"
-                                           Margin="0,0,0,2" />
-
-                                <Border x:Name="BorderSelected" BorderBrush="#CCFFFF66" BorderThickness="2"
-                                        CornerRadius="3" />
-                            </Grid>
-                        </RadioButton.Content>
-                        <RadioButton.Template>
-                            <ControlTemplate>
-                                <ContentPresenter />
-                            </ControlTemplate>
-                        </RadioButton.Template>
-                    </RadioButton>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="False">
-                            <Setter TargetName="BorderSelected" Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#66FFFF66" />
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="ItemTemplate" Value="{StaticResource DataTemplateEditorEntryWithIcon}" />
     </Style>
 
-
     <Style x:Key="ItemsScrollViewerStyle" TargetType="ScrollViewer">
-        <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0" />
@@ -125,12 +144,13 @@
                                                     CanContentScroll="{TemplateBinding CanContentScroll}" />
                         </Border>
 
-                        <Border Grid.Column="1" Grid.Row="0" Margin="3,0,-1,0"
+                        <Border Grid.Column="1" Grid.Row="0" Margin="-6,0,-1,0"
                                 Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
                             <ScrollBar x:Name="PART_VerticalScrollBar"
-                                       Width="4"
+                                       Width="6"
                                        Value="{TemplateBinding VerticalOffset}"
-                                       Orientation="Vertical" Minimum="0"
+                                       Orientation="Vertical"
+                                       Minimum="0"
                                        Maximum="{TemplateBinding ScrollableHeight}"
                                        ViewportSize="{TemplateBinding ViewportHeight}" />
                         </Border>

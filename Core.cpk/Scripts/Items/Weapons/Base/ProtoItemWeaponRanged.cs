@@ -41,9 +41,9 @@
 
         public virtual double CharacterAnimationAimingRecoilPowerAddCoef => 1;
 
-        public override double ReadyDelayDuration => WeaponReadyDelays.DefaultRanged;
-
         public override CollisionGroup CollisionGroup => CollisionGroups.HitboxRanged;
+
+        public override double DamageApplyDelay => 0;
 
         public override DamageStatsComparisonPreset DamageStatsComparisonPreset
             => DamageStatsComparisonPresets.PresetRangedExceptGrenades;
@@ -59,6 +59,8 @@
         public override ITextureResource Icon => new TextureResource("Items/Weapons/Ranged/" + this.GetType().Name);
 
         public IMuzzleFlashDescriptionReadOnly MuzzleFlashDescription { get; private set; }
+
+        public override double ReadyDelayDuration => WeaponReadyDelays.DefaultRanged;
 
         public override (float min, float max) SoundPresetWeaponDistance
             => (SoundConstants.AudioListenerMinDistanceRangedShot,

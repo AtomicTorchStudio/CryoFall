@@ -22,6 +22,12 @@ Ogólne
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Sterowanie
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+Po włączeniu tej funkcji kursora myszy nie będzie można przesunąć poza okno gry, gdy jest ono aktywne, o ile nie jest przytrzymany klawisz Ctrl. Funkcja przydatna w przypadku konfiguracji z wieloma monitorami lub podczas gry w trybie w oknie.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+Ogranicz kursor
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Włącz mimo wszystko
 
@@ -36,11 +42,26 @@ Włącz ten tryb, tylko jeśli RZECZYWIŚCIE wiesz, co robisz.
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Tryb programistyczny
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Zazwyczaj paski zdrowia są wyświetlane tylko nad innymi postaciami. Po włączeniu tej opcji będą one wyświetlane też nad twoją postacią.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Pokaż pasek zdrowia
+[br]nad moją postacią`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Wyświetl podpowiedź[br]z interakcją
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Wyświetl podpowiedź[br]z nazwą obiektu
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`Zadania są istotną częścią gry, zwłaszcza jeśli grasz po raz pierwszy – wtedy stanowią przewodnik i samouczek dla nowych graczy.
+[br]
+[br]Czy na pewno wyłączyć panel zadań?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Ukryj panel zadań
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Zoom kamery

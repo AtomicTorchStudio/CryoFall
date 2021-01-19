@@ -10,12 +10,12 @@
     public class TileSwamp : ProtoTile, IProtoTileWellAllowed
     {
         private static readonly TextureResource GroundTextureOverlay
-            = new TextureResource("Terrain/Swamp/TileSwamp1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Swamp/TileSwamp1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexturePrimary
-            = new TextureResource("Terrain/Swamp/TileSwamp2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Swamp/TileSwamp2.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 9;
 

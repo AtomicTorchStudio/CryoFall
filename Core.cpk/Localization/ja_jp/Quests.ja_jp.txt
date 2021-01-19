@@ -391,12 +391,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 狩りの達人－パート2
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+新しい発見があると、[b]コンプリートメニュー[/b]に表示されます。これを使って進捗状況を確認したり、CryoFallの世界をより深く知るための[u]ボーナスLP[/u]を受け取ることができます。
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+インベントリをソートするには、インベントリを開いて、インベントリグリッドの上にカーソルを置きながら[u]{0}[/u]か[u]{1}[/u]キーを押すだけです。同様に[b]どの[/b]インベントリでもソートが可能です（収納箱など）。
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+スプリント（走る）するには、移動中に[u]Shiftキー[/u]を押すだけです。数メートル走ってみましょう。スプリントは危険な捕食者から逃れるのに役立ちます。
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 CryoFallをもっと楽しむには、インベントリの並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] インベントリをソートするには、インベントリグリッドの上にカーソルを置きながら[u]マウスの中ボタン[/u]または[u]Zキー[/u]を押します（操作設定を変更していない場合）。同様に[b]任意の[/b]インベントリグリッド（箱など）をソートできます。
-[*] スプリント（走る）には、[u]Shiftキー[/u]を押しながら移動します。試しに数メートル走ってみてください。スプリントは危険な捕食者から逃れるのに役立ちます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 基本的なアクションを実行する
@@ -492,6 +497,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 生態環境の探索－パート4
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+いくつかの箱を略奪
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 古い遺跡は珍しいアイテムや特定の資源を見つけるのに最も良い場所です。あなたが十分な装備を持っているならば、探検してみると良いでしょう。
 
@@ -503,8 +511,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 古い遺跡を探索する
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-いくつかの箱を略奪
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+発見したテレポート場所が[b]増える[/b]ほど、移動範囲が[b]広がります[/b]。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+[b]２か所[/b]以上テレポート場所を見つけると、その間を瞬時に移動できるようになります。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+また、[b]隠された[/b]テレポート場所もあるかもしれません！
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+自分の足で走り回るのも良いですが、長距離を移動するには、エイリアンテレポートを使用した方が良いかもしれません。
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+ファストトラベル
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 魚の[u]切り身[/u]は、[b]使用[/b]アクションで[u]作成[/u]できます（つまり、アイテム使用と同じ操作です）。
@@ -587,6 +607,9 @@ Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 ドローンによる採掘
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+狩りの達人－パート6
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 拠点拡大に伴って[u]蓄電容量を拡張[/u]し、常に[u]十分な余剰電力[/u]を確保しておくようにしましょう。

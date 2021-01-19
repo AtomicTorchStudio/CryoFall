@@ -30,19 +30,21 @@
                 }
 
                 var name = this.Name;
-                var indexOfParenthesis = name.IndexOf('(');
-                if (indexOfParenthesis > 0)
+                var indexOfSplit = name.IndexOf('(');
+                var maxLength = 8;
+
+                if (indexOfSplit > 0)
                 {
-                    var result = name.Substring(0, 5);
+                    var result = name.Substring(0, Math.Min(maxLength, indexOfSplit - 1));
                     result += "\n";
-                    result += name.Substring(indexOfParenthesis + 1,
-                                             length: Math.Min(5, name.Length - (indexOfParenthesis + 1)))
+                    result += name.Substring(indexOfSplit + 1,
+                                             length: Math.Min(maxLength, name.Length - (indexOfSplit + 1)))
                                   .TrimEnd(')');
                     return result;
                 }
 
-                return name.Length > 5
-                           ? name.Substring(0, 5)
+                return name.Length > maxLength
+                           ? name.Substring(0, maxLength)
                            : name;
             }
         }

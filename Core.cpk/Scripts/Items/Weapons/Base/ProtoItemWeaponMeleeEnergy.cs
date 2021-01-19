@@ -152,7 +152,7 @@
             // consume energy on hit
             var byCharacter = weaponCache.Character;
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(byCharacter,
-                                                                                        this.EnergyUsePerHit);
+                this.EnergyUsePerHit);
             CharacterEnergySystem.ServerDeductEnergyCharge(byCharacter, requiredEnergyAmount);
         }
 

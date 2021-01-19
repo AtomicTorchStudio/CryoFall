@@ -27,17 +27,16 @@
         public const string RenderingTag = nameof(ClientAmbientOcclusion) + "LayerOcclusion";
 
         private static readonly EffectResource EffectResourceOcclusionMaskFromColorDrawEffect
-            = new EffectResource("AmbientOcclusion/OcclusionMaskFromColorDrawEffect");
+            = new("AmbientOcclusion/OcclusionMaskFromColorDrawEffect");
 
         public static readonly Lazy<RenderingMaterial> OcclusionSpriteFromColorRenderingMaterial
-            = new Lazy<RenderingMaterial>(
-                () => RenderingMaterial.Create(EffectResourceOcclusionMaskFromColorDrawEffect));
+            = new(() => RenderingMaterial.Create(EffectResourceOcclusionMaskFromColorDrawEffect));
 
         private static readonly EffectResource EffectResourceOcclusionMaskDrawEffect
-            = new EffectResource("AmbientOcclusion/OcclusionMaskDrawEffect");
+            = new("AmbientOcclusion/OcclusionMaskDrawEffect");
 
         public static readonly Lazy<RenderingMaterial> OcclusionSpriteRenderingMaterial
-            = new Lazy<RenderingMaterial>(() => RenderingMaterial.Create(EffectResourceOcclusionMaskDrawEffect));
+            = new(() => RenderingMaterial.Create(EffectResourceOcclusionMaskDrawEffect));
 
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
 

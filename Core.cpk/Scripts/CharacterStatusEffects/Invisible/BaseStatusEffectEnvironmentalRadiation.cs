@@ -29,13 +29,13 @@
 
         public override string Description => string.Empty;
 
-        public override ITextureResource Icon => TextureResource.NoTexture;
-
         public override StatusEffectKind Kind => StatusEffectKind.Neutral;
 
         public override string Name => this.ShortId;
 
         public override double VisibilityIntensityThreshold => double.MaxValue;
+
+        protected override ITextureResource IconTextureResource => TextureResource.NoTexture;
 
         protected abstract IProtoZone ServerZoneProto { get; }
 

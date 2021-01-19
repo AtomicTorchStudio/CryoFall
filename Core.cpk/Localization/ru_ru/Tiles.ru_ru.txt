@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+Земля древних
+
+Scripts/Tiles/TileBarren@Name:
 Пустошь
 
 Scripts/Tiles/TileBeachBoreal@Name:

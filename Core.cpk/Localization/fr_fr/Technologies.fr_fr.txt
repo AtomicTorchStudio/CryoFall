@@ -107,7 +107,7 @@ Scripts/Technologies/Base/TechGroupsLocalization@VehiclesName:
 Véhicules
 
 Scripts/Technologies/Base/TechGroupsLocalization@XenoGeologyDescription:
-Les technologies nécessaires à l'exploitation des ressources de mondes extra-terrestres.
+Les technologies nécessaires à l'exploitation des ressources de mondes extraterrestres.
 
 Scripts/Technologies/Base/TechGroupsLocalization@XenoGeologyName:
 Xénogéologie

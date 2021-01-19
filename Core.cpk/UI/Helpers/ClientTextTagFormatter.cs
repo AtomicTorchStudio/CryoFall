@@ -14,7 +14,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-    internal static class ClientTextTagFormatter
+    public static class ClientTextTagFormatter
     {
         private static readonly Color ColorH1 = Api.Client.UI.GetApplicationResource<Color>("Color7");
 
@@ -22,7 +22,7 @@
 
         public static FormattedTextBlock NewFormattedTextBlock(string text)
         {
-            return new FormattedTextBlock() { Content = text };
+            return new() { Content = text };
         }
 
         public static List<Inline> ParseInlines(string text)

@@ -32,6 +32,8 @@
 
         private PanningPanel panningPanel;
 
+        private ViewModelControlWorldMap viewModel;
+
         public BaseCommand CommandCenter
         {
             get => (BaseCommand)this.GetValue(CommandCenterProperty);
@@ -60,23 +62,22 @@
         protected override void InitControl()
         {
             this.panningPanel = this.GetByName<PanningPanel>("PanningPanel");
-
-            var viewModelControlWorldMap = new ViewModelControlWorldMap();
-            this.DataContext = viewModelControlWorldMap;
-
-            this.WorldMapController = new WorldMapController(
-                this.panningPanel,
-                viewModelControlWorldMap,
-                isPlayerMarkDisplayed: !this.IsEditor,
-                isCurrentCameraViewDisplayed: this.IsEditor,
-                isListeningToInput: true,
-                paddingChunks: this.IsEditor ? 1 : 0);
-
+            this.DataContext = this.viewModel = new ViewModelControlWorldMap();
             this.CommandCenter = new ActionCommand(this.CenterMapOnPlayerCharacter);
         }
 
         protected override void OnLoaded()
         {
+            this.WorldMapController?.Dispose();
+            this.WorldMapController = new WorldMapController(
+                this.panningPanel,
+                sectorProvider: WorldMapSectorProviderHelper.GetProvider(isEditor: this.IsEditor),
+                viewModelControlWorldMap: this.viewModel,
+                isPlayerMarkDisplayed: !this.IsEditor,
+                isCurrentCameraViewDisplayed: this.IsEditor,
+                isListeningToInput: true,
+                paddingChunks: this.IsEditor ? 10 : 0);
+
             this.MouseDown += this.MouseDownHandler;
             this.IsFullOpacityNow = this.IsEditor
                                     || DefaultIsFullOpacity;

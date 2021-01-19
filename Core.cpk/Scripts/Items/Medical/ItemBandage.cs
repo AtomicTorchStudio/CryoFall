@@ -7,7 +7,7 @@
 
     public class ItemBandage : ProtoItemMedical
     {
-        public override double CooldownDuration => MedicineCooldownDuration.Long;
+        public override double CooldownDuration => MedicineCooldownDuration.Medium;
 
         public override string Description =>
             "Bandages can be useful to stop bleeding and help heal the wound.";

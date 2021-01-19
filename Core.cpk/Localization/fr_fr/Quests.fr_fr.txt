@@ -176,8 +176,8 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
 `[*] Ouvrez le menu de revendication territoriale en interagissant avec la structure de revendication territoriale. Vous verrez des informations détaillées à son sujet et aurez la possibilité de l'améliorer.
-[*] Les structures placées en dehors de la zone de revendication territoriale se dégraderont rapidement en un jour ou deux. Assurez-vous de construire à l'intérieur de votre zone de revendication territoriale.
-[*] Vous pouvez rapidement démonter n'importe quelle structure en utilisant le pied de biche (construction de rang 1) tant qu'elles sont dans votre zone de revendication territoriale.
+[*] Les structures placées en dehors de la zone de revendication territoriale se délabreront rapidement, en un jour ou deux. Assurez-vous de construire à l'intérieur de votre zone de revendication territoriale.
+[*] Vous pouvez rapidement démonter n'importe quelle structure en utilisant le pied de biche (construction de rang 1) tant qu'elle se trouve dans votre zone de revendication territoriale.
 [*] Il n'est pas nécessaire de placer toutes vos stations de fabrication et autres structures à l'intérieur de votre base. Comme il n'y a rien à voler, les autres joueurs les laisseront généralement tranquilles. Cela vous permettra de garder l'espace dans votre base pour des éléments plus précieux, comme les coffres et les fonderies.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Maîtrise de la chasse - 2e partie
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+Lorsque vous découvrirez une nouvelle chose, elle sera ajoutée dans le [b]menu Complétiste[/b]. Utilisez ce menu pour suivre votre progression. Vous recevrez des [u]PA supplémentaires[/u] en découvrant tous les secrets du monde de CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Pour trier votre inventaire, il suffit de l'ouvrir et d'appuyer sur [u]{0}[/u] ou [u]{1}[/u] tout en maintenant le pointeur au-dessus de la grille de l'inventaire. Vous pouvez trier [b]N'IMPORTE QUEL[/b] type d'inventaire ainsi (notamment les coffres).
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Pour courir, maintenez simplement la [u]touche MAJ[/u] enfoncée pendant que vous vous déplacez. Essayez de courir sur une courte distance pour essayer. Courir peut vous aider à échapper aux prédateurs.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 Il y a d'autres choses à savoir pour profiter pleinement de CryoFall, notamment comment trier votre inventaire et faire courir votre personnage.
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Pour trier votre inventaire, il suffit de l'ouvrir et d'appuyer sur [u]la molette de votre souris[/u] ou sur la [u]touche Z[/u] (si vous n'avez pas modifié les commandes par défaut), tout en maintenant le pointeur au-dessus de l'inventaire. Il est possible de trier [b]N'IMPORTE QUEL[/b] type d'inventaire ainsi (notamment les coffres).
-[*] Pour courir, maintenez simplement la [u]touche MAJ[/u] enfoncée pendant que vous vous déplacez. Essayez de courir sur une courte distance pour essayer. Courir peut vous aider à échapper aux prédateurs.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Effectuer les actions de base
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Exploration des biomes - 4e partie
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Piller des contenants
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Les ruines anciennes sont le meilleur endroit pour trouver des composants rares ainsi que certaines ressources. N'hésitez pas à les explorer de temps en temps, si vous disposez de l'équipement nécessaire.
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Explorer des ruines
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Piller des contenants
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+[b]Plus[/b] vous découvrirez de sites de téléportation, plus votre réseau de déplacement sera [b]vaste[/b].
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+Trouvez au moins [b]deux[/b] sites de téléportation afin de pouvoir vous déplacer de l'un à l'autre.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+Il existe peut-être des sites de téléportation [b]cachés[/b]...
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+Se balader à pied, c'est bien sympatique, mais pour couvrir de très grandes distances, vous préférerez certainement utiliser les téléporteurs extraterrestres.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Voyage rapide
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 Pour [u]extraire[/u] les [u]filets[/u] de poisson, sélectionnez l'action [b]utiliser[/b] sur le poisson pêché (de la même façon que vous le feriez pour utiliser n'importe quel objet).
@@ -586,6 +606,9 @@ Extraire du minerai et abattre les arbres à la main sont des tâches fastidieus
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Drones de minage
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Maîtrise de la chasse - 6e partie
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 Il est conseillé d'[u]augmenter votre capacité de stockage d'énergie[/u] au fur et à mesure que votre base s'agrandit pour vous assurer d'avoir toujours [u]suffisamment de stock en réserve[/u].

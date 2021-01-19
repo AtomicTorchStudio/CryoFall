@@ -4,12 +4,5 @@
 
     public partial class NoiseSettingsEditor : BaseUserControl
     {
-        public NoiseSettingsEditor()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

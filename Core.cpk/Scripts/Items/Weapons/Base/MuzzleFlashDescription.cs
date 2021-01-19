@@ -24,7 +24,7 @@
 
         public MuzzleFlashDescription Clone()
         {
-            return new MuzzleFlashDescription()
+            return new()
             {
                 LightColor = this.LightColor,
                 LightDurationSeconds = this.LightDurationSeconds,
@@ -33,7 +33,7 @@
                 TextureAnimationDurationSeconds = this.TextureAnimationDurationSeconds,
                 TextureAtlas = this.TextureAtlas,
                 TextureScale = this.TextureScale,
-                TextureScreenOffset = this.TextureScreenOffset,
+                TextureScreenOffset = this.TextureScreenOffset
             };
         }
 

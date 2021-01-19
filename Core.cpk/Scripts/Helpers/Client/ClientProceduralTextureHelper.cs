@@ -124,7 +124,7 @@
             ITextureResource[] textureResourcesWithoutOffets,
             Vector2Ushort? customSize)
         {
-            return new ProceduralTexture(
+            return new(
                 name,
                 generateTextureCallback: request => Compose(request, customSize, textureResources),
                 isTransparent: isTransparent,

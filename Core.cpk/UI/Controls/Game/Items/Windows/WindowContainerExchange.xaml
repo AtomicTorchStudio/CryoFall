@@ -9,7 +9,9 @@
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data:ViewModelWindowContainerExchange, IsDesignTimeCreatable=True}">
+    d:DataContext="{d:DesignInstance data:ViewModelWindowContainerExchange, IsDesignTimeCreatable=True}"
+    FontFamily="{StaticResource CondensedFontFamily}"
+    FontWeight="Bold">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
                                   SoundOpening="{x:Null}"

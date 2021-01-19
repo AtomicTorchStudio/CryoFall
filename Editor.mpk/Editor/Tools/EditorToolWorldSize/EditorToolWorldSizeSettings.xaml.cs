@@ -8,9 +8,5 @@
         {
             this.DataContext = settingsViewModel;
         }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

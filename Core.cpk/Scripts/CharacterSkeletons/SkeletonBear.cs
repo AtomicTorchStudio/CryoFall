@@ -15,14 +15,16 @@
         public override double IconScale => 0.5;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Bear/Back");
+            = new("Bear/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Bear/Front");
+            = new("Bear/Front");
 
         public override double WorldScale => 0.45;
 
         protected override string SoundsFolderPath => "Skeletons/Bear";
+
+        protected override double VolumeFootsteps => 1.0;
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {
@@ -33,8 +35,8 @@
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
             physicsBody
-                .AddShapeRectangle(size: (0.8, 0.4),
-                                   offset: (-0.4, -0.25))
+                .AddShapeCircle(radius: 0.4,
+                                center: (0, 0))
                 .AddShapeCircle(radius: 0.55,
                                 center: (0, 0.35),
                                 group: CollisionGroups.HitboxMelee)

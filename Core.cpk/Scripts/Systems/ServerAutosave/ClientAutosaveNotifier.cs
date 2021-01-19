@@ -17,7 +17,7 @@
               + "[br]";
 
         private static readonly TextureResource TextureResourceIconSave
-            = new TextureResource("FX/Special/IconSave.png");
+            = new("FX/Special/IconSave.png");
 
         private static HudNotificationControl notificationControl;
 

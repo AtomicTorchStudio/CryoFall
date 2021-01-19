@@ -28,7 +28,7 @@
 
         private static readonly Brush BrushPvP = new SolidColorBrush(Color.FromArgb(0xAA, 0xFF, 0xBB, 0xBB));
 
-        private readonly StringBuilder stringBuilder = new StringBuilder();
+        private readonly StringBuilder stringBuilder = new();
 
         private int lastHours = int.MaxValue;
 
@@ -44,10 +44,6 @@
         {
             get => (Brush)this.GetValue(TextBrushProperty);
             set => this.SetValue(TextBrushProperty, value);
-        }
-
-        protected override void InitControl()
-        {
         }
 
         protected override void OnLoaded()

@@ -80,16 +80,20 @@
         /// (it means the command is invoked from the server system console directly).
         /// </summary>
         public static bool ServerIsModeratorOrSystemConsole(ICharacter character)
-            => ServerModeratorSystem.SharedIsModerator(character)
-               || character is null && Api.IsServer;
+        {
+            return ServerModeratorSystem.SharedIsModerator(character)
+                   || character is null && Api.IsServer;
+        }
 
         /// <summary>
         /// Returns true if character has the Operator role or it's null and we're on the server
         /// (it means the command is invoked from the server system console directly).
         /// </summary>
         public static bool ServerIsOperatorOrSystemConsole(ICharacter character)
-            => ServerOperatorSystem.SharedIsOperator(character)
-               || character is null && Api.IsServer;
+        {
+            return ServerOperatorSystem.SharedIsOperator(character)
+                   || character is null && Api.IsServer;
+        }
 
         public static void ServerOnConsoleCommandResult(
             ICharacter byCharacter,
@@ -473,7 +477,9 @@
                 writeToLog: false);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
+        // Cannot use sequential delivery mode here as the size of the list
+        // may be above the packet size limit (especially in Editor).
+        [RemoteCallSettings(avoidBuffer: true)]
         private void ClientRemote_GetSuggestionsCallback(
             string consoleCommandName,
             byte variantIndex,

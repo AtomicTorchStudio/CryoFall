@@ -15,27 +15,26 @@
     Focusable="False"
     d:DataContext="{d:DesignInstance data:ViewModelConstructionBuildRequirementsTooltip, IsDesignTimeCreatable=True}">
 
-    <Grid MinWidth="128"
-          MinHeight="192">
-        <Canvas Width="128"
-                Margin="2.5,176,0,0"
+    <Grid MinWidth="128">
+        <Border MaxWidth="256"
+                Margin="2.5,230,0,0"
+                IsHitTestVisible="False"
+                Background="#77000000"
                 HorizontalAlignment="Center"
-                IsHitTestVisible="False">
-            <Border Width="128">
-                <controls:RequiredItemsPanelControl Items="{Binding StageRequiredItems}"
-                                                    CountMultiplier="{Binding StageCountRemains}"
-                                                    IconSize="60"
-                                                    FontSize="17"
-                                                    HorizontalAlignment="Center"
-                                                    TextStrokeThickness="2" />
-            </Border>
-        </Canvas>
+                Padding="2,0">
+            <controls:RequiredItemsPanelControl Items="{Binding StageRequiredItems}"
+                                                CountMultiplier="{Binding StageCountRemains}"
+                                                IconSize="60"
+                                                FontSize="17"
+                                                HorizontalAlignment="Center"
+                                                TextStrokeThickness="2" />
+        </Border>
 
         <Grid Margin="0,138,0,0"
               HorizontalAlignment="Center"
               IsHitTestVisible="False"
               Visibility="{Binding CanBuildOrRepairNow, Converter={StaticResource BoolToVisibilityConverter}}">
-            
+
             <i:Interaction.Triggers>
                 <i:DataTrigger
                     Binding="{Binding CanInteract, ElementName=UserControl}"

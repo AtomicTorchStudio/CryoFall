@@ -28,6 +28,9 @@ UI/CoreStrings@AutosaveNotification_Saving:
 UI/CoreStrings@AutosaveNotification_Title:
 サーバーのスナップショット
 
+UI/CoreStrings@BbCodeFormattingDescription:
+利用可能なタグ：[b]、[u]、[i]、[url=example.com]リンク[/url]、[color=#FF0000]カラー[/color]、箇条書き[*]、改行[br]のようなBBコード(改行は改行すれば自動的に追加されます)。
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 解体までの時間：
 
@@ -166,6 +169,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 今後表示しない
+
+UI/CoreStrings@ClanTag:
+クランタグ
 
 UI/CoreStrings@ClanTag_Current:
 クランタグ：
@@ -331,6 +337,9 @@ UI/CoreStrings@DepositCapacityStats_TitleInfinite:
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 表層採掘（高効率）
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+劣化タイマーは所有地標が破壊された（建物耐久度が0になった）時点より開始されます。
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 本当に{0}を使用してもいいですか？
 
@@ -357,6 +366,12 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 除去される効果：
+
+UI/CoreStrings@EmptyList:
+このリストは空です。
+
+UI/CoreStrings@EmptyText:
+テキストは空です。
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 EU
@@ -385,6 +400,371 @@ CryoFallの更新パッチノート (英語のみ)
 UI/CoreStrings@Extras_RoadmapTooltip:
 CryoFallの開発ロードマップ (英語のみ)
 
+UI/CoreStrings@Faction_Admin:
+管理
+
+UI/CoreStrings@Faction_Application_Accept:
+受諾
+
+UI/CoreStrings@Faction_Application_Cancel:
+キャンセル
+
+UI/CoreStrings@Faction_Application_Reject:
+拒否
+
+UI/CoreStrings@Faction_Applications:
+申請
+
+UI/CoreStrings@Faction_Applications_Empty:
+未処理の申請はありません。
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+全ての申請を拒否
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+あなたはこの派閥を脱退したか、あるいは追放されました。招待された場合にのみ再度参加できます。
+
+UI/CoreStrings@Faction_CopyTag:
+クランタグをコピー
+
+UI/CoreStrings@Faction_CreateFaction:
+派閥を作成
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+全ての項目を正しく入力しましたか？
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+派閥を作成した後には、種類や見た目を変更することはできません。
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+あなたの役割：
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+現在のあなたの役割は、管理者権限を与えられていません。
+
+UI/CoreStrings@Faction_Description_Private:
+非公開の概要文
+
+UI/CoreStrings@Faction_Description_Public:
+公開する概要文
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+派閥メンバーのオンラインステータスとマップ位置を表示します。
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+本当に派閥から[b]{0}[/b]を削除しますか？
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+派閥を[b]解散[/b]したいのは確かです。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+私は、この派閥のメンバーが[b]{0}[/b]の間、他の派閥に[b]参加できなくなる[/b]ことを理解しています。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+まずは派閥が所有する所有地標を全て解体してください。
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+本当に派閥を解散しますか？
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+派閥を解散
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+重要：[b]{0}[/b]に加入しようとしています。
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+私は[b]{0}[/b]の間、この派閥に再加入できず、[b]{1}[/b]の間、他の派閥に加入できないことを理解しています。
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+本当に派閥から脱退しますか？
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+現在の派閥メンバーの中で、新派閥長になる人の名前を入力してください。
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+派閥所有権譲渡
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+重要：[b]{0}[/b]への加入を申請しようとしています。
+
+UI/CoreStrings@Faction_Diplomacy:
+外交
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+同盟提案を受諾
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+同盟提案をキャンセル
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+同盟提案を拒否
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+受信中の提案
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+送信中の提案
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+平和協定
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+味方
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+同盟破棄
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+宣戦布告
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+宣戦布告した
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+宣戦布告された
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+相互宣戦布告
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+中立
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+和平を提案
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`最近、この派閥に平和協定を提案しました。
+[br]{0}の間、同じ事はできません。`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+宣戦布告
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+宣戦布告を撤回
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+あなたはどの派閥のメンバーでもありません。
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+選択されたエンブレムは既に使用されています。別のものを選択してください。
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+派閥は見つかりませんでした
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+あなたは最近派閥を去りました。
+
+UI/CoreStrings@Faction_Events:
+イベント
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+イベントの種類
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+全て
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+メンバー名
+
+UI/CoreStrings@Faction_Events_Recent:
+最近のイベント
+
+UI/CoreStrings@Faction_FactionFull:
+派閥は満員です。
+
+UI/CoreStrings@Faction_FactionKind_Current:
+派閥の種類：
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+加入するには申請または招待が必要です。
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+派閥の幹部が申請の可否を決定します。
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+非公開
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+誰でも自由に加入できます。
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+公開
+
+UI/CoreStrings@Faction_Invite:
+招待
+
+UI/CoreStrings@Faction_Invite_Accept:
+受諾
+
+UI/CoreStrings@Faction_Invite_Cancel:
+キャンセル
+
+UI/CoreStrings@Faction_Invite_Decline:
+拒否
+
+UI/CoreStrings@Faction_Invites:
+招待
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+全ての招待をキャンセル
+
+UI/CoreStrings@Faction_Invites_Empty:
+招待中なし
+
+UI/CoreStrings@Faction_InviteToFaction:
+派閥に招待
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+申請を受諾する
+
+UI/CoreStrings@Faction_Join:
+加入
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+派閥から離脱すると、クールダウンが切れるまで派閥に参加したり、派閥を作ったりすることができません。
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+派閥の加入や作成が可能になるまで：
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+所有地数の制限は、派閥レベルのアップグレードで増やすことができます。
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+派閥の所有地：{0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+派閥の所有地数の上限に達しました。
+
+UI/CoreStrings@Faction_Leaderboard:
+ランキング
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+ランキングに参加します。
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+次回のアップデート：
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+ランキング
+
+UI/CoreStrings@Faction_LeaderField:
+リーダー
+
+UI/CoreStrings@Faction_LeaveFaction:
+派閥を脱退
+
+UI/CoreStrings@Faction_Level:
+レベル
+
+UI/CoreStrings@Faction_Level_Format:
+レベル：[b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+最大メンバー数：[b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+最後のオンライン：{0}
+
+UI/CoreStrings@Faction_Members:
+メンバー
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+メンバー数：[b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+申請を受け付けない
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+{0}さんが{1}への加入を承認しました！ようこそ！
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0}さんがあなたをパーティーから追放しました。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+あなたは地位が低いため自動的に派閥から削除されました。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+派閥のメンバーや味方を殺すと、現在の派閥でのあなたの地位が低下します。
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+派閥内の地位が低下
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+違反を繰り返すプレイヤーは自動的に派閥から外されます。
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+所有地管理
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+派閥の所有地内での建設と解体。また、アクセス権の割り当て、所有地のアップグレード、安全な保管場所へのアクセス権、シールドの発動、派閥への所有地移行。
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+派閥の{0}の許可が必要です。
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+派閥リーダーへのプライベートメッセージ
+
+UI/CoreStrings@Faction_Recruitment:
+採用
+
+UI/CoreStrings@Faction_RemoveMember:
+メンバーを削除
+
+UI/CoreStrings@Faction_Role_Leader:
+リーダー
+
+UI/CoreStrings@Faction_Role_Member:
+メンバー
+
+UI/CoreStrings@Faction_Score_Format:
+派閥スコア：[b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+役割を設定
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+{0}に役割を設定
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+派閥情報を表示
+
+UI/CoreStrings@Faction_SubmitApplication:
+加入申請
+
+UI/CoreStrings@Faction_Title:
+派閥
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+加入を申請しました。
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+あなたは既に派閥に所属しています。新しい派閥を作りたい場合や、他の派閥に加入したい場合は、その派閥を脱退する必要があります。
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+新派閥
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+検索条件に一致する派閥はありません。
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+全ての派閥
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`申請中の派閥はありません。
+[br]派閥一覧から加入申請できます。`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+申請
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+招待されている派閥はありません。
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+招待
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+ランキングは現在空欄です。
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 水やりされていません
 
@@ -406,6 +786,9 @@ UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 水やりまで
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+この機能は現在のサーバーでは無効になっています。
+
 UI/CoreStrings@Field_Email:
 Eメール
 
@@ -417,6 +800,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 男性
+
+UI/CoreStrings@HealthPointsAbbreviation:
+HP
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 乗り物から降りる
@@ -432,6 +818,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 所持品
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+派閥
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 地図
@@ -523,6 +912,9 @@ UI/CoreStrings@LearningPoints:
 UI/CoreStrings@LearningPointsAbbreviation:
 LP
 
+UI/CoreStrings@LearningPointsCost_Format:
+コスト：[b]{0}[/b] LP
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steamアカウントにリンクするには、[url=atomictorch.com]AtomicTorch.com[/url]アカウントの詳細を入力してください。
 
@@ -579,6 +971,12 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 
 UI/CoreStrings@MasterServer:
 メインサーバー
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+装備メニューで後から外見を変更することができます。
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+キャラクターの外見を選ぶ
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 切断
@@ -759,6 +1157,14 @@ UI/CoreStrings@Network_Jitter_SeverityYellow:
 `サーバーへのインターネット接続にかなりのジッタが発生しているようです。
 [br]結果として、わずかな移動の問題（ラバーバンディングなど）が発生する恐れがあります。あるいは、サーバーとの大幅なラグが原因でアクションがたまに見逃される恐れがあります。`
 
+UI/CoreStrings@Network_PacketLoss:
+パケット損失
+
+UI/CoreStrings@Network_PacketLoss_Description:
+`サーバーへのインターネット接続でパケット損失が発生しているようです。
+[br]ラグが発生したり、ランダムにゲームがフリーズしたり、サーバーが切断されたりすることがあります。
+[br]多くの場合、Wi-Fiの電波が悪いか、ルーターやモデムの故障が原因となっています。`
+
 UI/CoreStrings@Network_Perfect:
 `ネットワーク接続は問題ないようです。
 [br]ゲームを楽しんでください！`
@@ -824,6 +1230,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 現在のアクセスモード
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+{0}に開放
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 アクセスモード
@@ -919,6 +1328,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 VRAM使用量
+
+UI/CoreStrings@PlayerNotFound:
+プレイヤーは見つかりませんでした。
 
 UI/CoreStrings@PleaseWait:
 お待ちください…
@@ -1076,6 +1488,9 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 選択
+
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+1時間以内
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 スクリーンショット準備完了：{0}（クリックして開く）
@@ -1237,6 +1652,9 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 スキル
 
+UI/CoreStrings@SortBy:
+ソート条件
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 強度
 
@@ -1311,6 +1729,24 @@ UI/CoreStrings@TechNodeTooltip_Vehicles:
 
 UI/CoreStrings@Technology:
 技術
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+自分の血で支払う
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+プラグミウムの心臓で支払う
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+目的地にテレポート
+
+UI/CoreStrings@Teleport_Discovered:
+新しいテレポート場所を発見しました。
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+近くに他の生存者がいるようです。
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+あなたの所有物でパイロットがいない乗り物も、テレポートエリア内にある場合は一緒にテレポートします。
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 検索…
@@ -1633,6 +2069,9 @@ UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 UI/CoreStrings@WindowInventory_Button_Customize:
 ｶｽﾀﾏｲｽﾞ
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+キャラクターの外見をカスタマイズできます
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 ｱﾝｽﾀｯｸ!
 
@@ -1645,8 +2084,17 @@ UI/CoreStrings@WindowLandClaim_DecayInfo:
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 劣化システムを理解しました
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+ドアなどの建造物へのアクセス権は、派閥の役割や許可によって決まります。
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+この所有地は[b]\\[{0}\\][/b]派閥によって管理されています。
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 収納箱のアイテムはこの拠点にあるすべての所有地標でシェアされています。
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+派閥所有権の譲渡
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 所有者だけがこの構造物をアップグレードできます。
@@ -1686,6 +2134,9 @@ UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 照明モード
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+ターゲティングモード
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 襲撃ウィンドウがオープンしました (残り {0})。
@@ -1738,6 +2189,9 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 ベッドの付近で復活
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+敵対する派閥との戦いで協力を得るために、派閥への加入を考慮してみましょう。
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 最近のダメージ要因：
@@ -1800,6 +2254,9 @@ UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 現在のオンライン人数
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+オンラインプレイヤーのリストは、サーバーの設定により、このサーバーにいる全プレイヤーに対して非表示になっています。
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 サーバー統計
@@ -1993,6 +2450,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]油田[/b]
 [br]原油の埋蔵地`
 
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+他のエイリアンテレポート場所に高速移動できます。
+
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]取引ステーション[/b]
 [br]他のプレイヤーがこの取引ステーションを所有しています。`
@@ -2059,6 +2519,24 @@ UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradea
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 レシピをキャンセル不可
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+背景
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+背景色1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+背景色2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+エンブレム
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+エンブレム色
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+形状
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 アイテムを直接使用することはできません。
@@ -2202,9 +2680,6 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinTone:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 目元
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-未選択
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 本当にパーティーを抜けますか？
 
@@ -2316,97 +2791,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `現在の発電量：{0} EU/s。
 [br]最大出力：{1} EU/s。`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-CryoFallへようこそ！
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-この機会を通じて、ゲーム内でお楽しみいただけるいくつかの機能をご紹介します。CryoFallはまだ開発中ですが、次の項目はすべてご利用いただけます。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-農業・料理
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-肥料や農具を使って自分の作物を栽培してみましょう。そして、労働の成果を使ってキャラクターに恩恵をもたらす様々な料理を作ってみてください。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-キャラクターシミュレーション・医療
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-一般的な飢えと喉の渇きのメカニズムだけでなく、様々な医薬品を使って対処できる数多くの状態効果と苦痛を実現した複合的なキャラクターシミュレーション。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-工業
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-CryoFallの世界で利用可能な天然資源を活用しましょう。原油を汲み出して精製するか、地熱泉からリチウムを抽出して電池や電子機器を作ります。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-経済
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-他の生存者との取引を円滑にするために硬貨を鋳造し、完全自動化された取引ステーションを建設してください。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-釣り
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-様々な餌を使用して、バラエティに富んだ淡水魚や海水魚を釣りましょう。自分の記録を伸ばし、他のプレイヤーと競争しましょう。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-人工生体インプラント
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-キャラクターに様々な生体および人工インプラントを組み込み、新しい能力を得たり、能力値を高めることができます。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-スキル
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-自分のキャラクターに合った様々なスキルを発見し、ロックを解除し、改善することで効率を高め、新しい能力を獲得できます。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+キャラクターの外観をカスタマイズし、様々な装備と道具で自分を他人と差別化しましょう。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 キャラクター・カスタマイズ
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-キャラクターの外観をカスタマイズし、様々な装備と道具で自分を他人と差別化しましょう。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-技術
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-獲得した学習ポイントを使って新しい技術や調理法、建築物について学習し、最も興味のある分野に焦点を当てることで、ゲームをお好みのものにカスタマイズできます。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-電気
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-電力網を念頭に置いて拠点を設計してください。 多くの発電機と収納箱、電子機器を建てることができます。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-乗り物
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-色々な未来型の乗り物を作り、アップグレードして、世界をより早く探検したり、戦闘で使ってみましょう。
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-ワールドイベント
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-CryoFallの世界で起こる多くのイベントに定期的に参加しましょう。隕石の墜落現場を探索したり、生存者を集めて危険なボスを倒したり。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+様々な環境と数十種の変わった生き物が住む多様な世界を探検しましょう。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 変わった生き物
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-様々な環境と数十種の変わった生き物が住む多様な世界を探検しましょう。
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+他の生存者との取引を円滑にするために硬貨を鋳造し、完全自動化された取引ステーションを建設してください。
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-最後に
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+経済
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+電力網を念頭に置いて拠点を設計してください。 多くの発電機と収納箱、電子機器を建てることができます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+電気
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+CryoFallの世界で起こる多くのイベントに定期的に参加しましょう。隕石の墜落現場を探索したり、生存者を集めて危険なボスを倒したり。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+ワールドイベント
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+肥料や農具を使って自分の作物を栽培してみましょう。そして、労働の成果を使ってキャラクターに恩恵をもたらす様々な料理を作ってみてください。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+農業・料理
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+様々な餌を使用して、バラエティに富んだ淡水魚や海水魚を釣りましょう。自分の記録を伸ばし、他のプレイヤーと競争しましょう。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+釣り
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+キャラクターに様々な生体および人工インプラントを組み込み、新しい能力を得たり、能力値を高めることができます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+人工生体インプラント
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+CryoFallの世界で利用可能な天然資源を活用しましょう。原油を汲み出して精製するか、地熱泉からリチウムを抽出して電池や電子機器を作ります。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+工業
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `最後に、CryoFallはまだ開発中で、多くの改善や変更が計画されていることに留意してください。とはいえ、既にしっかり遊べるゲームですので、十分に楽しんでください！[br][br]
 ディスコードやフォーラムから連絡可能ですので、いつでも覗いてみてください！:)[br]
 何か問題があったり、バグや不正利用を報告したい場合は喜んで解決のお手伝いをします。`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+最後に
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+一般的な飢えと喉の渇きのメカニズムだけでなく、様々な医薬品を使って対処できる数多くの状態効果と苦痛を実現した複合的なキャラクターシミュレーション。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+キャラクターシミュレーション・医療
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+自分のキャラクターに合った様々なスキルを発見し、ロックを解除し、改善することで効率を高め、新しい能力を獲得できます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+スキル
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+獲得した学習ポイントを使って新しい技術や調理法、建築物について学習し、最も興味のある分野に焦点を当てることで、ゲームをお好みのものにカスタマイズできます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+技術
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+色々な未来型の乗り物を作り、アップグレードして、世界をより早く探検したり、戦闘で使ってみましょう。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+乗り物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+この機会を通じて、ゲーム内でお楽しみいただけるいくつかの機能をご紹介します。CryoFallはまだ開発中ですが、次の項目はすべてご利用いただけます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+CryoFallへようこそ！
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 ゲームを始める
@@ -2450,6 +2925,9 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 スペースキー
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+未割り当て
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 [b]{0}[/b] オプションを初期化しますか？[br]デフォルト値が適用され保存されます。

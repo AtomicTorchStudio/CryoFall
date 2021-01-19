@@ -24,16 +24,16 @@
             = new TextureResource("Terrain/Field/TileField1.jpg",
                                   isTransparent: false);
 
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: -1,
-                                                                       maxX: 1,
-                                                                       maxY: 1);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: -1,
+                                                             maxX: 1,
+                                                             maxY: 1);
 
         protected override TextureResource TextureFieldFertilized { get; }
-            = new TextureResource("Terrain/Field/FertilizedField.png");
+            = new("Terrain/Field/FertilizedField.png");
 
         protected override TextureResource TextureFieldWatered { get; }
-            = new TextureResource("Terrain/Field/WetField.png");
+            = new("Terrain/Field/WetField.png");
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
             => this.Texture;

@@ -47,6 +47,8 @@
 
         public event EventHandler Closed;
 
+        public bool AutoCloseOnOk { get; set; } = true;
+
         public Button ButtonCancel => this.buttonCancel;
 
         public Button ButtonOk => this.buttonOk;
@@ -100,9 +102,9 @@
             }
         }
 
-        public static FrameworkElement CreateTextElement(string text, TextAlignment textAlignment)
+        public static FormattedTextBlock CreateTextElement(string text, TextAlignment textAlignment)
         {
-            return new FormattedTextBlock
+            return new()
             {
                 Content = text,
                 TextWrapping = TextWrapping.Wrap,
@@ -154,19 +156,17 @@
             int zIndexOffset = 0,
             bool autoWidth = false)
         {
-            string text;
-            switch (content)
+            var text = content switch
             {
-                case TextBlock textBlock:
-                    text = textBlock.Text;
-                    break;
-                case FormattedTextBlock textBlock when textBlock.Content is string formattedTextContent:
-                    text = formattedTextContent;
-                    break;
-                default:
-                    text = content.ToString();
-                    break;
-            }
+                TextBlock textBlock
+                    => textBlock.Text,
+
+                FormattedTextBlock textBlock
+                    when textBlock.Content is string formattedTextContent
+                    => formattedTextContent,
+
+                _ => content.ToString()
+            };
 
             Api.Logger.Important(
                 string.Format(
@@ -197,7 +197,7 @@
                 HideOkButton = hideOkButton,
                 CloseByEscapeKey = closeByEscapeKey,
                 ZIndexOffset = zIndexOffset,
-                FocusOnCancelButton = focusOnCancelButton,
+                FocusOnCancelButton = focusOnCancelButton
             };
 
             Api.Client.UI.LayoutRootChildren.Add(dialogWindow);
@@ -283,8 +283,6 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
-
             this.UpdateWindowZIndexOffset();
 
             this.buttonOk.Click += this.ButtonOkClickHandler;
@@ -296,8 +294,6 @@
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
-
             this.buttonOk.Click -= this.ButtonOkClickHandler;
             this.buttonCancel.Click -= this.ButtonCancelClickHandler;
             this.window.StateChanged -= this.WindowStateChangedHandler;
@@ -310,7 +306,14 @@
 
         private void ButtonOkClickHandler(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.window.Close(DialogResult.OK);
+            this.OkAction?.Invoke();
+
+            if (this.AutoCloseOnOk
+                && this.window.State != GameWindowState.Closed
+                && this.window.State != GameWindowState.Closing)
+            {
+                this.window.Close(DialogResult.OK);
+            }
         }
 
         private void UpdateWindowZIndexOffset()
@@ -330,15 +333,9 @@
             }
 
             var dialogResult = this.window.DialogResult;
-            switch (dialogResult)
+            if (dialogResult == DialogResult.Cancel)
             {
-                case DialogResult.OK:
-                    this.OkAction?.Invoke();
-                    break;
-
-                case DialogResult.Cancel:
-                    this.CancelAction?.Invoke();
-                    break;
+                this.CancelAction?.Invoke();
             }
 
             this.Closed?.Invoke(this, null);

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -24,10 +25,16 @@
         public override float StructurePointsMax => 2500;
 
         // has light source
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
-                                                                       minY: -2,
-                                                                       maxX: 3,
-                                                                       maxY: 3);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -3,
+                                                             minY: -2,
+                                                             maxX: 3,
+                                                             maxY: 3);
+
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+        {
+            return base.SharedGetObjectCenterWorldOffset(worldObject)
+                   + (0, 1.05);
+        }
 
         protected BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
         {

@@ -21,8 +21,8 @@
         public override string Name => "Water (sea)";
 
         public override TextureResource UnderwaterGroundTextureAtlas { get; }
-            = new TextureResource("Terrain/Beach/TileSand2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Beach/TileSand2.jpg",
+                  isTransparent: false);
 
         public override string WorldMapTexturePath
             => "Map/WaterSea.png";

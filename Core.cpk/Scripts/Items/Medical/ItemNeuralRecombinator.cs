@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -74,7 +73,7 @@
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
             var technologies = character.SharedGetTechnologies();
-            TechnologiesSystem.ServerResetTechTreeAndRefundLearningPoints(technologies);
+            technologies.ServerResetTechTreeAndRefundLearningPoints();
             technologies.IsTechTreeChanged = false;
 
             serverLastItemUseTimeByCharacter[character] = Server.Game.FrameTime;

@@ -25,6 +25,9 @@ Contar con mejores técnicas agrícolas te permite aumentar la eficacia de la gr
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Agricultura
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Requisito: Nivel de pesca {0}.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Probabilidad de ahorrar cebo
 

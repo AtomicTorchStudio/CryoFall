@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
@@ -248,7 +248,7 @@
     <DataTemplate x:Key="LogEntryDataTemplate" DataType="{x:Type data:ViewModelLogEntry}">
         <Button Command="{Binding CommandOpenFile}"
                 Style="{StaticResource ConsoleLogEntryButtonStyle}">
-            <ui:ToolTipServiceExtend.ToolTip>
+            <base:ToolTipServiceExtend.ToolTip>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding TextTooltip}" />
                     <TextBlock Text="Click to go to the source file"
@@ -257,7 +257,7 @@
                                FontWeight="Bold"
                                Margin="0,2,0,0" />
                 </StackPanel>
-            </ui:ToolTipServiceExtend.ToolTip>
+            </base:ToolTipServiceExtend.ToolTip>
             <Button.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Open script"

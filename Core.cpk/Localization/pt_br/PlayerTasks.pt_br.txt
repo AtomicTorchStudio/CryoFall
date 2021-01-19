@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 Construir: {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+Completista: Aceitar qualquer recompensa
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 Concluir: {0} (grupo de tecnologia)
 
@@ -10,8 +13,14 @@ no(a) {0}
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 Produzir
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+Derrote o chefe: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 Destruir: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+Descubra: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 Recolher: {0}

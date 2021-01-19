@@ -28,6 +28,12 @@ Ostatni obfity posiłek był bardzo zdrowy. Każde zadanie będzie teraz łatwie
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Zdrowa żywność
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Skraca czas wytwarzania, tworząc odizolowaną przestrzeń kwantową wokół gracza.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Przyspieszenie kwantowe
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Ostatni posiłek był bardzo smaczny; życie wydaje ci się lepsze.
 
@@ -63,9 +69,6 @@ Złamana nogę utrudnia poruszanie się. Próba biegania spowoduje silny ból. U
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Złamana noga
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-Oszołomiona postać nie może atakować.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Oszołomienie niedługo minie, poczekaj chwilę, aby dojść od siebie.
@@ -180,6 +183,12 @@ W krótkim czasie spożywasz zbyt wiele leków. Odczekaj chwilę albo nie będzi
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Przedawkowanie leków
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Zjadasz więcej niż to wskazane. Zjesz jeszcze trochę i się pochorujesz.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Przegrzanie
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Poczekaj na zakończenie podawania perazyny.

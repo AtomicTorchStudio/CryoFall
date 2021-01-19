@@ -12,8 +12,7 @@
             = "Please wait until the cooldown period has ended.";
 
         private static readonly Lazy<StatusEffectMedicalCooldown> LazyInstance
-            = new Lazy<StatusEffectMedicalCooldown>(
-                Api.GetProtoEntity<StatusEffectMedicalCooldown>);
+            = new(Api.GetProtoEntity<StatusEffectMedicalCooldown>);
 
         public static double MaxDuration => MedicineCooldownDuration.Maximum;
 
@@ -45,7 +44,8 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPerk(this, StatName.PerkCannotRun);
+            //effects.AddPerk(this, StatName.PerkCannotRun);
+
             effects.AddPerk(this, StatName.PerkCannotAttack);
             effects.AddPerk(this, StatName.PerkCannotUseMedicalItems);
         }

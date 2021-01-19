@@ -341,7 +341,7 @@
                 control,
                 positionOffset: this.SharedGetObjectCenterWorldOffset(
                                     worldObject)
-                                + (0, 1.12),
+                                + (0, 1.175),
                 isFocusable: false);
         }
 

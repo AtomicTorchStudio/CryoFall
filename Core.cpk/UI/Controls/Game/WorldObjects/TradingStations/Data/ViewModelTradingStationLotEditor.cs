@@ -87,14 +87,11 @@
             }
         }
 
-        public IProtoItem SelectedProtoItem
-        {
-            get => this.selectedProtoItem;
-        }
+        public IProtoItem SelectedProtoItem => this.selectedProtoItem;
 
         public ViewItemWithIcon SelectedProtoItemViewModel
         {
-            get => new ViewItemWithIcon(this.selectedProtoItem);
+            get => new(this.selectedProtoItem);
             set
             {
                 if (this.selectedProtoItem == value.ProtoItem)

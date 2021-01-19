@@ -26,10 +26,10 @@
         public const string Notification_CannotUseVehicle_TitleFormat = "Cannot use {0}";
 
         public static readonly SoundResource SoundResourceVehicleBuilt
-            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/VehicleBuilt");
+            = new("Objects/Structures/ObjectVehicleAssemblyBay/VehicleBuilt");
 
         public static readonly SoundResource SoundResourceVehicleRepair
-            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/VehicleRepair");
+            = new("Objects/Structures/ObjectVehicleAssemblyBay/VehicleRepair");
 
         private static readonly Dictionary<ICharacter, IDynamicWorldObject> ServerVehicleQuitRequests
             = IsServer ? new Dictionary<ICharacter, IDynamicWorldObject>() : null;

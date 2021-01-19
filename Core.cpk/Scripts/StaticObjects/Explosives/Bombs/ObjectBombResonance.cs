@@ -1,10 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives.Bombs
 {
     using System;
-    using System.Windows;
     using System.Windows.Media;
     using System.Windows.Shapes;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -25,20 +23,16 @@
         private const int DamageRadiusMax = 7;
 
         protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintBorderBrushRed
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x00, 0x00)));        
-        
-        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintFillBrushRed
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x22, 0xEE, 0x00, 0x00)));
+            = new(() => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x00, 0x00)));
 
         protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintBorderBrushYellow
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x99, 0x00)));     
-        
+            = new(() => new SolidColorBrush(Color.FromArgb(0x99, 0xEE, 0x99, 0x00)));
+
+        protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintFillBrushRed
+            = new(() => new SolidColorBrush(Color.FromArgb(0x22, 0xEE, 0x00, 0x00)));
+
         protected static readonly Lazy<SolidColorBrush> ExplosionBlueprintFillBrushYellow
-            = new Lazy<SolidColorBrush>(
-                () => new SolidColorBrush(Color.FromArgb(0x22, 0xEE, 0x99, 0x00)));
+            = new(() => new SolidColorBrush(Color.FromArgb(0x22, 0xEE, 0x99, 0x00)));
 
         public override double DamageRadius => DamageRadiusMax;
 
@@ -87,6 +81,24 @@
             }
         }
 
+        public override void ServerExecuteExplosion(
+            Vector2D positionEpicenter,
+            IPhysicsSpace physicsSpace,
+            WeaponFinalCache weaponFinalCache)
+        {
+            WeaponExplosionSystem.ServerProcessExplosionBomberman(
+                positionEpicenter: positionEpicenter,
+                physicsSpace: physicsSpace,
+                damageDistanceFullDamage: DamageRadiusFullDamage,
+                damageDistanceMax: DamageRadiusMax,
+                damageDistanceDynamicObjectsOnly: DamageRadiusDynamicObjectsOnly,
+                weaponFinalCache: weaponFinalCache,
+                callbackCalculateDamageCoefByDistanceForStaticObjects:
+                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects:
+                this.ServerCalculateDamageCoefByDistanceForDynamicObjects);
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -105,9 +117,9 @@
             ProcessExplosionDirection(1,  0);  // right
             ProcessExplosionDirection(0,  -1); // bottom
 
-            ExplosionHelper.ClientExplode(position: position + this.Layout.Center,
-                                          this.ExplosionPreset,
-                                          this.VolumeExplosion);
+            SharedExplosionHelper.ClientExplode(position: position + this.Layout.Center,
+                                                this.ExplosionPreset,
+                                                this.VolumeExplosion);
 
             void ProcessExplosionDirection(int xOffset, int yOffset)
             {
@@ -122,7 +134,7 @@
                 {
                     ClientTimersSystem.AddAction(
                         delaySeconds: 0.1 * offsetIndex, // please note the offsetIndex is starting with 1
-                        () => ExplosionHelper.ClientExplode(
+                        () => SharedExplosionHelper.ClientExplode(
                             position: positionEpicenter + (offsetIndex * xOffset, offsetIndex * yOffset),
                             explosionPresetNode,
                             volume: 0));
@@ -197,8 +209,8 @@
             out double finalDamageMultiplier,
             DamageDistribution damageDistribution)
         {
-            damageValue = 120;
-            armorPiercingCoef = 0;
+            damageValue = 100;
+            armorPiercingCoef = 0.5;
             finalDamageMultiplier = 1;
             damageDistribution.Set(DamageType.Kinetic, 1);
         }
@@ -207,12 +219,12 @@
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            // Please not: while the game is the same as with the Modern bomb (T3)
+            // PLEASE NOTE: while the damage is the same as the Modern bomb (T3)
             // it has a totally different damage propagation algorithm.
-            // Resonance bombs are exploding like in bomberman—a cross-shaped damage propagation against walls and doors only
-            // (as written in the tooltip). 4 closest tiles to the bomb are damaged through dealing 100% damage, then if there
-            // is no free space it could damage through up to 7 tiles total (but the damage is reduced for every next tile after
-            // fourth). It's extremely effective against multilayered walls.
+            // Resonance bombs explode like in bomberman in a cross-shaped pattern (damaging only walls and doors).
+            // Four closest tiles to the bomb are damaged with the 100% damage, then if there is no free space
+            // it could continue propagating the damage up to 7 tiles total (but the damage is reduced for every
+            // next tile after the fourth). It's extremely effective against multilayered walls.
             damageValue = 12000;
             defencePenetrationCoef = 0.5;
         }
@@ -220,24 +232,6 @@
         protected override void PrepareProtoObjectExplosive(out ExplosionPreset explosionPresets)
         {
             explosionPresets = ExplosionPresets.PragmiumResonanceBomb_Center;
-        }
-
-        protected override void ServerExecuteExplosion(
-            Vector2D positionEpicenter,
-            IPhysicsSpace physicsSpace,
-            WeaponFinalCache weaponFinalCache)
-        {
-            WeaponExplosionSystem.ServerProcessExplosionBomberman(
-                positionEpicenter: positionEpicenter,
-                physicsSpace: physicsSpace,
-                damageDistanceFullDamage: DamageRadiusFullDamage,
-                damageDistanceMax: DamageRadiusMax,
-                damageDistanceDynamicObjectsOnly: DamageRadiusDynamicObjectsOnly,
-                weaponFinalCache: weaponFinalCache,
-                callbackCalculateDamageCoefByDistanceForStaticObjects:
-                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
-                callbackCalculateDamageCoefByDistanceForDynamicObjects:
-                this.ServerCalculateDamageCoefByDistanceForDynamicObjects);
         }
     }
 }

@@ -29,9 +29,11 @@
 
         private EffectParameters lastEffectParameters;
 
-        public ClientBlueprintRenderer(IClientSceneObject sceneObjectRoot)
+        public ClientBlueprintRenderer(IClientSceneObject sceneObjectRoot, bool isConstructionSite)
         {
             this.sceneObjectRoot = sceneObjectRoot;
+            this.IsConstructionSite = isConstructionSite;
+
             this.SpriteRenderer = Api.Client.Rendering.CreateSpriteRenderer(
                 sceneObjectRoot,
                 TextureResource.NoTexture);
@@ -43,6 +45,8 @@
         }
 
         public bool IsCanBuild { get; set; }
+
+        public bool IsConstructionSite { get; }
 
         public bool IsEnabled
         {
@@ -58,7 +62,7 @@
 
                 if (!this.isEnabled)
                 {
-                    Reset();
+                    this.Reset();
                 }
             }
         }

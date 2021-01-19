@@ -18,7 +18,7 @@
             = null;
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Crab/Front");
+            = new("Crab/Front");
 
         public override double WorldScale => 0.4;
 
@@ -33,8 +33,8 @@
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
             physicsBody
-                .AddShapeRectangle(size: (0.6, 0.25),
-                                   offset: (-0.3, -0.15))
+                .AddShapeCircle(radius: 0.22,
+                                center: (0, 0.1))
                 .AddShapeCircle(radius: 0.4,
                                 center: (0, 0.25),
                                 group: CollisionGroups.HitboxMelee)

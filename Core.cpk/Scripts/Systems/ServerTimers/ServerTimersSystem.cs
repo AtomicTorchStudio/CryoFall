@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -78,7 +77,7 @@
             var delta = serverTime
                         - (Api.IsServer
                                ? Api.Server.Game.FrameTime
-                               : BaseViewModel.Client.CurrentGame.ServerFrameTimeApproximated);
+                               : Api.Client.CurrentGame.ServerFrameTimeApproximated);
             if (delta < 0)
             {
                 delta = 0;

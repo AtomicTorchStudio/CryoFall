@@ -127,6 +127,9 @@ Scripts/Items/Ammo/ItemAmmoShellHeavy@Name:
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Щелкните по этому предмету, удерживая клавишу Alt, чтобы быстро использовать или употребить его.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Вы можете сменить тип патронов в выбранном оружии с помощью клавиши [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Щелкните по любой постройке, чтобы разобрать ее.
 
@@ -138,6 +141,9 @@ Scripts/Items/Base/ItemHints@ClickToRefilWateringCan:
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Щелкните по любой постройке, чтобы починить или построить.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Щелкните по любому поврежденному транспортному средству, чтобы отремонтировать его.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Щелкните по любому сельскохозяйственному растению, чтобы полить его.
@@ -169,6 +175,9 @@ Scripts/Items/Base/ItemHints@FillWithWater:
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Топливные ячейки используются для питания различного транспорта.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+Вы можете включить фонарик/ночное видение с помощью клавиши [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 Удерживайте [b]Alt[/b] или [b]Ctrl[/b] во время стрельбы, чтобы выстрелить на максимальное расстояние в направлении курсора, а не в местоположение курсора.
 
@@ -184,6 +193,12 @@ Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Это оружие можно установить и использовать только в особом держателе транспорта ([b]{0}[/b]).
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Ночное видение (поколение I)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Ночное видение (поколение II)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Порезать
 
@@ -195,6 +210,9 @@ Scripts/Items/Base/ItemUseCaptions@Drink:
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Съесть
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Открыть
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Прочитать
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Нет топлива
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Чтобы включить фонарь на шлеме, наденьте этот предмет и нажмите [{0}].
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-кнопка не задана
+Чтобы включить фонарь на шлеме, наденьте этот предмет и нажмите \[{0}\].
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 Костяная броня дает неплохую защиту, имея невысокую стоимость, и может быть полезна на начальном этапе.
@@ -402,6 +417,12 @@ Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Армейский шлем
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Специальный жилет, напичканный взрывчаткой. Автоматически взрывается в случае смерти владельца, чтобы отомстить врагам.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+Жилет мести
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Удобный шлем с портативным источником света, который освобождает руки. Требуются одноразовые батарейки.
@@ -520,6 +541,15 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Description:
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Окунь
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Черный бычок
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Уникальная прагмиевая форма жизни, которая обитает в водном пространстве этой планеты.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Лазурка
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Лещ
 
@@ -532,8 +562,14 @@ Scripts/Items/Fishing/Fish/ItemFishCatfish@Name:
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Сиг
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Краппи
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Ворчун
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Карп кои
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Скумбрия
@@ -561,6 +597,9 @@ Scripts/Items/Fishing/Fish/ItemFishSardine@Name:
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Форель
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Желтоперый тунец
 
 Scripts/Items/Food/ItemBanana@Description:
 Любая обезьяна может достать банан, но только люди могут достичь звезд.
@@ -717,6 +756,12 @@ Scripts/Items/Food/ItemCoffeeCup@Description:
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Чашка кофе
+
+Scripts/Items/Food/ItemCookingOil@Description:
+Натуральное масло для приготовления пищи.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Кулинарное масло
 
 Scripts/Items/Food/ItemCorn@Description:
 Зерновое растение с вкусными початками, которое так любят авторы ужастиков.
@@ -924,6 +969,24 @@ Scripts/Items/Food/ItemPizzaPineapple@Description:
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Пицца с ананасом
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Свежая картошка с золотистой корочкой и мясом.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Запеченная картошка с мясом
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Классическая картошка фри, как в фастфуде.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Картошка фри
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Стоит приготовить перед употреблением.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Картофель
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Можно есть в чистом виде или готовить его в составе других, более сложных блюд.
@@ -1183,6 +1246,12 @@ Scripts/Items/Generic/ItemCoinPenny@Description:
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Медяк
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Старый кошелек. Может, там до сих пор что-то есть?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Кошелек
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Монеты крупного достоинства. За них можно купить что-нибудь в торговом автомате или у товарищей по несчастью.
 
@@ -1277,6 +1346,12 @@ Scripts/Items/Generic/ItemFlowerOni@Description:
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Красноцвет
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Пригодится для получения кулинарного масла или в качестве украшения.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Желтый цветок
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 Порошковый флюс, используется в металлургии для производства высококачественного металла.
 
@@ -1306,6 +1381,12 @@ Scripts/Items/Generic/ItemFuelCellPragmium@Description:
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Прагмиевая топливная ячейка
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Особый орган инопланетного существа, который содержит огнеопасную жидкость.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Топливный мешок
 
 Scripts/Items/Generic/ItemFur@Description:
 Мех животных. Из него можно сшить теплую зимнюю одежду.
@@ -1343,10 +1424,10 @@ Scripts/Items/Generic/ItemGemTopaz@Description:
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Топаз
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 Сверкающий фиолетовый турмалин!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Турмалин
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Scripts/Items/Generic/ItemTwigs@Description:
 Scripts/Items/Generic/ItemTwigs@Name:
 Ветки
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Странный губкообразный орган от неизвестной формы жизни. Испускает экзотические частицы по мере разложения.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Сердце песчаного тирана
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Очень гибкий и невероятно мощный привод, который использует магнитные силы для движения.
 
@@ -1853,6 +1940,12 @@ Scripts/Items/Medical/ItemCigarCheap@Description:
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Дешевая сигара
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Известная марка сигарет с другой планеты.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Сигареты
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Обычная сигара с выраженным вкусом. Стимулятор.
 
@@ -1975,6 +2068,12 @@ Scripts/Items/Medical/ItemPeredozin@Description:
 Scripts/Items/Medical/ItemPeredozin@Name:
 Передозин
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+Гипсовая повязка позволяет закрепить сломанную кость, чтобы она скорее зажила.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Гипсовая повязка
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Специальное химическое вещество для нейромодуляции, которое снижает урон, полученный от пси-воздействия.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Лекарство из трав
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-Нет повода накладывать шину.
+У вас нет переломов. Нет смысла использовать это сейчас.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Нет переломов
@@ -2062,8 +2161,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Семена красноцвета
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Семена желтого цветка
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Семена молодыни
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Семена картофеля
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Семена риса
@@ -2088,6 +2193,12 @@ Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Требуется
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Содержит сведения о координатах и навигационных частотах одного из телепортов.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Позиционные данные телепорта
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Железный топор отлично рубит деревья. Он более эффективен и крепок по сравнению с каменным топором.
@@ -2146,10 +2257,10 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Нет топлива
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
 Этот хрупкий прагмиевый молот использует молекулярно-резонансную механику, что делает его гораздо более мощным, чем любые аналоги.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
 Прагмиевый молот
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
@@ -2175,6 +2286,12 @@ Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Прагмиевый сенсор
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Универсальный одноразовый набор для ремонта транспортных средств.
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Набор для ремонта транспорта
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Набор инструментов необходим для строительства или починки любой постройки. Убедитесь, что он надет и выбран.
@@ -2262,6 +2379,12 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Лазерная рапира (желтая)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+Работает на встроенных батарейках. Используется для оглушения противника.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Электрошоковая дубинка
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Невероятно мощное оружие ближнего боя. Для его работы нужна энергия.

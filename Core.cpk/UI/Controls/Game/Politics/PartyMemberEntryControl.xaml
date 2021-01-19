@@ -25,7 +25,7 @@
 
             <Ellipse
                 Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                Stroke="#AA00EE00"
+                Stroke="#AA777777"
                 StrokeThickness="1" />
         </Grid>
 
@@ -38,9 +38,9 @@
 
         <Control
             Visibility="{Binding IsMouseOver, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}"
-            Style="{StaticResource ChatEntryOptionsButtonStyle}"
+            Style="{StaticResource OptionsThreeDotsControlStyle}"
             Margin="-2,1,0,0" />
-        
+
         <ContentControl
             Visibility="{Binding IsMouseOver, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
             <Button Command="{Binding CommandRemove}"

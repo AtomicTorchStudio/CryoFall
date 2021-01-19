@@ -52,12 +52,12 @@
 
         public SoundResourceSet Clone()
         {
-            return new SoundResourceSet(new List<ValueWithWeight<SoundResource>>(this.sounds));
+            return new(new List<ValueWithWeight<SoundResource>>(this.sounds));
         }
 
         public ReadOnlySoundResourceSet ToReadOnly()
         {
-            return new ReadOnlySoundResourceSet(this.sounds);
+            return new(this.sounds);
         }
     }
 }

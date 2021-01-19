@@ -15,7 +15,7 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 750;
 
         protected override void PrepareFloorConstructionConfig(
             ConstructionStageConfig build,

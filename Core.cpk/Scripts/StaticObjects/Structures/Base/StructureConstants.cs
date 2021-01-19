@@ -18,10 +18,10 @@
 
         /// <summary>
         /// Refresh rate of the land claim objects for the decay reset check.
-        /// The game server should check whether there are any land claim owners inside the land claim area
+        /// The game server will check whether there are any land claim owners inside the land claim area
         /// and reset the decay timer if so.
         /// </summary>
-        public const double StructureDecayLandClaimResetSystemUpdateIntervalSeconds = 5;
+        public const double StructureDecayLandClaimResetSystemUpdateIntervalSeconds = 3;
 
         /// <summary>
         /// Interval with which the decay system will process the objects decay.

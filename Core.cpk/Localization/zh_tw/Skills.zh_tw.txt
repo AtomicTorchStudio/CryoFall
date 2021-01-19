@@ -25,6 +25,9 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 農業
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+需求：釣魚等級{0}。
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 保留魚餌幾率
 

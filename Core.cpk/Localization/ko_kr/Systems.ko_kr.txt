@@ -155,6 +155,192 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 해체 불가
 
+Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
+구성원 수
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeAlreadySameFactionMember:
+플레이어는 이미 우리 파벌의 구성원입니다.
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeMemberAnotherFaction:
+플레이어가 다른 파벌의 구성원이므로 초대할 수 없습니다.
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Date_Format:
+[b]날짜:[/b] {0}
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Name_Format:
+[b]생성한 플레이어:[/b] {0}
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@EditDescription:
+파벌 설명 수정
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@Recruitment:
+모집
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@SetMemberRole:
+구성원 역할 할당
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
+구성원 추방
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
+외교 관리
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
+대리관
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Recruiter:
+인사 담당관
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Diplomat:
+외교관
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Treasurer:
+회계 담당관
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Officer:
+간부
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Manager:
+관리관
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Minister:
+장관
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Name:
+파벌 설명 변경
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Text:
+파벌 설명이 변경되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Name:
+외교 상태 변경
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByOther_Format:
+[b]\[{0}\][/b] 파벌이 우리 파벌의 평화 조약 제안을 받아들였습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByUs_Format:
+우리 파벌이 [b]\[{0}\][/b] 파벌과 평화 조약을 체결했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarByUs_Format:
+우리 파벌이 [b]\[{0}\][/b] 파벌에 선전포고를 했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarOnUs_Format:
+[b]\[{0}\][/b] 파벌이 우리 파벌에 전쟁을 선포했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceByUs_Format:
+우리 파벌이 [b]\[{0}\][/b] 파벌과의 동맹을 파기했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceWithUs_Format:
+[b]\[{0}\][/b] 파벌이 우리 파벌과의 동맹을 파기했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarByUs_Format:
+우리 파벌이 더 이상 [b]\[{0}\][/b] 파벌에 선전포고를 하지 않습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarOnUs_Format:
+[b]\[{0}\][/b] 파벌이 더 이상 우리 파벌에 전쟁을 선포하지 않습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualOtherResponded_Format:
+[b]\[{0}\][/b] 파벌이 우리 파벌의 선전포고를 받고 우리 파벌에 선전포고를 해왔습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualWeResponded_Format:
+우리 파벌이 [b]\[{0}\][/b] 파벌의 선전포고를 받고, 그들에게 선전포고를 했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Name:
+파벌 기지 습격당함
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Text_Format:
+[b]{1}[/b] 파벌이 {0}의 우리 파벌 기지를 습격했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Name:
+파벌 생성
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Text:
+파벌이 생성되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Name:
+파벌 레벨 업그레이드
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Text_Format:
+파벌 레벨이 [b]{0}[/b](으)로 업그레이드되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Name:
+파벌 토지 점유 구역 부식
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Text_Format:
+{0}의 파벌 토지 점유 구역이 부식되어 제거됩니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Name:
+지도자 소유권 양도
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Text_Format:
+지도자가 [b]{0}[/b]님에게 파벌 소유권을 양도했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Name:
+구성원 가입
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Text_Format:
+[b]{0}[/b]님이 파벌에 가입했습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Name:
+구성원 탈퇴
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Text_Format:
+[b]{0}[/b]님이 파벌을 떠났습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Name:
+구성원 추방
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Text_Format:
+간부가 [b]{0}[/b] 님을 파벌에서 추방하였습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@CurrentPlayerRoleChangedText_Format:
+당신의 파벌 역할이 [b]{0}[/b](으)로 변경되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Name:
+구성원 역할 변경
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Text_Format:
+[b]{0}[/b] 님의 역할이 [b]{1}[/b](으)로 변경되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@CurrentPlayerAccessRightsChangedText:
+우리 파벌의 접근 권한이 변경되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Name:
+역할 접근 권한 변경
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Text_Format:
+[b]{0}[/b]의 역할 접근 권한이 변경되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Name:
+역할 이름 변경
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Text_Format:
+[b]{0}[/b]의 역할 이름이 [b]{1}[/b](으)로 변경되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Name:
+파벌 영역 변경
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expanded_Format:
+{0}에 있는 파벌의 영역이 확장되었습니다.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
+{0}에 있는 파벌의 영역이 제거되었습니다.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
+파벌 기지의 재산
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
+파벌 레벨
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
+보스 점수
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
+사냥 점수
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
+누적된 LP 합계
+
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 낚시에 사용할 미끼가 인벤토리에 없습니다!
 
@@ -211,7 +397,7 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 다른 토지 점유 영역과 교차
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
-실드로 보호받고 있는 다른 토지 점유 영역과 겹치고 있습니다. 우선 그곳의 실드를 비활성화하세요.
+실드로 보호 받고 있는 다른 토지 점유 구역과 겹치고 있습니다. 우선 그곳의 실드를 비활성화하세요.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
 `할당되어 있는 토지 점유소를 전부 사용하였습니다.
@@ -237,7 +423,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProte
 초보자 보호 기능 취소
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
-정말로 초보자 보호를 취소하시겠습니까? 취소 후에는 다시 사용할 수 없습니다.
+정말로 초보자 보호 기능을 취소하시겠습니까? 취소 후에는 다시 사용할 수 없습니다.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
 초보자 보호 기능이 활성화되어 있습니다. 당신의 캐릭터를 다른 플레이어가 살해하더라도 아이템을 잃지 않습니다. 또한 사망으로 인해 떨어뜨린 당신의 아이템을 다른 플레이어가 주울 수 없습니다. 필수 도구와 무기를 만드는 퀘스트를 따라가며, 최대한 빨리 작은 기지를 지으세요!
@@ -245,11 +431,14 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescript
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 초보자 보호 기능 유효 시간:
 
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CanCancelProtection:
+소셜 메뉴에서 언제든지 보호 기능을 취소할 수 있습니다.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-초보자 보호 기능이 활성화되어 있으면, 다른 플레이어를 공격하거나 가방 또는 아이템을 약탈할 수 없습니다. 해당 기능은 언제든지 관계 메뉴에서 취소할 수 있습니다.
+초보자 보호 기능이 활성화되어 있는 동안에는 다른 플레이어를 공격하거나 다른 플레이어의 가방이나 아이템을 약탈할 수 없습니다.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-초보자 보호 기능이 활성화되어있는 중에는 해당 행동을 할 수 없습니다. 초보자 보호 기능은 언제든지 관계 메뉴에서 끌 수 있습니다.
+초보자 보호 기능이 활성화된 상태에서는 이 작업을 수행할 수 없습니다.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 이 가방은 초보자 보호 기능으로 보호되어 있습니다. 원 소유자만 주울 수 있습니다.
@@ -298,9 +487,6 @@ Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundO
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
 너무 늦었습니다, 파티가 이미 꽉 차 있습니다.
-
-Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
-초대받은 플레이어를 찾을 수 없습니다.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
 파티가 꽉 찼습니다.
@@ -382,6 +568,10 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `이 서버의 관리자가 초대만 가능하도록 설정했습니다.
 [br]자세한 사항은 서버 설명을 확인하십시오.`
 
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionCommunity:
+`이 서버는 커뮤니티 구성원이 운영하고 있습니다. 게임의 개발자 또는 퍼블리셔가 관리 또는 접속, 보증하지 [b]않습니다[/b].
+[br]서버 규칙 위반으로 차단되거나 추방될 수 있습니다. 서버 규칙에 주의 깊게 읽으시고, 문제가 있다면, 서버 소유자에게 문의하시기 바랍니다.`
+
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
 이 커뮤니티 서버에는 제3자의 수정이 설치되어 있습니다. CryoFall의 정상적인 실행과 적합한 경험 제공이 보장되지 않습니다. 문제가 발생할 경우, 커뮤니티 서버장에게 해당 내용을 전달해 주십시오.
 
@@ -392,6 +582,9 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
 `이 서버는 혼돈, 그 자체인 PvP 서버입니다. PvP 서버에서는, 다른 플레이어들의 [b]공격을 받게 됩니다[/b]. 이곳에서는 스스로 방어하고 싸우며, 항상 경계를 늦춰선 안 됩니다. 이는 숙련된 플레이어를 위한 게임 모드입니다.
 [br]좀 더 편안한 경험을 하고 싶거나 특히 처음하시는 플레이어라면, PvE 서버에 참가하는 것을 고려해 보시기 바랍니다.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionCommunity:
+커뮤니티 서버
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
 PvE 서버
@@ -498,20 +691,26 @@ Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
 탄약 없음
 
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
-소유자들에게 열기
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
-소유자들 또는 토지 점유자들에게 열기
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
-모두에게 열기
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
-항상 닫기
-
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 접근할 수 없습니다!
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwners:
+소유자들에게 열기
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwnersOrAreaOwners:
+소유자들 또는 토지 점유자들에게 열기
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToEveryone:
+모두에게 열기
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@Closed:
+항상 닫기
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllFactionMembers:
+모든 파벌 구성원에 개방
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllyFactionMembers:
+동맹 파벌 구성원에 개방
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
 접근권 목록 크기 제한을 초과하였습니다.
@@ -524,9 +723,6 @@ Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
 소유자 명단에서 자기 자신을 삭제할 수 없습니다. 다른 플레이어에게 요청하십시오.
-
-Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
-이름이 [b]{0}[/b]인 플레이어를 찾을 수 없습니다.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
 당신은 소유자가 아닙니다.

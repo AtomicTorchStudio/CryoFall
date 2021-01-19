@@ -46,9 +46,11 @@
             // find owned bases (area groups) nearby
             foreach (var area in tempListAreasNearby.AsList())
             {
-                if (LandClaimSystem.SharedIsOwnedArea(area, character))
+                if (LandClaimSystem.SharedIsOwnedArea(area,
+                                                      character,
+                                                      requireFactionPermission: false))
                 {
-                    var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+                    var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
                     tempListOwnedAreaGroupsNearby.AddIfNotContains(areasGroup);
                 }
             }
@@ -86,7 +88,7 @@
             foreach (var character in tempCharacters.AsList())
             {
                 if (character.IsNpc
-                    && ((IProtoCharacterMob)character.ProtoGameObject).IsBoss)
+                    && character.ProtoGameObject is IProtoCharacterMob { IsBoss: true })
                 {
                     return true;
                 }
@@ -119,8 +121,7 @@
             }
 
             var character = ClientCurrentCharacterHelper.Character;
-            if (character is null
-                || !LandClaimSystem.ClientIsOwnedAreasReceived)
+            if (character is null)
             {
                 ClientMusicSystem.CurrentPlaylist = null;
                 return;

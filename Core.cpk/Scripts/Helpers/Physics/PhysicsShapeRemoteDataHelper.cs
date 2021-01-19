@@ -10,64 +10,46 @@
         {
             var collisionGroup = CollisionGroups.GetCollisionGroup(data.CollisionGroupId);
 
-            switch (data)
+            return data switch
             {
-                case CircleShapeRemoteData circleData:
-                    return new CircleShape(
-                        circleData.Center,
-                        circleData.Radius,
-                        collisionGroup);
+                CircleShapeRemoteData circleData
+                    => new CircleShape(circleData.Center,
+                                       circleData.Radius,
+                                       collisionGroup),
+                RectangleShapeRemoteData rectangleData
+                    => new RectangleShape(rectangleData.Position,
+                                          rectangleData.Size,
+                                          collisionGroup),
 
-                case RectangleShapeRemoteData rectangleData:
-                    return new RectangleShape(
-                        rectangleData.Position,
-                        rectangleData.Size,
-                        collisionGroup);
+                LineShapeRemoteData lineData
+                    => new LineShape(lineData.BasePosition,
+                                     lineData.Direction,
+                                     collisionGroup),
 
-                case LineShapeRemoteData lineData:
-                    return new LineShape(
-                        lineData.BasePosition,
-                        lineData.Direction,
-                        collisionGroup);
+                LineSegmentShapeRemoteData lineSegmentData
+                    => new LineSegmentShape(lineSegmentData.Point1,
+                                            lineSegmentData.Point2,
+                                            collisionGroup),
 
-                case LineSegmentShapeRemoteData lineSegmentData:
-                    return new LineSegmentShape(
-                        lineSegmentData.Point1,
-                        lineSegmentData.Point2,
-                        collisionGroup);
+                PointShapeRemoteData pointData
+                    => new PointShape(pointData.Point,
+                                      collisionGroup),
 
-                case PointShapeRemoteData pointData:
-                    return new PointShape(
-                        pointData.Point,
-                        collisionGroup);
-
-                default:
-                    throw new ArgumentOutOfRangeException("Unknown shape type: " + data.GetType().Name);
-            }
+                _ => throw new ArgumentOutOfRangeException("Unknown shape type: " + data.GetType().Name)
+            };
         }
 
         public static BasePhysicsShapeRemoteData Wrap(IPhysicsShape shape)
         {
-            switch (shape.ShapeType)
+            return shape.ShapeType switch
             {
-                case ShapeType.Circle:
-                    return new CircleShapeRemoteData((CircleShape)shape);
-
-                case ShapeType.Rectangle:
-                    return new RectangleShapeRemoteData((RectangleShape)shape);
-
-                case ShapeType.Line:
-                    return new LineShapeRemoteData((LineShape)shape);
-
-                case ShapeType.LineSegment:
-                    return new LineSegmentShapeRemoteData((LineSegmentShape)shape);
-
-                case ShapeType.Point:
-                    return new PointShapeRemoteData((PointShape)shape);
-
-                default:
-                    throw new ArgumentOutOfRangeException("Unknown shape type: " + shape.GetType().Name);
-            }
+                ShapeType.Circle => new CircleShapeRemoteData((CircleShape)shape),
+                ShapeType.Rectangle => new RectangleShapeRemoteData((RectangleShape)shape),
+                ShapeType.Line => new LineShapeRemoteData((LineShape)shape),
+                ShapeType.LineSegment => new LineSegmentShapeRemoteData((LineSegmentShape)shape),
+                ShapeType.Point => new PointShapeRemoteData((PointShape)shape),
+                _ => throw new ArgumentOutOfRangeException("Unknown shape type: " + shape.GetType().Name)
+            };
         }
     }
 }

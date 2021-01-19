@@ -19,7 +19,7 @@
                 typeof(RequiredItemControl),
                 new PropertyMetadata(1.5d));
 
-        private readonly ViewModelRequiredItemControl viewModel = new ViewModelRequiredItemControl(null);
+        private readonly ViewModelRequiredItemControl viewModel = new(null);
 
         private FrameworkElement layoutRoot;
 
@@ -32,10 +32,6 @@
             DefaultStyleKeyProperty.OverrideMetadata(
                 typeof(RequiredItemControl),
                 new FrameworkPropertyMetadata(typeof(RequiredItemControl)));
-        }
-
-        public RequiredItemControl()
-        {
         }
 
         public bool IsRequiredItemAvailable => this.viewModel.IsAvailable;

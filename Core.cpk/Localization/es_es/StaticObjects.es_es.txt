@@ -16,6 +16,9 @@ No puedes construir en:
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 Tipo de terreno inapropiado
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+No se puede construir. Demasiado cerca de la ubicación del evento.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 No se puede construir en zonas restringidas.
 
@@ -75,6 +78,9 @@ Abrir
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Recoger
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+Pulsar
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Abrir
@@ -148,6 +154,15 @@ Hierba
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 Montón de basura
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+Montón de minerales
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+Montón de piedra
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+Montón de madera
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Piedra
 
@@ -217,6 +232,9 @@ Depósito de azufre
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Usa un pico para extraer este recurso.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+Teletransporte alienígena
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fisura
 
@@ -225,6 +243,9 @@ Meteorito
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 Restos de la Reina de pragmio
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+Restos de Tirano de las arenas
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 Basura espacial
@@ -398,11 +419,23 @@ Altar de estilo oriental en el que se mete incienso.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 Altar de incienso
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+Un estandarte único que lucirá el emblema de tu facción.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+Estandarte de la facción
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 A saber qué simboliza este estandarte... ¡pero es genial!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 Estandarte
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+La mayoría de la gente la usa como elemento decorativo...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+Press de banca
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 Bañera de estilo clásico. Satisface tus necesidades de higiene.
@@ -410,11 +443,32 @@ Bañera de estilo clásico. Satisface tus necesidades de higiene.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 Bañera
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+Un sitio pequeño y cómodo en el que dejar el móvil antes de irte a dormir.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+Mesita de noche
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 ¿Qué habitación está completa sin una estantería?
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 Estantería
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+Una de las muchas piezas que puedes usar para decorar la habitación o para jugar al ajedrez.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+Peón
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+Reina
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+¿Esperas a visitantes armados inesperados? Será mejor poner esta campana fuera.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+Campana
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 Un biombo con un dibujo clásico de un tigre, igual que en los viejos cuentos.
@@ -428,11 +482,23 @@ Un montón de oro impresionante. ¡Guárdalo en la caja fuerte!
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 Montón de oro
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+Un mueble ideal para poner en la entrada.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+Perchero
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 Un piano hermoso y de una calidad exquisita.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 Piano
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+¿Qué celebración está completa sin un buen montón de regalos?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+Regalos
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 Demuestra que la caza se te da de maravilla decorando tu habitación con esta lujosa alfombra.
@@ -494,6 +560,12 @@ Para ofrecer la máxima privacidad, asegúrate de ponerlo en una habitación sep
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 Inodoro
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+El elemento central de un salón bien diseñado. Ve películas con tus amigos y relájate.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+Televisión
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 Jarrón decorativo muy valioso.
 
@@ -502,6 +574,33 @@ Jarrón
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Este suelo ya está decorado.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+Torreta centinela completamente automatizada que usa un haz de energía sólido para dañar al objetivo.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+Torreta de energía
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+Una torreta pesada de vigilancia completamente automatizada.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+Torreta pesada
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+Una torreta ligera de vigilancia completamente automatizada.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+Torreta ligera
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+Desactivada
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+Ataca a los enemigos y devuelve el fuego a los neutrales
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+Ataca a los enemigos y a todos los intrusos
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 Ideal para defenderte de la mayoría de intrusos. Pese a todo, no aguantará mucho si se usan explosivos.
@@ -533,10 +632,10 @@ Se puede usar para cultivar diversas cosechas y otras plantas. El terreno de gra
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 Terreno de granja
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
-Se puede usar para obtener flores con las que decorar tu casa o bien para otros propósitos. Se puede poner en cualquier parte.
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
+Se puede usar para obtener flores con las que decorar tu casa o bien para otros propósitos. Se puede construir en cualquier sitio.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 Maceta
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1006,6 +1105,12 @@ Grueso muro de cemento reforzado con apoyos adicionales. Es notablemente más re
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 Muro de cemento
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+Esta verja metálica bloqueará el movimiento, pero no impedirá que las balas la atraviesen. Podría ser una buena opción como defensa estratégica. No es muy resistente.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+Alambrada
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 Notablemente mejor que la pared de madera. Debería detener a los intrusos que intenten colarse, pero no servirá de mucho contra asaltantes bien equipados.
 
@@ -1076,8 +1181,14 @@ Salvia azul
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oniflor
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+Flor amarilla
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 Lechemelón
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+Patata
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 Arroz

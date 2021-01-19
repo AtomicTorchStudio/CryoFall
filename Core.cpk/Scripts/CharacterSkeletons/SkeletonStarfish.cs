@@ -23,7 +23,7 @@
             = null;
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Starfish/Front");
+            = new("Starfish/Front");
 
         public override double WorldScale => 0.3;
 
@@ -38,7 +38,7 @@
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
             physicsBody
-                .AddShapeCircle(radius: 0.25,
+                .AddShapeCircle(radius: 0.18,
                                 center: (0, 0.0))
                 .AddShapeCircle(radius: 0.4,
                                 center: (0, 0.25),

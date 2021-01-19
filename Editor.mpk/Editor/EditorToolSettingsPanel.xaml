@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
     mc:Ignorable="d"
     MinWidth="190"
     d:DesignHeight="400" d:DesignWidth="70"
@@ -14,52 +15,55 @@
         <ResourceDictionary Source="EditorStyles.xaml" />
     </base:BaseUserControl.Resources>
 
-    <Border Style="{StaticResource EditorPanelStyle}"
-            DataContext="{Binding SelectedTool}"
-            Visibility="{Binding SettingsVisibility, FallbackValue=Collapsed}"
-            HorizontalAlignment="Right"
-            Margin="0,0,0,10">
+    <Grid DataContext="{Binding SelectedTool}"
+          Visibility="{Binding SettingsVisibility, FallbackValue=Collapsed}"
+          HorizontalAlignment="Right"
+          Margin="0,0,0,10">
+        <core:WidgetPanel InnerGlowSize="10" />
 
-        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled"
-                      Padding="0" Margin="0">
+        <Grid Margin="5">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          Padding="0"
+                          Margin="0">
 
-            <ContentControl Content="{Binding ToolSettingsControl}"
-                            MaxWidth="220"
-                            HorizontalAlignment="Right" />
+                <ContentControl Content="{Binding ToolSettingsControl}"
+                                MaxWidth="220"
+                                HorizontalAlignment="Right" />
 
-            <ScrollViewer.Template>
-                <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                <ScrollViewer.Template>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Grid.Row="0"
-                                Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}" />
+                            <Border Grid.Column="0" Grid.Row="0"
+                                    Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}" />
 
-                        <Border Grid.Column="0" Grid.Row="0" Padding="{TemplateBinding Padding}"
-                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{x:Null}">
-                            <ScrollContentPresenter Content="{TemplateBinding Content}"
-                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                    CanContentScroll="{TemplateBinding CanContentScroll}" />
-                        </Border>
+                            <Border Grid.Column="0" Grid.Row="0" Padding="{TemplateBinding Padding}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{x:Null}">
+                                <ScrollContentPresenter Content="{TemplateBinding Content}"
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                        CanContentScroll="{TemplateBinding CanContentScroll}" />
+                            </Border>
 
-                        <Border Grid.Column="1" Grid.Row="0" Margin="3,0,-1,0"
-                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
-                            <ScrollBar x:Name="PART_VerticalScrollBar"
-                                       Width="4"
-                                       Value="{TemplateBinding VerticalOffset}"
-                                       Orientation="Vertical" Minimum="0"
-                                       Maximum="{TemplateBinding ScrollableHeight}"
-                                       ViewportSize="{TemplateBinding ViewportHeight}" />
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-            </ScrollViewer.Template>
-        </ScrollViewer>
-
-    </Border>
+                            <Border Grid.Column="1" Grid.Row="0" Margin="3,0,-1,0"
+                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                                <ScrollBar x:Name="PART_VerticalScrollBar"
+                                           Width="4"
+                                           Value="{TemplateBinding VerticalOffset}"
+                                           Orientation="Vertical" Minimum="0"
+                                           Maximum="{TemplateBinding ScrollableHeight}"
+                                           ViewportSize="{TemplateBinding ViewportHeight}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </ScrollViewer.Template>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
 </base:BaseUserControl>

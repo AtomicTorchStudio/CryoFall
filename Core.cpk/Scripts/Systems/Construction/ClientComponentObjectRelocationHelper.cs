@@ -14,7 +14,7 @@
     /// </summary>
     public class ClientComponentObjectRelocationHelper : ClientComponent
     {
-        private static readonly Lazy<RenderingMaterial> RenderingMaterial = new Lazy<RenderingMaterial>(
+        private static readonly Lazy<RenderingMaterial> RenderingMaterial = new(
             () =>
             {
                 var material = GameApi.ServicesClient.Components.RenderingMaterial
@@ -38,7 +38,8 @@
                 .Setup(objectStructure.ClientSceneObject);
 
             // use blueprint renderer to render the overlay
-            var overlay = new ClientBlueprintRenderer(this.sceneObjectForComponents);
+            var overlay = new ClientBlueprintRenderer(this.sceneObjectForComponents,
+                                                      isConstructionSite: false);
 
             objectStructure.ProtoStaticWorldObject.ClientSetupBlueprint(
                 objectStructure.OccupiedTile,

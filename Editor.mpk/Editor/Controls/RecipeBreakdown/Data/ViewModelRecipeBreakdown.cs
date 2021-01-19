@@ -12,13 +12,14 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelRecipeBreakdown : BaseViewModel
     {
         public static readonly HashSet<Type> BasicItems
-            = new HashSet<Type>()
+            = new()
             {
                 typeof(ItemFibers),
                 typeof(ItemPlanks),
@@ -55,8 +56,8 @@
             var outputItems = new List<ProtoItemWithCountFractional>();
             var outputItemsExtras = new List<ProtoItemWithCountFractional>();
             var intermediateRecipes = new List<ViewModelIntermediateRecipe>();
-            var inputNutrition = new NutritionValueInfo();
-            var outputNutrition = new NutritionValueInfo();
+            var inputNutrition = new FoodNutritionValueData();
+            var outputNutrition = new FoodNutritionValueData();
 
             var multiplier = 1 / (double)recipe.OutputItems.Items[0].Count;
             var isOriginalRecipeManufacturing = recipe.RecipeType == RecipeType.Manufacturing
@@ -89,7 +90,7 @@
                 var entry = new ProtoItemWithCountFractional(outputItem.ProtoItem,
                                                              outputItem.Count * multiplier);
                 outputItems.Add(entry);
-                outputNutrition.TryAdd(entry);
+                outputNutrition.TryAdd(entry.ProtoItem, entry.Count);
             }
 
             ProcessInputRecursive(recipe, multiplier, depth: 0);
@@ -103,8 +104,8 @@
             this.OutputItemsExtras = outputItemsExtras;
             this.IntermediateRecipes = intermediateRecipes;
 
-            this.InputTotalNutritionValue = inputNutrition;
-            this.OutputTotalNutritionValue = outputNutrition;
+            this.InputTotalFoodNutritionValue = inputNutrition;
+            this.OutputTotalFoodNutritionValue = outputNutrition;
 
             this.RecipesDurationTotalText = ClientTimeFormatHelper.FormatTimeDuration(
                                                 specificDurationCrafting,
@@ -146,7 +147,7 @@
                         var entry = new ProtoItemWithCountFractional(inputItem.ProtoItem,
                                                                      inputItem.Count * outerMultiplier);
                         AddListEntry(inputItems, entry);
-                        inputNutrition.TryAdd(entry);
+                        inputNutrition.TryAdd(entry.ProtoItem, entry.Count);
                         continue;
                     }
 
@@ -157,7 +158,7 @@
                         var entry = new ProtoItemWithCountFractional(inputItem.ProtoItem,
                                                                      inputItem.Count * outerMultiplier);
                         AddListEntry(inputItems, entry);
-                        inputNutrition.TryAdd(entry);
+                        inputNutrition.TryAdd(entry.ProtoItem, entry.Count);
                         continue;
                     }
 
@@ -209,7 +210,7 @@
                                                                      * recipeMultiplier
                                                                      * outerMultiplier);
                         AddListEntry(outputItemsExtras, entry);
-                        outputNutrition.TryAdd(entry);
+                        outputNutrition.TryAdd(entry.ProtoItem, entry.Count);
                     }
                 }
             }
@@ -220,7 +221,7 @@
 
         public IReadOnlyList<ProtoItemWithCountFractional> InputItems { get; }
 
-        public NutritionValueInfo InputTotalNutritionValue { get; }
+        public FoodNutritionValueData InputTotalFoodNutritionValue { get; }
 
         public IReadOnlyList<ViewModelIntermediateRecipe> IntermediateRecipes { get; }
 
@@ -228,7 +229,7 @@
 
         public IReadOnlyList<ProtoItemWithCountFractional> OutputItemsExtras { get; }
 
-        public NutritionValueInfo OutputTotalNutritionValue { get; }
+        public FoodNutritionValueData OutputTotalFoodNutritionValue { get; }
 
         public string RecipesDurationTotalText { get; }
 

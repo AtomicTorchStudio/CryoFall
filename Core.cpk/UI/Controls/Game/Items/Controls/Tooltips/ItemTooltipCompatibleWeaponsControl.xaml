@@ -28,7 +28,7 @@
                                  Opacity="0.7"
                                  VerticalAlignment="Center"
                                  Margin="0,0,2,-1" />
-                        <TextBlock Text="{Binding Name}"
+                        <TextBlock Text="{Binding}"
                                    TextWrapping="Wrap"
                                    Foreground="{StaticResource BrushColor7}"
                                    FontSize="10" />

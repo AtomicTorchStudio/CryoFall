@@ -22,8 +22,8 @@
         public override byte ContainerOutputSlotsCount => 8;
 
         public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 30,
-                                               shutdownPercent: 20);
+            => new(startupPercent: 30,
+                   shutdownPercent: 20);
 
         public override string Description =>
             "This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.";

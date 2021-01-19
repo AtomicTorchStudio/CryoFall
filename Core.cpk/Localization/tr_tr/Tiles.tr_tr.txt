@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+Uzaylı
+
+Scripts/Tiles/TileBarren@Name:
 Çorak
 
 Scripts/Tiles/TileBeachBoreal@Name:

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -20,16 +21,16 @@
               StaticObjectElectricityConsumerPublicState,
               StaticObjectClientState>,
           IProtoObjectPsiSource,
-          IProtoObjectElectricityConsumer
+          IProtoObjectElectricityConsumerWithCustomRate
     {
         private static readonly SoundResource SoundResourceActive
-            = new SoundResource("Objects/Structures/ObjectPsionicFieldGenerator/Active");
+            = new("Objects/Structures/ObjectPsionicFieldGenerator/Active");
 
         private ITextureAtlasResource textureAtlasActive;
 
         public virtual ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 1,
-                                               shutdownPercent: 0);
+            => new(startupPercent: 1,
+                   shutdownPercent: 0);
 
         public override string Description =>
             "Defensive structure that projects psionic field of high intensity while active.";
@@ -37,6 +38,8 @@
         public double ElectricityConsumptionPerSecondWhenActive => 1;
 
         public override string InteractionTooltipText => InteractionTooltipTexts.TogglePower;
+
+        public override bool IsRelocatable => false;
 
         public override string Name => "Psionic field generator";
 
@@ -54,9 +57,17 @@
 
         public bool ServerIsPsiSourceActive(IWorldObject worldObject)
         {
-            var publicState = GetPublicState((IStaticWorldObject)worldObject);
-            return publicState.ElectricityConsumerState
-                   == ElectricityConsumerState.PowerOnActive;
+            var staticWorldObject = (IStaticWorldObject)worldObject;
+            var publicState = GetPublicState(staticWorldObject);
+            return publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive
+                   && this.SharedGetCurrentElectricityConsumptionRate(staticWorldObject) > 0;
+        }
+
+        public double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
+        {
+            return LandClaimShieldProtectionSystem.SharedIsUnderShieldProtection(worldObject)
+                       ? 0
+                       : 1;
         }
 
         IObjectElectricityStructurePrivateState IProtoObjectElectricityConsumer.GetPrivateState(
@@ -109,8 +120,7 @@
 
             void RefreshActiveState()
             {
-                var isActive = publicState.ElectricityConsumerState
-                               == ElectricityConsumerState.PowerOnActive;
+                var isActive = publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOnActive;
                 componentAnimator.IsEnabled = isActive;
                 soundEmitter.IsEnabled = isActive;
 

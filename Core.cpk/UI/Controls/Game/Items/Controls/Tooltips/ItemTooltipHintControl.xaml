@@ -11,7 +11,7 @@
     d:DesignHeight="300" d:DesignWidth="300"
     Margin="0,0,100,3"
     HorizontalAlignment="Left"
-    Opacity="0.7">
+    Opacity="0.8">
     <!-- The 100 right margin is necessary to not overflow the item icon in the item tooltip -->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
             Content="{Binding Text, ElementName=UserControl}"
             Foreground="{StaticResource BrushColorAlt7}"
             FontSize="11"
-            LineHeight="11"
+            LineHeight="12"
             LineStackingStrategy="BlockLineHeight"
             TextWrapping="Wrap" />
     </Grid>

@@ -1,11 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.Damage;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -125,6 +128,24 @@
             DamageDistribution damageDistribution);
 
         protected abstract WeaponFireTracePreset PrepareFireTracePreset();
+
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+
+            if (this.CompatibleWeaponProtos
+                    .SelectMany(w => w.CompatibleAmmoProtos)
+                    .Distinct()
+                    .Count()
+                > 1)
+            {
+                // there are other similar ammo types,
+                // add a hint explaining how to switch the loaded ammo type 
+                var key = ClientInputManager.GetKeyForButton(GameButton.ItemSwitchMode);
+                hints.Add(string.Format(ItemHints.AmmoSwitch_Format,
+                                        InputKeyNameHelper.GetKeyText(key)));
+            }
+        }
 
         protected override void PrepareProtoItem()
         {

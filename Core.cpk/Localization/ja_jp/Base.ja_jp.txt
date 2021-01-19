@@ -151,9 +151,6 @@ Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 エネルギー充電量（毎分）
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-腐った食物を食べる能力
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 放射能中毒ダメージ
 
@@ -214,6 +211,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 燃料消費量
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+腐った食物を食べる能力
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+悪影響なしに過食できる能力
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 走れません
 
@@ -222,4 +225,7 @@ Scripts/Base/Stats/StatName@PerkCannotAttack:
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 医薬品のクールタイムが残っているので使用できません
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+骨折しない
 

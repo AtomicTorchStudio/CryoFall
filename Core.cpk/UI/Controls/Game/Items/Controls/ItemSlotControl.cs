@@ -47,10 +47,6 @@
                 new FrameworkPropertyMetadata(typeof(ItemSlotControl)));
         }
 
-        public ItemSlotControl()
-        {
-        }
-
         public IItemsContainer Container
         {
             get => this.container;
@@ -137,7 +133,6 @@
                     allowSwapping: true,
                     slotId: this.SlotId);
 
-                // TODO: there is also "PlaceAllowedNormal" to highlight slot as green. Maybe we need to use it in some cases?
                 stateName = canAddItem ? "Default" : "PlaceDisallowed";
             }
             else

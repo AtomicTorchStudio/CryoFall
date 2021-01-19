@@ -7,55 +7,69 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowDoor, IsDesignTimeCreatable=True}"
     FontFamily="{StaticResource CondensedFontFamily}"
-    FontWeight="Bold" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    FontWeight="Bold">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-
         <Grid HorizontalAlignment="Center"
               VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
             <Grid x:Name="PrimaryGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="36" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                <!-- Owners + access when not in faction claim -->
+                <Grid
+                    Visibility="{Binding IsInsideFactionClaim, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="36" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <worldObjects:WorldObjectOwnersEditorControl DataContext="{Binding ViewModelOwnersEditor}"
-                                                             Margin="2,0,0,5"
-                                                             VerticalAlignment="Center" />
+                    <worldObjects:WorldObjectOwnersEditorControl
+                        DataContext="{Binding ViewModelOwnersEditor}"
+                        VerticalAlignment="Center"
+                        Margin="2,0,0,5" />
 
-                <Control Style="{StaticResource ControlVerticalSeparator}"
-                         Grid.Column="1" />
+                    <Control Grid.Column="1"
+                             Style="{StaticResource ControlVerticalSeparator}" />
 
-                <worldObjects:WorldObjectAccessModeEditorControl DataContext="{Binding ViewModelAccessModeEditor}"
-                                                                 Grid.Column="2"
-                                                                 VerticalAlignment="Center" />
+                    <worldObjects:WorldObjectDirectAccessEditorControl
+                        Grid.Column="2"
+                        DataContext="{Binding ViewModelDirectAccessEditor}"
+                        VerticalAlignment="Center" />
+                </Grid>
+
+                <!-- Faction access editor -->
+                <ContentControl
+                    Visibility="{Binding IsInsideFactionClaim, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <worldObjects:WorldObjectFactionAccessEditorControl
+                        DataContext="{Binding ViewModelFactionAccessEditor}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </ContentControl>
             </Grid>
 
             <!-- Text: Lockdown: the door is blocked by active shield protection. -->
-            <Canvas Grid.Row="1"
-                    HorizontalAlignment="Left"
-                    Width="{Binding ActualWidth, ElementName=PrimaryGrid}">
-                <Grid Width="{Binding ActualWidth, ElementName=PrimaryGrid}"
-                      Canvas.Top="20">
-                <TextBlock
-                    Visibility="{Binding IsBlockedByShield, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Text="{x:Static loc:CoreStrings.ShieldProtection_DoorBlockedByShield}"
-                    Foreground="{StaticResource BrushColorRed6}"
-                    FontSize="13"
-                    TextWrapping="Wrap"
-                    TextAlignment="Center"
-                    HorizontalAlignment="Center" />
-                </Grid>
-            </Canvas>
+            <Border Visibility="{Binding IsBlockedByShield, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Background="#55000000">
+                <Border Width="250"
+                        Padding="5"
+                        Margin="0,5"
+                        CornerRadius="3"
+                        BorderThickness="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushColorRed0}"
+                        BorderBrush="{StaticResource BrushColorRed4}">
+                    <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.ShieldProtection_DoorBlockedByShield}"
+                                             FontSize="13"
+                                             FontWeight="Bold"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                </Border>
+            </Border>
         </Grid>
 
     </core:WindowMenuWithInventory>

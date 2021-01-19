@@ -1,5 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
     public enum EquipmentType : byte
     {
         Head = 0,

@@ -2,12 +2,19 @@
 `La Reina de pragmio ha aparecido en la superficie.
 [br]¡Un botín muy jugoso aguarda a los supervivientes más valerosos!`
 
+Scripts/Events/EventBossSandTyrant@Description:
+`El Tirano de las arenas ha aparecido en la superficie.
+[br]¡Un botín muy jugoso aguarda a los supervivientes más valerosos!`
+
 Scripts/Events/EventMeteoriteDrop@Description:
 `Han caído meteoritos en la zona destacada del mapa.
 [br]¡Ve rápido para obtener minerales raros!`
 
 Scripts/Events/EventMigration@Description:
 Parece que las formas de vida indígenas de este mundo están migrando a una zona diferente. Es el momento ideal para ir de caza.
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+Una especie de planta alienígena extraña ha aparecido en las zonas montañosas, lo cual hace que la exploración minera sea casi imposible. No obstante, es una gran oportunidad para obtener recursos raros.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Ha caído basura espacial en la zona destacada del mapa.
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 Progreso: {0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+¡Acaba de aparecer en la costa un bando de peces raros conocidos como {0}! Aprovecha para hacerte con una especie única que solo se puede conseguir durante su período de reproducción.
 

@@ -3,15 +3,10 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs.Client;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class StatusEffectDazed : ProtoStatusEffect
     {
         public const double MaxDuration = 4.0; // 4 seconds
-
-        // TODO: consider removing. It's not used anymore.
-        public const string NotificationCannotAttackWhileDazed = "Cannot attack while dazed.";
 
         public override string Description => "You are dazed! Give it a few moments to get your senses back.";
 
@@ -27,25 +22,6 @@
         public override string Name => "Dazed";
 
         public override double ServerUpdateIntervalSeconds => 0.1;
-
-        public static bool SharedIsCharacterDazed(ICharacter character, string clientMessageIfDazed)
-        {
-            if (!character.SharedHasStatusEffect<StatusEffectDazed>())
-            {
-                return false;
-            }
-
-            if (IsClient)
-            {
-                NotificationSystem.ClientShowNotification(
-                    GetProtoEntity<StatusEffectDazed>().Name,
-                    clientMessageIfDazed,
-                    NotificationColor.Bad,
-                    icon: GetProtoEntity<StatusEffectDazed>().Icon);
-            }
-
-            return true;
-        }
 
         protected override void ClientDeinitialize(StatusEffectData data)
         {

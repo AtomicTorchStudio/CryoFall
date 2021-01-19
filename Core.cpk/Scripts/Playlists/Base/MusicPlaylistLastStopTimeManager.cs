@@ -10,7 +10,7 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
         public const double MaxDurationToRememberTrackPosition = 1 * 60; // 1 minute
 
         private static readonly Dictionary<ProtoPlaylist, PlaylistStopTime> LastStopTime
-            = new Dictionary<ProtoPlaylist, PlaylistStopTime>();
+            = new();
 
         public static void RememberLastTrack(ProtoPlaylist playlist, MusicTrack lastMusicTrack)
         {

@@ -2,12 +2,19 @@
 `Pragmium Kraliçesi yüzeyde belirdi.
 [br]En cesur kahramanları değerli yağma bekliyor!`
 
+Scripts/Events/EventBossSandTyrant@Description:
+`Kum Tiranı yüzeyde belirdi.
+[br]Cesur kahramanları değerli yağma bekliyor!`
+
 Scripts/Events/EventMeteoriteDrop@Description:
 `Meteoritler haritanın vurgulanmış alanına düştü.
 [br]Nadir mineraller için madene koş!`
 
 Scripts/Events/EventMigration@Description:
 Bu dünyanın yerli yaşam formları farklı bir bölümden geliyormuş gibi duruyor. Bu avcılık için büyük fırsat sunuyor.
+
+Scripts/Events/EventPsiGroveInfestation@Description:
+Beliren tuhaf bir yabancı madde dağlık alanlarda gelişmeyi imkânsız kıldı ama nadir kaynaklar toplamak için de harika bir fırsat.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Uzay enkazı haritada vurgulanan noktaya düştü.
@@ -18,4 +25,7 @@ Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 
 Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
 İlerleme: {0}/{1}
+
+Scripts/Events/Base/ProtoEventFishing@Description_Format:
+Nadir bir balık türü olan {0} yakındaki okyanus kıyısında belirdi! Sadece kendi belirme zamanlarında ortaya çıkan bu eşsiz türü yakalama şansını kaçırma.
 

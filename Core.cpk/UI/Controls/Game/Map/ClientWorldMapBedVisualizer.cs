@@ -6,20 +6,18 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientWorldMapBedVisualizer : IWorldMapVisualizer
+    public class ClientWorldMapBedVisualizer : BaseWorldMapVisualizer
     {
         private readonly PlayerCharacterPrivateState playerCharacterPrivateState;
 
         private readonly IStateSubscriptionOwner stateSubscriptionOwner;
 
-        private readonly WorldMapController worldMapController;
-
         private WorldMapMarkCurrentBed currentBedMark;
 
         public ClientWorldMapBedVisualizer(WorldMapController worldMapController)
+            : base(worldMapController)
         {
             this.stateSubscriptionOwner = new StateSubscriptionStorage();
-            this.worldMapController = worldMapController;
             this.playerCharacterPrivateState = Api.Client.Characters.CurrentPlayerCharacter
                                                   .GetPrivateState<PlayerCharacterPrivateState>();
 
@@ -31,9 +29,7 @@
             this.Refresh();
         }
 
-        public bool IsEnabled { get; set; }
-
-        public void Dispose()
+        protected override void DisposeInternal()
         {
             this.stateSubscriptionOwner.ReleaseSubscriptions();
             this.DestroyControl();
@@ -46,7 +42,7 @@
                 return;
             }
 
-            this.worldMapController.RemoveControl(this.currentBedMark);
+            this.RemoveControl(this.currentBedMark);
             this.currentBedMark = null;
         }
 
@@ -63,10 +59,10 @@
             {
                 this.currentBedMark = new WorldMapMarkCurrentBed();
                 Panel.SetZIndex(this.currentBedMark, 9);
-                this.worldMapController.AddControl(this.currentBedMark);
+                this.AddControl(this.currentBedMark);
             }
 
-            var canvasPosition = this.worldMapController.WorldToCanvasPosition(
+            var canvasPosition = this.WorldToCanvasPosition(
                 bedWorldPosition.Value.ToVector2D());
 
             Canvas.SetLeft(this.currentBedMark, canvasPosition.X);

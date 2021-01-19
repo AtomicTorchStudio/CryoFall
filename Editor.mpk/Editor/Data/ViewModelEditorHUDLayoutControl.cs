@@ -4,6 +4,6 @@
 
     public class ViewModelEditorHUDLayoutControl : BaseViewModel
     {
-        public ViewModelEditorToolsPanel ViewModelEditorToolsPanel { get; } = new ViewModelEditorToolsPanel();
+        public ViewModelEditorToolsPanel ViewModelEditorToolsPanel { get; } = new();
     }
 }

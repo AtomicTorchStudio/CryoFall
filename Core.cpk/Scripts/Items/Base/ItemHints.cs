@@ -5,6 +5,9 @@
         public const string AltClickToUseItem =
             "Click on this item while holding the Alt key to quickly use or consume it.";
 
+        public const string AmmoSwitch_Format =
+            "You can switch ammo type in the currently selected weapon with [b]\\[{0}\\][/b] key.";
+
         public const string ClickToDisasseble =
             "Click on any structure to disassemble it.";
 
@@ -16,6 +19,9 @@
 
         public const string ClickToRepairOrBuild =
             "Click on any structure to repair or build.";
+
+        public const string ClickToRepairVehicle =
+            "Click on any damaged vehicle to repair it.";
 
         public const string ClickToWaterPlants =
             "Click on any farm plant to water it.";
@@ -46,6 +52,9 @@
 
         public const string FuelCellForVehicles =
             "Fuel cells are used to power different vehicles.";
+
+        public const string HelmetLightAndNightVision =
+            "You can toggle the light/night vision by pressing the [b]\\[{0}\\][/b] key.";
 
         public const string HintShootGrenadeLauncher =
             "Hold [b]Alt[/b] or [b]Ctrl[/b] while shooting to fire at maximum distance in the cursor's direction, instead of at the cursor's position.";

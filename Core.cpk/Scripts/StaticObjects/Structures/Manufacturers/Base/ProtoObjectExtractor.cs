@@ -43,8 +43,7 @@
         private const int MinDistanceBetweenExtractors = 9;
 
         protected static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDepletedDeposit
-            = new ConstructionTileRequirements.Validator(
-                Error_TooCloseToDepletedDeposit,
+            = new(Error_TooCloseToDepletedDeposit,
                 c =>
                 {
                     var startPosition = c.StartTilePosition;

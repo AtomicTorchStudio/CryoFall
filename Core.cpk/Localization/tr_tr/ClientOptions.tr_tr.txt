@@ -22,6 +22,12 @@ Genel
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 Kontroller
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+Açıldığında, oyun penceresine odaklanılmışken, fare imlecinin oyun penceresinin dışına çıkamamasını sağlar. Ctrl tuşuna basılı tutarak bu aşılabilir. Birden fazla monitörlü sistemlerde veya pencere modunda oynarken kullanışlıdır.
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+İmleci yakala
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 Yine de etkinleştir
 
@@ -36,11 +42,26 @@ Gerçekten ne yaptığınızı bilmiyorsanız, geliştirici modunu kullanmamanı
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Geliştirici modu
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+Normalde oyun sağlık barlarını sadece diğer karakterlerin üstünde gösterir. Bu seçeneği açarak kendi karakterinin üstünde de gösterebilirsin.
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`Sağlık barını göster
+[br]karakterin üstünde gösterilir`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 Nesneyi göster[br]etkileşim bilgi çubuğu
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Nesneyi göster[br]isim bilgi çubuğu
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`Görevler oyunun önemli birer parçasıdır. Özellikle de oyunu ilk kez oynuyorsanız yeni oyunculara rehberlik eder.
+[br]
+[br]Görev panelini kapatmak istediğine emin misin?`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+Görev panelini gizle
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Kamera yakınlaştırma

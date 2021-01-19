@@ -10,13 +10,12 @@
           IPublicStateWithStructurePoints,
           IWorldObjectPublicStateWithClaim
     {
-        [SyncToClient]
-        [TempOnly]
-        public ILogicObject WorldObjectClaim { get; set; }
-
         [SyncToClient(
             deliveryMode: DeliveryMode.ReliableSequenced,
             maxUpdatesPerSecond: ScriptingConstants.NetworkDefaultMaxUpdatesPerSecond)]
         public float StructurePointsCurrent { get; set; }
+
+        [SyncToClient]
+        public ILogicObject WorldObjectClaim { get; set; }
     }
 }

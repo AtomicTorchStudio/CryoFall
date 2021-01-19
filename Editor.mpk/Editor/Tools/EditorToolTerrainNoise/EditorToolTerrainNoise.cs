@@ -20,6 +20,10 @@
         public override string Name => "Terrain noise";
 
         public override int Order => 70;
+        
+        // We're no longer using this tool and don't recommend to everyone.
+        // The world tiles should not be mixed this way.
+        public override bool IsEnabled => false;
 
         public override BaseEditorActiveTool Activate(BaseEditorToolItem item)
         {
@@ -71,14 +75,15 @@
                 return;
             }
 
-            EditorClientSystem.DoAction(
+            EditorClientActionsHistorySystem.DoAction(
                 "Modify terrain tiles (noise)",
                 onDo: () => tilesToModify.ChunkedInvoke(
                           5000,
                           chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk, protoTileNoise))),
                 onUndo: () => tilesToModify.ChunkedInvoke(
                             5000,
-                            chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk, protoTileTarget))));
+                            chunk => this.CallServer(_ => _.ServerRemote_PlaceAt(chunk, protoTileTarget))),
+                canGroupWithPreviousAction: false);
         }
 
         public override FrameworkElement CreateSettingsControl()

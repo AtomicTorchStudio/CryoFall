@@ -29,11 +29,10 @@
         private const bool IsAllowNakedHumans = false;
 
         private static readonly Lazy<PlaceholderAttachments> GenericPantsAttachments
-            = new Lazy<PlaceholderAttachments>(() => GetAttachments("GenericPants"));
+            = new(() => GetAttachments("GenericPants"));
 
         private static readonly Lazy<PlaceholderAttachments[]> GenericShirtAttachments
-            = new Lazy<PlaceholderAttachments[]>(
-                // find all T-shirt folders and get attachments for every of them
+            = new( // find all T-shirt folders and get attachments for every of them
                 () => Api.Shared.GetFolderNamesInFolder(
                              ContentPaths.Textures + "Characters/Equipment/")
                          .Where(fn => fn.StartsWith("GenericTshirt", StringComparison.Ordinal))
@@ -258,7 +257,7 @@
                 sceneObject,
                 skeletonResources: skeletonResources,
                 defaultSkeleton: protoCharacterSkeleton.SkeletonResourceFront,
-                defaultLoopedAnimationName: "Idle",
+                defaultLoopedAnimationName: protoCharacterSkeleton.DefaultAnimationName,
                 positionOffset: (0, 0),
                 worldScale: worldScale,
                 speedMultiplier: protoCharacterSkeleton.SpeedMultiplier,
@@ -467,18 +466,19 @@
             bool requireEquipmentTextures = true)
         {
             using var tempSourcePaths = Api.Shared.WrapObjectInTempList("Characters/Equipment/" + name);
-            using var tempSpritePaths = ClientEquipmentSpriteHelper.CollectSpriteFilePaths(tempSourcePaths.AsList());
+            using var tempSpritePathLists =
+                ClientEquipmentSpriteHelper.CollectSpriteFilePaths(tempSourcePaths.AsList());
 
             ClientEquipmentSpriteHelper.CollectSlotAttachments(
-                tempSpritePaths.AsList(),
+                tempSpritePathLists.AsList(),
                 typeName: name,
                 requireEquipmentTextures: requireEquipmentTextures,
                 out var slotAttachmentsMale,
                 out var slotAttachmentsFemale);
 
-            foreach (var spriteFilePath in tempSpritePaths.AsList())
+            foreach (var tempList in tempSpritePathLists.AsList())
             {
-                spriteFilePath.Dispose();
+                tempList.Dispose();
             }
 
             return new PlaceholderAttachments(slotAttachmentsMale, slotAttachmentsFemale);
@@ -494,8 +494,8 @@
                 switch (c)
                 {
                     case ClientComponentLightInSkeleton lightInSkeleton when lightInSkeleton.IsPrimary:
-                    case ClientComponentNightVisionEffect _:
-                    case ItemImplantArtificialRetina.ClientComponentArtificialRetinaEffect _:
+                    case ClientComponentNightVisionEffect:
+                    case ItemImplantArtificialRetina.ClientComponentArtificialRetinaEffect:
                         return;
                 }
             }

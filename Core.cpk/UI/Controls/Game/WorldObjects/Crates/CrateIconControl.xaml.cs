@@ -14,12 +14,19 @@
                                         typeof(CrateIconControl),
                                         new PropertyMetadata(default(IStaticWorldObject)));
 
+        private FrameworkElement layoutRoot;
+
         private ViewModelCrateIconControl viewModel;
 
         public IStaticWorldObject WorldObjectCrate
         {
             get => this.GetValue(WorldObjectCrateProperty) as IStaticWorldObject;
             set => this.SetValue(WorldObjectCrateProperty, value);
+        }
+
+        protected override void InitControl()
+        {
+            this.layoutRoot = this.GetByName<FrameworkElement>("LayoutRoot");
         }
 
         protected override void OnLoaded()
@@ -36,12 +43,12 @@
                 return;
             }
 
-            this.DataContext = this.viewModel = new ViewModelCrateIconControl(this.WorldObjectCrate);
+            this.layoutRoot.DataContext = this.viewModel = new ViewModelCrateIconControl(this.WorldObjectCrate);
         }
 
         protected override void OnUnloaded()
         {
-            this.DataContext = null;
+            this.layoutRoot.DataContext = null;
             this.viewModel?.Dispose();
             this.viewModel = null;
         }

@@ -83,6 +83,8 @@
 
         IProtoItemAmmo ReferenceAmmoProto { get; }
 
+        float ShotVolumeMultiplier { get; }
+
         /// <summary>
         /// Sound preset defining hit sounds upon various materials.
         /// </summary>
@@ -99,8 +101,6 @@
         ProtoSkillWeapons WeaponSkillProto { get; }
 
         ITextureResource WeaponTextureResource { get; }
-
-        float ShotVolumeMultiplier { get; }
 
         void ClientOnFireModChanged(bool isFiring, uint shotsDone);
 

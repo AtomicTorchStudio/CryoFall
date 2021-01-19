@@ -13,18 +13,10 @@
                 typeof(CraftingRecipesListControl),
                 new PropertyMetadata(default(ViewModelCraftingMenu)));
 
-        public CraftingRecipesListControl()
-        {
-        }
-
         public ViewModelCraftingMenu ViewModel
         {
             get => (ViewModelCraftingMenu)this.GetValue(ViewModelProperty);
             set => this.SetValue(ViewModelProperty, value);
-        }
-
-        protected override void InitControl()
-        {
         }
     }
 }

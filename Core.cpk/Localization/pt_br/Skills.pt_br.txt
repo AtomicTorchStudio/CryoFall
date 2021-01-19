@@ -25,6 +25,9 @@ Melhores técnicas agrícolas permitem que você aumente a eficiência agrícola
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Agricultura
 
+Scripts/Skills/Skills/Agriculture/SkillFishing@SkillLevelRequirement:
+Requisitos: nível {0} de habilidade de pesca.
+
 Scripts/Skills/Skills/Agriculture/SkillFishing@Flags.FishingChanceToSaveBait:
 Chance de poupar a isca
 

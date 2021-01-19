@@ -149,9 +149,9 @@
                                     customTextureSize,
                                     new List<ComposeLayer>()
                                     {
-                                        new ComposeLayer(faceShapePath,  spriteQualityOffset),
-                                        new ComposeLayer(faceTopPath,    spriteQualityOffset),
-                                        new ComposeLayer(faceBottomPath, spriteQualityOffset)
+                                        new(faceShapePath,  spriteQualityOffset),
+                                        new(faceTopPath,    spriteQualityOffset),
+                                        new(faceBottomPath, spriteQualityOffset)
                                     },
                                     skinTone);
 
@@ -206,8 +206,8 @@
 
                 layers = new List<ComposeLayer>()
                 {
-                    new ComposeLayer(helmetBehind, spriteQualityOffset),
-                    new ComposeLayer(helmetFront,  spriteQualityOffset)
+                    new(helmetBehind, spriteQualityOffset),
+                    new(helmetFront,  spriteQualityOffset)
                 };
             }
 
@@ -268,8 +268,8 @@
             }
 
             var colorizedRenderTexture = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,
-                                                                                                     renderTexture,
-                                                                                                     skinToneTextureFilePath);
+                                             renderTexture,
+                                             skinToneTextureFilePath);
             renderTexture.Dispose();
             return new ComposeLayer(colorizedRenderTexture);
         }
@@ -369,8 +369,8 @@
                                                           isProvidesMagentaPixelPosition: true,
                                                           qualityOffset: spriteQualityOffset);
                 var renderTarget2D = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,
-                                                                                                 textureResource,
-                                                                                                 hairColor);
+                                         textureResource,
+                                         hairColor);
                 var pivotPos = await Rendering.GetTextureSizeWithMagentaPixelPosition(textureResource);
                 return new ComposeLayer(renderTarget2D,
                                         (pivotPos.MagentaPixelPosition.X,

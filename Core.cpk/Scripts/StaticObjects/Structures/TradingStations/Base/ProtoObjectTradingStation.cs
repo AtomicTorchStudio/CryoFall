@@ -54,10 +54,10 @@
         public abstract byte StockItemsContainerSlotsCount { get; }
 
         // has light source
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
-                                                                       minY: -3,
-                                                                       maxX: 3,
-                                                                       maxY: 3);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -3,
+                                                             minY: -3,
+                                                             maxX: 3,
+                                                             maxY: 3);
 
         public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {

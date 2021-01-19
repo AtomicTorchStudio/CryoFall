@@ -127,6 +127,9 @@ Pocisk artyleryjski
 Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Kliknij ten element, trzymając klawisz Alt, aby szybko go użyć lub zużyć.
 
+Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
+Klawiszem [b]\[{0}\][/b] można zmienić typ amunicji w aktualnie wybranej broni.
+
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Kliknij dowolną strukturę, aby ją zdemontować.
 
@@ -138,6 +141,9 @@ Kliknij studnię lub zbiornik na wodę, aby napełnić go wodą.
 
 Scripts/Items/Base/ItemHints@ClickToRepairOrBuild:
 Kliknij dowolną konstrukcję, aby ją naprawić lub zbudować.
+
+Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
+Kliknij dowolny uszkodzony pojazd, aby go naprawić.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
 Kliknij dowolne plony, aby je podlać.
@@ -169,6 +175,9 @@ Umieść w studni lub w zbiorniku wodnym, aby napełnić wodą pitną.
 Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 Ogniwa paliwowe zasilają różne pojazdy.
 
+Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
+Oświetlenie/noktowizor można włączać i wyłączać klawiszem [b]\[{0}\][/b].
+
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 Przytrzymaj klawisze [b]Alt[/b] lub [b]Ctrl[/b] podczas strzelania, aby strzelać z maksymalnej odległości w kierunku kursora, a nie w miejsce, gdzie znajduje się kursor.
 
@@ -184,6 +193,12 @@ Ten element pobiera moc z zamontowanych banków zasilania.
 Scripts/Items/Base/ItemHints@VehicleWeapon_Format:
 Tę broń można instalować i używać tylko w węźle uzbrojenia pojazdu: [b]{0}[/b].
 
+Scripts/Items/Base/ItemInfo@NightVisionGen1:
+Widzenie nocne (gen. 1.)
+
+Scripts/Items/Base/ItemInfo@NightVisionGen2:
+Widzenie nocne (gen. 2.)
+
 Scripts/Items/Base/ItemUseCaptions@Cut:
 Potnij
 
@@ -195,6 +210,9 @@ Wypij
 
 Scripts/Items/Base/ItemUseCaptions@Eat:
 Jedz
+
+Scripts/Items/Base/ItemUseCaptions@Open:
+Otwórz
 
 Scripts/Items/Base/ItemUseCaptions@Read:
 Czytaj
@@ -299,10 +317,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Brak paliwa
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-Aby włączyć czołówkę, należy wyposaż ten przedmiot i naciśnij klawisz [{0}].
-
-Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
-przycisk nieustawiony
+Aby włączyć czołówkę, należy wyposaż ten przedmiot i naciśnij klawisz \[{0}\].
 
 Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
 Pancerz kostny zapewnia przyzwoitą ochronę, zważywszy jego cenę, i jest użyteczny na wczesnych etapach gry.
@@ -402,6 +417,12 @@ Pancerz wojskowy
 
 Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 Hełm wojskowy
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
+Specjalna kamizelka z materiałami wybuchowymi. W ramach zemsty automatycznie wybucha po śmierci właściciela.
+
+Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Name:
+Kamizelka odwetowa
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
 Wygodny kask, który zapewnia również przenośne źródło światła i nie wymaga użycia rąk. Działa na baterie jednorazowe.
@@ -520,6 +541,15 @@ Scripts/Items/Fishing/Fish/ItemFishBass@Description:
 Scripts/Items/Fishing/Fish/ItemFishBass@Name:
 Okoń
 
+Scripts/Items/Fishing/Fish/ItemFishBlackGoby@Name:
+Babka czarna
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Description:
+Unikalna wodna forma życia oparta na pragmium. Pochodzi z tego świata.
+
+Scripts/Items/Fishing/Fish/ItemFishBlueGlider@Name:
+Niebieski pływacz
+
 Scripts/Items/Fishing/Fish/ItemFishBream@Name:
 Dorada
 
@@ -532,8 +562,14 @@ Sum
 Scripts/Items/Fishing/Fish/ItemFishChub@Name:
 Kleń
 
+Scripts/Items/Fishing/Fish/ItemFishCrappie@Name:
+Pomoxis
+
 Scripts/Items/Fishing/Fish/ItemFishGrunt@Name:
 Hemulon
+
+Scripts/Items/Fishing/Fish/ItemFishKoi@Name:
+Karp koi
 
 Scripts/Items/Fishing/Fish/ItemFishMackerel@Name:
 Makrela
@@ -561,6 +597,9 @@ Sardynka
 
 Scripts/Items/Fishing/Fish/ItemFishTrout@Name:
 Pstrąg
+
+Scripts/Items/Fishing/Fish/ItemFishYellowfinTuna@Name:
+Tuńczyk żółtopłetwy
 
 Scripts/Items/Food/ItemBanana@Description:
 Każda małpa może sięgnąć po banana, ale tylko ludzie mogą sięgnąć gwiazd.
@@ -717,6 +756,12 @@ Filiżanka gorącego espresso. Teraz masz więcej energii na robienie bzdur.
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
 Kawa
+
+Scripts/Items/Food/ItemCookingOil@Description:
+Naturalny olej używany do gotowania.
+
+Scripts/Items/Food/ItemCookingOil@Name:
+Olej spożywczy
 
 Scripts/Items/Food/ItemCorn@Description:
 Smakowita roślina zbożowa, szczególnie lubiana przez pisarzy horrorów.
@@ -924,6 +969,24 @@ Scripts/Items/Food/ItemPizzaPineapple@Description:
 
 Scripts/Items/Food/ItemPizzaPineapple@Name:
 Pizza z ananasem
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
+Świeże ziemniaki z pyszną skórką i odrobiną mięsa.
+
+Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
+Ziemniaki pieczone z mięsem
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Description:
+Klasyczne fastfoodowe smażone ziemniaki.
+
+Scripts/Items/Food/ItemPotatoFrenchFries@Name:
+Frytki
+
+Scripts/Items/Food/ItemPotatoRaw@Description:
+Należy ugotować przed zjedzeniem.
+
+Scripts/Items/Food/ItemPotatoRaw@Name:
+Ziemniak
 
 Scripts/Items/Food/ItemRiceCooked@Description:
 Można jeść w takiej formie jak widać albo dodać do innych przepisów.
@@ -1183,6 +1246,12 @@ Monety o małym nominale. Można za nie kupować tanie przedmioty w automatach s
 Scripts/Items/Generic/ItemCoinPenny@Name:
 Mała moneta
 
+Scripts/Items/Generic/ItemCoinPurse@Description:
+Stara portmonetka. Może jeszcze coś jest w środku?
+
+Scripts/Items/Generic/ItemCoinPurse@Name:
+Portmonetka
+
 Scripts/Items/Generic/ItemCoinShiny@Description:
 Monety o dużym nominale. Można za nie kupować przedmioty w automatach sprzedażowych lub wykorzystywać jako środek płatniczy w handlu z innymi ocalałymi.
 
@@ -1277,6 +1346,12 @@ Czerwony kwiat Oni. Nazwa pochodzi od czerwonego demona.
 Scripts/Items/Generic/ItemFlowerOni@Name:
 Kwiat Oni
 
+Scripts/Items/Generic/ItemFlowerYellow@Description:
+Przydatny do pozyskiwania oleju spożywczego lub jako dekoracja.
+
+Scripts/Items/Generic/ItemFlowerYellow@Name:
+Żółty kwiat
+
 Scripts/Items/Generic/ItemFluxPowder@Description:
 Topnik w metalurgii pozwala uzyskiwać wysokojakościowy metal.
 
@@ -1306,6 +1381,12 @@ Ogniwo paliwowe wypełnione płynnym pragmium. Działa niezwykle długo.
 
 Scripts/Items/Generic/ItemFuelCellPragmium@Name:
 Pragmiumowe ogniwo paliwowe
+
+Scripts/Items/Generic/ItemFuelSack@Description:
+Organ obcego stworzenia do przechowywanie lotnych cieczy.
+
+Scripts/Items/Generic/ItemFuelSack@Name:
+Worek na paliwo
 
 Scripts/Items/Generic/ItemFur@Description:
 Futro zwierzęce. Służy do szycia ciepłej odzieży zimowej.
@@ -1343,10 +1424,10 @@ Błyszczący żółty topaz!
 Scripts/Items/Generic/ItemGemTopaz@Name:
 Topaz
 
-Scripts/Items/Generic/ItemGemTourmaline @Description:
+Scripts/Items/Generic/ItemGemTourmaline@Description:
 Błyszczący fioletowy turmalin!
 
-Scripts/Items/Generic/ItemGemTourmaline @Name:
+Scripts/Items/Generic/ItemGemTourmaline@Name:
 Turmalin
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
@@ -1670,6 +1751,12 @@ Gałęzie zebrane z ziemi lub zerwane z drzewa. Pozwalają tworzyć proste narz�
 Scripts/Items/Generic/ItemTwigs@Name:
 Gałęzie
 
+Scripts/Items/Generic/ItemTyrantHeart@Description:
+Dziwny gąbczasty organ pochodzący od nieznanej formy życia. Podczas rozkładu emituje egzotyczne cząsteczki.
+
+Scripts/Items/Generic/ItemTyrantHeart@Name:
+Serce Piaskowego tyrana
+
 Scripts/Items/Generic/ItemUniversalActuator@Description:
 Mocny siłownik do szerokich zastosowań napędzany siłą magnetyczną.
 
@@ -1853,6 +1940,12 @@ Tanie i szybko skręcone cygaro. Stymulant.
 Scripts/Items/Medical/ItemCigarCheap@Name:
 Tanie cygaro
 
+Scripts/Items/Medical/ItemCigarettes@Description:
+Marka papierosów nie z tego świata.
+
+Scripts/Items/Medical/ItemCigarettes@Name:
+Papierosy
+
 Scripts/Items/Medical/ItemCigarNormal@Description:
 Przyzwoite cygaro o pełnym smaku. Stymulant.
 
@@ -1975,6 +2068,12 @@ Perazyna pomaga złagodzić negatywne skutki częstego używania silnych leków.
 Scripts/Items/Medical/ItemPeredozin@Name:
 Perazyna
 
+Scripts/Items/Medical/ItemPlasterCast@Description:
+Gips do usztywniania złamanej kości. Pozwala jej szybciej się zrosnąć.
+
+Scripts/Items/Medical/ItemPlasterCast@Name:
+Gips
+
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
 Specjalna substancja chemiczna modyfikująca układ nerwowy, lecząca uszkodzenia nerwowe spowodowane działaniem pola Psi.
 
@@ -1988,7 +2087,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Lekarstwo ziołowe
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-Żadnych złamań. Nie ma sensu używać teraz szyny.
+Nie masz żadnych złamanych kości. Nie ma sensu go teraz zakładać.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Brak złamanych kości
@@ -2062,8 +2161,14 @@ Nasiona szałwii niebieskiej
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Nasiona kwiatu Oni
 
+Scripts/Items/Seeds/ItemSeedsFlowerYellow@Name:
+Nasiona żółtych kwiatów
+
 Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
 Nasiona mlelona
+
+Scripts/Items/Seeds/ItemSeedsPotato@Name:
+Nasiona ziemniaka
 
 Scripts/Items/Seeds/ItemSeedsRice@Name:
 Nasiona ryżu
@@ -2088,6 +2193,12 @@ Aby posadzić tę sadzonkę, musisz zachować co najmniej jedna płytkę odstęp
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 Wymaga
+
+Scripts/Items/Special/ItemTeleportLocationData@Description:
+Zawiera współrzędne i częstotliwości nawigacyjne jednego z wielu teleportów.
+
+Scripts/Items/Special/ItemTeleportLocationData@Name:
+Lokalizacja teleportu
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Żelazna siekiera dobrze sprawdza się podczas wyrębu drzew. Szybsza i bardziej wytrzymała niż siekiera kamienna.
@@ -2146,11 +2257,11 @@ Wymagane uzupełnienie.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Brak paliwa
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
-W tym delikatnym toporze z pragmium zastosowano rezonansowe technologie mechaniki molekularnej powodujące, że jest on znacznie szybszy niż konwencjonalne rozwiązania.
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Description:
+Ten delikatny młotek pragmiumowy wykorzystuje technologię rezonansu molekularnego, dzięki czemu jest znacznie szybszy niż inne rozwiązania konwencjonalne.
 
-Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
-Topór z pragmium
+Scripts/Items/Tools/Pickaxes/ItemHammerPragmium@Name:
+Młotek pragmiumowy
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Żelazny kilof pozwala eksploatować złoża minerałów. Szybszy i trwalszy niż kilof.
@@ -2175,6 +2286,12 @@ Ten czujnik umożliwia wyszukiwanie dużych kryształów pragmium poprzez wykryw
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 Czujnik pragmium
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Description:
+Uniwersalny zestaw do naprawy pojazdów (jednorazowy).
+
+Scripts/Items/Tools/Special/ItemVehicleRepairKit@Name:
+Zestaw do naprawy pojazdów
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
 Skrzynka z narzędziami jest niezbędna do zbudowania i naprawienia wszystkich konstrukcji. Musi być wyposażona i wybrana.
@@ -2262,6 +2379,12 @@ Rapier laserowy (biały)
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Rapier laserowy (żółty)
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
+Dzięki wbudowanym akumulatorom pozwala ogłuszać przeciwników.
+
+Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
+Pałka paraliżująca
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Niesamowicie potężna broń krótkiego zasięgu. Wymaga energii do działania.

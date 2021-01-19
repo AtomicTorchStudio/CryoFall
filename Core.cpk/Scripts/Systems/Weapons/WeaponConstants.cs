@@ -44,7 +44,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     "DamageFriendlyFireMultiplier",
                     defaultValue: 1.0,
                     @"Multiplier for the friendly fire damage
-                      (when one party member damaging another with any weapon except explosives).
+                      (when a player damaging friendly player (same party/faction, or an ally)
+                       with any weapon except explosives).
                       0.0 - disable friendly fire (no damage).
                       1.0 - enable friendly fire (full damage).
                       You can also set it to something in between like 0.5
@@ -62,10 +63,10 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             DamagePvpMultiplier = ServerRates.Get(
                 "DamagePvpMultiplier",
-                defaultValue: 0.5,
+                defaultValue: 0.4,
                 @"All damage dealt from player to player (via weapons only) is multiplied by this rate.
                   It allows to decrease or increase the combat duration.
-                  You can set it to 0 to disable PvP damage (doesn't apply to bombs damage!).");
+                  You can set it to 0 to disable PvP damage (it doesn't apply to bombs damage).");
         }
     }
 }

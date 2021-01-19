@@ -15,21 +15,25 @@
 
     public class PlayerCharacterCompletionistData : BaseNetObject
     {
+        public delegate void ServerCharacterRewardClaimedDelegate(ICharacter character, ICompletionistDataEntry entry);
+
+        public static event ServerCharacterRewardClaimedDelegate ServerCharacterRewardClaimed;
+
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionistFish> ListFish { get; }
-            = new NetworkSyncList<DataEntryCompletionistFish>();
+            = new();
 
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionist> ListFood { get; }
-            = new NetworkSyncList<DataEntryCompletionist>();
+            = new();
 
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionist> ListLoot { get; }
-            = new NetworkSyncList<DataEntryCompletionist>();
+            = new();
 
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionist> ListMobs { get; }
-            = new NetworkSyncList<DataEntryCompletionist>();
+            = new();
 
         public void ServerOnFishCaught(IProtoItemFish protoItemFish, float sizeValue)
         {
@@ -104,7 +108,7 @@
                                                       protoItemFood,
                                                       reward,
                                                       new DataEntryCompletionist(isRewardClaimed: true,
-                                                                                 protoItemFood));
+                                                          protoItemFood));
                     break;
 
                 case IProtoCharacterMob protoCharacterMob:
@@ -112,7 +116,7 @@
                                                       protoCharacterMob,
                                                       reward,
                                                       new DataEntryCompletionist(isRewardClaimed: true,
-                                                                                 protoCharacterMob));
+                                                          protoCharacterMob));
                     break;
 
                 case IProtoObjectLoot protoObjectLoot:
@@ -120,7 +124,7 @@
                                                       protoObjectLoot,
                                                       reward,
                                                       new DataEntryCompletionist(isRewardClaimed: true,
-                                                                                 protoObjectLoot));
+                                                          protoObjectLoot));
                     break;
 
                 case IProtoItemFish protoItemFish:
@@ -194,7 +198,9 @@
                                 characterRelated: character);
 
                 character.SharedGetTechnologies()
-                         .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStat: false);
+                         .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStatsAndRates: false);
+
+                Api.SafeInvoke(() => ServerCharacterRewardClaimed?.Invoke(character, entry));
                 return;
             }
 

@@ -1,4 +1,7 @@
-﻿Scripts/Tiles/TileBarren@Name:
+﻿Scripts/Tiles/TileAlien@Name:
+Extraterrestre
+
+Scripts/Tiles/TileBarren@Name:
 Aride
 
 Scripts/Tiles/TileBeachBoreal@Name:

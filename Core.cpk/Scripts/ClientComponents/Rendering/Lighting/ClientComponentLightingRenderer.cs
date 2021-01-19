@@ -19,7 +19,7 @@
         private const float MinAdditiveLightFraction = 0.075f;
 
         private static readonly EffectResource EffectResourceLightingCompose
-            = new EffectResource("Lighting/Compose");
+            = new("Lighting/Compose");
 
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
 
@@ -95,7 +95,7 @@
         {
             instance = this;
             this.camera = Rendering.CreateCameraWorld(this.SceneObject, ClientLighting.RenderingTag, -1000);
-            this.camera.ClearColor = Color.FromArgb(0x00, 0x00, 0x00, 0x00); // transparent black
+            this.camera.ClearColor = Color.FromArgb(0, 0, 0, 0);
             this.camera.DrawMode = CameraDrawMode.Manual;
 
             this.layerRenderer = Client.Rendering.CreateLayerRenderer(
@@ -157,7 +157,7 @@
             this.camera.DrawImmediate();
             this.camera.RenderTarget = null;
 
-            // no we will render to the frame buffer
+            // now we will render to the frame buffer
             graphicsDevice.SetRenderTarget(null);
 
             if (ClientLighting.IsDisplayMask)

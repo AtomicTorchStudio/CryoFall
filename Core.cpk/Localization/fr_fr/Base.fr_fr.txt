@@ -151,9 +151,6 @@ Vitesse de consommation d'eau
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Régénération de charge d'énergie (par minute)
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Capacité à ingérer de la nourriture périmée
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Dégâts d'irradiation
 
@@ -214,6 +211,12 @@ Probabilité de pêche réussie
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Consommation de carburant
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Capacité à ingérer de la nourriture périmée
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Capacité à se gaver sans conséquence
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 Impossible de courir
 
@@ -222,4 +225,7 @@ Impossible d'attaquer
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 Impossible d'utiliser des soins disposant d'un délai de temporisation
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+Os incassables
 

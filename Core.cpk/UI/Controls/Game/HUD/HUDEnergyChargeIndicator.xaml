@@ -29,6 +29,7 @@
                        VerticalAlignment="Top"
                        Width="16"
                        Height="16"
+                       UseLayoutRounding="True"
                        Margin="0,1,0,0" />
 
             <ContentControl Width="34"
@@ -41,21 +42,14 @@
                         VerticalAlignment="Stretch"
                         BorderBrush="Black"
                         BorderThickness="1"
-                        CornerRadius="5"
-                        Background="#FF554400">
+                        CornerRadius="5">
+                    <Border.Background>
+                        <SolidColorBrush
+                            Color="{Binding Source={StaticResource ColorElectricityDarker}, Converter={StaticResource ColorMultiplyConverter}, ConverterParameter=0.4}">
+                        </SolidColorBrush>
+                    </Border.Background>
 
                     <Grid>
-                        <!-- Background overlay semi-transparent vertical overlay -->
-                        <Border CornerRadius="5" Margin="-1">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.2">
-                                    <GradientStop Color="Transparent" Offset="0" />
-                                    <GradientStop Color="Black" Offset="0.07" />
-                                    <GradientStop Color="#77000000" Offset="0.7" />
-                                    <GradientStop Color="Transparent" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
                         <Grid Margin="1">
                             <core:ValueBarControl
                                 IsDisplayLabel="True"
@@ -66,41 +60,13 @@
                                 HorizontalAlignment="Stretch"
                                 BorderThickness="0"
                                 BorderBrush="{x:Null}">
+
                                 <core:ValueBarControl.Template>
                                     <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
                                         <Grid x:Name="LayoutRoot" Background="Transparent">
                                             <ContentPresenter x:Name="ContentPresenter"
                                                               Margin="{TemplateBinding Padding}"
                                                               HorizontalAlignment="Left" />
-
-                                            <!-- Bar end element (placed in the end of the current value bar) -->
-                                            <ContentControl HorizontalAlignment="Stretch"
-                                                            VerticalAlignment="Stretch">
-                                                <ContentControl.Clip>
-                                                    <!-- The rect here is very carefully selected to ensure
-                                                     that the bar will not go out of the limits -->
-                                                    <RectangleGeometry Rect="1,0,28,8"
-                                                                       RadiusX="{StaticResource BarCornerRadius}"
-                                                                       RadiusY="{StaticResource BarCornerRadius}" />
-                                                </ContentControl.Clip>
-                                                <Canvas ClipToBounds="False"
-                                                        VerticalAlignment="Top"
-                                                        IsHitTestVisible="False">
-                                                    <Grid Height="{Binding ActualHeight, ElementName=ContentPresenter}"
-                                                          Canvas.Left="{TemplateBinding CurrentValueBarWidth}">
-                                                        <Rectangle Width="1"
-                                                                   Margin="-0.5,-0.5,0,-0.5">
-                                                            <Rectangle.Fill>
-                                                                <RadialGradientBrush>
-                                                                    <GradientStop Color="#FFFFFFFF" Offset="0.5" />
-                                                                    <GradientStop Color="#FFFFEE00" Offset="0.75" />
-                                                                    <GradientStop Color="#00FFEE00" Offset="1" />
-                                                                </RadialGradientBrush>
-                                                            </Rectangle.Fill>
-                                                        </Rectangle>
-                                                    </Grid>
-                                                </Canvas>
-                                            </ContentControl>
                                         </Grid>
                                     </ControlTemplate>
                                 </core:ValueBarControl.Template>
@@ -109,7 +75,7 @@
                                     <!-- Primary color -->
                                     <Rectangle RadiusX="{StaticResource BarCornerRadius}"
                                                RadiusY="{StaticResource BarCornerRadius}"
-                                               Fill="#FFFFEE00" />
+                                               Fill="{StaticResource BrushElectricity}" />
 
                                     <!-- Ticks overlay -->
                                     <Rectangle RadiusX="{StaticResource BarCornerRadius}"
@@ -122,20 +88,6 @@
                                                 <GradientStop Color="Black" Offset="0.7" />
                                                 <GradientStop Color="White" Offset="0.8" />
                                                 <GradientStop Color="Transparent" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
-
-                                    <!-- Shadow gradient overlay -->
-                                    <Rectangle RadiusX="{StaticResource BarCornerRadius}"
-                                               RadiusY="{StaticResource BarCornerRadius}">
-                                        <Rectangle.Fill>
-                                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.45">
-                                                <GradientStop Color="Transparent" Offset="0" />
-                                                <GradientStop Color="#99000000" Offset="0.4" />
-                                                <GradientStop Color="#FF000000" Offset="0.75" />
-                                                <GradientStop Color="#FF000000" Offset="0.9" />
-                                                <GradientStop Color="#00000000" Offset="1" />
                                             </LinearGradientBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
@@ -204,7 +156,7 @@
                         Value="{Binding TotalCharge}"
                         MaxValue="{Binding TotalCapacity}"
                         Background="Transparent"
-                        BorderBrush="#AAFFAA10"
+                        BorderBrush="{StaticResource BrushElectricityDarker}"
                         BorderThickness="1"
                         HorizontalAlignment="Stretch"
                         Height="13"
@@ -236,7 +188,7 @@
                                 </Grid>
                             </ControlTemplate>
                         </core:ValueBarControl.Template>
-                        <Border Background="#AAFFAA10" CornerRadius="1" />
+                        <Border Background="{StaticResource BrushElectricityDarker}" CornerRadius="1" />
                     </core:ValueBarControl>
                 </ContentControl>
             </Grid>

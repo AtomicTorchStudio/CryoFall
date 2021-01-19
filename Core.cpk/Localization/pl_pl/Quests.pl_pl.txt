@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Najlepszy łowca – część druga
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+Po odkryciu czegoś nowego pojawia się to w [b]menu zdobywacza[/b]! Tutaj można śledzić postępy i odbierać [u]dodatkowe PT[/u] za poznawanie świata CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+Ekwipunek po otwarciu do można posortować, klawiszem [u]{0}[/u] lub [u]{1}[/u], ustawiając kursor nad siatką ekwipunku. W ten sposób można posortować [b]DOWOLNĄ[/b] siatkę ekwipunku (np. skrzynie).
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+Aby biegać, podczas chodzenia wystarczy przytrzymać klawisz [u]Shift[/u]. Przebiegnij się kilka metrów. Bieg pozwala umknąć przed niebezpieczeństwami.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 Jest jeszcze kilka innych rzeczy, które musisz wiedzieć, aby w pełni cieszyć się z grania w CryoFall, jak np. jak sortować ekwipunek i biegać!
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] Aby posortować ekwipunek, wystarczy go otworzyć i nacisnąć [u]środkowy przycisk myszy[/u] lub klawisz [u]Z[/u] (jeśli nie zmieniono sterowania), gdy kursor myszy znajduje się na siatce ekwipunku. W ten sposób można posortować [b]DOWOLNĄ[/b] siatkę ekwipunku (np. skrzynie).
-[*] Aby biegać, wystarczy przytrzymać [u]klawisz Shift[/u] podczas chodzenia. Przebiegnij teraz kilka metrów. Bieganie może cię uratować przed niebezpiecznymi drapieżnikami.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 Wykonaj podstawowe działania
@@ -452,7 +457,7 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Opanowanie technologii – część druga
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGenerators:
-Różne typy [b]generatorów energii[/b], takie jak parowe, słoneczne i silniki pozwalają wytwarzać energię elektryczną.
+Różne typy [b]generatorów energii[/b], np. parowe, słoneczne i silniki pozwalają wytwarzać energię elektryczną.
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@HintGridInformation:
 [b]Szczegółowe informacje o sieci[/b] można wyświetlić z poziomu dowolnego budynku magazynującego energię elektryczną lub z poziomu działki.
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 Poznawanie ekosystemów – część czwarta
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Zbierz przedmioty z zasobników
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 W starych ruinach najprędzej znajdziesz rzadkie podzespoły i zasoby. Zawsze warto je przeczesywać, zwłaszcza jeśli masz niezbędny sprzęt.
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Zbadaj stare ruiny
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-Zbierz przedmioty z zasobników
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+Im [b]więcej[/b] teleportów odkryjesz, tym [b]bardziej rozległa[/b] będzie twoja sieć podróży.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+Znajdź co najmniej [b]dwa[/b] teleporty, aby móc podróżować między nimi.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+Teleporty mogą też być [b]ukryte[/b]!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+Poruszanie się pieszo jest niezłe, ale do pokonania naprawdę dużych odległości, warto użyć teleportu obcych.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+Szybka podróż
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 [u]Filety rybne[/u] można [u]uzyskać[/u] ze złowionych ryb, wykorzystując operację [b]używnia[/b] (tak samo jak w przypadku innych przedmiotów).
@@ -586,6 +606,9 @@ Ręczne wydobywanie minerałów i rąbanie drzew jest żmudne, więc zdecydowani
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 Wydobywanie za pomocą dronów
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+Najlepszy łowca – część szósta
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 Warto [u]zwiększać ilość magazynowej energii[/u] wraz z rozwojem swojej bazy, aby zawsze dysponować [u]wystarczającą nadwyżką[/u] energetyczną.

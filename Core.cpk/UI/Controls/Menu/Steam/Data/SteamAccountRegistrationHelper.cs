@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
-    internal static class SteamAccountRegistrationHelper
+    public static class SteamAccountRegistrationHelper
     {
         public const string DialogCannotLinkAccount_IncorrectEmailOrPassword =
             "The email address or password you've entered is incorrect. If you're sure that you've entered the correct email, please try again or use the Reset password feature on AtomicTorch.com.";
@@ -75,7 +75,7 @@
                     throw new Exception(ErrorMustAcceptTermsOfService);
                 }
 
-                var result = await BaseViewModel.Client.SteamApi.RegisterOrLinkAtomicTorchAccountAsync(
+                var result = await Api.Client.SteamApi.RegisterOrLinkAtomicTorchAccountAsync(
                                  email,
                                  passwordInputControlRegistrationForm,
                                  isLinkingToExistingAccount: isLinkingToExistingAccount,
@@ -135,8 +135,9 @@
                             closeByEscapeKey: true);
                         break;
 
-                    case ScriptingRegisterAtomicTorchAccountResult
-                         .ResultCode.ErrorCannotLinkToExistingAccountEmailOrPasswordIncorrect:
+                    case ScriptingRegisterAtomicTorchAccountResult.ResultCode
+                                                                  .ErrorCannotLinkToExistingAccountEmailOrPasswordIncorrect
+                        :
                         DialogWindow.ShowMessage(
                             DialogCannotLinkAccount_Title,
                             DialogCannotLinkAccount_IncorrectEmailOrPassword,

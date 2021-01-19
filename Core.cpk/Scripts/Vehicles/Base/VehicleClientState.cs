@@ -10,6 +10,8 @@
 
         public IComponentSkeleton SkeletonRenderer { get; set; }
 
+        public IComponentSpriteRenderer SpriteRenderer { get; set; }
+
         public IDisposable UIElementsHolder { get; set; }
     }
 }

@@ -19,7 +19,9 @@
 
         <!-- Icon -->
         <Border Grid.Column="1" Width="28" Height="28" VerticalAlignment="Center">
-            <Rectangle Fill="{Binding Icon}" UseLayoutRounding="True" Margin="-4" />
+            <Rectangle Fill="{Binding Icon}"
+                       UseLayoutRounding="True"
+                       Margin="-4" />
         </Border>
 
         <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"

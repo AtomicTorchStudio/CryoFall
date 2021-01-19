@@ -21,10 +21,6 @@
 
         private double totalDurationSeconds;
 
-        public ClientComponentDoorSpriteSheetAnimator()
-        {
-        }
-
         public ITextureResource[] FramesTextureResources => this.framesTextureResources;
 
         public bool IsPositiveDirection => this.isPositiveDirection;

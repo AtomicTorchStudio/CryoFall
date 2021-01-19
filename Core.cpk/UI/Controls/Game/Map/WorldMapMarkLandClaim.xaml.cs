@@ -6,6 +6,7 @@
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -14,6 +15,12 @@
 
     public partial class WorldMapMarkLandClaim : BaseUserControl
     {
+        public static readonly DependencyProperty IsFactionOwnedProperty =
+            DependencyProperty.Register(nameof(IsFactionOwned),
+                                        typeof(bool),
+                                        typeof(WorldMapMarkLandClaim),
+                                        new PropertyMetadata(default(bool)));
+
         public static readonly DependencyProperty IsFounderProperty =
             DependencyProperty.Register(nameof(IsFounder),
                                         typeof(bool),
@@ -29,6 +36,12 @@
         public ILogicObject Area;
 
         private bool cachedIsUnderShield;
+
+        public bool IsFactionOwned
+        {
+            get => (bool)this.GetValue(IsFactionOwnedProperty);
+            set => this.SetValue(IsFactionOwnedProperty, value);
+        }
 
         public bool IsFounder
         {
@@ -114,7 +127,7 @@
 
             grid.Children.Add(textBlockTitle);
 
-            var areasGroup = LandClaimArea.GetPublicState(this.Area).LandClaimAreasGroup;
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(this.Area);
             var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
 
             if (publicState.Status == ShieldProtectionStatus.Active

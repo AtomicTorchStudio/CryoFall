@@ -35,7 +35,7 @@
 
         public IComponentSpriteRenderer RendererShadow { get; set; }
 
-        public List<IClientComponent> SkeletonComponents { get; } = new List<IClientComponent>();
+        public List<IClientComponent> SkeletonComponents { get; } = new();
 
         public IComponentSkeleton SkeletonRenderer { get; set; }
 

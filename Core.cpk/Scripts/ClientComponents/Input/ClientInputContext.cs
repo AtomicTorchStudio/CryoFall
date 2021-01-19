@@ -10,7 +10,7 @@
         private static readonly List<ClientInputContext> currentContexts;
 
         private readonly List<ButtonCallback> buttonDownCallbacks
-            = new List<ButtonCallback>(capacity: 0);
+            = new(capacity: 0);
 
         private Action callbackHandleAll;
 
@@ -36,7 +36,7 @@
 
         public static ClientInputContext Start(string name)
         {
-            return new ClientInputContext(name);
+            return new(name);
         }
 
         public ClientInputContext HandleAll(Action callback)

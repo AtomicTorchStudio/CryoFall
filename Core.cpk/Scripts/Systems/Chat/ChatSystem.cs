@@ -39,7 +39,7 @@
         private static readonly bool ServerIsTradeChatRoomEnabled;
 
         private static readonly Dictionary<ICharacter, List<ILogicObject>> ServerPrivateChatRoomsCache
-            = new Dictionary<ICharacter, List<ILogicObject>>();
+            = new();
 
         private static ILogicObject sharedGlobalChatRoomHolder;
 
@@ -80,15 +80,15 @@
             var chatRoom = SharedGetChatRoom(chatRoomHolder);
             switch (chatRoom)
             {
-                case ChatRoomTrade _:
+                case ChatRoomTrade:
                     sharedTradeChatRoomHolder = chatRoomHolder;
                     break;
 
-                case ChatRoomGlobal _:
+                case ChatRoomGlobal:
                     sharedGlobalChatRoomHolder = chatRoomHolder;
                     break;
 
-                case ChatRoomLocal _:
+                case ChatRoomLocal:
                     sharedLocalChatRoomHolder = chatRoomHolder;
                     break;
             }
@@ -439,15 +439,37 @@
 
         private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
         {
-            // just write entry into the server log file
-            // no need to send it to client (clients are using OnlinePlayersSystem to display these messages)
-            var name = playerCharacter.Name;
-            var message = string.Format(isOnline
-                                            ? PlayerWentOnlineChatMessageFormat
-                                            : PlayerWentOfflineChatMessageFormat,
-                                        name);
+            var logMessage = string.Format(isOnline
+                                               ? PlayerWentOnlineChatMessageFormat
+                                               : PlayerWentOfflineChatMessageFormat,
+                                           playerCharacter.Name);
 
-            Server.Core.AddChatLogEntry(message);
+            // write entry into the server log file
+            // no need to send it to client (clients are using OnlinePlayersSystem to display these messages)
+            Server.Core.AddChatLogEntry(logMessage);
+
+            if (!isOnline)
+            {
+                return;
+            }
+
+            // add the public chat rooms to the player scope
+            ServerAddChatRoomToPlayerScope(playerCharacter, sharedGlobalChatRoomHolder);
+            if (ServerIsTradeChatRoomEnabled)
+            {
+                ServerAddChatRoomToPlayerScope(playerCharacter, sharedTradeChatRoomHolder);
+            }
+
+            ServerAddChatRoomToPlayerScope(playerCharacter, sharedLocalChatRoomHolder);
+
+            // add the private chat rooms to the player scope
+            if (ServerPrivateChatRoomsCache.TryGetValue(playerCharacter, out var characterPrivateChatRooms))
+            {
+                foreach (var chatRoomHolder in characterPrivateChatRooms)
+                {
+                    ServerAddChatRoomToPlayerScope(playerCharacter, chatRoomHolder);
+                }
+            }
         }
 
         private void ClientRemote_OnMuted(ILogicObject chatRoomHolder, double secondsRemains)
@@ -510,28 +532,6 @@
 
             var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(chatRoomHolder);
             chatRoom.ServerSetReadByCharacter(character);
-        }
-
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        private void ServerRemote_RequestChatRooms()
-        {
-            var character = ServerRemoteContext.Character;
-
-            ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
-            if (ServerIsTradeChatRoomEnabled)
-            {
-                ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
-            }
-
-            ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
-
-            if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
-            {
-                foreach (var chatRoomHolder in characterPrivateChatRooms)
-                {
-                    ServerAddChatRoomToPlayerScope(character, chatRoomHolder);
-                }
-            }
         }
 
         [RemoteCallSettings(timeInterval: 2,
@@ -608,21 +608,6 @@
             {
                 ClientChatBlockList.Initialize();
                 OnlinePlayersSystem.ClientPlayerAddedOrRemoved += ClientPlayerJoinedOrLeftHandler;
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-
-                Refresh();
-
-                static void Refresh()
-                {
-                    sharedLocalChatRoomHolder = null;
-                    sharedGlobalChatRoomHolder = null;
-                    sharedTradeChatRoomHolder = null;
-
-                    if (Api.Client.Characters.CurrentPlayerCharacter is not null)
-                    {
-                        Instance.CallServer(_ => _.ServerRemote_RequestChatRooms());
-                    }
-                }
             }
 
             public override void ServerInitialize(IServerConfiguration serverConfiguration)

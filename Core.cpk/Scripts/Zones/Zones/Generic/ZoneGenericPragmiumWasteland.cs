@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
-    using AtomicTorch.CBND.CoreMod.Zones.Special;
     using AtomicTorch.CBND.GameApi;
 
     public class ZoneGenericPragmiumWasteland : ProtoZoneDefault

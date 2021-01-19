@@ -6,7 +6,7 @@
 
     public class ZoneScripts
     {
-        private readonly HashSet<IZoneScriptConfig> scripts = new HashSet<IZoneScriptConfig>();
+        private readonly HashSet<IZoneScriptConfig> scripts = new();
 
         public ZoneScripts Add(IZoneScriptConfig zoneScriptConfig)
         {

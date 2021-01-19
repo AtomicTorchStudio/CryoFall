@@ -30,6 +30,8 @@
 
         public bool IsManualUpdate { get; set; }
 
+        public IComponentSpriteRenderer SpriteRenderer => this.spriteRenderer;
+
         //public ITextureResource[] FramesTextureResources => this.framesTextureResources;
 
         /// <summary>

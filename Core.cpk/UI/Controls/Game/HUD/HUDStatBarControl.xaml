@@ -15,12 +15,26 @@
     HorizontalAlignment="Stretch"
     VerticalAlignment="Center"
     d:DataContext="{d:DesignInstance data:ViewModelHUD, IsDesignTimeCreatable=True}">
-    <Grid d:DataContext="{Binding Stats.Health}" Background="{x:Null}">
+
+    <base:BaseUserControl.Resources>
+        <system:Double x:Key="BarCornerRadius">3</system:Double>
+
+        <ImageBrush x:Key="TicksOverlayImageTexture"
+                    ImageSource="Images/HUDStatBarControlOverlay.png"
+                    TileMode="Tile"
+                    Stretch="Uniform">
+            <ImageBrush.Transform>
+                <TranslateTransform X="7" />
+            </ImageBrush.Transform>
+        </ImageBrush>
+    </base:BaseUserControl.Resources>
+
+    <Grid d:DataContext="{Binding Stats.Health}"
+          Background="{x:Null}">
         <Border HorizontalAlignment="Stretch" VerticalAlignment="Center"
                 BorderBrush="Black" BorderThickness="1" CornerRadius="5"
                 Height="16"
                 Background="{Binding BackgroundBrush}">
-
             <Grid>
                 <!-- Background overlay semi-transparent vertical overlay -->
                 <Border CornerRadius="5" Margin="-1">
@@ -33,26 +47,34 @@
                         </LinearGradientBrush>
                     </Border.Background>
                 </Border>
-                <Grid Margin="1.5,1.5,1.5,2">
-                    <core:ValueBarControl
-                        x:Name="ValueBarControl"
-                        IsDisplayLabel="True"
-                        IsDisplayPercents="False"
-                        Foreground="#C9FFFFFF"
-                        MaxValue="{Binding ValueMax}"
-                        Value="{Binding ValueCurrent}"
-                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                        BorderThickness="0"
-                        BorderBrush="{x:Null}">
-                        <core:ValueBarControl.Template>
-                            <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
-                                <Grid x:Name="LayoutRoot" Background="Transparent">
-                                    <ContentPresenter
-                                        Margin="{TemplateBinding Padding}"
-                                        HorizontalAlignment="Left" />
 
-                                    <!-- Spark element (placed in the end of the current value bar) -->
-                                    <Canvas ClipToBounds="False" VerticalAlignment="Center"
+                <!--<Rectangle RadiusX="{StaticResource BarCornerRadius}"
+                           RadiusY="{StaticResource BarCornerRadius}"
+                           Fill="{Binding ForegroundBrush}"
+                           HorizontalAlignment="Left"
+                           Width="{Binding CurrentValueBarWidth, ElementName=ValueBarControl}"
+                           Margin="1.5" />-->
+
+                <core:ValueBarControl
+                    x:Name="ValueBarControl"
+                    IsDisplayLabel="True"
+                    IsDisplayPercents="False"
+                    Foreground="#C9FFFFFF"
+                    MaxValue="{Binding ValueMax}"
+                    Value="{Binding ValueCurrent}"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    BorderThickness="0"
+                    BorderBrush="{x:Null}"
+                    Margin="1.5">
+                    <core:ValueBarControl.Template>
+                        <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
+                            <Grid x:Name="LayoutRoot" Background="Transparent">
+                                <ContentPresenter
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="Left" />
+
+                                <!-- Spark element (placed in the end of the current value bar) -->
+                                <!--<Canvas ClipToBounds="False" VerticalAlignment="Center"
                                             IsHitTestVisible="False"
                                             Margin="-1">
                                         <Grid Canvas.Left="{TemplateBinding CurrentValueBarWidth}"
@@ -77,87 +99,57 @@
                                                 </Rectangle.Fill>
                                             </Rectangle>
                                         </Grid>
-                                    </Canvas>
+                                    </Canvas>-->
 
-                                    <Canvas x:Name="PanelTooltipText"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Top"
-                                            ClipToBounds="False"
-                                            Margin="0,-5,0,0">
-                                        <Canvas.Resources>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Foreground" Value="White" />
-                                                <Setter Property="FontFamily"
-                                                        Value="{StaticResource CondensedFontFamily}" />
-                                                <Setter Property="FontSize" Value="16" />
-                                                <Setter Property="noesis:Text.StrokeThickness" Value="2" />
-                                                <Setter Property="noesis:Text.Stroke" Value="{Binding BackgroundBrush}" />
-                                            </Style>
-                                        </Canvas.Resources>
+                                <Canvas x:Name="PanelTooltipText"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Top"
+                                        ClipToBounds="False"
+                                        Margin="0,-5,0,0">
+                                    <Canvas.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="FontFamily"
+                                                    Value="{StaticResource CondensedFontFamily}" />
+                                            <Setter Property="FontSize" Value="16" />
+                                            <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                                            <Setter Property="noesis:Text.Stroke" Value="{Binding BackgroundBrush}" />
+                                        </Style>
+                                    </Canvas.Resources>
 
-                                        <ContentControl
-                                            Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Canvas}}">
-                                            <StackPanel Orientation="Horizontal"
-                                                        HorizontalAlignment="Center">
-                                                <TextBlock Text="{Binding Title}"
-                                                           Margin="0,0,4,0" />
-                                                <TextBlock x:Name="TextBlockValueDisplay"
-                                                           Text="100/100" />
-                                            </StackPanel>
-                                        </ContentControl>
-                                    </Canvas>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="False">
-                                        <Setter TargetName="PanelTooltipText" Property="Visibility" Value="Collapsed" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </core:ValueBarControl.Template>
+                                    <ContentControl
+                                        Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Canvas}}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Title}"
+                                                       Margin="0,0,4,0" />
+                                            <TextBlock x:Name="TextBlockValueDisplay"
+                                                       Text="100/100" />
+                                        </StackPanel>
+                                    </ContentControl>
+                                </Canvas>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter TargetName="PanelTooltipText" Property="Visibility" Value="Collapsed" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </core:ValueBarControl.Template>
 
-                        <core:ValueBarControl.Resources>
-                            <system:Double x:Key="BarCornerRadius">4</system:Double>
-                        </core:ValueBarControl.Resources>
+                    <Grid>
+                        <!-- Primary color -->
+                        <Rectangle RadiusX="{StaticResource BarCornerRadius}"
+                                   RadiusY="{StaticResource BarCornerRadius}"
+                                   Fill="{Binding ForegroundBrush}" />
 
-                        <Grid>
-                            <!-- Primary color -->
-                            <Rectangle RadiusX="{StaticResource BarCornerRadius}"
-                                       RadiusY="{StaticResource BarCornerRadius}"
-                                       Fill="{Binding ForegroundBrush}" />
-
-                            <!-- Ticks overlay -->
-                            <Rectangle RadiusX="{StaticResource BarCornerRadius}"
-                                       RadiusY="{StaticResource BarCornerRadius}">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush Opacity="0.2" SpreadMethod="Repeat" StartPoint="2,0"
-                                                         EndPoint="12,0" MappingMode="Absolute">
-                                        <GradientStop Color="Transparent" Offset="0" />
-                                        <GradientStop Color="Transparent" Offset="0.6" />
-                                        <GradientStop Color="Black" Offset="0.7" />
-                                        <GradientStop Color="White" Offset="0.8" />
-                                        <GradientStop Color="Transparent" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
-
-                            <!-- Shadow gradient overlay -->
-                            <Rectangle RadiusX="{StaticResource BarCornerRadius}"
-                                       RadiusY="{StaticResource BarCornerRadius}">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.45">
-                                        <GradientStop Color="Transparent" Offset="0" />
-                                        <GradientStop Color="#99000000" Offset="0.4" />
-                                        <GradientStop Color="#FF000000" Offset="0.75" />
-                                        <GradientStop Color="#FF000000" Offset="0.85" />
-                                        <GradientStop Color="#00000000" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                        </Grid>
-                    </core:ValueBarControl>
-
-
-                </Grid>
+                        <!-- Texture version of ticks overlay -->
+                        <Rectangle RadiusX="{StaticResource BarCornerRadius}"
+                                   RadiusY="{StaticResource BarCornerRadius}"
+                                   Fill="{StaticResource TicksOverlayImageTexture}"
+                                   UseLayoutRounding="True" />
+                    </Grid>
+                </core:ValueBarControl>
             </Grid>
         </Border>
     </Grid>

@@ -11,14 +11,19 @@
     {
         public const char ProfanityFilterReplacementChar = '*';
 
-        private static readonly List<FilterEntry> FilterBlacklist = new List<FilterEntry>();
+        private static readonly List<FilterEntry> FilterBlacklist = new();
 
-        private static readonly List<FilterEntry> FilterWhitelist = new List<FilterEntry>();
+        private static readonly List<FilterEntry> FilterWhitelist = new();
 
         private static readonly char[] TrimWildcardChar = { '*' };
 
         public static string SharedApplyFilters(string message)
         {
+            if (message is null)
+            {
+                return null;
+            }
+
             var originalMessage = message;
             foreach (var test in FilterBlacklist)
             {

@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
@@ -33,9 +32,9 @@
                 this.StructuresList = new ViewModelStructuresSelectList();
                 this.Categories = new List<ViewModelStructureCategory>()
                 {
-                    new ViewModelStructureCategory("Test category"),
-                    new ViewModelStructureCategory("Test category 2"),
-                    new ViewModelStructureCategory("Test category 3"),
+                    new("Test category"),
+                    new("Test category 2"),
+                    new("Test category 3")
                 };
                 this.selectedCategory = this.Categories[0];
                 return;

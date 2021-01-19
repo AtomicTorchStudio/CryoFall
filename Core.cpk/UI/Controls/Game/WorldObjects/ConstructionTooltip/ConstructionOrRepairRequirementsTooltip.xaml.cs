@@ -55,7 +55,7 @@
             return Api.Client.UI.AttachControl(
                 worldObject,
                 control,
-                positionOffset: centerOffset + (0, -0.6),
+                positionOffset: centerOffset + (0, -1.3),
                 isFocusable: true);
         }
 

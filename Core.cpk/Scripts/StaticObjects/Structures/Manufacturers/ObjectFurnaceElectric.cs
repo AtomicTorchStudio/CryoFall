@@ -32,8 +32,8 @@
         public override byte ContainerOutputSlotsCount => 4;
 
         public override ElectricityThresholdsPreset DefaultConsumerElectricityThresholds
-            => new ElectricityThresholdsPreset(startupPercent: 30,
-                                               shutdownPercent: 20);
+            => new(startupPercent: 30,
+                   shutdownPercent: 20);
 
         public override string Description =>
             "Uses electricity and induction heating method for faster smelting and resource processing.";

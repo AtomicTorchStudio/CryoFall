@@ -151,9 +151,6 @@ Velocidade de consumo de água
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneração da carga de energia (por minuto)
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-Capacidade de consumir comida estragada
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Dano de envenenamento por radiação
 
@@ -214,6 +211,12 @@ Pesca bem sucedida
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 Consumo de combustível
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Capacidade de consumir comida estragada
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+Habilidade de comer em excesso sem consequências
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 Não é possível correr
 
@@ -222,4 +225,7 @@ Não é possível atacar
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 Não é possível usar itens médicos que tenham tempo de espera
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+Não é possível quebrar ossos
 

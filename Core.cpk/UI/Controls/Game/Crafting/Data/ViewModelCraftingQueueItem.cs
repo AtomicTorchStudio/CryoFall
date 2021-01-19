@@ -44,7 +44,7 @@
             // and only sometimes sync with the server.
             craftingQueue.ClientSubscribe(
                 _ => _.TimeRemainsToComplete,
-                newValue => { this.UpdateProgress(); },
+                _ => this.UpdateProgress(),
                 this);
 
             this.UpdateProgress();

@@ -68,7 +68,6 @@
             }
 
             liquidState.Amount = amount;
-            privateState.IsLiquidStatesChanged = true;
         }
 
         protected override void SetupRecipe(

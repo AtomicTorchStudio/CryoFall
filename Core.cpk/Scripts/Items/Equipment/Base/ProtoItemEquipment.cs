@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -113,6 +114,13 @@
 
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
+            controls.Add(
+                new StatModificationDisplay(this.ProtoEffects, hideDefenseStats: true)
+                {
+                    Opacity = 0.8,
+                    Margin = new Thickness(0, 0, 0, 8)
+                });
+
             base.ClientTooltipCreateControlsInternal(item, controls);
 
             controls.Add(

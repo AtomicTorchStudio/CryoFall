@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events
 {
     using System;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
     using AtomicTorch.CBND.CoreMod.Items.Drones;
@@ -14,6 +15,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Special;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -100,10 +102,10 @@
                         .Add<ItemAmmo300ArmorPiercing>(count: 30,     weight: 1, condition: T4Specialized)
                         .Add<ItemAmmo300Incendiary>(count: 30,        weight: 1, condition: T4Specialized)
                         .Add<ItemAmmo50SH>(count: 40,                 weight: 1, condition: T4Specialized)
-                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1, condition: T3Specialized)
-                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1, condition: T4Specialized)
-                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1, condition: T4Specialized)
-                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1, condition: T5Specialized)
+                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1 / 2.0, condition: T3Specialized)
+                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1 / 2.0, condition: T4Specialized)
+                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1 / 2.0, condition: T4Specialized)
+                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1 / 3.0, condition: T5Specialized)
                 );
 
             // components and high value items
@@ -146,23 +148,28 @@
                         .Add<ItemStimpack>(count: 3,         weight: 1, condition: T4Specialized)
                         .Add<ItemPeredozin>(count: 2,        weight: 1, condition: T4Specialized)
                         .Add<ItemNeuralEnhancer>(count: 1,   weight: 1, condition: T4Specialized)
+                        // misc
+                        .Add<ItemCigarettes>(count: 5, weight: 5, condition: T3Specialized)
                 );
 
-            // ranged weapons
+            // weapons
             droplist.Add(
                     weight: 1 / 2.0,
+                    // require reaching particular tier before the weapon could be acquired there
                     condition: T3Specialized,
                     nestedList:
                     new DropItemsList(outputs: 1)
-                        // require reaching particular tier before the weapon could be acquired there
+                        // melee
+                        .Add<ItemStunBaton>(count: 1, weight: 1 / 2.0, condition: T3Specialized)
+                        // ranged
                         .Add<ItemSubmachinegun10mm>(count: 1,    weight: 1,       condition: T3Specialized)
                         .Add<ItemRifle10mm>(count: 1,            weight: 1,       condition: T3Specialized)
                         .Add<ItemShotgunMilitary>(count: 1,      weight: 1,       condition: T3Specialized)
-                        .Add<ItemGrenadeLauncher>(count: 1,      weight: 1,       condition: T3Specialized)
                         .Add<ItemSteppenHawk>(count: 1,          weight: 1,       condition: T4Specialized)
+                        .Add<ItemGrenadeLauncher>(count: 1,      weight: 1 / 2.0, condition: T3Specialized)
                         .Add<ItemMachinegun300>(count: 1,        weight: 1 / 2.0, condition: T4Specialized)
                         .Add<ItemRifle300>(count: 1,             weight: 1 / 2.0, condition: T5Specialized)
-                        .Add<ItemGrenadeLauncherMulti>(count: 1, weight: 1 / 2.0, condition: T5Specialized)
+                        .Add<ItemGrenadeLauncherMulti>(count: 1, weight: 1 / 4.0, condition: T5Specialized)
                 );
 
             // equipment
@@ -220,7 +227,9 @@
         {
             base.ServerInitialize(data);
 
-            if (data.IsFirstTimeInit)
+            if (data.IsFirstTimeInit
+                && !data.GameObject.OccupiedTile.StaticObjects
+                        .Any(o => o.ProtoGameObject is ObjectCrater))
             {
                 Server.World.CreateStaticWorldObject<ObjectCrater>(data.GameObject.TilePosition);
             }

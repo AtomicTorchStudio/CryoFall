@@ -7,7 +7,7 @@
     public abstract class BaseTriggerConfig
     {
         private readonly List<TriggerCallback> invocationList
-            = new List<TriggerCallback>();
+            = new();
 
         private readonly ProtoTrigger trigger;
 

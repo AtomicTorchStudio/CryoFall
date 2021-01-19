@@ -5,21 +5,29 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelCharacterNameControl : BaseViewModel
     {
-        private static readonly Brush BrushNewbie
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0x66, 0xDD, 0xFF));
+        public static readonly Brush BrushAllianceMember
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorGreen6");
 
-        private static readonly Brush BrushPartyMember
-            = new SolidColorBrush(Color.FromArgb(0xFF, 0x33, 0xFA, 0x33));
+        public static readonly Brush BrushCurrentFactionMember
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorGreen7");
 
-        private static readonly Brush BrushStranger
+        public static readonly Brush BrushEnemy
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed7");
+
+        public static readonly Brush BrushNewbie
+            = Api.Client.UI.GetApplicationResource<Brush>("BrushColorAlt7");
+
+        public static readonly Brush BrushStranger
             = new SolidColorBrush(Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1));
 
         private readonly ICharacter character;
@@ -47,8 +55,9 @@
                                              callback: _ => this.Refresh(),
                                              this);
 
-            PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.ClientCurrentPartyMemberAddedOrRemovedHandler;
-
+            PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.PartyMemberAddedOrRemovedHandler;
+            FactionSystem.ClientCurrentFactionMemberAddedOrRemoved += this.FactionMemberAddedOrRemovedHandler;
+            FactionSystem.ClientFactionDiplomacyStatusChanged += this.FactionDiplomacyStatusChangedHandler;
             this.Refresh();
         }
 
@@ -56,9 +65,24 @@
         {
             get
             {
-                if (this.IsPartyMember)
+                if (this.character.IsCurrentClientCharacter)
                 {
-                    return BrushPartyMember;
+                    return BrushStranger;
+                }
+
+                if (this.IsCurrentFactionMember)
+                {
+                    return BrushCurrentFactionMember;
+                }
+
+                if (this.IsAllianceFactionMember)
+                {
+                    return BrushAllianceMember;
+                }
+
+                if (this.IsEnemyFactionMember)
+                {
+                    return BrushEnemy;
                 }
 
                 if (this.IsNewbieAndNotPartyMember)
@@ -70,7 +94,15 @@
             }
         }
 
+        public string ClanTag { get; private set; }
+
+        public bool IsAllianceFactionMember { get; private set; }
+
+        public bool IsCurrentFactionMember { get; private set; }
+
         public bool IsDuelModeAndNotPartyMember { get; private set; }
+
+        public bool IsEnemyFactionMember { get; private set; }
 
         public bool IsNewbieAndNotPartyMember { get; private set; }
 
@@ -104,32 +136,78 @@
                 {
                     result = CoreStrings.NicknameOfflinePlayer + "\n" + result;
                 }
-                
+
                 return result;
             }
         }
 
         protected override void DisposeViewModel()
         {
-            PartySystem.ClientCurrentPartyMemberAddedOrRemoved -= this.ClientCurrentPartyMemberAddedOrRemovedHandler;
+            PartySystem.ClientCurrentPartyMemberAddedOrRemoved -= this.PartyMemberAddedOrRemovedHandler;
+            FactionSystem.ClientCurrentFactionMemberAddedOrRemoved -= this.FactionMemberAddedOrRemovedHandler;
+            FactionSystem.ClientFactionDiplomacyStatusChanged -= this.FactionDiplomacyStatusChangedHandler;
         }
 
-        private void ClientCurrentPartyMemberAddedOrRemovedHandler((string name, bool isAdded) obj)
+        private void FactionDiplomacyStatusChangedHandler((string clanTag, FactionDiplomacyStatus status) obj)
+        {
+            this.Refresh();
+        }
+
+        private void FactionMemberAddedOrRemovedHandler((FactionMemberEntry entry, bool isAdded) obj)
+        {
+            this.Refresh();
+        }
+
+        private void PartyMemberAddedOrRemovedHandler((string name, bool isAdded) obj)
         {
             this.Refresh();
         }
 
         private void Refresh()
         {
-            var members = PartySystem.ClientGetCurrentPartyMembers();
-            var publicState = PlayerCharacter.GetPublicState(this.character);
+            if (this.character.IsCurrentClientCharacter)
+            {
+                return;
+            }
 
-            this.IsPartyMember = members.Contains(this.character.Name);
+            var members = PartySystem.ClientGetCurrentPartyMembers();
+            var characterName = this.character.Name;
+
+            this.IsPartyMember = members.Contains(characterName);
             this.IsNewbieAndNotPartyMember = !this.IsPartyMember
-                                             && publicState.IsNewbie;
+                                             && this.publicState.IsNewbie;
 
             this.IsDuelModeAndNotPartyMember = !this.IsPartyMember
-                                               && publicState.IsPveDuelModeEnabled;
+                                               && this.publicState.IsPveDuelModeEnabled;
+
+            var clanTag = !string.IsNullOrEmpty(this.publicState.ClanTag)
+                              ? this.publicState.ClanTag
+                              : null;
+            this.ClanTag = clanTag;
+
+            this.IsCurrentFactionMember = clanTag is not null
+                                          && FactionSystem.ClientCurrentFactionClanTag == clanTag;
+
+            if (this.IsCurrentFactionMember
+                || clanTag is null)
+            {
+                // could be a member of the current faction, or a non-faction player
+                this.IsAllianceFactionMember = false;
+                this.IsEnemyFactionMember = false;
+            }
+            else
+            {
+                var status = FactionSystem.ClientGetCurrentFactionDiplomacyStatus(otherFactionClanTag: clanTag);
+                this.IsAllianceFactionMember = status == FactionDiplomacyStatus.Ally;
+                this.IsEnemyFactionMember
+                    = status switch
+                    {
+                        FactionDiplomacyStatus.EnemyMutual                   => true,
+                        FactionDiplomacyStatus.EnemyDeclaredByCurrentFaction => true,
+                        FactionDiplomacyStatus.EnemyDeclaredByOtherFaction   => true,
+                        _                                                    => false
+                    };
+            }
 
             this.NotifyPropertyChanged(nameof(this.Brush));
             this.NotifyPropertyChanged(nameof(this.Text));

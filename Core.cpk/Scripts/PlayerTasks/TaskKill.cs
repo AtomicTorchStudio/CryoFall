@@ -41,7 +41,7 @@
             ushort count = 1,
             string description = null)
         {
-            return new TaskKill(protoCreature, count, description);
+            return new(protoCreature, count, description);
         }
 
         public override ITextureResource ClientCreateIcon()

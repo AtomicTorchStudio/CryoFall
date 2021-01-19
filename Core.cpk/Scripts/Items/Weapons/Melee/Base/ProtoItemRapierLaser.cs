@@ -23,6 +23,8 @@
 
         public override double EnergyUsePerShot => 5;
 
+        public override double FireAnimationDuration => 0.6;
+
         public override ITextureResource GroundIcon => new TextureResource("Items/Weapons/Melee/ItemRapierLaser");
 
         public override double GroundIconScale => 1.2;

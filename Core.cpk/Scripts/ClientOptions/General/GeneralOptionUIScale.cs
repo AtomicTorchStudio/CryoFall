@@ -4,13 +4,13 @@
     {
         public override double Default => 1;
 
-        public override double Maximum => 1.2;
+        public override double Maximum => 1.1;
 
         public override double Minimum => 0.7;
 
         public override string Name => "UI scale";
 
-        public override double StepSize => 0.05;
+        public override double StepSize => 0.01;
 
         public override double ValueProvider
         {

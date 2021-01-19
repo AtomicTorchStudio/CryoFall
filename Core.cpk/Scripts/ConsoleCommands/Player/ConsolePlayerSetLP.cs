@@ -14,7 +14,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         public override string Name => "player.setLP";
 
-        public string Execute(ushort learningPoints, [CurrentCharacterIfNull] ICharacter player = null)
+        public string Execute(uint learningPoints, [CurrentCharacterIfNull] ICharacter player = null)
         {
             var technologies = player.SharedGetTechnologies();
             technologies.ServerSetLearningPoints(learningPoints);

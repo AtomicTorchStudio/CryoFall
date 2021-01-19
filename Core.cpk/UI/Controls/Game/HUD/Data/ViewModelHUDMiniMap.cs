@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -13,6 +15,8 @@
 
     public class ViewModelHUDMiniMap : BaseViewModel
     {
+        private const float PanningPanelClipCornerRadius = 2.5f;
+
         private static readonly IReadOnlyList<Vector2Ushort> PresetsSize
             = new List<Vector2Ushort>()
             {
@@ -25,10 +29,10 @@
         private static readonly IReadOnlyList<double> PresetsZoom
             = new List<double>()
             {
-                0.25,
-                0.33,
-                0.4,
-                0.5
+                WorldMapSectorProvider.PanningPanelZoomScale * 0.25,
+                WorldMapSectorProvider.PanningPanelZoomScale * 0.33,
+                WorldMapSectorProvider.PanningPanelZoomScale * 0.4,
+                WorldMapSectorProvider.PanningPanelZoomScale * 0.5
             };
 
         private static readonly IClientStorage StorageSize;
@@ -94,6 +98,12 @@
         public bool IsMapVisible => this.ControlWidth > 0;
 
         public bool IsMouseOverIncludingHidden { get; set; }
+
+        public Geometry PanningPanelClipGeometry
+            => ClientGeometryHelper.GetRectangleGeometryWithRoundedCorners(
+                new Rect(0, 0, this.ControlWidth, this.ControlHeight),
+                thickness: default,
+                cornerRadius: new CornerRadius(PanningPanelClipCornerRadius));
 
         public double Zoom
         {
@@ -166,6 +176,7 @@
             this.ControlWidth = preset.X;
             this.ControlHeight = preset.Y;
             this.NotifyPropertyChanged(nameof(this.IsMapVisible));
+            this.NotifyPropertyChanged(nameof(this.PanningPanelClipGeometry));
 
             if (save)
             {
@@ -178,8 +189,7 @@
 
         private void ApplyZoomPreset(int presetIndex)
         {
-            var preset = PresetsZoom[presetIndex];
-            this.Zoom = preset;
+            this.Zoom = PresetsZoom[presetIndex];
         }
 
         private void ExecuteCommandChangeSize(object obj)

@@ -1,0 +1,139 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.FactionsListControl"
+                      x:Name="UserControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.Data"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      xmlns:faction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:ViewModelFactionsListControl, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Filters -->
+        <StackPanel Grid.Row="0"
+                    Visibility="{Binding IsFiltersVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Orientation="Horizontal"
+                    TextElement.FontSize="11"
+                    TextElement.FontWeight="Bold"
+                    TextElement.FontFamily="{StaticResource CondensedFontFamily}"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,5">
+            <TextBlock Text="{x:Static loc:CoreStrings.SortBy}"
+                       VerticalAlignment="Center"
+                       Margin="15,0,0,0" />
+            <ComboBox ItemsSource="{Binding SortOrders}"
+                      SelectedValue="{Binding SelectedSortOrder}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Description"
+                      Width="120"
+                      MaxDropDownHeight="500"
+                      VerticalAlignment="Center"
+                      Margin="5,0,3,0" />
+
+            <CheckBox IsChecked="{Binding IncludePrivateFactions}"
+                      IsEnabled="{Binding IncludePublicFactions}"
+                      Content="{x:Static loc:CoreStrings.Faction_FactionKind_Private_Title}"
+                      Focusable="False"
+                      VerticalAlignment="Center"
+                      Margin="15,-1,0,0" />
+
+            <CheckBox IsChecked="{Binding IncludePublicFactions}"
+                      IsEnabled="{Binding IncludePrivateFactions}"
+                      Content="{x:Static loc:CoreStrings.Faction_FactionKind_Public_Title}"
+                      Focusable="False"
+                      VerticalAlignment="Center"
+                      Margin="15,-1,0,0" />
+
+            <TextBlock Text="{x:Static loc:CoreStrings.ClanTag}"
+                       VerticalAlignment="Center"
+                       Margin="15,0,0,0" />
+            <TextBox Text="{Binding FilterByClanTag, UpdateSourceTrigger=PropertyChanged}"
+                     Width="45"
+                     MaxLength="4"
+                     Margin="5,0,0,0" />
+        </StackPanel>
+
+        <ItemsControl Grid.Row="1"
+                      Visibility="{Binding FactionsList.Count, Converter={StaticResource CountToVisibilityConverter}}"
+                      ItemsSource="{Binding FactionsList}"
+                      ScrollViewer.CanContentScroll="True"
+                      Grid.IsSharedSizeScope="True">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsItemsHost="True" Grid.IsSharedSizeScope="True" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}">
+                        <ItemsPresenter Grid.IsSharedSizeScope="True" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border TextElement.FontSize="12"
+                            Padding="1"
+                            BorderThickness="0,0,0,1">
+                        <Border.Background>
+                            <!-- <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.75" /> -->
+                            <LinearGradientBrush Opacity="0.5" StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Color="#00003F57" Offset="0" />
+                                <GradientStop Color="#FF003F57" Offset="0.1" />
+                                <GradientStop Color="#FF003F57" Offset="0.75" />
+                                <GradientStop Color="#00003F57" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush Opacity="0.6" StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Color="#00007AA8" Offset="0" />
+                                <GradientStop Color="#FF007AA8" Offset="0.1" />
+                                <GradientStop Color="#FF007AA8" Offset="0.75" />
+                                <GradientStop Color="#00007AA8" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <faction:FactionListEntryControl Margin="0,5" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <ContentControl Grid.Row="1"
+                        Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+            <ContentControl
+                Visibility="{Binding FactionsList.Count, Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=Reverse}">
+                <core:FormattedTextBlock Content="{Binding EmptyListMessage, ElementName=UserControl}" />
+            </ContentControl>
+        </ContentControl>
+
+        <StackPanel Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Orientation="Vertical"
+                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <core:LoadingDisplayControl Width="48"
+                                        Height="48"
+                                        HorizontalAlignment="Center" />
+            <!--<core:FormattedTextBlock
+                Content="{x:Static loc:CoreStrings.PleaseWait}"
+                FontSize="12"
+                FontFamily="{StaticResource CondensedFontFamily}"
+                Foreground="{StaticResource BrushColorAlt6}"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />-->
+        </StackPanel>
+    </Grid>
+</base:BaseUserControl>

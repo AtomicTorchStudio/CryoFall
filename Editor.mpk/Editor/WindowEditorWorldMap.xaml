@@ -7,12 +7,15 @@
                      xmlns:map="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;assembly=Core"
                      mc:Ignorable="d"
                      d:DesignHeight="300" d:DesignWidth="300">
+
     <core:GameWindow x:Name="GameWindow"
                      Width="1000"
                      Height="650"
                      FocusOnControl="{Binding ElementName=GameWindow}"
-                     Padding="0"
+                     Padding="0.5"
                      IsCached="True">
-        <map:ControlWorldMap x:Name="ControlWorldMap" IsEditor="True" />
+        <map:ControlWorldMap x:Name="ControlWorldMap"
+                             IsEditor="True" />
     </core:GameWindow>
+
 </core:BaseWindowMenu>

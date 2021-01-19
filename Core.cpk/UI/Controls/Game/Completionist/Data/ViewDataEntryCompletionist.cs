@@ -47,11 +47,11 @@
         public string NotificationMessageFormat
             => this.Prototype switch
             {
-                IProtoItemFish _     => ViewModelWindowCompletionist.Notification_FishDiscovered_MessageFormat,
-                IProtoItem _         => ViewModelWindowCompletionist.Notification_FoodDiscovered_MessageFormat,
-                IProtoCharacterMob _ => ViewModelWindowCompletionist.Notification_CreatureDiscovered_MessageFormat,
-                IProtoObjectLoot _   => ViewModelWindowCompletionist.Notification_LootDiscovered_MessageFormat,
-                _                    => throw new Exception("Unknown prototype: " + this.Prototype)
+                IProtoItemFish     => ViewModelWindowCompletionist.Notification_FishDiscovered_MessageFormat,
+                IProtoItem         => ViewModelWindowCompletionist.Notification_FoodDiscovered_MessageFormat,
+                IProtoCharacterMob => ViewModelWindowCompletionist.Notification_CreatureDiscovered_MessageFormat,
+                IProtoObjectLoot   => ViewModelWindowCompletionist.Notification_LootDiscovered_MessageFormat,
+                _                  => throw new Exception("Unknown prototype: " + this.Prototype)
             };
 
         public IProtoEntity Prototype { get; }

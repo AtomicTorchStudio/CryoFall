@@ -71,10 +71,6 @@
             set => this.SetValue(VisibilityDetailsProperty, value);
         }
 
-        protected override void InitControl()
-        {
-        }
-
         private static void IconBrushImageSourceChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((ServerTabItemHeaderControl)d).Icon = new ImageBrush()

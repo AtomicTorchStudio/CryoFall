@@ -62,7 +62,7 @@
                                     Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />-->
                             </StackPanel>
                         </StackPanel>
-            
+
                         <!-- Input slot in case of fuel container -->
                         <StackPanel Orientation="Vertical"
                                     Grid.Row="0"
@@ -135,7 +135,7 @@
 
                         <!-- Energy usage indicator in case of no fuel container -->
                         <Grid VerticalAlignment="Bottom"
-                            Visibility="{Binding VisibilityElectricityControls}">
+                              Visibility="{Binding VisibilityElectricityControls}">
                             <Canvas
                                 Visibility="{Binding IsManufacturingActive, Converter={StaticResource BoolToVisibilityConverter}}"
                                 HorizontalAlignment="Center"

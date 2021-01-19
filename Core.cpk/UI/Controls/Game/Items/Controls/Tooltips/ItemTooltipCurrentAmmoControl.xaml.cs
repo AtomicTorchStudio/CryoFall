@@ -12,7 +12,7 @@
 
         public static ItemTooltipCurrentAmmoControl Create(IItem item)
         {
-            return new ItemTooltipCurrentAmmoControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

@@ -25,28 +25,28 @@
     /// </summary>
     public abstract class ProtoTile : ProtoEntity, IProtoTile
     {
-        public static readonly TextureAtlasResource TileCliffHeightEdgeMaskAtlas = new TextureAtlasResource(
-            "Terrain/Masks/MaskHeightEdge.png",
-            columns: 4,
-            rows: 1,
-            isTransparent: true);
+        public static readonly TextureAtlasResource TileCliffHeightEdgeMaskAtlas
+            = new("Terrain/Masks/MaskHeightEdge.png",
+                columns: 4,
+                rows: 1,
+                isTransparent: true);
 
-        internal static readonly TextureResource BlendMaskTextureGeneric2Smooth
-            = new TextureResource("Terrain/Masks/MaskGeneric2");
+        protected static readonly TextureResource BlendMaskTextureGeneric2Smooth
+            = new("Terrain/Masks/MaskGeneric2");
 
-        internal static readonly TextureResource BlendMaskTextureSprayRough
-            = new TextureResource("Terrain/Masks/MaskSprayRough");
+        protected static readonly TextureResource BlendMaskTextureSprayRough
+            = new("Terrain/Masks/MaskSprayRough");
 
-        internal static readonly TextureResource BlendMaskTextureSpraySmooth
-            = new TextureResource("Terrain/Masks/MaskSpraySmooth");
+        protected static readonly TextureResource BlendMaskTextureSpraySmooth
+            = new("Terrain/Masks/MaskSpraySmooth");
 
-        internal static readonly TextureResource BlendMaskTextureSprayStraightRough
-            = new TextureResource("Terrain/Masks/MaskSprayStraightRough");
+        protected static readonly TextureResource BlendMaskTextureSprayStraightRough
+            = new("Terrain/Masks/MaskSprayStraightRough");
 
-        internal static readonly TextureResource BlendMaskTextureSprayStraightSmooth
-            = new TextureResource("Terrain/Masks/MaskSprayStraightSmooth");
+        protected static readonly TextureResource BlendMaskTextureSprayStraightSmooth
+            = new("Terrain/Masks/MaskSprayStraightSmooth");
 
-        private static readonly ITextureResource WorldMapTextureCliff
+        public static readonly ITextureResource WorldMapTextureCliff
             = SharedCreateMapTexture("Map/Cliff.png");
 
         private ReadOnlyListWrapper<ProtoTileDecal> decals;
@@ -81,8 +81,7 @@
         public virtual double CharacterMoveSpeedMultiplier => 1.0;
 
         public virtual TextureAtlasResource CliffAtlas { get; }
-            = new TextureAtlasResource(
-                "Terrain/Cliffs/TerrainCliffs.png",
+            = new("Terrain/Cliffs/TerrainCliffs.png",
                 columns: 6,
                 rows: 4,
                 isTransparent: true);
@@ -402,19 +401,29 @@
             }
         }
 
-        public virtual ProtoTileGroundTexture GetGroundTexture(Vector2Ushort tilePosition)
+        public virtual ProtoTileGroundTexture GetGroundTexture(Vector2Ushort tilePosition, byte height)
         {
-            if (!ClientTileBlendHelper.IsBlendingEnabled)
+            if (!ClientTileBlendHelper.IsBlendingEnabled
+                || this.groundTextures.Count == 1)
             {
                 // return default texture set
                 return this.groundTextures[0];
             }
 
+            var x = (double)tilePosition.X;
+            var y = (double)tilePosition.Y;
+
+            // offset coordinate by height value to ensure that tiles of different heights
+            // would not share the same texture (in the most cases)
+            double offset = (height + 128) * 10;
+            x += offset;
+            y += offset;
+
             // go through all texture sets in reverse order and select the first one which is matched by the noise selector
             for (var index = this.groundTextures.Count - 1; index >= 1; index--)
             {
                 var set = this.groundTextures[index];
-                if (set.NoiseSelector.IsMatch(tilePosition.X, tilePosition.Y, rangeMultiplier: 1))
+                if (set.NoiseSelector.IsMatch(x, y, rangeMultiplier: 1))
                 {
                     return set;
                 }
@@ -426,20 +435,9 @@
 
         public ITextureResource GetWorldMapTexture(Tile tile)
         {
-            if (tile.IsCliff)
-            {
-                return WorldMapTextureCliff;
-            }
-
-            if (this.Kind == TileKind.Water)
-            {
-                return ((IProtoTileWater)this).WorldMapTexture;
-
-                ;
-            }
-
-            // solid ground
-            return this.WorldMapTexture;
+            return tile.IsCliff
+                       ? WorldMapTextureCliff
+                       : this.WorldMapTexture;
         }
 
         public virtual void ServerFixHeight(Tile tile)
@@ -515,7 +513,19 @@
                     Server.World.ScheduleFixTileHeight(neighborTile.Position);
                 }
 
-                isShouldBeCliff = true;
+                var hasAnyPlatformObject = false;
+                foreach (var o in tile.StaticObjects)
+                {
+                    if (o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform)
+                    {
+                        continue;
+                    }
+
+                    hasAnyPlatformObject = true;
+                    break;
+                }
+
+                isShouldBeCliff = !hasAnyPlatformObject;
             }
 
             if (isNeighborsFixRequired)
@@ -583,7 +593,7 @@
                 return null;
             }
 
-            return this.GetGroundTexture(tile.Position).Texture;
+            return this.GetGroundTexture(tile.Position, tile.Height).Texture;
         }
 
         /// <summary>
@@ -641,12 +651,11 @@
 
         private static TextureResource SharedCreateMapTexture(string worldMapTexturePath)
         {
-            var worldMapTexture = worldMapTexturePath is not null
-                                      ? new TextureResource(worldMapTexturePath,
-                                                            isTransparent: false,
-                                                            qualityOffset: -100)
-                                      : TextureResource.NoTexture;
-            return worldMapTexture;
+            return worldMapTexturePath is not null
+                       ? new TextureResource(worldMapTexturePath,
+                                             isTransparent: false,
+                                             qualityOffset: -100)
+                       : TextureResource.NoTexture;
         }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -676,9 +685,9 @@
 
         protected class Settings
         {
-            internal readonly List<ProtoTileDecal> Decals = new List<ProtoTileDecal>();
+            internal readonly List<ProtoTileDecal> Decals = new();
 
-            internal readonly List<ProtoTileGroundTexture> GroundTextures = new List<ProtoTileGroundTexture>();
+            internal readonly List<ProtoTileGroundTexture> GroundTextures = new();
 
             public TileAmbientSoundProvider AmbientSoundProvider { get; set; }
 

@@ -19,10 +19,6 @@
 
         private ViewModelTechTreeControl viewModel;
 
-        public TechTreeControl()
-        {
-        }
-
         public ViewModelTechGroup TechGroup
         {
             get => (ViewModelTechGroup)this.GetValue(TechGroupProperty);

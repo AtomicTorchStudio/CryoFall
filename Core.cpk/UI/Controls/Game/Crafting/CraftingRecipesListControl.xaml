@@ -44,7 +44,14 @@
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundListElementClick}" />
                             <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundListElementEnter}" />
-                            <Setter Property="Background" Value="{StaticResource ItemBackgroundNormalDiagonalBrush}" />
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush Opacity="0.4" StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#FF003F57" Offset="0.5" />
+                                        <GradientStop Color="#00003F57" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
                             <Setter Property="BorderBrush" Value="{x:Null}" />
                             <Setter Property="BorderThickness" Value="0,0,0,3" />
@@ -72,7 +79,7 @@
                                                     <TextBlock Text="{Binding ViewModelRecipe.Title}"
                                                                FontWeight="Bold" />
                                                     <StackPanel Orientation="Horizontal">
-                                                        <Image Source="../../../Images/Icons/Clock.png"
+                                                        <Image Source="/UI/Images/Icons/Clock.png"
                                                                VerticalAlignment="Center"
                                                                Margin="0,0,1,0"
                                                                Width="15"

@@ -4,12 +4,5 @@
 
     public partial class PowerProducerStatsControl : BaseUserControl
     {
-        public PowerProducerStatsControl()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

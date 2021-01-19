@@ -14,8 +14,6 @@
 
         private bool isRendered;
 
-        private bool isUnderCursor;
-
         public ViewModelProtoZone(IProtoZone zone)
         {
             this.zone = zone;
@@ -47,15 +45,7 @@
             }
         }
 
-        public bool IsUnderCursor
-        {
-            get => this.isUnderCursor;
-            set
-            {
-                this.isUnderCursor = value;
-                this.VisibilityIsUnderCursor = this.isUnderCursor ? Visibility.Visible : Visibility.Hidden;
-            }
-        }
+        public bool IsUnderCursor { get; set; }
 
         public string Name => this.zone.Name;
 

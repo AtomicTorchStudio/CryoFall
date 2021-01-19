@@ -151,9 +151,6 @@ Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 充能速度（每分钟）
 
-Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
-食用变质食物能力
-
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 辐射中毒伤害
 
@@ -214,6 +211,12 @@ Scripts/Base/Stats/StatName@FishingSuccess:
 Scripts/Base/Stats/StatName@VehicleFuelConsumptionRate:
 燃料消耗
 
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+食用变质食物能力
+
+Scripts/Base/Stats/StatName@PerkOvereatWithoutConsequences:
+可以无后果的过量进食
+
 Scripts/Base/Stats/StatName@PerkCannotRun:
 无法跑步
 
@@ -222,4 +225,7 @@ Scripts/Base/Stats/StatName@PerkCannotAttack:
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
 无法使用正在冷却中的医疗物品
+
+Scripts/Base/Stats/StatName@PerkCannotBreakBones:
+不会骨折
 

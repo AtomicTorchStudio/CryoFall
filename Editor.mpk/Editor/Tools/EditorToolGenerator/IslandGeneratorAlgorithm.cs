@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolGenerator
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -18,6 +19,8 @@
 
             var map = GenerateIslandMap(seed, worldBounds.Size);
             this.ClientApplyMap(worldBounds.Offset, map, startHeight);
+
+            EditorClientActionsHistorySystem.Purge();
         }
 
         private static double[,] GenerateIslandMap(long seed, Vector2Ushort size)

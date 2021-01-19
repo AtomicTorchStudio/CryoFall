@@ -1,0 +1,541 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.FactionListEntryControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.Data"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                      xmlns:faction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:ViewModelFactionEntry}">
+    <base:BaseUserControl.Resources>
+        <Style x:Key="FactionActionButtonStyle"
+               BasedOn="{StaticResource DefaultButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="MinHeight" Value="14" />
+            <Setter Property="Padding" Value="4,2" />
+        </Style>
+        <Style x:Key="ActionPanelBorderStyle"
+               TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource BrushColorAlt1}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt3}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Margin" Value="0,2,-2,2" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0"
+                   Grid.RowSpan="2"
+                   Grid.Column="0"
+                   Fill="{Binding Emblem}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="64"
+                   Height="64"
+                   Margin="0,3,0,3">
+            <Rectangle.Effect>
+                <DropShadowEffect
+                    BlurRadius="5"
+                    Direction="315"
+                    ShadowDepth="3"
+                    Opacity="0.8"
+                    Color="Black" />
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <!-- Clan tag display -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    MinWidth="70">
+            <TextBlock Text="["
+                       Foreground="{StaticResource BrushColorAlt5}"
+                       FontFamily="{StaticResource WesternCondensedFontFamily}"
+                       FontSize="22"
+                       FontWeight="Bold" />
+            <TextBlock Text="{Binding ClanTag}"
+                       Foreground="#FFEEEEEE"
+                       FontFamily="{StaticResource WesternCondensedFontFamily}"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       TextWrapping="NoWrap"
+                       TextTrimming="None" />
+            <TextBlock Text="]"
+                       Foreground="{StaticResource BrushColorAlt5}"
+                       FontFamily="{StaticResource WesternCondensedFontFamily}"
+                       FontSize="22"
+                       FontWeight="Bold" />
+            <StackPanel.Effect>
+                <DropShadowEffect
+                    BlurRadius="5"
+                    Direction="315"
+                    ShadowDepth="3"
+                    Opacity="0.8"
+                    Color="Black" />
+            </StackPanel.Effect>
+        </StackPanel>
+
+        <Grid Grid.Row="0"
+              Grid.Column="4"
+              HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Faction level display -->
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+                <!-- Star icon -->
+                <Path Data="{StaticResource IconGeometryPathStar}"
+                      Fill="{StaticResource BrushColorAlt7}"
+                      Stretch="Uniform"
+                      VerticalAlignment="Center"
+                      Height="12"
+                      Width="12" />
+                <core:FormattedTextBlock
+                    Text="{Binding FactionLevel, StringFormat={}{x:Static loc:CoreStrings.Faction_Level_Format}}"
+                    Margin="3,0,0,0" />
+            </StackPanel>
+
+            <!-- Faction type display -->
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <!-- Private faction icon -->
+                <Path
+                    Data="m 179.279,688.044 h -23.41 v 0 -37.891 c 0,-15.387 -12.478,-27.86 -27.869,-27.86 -15.392,0 -27.869,12.473 -27.869,27.86 v 37.891 0 H 76.7213 v -39.005 h 0.0282 C 77.3446,621.243 100.053,598.89 128,598.89 c 27.947,0 50.655,22.353 51.251,50.149 h 0.028 z m -111.278787,7.81377 c -4.418295,0 -7.999507,3.58152 -7.999507,7.99952 v 111.03222 c 0,4.418 3.581212,8.00097 7.999507,8.00097 H 188.00021 c 4.418,0 7.99951,-3.58297 7.99951,-8.00097 V 703.85729 c 0,-4.418 -3.58151,-7.99952 -7.99951,-7.99952 z m 60.556637,34.53369 c 8.31201,0 15.04981,6.73641 15.04981,15.04541 0,6.658 -4.33115,12.29684 -10.32715,14.27784 l 5.86816,26.39941 h -22.29638 l 5.95312,-26.77588 c -5.455,-2.259 -9.29589,-7.63037 -9.29589,-13.90137 0,-8.309 6.73734,-15.04541 15.04833,-15.04541 z"
+                    Fill="{StaticResource BrushColorAlt7}"
+                    Visibility="{Binding IsPublicFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Stretch="Uniform"
+                    VerticalAlignment="Center"
+                    Height="12"
+                    Width="12" />
+
+                <!-- Public faction icon -->
+                <Path
+                    Data="m 243.997,687.888 h -23.509 v 0 -37.824 c 0,-15.36 -12.531,-27.812 -27.988,-27.812 -15.457,0 -27.988,12.452 -27.988,27.812 v 37.824 0 h -23.509 v -38.937 h 0.028 c 0.598,-27.747 23.403,-50.061 51.469,-50.061 28.066,0 50.871,22.314 51.469,50.061 h 0.028 z m -189.997489,7.97026 c -4.418301,0 -7.999512,3.58151 -7.999512,7.99951 v 111.03222 c 0,4.418 3.581211,7.99952 7.999512,7.99952 H 173.99951 c 4.41799,0 8.00097,-3.58152 8.00097,-7.99952 V 703.85777 c 0,-4.418 -3.58298,-7.99951 -8.00097,-7.99951 z m 60.558099,34.53369 c 8.312,0 15.04981,6.73641 15.04981,15.0454 0,6.65801 -4.33215,12.29684 -10.32715,14.27784 l 5.8667,26.39941 h -22.29492 l 5.95166,-26.77588 c -5.455,-2.259 -9.295901,-7.63036 -9.295901,-13.90137 0,-8.30899 6.738801,-15.0454 15.049801,-15.0454 z"
+                    Fill="{StaticResource BrushColorAlt7}"
+                    Visibility="{Binding IsPublicFaction, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Stretch="Uniform"
+                    VerticalAlignment="Center"
+                    Height="12"
+                    Width="12" />
+                <TextBlock Text="{Binding FactionKindTitle}"
+                           Margin="3,0,0,0" />
+                <Canvas Margin="1,0,0,0">
+                    <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
+                             Canvas.Top="1">
+                        <base:ToolTipServiceExtend.ToolTip>
+                            <core:FormattedTextBlock Content="{Binding FactionKindDescription}"
+                                                     MaxWidth="250" />
+                        </base:ToolTipServiceExtend.ToolTip>
+                    </Control>
+                </Canvas>
+            </StackPanel>
+
+            <!-- Members count display -->
+            <StackPanel Grid.Row="0"
+                        Grid.Column="2"
+                        Orientation="Horizontal">
+                <!-- Members icon -->
+                <Path
+                    Data="m 128.5,686.435 c -14.268,0 -25.835,-11.179 -25.835,-24.968 0,-13.79 11.567,-24.968 25.835,-24.968 14.268,0 25.835,11.178 25.835,24.968 0,13.789 -11.567,24.968 -25.835,24.968 z m -16.147,1.56 c 0,0 6.863,4.682 16.147,4.682 9.284,0 16.147,-4.682 16.147,-4.682 l 6.458,1.561 35.523,51.496 -14.532,9.363 -19.376,-29.649 v 93.63 H 133.344 V 766.02 h -4.844 -4.844 v 48.376 H 104.28 v -93.63 L 84.9042,750.415 70.372,741.052 105.895,689.556 Z M 53.99345,617.876 c -11.534999,0 -20.885741,9.113 -20.885741,20.354 0,11.241 9.350742,20.35401 20.885741,20.35401 11.5352,0 20.887206,-9.11301 20.887206,-20.35401 0,-11.241 -9.352006,-20.354 -20.887206,-20.354 z m -13.053222,41.97949 -5.222167,1.27295 -28.7182609,41.97949 11.7480459,7.63184 15.665039,-24.16992 v 76.32714 h 15.665038 v -39.43652 h 3.915527 3.916992 v 39.43652 H 73.574016 V 750.2217 l -10.302245,-6.78516 10.302245,-14.86377 v -42.00292 l 14.068361,21.70605 8.49609,-12.25782 -23.869626,-34.88964 -5.220704,-1.27295 c 0,0 -5.548787,3.81592 -13.054687,3.81592 -7.505999,0 -13.053222,-3.81592 -13.053222,-3.81592 z M 203.00614,617.876 c -11.535,0 -20.88574,9.113 -20.88574,20.354 0,11.241 9.35074,20.35401 20.88574,20.35401 11.535,0 20.88574,-9.11301 20.88574,-20.35401 0,-11.241 -9.35074,-20.354 -20.88574,-20.354 z m -13.05468,41.97949 -5.22071,1.27295 -23.42871,34.24658 8.48438,12.23877 13.63916,-21.04394 v 40.72265 l 11.18994,16.14404 -11.18994,7.63916 v 11.82129 h 15.66503 v -39.43652 h 3.91553 3.91699 v 39.43652 h 15.66358 v -76.32714 l 15.66504,24.16992 11.74804,-7.63184 -28.71826,-41.97949 -5.22217,-1.27295 c 0,0 -5.54722,3.81592 -13.05322,3.81592 -7.506,0 -13.05468,-3.81592 -13.05468,-3.81592 z"
+                    Fill="{StaticResource BrushColorAlt7}"
+                    Stretch="Uniform"
+                    VerticalAlignment="Center"
+                    Height="12"
+                    Width="12" />
+                <core:FormattedTextBlock
+                    Text="{Binding MembersNumberText}"
+                    Margin="3,0,0,0" />
+            </StackPanel>
+
+            <!-- Leader name display -->
+            <Grid Grid.Row="2"
+                  Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!-- Crown icon -->
+                <Path Data="{StaticResource IconGeometryCrown}"
+                      Fill="{StaticResource BrushColorAlt7}"
+                      Stretch="Uniform"
+                      VerticalAlignment="Center"
+                      Height="12"
+                      Width="12" />
+                <TextBlock Grid.Column="1"
+                           Text="{x:Static loc:CoreStrings.Faction_LeaderField}"
+                           FontWeight="Normal"
+                           Margin="3,0,0,0" />
+                <TextBlock Grid.Column="2"
+                           Text="{Binding LeaderName}"
+                           TextTrimming="CharacterEllipsis"
+                           FontWeight="Bold"
+                           base:ToolTipServiceExtend.ToolTip="{Binding LeaderName}"
+                           Margin="3,0,0,0" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Grid.Column="2"
+              Grid.ColumnSpan="3"
+              Visibility="{Binding IsLeaderboardEntry, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+              Margin="0,2,0,0">
+
+            <!-- Full description display (non-preview entry) -->
+            <Grid
+                Visibility="{Binding IsPreviewEntry, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                <core:FormattedTextBlock
+                    VerticalAlignment="Bottom"
+                    Text="{Binding PublicDescription}"
+                    TextTrimming="None"
+                    TextWrapping="Wrap"
+                    FontSize="11"
+                    FontWeight="Normal"
+                    LineHeight="11.5"
+                    LineStackingStrategy="BlockLineHeight"
+                    Foreground="{StaticResource BrushColor6}" />
+            </Grid>
+
+            <!-- Description display with height limit (preview entry) and invisible button to view the details -->
+            <Grid x:Name="GridDescriptionPreview"
+                  Background="Transparent"
+                  Visibility="{Binding IsPreviewEntry, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                <ScrollViewer IsHitTestVisible="False"
+                              VerticalScrollBarVisibility="Auto"
+                              Background="Transparent"
+                              Style="{StaticResource VerticalWideButtonScrollViewerStyle}">
+                    <i:Interaction.Triggers>
+                        <i:DataTrigger Binding="{Binding IsPreviewEntry}"
+                                       Value="True">
+                            <i:ChangePropertyAction PropertyName="MaxHeight"
+                                                    Value="32" />
+                        </i:DataTrigger>
+                    </i:Interaction.Triggers>
+
+                    <ScrollViewer.Template>
+                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                            <Grid x:Name="LayoutRoot">
+                                <ContentControl x:Name="ContentControl"
+                                                VerticalAlignment="Center">
+                                    <ScrollContentPresenter
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                </ContentControl>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding DataContext.VisibilityScrollDown, ElementName=ContentControl}"
+                                    Value="Visible">
+                                    <Setter TargetName="ContentControl"
+                                            Property="OpacityMask">
+                                        <Setter.Value>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#FF000000" Offset="0.8" />
+                                                <GradientStop Color="#00000000" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ScrollViewer.Template>
+
+                    <core:FormattedTextBlock
+                        VerticalAlignment="Bottom"
+                        Text="{Binding PublicDescription}"
+                        TextTrimming="None"
+                        TextWrapping="Wrap"
+                        FontSize="11"
+                        FontWeight="Normal"
+                        LineHeight="11.5"
+                        LineStackingStrategy="BlockLineHeight"
+                        Foreground="{StaticResource BrushColor6}" />
+                </ScrollViewer>
+
+                <Border
+                    Visibility="{Binding IsMouseOver, ElementName=GridDescriptionPreview, Converter={StaticResource BoolToVisibilityConverter}}"
+                    BorderThickness="1"
+                    BorderBrush="{StaticResource BrushColor2}"
+                    IsHitTestVisible="False"
+                    Margin="-1">
+                    <Border.Background>
+                        <SolidColorBrush Color="{StaticResource Color2}" Opacity="0.3" />
+                    </Border.Background>
+                </Border>
+
+                <TextBlock Text="{x:Static loc:CoreStrings.Faction_ShowFactionInformation}"
+                           Visibility="{Binding IsMouseOver, ElementName=GridDescriptionPreview, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Foreground="{StaticResource BrushColor7}"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           TextDecorations="Underline"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           noesis:Text.StrokeThickness="1"
+                           noesis:Text.Stroke="Black">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            BlurRadius="4"
+                            Direction="315"
+                            ShadowDepth="2"
+                            Opacity="0.8"
+                            Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <!-- Open details button -->
+                <Button
+                    Command="{Binding CommandOpenDescription}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Rectangle HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"
+                                       Fill="Transparent" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Grid.Column="4"
+              Visibility="{Binding IsLeaderboardEntry, Converter={StaticResource BoolToVisibilityConverter}}"
+              VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Bottom">
+                <core:FormattedTextBlock
+                    Text="{Binding TotalScoreString, StringFormat={}{x:Static loc:CoreStrings.Faction_Score_Format}}"
+                    Foreground="{StaticResource BrushColorAltLabelForeground}"
+                    FontSize="13"
+                    FontWeight="Normal"
+                    LineHeight="13.5"
+                    LineStackingStrategy="BlockLineHeight"
+                    TextTrimming="None"
+                    TextWrapping="Wrap" />
+                <Canvas Margin="1,-2,0,0">
+                    <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
+                             Canvas.Top="1">
+                        <base:ToolTipServiceExtend.ToolTip>
+                            <faction:FactionLeaderboardMetricsInfoControl ClanTag="{Binding ClanTag}" />
+                        </base:ToolTipServiceExtend.ToolTip>
+                    </Control>
+                </Canvas>
+            </StackPanel>
+        </Grid>
+
+        <!-- Panels for join/application/invitation info -->
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Grid.Column="6"
+              Visibility="{Binding IsLeaderboardEntry, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+            <!-- Join public faction panel -->
+            <Border
+                Visibility="{Binding CanJoin, Converter={StaticResource BoolToVisibilityConverter}}"
+                Style="{StaticResource ActionPanelBorderStyle}">
+                <Grid VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="{x:Static loc:CoreStrings.Faction_FactionKind_Public_Description}"
+                               TextWrapping="Wrap"
+                               FontSize="10"
+                               LineHeight="11"
+                               LineStackingStrategy="BlockLineHeight"
+                               HorizontalAlignment="Center" />
+                    <Button Grid.Row="1"
+                            Content="{x:Static loc:CoreStrings.Faction_Join}"
+                            Command="{Binding CommandJoin}"
+                            Padding="5,3"
+                            Style="{StaticResource FactionActionButtonStyle}"
+                            Margin="0,3,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- Submit application panel -->
+            <Border
+                Visibility="{Binding CanSubmitApplication, Converter={StaticResource BoolToVisibilityConverter}}"
+                Style="{StaticResource ActionPanelBorderStyle}">
+                <Grid VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="{x:Static loc:CoreStrings.Faction_FactionKind_Private_ApplicationOrInvitationRequired}"
+                               TextWrapping="Wrap"
+                               FontSize="10"
+                               LineHeight="11"
+                               LineStackingStrategy="BlockLineHeight"
+                               HorizontalAlignment="Center" />
+                    <Button Grid.Row="1"
+                            Content="{x:Static loc:CoreStrings.Faction_SubmitApplication}"
+                            Command="{Binding CommandSubmitApplication}"
+                            Style="{StaticResource FactionActionButtonStyle}"
+                            Margin="0,3,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- Not accepting invitations label -->
+            <Border
+                Visibility="{Binding DisplayNotAcceptingApplications, Converter={StaticResource BoolToVisibilityConverter}}"
+                Style="{StaticResource ActionPanelBorderStyle}">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.Faction_FactionKind_Private_ApplicationOrInvitationRequired}"
+                        TextWrapping="Wrap"
+                        FontSize="10"
+                        LineHeight="11"
+                        LineStackingStrategy="BlockLineHeight"
+                        HorizontalAlignment="Center" />
+                    <Border HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="#33000000"
+                            BorderBrush="{StaticResource BrushColor3}"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            Padding="5,2"
+                            Margin="0,3,0,0">
+                        <TextBlock
+                            Text="{x:Static loc:CoreStrings.Faction_NotAcceptingApplications}"
+                            Foreground="{StaticResource BrushColor5}"
+                            FontFamily="{StaticResource CondensedFontFamily}"
+                            FontSize="11"
+                            LineHeight="12"
+                            LineStackingStrategy="BlockLineHeight"
+                            FontWeight="Bold"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center" />
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Invitation info -->
+            <Border
+                Visibility="{Binding ActiveInvitation, Converter={StaticResource NullToVisibilityConverter}}"
+                Style="{StaticResource ActionPanelBorderStyle}">
+                <StackPanel
+                    Orientation="Vertical"
+                    VerticalAlignment="Center">
+                    <TextBlock Text="{x:Static loc:CoreStrings.Faction_Invite}"
+                               Foreground="{StaticResource BrushColor6}"
+                               FontWeight="Bold"
+                               FontSize="12"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,5" />
+                    <Button Content="{x:Static loc:CoreStrings.Faction_Invite_Accept}"
+                            Command="{Binding ActiveInvitation.CommandAcceptInvitation}"
+                            Style="{StaticResource FactionActionButtonStyle}" />
+                    <Button Content="{x:Static loc:CoreStrings.Faction_Invite_Decline}"
+                            Command="{Binding ActiveInvitation.CommandDeclineInvitation}"
+                            Style="{StaticResource FactionActionButtonStyle}"
+                            Margin="0,3,0,0" />
+                </StackPanel>
+            </Border>
+
+            <!-- Application info -->
+            <Border
+                Visibility="{Binding ActiveApplication, Converter={StaticResource NullToVisibilityConverter}}"
+                Style="{StaticResource ActionPanelBorderStyle}">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.Faction_YouHaveSubmittedApplication}"
+                        TextWrapping="Wrap"
+                        FontSize="10"
+                        LineHeight="11"
+                        LineStackingStrategy="BlockLineHeight"
+                        HorizontalAlignment="Center" />
+                    <Button Content="{x:Static loc:CoreStrings.Faction_Application_Cancel}"
+                            Command="{Binding ActiveApplication.CommandCancelApplication}"
+                            Style="{StaticResource FactionActionButtonStyle}"
+                            Margin="0,3,0,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Faction leaderboard rank -->
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Grid.Column="6"
+              Visibility="{Binding IsLeaderboardEntry, Converter={StaticResource BoolToVisibilityConverter}}"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Center"
+              base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Faction_Leaderboard_Rank}">
+            <Border CornerRadius="20"
+                    MinWidth="40"
+                    BorderThickness="0,0,1,1">
+                <Border.Background>
+                    <LinearGradientBrush Opacity="0.4">
+                        <GradientStop Color="{StaticResource ColorAlt6}" />
+                        <GradientStop Color="{StaticResource ColorAlt2}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="{Binding LeaderboardRank}"
+                           Foreground="#FFEEEEEE"
+                           FontSize="40"
+                           FontFamily="{StaticResource DigitsFontFamily}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <ContentControl Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="7"
+                        Margin="2,0,0,0"
+                        VerticalAlignment="Stretch">
+            <Button Command="{Binding CommandOpenOptionsPopup}"
+                    Style="{StaticResource OptionsThreeDotsButtonStyle}"
+                    VerticalAlignment="Stretch" />
+        </ContentControl>
+    </Grid>
+</base:BaseUserControl>

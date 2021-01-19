@@ -17,14 +17,39 @@
                Canvas.Left="-24"
                Visibility="{Binding IsUnderShield, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-        <Image Source="Images/LandClaim.png"
+        <Image Source="Images/LandClaimWhenFounder.png"
                Style="{StaticResource WorldMapMarkImagePinStyle}"
-               Canvas.Left="-6.5"
-               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}" />
+               Canvas.Left="-6.5">
+            <Image.Visibility>
+                <MultiBinding Converter="{StaticResource AllBoolToVisibilityMultiConverter}">
+                    <Binding Path="IsFounder"
+                             ElementName="UserControl" />
+                    <Binding Path="IsFactionOwned"
+                             ElementName="UserControl"
+                             Converter="{StaticResource BoolReverseConverter}" />
+                </MultiBinding>
+            </Image.Visibility>
+        </Image>
 
-        <Image Source="Images/LandClaimWithAccess.png"
+        <Image Source="Images/LandClaimWithAccessDirect.png"
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Canvas.Left="-6.5">
+            <Image.Visibility>
+                <MultiBinding Converter="{StaticResource AllBoolToVisibilityMultiConverter}">
+                    <Binding Path="IsFounder"
+                             ElementName="UserControl"
+                             Converter="{StaticResource BoolReverseConverter}" />
+                    <Binding Path="IsFactionOwned"
+                             ElementName="UserControl"
+                             Converter="{StaticResource BoolReverseConverter}" />
+                </MultiBinding>
+            </Image.Visibility>
+        </Image>
+
+        <Image Source="Images/LandClaimWithAccessFaction.png"
                Style="{StaticResource WorldMapMarkImagePinStyle}"
                Canvas.Left="-6.5"
-               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+               Visibility="{Binding IsFactionOwned, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+        </Image>
     </Canvas>
 </base:BaseUserControl>

@@ -9,7 +9,7 @@
     {
         public const double ExplosionGroundDuration = 1.6;
 
-        private static readonly HashSet<Vector2Ushort> CurrentExplosions = new HashSet<Vector2Ushort>();
+        private static readonly HashSet<Vector2Ushort> CurrentExplosions = new();
 
         public static bool HasActiveExplosion(Vector2Ushort tilePosition)
         {

@@ -1,20 +1,20 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
-    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public partial class ChatEntryControl : BaseUserControl
     {
-        private static double lastContextMenuCloseFrameTime;
-
         private ChatEntry chatEntry;
 
         private ChatRoomControl chatRoomControl;
@@ -91,7 +91,6 @@
             VisualStateManager.GoToElementState(this.textBlock, "Default", false);
 
             this.MouseUp += this.MouseUpHandler;
-            this.MouseLeave += this.MouseLeaveHandler;
             this.IsHitTestVisibleChanged += this.IsHitTestVisibleChangedHandler;
         }
 
@@ -100,28 +99,7 @@
             this.DestroyViewModel();
 
             this.MouseUp -= this.MouseUpHandler;
-            this.MouseLeave -= this.MouseLeaveHandler;
             this.IsHitTestVisibleChanged -= this.IsHitTestVisibleChangedHandler;
-        }
-
-        private void ContextMenuClosedHandler(object sender, RoutedEventArgs e)
-        {
-            var contextMenu = (ContextMenu)sender;
-            contextMenu.Closed -= this.ContextMenuClosedHandler;
-            this.ContextMenu = null;
-            lastContextMenuCloseFrameTime = Api.Client.Core.ClientRealTime;
-        }
-
-        private void DestroyContextMenu()
-        {
-            var m = this.ContextMenu;
-            if (m is null)
-            {
-                return;
-            }
-
-            m.IsOpen = false;
-            this.ContextMenu = null;
         }
 
         private void DestroyViewModel()
@@ -141,13 +119,8 @@
             var isVisible = (bool)e.NewValue;
             if (!isVisible)
             {
-                this.DestroyContextMenu();
+                ClientContextMenuHelper.CloseLastContextMenuFor(this);
             }
-        }
-
-        private void MouseLeaveHandler(object sender, MouseEventArgs e)
-        {
-            this.DestroyContextMenu();
         }
 
         private void MouseUpHandler(object sender, MouseEventArgs e)
@@ -157,31 +130,14 @@
                 return;
             }
 
-            var contextMenu = this.ContextMenu;
-            if (contextMenu is not null
-                && contextMenu.IsOpen)
-            {
-                // close current context menu
-                contextMenu.IsOpen = false;
-                this.ContextMenu = null;
-                return;
-            }
-
-            if (lastContextMenuCloseFrameTime + 0.2 >= Api.Client.Core.ClientRealTime)
-            {
-                // just closed a context menu
-                return;
-            }
-
-            // create new context menu
-            contextMenu = new ContextMenu();
-            var contextMenuItems = contextMenu.Items;
+            var menuItems = new List<MenuItem>();
+            var chatEntryFrom = this.viewModel.ChatEntry.From;
 
             var canMentionOrSendPrivateMessage =
                 this.viewModel.VisibilityCanMentionOrSendPrivateMessage == Visibility.Visible;
             if (canMentionOrSendPrivateMessage)
             {
-                contextMenuItems.Add(
+                menuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_Mention,
@@ -189,16 +145,16 @@
                     });
             }
 
-            contextMenuItems.Add(
+            menuItems.Add(
                 new MenuItem()
                 {
                     Header = CoreStrings.Copy,
-                    Command = this.viewModel.CommandCopy,
+                    Command = this.viewModel.CommandCopy
                 });
 
             if (!string.IsNullOrEmpty(this.viewModel.ChatEntry.From))
             {
-                contextMenuItems.Add(
+                menuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_CopyName,
@@ -206,19 +162,9 @@
                     });
             }
 
-            if (this.viewModel.VisibilityCanInviteToParty == Visibility.Visible)
-            {
-                contextMenuItems.Add(
-                    new MenuItem()
-                    {
-                        Header = CoreStrings.Chat_MessageMenu_InviteToParty,
-                        Command = this.viewModel.CommandInviteToParty,
-                    });
-            }
-
             if (canMentionOrSendPrivateMessage)
             {
-                contextMenuItems.Add(
+                menuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_PrivateMessage,
@@ -226,16 +172,36 @@
                     });
             }
 
+            if (PartySystem.ClientCanInvite(chatEntryFrom))
+            {
+                menuItems.Add(
+                    new MenuItem()
+                    {
+                        Header = CoreStrings.Chat_MessageMenu_InviteToParty,
+                        Command = this.viewModel.CommandInviteToParty
+                    });
+            }
+
+            if (FactionSystem.ClientCanInviteToFaction(chatEntryFrom))
+            {
+                menuItems.Add(
+                    new MenuItem()
+                    {
+                        Header = CoreStrings.Faction_InviteToFaction,
+                        Command = this.viewModel.CommandInviteToFaction
+                    });
+            }
+
             if (this.viewModel.VisibilityCanBlock == Visibility.Visible)
             {
-                contextMenuItems.Add(
+                menuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_Block,
-                        Command = this.viewModel.CommandToggleBlock,
+                        Command = this.viewModel.CommandToggleBlock
                     });
 
-                contextMenuItems.Add(
+                menuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_Report,
@@ -245,24 +211,15 @@
 
             if (this.viewModel.VisibilityCanUnblock == Visibility.Visible)
             {
-                contextMenuItems.Add(
+                menuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_Unblock,
-                        Command = this.viewModel.CommandToggleBlock,
+                        Command = this.viewModel.CommandToggleBlock
                     });
             }
 
-            this.ContextMenu = contextMenu;
-
-            contextMenu.Placement = PlacementMode.Relative;
-            var target = sender as UIElement;
-            contextMenu.PlacementTarget = target;
-            var position = e.GetPosition(target);
-            contextMenu.HorizontalOffset = position.X;
-            contextMenu.VerticalOffset = position.Y;
-            contextMenu.IsOpen = true;
-            contextMenu.Closed += this.ContextMenuClosedHandler;
+            ClientContextMenuHelper.ShowMenuOnClick(this, menuItems);
         }
 
         private void UpdateViewModel()

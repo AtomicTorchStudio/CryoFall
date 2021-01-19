@@ -16,7 +16,7 @@
     public class PlayerCharacterQuests : BaseNetObject, IPlayerActiveTasksHolder
     {
         private readonly List<CharacterQuestEntry> serverLockedQuests
-            = new List<CharacterQuestEntry>();
+            = new();
 
         static PlayerCharacterQuests()
         {
@@ -27,7 +27,7 @@
 
         [SyncToClient]
         public NetworkSyncList<CharacterQuestEntry> Quests { get; }
-            = new NetworkSyncList<CharacterQuestEntry>();
+            = new();
 
         public void OnActiveTaskCompletedStateChanged(ServerPlayerActiveTask activeTask)
         {
@@ -70,7 +70,7 @@
                 rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
                 MidpointRounding.AwayFromZero);
             this.Character.SharedGetTechnologies()
-                .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStat: false);
+                .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStatsAndRates: false);
 
             Api.Logger.Important(
                 $"Quest completed and reward claimed: {quest.ShortId}. Learning points added: {rewardLearningPoints}",
@@ -425,7 +425,6 @@
                 {
                     if (!isValid)
                     {
-                        this.ServerResetActiveTasks();
                         this.ServerSetupTaskStates();
                     }
                 }

@@ -5,7 +5,7 @@
     public class AiWeaponPresetList
     {
         private readonly List<AiWeaponPreset> entries
-            = new List<AiWeaponPreset>();
+            = new();
 
         public AiWeaponPresetList Add(AiWeaponPreset preset)
         {

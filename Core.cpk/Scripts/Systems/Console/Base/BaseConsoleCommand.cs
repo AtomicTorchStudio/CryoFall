@@ -16,7 +16,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
     using JetBrains.Annotations;
 
     // we mark it as used implicitly with members to avoid ReSharper marking "Execute*" methods as not used
-    [UsedImplicitly(targetFlags: ImplicitUseTargetFlags.WithMembers)]
+    [UsedImplicitly(ImplicitUseTargetFlags.WithInheritors
+                    | ImplicitUseTargetFlags.WithMembers)]
     public abstract class BaseConsoleCommand
     {
         protected BaseConsoleCommand()

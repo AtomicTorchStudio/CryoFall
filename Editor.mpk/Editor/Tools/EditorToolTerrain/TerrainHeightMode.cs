@@ -1,6 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolTerrain
 {
-    public enum TerrainHeightMode
+    using AtomicTorch.CBND.GameApi;
+
+    [RemoteEnum]
+    public enum TerrainHeightMode : byte
     {
         Increase,
 

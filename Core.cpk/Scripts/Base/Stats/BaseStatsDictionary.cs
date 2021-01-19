@@ -8,9 +8,9 @@
 
     public abstract class BaseStatsDictionary : IReadOnlyStatsDictionary
     {
-        protected readonly Dictionary<StatName, double> Multipliers = new Dictionary<StatName, double>();
+        protected readonly Dictionary<StatName, double> Multipliers = new();
 
-        protected readonly Dictionary<StatName, double> Values = new Dictionary<StatName, double>();
+        protected readonly Dictionary<StatName, double> Values = new();
 
         private StatsSources sources;
 
@@ -112,6 +112,9 @@
             return new FinalStatsCache(finalValues, finalMultipliers, this.sources.Clone());
         }
 
+        /// <summary>
+        /// Merge values from other stats cache to this stats cache.
+        /// </summary>
         public void Merge(IReadOnlyStatsDictionary otherStatsCache)
         {
             this.ValidateIsNotReadOnly();

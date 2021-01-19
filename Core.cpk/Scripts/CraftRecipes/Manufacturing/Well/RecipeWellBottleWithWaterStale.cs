@@ -16,7 +16,7 @@
                 ItemBottleWaterStale>
     {
         private static readonly Lazy<ushort> LazyBottleWaterCapacity =
-            new Lazy<ushort>(
+            new(
                 () => Api.GetProtoEntity<ItemBottleWater>().Capacity);
 
         public override bool IsAutoUnlocked => true;

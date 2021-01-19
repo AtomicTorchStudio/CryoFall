@@ -38,7 +38,8 @@
                 .Add(GetScript<SpawnMobsHoneyBadger>())
                 .Add(GetScript<SpawnMobsPangolin>())
                 .Add(GetScript<SpawnMobsSnakeBrown>())
-                .Add(GetScript<SpawnMobsHyena>());
+                .Add(GetScript<SpawnMobsHyena>())
+                .Add(GetScript<SpawnMobsThumper>());
         }
     }
 }

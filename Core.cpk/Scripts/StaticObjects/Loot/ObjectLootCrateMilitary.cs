@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
+    using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -66,33 +67,36 @@
 
             // rare loot
             droplist.Add(
-                probability: 1 / 10.0,
-                nestedList:
-                new DropItemsList(outputs: 1)
-                    // weapons
-                    .Add<ItemKnifeIron>(weight: 1 / 1.0)
-                    .Add<ItemRevolver8mm>(weight: 1 / 1.0)
-                    .Add<ItemLuger>(weight: 1 / 1.0)
-                    .Add<ItemMachinePistol>(weight: 1 / 1.0)
-                    .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
-                    .Add<ItemRifleBoltAction>(weight: 1 / 1.0)
-                    .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
-                    .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
-                    .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
-                    .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
-                    .Add<ItemGrenadeLauncher>(weight: 1 / 4.0,   condition: T3Specialized)
-                    .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
-                    // equipment
-                    .Add<ItemMilitaryHelmet>(weight: 1 / 4.0, condition: T3Specialized)
-                    .Add<ItemMilitaryArmor>(weight: 1 / 4.0,  condition: T3Specialized)
-                    .Add<ItemAssaultHelmet>(weight: 1 / 10.0, condition: T4Specialized)
-                    .Add<ItemAssaultArmor>(weight: 1 / 10.0,  condition: T4Specialized)
-                    // misc stuff for soldiers use :)
-                    .Add<ItemCigarNormal>(count: 3,        countRandom: 2, weight: 1 / 5.0)
-                    .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)
-                    .Add<ItemStrengthBoostSmall>(count: 3, countRandom: 2, weight: 1 / 5.0)
-                    .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
-                    .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0));
+                    probability: 1 / 10.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // weapons
+                        .Add<ItemKnifeIron>(weight: 1 / 1.0)
+                        .Add<ItemRevolver8mm>(weight: 1 / 1.0)
+                        .Add<ItemLuger>(weight: 1 / 1.0)
+                        .Add<ItemMachinePistol>(weight: 1 / 1.0)
+                        .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
+                        .Add<ItemRifleBoltAction>(weight: 1 / 1.0)
+                        .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
+                        .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
+                        .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
+                        .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
+                        .Add<ItemGrenadeLauncher>(weight: 1 / 4.0,   condition: T3Specialized)
+                        .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
+                        // equipment
+                        .Add<ItemMilitaryHelmet>(weight: 1 / 4.0, condition: T3Specialized)
+                        .Add<ItemMilitaryArmor>(weight: 1 / 4.0,  condition: T3Specialized)
+                        .Add<ItemAssaultHelmet>(weight: 1 / 10.0, condition: T4Specialized)
+                        .Add<ItemAssaultArmor>(weight: 1 / 10.0,  condition: T4Specialized)
+                        // misc stuff for soldiers use :)
+                        .Add<ItemCigarNormal>(count: 3,        countRandom: 2, weight: 1 / 5.0)
+                        .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)
+                        .Add<ItemStrengthBoostSmall>(count: 3, countRandom: 2, weight: 1 / 5.0)
+                        .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
+                        .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0)
+                        // misc
+                        .Add<ItemTeleportLocationData>(count: 1, weight: 1 / 4.0)
+                );
 
             // extra loot from skill
             droplist.Add(

@@ -19,6 +19,12 @@
             <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" />
         </LinearGradientBrush>
 
+        <LinearGradientBrush x:Key="HUDButtonBackgroundSelected" EndPoint="0.5,1" StartPoint="0.5,0">
+            <!-- Based on Color7 -->
+            <GradientStop Color="#FF524629" Offset="0.667" />
+            <GradientStop Color="#00524629" />
+        </LinearGradientBrush>
+
         <Style TargetType="{x:Type hud:HUDButton}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Background" Value="{StaticResource HUDButtonBackground}" />
@@ -34,7 +40,7 @@
                     <ControlTemplate TargetType="{x:Type hud:HUDButton}">
                         <Grid x:Name="grid"
                               RenderTransformOrigin="0.5,0.5"
-                              Margin="3,0">
+                              Margin="4,0">
                             <Grid.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />
@@ -64,24 +70,17 @@
                                     <VisualState x:Name="Expanded" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
+
                             <Border Background="#99000000"
+                                    CornerRadius="0,0,5,5" />
+                            <Border Style="{StaticResource WidgetBorderShadowStyle}"
                                     CornerRadius="0,0,5,5" />
                             <Border BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="1,0,1,1"
                                     CornerRadius="0,0,5,5">
                                 <Grid>
-                                    <Border CornerRadius="0,0,5,5" Margin="-1,0,-1,-1"
+                                    <Border CornerRadius="0,0,5,5"
                                             Background="{TemplateBinding Background}" />
-                                    <Border x:Name="BorderHighlight" CornerRadius="0,0,5,5" Visibility="Collapsed">
-                                        <Border.Background>
-                                            <SolidColorBrush Color="#FF6DB6FF" Opacity="0.3" />
-                                        </Border.Background>
-                                    </Border>
-                                    <!--<Border x:Name="BorderMouseOver" CornerRadius="0,0,5,5" Visibility="Collapsed">
-                                            <Border.Background>
-                                                <SolidColorBrush Color="#FF6DB6FF" Opacity="0.2" />
-                                            </Border.Background>
-                                        </Border>-->
                                 </Grid>
                             </Border>
                             <Button Command="{TemplateBinding Command}"
@@ -93,7 +92,9 @@
                                         <ContentPresenter />
                                     </ControlTemplate>
                                 </Button.Template>
-                                <Rectangle x:Name="Icon" Fill="{TemplateBinding BrushNormal}" Width="40"
+                                <Rectangle x:Name="Icon"
+                                           Fill="{TemplateBinding BrushNormal}"
+                                           Width="40"
                                            Height="40" />
                             </Button>
                             <Border x:Name="BorderDisabled"
@@ -103,23 +104,29 @@
                                     BorderBrush="#88555555"
                                     Visibility="Collapsed" />
 
-                            <ContentPresenter ContentSource="BadgeContent"
-                                              HorizontalAlignment="Right"
-                                              VerticalAlignment="Bottom"
-                                              Margin="0,0,-7,-6" />
+                            <!-- Content presenter cannot be used here due to DataContext binding issue -->
+                            <ContentControl Content="{TemplateBinding BadgeContent}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Margin="0,0,-7,-6" />
                         </Grid>
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <!--<Setter TargetName="BorderMouseOver" Property="Visibility" Value="Visible" />-->
-                                <!--<Setter TargetName="Icon" Property="Fill"
-                                            Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />-->
+                                <Setter Property="Background"
+                                        Value="{StaticResource HUDButtonBackgroundSelected}" />
+                                <Setter Property="BorderBrush"
+                                        Value="{StaticResource BrushColor7}" />
                             </Trigger>
 
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="BorderHighlight" Property="Visibility" Value="Visible" />
-                                <Setter TargetName="Icon" Property="Fill"
+                                <Setter TargetName="Icon"
+                                        Property="Fill"
                                         Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter Property="Background"
+                                        Value="{StaticResource HUDButtonBackgroundSelected}" />
+                                <Setter Property="BorderBrush"
+                                        Value="{StaticResource BrushColor7}" />
                             </Trigger>
 
                             <Trigger Property="IsEnabled" Value="False">
@@ -135,7 +142,7 @@
     <StackPanel x:Name="ButtonsStackPanel"
                 Orientation="Horizontal"
                 HorizontalAlignment="Center"
-                Margin="60,0,0,0"> <!-- Move a bit to the right to compensate for the hidden vehicle dismount button -->
+                Margin="88,0,0,0"> <!-- Move a bit to the right to compensate for the hidden vehicle dismount button -->
 
         <hud:HUDButton DataContext="{Binding MenuInventory}"
                        Command="{Binding CommandToggle}"
@@ -198,7 +205,7 @@
         <hud:HUDButton DataContext="{Binding MenuSkills}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}"
-                       Margin="16,0,0,0">
+                       Margin="40,0,0,0">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Skills -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Skills}">
@@ -251,11 +258,14 @@
             <hud:HUDButton.BrushHighlighted>
                 <ImageBrush ImageSource="/UI/Images/Icons/icon_quests_on.png" />
             </hud:HUDButton.BrushHighlighted>
+            <hud:HUDButton.BadgeContent>
+                <hud:HUDButtonBadgeControl Number="{Binding MenuInstance.DataContext.ActiveQuests.Count}"
+                                           Visibility="{Binding MenuInstance.DataContext.IsQuestsPanelHidden, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </hud:HUDButton.BadgeContent>
         </hud:HUDButton>
 
-        <hud:HUDButton DataContext="{Binding MenuCompletionist}"
-                       Command="{Binding CommandToggle}"
-                       IsSelected="{Binding IsSelected}">
+        <hud:HUDButton Command="{Binding MenuCompletionist.CommandToggle}"
+                       IsSelected="{Binding MenuCompletionist.IsSelected}">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Completionist -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Completionist}">
@@ -271,29 +281,15 @@
                 <ImageBrush ImageSource="/UI/Images/Icons/icon_completionist_on.png" />
             </hud:HUDButton.BrushHighlighted>
             <hud:HUDButton.BadgeContent>
-                <!-- Workaround for NoesisGUI 3.0 applied here -->
-                <Border CornerRadius="5"
-                        Background="{StaticResource BrushColorAlt0}"
-                        BorderBrush="{StaticResource BrushColorAlt5}"
-                        BorderThickness="0.75"
-                        Padding="2,0"
-                        Visibility="{Binding Visibility, ElementName=TextBlock}">
-                    <TextBlock x:Name="TextBlock"
-                               Text="{Binding MenuInstance.DataContext.TotalPendingEntries}"
-                               Visibility="{Binding MenuInstance.DataContext.HasPendingEntries, Converter={StaticResource BoolToVisibilityConverter}}"
-                               Foreground="White"
-                               FontSize="10"
-                               MinWidth="10"
-                               FontFamily="{StaticResource DigitsFontFamily}"
-                               TextAlignment="Center" />
-                </Border>
+                <hud:HUDButtonBadgeControl
+                    Number="{Binding MenuCompletionist.MenuInstance.DataContext.TotalPendingEntries}" />
             </hud:HUDButton.BadgeContent>
         </hud:HUDButton>
 
         <hud:HUDButton DataContext="{Binding MenuMap}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}"
-                       Margin="16,0,0,0">
+                       Margin="40,0,0,0">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Map -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Map}">
@@ -346,11 +342,46 @@
             <hud:HUDButton.BrushHighlighted>
                 <ImageBrush ImageSource="/UI/Images/Icons/icon_politics_on.png" />
             </hud:HUDButton.BrushHighlighted>
+            <hud:HUDButton.BadgeContent>
+                <hud:HUDButtonBadgeControl Number="{Binding MenuInstance.DataContext.ReceivedInvitationsCount}" />
+            </hud:HUDButton.BadgeContent>
         </hud:HUDButton>
+
+        <ContentControl
+            Visibility="{Binding IsMenuFactionVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}">
+            <hud:HUDButton DataContext="{Binding MenuFaction}"
+                           Command="{Binding CommandToggle}"
+                           IsSelected="{Binding IsSelected}">
+                <base:ToolTipServiceExtend.ToolTip>
+                    <!-- Text: Faction -->
+                    <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Faction}">
+                        <core:LabelWithButton.Button>
+                            <core:GameButtonReference Button="FactionMenu" />
+                        </core:LabelWithButton.Button>
+                    </core:LabelWithButton>
+                </base:ToolTipServiceExtend.ToolTip>
+                <hud:HUDButton.BrushNormal>
+                    <ImageBrush ImageSource="/UI/Images/Icons/icon_faction.png" />
+                </hud:HUDButton.BrushNormal>
+                <hud:HUDButton.BrushHighlighted>
+                    <ImageBrush ImageSource="/UI/Images/Icons/icon_faction_on.png" />
+                </hud:HUDButton.BrushHighlighted>
+                <hud:HUDButton.BadgeContent>
+                    <hud:HUDButtonBadgeControl>
+                        <hud:HUDButtonBadgeControl.Number>
+                            <MultiBinding Converter="{StaticResource ValuesAdditionMultiConverter}">
+                                <Binding Path="MenuInstance.DataContext.ReceivedApplicationsCount" />
+                                <Binding Path="MenuInstance.DataContext.IncomingAllianceRequestsCount" />
+                            </MultiBinding>
+                        </hud:HUDButtonBadgeControl.Number>
+                    </hud:HUDButtonBadgeControl>
+                </hud:HUDButton.BadgeContent>
+            </hud:HUDButton>
+        </ContentControl>
 
         <hud:HUDButton Command="{Binding CommandQuitVehicle}"
                        Visibility="{Binding IsQuitVehicleButtonVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
-                       Margin="16,0,0,0">
+                       Margin="40,0,0,0">
             <hud:HUDButton.BorderBrush>
                 <SolidColorBrush Color="#FF3DA83D" />
             </hud:HUDButton.BorderBrush>

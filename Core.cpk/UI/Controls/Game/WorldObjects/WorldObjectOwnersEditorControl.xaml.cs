@@ -4,8 +4,5 @@
 
     public partial class WorldObjectOwnersEditorControl : BaseUserControl
     {
-        public WorldObjectOwnersEditorControl()
-        {
-        }
     }
 }

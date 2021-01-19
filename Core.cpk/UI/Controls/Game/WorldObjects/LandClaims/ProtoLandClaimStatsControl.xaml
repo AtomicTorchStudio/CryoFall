@@ -9,63 +9,104 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelProtoLandClaimInfo}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="LineHeight" Value="13" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
         </Grid.Resources>
-        <StackPanel Orientation="Vertical">
-            <!-- Land claim object properties -->
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Level -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TitleLevel}" />
-                <TextBlock Text=": " />
-                <TextBlock Text="{Binding CurrentStructureLevel}"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-            </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Area -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TitleArea}" />
-                <TextBlock Text=": " />
-                <TextBlock Text="{Binding CurrentStructureLandClaimAreaSize}"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-                <TextBlock Text="*"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-                <TextBlock Text="{Binding CurrentStructureLandClaimAreaSize}"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal"
-                        Visibility="{Binding CurrentStructureLandClaimDestructionTimeout, Converter={StaticResource NullToVisibilityConverter}}">
-                <!-- Text: Destruction timeout -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TitleDestructionTimeout}" />
-                <TextBlock Text=": " />
-                <TextBlock Text="{Binding CurrentStructureLandClaimDestructionTimeout}"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-            </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Structure points -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TitleStructurePoints}" />
-                <TextBlock Text=": " />
-                <TextBlock Text="{Binding ViewModelStructure.StructurePointsMax}"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-            </StackPanel>
-
-            <!-- Text: Safe storage -->
-            <!--<StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static loc:CoreStrings.TitleSafeStorage}" />
-                <TextBlock Text=": " />
-                <TextBlock Text="{Binding CurrentStructureSafeItemsSlotsCount}"
-                           Foreground="{StaticResource BrushColorAlt7}" />
-            </StackPanel>-->
+        <!-- Land claim object properties -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+            <!-- Text: Level -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TitleLevel}" />
+            <TextBlock Text=": " />
         </StackPanel>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="2"
+                   Text="{Binding CurrentStructureLevel}"
+                   Foreground="{StaticResource BrushColorLabelForeground}" />
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+            <!-- Text: Area -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TitleArea}" />
+            <TextBlock Text=": " />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="2"
+                    Orientation="Horizontal">
+            <TextBlock Text="{Binding CurrentStructureLandClaimAreaSize}"
+                       Foreground="{StaticResource BrushColorLabelForeground}" />
+            <TextBlock Text="*"
+                       Foreground="{StaticResource BrushColorLabelForeground}" />
+            <TextBlock Text="{Binding CurrentStructureLandClaimAreaSize}"
+                       Foreground="{StaticResource BrushColorLabelForeground}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    Visibility="{Binding CurrentStructureLandClaimDestructionTimeout, Converter={StaticResource NullToVisibilityConverter}}">
+            <!-- Text: Destruction timeout -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TitleDestructionTimeout}" />
+            <TextBlock Text=": " />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    Visibility="{Binding CurrentStructureLandClaimDestructionTimeout, Converter={StaticResource NullToVisibilityConverter}}">
+            <TextBlock
+                Text="{Binding CurrentStructureLandClaimDestructionTimeout}"
+                Foreground="{StaticResource BrushColorLabelForeground}" />
+            <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
+                     Width="12"
+                     Height="12"
+                     FontSize="12">
+                <base:ToolTipServiceExtend.ToolTip>
+                    <core:FormattedTextBlock
+                        Content="{x:Static loc:CoreStrings.DestructionTimeout_Tooltip}"
+                        MaxWidth="300" />
+                </base:ToolTipServiceExtend.ToolTip>
+            </Control>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+            <!-- Text: Structure points -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TitleStructurePoints}" />
+            <TextBlock Text=": " />
+        </StackPanel>
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="2"
+                   Text="{Binding ViewModelStructure.StructurePointsMax}"
+                   Foreground="{StaticResource BrushColorLabelForeground}" />
     </Grid>
 </base:BaseUserControl>

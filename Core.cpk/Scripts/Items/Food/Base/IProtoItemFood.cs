@@ -13,8 +13,6 @@
 
         float FoodRestore { get; }
 
-        float HealthRestore { get; }
-
         bool IsAvailableInCompletionist { get; }
 
         float StaminaRestore { get; }

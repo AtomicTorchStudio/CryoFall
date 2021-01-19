@@ -7,7 +7,7 @@
 
     public class ClientComponentWorldObjectVibration : ClientComponent
     {
-        private static readonly EffectResource EffectResource = new EffectResource("Special/Vibration");
+        private static readonly EffectResource EffectResource = new("Special/Vibration");
 
         private RenderingMaterial material;
 

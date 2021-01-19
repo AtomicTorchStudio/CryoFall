@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationAltar>();
 
-            config.SetRequiredNode<TechNodeDecorationBannerGreen>();
+            config.SetRequiredNode<TechNodeDecorationDoorBell2>();
         }
     }
 }

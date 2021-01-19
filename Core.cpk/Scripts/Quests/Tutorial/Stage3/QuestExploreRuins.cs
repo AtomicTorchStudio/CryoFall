@@ -1,15 +1,16 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
-    using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestExploreRuins : ProtoQuest
     {
+        public const string TaskGatherLoot = "Loot some containers";
+
         public override string Description =>
             "Old ruins are the best place to find rare components and certain resources. It is always a good idea to explore them occasionally, especially if you have the necessary gear.";
 
@@ -22,24 +23,19 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        public const string TaskGatherLoot = "Loot some containers";
-
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
                 .Add(TaskHaveItemEquipped.Require<ItemHelmetRespirator>())
                 .Add(TaskVisitTile.Require<TileRuins>())
-                .Add(TaskGather.Require(new IProtoObjectGatherable[]
-                                        {
-                                            Api.GetProtoEntity<ObjectLootCrateFood>(),
-                                            Api.GetProtoEntity<ObjectLootCrateHightech>(),
-                                            Api.GetProtoEntity<ObjectLootCrateIndustrial>(),
-                                            Api.GetProtoEntity<ObjectLootCrateMedical>(),
-                                            Api.GetProtoEntity<ObjectLootCrateMilitary>(),
-                                            Api.GetProtoEntity<ObjectLootCrateSupply>()
-                                        },
-                                        count: 5,
-                                        TaskGatherLoot));
+                .Add(TaskGather.Require(
+                                   // All loot containers but not loot piles (IsAutoTakeAll => false)
+                                   Api.FindProtoEntities<ProtoObjectLootContainer>()
+                                      .Where(p => !p.IsAutoTakeAll)
+                                      .ToList(),
+                                   count: 5,
+                                   TaskGatherLoot)
+                               .WithIcon(Api.GetProtoEntity<ObjectLootCrateIndustrial>().Icon));
 
             prerequisites
                 .Add<QuestCompleteTier1Technologies>();

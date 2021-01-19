@@ -8,7 +8,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.FishingSystem
     public static class ClientFishingSoundsHelper
     {
         private static readonly SoundResource SoundResourceBaiting
-            = new SoundResource("Items/Fishing/Baiting");
+            = new("Items/Fishing/Baiting");
 
         private static readonly ReadOnlySoundResourceSet SoundSetCancel
             = new SoundResourceSet()

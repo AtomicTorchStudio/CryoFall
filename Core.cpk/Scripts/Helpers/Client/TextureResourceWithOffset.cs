@@ -23,7 +23,7 @@
 
         public static implicit operator TextureResourceWithOffset(TextureResource test)
         {
-            return new TextureResourceWithOffset(test);
+            return new(test);
         }
     }
 }

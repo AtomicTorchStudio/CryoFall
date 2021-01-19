@@ -124,6 +124,13 @@
             while (dropItemResult.TotalCreatedCount == 0
                    && --attemptRemains > 0);
 
+            if (dropItemResult.TotalCreatedCount == 0)
+            {
+                Logger.Error("Incorrect items droplist for " + worldObject + " - nothing provided");
+                Server.World.DestroyObject(worldObject);
+                return false;
+            }
+
             Server.Items.SetSlotsCount(itemsContainer, itemsContainer.OccupiedSlotsCount);
 
             character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
@@ -173,8 +180,10 @@
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => base.SharedGetObjectCenterWorldOffset(worldObject)
-               + (0, 0.15);
+        {
+            return base.SharedGetObjectCenterWorldOffset(worldObject)
+                   + (0, 0.15);
+        }
 
         public bool SharedIsCanGather(IStaticWorldObject staticWorldObject)
         {
@@ -225,7 +234,9 @@
         }
 
         protected virtual IReadOnlyDropItemsList ServerGetLootDroplist(IStaticWorldObject crateObject)
-            => this.LootDroplist;
+        {
+            return this.LootDroplist;
+        }
 
         protected override void ServerInitialize(ServerInitializeData data)
         {
@@ -282,7 +293,6 @@
 
         private void ClientRemote_FinishInteraction(IStaticWorldObject worldObject)
         {
-            Logger.Important($"Server informed that the object interaction with {worldObject} is finished");
             ClientInteractionUISystem.OnServerForceFinishInteraction(worldObject);
         }
 

@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Vehicles
 {
     using System.ComponentModel;
+    using AtomicTorch.CBND.GameApi;
 
+    [RemoteEnum]
     public enum VehicleCanRepairCheckResult : byte
     {
         Success = 0,
@@ -22,8 +24,8 @@
         VehicleIsNotInsideVehicleAssemblyBay = 5,
 
         // re-use description string from SetPowerModeResult
-        NotEnoughPower = 6,
+        NotEnoughPower = 6
 
-        BaseUnderRaidblock = 7
+        // BaseUnderRaidblock = 7
     }
 }

@@ -24,10 +24,6 @@
                                         typeof(WidgetPanel),
                                         new PropertyMetadata(default(Brush)));
 
-        public WidgetPanel()
-        {
-        }
-
         public double InnerGlowSize
         {
             get => (double)this.GetValue(InnerGlowSizeProperty);
@@ -44,10 +40,6 @@
         {
             get => (Brush)this.GetValue(WidgetBackgroundProperty);
             set => this.SetValue(WidgetBackgroundProperty, value);
-        }
-
-        protected override void InitControl()
-        {
         }
     }
 }

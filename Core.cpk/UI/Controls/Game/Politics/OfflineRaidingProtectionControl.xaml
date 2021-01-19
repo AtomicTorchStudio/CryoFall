@@ -5,7 +5,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
@@ -13,7 +12,8 @@
     d:DesignHeight="300" d:DesignWidth="300"
     Visibility="{Binding Visibility}">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center">
         <Grid HorizontalAlignment="Center"
               Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
@@ -26,22 +26,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <!--<Image Source="/UI/Images/Icons/icon_death_protection.png"
-                   Width="24"
-                   Height="24"
-                   Stretch="Uniform"
-                   VerticalAlignment="Center"
-                   UseLayoutRounding="True"
-                   Margin="0,0,5,0" />-->
-            <TextBlock Grid.Column="1"
-                       Text="{x:Static loc:CoreStrings.WindowPolitics_RaidingRestriction_Title}"
-                       HorizontalAlignment="Center"
-                       FontFamily="{StaticResource CondensedFontFamily}"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       TextWrapping="Wrap"
-                       VerticalAlignment="Center"
-                       Margin="0,0,0,5" />
 
             <core:FormattedTextBlock
                 Grid.Column="1"

@@ -15,7 +15,7 @@
     public class ObjectPowerStorageLarge : ProtoObjectPowerStorage
     {
         private static readonly SoundResource SoundResourceActive
-            = new SoundResource("Objects/Structures/ObjectPowerStorageLarge/Active");
+            = new("Objects/Structures/ObjectPowerStorageLarge/Active");
 
         private readonly TextureAtlasResource textureAtlasActive;
 
@@ -45,7 +45,6 @@
             base.ClientInitialize(data);
             var worldObject = data.GameObject;
 
-            // create sound emitter
             data.ClientState.SoundEmitter = Client.Audio.CreateSoundEmitter(
                 data.GameObject,
                 SoundResourceActive,

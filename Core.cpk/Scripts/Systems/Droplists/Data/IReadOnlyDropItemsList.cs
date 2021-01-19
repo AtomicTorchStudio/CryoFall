@@ -43,6 +43,4 @@
             [CanBeNull] out IItemsContainer groundContainer,
             double probabilityMultiplier = 1.0);
     }
-
-    public delegate CreateItemResult DelegateSpawnDropItem(IProtoItem protoItem, ushort count);
 }

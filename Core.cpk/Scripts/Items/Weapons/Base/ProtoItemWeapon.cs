@@ -75,7 +75,7 @@
 
         public IReadOnlyList<IProtoItemAmmo> CompatibleAmmoProtos { get; private set; }
 
-        public virtual double DamageApplyDelay => 0;
+        public abstract double DamageApplyDelay { get; }
 
         public virtual double DamageMultiplier => 1;
 
@@ -155,9 +155,9 @@
 
         protected abstract ProtoSkillWeapons WeaponSkill { get; }
 
-        protected virtual TextureResource WeaponTextureResource => new TextureResource(
-            "Characters/Weapons/" + this.GetType().Name,
-            isProvidesMagentaPixelPosition: true);
+        protected virtual TextureResource WeaponTextureResource
+            => new("Characters/Weapons/" + this.GetType().Name,
+                   isProvidesMagentaPixelPosition: true);
 
         public Control ClientCreateHotbarOverlayControl(IItem item)
         {
@@ -617,7 +617,7 @@
 
             if (hasAmmo)
             {
-                controls.Add(ItemTooltipCompatibleAmmoControl.Create(this));
+                controls.Add(new ItemTooltipCompatibleAmmoControl() { ProtoItemWeapon = this });
             }
         }
 

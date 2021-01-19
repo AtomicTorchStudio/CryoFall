@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social
 {
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class WindowSocial : BaseWindowMenu
     {
@@ -18,7 +20,13 @@
         protected override void InitMenu()
         {
             this.DataContext = this.viewModel = new ViewModelWindowSocial();
-            this.viewModel.IsActive = true;
+        }
+
+        protected override void WindowOpening()
+        {
+            base.WindowOpening();
+            this.GetByName<OfflineRaidingProtectionControl>("OfflineRaidingProtectionControl")
+                .Refresh();
         }
     }
 }

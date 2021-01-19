@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
@@ -38,6 +39,7 @@
                 new DropItemsList(outputs: 2, outputsRandom: 0)
                     // money
                     .Add<ItemCoinPenny>(count: 10, countRandom: 30, weight: 1 / 1.0)
+                    .Add<ItemCoinPurse>(count: 1,  weight: 1 / 5.0)
                     // resources
                     .Add<ItemPlanks>(count: 30,     countRandom: 50,  weight: 1 / 1.0)
                     .Add<ItemIngotCopper>(count: 5, countRandom: 15,  weight: 1 / 1.0)
@@ -58,28 +60,31 @@
 
             // rare loot
             droplist.Add(
-                probability: 1 / 3.0,
-                nestedList:
-                new DropItemsList(outputs: 1)
-                    // components
-                    .Add<ItemComponentsMechanical>(count: 10,         countRandom: 10, weight: 1 / 1.0)
-                    .Add<ItemComponentsElectronic>(count: 5,          countRandom: 5,  weight: 1 / 1.0)
-                    .Add<ItemComponentsOptical>(count: 5,             countRandom: 5,  weight: 1 / 10.0)
-                    .Add<ItemComponentsIndustrialChemicals>(count: 5, countRandom: 5,  weight: 1 / 10.0)
-                    // items
-                    .Add<ItemFirelog>(count: 2,           countRandom: 3, weight: 1 / 1.0)
-                    .Add<ItemBatteryDisposable>(count: 2, countRandom: 3, weight: 1 / 10.0)
-                    .Add<ItemBombMining>(count: 2,        countRandom: 3, weight: 1 / 25.0)
-                    // tools
-                    .Add<ItemAxeIron>(count: 1,      weight: 1 / 25.0)
-                    .Add<ItemPickaxeIron>(count: 1,  weight: 1 / 25.0)
-                    .Add<ItemToolboxT2>(count: 1,    weight: 1 / 25.0)
-                    .Add<ItemAxeSteel>(count: 1,     weight: 1 / 50.0)
-                    .Add<ItemPickaxeSteel>(count: 1, weight: 1 / 50.0)
-                    .Add<ItemToolboxT3>(count: 1,    weight: 1 / 50.0)
-                    .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
-                    // equipment
-                    .Add<ItemHelmetSafety>(count: 1, weight: 1 / 15.0));
+                    probability: 1 / 3.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // components
+                        .Add<ItemComponentsMechanical>(count: 10,         countRandom: 10, weight: 1 / 1.0)
+                        .Add<ItemComponentsElectronic>(count: 5,          countRandom: 5,  weight: 1 / 1.0)
+                        .Add<ItemComponentsOptical>(count: 5,             countRandom: 5,  weight: 1 / 10.0)
+                        .Add<ItemComponentsIndustrialChemicals>(count: 5, countRandom: 5,  weight: 1 / 10.0)
+                        // items
+                        .Add<ItemFirelog>(count: 2,           countRandom: 3, weight: 1 / 1.0)
+                        .Add<ItemBatteryDisposable>(count: 2, countRandom: 3, weight: 1 / 10.0)
+                        .Add<ItemBombMining>(count: 2,        countRandom: 3, weight: 1 / 25.0)
+                        // tools
+                        .Add<ItemAxeIron>(count: 1,      weight: 1 / 25.0)
+                        .Add<ItemPickaxeIron>(count: 1,  weight: 1 / 25.0)
+                        .Add<ItemToolboxT2>(count: 1,    weight: 1 / 25.0)
+                        .Add<ItemAxeSteel>(count: 1,     weight: 1 / 50.0)
+                        .Add<ItemPickaxeSteel>(count: 1, weight: 1 / 50.0)
+                        .Add<ItemToolboxT3>(count: 1,    weight: 1 / 50.0)
+                        .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
+                        // equipment
+                        .Add<ItemHelmetSafety>(count: 1, weight: 1 / 15.0)
+                        // misc
+                        .Add<ItemTeleportLocationData>(count: 1, weight: 1 / 15.0)
+                );
 
             // extra loot from skill
             droplist.Add(

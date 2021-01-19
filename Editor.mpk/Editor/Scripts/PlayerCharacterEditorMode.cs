@@ -32,9 +32,9 @@
 
         public override string Name => "Player character in Editor mode";
 
-        public override double PhysicsBodyAccelerationCoef => 7;
+        public override double PhysicsBodyAccelerationCoef => 10;
 
-        public override double PhysicsBodyFriction { get; } = 7 * DefaultMoveSpeed * MoveSpeedShiftModifier;
+        public override double PhysicsBodyFriction => 200;
 
         public override void ClientDeinitialize(ICharacter character)
         {
@@ -175,7 +175,7 @@
             this.CallServer(_ => _.ServerRemote_SetSpeed(speed));
         }
 
-        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, timeInterval: 1 / 10.0)]
+        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, timeInterval: 1 / 1000.0)]
         private void ServerRemote_SetPosition(Vector2D position)
         {
             var character = ServerRemoteContext.Character;

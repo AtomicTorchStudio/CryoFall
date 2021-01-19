@@ -8,7 +8,7 @@
     public static class HoverboardEngineSoundEmittersManager
     {
         private static readonly Dictionary<uint, ComponentHoverboardEngineSoundEmitter> VehicleSoundEmitters
-            = new Dictionary<uint, ComponentHoverboardEngineSoundEmitter>();
+            = new();
 
         public static ComponentHoverboardEngineSoundEmitter CreateSoundEmitter(
             IDynamicWorldObject vehicle,

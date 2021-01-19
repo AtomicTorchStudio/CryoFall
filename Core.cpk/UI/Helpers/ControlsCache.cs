@@ -15,7 +15,7 @@
         private const bool IsLoggingEnabled = false;
 
         private static readonly Dictionary<object, ControlsCache<TControl>> SpecialInstancesCache =
-            new Dictionary<object, ControlsCache<TControl>>();
+            new();
 
         private static ControlsCache<TControl> instance;
 

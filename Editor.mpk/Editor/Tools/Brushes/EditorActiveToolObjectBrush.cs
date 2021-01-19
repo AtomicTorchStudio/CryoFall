@@ -7,13 +7,17 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
     public class EditorActiveToolObjectBrush : BaseEditorActiveTool
     {
+        private static readonly IInputClientService Input = Api.Client.Input;
+
         private readonly ClientInputContext inputContext;
 
         private readonly Action onDispose;
@@ -23,6 +27,8 @@
         private readonly IProtoStaticWorldObject protoStaticObject;
 
         private readonly IClientSceneObject sceneObject;
+
+        private uint lastJumpObjectId;
 
         public EditorActiveToolObjectBrush(
             IProtoStaticWorldObject protoStaticObject,
@@ -44,22 +50,24 @@
                     validateCanPlaceCallback: this.ValidateCanBuild,
                     placeSelectedCallback: this.PlaceSelectedHandler);
 
-            this.inputContext = ClientInputContext
-                                .Start("Editor delete object")
-                                .HandleButtonDown(
-                                    GameButton.ActionInteract,
-                                    () =>
-                                    {
-                                        var worldObjectsToDelete = Api.Client.World.GetTile(
-                                                                          Api.Client.Input.MousePointedTilePosition)
-                                                                      .StaticObjects;
-
-                                        if (worldObjectsToDelete.Count > 0)
-                                        {
-                                            EditorStaticObjectsRemovalHelper.ClientDelete(
-                                                worldObjectsToDelete.ToList());
-                                        }
-                                    });
+            this.inputContext
+                = ClientInputContext
+                  .Start(nameof(EditorActiveToolObjectBrush))
+                  .HandleAll(
+                      () =>
+                      {
+                          if (Input.IsKeyHeld(InputKey.MouseRightButton, evenIfHandled: false))
+                          {
+                              Input.ConsumeKey(InputKey.MouseRightButton);
+                              DeleteObjectsUnderMouseCursor();
+                          }
+                          else if (Input.IsKeyDown(InputKey.Tab, evenIfHandled: false))
+                          {
+                              Input.ConsumeKey(InputKey.Tab);
+                              Api.Client.UI.BlurFocus();
+                              this.JumpToNextObject(protoStaticObject);
+                          }
+                      });
         }
 
         public override void Dispose()
@@ -67,6 +75,72 @@
             this.inputContext.Stop();
             this.sceneObject.Destroy();
             this.onDispose?.Invoke();
+        }
+
+        private static void DeleteObjectsUnderMouseCursor()
+        {
+            var worldObjectsToDelete = Api.Client.World.GetTile(
+                                              Input.MousePointedTilePosition)
+                                          .StaticObjects;
+
+            if (worldObjectsToDelete.Count > 0)
+            {
+                EditorStaticObjectsRemovalHelper.ClientDelete(
+                    worldObjectsToDelete.ToList());
+            }
+        }
+
+        private void JumpToNextObject(IProtoStaticWorldObject protoStaticObject)
+        {
+            using var objectsOfProto =
+                Api.Shared.WrapInTempList(
+                    Api.Client.World.GetStaticWorldObjectsOfProto(protoStaticObject));
+
+            if (objectsOfProto.Count == 0)
+            {
+                return;
+            }
+
+            objectsOfProto.SortBy(o => o.Id);
+            var isReverseMode = false;
+            if (Input.IsKeyHeld(InputKey.Shift, evenIfHandled: true))
+            {
+                isReverseMode = true;
+                objectsOfProto.AsList().Reverse();
+            }
+
+            foreach (var worldObject in objectsOfProto.AsList())
+            {
+                if (isReverseMode)
+                {
+                    if (worldObject.Id >= this.lastJumpObjectId)
+                    {
+                        continue;
+                    }
+                }
+                else if (worldObject.Id <= this.lastJumpObjectId)
+                {
+                    continue;
+                }
+
+                // jump to it
+                JumpTo(worldObject);
+                return;
+            }
+
+            JumpTo(objectsOfProto.AsList()[0]);
+
+            void JumpTo(IStaticWorldObject staticWorldObject)
+            {
+                this.lastJumpObjectId = staticWorldObject.Id;
+                var center = staticWorldObject.ProtoStaticWorldObject
+                                              .Layout.Center;
+                Api.Client.World.SetPosition(
+                    ClientCurrentCharacterHelper.Character,
+                    position: staticWorldObject.TilePosition.ToVector2D()
+                              + (center.X, center.Y),
+                    forceReset: true);
+            }
         }
 
         private void PlaceSelectedHandler(Vector2Ushort tilePosition)

@@ -390,12 +390,17 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 사냥 숙달하기-제2부
 
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
+새로 발견한 것은 [b]완벽주의자 메뉴[/b]에 나타납니다! 이 메뉴를 이용하여 진행 상황을 톺아보고, CryoFall의 세계에 대해 자세히 배울 수 있도록 [u]추가 학습 포인트[/u]를 얻을 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
+인벤토리를 정렬하려면, 인벤토리를 열고, 인벤토리 격자 위에서 [u]{0}[/u] 또는 [u]{1}[/u] 키를 누르세요. [b]모든[/b] 인벤토리 격자를 이와 같은 방법으로 정렬할 수 있습니다 (예: 상자).
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSprint:
+질주(달리기)하려면 움직이면서 [u]Shift 키[/u]를 누르기만 하면 됩니다. 몇 미터만 달려보세요. 위험한 포식자로부터 벗어나는데 이만한 게 없답니다.
+
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
 인벤토리 정렬 방법이나 달리기 방법과 같이 CryoFall을 완전히 즐기기 위해 알아야 할 것들이 몇 가지 있습니다!
-
-Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
-`[*] 인벤토리를 정렬하려면, 인벤토리를 열고 [u]마우스 가운데 버튼[/u]이나 (컨트롤을 변경하지 않은 경우) [u]Z 키[/u]를 누르기만 하면 됩니다. [b]모든[/b] 인벤토리 격자(예: 상자)를 이와 같이 정렬시킬 수 있습니다.
-[*] 달리려면 이동 중에 그냥 [u]Shift 키[/u]를 누르고 있으면 됩니다. 한 번 몇 미터만 달려보세요. 위험한 포식자에게서 도망칠 때 달리기가 유용하게 사용될 겁니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
 기본 행동 익히기
@@ -491,6 +496,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
 환경 탐험-제4부
 
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+컨테이너 약탈하기
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 오래된 유적은 희귀한 부품과 특정 자원을 찾을 수 있는 가장 좋은 곳입니다. 특히 만들어야 할 것이 생겼을 때, 가끔 유적을 탐험해 보는 것은 어떨까요?
 
@@ -502,8 +510,20 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 오래된 유적 탐험하기
 
-Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
-컨테이너 약탈하기
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindMany:
+[b]더 많은[/b] 순간 이동 장소를 발견할수록 이동 범위가 [b]더 넓어집니다[/b].
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintFindTwo:
+서로 넘나들 수 있는 [b]두[/b]개 이상의 순간 이동 장소를 찾으세요.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@HintHiddenLocations:
+[b]숨겨진[/b] 순간 이동 장소가 있을 수도 있습니다!
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Description:
+두 다리로 뛰어다니는 것도 좋지만, 정말 먼 거리라면, 외계 순간 이동을 이용하는 게 좋습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestFastTravel@Name:
+빠른 이동
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@HintFillet:
 생선[u]살[/u]은 (아이템 사용과 같은) [b]행동[/b]으로 잡은 물고기로부터 [u]얻을[/u] 수 있습니다.
@@ -586,6 +606,9 @@ Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Description:
 
 Scripts/Quests/Tutorial/Stage4/QuestDroneMining@Name:
 드론 채굴
+
+Scripts/Quests/Tutorial/Stage4/QuestMasterHunter6@Name:
+사냥 숙달하기-제6부
 
 Scripts/Quests/Tutorial/Stage4/QuestPowerGrid2@HintGridExpansion:
 기지가 성장해감에 따라 항상 [u]충분할 정도[/u]로 [u]전기 저장소 용량을 확대[/u]하는 것이 좋습니다.

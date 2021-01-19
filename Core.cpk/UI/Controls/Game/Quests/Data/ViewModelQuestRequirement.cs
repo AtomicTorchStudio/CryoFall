@@ -12,7 +12,7 @@
     public class ViewModelQuestRequirement : BaseViewModel
     {
         private static readonly SoundResource SoundResourceQuestRequirementSatisfied =
-            new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg");
+            new("UI/Quests/QuestRequirementSatisfied.ogg");
 
         private static ulong lastTaskFinishedFrameNumber;
 

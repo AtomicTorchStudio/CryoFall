@@ -1,15 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public readonly struct ElectricityThresholdsPreset : IRemoteCallParameter, IEquatable<ElectricityThresholdsPreset>
     {
-        public static readonly IEqualityComparer<ElectricityThresholdsPreset> ElectricityThresholdsPresetComparer
-            = new ElectricityThresholdsPresetEqualityComparer();
-
         public readonly byte ShutdownPercent;
 
         public readonly byte StartupPercent;
@@ -127,24 +123,6 @@
             reversed = NormalizeConsumerElectricityThresholds(reversed);
             return new ElectricityThresholdsPreset(startupPercent: reversed.ShutdownPercent,
                                                    shutdownPercent: reversed.StartupPercent);
-        }
-
-        private sealed class ElectricityThresholdsPresetEqualityComparer
-            : IEqualityComparer<ElectricityThresholdsPreset>
-        {
-            public bool Equals(ElectricityThresholdsPreset x, ElectricityThresholdsPreset y)
-            {
-                return x.StartupPercent == y.StartupPercent
-                       && x.ShutdownPercent == y.ShutdownPercent;
-            }
-
-            public int GetHashCode(ElectricityThresholdsPreset obj)
-            {
-                unchecked
-                {
-                    return (obj.StartupPercent.GetHashCode() * 397) ^ obj.ShutdownPercent.GetHashCode();
-                }
-            }
         }
     }
 }

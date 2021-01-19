@@ -47,7 +47,9 @@
                 return false;
             }
 
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject,
+                                                                    character,
+                                                                    requireFactionPermission: false)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
@@ -62,7 +64,7 @@
 
                 if (IsClient)
                 {
-                    WorldObjectOwnersSystem.ClientOnCannotInteractNotOwner(worldObject);
+                    WorldObjectOwnersSystem.ClientOnCannotInteractNotOwner(worldObject, isFactionAccess: false);
                 }
             }
 

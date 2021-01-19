@@ -23,8 +23,8 @@
 
         // used for blending only (if lava on the same height level which is not intended)
         public override TextureResource UnderwaterGroundTextureAtlas { get; }
-            = new TextureResource("Terrain/LakeShore/TileLakeshoreSand2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Volcanic/TileVolcanic1.jpg",
+                  isTransparent: false);
 
         public override string WorldMapTexturePath
             => "Map/Lava.png";
@@ -46,7 +46,7 @@
         protected override float WaterSpeed => 0.3f;
 
         protected override TextureResource WaterSufraceTexture { get; }
-            = new TextureResource("Terrain/Lava/TileLava1.jpg");
+            = new("Terrain/Lava/TileLava1.jpg");
 
         protected override ITextureResource ClientSetupTileRendering(Tile tile, IClientSceneObject sceneObject)
         {

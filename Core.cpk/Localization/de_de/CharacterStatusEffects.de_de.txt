@@ -28,6 +28,12 @@ Du hast vor kurzem eine deftige Mahlzeit zu dir genommen. Jede Aufgabe, die du a
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Deftige Mahlzeit
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+Verkürzt die Fertigungsgeschwindigkeit durch ein isoliertes, auf den Nutzer beschränktes Quantenfeld.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+Quantenbeschleunigung
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 Du hast vor Kurzem eine herzhafte Mahlzeit zu dir genommen. Das Leben erscheint dir nun ein Stück erfreulicher.
 
@@ -63,9 +69,6 @@ Du hast dir das Bein gebrochen, was deine Bewegungsfähigkeit einschränkt. Jede
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Gebrochenes Bein
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-Angriff bei Benommenheit unmöglich.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Du bist benommen! Warte einen Moment, um wieder Herr deiner Sinne zu werden.
@@ -180,6 +183,12 @@ Du hast in zu kurzer Zeit zu viel Medizin zu dir genommen. Gedulde dich ein weni
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 Übermäßiger Gebrauch von Medizin
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+Du hast mehr gegessen, als es vermutlich gut für dich ist. Wenn du noch mehr isst, wird dir wird übel werden.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+Überessen
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 Bitte warte, bis die Peredozin-Anwendung abgeschlossen ist.

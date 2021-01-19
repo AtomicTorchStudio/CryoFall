@@ -19,6 +19,8 @@
     {
         public readonly ImageBrush ImageBrush;
 
+        private readonly ICamera2D camera;
+
         private readonly ICharacter character;
 
         private readonly string renderingTag;
@@ -35,6 +37,8 @@
 
         private IClientItemsContainer equipmentContainer;
 
+        private bool? isActive;
+
         private bool isNeedRefreshEquipment;
 
         private ProtoCharacterSkeleton protoCharacterSkeleton;
@@ -45,6 +49,7 @@
             ICharacter character,
             IClientSceneObject sceneObjectCamera,
             IClientSceneObject sceneObjectSkeleton,
+            ICamera2D camera,
             IRenderTarget2D renderTarget2D,
             string renderingTag,
             float textureWidth,
@@ -60,6 +65,7 @@
 
             this.sceneObjectCamera = sceneObjectCamera;
             this.sceneObjectSkeleton = sceneObjectSkeleton;
+            this.camera = camera;
 
             this.renderTarget2D = renderTarget2D;
             this.renderingTag = renderingTag;
@@ -98,6 +104,23 @@
         {
             get => this.currentSkeleton.CurrentSkeleton;
             set => this.currentSkeleton.SelectCurrentSkeleton(value, "Idle", true);
+        }
+
+        public bool IsActive
+        {
+            get => this.isActive ?? false;
+            set
+            {
+                if (this.isActive == value)
+                {
+                    return;
+                }
+
+                this.isActive = value;
+                this.camera.DrawMode = value
+                                           ? CameraDrawMode.Auto
+                                           : CameraDrawMode.Manual;
+            }
         }
 
         public void RefreshEquipment()

@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects
 {
+    using System.Collections.Generic;
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -24,6 +26,10 @@
         IReadOnlyStatsDictionary ProtoEffects { get; }
 
         double VisibilityIntensityThreshold { get; }
+
+        void ClientTooltipCreateControls(List<UIElement> controls);
+
+        ITextureResource GetColorizedIcon(double effectIntensity);
 
         void ServerAddIntensity(ILogicObject statusEffect, double intensityToAdd);
 

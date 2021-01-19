@@ -27,11 +27,8 @@
             Visibility="{Binding CraftingQueueControlVisibility}">
         <Grid>
             <Grid>
-                <Border CornerRadius="3">
-                    <Border.Background>
-                        <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.6" />
-                    </Border.Background>
-                </Border>
+                <Border Style="{StaticResource WidgetBorderShadowStyle}" />
+                <Border CornerRadius="3" Background="{StaticResource WidgetBackgroundBlueBrush}" />
                 <Border CornerRadius="3" Background="{StaticResource WidgetBackgroundImageTexture}" />
                 <Border VerticalAlignment="Top" Height="10" CornerRadius="3"
                         Background="{StaticResource WidgetBackgroundGradientHorizontal}" />

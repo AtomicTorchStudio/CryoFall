@@ -3,7 +3,6 @@
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -53,15 +52,6 @@
                              nestedList: new DropItemsList(outputs: 1)
                                          .Add<ItemAnimalFat>(count: 1)
                                          .Add<ItemBones>(count: 1));
-        }
-
-        protected override void ServerInitializeCharacterMob(ServerInitializeData data)
-        {
-            base.ServerInitializeCharacterMob(data);
-
-            var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalMedium>();
-            data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)

@@ -40,10 +40,10 @@
 
         public abstract double TreeHeight { get; }
 
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: 0,
-                                                                       maxX: 1,
-                                                                       maxY: 4);
+        public override BoundsInt ViewBoundsExpansion => new(minX: -1,
+                                                             minY: 0,
+                                                             maxX: 1,
+                                                             maxY: 4);
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

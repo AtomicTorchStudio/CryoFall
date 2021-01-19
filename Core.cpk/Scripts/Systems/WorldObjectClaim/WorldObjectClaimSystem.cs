@@ -97,11 +97,11 @@
             }
 
             objectClaim = Server.World.CreateLogicObject<WorldObjectClaim>();
-            WorldObjectClaim.ServerSetupClaim(objectClaim, 
-                                              character, 
-                                              worldObject, 
+            WorldObjectClaim.ServerSetupClaim(objectClaim,
+                                              character,
+                                              worldObject,
                                               durationSeconds,
-                    claimForPartyMembers);
+                                              claimForPartyMembers);
             worldObjectPublicState.WorldObjectClaim = objectClaim;
             //Logger.Dev("World object claim added: " + worldObject);
 

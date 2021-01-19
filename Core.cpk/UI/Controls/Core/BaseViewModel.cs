@@ -50,9 +50,9 @@
             //}
         }
 
-        internal static IClientApi Client => Api.Client;
+        protected static IClientApi Client => Api.Client;
 
-        internal static ILogger Logger => Api.Logger;
+        protected static ILogger Logger => Api.Logger;
 
         public void RegisterSubscription(StateSubscriptionToken stateSubscriptionToken)
         {

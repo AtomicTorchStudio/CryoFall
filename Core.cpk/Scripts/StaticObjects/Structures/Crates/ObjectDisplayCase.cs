@@ -19,8 +19,9 @@
 
         public ObjectDisplayCase()
         {
-            this.textureResourceFront = new TextureResource(this.GenerateTexturePath() + "Front");
-            this.textureResourceBack = new TextureResource(this.GenerateTexturePath() + "Back");
+            var texturePath = this.GenerateTexturePath();
+            this.textureResourceFront = new TextureResource(texturePath + "Front");
+            this.textureResourceBack = new TextureResource(texturePath + "Back");
         }
 
         public override string Description =>

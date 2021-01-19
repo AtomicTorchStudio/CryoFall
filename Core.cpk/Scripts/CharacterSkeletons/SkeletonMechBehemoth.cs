@@ -11,10 +11,10 @@
         public override double DefaultMoveSpeed => 0.8;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("MechBehemoth/Back");
+            = new("MechBehemoth/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("MechBehemoth/Front");
+            = new("MechBehemoth/Front");
 
         public override double WorldScale => 0.13;
 
@@ -22,9 +22,9 @@
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {
-            shadowRenderer.PositionOffset = (0, -0.1 * scaleMultiplier);
-            shadowRenderer.Scale = (2 * scaleMultiplier, 1.7 * scaleMultiplier);
-            shadowRenderer.Color = Color.FromArgb(0x88, 0x00, 0x00, 0x00);
+            shadowRenderer.PositionOffset = (0, -0.01 * scaleMultiplier);
+            shadowRenderer.Scale = (2.0 * scaleMultiplier, 2.3 * scaleMultiplier);
+            shadowRenderer.Color = Color.FromArgb(0xAA, 0x00, 0x00, 0x00);
         }
 
         public override void CreatePhysics(IPhysicsBody physicsBody)

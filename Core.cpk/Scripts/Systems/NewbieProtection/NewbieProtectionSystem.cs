@@ -13,7 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -37,11 +37,14 @@
         public const string NewbieProtectionExpireInFormat =
             "The newbie protection will expire in:";
 
+        public const string Notification_CanCancelProtection =
+            "You can cancel this protection at any time in the social menu.";
+
         public const string Notification_CannotDamageOtherPlayersOrLootBags =
-            "While under newbie protection you cannot attack other players or loot their bags or items. But you can cancel this protection at any time in the politics menu.";
+            "While under newbie protection you cannot attack other players or loot their bags or items.";
 
         public const string Notification_CannotPerformActionWhileUnderProtection =
-            "You cannot perform this action while under newbie protection. But you can cancel this protection at any time in the politics menu.";
+            "You cannot perform this action while under newbie protection.";
 
         public const string Notification_LootBagUnderProtection =
             "This bag is under newbie protection, so only the owner can pick it up.";
@@ -106,9 +109,11 @@
             };
 
             NotificationSystem.ClientShowNotification(
-                title: Notification_CannotPerformActionWhileUnderProtection,
+                title: Notification_CannotPerformActionWhileUnderProtection
+                       + "[br]"
+                       + Notification_CanCancelProtection,
                 icon: icon,
-                onClick: Menu.Open<WindowPolitics>,
+                onClick: Menu.Open<WindowSocial>,
                 color: NotificationColor.Bad);
         }
 
@@ -119,12 +124,18 @@
                                   icon: isLootBag
                                             ? Api.GetProtoEntity<ObjectPlayerLootContainer>().Icon
                                             : null,
-                                  onClick: Menu.Open<WindowPolitics>)
+                                  onClick: Menu.Open<WindowSocial>)
                               .HideAfterDelay(delaySeconds: 2 * 60);
         }
 
         public static void ServerDisableNewbieProtection(ICharacter character)
         {
+            if (PveSystem.ServerIsPvE)
+            {
+                // no newbie protection on PvE servers as it's not required
+                return;
+            }
+
             for (var index = 0; index < serverNewbies.Count; index++)
             {
                 var tuple = serverNewbies[index];
@@ -198,7 +209,6 @@
 
             if (NewbieProtectionDuration <= 0)
             {
-                // newbie protection in server rates 
                 return;
             }
 
@@ -266,7 +276,9 @@
                 return true;
             }
 
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject, character))
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject,
+                                                                    character,
+                                                                    requireFactionPermission: false))
             {
                 return true;
             }
@@ -349,7 +361,9 @@
                     // as player doesn't have their private state info.
                     // Anyway, it's not a big deal as the check could be done on the server side.
                     if (LandClaimSystem.SharedIsAreaUnderRaid(area)
-                        && !LandClaimSystem.SharedIsOwnedArea(area, character))
+                        && !LandClaimSystem.SharedIsOwnedArea(area,
+                                                              character,
+                                                              requireFactionPermission: false))
                     {
                         // cannot pickup - there is an area under raid and current player is not the area owner
                         if (writeToLog)

@@ -17,16 +17,16 @@
 
     public class ObjectVehicleAssemblyBay : ProtoObjectVehicleAssemblyBay
     {
-        private static readonly Vector2Ushort CombinedTextureSize = (512, 572);
+        private static readonly Vector2Ushort ComposedTextureSize = (512, 572);
 
         private static readonly TextureResource TextureResourceConsole
-            = new TextureResource("StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay_Console");
+            = new("StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay_Console");
 
         private static readonly Vector2D TextureResourceConsoleOffset = (93 / 256.0,
                                                                          338 / 256.0);
 
         private static readonly TextureResource TextureResourcePlatform
-            = new TextureResource("StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay_Platform");
+            = new("StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay_Platform");
 
         private static readonly Vector2D WorldPositionOffset = (0, 0.2);
 
@@ -46,16 +46,16 @@
         public override float StructurePointsMax => 20000;
 
         protected override BoundsDouble BoundsNoObstaclesTest
-            => new BoundsDouble(offset: WorldPositionOffset + (0.2, 0.2),
-                                size: (1.6, 1.1));
+            => new(offset: WorldPositionOffset + (0.2, 0.2),
+                   size: (1.6, 1.1));
 
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
             var renderer = blueprint.SpriteRenderer;
             renderer.TextureResource = this.Icon;
             renderer.PositionOffset = WorldPositionOffset;
-            renderer.Size = (CombinedTextureSize.X * 0.5,
-                             CombinedTextureSize.Y * 0.5);
+            renderer.Size = (ComposedTextureSize.X * 0.5,
+                             ComposedTextureSize.Y * 0.5);
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -65,7 +65,9 @@
                 return false;
             }
 
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject,
+                                                                    character,
+                                                                    requireFactionPermission: false)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
@@ -73,14 +75,16 @@
 
             if (IsClient && writeToLog)
             {
-                WorldObjectOwnersSystem.ClientOnCannotInteractNotOwner(worldObject);
+                WorldObjectOwnersSystem.ClientOnCannotInteractNotOwner(worldObject, isFactionAccess: false);
             }
 
             return false;
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => WorldPositionOffset + (1, 1.5);
+        {
+            return WorldPositionOffset + (1, 1.5);
+        }
 
         protected override ITextureResource ClientCreateIcon()
         {
@@ -89,7 +93,7 @@
                 "Composed " + this.Id,
                 isTransparent: true,
                 isUseCache: true,
-                customSize: CombinedTextureSize,
+                customSize: ComposedTextureSize,
                 textureResourcesWithOffsets: new[]
                 {
                     new TextureResourceWithOffset(TextureResourcePlatform,

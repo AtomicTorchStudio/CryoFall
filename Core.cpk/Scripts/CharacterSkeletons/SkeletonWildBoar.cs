@@ -15,10 +15,10 @@
         public override double IconScale => 0.6;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("WildBoar/Back");
+            = new("WildBoar/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("WildBoar/Front");
+            = new("WildBoar/Front");
 
         public override double WorldScale => 0.4;
 
@@ -33,8 +33,8 @@
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
             physicsBody
-                .AddShapeRectangle(size: (0.6, 0.25),
-                                   offset: (-0.3, -0.05))
+                .AddShapeCircle(radius: 0.25,
+                                center: (0, 0.125))
                 .AddShapeCircle(radius: 0.45,
                                 center: (0, 0.35),
                                 group: CollisionGroups.HitboxMelee)

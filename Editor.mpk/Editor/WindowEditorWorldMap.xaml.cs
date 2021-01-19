@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor
 {
     using System;
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
@@ -12,7 +13,7 @@
     {
         private ControlWorldMap controlWorldMap;
 
-        private IWorldMapVisualizer[] visualisers;
+        private BaseWorldMapVisualizer[] visualizers = Array.Empty<BaseWorldMapVisualizer>();
 
         protected override void InitMenu()
         {
@@ -20,13 +21,62 @@
             this.controlWorldMap = this.GetByName<ControlWorldMap>("ControlWorldMap");
         }
 
+        protected override void OnLoaded()
+        {
+            this.controlWorldMap.Loaded += this.ControlWorldMapLoadedHandler;
+
+            if (this.controlWorldMap.IsLoaded)
+            {
+                this.ControlWorldMapLoadedHandler(null, null);
+            }
+        }
+
+        protected override void OnUnloaded()
+        {
+            this.controlWorldMap.Loaded -= this.ControlWorldMapLoadedHandler;
+            this.DestroyVisualizers();
+        }
+
         protected override void WindowClosed()
         {
-            foreach (var visualiser in this.visualisers)
+            this.DestroyVisualizers();
+            base.WindowClosed();
+        }
+
+        protected override void WindowOpening()
+        {
+            this.TryCreateVisualizers();
+            this.TryActivateWorldMapController();
+            base.WindowOpening();
+        }
+
+        private static void MapClickHandler(Vector2D worldPosition)
+        {
+            EditorSystem.ClientTeleport(worldPosition);
+        }
+
+        private void ControlWorldMapLoadedHandler(object sender, RoutedEventArgs e)
+        {
+            this.TryCreateVisualizers();
+        }
+
+        private void DestroyVisualizers()
+        {
+            if (this.controlWorldMap.WorldMapController is not null)
+            {
+                this.controlWorldMap.WorldMapController.IsActive = false;
+            }
+
+            if (this.visualizers.Length == 0)
+            {
+                return;
+            }
+
+            foreach (var visualizer in this.visualizers)
             {
                 try
                 {
-                    visualiser.Dispose();
+                    visualizer.Dispose();
                 }
                 catch (Exception ex)
                 {
@@ -34,37 +84,58 @@
                 }
             }
 
-            this.visualisers = Array.Empty<IWorldMapVisualizer>();
-
-            this.controlWorldMap.WorldMapController.IsActive = false;
-
-            base.WindowClosed();
+            this.visualizers = Array.Empty<BaseWorldMapVisualizer>();
         }
 
-        protected override void WindowOpened()
+        private void TryActivateWorldMapController()
         {
-            base.WindowOpened();
-            this.controlWorldMap.WorldMapController.MapClickCallback = MapClickHandler;
+            if (this.controlWorldMap.WorldMapController is null)
+            {
+                return;
+            }
+
+            switch (this.Window.State)
+            {
+                case GameWindowState.Opening:
+                case GameWindowState.Opened:
+                    this.controlWorldMap.WorldMapController.IsActive = true;
+                    this.controlWorldMap.WorldMapController.MapClickCallback = MapClickHandler;
+
+                    foreach (var visualizer in this.visualizers)
+                    {
+                        visualizer.IsEnabled = true;
+                    }
+
+                    break;
+            }
         }
 
-        protected override void WindowOpening()
+        private void TryCreateVisualizers()
         {
+            if (!this.controlWorldMap.IsLoaded)
+            {
+                return;
+            }
+
+            if (this.visualizers.Length > 0)
+            {
+                return;
+            }
+
             var controller = this.controlWorldMap.WorldMapController;
+            if (controller is null)
+            {
+                return;
+            }
 
-            this.visualisers = new IWorldMapVisualizer[]
+            this.visualizers = new BaseWorldMapVisualizer[]
             {
                 new ClientWorldMapResourcesVisualizer(controller, enableNotifications: true),
-                new ClientWorldMapEventVisualizer(controller, enableNotifications: true)
+                new ClientWorldMapEventVisualizer(controller)
             };
 
-            controller.IsActive = true;
-
-            base.WindowOpening();
-        }
-
-        private static void MapClickHandler(Vector2D worldPosition)
-        {
-            EditorSystem.ClientTeleport(worldPosition);
+            this.TryActivateWorldMapController();
+            controller.CenterMapOnPlayerCharacter(true);
         }
     }
 }

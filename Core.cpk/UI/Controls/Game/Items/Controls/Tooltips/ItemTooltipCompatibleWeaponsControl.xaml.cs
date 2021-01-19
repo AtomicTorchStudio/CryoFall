@@ -12,7 +12,7 @@
 
         public static ItemTooltipCompatibleWeaponsControl Create(IProtoItemAmmo protoItemAmmo)
         {
-            return new ItemTooltipCompatibleWeaponsControl() { protoItemAmmo = protoItemAmmo };
+            return new() { protoItemAmmo = protoItemAmmo };
         }
 
         protected override void OnLoaded()

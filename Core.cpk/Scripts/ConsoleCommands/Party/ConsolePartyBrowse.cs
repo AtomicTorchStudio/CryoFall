@@ -27,7 +27,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Party
             var sb = new StringBuilder("Player \"")
                      .Append(player.Name)
                      .AppendLine("\" - party info:")
-                     .AppendLine("Clan tag: " + (PartySystem.SharedGetClanTag(party) ?? "<none>"))
                      .AppendLine("Members list: ");
 
             foreach (var memberName in memberNames)

@@ -1,6 +1,9 @@
 ﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
 İnşa et: {0}
 
+Scripts/PlayerTasks/TaskCompleteCompletionistAnyEntry@DefaultDescription:
+Tamamlayıcı: her ödülü kabul et
+
 Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 Tamamla: {0} (teknoloji sınıfı)
 
@@ -10,8 +13,14 @@ Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 Üret
 
+Scripts/PlayerTasks/TaskDefeatBoss@DescriptionFormat:
+Bossu yen: {0}
+
 Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
 Yok et: {0}
+
+Scripts/PlayerTasks/TaskDiscoverTeleport@DescriptionFormat:
+Keşfet: {0}
 
 Scripts/PlayerTasks/TaskGather@DescriptionFormat:
 Topla: {0}

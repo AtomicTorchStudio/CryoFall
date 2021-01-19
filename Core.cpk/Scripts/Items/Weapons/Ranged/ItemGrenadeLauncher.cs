@@ -8,7 +8,7 @@
     {
         public override ushort AmmoCapacity => 1;
 
-        public override double AmmoReloadDuration => 3;
+        public override double AmmoReloadDuration => 2.5;
 
         public override double CharacterAnimationAimingRecoilDuration => 0.6;
 
@@ -23,7 +23,7 @@
 
         public override string Name => "Grenade launcher";
 
-        public override double ReadyDelayDuration => 2;
+        public override double ReadyDelayDuration => 1.5;
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

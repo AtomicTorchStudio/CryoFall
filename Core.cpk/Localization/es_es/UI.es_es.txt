@@ -28,6 +28,9 @@ Guardando...
 UI/CoreStrings@AutosaveNotification_Title:
 Captura del servidor
 
+UI/CoreStrings@BbCodeFormattingDescription:
+Etiquetas disponible: Códigos BB tales como [b], [u], [i], [url=example.com]enlaces[/url], [color=#FF0000]colores[/color], puntos de enumeración [*] y saltos de línea [br] (los saltos de línea se añaden automáticamente en líneas nuevas).
+
 UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Se destruirá en
 
@@ -166,6 +169,9 @@ UI/CoreStrings@ChatDisclaimer_UseBlock:
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 No volver a preguntar
+
+UI/CoreStrings@ClanTag:
+Etiqueta de clan
 
 UI/CoreStrings@ClanTag_Current:
 Etiqueta de clan:
@@ -331,6 +337,9 @@ Depósito profundo (poca producción, infinito)
 UI/CoreStrings@DepositCapacityStats_TitleLimited:
 Depósito de superficie (mucha producción)
 
+UI/CoreStrings@DestructionTimeout_Tooltip:
+La cuenta atrás de la destrucción comenzará cuando se destruya la adjudicación de terreno, es decir, cuando los puntos de la estructura lleguen a cero.
+
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 ¿Seguro que quieres usar {0}?
 
@@ -357,6 +366,12 @@ Añade efectos:
 
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Elimina efectos:
+
+UI/CoreStrings@EmptyList:
+Esta lista está vacía.
+
+UI/CoreStrings@EmptyText:
+El texto está vacío.
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 UE
@@ -385,6 +400,371 @@ Todas las notas de las actualizaciones de CryoFall (solo en inglés)
 UI/CoreStrings@Extras_RoadmapTooltip:
 Hoja de ruta del desarrollo de CryoFall (solo en inglés)
 
+UI/CoreStrings@Faction_Admin:
+Admin.
+
+UI/CoreStrings@Faction_Application_Accept:
+Aceptar
+
+UI/CoreStrings@Faction_Application_Cancel:
+Cancelar
+
+UI/CoreStrings@Faction_Application_Reject:
+Rechazar
+
+UI/CoreStrings@Faction_Applications:
+Solicitudes
+
+UI/CoreStrings@Faction_Applications_Empty:
+No hay solicitudes activas.
+
+UI/CoreStrings@Faction_Applications_RejectAll:
+Rechazar todas las solicitudes
+
+UI/CoreStrings@Faction_CannotRejoinInvitationRequired:
+Has abandonado esta facción o te han expulsado. Necesitarás una invitación para volver a unirte.
+
+UI/CoreStrings@Faction_CopyTag:
+Copiar etiqueta de clan
+
+UI/CoreStrings@Faction_CreateFaction:
+Crear facción
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog1:
+¿Seguro que lo has escrito todo bien?
+
+UI/CoreStrings@Faction_CreateFaction_ConfirmationDialog2:
+Tras la creación de la facción, no podrás cambiar ni el tipo de facción ni la presentación.
+
+UI/CoreStrings@Faction_CurrentRole_Field:
+Tu rol:
+
+UI/CoreStrings@Faction_CurrentRole_Permissions_None:
+Tu rol actual no te otorga ningún privilegio administrativo.
+
+UI/CoreStrings@Faction_Description_Private:
+Descripción privada
+
+UI/CoreStrings@Faction_Description_Public:
+Descripción pública
+
+UI/CoreStrings@Faction_Description_ShowsOnlineStatusAndMapLocation:
+Muestra el estado online y la posición en el mapa de los miembros de la facción.
+
+UI/CoreStrings@Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat:
+¿Seguro que quieres expulsar a [b]{0}[/b] de la facción?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox1Format:
+Tengo la certeza de querer [b]desmantelar[/b] la facción.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Checkbox2Format:
+Entiendo que estos miembros de la facción [b]no podrán unirse[/b] a ninguna otra facción durante [b]{0}[/b].
+
+UI/CoreStrings@Faction_DialogDissolveFaction_ErrorHasLandClaimsClaims:
+Primero debes desmantelar todas las adjudicaciones de terreno que pertenezcan a la facción.
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Message:
+¿Seguro que quieres desmantelar la facción?
+
+UI/CoreStrings@Faction_DialogDissolveFaction_Title:
+Desmantelar facción
+
+UI/CoreStrings@Faction_DialogJoinConfirmation_Message_Format:
+Importante: Estás a punto de unirte a [b]{0}[/b].
+
+UI/CoreStrings@Faction_DialogLeaveFaction_CheckboxFormat:
+Comprendo que no podré volver a unirme a esta facción durante [b]{0}[/b] y que no podré unirme a ninguna otra facción durante [b]{1}[/b].
+
+UI/CoreStrings@Faction_DialogLeaveFaction_Message:
+¿Seguro que quieres abandonar la facción?
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Message:
+Escribe el nombre del miembro actual de la facción que se convertirá en el nuevo líder.
+
+UI/CoreStrings@Faction_DialogOwnershipTransfer_Title:
+Transferencia de propiedad de la facción
+
+UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
+Importante: Estás a punto de enviar una solicitud para unirte a [b]{0}[/b].
+
+UI/CoreStrings@Faction_Diplomacy:
+Diplomacia
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_AcceptIncoming:
+Aceptar propuesta de alianza
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_CancelOutgoing:
+Cancelar propuesta de alianza
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequest_RejectIncoming:
+Rechazar propuesta de alianza
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Incoming:
+Propuestas recibidas
+
+UI/CoreStrings@Faction_Diplomacy_AllianceRequests_Outgoing:
+Propuestas hechas
+
+UI/CoreStrings@Faction_Diplomacy_Allies:
+Tratados de paz
+
+UI/CoreStrings@Faction_Diplomacy_Ally:
+Aliada
+
+UI/CoreStrings@Faction_Diplomacy_BreakAlliance:
+Romper alianza
+
+UI/CoreStrings@Faction_Diplomacy_DeclareWar:
+Declarar la guerra
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByCurrentFaction:
+Le hemos declarado la guerra a
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_DeclaredByOtherFaction:
+Nos han declarado la guerra
+
+UI/CoreStrings@Faction_Diplomacy_Enemies_Mutual:
+Declaración mutua de guerra
+
+UI/CoreStrings@Faction_Diplomacy_Neutral:
+Neutral
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance:
+Propuesta de paz
+
+UI/CoreStrings@Faction_Diplomacy_ProposeAlliance_ErrorCooldown_Format:
+`Hace poco que le propusiste un tratado de paz a esta facción.
+[br]No podrás volver a hacerlo durante {0}.`
+
+UI/CoreStrings@Faction_Diplomacy_WarDeclarations:
+Declaraciones de guerra
+
+UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
+Retirar declaración de guerra
+
+UI/CoreStrings@Faction_ErrorDontHaveFaction:
+No formas parte de ninguna facción.
+
+UI/CoreStrings@Faction_ErrorEmblemUsed:
+El emblema seleccionado ya está siendo utilizado. Elige otro.
+
+UI/CoreStrings@Faction_ErrorFactionNotFound:
+Facción no encontrada.
+
+UI/CoreStrings@Faction_ErrorUnderJoinCooldown:
+Hace poco que has abandonado una facción.
+
+UI/CoreStrings@Faction_Events:
+Eventos
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind:
+Tipo de evento
+
+UI/CoreStrings@Faction_Events_Filter_ByEventKind_All:
+Todo
+
+UI/CoreStrings@Faction_Events_Filter_ByMemberName:
+Nombre del miembro
+
+UI/CoreStrings@Faction_Events_Recent:
+Eventos recientes
+
+UI/CoreStrings@Faction_FactionFull:
+La facción está llena.
+
+UI/CoreStrings@Faction_FactionKind_Current:
+Tipo de facción:
+
+UI/CoreStrings@Faction_FactionKind_Private_ApplicationOrInvitationRequired:
+Se necesita una solicitud o una invitación para unirse.
+
+UI/CoreStrings@Faction_FactionKind_Private_Description:
+Los oficiales de la facción toman la decisión de aceptar o rechazar solicitudes.
+
+UI/CoreStrings@Faction_FactionKind_Private_Title:
+Privada
+
+UI/CoreStrings@Faction_FactionKind_Public_Description:
+Cualquiera puede unirse.
+
+UI/CoreStrings@Faction_FactionKind_Public_Title:
+Pública
+
+UI/CoreStrings@Faction_Invite:
+Invitar
+
+UI/CoreStrings@Faction_Invite_Accept:
+Aceptar
+
+UI/CoreStrings@Faction_Invite_Cancel:
+Cancelar
+
+UI/CoreStrings@Faction_Invite_Decline:
+Rechazar
+
+UI/CoreStrings@Faction_Invites:
+Invitaciones
+
+UI/CoreStrings@Faction_Invites_CancelAll:
+Cancelar todas las invitaciones
+
+UI/CoreStrings@Faction_Invites_Empty:
+No hay invitaciones activas.
+
+UI/CoreStrings@Faction_InviteToFaction:
+Invitar a la facción
+
+UI/CoreStrings@Faction_IsAcceptingApplications_Checkbox:
+Se aceptan solicitudes
+
+UI/CoreStrings@Faction_Join:
+Unirse
+
+UI/CoreStrings@Faction_JoinCooldown_Description:
+Al abandonar una facción, no podrás unirte o crear otra facción hasta que acabe el tiempo de recarga.
+
+UI/CoreStrings@Faction_JoinCooldownRemains:
+Podrás unirte o crear una facción en:
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_CanIncrease:
+El límite de terrenos adjudicados puede aumentar al mejorar el nivel de la facción.
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Format:
+Terrenos adj. facción: {0}/{1}
+
+UI/CoreStrings@Faction_LandClaimNumberLimit_Reached:
+Se ha alcanzado el límite de terrenos adjudicados de la facción.
+
+UI/CoreStrings@Faction_Leaderboard:
+Marcador
+
+UI/CoreStrings@Faction_Leaderboard_FactionParticipates:
+Participa en el marcador.
+
+UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
+Próxima actualización en:
+
+UI/CoreStrings@Faction_Leaderboard_Rank:
+Rango de marcador
+
+UI/CoreStrings@Faction_LeaderField:
+Líder:
+
+UI/CoreStrings@Faction_LeaveFaction:
+Abandonar facción
+
+UI/CoreStrings@Faction_Level:
+Nivel
+
+UI/CoreStrings@Faction_Level_Format:
+Nivel: [b]{0}[/b]
+
+UI/CoreStrings@Faction_MaxMembers_Format:
+Máximo de miembros: [b]{0}[/b]
+
+UI/CoreStrings@Faction_Member_LastOnlineDate_Format:
+Última conexión: {0}
+
+UI/CoreStrings@Faction_Members:
+Miembros
+
+UI/CoreStrings@Faction_MembersNumber_Format:
+Miembros: [b]{0}/{1}[/b]
+
+UI/CoreStrings@Faction_NotAcceptingApplications:
+No se aceptan solicitudes
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerApproved_Format:
+¡{0} ha aceptado que te unas a {1}! ¡Te damos la bienvenida!
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format:
+{0} te ha expulsado de la facción.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerRemoved_LowStanding:
+Se te ha expulsado automáticamente de la facción debido a tu baja situación.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Description:
+Matar a aliados y miembros de la facción empeora tu situación en la facción actual.
+
+UI/CoreStrings@Faction_NotificationCurrentPlayerStandingDecreased_Title:
+Situación en la facción empeorada
+
+UI/CoreStrings@Faction_OffendingPlayersAutomaticallyRemoved:
+Los jugadores que incurran reiterativamente en acciones censurables serán eliminados automáticamente de la facción.
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
+Gestión de terrenos adjudicados
+
+UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
+Construir y desmantelar dentro del terreno adjudicado de la facción. Además: Asignar derechos de acceso, mejorar adjudicaciones, acceder a los almacenes del terreno adjudicado, activar E.S.C.U.D.O., transferir adjudicaciones a la facción.
+
+UI/CoreStrings@Faction_Permission_Required_Format:
+Se necesita el permiso de la facción {0}.
+
+UI/CoreStrings@Faction_PrivateMessageToLeader:
+Mensaje privado al líder de la facción
+
+UI/CoreStrings@Faction_Recruitment:
+Reclutamiento
+
+UI/CoreStrings@Faction_RemoveMember:
+Expulsar miembro
+
+UI/CoreStrings@Faction_Role_Leader:
+Líder
+
+UI/CoreStrings@Faction_Role_Member:
+Miembro
+
+UI/CoreStrings@Faction_Score_Format:
+Puntuación de facción: [b]{0}[/b]
+
+UI/CoreStrings@Faction_SetRole:
+Determinar rol
+
+UI/CoreStrings@Faction_SetRole_DialogHeader_Format:
+Determinar el rol de {0}
+
+UI/CoreStrings@Faction_ShowFactionInformation:
+Mostrar información de facción
+
+UI/CoreStrings@Faction_SubmitApplication:
+Enviar solicitud
+
+UI/CoreStrings@Faction_Title:
+Facción
+
+UI/CoreStrings@Faction_YouHaveSubmittedApplication:
+Has enviado una solicitud.
+
+UI/CoreStrings@FactionsBrowser_AlreadyInFaction:
+Ya formas parte de una facción. Tendrás que abandonarla para crear una nueva facción o unirte a otra diferente.
+
+UI/CoreStrings@FactionsBrowser_NewFaction_Title:
+Nueva facción
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_EmptyList:
+No hay facciones que concuerden con tus criterios de búsqueda.
+
+UI/CoreStrings@FactionsBrowser_TabAllFactions_Title:
+Todas las facciones
+
+UI/CoreStrings@FactionsBrowser_TabApplications_EmptyList:
+`No hay solicitudes activas.
+[br]Puedes enviar una solicitud desde la lista de facciones.`
+
+UI/CoreStrings@FactionsBrowser_TabApplications_Title:
+Solicitudes
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_EmptyList:
+No hay invitaciones activas.
+
+UI/CoreStrings@FactionsBrowser_TabInvitations_Title:
+Invitaciones
+
+UI/CoreStrings@FactionsBrowser_TabLeaderboard_EmptyList:
+El marcador está vacío en estos momentos.
+
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 Sin regar
 
@@ -406,6 +786,9 @@ Se pudrirá en
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 Regada durante
 
+UI/CoreStrings@FeatureDisabledForCurrentServer:
+Esta función no está activa en el servidor actual.
+
 UI/CoreStrings@Field_Email:
 Correo
 
@@ -417,6 +800,9 @@ Mujer
 
 UI/CoreStrings@Gender_Male:
 Hombre
+
+UI/CoreStrings@HealthPointsAbbreviation:
+PS
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Bajar del vehículo
@@ -432,6 +818,9 @@ Fabricación
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 Equipo
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Faction:
+Facción
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Mapa
@@ -523,6 +912,9 @@ Puntos de aprendizaje
 UI/CoreStrings@LearningPointsAbbreviation:
 PA
 
+UI/CoreStrings@LearningPointsCost_Format:
+Coste: [b]{0}[/b] PA
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Introduce los detalles de la cuenta de [url=atomictorch.com]AtomicTorch.com[/url] para vincularla a tu cuenta de Steam.
 
@@ -579,6 +971,12 @@ Has iniciado sesión como
 
 UI/CoreStrings@MasterServer:
 Servidor maestro
+
+UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
+Podrás cambiar tu aspecto en cualquier momento desde el menú Equipo.
+
+UI/CoreStrings@MenuCharacterCreation_Title:
+Elige el aspecto de tu personaje
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Desconectar
@@ -759,6 +1157,14 @@ UI/CoreStrings@Network_Jitter_SeverityYellow:
 `Parece que la conexión con el servidor sufre de un retardo importante.
 [br]Como consecuencia, podrás experimentar ligeros problemas en el movimiento del personaje (como saltos ocasionales) o es posible que tus golpes fallen porque se está produciendo una discrepancia importante con el servidor.`
 
+UI/CoreStrings@Network_PacketLoss:
+Pérdida de paquetes
+
+UI/CoreStrings@Network_PacketLoss_Description:
+`Parece que tu conexión con el servidor a través de Internet está sufriendo de una importante pérdida de paquetes.
+[br]Experimentarás lag, se te congelará el juego al azar o incluso se te desconectará.
+[br]Muy a menudo, el motivo de este problema suele radicar en una mala señal wifi o en fallos del router o módem.`
+
 UI/CoreStrings@Network_Perfect:
 `Parece que tu conexión de red funciona bien.
 [br]¡Disfruta del juego!`
@@ -826,6 +1232,9 @@ UI/CoreStrings@Notification_TooFar:
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Modo de acceso actual
+
+UI/CoreStrings@ObjectAccessModeEditor_OpensTo_Format:
+Se le abre a: {0}
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 Forma de acceso
@@ -921,6 +1330,9 @@ UI/CoreStrings@Performance_VRAM_SeverityRed:
 
 UI/CoreStrings@Performance_VRAMUsage:
 Uso de VRAM
+
+UI/CoreStrings@PlayerNotFound:
+Jugador no encontrado.
 
 UI/CoreStrings@PleaseWait:
 Espera...
@@ -1078,6 +1490,9 @@ CANCELAR
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 ELEGIR
+
+UI/CoreStrings@RelativeDate_LessThanHourAgo:
+Hace menos de una hora
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Captura de pantalla lista: {0} (haz clic para abrir)
@@ -1239,6 +1654,9 @@ En los rangos más elevados de la construcción de terrenos adjudicados, se pued
 UI/CoreStrings@Skill:
 Habilidad
 
+UI/CoreStrings@SortBy:
+Ordenar por
+
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Intesidad
 
@@ -1313,6 +1731,24 @@ Vehículos:
 
 UI/CoreStrings@Technology:
 Tecnología
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithBlood:
+Pagar con sangre
+
+UI/CoreStrings@Teleport_ConfirmationDialog_PayWithPragmiumHeart:
+Paga con un corazón de pragmio
+
+UI/CoreStrings@Teleport_ConfirmationDialog_Title:
+Teletransportarse al destino
+
+UI/CoreStrings@Teleport_Discovered:
+Nueva ubicación de teletransporte descubierta.
+
+UI/CoreStrings@Teleport_OtherPlayersNearby:
+Parece que hay supervivientes cerca.
+
+UI/CoreStrings@Teleport_VehiclesTeleportedAutomatically:
+Los vehículos que te pertenezcan y que no tengan piloto también serán teletransportados al colocarlos dentro de la zona de teletransporte.
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
 Buscar...
@@ -1635,6 +2071,9 @@ PANELES SOLARES
 UI/CoreStrings@WindowInventory_Button_Customize:
 Person.
 
+UI/CoreStrings@WindowInventory_Button_Customize_Tooltip:
+Personaliza el aspecto de tu personaje.
+
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 ¡Liberar!
 
@@ -1647,8 +2086,17 @@ Deterioro
 UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
 Soy consciente del sistema de deterioro
 
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Description:
+El acceso a puertas y otras estructuras viene determinado por los permisos y roles de la facción.
+
+UI/CoreStrings@WindowLandClaim_ManagedByFaction_Format:
+Este terreno adjudicado está gestionado por la facción [b]\\[{0}\\][/b].
+
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Los objetos del almacén seguro se comparten entre todas las estructuras del terreno adjudicado de esta base.
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
+Transferir a propiedad de la facción
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Solo el propietario puede mejorar esta estructura.
@@ -1688,6 +2136,9 @@ Vacío
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 Modo de luz
+
+UI/CoreStrings@WindowObjectTurret_TitleTurretMode:
+Modo de apuntado
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 La ventana de asalto está abierta (quedan {0}).
@@ -1740,6 +2191,9 @@ Reaparecer en mundo
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 Reap. cerca de cama
+
+UI/CoreStrings@WindowRespawn_ConsiderJoiningFaction:
+Plantéate el unirte a una facción para obtener ayuda y poder hacerles frente a las facciones enemigas.
 
 UI/CoreStrings@WindowRespawn_DamageSources:
 Fuentes de daño recientes:
@@ -1802,6 +2256,9 @@ Vehículo
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 En línea
+
+UI/CoreStrings@WindowSocial_OnlinePlayersList_Hidden:
+Debido a los ajustes del servidor, ningún jugador de este servidor podrá ver la lista de jugadores conectados.
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
 Estadísticas del servidor
@@ -1995,6 +2452,9 @@ UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Filtración de petróleo[/b]
 [br]Depósito de petróleo crudo.`
 
+UI/CoreStrings@WorldMapMarkTeleport_Inactive_Tooltip:
+Puede usarse para viajar rápido a otra ubicación de teletransporte alienígena.
+
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]Puesto comercial[/b]
 [br]Otro jugador es el dueño de este puesto comercial.`
@@ -2060,6 +2520,24 @@ Esta receta utiliza componentes degradables, así que no puedes cancelarla.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
 No se puede cancelar la receta
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackground:
+Fondo
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor1:
+Col. fondo 1
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleBackgroundColor2:
+Col. fondo 2
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblem:
+Emblema
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleEmblemColor:
+Color del emblema
+
+UI/Controls/Game/Faction/Data/ViewModelFactionEmblemEditor@TitleShape:
+Forma
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 Este objeto no se puede usar directamente.
@@ -2203,9 +2681,6 @@ Tonalidad de la piel
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Arriba
 
-UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
-sin seleccionar
-
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 ¿Seguro que quieres salir del grupo?
 
@@ -2317,97 +2792,97 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `Generación actual: {0} UE/s.
 [br]Generación máxima: {1} UE/s.`
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
-¡Te damos la bienvenida a CryoFall!
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-¡Queremos aprovechar la oportunidad para presentarte algunas de las características que te encontrarás en el juego! CryoFall aún está en fase de desarrollo, pero ya tienes a tu disposición las siguientes funciones.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
-Granja y cocina
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
-Cultiva tus propias cosechas mediante el uso de fertilizantes y herramientas de cultivo. Luego, usa los frutos de tu trabajo para preparar diferentes alimentos, los cuales otorgarán beneficios activos al personaje.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
-Medicina y simulación del personaje
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
-Una compleja simulación en la que el personaje no solo sufre de las mecánicas habituales de hambre y sed, sino que también sufre multitud de enfermedades y efectos de estado, los cuales se pueden resolver con diversos objetos médicos.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
-Industria
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
-Explota los recursos naturales que el mundo de CryoFall pone a tu disposición. Extrae petróleo y refínalo, o bien extrae litio de las fuentes geotérmicas y úsalo para fabricar baterías y aparatos electrónicos.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
-Economía
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
-Acuña monedas y construye puestos comerciales completamente automatizados que te facilitarán el comercio con otros supervivientes.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
-Pesca
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
-Usa diferentes tipos de cebo para atrapar todo tipo de pescados de agua dulce y salada. Intenta batir tus propios récords y compite contra otros jugadores.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
-Implantes cibernéticos
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
-Instala en tu personaje una serie de implantes cibernéticos y biónicos que le otorgarán nuevas habilidades o mejorarán sus características.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
-Habilidades
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
-Descubre, desbloquea y mejora una serie de habilidades para tu personaje, lo cual te ayudará a aumentar su eficiencia y obtendrás nuevas habilidades.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+Personaliza el aspecto de tu personaje y usa diferentes piezas de equipo y herramientas para diferenciarlo de los demás.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
 Personalización del personaje
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
-Personaliza el aspecto de tu personaje y usa diferentes piezas de equipo y herramientas para diferenciarlo de los demás.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
-Tecnología
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-Obtén puntos de aprendizaje y úsalos para aprender nuevas tecnologías, recetas y edificios. Céntrate en los aspectos que más te interesen y personaliza el juego a tu gusto.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
-Electricidad
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
-Diseña tu base teniendo en cuenta la red eléctrica. Podrás construir varios generadores, estructuras de almacenamiento y aparatos consumidores de electricidad.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Vehículos
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Construye y mejora una serie de vehículos futuristas. Te permitirán explorar el mundo más rápido y podrás usarlos en combate.
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
-Eventos del mundo
-
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
-Participa habitualmente en los numerosos eventos que tienen lugar en el mundo de CryoFall, ya sea explorando el lugar en el que cayó un meteorito o reuniendo a un grupo de supervivientes para hacer frente a un peligroso jefe.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+Explora un mundo con multitud de biomedios diferentes y decenas de criaturas fantásticas.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Criaturas fantásticas
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
-Explora un mundo con multitud de biomedios diferentes y decenas de criaturas fantásticas.
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+Acuña monedas y construye puestos comerciales completamente automatizados que te facilitarán el comercio con otros supervivientes.
 
-UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-Unas últimas palabras
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+Economía
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+Diseña tu base teniendo en cuenta la red eléctrica. Podrás construir varios generadores, estructuras de almacenamiento y aparatos consumidores de electricidad.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+Electricidad
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Participa habitualmente en los numerosos eventos que tienen lugar en el mundo de CryoFall, ya sea explorando el lugar en el que cayó un meteorito o reuniendo a un grupo de supervivientes para hacer frente a un peligroso jefe.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Eventos del mundo
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+Cultiva tus propias cosechas mediante el uso de fertilizantes y herramientas de cultivo. Luego, usa los frutos de tu trabajo para preparar diferentes alimentos, los cuales otorgarán beneficios activos al personaje.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+Granja y cocina
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Description:
+Usa diferentes tipos de cebo para atrapar todo tipo de pescados de agua dulce y salada. Intenta batir tus propios récords y compite contra otros jugadores.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFishing_Title:
+Pesca
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+Instala en tu personaje una serie de implantes cibernéticos y biónicos que le otorgarán nuevas habilidades o mejorarán sus características.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+Implantes cibernéticos
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+Explota los recursos naturales que el mundo de CryoFall pone a tu disposición. Extrae petróleo y refínalo, o bien extrae litio de las fuentes geotérmicas y úsalo para fabricar baterías y aparatos electrónicos.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+Industria
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
 `Por último, ten en cuenta que CryoFall aún está en desarrollo y que tenemos muchos cambios y mejoras planificadas. ¡Pese a todo, ya es un juego bastante sólido y esperamos que lo disfrutes![br][br]
 También estamos siempre disponibles en Discord y en nuestros foros... ¡Pásate a saludar! :)[br][br]
 Si tienes algún problema o si quieres informar de un error, ¡estamos deseando escucharte y ayudarte!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+Unas últimas palabras
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+Una compleja simulación en la que el personaje no solo sufre de las mecánicas habituales de hambre y sed, sino que también sufre multitud de enfermedades y efectos de estado, los cuales se pueden resolver con diversos objetos médicos.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+Medicina y simulación del personaje
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+Descubre, desbloquea y mejora una serie de habilidades para tu personaje, lo cual te ayudará a aumentar su eficiencia y obtendrás nuevas habilidades.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+Habilidades
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+Obtén puntos de aprendizaje y úsalos para aprender nuevas tecnologías, recetas y edificios. Céntrate en los aspectos que más te interesen y personaliza el juego a tu gusto.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+Tecnología
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Construye y mejora una serie de vehículos futuristas. Te permitirán explorar el mundo más rápido y podrás usarlos en combate.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Vehículos
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+¡Queremos aprovechar la oportunidad para presentarte algunas de las características que te encontrarás en el juego! CryoFall aún está en fase de desarrollo, pero ya tienes a tu disposición las siguientes funciones.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+¡Te damos la bienvenida a CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 Empezar
@@ -2451,6 +2926,9 @@ Botón derecho del ratón
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 Barra espaciadora
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@TitlePlaceholder:
+sin asignar
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 ¿Quieres reiniciar las opciones de [b]{0}[/b]?[br]Se aplicarán y se guardarán los valores predeterminados.

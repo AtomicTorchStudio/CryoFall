@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,6 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     [PrepareOrder(afterType: typeof(ProtoTrigger))]
     [PrepareOrder(afterType: typeof(IProtoZone))]
@@ -42,8 +41,6 @@
             this.Icon = new TextureResource($"Events/{name}.png");
         }
 
-        public abstract ushort AreaRadius { get; }
-
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public abstract bool ConsolidateNotifications { get; }
@@ -53,14 +50,14 @@
         public abstract TimeSpan EventDuration { get; }
 
         public virtual TimeSpan EventStartPostponeDurationFrom { get; }
-            = TimeSpan.FromMinutes(30);
+            = TimeSpan.FromMinutes(5);
 
         public virtual TimeSpan EventStartPostponeDurationTo { get; }
-            = TimeSpan.FromMinutes(60);
+            = TimeSpan.FromMinutes(15);
 
         public virtual ITextureResource Icon { get; }
 
-        public override double ServerUpdateIntervalSeconds => double.MaxValue;
+        public override double ServerUpdateIntervalSeconds => 1;
 
         public override string ShortId { get; }
 
@@ -78,7 +75,10 @@
             Logger.Important("Event destroyed: " + gameObject);
         }
 
-        public abstract string SharedGetProgressText(ILogicObject activeEvent);
+        public virtual string SharedGetProgressText(ILogicObject activeEvent)
+        {
+            return null;
+        }
 
         void IProtoEvent.ServerForceCreateAndStart()
         {
@@ -91,18 +91,10 @@
             return Api.GetProtoEntity<TProtoTrigger>();
         }
 
-        protected static Vector2Ushort SharedSelectRandomPositionInsideTheCircle(
-            Vector2Ushort circlePosition,
-            ushort circleRadius)
-        {
-            var offset = circleRadius * RandomHelper.NextDouble();
-            var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-            return new Vector2Ushort((ushort)(circlePosition.X + offset * Math.Cos(angle)),
-                                     (ushort)(circlePosition.Y + offset * Math.Sin(angle)));
-        }
-
         protected sealed override void PrepareProto()
         {
+            this.SharedPrepareEvent();
+
             if (IsClient)
             {
                 return;
@@ -199,6 +191,16 @@
             }
         }
 
+        protected bool ServerHasAnyEventOfType<TProtoEvent>()
+            where TProtoEvent : class, IProtoEvent
+        {
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, TProtoEvent>());
+
+            return tempEvents.Count > 0;
+        }
+
         protected sealed override void ServerInitialize(ServerInitializeData data)
         {
             var activeEvent = data.GameObject;
@@ -230,6 +232,15 @@
 
         protected abstract void ServerInitializeEvent(ServerInitializeData data);
 
+        protected bool ServerIsSameEventExist()
+        {
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEvent>(this));
+
+            return tempEvents.Count > 0;
+        }
+
         protected abstract void ServerOnEventDestroyed(ILogicObject activeEvent);
 
         protected abstract void ServerOnEventStarted(ILogicObject activeEvent);
@@ -241,7 +252,8 @@
 
         protected abstract void ServerPrepareEvent(Triggers triggers);
 
-        protected IServerZone ServerSelectRandomZoneWithEvenDistribution(IReadOnlyList<(IServerZone Zone, uint Weight)> list)
+        protected IServerZone ServerSelectRandomZoneWithEvenDistribution(
+            IReadOnlyList<(IServerZone Zone, uint Weight)> list)
         {
             if (list.Count == 0)
             {
@@ -305,6 +317,10 @@
         {
         }
 
+        protected virtual void SharedPrepareEvent()
+        {
+        }
+
         private void ServerEventTriggerCallback(BaseTriggerConfig triggerConfig)
         {
             if (Api.IsEditor)
@@ -343,8 +359,7 @@
                                    + RandomHelper.NextDouble() * (postponeDurationTo - postponeDurationFrom);
             }
 
-            triggerTimeInterval.ApplyPostpone(triggerConfig,
-                                              postponeDuration);
+            triggerTimeInterval.ApplyPostpone(triggerConfig, postponeDuration);
             Logger.Important($"Event start postponed on {TimeSpan.FromSeconds(postponeDuration)} - {this}");
         }
     }

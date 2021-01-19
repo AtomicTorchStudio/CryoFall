@@ -14,7 +14,7 @@
 
         private UIElementCollection stackPanelChildren;
 
-        public static void Show(int deltaCount, ushort currentLearningPoints)
+        public static void Show(long deltaCount, uint currentLearningPoints)
         {
             instance.ShowInternal(deltaCount, currentLearningPoints);
         }
@@ -40,7 +40,7 @@
             }
         }
 
-        private void ShowInternal(int deltaCount, ushort currentLearningPoints)
+        private void ShowInternal(long deltaCount, uint currentLearningPoints)
         {
             if (deltaCount == 0)
             {

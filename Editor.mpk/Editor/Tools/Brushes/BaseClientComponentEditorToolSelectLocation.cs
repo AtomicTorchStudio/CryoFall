@@ -20,8 +20,6 @@
 
         private BoundsUshort selectionBounds;
 
-        private Border selectionRectange;
-
         private Vector2Ushort selectionRectEndPosition;
 
         private Vector2Ushort selectionRectStartPosition;
@@ -29,6 +27,8 @@
         public event Action SelectionBoundsChanged;
 
         public BoundsUshort SelectionBounds => this.selectionBounds;
+
+        public Border SelectionRectange { get; private set; }
 
         protected Vector2Ushort CurrentMouseTilePosition { get; private set; }
 
@@ -54,11 +54,21 @@
 
         public void SetSelectionBounds(BoundsUshort newBounds)
         {
-            this.selectionBounds = this.ClampToWorldBounds(newBounds);
-            this.selectionRectStartPosition = newBounds.Offset;
-            this.selectionRectEndPosition = (newBounds.Offset
-                                             + newBounds.Size
-                                             - Vector2Ushort.One).ToVector2Ushort();
+            if (newBounds.Size == default)
+            {
+                this.selectionBounds = default;
+                this.selectionRectStartPosition = default;
+                this.selectionRectEndPosition = default;
+            }
+            else
+            {
+                this.selectionBounds = this.ClampToWorldBounds(newBounds);
+                this.selectionRectStartPosition = newBounds.Offset;
+                this.selectionRectEndPosition = (newBounds.Offset
+                                                 + newBounds.Size
+                                                 - Vector2Ushort.One).ToVector2Ushort();
+            }
+
             // do not invoke this otherwise ViewModels will not allow inputting values
             //this.SelectionBoundsChanged?.Invoke();
             this.UpdateSelectionRectange();
@@ -105,14 +115,14 @@
         protected override void OnDisable()
         {
             base.OnDisable();
-            this.selectionRectange = null;
+            this.SelectionRectange = null;
             this.sceneObjectSelectionRectangle.Destroy();
             this.sceneObjectSelectionRectangle = null;
         }
 
         protected override void OnEnable()
         {
-            this.selectionRectange = new Border()
+            this.SelectionRectange = new Border()
             {
                 Background = new SolidColorBrush(Color.FromArgb(0x22,  0x55, 0xFF, 0xFF)),
                 BorderBrush = new SolidColorBrush(Color.FromArgb(0xCC, 0xAA, 0xFF, 0xFF)),
@@ -127,17 +137,17 @@
 
             Client.UI.AttachControl(
                       this.sceneObjectSelectionRectangle,
-                      this.selectionRectange,
+                      this.SelectionRectange,
                       positionOffset: (0, 1),
-                      isFocusable: true)
+                      isFocusable: false)
                   .UseWorldPositionZIndex = false;
 
-            Panel.SetZIndex(this.selectionRectange, -1);
+            Panel.SetZIndex(this.SelectionRectange, -1);
         }
 
         protected virtual void OnSelectionEnded()
         {
-            this.selectionRectange.Visibility = Visibility.Collapsed;
+            this.SelectionRectange.Visibility = Visibility.Collapsed;
         }
 
         protected virtual void OnSelectionExtended()
@@ -153,6 +163,22 @@
 
         protected virtual void OnUpdated()
         {
+        }
+
+        protected void UpdateSelectionRectange()
+        {
+            var bounds = this.SelectionBounds;
+
+            this.sceneObjectSelectionRectangle.Position = (bounds.MinX, bounds.MaxY - 1);
+            Vector2D size = (bounds.MaxX - bounds.MinX, bounds.MaxY - bounds.MinY);
+
+            const int tileSize = ScriptingConstants.TileSizeVirtualPixels;
+            this.SelectionRectange.Width = tileSize * size.X;
+            this.SelectionRectange.Height = tileSize * size.Y;
+
+            this.SelectionRectange.Visibility = size.X > 0 && size.Y > 0
+                                                    ? Visibility.Visible
+                                                    : Visibility.Collapsed;
         }
 
         private void UpdateSelectionBounds()
@@ -173,20 +199,6 @@
             //Logger.WriteDev("Bounds: " + bounds);
             this.selectionBounds = this.ClampToWorldBounds(bounds);
             this.SelectionBoundsChanged?.Invoke();
-        }
-
-        private void UpdateSelectionRectange()
-        {
-            var bounds = this.SelectionBounds;
-
-            this.sceneObjectSelectionRectangle.Position = (bounds.MinX, bounds.MaxY - 1);
-            Vector2D size = (bounds.MaxX - bounds.MinX, bounds.MaxY - bounds.MinY);
-
-            const int tileSize = ScriptingConstants.TileSizeVirtualPixels;
-            this.selectionRectange.Width = tileSize * size.X;
-            this.selectionRectange.Height = tileSize * size.Y;
-
-            this.selectionRectange.Visibility = Visibility.Visible;
         }
     }
 }

@@ -24,7 +24,7 @@
         /// </summary>
         public virtual string[] FallbackLanguages { get; }
 
-        public virtual TextureResource Icon => new TextureResource("Languages/" + this.LanguageTag);
+        public virtual TextureResource Icon => new("Languages/" + this.LanguageTag);
 
         public virtual bool IsEnabled => true;
 

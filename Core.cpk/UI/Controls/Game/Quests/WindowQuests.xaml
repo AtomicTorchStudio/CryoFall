@@ -17,20 +17,29 @@
                 <ResourceDictionary Source="QuestStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="HintForeground" Color="{StaticResource Color7}" Opacity="0.8" />
+            <SolidColorBrush x:Key="HintForeground"
+                             Color="{StaticResource ColorAlt7}" />
 
             <LinearGradientBrush x:Key="BorderBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
-                <GradientStop Color="#000094CC" Offset="0" />
-                <GradientStop Color="#FF0094CC" Offset="0.05" />
-                <GradientStop Color="#FF0094CC" Offset="0.75" />
-                <GradientStop Color="#000094CC" Offset="1" />
+                <GradientStop Offset="0"
+                              Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+                <GradientStop Offset="0.05"
+                              Color="{StaticResource ColorAlt5}" />
+                <GradientStop Offset="0.75"
+                              Color="{StaticResource ColorAlt5}" />
+                <GradientStop Offset="1.0"
+                              Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
             </LinearGradientBrush>
 
             <LinearGradientBrush x:Key="BackgroundBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
-                <GradientStop Color="#00003F57" Offset="0" />
-                <GradientStop Color="#FF003F57" Offset="0.05" />
-                <GradientStop Color="#FF003F57" Offset="0.75" />
-                <GradientStop Color="#00003F57" Offset="1" />
+                <GradientStop Offset="0"
+                              Color="{Binding Source={StaticResource ColorAlt1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+                <GradientStop Offset="0.05"
+                              Color="{Binding Source={StaticResource ColorAlt1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0xFF}" />
+                <GradientStop Offset="0.75"
+                              Color="{Binding Source={StaticResource ColorAlt1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0xFF}" />
+                <GradientStop Offset="1.0"
+                              Color="{Binding Source={StaticResource ColorAlt1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
             </LinearGradientBrush>
 
             <Style x:Key="SectionHeaderBackground" TargetType="Rectangle">
@@ -63,7 +72,8 @@
 
             <Style x:Key="TextblockLabelStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="10" />
-                <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
             </Style>
 
@@ -121,13 +131,14 @@
 
                                                             <Rectangle Fill="{Binding Icon}"
                                                                        Grid.Column="0"
-                                                                       Width="32"
-                                                                       Height="32"
-                                                                       UseLayoutRounding="True" />
+                                                                       Width="28"
+                                                                       Height="28"
+                                                                       UseLayoutRounding="True"
+                                                                       Margin="0,1" />
 
                                                             <TextBlock Grid.Column="1"
                                                                        Text="{Binding Title}"
-                                                                       FontSize="15"
+                                                                       FontSize="14"
                                                                        FontWeight="Bold"
                                                                        FontFamily="{StaticResource CondensedFontFamily}"
                                                                        Foreground="{StaticResource BrushColor6}"
@@ -182,7 +193,7 @@
                                                             <Setter Property="Background" TargetName="InnerBorder">
                                                                 <Setter.Value>
                                                                     <SolidColorBrush Color="{StaticResource ColorAlt6}"
-                                                                                     Opacity="0.15" />
+                                                                        Opacity="0.15" />
                                                                 </Setter.Value>
                                                             </Setter>
                                                         </Trigger>
@@ -248,23 +259,31 @@
 
                                                         <!-- Text: Completion reward -->
                                                         <TextBlock
-                                                            Text="{x:Static loc:CoreStrings.WindowQuests_CompletionReward}" />
-                                                        <TextBlock Text=": " />
+                                                            Text="{x:Static loc:CoreStrings.WindowQuests_CompletionReward}"
+                                                            Foreground="{StaticResource BrushColor7}"
+                                                            FontWeight="Bold" />
+                                                        <TextBlock Text=": "
+                                                                   Foreground="{StaticResource BrushColor7}"
+                                                                   FontWeight="Bold" />
                                                         <TextBlock Text="{Binding RewardLearningPoints}"
+                                                                   Foreground="{StaticResource BrushColor7}"
                                                                    FontWeight="Bold" />
                                                         <TextBlock Text=" " />
                                                         <!-- Text: LP -->
                                                         <TextBlock
-                                                            Text="{x:Static loc:CoreStrings.LearningPointsAbbreviation}" />
+                                                            Text="{x:Static loc:CoreStrings.LearningPointsAbbreviation}"
+                                                            Foreground="{StaticResource BrushColor7}"
+                                                            FontWeight="Bold" />
 
                                                         <!-- Text: Claim -->
                                                         <Button
                                                             Content="{x:Static loc:CoreStrings.Quest_Button_ClaimReward}"
                                                             Command="{Binding CommandClaimReward}"
+                                                            Focusable="False"
                                                             MinWidth="10"
                                                             MinHeight="10"
                                                             Padding="10,3"
-                                                            FontSize="11"
+                                                            FontSize="13"
                                                             Margin="5,0,0,-2" />
                                                     </StackPanel>
                                                 </Border>
@@ -310,6 +329,12 @@
                      IsCached="True">
         <TabControl Style="{StaticResource TabControlCompactStyle}"
                     Margin="0,-5,0,0">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemCompactStyle}">
+                    <Setter Property="MinWidth" Value="110" />
+                </Style>
+            </TabControl.Resources>
+
             <!-- Text: Current quests -->
             <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_CurrentQuests}">
                 <Grid>

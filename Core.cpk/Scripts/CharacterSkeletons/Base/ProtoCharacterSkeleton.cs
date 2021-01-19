@@ -30,6 +30,8 @@
             this.Name = this.GetType().Name;
         }
 
+        public virtual string DefaultAnimationName => "Idle";
+
         /// <summary>
         /// Move speed at the default scale, in world units (tiles) per second.
         /// </summary>
@@ -74,10 +76,10 @@
         public virtual double WorldScale => 1;
 
         protected virtual RangeDouble FootstepsPitchVariationRange { get; }
-            = new RangeDouble(0.95, 1.05);
+            = new(0.95, 1.05);
 
         protected virtual RangeDouble FootstepsVolumeVariationRange { get; }
-            = new RangeDouble(0.85, 1.0);
+            = new(0.85, 1.0);
 
         protected abstract string SoundsFolderPath { get; }
 
@@ -86,7 +88,61 @@
         /// </summary>
         protected virtual double VolumeFootsteps => 1;
 
-        public IComponentSpriteRenderer ClientCreateShadowRenderer(IWorldObject worldObject, double scaleMultiplier)
+        public virtual float CalculateAimAnimationPosition(double angleDeg, ViewOrientation viewOrientation)
+        {
+            float aimCoef;
+            var aimAngle = angleDeg;
+            if (viewOrientation.IsUp)
+            {
+                // offset angle
+                aimAngle += 45;
+                // calculated angle between 0 and 270 degrees
+                aimAngle %= 360;
+                // calculate coef (from 0 to 2)
+                aimCoef = (float)(aimAngle / 180);
+
+                if (viewOrientation.IsLeft)
+                {
+                    // if left orientation, aimCoef values will be from 1 to 2
+                    // remap them to values from 1 to 0 respectively
+                    aimCoef = 1.5f - aimCoef;
+                }
+            }
+            else // if oriented down
+            {
+                if (aimAngle < 90)
+                {
+                    // it means we're in first quarter, extend aimAngle
+                    // on 360 degrees to keep coordinates continuum (from 180*3/4 to 180*(2+(1/4)))
+                    aimAngle += 360;
+                }
+
+                // offset angle
+                aimAngle -= 45;
+                // calculated angle between 0 and 270 degrees
+                aimAngle = 360 - aimAngle;
+                // calculate coef (from 0 to 2)
+                aimCoef = (float)(aimAngle / 180);
+
+                if (viewOrientation.IsLeft)
+                {
+                    // if left orientation, aimCoef values will be from 1 to 2
+                    // remap them to values from 1 to 0 respectively
+                    aimCoef = 1.5f - aimCoef;
+                }
+
+                // invert coefficient
+                aimCoef = 1f - aimCoef;
+            }
+
+            //Api.Logger.WriteDev(
+            //    $"AngleDeg: {angleDeg:F2}. Aiming coef: {aimCoef:F2}. Current view data: isUp={viewOrientation.IsUp} isLeft={viewOrientation.IsLeft}");
+            return aimCoef;
+        }
+
+        public virtual IComponentSpriteRenderer ClientCreateShadowRenderer(
+            IWorldObject worldObject,
+            double scaleMultiplier)
         {
             var rendererShadow = ClientShadowHelper.AddShadowRenderer(
                 worldObject,
@@ -98,7 +154,6 @@
             }
 
             rendererShadow.Color = Color.FromArgb(0xAA, 0x00, 0x00, 0x00);
-
             rendererShadow.DrawOrder = DrawOrder.Shadow;
             this.ClientSetupShadowRenderer(rendererShadow, scaleMultiplier);
             return rendererShadow;
@@ -215,52 +270,7 @@
             }
 
             // let's calculate aim coef
-            var aimAngle = angleDeg;
-            if (viewOrientation.IsUp)
-            {
-                // offset angle
-                aimAngle += 45;
-                // calculated angle between 0 and 270 degrees
-                aimAngle %= 360;
-                // calculate coef (from 0 to 2)
-                aimCoef = (float)(aimAngle / 180);
-
-                if (viewOrientation.IsLeft)
-                {
-                    // if left orientation, aimCoef values will be from 1 to 2
-                    // remap them to values from 1 to 0 respectively
-                    aimCoef = 1.5f - aimCoef;
-                }
-            }
-            else // if oriented down
-            {
-                if (aimAngle < 90)
-                {
-                    // it means we're in first quarter, extend aimAngle
-                    // on 360 degrees to keep coordinates continuum (from 180*3/4 to 180*(2+(1/4)))
-                    aimAngle += 360;
-                }
-
-                // offset angle
-                aimAngle -= 45;
-                // calculated angle between 0 and 270 degrees
-                aimAngle = 360 - aimAngle;
-                // calculate coef (from 0 to 2)
-                aimCoef = (float)(aimAngle / 180);
-
-                if (viewOrientation.IsLeft)
-                {
-                    // if left orientation, aimCoef values will be from 1 to 2
-                    // remap them to values from 1 to 0 respectively
-                    aimCoef = 1.5f - aimCoef;
-                }
-
-                // invert coefficient
-                aimCoef = 1f - aimCoef;
-            }
-
-            //Api.Logger.WriteDev(
-            //    $"AngleDeg: {angleDeg:F2}. Aiming coef: {aimCoef:F2}. Current view data: isUp={viewOrientation.IsUp} isLeft={viewOrientation.IsLeft}");
+            aimCoef = this.CalculateAimAnimationPosition(angleDeg, viewOrientation);
         }
 
         public virtual void ClientResetItemInHand(IComponentSkeleton skeletonRenderer)
@@ -301,7 +311,7 @@
                 group: CollisionGroups.HitboxRanged);
         }
 
-        public void GetCurrentAnimationSetting(
+        public virtual void GetCurrentAnimationSetting(
             ICharacter character,
             CharacterMoveModes moveModes,
             double angle,
@@ -325,7 +335,7 @@
             if (isIdle)
             {
                 starterAnimationName = null;
-                currentAnimationName = "Idle";
+                currentAnimationName = this.DefaultAnimationName;
                 return;
             }
 
@@ -425,7 +435,8 @@
         {
             if (!Api.Shared.IsFolderExists(ContentPaths.Sounds + this.SoundsFolderPath))
             {
-                throw new Exception("Sounds folder for " + this + " doesn't exist");
+                Logger.Warning("Sounds folder for " + this + " doesn't exist");
+                return new SoundPreset<CharacterSound>();
             }
 
             var preset = SoundPreset.CreateFromFolder<CharacterSound>(

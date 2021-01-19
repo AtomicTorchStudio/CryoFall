@@ -19,10 +19,10 @@
         public const string NotificationSkillReachedLevel = "{0} level {1}.";
 
         public static readonly SoundResource SoundResourceSkillDiscovered
-            = new SoundResource("UI/Skills/SkillDiscovered");
+            = new("UI/Skills/SkillDiscovered");
 
         public static readonly SoundResource SoundResourceSkillLevelUp
-            = new SoundResource("UI/Skills/SkillLevelUp");
+            = new("UI/Skills/SkillLevelUp");
 
         private PlayerCharacterPrivateState privateState;
 

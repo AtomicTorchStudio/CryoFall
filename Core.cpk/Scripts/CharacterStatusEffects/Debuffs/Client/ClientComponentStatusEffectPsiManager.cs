@@ -94,7 +94,7 @@
             private const float Volume = 0.5f;
 
             private static readonly SoundResource SoundResourcePsiProcess
-                = new SoundResource("StatusEffects/Debuffs/Psi/Process");
+                = new("StatusEffects/Debuffs/Psi/Process");
 
             private double intensity;
 

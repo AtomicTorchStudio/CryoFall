@@ -16,6 +16,9 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_M
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
 Uygunsuz zemin türü
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildEventNearby:
+İnşa edilemiyor-etkinlik konumuna fazla yakın.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Sınırlı bölgelerde inşa edemezsin.
 
@@ -75,6 +78,9 @@ Aç
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Al
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Press:
+Bas
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Aç
@@ -148,6 +154,15 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
 Çöp yığını
 
+Scripts/StaticObjects/Loot/ObjectLootPileMinerals@Name:
+Mineral yığını
+
+Scripts/StaticObjects/Loot/ObjectLootPileStone@Name:
+Taş yığını
+
+Scripts/StaticObjects/Loot/ObjectLootPileWood@Name:
+Odun yığını
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Taş
 
@@ -217,6 +232,9 @@ Sülfür yatağı
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Bu kaynaktan maden çıkarmak için kazmayı kullan.
 
+Scripts/StaticObjects/Misc/ObjectAlienTeleport@Name:
+Uzaylı ışınlanması
+
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Çatlak
 
@@ -225,6 +243,9 @@ Meteorit
 
 Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
 Pragmium Kraliçesi duruyor
+
+Scripts/StaticObjects/Misc/Events/ObjectSandTyrantRemains@Name:
+Kum Tiranı kalıntıları
 
 Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
 Uzay enkazı
@@ -398,11 +419,23 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
 Tütsü sunağı
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Description:
+Grubunun amblemini gösterecek olan eşsiz sancak.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerFaction@Name:
+Grup sancağı
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Bu bayrak her neyi temsil ediyorsa - havalı gözüküyor!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
 Sancak
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Description:
+Çoğu insan süs olarak kullanır...
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBarbellBench@Name:
+Halter benchi
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
 Bütün hijyenik ihtiyaçların için klasik tarzda küvet.
@@ -410,11 +443,32 @@ Bütün hijyenik ihtiyaçların için klasik tarzda küvet.
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
 Küvet
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Description:
+Uyumadan önce telefonunu koyabileceğin küçük ve uygun bir yer.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBedsideTable@Name:
+Yatak yanı masası
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
 Kitaplık olmadan oda mı olurmuş?
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
 Kitaplık
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Description:
+Odanı süsleyebileceğin veya satranç, dama oynayabileceğin birçok parçadan biri.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessPawnBlack@Name:
+Piyon
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationChessQueenBlack@Name:
+Vezir
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Description:
+Silahları olan habersiz misafirler mi bekliyorsun? Bunu kapına koysan iyi olur.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationDoorBell@Name:
+Zil
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
 Eski masaldaki gibi, kaplan bulunan bir paravan.
@@ -428,11 +482,23 @@ Etkileyici altın yığını. Güvenli tutmak için bunu kasana koy!
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
 Altın yığını
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Description:
+Koridorun için önemli bir mobilya parçası.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationHatHanger@Name:
+Şapkalık
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
 Güzel ve ustaca yapılmış kapkara piyano.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
 Piyano
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Description:
+Büyük bir hediye yığını olmayan kutlama mı olur?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPresents@Name:
+Hediyeler
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
 Gerçek bir avcı olduğunu göstererek odanı bu lüks kilimle süsle.
@@ -494,6 +560,12 @@ Maksimum mahremiyet için bunu ayrı ve iyi havalandırılmış bir odaya koydu�
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
 Tuvalet
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Description:
+İyi tasarlanmış bir oturma odasının en önemli parçası. Arkadaşlarınla film izle ve rahatla.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTV@Name:
+TV
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
 Çok değerli dekoratif vazo.
 
@@ -502,6 +574,33 @@ Vazo
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Bir zemin dekorasyonu var bile.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Description:
+Hedefine hasar vermek için enerji ışını kullanan tamamen otomatik taret.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretEnergy@Name:
+Enerji tareti
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Description:
+Tamamen otomatik ağır taret.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretHeavy@Name:
+Ağır taret
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
+Tamamen otomatik hafif taret.
+
+Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
+Hafif taret
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
+Kapalı
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackHostile:
+Düşmanlara saldır, tarafsızlardan gelen ateşlere karşılık ver
+
+Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@AttackEnemiesAndTrespassers:
+Düşmanlara ve izinsiz geçen herkese saldır
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
 Çoğu işgalciye karşı iyi savunma. Yine de patlayıcılara karşı pek bir şansı yok.
@@ -533,10 +632,10 @@ Birçok ekini veya diğer bitkileri büyütmek için kullanılabilir. Tarla yeri
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 Tarla yeri
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
 Çiçek büyütmek, evini dekore etmek veya başka amaçlar için çiçek toplamak için kullanılabilir. Her yere inşa edilebilir.
 
-Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
 Saksı
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
@@ -1005,6 +1104,12 @@ Ek destekleri olan kalın, güçlendirilmiş beton duvar. Diğer savunma yapıla
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 Beton duvar
 
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Description:
+Bu metal çit hareketi engeller ama mermiler içinden geçer. Stratejik savunma için iyi bir seçenek olabilir. Çok dayanıklı değildir.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallFence@Name:
+Tel örgü
+
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
 Ahşap duvardan çok daha iyi. Çoğu işgalcinin içeri girme çabalarını durduracaktır ama iyi teçhizatlı soygunculara karşı pek bir işe yaramaz.
 
@@ -1075,8 +1180,14 @@ Mavi ada çayı
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oni çiçeği
 
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerYellow@Name:
+Sarı çiçek
+
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
 Sütkavun
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantPotato@Name:
+Patates
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
 Pirinç

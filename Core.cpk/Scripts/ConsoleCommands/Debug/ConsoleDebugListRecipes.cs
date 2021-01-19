@@ -70,16 +70,16 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
         {
             switch (recipe)
             {
-                case Recipe.RecipeForManufacturingByproduct _:
+                case Recipe.RecipeForManufacturingByproduct:
                     return "Manufacturing byproduct";
 
-                case Recipe.RecipeForManufacturing _:
+                case Recipe.RecipeForManufacturing:
                     return "Manufacturing";
 
-                case Recipe.RecipeForHandCrafting _:
+                case Recipe.RecipeForHandCrafting:
                     return "Craft/Hand";
 
-                case Recipe.RecipeForStationCrafting _:
+                case Recipe.RecipeForStationCrafting:
                     return "Craft/Station";
 
                 default:

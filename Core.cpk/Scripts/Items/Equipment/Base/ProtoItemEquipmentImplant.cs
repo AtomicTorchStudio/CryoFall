@@ -209,7 +209,7 @@
             {
                 (byte)EquipmentType.Implant,
                 (byte)EquipmentType.Implant + 1,
-                (byte)EquipmentType.Implant + 2,
+                (byte)EquipmentType.Implant + 2
             };
         }
     }

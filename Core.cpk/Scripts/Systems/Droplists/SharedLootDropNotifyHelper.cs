@@ -10,7 +10,7 @@
 
     public class SharedLootDropNotifyHelper : ProtoEntity
     {
-        private static readonly SoundResource SoundResourceDropLoot = new SoundResource("Events/DropLoot");
+        private static readonly SoundResource SoundResourceDropLoot = new("Events/DropLoot");
 
         private static SharedLootDropNotifyHelper instance;
 

@@ -34,7 +34,9 @@
 
         public abstract ushort OrganicCapacity { get; }
 
-        public override double ServerUpdateIntervalSeconds => 1;
+        public override double ServerUpdateIntervalSeconds => 0.25;
+
+        public override double ServerUpdateRareIntervalSeconds => 2;
 
         public ObjectMulchboxPrivateState GetMulchboxPrivateState(IStaticWorldObject objectMulchbox)
         {

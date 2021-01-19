@@ -73,6 +73,11 @@
                                        FontWeight="Bold" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Value}"
+                                           Visibility="{Binding IsValueAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
+                                           Foreground="{Binding MetricBrush}"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="—"
+                                           Visibility="{Binding IsValueAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                            Foreground="{Binding MetricBrush}"
                                            FontWeight="Bold" />
                                 <TextBlock Text="{Binding UnitsText}"
@@ -116,6 +121,9 @@
                          Template="{StaticResource MetricPresenter}" />
 
                 <Control DataContext="{Binding PingJitter}"
+                         Template="{StaticResource MetricPresenter}" />
+
+                <Control DataContext="{Binding PacketLoss}"
                          Template="{StaticResource MetricPresenter}" />
 
                 <Control Style="{StaticResource ControlHorizontalSeparator}"

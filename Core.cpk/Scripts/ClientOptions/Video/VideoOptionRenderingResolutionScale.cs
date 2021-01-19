@@ -11,7 +11,7 @@
             VideoOptionsCategory,
             VideoOptionRenderingResolutionScale.Mode>
     {
-        protected internal static readonly IRenderingClientService Rendering
+        private static readonly IRenderingClientService Rendering
             = Api.IsClient
                   ? Api.Client.Rendering
                   : null;

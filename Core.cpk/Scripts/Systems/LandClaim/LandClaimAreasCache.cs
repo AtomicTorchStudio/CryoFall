@@ -15,7 +15,7 @@
             = 3 * Math.Max((int)LandClaimSystem.MaxLandClaimSizeWithGraceArea.Value, 20);
 
         private readonly Dictionary<Vector2Ushort, List<ILogicObject>> areasBySector
-            = new Dictionary<Vector2Ushort, List<ILogicObject>>();
+            = new();
 
         public LandClaimAreasCache(IList<ILogicObject> landClaimAreas)
         {
@@ -88,8 +88,8 @@
 
         private static Vector2Ushort CalculateSectorPosition(in Vector2Int position)
         {
-            return new Vector2Ushort((ushort)Math.Max(0, position.X / MaxSize),
-                                     (ushort)Math.Max(0, position.Y / MaxSize));
+            return new((ushort)Math.Max(0, position.X / MaxSize),
+                       (ushort)Math.Max(0, position.Y / MaxSize));
         }
     }
 }

@@ -18,6 +18,10 @@
                 .Add(GetScript<SpawnResourceSaltpeter>())
                 .Add(GetScript<SpawnResourceSulfur>());
 
+            // loot
+            scripts
+                .Add(GetScript<SpawnLootPileMinerals>());
+
             // mobs
             scripts
                 .Add(GetScript<SpawnMobsCloakedLizard>())

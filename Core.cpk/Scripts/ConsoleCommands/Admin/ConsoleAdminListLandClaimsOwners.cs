@@ -2,6 +2,7 @@
 
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 {
+    using System.Linq;
     using System.Text;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
@@ -28,23 +29,32 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
                          .Append(" owner(s))")
                          .AppendLine();
 
+            var worldBoundsOffset = Server.World.WorldBounds.Offset;
             foreach (var area in LandClaimSystem.SharedEnumerateAllAreas())
             {
-                var publicState = LandClaimArea.GetPublicState(area);
                 var privateState = LandClaimArea.GetPrivateState(area);
-                var landClaimOwners = privateState.LandOwners;
-                if (landClaimOwners.Count < minOwnersNumber)
+                var landClaimOwners = privateState.ServerGetLandOwners();
+                var ownersCount = landClaimOwners.Count();
+                if (ownersCount < minOwnersNumber)
                 {
                     continue;
                 }
 
-                var worldBoundsOffset = Server.World.WorldBounds.Offset;
+                var publicState = LandClaimArea.GetPublicState(area);
                 result.AppendLine()
                       .Append(publicState.ProtoObjectLandClaim.ShortId)
                       .Append(" at ")
                       .Append(publicState.LandClaimCenterTilePosition - worldBoundsOffset)
-                      .Append(" — ")
-                      .Append(landClaimOwners.Count)
+                      .Append(" — ");
+
+                var factionClanTag = LandClaimSystem.SharedGetAreaOwnerFactionClanTag(area);
+                if (!string.IsNullOrEmpty(factionClanTag))
+                {
+                    result.AppendFormat("faction [{0}] — ",
+                                        factionClanTag);
+                }
+
+                result.Append(ownersCount)
                       .Append(" owner(s)");
 
                 foreach (var ownerName in landClaimOwners)

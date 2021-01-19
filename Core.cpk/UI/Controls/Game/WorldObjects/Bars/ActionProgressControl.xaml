@@ -17,8 +17,10 @@
         <Ellipse Width="20" Height="20">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Color="#55FFDD00" Offset="1" />
-                    <GradientStop Color="#00FFDD00" Offset="0.5" />
+                    <GradientStop Offset="1"
+                                  Color="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x55}" />
+                    <GradientStop Offset="0.5"
+                                  Color="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
@@ -37,10 +39,14 @@
                 RenderTransformOrigin="0.5,0.5">
                 <clockProgressIndicator:ClockProgressIndicator.Foreground>
                     <RadialGradientBrush>
-                        <GradientStop Color="#FFFFEE00" Offset="0.6" />
-                        <GradientStop Color="#FFFFDD00" Offset="0.75" />
-                        <GradientStop Color="#55FFDD00" Offset="0.7501" />
-                        <GradientStop Color="#00FFDD00" Offset="1" />
+                        <GradientStop Offset="0.6"
+                                      Color="{StaticResource Color7}" />
+                        <GradientStop Offset="0.75"
+                                      Color="{StaticResource Color6}" />
+                        <GradientStop Offset="0.7501"
+                                      Color="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0x55}" />
+                        <GradientStop Offset="1"
+                                      Color="{Binding Source={StaticResource Color6}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
                     </RadialGradientBrush>
                 </clockProgressIndicator:ClockProgressIndicator.Foreground>
                 <clockProgressIndicator:ClockProgressIndicator.RenderTransform>

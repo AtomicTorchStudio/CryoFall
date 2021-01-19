@@ -49,9 +49,9 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            data.PhysicsBody
+            /*data.PhysicsBody
                 .AddShapeCircle(radius: 0.45, center: (1.0, 0.7))
-                .AddShapeCircle(radius: 0.4,  center: (0.9, 1.25));
+                .AddShapeCircle(radius: 0.4,  center: (0.9, 1.25));*/
         }
     }
 }

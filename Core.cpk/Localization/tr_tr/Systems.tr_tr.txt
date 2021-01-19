@@ -155,6 +155,192 @@ Yeni tarif eklenemez
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Yıkım yapılamaz
 
+Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
+Üye sayısı
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeAlreadySameFactionMember:
+Üye hâlihazırda grubunun bir üyesi.
+
+Scripts/Systems/Faction/FactionSystem.Invitations@InvitationCreateResult.ErrorInviteeMemberAnotherFaction:
+Üye hâlihazırda başka bir gruba üye ve davet edilemez.
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Date_Format:
+[b]Tarih:[/b] {0}
+
+Scripts/Systems/Faction/Data/BaseFactionEventLogEntry@Text_Name_Format:
+[b]Yaratan:[/b] {0}
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@EditDescription:
+Grup açıklamasını düzenle
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@Recruitment:
+Üye katma
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@SetMemberRole:
+Üye rollerini ata
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
+Üyeleri çıkar
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
+Diplomasi yönetimi
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
+Yardımcı
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Recruiter:
+Üye toplayıcı
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Diplomat:
+Diplomat
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Treasurer:
+Hazineci
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Officer:
+Subay
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Manager:
+Yönetici
+
+Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Minister:
+Bakan
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Name:
+Grup açıklaması değişti
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDescriptionChanged@Text:
+Grup açıklaması değişti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Name:
+Diplomasi durumu değişti
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByOther_Format:
+[b]\[{0}\][/b] barış anlaşması teklifimizi kabul etti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByUs_Format:
+[b]\[{0}\][/b] ile barış anlaşması yapmayı kabul ettik.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarByUs_Format:
+[b]\[{0}\][/b] üstüne savaş ilan ettik.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarOnUs_Format:
+[b]\[{0}\][/b] bize savaş ilan etti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceByUs_Format:
+[b]\[{0}\][/b] ile olan müttefikliğimizi bozduk.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralBrokenAllianceWithUs_Format:
+[b]\[{0}\][/b] bizimle olan müttefikliğini bozdu.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarByUs_Format:
+[b]\[{0}\][/b] ettiğimiz savaş ilanını geri aldık.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_NeutralNoLongerDeclareWarOnUs_Format:
+[b]\[{0}\][/b] bize ettikleri savaş ilanını geri aldı.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualOtherResponded_Format:
+[b]\[{0}\][/b] biz onlara savaş ilan ettikten sonra cevaben bize savaş ilan etti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_WarMutualWeResponded_Format:
+[b]\[{0}\][/b] bize savaş ilan ettikten sonra cevaben onlara savaş ilan ettik.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Name:
+Grup üssü basıldı
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionBaseRaided@Text_Format:
+{0} konumundaki üssümüz [b]{1}[/b] tarafından basıldı.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Name:
+Grup yaratıldı
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionCreated@Text:
+Grup yaratıldı.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Name:
+Grup seviyesi yükseltildi
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryFactionLevelUpgraded@Text_Format:
+Grup seviyesi [b]{0}[/b] noktasına yükseltildi.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Name:
+Grup alan tutucusu bitti
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Text_Format:
+Grubun {0} konumundaki alan tutucusu bitti ve kaldırılacak.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Name:
+Lider sahipliği nakletti
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Text_Format:
+Lider sahipliği [b]{0}[/b] kişisine nakletti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Name:
+Üye katıldı
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Text_Format:
+[b]{0}[/b] gruba katıldı.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Name:
+Üye ayrıldı
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberLeft@Text_Format:
+[b]{0}[/b] gruptan ayrıldı.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Name:
+Üye çıkarıldı
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRemoved@Text_Format:
+Subay [b]{0}[/b] kişisini gruptan çıkardı.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@CurrentPlayerRoleChangedText_Format:
+Gruptaki rolün [b]{0}[/b] olarak değişti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Name:
+Üye rolü değişti
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberRoleChanged@Text_Format:
+[b]{0}[/b] rolü değişti ve şu oldu: [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@CurrentPlayerAccessRightsChangedText:
+Grup erişim hakların değişti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Name:
+Rol erişim hakları değişti
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleAccessRightsChanged@Text_Format:
+[b]{0}[/b] rolü için erişim hakları değişti.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Name:
+Rol yeniden isimlendirildi
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Text_Format:
+[b]{0}[/b] rolünün ismi değişti ve şu oldu: [b]{1}[/b].
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Name:
+Grup bölgesi değiştirildi
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expanded_Format:
+Grup bölgesi {0} noktasına genişletildi.
+
+Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
+{0} noktasındaki grup bölgesi kaldırıldı.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
+Grup serveti üsleri
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
+Grup seviyesi
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
+Boss puanı
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
+Avlanma puanı
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
+Toplam birikmiş EP
+
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 Envanterinde balıkçılık için kullanılabilecek yem yok.
 
@@ -246,11 +432,14 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescript
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 Çaylak korumanın sona erme süresi:
 
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CanCancelProtection:
+Bu korumayı sosyal menüden her an iptal edebilirsin.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Çaylak korumasındayken diğer oyunculara saldıramaz veya torbalarıyla eşyalarını yağmalayamazsın. Ama siyaset menüsünde bunu istediğin zaman iptal edebilirsin.
+Çaylak koruması altındayken başka üyelere saldıramaz, onların çantalarını veya eşyalarını yağmalayamazsın.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-Çaylak korumasındayken bunu yapamazsın. Ama siyaset menüsünde bunu istediğin zaman iptal edebilirsin.
+Çaylak koruması altındayken bunu yapamazsın.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Bu torba, çaylak koruması altında. O yüzden sadece sahibi alabilir.
@@ -299,9 +488,6 @@ Davet bulunamadı veya davetin süresi geçti.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
 Çok geç, takım doldu.
-
-Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
-Davetli bulunamadı.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
 Takım dolu.
@@ -383,6 +569,10 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Bu sunucunun operatörü sadece davetle girilebilecek şekilde ayarladı.
 [br]Lütfen daha fazla detay için sunucu açıklamasına bak.`
 
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionCommunity:
+`Bu sunucu bir topluluk üyesi tarafından yönetiliyor. Oyunun geliştiricisi veya yapımcısına bağlı [b]değil[/b], onlarca yönetilmiyor, onlar tarafından desteklenmiyor.
+[br]Sunucu kurallarına aykırı davranırsan engellenebilir veya atılabilirsin. Kuralları dikkatlice oku ve bir sorun yaşarsan sunucu sahibine ulaş.`
+
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionModded:
 Bu topluluk sunucusunda yüklü üçüncü parti modifikasyonlar var. Oyunun doğru çalışacağının ve iyi bir CryoFall tecrübesi sunacağının garantisi yoktur. Herhangi bir sorunla karşılaşırsanız lütfen bu sorunu topluluk sunucusunun sahibine söyleyiniz.
 
@@ -393,6 +583,9 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvE:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@DescriptionPvP:
 `Bu tamamen ücretsiz bir PvP sunucusudur. Lütfen unutmayın ki PvP-merkezli sunucularda diğer oyuncuların [b]düşmanlığıyla[/b] karşılaşacaksınız. Savaşmanız ve kendinizi korumanız gerekecek. Kendinizi iyi şekilde korumalı, sürekli tetikte olmalısınız. Bu oyun modu sadece tecrübeli oyunculara yöneliktir.
 [br]Daha sakin bir tecrübe arıyorsanız, özellikle bu oyunu ilk defa oynuyorsanız, lütfen bir PvE sunucusuna katılmayı düşünün.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionCommunity:
+Topluluk sunucusu
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderDescriptionPvE:
 PvE sunucusu
@@ -499,20 +692,26 @@ Silahın şarjörü değiştirilemez
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
 Cephane yok
 
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
-Sahiplere açılır
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
-Sahiplere ve arazi sahiplerine açılır
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
-Herkese açılır
-
-Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
-Her zaman kapalı
-
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 Erişimin yok!
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwners:
+Sahiplere açılır
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Sahiplere ve arazi sahiplerine açılır
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@OpensToEveryone:
+Herkese açılır
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectDirectAccessMode@Closed:
+Her zaman kapalı
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllFactionMembers:
+Tüm grup üyelerine açar
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectFactionAccessModes@AllyFactionMembers:
+Tüm müttefik grup üyelerine açar
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
 Erişim listesi boyutu sınırı aşıldı.
@@ -525,9 +724,6 @@ Son sahibi çıkaramazsın.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
 Sahip listesinden kendini çıkaramazsın. Lütfen başka bir oyuncunun bunu yapmasını iste.
-
-Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
-[b]{0}[/b] isimli oyuncu bulunamadı.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
 Sahip sen değilsin.

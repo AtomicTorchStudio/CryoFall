@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications.Data
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
@@ -10,6 +9,8 @@
 
     public class ViewModelHudNotificationControl : BaseViewModel
     {
+        private Brush icon;
+
         private float requiredHeight;
 
         public ViewModelHudNotificationControl(
@@ -42,22 +43,6 @@
             }
         }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        public ViewModelHudNotificationControl()
-            : this(
-                title: "Test title",
-                message: "Test notification message.",
-                brushBackground: new SolidColorBrush(Color.FromArgb(128, 0, 0, 255)),
-                brushBorder: new SolidColorBrush(Color.FromArgb(192,     0, 0, 255)),
-                iconBrush: Brushes.DeepSkyBlue,
-                onClick: null)
-        {
-            if (!IsDesignTime)
-            {
-                throw new Exception("This is design-time only constructor.");
-            }
-        }
-
         public Brush BrushBackground { get; }
 
         public Brush BrushBorder { get; }
@@ -66,7 +51,21 @@
 
         public CursorId Cursor { get; }
 
-        public Brush Icon { get; set; }
+        public Brush Icon
+        {
+            get => this.icon;
+            set
+            {
+                if (Equals(this.icon, value))
+                {
+                    return;
+                }
+
+                this.icon = value;
+                this.NotifyThisPropertyChanged();
+                this.NotifyPropertyChanged(nameof(this.IconVisibility));
+            }
+        }
 
         public Visibility IconVisibility => this.Icon is not null
                                                 ? Visibility.Visible

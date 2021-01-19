@@ -11,6 +11,8 @@
 
         public const double FishingChanceToSaveBait = 0.15; // 15%
 
+        public const string SkillLevelRequirement = "Requirement: Fishing skill level {0}.";
+
         public enum Flags
         {
             [Description("Chance to save the bait")]

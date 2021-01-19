@@ -36,7 +36,7 @@
 
             switch (worldObject.ProtoStaticWorldObject)
             {
-                case IProtoObjectElectricityProducer _:
+                case IProtoObjectElectricityProducer:
                 {
                     // producer
                     var publicState = worldObject.GetPublicState<IObjectElectricityProducerPublicState>();
@@ -50,7 +50,7 @@
                     break;
                 }
 
-                case IProtoObjectElectricityConsumer _:
+                case IProtoObjectElectricityConsumer:
                 {
                     // consumer
                     var publicState = worldObject.GetPublicState<IObjectElectricityConsumerPublicState>();
@@ -85,7 +85,7 @@
 
                 switch (this.worldObject.ProtoStaticWorldObject)
                 {
-                    case IProtoObjectElectricityProducer _:
+                    case IProtoObjectElectricityProducer:
                     {
                         // producer
                         var state = this.worldObject.GetPublicState<IObjectElectricityProducerPublicState>()
@@ -119,7 +119,7 @@
                         }
                     }
 
-                    case IProtoObjectElectricityConsumer _:
+                    case IProtoObjectElectricityConsumer:
                     {
                         // consumer
                         var state = this.worldObject.GetPublicState<IObjectElectricityConsumerPublicState>()
@@ -281,7 +281,7 @@
 
             switch (this.worldObject.ProtoStaticWorldObject)
             {
-                case IProtoObjectElectricityProducer _:
+                case IProtoObjectElectricityProducer:
                 {
                     // producer
                     var publicState = this.worldObject.GetPublicState<IObjectElectricityProducerPublicState>();
@@ -289,7 +289,7 @@
                     break;
                 }
 
-                case IProtoObjectElectricityConsumer _:
+                case IProtoObjectElectricityConsumer:
                 {
                     // consumer
                     var publicState = this.worldObject.GetPublicState<IObjectElectricityConsumerPublicState>();

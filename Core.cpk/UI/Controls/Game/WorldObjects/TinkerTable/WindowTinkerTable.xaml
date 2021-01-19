@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:tinkerTable="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TinkerTable"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TinkerTable.Data"
@@ -127,7 +127,7 @@
                            Width="52"
                            Height="52"
                            Fill="{Binding SkillIcon}">
-                    <ui:ToolTipServiceExtend.ToolTip>
+                    <base:ToolTipServiceExtend.ToolTip>
                         <StackPanel Grid.Column="0"
                                     Orientation="Vertical"
                                     MaxWidth="320">
@@ -145,7 +145,7 @@
                                        FontSize="12"
                                        Margin="0,5,0,0" />
                         </StackPanel>
-                    </ui:ToolTipServiceExtend.ToolTip>
+                    </base:ToolTipServiceExtend.ToolTip>
                 </Rectangle>
 
                 <TextBlock Grid.Column="4"

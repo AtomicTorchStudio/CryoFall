@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,7 @@
     public static class ServerEventLocationManager
     {
         private static readonly List<OldEventLocation> OldLocations
-            = new List<OldEventLocation>();
+            = new();
 
         public static void AddUsedLocation(
             Vector2Ushort position,

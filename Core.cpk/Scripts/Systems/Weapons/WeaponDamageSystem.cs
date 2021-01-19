@@ -1,11 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
@@ -21,6 +24,11 @@
 
     public static class WeaponDamageSystem
     {
+        public static readonly IReadOnlyDictionary<DamageType, StatName> DefenseStatNameBinding
+            = Enum.GetValues(typeof(DamageType))
+                  .Cast<DamageType>()
+                  .ToDictionary(_ => _, SharedGetDefenseStatName);
+
         public static double ServerCalculateTotalDamage(
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
@@ -91,6 +99,13 @@
             // multiply on final multiplier (usually used for expanding projectiles)
             totalDamage *= weaponCache.FinalDamageMultiplier;
 
+            if (weaponCache.ProtoExplosive is IProtoObjectExplosive)
+            {
+                // damage to character from a static object such as a bomb
+                // - use the damage as is - damage rate multipliers are already applied to it
+                return totalDamage;
+            }
+
             var damagingCharacter = weaponCache.Character;
             if (isPvPcase)
             {
@@ -135,6 +150,51 @@
             return totalDamage;
         }
 
+        public static bool ServerIsFriendlyFire(ICharacter damagingCharacter, ICharacter targetCharacter)
+        {
+            if (damagingCharacter is null
+                || damagingCharacter.IsNpc
+                || targetCharacter is null
+                || targetCharacter.IsNpc)
+            {
+                return false;
+            }
+
+            var targetParty = PartySystem.ServerGetParty(targetCharacter);
+            if (targetParty is not null)
+            {
+                var damagingParty = PartySystem.ServerGetParty(damagingCharacter);
+                if (targetParty == damagingParty)
+                {
+                    // same party
+                    return true;
+                }
+            }
+
+            var targetFaction = FactionSystem.ServerGetFaction(targetCharacter);
+            if (targetFaction is null)
+            {
+                // target has no faction
+                return false;
+            }
+
+            var damagingFaction = FactionSystem.ServerGetFaction(damagingCharacter);
+            if (damagingFaction is null)
+            {
+                // damaging character has no faction
+                return false;
+            }
+
+            if (damagingFaction == targetFaction)
+            {
+                // same faction
+                return true;
+            }
+
+            var status = FactionSystem.ServerGetFactionDiplomacyStatus(targetFaction, damagingFaction);
+            return status == FactionDiplomacyStatus.Ally; // friendly fire if ally
+        }
+
         public static bool SharedCanHitCharacter(WeaponFinalCache weaponCache, ICharacter targetCharacter)
         {
             var targetPublicState = targetCharacter.GetPublicState<ICharacterPublicState>();
@@ -176,10 +236,11 @@
             }
 
             if (damagingCharacter is not null
+                && !weaponCache.AllowNpcToNpcDamage
                 && damagingCharacter.IsNpc
                 && targetCharacter.IsNpc)
             {
-                // no creature-to-creature damage
+                // no NPC-to-NPC damage
                 return false;
             }
 
@@ -264,6 +325,7 @@
             }
             else
             {
+                // unknown damage - could be a vehicle or turret explosion, etc 
                 Api.Logger.Warning("Unknown damage kind, unable to add it to damage tracking stats", targetCharacter);
                 targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: (IProtoGameObject)null);
             }
@@ -378,10 +440,12 @@
                                               .PilotCharacter;
             }
 
+            // Determine whether this is a PvP case.
+            // Please note: turrets are also assumed as a PvP case!
             isPvPcase = targetCharacter is not null
-                        && !targetCharacter.IsNpc
+                        && !(targetCharacter.IsNpc && targetCharacter.ProtoGameObject is IProtoCharacterMob)
                         && damagingCharacter is not null
-                        && !damagingCharacter.IsNpc;
+                        && !(damagingCharacter.IsNpc && damagingCharacter.ProtoGameObject is IProtoCharacterMob);
 
             if (!isPvPcase)
             {
@@ -409,24 +473,15 @@
                 return true;
             }
 
+            if (WeaponConstants.DamageFriendlyFireMultiplier == 1)
+            {
+                // no sense to check for the friendly fire as it's 100% enabled
+                return false;
+            }
+
             // Let's check whether the players in the same party
             // to detect the friendly fire in a non-explosive damage case.
-            var targetParty = PartySystem.ServerGetParty(targetCharacter);
-            if (targetParty is null)
-            {
-                // PvP damage allowed as it's not a friendly fire case
-                return false;
-            }
-
-            var damagingParty = PartySystem.ServerGetParty(damagingCharacter);
-            if (targetParty != damagingParty)
-            {
-                // PvP damage allowed as it's not a friendly fire case
-                return false;
-            }
-
-            // a friendly fire case is detected
-            isFriendlyFireCase = true;
+            isFriendlyFireCase = ServerIsFriendlyFire(damagingCharacter, targetCharacter);
             if (WeaponConstants.DamageFriendlyFireMultiplier > 0)
             {
                 // PvP damage allowed but it's friendly fire case

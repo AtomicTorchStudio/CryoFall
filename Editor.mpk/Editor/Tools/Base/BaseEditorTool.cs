@@ -25,7 +25,7 @@
             DefaultFiltersReadOnlyList =
                 new List<EditorToolItemFilter>
                 {
-                    new EditorToolItemFilter("All", TextureFilterAll)
+                    new("All", TextureFilterAll)
                 }.AsReadOnly();
         }
 
@@ -44,13 +44,15 @@
 
         public TextureResource Icon { get; }
 
+        public virtual bool IsEnabled => true;
+
         public abstract int Order { get; }
 
         public abstract BaseEditorActiveTool Activate(BaseEditorToolItem item);
 
         public virtual ViewModelEditorToolItem CreateItemViewModel(BaseEditorToolItem item)
         {
-            return new ViewModelEditorToolItem(item);
+            return new(item);
         }
 
         public virtual FrameworkElement CreateSettingsControl()
@@ -74,10 +76,6 @@
         private IReadOnlyList<EditorToolItemFilter<TItem>> filters;
 
         private IReadOnlyList<TItem> items;
-
-        protected BaseEditorTool()
-        {
-        }
 
         public sealed override IReadOnlyList<EditorToolItemFilter> AbstractFilters => this.Filters;
 

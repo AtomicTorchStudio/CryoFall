@@ -6,7 +6,6 @@
     public interface IWorldObjectPublicStateWithClaim : IPublicState
     {
         [SyncToClient]
-        [TempOnly]
         public ILogicObject WorldObjectClaim { get; set; }
     }
 }

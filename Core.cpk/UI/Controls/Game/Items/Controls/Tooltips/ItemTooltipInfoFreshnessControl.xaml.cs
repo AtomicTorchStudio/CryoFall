@@ -12,7 +12,7 @@
 
         public static ItemTooltipInfoFreshnessControl Create(IItem item)
         {
-            return new ItemTooltipInfoFreshnessControl() { item = item };
+            return new() { item = item };
         }
 
         protected override void OnLoaded()

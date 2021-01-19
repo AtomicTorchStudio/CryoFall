@@ -20,10 +20,6 @@
             this.viewModel.Flicker<TProtoStatusEffect>();
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             var statusEffects = Api.Client.Characters.CurrentPlayerCharacter

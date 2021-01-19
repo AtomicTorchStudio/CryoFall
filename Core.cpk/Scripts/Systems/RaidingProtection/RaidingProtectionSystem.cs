@@ -40,12 +40,12 @@
         public static bool ClientIsRaidingWindowEnabled => ClientRaidingWindowUTC.DurationHours < 24;
 
         public static DayTimeInterval ClientRaidingWindowUTC { get; private set; }
-            = new DayTimeInterval(0, 24);
+            = new(0, 24);
 
         public static bool ServerIsRaidingWindowEnabled => ServerRaidingWindowUTC.DurationHours < 24;
 
         public static DayTimeInterval ServerRaidingWindowUTC { get; private set; }
-            = new DayTimeInterval(0, 24);
+            = new(0, 24);
 
         public static bool SharedIsRaidingWindowNow
         {

@@ -22,6 +22,12 @@ Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCateg
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 操控
 
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Description:
+啟動後將確保滑鼠在視窗化遊戲時不會跑到介面之外，除非按住Ctrl鍵。在多螢幕或者視窗化遊戲時很有用。
+
+Scripts/ClientOptions/General/GeneralOptionCaptureCursor@Name:
+滑鼠捕獲
+
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 開啟
 
@@ -36,11 +42,26 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 開發者模式
 
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Description:
+通常遊戲只會在其他角色頭頂顯示其生命條。你可以啟用此選項啟用你的角色的生命條。
+
+Scripts/ClientOptions/General/GeneralOptionDisplayHealthbarAboveCurrentCharacter@Name:
+`顯示生命條
+[br]於自己角色頭頂`
+
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 顯示物品互動提示
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 顯示物品名稱提示
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
+`任務是遊戲中的重要一環，尤其是對新玩家來說還能作為教程。
+[br]
+[br]確定禁用任務面板？`
+
+Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Name:
+隱藏任務面板
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 攝像機縮放

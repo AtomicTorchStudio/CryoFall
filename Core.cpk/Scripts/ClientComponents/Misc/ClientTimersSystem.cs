@@ -14,9 +14,9 @@ namespace AtomicTorch.CBND.CoreMod
 
         private static ClientTimersSystem instance;
 
-        private readonly SortedList<double, Action> sortedActionsList = new SortedList<double, Action>();
+        private readonly SortedList<double, Action> sortedActionsList = new();
 
-        private readonly List<(double time, Action action)> tempActionsList = new List<(double time, Action action)>();
+        private readonly List<(double time, Action action)> tempActionsList = new();
 
         private bool isEnumerating;
 

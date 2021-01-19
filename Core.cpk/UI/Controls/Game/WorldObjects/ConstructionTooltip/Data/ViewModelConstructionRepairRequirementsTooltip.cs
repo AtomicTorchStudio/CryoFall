@@ -41,10 +41,10 @@
             }
         }
 
+        public override string ActionTitle => CoreStrings.Action_Repair;
+
         public override IReadOnlyList<ProtoItemWithCount> StageRequiredItems
             => this.protoStructure.ConfigRepair.StageRequiredItems;
-
-        public override string ActionTitle => CoreStrings.Action_Repair;
 
         private void UpdateStageCountRemains()
         {

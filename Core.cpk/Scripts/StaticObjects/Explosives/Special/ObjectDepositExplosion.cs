@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectDepositExplosion : ProtoObjectExplosive
     {
@@ -25,6 +26,11 @@
             var sceneObject = data.GameObject.ClientSceneObject;
             var componentBombCountdown = sceneObject.FindComponent<ClientComponentBombCountdown>();
             componentBombCountdown.IsRendering = false;
+        }
+
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            renderer.IsEnabled = false;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)

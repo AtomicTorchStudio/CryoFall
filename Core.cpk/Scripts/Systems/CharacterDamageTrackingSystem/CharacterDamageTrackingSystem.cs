@@ -27,9 +27,7 @@
         [NotLocalizable]
         public override string Name => "Damage tracking system";
 
-        /// <summary>
-        /// Please note - the result could be a null list.
-        /// </summary>
+        [ItemCanBeNull]
         public static async Task<List<DamageSourceRemoteEntry>> ClientGetDamageTrackingStatsAsync()
         {
             var result = await Instance.CallServer(_ => _.ServerRemote_GetDamageTrackingStatsAsync());
@@ -51,7 +49,21 @@
         }
 
         [CanBeNull]
-        public static List<DamageSourceRemoteEntry> ServerGetDamageSources(ICharacter character)
+        public static List<DamageSourceRemoteEntry> ServerGetDamageSourcesAfterTime(
+            ICharacter character,
+            double afterTime)
+        {
+            if (!serverPlayerCharacterDamageSourcesStats.TryGetValue(character, out var stats))
+            {
+                // no damage stats
+                return null;
+            }
+
+            return stats.BuildRemoteStatsAfter(afterTime);
+        }
+
+        [CanBeNull]
+        public static List<DamageSourceRemoteEntry> ServerGetDamageSourcesLatest(ICharacter character)
         {
             if (!serverPlayerCharacterDamageSourcesStats.TryGetValue(character, out var stats))
             {
@@ -66,7 +78,7 @@
                                 ? privateState.LastDeathTime.Value
                                 : 0; // get all the stored damage sources as we don't have the death time
 
-            return stats.BuildRemoteStats(untilTime);
+            return stats.BuildRemoteStatsBeforeDeath(untilTime);
         }
 
         /// <summary>
@@ -75,7 +87,7 @@
         public static double ServerGetPvPdamagePercent(ICharacter character)
         {
             var percentOfPvPdamage = 0.0;
-            var damageSources = ServerGetDamageSources(character);
+            var damageSources = ServerGetDamageSourcesLatest(character);
             if (damageSources is null)
             {
                 return 0;
@@ -85,11 +97,11 @@
             {
                 switch (entry.ProtoEntity)
                 {
-                    case PlayerCharacter _:
+                    case PlayerCharacter:
                         percentOfPvPdamage += entry.Fraction;
                         break;
 
-                    case StatusEffectRadiationPoisoning _:
+                    case StatusEffectRadiationPoisoning:
                         // special case - death in radtown
                         // we want player to drop loot in that case even if there were PvP damage
                         return 0;
@@ -140,15 +152,11 @@
                                     serverPlayerCharacterDamageSourcesStats);
         }
 
-        /// <summary>
-        /// Please note - the result could be a null list.
-        /// </summary>
-        /// <returns></returns>
-        [RemoteCallSettings(timeInterval: 5)]
+        [RemoteCallSettings(timeInterval: 2)]
         [CanBeNull]
         private List<DamageSourceRemoteEntry> ServerRemote_GetDamageTrackingStatsAsync()
         {
-            return ServerGetDamageSources(ServerRemoteContext.Character);
+            return ServerGetDamageSourcesLatest(ServerRemoteContext.Character);
         }
     }
 }

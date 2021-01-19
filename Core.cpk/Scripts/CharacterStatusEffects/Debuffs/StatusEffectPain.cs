@@ -47,6 +47,9 @@
             // energy regeneration -75%
             effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, -75);
 
+            // health regeneration -25%
+            effects.AddPercent(this, StatName.HealthRegenerationPerSecond, -25);
+
             // more psi damage while under pain
             effects.AddPercent(this, StatName.PsiEffectMultiplier, 25);
         }

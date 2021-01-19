@@ -11,6 +11,9 @@
 
         public const string Eat = "Eat";
 
+        // Open a coin purse, etc.
+        public const string Open = "Open";
+
         public const string Read = "Read";
 
         public const string Use = "Use";

@@ -57,6 +57,12 @@
             this.GroundContainer = ObjectGroundItemsContainer
                 .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(this.Character, tile);
 
+            if (this.GroundContainer is null)
+            {
+                // unable to create a ground container here
+                return;
+            }
+
             // don't restrict the ground container space limit
             Api.Server.Items.SetSlotsCount(this.GroundContainer, byte.MaxValue);
         }

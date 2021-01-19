@@ -11,9 +11,9 @@
     d:DataContext="{d:DesignInstance cooldownIndicator:ViewModelCooldownIndicatorControl, IsDesignTimeCreatable=True}"
     x:Name="UserControl">
 
-    <Border x:Name="LayoutRoot" 
-            DataContext="{Binding ViewModel, ElementName=UserControl}" 
-            Visibility="{Binding IsVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}" 
+    <Border x:Name="LayoutRoot"
+            DataContext="{Binding ViewModel, ElementName=UserControl}"
+            Visibility="{Binding IsVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
             CornerRadius="3,3,0,0">
         <Border.Background>
             <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.075" />

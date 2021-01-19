@@ -11,7 +11,7 @@
     public class PostEffectRadiation : BasePostEffect
     {
         private static readonly EffectResource EffectResource
-            = new EffectResource("PostEffects/StatusEffects/Radiation");
+            = new("PostEffects/StatusEffects/Radiation");
 
         private IGraphicsDevice device;
 

@@ -12,54 +12,70 @@
     IsHitTestVisible="False"
     d:DataContext="{d:DesignInstance data:ViewModelDepositCapacityStatsControl, IsDesignTimeCreatable=True}">
 
-    <Border Background="{StaticResource TooltipBackgroundBrush}"
-            BorderBrush="{StaticResource TooltipBorderBrush}"
-            BorderThickness="{StaticResource TooltipBorderThickness}"
-            Padding="6,2,6,5"
-            CornerRadius="3">
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding DepositTitle}"
-                       Foreground="#FFF1F1F1"
-                       FontSize="27"
-                       FontWeight="Bold"
-                       FontFamily="{StaticResource CondensedFontFamily}"
-                       noesis:Text.Stroke="Black"
-                       noesis:Text.StrokeThickness="3"
-                       HorizontalAlignment="Center"
-                       TextAlignment="Center" />
+    <Grid>
+        <Border Background="{StaticResource TooltipBackgroundBrush}"
+                BorderBrush="{StaticResource WidgetShadowBrush}"
+                BorderThickness="0,0,0.75,0.75"
+                Margin="{StaticResource WidgetShadowMarginThin}"
+                CornerRadius="3">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="6"
+                    Direction="315"
+                    ShadowDepth="3"
+                    Opacity="0.8"
+                    Color="Black" />
+            </Border.Effect>
+        </Border>
 
-            <!--<manufacturers:DepositCapacityStatsControl Margin="0,5,0,0"
+        <Border BorderBrush="{StaticResource TooltipBorderBrush}"
+                BorderThickness="{StaticResource TooltipBorderThickness}"
+                Padding="6,2,6,5"
+                CornerRadius="3">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding DepositTitle}"
+                           Foreground="#FFF1F1F1"
+                           FontSize="27"
+                           FontWeight="Bold"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           noesis:Text.Stroke="Black"
+                           noesis:Text.StrokeThickness="3"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" />
+
+                <!--<manufacturers:DepositCapacityStatsControl Margin="0,5,0,0"
                                                        HorizontalAlignment="Center"
                                                        BarBrush="#FFF1F1F1" />-->
 
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Center"
-                        Margin="0,1,0,0">
-                <StackPanel.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
-                        <Setter Property="FontSize" Value="18" />
-                        <Setter Property="TextWrapping" Value="Wrap" />
-                        <Setter Property="HorizontalAlignment" Value="Center" />
-                        <Setter Property="noesis:Text.Stroke" Value="Black" />
-                        <Setter Property="noesis:Text.StrokeThickness" Value="2" />
-                    </Style>
-                </StackPanel.Resources>
-                <!-- Text: This deposit will be depleted in: -->
-                <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}" />
-
-                <TextBlock Text="{Binding DepletionDurationText}"
-                           FontWeight="Bold" />
-
                 <StackPanel Orientation="Vertical"
-                            Visibility="{Binding CanClaim, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                            Margin="0,10,0,0">
-                    <TextBlock Text="{x:Static loc:CoreStrings.DepositAvailableForClaiming_Message}" />
-                    <TextBlock Text="{Binding TimeToClaimText}"
+                            VerticalAlignment="Center"
+                            Margin="0,1,0,0">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                            <Setter Property="FontSize" Value="18" />
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="noesis:Text.Stroke" Value="Black" />
+                            <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <!-- Text: This deposit will be depleted in: -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}" />
+
+                    <TextBlock Text="{Binding DepletionDurationText}"
                                FontWeight="Bold" />
+
+                    <StackPanel Orientation="Vertical"
+                                Visibility="{Binding CanClaim, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="{x:Static loc:CoreStrings.DepositAvailableForClaiming_Message}" />
+                        <TextBlock Text="{Binding TimeToClaimText}"
+                                   FontWeight="Bold" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Border>
+        </Border>
+    </Grid>
 
 </base:BaseUserControl>

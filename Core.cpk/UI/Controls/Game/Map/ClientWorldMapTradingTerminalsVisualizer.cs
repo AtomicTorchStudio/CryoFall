@@ -10,27 +10,22 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientWorldMapTradingTerminalsVisualizer : IWorldMapVisualizer
+    public class ClientWorldMapTradingTerminalsVisualizer : BaseWorldMapVisualizer
     {
         private readonly Dictionary<uint, FrameworkElement> markers
-            = new Dictionary<uint, FrameworkElement>();
-
-        private readonly WorldMapController worldMapController;
+            = new();
 
         private SuperObservableCollection<TradingStationsMapMarksSystem.TradingStationMark> marksProvider;
 
         public ClientWorldMapTradingTerminalsVisualizer(WorldMapController worldMapController)
+            : base(worldMapController)
         {
-            this.worldMapController = worldMapController;
-
             this.marksProvider = TradingStationsMapMarksSystem.ClientTradingStationMarksList;
             this.marksProvider.CollectionChanged += this.MarksProviderChangedHandler;
             this.Reset();
         }
 
-        public bool IsEnabled { get; set; }
-
-        public void Dispose()
+        protected override void DisposeInternal()
         {
             this.marksProvider.CollectionChanged -= this.MarksProviderChangedHandler;
             this.marksProvider = null;
@@ -47,12 +42,12 @@
             }
 
             var mapControl = new WorldMapMarkTradingTerminal(mark.TradingStationId, mark.IsOwner);
-            var canvasPosition = this.worldMapController.WorldToCanvasPosition(mark.TilePosition.ToVector2D());
+            var canvasPosition = this.WorldToCanvasPosition(mark.TilePosition.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);
             Panel.SetZIndex(mapControl, 9);
 
-            this.worldMapController.AddControl(mapControl);
+            this.AddControl(mapControl);
 
             this.markers[tradingStationId] = mapControl;
         }
@@ -95,7 +90,7 @@
             }
 
             this.markers.Remove(tradingStationId);
-            this.worldMapController.RemoveControl(control);
+            this.RemoveControl(control);
         }
 
         private void Reset()

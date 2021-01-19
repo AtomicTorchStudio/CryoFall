@@ -274,7 +274,7 @@
                     return worldObject switch
                     {
                         IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
-                        IStaticWorldObject _                   => worldObject.TilePosition.ToVector2D(),
+                        IStaticWorldObject                     => worldObject.TilePosition.ToVector2D(),
                         _                                      => hitData.FallbackTilePosition.ToVector2D()
                     };
                 }
@@ -666,7 +666,6 @@
         {
             fireAnimationDuration = Shared.RoundDurationByServerFrameDuration(fireAnimationDuration);
             fireInterval = Shared.RoundDurationByServerFrameDuration(fireInterval);
-            //var animationDelay = weaponProto.DamageApplyDelay;
 
             var currentFireAnimation = skeletonRenderer.GetCurrentAnimationName(trackIndex);
             if (currentFireAnimation == fireAnimationName)

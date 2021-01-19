@@ -14,7 +14,6 @@
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetToolbox()
         {
-            // TODO: use T2 sound
             return ObjectsSoundsPresets.ObjectConstructionSite.Clone()
                                        .Replace(ObjectSound.InteractProcess, "Items/Tools/ToolboxT2/UseProcess");
         }

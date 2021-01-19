@@ -40,7 +40,7 @@
         private const byte SignalLevelsNumber = 5;
 
         private static readonly Lazy<ObjectMineralPragmiumSource> LazyPragmiumSource
-            = new Lazy<ObjectMineralPragmiumSource>(Api.GetProtoEntity<ObjectMineralPragmiumSource>);
+            = new(Api.GetProtoEntity<ObjectMineralPragmiumSource>);
 
         public static event Action<IItem, PragmiumSensorSignalKind> ServerSignalReceived;
 
@@ -60,10 +60,10 @@
         public override double ServerUpdateRareIntervalSeconds => 10;
 
         protected virtual SoundResource SoundResourcePing { get; }
-            = new SoundResource("Items/Tools/PragmiumSensor/Ping");
+            = new("Items/Tools/PragmiumSensor/Ping");
 
         protected virtual SoundResource SoundResourcePong { get; }
-            = new SoundResource("Items/Tools/PragmiumSensor/Pong");
+            = new("Items/Tools/PragmiumSensor/Pong");
 
         protected float SoundVolume => 0.5f;
 

@@ -98,10 +98,10 @@
             private static readonly IAudioClientService Audio = Api.Client.Audio;
 
             private static readonly SoundResource SoundResourceClickSeries
-                = new SoundResource("StatusEffects/Invisible/EnvironmentalRadiation/GeigerSeries1");
+                = new("StatusEffects/Invisible/EnvironmentalRadiation/GeigerSeries1");
 
             private static readonly SoundResource SoundResourceOneClick
-                = new SoundResource("StatusEffects/Invisible/EnvironmentalRadiation/GeigerClick1");
+                = new("StatusEffects/Invisible/EnvironmentalRadiation/GeigerClick1");
 
             public double Intensity { get; set; }
 

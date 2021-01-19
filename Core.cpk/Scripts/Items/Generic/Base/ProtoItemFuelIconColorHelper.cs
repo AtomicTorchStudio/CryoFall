@@ -19,13 +19,13 @@
         private static readonly Color ColorFuelSolid
             = Api.Client.UI.GetApplicationResource<Color>("ColorFuelSolid");
 
-        private static readonly TextureResource IconElectricity = new TextureResource("Icons/IconElectricity");
+        private static readonly TextureResource IconElectricity = new("Icons/IconElectricity");
 
-        private static readonly TextureResource IconFuelOil = new TextureResource("Icons/Fuels/IconFuelOil");
+        private static readonly TextureResource IconFuelOil = new("Icons/Fuels/IconFuelOil");
 
-        private static readonly TextureResource IconFuelRefined = new TextureResource("Icons/Fuels/IconFuelRefined");
+        private static readonly TextureResource IconFuelRefined = new("Icons/Fuels/IconFuelRefined");
 
-        private static readonly TextureResource IconFuelSolid = new TextureResource("Icons/Fuels/IconFuelSolid");
+        private static readonly TextureResource IconFuelSolid = new("Icons/Fuels/IconFuelSolid");
 
         public static (ITextureResource icon, Color color) GetIconAndColor(Type fuelType)
         {

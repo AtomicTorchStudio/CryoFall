@@ -38,7 +38,7 @@
 
         public static ReadOnlyDefenseDescription Create(DefenseDescription defenseDescription)
         {
-            return new ReadOnlyDefenseDescription(defenseDescription);
+            return new(defenseDescription);
         }
 
         public void FillEffects(IProtoEntity prototype, BaseStatsDictionary effects, double maximumDefensePercent = 1)

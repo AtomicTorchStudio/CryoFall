@@ -83,6 +83,9 @@
         public CharacterInput Input { get; set; }
 
         [SyncToClient]
+        public bool IsAppearanceSelected { get; set; }
+
+        [SyncToClient]
         public bool IsDespawned { get; set; }
 
         /// <summary>
@@ -100,6 +103,9 @@
         public LastDismountedVehicleMapMark LastDismountedVehicleMapMark { get; set; }
 
         [SyncToClient]
+        public double LastFactionLeaveTime { get; set; } = double.MinValue;
+
+        [SyncToClient]
         [TempOnly]
         public NetworkSyncList<ILogicObject> OwnedLandClaimAreas { get; set; }
 
@@ -113,6 +119,8 @@
 
         [SyncToClient(isSendChanges: false)]
         public byte? SelectedHotbarSlotId { get; set; }
+
+        public double ServerFactionKarma { get; set; }
 
         [TempOnly]
         public byte ServerLastAckClientInputId { get; set; }
@@ -138,7 +146,7 @@
 
             this.ContainerInventory ??= serverItemsService.CreateContainer<ItemsContainerCharacterInventory>(
                 character,
-                slotsCount: 40);
+                slotsCount: PlayerConstants.InventorySlotsCount);
 
             this.ContainerHotbar ??= serverItemsService.CreateContainer<ItemsContainerCharacterHotbar>(
                 character,

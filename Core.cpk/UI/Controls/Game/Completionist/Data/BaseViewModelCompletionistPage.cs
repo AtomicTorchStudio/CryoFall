@@ -45,11 +45,9 @@
         public int ColumnsCount { get; }
 
         public SuperObservableCollection<TViewDataEntry> Entries { get; }
-            = new SuperObservableCollection<TViewDataEntry>();
+            = new();
 
         public int EntriesTotalCount => this.binding.Count;
-
-        public bool HasPendingEntries { get; private set; }
 
         public int IconSize { get; }
 
@@ -156,7 +154,6 @@
             this.PendingEntriesCount =
                 this.Entries.Count(e => e.State
                                         == ViewModelWindowCompletionist.CompletionistEntryState.RewardAvailable);
-            this.HasPendingEntries = this.pendingEntriesCount > 0;
             this.NotifyPropertyChanged(nameof(this.ProgressText));
         }
 

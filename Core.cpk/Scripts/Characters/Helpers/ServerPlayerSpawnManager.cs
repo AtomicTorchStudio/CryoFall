@@ -2,8 +2,8 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -43,7 +43,8 @@
             if (!spawnZone.IsEmpty)
             {
                 // TODO: this could be slow and might require distributing across the multiple frames
-                if (isRespawn)
+                if (isRespawn
+                    && spawnZone.PositionsCount > 100)
                 {
                     spawnPosition = TryFindZoneSpawnPosition(character,
                                                              spawnZone,
@@ -99,9 +100,18 @@
 
         public static void SpawnPlayer(ICharacter character, bool isRespawn)
         {
-            PlacePlayer(character, isRespawn);
-
             ServerAddTorchItemIfNoItems(character);
+
+            if (character.IsInitialized
+                && PlayerCharacter.GetPrivateState(character).IsAppearanceSelected)
+            {
+                PlacePlayer(character, isRespawn);
+            }
+            else
+            {
+                // first time spawn and requires appearance selection
+                ServerCharacterDeathMechanic.DespawnCharacter(character);
+            }
         }
 
         private static Vector2Ushort? TryFindZoneSpawnPosition(
@@ -145,14 +155,16 @@
                     continue;
                 }
 
-                if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(randomPosition, character))
+                if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(randomPosition,
+                                                                           character,
+                                                                           requireFactionPermission: false))
                 {
                     // the land is claimed by another player
                     continue;
                 }
 
                 if (ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(randomPosition.ToVector2D(),
-                                                                                isPlayer: true))
+                    isPlayer: true))
                 {
                     // valid position found
                     return randomPosition;

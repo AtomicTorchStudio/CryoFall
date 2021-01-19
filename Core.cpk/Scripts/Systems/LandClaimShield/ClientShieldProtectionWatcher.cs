@@ -106,7 +106,7 @@
             var areas = LandClaimSystem.ClientGetKnownAreasForGroup(areasGroup);
             foreach (var area in areas)
             {
-                if (LandClaimSystem.ClientIsOwnedArea(area))
+                if (LandClaimSystem.ClientIsOwnedArea(area, requireFactionPermission: false))
                 {
                     return true;
                 }

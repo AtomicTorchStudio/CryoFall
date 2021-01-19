@@ -20,10 +20,6 @@
             this.vehicle = vehicle;
         }
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             this.DataContext = this.viewModel = new ViewModelHUDMechHotbarControl(this.vehicle);

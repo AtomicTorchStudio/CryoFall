@@ -14,7 +14,7 @@
     public class ComponentWeaponEnergyBeam : ClientComponent
     {
         private static readonly EffectResource BeamEffectResource
-            = new EffectResource("Special/WeaponLaserBeam");
+            = new("Special/WeaponLaserBeam");
 
         private readonly RenderingMaterial renderingMaterial 
             = RenderingMaterial.Create(BeamEffectResource);

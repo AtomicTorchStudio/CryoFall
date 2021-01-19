@@ -10,13 +10,10 @@
     {
         public ViewModelLoadingSplashScreen()
         {
-            if (IsDesignTime)
-            {
-                return;
-            }
-
             this.RandomizeInfo();
         }
+
+        public bool DisplayStructureInfos { get; set; }
 
         public List<ViewModelStructureInfo> StructureInfos { get; private set; }
 
@@ -30,7 +27,14 @@
             }
 
             infos = new List<ViewModelStructureInfo>();
-            var availableStructures = StructuresHelper.AllConstructableStructures
+
+            if (!this.DisplayStructureInfos)
+            {
+                this.StructureInfos = infos;
+                return;
+            }
+
+            var availableStructures = StructuresHelper.LoadingSplashScreenStructures
                                                       .ToList();
 
             // filter categories
@@ -39,10 +43,10 @@
                 var structure = availableStructures[index];
                 switch (structure.Category)
                 {
-                    case StructureCategoryFood _:
-                    case StructureCategoryBuildings _:
-                    case StructureCategoryDecorations _:
-                    case StructureCategoryOther _:
+                    case StructureCategoryFood:
+                    case StructureCategoryBuildings:
+                    case StructureCategoryDecorations:
+                    case StructureCategoryOther:
                         // ignore these categories
                         availableStructures.RemoveAt(index);
                         index--;

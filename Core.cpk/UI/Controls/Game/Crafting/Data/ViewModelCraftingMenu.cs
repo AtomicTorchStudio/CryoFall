@@ -134,7 +134,7 @@
         /// </summary>
         private static List<Recipe> CreateTestRecipesList()
         {
-            return new List<Recipe>()
+            return new()
             {
                 new RecipeToolboxT1(),
                 new RecipeAxeIron(),

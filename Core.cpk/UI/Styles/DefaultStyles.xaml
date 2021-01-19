@@ -13,7 +13,8 @@
     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
     xmlns:other="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ClockProgressIndicator"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers">
+    xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers"
+    xmlns:coreMod="clr-namespace:AtomicTorch.CBND.CoreMod">
 
     <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
 
@@ -52,6 +53,8 @@
     <FontFamily x:Key="MonospacedFontFamily">/UI/Fonts/#Ubuntu Mono</FontFamily>
     <FontFamily x:Key="DigitsFontFamily">/UI/Fonts/#Oswald</FontFamily>
     <FontFamily x:Key="AsianFontFamily">/UI/Fonts/#Source Han Sans</FontFamily>
+    <FontFamily x:Key="WesternDefaultFontFamily">/UI/Fonts/#Roboto</FontFamily>
+    <FontFamily x:Key="WesternCondensedFontFamily">/UI/Fonts/#Roboto Condensed</FontFamily>
 
     <!-- Colors -->
     <Color x:Key="Color0">#FF473400</Color>
@@ -72,19 +75,26 @@
     <Color x:Key="ColorAlt6">#FF0ABCFF</Color>
     <Color x:Key="ColorAlt7">#FF80DCFF</Color>
 
-    <Color x:Key="ColorRed0">#FF471A1A</Color>
-    <Color x:Key="ColorRed1">#FF571F1F</Color>
-    <Color x:Key="ColorRed2">#FF7F2E2E</Color>
-    <Color x:Key="ColorRed3">#FF993737</Color>
-    <Color x:Key="ColorRed4">#FFA83D3D</Color>
-    <Color x:Key="ColorRed5">#FFCC4747</Color>
-    <Color x:Key="ColorRed6">#FFEE3333</Color>
-    <Color x:Key="ColorRed7">#FFFF6666</Color>
+    <Color x:Key="ColorRed0">#FF470512</Color>
+    <Color x:Key="ColorRed1">#FF570716</Color>
+    <Color x:Key="ColorRed2">#FF7F0A20</Color>
+    <Color x:Key="ColorRed3">#FF990C26</Color>
+    <Color x:Key="ColorRed4">#FFA80D2A</Color>
+    <Color x:Key="ColorRed5">#FFCC0F33</Color>
+    <Color x:Key="ColorRed6">#FFEE123B</Color>
+    <Color x:Key="ColorRed7">#FFFF143B</Color>
+
+    <Color x:Key="ColorGreen0">#FF053617</Color>
+    <Color x:Key="ColorGreen1">#FF06451E</Color>
+    <Color x:Key="ColorGreen2">#FF0A6E30</Color>
+    <Color x:Key="ColorGreen3">#FF0C873B</Color>
+    <Color x:Key="ColorGreen4">#FF0E9642</Color>
+    <Color x:Key="ColorGreen5">#FF11BA52</Color>
+    <Color x:Key="ColorGreen6">#FF14DB60</Color>
+    <Color x:Key="ColorGreen7">#FF15EE6A</Color>
 
     <Color x:Key="ColorLabelForeground">White</Color>
     <Color x:Key="ColorAltLabelForeground">#FF99DCFF</Color>
-
-    <Color x:Key="WidgetBorderColor">#FF0094CC</Color>
 
     <!-- Liquid colors -->
     <Color x:Key="LiquidColorEmpty">#FF999999</Color>
@@ -119,18 +129,24 @@
     <ImageBrush x:Key="IconLithium" Stretch="Uniform"
                 ImageSource="/Content/Textures/Icons/IconLithium.png" />
 
-    <!-- Fuel colors -->
-    <Color x:Key="ColorElectricity">#FFFFEE00</Color>
+    <!-- Fuel and etc colors -->
+    <Color x:Key="ColorElectricity">#FFD4C939</Color>
+    <Color x:Key="ColorElectricityDarker">#FFAA8F00</Color>
     <Color x:Key="ColorOrganic">#FF664433</Color>
     <Color x:Key="ColorFuelOil">#FFFF8800</Color>
     <Color x:Key="ColorFuelRefined">#FFFF6666</Color>
     <Color x:Key="ColorFuelSolid">#FFFF0000</Color>
+    <Color x:Key="ColorVehicleEnergy">#FF22AAFF</Color>
+    <Color x:Key="ColorVehicleArmor">#FFCCCCCC</Color>
 
     <SolidColorBrush x:Key="BrushElectricity" Color="{StaticResource ColorElectricity}" />
+    <SolidColorBrush x:Key="BrushElectricityDarker" Color="{StaticResource ColorElectricityDarker}" />
     <SolidColorBrush x:Key="BrushOrganic" Color="{StaticResource ColorOrganic}" />
     <SolidColorBrush x:Key="BrushFuelOil" Color="{StaticResource ColorFuelOil}" />
     <SolidColorBrush x:Key="BrushFuelRefined" Color="{StaticResource ColorFuelRefined}" />
     <SolidColorBrush x:Key="BrushFuelSolid" Color="{StaticResource ColorFuelSolid}" />
+    <SolidColorBrush x:Key="BrushVehicleEnergy" Color="{StaticResource ColorVehicleEnergy}" />
+    <SolidColorBrush x:Key="BrushVehicleArmor" Color="{StaticResource ColorVehicleArmor}" />
 
     <!-- Fuel icons -->
     <!-- Also see class ProtoItemFuelIconColorHelper -->
@@ -171,6 +187,15 @@
     <SolidColorBrush x:Key="BrushColorRed6" Color="{StaticResource ColorRed6}" />
     <SolidColorBrush x:Key="BrushColorRed7" Color="{StaticResource ColorRed7}" />
 
+    <SolidColorBrush x:Key="BrushColorGreen0" Color="{StaticResource ColorGreen0}" />
+    <SolidColorBrush x:Key="BrushColorGreen1" Color="{StaticResource ColorGreen1}" />
+    <SolidColorBrush x:Key="BrushColorGreen2" Color="{StaticResource ColorGreen2}" />
+    <SolidColorBrush x:Key="BrushColorGreen3" Color="{StaticResource ColorGreen3}" />
+    <SolidColorBrush x:Key="BrushColorGreen4" Color="{StaticResource ColorGreen4}" />
+    <SolidColorBrush x:Key="BrushColorGreen5" Color="{StaticResource ColorGreen5}" />
+    <SolidColorBrush x:Key="BrushColorGreen6" Color="{StaticResource ColorGreen6}" />
+    <SolidColorBrush x:Key="BrushColorGreen7" Color="{StaticResource ColorGreen7}" />
+
     <SolidColorBrush x:Key="BrushColorLabelForeground" Color="{StaticResource ColorLabelForeground}" />
     <SolidColorBrush x:Key="BrushColorAltLabelForeground" Color="{StaticResource ColorAltLabelForeground}" />
     <SolidColorBrush x:Key="BrushColorLabelForegroundDisabled" Color="{StaticResource ColorLabelForeground}"
@@ -206,7 +231,7 @@
     <SolidColorBrush x:Key="ButtonBackgroundMouseOverHighlight" Color="{StaticResource Color5}" Opacity="0.35" />
     <SolidColorBrush x:Key="ButtonBackgroundFocusedHighlight" Color="{StaticResource Color5}" Opacity="0.35" />
     <SolidColorBrush x:Key="ButtonBackgroundPressedHighlight" Color="{StaticResource Color5}" Opacity="0.5" />
-    <SolidColorBrush x:Key="ButtonBorderNormal" Color="{StaticResource WidgetBorderColor}" Opacity="1" />
+    <SolidColorBrush x:Key="ButtonBorderNormal" Color="{StaticResource ColorAlt5}" Opacity="1" />
     <SolidColorBrush x:Key="ButtonBorderMouseOver" Color="{StaticResource Color6}" Opacity="1" />
     <SolidColorBrush x:Key="ButtonBorderFocused" Color="{StaticResource Color5}" Opacity="1" />
     <SolidColorBrush x:Key="ButtonBorderPressed" Color="{StaticResource Color7}" Opacity="1" />
@@ -216,6 +241,7 @@
     <SolidColorBrush x:Key="ButtonSmallBackgroundPressedHighlight" Color="{StaticResource Color5}" Opacity="0.6" />
 
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#D4000000" />
+    <SolidColorBrush x:Key="WindowBackgroundLessTransparentBrush" Color="#E8000000" />
     <SolidColorBrush x:Key="WindowForeground" Color="White" />
     <SolidColorBrush x:Key="WindowTitleForeground" Color="{StaticResource Color6}" />
 
@@ -234,6 +260,7 @@
         <GradientStop Color="{StaticResource Color6}" Offset="0.7" />
     </LinearGradientBrush>
 
+    <Color x:Key="WidgetBackgroundColor">#B4000000</Color>
     <Color x:Key="WidgetBackgroundGradientColorOpaque">#A0005C7F</Color>
     <Color x:Key="WidgetBackgroundGradientColorNonOpaque">#00005C7F</Color>
 
@@ -247,11 +274,16 @@
         <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" Offset="1" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="WidgetBorderBrush" Color="{StaticResource WidgetBorderColor}" />
-    <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="#B4000000" />
+    <SolidColorBrush x:Key="WidgetBorderBrush" Color="{StaticResource ColorAlt5}" />
+    <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="{StaticResource WidgetBackgroundColor}" />
+    <SolidColorBrush x:Key="WidgetBackgroundBlueBrush" Color="{StaticResource ColorAlt0}" Opacity="0.7" />
+    <SolidColorBrush x:Key="WidgetShadowBrush" Color="Black" Opacity="0.5" />
 
-    <SolidColorBrush x:Key="BrushCanInteract" Color="#FFFFCC00" />
+    <SolidColorBrush x:Key="BrushCanInteract" Color="{StaticResource Color6}" />
     <SolidColorBrush x:Key="BrushCannotInteract" Color="#FFBBBBBB" />
+
+    <Thickness x:Key="WidgetShadowMargin">1.5,1.5,-1,-1</Thickness>
+    <Thickness x:Key="WidgetShadowMarginThin">1.5,1.5,-0.75,-0.75</Thickness>
 
     <Style TargetType="{x:Type core:WidgetPanel}" BasedOn="{StaticResource {x:Type UserControl}}">
         <Setter Property="WidgetBackground" Value="{StaticResource WidgetBackgroundBrush}" />
@@ -266,6 +298,14 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource WidgetBorderBrush}" />
         <Setter Property="CornerRadius" Value="3" />
+    </Style>
+
+    <!-- Drop shadow effect alternative -->
+    <Style x:Key="WidgetBorderShadowStyle" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0,0,1.5,1.5" />
+        <Setter Property="BorderBrush" Value="{StaticResource WidgetShadowBrush}" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Margin" Value="{StaticResource WidgetShadowMargin}" />
     </Style>
 
     <ImageBrush x:Key="WidgetBackgroundImageTexture"
@@ -505,6 +545,24 @@
         <Setter Property="Padding" Value="3" />
     </Style>
 
+    <!-- Checkmark control style -->
+    <Style x:Key="CheckmarkControlStyle" TargetType="Control">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource ButtonForeground}" />
+        <Setter Property="Width" Value="{Binding (TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding (TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Path Fill="{TemplateBinding Foreground}"
+                          Data="m 20.530599,15.532552 c -4.487523,0.0029 -6.700048,5.457879 -3.482422,8.585937 L 32.473247,37.787024 69.118489,2.9518227 C 74.026748,-1.760721 66.760721,-9.0267485 62.048177,-4.1184895 L 32.5,25.429688 24.118489,17.048177 c -0.941972,-0.969354 -2.23624,-1.516089 -3.58789,-1.515625 z"
+                          Stretch="Uniform" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Cross (X) control style -->
     <Style x:Key="CrossControlStyle" TargetType="Control">
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -517,6 +575,25 @@
                 <ControlTemplate>
                     <Path Fill="{TemplateBinding Foreground}"
                           Data="M 9.9472656,4.9492187 A 5.0005,5.0005 0 0 0 6.4648438,13.535156 L 25.429688,32.5 6.4648438,51.464844 a 5.0005,5.0005 0 1 0 7.0703122,7.070312 L 32.5,39.570312 51.464844,58.535156 a 5.0005,5.0005 0 1 0 7.070312,-7.070312 L 39.570312,32.5 58.535156,13.535156 A 5.0005,5.0005 0 1 0 51.464844,6.4648438 L 32.5,25.429688 13.535156,6.4648438 A 5.0005,5.0005 0 0 0 9.9472656,4.9492187 Z"
+                          Stretch="Uniform" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Geometry x:Key="PathPencilGeometry">m 162.848,467.187 243.5,-243.5 c 6.7,-6.7 6.7,-17.6 0,-24.3 -6.7,-6.7 -17.6,-6.7 -24.3,0 l -239.3,239.5 -105.6,14.2 14.2,-105.6 228.6,-228.6 c 6.7,-6.7 6.7,-17.6 0,-24.3 -6.7,-6.7 -17.6,-6.7 -24.3,0 l -232.6,232.8 c -2.7,2.7 -4.4,6.1 -4.9,9.8 l -18,133.6 c -0.7,5.3 1.1,10.6 4.9,14.4 3.2,3.2 7.6,5 12.1,5 0.8,0 1.5,-0.1 2.3,-0.2 l 133.6,-18 c 3.7,-0.4 7.2,-2.1 9.8,-4.8 z m 268.3,-275.3 c 4.4,0 8.8,-1.7 12.1,-5 l 25.2,-25.2 c 29.1,-29.1 29.1,-76.4 0,-105.4 l -34.4,-34.4 c -14.1,-14.1 -32.8,-21.8 -52.7,-21.8 -19.9,0 -38.6,7.8 -52.7,21.8 l -25.2,25.2 c -6.7,6.7 -6.7,17.6 0,24.3 l 115.6,115.6 c 3.3,3.2 7.7,4.9 12.1,4.9 z m -78.2,-145.9 c 7.6,-7.6 17.7,-11.8 28.5,-11.8 10.7,0 20.9,4.2 28.5,11.8 l 34.4,34.4 c 15.7,15.7 15.7,41.2 0,56.9 l -13.2,13.2 -91.4,-91.4 z m -39.4,106.4 -230.8,230.9 c -6.7,6.7 -6.7,17.6 0,24.3 3.3,3.3 7.7,5 12.1,5 4.4,0 8.8,-1.7 12.1,-5 l 230.8,-230.8 c 6.7,-6.7 6.7,-17.6 0,-24.3 -6.6,-6.8 -17.5,-6.8 -24.2,-0.1 z</Geometry>
+
+    <Style x:Key="EditPencilControlStyle" TargetType="Control">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColor4}" />
+        <Setter Property="Width" Value="{Binding (TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding (TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Path Fill="{TemplateBinding Foreground}"
+                          Data="{StaticResource PathPencilGeometry}"
                           Stretch="Uniform" />
                 </ControlTemplate>
             </Setter.Value>
@@ -1059,12 +1136,14 @@
         <Setter Property="FontSize" Value="13" />
         <Setter Property="TitleFontSize" Value="14" />
         <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="5,0" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type core:DialogWindow}">
                     <core:GameWindow x:Name="Window"
+                                     Background="{StaticResource WindowBackgroundLessTransparentBrush}"
                                      ZIndexOffset="10000">
                         <Grid MinWidth="240">
                             <Grid.RowDefinitions>
@@ -1073,26 +1152,29 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{TemplateBinding WindowTitle}"
-                                       Visibility="{Binding WindowTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource WindowTitleForeground}"
-                                       FontSize="{TemplateBinding TitleFontSize}"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,5" />
+                            <core:FormattedTextBlock
+                                Text="{TemplateBinding WindowTitle}"
+                                Visibility="{Binding WindowTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource WindowTitleForeground}"
+                                FontSize="{TemplateBinding TitleFontSize}"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,5" />
 
                             <ContentPresenter
                                 Grid.Row="1"
-                                Margin="5,0,5,10"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}" />
 
                             <StackPanel
                                 Grid.Row="2"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                MaxHeight="36">
-                                <Button x:Name="BtnOk" Content="{x:Static loc:CoreStrings.Button_OK}" Margin="5,0" />
+                                MaxHeight="36"
+                                Margin="0,10,0,0">
+                                <Button x:Name="BtnOk" Content="{x:Static loc:CoreStrings.Button_OK}"
+                                        Margin="5,0" />
                                 <Button x:Name="BtnCancel" Content="{x:Static loc:CoreStrings.Button_Cancel}"
                                         Margin="5,0" />
                             </StackPanel>
@@ -1126,16 +1208,21 @@
                         <ContentControl x:Name="PopupContentHolder"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        IsHitTestVisible="{TemplateBinding IsHitTestVisible}">
+                                        IsHitTestVisible="False">
                             <core:ScreenScalePanel>
                                 <core:UIScalePanel>
                                     <Grid>
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="3" />
+                                        <Border BorderBrush="{StaticResource WidgetShadowBrush}"
+                                                CornerRadius="3"
+                                                BorderThickness="0,0,0.75,0.75"
+                                                Margin="{StaticResource WidgetShadowMarginThin}" />
 
-                                        <Border
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="3" />
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="3" />
+
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="3" />
 
                                         <Border CornerRadius="3">
                                             <ContentPresenter Margin="{TemplateBinding Padding}"
@@ -1702,14 +1789,13 @@
     <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundListElementClick}" />
         <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundListElementEnter}" />
-        <Setter Property="Background" Value="{StaticResource BrushColorAlt1}" />
-        <Setter Property="Foreground" Value="{StaticResource BrushColorAltLabelForeground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt3}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="Padding" Value="5,5,5,5" />
-        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="Padding" Value="5,7" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -1717,8 +1803,7 @@
                         <Border Padding="{TemplateBinding Padding}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="3" />
+                                Background="{TemplateBinding Background}" />
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -1729,12 +1814,12 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{StaticResource BrushColorAlt3}" />
+                <Setter Property="Background" Value="{StaticResource BrushColorAlt0}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt5}" />
             </Trigger>
             <Trigger Property="IsSelected" Value="true">
-                <Setter Property="Background" Value="{StaticResource BrushColorAlt2}" />
-                <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt5}" />
+                <Setter Property="Background" Value="{StaticResource BrushColorAlt1}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt6}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -1770,201 +1855,11 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" IsItemsHost="True" />
+                    <StackPanel IsItemsHost="True"
+                                Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style x:Key="TabItemCompactStyle" TargetType="{x:Type TabItem}">
-        <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundTabSwitched}" />
-        <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource BrushColorAlt6}" />
-        <Setter Property="BorderBrush" Value="{x:Null}" />
-        <Setter Property="BorderThickness" Value="0,0,0,2" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="7,5" />
-        <Setter Property="Width" Value="Auto" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-        <Setter Property="Visibility" Value="{Binding Visibility}" />
-        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
-        <Setter Property="Header" Value="{Binding Title}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Grid x:Name="LayoutRoot">
-                        <Border x:Name="Border"
-                                Padding="{TemplateBinding Padding}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" />
-
-                        <ContentPresenter Margin="{TemplateBinding Padding}"
-                                          ContentSource="Header"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-
-                    </Grid>
-
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="Border">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#FF557799" Opacity="0.3" />
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="BorderBrush" TargetName="Border"
-                                    Value="{StaticResource BrushColor6}" />
-                        </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="Border">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#FF557799" Opacity="0.45" />
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="BorderBrush" TargetName="Border"
-                                    Value="{StaticResource BrushColorAlt6}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="LayoutRoot" Value="0.33" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="True" />
-                                <Condition Property="IsMouseOver" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="Border"
-                                    Value="{StaticResource BrushColor7}" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground"
-                        Value="{StaticResource BrushColor6}" />
-            </Trigger>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground"
-                        Value="{StaticResource BrushColorAlt6}" />
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsSelected" Value="True" />
-                    <Condition Property="IsMouseOver" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter Property="Foreground"
-                        Value="{StaticResource BrushColor7}" />
-            </MultiTrigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="TabControlCompactStyle" TargetType="{x:Type TabControl}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="TabControl">
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TabPanel IsItemsHost="true"
-                                  Panel.ZIndex="1" />
-                        <ContentPresenter Grid.Row="1"
-                                          ContentSource="SelectedContent" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Resources>
-            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemCompactStyle}" />
-        </Style.Resources>
-    </Style>
-
-    <Style x:Key="TabControlCompactStyleTabsOnly"
-           BasedOn="{StaticResource TabControlCompactStyle}"
-           TargetType="{x:Type TabControl}">
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="TabControl">
-                    <TabPanel IsItemsHost="true"
-                              KeyboardNavigation.TabNavigation="None"
-                              KeyboardNavigation.ControlTabNavigation="None"
-                              KeyboardNavigation.DirectionalNavigation="None" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Resources>
-            <Style TargetType="{x:Type TabItem}"
-                   BasedOn="{StaticResource TabItemCompactStyle}" />
-        </Style.Resources>
-    </Style>
-
-    <Style TargetType="{x:Type core:TabControlCached}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
-        <Setter Property="Background" Value="{x:Null}" />
-        <Setter Property="BorderBrush" Value="{x:Null}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type core:TabControlCached}">
-                    <Grid KeyboardNavigation.TabNavigation="Local">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="33" />
-                            <RowDefinition Height="10" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <ItemsPresenter Grid.Row="0"
-                                        KeyboardNavigation.TabIndex="1"
-                                        VerticalAlignment="Stretch"
-                                        HorizontalAlignment="Stretch"
-                                        Margin="-5,0" />
-
-                        <Grid x:Name="ContentGrid"
-                              Grid.Row="2"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <UniformGrid IsItemsHost="True"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Stretch"
-                                 Rows="1" />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
-
     </Style>
 
     <Style TargetType="{x:Type TabItem}">
@@ -1982,29 +1877,36 @@
                             BorderThickness="0,0,0,2"
                             CornerRadius="1,1,0,0">
                         <Grid x:Name="HeaderGroup">
-                            <ContentPresenter x:Name="HeaderPresenter" Margin="{TemplateBinding Padding}"
+                            <ContentPresenter x:Name="HeaderPresenter"
+                                              Margin="{TemplateBinding Padding}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               ContentSource="Header" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="Border">
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="Border">
                                 <Setter.Value>
                                     <SolidColorBrush Color="#FF557799" Opacity="0.3" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="BorderBrush" TargetName="Border"
+                            <Setter Property="BorderBrush"
+                                    TargetName="Border"
                                     Value="{StaticResource BrushColor6}" />
                         </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="Border">
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="Border">
                                 <Setter.Value>
                                     <SolidColorBrush Color="#FF557799" Opacity="0.45" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="BorderBrush" TargetName="Border"
+                            <Setter Property="BorderBrush"
+                                    TargetName="Border"
                                     Value="{StaticResource BrushColorAlt6}" />
                         </Trigger>
                         <MultiTrigger>
@@ -2012,7 +1914,8 @@
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="Border"
+                            <Setter Property="BorderBrush"
+                                    TargetName="Border"
                                     Value="{StaticResource BrushColor7}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
@@ -2020,6 +1923,204 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="TabItemCompactStyle"
+           TargetType="{x:Type TabItem}">
+        <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundTabSwitched}" />
+        <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="7,5" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Visibility" Value="{Binding Visibility}" />
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+        <Setter Property="Header" Value="{Binding Title}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid x:Name="LayoutRoot">
+                        <Border x:Name="Border"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" />
+
+                        <ContentPresenter x:Name="HeaderContentPresenter"
+                                          ContentSource="Header"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          TextElement.Foreground="{StaticResource BrushColorAlt6}"
+                                          TextElement.FontSize="14"
+                                          TextElement.FontWeight="Bold"
+                                          TextElement.FontFamily="{StaticResource CondensedFontFamily}" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="Border">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FF557799" Opacity="0.3" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderBrush"
+                                    TargetName="Border"
+                                    Value="{StaticResource BrushColor6}" />
+                            <Setter Property="TextElement.Foreground"
+                                    TargetName="HeaderContentPresenter"
+                                    Value="{StaticResource BrushColor6}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background"
+                                    TargetName="Border">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FF557799" Opacity="0.45" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderBrush"
+                                    TargetName="Border"
+                                    Value="{StaticResource BrushColorAlt6}" />
+                            <Setter Property="TextElement.Foreground"
+                                    TargetName="HeaderContentPresenter"
+                                    Value="{StaticResource BrushColorAlt6}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity"
+                                    TargetName="LayoutRoot"
+                                    Value="0.33" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush"
+                                    TargetName="Border"
+                                    Value="{StaticResource BrushColor7}" />
+                            <Setter Property="TextElement.Foreground"
+                                    TargetName="HeaderContentPresenter"
+                                    Value="{StaticResource BrushColor7}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TabControlCompactStyle" TargetType="{x:Type TabControl}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel IsItemsHost="True"
+                                Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid KeyboardNavigation.TabNavigation="Local"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TabPanel IsItemsHost="true"
+                                  Panel.ZIndex="1" />
+                        <ContentPresenter Grid.Row="1"
+                                          ContentSource="SelectedContent" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="{x:Type TabItem}"
+                   BasedOn="{StaticResource TabItemCompactStyle}" />
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="{x:Type TabControl}"
+           BasedOn="{StaticResource TabControlCompactStyle}" />
+
+    <Style x:Key="TabControlCompactStyleTabsOnly"
+           BasedOn="{StaticResource TabControlCompactStyle}"
+           TargetType="{x:Type TabControl}">
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <StackPanel IsItemsHost="True"
+                                Orientation="Horizontal" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="{x:Type TabItem}"
+                   BasedOn="{StaticResource TabItemCompactStyle}" />
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="TabControlCachedCompactStyle" TargetType="{x:Type core:TabControlCached}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel IsItemsHost="True"
+                                Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:TabControlCached}">
+                    <Grid KeyboardNavigation.TabNavigation="Local"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ItemsPresenter Grid.Row="0"
+                                        KeyboardNavigation.TabIndex="1"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Panel.ZIndex="1" />
+                        <Grid x:Name="ContentGrid"
+                              Grid.Row="2"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="{x:Type TabItem}"
+                   BasedOn="{StaticResource TabItemCompactStyle}" />
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="{x:Type core:TabControlCached}"
+           BasedOn="{StaticResource TabControlCachedCompactStyle}" />
 
     <Style x:Key="TabItemSpacerStyle" TargetType="{x:Type TabItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -2321,9 +2422,11 @@
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="LineHeight" Value="13.5" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
         <Setter Property="MaxWidth" Value="385" />
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
@@ -2789,6 +2892,59 @@
         </Setter>
     </Style>
 
+    <SolidColorBrush x:Key="BrushOptionsPopupButtonForeground"
+                     Color="{StaticResource Color7}"
+                     Opacity="0.65" />
+
+    <SolidColorBrush x:Key="BrushOptionsPopupButtonForegroundOver"
+                     Color="{StaticResource Color7}"
+                     Opacity="0.9" />
+
+    <Style x:Key="OptionsThreeDotsControlStyle" TargetType="Control">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundDropdownClick}" />
+        <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundDropdownEnter}" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource BrushOptionsPopupButtonForeground}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <ContentControl Padding="5,2,3,2"
+                                    Background="Transparent"
+                                    VerticalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical"
+                                    VerticalAlignment="Center">
+                            <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}"
+                                     Margin="0,1" />
+                            <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                        </StackPanel>
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource BrushOptionsPopupButtonForegroundOver}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="OptionsThreeDotsButtonStyle" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Control Style="{StaticResource OptionsThreeDotsControlStyle}"
+                             VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <ImageBrush x:Key="ResistanceBarForegroundImageTexture"
                 ImageSource="/UI/Images/Menus/Equipment/DamageResistanceBarForeground.png"
                 TileMode="None"
@@ -2896,16 +3052,22 @@
         <Setter Property="Margin" Value="0,1" />
     </Style>
 
-    <LinearGradientBrush x:Key="BrushHorizontalSeparator" Opacity="1" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Color="#000094CC" Offset="0" />
-        <GradientStop Color="#FF0094CC" Offset="0.5" />
-        <GradientStop Color="#000094CC" Offset="1" />
+    <LinearGradientBrush x:Key="BrushHorizontalSeparator" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0"
+                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+        <GradientStop Offset="0.5"
+                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0xCC}" />
+        <GradientStop Offset="1.0"
+                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="BrushVerticalSeparator" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#000ABCFF" Offset="0" />
-        <GradientStop Color="#AA0ABCFF" Offset="0.5" />
-        <GradientStop Color="#000ABCFF" Offset="1" />
+        <GradientStop Offset="0"
+                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+        <GradientStop Offset="0.5"
+                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0xCC}" />
+        <GradientStop Offset="1.0"
+                      Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
     </LinearGradientBrush>
 
     <Style x:Key="ControlHorizontalSeparator" TargetType="Control">
@@ -2959,8 +3121,8 @@
         <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="MaxWidth" Value="120" />
-        <Setter Property="MaxHeight" Value="10" />
-        <Setter Property="Padding" Value="1.5" />
+        <Setter Property="MaxHeight" Value="13" />
+        <Setter Property="Padding" Value="1" />
         <Setter Property="IsDisplayLabel" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2968,32 +3130,17 @@
                     <Grid x:Name="LayoutRoot"
                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                         <!-- Outer (dark) border -->
-                        <Border BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding Background}"
-                                CornerRadius="2.5"
-                                Margin="-0.5" />
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Margin="-1.5" />
 
                         <!-- Inner (bright) border -->
                         <Border x:Name="Border"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="{TemplateBinding Background}"
                                 CornerRadius="2" />
 
                         <ContentPresenter Margin="{TemplateBinding Padding}" />
-
-                        <!-- Shadow gradient overlay -->
-                        <Border Margin="{TemplateBinding Padding}"
-                                CornerRadius="1">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.15">
-                                    <GradientStop Color="Transparent" Offset="0" />
-                                    <GradientStop Color="#99000000" Offset="0.5" />
-                                    <GradientStop Color="#FF000000" Offset="0.75" />
-                                    <GradientStop Color="#FF000000" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -3034,6 +3181,8 @@
 
     <Style TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundButtonMouseClick}" />
+        <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundButtonMouseEnter}" />
         <Setter Property="HorizontalContentAlignment"
                 Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="VerticalContentAlignment"
@@ -3250,6 +3399,7 @@
                                  Stroke="{StaticResource BrushColorAlt4}"
                                  StrokeThickness="1"
                                  UseLayoutRounding="False" />
+                        <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
                         <TextBlock Text="?"
                                    FontWeight="Bold"
                                    Foreground="{StaticResource BrushColorAlt7}"
@@ -3333,9 +3483,34 @@
         <Setter Property="Canvas.Top" Value="-16" />
     </Style>
 
+    <Style x:Key="TextBlockCoordinateStyle" TargetType="TextBlock">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColorAltLabelForeground}" />
+        <Setter Property="FontSize" Value="160" />
+        <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="noesis:Text.Stroke" Value="#CC000000" />
+        <Setter Property="noesis:Text.StrokeThickness" Value="12" />
+    </Style>
+
+    <Style x:Key="TextBlockTabStyle" TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter}}" />
+        <Setter Property="FontSize"
+                Value="{Binding (TextElement.FontSize), RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter}}" />
+        <Setter Property="FontWeight"
+                Value="{Binding (TextElement.FontWeight), RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter}}" />
+        <Setter Property="FontFamily"
+                Value="{Binding (TextElement.FontFamily), RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter}}" />
+    </Style>
+
     <Geometry x:Key="IconGeometryPathNewbie">m 1458.1522,267.49106 c 36.377,-0.76206 10.9914,47.92314 17.5515,70.96404 -8.523,192.52685 -6.2242,388.47456 -62.0472,574.90275 -59.8115,224.66965 -183.3609,432.48365 -352.1992,592.27175 -83.87984,73.1412 -168.51069,149.9748 -273.8286,190.5671 C 670.01794,1649.4319 575.8759,1560.1026 483.7588,1475.6749 323.96175,1312.9114 209.21626,1106.2136 155.90611,884.33098 104.783,705.15677 110.79565,517.13188 100.47199,332.78409 75.993898,261.26767 140.81431,259.12623 195.61198,254.87343 859.03581,142.11267 736.24773,143.30691 1458.1522,267.49106 Z</Geometry>
     <Geometry x:Key="IconGeometryPathDuelMode">m 229.239,805.123 -24.655,17.773 -13.768,-13.768 9.665,-12.342 -26.719,-26.719 -19.875,17.822 -11.672,-11.671 11.088,-13.798 c -3.288,-3.592 -10.399,-11.357 -19.318,-21.069 9.751,-10.592 20.126,-21.84 30.168,-32.688 10.318,9.477 18.632,17.091 22.382,20.524 l 13.798,-11.087 11.672,11.671 -17.819,19.872 26.72,26.719 12.337,-9.661 13.768,13.768 z m -124.542,-42.694 11.088,13.796 -11.672,11.669 -19.8755,-17.819 -26.7186,26.714 9.6651,12.341 -13.7681,13.766 -24.6545,-17.77 -17.7728,-24.651 13.7681,-13.766 12.3376,9.66 26.7194,-26.716 -17.8184,-19.868 11.6713,-11.669 13.7981,11.085 c 12.8464,-11.756 79.0363,-72.383 97.0133,-89.92 36.456,-35.566 51.008,-24.852 51.008,-24.852 0,0 10.716,14.55 -24.855,51.001 -17.54,17.974 -78.176,84.154 -89.934,96.999 z M 63.3686,665.406 C 27.7979,628.95 38.5134,614.398 38.5134,614.398 c 0,0 14.552,-10.715 51.0083,24.855 6.5708,6.411 19.5903,18.587 34.0843,32.022 -9.743,9.014 -19.764,18.255 -29.3069,27.039 C 81.2989,684.295 69.6057,671.799 63.3686,665.406 Z</Geometry>
     <Geometry x:Key="IconGeometryPathRefresh">m 43.227,51.746 c -3.179,1.786 -6.826,2.827 -10.726,2.827 -12.171,0 -22.073,-9.902 -22.073,-22.073 0,-2.739 0.524,-5.35 1.439,-7.771 L 7.136,21.878 C 5.761,25.149 5,28.736 5,32.5 5,47.664 17.336,60 32.5,60 c 5.406,0 10.434,-1.584 14.691,-4.289 l 5.758,5.759 V 45.358 H 36.838 Z M 32.5,4.999 c -5.405,0 -10.444,1.577 -14.699,4.282 l -5.75,-5.75 v 16.11 h 16.11 l -6.395,-6.395 c 3.18,-1.787 6.834,-2.82 10.734,-2.82 12.171,0 22.073,9.902 22.073,22.074 0,2.899 -0.577,5.664 -1.599,8.202 l 4.738,2.762 C 59.182,40.101 60,36.396 60,32.5 60,17.336 47.663,4.999 32.5,4.999 Z</Geometry>
+    <Geometry x:Key="IconGeometryPathUndo">M 45.546875,13.345703 V 74.234375 H 106.43555 L 82.265625,50.064453 C 94.284523,43.310437 108.09383,39.40625 122.83398,39.40625 c 46.00063,0 83.42579,37.423325 83.42579,83.42773 0,46.00441 -37.42516,83.42969 -83.42579,83.42969 v 20.51172 c 57.30898,0 103.9375,-46.62865 103.9375,-103.94141 0,-57.312752 -46.62852,-103.939449 -103.9375,-103.939449 -20.42834,0 -39.472793,5.959972 -55.554683,16.183594 z</Geometry>
+    <Geometry x:Key="IconGeometryPathStar">M4.99999984331992,0.5L6.06224730203582,3.93777866404501L9.49999966842804,3.93769414858025L6.71875233598545,6.06227369329452L7.78115268460533,9.50000012390973L4.99999984331992,7.37528383030091L2.21884700203453,9.50000012390973L3.2812473506544,6.06227369329452L0.500000018211808,3.93769414858025L3.93775238460403,3.93777866404501z</Geometry>
+    <Geometry x:Key="IconGeometryPathSmallArrowUp">M0,4.5 L3,0 L6,4.5 z</Geometry>
 
     <Geometry x:Key="IconGeometryPathPowerOn">M 1295,1865 C 965,1561 694,1307 692,1302 c -1,-5 61,-38 139,-73 275,-123 344,-155 344,-161 0,-2 -139,-215 -310,-473 C 520,74 530,90 551,106 c 8,6 311,240 674,519 363,279 664,511 668,515 5,4 -102,74 -237,155 -135,81 -246,152 -246,158 0,6 101,207 224,446 258,504 267,521 264,521 -2,0 -273,-250 -603,-555 z</Geometry>
     <Geometry x:Key="IconGeometryPathPowerOff">m 677,1379 c -9,-5 -24,-23 -32,-39 -14,-27 -14,-33 0,-59 8,-17 20,-33 26,-36 6,-4 -42,-61 -115,-135 C 455,1007 423,968 397,913 367,849 365,838 365,735 365,635 368,620 392,570 L 420,515 280,375 140,235 l 58,-58 57,-57 140,140 139,139 30,-19 c 58,-35 143,-53 232,-48 126,7 187,41 343,194 l 126,122 24,-19 c 33,-27 73,-24 105,7 53,53 54,51 -312,417 -349,349 -356,354 -405,326 z m 1536,929 -122,-121 -63,29 c -57,26 -74,29 -168,29 -153,0 -201,-24 -369,-190 -114,-112 -130,-124 -142,-109 -46,56 -139,18 -139,-56 0,-13 26,-49 67,-91 l 67,-70 -147,-147 c -125,-126 -147,-152 -147,-178 0,-38 38,-76 76,-76 21,0 58,31 175,148 l 149,149 97,-98 98,-97 -149,-149 c -163,-163 -172,-180 -123,-228 48,-49 65,-39 228,123 l 148,148 70,-67 c 77,-75 102,-82 147,-44 34,30 37,79 6,110 l -22,21 125,127 c 165,168 190,216 190,369 0,95 -3,111 -29,168 l -29,63 121,122 122,122 -58,58 -57,57 z</Geometry>
@@ -3350,6 +3525,8 @@
     <Geometry x:Key="IconGeometryFridgeSnowflake">m 35.37978,210.52267 v 10.7735 l -8.09459,-4.67982 -4.10931,7.09414 12.2039,7.06934 v 15.8998 l -13.70872,-7.92096 -0.0248,-14.16348 -8.20208,0.0165 0.0165,9.40925 L 4.10104,228.61352 0,235.71593 l 9.33483,5.39088 -8.10287,4.66328 4.08451,7.11068 12.22871,-7.03626 13.75833,7.94576 -13.70872,7.9127 -12.27832,-7.06107 -4.08451,7.11068 8.15248,4.69635 -9.35964,5.39916 4.10104,7.10241 9.33484,-5.39089 -0.0165,9.35137 8.20208,0.0165 0.0248,-14.1056 13.75833,-7.9375 v 15.82539 l -12.25351,7.10241 4.10931,7.09414 8.1442,-4.71289 V 297 h 8.20209 v -10.77351 l 8.09459,4.67982 4.10931,-7.09414 -12.2039,-7.06933 v -15.89981 l 13.70872,7.92096 0.0248,14.16348 8.20208,-0.0165 -0.0165,-9.40924 9.35964,5.40742 4.10104,-7.10241 -9.33483,-5.39089 8.10286,-4.66328 -4.0845,-7.11067 -12.22044,7.03626 -13.76661,-7.94577 13.717,-7.92096 12.27005,7.06933 4.0845,-7.11067 -8.15247,-4.69636 9.35964,-5.39915 -4.10105,-7.10241 -9.33483,5.39089 0.0165,-9.35137 -8.20208,-0.0165 -0.0248,14.1056 -13.75833,7.9375 V 230.8129 l 12.25351,-7.10241 -4.10931,-7.09414 -8.1442,4.71289 v -10.80657 z</Geometry>
 
     <Geometry x:Key="IconGeometryEye">m 50.451234,0.12186878 h -0.902462 c 0,0 -30.909411,-3.67962778 -49.548772,29.39910922 18.639361,33.009404 49.548772,29.416885 49.548772,29.416885 h 0.902462 c 0,0 30.909405,3.592519 49.548766,-29.416885 C 81.360639,-3.557759 50.451234,0.12186878 50.451234,0.12186878 Z m 0,13.67543522 c 5.328012,0 9.649425,4.373481 9.649425,9.753569 0,5.397404 -4.321413,9.753568 -9.649425,9.753568 -5.328012,0 -9.649424,-4.373481 -9.649424,-9.753568 0,-5.380088 4.321412,-9.753569 9.649424,-9.753569 z m 0.173562,35.317592 h -0.590084 c 0,0 -19.836865,2.32557 -31.794517,-18.517848 3.31482,-5.796609 7.237074,-9.770951 11.194033,-12.547743 -0.538002,1.909049 -0.833044,3.887561 -0.833044,5.970171 0,12.200619 9.788268,22.092985 21.85005,22.092985 12.079139,0 21.850051,-9.892366 21.850051,-22.092985 0,-1.995895 -0.27766,-3.92226 -0.763626,-5.744593 3.835473,2.742158 7.653589,6.681735 10.898991,12.322165 C 70.461642,51.440466 50.624783,49.114896 50.624783,49.114896 Z</Geometry>
+
+    <Geometry x:Key="IconGeometryCrown">M528 448H112c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h416c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm64-320c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.4 19.8L476 239.2c-15.4 9.2-35.3 4-44.2-11.6L350.3 85C361 76.2 368 63 368 48c0-26.5-21.5-48-48-48s-48 21.5-48 48c0 15 7 28.2 17.7 37l-81.5 142.6c-8.9 15.6-28.9 20.8-44.2 11.6l-72.3-43.4c2.7-6 4.4-12.7 4.4-19.8 0-26.5-21.5-48-48-48S0 149.5 0 176s21.5 48 48 48c2.6 0 5.2-.4 7.7-.8L128 416h384l72.3-192.8c2.5.4 5.1.8 7.7.8 26.5 0 48-21.5 48-48s-21.5-48-48-48z</Geometry>
 
     <Style x:Key="LandClaimBoundTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12" />

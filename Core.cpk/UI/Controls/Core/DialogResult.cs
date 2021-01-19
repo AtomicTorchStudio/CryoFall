@@ -4,6 +4,6 @@
     {
         OK,
 
-        Cancel,
+        Cancel
     }
 }

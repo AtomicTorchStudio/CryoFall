@@ -26,7 +26,19 @@
                            .Replace(InteractSuccess, "Objects/Corpse/InteractSuccess")
                            .Replace(InteractFail,    "Objects/Corpse/InteractFail");
 
-        // pry open sounds
+        public static readonly ReadOnlySoundPreset<ObjectSound> ObjectGarbagePile
+            = ObjectGeneric.Clone()
+                           .Replace(InteractStart,   "Objects/Misc/Pile/InteractStart")
+                           .Replace(InteractProcess, "Objects/Misc/Pile/InteractProcess")
+                           .Replace(InteractSuccess, "Objects/Misc/Pile/InteractEnd");
+
+        public static readonly ReadOnlySoundPreset<ObjectSound> ObjectHackableContainer
+            = ObjectGeneric.Clone()
+                           .Clear(InteractStart)
+                           .Clear(InteractFail)
+                           .Replace(InteractProcess, "Events/HackingProcess")
+                           .Replace(InteractSuccess, "Events/HackingFinish");
+
         public static readonly ReadOnlySoundPreset<ObjectSound> ObjectLockedContainer
             = ObjectGeneric.Clone()
                            .Replace(InteractStart,   "Objects/LockedContainer/InteractStart")
@@ -41,16 +53,5 @@
                            .Replace(InteractProcess, "Objects/Vegetation/InteractProcess")
                            .Replace(InteractSuccess, "Objects/Vegetation/InteractSuccess")
                            .Replace(InteractFail,    "Objects/Vegetation/InteractFail");
-
-        // TODO: we need proper sounds for searching garbage piles
-        public static readonly ReadOnlySoundPreset<ObjectSound> ObjectGarbagePile
-            = ObjectLockedContainer;
-
-        public static readonly ReadOnlySoundPreset<ObjectSound> ObjectHackableContainer
-            = ObjectGeneric.Clone()
-                           .Clear(InteractStart)
-                           .Clear(InteractFail)
-                           .Replace(InteractProcess, "Events/HackingProcess")
-                           .Replace(InteractSuccess, "Events/HackingFinish");
     }
 }

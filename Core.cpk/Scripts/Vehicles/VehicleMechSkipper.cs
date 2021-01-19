@@ -90,7 +90,7 @@
             out ExplosionPreset explosionPreset,
             out DamageDescription damageDescriptionCharacters)
         {
-            damageRadius = 6;
+            damageRadius = 2.1;
             explosionPreset = ExplosionPresets.VeryLarge;
 
             damageDescriptionCharacters = new DamageDescription(

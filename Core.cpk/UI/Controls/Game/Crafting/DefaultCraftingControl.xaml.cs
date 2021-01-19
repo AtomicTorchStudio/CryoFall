@@ -4,12 +4,5 @@
 
     public partial class DefaultCraftingControl : BaseUserControl
     {
-        public DefaultCraftingControl()
-        {
-        }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

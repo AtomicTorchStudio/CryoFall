@@ -47,7 +47,7 @@
         private readonly IServersProvider serversProvider = Api.Client.MasterServer.ServersProvider;
 
         private readonly ListDictionary<ServerAddress, ViewModelServerInfo> serverViewModels
-            = new ListDictionary<ServerAddress, ViewModelServerInfo>();
+            = new();
 
         private bool isEnabled;
 

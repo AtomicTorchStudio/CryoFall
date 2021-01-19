@@ -5,14 +5,12 @@
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.State;
 
+    // TODO: remove duplicated (with the base type) properties in A30
     public class ObjectGeneratorWithFuelPrivateState
         : ObjectManufacturerPrivateState, IObjectElectricityStructurePrivateState
     {
         [SyncToClient]
         public ElectricityThresholdsPreset ElectricityThresholds { get; set; }
-
-        [TempOnly]
-        public bool IsLiquidStatesChanged { get; set; }
 
         [SyncToClient]
         public LiquidContainerState LiquidState { get; set; }

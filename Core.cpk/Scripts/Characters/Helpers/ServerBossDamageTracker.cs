@@ -10,7 +10,7 @@
     public class ServerBossDamageTracker
     {
         private readonly ListDictionary<ICharacter, double> damageByCharacter
-            = new ListDictionary<ICharacter, double>();
+            = new();
 
         [NonSerialized]
         private double timeAccumulated;

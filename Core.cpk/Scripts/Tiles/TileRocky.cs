@@ -10,12 +10,12 @@
     public class TileRocky : ProtoTile
     {
         private static readonly TextureResource GroundTexture1
-            = new TextureResource("Terrain/Rocky/TileRocky1.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Rocky/TileRocky1.jpg",
+                  isTransparent: false);
 
         private static readonly TextureResource GroundTexture2
-            = new TextureResource("Terrain/Rocky/TileRocky2.jpg",
-                                  isTransparent: false);
+            = new("Terrain/Rocky/TileRocky2.jpg",
+                  isTransparent: false);
 
         public override byte BlendOrder => 9;
 

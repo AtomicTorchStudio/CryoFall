@@ -46,20 +46,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
             return CreateResultMessage(player);
         }
 
-        // we have to disable this implementation as the game confuses this execute method with the next one (with toPlayer argument)
-        //public string Execute(string coordinate, [CurrentCharacterIfNull] ICharacter player = null)
-        //{
-        //    var x = ushort.Parse(coordinate.Split(';')[0]);
-        //    var y = ushort.Parse(coordinate.Split(';')[1]);
-
-        //    var worldOffset = ServerWorldService.WorldBounds.Offset;
-        //    x += worldOffset.X;
-        //    y += worldOffset.Y;
-
-        //    ServerTeleport(player, (x, y));
-        //    return CreateResultMessage(player);
-        //}
-
         public string Execute(ICharacter toPlayer, [CurrentCharacterIfNull] ICharacter player = null)
         {
             if (toPlayer == player)
@@ -80,7 +66,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
         private static Vector2D FindClosestValidPosition(Vector2D position)
         {
             var physicsSpace = ServerWorldService.GetPhysicsSpace();
-            var collisionGroup = CollisionGroup.GetDefault();
+            var collisionGroup = CollisionGroup.Default;
 
             if (IsValidPosition(
                 // round position
@@ -123,7 +109,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         private static void ServerTeleport(ICharacter player, Vector2D toPosition)
         {
-            if (player.PhysicsBody.HasAnyShapeCollidingWithGroup(CollisionGroup.GetDefault()))
+            if (player.PhysicsBody.HasAnyShapeCollidingWithGroup(CollisionGroup.Default))
             {
                 // perform position validity check
                 toPosition = FindClosestValidPosition(toPosition);

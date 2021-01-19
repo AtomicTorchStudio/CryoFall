@@ -7,10 +7,6 @@
     {
         private ViewModelMenuCurrentGame viewModel;
 
-        protected override void InitControl()
-        {
-        }
-
         protected override void OnLoaded()
         {
             if (IsDesignTime)

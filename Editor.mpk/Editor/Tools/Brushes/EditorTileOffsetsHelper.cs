@@ -17,10 +17,10 @@
                 case EditorBrushShape.Square:
                     return ShapeTileOffsetsHelper.GenerateOffsetsSquare(brushSize);
 
-                case EditorBrushShape.Spray:
+                /*case EditorBrushShape.Spray:
                     return isForPreview
                                ? ShapeTileOffsetsHelper.GenerateOffsetsSquare(brushSize)
-                               : ShapeTileOffsetsHelper.GenerateOffsetsSpray(brushSize);
+                               : ShapeTileOffsetsHelper.GenerateOffsetsSpray(brushSize);*/
             }
 
             throw new ArgumentOutOfRangeException(nameof(brush), "Unknown brush shape");

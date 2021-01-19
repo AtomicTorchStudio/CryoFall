@@ -178,8 +178,8 @@
             else
             {
                 var resultPercent = ObjectTinkerTable.SharedCalculateResultDurabilityFraction(inputItem1,
-                                                                                              inputItem2,
-                                                                                              character);
+                    inputItem2,
+                    character);
                 this.PercentOutputText = (byte)(100 * resultPercent) + "%";
             }
 

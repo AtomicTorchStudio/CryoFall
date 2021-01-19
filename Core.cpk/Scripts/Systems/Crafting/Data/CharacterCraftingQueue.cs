@@ -7,13 +7,6 @@
 
     public class CharacterCraftingQueue : CraftingQueue
     {
-        /// <summary>
-        /// Create crafting queue for character. Store it in server state of the object and update with Update() method.
-        /// </summary>
-        public CharacterCraftingQueue()
-        {
-        }
-
         public ICharacter Character => (ICharacter)this.GameObject;
 
         public override IItemsContainer ContainerInput => throw new Exception(

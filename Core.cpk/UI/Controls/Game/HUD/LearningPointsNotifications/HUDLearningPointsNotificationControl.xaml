@@ -9,14 +9,13 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     HorizontalAlignment="Right"
-    Margin="0,2"
     Focusable="True"
     x:Name="UserControl">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
             <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardShow" TargetName="Border">
+            <Storyboard x:Key="StoryboardShow" TargetName="LayoutRoot">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                     <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.05" />
@@ -30,7 +29,7 @@
             </Storyboard>
 
             <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardHide" TargetName="Border">
+            <Storyboard x:Key="StoryboardHide" TargetName="LayoutRoot">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                     <EasingDoubleKeyFrame Value="1" KeyTime="0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:1.5" />
@@ -40,15 +39,14 @@
                                  From="{Binding RequiredHeight, ElementName=UserControl}"
                                  To="0"
                                  BeginTime="0:0:1.5"
-                                 Duration="0:0:0.175" />
+                                 Duration="0:0:0.333" />
             </Storyboard>
 
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontWeight" Value="Normal" />
                 <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
-                <Setter Property="Foreground" Value="White" />
                 <Setter Property="TextAlignment" Value="Right" />
                 <Setter Property="noesis:Text.Stroke" Value="Black" />
                 <Setter Property="noesis:Text.StrokeThickness" Value="1" />
@@ -57,21 +55,32 @@
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <Border x:Name="Border"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left"
-            Padding="2"
-            CornerRadius="3"
-            Background="#70209020"
-            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.LearningPoints}">
+    <ContentControl x:Name="LayoutRoot"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Padding="0,4">
+        <ContentControl.Effect>
+            <DropShadowEffect
+                BlurRadius="6"
+                Direction="315"
+                ShadowDepth="3"
+                Opacity="0.8"
+                Color="Black" />
+        </ContentControl.Effect>
+
         <StackPanel Orientation="Horizontal"
                     Background="Transparent"
-                    Margin="3,0">
+                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.LearningPoints}">
             <TextBlock Text="{Binding Text, ElementName=UserControl}"
+                       Foreground="{Binding Foreground, ElementName=UserControl}"
                        Margin="0" />
             <TextBlock Text="{Binding CurrentLearningPoints, ElementName=UserControl, StringFormat='{} ({0})'}"
-                       Margin="0"
-                       Opacity="0.80" />
+                       Margin="0">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{Binding Foreground.Color, ElementName=UserControl}" Opacity="0.8" />
+                </TextBlock.Foreground>
+            </TextBlock>
         </StackPanel>
-    </Border>
+    </ContentControl>
+
 </base:BaseUserControl>

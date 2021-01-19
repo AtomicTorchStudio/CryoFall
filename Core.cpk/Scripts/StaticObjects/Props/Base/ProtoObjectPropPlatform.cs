@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectPropPlatform : ProtoObjectProp, IProtoObjectMovementSurface
     {
@@ -72,26 +73,31 @@
 
         private static void ServerEditorReplaceBridgeTilesWithPlaceholder(IStaticWorldObject gameObject)
         {
-            IWorldServerService serverWorld = null;
+            var world = Server.World;
 
+            using var occupiedTilePositions = Api.Shared.GetTempList<Vector2Ushort>();
             foreach (var tile in gameObject.OccupiedTiles)
             {
+                var tilePosition = tile.Position;
+                occupiedTilePositions.Add(tilePosition);
                 if (!(tile.ProtoTile is IProtoTileWater))
                 {
                     continue;
                 }
 
-                serverWorld = Server.World;
-
                 // replace proto tile with a sea water tile
-                serverWorld.SetTileData(tile.Position,
-                                        Api.GetProtoEntity<TileWaterSea>(),
-                                        tile.Height,
-                                        tile.IsSlope,
-                                        tile.IsCliff);
+                world.SetTileData(tilePosition,
+                                  Api.GetProtoEntity<TileWaterSea>(),
+                                  tile.Height,
+                                  tile.IsSlope,
+                                  tile.IsCliff);
             }
 
-            serverWorld?.FixMapTilesRecentlyModified();
+            // even if nothing has changed, due to the removal of the platform,
+            // the tile cliffs may have changed - mark all previously occupied tiles as modified
+            world.MarkTilesAsModified(occupiedTilePositions.AsList());
+
+            world.FixMapTilesRecentlyModified();
         }
 
         // In Editor when the platform prop is initialized
@@ -99,12 +105,22 @@
         // under the platform with a bridge tile variant.
         private static void ServerEditorReplaceWaterTilesWithBridge(IStaticWorldObject gameObject)
         {
-            IWorldServerService serverWorld = null;
-
+            IWorldServerService world = null;
             foreach (var tile in gameObject.OccupiedTiles)
             {
-                if (!(tile.ProtoTile is IProtoTileWater protoTileWater))
+                var currentProtoTile = tile.ProtoTile;
+                if (!(currentProtoTile is IProtoTileWater protoTileWater))
                 {
+                    if (tile.IsCliffOrSlope)
+                    {
+                        (world ??= Server.World)
+                            .SetTileData(tile.Position,
+                                         currentProtoTile,
+                                         tile.Height,
+                                         isSlope: false,
+                                         isCliff: false);
+                    }
+
                     continue;
                 }
 
@@ -115,17 +131,16 @@
                     continue;
                 }
 
-                serverWorld = Server.World;
-
                 // replace proto tile with bridge
-                serverWorld.SetTileData(tile.Position,
-                                        bridgeProtoTile,
-                                        tile.Height,
-                                        tile.IsSlope,
-                                        tile.IsCliff);
+                (world ??= Server.World)
+                    .SetTileData(tile.Position,
+                                 bridgeProtoTile,
+                                 tile.Height,
+                                 isSlope: false,
+                                 isCliff: false);
             }
 
-            serverWorld?.FixMapTilesRecentlyModified();
+            world?.FixMapTilesRecentlyModified();
         }
     }
 }

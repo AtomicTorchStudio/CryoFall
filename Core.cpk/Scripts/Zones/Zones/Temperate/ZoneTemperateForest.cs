@@ -37,7 +37,9 @@
 
             // loot
             scripts
-                .Add(GetScript<SpawnLootGeneric>()); // loot (stone, grass, twigs)
+                .Add(GetScript<SpawnLootGeneric>()) // loot (stone, grass, twigs)
+                .Add(GetScript<SpawnLootPileWood>())
+                .Add(GetScript<SpawnLootPileStone>().Configure(densityMultiplier: 0.2));
 
             // mobs
             scripts

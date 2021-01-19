@@ -12,7 +12,10 @@
           IObjectWithAccessModePrivateState
     {
         [SyncToClient]
-        public WorldObjectAccessMode AccessMode { get; set; }
+        public WorldObjectDirectAccessMode DirectAccessMode { get; set; }
+
+        [SyncToClient]
+        public WorldObjectFactionAccessModes FactionAccessMode { get; set; }
 
         [SyncToClient]
         public IItemsContainer ItemsContainer { get; set; }

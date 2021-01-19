@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientLanguagesManager
+    public static class ClientLanguagesManager
     {
         private static ProtoLanguageDefinition currentLanguageDefinition;
 

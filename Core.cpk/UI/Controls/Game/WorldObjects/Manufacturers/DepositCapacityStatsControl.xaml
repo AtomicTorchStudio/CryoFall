@@ -58,7 +58,7 @@
             </StackPanel.Resources>
 
             <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.DepositCapacityStats_TitleLimited}"
-                                     Visibility="{Binding IsInfiniteDeposit, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" 
+                                     Visibility="{Binding IsInfiniteDeposit, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                      Margin="0,0,0,12" />
 
             <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.DepositCapacityStats_TitleInfinite}"

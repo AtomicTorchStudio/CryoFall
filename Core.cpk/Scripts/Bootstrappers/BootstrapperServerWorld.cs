@@ -1,11 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Bootstrappers
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Ruins.Gates;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -15,7 +19,7 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class BootstrapperServerWorld : BaseBootstrapper
     {
-        public const int MapVersion = 263;
+        public const int MapVersion = 296;
 
         public override void ServerInitialize(IServerConfiguration serverConfiguration)
         {
@@ -65,6 +69,24 @@
 
         private static void UpdateMap()
         {
+            var allObjects = new List<IStaticWorldObject>(capacity: 100000);
+
+            // this method is super slow but essential as other approach will not work in bootstrapper
+#pragma warning disable 618
+            Server.World.GetStaticWorldObjects(allObjects);
+#pragma warning restore 618
+
+            // destroy all props and other map objects before updating the world as it will load such objects again
+            foreach (var worldObject in allObjects)
+            {
+                var protoGameObject = worldObject.ProtoGameObject;
+                if (protoGameObject is not IProtoObjectStructure
+                    || protoGameObject is ProtoObjectGateRuins)
+                {
+                    Server.World.DestroyObject(worldObject);
+                }
+            }
+
             Server.World.UpdateWorld(new ServerMapResource(GetInitialMapName()));
         }
     }

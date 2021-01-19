@@ -20,7 +20,7 @@
         public NetworkSyncList<ILogicObject> StatusEffects { get; private set; }
 
         [TempOnly]
-        public WeaponState WeaponState { get; } = new WeaponState();
+        public WeaponState WeaponState { get; } = new();
 
         public void EnsureEverythingCreated()
         {

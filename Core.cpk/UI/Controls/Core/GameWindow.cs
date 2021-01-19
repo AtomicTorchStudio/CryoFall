@@ -83,14 +83,10 @@
         }
 
         public BaseCommand CommandCloseCancel
-        {
-            get { return new ActionCommand(() => this.Close(DialogResult.Cancel)); }
-        }
+            => new ActionCommand(() => this.Close(DialogResult.Cancel));
 
         public BaseCommand CommandCloseOk
-        {
-            get { return new ActionCommand(() => this.Close(DialogResult.OK)); }
-        }
+            => new ActionCommand(() => this.Close(DialogResult.OK));
 
         public int CurrentZIndex { get; set; }
 

@@ -28,8 +28,7 @@
         public const int ExplosionDamageRadius = 13;
 
         private readonly Lazy<ObjectMineralPragmiumSource> protoPragmiumSource
-            = new Lazy<ObjectMineralPragmiumSource>(
-                GetProtoEntity<ObjectMineralPragmiumSource>);
+            = new(GetProtoEntity<ObjectMineralPragmiumSource>);
 
         public override double DamageRadius => ExplosionDamageRadius; // large annihilation radius
 

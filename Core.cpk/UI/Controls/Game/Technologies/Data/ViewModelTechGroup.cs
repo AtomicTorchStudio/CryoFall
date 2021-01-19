@@ -14,7 +14,6 @@
         public ViewModelTechGroup(TechGroup techGroup)
         {
             this.TechGroup = techGroup;
-            this.Icon = Client.UI.GetTextureBrush(this.TechGroup.Icon);
 
             this.TechGroup.NodesChanged += this.Refresh;
             ClientComponentTechnologiesWatcher.TechGroupsChanged += this.Refresh;
@@ -53,7 +52,7 @@
             }
         }
 
-        public Brush Icon { get; }
+        public Brush Icon => Client.UI.GetTextureBrush(this.TechGroup.Icon);
 
         public bool IsSelected { get; set; }
 
@@ -91,7 +90,7 @@
                 // perhaps changing the game server so it's not yet obtained
                 return;
             }
-            
+
             var isUnlocked = technologies.SharedIsGroupUnlocked(this.TechGroup);
             this.IsUnlocked = isUnlocked;
 

@@ -15,13 +15,13 @@
     public class ClientComponentNightVisionEffect : ClientComponent
     {
         private static readonly BloomSettings BloomSettings
-            = new BloomSettings(name: "Night Vision",
-                                bloomThreshold: 0,
-                                blurAmount: 3,
-                                bloomIntensity: 1,
-                                baseIntensity: 1,
-                                bloomSaturation: 1,
-                                baseSaturation: 1);
+            = new(name: "Night Vision",
+                  bloomThreshold: 0,
+                  blurAmount: 3,
+                  bloomIntensity: 1,
+                  baseIntensity: 1,
+                  bloomSaturation: 1,
+                  baseSaturation: 1);
 
         private bool isLightAdjusted;
 
@@ -35,7 +35,7 @@
         protected virtual double AdditionalAmbientLightAdditiveFraction => 0.35;
 
         protected virtual EffectResource EffectResource
-            => new EffectResource("PostEffects/NightVision");
+            => new("PostEffects/NightVision");
 
         public override void Update(double deltaTime)
         {

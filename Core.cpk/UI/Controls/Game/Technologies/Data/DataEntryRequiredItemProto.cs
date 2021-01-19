@@ -15,7 +15,7 @@
     public class DataEntryRequiredItemProto
     {
         public static readonly HashSet<Type> BasicItems
-            = new HashSet<Type>()
+            = new()
             {
                 typeof(ItemFibers),
                 typeof(ItemPlanks),

@@ -6,7 +6,7 @@
     public static class SpawnedMobsTrackingManagersStore
     {
         private static readonly Dictionary<KeyValuePair<ProtoZoneSpawnScript, IServerZone>, SpawnedMobsTrackingManager>
-            Managers = new Dictionary<KeyValuePair<ProtoZoneSpawnScript, IServerZone>, SpawnedMobsTrackingManager>();
+            Managers = new();
 
         public static SpawnedMobsTrackingManager Get(ProtoZoneSpawnScript script, IServerZone serverZone)
         {

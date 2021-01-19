@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Extensions;
 
     public class ViewModelHUDStats : BaseViewModel
     {
@@ -40,28 +41,30 @@
             stats.ClientSubscribe(_ => _.WaterCurrent, value => this.Water.ValueCurrent = value, this);
         }
 
-        public ViewModelHUDStatBar Food { get; } = new ViewModelHUDStatBar(
-            CoreStrings.CharacterStatName_Food,
-            foregroundColor: Color.FromRgb(0x44, 0xBB, 0x00),
-            backgroundColor: Color.FromRgb(0x00, 0x36, 0x00),
-            fireColor: Color.FromRgb(0x44,       0xBB, 0x00));
+        public ViewModelHUDStatBar Food { get; }
+            = new(CoreStrings.CharacterStatName_Food,
+                foregroundColor: ApplyBrightness(Color.FromRgb(0x11, 0xCC, 0x55), 0.7),
+                backgroundColor: ApplyBrightness(Color.FromRgb(0x11, 0xCC, 0x55), 0.075));
 
-        public ViewModelHUDStatBar Health { get; } = new ViewModelHUDStatBar(
-            CoreStrings.CharacterStatName_Health,
-            foregroundColor: Color.FromRgb(0xEE, 0x00, 0x00),
-            backgroundColor: Color.FromRgb(0x71, 0x11, 0x00),
-            fireColor: Color.FromRgb(0xEE,       0x00, 0x00));
+        public ViewModelHUDStatBar Health { get; }
+            = new(CoreStrings.CharacterStatName_Health,
+                foregroundColor: ApplyBrightness(Color.FromRgb(0xDD, 0x11, 0x33), 0.7),
+                backgroundColor: ApplyBrightness(Color.FromRgb(0xDD, 0x11, 0x33), 0.075));
 
-        public ViewModelHUDStatBar Stamina { get; } = new ViewModelHUDStatBar(
-            CoreStrings.CharacterStatName_Stamina,
-            foregroundColor: Color.FromRgb(0xFF, 0xAA, 0x00),
-            backgroundColor: Color.FromRgb(0x47, 0x25, 0x00),
-            fireColor: Color.FromRgb(0xCC,       0xAA, 0x00));
+        public ViewModelHUDStatBar Stamina { get; }
+            = new(CoreStrings.CharacterStatName_Stamina,
+                foregroundColor: ApplyBrightness(Color.FromRgb(0xEE, 0xCC, 0x55), 0.7),
+                backgroundColor: ApplyBrightness(Color.FromRgb(0xEE, 0xCC, 0x55), 0.075));
 
-        public ViewModelHUDStatBar Water { get; } = new ViewModelHUDStatBar(
-            CoreStrings.CharacterStatName_Water,
-            foregroundColor: Color.FromRgb(0x00, 0x99, 0xEE),
-            backgroundColor: Color.FromRgb(0x00, 0x2A, 0x47),
-            fireColor: Color.FromRgb(0x00,       0x99, 0xEE));
+        public ViewModelHUDStatBar Water { get; }
+            = new(CoreStrings.CharacterStatName_Water,
+                foregroundColor: ApplyBrightness(Color.FromRgb(0x00, 0x9A, 0xFF), 0.7),
+                backgroundColor: ApplyBrightness(Color.FromRgb(0x00, 0x9A, 0xFF), 0.075));
+
+        private static Color ApplyBrightness(Color color, double brighness)
+        {
+            return Color.Multiply(color, (float)brighness)
+                        .WithAlpha(0xFF);
+        }
     }
 }

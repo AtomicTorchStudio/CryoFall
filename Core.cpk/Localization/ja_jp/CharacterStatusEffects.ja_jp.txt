@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 豪華な食事
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
+使用者の周りに隔離された量子空間を作ることで、製作速度が向上します。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Name:
+量子加速
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 あなたは最近おいしい食事をしました。 これで人生がより充実したように思えます。
 
@@ -63,9 +69,6 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 骨折
-
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
-目が眩んでいる間は攻撃できません。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 目が眩んでいます！感覚を取り戻すための時間が必要です。
@@ -180,6 +183,12 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 薬の乱用
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Description:
+食べ過ぎてしまったようです。これ以上食べると気分が悪くなります。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectOvereating@Name:
+過食
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectPeredozinApplication@Notification_CannotApply_Message:
 ペレドジンの申請が終わるまでお待ちください。

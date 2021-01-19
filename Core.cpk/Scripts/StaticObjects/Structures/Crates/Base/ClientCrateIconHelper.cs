@@ -16,7 +16,7 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
     public static class ClientCrateIconHelper
     {
         private static readonly Dictionary<ITextureResource, WeakReference<ProceduralTexture>> IconsCache
-            = new Dictionary<ITextureResource, WeakReference<ProceduralTexture>>();
+            = new();
 
         private static readonly IRenderingClientService Rendering
             = Api.Client.Rendering;

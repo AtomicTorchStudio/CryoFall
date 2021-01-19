@@ -43,9 +43,5 @@
                 }
             }
         }
-
-        protected override void InitControl()
-        {
-        }
     }
 }

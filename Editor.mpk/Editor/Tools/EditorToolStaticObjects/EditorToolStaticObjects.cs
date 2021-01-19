@@ -26,21 +26,22 @@
     public class EditorToolStaticObjects : BaseEditorTool<EditorToolStaticObjectsItem>
     {
         private readonly Dictionary<IProtoEntity, WeakReference<ViewModelEditorToolItemStaticObject>>
-            viewModelsDictionary
-                = new Dictionary<IProtoEntity, WeakReference<ViewModelEditorToolItemStaticObject>>();
+            viewModelsDictionary = new();
 
         public EditorToolStaticObjects()
         {
-            if (IsClient)
+            if (IsServer)
             {
-                Api.Client.World.ObjectEnterScope += this.WorldObjectEnterScopeHandler;
-                Api.Client.World.ObjectLeftScope += this.WorldObjectLeftScopeHandler;
+                return;
             }
+
+            Api.Client.World.ObjectEnterScope += this.WorldObjectEnterScopeHandler;
+            Api.Client.World.ObjectLeftScope += this.WorldObjectLeftScopeHandler;
         }
 
         public override string Name => "Static Objects tool";
 
-        public override int Order => 20;
+        public override int Order => 30;
 
         public override BaseEditorActiveTool Activate(EditorToolStaticObjectsItem item)
         {
@@ -143,11 +144,12 @@
                 return;
             }
 
-            EditorClientSystem.DoAction(
+            EditorClientActionsHistorySystem.DoAction(
                 $"Place object \"{protoStaticWorldObject.Name}\"",
                 onDo: () => this.CallServer(
                           _ => _.ServerRemote_PlaceStaticObject(protoStaticWorldObject, tilePosition)),
-                onUndo: () => this.CallServer(_ => _.ServerRemote_Destroy(protoStaticWorldObject, tilePosition)));
+                onUndo: () => this.CallServer(_ => _.ServerRemote_Destroy(protoStaticWorldObject, tilePosition)),
+                canGroupWithPreviousAction: true);
         }
 
         private ITextureResource GetFilterTexture(string textureName)
@@ -177,9 +179,9 @@
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort tilePosition)
         {
-            if (!protoStaticWorldObject.CheckTileRequirements(tilePosition, character: null, logErrors: false))
+            if (!protoStaticWorldObject.CheckTileRequirements(tilePosition, character: null, logErrors: true))
             {
-                // cannot spawn here
+                // cannot place here
                 return;
             }
 

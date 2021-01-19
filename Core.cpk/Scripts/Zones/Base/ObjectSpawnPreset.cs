@@ -21,7 +21,7 @@
     {
         private const int MaxPadding = 2 * ProtoZoneSpawnScript.SpawnZoneAreaSize;
 
-        public static readonly ObjectSpawnPreset Empty = new ObjectSpawnPreset();
+        public static readonly ObjectSpawnPreset Empty = new();
 
         private ListDictionary<ObjectSpawnPreset, double> customObjectPadding;
 
@@ -30,7 +30,7 @@
         private IReadOnlyDictionary<ObjectSpawnPreset, double> frozenCustomObjectPadding;
 
         private List<ValueWithWeight<IProtoSpawnableObject>> list
-            = new List<ValueWithWeight<IProtoSpawnableObject>>(capacity: 1);
+            = new(capacity: 1);
 
         /// <summary>
         /// Please do not use this directly! Use SpawnList.CreatePreset() instead.

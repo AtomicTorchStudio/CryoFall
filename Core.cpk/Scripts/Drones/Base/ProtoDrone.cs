@@ -58,7 +58,7 @@
         private static readonly double DistanceThresholdToPlayer = 0.3;
 
         private static readonly Lazy<TItemDrone> LazyProtoItemDrone
-            = new Lazy<TItemDrone>(Api.GetProtoEntity<TItemDrone>);
+            = new(Api.GetProtoEntity<TItemDrone>);
 
         private double lastDroneReturnSoundTime;
 
@@ -124,10 +124,10 @@
         protected abstract double DrawVerticalOffset { get; }
 
         protected virtual SoundResource DroneReturnOrDropSoundResource { get; }
-            = new SoundResource("Items/Drones/Return");
+            = new("Items/Drones/Return");
 
         protected virtual SoundResource DroneStartSoundResource { get; }
-            = new SoundResource("Items/Drones/Start");
+            = new("Items/Drones/Start");
 
         protected abstract SoundResource EngineSoundResource { get; }
 
@@ -453,7 +453,7 @@
             this.CallClient(scopedBy.AsList(),
                             _ => _.ClientRemote_VehicleExploded(vehicle.Position));
 
-            ExplosionHelper.ServerExplode(
+            SharedExplosionHelper.ServerExplode(
                 character:
                 null, // yes, no damaging character here otherwise it will not receive the damage if staying close
                 protoExplosive: null,
@@ -965,7 +965,7 @@
         private void ClientRemote_VehicleExploded(Vector2D position)
         {
             Logger.Important(this + " exploded at " + position);
-            ExplosionHelper.ClientExplode(position: position + this.SharedGetObjectCenterWorldOffset(null),
+            SharedExplosionHelper.ClientExplode(position: position + this.SharedGetObjectCenterWorldOffset(null),
                                           this.DestroyedExplosionPreset,
                                           this.DestroyedExplosionVolume);
         }

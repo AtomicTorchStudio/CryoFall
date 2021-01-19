@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationStool>();
 
-            config.SetRequiredNode<TechNodeDecorationRugRed>();
+            config.SetRequiredNode<TechNodeDecorationBookshelf>();
         }
     }
 }

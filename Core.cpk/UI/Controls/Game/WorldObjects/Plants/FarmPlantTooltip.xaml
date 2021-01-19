@@ -27,269 +27,288 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="noesis:Text.Stroke" Value="#99000000" />
-            <Setter Property="noesis:Text.StrokeThickness" Value="2.5" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="2" />
         </Style>
 
         <Style x:Key="IconBorderStyle" TargetType="Border">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Padding" Value="3" />
-            <Setter Property="Background" Value="#88555555" />
-            <Setter Property="CornerRadius" Value="5" />
         </Style>
         <Style x:Key="TextBlockBonusDescriptionStyle" TargetType="core:FormattedTextBlock">
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="LineHeight" Value="16" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="LineHeight" Value="17" />
-            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
             <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
 
     </base:BaseUserControl.Resources>
 
-    <Border
-        x:Name="LayoutRoot"
-        Background="{StaticResource TooltipBackgroundBrush}"
-        BorderBrush="{StaticResource TooltipBorderBrush}"
-        BorderThickness="{StaticResource TooltipBorderThickness}"
-        Width="224"
-        Padding="3"
-        CornerRadius="3">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+    <Grid>
+        <Border Background="{StaticResource TooltipBackgroundBrush}"
+                BorderBrush="{StaticResource WidgetShadowBrush}"
+                BorderThickness="0,0,0.75,0.75"
+                Margin="{StaticResource WidgetShadowMarginThin}"
+                CornerRadius="3">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="6"
+                    Direction="315"
+                    ShadowDepth="3"
+                    Opacity="0.8"
+                    Color="Black" />
+            </Border.Effect>
+        </Border>
 
-            <Border HorizontalAlignment="Right" VerticalAlignment="Top" Padding="3"
-                    Background="#88555555"
-                    CornerRadius="5"
-                    Grid.Column="0" Grid.Row="0">
-                <Rectangle Width="64" Height="64" Fill="{Binding IconPlant}" UseLayoutRounding="True" />
-            </Border>
+        <Border BorderBrush="{StaticResource TooltipBorderBrush}"
+                BorderThickness="{StaticResource TooltipBorderThickness}"
+                Width="224"
+                Padding="5"
+                CornerRadius="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <TextBlock Text="{Binding Title}" VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Grid.Column="1" Grid.Row="0"
-                       FontSize="22" />
+                <Border HorizontalAlignment="Right" VerticalAlignment="Top" Padding="3"
+                        Background="#88555555"
+                        CornerRadius="5"
+                        Grid.Column="0" Grid.Row="0">
+                    <Rectangle Width="64" Height="64" Fill="{Binding IconPlant}" UseLayoutRounding="True" />
+                </Border>
 
-            <StackPanel Orientation="Vertical"
-                        Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
-                <Grid
-                    Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                    Margin="0,5,0,0">
-                    <core:ValueBarControl
-                        Value="{Binding HarvestInTimePercent}"
-                        MaxValue="100"
-                        IsValueInterpolated="False"
-                        IsDisplayLabel="False"
-                        HorizontalAlignment="Stretch"
-                        BorderThickness="1"
-                        BorderBrush="#FF999900"
-                        Background="#FF333300"
-                        Height="32">
-                        <Rectangle Fill="#FF999900" />
-                    </core:ValueBarControl>
+                <TextBlock Text="{Binding Title}" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Grid.Column="1" Grid.Row="0"
+                           FontSize="22" />
 
-                    <ContentControl Foreground="#FFDDFF77">
-                        <Viewbox Stretch="Uniform"
-                                 MaxHeight="22"
-                                 Margin="5,0">
-                            <Grid>
-                                <StackPanel
-                                    Visibility="{Binding HasHarvest, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
-                                    <!-- Text: Harvest in -->
-                                    <TextBlock
-                                        Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown}"
-                                        Style="{StaticResource BarTextStyle}" />
-                                    <TextBlock Text=": "
-                                               Style="{StaticResource BarTextStyle}" />
-                                    <TextBlock Text="{Binding HarvestInTimeText}"
-                                               Style="{StaticResource BarTextStyle}" />
-                                </StackPanel>
-                                <!-- Text: Ready for harvest -->
-                                <TextBlock
-                                    Visibility="{Binding HasHarvest, Converter={StaticResource BoolToVisibilityConverter}}"
-                                    Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown_Ready}"
-                                    Style="{StaticResource BarTextStyle}" />
-                            </Grid>
-                        </Viewbox>
-                    </ContentControl>
-                </Grid>
-
-                <Grid Visibility="{Binding IsSpoiling, Converter={StaticResource BoolToVisibilityConverter}}"
-                      Margin="0,5,0,0">
-                    <core:ValueBarControl
-                        Value="{Binding SpoiledInTimePercent}"
-                        MaxValue="100"
-                        IsValueInterpolated="False"
-                        IsDisplayLabel="False"
-                        HorizontalAlignment="Stretch"
-                        BorderThickness="1"
-                        BorderBrush="#FFAA0000"
-                        Background="#FF440000"
-                        Height="32">
-                        <Rectangle Fill="#FFAA0000" />
-                    </core:ValueBarControl>
-
-                    <ContentControl Foreground="{StaticResource BrushColor6}">
-                        <Viewbox Stretch="Uniform"
-                                 MaxHeight="22"
-                                 Margin="5,0">
-                            <Grid>
-                                <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
-                                    <!-- Text: Spoiled in -->
-                                    <TextBlock
-                                        Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleSpoiledInCountdown}"
-                                        Style="{StaticResource BarTextStyle}" />
-                                    <TextBlock Text=": "
-                                               Style="{StaticResource BarTextStyle}" />
-                                    <TextBlock Text="{Binding SpoiledInTimeText}"
-                                               Style="{StaticResource BarTextStyle}" />
-                                </StackPanel>
-                                <!-- Text: Rotten away -->
-                                <TextBlock
-                                    Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}}"
-                                    Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleSpoiled}"
-                                    Style="{StaticResource BarTextStyle}" />
-                            </Grid>
-                        </Viewbox>
-                    </ContentControl>
-                </Grid>
-
-                <StackPanel
-                    Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
-                    <StackPanel Margin="0,6,0,0"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="15" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <!-- Text: Possible harvests -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.FarmPlantTooltip_PossibleHarvestsCount}" />
-                        <TextBlock Text=":" />
-                        <StackPanel
-                            Visibility="{Binding VisibilityDataReceived}"
-                            Orientation="Horizontal"
-                            Margin="5,0,0,0">
-                            <TextBlock Text="{Binding HarvestsCount}" />
-                            <TextBlock Text="/" />
-                            <TextBlock Text="{Binding HarvestsCountMax}" />
-                        </StackPanel>
-                        <TextBlock Text="..." Visibility="{Binding VisibilityDataNotReceived}" />
-                    </StackPanel>
-
-                    <Grid Margin="0,7,0,0">
+                <StackPanel Orientation="Vertical"
+                            Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+                    <Grid
+                        Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        Margin="0,5,0,0">
                         <core:ValueBarControl
-                            Value="{Binding WateringEndsTimePercent}"
+                            Value="{Binding HarvestInTimePercent}"
                             MaxValue="100"
+                            IsReversedBar="True"
                             IsValueInterpolated="False"
                             IsDisplayLabel="False"
                             HorizontalAlignment="Stretch"
                             BorderThickness="1"
-                            BorderBrush="{StaticResource LiquidBrushWater}"
-                            Background="{StaticResource BrushColorAlt0}"
+                            BorderBrush="{StaticResource BrushColorGreen4}"
+                            Background="{StaticResource BrushColorGreen0}"
                             Height="32">
-                            <Rectangle Fill="{StaticResource LiquidBrushWater}" />
+                            <Rectangle Fill="{StaticResource BrushColorGreen4}" />
                         </core:ValueBarControl>
 
-                        <ContentControl Foreground="#FF77DDFF">
+                        <ContentControl>
                             <Viewbox Stretch="Uniform"
                                      MaxHeight="22"
                                      Margin="5,0">
                                 <Grid>
-                                    <StackPanel Visibility="{Binding VisibilityWatered}"
-                                                Orientation="Horizontal"
-                                                HorizontalAlignment="Center">
-                                        <!-- Text: Watered for -->
+                                    <StackPanel
+                                        Visibility="{Binding HasHarvest, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                        <!-- Text: Harvest in -->
                                         <TextBlock
-                                            Text="{x:Static loc:CoreStrings.FarmPlantTooltip_WateredForDuration}"
+                                            Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown}"
                                             Style="{StaticResource BarTextStyle}" />
                                         <TextBlock Text=": "
                                                    Style="{StaticResource BarTextStyle}" />
-                                        <TextBlock Text="{Binding WateringEndsTimeText}"
+                                        <TextBlock Text="{Binding HarvestInTimeText}"
                                                    Style="{StaticResource BarTextStyle}" />
                                     </StackPanel>
-
-                                    <!-- Text: Not watered -->
-                                    <TextBlock Visibility="{Binding VisibilityNotWatered}"
-                                               Text="{x:Static loc:CoreStrings.FarmPlantTooltip_NotWatered}"
-                                               Style="{StaticResource BarTextStyle}" />
+                                    <!-- Text: Ready for harvest -->
+                                    <TextBlock
+                                        Visibility="{Binding HasHarvest, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown_Ready}"
+                                        Style="{StaticResource BarTextStyle}" />
                                 </Grid>
                             </Viewbox>
                         </ContentControl>
                     </Grid>
 
-                    <Grid
-                        Visibility="{Binding WateringSpeedBonusText, Converter={StaticResource NullToVisibilityConverter}}"
-                        Margin="0,5,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Border Style="{StaticResource IconBorderStyle}">
-                            <Rectangle Fill="{StaticResource LiquidIconWater}"
-                                       Width="40"
-                                       Height="40"
-                                       Margin="4" />
-                        </Border>
+                    <Grid Visibility="{Binding IsSpoiling, Converter={StaticResource BoolToVisibilityConverter}}"
+                          Margin="0,5,0,0">
+                        <core:ValueBarControl
+                            Value="{Binding SpoiledInTimePercent}"
+                            MaxValue="100"
+                            IsReversedBar="True"
+                            IsValueInterpolated="False"
+                            IsDisplayLabel="False"
+                            HorizontalAlignment="Stretch"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BrushColorRed4}"
+                            Background="{StaticResource BrushColorRed0}"
+                            Height="32">
+                            <Rectangle Fill="{StaticResource BrushColorRed4}" />
+                        </core:ValueBarControl>
 
-                        <core:FormattedTextBlock Grid.Column="1"
-                                                 Content="{Binding WateringSpeedBonusText}"
-                                                 Style="{StaticResource TextBlockBonusDescriptionStyle}" />
+                        <ContentControl>
+                            <Viewbox Stretch="Uniform"
+                                     MaxHeight="22"
+                                     Margin="5,0">
+                                <Grid>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                                        <!-- Text: Spoiled in -->
+                                        <TextBlock
+                                            Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleSpoiledInCountdown}"
+                                            Style="{StaticResource BarTextStyle}" />
+                                        <TextBlock Text=": "
+                                                   Style="{StaticResource BarTextStyle}" />
+                                        <TextBlock Text="{Binding SpoiledInTimeText}"
+                                                   Style="{StaticResource BarTextStyle}" />
+                                    </StackPanel>
+                                    <!-- Text: Rotten away -->
+                                    <TextBlock
+                                        Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleSpoiled}"
+                                        Style="{StaticResource BarTextStyle}" />
+                                </Grid>
+                            </Viewbox>
+                        </ContentControl>
                     </Grid>
 
-                    <Grid
-                        Visibility="{Binding FertilizerBonusText, Converter={StaticResource NullToVisibilityConverter}}"
-                        Margin="0,5,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Border Style="{StaticResource IconBorderStyle}">
-                            <Rectangle Fill="{Binding IconFertilizer}"
-                                       Width="48"
-                                       Height="48" />
-                        </Border>
+                    <StackPanel
+                        Visibility="{Binding IsSpoiled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                        <StackPanel Margin="0,6,0,0"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15" />
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <!-- Text: Possible harvests -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.FarmPlantTooltip_PossibleHarvestsCount}" />
+                            <TextBlock Text=":" />
+                            <StackPanel
+                                Visibility="{Binding VisibilityDataReceived}"
+                                Orientation="Horizontal"
+                                Margin="5,0,0,0">
+                                <TextBlock Text="{Binding HarvestsCount}" />
+                                <TextBlock Text="/" />
+                                <TextBlock Text="{Binding HarvestsCountMax}" />
+                            </StackPanel>
+                            <TextBlock Text="..." Visibility="{Binding VisibilityDataNotReceived}" />
+                        </StackPanel>
 
-                        <core:FormattedTextBlock Grid.Column="1"
-                                                 Content="{Binding FertilizerBonusText}"
-                                                 Style="{StaticResource TextBlockBonusDescriptionStyle}" />
-                    </Grid>
+                        <Grid Margin="0,7,0,0">
+                            <core:ValueBarControl
+                                Value="{Binding WateringEndsTimePercent}"
+                                MaxValue="100"
+                                IsValueInterpolated="False"
+                                IsDisplayLabel="False"
+                                HorizontalAlignment="Stretch"
+                                BorderThickness="1"
+                                BorderBrush="{StaticResource LiquidBrushWater}"
+                                Background="{StaticResource BrushColorAlt0}"
+                                Height="32">
+                                <Rectangle Fill="{StaticResource LiquidBrushWater}" />
+                            </core:ValueBarControl>
 
-                    <Grid
-                        Visibility="{Binding SkillGrowthSpeedBonusText, Converter={StaticResource NullToVisibilityConverter}}"
-                        Margin="0,5,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Border Style="{StaticResource IconBorderStyle}">
-                            <Rectangle Fill="{Binding IconSkillFarming}"
-                                       Width="48"
-                                       Height="48" />
-                        </Border>
+                            <ContentControl>
+                                <Viewbox Stretch="Uniform"
+                                         MaxHeight="22"
+                                         Margin="5,0">
+                                    <Grid>
+                                        <StackPanel Visibility="{Binding VisibilityWatered}"
+                                                    Orientation="Horizontal"
+                                                    HorizontalAlignment="Center">
+                                            <!-- Text: Watered for -->
+                                            <TextBlock
+                                                Text="{x:Static loc:CoreStrings.FarmPlantTooltip_WateredForDuration}"
+                                                Style="{StaticResource BarTextStyle}" />
+                                            <TextBlock Text=": "
+                                                       Style="{StaticResource BarTextStyle}" />
+                                            <TextBlock Text="{Binding WateringEndsTimeText}"
+                                                       Style="{StaticResource BarTextStyle}" />
+                                        </StackPanel>
 
-                        <core:FormattedTextBlock Grid.Column="1"
-                                                 Content="{Binding SkillGrowthSpeedBonusText}"
-                                                 Style="{StaticResource TextBlockBonusDescriptionStyle}" />
-                    </Grid>
+                                        <!-- Text: Not watered -->
+                                        <TextBlock Visibility="{Binding VisibilityNotWatered}"
+                                                   Text="{x:Static loc:CoreStrings.FarmPlantTooltip_NotWatered}"
+                                                   Style="{StaticResource BarTextStyle}" />
+                                    </Grid>
+                                </Viewbox>
+                            </ContentControl>
+                        </Grid>
+
+                        <StackPanel HorizontalAlignment="Center"
+                                    Width="180"
+                                    Margin="-5,0,0,0">
+                            <Grid
+                                Visibility="{Binding WateringSpeedBonusText, Converter={StaticResource NullToVisibilityConverter}}"
+                                Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border Style="{StaticResource IconBorderStyle}">
+                                    <Rectangle Fill="{StaticResource LiquidIconWater}"
+                                               Width="40"
+                                               Height="40"
+                                               Margin="4" />
+                                </Border>
+
+                                <core:FormattedTextBlock Grid.Column="1"
+                                                         Content="{Binding WateringSpeedBonusText}"
+                                                         Style="{StaticResource TextBlockBonusDescriptionStyle}" />
+                            </Grid>
+
+                            <Grid
+                                Visibility="{Binding FertilizerBonusText, Converter={StaticResource NullToVisibilityConverter}}"
+                                Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border Style="{StaticResource IconBorderStyle}">
+                                    <Rectangle Fill="{Binding IconFertilizer}"
+                                               Width="48"
+                                               Height="48" />
+                                </Border>
+
+                                <core:FormattedTextBlock Grid.Column="1"
+                                                         Content="{Binding FertilizerBonusText}"
+                                                         Style="{StaticResource TextBlockBonusDescriptionStyle}" />
+                            </Grid>
+
+                            <Grid
+                                Visibility="{Binding SkillGrowthSpeedBonusText, Converter={StaticResource NullToVisibilityConverter}}"
+                                Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border Style="{StaticResource IconBorderStyle}">
+                                    <Rectangle Fill="{Binding IconSkillFarming}"
+                                               Width="48"
+                                               Height="48" />
+                                </Border>
+
+                                <core:FormattedTextBlock Grid.Column="1"
+                                                         Content="{Binding SkillGrowthSpeedBonusText}"
+                                                         Style="{StaticResource TextBlockBonusDescriptionStyle}" />
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
-
-    </Border>
+            </Grid>
+        </Border>
+    </Grid>
 
 </base:BaseUserControl>

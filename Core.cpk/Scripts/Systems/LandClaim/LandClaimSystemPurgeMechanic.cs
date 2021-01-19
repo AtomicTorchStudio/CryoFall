@@ -132,21 +132,21 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
                 switch (protoStaticWorldObject)
                 {
-                    case IProtoObjectCrate _:
+                    case IProtoObjectCrate:
                     {
                         var privateState = worldObject.GetPrivateState<ObjectCratePrivateState>();
                         PurgeContainer(privateState.ItemsContainer);
                         break;
                     }
 
-                    case IProtoObjectTradingStation _:
+                    case IProtoObjectTradingStation:
                     {
                         var privateState = worldObject.GetPrivateState<ObjectTradingStationPrivateState>();
                         PurgeContainer(privateState.StockItemsContainer);
                         break;
                     }
 
-                    case IProtoObjectBarrel _:
+                    case IProtoObjectBarrel:
                     {
                         var privateState = worldObject.GetPrivateState<ProtoBarrelPrivateState>();
                         privateState.LiquidAmount = 0;
@@ -155,7 +155,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                         break;
                     }
 
-                    case IProtoObjectManufacturer _:
+                    case IProtoObjectManufacturer:
                     {
                         var privateState = worldObject.GetPrivateState<ObjectManufacturerPrivateState>();
                         PurgeManufacturerContainers(privateState);
@@ -172,7 +172,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
             stopwatch.Stop();
             logger.Important(
-                $"Land claim destroyed: {landClaimStructure}. Objects deleted: {objectsDeletedCount}. Item containers purged: {purgedContainersCount}. Time spent: {stopwatch.Elapsed.TotalMilliseconds}ms (spread across multiple frames)");
+                $"Land claim decayed (destroyed by decay): {landClaimStructure}. Objects deleted: {objectsDeletedCount}. Item containers purged: {purgedContainersCount}. Time spent: {stopwatch.Elapsed.TotalMilliseconds}ms (spread across multiple frames)");
 
             void PurgeContainer(IItemsContainer container)
             {

@@ -12,7 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
         public static readonly IReadOnlyList<Recipe> AvailableRecipes;
 
         public static readonly HashSet<Type> BlacklistRecipes
-            = new HashSet<Type>()
+            = new()
             {
                 typeof(RecipeFibersFromPlastic),
                 typeof(RecipeCoinPennyRecycle),

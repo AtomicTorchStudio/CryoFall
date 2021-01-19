@@ -2,29 +2,23 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     public class HintsList
     {
-        private static readonly HintsList TempList = new HintsList();
-
-        private readonly List<string> list = new List<string>();
-
-        public static HintsList GetTempList()
-        {
-            TempList.Clear();
-            return TempList;
-        }
+        private readonly List<Func<string>> list = new();
 
         public HintsList Add(string hint)
         {
-            this.list.Add(hint);
+            this.list.Add(() => hint);
             return this;
         }
 
-        public void Clear()
+        public HintsList Add(Func<string> hint)
         {
-            this.list.Clear();
+            this.list.Add(hint);
+            return this;
         }
 
         public override string ToString()
@@ -35,6 +29,7 @@
             }
 
             var result = this.list
+                             .Select(func => func().ToString())
                              .GetJoinedString("[*]")
                              .ToString()
                              .Replace("[*][*]", string.Empty);

@@ -11,8 +11,7 @@
             this.PrivateState = privateState;
 
             this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(
-                    privateState.ItemsContainer,
-                    callbackTakeAllItemsSuccess: null)
+                    privateState.ItemsContainer)
                 {
                     IsContainerTitleVisible = false,
                     IsManagementButtonsVisible = false

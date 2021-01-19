@@ -9,18 +9,18 @@
     public class SkeletonMechManul : ProtoSkeletonMech
     {
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("MechManul/Back");
+            = new("MechManul/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("MechManul/Front");
+            = new("MechManul/Front");
 
         protected override float AnimationVerticalMovemementSpeedMultiplier => 1.25f;
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {
-            shadowRenderer.PositionOffset = (0, -0.1 * scaleMultiplier);
-            shadowRenderer.Scale = 1.7 * scaleMultiplier;
-            shadowRenderer.Color = Color.FromArgb(0x77, 0x00, 0x00, 0x00);
+            shadowRenderer.PositionOffset = (0, -0.01 * scaleMultiplier);
+            shadowRenderer.Scale = (1.7 * scaleMultiplier, 2.3 * scaleMultiplier);
+            shadowRenderer.Color = Color.FromArgb(0xAA, 0x00, 0x00, 0x00);
         }
 
         public override void CreatePhysics(IPhysicsBody physicsBody)

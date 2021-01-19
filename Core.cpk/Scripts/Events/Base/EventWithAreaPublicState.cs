@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
+﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.GameEngine.Common.Primitives;

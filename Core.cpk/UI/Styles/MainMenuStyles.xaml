@@ -4,19 +4,32 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     mc:Ignorable="d">
 
-    <ControlTemplate x:Key="MainMenuWidgetLineTemplate">
-        <Rectangle Height="1" Stretch="Fill" HorizontalAlignment="Stretch"
-                   SnapsToDevicePixels="True">
-            <Rectangle.Fill>
-                <LinearGradientBrush Opacity="0.667">
-                    <GradientStop Color="#000094CC" Offset="0" />
-                    <GradientStop Color="#FF0094CC" Offset="0.25" />
-                    <GradientStop Color="#FF0094CC" Offset="0.75" />
-                    <GradientStop Color="#000094CC" Offset="1" />
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-    </ControlTemplate>
+    <Style x:Key="MainMenuWidgetLineStyle" TargetType="{x:Type Control}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Height="1"
+                               Stretch="Fill"
+                               HorizontalAlignment="Stretch"
+                               SnapsToDevicePixels="True">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush Opacity="0.667">
+                                <GradientStop Offset="0"
+                                              Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+                                <GradientStop Offset="0.025"
+                                              Color="{StaticResource ColorAlt5}" />
+                                <GradientStop Offset="0.75"
+                                              Color="{StaticResource ColorAlt5}" />
+                                <GradientStop Offset="1.0"
+                                              Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="-8,0,0,0" />
+    </Style>
 
     <Style x:Key="MainMenuWidgetStyle" TargetType="{x:Type ContentControl}">
         <Setter Property="Margin" Value="10" />

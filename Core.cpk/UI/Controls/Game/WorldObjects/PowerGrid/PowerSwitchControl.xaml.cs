@@ -10,24 +10,16 @@
     public partial class PowerSwitchControl : BaseUserControl
     {
         private static readonly TextureResource IconElectricityTextureResource
-            = new TextureResource("Icons/IconElectricity");
+            = new("Icons/IconElectricity");
 
         private IStaticWorldObject worldObject;
-
-        public PowerSwitchControl()
-        {
-        }
 
         public Brush ElectricityIcon
             => Api.Client.UI.GetTextureBrush(IconElectricityTextureResource);
 
         public static PowerSwitchControl Create(IStaticWorldObject worldObject)
         {
-            return new PowerSwitchControl() { worldObject = worldObject };
-        }
-
-        protected override void InitControl()
-        {
+            return new() { worldObject = worldObject };
         }
 
         protected override void OnLoaded()

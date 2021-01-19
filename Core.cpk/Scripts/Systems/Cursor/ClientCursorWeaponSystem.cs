@@ -9,8 +9,7 @@
     {
         // for 1080p/1440p screens or lower
         private static readonly CursorPreset Resolution1080p
-            = new CursorPreset(
-                normal: new CursorResource("1080p/cursor_crosshair_normal",
+            = new(normal: new CursorResource("1080p/cursor_crosshair_normal",
                                            pivotPosition: (16, 16)),
                 offset1: new CursorResource("1080p/cursor_crosshair_offset1",
                                             pivotPosition: (22, 22)),
@@ -21,8 +20,7 @@
 
         // for anything higher than 1440p
         private static readonly CursorPreset Resolution4K
-            = new CursorPreset(
-                normal: new CursorResource("4K/cursor_crosshair_normal",
+            = new(normal: new CursorResource("4K/cursor_crosshair_normal",
                                            pivotPosition: (24, 24)),
                 offset1: new CursorResource("4K/cursor_crosshair_offset1",
                                             pivotPosition: (32, 32)),

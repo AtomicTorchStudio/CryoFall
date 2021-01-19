@@ -12,7 +12,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     /// <summary>
-    /// Base tool item prototype for creating constructions.
+    /// Base tool item prototype for building, repairing, and relocating structures.
     /// </summary>
     public abstract class ProtoItemToolToolbox
         <TPrivateState,
@@ -91,7 +91,7 @@
     }
 
     /// <summary>
-    /// Base tool item prototype for creating constructions.
+    /// Base tool item prototype for building, repairing, and relocating structures.
     /// </summary>
     public abstract class ProtoItemToolToolbox
         : ProtoItemToolToolbox
