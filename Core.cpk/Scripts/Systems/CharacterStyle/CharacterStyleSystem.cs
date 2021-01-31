@@ -50,7 +50,7 @@
             CharacterRespawnSystem.ServerOnCharacterAppearanceSelected(character);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.667)]
         private void ServerRemote_SetHeadEquipmentVisibility(bool isHeadEquipmentHiddenForSelfAndPartyMembers)
         {
             var character = ServerRemoteContext.Character;

@@ -594,12 +594,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             // local method for testing if there is an obstacle from current to the specified position
             bool TestHasObstacle(Vector2D toPosition)
             {
-                using var obstaclesOnTheWay = physicsSpace.TestLine(
+                using var obstaclesInTheWay = physicsSpace.TestLine(
                     positionEpicenter,
                     toPosition,
                     collisionGroup,
                     sendDebugEvent: true);
-                foreach (var test in obstaclesOnTheWay.AsList())
+                foreach (var test in obstaclesInTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
                     if (testPhysicsBody.AssociatedProtoTile is not null)

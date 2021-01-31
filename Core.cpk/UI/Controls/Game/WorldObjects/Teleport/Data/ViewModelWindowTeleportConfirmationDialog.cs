@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -11,12 +13,17 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ViewModelWindowTeleportConfirmationDialog : BaseViewModel
     {
         private readonly CharacterCurrentStats characterCurrentStats;
+
+        private readonly TaskCompletionSource<bool> taskWaitingForUnfriendlyPlayersCheck = new();
+
+        private bool isRequestedTeleportation;
 
         public ViewModelWindowTeleportConfirmationDialog(Vector2Ushort teleportWorldPosition)
         {
@@ -37,6 +44,7 @@
 
             if (PveSystem.ClientIsPve(true))
             {
+                this.taskWaitingForUnfriendlyPlayersCheck.SetResult(true);
                 return;
             }
 
@@ -47,6 +55,7 @@
                                              if (!this.IsDisposed)
                                              {
                                                  this.HasUnfriendlyPlayersNearby = hasPlayersNearby.Result;
+                                                 this.taskWaitingForUnfriendlyPlayersCheck.SetResult(true);
                                              }
                                          },
                                          TaskContinuationOptions.ExecuteSynchronously);
@@ -90,6 +99,7 @@
             ClientCurrentCharacterContainersHelper.ContainersItemsReset -= this.ContainersItemsResetHandler;
             ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged -=
                 this.ItemAddedOrRemovedOrCountChangedHandler;
+            this.taskWaitingForUnfriendlyPlayersCheck.TrySetCanceled();
             base.DisposeViewModel();
         }
 
@@ -98,9 +108,40 @@
             this.NotifyPropertyChanged(nameof(this.HasOptionalItem));
         }
 
-        private void ExecuteCommandTeleport(bool payWithItem)
+        private async void ExecuteCommandTeleport(bool payWithItem)
         {
-            TeleportsSystem.ClientTeleport(this.TeleportWorldPosition, payWithItem);
+            if (this.isRequestedTeleportation)
+            {
+                return;
+            }
+
+            this.isRequestedTeleportation = true;
+            await this.taskWaitingForUnfriendlyPlayersCheck.Task;
+            this.isRequestedTeleportation = false;
+
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            if (!this.HasUnfriendlyPlayersNearby)
+            {
+                TeleportsSystem.ClientTeleport(this.TeleportWorldPosition, payWithItem);
+                return;
+            }
+
+            // ask for confirmation
+            var textBlock = DialogWindow.CreateTextElement(CoreStrings.Teleport_OtherPlayersNearby, TextAlignment.Left);
+            textBlock.FontWeight = FontWeights.Bold;
+            textBlock.Foreground = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed6");
+
+            DialogWindow.ShowDialog(
+                title: CoreStrings.QuestionAreYouSure,
+                content: textBlock,
+                okAction: () => TeleportsSystem.ClientTeleport(this.TeleportWorldPosition, payWithItem),
+                okText: CoreStrings.Button_OK,
+                cancelAction: () => { },
+                focusOnCancelButton: true);
         }
 
         private void ItemAddedOrRemovedOrCountChangedHandler(IItem obj)

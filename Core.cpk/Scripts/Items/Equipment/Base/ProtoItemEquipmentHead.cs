@@ -31,7 +31,9 @@
 
         public virtual bool IsHeadVisible => true;
 
-        public override bool RequireEquipmentTextures => true;
+        public override bool RequireEquipmentTexturesMale => true;
+        
+        public override bool RequireEquipmentTexturesFemale => false;
 
         /// <inheritdoc />
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; private set; }

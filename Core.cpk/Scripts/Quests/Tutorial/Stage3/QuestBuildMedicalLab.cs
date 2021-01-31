@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;

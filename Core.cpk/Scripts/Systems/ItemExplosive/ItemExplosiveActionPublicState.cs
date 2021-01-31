@@ -18,11 +18,14 @@
         [TempOnly]
         public Vector2Ushort TargetPosition { get; set; }
 
-        protected override void ClientOnCompleted()
+        protected override void ClientDeinitialize()
         {
             this.sceneObjectVisualizer?.Destroy();
             this.sceneObjectVisualizer = null;
+        }
 
+        protected override void ClientOnCompleted()
+        {
             if (this.IsCancelled)
             {
                 return;
@@ -40,7 +43,7 @@
             }
 
             this.sceneObjectVisualizer = Api.Client.Scene.CreateSceneObject(
-                "Bomb placement visualizer",
+                "Temp explosive placement visualizer",
                 this.TargetPosition.ToVector2D());
 
             var tile = Api.Client.World.GetTile(this.TargetPosition);

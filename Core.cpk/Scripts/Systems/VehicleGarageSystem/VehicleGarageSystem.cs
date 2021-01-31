@@ -37,7 +37,11 @@
 
         public const string Notification_VehiclesInGarage_Title = "Vehicles in garage";
 
-        private const double ThresholdNoPilotSeconds = 5 * 60;
+        /// <summary>
+        /// To prevent other players from taking vehicles (from world into garage) that were used recently
+        /// by anyone else, a time delay applies (vehicles considered "in use" for this duration after pilot left).
+        /// </summary>
+        private const double ThresholdNoPilotSeconds = 5 * 60; // 5 minutes
 
         public static readonly SoundResource SoundResourcePutVehicle
             = new("Objects/Structures/ObjectVehicleAssemblyBay/PutVehicle");
@@ -180,14 +184,28 @@
 
         private static bool ServerCanCharacterPutVehicleIntoGarage(IDynamicWorldObject vehicle, ICharacter byCharacter)
         {
-            if (!WorldObjectOwnersSystem.SharedIsOwner(byCharacter, vehicle))
+            if (!PveSystem.ServerIsPvE)
             {
-                return false;
+                throw new Exception("This feature is available only in PvE");
             }
 
             var status = ServerGetVehicleStatus(vehicle, byCharacter);
-            return status == VehicleStatus.Docked
-                   || status == VehicleStatus.InWorld;
+            switch (status)
+            {
+                case VehicleStatus.Docked:
+                    // Anyone can put a docked vehicle into garage
+                    // but it could be taken back only by its owners.
+                    // This is necessary to prevent people from bringing vehicles
+                    // to another player's base and blocking the vehicle assembly bay.
+                    return true;
+
+                case VehicleStatus.InWorld
+                    when WorldObjectOwnersSystem.SharedIsOwner(byCharacter, vehicle):
+                    return true;
+
+                default:
+                    return false;
+            }
         }
 
         private static List<GarageVehicleEntry> ServerGetCharacterVehicles(

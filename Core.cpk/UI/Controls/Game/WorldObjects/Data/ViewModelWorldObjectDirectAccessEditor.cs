@@ -35,6 +35,11 @@
                 accessModes = accessModes.ExceptOne(WorldObjectDirectAccessMode.Closed);
             }
 
+            if (!protoObjectWithAccessMode.IsEveryoneAccessModeAvailable)
+            {
+                accessModes = accessModes.ExceptOne(WorldObjectDirectAccessMode.OpensToEveryone);
+            }
+
             this.AccessModes = accessModes
                                .Select(e => new ViewModelEnum<WorldObjectDirectAccessMode>(e))
                                .OrderBy(vm => vm.Order)

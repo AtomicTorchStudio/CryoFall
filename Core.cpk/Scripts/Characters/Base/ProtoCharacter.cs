@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
@@ -146,6 +147,11 @@
                    + (0, isMeleeWeapon
                              ? character.ProtoCharacter.CharacterWorldWeaponOffsetMelee
                              : character.ProtoCharacter.CharacterWorldWeaponOffsetRanged);
+        }
+
+        public bool SharedIsObstacle(IWorldObject targetObject, IProtoItemWeapon protoWeapon)
+        {
+            return this.ObstacleBlockDamageCoef >= 0;
         }
 
         public virtual bool SharedOnDamage(

@@ -37,7 +37,8 @@
         {
             base.PrepareTileRequirements(tileRequirements);
             tileRequirements.Add(LandClaimSystem.ValidatorFreeLandEvenForServer)
-                            .Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
+                            .Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer)
+                            .Add(ConstructionTileRequirements.ValidatorTileNotRestrictingConstructionEvenForServer);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

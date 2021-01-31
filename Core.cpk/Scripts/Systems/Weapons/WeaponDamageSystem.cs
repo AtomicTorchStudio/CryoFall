@@ -473,25 +473,19 @@
                 return true;
             }
 
-            if (WeaponConstants.DamageFriendlyFireMultiplier == 1)
+            if (WeaponConstants.DamageFriendlyFireMultiplier < 1.0)
             {
-                // no sense to check for the friendly fire as it's 100% enabled
-                return false;
+                // friendly fire enabled
+                isFriendlyFireCase = ServerIsFriendlyFire(damagingCharacter, targetCharacter);
+                if (isFriendlyFireCase)
+                {
+                    // a friendly fire case
+                    // the damage is restricted only when the multiplier is zero
+                    return WeaponConstants.DamageFriendlyFireMultiplier == 0;
+                }
             }
 
-            // Let's check whether the players in the same party
-            // to detect the friendly fire in a non-explosive damage case.
-            isFriendlyFireCase = ServerIsFriendlyFire(damagingCharacter, targetCharacter);
-            if (WeaponConstants.DamageFriendlyFireMultiplier > 0)
-            {
-                // PvP damage allowed but it's friendly fire case
-                // so the damage will be reduced during calculation
-                return false;
-            }
-
-            // no PvP damage allowed as it's a friendly fire case
-            // and friendly fire is completely disabled
-            return true;
+            return false;
         }
     }
 }

@@ -29,19 +29,19 @@
         private static readonly List<ICharacter> TempListPlayersInView
             = new();
 
-        public static bool AnyObstaclesBetween(ICharacter npc, ICharacter player)
+        public static bool AnyTileObstaclesBetween(ICharacter npc, ICharacter player)
         {
             var physicsSpace = npc.PhysicsBody.PhysicsSpace;
             var npcCharacterCenter = npc.Position + npc.PhysicsBody.CenterOffset;
             var playerCharacterCenter = player.Position + player.PhysicsBody.CenterOffset;
 
-            using var obstaclesOnTheWay = physicsSpace.TestLine(
+            using var obstaclesInTheWay = physicsSpace.TestLine(
                 npcCharacterCenter,
                 playerCharacterCenter,
                 CollisionGroup.Default,
                 sendDebugEvent: false);
 
-            foreach (var test in obstaclesOnTheWay.AsList())
+            foreach (var test in obstaclesInTheWay.AsList())
             {
                 var testPhysicsBody = test.PhysicsBody;
                 if (testPhysicsBody.AssociatedProtoTile is null)
@@ -218,7 +218,7 @@
                     {
                         // attack only on the same height characters
                         // unless there is a direct line of sight between the NPC and the target
-                        if (AnyObstaclesBetween(characterNpc, playerCharacter))
+                        if (AnyTileObstaclesBetween(characterNpc, playerCharacter))
                         {
                             continue;
                         }

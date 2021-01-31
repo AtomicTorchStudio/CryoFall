@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -394,6 +395,7 @@
             if (isHeadEquipmentHiddenForSelfAndPartyMembers
                 && (character.IsCurrentClientCharacter
                     || PartySystem.ClientIsPartyMember(character.Name)
+                    || FactionSystem.ClientIsFactionMember(character.Name)
                     || PveSystem.ClientIsPve(false)))
             {
                 headEquipmentForFaceSprite = null;
@@ -472,7 +474,8 @@
             ClientEquipmentSpriteHelper.CollectSlotAttachments(
                 tempSpritePathLists.AsList(),
                 typeName: name,
-                requireEquipmentTextures: requireEquipmentTextures,
+                requireEquipmentTexturesMale: requireEquipmentTextures,
+                requireEquipmentTexturesFemale: requireEquipmentTextures,
                 out var slotAttachmentsMale,
                 out var slotAttachmentsFemale);
 

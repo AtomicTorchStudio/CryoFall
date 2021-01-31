@@ -56,7 +56,9 @@
         /// </summary>
         public virtual TimeSpan Lifetime => TimeSpan.FromDays(2);
 
-        public override bool RequireEquipmentTextures => false;
+        public override bool RequireEquipmentTexturesFemale => false;
+
+        public override bool RequireEquipmentTexturesMale => false;
 
         // ten minutes, required for good granularity for durability degradation
         public sealed override double ServerUpdateIntervalSeconds => 10 * 60;

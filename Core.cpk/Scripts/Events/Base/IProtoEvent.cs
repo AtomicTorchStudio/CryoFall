@@ -13,6 +13,11 @@
 
         ITextureResource Icon { get; }
 
+        /// <summary>
+        /// Determines when this event was active last time.
+        /// </summary>
+        double ServerLastActiveTime { get; }
+
         void ServerForceCreateAndStart();
 
         bool ServerIsTriggerAllowed(ProtoTrigger trigger);

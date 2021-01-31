@@ -14,7 +14,7 @@
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    internal static class ServerTurretAiHelper
+    public static class ServerTurretAiHelper
     {
         private static readonly IWorldServerService ServerWorldService
             = Api.IsServer
@@ -24,10 +24,11 @@
         private static readonly List<ICharacter> TempListCharactersInView
             = new();
 
-        public static ICharacter GetClosestTargetPlayer(ICharacter characterTurret, TurretMode turretMode)
+        public static ICharacter GetClosestTargetPlayer(
+            ICharacter characterTurret,
+            TurretMode turretMode,
+            CharacterMobPrivateState turretPrivateState)
         {
-            byte? tileHeight = null;
-
             try
             {
                 var charactersInView = TempListCharactersInView;
@@ -49,22 +50,21 @@
                 }
 
                 ICharacter enemy = null;
-                foreach (var target in charactersInView)
+                foreach (var targetCharacter in charactersInView)
                 {
-                    if (!IsValidTargetInternal(characterTurret,
-                                               target,
+                    if (!IsValidTargetInternal(targetCharacter,
                                                turretClanTag,
                                                turretFaction,
                                                turretTilePosition,
                                                turretMode,
                                                landClaimAreasGroup,
-                                               forceAttackNeutrals: false,
-                                               ref tileHeight))
+                                               forceAttackNeutrals: false)
+                        || !CanHit(characterTurret, targetCharacter, turretPrivateState))
                     {
                         continue;
                     }
 
-                    enemy = target;
+                    enemy = targetCharacter;
                     break;
                 }
 
@@ -109,16 +109,39 @@
                 return false;
             }
 
-            byte? tileHeight = null;
-            return IsValidTargetInternal(characterTurret,
-                                         targetCharacter,
+            return IsValidTargetInternal(targetCharacter,
                                          turretClanTag,
                                          turretFaction,
                                          turretTilePosition,
                                          turretMode,
                                          landClaimAreasGroup,
-                                         forceAttackNeutrals,
-                                         ref tileHeight);
+                                         forceAttackNeutrals);
+        }
+
+        private static bool CanHit(
+            ICharacter characterTurret,
+            ICharacter target,
+            CharacterMobPrivateState turretPrivateState)
+        {
+            double rotationAngleRad = 0;
+            ServerCharacterAiHelper.CalculateDistanceAndDirectionToEnemy(characterTurret,
+                                                                         target,
+                                                                         isRangedWeapon: true,
+                                                                         out _,
+                                                                         out _,
+                                                                         out var directionToEnemyHitbox);
+
+            ServerCharacterAiHelper.LookOnEnemy(directionToEnemyHitbox, ref rotationAngleRad);
+
+            return ServerCharacterAiHelper.CanHitAnyTargetWithRangedWeapon(
+                characterTurret,
+                rotationAngleRad,
+                turretPrivateState,
+                isValidTargetCallback: IsValidTargetCallback);
+
+            static bool IsValidTargetCallback(IWorldObject worldObject)
+                => worldObject is ICharacter { IsNpc: false }
+                   || worldObject.ProtoGameObject is IProtoVehicle;
         }
 
         private static bool GetTurretClaimData(
@@ -160,15 +183,13 @@
         }
 
         private static bool IsValidTargetInternal(
-            ICharacter characterTurret,
             ICharacter targetCharacter,
             string turretClanTag,
             ILogicObject turretFaction,
             Vector2Ushort turretTilePosition,
             TurretMode turretMode,
             ILogicObject landClaimAreasGroup,
-            bool forceAttackNeutrals,
-            ref byte? tileHeight)
+            bool forceAttackNeutrals)
         {
             if (targetCharacter.GetPublicState<ICharacterPublicState>().IsDead)
             {
@@ -196,7 +217,7 @@
             var diplomacyStatus = FactionDiplomacyStatus.Neutral;
             if (turretClanTag is not null)
             {
-                var characterClanTag = PlayerCharacter.GetPublicState(targetCharacter).ClanTag;
+                var characterClanTag = FactionSystem.SharedGetClanTag(targetCharacter);
                 if (characterClanTag == turretClanTag)
                 {
                     // don't attack a player character from the same faction as the turret's land claim
@@ -249,23 +270,6 @@
                              landClaimAreasGroup))
                 {
                     // don't attack non-hostile players
-                    return false;
-                }
-            }
-
-            var targetTile = targetCharacter.Tile;
-            if (!tileHeight.HasValue)
-            {
-                var npcTile = characterTurret.Tile;
-                tileHeight = npcTile.Height;
-            }
-
-            if (targetTile.Height != tileHeight.Value)
-            {
-                // attack only on the same height characters
-                // unless there is a direct line of sight between the NPC and the target
-                if (ServerCharacterAiHelper.AnyObstaclesBetween(characterTurret, targetCharacter))
-                {
                     return false;
                 }
             }

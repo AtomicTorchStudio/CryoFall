@@ -74,6 +74,14 @@
             return SharedGetFactionDiplomacyStatus(ClientCurrentFaction, otherFactionClanTag);
         }
 
+        public static bool ClientIsCurrentOrAllyFaction(string clanTag)
+        {
+            return !string.IsNullOrEmpty(clanTag)
+                   && ClientCurrentFaction is not null
+                   && (ClientCurrentFactionClanTag == clanTag
+                       || (ClientGetCurrentFactionDiplomacyStatus(clanTag) == FactionDiplomacyStatus.Ally));
+        }
+
         public static bool ClientIsValidClanTagForRequest(
             string clanTag,
             bool showErrorNotification = true)

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleSystem
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -8,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle;
@@ -21,7 +23,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class VehicleSystem : ProtoSystem<VehicleSystem>
+    public partial class VehicleSystem : ProtoSystem<VehicleSystem>
     {
         public const string Notification_CannotUseVehicle_TitleFormat = "Cannot use {0}";
 
@@ -125,6 +127,8 @@
             {
                 TriggerEveryFrame.ServerRegister(ServerProcessVehicleQuitRequests,
                                                  nameof(VehicleSystem));
+
+                FactionSystem.ServerFactionDissolved += ServerFactionDissolvedHandler;
             }
         }
 
@@ -351,8 +355,7 @@
             var character = ServerRemoteContext.Character;
             if (!(vehicle.ProtoGameObject is IProtoVehicle protoVehicle))
             {
-                Logger.Warning($"Player cannot enter vehicle: {vehicle} - it's not a vehicle!", character);
-                return;
+                throw new Exception("Not a vehicle");
             }
 
             if (!vehicle.ProtoWorldObject.SharedCanInteract(character,

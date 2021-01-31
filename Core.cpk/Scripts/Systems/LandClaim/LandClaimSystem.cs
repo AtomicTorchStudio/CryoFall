@@ -827,6 +827,8 @@
             [CanBeNull] ICharacter raiderCharacter,
             bool isNewRaidBlock);
 
+        public delegate void ServerBaseBrokenDelegate(ILogicObject areasGroup, List<ILogicObject> newAreaGroups);
+
         public delegate void ServerLandClaimsGroupChangedDelegate(
             ILogicObject area,
             [CanBeNull] ILogicObject areasGroupFrom,
@@ -839,6 +841,8 @@
         public static event Action<ILogicObject> ServerAreasGroupCreated;
 
         public static event Action<ILogicObject> ServerAreasGroupDestroyed;
+
+        public static event ServerBaseBrokenDelegate ServerBaseBroken;
 
         public static event ServerMergeDelegate ServerBaseMerge;
 
@@ -1187,7 +1191,7 @@
                                                .ToList();
 
                 newGroups.Remove(areasGroup);
-                LandClaimAreasGroup.ServerOnBaseBroken(areasGroup, newGroups);
+                Api.SafeInvoke(() => ServerBaseBroken?.Invoke(areasGroup, newGroups));
             }
         }
 

@@ -65,7 +65,13 @@
         <ItemsControl Grid.Row="1"
                       Visibility="{Binding FactionsList.Count, Converter={StaticResource CountToVisibilityConverter}}"
                       ItemsSource="{Binding FactionsList}"
+                      VirtualizingStackPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling"
+                      VirtualizingPanel.ScrollUnit="Pixel"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
                       ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.PanningMode="VerticalOnly"
                       Grid.IsSharedSizeScope="True">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -85,7 +91,6 @@
                             Padding="1"
                             BorderThickness="0,0,0,1">
                         <Border.Background>
-                            <!-- <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.75" /> -->
                             <LinearGradientBrush Opacity="0.5" StartPoint="0,0.5" EndPoint="1,0.5">
                                 <GradientStop Color="#00003F57" Offset="0" />
                                 <GradientStop Color="#FF003F57" Offset="0.1" />

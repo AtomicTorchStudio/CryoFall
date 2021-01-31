@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
@@ -108,14 +107,6 @@
             }
         }
 
-        private static string ServerGetClanTag(ICharacter playerCharacter)
-        {
-            var playerClanTag = PlayerCharacter.GetPublicState(playerCharacter).ClanTag;
-            return string.IsNullOrEmpty(playerClanTag)
-                       ? null
-                       : playerClanTag;
-        }
-
         private static List<ICharacter> ServerGetOnlineStatusChangeReceivers(ICharacter aboutPlayerCharacter)
         {
             var list = Server.Characters
@@ -159,7 +150,7 @@
                     if (ServerIsOperatorOrModerator(character)
                         || (aboutPlayerCharacterFactionClanTag is not null
                             && string.Equals(aboutPlayerCharacterFactionClanTag,
-                                             PlayerCharacter.GetPublicState(character).ClanTag))
+                                             FactionSystem.SharedGetClanTag(character)))
                         || (aboutPlayerCharacterParty is not null
                             && ReferenceEquals(aboutPlayerCharacterParty,
                                                PartySystem.ServerGetParty(character))))
@@ -291,7 +282,7 @@
             this.CallClient(onlineStatusChangeReceivers,
                             _ => _.ClientRemote_OnlinePlayerClanTagChanged(
                                 new Entry(playerCharacter.Name,
-                                          ServerGetClanTag(playerCharacter))));
+                                          FactionSystem.SharedGetClanTag(playerCharacter))));
 
             if (!ServerIsListHidden)
             {
@@ -302,7 +293,7 @@
             this.CallClient(onlineStatusChangeReceivers,
                             _ => _.ClientRemote_OnlineStatusChanged(
                                 new Entry(playerCharacter.Name,
-                                          ServerGetClanTag(playerCharacter)),
+                                          FactionSystem.SharedGetClanTag(playerCharacter)),
                                 true));
         }
 
@@ -314,7 +305,7 @@
             this.CallClient(onlineStatusChangeReceivers,
                             _ => _.ClientRemote_OnlineStatusChanged(
                                 new Entry(playerCharacter.Name,
-                                          ServerGetClanTag(playerCharacter)),
+                                          FactionSystem.SharedGetClanTag(playerCharacter)),
                                 isOnline));
 
             if (ServerIsListHidden)
@@ -360,7 +351,7 @@
                         Server.Characters
                               .EnumerateAllPlayerCharacters(onlyOnline: true)
                               .ExceptOne(playerCharacter)
-                              .Where(c => factionClanTag == PlayerCharacter.GetPublicState(c).ClanTag)
+                              .Where(c => factionClanTag == FactionSystem.SharedGetClanTag(c))
                               .Select(c => new Entry(c.Name, factionClanTag)));
                 }
 
@@ -371,8 +362,7 @@
                                              .EnumerateAllPlayerCharacters(onlyOnline: true)
                                              .ExceptOne(playerCharacter)
                                              .Where(c => party == PartySystem.ServerGetParty(c))
-                                             .Select(c => new Entry(c.Name,
-                                                                    ServerGetClanTag(c)));
+                                             .Select(c => new Entry(c.Name, FactionSystem.SharedGetClanTag(c)));
                     if (onlinePlayersList.Count == 0)
                     {
                         onlinePlayersList.AddRange(partyMembers);
@@ -392,7 +382,7 @@
                                           .EnumerateAllPlayerCharacters(onlyOnline: true)
                                           .ExceptOne(playerCharacter)
                                           .Select(c => new Entry(c.Name,
-                                                                 ServerGetClanTag(c)))
+                                                                 FactionSystem.SharedGetClanTag(c)))
                                           .ToList();
             }
 

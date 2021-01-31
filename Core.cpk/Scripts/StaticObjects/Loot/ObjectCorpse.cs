@@ -93,13 +93,21 @@
             while (dropItemResult.TotalCreatedCount == 0
                    && --attemptRemains > 0);
 
+            if (!dropItemResult.IsEverythingCreated)
+            {
+                Logger.Warning("Not all loot items were provided by "
+                               + worldObject
+                               + " - there is not enough space in inventory and around the character");
+            }
+
             // probably the attempts limit exceeded and nothing is spawned
             // we don't consider this as an issue as the probability of this is too rare
 
-            Logger.Info(this + " was gathered", character);
+            Logger.Info(worldObject + " was gathered", character);
+            Server.World.DestroyObject(worldObject);
+
             NotificationSystem.ServerSendItemsNotification(character, dropItemResult);
             character.ServerAddSkillExperience<SkillHunting>(SkillHunting.ExperienceForGather);
-            Server.World.DestroyObject(worldObject);
             return true;
         }
 

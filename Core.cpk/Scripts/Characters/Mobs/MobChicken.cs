@@ -10,7 +10,7 @@
     {
         public override bool AiIsRunAwayFromHeavyVehicles => true;
 
-        public override float CharacterWorldHeight => 0.6f;
+        public override float CharacterWorldHeight => 0.7f;
 
         public override double MobKillExperienceMultiplier => 0.1;
 

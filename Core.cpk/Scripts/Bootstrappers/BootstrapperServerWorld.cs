@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.GameApi.Data;
@@ -80,11 +81,20 @@
             foreach (var worldObject in allObjects)
             {
                 var protoGameObject = worldObject.ProtoGameObject;
-                if (protoGameObject is not IProtoObjectStructure
-                    || protoGameObject is ProtoObjectGateRuins)
+                if (protoGameObject is IProtoObjectStructure
+                    && protoGameObject is not ProtoObjectGateRuins)
                 {
-                    Server.World.DestroyObject(worldObject);
+                    // player-built structures are not removed
+                    continue;
                 }
+
+                if (protoGameObject is IProtoObjectPlant)
+                {
+                    // farm plants considered player structures (alas we cannot determine player-planted trees)
+                    continue;
+                }
+
+                Server.World.DestroyObject(worldObject);
             }
 
             Server.World.UpdateWorld(new ServerMapResource(GetInitialMapName()));

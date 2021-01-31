@@ -36,6 +36,8 @@
         // how long the items dropped on the ground from the destroyed crate should remain there
         private static readonly TimeSpan DestroyedCrateDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
 
+        public bool CanChangeFactionRoleAccessForSelfRole => true;
+
         /// <summary>
         /// Determines whether this crate has ownership settings or it's accessibly for everyone
         /// (except in PvE where the land claim ownership is checked anyway).
@@ -47,6 +49,8 @@
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public bool IsClosedAccessModeAvailable => false;
+
+        public bool IsEveryoneAccessModeAvailable => true;
 
         public override bool IsRelocatable => true;
 

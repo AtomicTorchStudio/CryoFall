@@ -90,8 +90,60 @@
             ICharacter forCharacter,
             CollisionGroup collisionGroup)
         {
-            return FindObjectsAtCurrentMousePosition(forCharacter, collisionGroup)
-                .FirstOrDefault();
+            using var tempList = Api.Shared.WrapInTempList(
+                FindObjectsAtCurrentMousePosition(forCharacter, collisionGroup));
+
+            switch (tempList.Count)
+            {
+                case 0:
+                    return null;
+
+                case 1:
+                    return tempList.AsList()[0];
+
+                default:
+                    tempList.AsList()
+                            .Sort(ComparebByPositionY);
+                    return tempList.AsList()[0];
+            }
+
+            static int ComparebByPositionY(IWorldObject x, IWorldObject y)
+            {
+                var xDynamic = x as IDynamicWorldObject;
+                var yDynamic = y as IDynamicWorldObject;
+
+                if (xDynamic is not null
+                    && yDynamic is not null)
+                {
+                    return xDynamic.Position.Y
+                                   .CompareTo(yDynamic.Position.Y);
+                }
+
+                if (xDynamic is not null)
+                {
+                    // dynamic objects have priority over static objects
+                    return -1;
+                }
+
+                if (yDynamic is not null)
+                {
+                    // dynamic objects have priority over static objects
+                    return 1;
+                }
+
+                var kindComparison = ((IStaticWorldObject)y).ProtoStaticWorldObject
+                                                            .Kind
+                                                            .CompareTo(((IStaticWorldObject)x).ProtoStaticWorldObject
+                                                                       .Kind);
+
+                if (kindComparison != 0)
+                {
+                    return kindComparison;
+                }
+
+                return x.TilePosition.Y
+                        .CompareTo(y.TilePosition.Y);
+            }
         }
 
         public static IEnumerable<IWorldObject> FindObjectsAtCurrentMousePosition(
@@ -190,7 +242,7 @@
             if (MouseOverObject is null
                 // cannot interact while on vehicle
                 || ClientCurrentCharacterHelper.Character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle
-                is not null)
+                    is not null)
             {
                 ClientCursorSystem.CurrentCursorId = CursorId.Default;
                 InteractionTooltip.Hide();
@@ -285,11 +337,21 @@
                 // try to find static object at current mouse position
                 // first try to find by click area
                 mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.ClickArea);
-
                 if (mouseOverObjectCandidate is null)
                 {
                     // second try to find by default collider
                     mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.Default);
+                    if (mouseOverObjectCandidate is null)
+                    {
+                        // take the last static object in the tile (only if it has no physics body)
+                        var tile = Api.Client.World.GetTile(Api.Client.Input.MousePointedTilePosition);
+                        if (tile.IsValidTile)
+                        {
+                            mouseOverObjectCandidate = tile.StaticObjects.LastOrDefault(
+                                st => st.PhysicsBody is null
+                                      || !st.PhysicsBody.HasShapes);
+                        }
+                    }
                 }
             }
 

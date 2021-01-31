@@ -71,8 +71,7 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
-        // this is a "natural object" to allow decals to show under it
-        public override StaticObjectKind Kind => StaticObjectKind.NaturalObject;
+        public override StaticObjectKind Kind => StaticObjectKind.SpecialAllowDecals;
 
         public override string Name => "Player loot items";
 
@@ -302,7 +301,7 @@
                 // skip this check as it's usually fine to drop the loot if player could stand there
                 //.Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
                 // validate no static physics objects there except destroyed walls and opened doors
-                .Add(ConstructionTileRequirements.ValidatorSolidGround)
+                .Add(ConstructionTileRequirements.ValidatorSolidGroundOrPlatform)
                 .Add(ConstructionTileRequirements.ValidatorNotCliffOrSlope)
                 .Add(new ConstructionTileRequirements.Validator(
                          ConstructionTileRequirements.ErrorNoFreeSpace,

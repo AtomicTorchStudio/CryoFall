@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
 
     public class ObjectWallFence : ProtoObjectWall
@@ -16,32 +15,16 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
-        public override double ObstacleBlockDamageCoef => 0.5; // except for ranged weapons (see SharedOnDamage)
+        public override double ObstacleBlockDamageCoef => 0.5; // except for ranged weapons (see SharedIsObstacle)
 
         public override double StructureExplosiveDefenseCoef => 0;
 
         public override float StructurePointsMax => 2500;
 
-        public sealed override bool SharedOnDamage(
-            WeaponFinalCache weaponCache,
-            IStaticWorldObject targetObject,
-            double damagePreMultiplier,
-            out double obstacleBlockDamageCoef,
-            out double damageApplied)
+        public override bool SharedIsObstacle(IWorldObject targetObject, IProtoItemWeapon protoWeapon)
         {
-            if (weaponCache.ProtoWeapon is IProtoItemWeaponRanged
-                && weaponCache.ProtoWeapon is not IProtoItemWeaponGrenadeLauncher)
-            {
-                obstacleBlockDamageCoef = 0;
-                damageApplied = 0; // no damage
-                return false;      // no hit
-            }
-
-            return base.SharedOnDamage(weaponCache,
-                                       targetObject,
-                                       damagePreMultiplier,
-                                       out obstacleBlockDamageCoef,
-                                       out damageApplied);
+            return protoWeapon is not IProtoItemWeaponRanged
+                   || protoWeapon is IProtoItemWeaponGrenadeLauncher;
         }
 
         protected override void PrepareConstructionConfig(

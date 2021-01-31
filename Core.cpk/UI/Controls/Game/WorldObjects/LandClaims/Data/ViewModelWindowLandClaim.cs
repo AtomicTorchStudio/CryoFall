@@ -117,7 +117,6 @@
 
         public bool CanTransferToFactionOwnership
             => !this.IsOwnedByFaction
-               && this.FounderName == ClientCurrentCharacterHelper.Character.Name
                && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement);
 
         public BaseCommand CommandConfirmLandClaimDecayMessage

@@ -12,6 +12,12 @@
         [NotLocalizable]
         public override string Name => "Time interval trigger";
 
+        public static void ApplyPostpone(BaseTriggerConfig triggerConfig, double duration)
+        {
+            var config = (TriggerTimeIntervalConfig)triggerConfig;
+            config.SetNextTriggerTime(Server.Game.FrameTime + duration);
+        }
+
         public static BaseTriggerConfig ServerConfigureAndRegister(
             TimeSpan interval,
             Action callback,
@@ -20,12 +26,6 @@
             var config = instance.Configure(interval);
             config.ServerRegister(callback, name);
             return config;
-        }
-
-        public void ApplyPostpone(BaseTriggerConfig triggerConfig, double duration)
-        {
-            var config = (TriggerTimeIntervalConfig)triggerConfig;
-            config.SetNextTriggerTime(Server.Game.FrameTime + duration);
         }
 
         public BaseTriggerConfig Configure(

@@ -38,9 +38,14 @@
 
         public override bool ServerIsTriggerAllowedForBossEvent(ProtoTrigger trigger)
         {
-            if (this.ServerHasAnyEventOfType<ProtoEventBoss>())
+            if (trigger is not null)
             {
-                return false;
+                if (this.ServerHasAnyEventOfType<ProtoEventBoss>()
+                    || ServerHasAnyEventOfTypeRunRecently<ProtoEventBoss>(TimeSpan.FromHours(3)))
+                {
+                    // another boss event is running now or run recently 
+                    return false;
+                }
             }
 
             if (trigger is TriggerTimeInterval)

@@ -219,17 +219,20 @@
             = new(ErrorNoFreeSpace,
                   c =>
                   {
-                      if (c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.Floor
-                          && c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.FloorDecal)
+                      var kind = c.ProtoStaticObjectToBuild.Kind;
+                      if (kind != StaticObjectKind.Floor
+                          && kind != StaticObjectKind.FloorDecal)
                       {
                           return c.Tile.StaticObjects.All(
                               o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
-                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal);
+                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
+                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform);
                       }
 
                       return c.Tile.StaticObjects.All(
                           o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
-                               && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal);
+                               && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
+                               && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
                   });
 
         public static readonly Validator ValidatorNoStaticObjectsExceptPlayersStructures
@@ -237,6 +240,11 @@
                   c => c.Tile.StaticObjects.All(
                       o => o.ProtoStaticWorldObject is IProtoObjectStructure
                            || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
+
+        public static readonly Validator ValidatorNoPlatforms
+            = new(ErrorNoFreeSpace,
+                  c => c.Tile.StaticObjects.All(
+                      o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
 
         public static readonly Validator ValidatorNoFarmPlot
             = new(ErrorCannotBuildOnFarmPlot,
@@ -288,6 +296,11 @@
         private static readonly Lazy<IServerZone> ServerZoneRestrictedArea
             = new(() => ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance);
 
+        public static readonly Validator ValidatorSolidGroundOrPlatform
+            = new(ErrorNotSolidGround,
+                  c => c.Tile.ProtoTile.Kind == TileKind.Solid
+                       || c.Tile.StaticObjects.Any(o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform));
+
         public static readonly Validator ValidatorSolidGround
             = new(ErrorNotSolidGround,
                   c => c.Tile.ProtoTile.Kind == TileKind.Solid);
@@ -333,6 +346,10 @@
                       return true;
                   });
 
+        public static readonly Validator ValidatorTileNotRestrictingConstructionEvenForServer
+            = new(ErrorCannotBuildInRestrictedArea,
+                  c => !c.Tile.ProtoTile.IsRestrictingConstruction);
+
         private readonly List<Validator> checkFunctions = new();
 
         static ConstructionTileRequirements()
@@ -362,6 +379,7 @@
 
             var defaultForStructures = DefaultForStaticObjects
                                        .Clone()
+                                       .Add(ValidatorNoPlatforms)
                                        .Add(ValidatorNotRestrictedArea)
                                        .Add(ValidatorNoNpcsAround)
                                        .Add(ValidatorNoPlayersNearby);

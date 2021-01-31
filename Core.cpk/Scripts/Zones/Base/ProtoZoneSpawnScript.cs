@@ -446,8 +446,15 @@
             out SpawnZoneArea resultSpawnArea,
             out bool isSectorDensityExceeded)
         {
-            if (ServerWorldService.GetTile(spawnPosition)
-                                  .IsCliffOrSlope)
+            var tile = ServerWorldService.GetTile(spawnPosition, logOutOfBounds: false);
+            if (!tile.IsValidTile)
+            {
+                resultSpawnArea = null;
+                isSectorDensityExceeded = false;
+                return false;
+            }
+
+            if (tile.IsCliffOrSlope)
             {
                 // quick discard - don't spawn on cliff or slope
                 resultSpawnArea = null;
@@ -513,9 +520,9 @@
             var needToCheckLandClaimPresence = true;
             if (preset.IsContainsOnlyStaticObjects)
             {
-                needToCheckLandClaimPresence = !ServerWorldService.GetTile(spawnPosition)
-                                                                  .ProtoTile
-                                                                  .IsRestrictingConstruction;
+                needToCheckLandClaimPresence = !tile
+                                                .ProtoTile
+                                                .IsRestrictingConstruction;
             }
 
             if (needToCheckLandClaimPresence

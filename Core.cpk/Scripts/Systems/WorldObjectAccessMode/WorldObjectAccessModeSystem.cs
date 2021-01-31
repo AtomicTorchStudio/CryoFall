@@ -1,7 +1,6 @@
 namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
@@ -9,7 +8,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -26,14 +27,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         }
 
         public static void ClientSetFactionAccessMode(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             WorldObjectFactionAccessModes modes)
         {
             Instance.CallServer(_ => _.ServerRemote_SetFactionAccessMode(worldObject, modes));
         }
 
         public static bool ServerHasAccess(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             ICharacter character,
             bool writeToLog)
         {
@@ -46,31 +47,45 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         }
 
         public static bool ServerHasAccess(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             ICharacter character,
             WorldObjectDirectAccessMode directAccessMode,
             WorldObjectFactionAccessModes factionAccessModes,
             bool writeToLog)
         {
-            if (LandClaimSystem.SharedIsWorldObjectOwnedByFaction(worldObject, out var clanTag))
+            if (worldObject is IStaticWorldObject staticWorldObject)
             {
-                if (ServerHasFactionAccess(character, clanTag, factionAccessModes))
+                if (LandClaimSystem.SharedIsWorldObjectOwnedByFaction(staticWorldObject, out var clanTag))
                 {
-                    return true;
+                    if (ServerHasFactionAccess(character, clanTag, factionAccessModes))
+                    {
+                        return true;
+                    }
+
+                    if (writeToLog)
+                    {
+                        Logger.Warning(
+                            $"Character cannot interact with {worldObject} - no access.",
+                            character);
+
+                        Instance.CallClient(
+                            character,
+                            _ => _.ClientRemote_OnCannotInteractNoAccess(worldObject));
+                    }
+
+                    return false;
+                }
+            }
+            else if (worldObject.ProtoGameObject is IProtoVehicle)
+            {
+                var clanTag = worldObject.GetPublicState<VehiclePublicState>().ClanTag;
+                if (string.IsNullOrEmpty(clanTag))
+                {
+                    // the vehicles don't have direct access mode, any owner has access
+                    return false;
                 }
 
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Character cannot interact with {worldObject} - no access.",
-                        character);
-
-                    Instance.CallClient(
-                        character,
-                        _ => _.ClientRemote_OnCannotInteractNoAccess(worldObject));
-                }
-
-                return false;
+                return ServerHasFactionAccess(character, clanTag, factionAccessModes);
             }
 
             switch (directAccessMode)
@@ -133,7 +148,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             }
         }
 
-        public static bool SharedHasAccess(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        public static bool SharedHasAccess(ICharacter character, IWorldObject worldObject, bool writeToLog)
         {
             if (IsClient)
             {
@@ -142,6 +157,40 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             }
 
             return ServerHasAccess(worldObject, character, writeToLog);
+        }
+
+        private static ILogicObject ServerGetOwningFaction(IWorldObject worldObject)
+        {
+            ILogicObject faction = null;
+            if (worldObject is IStaticWorldObject staticWorldObject)
+            {
+                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(staticWorldObject);
+                if (areasGroup is null)
+                {
+                    throw new Exception(
+                        "Cannot modify faction access mode for an object without a faction land claim area");
+                }
+
+                faction = LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction;
+            }
+            else if (worldObject.ProtoGameObject is IProtoVehicle)
+            {
+                var clanTag = worldObject.GetPublicState<VehiclePublicState>().ClanTag;
+                if (string.IsNullOrEmpty(clanTag))
+                {
+                    throw new Exception("The vehicle doesn't belong to a faction: " + worldObject);
+                }
+
+                faction = FactionSystem.ServerGetFactionByClanTag(clanTag);
+            }
+
+            if (faction is null)
+            {
+                throw new Exception(
+                    "Cannot modify faction access mode for an object without a faction land claim area");
+            }
+
+            return faction;
         }
 
         private static bool ServerHasFactionAccess(
@@ -166,7 +215,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 return true;
             }
 
-            var playerClanTag = PlayerCharacter.GetPublicState(character).ClanTag;
+            var playerClanTag = FactionSystem.SharedGetClanTag(character);
             if (string.IsNullOrEmpty(playerClanTag))
             {
                 // player don't have a faction
@@ -211,7 +260,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_OnCannotInteractNoAccess(IStaticWorldObject worldObject)
+        private void ClientRemote_OnCannotInteractNoAccess(IWorldObject worldObject)
         {
             CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
                                                                 NotificationDontHaveAccess,
@@ -251,6 +300,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 throw new Exception("Closed access mode is not supported for " + protoObjectWithAccessMode);
             }
 
+            if (mode == WorldObjectDirectAccessMode.OpensToEveryone
+                && !protoObjectWithAccessMode.IsEveryoneAccessModeAvailable)
+            {
+                throw new Exception("Everyone access mode is not supported for " + protoObjectWithAccessMode);
+            }
+
             var privateState = worldObject.GetPrivateState<IObjectWithAccessModePrivateState>();
             if (privateState.DirectAccessMode == mode)
             {
@@ -263,7 +318,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.5, keyArgIndex: 0)]
         private void ServerRemote_SetFactionAccessMode(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             WorldObjectFactionAccessModes modes)
         {
             var character = ServerRemoteContext.Character;
@@ -276,23 +331,15 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 throw new Exception("This world object doesn't have an access mode");
             }
 
-            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(worldObject);
-            if (areasGroup is null)
-            {
-                throw new Exception(
-                    "Cannot modify faction access mode for an object without a faction land claim area");
-            }
-
-            var faction = LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction;
+            var faction = ServerGetOwningFaction(worldObject);
             if (faction is null)
             {
-                throw new Exception(
-                    "Cannot modify faction access mode for an object without a faction land claim area");
+                throw new Exception("No faction");
             }
 
             if (!CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                // verify permission
+                // verify permission to access object
                 FactionSystem.ServerValidateHasAccessRights(character,
                                                             FactionMemberAccessRights.LandClaimManagement,
                                                             out var characterFaction);
@@ -309,8 +356,38 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 throw new Exception("Closed access mode is not supported for " + protoObjectWithAccessMode);
             }
 
+            if ((modes == WorldObjectFactionAccessModes.Everyone
+                 || modes == WorldObjectFactionAccessModes.AllyFactionMembers)
+                && !protoObjectWithAccessMode.IsEveryoneAccessModeAvailable)
+            {
+                throw new Exception("Everyone and Ally access modes are not supported for "
+                                    + protoObjectWithAccessMode);
+            }
+
             var privateState = worldObject.GetPrivateState<IObjectWithAccessModePrivateState>();
-            if (privateState.FactionAccessMode == modes)
+            var previousModes = privateState.FactionAccessMode;
+
+            if (!protoObjectWithAccessMode.CanChangeFactionRoleAccessForSelfRole)
+            {
+                var role = FactionSystem.ServerGetRole(character);
+                switch (role)
+                {
+                    case FactionMemberRole.Officer1
+                        when previousModes.HasFlag(WorldObjectFactionAccessModes.Officer1)
+                             ^ modes.HasFlag(WorldObjectFactionAccessModes.Officer1):
+
+                    case FactionMemberRole.Officer2
+                        when previousModes.HasFlag(WorldObjectFactionAccessModes.Officer2)
+                             ^ modes.HasFlag(WorldObjectFactionAccessModes.Officer2):
+
+                    case FactionMemberRole.Officer3
+                        when previousModes.HasFlag(WorldObjectFactionAccessModes.Officer3)
+                             ^ modes.HasFlag(WorldObjectFactionAccessModes.Officer3):
+                        throw new Exception("Cannot change access setting for self role " + protoObjectWithAccessMode);
+                }
+            }
+
+            if (previousModes == modes)
             {
                 return;
             }

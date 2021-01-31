@@ -27,6 +27,8 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => false;
 
+        public override StaticObjectKind Kind => StaticObjectKind.Platform;
+
         public override double ObstacleBlockDamageCoef => 1;
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;

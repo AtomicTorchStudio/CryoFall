@@ -29,7 +29,9 @@
 
         public abstract ObjectMaterial Material { get; }
 
-        public override bool RequireEquipmentTextures => true;
+        public override bool RequireEquipmentTexturesFemale => true;
+
+        public override bool RequireEquipmentTexturesMale => true;
 
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; private set; }
 
@@ -96,7 +98,7 @@
             // (extra check will be performed to ensure only this armor equipped in any of these slots)
             return new[]
             {
-                (byte)EquipmentType.Armor,
+                (byte)EquipmentType.Armor
             };
         }
     }

@@ -28,8 +28,15 @@
                     yield return this.Character.SharedGetPlayerContainerHotbar();
                 }
 
-                this.CreateGroundContainer();
-                yield return this.GroundContainer;
+                if (this.GroundContainer is null)
+                {
+                    this.TryCreateGroundContainer();
+                }
+
+                if (this.GroundContainer is not null)
+                {
+                    yield return this.GroundContainer;
+                }
             }
         }
 
@@ -51,7 +58,7 @@
 
         public Vector2Ushort TilePosition { get; }
 
-        private void CreateGroundContainer()
+        private void TryCreateGroundContainer()
         {
             var tile = Api.Server.World.GetTile(this.TilePosition);
             this.GroundContainer = ObjectGroundItemsContainer

@@ -101,7 +101,7 @@
         public static readonly WeaponFireTracePreset MobPoisonBig
             = new(traceTexturePath: "FX/WeaponTraces/TracePoisonBig",
                   hitSparksPreset: WeaponHitSparksPresets.NoWeapon,
-                  traceSpeed: 25,
+                  traceSpeed: 35,
                   traceSpriteWidthPixels: 514,
                   traceStartScaleSpeedExponent: 0.5,
                   traceStartOffsetPixels: -50);

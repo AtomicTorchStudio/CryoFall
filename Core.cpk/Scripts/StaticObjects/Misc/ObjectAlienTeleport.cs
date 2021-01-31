@@ -50,8 +50,6 @@
             this.textureResourceFront = new TextureResource(texturePath + "Front");
         }
 
-        public override StaticObjectKind Kind => StaticObjectKind.Structure;
-
         public override string Name => "Alien teleport";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;

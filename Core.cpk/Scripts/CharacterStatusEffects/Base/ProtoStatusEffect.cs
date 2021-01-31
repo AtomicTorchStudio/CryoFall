@@ -119,12 +119,19 @@
                 return;
             }
 
-            var data = new StatusEffectData(gameObject, deltaTime: 0);
-            this.ClientDeinitialize(data);
+            try
+            {
+                var data = new StatusEffectData(gameObject, deltaTime: 0);
+                this.ClientDeinitialize(data);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+            }
 
             if (this.HasStatEffects)
             {
-                data.CharacterPrivateState.SetFinalStatsCacheIsDirty();
+                ClientCurrentCharacterHelper.PrivateState?.SetFinalStatsCacheIsDirty();
             }
         }
 

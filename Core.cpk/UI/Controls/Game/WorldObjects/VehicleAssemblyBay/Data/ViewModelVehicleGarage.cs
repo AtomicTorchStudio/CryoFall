@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem;
@@ -32,7 +33,7 @@
         public bool CanTakeSelectedVehicle { get; private set; }
 
         public BaseCommand CommandPutCurrentVehicle
-            => new ActionCommand(this.ExecuteCommandPutCurrentVehicle);
+            => new ActionCommand(ExecuteCommandPutCurrentVehicle);
 
         public BaseCommand CommandTakeSelectedVehicle
             => new ActionCommand(this.ExecuteCommandTakeSelectedVehicle);
@@ -57,6 +58,11 @@
 
                 this.RefreshCanTakeSelectedVehicle();
             }
+        }
+
+        private static void ExecuteCommandPutCurrentVehicle()
+        {
+            VehicleGarageSystem.ClientPutCurrentVehicle();
         }
 
         private void ApplyCurrentVehicles(IReadOnlyList<GarageVehicleEntry> currentVehicles)
@@ -109,11 +115,8 @@
                         new ViewModelGarageVehicleEntry(entry.Id, entry.ProtoVehicle, entry.Status));
                 }
             }
-        }
 
-        private void ExecuteCommandPutCurrentVehicle()
-        {
-            VehicleGarageSystem.ClientPutCurrentVehicle();
+            this.SelectedVehicle ??= this.AccessibleVehicles?.FirstOrDefault();
         }
 
         private void ExecuteCommandTakeSelectedVehicle()

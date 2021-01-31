@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.BossLootSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -36,7 +35,7 @@
             Vector2Ushort bossPosition,
             List<ServerBossLootSystem.WinnerEntry> winnerEntries)
         {
-            var lootByFaction = winnerEntries.GroupBy(e => PlayerCharacter.GetPublicState(e.Character).ClanTag)
+            var lootByFaction = winnerEntries.GroupBy(e => FactionSystem.SharedGetClanTag(e.Character))
                                              .Where(g => !string.IsNullOrEmpty(g.Key))
                                              .ToDictionary(g => g.Key, g => g.Sum(l => l.LootCount));
 

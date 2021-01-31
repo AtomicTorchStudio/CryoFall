@@ -282,6 +282,57 @@
     <SolidColorBrush x:Key="BrushCanInteract" Color="{StaticResource Color6}" />
     <SolidColorBrush x:Key="BrushCannotInteract" Color="#FFBBBBBB" />
 
+    <LinearGradientBrush x:Key="ItemBackgroundNormalBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource ColorAlt1}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorAlt1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ItemBackgroundNormalHoverBrush" Color="{StaticResource ColorAlt3}" Opacity="0.4" />
+    <SolidColorBrush x:Key="ItemBackgroundNormalActiveBrush" Color="{StaticResource ColorAlt4}" Opacity="0.4" />
+
+    <LinearGradientBrush x:Key="ItemBackgroundRedBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource ColorRed1}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorRed1}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ItemBackgroundRedHoverBrush" Color="{StaticResource ColorRed3}" Opacity="0.4" />
+    <SolidColorBrush x:Key="ItemBackgroundRedActiveBrush" Color="{StaticResource ColorRed4}" Opacity="0.4" />
+
+    <LinearGradientBrush x:Key="ItemBorderNormalBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource ColorAlt5}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorAlt5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
+    </LinearGradientBrush>
+    <StaticResource x:Key="ItemBorderNormalHoverBrush" ResourceKey="BrushColorAlt5" />
+    <StaticResource x:Key="ItemBorderNormalActiveBrush" ResourceKey="BrushColorAlt6" />
+
+    <LinearGradientBrush x:Key="ItemBorderRedBrush" Opacity="0.4" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource ColorRed5}"
+                      Offset="0.667" />
+        <GradientStop
+            Color="{Binding Source={StaticResource ColorRed5}, Converter={StaticResource ColorAlphaConverter}, ConverterParameter=0}"
+            Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ItemBorderRedHoverBrush" Color="{StaticResource ColorRed5}" />
+    <SolidColorBrush x:Key="ItemBorderRedActiveBrush" Color="{StaticResource ColorRed6}" />
+
+    <Style x:Key="TextBlockItemTitleStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="LineHeight" Value="11" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
     <Thickness x:Key="WidgetShadowMargin">1.5,1.5,-1,-1</Thickness>
     <Thickness x:Key="WidgetShadowMarginThin">1.5,1.5,-0.75,-0.75</Thickness>
 
@@ -1789,7 +1840,7 @@
     <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundListElementClick}" />
         <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundListElementEnter}" />
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{StaticResource ItemBackgroundNormalBrush}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />

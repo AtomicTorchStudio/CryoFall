@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -26,11 +27,11 @@
         private static readonly Color RayColorCurrentPlayerCharacter
             = Color.FromArgb(0x44, 0x00, 0xFF, 0x00);
 
+        private static readonly Color RayColorFriendlyPlayerCharacter
+            = Color.FromArgb(0x30, 0x00, 0xFF, 0x00);
+
         private static readonly Color RayColorOtherPlayerCharacter
             = Color.FromArgb(0x44, 0xFF, 0x00, 0x00);
-
-        private static readonly Color RayColorPartyMember
-            = Color.FromArgb(0x30, 0x00, 0xFF, 0x00);
 
         private ComponentBeam componentBeam;
 
@@ -97,6 +98,7 @@
             CastLine(this.currentCharacter,
                      customTargetPosition: customTargetPosition,
                      rangeMax: rangeMax,
+                     protoWeaponRanged,
                      collisionGroup: protoWeaponRanged.CollisionGroup,
                      toPosition: out var toPosition,
                      hitPosition: out var hitPosition);
@@ -109,12 +111,8 @@
             var beamOpacity = MathHelper.Clamp(distance - 0.5, min: 0, max: 1);
             beamOpacity = beamOpacity * beamOpacity * beamOpacity;
 
+            var color = this.GetColor();
             this.componentBeam.IsEnabled = true;
-            var color = this.currentCharacter.IsCurrentClientCharacter
-                            ? RayColorCurrentPlayerCharacter
-                            : PartySystem.ClientIsPartyMember(this.currentCharacter.Name)
-                                ? RayColorPartyMember
-                                : RayColorOtherPlayerCharacter;
             this.componentBeam.Refresh(
                 sourcePosition: sourcePosition,
                 sourcePositionOffset: 0.1,
@@ -143,6 +141,7 @@
             ICharacter character,
             Vector2D? customTargetPosition,
             double rangeMax,
+            IProtoItemWeaponRanged protoWeaponRanged,
             CollisionGroup collisionGroup,
             out Vector2D toPosition,
             out Vector2D? hitPosition)
@@ -211,10 +210,9 @@
                         continue;
                     }
 
-                    if (protoDamageableWorldObject.ObstacleBlockDamageCoef < 1
-                        && protoDamageableWorldObject is not IProtoCharacter)
+                    if (!protoDamageableWorldObject.SharedIsObstacle(damagedObject, protoWeaponRanged))
                     {
-                        // shoot through this object
+                        // can shoot through this object
                         continue;
                     }
 
@@ -237,6 +235,19 @@
                     break;
                 }
             }
+        }
+
+        private Color GetColor()
+        {
+            if (this.currentCharacter.IsCurrentClientCharacter)
+            {
+                return RayColorCurrentPlayerCharacter;
+            }
+
+            return PartySystem.ClientIsPartyMember(this.currentCharacter.Name)
+                   || FactionSystem.ClientIsFactionMemberOrAlly(this.currentCharacter)
+                       ? RayColorFriendlyPlayerCharacter
+                       : RayColorOtherPlayerCharacter;
         }
 
         private Vector2D GetSourcePosition(IProtoItemWeaponRanged protoWeapon)

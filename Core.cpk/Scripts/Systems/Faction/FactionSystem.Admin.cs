@@ -5,6 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Data;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers;
@@ -125,35 +128,59 @@
             Logger.Important("Requested faction ownership transfer to " + memberName);
         }
 
-        public static void ClientOfficerRemoveFactionMember(string memberName, bool askConfirmation = true)
+        public static void ClientOfficerRemoveFactionMember(string memberName)
         {
             ClientValidateHasAccessRights(FactionMemberAccessRights.RemoveMembers);
 
-            if (!askConfirmation)
-            {
-                CallServer();
-                return;
-            }
+            var stackPanel = new StackPanel();
+            stackPanel.Children.Add(
+                new FormattedTextBlock()
+                {
+                    Content = string.Format(CoreStrings.Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat,
+                                            memberName),
+                    FontWeight = FontWeights.Bold,
+                    Foreground = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed6")
+                });
 
-            var textBlock = new FormattedTextBlock()
+            // TODO: introduce a different string for this case        
+            var checkbox1Message = CoreStrings.Faction_JoinCooldown_Description
+                                   + " ("
+                                   + ClientDefaultJoinCooldownDurationText
+                                   + ")";
+            var checkbox = new CheckBox()
             {
-                Content = string.Format(CoreStrings.Faction_Dialog_RemoveFactionMemberConfirmation_MessageFormat,
-                                        memberName),
-                FontWeight = FontWeights.Bold,
-                Foreground = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed6")
+                Content = new FormattedTextBlock() { Content = checkbox1Message },
+                Margin = new Thickness(0, 10, 0, 0)
             };
 
-            DialogWindow.ShowDialog(
+            stackPanel.Children.Add(checkbox);
+
+            var dialogWindow = DialogWindow.ShowDialog(
                 title: CoreStrings.Faction_RemoveMember,
-                content: textBlock,
+                content: stackPanel,
                 okText: CoreStrings.Yes,
-                okAction: CallServer,
+                okAction: DialogOkActionHandler,
                 cancelText: CoreStrings.Button_Cancel,
                 cancelAction: () => { },
                 focusOnCancelButton: true);
 
-            void CallServer()
+            dialogWindow.ButtonOk.SetBinding(
+                UIElement.IsEnabledProperty,
+                new Binding
+                {
+                    Source = checkbox,
+                    Path = new PropertyPath(ToggleButton.IsCheckedProperty),
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                });
+
+            void DialogOkActionHandler()
             {
+                if (checkbox.IsChecked != true)
+                {
+                    return;
+                }
+
                 Instance.CallServer(
                     _ => _.ServerRemote_OfficerRemoveFactionMember(memberName));
             }

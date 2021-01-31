@@ -99,6 +99,8 @@
 
         public IReadOnlyList<ProtoItemWithCount> BuildRequiredItems { get; private set; }
 
+        public bool CanChangeFactionRoleAccessForSelfRole => false; // don't allow to cut access to self
+
         public abstract byte CargoItemsSlotsCount { get; }
 
         public override double ClientUpdateIntervalSeconds => 0; // every frame
@@ -117,7 +119,7 @@
 
         public virtual byte FuelItemsSlotsCount => 3;
 
-        public virtual bool HasOwnersList => true;
+        public bool HasOwnersList => true;
 
         public bool HasVehicleLights => this.VehicleLightConfig.IsLightEnabled;
 
@@ -130,6 +132,10 @@
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public virtual bool IsAutoUnlocked => false;
+
+        public bool IsClosedAccessModeAvailable => false;
+
+        public bool IsEveryoneAccessModeAvailable => false;
 
         public abstract bool IsHeavyVehicle { get; }
 
@@ -458,10 +464,15 @@
         {
             base.ServerOnDestroy(gameObject);
 
+            var publicState = GetPublicState(gameObject);
+            var privateState = GetPrivateState(gameObject);
+            var pilotCharacter = publicState.PilotCharacter
+                                 ?? privateState.ServerLastPilotCharacter;
+
             VehicleSystem.ServerOnVehicleDestroyed(gameObject);
 
             // try drop cargo on the ground
-            var itemsContainer = GetPrivateState(gameObject).CargoItemsContainer;
+            var itemsContainer = privateState.CargoItemsContainer;
             var objectGroundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 gameObject.Tile,
                 itemsContainer,
@@ -472,7 +483,16 @@
                 return;
             }
 
-            var ownerName = GetPrivateState(gameObject).Owners.FirstOrDefault();
+            // apply PvE object claim to prevent other players from picking up the cargo
+            if (pilotCharacter is not null)
+            {
+                WorldObjectClaimSystem.ServerTryClaim(objectGroundContainer.OwnerAsStaticObject,
+                                                      pilotCharacter,
+                                                      WorldObjectClaimDuration.DroppedGoods);
+                return;
+            }
+
+            var ownerName = privateState.Owners.FirstOrDefault();
             if (ownerName is null)
             {
                 return;
@@ -691,7 +711,8 @@
             {
                 WorldObjectOwnersSystem.ServerNotifyNotOwner(character,
                                                              worldObject,
-                                                             isFactionAccess: false);
+                                                             isFactionAccess: !string.IsNullOrEmpty(
+                                                                                  GetPublicState(worldObject).ClanTag));
             }
 
             return false;
@@ -1237,8 +1258,7 @@
                 protoExplosive: null,
                 protoWeapon: null,
                 explosionPreset: this.DestroyedExplosionPreset,
-                epicenterPosition: vehicle.Position
-                                   + this.SharedGetObjectCenterWorldOffset(targetObject),
+                epicenterPosition: vehicle.Position,
                 damageDescriptionCharacters: this.DestroyedVehicleDamageDescriptionCharacters,
                 physicsSpace: targetObject.PhysicsBody.PhysicsSpace,
                 executeExplosionCallback: this.ServerExecuteVehicleExplosion);
@@ -1367,7 +1387,7 @@
         private void ClientRemote_VehicleExploded(Vector2D position)
         {
             Logger.Important(this + " exploded at " + position);
-            SharedExplosionHelper.ClientExplode(position: position + this.SharedGetObjectCenterWorldOffset(null),
+            SharedExplosionHelper.ClientExplode(position,
                                                 this.DestroyedExplosionPreset,
                                                 this.DestroyedExplosionVolume);
         }

@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectClaim
 {
-    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -15,7 +14,7 @@
 
         public IWorldObject TaggedWorldObject { get; }
 
-        public static IComponentAttachedControl AttachTo(ILogicObject tagObject, IWorldObject taggedWorldObject)
+        public static IComponentAttachedControl AttachTo(IWorldObject taggedWorldObject)
         {
             return Api.Client.UI.AttachControl(
                 taggedWorldObject,

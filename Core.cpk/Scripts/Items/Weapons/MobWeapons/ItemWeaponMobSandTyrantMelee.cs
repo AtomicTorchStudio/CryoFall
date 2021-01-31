@@ -53,8 +53,9 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return new SoundPreset<WeaponSound>()
-                .Add(WeaponSound.Shot, "Skeletons/PragmiumQueen/Weapon/ShotMelee");
+            return new SoundPreset<WeaponSound>(customDistance: (15, 45),
+                                                customDistance3DSpread: (10, 35))
+                .Add(WeaponSound.Shot, "Skeletons/SandTyrant/Weapon/ShotMelee");
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

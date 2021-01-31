@@ -57,6 +57,11 @@
 
         public virtual ITextureResource Icon { get; }
 
+        /// <summary>
+        /// Determines when this event was active last time.
+        /// </summary>
+        public double ServerLastActiveTime { get; private set; }
+
         public override double ServerUpdateIntervalSeconds => 1;
 
         public override string ShortId { get; }
@@ -89,6 +94,24 @@
             where TProtoTrigger : ProtoTrigger, new()
         {
             return Api.GetProtoEntity<TProtoTrigger>();
+        }
+
+        protected static bool ServerHasAnyEventOfTypeRunRecently<TProtoEvent>(TimeSpan maxTime)
+            where TProtoEvent : class, IProtoEvent
+        {
+            var maxTimeTotalSeconds = maxTime.TotalSeconds;
+
+            foreach (var protoEvent in Api.FindProtoEntities<TProtoEvent>())
+            {
+                if (Server.Game.FrameTime - protoEvent.ServerLastActiveTime
+                    < maxTimeTotalSeconds)
+                {
+                    // this event was triggered recently
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         protected sealed override void PrepareProto()
@@ -198,7 +221,22 @@
                 Api.Shared.WrapInTempList(
                     Server.World.GetGameObjectsOfProto<ILogicObject, TProtoEvent>());
 
-            return tempEvents.Count > 0;
+            if (tempEvents.Count == 0)
+            {
+                return false;
+            }
+
+            var serverTime = Server.Game.FrameTime;
+            foreach (var eventInstance in tempEvents.AsList())
+            {
+                if (eventInstance.GetPublicState<EventPublicState>().EventEndTime
+                    > serverTime)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         protected sealed override void ServerInitialize(ServerInitializeData data)
@@ -208,8 +246,9 @@
 
             if (data.IsFirstTimeInit)
             {
-                publicState.EventEndTime = Server.Game.FrameTime
-                                           + this.EventDuration.TotalSeconds;
+                var serverTime = Server.Game.FrameTime;
+                publicState.EventEndTime = serverTime + this.EventDuration.TotalSeconds;
+                this.ServerLastActiveTime = serverTime;
             }
 
             // schedule rest of the initialization on the next frame
@@ -303,10 +342,12 @@
         protected override void ServerUpdate(ServerUpdateData data)
         {
             var publicState = data.PublicState;
+            var serverTime = Server.Game.FrameTime;
 
-            var timeRemains = publicState.EventEndTime - Server.Game.FrameTime;
+            var timeRemains = publicState.EventEndTime - serverTime;
             if (timeRemains > 0)
             {
+                this.ServerLastActiveTime = serverTime;
                 return;
             }
 
@@ -335,7 +376,7 @@
                 return;
             }
 
-            if (!(triggerConfig.Trigger is TriggerTimeInterval triggerTimeInterval))
+            if (!(triggerConfig.Trigger is TriggerTimeInterval))
             {
                 return;
             }
@@ -359,7 +400,7 @@
                                    + RandomHelper.NextDouble() * (postponeDurationTo - postponeDurationFrom);
             }
 
-            triggerTimeInterval.ApplyPostpone(triggerConfig, postponeDuration);
+            TriggerTimeInterval.ApplyPostpone(triggerConfig, postponeDuration);
             Logger.Important($"Event start postponed on {TimeSpan.FromSeconds(postponeDuration)} - {this}");
         }
     }

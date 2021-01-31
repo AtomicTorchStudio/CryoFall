@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -25,6 +26,10 @@
         public override double FireAnimationDuration => 0.3;
 
         public override double FireInterval => 1.5;
+
+        public override (float min, float max) SoundPresetWeaponDistance
+            => (SoundConstants.AudioListenerMinDistanceRangedShot + 3,
+                SoundConstants.AudioListenerMaxDistanceRangedShotMobs + 8);
 
         public override string WeaponAttachmentName => "Head";
 

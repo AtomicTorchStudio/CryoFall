@@ -64,7 +64,7 @@
         private const double TargetPredictionInterpolationRate = 20;
 
         /// <summary>
-        /// If AI detects that there are obstacles on the way of the attack,
+        /// If AI detects that there are obstacles in the way of the attack,
         /// it will try to find a better angle by applying an offset angle (with positive and negative signs, randomly).
         /// </summary>
         private static readonly float[] RushAttackFallbackOffsetAngles = { 30, 45, 60, 90, 120, 165, 180 };

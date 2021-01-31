@@ -214,6 +214,7 @@
             {
                 base.ServerInitialize(serverConfiguration);
                 ServerAreasGroupChanged += ServerAreasGroupChangedHandler;
+                ServerBaseBroken += ServerBaseBrokenHandler;
                 FactionSystem.ServerFactionMemberAccessRightsChanged += ServerFactionMemberAccessRightsChangedHandler;
                 FactionSystem.ServerCharacterJoinedOrLeftFaction += ServerCharacterJoinedOrLeftFactionHandler;
             }
@@ -265,6 +266,22 @@
                                                                          ? ServerRemoteContext.Character
                                                                          : null);
                 }
+            }
+
+            private static void ServerBaseBrokenHandler(ILogicObject areasGroup, List<ILogicObject> newAreaGroups)
+            {
+                var faction = LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction;
+                if (faction is null)
+                {
+                    return;
+                }
+
+                foreach (var newAreasGroup in newAreaGroups)
+                {
+                    LandClaimAreasGroup.GetPublicState(newAreasGroup).ServerSetFaction(faction);
+                }
+
+                ServerRefreshFactionClaimAccess(faction);
             }
 
             private static void ServerCharacterJoinedOrLeftFactionHandler(
@@ -319,7 +336,7 @@
             private static void ServerFactionMemberAccessRightsChangedHandler(
                 ILogicObject faction,
                 string characterName,
-                FactionMemberAccessRights accessrights)
+                FactionMemberAccessRights accessRights)
             {
                 ServerRefreshFactionClaimAccess(faction);
             }

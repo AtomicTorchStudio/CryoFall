@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Defenses;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -86,6 +87,14 @@
         {
             if (IsClient)
             {
+                damageApplied = 0;
+                obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
+                return true;
+            }
+
+            if (weaponCache.ProtoExplosive is not null)
+            {
+                // no damage by explosives as they're damaging the turret structure directly
                 damageApplied = 0;
                 obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
                 return true;
@@ -253,7 +262,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
-                targetCharacter: ServerTurretAiHelper.GetClosestTargetPlayer(character, turretMode),
+                targetCharacter: ServerTurretAiHelper.GetClosestTargetPlayer(character, turretMode, privateState),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: false,
                 distanceRetreat: 0,

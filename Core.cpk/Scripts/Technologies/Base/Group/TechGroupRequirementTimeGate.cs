@@ -22,7 +22,7 @@
                                           ? Api.Server.Game.SecondsSinceWorldCreation
                                           : Api.Client.CurrentGame.SecondsSinceWorldCreation;
 
-            return this.DurationSeconds - serverTimeSinceWipe;
+            return Math.Max(0, this.DurationSeconds - serverTimeSinceWipe);
         }
 
         public override BaseViewModelTechGroupRequirement CreateViewModel()

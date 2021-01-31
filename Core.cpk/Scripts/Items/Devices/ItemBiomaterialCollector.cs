@@ -100,7 +100,7 @@
 
             // spawn biomaterial vials
             var createItemResult = Server.Items.CreateItem<ItemVialBiomaterial>(character,
-                                                                                count: destroyedEmptyVialsCount);
+                count: destroyedEmptyVialsCount);
 
             var itemChangedCount = NotificationSystem.SharedGetItemsChangedCount(createItemResult);
             itemChangedCount.Add(protoItemVialEmpty, -(int)destroyedEmptyVialsCount);

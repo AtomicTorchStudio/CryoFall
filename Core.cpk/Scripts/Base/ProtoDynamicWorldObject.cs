@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -64,6 +63,11 @@
         public virtual float SharedGetStructurePointsMax(IDynamicWorldObject worldObject)
         {
             return this.StructurePointsMax;
+        }
+
+        public bool SharedIsObstacle(IWorldObject targetObject, IProtoItemWeapon protoWeapon)
+        {
+            return this.ObstacleBlockDamageCoef >= 0;
         }
 
         public virtual bool SharedOnDamage(

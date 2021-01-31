@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -13,12 +14,18 @@
 
     public class ViewModelWorldObjectFactionAccessEditorControl : BaseViewModel
     {
+        private readonly bool canChangeSelfRoleAccess;
+
+        private readonly bool isClosedModeAvailable;
+
+        private readonly bool isEveryoneModeAvailable;
+
         private readonly IObjectWithAccessModePrivateState privateState;
 
-        private readonly IStaticWorldObject worldObject;
+        private readonly IWorldObject worldObject;
 
         public ViewModelWorldObjectFactionAccessEditorControl(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             bool canSetAccessMode)
         {
             this.worldObject = worldObject;
@@ -29,62 +36,53 @@
                 throw new Exception("This world object doesn't have an access mode");
             }
 
-            this.IsClosedModeAvailable = protoObjectWithAccessMode.IsClosedAccessModeAvailable;
-
-            IEnumerable<WorldObjectFactionAccessModes> accessModes
-                = EnumExtensions.GetValues<WorldObjectFactionAccessModes>();
-
-            if (!this.IsClosedModeAvailable)
-            {
-                accessModes = accessModes.ExceptOne(WorldObjectFactionAccessModes.Closed);
-            }
-
-            if (!FactionSystem.SharedIsDiplomacyFeatureAvailable)
-            {
-                accessModes = accessModes.ExceptOne(WorldObjectFactionAccessModes.AllyFactionMembers);
-            }
-
-            this.ViewModelAccessModes = accessModes
-                                        .Select(mode =>
-                                                    mode == WorldObjectFactionAccessModes.Closed
-                                                        ? new ViewModelFactionAccessModeClosed(
-                                                            this.OnModeIsClosedChanged)
-                                                        : new ViewModelFactionAccessMode(mode, this.OnModeChanged))
-                                        .ToArray();
-
-            if (!this.IsClosedModeAvailable)
-            {
-                this.ViewModelAccessModes[0].IsEnabled = false;
-            }
+            this.isClosedModeAvailable = protoObjectWithAccessMode.IsClosedAccessModeAvailable;
+            this.isEveryoneModeAvailable = protoObjectWithAccessMode.IsEveryoneAccessModeAvailable;
+            this.canChangeSelfRoleAccess = canSetAccessMode
+                                           && protoObjectWithAccessMode.CanChangeFactionRoleAccessForSelfRole;
 
             this.privateState = worldObject.GetPrivateState<IObjectWithAccessModePrivateState>();
-
             this.privateState.ClientSubscribe(
                 _ => _.FactionAccessMode,
                 _ => this.RefreshCheckboxes(),
                 this);
 
-            this.RefreshCheckboxes();
+            FactionSystem.ClientCurrentFactionAccessRightsChanged += this.CurrentFactionAccessRightsChanged;
+
+            this.RecreateViewModelAccessModes();
         }
 
         public bool CanSetAccessMode { get; }
 
-        public bool IsClosedModeAvailable { get; }
+        public bool HasFactionAccessRight
+            => CreativeModeSystem.ClientIsInCreativeMode()
+               || (FactionSystem.ClientCurrentFaction is not null
+                   && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement));
 
-        public ViewModelFactionAccessMode[] ViewModelAccessModes { get; }
+        public ViewModelFactionAccessMode[] ViewModelAccessModes { get; set; }
+
+        protected override void DisposeViewModel()
+        {
+            FactionSystem.ClientCurrentFactionAccessRightsChanged -= this.CurrentFactionAccessRightsChanged;
+            base.DisposeViewModel();
+        }
+
+        private void CurrentFactionAccessRightsChanged()
+        {
+            this.NotifyPropertyChanged(nameof(this.HasFactionAccessRight));
+            this.RecreateViewModelAccessModes();
+        }
 
         private void OnModeChanged()
         {
-            WorldObjectFactionAccessModes accessModes
-                = this.IsClosedModeAvailable
-                      ? WorldObjectFactionAccessModes.Closed
-                      : WorldObjectFactionAccessModes.Leader;
+            var accessModes = this.isClosedModeAvailable
+                                  ? WorldObjectFactionAccessModes.Closed
+                                  : WorldObjectFactionAccessModes.Leader;
 
             // first entry is skipped as it's for the Closed mode
             foreach (var viewModel in this.ViewModelAccessModes.Skip(1))
             {
-                if (viewModel.IsEnabled
-                    && viewModel.IsChecked)
+                if (viewModel.IsChecked)
                 {
                     accessModes |= viewModel.Mode;
                 }
@@ -106,6 +104,65 @@
             }
 
             this.OnModeChanged();
+        }
+
+        private void RecreateViewModelAccessModes()
+        {
+            IEnumerable<WorldObjectFactionAccessModes> accessModes
+                = EnumExtensions.GetValues<WorldObjectFactionAccessModes>();
+
+            if (!this.isClosedModeAvailable)
+            {
+                accessModes = accessModes.ExceptOne(WorldObjectFactionAccessModes.Closed);
+            }
+
+            if (!this.isEveryoneModeAvailable)
+            {
+                accessModes = accessModes.ExceptOne(WorldObjectFactionAccessModes.Everyone);
+                accessModes = accessModes.ExceptOne(WorldObjectFactionAccessModes.AllyFactionMembers);
+            }
+
+            if (!FactionSystem.SharedIsDiplomacyFeatureAvailable)
+            {
+                accessModes = accessModes.ExceptOne(WorldObjectFactionAccessModes.AllyFactionMembers);
+            }
+
+            this.ViewModelAccessModes = accessModes
+                                        .Select(mode =>
+                                                    mode == WorldObjectFactionAccessModes.Closed
+                                                        ? new ViewModelFactionAccessModeClosed(
+                                                            this.OnModeIsClosedChanged)
+                                                        : new ViewModelFactionAccessMode(mode, this.OnModeChanged))
+                                        .ToArray();
+
+            if (!this.isClosedModeAvailable)
+            {
+                this.ViewModelAccessModes[0].IsEnabled = false;
+            }
+
+            if (!this.canChangeSelfRoleAccess)
+            {
+                var currentRole = FactionSystem.ClientCurrentRole;
+                foreach (var vm in this.ViewModelAccessModes)
+                {
+                    var mode = vm.Mode;
+                    if ((mode == WorldObjectFactionAccessModes.Officer1
+                         && currentRole == FactionMemberRole.Officer1)
+                        || (mode == WorldObjectFactionAccessModes.Officer2
+                            && currentRole == FactionMemberRole.Officer2)
+                        || (mode == WorldObjectFactionAccessModes.Officer3
+                            && currentRole == FactionMemberRole.Officer3))
+                    {
+                        // cannot change access rights for the current role (to prevent lock-out)
+                        vm.IsEnabled = false;
+                        vm.TooltipMessage = string.Format("({0} {1})",
+                                                          CoreStrings.Faction_CurrentRole_Field,
+                                                          FactionSystem.ClientGetRoleTitle(currentRole));
+                    }
+                }
+            }
+
+            this.RefreshCheckboxes();
         }
 
         private void RefreshCheckboxes()
@@ -187,6 +244,8 @@
                     }
                 }
             }
+
+            public string TooltipMessage { get; set; }
 
             public void Refresh(WorldObjectFactionAccessModes currentModes)
             {

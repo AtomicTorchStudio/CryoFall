@@ -39,7 +39,9 @@
 
         public abstract bool OnlySingleDeviceOfThisProtoAppliesEffect { get; }
 
-        public override bool RequireEquipmentTextures => false;
+        public override bool RequireEquipmentTexturesFemale => false;
+
+        public override bool RequireEquipmentTexturesMale => false;
 
         protected override double DefenseMultiplier => 0;
 

@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -319,6 +320,7 @@
         public static void ClientOnWeaponShot(
             ICharacter character,
             uint partyId,
+            string clanTag,
             IProtoItemWeapon protoWeapon,
             IProtoCharacter protoCharacter,
             Vector2Ushort fallbackPosition)
@@ -332,9 +334,12 @@
             var position = character?.Position ?? fallbackPosition.ToVector2D();
             position += (0, protoCharacter.CharacterWorldWeaponOffsetRanged);
 
-            ClientSoundCueManager.OnSoundEvent(position,
-                                               isPartyMember: partyId > 0
-                                                              && partyId == PartySystem.ClientCurrentParty?.Id);
+            var isByPartyMember = PartySystem.ClientIsCurrentParty(partyId);
+            var isCurrentOrAllyFaction = FactionSystem.ClientIsCurrentOrAllyFaction(clanTag);
+            ClientSoundCueManager.OnSoundEvent(
+                position,
+                isFriendly: isByPartyMember
+                            || isCurrentOrAllyFaction);
 
             float volume = SoundConstants.VolumeWeapon;
             volume *= protoWeapon.ShotVolumeMultiplier;
@@ -574,7 +579,7 @@
             {
                 if (Api.IsClient
                     && (hasTrace || protoWeapon is IProtoItemWeaponRanged)
-                    && character.GetClientState<BaseCharacterClientState>().SkeletonRenderer is {} skeletonRenderer)
+                    && character.GetClientState<BaseCharacterClientState>().SkeletonRenderer is { } skeletonRenderer)
                 {
                     var protoSkeleton = character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;
                     var slotName = protoSkeleton.SlotNameItemInHand;

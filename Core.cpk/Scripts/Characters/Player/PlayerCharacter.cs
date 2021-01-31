@@ -135,6 +135,10 @@
                 MenuRespawn.EnsureClosed();
                 MenuCharacterCreation.Reset();
             }
+
+            var clientState = GetClientState(character);
+            clientState.CurrentPublicActionState?.InvokeClientDeinitialize();
+            clientState.CurrentPublicActionState = null;
         }
 
         public override void ClientOnServerPhysicsUpdate(

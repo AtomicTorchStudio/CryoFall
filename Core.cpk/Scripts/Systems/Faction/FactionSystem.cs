@@ -74,6 +74,8 @@
             ILogicObject faction,
             bool isJoined);
 
+        public static event Action ClientCurrentFactionAccessRightsChanged;
+
         public static event Action ClientCurrentFactionChanged;
 
         public static event Action<(FactionMemberEntry entry, bool isAdded)> ClientCurrentFactionMemberAddedOrRemoved;
@@ -81,6 +83,8 @@
         public static event Action<string> ClientFactionDissolved;
 
         public static event ServerCharacterJoinedOrLeftFactionDelegate ServerCharacterJoinedOrLeftFaction;
+
+        public static event Action<string> ServerFactionDissolved;
 
         public static event DelegateFactionMemberAccessRightsChanged ServerFactionMemberAccessRightsChanged;
 
@@ -278,6 +282,11 @@
 
         public static bool ClientIsFactionMember(string name)
         {
+            if (clientCurrentFactionMembersList is null)
+            {
+                return false;
+            }
+
             foreach (var entry in clientCurrentFactionMembersList)
             {
                 if (!string.Equals(entry.Name, name, StringComparison.Ordinal))
@@ -291,6 +300,27 @@
 
             // no such member
             return false;
+        }
+
+        public static bool ClientIsFactionMemberOrAlly(ICharacter character)
+        {
+            if (ClientCurrentFaction is null
+                || character is null
+                || character.IsNpc
+                || !character.IsInitialized)
+            {
+                return false;
+            }
+
+            var clanTag = SharedGetClanTag(character);
+            if (ClientCurrentFactionClanTag == clanTag)
+            {
+                // faction member
+                return true;
+            }
+
+            return SharedGetFactionDiplomacyStatus(ClientCurrentFaction, clanTag)
+                   == FactionDiplomacyStatus.Ally;
         }
 
         public static void ClientJoin(string clanTag)
@@ -359,13 +389,21 @@
                 throw new Exception("Cannot upgrade beyond max level");
             }
 
+            var upgradeCost = FactionConstants.SharedGetFactionUpgradeCost(toLevel);
             if (ClientCurrentCharacterHelper.PrivateState.Technologies.LearningPoints
-                < FactionConstants.SharedGetFactionUpgradeCost(toLevel))
+                < upgradeCost)
             {
                 throw new Exception("Not enough learning points");
             }
 
-            Instance.CallServer(_ => _.ServerRemote_UpgradeFactionLevel(toLevel));
+            DialogWindow.ShowDialog(
+                title: CoreStrings.QuestionAreYouSure,
+                text: string.Format(CoreStrings.LearningPointsCost_Format, upgradeCost),
+                okAction: () => Instance.CallServer(
+                              _ => _.ServerRemote_UpgradeFactionLevel(toLevel)),
+                okText: CoreStrings.Button_Upgrade,
+                cancelAction: () => { },
+                focusOnCancelButton: true);
         }
 
         public static CreateFactionResult ServerCreateFaction(
@@ -654,9 +692,9 @@
                 return false;
             }
 
-            var clanTagCharacterA = PlayerCharacter.GetPublicState(characterA).ClanTag;
+            var clanTagCharacterA = SharedGetClanTag(characterA);
             return !string.IsNullOrEmpty(clanTagCharacterA)
-                   && clanTagCharacterA == PlayerCharacter.GetPublicState(characterB).ClanTag;
+                   && clanTagCharacterA == SharedGetClanTag(characterB);
         }
 
         public static string SharedGetClanTag(ILogicObject faction)
@@ -664,6 +702,13 @@
             return faction is null
                        ? null
                        : Faction.GetPublicState(faction).ClanTag;
+        }
+
+        public static string SharedGetClanTag(ICharacter character)
+        {
+            return character is null || character.IsNpc
+                       ? null
+                       : PlayerCharacter.GetPublicState(character).ClanTag;
         }
 
         public static FactionKind SharedGetFactionKind(ILogicObject faction)
@@ -849,6 +894,7 @@
             Logger.Important("Current faction received: " + (faction?.ToString() ?? "<no faction>"));
             if (ClientCurrentFaction == faction)
             {
+                Api.SafeInvoke(() => ClientCurrentFactionAccessRightsChanged?.Invoke());
                 return;
             }
 
@@ -866,6 +912,7 @@
             ClientFactionEventsLogListener.Setup(faction);
 
             Api.SafeInvoke(() => ClientCurrentFactionChanged?.Invoke());
+            Api.SafeInvoke(() => ClientCurrentFactionAccessRightsChanged?.Invoke());
 
             ProcessMembersList();
             ProcessDiplomacyDictionary();
@@ -1182,6 +1229,8 @@
             Server.World.DestroyObject(ServerGetFactionChat(faction));
             Server.World.DestroyObject(faction);
             Logger.Important("Faction destroyed: " + faction);
+
+            Api.SafeInvoke(() => ServerFactionDissolved?.Invoke(clanTag));
 
             Instance.CallClient(
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),

@@ -38,8 +38,10 @@
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
             if (trigger is not null
-                && this.ServerHasAnyEventOfType<IProtoEventWithArea>())
+                && (this.ServerHasAnyEventOfType<IProtoEvent>()
+                    || ServerHasAnyEventOfTypeRunRecently<IProtoEvent>(TimeSpan.FromMinutes(20))))
             {
+                // this event cannot run together or start soon after any other event
                 return false;
             }
 

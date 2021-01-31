@@ -21,7 +21,7 @@
 
         public override double StructureExplosiveDefenseCoef => 0.7;
 
-        public override float StructurePointsMax => 2400;
+        public override float StructurePointsMax => 1200;
 
         protected override void PrepareConstructionConfigTurret(
             ConstructionTileRequirements tileRequirements,
@@ -44,7 +44,7 @@
 
         protected override void PrepareDefense(DefenseDescription defense)
         {
-            defense.Set(ObjectDefensePresets.Tier3);
+            defense.Set(ObjectDefensePresets.Tier4);
         }
 
         protected override void PrepareProtoTurretObject(out IProtoCharacterTurret protoCharacter)

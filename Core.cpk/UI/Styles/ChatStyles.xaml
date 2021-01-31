@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="ChatEntryBackground" Color="#A5002940" />
     <SolidColorBrush x:Key="ChatBrushFromCurrentPlayer" Color="{StaticResource Color7}" Opacity="1" />
     <SolidColorBrush x:Key="ChatBrushFromOtherPlayer" Color="{StaticResource ColorAltLabelForeground}" Opacity="1" />
-    <SolidColorBrush x:Key="ChatBrushFromPartyMember" Color="{StaticResource ColorGreen7}" Opacity="1" />
+    <SolidColorBrush x:Key="ChatBrushFromPartyOrFactionMember" Color="{StaticResource ColorGreen7}" Opacity="1" />
 
     <Style x:Key="ChatLogTextBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="OverridesDefaultStyle" Value="True" />

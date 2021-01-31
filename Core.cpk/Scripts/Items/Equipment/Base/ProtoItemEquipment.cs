@@ -62,7 +62,9 @@
 
         public IReadOnlyStatsDictionary ProtoEffects { get; private set; }
 
-        public abstract bool RequireEquipmentTextures { get; }
+        public abstract bool RequireEquipmentTexturesFemale { get; }
+
+        public abstract bool RequireEquipmentTexturesMale { get; }
 
         public IReadOnlyList<SkeletonSlotAttachment> SlotAttachmentsFemale { get; private set; }
 
@@ -148,7 +150,8 @@
                 ClientEquipmentSpriteHelper.CollectSlotAttachments(
                     tempSpritePaths.AsList(),
                     this.Id,
-                    requireEquipmentTextures: this.RequireEquipmentTextures,
+                    requireEquipmentTexturesMale: this.RequireEquipmentTexturesMale,
+                    requireEquipmentTexturesFemale: this.RequireEquipmentTexturesFemale,
                     out var slotAttachmentsMale,
                     out var slotAttachmentsFemale);
 

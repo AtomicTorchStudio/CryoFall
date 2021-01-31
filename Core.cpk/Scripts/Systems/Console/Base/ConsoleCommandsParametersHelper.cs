@@ -25,6 +25,12 @@
         {
             text = WhitespaceToCamelCase(text);
 
+            if (text.Equals(text.ToLowerInvariant()))
+            {
+                // the text doesn't have any uppercase characters, process it like it's an abbreviation
+                text = text.ToUpperInvariant();
+            }
+
             var result = new List<TextSegment>();
             int index = 0, lastUpperLetterIndex = 0;
             do

@@ -9,11 +9,26 @@
 
     public class ViewModelTechGroup : BaseViewModel
     {
-        private IReadOnlyList<BaseViewModelTechGroupRequirement> requirements;
-
         public ViewModelTechGroup(TechGroup techGroup)
         {
             this.TechGroup = techGroup;
+
+            var requirements = new List<BaseViewModelTechGroupRequirement>(this.TechGroup.GroupRequirements.Count);
+            foreach (var requirement in this.TechGroup.GroupRequirements)
+            {
+                if (requirement is TechGroupRequirementLearningPoints)
+                {
+                    // do not display such requirement as we display it separately now
+                    continue;
+                }
+
+                var viewModel = requirement.CreateViewModel();
+                viewModel.SubscribePropertyChange(_ => _.IsSatisfied,
+                                                  _ => this.Refresh());
+                requirements.Add(viewModel);
+            }
+
+            this.Requirements = requirements;
 
             this.TechGroup.NodesChanged += this.Refresh;
             ClientComponentTechnologiesWatcher.TechGroupsChanged += this.Refresh;
@@ -26,31 +41,6 @@
         public bool CanUnlock { get; private set; }
 
         public string Description => this.TechGroup.Description;
-
-        public IReadOnlyList<BaseViewModelTechGroupRequirement> DisplayedRequirements
-        {
-            get
-            {
-                if (this.requirements is not null)
-                {
-                    return this.requirements;
-                }
-
-                var list = new List<BaseViewModelTechGroupRequirement>(this.TechGroup.GroupRequirements.Count);
-                foreach (var requirement in this.TechGroup.GroupRequirements)
-                {
-                    if (requirement is TechGroupRequirementLearningPoints)
-                    {
-                        // do not display such requirement as we display it separately now
-                        continue;
-                    }
-
-                    list.Add(requirement.CreateViewModel());
-                }
-
-                return this.requirements = list;
-            }
-        }
 
         public Brush Icon => Client.UI.GetTextureBrush(this.TechGroup.Icon);
 
@@ -65,6 +55,8 @@
         public int NodesUnlockedCount { get; private set; }
 
         public ushort RequiredLearningPoints => this.TechGroup.LearningPointsPrice;
+
+        public IReadOnlyList<BaseViewModelTechGroupRequirement> Requirements { get; }
 
         public TechGroup TechGroup { get; }
 

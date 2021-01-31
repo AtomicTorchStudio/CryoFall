@@ -111,6 +111,8 @@
                 });
         }
 
+        public bool CanChangeFactionRoleAccessForSelfRole => true;
+
         public virtual int DoorSizeTiles => 1;
 
         public virtual bool HasOwnersList => true;
@@ -122,6 +124,8 @@
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public bool IsClosedAccessModeAvailable => true;
+
+        public bool IsEveryoneAccessModeAvailable => true;
 
         public virtual bool IsHeavyVehicleCanPass => false;
 
@@ -606,7 +610,7 @@
 
                 var characterPhysicsBody = character.PhysicsBody;
                 var characterCenter = character.Position + characterPhysicsBody.CenterOffset;
-                if (!ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+                if (!ObstacleTestHelper.SharedHasObstaclesInTheWay(characterCenter,
                                                                    characterPhysicsBody.PhysicsSpace,
                                                                    worldObject,
                                                                    sendDebugEvents: true))

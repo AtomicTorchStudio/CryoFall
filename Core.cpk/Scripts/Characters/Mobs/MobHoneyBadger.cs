@@ -15,7 +15,7 @@
 
         public override float CharacterWorldHeight => 1f;
 
-        public override double MobKillExperienceMultiplier => 1.0;
+        public override double MobKillExperienceMultiplier => 1.5;
 
         public override string Name => "Honey badger";
 

@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -74,10 +75,17 @@
                               continue;
                           }
 
-                          if (obj.ProtoGameObject is IProtoObjectTurret)
+                          switch (obj.ProtoGameObject)
                           {
-                              // found another turret nearby
-                              return false;
+                              case IProtoObjectTurret:
+                                  // found another turret nearby
+                                  return false;
+
+                              case ProtoObjectConstructionSite
+                                  when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
+                                           IProtoObjectTurret:
+                                  // found a blueprint for another turret nearby
+                                  return false;
                           }
                       }
 

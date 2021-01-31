@@ -28,7 +28,7 @@
                     Canvas.Top="-50">
             <TextBlock Text="{Binding Name}"
                        Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}}"
-                       Foreground="#DDFFFFFF"
+                       Foreground="#DD15EE6A"
                        FontSize="13"
                        FontWeight="Bold"
                        noesis:Text.Stroke="#DD000000"

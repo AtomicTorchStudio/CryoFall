@@ -446,12 +446,12 @@
             // local method for testing if there is an obstacle from current to the specified position
             bool TestHasObstacle(Vector2D toPosition)
             {
-                using var obstaclesOnTheWay = character.PhysicsBody.PhysicsSpace.TestLine(
+                using var obstaclesInTheWay = character.PhysicsBody.PhysicsSpace.TestLine(
                     characterCenter,
                     toPosition,
                     CollisionGroup.Default,
                     sendDebugEvent: false);
-                foreach (var test in obstaclesOnTheWay.AsList())
+                foreach (var test in obstaclesInTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
                     if (testPhysicsBody.AssociatedProtoTile is not null)

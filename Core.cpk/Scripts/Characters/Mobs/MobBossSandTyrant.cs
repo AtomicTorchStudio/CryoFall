@@ -144,7 +144,7 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
-        public override double StatDefaultHealthMax => 8500;
+        public override double StatDefaultHealthMax => 7200;
 
         // Please note: boss using different regeneration mechanism.
         public override double StatHealthRegenerationPerSecond => 0;

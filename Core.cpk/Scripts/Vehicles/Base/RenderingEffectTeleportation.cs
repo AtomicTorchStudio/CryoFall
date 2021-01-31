@@ -58,7 +58,7 @@
                 source.Width,
                 source.Height,
                 effectInstance: this.effect,
-                blendState: BlendMode.AdditiveNonPremultiplied);
+                blendState: BlendMode.AdditivePremultiplied);
         }
 
         public override Vector2Int GetTargetTextureSize(IRenderTarget2D source)

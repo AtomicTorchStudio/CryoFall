@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
@@ -42,9 +43,23 @@
 
         protected override void PrepareGatheringDroplist(DropItemsList droplist)
         {
-            droplist
-                .Add<ItemHerbGreen>(count: 1)
-                .Add<ItemHerbGreen>(count: 1, probability: 1 / 3.0, condition: SkillForaging.ConditionAdditionalYield);
+            if (IsClient
+                || PveSystem.ServerIsPvE)
+            {
+                droplist
+                    .Add<ItemHerbGreen>(count: 1)
+                    .Add<ItemHerbGreen>(count: 1,
+                                        probability: 1 / 3.0,
+                                        condition: SkillForaging.ConditionAdditionalYield);
+            }
+            else // for PvP servers, provide a bit more green herbs to help with healing and teleport usage 
+            {
+                droplist
+                    .Add<ItemHerbGreen>(count: 2)
+                    .Add<ItemHerbGreen>(count: 1,
+                                        probability: 1 / 3.0,
+                                        condition: SkillForaging.ConditionAdditionalYield);
+            }
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

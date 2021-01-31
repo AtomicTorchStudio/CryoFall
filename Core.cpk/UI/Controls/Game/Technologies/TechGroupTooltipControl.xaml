@@ -69,13 +69,13 @@
                                     <Style BasedOn="{StaticResource ValueBarControlStyle}"
                                            TargetType="{x:Type core:ValueBarControl}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding VisibilityIsNotSatisfied}" Value="Visible">
+                                            <DataTrigger Binding="{Binding IsSatisfied}" Value="False">
                                                 <Setter Property="Background" Value="{StaticResource BrushColorRed0}" />
                                                 <Setter Property="BarBrush" Value="{StaticResource BrushColorRed5}" />
                                                 <Setter Property="BorderBrush" Value="{StaticResource BrushColorRed5}" />
                                             </DataTrigger>
 
-                                            <DataTrigger Binding="{Binding VisibilityIsSatisfied}" Value="Visible">
+                                            <DataTrigger Binding="{Binding IsSatisfied}" Value="True">
                                                 <Setter Property="Background" Value="{StaticResource BrushColorGreen0}" />
                                                 <Setter Property="BarBrush" Value="{StaticResource BrushColorGreen5}" />
                                                 <Setter Property="BorderBrush"
@@ -227,7 +227,7 @@
                                FontWeight="Bold" />
                 </StackPanel>
 
-                <ListBox ItemsSource="{Binding DisplayedRequirements}"
+                <ListBox ItemsSource="{Binding Requirements}"
                          Style="{StaticResource ListBoxRequirementsStyle}" />
             </StackPanel>
         </StackPanel>
@@ -243,7 +243,7 @@
                            FontWeight="Bold" />
             </StackPanel>
 
-            <ListBox ItemsSource="{Binding DisplayedRequirements}"
+            <ListBox ItemsSource="{Binding Requirements}"
                      Style="{StaticResource ListBoxRequirementsStyle}" />
         </StackPanel>
     </Grid>

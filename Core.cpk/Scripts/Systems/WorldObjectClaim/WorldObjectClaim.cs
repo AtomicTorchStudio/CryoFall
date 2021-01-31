@@ -21,7 +21,7 @@
     {
         private const bool DisplayLockEvenForCurrentPlayer = false;
 
-        public override double ClientUpdateIntervalSeconds => 0;
+        public override double ClientUpdateIntervalSeconds => 0.1;
 
         [NotLocalizable]
         public override string Name => "World object claim";
@@ -121,35 +121,26 @@
             }
         }
 
-        protected override void ClientInitialize(ClientInitializeData data)
+        protected override void ClientUpdate(ClientUpdateData data)
         {
-            var objectClaim = data.GameObject;
-            var publicState = data.PublicState;
-            var worldObject = publicState.WorldObject;
+            var clientState = data.ClientState;
+            var shouldDisplay = ClientShouldDisplayIndicator(data.GameObject);
+            var isDisplaying = clientState.ComponentAttachedControl?.IsEnabled ?? false;
 
-            if (worldObject is null)
+            if (isDisplaying == shouldDisplay)
             {
-                // reinitialize when the claimed world object will arrive
-                publicState.ClientSubscribe(_ => _.WorldObject,
-                                            () => objectClaim.ClientInitialize(),
-                                            data.ClientState);
                 return;
             }
 
-            if (!worldObject.IsInitialized)
+            if (shouldDisplay)
             {
-                // force reinitialization a bit later
-                ClientTimersSystem.AddAction(delaySeconds: 0.1,
-                                             () => objectClaim.ClientInitialize());
-                return;
+                clientState.ComponentAttachedControl
+                    = WorldObjectClaimIndicator.AttachTo(data.PublicState.WorldObject);
             }
-
-            if (DisplayLockEvenForCurrentPlayer
-                || !SharedIsClaimedForPlayer(objectClaim,
-                                             ClientCurrentCharacterHelper.Character))
+            else
             {
-                data.ClientState.ComponentAttachedControl =
-                    WorldObjectClaimIndicator.AttachTo(objectClaim, worldObject);
+                clientState.ComponentAttachedControl?.Destroy();
+                clientState.ComponentAttachedControl = null;
             }
         }
 
@@ -177,6 +168,20 @@
                 //Logger.Dev("World object claim expired: " + worldObject);
                 WorldObjectClaimSystem.ServerRemoveClaim(worldObject);
             }
+        }
+
+        private static bool ClientShouldDisplayIndicator(ILogicObject objectClaim)
+        {
+            var publicState = GetPublicState(objectClaim);
+            if (publicState.WorldObject is null
+                || !publicState.WorldObject.IsInitialized)
+            {
+                return false;
+            }
+
+            return DisplayLockEvenForCurrentPlayer
+                   || !SharedIsClaimedForPlayer(objectClaim,
+                                                ClientCurrentCharacterHelper.Character);
         }
 
         public class ClientState : BaseClientState

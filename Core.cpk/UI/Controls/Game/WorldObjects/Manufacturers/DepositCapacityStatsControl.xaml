@@ -11,7 +11,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelDepositCapacityStatsControl, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    Visibility="{Binding IsDepositCapacityVisible, Converter={StaticResource BoolToVisibilityConverter}}">
 
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">

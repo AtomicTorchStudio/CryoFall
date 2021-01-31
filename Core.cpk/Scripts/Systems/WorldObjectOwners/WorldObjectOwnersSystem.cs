@@ -16,6 +16,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -246,20 +247,39 @@
         public static bool SharedIsOwner(ICharacter who, IWorldObject worldObject, out bool isFactionAccess)
         {
             isFactionAccess = false;
-            if (worldObject is IStaticWorldObject staticWorldObject)
+
+            switch (worldObject)
             {
-                var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(staticWorldObject);
-                if (areasGroup is not null
-                    && LandClaimAreasGroup.GetPublicState(areasGroup).ServerFaction is var faction
-                    && faction is not null)
+                case IStaticWorldObject staticWorldObject:
                 {
-                    isFactionAccess = true;
+                    var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(staticWorldObject);
+                    if (areasGroup is null
+                        || LandClaimAreasGroup.GetPublicState(areasGroup).FactionClanTag is not { } clanTag
+                        || string.IsNullOrEmpty(clanTag))
+                    {
+                        break;
+                    }
+
                     // the static object is inside the faction-owned land claim,
                     // verify permission
-                    return FactionSystem.ServerHasAccessRights(who,
-                                                               FactionMemberAccessRights.LandClaimManagement,
-                                                               out var characterFaction)
-                           && ReferenceEquals(faction, characterFaction);
+                    isFactionAccess = true;
+                    return SharedHasFactionAccessRights(who,
+                                                        FactionMemberAccessRights.LandClaimManagement,
+                                                        clanTag);
+                }
+
+                case IDynamicWorldObject when worldObject.ProtoGameObject is IProtoVehicle:
+                {
+                    var clanTag = worldObject.GetPublicState<VehiclePublicState>().ClanTag;
+                    if (string.IsNullOrEmpty(clanTag))
+                    {
+                        break;
+                    }
+
+                    // the vehicle is owned by faction
+                    // verify whether the character has the access right
+                    isFactionAccess = true;
+                    return WorldObjectAccessModeSystem.SharedHasAccess(who, worldObject, writeToLog: true);
                 }
             }
 
@@ -322,6 +342,22 @@
                     break;
                 }
             }
+        }
+
+        private static bool SharedHasFactionAccessRights(
+            ICharacter who,
+            FactionMemberAccessRights accessRights,
+            string clanTag)
+        {
+            Api.Assert(!string.IsNullOrEmpty(clanTag), "Clan tag is null or empty");
+
+            if (clanTag != FactionSystem.SharedGetClanTag(who))
+            {
+                // player has no faction or a member of a different faction
+                return false;
+            }
+
+            return FactionSystem.SharedHasAccessRight(who, accessRights);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]

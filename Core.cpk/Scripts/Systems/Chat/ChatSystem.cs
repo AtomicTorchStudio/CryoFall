@@ -616,7 +616,7 @@
                 Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
                 Server.World.WorldBoundsChanged += ServerLoadSystem;
 
-                ServerLoadSystem();
+                ServerTimersSystem.AddAction(0, ServerLoadSystem);
             }
 
             private static void ServerLoadSystem()
@@ -626,7 +626,8 @@
                 var database = Server.Database;
                 if (!database.TryGet(nameof(ChatSystem),
                                      DatabaseKeyGlobalChatRoomHolder,
-                                     out sharedGlobalChatRoomHolder))
+                                     out sharedGlobalChatRoomHolder)
+                    || !IsValidChatRoomHolder(sharedGlobalChatRoomHolder))
                 {
                     sharedGlobalChatRoomHolder = ServerCreateChatRoom(new ChatRoomGlobal());
                     database.Set(nameof(ChatSystem), DatabaseKeyGlobalChatRoomHolder, sharedGlobalChatRoomHolder);
@@ -634,7 +635,8 @@
 
                 if (!database.TryGet(nameof(ChatSystem),
                                      DatabaseKeyTradeChatRoomHolder,
-                                     out sharedTradeChatRoomHolder))
+                                     out sharedTradeChatRoomHolder)
+                    || !IsValidChatRoomHolder(sharedTradeChatRoomHolder))
                 {
                     sharedTradeChatRoomHolder = ServerCreateChatRoom(new ChatRoomTrade());
                     database.Set(nameof(ChatSystem), DatabaseKeyTradeChatRoomHolder, sharedTradeChatRoomHolder);
@@ -678,6 +680,11 @@
                             ServerAddPrivateChatRoomToCharacterCache(characterB, chatRoomHolder);
                         }
                     });
+
+                // TODO: remove this as it's just a workaround to the text encoding issue we had
+                // when the chat room was lost during its holder serialization
+                static bool IsValidChatRoomHolder(ILogicObject chatRoomHolder)
+                    => ChatRoomHolder.GetPrivateState(chatRoomHolder).ChatRoom is not null;
             }
         }
     }

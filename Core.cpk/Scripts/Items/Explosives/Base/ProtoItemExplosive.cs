@@ -166,12 +166,12 @@
             // local method for testing if there is an obstacle from current to the specified position
             bool TestHasObstacle(Vector2D toPosition)
             {
-                using var obstaclesOnTheWay = physicsSpace.TestLine(
+                using var obstaclesInTheWay = physicsSpace.TestLine(
                     characterCenter,
                     toPosition,
                     CollisionGroup.Default,
                     sendDebugEvent: false);
-                foreach (var test in obstaclesOnTheWay.AsList())
+                foreach (var test in obstaclesInTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
                     if (testPhysicsBody.AssociatedProtoTile is not null)
@@ -210,11 +210,11 @@
                 {
                     if (IsClient)
                     {
-                        this.ClientShowCannotPlaceObstaclesOnTheWayNotification();
+                        this.ClientShowCannotPlaceObstaclesInTheWayNotification();
                     }
                     else
                     {
-                        Logger.Warning($"{character} cannot place {this} - obstacles on the way");
+                        Logger.Warning($"{character} cannot place {this} - obstacles in the way");
                         this.CallClient(character, _ => _.ClientRemote_CannotPlaceObstacles());
                     }
                 }
@@ -277,7 +277,7 @@
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]
         private void ClientRemote_CannotPlaceObstacles()
         {
-            this.ClientShowCannotPlaceObstaclesOnTheWayNotification();
+            this.ClientShowCannotPlaceObstaclesInTheWayNotification();
         }
 
         //protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
@@ -291,7 +291,7 @@
             this.ClientShowCannotPlaceTooFarNotification();
         }
 
-        private void ClientShowCannotPlaceObstaclesOnTheWayNotification()
+        private void ClientShowCannotPlaceObstaclesInTheWayNotification()
         {
             NotificationSystem.ClientShowNotification(CoreStrings.Notification_CannotPlaceThere_Title,
                                                       CoreStrings.Notification_ObstaclesOnTheWay,

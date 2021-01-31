@@ -68,8 +68,7 @@
                 for (var i = 0; i < explosionPreset.SoundsCuesNumber; i++)
                 {
                     ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
-                                                 () => ClientSoundCueManager.OnSoundEvent(position,
-                                                     isPartyMember: false));
+                                                 () => ClientSoundCueManager.OnSoundEvent(position, isFriendly: false));
                 }
             }
 
@@ -200,14 +199,15 @@
                     delaySeconds: explosionPreset.SpriteAnimationDuration * 0.5,
                     () =>
                     {
-                        var tilePosition = (Vector2Ushort)(epicenterPosition - protoObjectCharredGround.Layout.Center);
+                        var tilePosition = (Vector2Ushort)epicenterPosition;
                         var canSpawnCharredGround = true;
 
                         var tile = Server.World.GetTile(tilePosition);
                         if (tile.ProtoTile.Kind != TileKind.Solid
+                            || tile.IsCliffOrSlope
                             || tile.EightNeighborTiles.Any(t => t.ProtoTile.Kind != TileKind.Solid))
                         {
-                            // allow charred ground only on solid ground
+                            // allow charred ground only on solid ground without cliffs, slopes, bridges, etc
                             canSpawnCharredGround = false;
                         }
 
@@ -244,19 +244,17 @@
                             }
                         }
 
-                        if (canSpawnCharredGround)
+                        if (!canSpawnCharredGround)
                         {
-                            // spawn charred ground
-                            var objectCharredGround =
-                                Server.World.CreateStaticWorldObject(protoObjectCharredGround,
-                                                                     tilePosition);
-                            var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
-                            if (objectCharredGroundOffset != Vector2D.Zero)
-                            {
-                                ProtoObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
-                                                                              (Vector2F)objectCharredGroundOffset);
-                            }
+                            return;
                         }
+
+                        // spawn charred ground
+                        var objectCharredGround = Server.World.CreateStaticWorldObject(protoObjectCharredGround,
+                            tilePosition);
+                        var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
+                        ProtoObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
+                                                                      (Vector2F)objectCharredGroundOffset);
                     });
             }
 

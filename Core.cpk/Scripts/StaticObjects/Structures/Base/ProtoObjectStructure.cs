@@ -265,7 +265,8 @@
                                                 damagePreMultiplier,
                                                 out obstacleBlockDamageCoef,
                                                 out damageApplied);
-            if (isDamaged
+            if (IsServer
+                && isDamaged
                 && damageApplied > 0)
             {
                 ServerLandClaimAreasGroupHostileCharactersTracker.OnHostility(weaponCache.Character,

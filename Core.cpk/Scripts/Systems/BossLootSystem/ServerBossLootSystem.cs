@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Events;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
@@ -90,7 +91,7 @@
             // send victory announcement notification
             var winnerNamesWithClanTags = winnerEntries
                                           .Select(w => (Name: w.Character.Name,
-                                                        ClanTag: PlayerCharacter.GetPublicState(w.Character).ClanTag))
+                                                        ClanTag: FactionSystem.SharedGetClanTag(w.Character)))
                                           .ToArray();
 
             Instance.CallClient(

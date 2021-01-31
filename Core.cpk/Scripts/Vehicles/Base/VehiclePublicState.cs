@@ -6,12 +6,15 @@
 
     public class VehiclePublicState : BasePublicState, IPublicStateWithStructurePoints
     {
-        [SyncToClient(deliveryMode: DeliveryMode.ReliableSequenced)]
-        public bool IsLightsEnabled { get; set; }
+        [SyncToClient]
+        public string ClanTag { get; set; }
 
         [TempOnly]
         [SubscribableProperty]
         public bool IsDismountRequested { get; set; }
+
+        [SyncToClient(deliveryMode: DeliveryMode.ReliableSequenced)]
+        public bool IsLightsEnabled { get; set; }
 
         [SyncToClient]
         public ICharacter PilotCharacter { get; set; }

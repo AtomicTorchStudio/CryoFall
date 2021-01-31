@@ -24,7 +24,7 @@
             if (raiderCharacter is not null)
             {
                 this.RaiderPlayerName = raiderCharacter.Name;
-                this.RaiderClanTag = PlayerCharacter.GetPublicState(raiderCharacter).ClanTag;
+                this.RaiderClanTag = FactionSystem.SharedGetClanTag(raiderCharacter);
             }
 
             this.BasePosition = basePosition;

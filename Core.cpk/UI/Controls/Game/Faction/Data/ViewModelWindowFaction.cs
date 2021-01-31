@@ -85,6 +85,7 @@
                     this.NotifyPropertyChanged(nameof(this.FactionLevel));
                     this.NotifyPropertyChanged(nameof(this.IsFactionMaxLevelReached));
                     this.NotifyPropertyChanged(nameof(this.FactionLevelUpgradeCostLearningPoints));
+                    this.NotifyPropertyChanged(nameof(this.FactionLevelUpgradeNextLevelInfoText));
                     this.NotifyPropertyChanged(nameof(this.CanUpgradeFactionLevel));
                 },
                 subscriptionOwner: this);
@@ -265,6 +266,25 @@
             => this.IsFactionMaxLevelReached
                    ? (ushort)0
                    : FactionConstants.SharedGetFactionUpgradeCost((byte)(this.FactionLevel + 1));
+
+        public string FactionLevelUpgradeNextLevelInfoText
+        {
+            get
+            {
+                if (this.IsFactionMaxLevelReached)
+                {
+                    return string.Empty;
+                }
+
+                var current = FactionConstants.SharedGetFactionLandClaimsLimit(this.FactionLevel);
+                var next = FactionConstants.SharedGetFactionLandClaimsLimit((byte)(this.FactionLevel + 1));
+                var delta = next - current;
+                return string.Format(CoreStrings.Faction_LandClaimNumberLimit_Format
+                                                .Replace("/",   string.Empty)
+                                                .Replace("{1}", string.Empty),
+                                     "[b]+" + delta + "[/b]");
+            }
+        }
 
         public bool HasOfficerAccessRightDiplomacyManagement
             => FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.DiplomacyManagement);

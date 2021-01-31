@@ -91,7 +91,7 @@
                 gameObject.Tile,
                 privateState.EquipmentItemsContainer,
                 DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
-            // consider fuel items were destroyed during the explosion
+            // assume that the fuel items were destroyed during the explosion
         }
 
         public override IItemsContainer SharedGetHotbarItemsContainer(IDynamicWorldObject vehicle)

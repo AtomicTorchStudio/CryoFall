@@ -523,6 +523,7 @@
                            Foreground="#FFEEEEEE"
                            FontSize="40"
                            FontFamily="{StaticResource DigitsFontFamily}"
+                           Padding="5,0"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" />
             </Border>

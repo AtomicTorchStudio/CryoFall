@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -14,7 +15,10 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public interface IProtoVehicle : IProtoDynamicWorldObject, IProtoObjectWithOwnersList, IInteractableProtoWorldObject
+    public interface IProtoVehicle : IProtoDynamicWorldObject, 
+                                     IProtoObjectWithOwnersList,
+                                     IProtoObjectWithAccessMode,
+                                     IInteractableProtoWorldObject
     {
         uint BuildRequiredElectricityAmount { get; }
 

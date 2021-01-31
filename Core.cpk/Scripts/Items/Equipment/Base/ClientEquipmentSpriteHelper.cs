@@ -15,7 +15,8 @@
         public static void CollectSlotAttachments(
             List<FilePathsList> sources,
             string typeName,
-            bool requireEquipmentTextures,
+            bool requireEquipmentTexturesMale,
+            bool requireEquipmentTexturesFemale,
             out List<SkeletonSlotAttachment> slotAttachmentsMale,
             out List<SkeletonSlotAttachment> slotAttachmentsFemale)
         {
@@ -23,13 +24,13 @@
                 sources,
                 typeName,
                 isMale: true,
-                requireEquipmentTextures: requireEquipmentTextures);
+                requireEquipmentTextures: requireEquipmentTexturesMale);
 
             slotAttachmentsFemale = CollectSlotAttachments(
                 sources,
                 typeName,
                 isMale: false,
-                requireEquipmentTextures: requireEquipmentTextures);
+                requireEquipmentTextures: requireEquipmentTexturesFemale);
 
             using var originalSlotAttachmentsFemale = Api.Shared.WrapInTempList(slotAttachmentsFemale);
 
@@ -150,22 +151,25 @@
                 toSkeletonName: skeletonNameBack,
                 toAttachmentName: "HandLeftFrontEquipment");
 
-            if (requireEquipmentTextures && result.Count == 0)
+            if (result.Count > 0
+                || !requireEquipmentTextures)
             {
-                var message =
-                    $"There are no attachment sprites for: {typeName} (sex: {gender}). Checked at folders:{Environment.NewLine}"
-                    + sources.Select(p => ContentPaths.Textures + p.SourceFolderPath)
-                             .GetJoinedString(Environment.NewLine);
+                return result;
+            }
 
-                if (isMale)
-                {
-                    Api.Logger.Error(message);
-                }
-                else
-                {
-                    // TODO: this also should be a error - but currently we don't have female sprites for all equipment
-                    Api.Logger.Warning(message);
-                }
+            var message =
+                $"There are no attachment sprites for: {typeName} (sex: {gender}). Checked at folders:{Environment.NewLine}"
+                + sources.Select(p => ContentPaths.Textures + p.SourceFolderPath)
+                         .GetJoinedString(Environment.NewLine);
+
+            if (isMale)
+            {
+                Api.Logger.Error(message);
+            }
+            else
+            {
+                // TODO: this also should be a error - but currently we don't have female sprites for all equipment
+                Api.Logger.Warning(message);
             }
 
             return result;

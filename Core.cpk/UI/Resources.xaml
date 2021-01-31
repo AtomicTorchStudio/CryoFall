@@ -8,7 +8,6 @@
         <ResourceDictionary Source="Styles/MainMenuStyles.xaml" />
         <ResourceDictionary Source="Styles/ItemControlsStyles.xaml" />
         <ResourceDictionary Source="Styles/ChatStyles.xaml" />
-        <ResourceDictionary Source="Styles/SpecialItemsPanel.xaml" />
         <ResourceDictionary Source="Controls/Game/Player/TabInventoryResources.xaml" />
     </ResourceDictionary.MergedDictionaries>
 

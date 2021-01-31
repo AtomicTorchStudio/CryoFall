@@ -36,7 +36,7 @@
 
         private static Brush brushFromOtherPlayer;
 
-        private static Brush brushFromPartyMember;
+        private static Brush brushFromPartyOrFactionMember;
 
         private readonly ChatEntry chatEntry;
 
@@ -56,7 +56,7 @@
             {
                 brushFromCurrentPlayer = (Brush)resources.TryFindResource("ChatBrushFromCurrentPlayer");
                 brushFromOtherPlayer = (Brush)resources.TryFindResource("ChatBrushFromOtherPlayer");
-                brushFromPartyMember = (Brush)resources.TryFindResource("ChatBrushFromPartyMember");
+                brushFromPartyOrFactionMember = (Brush)resources.TryFindResource("ChatBrushFromPartyOrFactionMember");
             }
 
             this.UpdateText(inlines);
@@ -272,14 +272,17 @@
             var isFromCurrentPlayer = Api.Client.Characters.CurrentPlayerCharacter.Name?.Equals(name)
                                       ?? false;
 
-            var isPartyMember = !isFromCurrentPlayer
-                                && PartySystem.ClientIsPartyMember(name);
-
-            this.Foreground = isFromCurrentPlayer
-                                  ? brushFromCurrentPlayer
-                                  : isPartyMember
-                                      ? brushFromPartyMember
+            if (isFromCurrentPlayer)
+            {
+                this.Foreground = brushFromCurrentPlayer;
+            }
+            else
+            {
+                this.Foreground = PartySystem.ClientIsPartyMember(name)
+                                  || FactionSystem.ClientIsFactionMember(name)
+                                      ? brushFromPartyOrFactionMember
                                       : brushFromOtherPlayer;
+            }
 
             // convert timestamp of the chat entry to the local DateTime
             var date = this.chatEntry.UtcDate.ToLocalTime();

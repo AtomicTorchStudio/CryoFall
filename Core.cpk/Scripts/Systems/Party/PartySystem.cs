@@ -183,6 +183,12 @@
             }
         }
 
+        public static bool ClientIsCurrentParty(uint partyId)
+        {
+            return partyId > 0
+                   && partyId == ClientCurrentParty?.Id;
+        }
+
         public static bool ClientIsPartyMember(string name)
         {
             return clientCurrentPartyMembersList?.Contains(name) ?? false;

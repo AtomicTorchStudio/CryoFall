@@ -375,7 +375,7 @@
             var physicsSpace = character.PhysicsBody.PhysicsSpace;
             var characterCenter = character.Position + character.PhysicsBody.CenterOffset;
 
-            if (!ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+            if (!ObstacleTestHelper.SharedHasObstaclesInTheWay(characterCenter,
                                                                physicsSpace,
                                                                worldObject,
                                                                sendDebugEvents: writeToLog))

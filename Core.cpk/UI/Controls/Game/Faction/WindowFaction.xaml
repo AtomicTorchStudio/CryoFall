@@ -180,10 +180,19 @@
                                         Padding="3,1" />
                                     <base:ToolTipServiceExtend.ToolTip>
                                         <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
                                             <core:FormattedTextBlock
+                                                Grid.Row="0"
+                                                Text="{Binding FactionLevelUpgradeNextLevelInfoText}" />
+                                            <core:FormattedTextBlock
+                                                Grid.Row="1"
                                                 Text="{Binding FactionLevelUpgradeCostLearningPoints, StringFormat={}{x:Static loc:CoreStrings.LearningPointsCost_Format}}"
                                                 Visibility="{Binding CanUpgradeFactionLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
                                             <core:FormattedTextBlock
+                                                Grid.Row="1"
                                                 Text="{Binding FactionLevelUpgradeCostLearningPoints, StringFormat={}{x:Static loc:CoreStrings.LearningPointsCost_Format}}"
                                                 Visibility="{Binding CanUpgradeFactionLevel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                                 Foreground="{StaticResource BrushColorRed7}" />

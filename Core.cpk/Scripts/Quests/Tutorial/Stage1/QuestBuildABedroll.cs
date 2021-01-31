@@ -21,7 +21,7 @@
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
-                .Add(TaskBuildStructure.Require<ObjectBedroll>(isSharedWithPartyMembers: false));
+                .Add(TaskBuildStructure.Require<ObjectBedroll>(isSharedWithPartyAndFactionMembers: false));
 
             prerequisites
                 .Add<QuestCraftATorch>()

@@ -441,7 +441,7 @@
             }
 
             var selectedHotbarItem = PlayerCharacter.GetPublicState(character).SelectedItem;
-            if (!(selectedHotbarItem?.ProtoItem is IProtoItemToolToolbox))
+            if (selectedHotbarItem?.ProtoItem is not IProtoItemToolToolbox)
             {
                 Logger.Warning(
                     $"Cannot build {protoStructure} at {tilePosition}: player character doesn't have selected construction tool.",

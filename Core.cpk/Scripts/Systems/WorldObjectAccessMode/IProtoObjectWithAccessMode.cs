@@ -4,6 +4,10 @@
 
     public interface IProtoObjectWithAccessMode : IProtoWorldObject
     {
+        bool CanChangeFactionRoleAccessForSelfRole { get; }
+
         bool IsClosedAccessModeAvailable { get; }
+
+        bool IsEveryoneAccessModeAvailable { get; }
     }
 }

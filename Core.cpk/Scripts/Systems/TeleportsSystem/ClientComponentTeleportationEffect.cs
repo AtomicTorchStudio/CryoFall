@@ -43,7 +43,7 @@
             double teleportationDelay,
             bool isTeleportationOut)
         {
-            var isCurrentCharacter 
+            var isCurrentCharacter
                 = worldObject == ClientCurrentCharacterHelper.Character;
 
             var sceneObject = Client.Scene.CreateSceneObject("Temp teleportation effect holder");

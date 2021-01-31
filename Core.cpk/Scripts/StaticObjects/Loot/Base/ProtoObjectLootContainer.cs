@@ -233,6 +233,11 @@
             return ObjectsSoundsPresets.ObjectLockedContainer;
         }
 
+        protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
+        {
+            tileRequirements.Add(ConstructionTileRequirements.ValidatorNoPlatforms);
+        }
+
         protected virtual IReadOnlyDropItemsList ServerGetLootDroplist(IStaticWorldObject crateObject)
         {
             return this.LootDroplist;

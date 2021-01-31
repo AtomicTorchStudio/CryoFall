@@ -8,7 +8,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
 
     public static class ObstacleTestHelper
     {
-        public static bool SharedHasObstaclesOnTheWay(
+        public static bool SharedHasObstaclesInTheWay(
             Vector2D fromPosition,
             IPhysicsSpace physicsSpace,
             [CanBeNull] IWorldObject worldObject,
@@ -37,12 +37,12 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
             // local method for testing if there is an obstacle from current to the specified position
             bool TestHasObstacle(Vector2D toPosition)
             {
-                using var obstaclesOnTheWay = physicsSpace.TestLine(
+                using var obstaclesInTheWay = physicsSpace.TestLine(
                     fromPosition,
                     toPosition,
                     collisionGroup,
                     sendDebugEvent: sendDebugEvents);
-                foreach (var test in obstaclesOnTheWay.AsList())
+                foreach (var test in obstaclesInTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
                     if (testPhysicsBody.AssociatedProtoTile is not null)
@@ -85,7 +85,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
             }
         }
 
-        public static bool SharedHasObstaclesOnTheWay(
+        public static bool SharedHasObstaclesInTheWay(
             Vector2D fromPosition,
             IPhysicsSpace physicsSpace,
             IWorldObject worldObject,
@@ -106,7 +106,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
                     out _);
             }
 
-            return SharedHasObstaclesOnTheWay(fromPosition,
+            return SharedHasObstaclesInTheWay(fromPosition,
                                               physicsSpace,
                                               worldObject,
                                               worldObjectCenter,
@@ -121,19 +121,19 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
                     return dynamicWorldObject.Position;
                 }
 
-                return worldObject.TilePosition.ToVector2D() 
+                return worldObject.TilePosition.ToVector2D()
                        + worldObject.PhysicsBody.CenterOffset;
             }
         }
-        
-        public static bool SharedHasObstaclesOnTheWay(
+
+        public static bool SharedHasObstaclesInTheWay(
             Vector2D fromPosition,
             IPhysicsSpace physicsSpace,
             Vector2D worldObjectCenter,
             Vector2D worldObjectPointClosestToCharacter,
             bool sendDebugEvents)
         {
-            return SharedHasObstaclesOnTheWay(fromPosition,
+            return SharedHasObstaclesInTheWay(fromPosition,
                                               physicsSpace,
                                               worldObject: null,
                                               worldObjectCenter: worldObjectCenter,

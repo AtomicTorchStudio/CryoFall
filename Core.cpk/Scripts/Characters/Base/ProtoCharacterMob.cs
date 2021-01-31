@@ -451,7 +451,7 @@
             {
                 ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
                                              () => ClientSoundCueManager.OnSoundEvent(soundCuePosition,
-                                                 isPartyMember: false));
+                                                 isFriendly: false));
             }
         }
 

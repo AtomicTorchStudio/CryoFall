@@ -205,7 +205,7 @@
             var physicsSpace = character.PhysicsBody.PhysicsSpace;
             var characterCenter = character.Position + character.PhysicsBody.CenterOffset;
 
-            if (ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+            if (ObstacleTestHelper.SharedHasObstaclesInTheWay(characterCenter,
                                                               physicsSpace,
                                                               vehicle,
                                                               sendDebugEvents: writeToLog))
@@ -213,7 +213,7 @@
                 if (writeToLog)
                 {
                     Logger.Warning(
-                        $"Character cannot interact with {vehicle} for repair - obstacles on the way",
+                        $"Character cannot interact with {vehicle} for repair - obstacles in the way",
                         character);
 
                     if (IsClient)

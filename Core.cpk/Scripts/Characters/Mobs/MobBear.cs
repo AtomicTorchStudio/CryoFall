@@ -19,7 +19,7 @@
 
         public override double CorpseInteractionAreaScale => 1.25;
 
-        public override double MobKillExperienceMultiplier => 1.0;
+        public override double MobKillExperienceMultiplier => 2.0;
 
         public override string Name => "Bear";
 

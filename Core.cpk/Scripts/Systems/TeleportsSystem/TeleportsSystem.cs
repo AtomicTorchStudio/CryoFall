@@ -521,17 +521,35 @@
                 friendlyCharacterNames.Add(memberName);
             }
 
-            foreach (var memberName in FactionSystem.ServerGetFactionMemberNames(character))
+            var faction = FactionSystem.ServerGetFaction(character);
+            if (faction is not null)
             {
-                friendlyCharacterNames.Add(memberName);
+                foreach (var memberName in FactionSystem.ServerGetFactionMemberNames(faction))
+                {
+                    friendlyCharacterNames.Add(memberName);
+                }
             }
 
             foreach (var otherCharacter in tempListCharacters.AsList())
             {
-                if (!friendlyCharacterNames.Contains(otherCharacter.Name))
+                if (friendlyCharacterNames.Contains(otherCharacter.Name))
                 {
-                    return true;
+                    continue;
                 }
+
+                if (faction is not null)
+                {
+                    if (FactionSystem.SharedGetFactionDiplomacyStatus(faction,
+                                                                      FactionSystem.SharedGetClanTag(otherCharacter))
+                        == FactionDiplomacyStatus.Ally)
+                    {
+                        // ignore an alliance member on the other side
+                        continue;
+                    }
+                }
+
+                // found a non-friendly character near the teleport
+                return true;
             }
 
             return false;

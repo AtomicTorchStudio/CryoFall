@@ -23,7 +23,9 @@
 
         public abstract ObjectMaterial Material { get; }
 
-        public override bool RequireEquipmentTextures => true;
+        public override bool RequireEquipmentTexturesFemale => true;
+
+        public override bool RequireEquipmentTexturesMale => true;
 
         public ReadOnlySoundPreset<GroundSoundMaterial> SoundPresetFootstepsOverride { get; private set; }
 

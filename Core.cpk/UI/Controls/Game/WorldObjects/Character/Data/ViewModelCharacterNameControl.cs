@@ -115,6 +115,11 @@
             get
             {
                 var name = this.Name;
+                if (this.character.IsCurrentClientCharacter)
+                {
+                    return name;
+                }
+
                 if (string.IsNullOrEmpty(name))
                 {
                     // should be impossible

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
@@ -25,13 +26,6 @@
         public override string Name => "Land claim area group";
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue; // never
-
-        public static void ServerOnBaseBroken(ILogicObject areasGroup, List<ILogicObject> newGroups)
-        {
-            var fromPowerGrid = GetPrivateState(areasGroup).PowerGrid;
-            var toPowerGrids = newGroups.Select(g => GetPrivateState(g).PowerGrid).ToList();
-            PowerGrid.ServerOnPowerGridBroken(fromPowerGrid, toPowerGrids);
-        }
 
         public static void ServerOnBaseMerged(ILogicObject areasGroupFrom, ILogicObject areasGroupTo)
         {
@@ -99,6 +93,11 @@
             return false;
         }
 
+        protected override void PrepareProto()
+        {
+            LandClaimSystem.ServerBaseBroken += ServerBaseBrokenHandler;
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             var itemsContainerSafeStorage = data.PrivateState.ItemsContainerSafeStorage;
@@ -119,6 +118,13 @@
                                            slotsCount: Math.Max(itemsContainerSafeStorage.SlotsCount,
                                                                 safeStorageCapacity));
             }
+        }
+
+        private static void ServerBaseBrokenHandler(ILogicObject areasGroup, List<ILogicObject> newAreaGroups)
+        {
+            var fromPowerGrid = GetPrivateState(areasGroup).PowerGrid;
+            var toPowerGrids = newAreaGroups.Select(g => GetPrivateState(g).PowerGrid).ToList();
+            PowerGrid.ServerOnPowerGridBroken(fromPowerGrid, toPowerGrids);
         }
     }
 }

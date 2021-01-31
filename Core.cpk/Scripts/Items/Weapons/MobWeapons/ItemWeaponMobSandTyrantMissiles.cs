@@ -37,6 +37,8 @@
 
         private const double MinionsSpawnDelaySeconds = 1.2;
 
+        private const double MinTimeBetweenMissileOutSounds = 0.1;
+
         private const int MissileCountPerShot = 32;
 
         private const double MissileProbabilityToTargetDirectly = 0.7;
@@ -53,8 +55,22 @@
 
         private const double ServerMissileLaunchDelaySeconds = 0.7;
 
+        private const float WeaponMissileOutSoundVolume = 1.0f;
+
         private static readonly TextureResource TextureProjectile
             = new("FX/WeaponTraces/TraceMobWeaponSandTyrantMissile.png");
+
+        private static readonly ReadOnlySoundResourceSet WeaponMissileOutSoundResource
+            = new SoundResourceSet()
+              .Add("Skeletons/SandTyrant/Weapon/ShotRangedMissileOut")
+              .ToReadOnly();
+
+        private static readonly ReadOnlySoundResourceSet WeaponStartSoundResource
+            = new SoundResourceSet()
+              .Add("Skeletons/SandTyrant/Weapon/ShotRangedStart")
+              .ToReadOnly();
+
+        private static double lastMissileOutSoundClientTime;
 
         public override ushort AmmoCapacity => 0;
 
@@ -110,9 +126,9 @@
                     var sceneObject = Client.Scene.CreateSceneObject(this.ShortId + " projectiles out");
                     sceneObject.Destroy(delay: 5);
 
-                    var skeletonRenderer = character
-                                           .GetClientState<BaseCharacterClientState>()
-                                           .SkeletonRenderer;
+                    var characterClientState = character.GetClientState<BaseCharacterClientState>();
+                    var skeletonRenderer = characterClientState.SkeletonRenderer;
+                    var protoSkeleton = characterClientState.CurrentProtoSkeleton;
 
                     var headWorldPosition = skeletonRenderer.TransformSlotPosition("ProjectilesOrigin", default, out _)
                                             + (0, ClientLaunchOffsetY);
@@ -122,7 +138,22 @@
                     {
                         ClientTimersSystem.AddAction(
                             MissileSpreadTimeInterval * RandomHelper.NextDouble() * 0.5,
-                            () => sceneObject.AddComponent<ComponentProjectileShot>());
+                            action: () =>
+                                    {
+                                        sceneObject.AddComponent<ComponentProjectileShot>();
+
+                                        var time = Client.Core.ClientRealTime;
+                                        if (time >= lastMissileOutSoundClientTime + MinTimeBetweenMissileOutSounds)
+                                        {
+                                            // play missile out sound
+                                            lastMissileOutSoundClientTime = time;
+                                            var soundEmitter = Client.Audio.PlayOneShot(
+                                                WeaponMissileOutSoundResource.GetSound(),
+                                                character,
+                                                volume: WeaponMissileOutSoundVolume);
+                                            this.SoundPresetWeapon.ApplyCustomDistance(soundEmitter);
+                                        }
+                                    });
                     }
                 });
         }
@@ -207,8 +238,9 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return new SoundPreset<WeaponSound>()
-                .Add(WeaponSound.Shot, "Skeletons/SandTyrant/Weapon/ShotMissiles");
+            return new SoundPreset<WeaponSound>(customDistance: (15, 45),
+                                                customDistance3DSpread: (10, 35))
+                .Add(WeaponSound.Start, WeaponStartSoundResource);
         }
 
         private static void ClientCreateScreenShakes()

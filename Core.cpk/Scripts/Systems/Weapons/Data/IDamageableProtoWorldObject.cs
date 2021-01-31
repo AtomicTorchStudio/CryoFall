@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
 
     public interface IDamageableProtoWorldObject : IProtoWorldObject
@@ -9,6 +10,14 @@
         /// In case of explosion it will simply pass the explosion though if the value is < 1.
         /// </summary>
         double ObstacleBlockDamageCoef { get; }
+
+        /// <summary>
+        /// Used to determine whether the object is at least some kind of obstacle for a particular weapon.
+        /// It's used to ignore weapon damage (e.g. for fence wall ih case of some ranged weapons).
+        /// It's necessarily to determine whether the laser sight beam should stop on this object or must draw further.
+        /// It's not used for bombs.
+        /// </summary>
+        bool SharedIsObstacle(IWorldObject targetObject, IProtoItemWeapon protoWeapon);
 
         bool SharedOnDamage(
             WeaponFinalCache weaponCache,

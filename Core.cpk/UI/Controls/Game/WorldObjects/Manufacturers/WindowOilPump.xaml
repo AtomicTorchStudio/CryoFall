@@ -19,7 +19,7 @@
               VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -176,11 +176,14 @@
                 </StackPanel>
             </StackPanel>
 
-            <Control Style="{StaticResource ControlVerticalSeparator}"
-                     Grid.Column="1" />
+            <Control Grid.Column="1"
+                     Style="{StaticResource ControlVerticalSeparator}"
+                     Visibility="{Binding Visibility, ElementName=DepositCapacityStatsControl}"
+                     Width="70" />
 
             <manufacturers:DepositCapacityStatsControl
                 Grid.Column="2"
+                x:Name="DepositCapacityStatsControl"
                 DataContext="{Binding ViewModelDepositCapacityStatsControl}"
                 BarBrush="{StaticResource LiquidBrushPetroleum}" />
         </Grid>

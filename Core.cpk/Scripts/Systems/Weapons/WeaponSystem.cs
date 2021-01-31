@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -927,12 +928,13 @@
             if (IsClient)
             {
                 // start firing weapon on Client-side
-                WeaponSystemClientDisplay.ClientOnWeaponShot(character,
-                                                             partyId:
-                                                             0, // not relevant here as it's the current player firing the weapon
-                                                             protoWeapon: protoWeapon,
-                                                             protoCharacter: character.ProtoCharacter,
-                                                             fallbackPosition: character.Position.ToVector2Ushort());
+                WeaponSystemClientDisplay.ClientOnWeaponShot(
+                    character,
+                    partyId: 0,    // not relevant here as it's the current player firing the weapon
+                    clanTag: null, // same goes here
+                    protoWeapon: protoWeapon,
+                    protoCharacter: character.ProtoCharacter,
+                    fallbackPosition: character.Position.ToVector2Ushort());
             }
             else // if IsServer
             {
@@ -950,10 +952,12 @@
                 if (observers.Count > 0)
                 {
                     var partyId = PartySystem.ServerGetParty(character)?.Id ?? 0;
+                    var clanTag = FactionSystem.SharedGetClanTag(character);
 
                     Instance.CallClient(observers.AsList(),
                                         _ => _.ClientRemote_OnWeaponShot(character,
                                                                          partyId,
+                                                                         clanTag,
                                                                          protoWeapon,
                                                                          character.ProtoCharacter,
                                                                          character.Position.ToVector2Ushort()));
@@ -1154,6 +1158,12 @@
                                               targetPosition: testResult.PhysicsBody.Position
                                                               + testResult.PhysicsBody.CenterOffset))
                     {
+                        continue;
+                    }
+
+                    if (!damageableProto.SharedIsObstacle(damagedObject, protoWeapon))
+                    {
+                        // shoot through this object
                         continue;
                     }
 
@@ -1362,6 +1372,7 @@
         private void ClientRemote_OnWeaponShot(
             ICharacter whoFires,
             uint partyId,
+            string clanTag,
             IProtoItemWeapon protoWeapon,
             IProtoCharacter fallbackProtoCharacter,
             Vector2Ushort fallbackPosition)
@@ -1374,6 +1385,7 @@
 
             WeaponSystemClientDisplay.ClientOnWeaponShot(whoFires,
                                                          partyId,
+                                                         clanTag,
                                                          protoWeapon,
                                                          fallbackProtoCharacter,
                                                          fallbackPosition);

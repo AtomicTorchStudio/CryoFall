@@ -1,11 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -15,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -23,6 +27,8 @@
     public class ViewModelWindowObjectVehicle : BaseViewModel
     {
         private readonly IClientItemsContainer cargoItemsContainer;
+
+        private readonly IDynamicWorldObject vehicle;
 
         private readonly VehiclePrivateState vehiclePrivateState;
 
@@ -35,6 +41,7 @@
             FrameworkElement vehicleExtraControl,
             IViewModelWithActiveState vehicleExtraControlViewModel)
         {
+            this.vehicle = vehicle;
             this.VehicleExtraControl = vehicleExtraControl;
             this.VehicleExtraControlViewModel = vehicleExtraControlViewModel;
             if (vehicleExtraControl is not null)
@@ -48,6 +55,16 @@
             this.ProtoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
             this.vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
             this.vehiclePrivateState = vehicle.GetPrivateState<VehiclePrivateState>();
+
+            this.vehiclePublicState.ClientSubscribe(_ => _.ClanTag,
+                                                    _ =>
+                                                    {
+                                                        this.NotifyPropertyChanged(nameof(this.IsOwnedByFaction));
+                                                        this.NotifyPropertyChanged(nameof(this.FactionClanTag));
+                                                        this.NotifyPropertyChanged(nameof(this.FactionEmblem));
+                                                        this.RefreshAccessEditor();
+                                                    },
+                                                    this);
 
             var structurePointsMax = this.ProtoVehicle.SharedGetStructurePointsMax(vehicle);
             this.ViewModelStructurePoints = new ViewModelStructurePointsBarControl()
@@ -64,20 +81,7 @@
                 IsActive = false
             };
 
-            var isOwner = WorldObjectOwnersSystem.SharedIsOwner(
-                ClientCurrentCharacterHelper.Character,
-                vehicle);
-
-            this.ViewModelOwnersEditor =
-                new ViewModelWorldObjectOwnersEditor(this.vehiclePrivateState.Owners,
-                                                     canEditOwners: isOwner
-                                                                    || CreativeModeSystem.ClientIsInCreativeMode(),
-                                                     callbackServerSetOwnersList:
-                                                     ownersList => WorldObjectOwnersSystem.ClientSetOwners(
-                                                         vehicle,
-                                                         ownersList),
-                                                     title: CoreStrings.ObjectOwnersList_Title2);
-
+            this.RefreshAccessEditor();
             this.RefreshCanRepair();
 
             this.IsVehicleTabActive = true;
@@ -92,11 +96,23 @@
 
         public string CannotRepairErrorMessage { get; private set; }
 
+        public bool CanTransferToFactionOwnership => FactionSystem.ClientCurrentFaction is not null;
+
         public BaseCommand CommandEnterVehicle => new ActionCommand(ExecuteCommandEnterVehicle);
 
         public BaseCommand CommandRepair => new ActionCommand(this.ExecuteCommandRepair);
 
+        public BaseCommand CommandTransferToFactionOwnership =>
+            new ActionCommand(this.ExecuteCommandTransferToFactionOwnership);
+
         public IClientItemsContainer ContainerPlayerInventory { get; }
+
+        public string FactionClanTag => this.vehiclePublicState.ClanTag;
+
+        public Brush FactionEmblem
+            => ClientFactionEmblemCache.GetEmblemTextureBrush(this.vehiclePublicState.ClanTag);
+
+        public string FactionPermissionName => FactionMemberAccessRights.LandClaimManagement.GetDescription();
 
         public IClientItemsContainer FuelItemsContainer
             => (IClientItemsContainer)this.vehiclePrivateState.FuelItemsContainer;
@@ -106,6 +122,8 @@
         public bool IsCanRepair { get; private set; }
 
         public bool IsCargoTabActive { get; set; }
+
+        public bool IsOwnedByFaction => !string.IsNullOrEmpty(this.FactionClanTag);
 
         public bool IsVehicleTabActive
         {
@@ -161,9 +179,11 @@
         [ViewModelNotAutoDisposeField]
         public FrameworkElement VehicleExtraControl { get; }
 
+        public ViewModelWorldObjectFactionAccessEditorControl ViewModelFactionAccessEditor { get; set; }
+
         public ViewModelItemsContainerExchange ViewModelItemsContainerExchange { get; }
 
-        public ViewModelWorldObjectOwnersEditor ViewModelOwnersEditor { get; }
+        public ViewModelWorldObjectOwnersEditor ViewModelOwnersEditor { get; set; }
 
         public ViewModelStructurePointsBarControl ViewModelStructurePoints { get; }
 
@@ -205,6 +225,45 @@
         private void ExecuteCommandRepair()
         {
             this.ProtoVehicle.ClientRequestRepair();
+        }
+
+        private void ExecuteCommandTransferToFactionOwnership()
+        {
+            VehicleSystem.ClientTransferToFactionOwnership(this.vehicle);
+        }
+
+        private void RefreshAccessEditor()
+        {
+            IDisposable vm = this.ViewModelFactionAccessEditor;
+            this.ViewModelFactionAccessEditor = null;
+            vm?.Dispose();
+
+            vm = this.ViewModelOwnersEditor;
+            this.ViewModelOwnersEditor = null;
+            vm?.Dispose();
+
+            if (this.IsOwnedByFaction)
+            {
+                this.ViewModelFactionAccessEditor = new ViewModelWorldObjectFactionAccessEditorControl(
+                    this.vehicle,
+                    canSetAccessMode: true);
+            }
+            else
+            {
+                var isOwner = WorldObjectOwnersSystem.SharedIsOwner(
+                    ClientCurrentCharacterHelper.Character,
+                    this.vehicle);
+
+                this.ViewModelOwnersEditor =
+                    new ViewModelWorldObjectOwnersEditor(
+                        this.vehiclePrivateState.Owners,
+                        canEditOwners: isOwner
+                                       || CreativeModeSystem.ClientIsInCreativeMode(),
+                        callbackServerSetOwnersList: ownersList => WorldObjectOwnersSystem.ClientSetOwners(
+                                                         this.vehicle,
+                                                         ownersList),
+                        title: CoreStrings.ObjectOwnersList_Title2);
+            }
         }
 
         private void RefreshCanRepair()

@@ -66,7 +66,7 @@
         private readonly IConstructionTileRequirementsReadOnly tileRequirements
             = new ConstructionTileRequirements()
               .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
-              .Add(ConstructionTileRequirements.ValidatorSolidGround)
+              .Add(ConstructionTileRequirements.ValidatorSolidGroundOrPlatform)
               .Add(ConstructionTileRequirements.ValidatorNotCliffOrSlope);
 
         public ObjectGroundItemsContainer()
@@ -126,15 +126,15 @@
 
                 countToDrop = Math.Min(countToDrop, itemToDrop.Count);
 
-                var obstaclesOnTheWay = false;
+                var obstaclesInTheWay = false;
                 if (!dropTilePosition.HasValue
                     || !SharedIsWithinInteractionDistance(
                         character,
                         dropTilePosition.Value,
-                        out obstaclesOnTheWay))
+                        out obstaclesInTheWay))
                 {
                     NotificationSystem.ClientShowNotification(
-                        obstaclesOnTheWay
+                        obstaclesInTheWay
                             ? CoreStrings.Notification_ObstaclesOnTheWay
                             : NotificationNoFreeSpaceToDrop,
                         color: NotificationColor.Bad,
@@ -147,10 +147,10 @@
             if (!SharedIsWithinInteractionDistance(
                     character,
                     tilePosition,
-                    out var obstaclesOnTheWay2))
+                    out var obstaclesInTheWay2))
             {
                 NotificationSystem.ClientShowNotification(
-                    obstaclesOnTheWay2
+                    obstaclesInTheWay2
                         ? CoreStrings.Notification_ObstaclesOnTheWay
                         : CoreStrings.Notification_TooFar,
                     NotificationCannotDropItemThere,
@@ -589,7 +589,7 @@
                     out _))
             {
                 Logger.Error(
-                    $"Cannot drop item: {item} - character is too far from the requested tile position or there are obstacles on the way.",
+                    $"Cannot drop item: {item} - character is too far from the requested tile position or there are obstacles in the way.",
                     character);
                 return null;
             }
@@ -827,7 +827,7 @@
         private static bool SharedIsWithinInteractionDistance(
             ICharacter character,
             Vector2Ushort tilePosition,
-            out bool obstaclesOnTheWay)
+            out bool obstaclesInTheWay)
         {
             var interactionAreaShape = character.PhysicsBody.Shapes.FirstOrDefault(
                 s => s.CollisionGroup == CollisionGroups.CharacterInteractionArea);
@@ -835,7 +835,7 @@
             if (interactionAreaShape is null)
             {
                 // no interaction area shape (probably a spectator character)
-                obstaclesOnTheWay = false;
+                obstaclesInTheWay = false;
                 return false;
             }
 
@@ -850,7 +850,7 @@
             if (!penetration.HasValue)
             {
                 // outside of interaction area
-                obstaclesOnTheWay = false;
+                obstaclesInTheWay = false;
                 return false;
             }
 
@@ -861,13 +861,13 @@
             var worldObjectPointClosestToCharacter = new BoundsInt(tilePosition, Vector2Int.One)
                 .ClampInside(characterCenter);
 
-            obstaclesOnTheWay = ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+            obstaclesInTheWay = ObstacleTestHelper.SharedHasObstaclesInTheWay(characterCenter,
                                                                               physicsSpace,
                                                                               worldObjectCenter,
                                                                               worldObjectPointClosestToCharacter,
                                                                               sendDebugEvents: false);
 
-            return !obstaclesOnTheWay;
+            return !obstaclesInTheWay;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

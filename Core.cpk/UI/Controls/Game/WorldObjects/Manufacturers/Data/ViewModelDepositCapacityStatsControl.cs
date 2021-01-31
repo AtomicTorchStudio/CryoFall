@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -56,6 +57,10 @@
         public string DepositTitle => this.protoDeposit?.Name;
 
         public bool IsDepletedDeposit { get; set; }
+
+        public bool IsDepositCapacityVisible
+            => !this.IsInfiniteDeposit
+               || !PveSystem.ClientIsPve(false);
 
         public bool IsInfiniteDeposit { get; set; }
 

@@ -19,6 +19,8 @@
 
         private static IComponentAttachedControl tooltipBuildOrRepair;
 
+        private static IComponentAttachedControl tooltipDeconstruct;
+
         private static IComponentAttachedControl tooltipRelocate;
 
         private static void Update()
@@ -32,7 +34,9 @@
             IStaticWorldObject worldObject = null;
             IProtoObjectStructure protoStructure = null;
 
-            if (ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem is IProtoItemToolToolbox)
+            var selectedProtoItem = ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem;
+            if (selectedProtoItem is IProtoItemToolToolbox
+                || selectedProtoItem is IProtoItemToolCrowbar)
             {
                 worldObject = ClientComponentObjectInteractionHelper.MouseOverObject as IStaticWorldObject;
                 protoStructure = worldObject?.ProtoGameObject as IProtoObjectStructure;
@@ -46,6 +50,9 @@
                 tooltipRelocate?.Destroy();
                 tooltipRelocate = null;
 
+                tooltipDeconstruct?.Destroy();
+                tooltipDeconstruct = null;
+
                 currentTooltipsWorldObject = worldObject;
             }
 
@@ -56,7 +63,8 @@
 
             // process structure repair tooltip
             var isBuildTooltipRequired
-                = protoStructure.ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(worldObject);
+                = selectedProtoItem is IProtoItemToolToolbox
+                  && protoStructure.ClientIsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(worldObject);
 
             if (tooltipBuildOrRepair is null)
             {
@@ -72,7 +80,8 @@
             }
 
             // process structure relocation tooltip
-            var canRelocate = !ConstructionRelocationSystem.IsInObjectPlacementMode
+            var canRelocate = selectedProtoItem is IProtoItemToolToolbox
+                              && !ConstructionRelocationSystem.IsInObjectPlacementMode
                               && ConstructionRelocationSystem.SharedIsRelocatable(worldObject);
             if (tooltipRelocate is null)
             {
@@ -85,6 +94,21 @@
             {
                 tooltipRelocate.Destroy();
                 tooltipRelocate = null;
+            }
+
+            // process structure deconstruction tooltip
+            var canDeconstruct = selectedProtoItem is IProtoItemToolCrowbar;
+            if (tooltipDeconstruct is null)
+            {
+                if (canDeconstruct)
+                {
+                    tooltipDeconstruct = ConstructionDeconstructTooltip.CreateAndAttach(worldObject);
+                }
+            }
+            else if (!canDeconstruct)
+            {
+                tooltipDeconstruct.Destroy();
+                tooltipDeconstruct = null;
             }
         }
 

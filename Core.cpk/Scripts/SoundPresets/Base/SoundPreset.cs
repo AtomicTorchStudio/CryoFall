@@ -51,6 +51,11 @@
             return this.Add(key, frequency: 1, soundResources: soundResources);
         }
 
+        public SoundPreset<TSoundKey> Add(TSoundKey key, ReadOnlySoundResourceSet soundResourceSet)
+        {
+            return this.Add(key, frequency: 1, soundResources: soundResourceSet);
+        }
+
         public SoundPreset<TSoundKey> Add(TSoundKey key, params string[] localSoundFilePaths)
         {
             return this.Add(key, frequency: 1, localSoundFilePaths: localSoundFilePaths);

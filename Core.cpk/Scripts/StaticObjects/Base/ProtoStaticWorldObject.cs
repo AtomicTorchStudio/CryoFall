@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.AmbientOcclusion;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
@@ -175,6 +176,11 @@
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             return this.Layout.Center;
+        }
+
+        public virtual bool SharedIsObstacle(IWorldObject targetObject, IProtoItemWeapon protoWeapon)
+        {
+            return this.ObstacleBlockDamageCoef >= 0;
         }
 
         public bool SharedOnDamage(

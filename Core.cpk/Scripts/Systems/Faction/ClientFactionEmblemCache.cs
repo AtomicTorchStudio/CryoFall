@@ -27,6 +27,11 @@
 
         public static Brush GetEmblemTextureBrush(string clanTag)
         {
+            if (string.IsNullOrEmpty(clanTag))
+            {
+                return Brushes.Magenta;
+            }
+
             if (CacheTextureBrushes.TryGetValue(clanTag, out var weakReferenceTextureBrush)
                 && weakReferenceTextureBrush.TryGetTarget(out var textureBrush))
             {

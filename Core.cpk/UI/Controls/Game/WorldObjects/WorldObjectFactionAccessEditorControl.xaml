@@ -12,7 +12,8 @@
     d:DataContext="{d:DesignInstance data:ViewModelWorldObjectFactionAccessEditorControl, IsDesignTimeCreatable=True}"
     FontWeight="Bold"
     Foreground="White"
-    FontSize="12">
+    FontSize="12"
+    IsEnabled="{Binding HasFactionAccessRight}">
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal"
@@ -40,11 +41,14 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <CheckBox Margin="0,2"
-                                          Content="{Binding Title}"
-                                          IsChecked="{Binding IsChecked}"
-                                          IsEnabled="{Binding IsEnabled}"
-                                          Focusable="False" />
+                                <ContentControl Background="Transparent"
+                                                base:ToolTipServiceExtend.ToolTip="{Binding TooltipMessage}">
+                                    <CheckBox Content="{Binding Title}"
+                                              IsChecked="{Binding IsChecked}"
+                                              IsEnabled="{Binding IsEnabled}"
+                                              Focusable="False"
+                                              Margin="0,2" />
+                                </ContentControl>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>

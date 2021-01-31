@@ -42,6 +42,12 @@
 
         public override bool ConsolidateNotifications => false;
 
+        public override TimeSpan EventStartPostponeDurationFrom { get; }
+            = TimeSpan.FromMinutes(10);
+
+        public override TimeSpan EventStartPostponeDurationTo { get; }
+            = TimeSpan.FromMinutes(30);
+
         public IReadOnlyList<IProtoSpawnableObject> SpawnPreset { get; private set; }
 
         protected Lazy<IReadOnlyList<IServerZone>> ServerSpawnZones { get; }
@@ -126,55 +132,76 @@
             // select a random boss spawn zone
             var zoneInstance = this.ServerSpawnZones.Value.TakeByRandom();
 
-            // select a random position inside the selected zone
-            var randomPosition = zoneInstance.GetRandomPosition(RandomHelper.Instance);
-
-            // use fill flood to locate all the positions
-            // within the continuous area around the selected random position
             var chunkPositions = new HashSet<Vector2Ushort>(capacity: 50 * 50);
             var positionToCheck = new Stack<Vector2Ushort>();
-            positionToCheck.Push(randomPosition);
-            FillFlood();
 
-            // calculate the center position of the area
-            Vector2Ushort result = ((ushort)chunkPositions.Average(c => c.X),
-                                    (ushort)chunkPositions.Average(c => c.Y));
-
-            Logger.Important(
-                $"[Stopwatch] Selecting the boss event position took: {stopwatch.Elapsed.TotalMilliseconds:F1} ms");
-            return result;
-
-            void FillFlood()
+            // perform the location selection several times to determine the possible locations
+            var possibleLocations = new Dictionary<Vector2Ushort, uint>();
+            for (var i = 0; i < 15; i++)
             {
-                while (positionToCheck.Count > 0)
+                chunkPositions.Clear();
+                positionToCheck.Clear();
+
+                // select a random position inside the selected zone
+                var randomPosition = zoneInstance.GetRandomPosition(RandomHelper.Instance);
+
+                // use fill flood to locate all the positions
+                // within the continuous area around the selected random position
+                positionToCheck.Push(randomPosition);
+                FillFlood();
+
+                // calculate the center position of the area
+                Vector2Ushort result = ((ushort)chunkPositions.Average(c => c.X),
+                                        (ushort)chunkPositions.Average(c => c.Y));
+
+                if (!possibleLocations.ContainsKey(result))
                 {
-                    var pos = positionToCheck.Pop();
-                    if (pos.X == 0
-                        || pos.Y == 0
-                        || pos.X >= ushort.MaxValue
-                        || pos.Y >= ushort.MaxValue)
-                    {
-                        // reached the bound - not enclosed
-                        continue;
-                    }
+                    possibleLocations.Add(result, 0);
+                }
 
-                    if (!chunkPositions.Add(pos))
-                    {
-                        //  already visited
-                        continue;
-                    }
+                possibleLocations[result]++;
 
-                    if (!zoneInstance.IsContainsPosition(pos))
+                void FillFlood()
+                {
+                    while (positionToCheck.Count > 0)
                     {
-                        continue;
-                    }
+                        var pos = positionToCheck.Pop();
+                        if (pos.X == 0
+                            || pos.Y == 0
+                            || pos.X >= ushort.MaxValue
+                            || pos.Y >= ushort.MaxValue)
+                        {
+                            // reached the bound - not enclosed
+                            continue;
+                        }
 
-                    positionToCheck.Push(((ushort)(pos.X - 1), pos.Y));
-                    positionToCheck.Push(((ushort)(pos.X + 1), pos.Y));
-                    positionToCheck.Push((pos.X, (ushort)(pos.Y - 1)));
-                    positionToCheck.Push((pos.X, (ushort)(pos.Y + 1)));
+                        if (!chunkPositions.Add(pos))
+                        {
+                            // already visited
+                            continue;
+                        }
+
+                        if (!zoneInstance.IsContainsPosition(pos))
+                        {
+                            continue;
+                        }
+
+                        positionToCheck.Push(((ushort)(pos.X - 1), pos.Y));
+                        positionToCheck.Push(((ushort)(pos.X + 1), pos.Y));
+                        positionToCheck.Push((pos.X, (ushort)(pos.Y - 1)));
+                        positionToCheck.Push((pos.X, (ushort)(pos.Y + 1)));
+                    }
                 }
             }
+
+            //Logger.Dev("Possible boss spawn locations: "
+            //           + possibleLocations.Select(p => p.Key + ": " + p.Value).GetJoinedString(Environment.NewLine));
+
+            // each location has equal weight
+            var selectedLocation = possibleLocations.Keys.TakeByRandom();
+            Logger.Important(
+                $"[Stopwatch] Selecting the boss event position took: {stopwatch.Elapsed.TotalMilliseconds:F1} ms");
+            return selectedLocation;
         }
 
         protected abstract void ServerPrepareBossEvent(Triggers triggers, List<IProtoSpawnableObject> spawnPreset);

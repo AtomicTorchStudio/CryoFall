@@ -16,7 +16,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDroneControl;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
@@ -945,6 +945,7 @@
         private void ClientRemote_OnMiningSoundCue(
             IDynamicWorldObject objectDrone,
             uint ownerCharacterPartyId,
+            string ownerCharacterClanTag,
             Vector2Ushort fallbackPosition)
         {
             if (objectDrone is not null
@@ -956,18 +957,18 @@
             var position = objectDrone?.Position ?? fallbackPosition.ToVector2D();
             position += this.BeamOriginOffset;
 
-            var isByPartyMember = ownerCharacterPartyId > 0
-                                  && ownerCharacterPartyId == PartySystem.ClientCurrentParty?.Id;
+            var isByPartyMember = PartySystem.ClientIsCurrentParty(ownerCharacterPartyId);
+            var isByFactionMember = FactionSystem.ClientIsCurrentOrAllyFaction(ownerCharacterClanTag);
             ClientSoundCueManager.OnSoundEvent(position,
-                                               isPartyMember: isByPartyMember);
+                                               isFriendly: isByPartyMember || isByFactionMember);
         }
 
         private void ClientRemote_VehicleExploded(Vector2D position)
         {
             Logger.Important(this + " exploded at " + position);
             SharedExplosionHelper.ClientExplode(position: position + this.SharedGetObjectCenterWorldOffset(null),
-                                          this.DestroyedExplosionPreset,
-                                          this.DestroyedExplosionVolume);
+                                                this.DestroyedExplosionPreset,
+                                                this.DestroyedExplosionVolume);
         }
 
         private void ClientSetupHealthbar(ClientInitializeData data)
@@ -1006,10 +1007,12 @@
             }
 
             var partyId = PartySystem.ServerGetParty(characterOwner)?.Id ?? 0;
+            var clanTag = FactionSystem.SharedGetClanTag(characterOwner);
 
             this.CallClient(observers.AsList(),
                             _ => _.ClientRemote_OnMiningSoundCue(objectDrone,
                                                                  partyId,
+                                                                 clanTag,
                                                                  objectDrone.TilePosition));
         }
     }

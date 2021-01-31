@@ -282,7 +282,7 @@
                 && !string.IsNullOrEmpty(claimFactionClanTag))
             {
                 // the land claim is owned by faction - verify permission
-                if (claimFactionClanTag == PlayerCharacter.GetPublicState(character).ClanTag
+                if (claimFactionClanTag == FactionSystem.SharedGetClanTag(character)
                     && FactionSystem.SharedHasAccessRight(character, FactionMemberAccessRights.LandClaimManagement))
                 {
                     return true;

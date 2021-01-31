@@ -69,7 +69,7 @@
                 <TextBlock Text="{x:Static loc:CoreStrings.PowerGrid_NotConnectedMessage}"
                            Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                            Style="{StaticResource TextBlockStatusStyle}"
-                           Foreground="{StaticResource BrushColor5}" />
+                           Foreground="{StaticResource BrushColorRed5}" />
             </StackPanel>
         </Grid>
     </core:WindowMenuWithInventory>

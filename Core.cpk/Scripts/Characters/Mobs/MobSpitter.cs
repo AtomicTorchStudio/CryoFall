@@ -72,7 +72,7 @@
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
-                targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
+                targetCharacter: ServerRangedAiHelper.GetClosestTargetPlayer(character, data.PrivateState),
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: false,
                 distanceRetreat: 0,
