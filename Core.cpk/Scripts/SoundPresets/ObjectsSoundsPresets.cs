@@ -46,12 +46,14 @@
                            .Replace(InteractSuccess, "Objects/LockedContainer/InteractSuccess")
                            .Replace(InteractFail,    "Objects/LockedContainer/InteractFail");
 
-        // vegetation gathering sounds
         public static readonly ReadOnlySoundPreset<ObjectSound> ObjectVegetation
             = ObjectGeneric.Clone()
                            .Replace(InteractStart,   "Objects/Vegetation/InteractStart")
                            .Replace(InteractProcess, "Objects/Vegetation/InteractProcess")
                            .Replace(InteractSuccess, "Objects/Vegetation/InteractSuccess")
                            .Replace(InteractFail,    "Objects/Vegetation/InteractFail");
+
+        public static readonly ReadOnlySoundPreset<ObjectSound> ObjectLootPile
+            = ObjectVegetation; // TODO: currently we're reusing the vegetation gathering sounds for loot piles
     }
 }

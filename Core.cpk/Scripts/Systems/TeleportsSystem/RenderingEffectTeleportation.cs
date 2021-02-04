@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Vehicles
+﻿namespace AtomicTorch.CBND.CoreMod.Systems.TeleportsSystem
 {
     using System.Windows.Media;
     using AtomicTorch.CBND.GameApi.Resources;

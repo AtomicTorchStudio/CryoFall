@@ -96,7 +96,9 @@
 
         public string CannotRepairErrorMessage { get; private set; }
 
-        public bool CanTransferToFactionOwnership => FactionSystem.ClientCurrentFaction is not null;
+        public bool CanTransferToFactionOwnership
+            => FactionSystem.ClientCurrentFaction is not null
+               && FactionSystem.ClientCurrentFactionKind != FactionKind.Public;
 
         public BaseCommand CommandEnterVehicle => new ActionCommand(ExecuteCommandEnterVehicle);
 

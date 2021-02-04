@@ -296,7 +296,7 @@
                         Visibility="{Binding IsOwnedByFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                         <Grid VerticalAlignment="Center">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <worldObjects:WorldObjectOwnersEditorControl
@@ -308,7 +308,7 @@
                             <Button Grid.Row="1"
                                     Command="{Binding CommandTransferToFactionOwnership}"
                                     Content="{x:Static loc:CoreStrings.WindowLandClaim_TransferToFactionOwnership}"
-                                    IsEnabled="{Binding CanTransferToFactionOwnership}"
+                                    Visibility="{Binding CanTransferToFactionOwnership, Converter={StaticResource BoolToVisibilityConverter}}"
                                     Focusable="False"
                                     FontSize="13"
                                     MinHeight="0"

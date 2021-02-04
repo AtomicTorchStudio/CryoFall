@@ -64,6 +64,12 @@
                 throw new Exception("Player has no faction");
             }
 
+            if (FactionSystem.SharedGetFactionKind(faction)
+                == FactionKind.Public)
+            {
+                throw new Exception("Cannot transfer a vehicle to ownership of a public faction");
+            }
+
             var clanTag = FactionSystem.SharedGetClanTag(faction);
             publicState.ClanTag = clanTag;
 

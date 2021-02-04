@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using JetBrains.Annotations;
 
     public partial class MainMenuOverlay : BaseUserControl
     {
@@ -19,20 +20,6 @@
         private static ClientInputContext openedMainMenuInputContext;
 
         public static event Action IsHiddenChanged;
-
-        public static MainMenuOverlay Instance
-        {
-            get
-            {
-                if (instance is null)
-                {
-                    instance = new MainMenuOverlay();
-                    Api.Client.UI.LayoutRootChildren.Add(instance);
-                }
-
-                return instance;
-            }
-        }
 
         public static bool IsHidden
         {
@@ -67,13 +54,19 @@
                         return;
                     }
 
-                    Instance.Visibility = Visibility.Collapsed;
+                    instance.Visibility = Visibility.Collapsed;
                     OnBecomeHidden();
                 }
                 else
                 {
                     // display menu
-                    Instance.Visibility = Visibility.Visible;
+                    if (instance is null)
+                    {
+                        instance = new MainMenuOverlay();
+                        Api.Client.UI.LayoutRootChildren.Add(instance);
+                    }
+
+                    instance.Visibility = Visibility.Visible;
                     OnBecomeVisible();
                 }
 
@@ -97,6 +90,12 @@
             IsHidden = true;
             Api.Client.UI.LayoutRootChildren.Remove(instance);
             instance = null;
+        }
+
+        [CanBeNull]
+        public static MenuOptions GetOptions()
+        {
+            return instance?.Options;
         }
 
         public static void Toggle()

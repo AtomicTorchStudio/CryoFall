@@ -202,6 +202,13 @@
             }
 
             var list = entries.ToList();
+            
+            // uncomment to test the long list
+            /*for (var i = 0; i < 6; i++)
+            {
+                list = list.Concat(list).ToList();
+            }*/
+            
             list.Sort(StringComparer.OrdinalIgnoreCase);
 
             var owners = list.Select(

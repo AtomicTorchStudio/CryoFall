@@ -686,9 +686,8 @@
             var cooldownDuration = Shared.RoundDurationByServerFrameDuration(protoWeapon.FireInterval)
                                    - Shared.RoundDurationByServerFrameDuration(protoWeapon.DamageApplyDelay);
 
-            //Logger.Dev($"Cooldown adding: {cooldownDuration} for {protoWeapon}");
-
             state.CooldownSecondsRemains += cooldownDuration;
+            //Logger.Dev($"Cooldown adding: {cooldownDuration} for {protoWeapon}. Cooldown remains: {state.CooldownSecondsRemains}");
 
             if (!protoWeapon.IsLoopedAttackAnimation)
             {
@@ -994,6 +993,8 @@
             {
                 return false;
             }
+            
+            //Logger.Dev("Weapon fired: " + weaponItem);
 
             var playerCharacterSkills = character.SharedGetSkills();
             var protoWeaponSkill = playerCharacterSkills is not null

@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -21,7 +22,7 @@
 
         // The remains will destroy after this duration if there are no characters observing it.
         private static readonly double DestructionTimeoutSeconds
-            = TimeSpan.FromMinutes(30).TotalSeconds;
+            = Math.Max(30 * 60, WorldObjectClaimDuration.BossLoot);
 
         public override bool IsAllowDroneMining => false;
 

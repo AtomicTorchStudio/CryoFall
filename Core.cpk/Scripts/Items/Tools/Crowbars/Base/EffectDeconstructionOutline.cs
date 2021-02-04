@@ -4,6 +4,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera;
     using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
@@ -11,6 +12,8 @@
 
     public class EffectDeconstructionOutline : RenderingEffect
     {
+        private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
+
         private readonly IGraphicsDevice device;
 
         private readonly EffectInstance effect;
@@ -21,7 +24,7 @@
 
         public EffectDeconstructionOutline()
         {
-            this.device = Api.Client.Rendering.GraphicsDevice;
+            this.device = Rendering.GraphicsDevice;
             this.effect = EffectInstance.Create(new EffectResource("Special/DeconstructionOutline"));
         }
 
@@ -42,7 +45,7 @@
             this.effect.Parameters.Set("OutlineSize",
                                        (float)(0.025
                                                * 256.0
-                                               * Api.Client.Rendering.WorldCameraCurrentZoom
+                                               * Rendering.WorldCameraCurrentZoom
                                                / Math.Max(destination.Width, destination.Height)));
 
             if (this.spriteRendererOutlineTexture is null
@@ -51,12 +54,12 @@
             {
                 this.spriteRendererOutlineTexture?.Dispose();
                 this.spriteRendererOutlineTexture
-                    = Api.Client.Rendering.CreateRenderTexture(nameof(EffectDeconstructionOutline),
-                                                               destination.Width,
-                                                               destination.Height);
+                    = Rendering.CreateRenderTexture(nameof(EffectDeconstructionOutline),
+                                                    destination.Width,
+                                                    destination.Height);
                 this.spriteRendererOutline.TextureResource = this.spriteRendererOutlineTexture;
 
-                var scale = 1 / Api.Client.Rendering.WorldCameraCurrentZoom;
+                var scale = 1 / (Rendering.WorldCameraCurrentZoom * Rendering.MainComposerViewportScale);
                 this.spriteRendererOutline.Scale = scale;
             }
 

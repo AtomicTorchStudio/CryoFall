@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -137,7 +137,7 @@
 
             return worldObject.ProtoGameObject switch
             {
-                PlayerCharacter => PlayerCharacter.GetClientState((ICharacter)worldObject).SkeletonRenderer,
+                IProtoCharacter => worldObject.GetClientState<BaseCharacterClientState>().SkeletonRenderer,
                 IProtoVehicle   => worldObject.GetClientState<VehicleClientState>().SkeletonRenderer,
                 _               => null
             };
@@ -152,9 +152,9 @@
 
             switch (worldObject.ProtoGameObject)
             {
-                case PlayerCharacter:
+                case IProtoCharacter:
                 {
-                    var clientState = PlayerCharacter.GetClientState((ICharacter)worldObject);
+                    var clientState = worldObject.GetClientState<BaseCharacterClientState>();
                     if (clientState.RendererShadow is { } rendererShadow)
                     {
                         yield return rendererShadow;

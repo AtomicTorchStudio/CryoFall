@@ -47,7 +47,7 @@
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
         {
-            return ObjectsSoundsPresets.ObjectGarbagePile;
+            return ObjectsSoundsPresets.ObjectLootPile;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

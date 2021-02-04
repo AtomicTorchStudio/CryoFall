@@ -130,7 +130,7 @@
                     return;
                 }
 
-                var options = MainMenuOverlay.Instance.Options;
+                var options = MainMenuOverlay.GetOptions();
                 if (options is not null)
                 {
                     if (ReferenceEquals(this.selectedTab?.Content, options))
