@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using JetBrains.Annotations;
 
     public interface IDamageableProtoWorldObject : IProtoWorldObject
     {
@@ -10,6 +12,9 @@
         /// In case of explosion it will simply pass the explosion though if the value is < 1.
         /// </summary>
         double ObstacleBlockDamageCoef { get; }
+
+        [CanBeNull]
+        ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit { get; }
 
         /// <summary>
         /// Used to determine whether the object is at least some kind of obstacle for a particular weapon.

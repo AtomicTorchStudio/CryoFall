@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -58,7 +59,10 @@
             IsStructuresDecayEnabled =
                 ServerRates.Get(
                     "StructuresDecayEnabled",
-                    defaultValue: Api.IsEditor ? 0 : 1,
+                    defaultValue: Api.IsEditor
+                                  || Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                      ? 0
+                                      : 1,
                     @"Set it to 0 to disable the structures decay.
                     Set it to 1 to enable the structures decay.")
                 > 0;
@@ -71,11 +75,13 @@
 
             StructuresLandClaimDecayDelayDurationMultiplier = ServerRates.Get(
                 "StructuresLandClaimDecayDelayDurationMultiplier",
-                defaultValue: 5.0,
+                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                  ? 30.0
+                                  : 5.0,
                 @"Time multiplier before an abandoned land claim (or base) will start decaying.
                   For example, the default decay delay for the land claims (T1) is 32 hours,
                   but with 2.0 multiplier it will be increased to 64 hours (for T1).
-                  To ensure that your server will not have unexpected decay the default multiplier here is 5.0.
+                  To ensure that your server will not have unexpected decay the default multiplier here is high.
                   If you wish to use the decay duration exactly as it's defined in the land claims, set 1.0.");
 
             StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers = ServerRates.Get(

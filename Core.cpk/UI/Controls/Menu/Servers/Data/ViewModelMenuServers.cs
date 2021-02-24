@@ -42,6 +42,18 @@
 
             this.serverViewModelsProvider = ServerViewModelsProvider.Instance;
 
+            // ensure the localhost is always present in the custom servers list (for local server)
+            this.serversProvider.Custom.SetFirstOrAdd(new ServerAddress("localhost"));
+            this.CustomServers =
+                new ViewModelServersList(
+                    new MultiplayerMenuServersController(this.serversProvider.Custom, this.serverViewModelsProvider),
+                    this.OnSelectedServerChanged);
+
+            this.FavoriteServers =
+                new ViewModelServersList(
+                    new MultiplayerMenuServersController(this.serversProvider.Favorite, this.serverViewModelsProvider),
+                    this.OnSelectedServerChanged);
+
             this.FeaturedServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
@@ -77,17 +89,7 @@
                             DefaultSortType = ServersListSortType.Ping
                         },
                     this.OnSelectedServerChanged);
-
-            this.CustomServers =
-                new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.Custom, this.serverViewModelsProvider),
-                    this.OnSelectedServerChanged);
-
-            this.FavoriteServers =
-                new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.Favorite, this.serverViewModelsProvider),
-                    this.OnSelectedServerChanged);
-
+      
             this.HistoryServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersController(this.serversProvider.History, this.serverViewModelsProvider),

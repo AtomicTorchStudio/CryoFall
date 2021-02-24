@@ -7,6 +7,7 @@ int SpriteTextureArraySlice;
 float OutlineSize = 0.02;
 const float3 OutlineColor = float3(0.9, 0.15, 0.25);
 const float3 OutlineOpacity = 1.0;
+float Time;
 
 sampler SpriteTextureSampler
 {
@@ -51,8 +52,15 @@ float4 MainPS(VertexShaderOutput input) : COLOR
     }
     else
     {
-        color.a = 0;
+        color.r = 1;
+        color.gb *= 0.5;
+        color.a *= 0.25;
     }
+    
+    // flickering animation
+    color.a = lerp(color.a,
+        		   color.a * (1 + sin(Time * 8.5)) / 2.0,
+        		   0.25);
 
 	// premultiply alpha
 	color.rgb *= color.a;

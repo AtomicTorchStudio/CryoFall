@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
@@ -131,18 +132,34 @@
                     return 1;
                 }
 
-                var kindComparison = ((IStaticWorldObject)y).ProtoStaticWorldObject
-                                                            .Kind
-                                                            .CompareTo(((IStaticWorldObject)x).ProtoStaticWorldObject
-                                                                       .Kind);
-
-                if (kindComparison != 0)
+                var result = (y.ProtoGameObject is ObjectPlayerLootContainer)
+                    .CompareTo(x.ProtoGameObject is ObjectPlayerLootContainer);
+                if (result != 0)
                 {
-                    return kindComparison;
+                    // player loot has priority over other static objects 
+                    return result;
                 }
 
-                return x.TilePosition.Y
-                        .CompareTo(y.TilePosition.Y);
+                result = ((IStaticWorldObject)y).ProtoStaticWorldObject
+                                                .Kind
+                                                .CompareTo(((IStaticWorldObject)x).ProtoStaticWorldObject
+                                                           .Kind);
+
+                if (result != 0)
+                {
+                    return result;
+                }
+
+                result = x.TilePosition.Y
+                          .CompareTo(y.TilePosition.Y);
+
+                if (result != 0)
+                {
+                    return result;
+                }
+
+                // order by date of creation
+                return y.Id.CompareTo(x.Id);
             }
         }
 

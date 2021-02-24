@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -31,6 +32,8 @@
         public abstract float ObjectSoundRadius { get; }
 
         public virtual double ObstacleBlockDamageCoef => 1;
+
+        public virtual ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit => null;
 
         public abstract float StructurePointsMax { get; }
 

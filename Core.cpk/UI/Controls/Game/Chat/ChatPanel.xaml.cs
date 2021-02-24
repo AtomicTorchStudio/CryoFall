@@ -283,25 +283,17 @@
                 return orderB.CompareTo(orderA);
             }
 
-            int GetTabOrder(ViewModelChatRoom viewModelChatRoom)
+            static int GetTabOrder(ViewModelChatRoom viewModelChatRoom)
             {
-                switch (viewModelChatRoom.ChatRoom)
+                return viewModelChatRoom.ChatRoom switch
                 {
-                    case ChatRoomGlobal:
-                        return 0;
-
-                    case ChatRoomLocal:
-                        return 1;
-
-                    case ChatRoomTrade:
-                        return 2;
-
-                    case ChatRoomParty:
-                        return 3;
-
-                    default:
-                        return int.MaxValue;
-                }
+                    ChatRoomGlobal  => 0,
+                    ChatRoomLocal   => 1,
+                    ChatRoomTrade   => 2,
+                    ChatRoomParty   => 3,
+                    ChatRoomFaction => 4,
+                    _               => int.MaxValue
+                };
             }
 
             var chatLogA = chatRoomA.ChatRoom.ChatLog;

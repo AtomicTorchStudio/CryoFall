@@ -262,7 +262,7 @@
         public string NextScheduledWipeDateText
             => this.nextScheduledWipeDate.HasValue
                    ? string.Format(CoreStrings.ServerWipeInfoNextWipeDate_Format,
-                                   WelcomeMessageSystem.FormatDate(this.nextScheduledWipeDate.Value))
+                                   WelcomeMessageSystem.FormatDate(this.nextScheduledWipeDate.Value.ToLocalTime()))
                    : null;
 
         public ushort? Ping

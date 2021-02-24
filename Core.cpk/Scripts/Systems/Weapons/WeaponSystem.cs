@@ -993,7 +993,7 @@
             {
                 return false;
             }
-            
+
             //Logger.Dev("Weapon fired: " + weaponItem);
 
             var playerCharacterSkills = character.SharedGetSkills();

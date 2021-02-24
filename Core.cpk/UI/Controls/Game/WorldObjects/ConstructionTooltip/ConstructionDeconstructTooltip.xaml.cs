@@ -101,7 +101,8 @@
             this.CanInteract = canInteract;
 
             var clientState = this.WorldObject.GetClientState<IClientStateWithObjectRenderer>();
-            if (!canInteract)
+            if (!canInteract
+                || clientState is null)
             {
                 this.DestroyEffect();
                 return;
@@ -131,7 +132,8 @@
             this.spriteRendererOutline.BlendMode = BlendMode.AlphaBlendPremultiplied;
             this.spriteRendererOutline.DrawOrder = DrawOrder.Overlay;
 
-            this.worldObjectComponentSpriteRendererEffect.Setup(this.spriteRendererOutline);
+            this.worldObjectComponentSpriteRendererEffect.Setup(this.spriteRendererOutline,
+                                                                this.worldObjectComponentSpriteRenderer.Scale);
         }
     }
 }

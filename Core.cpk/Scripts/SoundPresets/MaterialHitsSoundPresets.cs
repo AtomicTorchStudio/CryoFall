@@ -42,6 +42,13 @@
               .Add(Metal,       "Hit/Melee/HardTissues")
               .Add(Glass,       "Hit/Melee/HardTissues");
 
+        /// <summary>
+        /// Used as an override when hitting a pragmium mineral.
+        /// </summary>
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> OverridePragmium
+            = Melee.Clone()
+                   .Replace(Stone, "Hit/Special/Pragmium");
+
         public static readonly ReadOnlySoundPreset<ObjectMaterial> Ranged
             = new SoundPreset<ObjectMaterial>(HitSoundDistancePreset)
               .Add(SoftTissues, "Hit/Ranged/SoftTissues")

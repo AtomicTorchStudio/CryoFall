@@ -8,35 +8,57 @@
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowGeneratorBio, IsDesignTimeCreatable=True}">
-
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
 
-                <controls:ItemsContainerControl Container="{Binding InputItemsContainer}"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                DesignTimeSlotsCount="1" />
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <!-- Text: Input -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
+                        <controls:ItemsContainerControl
+                            Container="{Binding InputItemsContainer}"
+                            MaxWidth="100"
+                            HorizontalAlignment="Center"
+                            DesignTimeSlotsCount="1" />
+                    </StackPanel>
 
-                <core:ValueBarControl
-                    Value="{Binding OrganicAmount}"
-                    MaxValue="{Binding OrganicCapacity}"
-                    Margin="20,0,20,0"
-                    Style="{StaticResource LiquidMediumValueBar}"
-                    Foreground="{StaticResource BrushOrganic}" />
+                    <core:ValueBarControl
+                        Value="{Binding OrganicAmount}"
+                        MaxValue="{Binding OrganicCapacity}"
+                        Margin="20,0,20,0"
+                        Style="{StaticResource LiquidMediumValueBar}"
+                        Foreground="{StaticResource BrushOrganic}" />
+                </StackPanel>
 
-            </StackPanel>
+                <Image Grid.Column="2"
+                       Source="Images/GeneratorBioInfo.png"
+                       Width="200"
+                       Height="200"
+                       UseLayoutRounding="True"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            </Grid>
 
-            <powerGrid:PowerProducerStatsControl />
-
+            <powerGrid:PowerProducerStatsControl Margin="0,5,0,0" />
         </StackPanel>
     </core:WindowMenuWithInventory>
-
 </powerGrid:WindowGeneratorBioBase>

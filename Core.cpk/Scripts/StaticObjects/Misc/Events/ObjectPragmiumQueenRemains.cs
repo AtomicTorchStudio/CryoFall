@@ -19,6 +19,9 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
+        public override ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit
+            => MaterialHitsSoundPresets.OverridePragmium;
+
         public override float StructurePointsMax => 1500;
 
         // has light source

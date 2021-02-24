@@ -65,46 +65,46 @@
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckNoPragmiumSourceNearbyOnPvE
             = new(ErrorCannotBuild_PragmiumSourceTooCloseOnPvE,
-                context =>
-                {
-                    var forCharacter = context.CharacterBuilder;
-                    if (forCharacter is null)
-                    {
-                        return true;
-                    }
+                  context =>
+                  {
+                      var forCharacter = context.CharacterBuilder;
+                      if (forCharacter is null)
+                      {
+                          return true;
+                      }
 
-                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
-                    {
-                        // this limitation doesn't apply to PvP servers
-                        return true;
-                    }
+                      if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                      {
+                          // this limitation doesn't apply to PvP servers
+                          return true;
+                      }
 
-                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
-                    {
-                        return true;
-                    }
+                      if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                      {
+                          return true;
+                      }
 
-                    var position = context.Tile.Position;
-                    var world = IsServer
-                                    ? (IWorldService)Server.World
-                                    : (IWorldService)Client.World;
+                      var position = context.Tile.Position;
+                      var world = IsServer
+                                      ? (IWorldService)Server.World
+                                      : (IWorldService)Client.World;
 
-                    var pragmiumSources = world.GetStaticWorldObjectsOfProto<ObjectMineralPragmiumSource>();
-                    var maxDistanceSqr = 5 + LandClaimSystem.MaxLandClaimSize.Value / 2;
-                    maxDistanceSqr *= maxDistanceSqr;
+                      var pragmiumSources = world.GetStaticWorldObjectsOfProto<ObjectMineralPragmiumSource>();
+                      var maxDistanceSqr = 5 + LandClaimSystem.MaxLandClaimSize.Value / 2;
+                      maxDistanceSqr *= maxDistanceSqr;
 
-                    foreach (var objectPragmiumSource in pragmiumSources)
-                    {
-                        if (position.TileSqrDistanceTo(objectPragmiumSource.TilePosition)
-                            <= maxDistanceSqr)
-                        {
-                            // too close to a pragmium source
-                            return false;
-                        }
-                    }
+                      foreach (var objectPragmiumSource in pragmiumSources)
+                      {
+                          if (position.TileSqrDistanceTo(objectPragmiumSource.TilePosition)
+                              <= maxDistanceSqr)
+                          {
+                              // too close to a pragmium source
+                              return false;
+                          }
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         private static readonly Lazy<IProtoCharacter> LazyProtoMob
             = new(GetProtoEntity<MobPragmiumBeetle>);
@@ -123,6 +123,9 @@
         public override string Name => "Pragmium source";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
+
+        public override ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit
+            => MaterialHitsSoundPresets.OverridePragmium;
 
         public double PsiIntensity => 0.1;
 

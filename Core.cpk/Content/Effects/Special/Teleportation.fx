@@ -36,12 +36,12 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	// de-premultiply alpha
 	result.rgb /= result.a;
 	 
-	float2 uvNoise = uv * NoiseTextureUvScale;
-    float noise = NoiseTexture.Sample(NoiseTextureSampler, float3(uvNoise / 3, 0));
+	float2 uvNoise = uv * NoiseTextureUvScale * 0.3;
+    float noise = NoiseTexture.Sample(NoiseTextureSampler, float3(uvNoise, 0));
     //return float4(noise,noise,noise, 1); // noise preview 
     
     const float Speed = 3.0; 
-    float progress = Progress;//(sin(Time * Speed) + 1) / 2;
+    float progress = Progress;
     const float transparentEdgeHeight = TransparentEdgeHeight * Speed;
         
     float threshold = uv.g * transparentEdgeHeight

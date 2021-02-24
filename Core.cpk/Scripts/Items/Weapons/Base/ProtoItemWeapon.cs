@@ -211,9 +211,12 @@
             var projectilesCount = fireScatterPreset.ProjectileAngleOffets.Length;
             volume *= (float)Math.Pow(1.0 / projectilesCount, 0.35);
 
+            var soundPresetHit = (protoWorldObject as IDamageableProtoWorldObject)?.OverrideSoundPresetHit
+                                 ?? this.SoundPresetHit;
+            
             if (hitWorldObject is not null)
             {
-                this.SoundPresetHit.PlaySound(
+                soundPresetHit.PlaySound(
                     objectMaterial,
                     hitWorldObject,
                     volume: volume,
@@ -221,7 +224,7 @@
             }
             else
             {
-                this.SoundPresetHit.PlaySound(
+                soundPresetHit.PlaySound(
                     objectMaterial,
                     protoWorldObject,
                     worldPosition: worldObjectPosition,

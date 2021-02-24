@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -26,7 +27,9 @@
         {
             DropListItemsCountMultiplier = ServerRates.Get(
                 "DropListItemsCountMultiplier",
-                defaultValue: 1.0,
+                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                  ? 1.5
+                                  : 1.0,
                 @"This rate determines the item droplist multiplier.                
                   If you want the objects in game (such as trees, bushes, minerals, loot crates in radtowns, etc)
                   to drop more items during gathering or destruction, you need to adjust this value.");

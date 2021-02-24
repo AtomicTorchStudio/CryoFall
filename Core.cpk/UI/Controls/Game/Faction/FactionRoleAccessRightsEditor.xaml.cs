@@ -6,6 +6,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -41,6 +42,12 @@
                                              .ExceptOne(FactionMemberAccessRights.None)
                                              .ExceptOne(FactionMemberAccessRights.Leader)
                                              .ToArray();
+
+            if (PveSystem.ClientIsPve(true))
+            {
+                accessRights = accessRights.ExceptOne(FactionMemberAccessRights.DiplomacyManagement)
+                                           .ToArray();
+            }
 
             var columnDefinitions = this.grid.ColumnDefinitions;
             columnDefinitions.Clear();
@@ -87,7 +94,7 @@
                     TextWrapping = TextWrapping.Wrap
                 };
 
-                if (accessRight.GetAttribute<DescriptionTooltipAttribute>() is {} descriptionTooltipAttribute)
+                if (accessRight.GetAttribute<DescriptionTooltipAttribute>() is { } descriptionTooltipAttribute)
                 {
                     var controlInfoPoint = new Control()
                     {

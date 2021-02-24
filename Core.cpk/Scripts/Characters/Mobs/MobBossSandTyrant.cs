@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -72,8 +73,6 @@
 
         private const double VictoryLearningPointsBonusToEachAlivePlayer = 50;
 
-        private static readonly int MaxLootWinners;
-
         private static readonly Lazy<IProtoStaticWorldObject> ProtoLootObjectLazy
             = new(GetProtoEntity<ObjectSandTyrantRemains>);
 
@@ -87,14 +86,25 @@
 
         private static readonly double ServerBossDifficultyCoef;
 
+        private static readonly int ServerMaxLootWinners;
+
         private IReadOnlyList<AiWeaponPreset> weaponsListMissiles;
 
         private IReadOnlyList<AiWeaponPreset> weaponsListPrimary;
 
         static MobBossSandTyrant()
         {
+            if (Api.IsClient)
+            {
+                return;
+            }
+
             var key = "BossDifficultySandTyrant";
-            var defaultValue = 5.0; // by default the boss is balanced for 5 players
+            // by default the boss is balanced for 5 players
+            var defaultValue = Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                   ? 1.0
+                                   : 5.0;
+
             var description =
                 @"Difficulty of the Sand Tyrant (and the amount of loot/reward).
                   The number corresponds to the number of players necessary to kill the boss
@@ -121,8 +131,8 @@
             // coef range from 0.2 to 2.0
             ServerBossDifficultyCoef = requiredPlayersNumber / 5.0;
 
-            MaxLootWinners = (int)Math.Ceiling(requiredPlayersNumber * 2);
-            MaxLootWinners = Math.Max(MaxLootWinners, 5); // ensure at least 5 winners
+            ServerMaxLootWinners = (int)Math.Ceiling(requiredPlayersNumber * 2);
+            ServerMaxLootWinners = Math.Max(ServerMaxLootWinners, 5); // ensure at least 5 winners
         }
 
         public override bool AiIsRunAwayFromHeavyVehicles => false;
@@ -201,7 +211,7 @@
                                     lootObjectProto: ProtoLootObjectLazy.Value,
                                     lootObjectsDefaultCount: DeathSpawnLootObjectsDefaultCount,
                                     lootObjectsRadius: DeathSpawnLootObjectsRadius,
-                                    maxLootWinners: MaxLootWinners);
+                                    maxLootWinners: ServerMaxLootWinners);
                             }
                             finally
                             {

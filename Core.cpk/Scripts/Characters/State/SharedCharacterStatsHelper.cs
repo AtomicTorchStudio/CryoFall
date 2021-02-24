@@ -61,6 +61,12 @@
 
                 foreach (var statusEffect in privateState.StatusEffects)
                 {
+                    if (statusEffect.IsDestroyed)
+                    {
+                        // the status effect might be already destroyed but still remain in the list
+                        continue;
+                    }
+
                     var protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
                     tempStatsCache.Merge(protoStatusEffect.ProtoEffects);
                 }

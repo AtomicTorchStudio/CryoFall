@@ -108,6 +108,8 @@
         /// <inheritdoc />
         public abstract double ObstacleBlockDamageCoef { get; }
 
+        public virtual ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit => null;
+
         public override double ServerUpdateIntervalSeconds => 1;
 
         public virtual double StructureExplosiveDefenseCoef => 0;

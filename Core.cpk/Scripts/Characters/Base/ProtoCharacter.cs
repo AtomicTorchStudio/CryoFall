@@ -52,6 +52,8 @@
 
         public virtual double ObstacleBlockDamageCoef => 1;
 
+        public virtual ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit => null;
+
         public abstract double PhysicsBodyAccelerationCoef { get; }
 
         public abstract double PhysicsBodyFriction { get; }

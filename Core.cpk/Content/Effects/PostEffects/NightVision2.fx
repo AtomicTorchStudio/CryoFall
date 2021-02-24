@@ -13,12 +13,6 @@ float Intensity;
 float AdditionalLight;
 float Time;
 
-float GetVignettingCoef(float relativeScreenPosition)
-{
-	float result = 1 - abs(relativeScreenPosition - 0.5) * 2;
-	return result;
-}
-
 // Note: this shader effect is partially based on https://www.shadertoy.com/view/4sXSWs
 float3 ApplyNoise(float3 c, float2 uv, float intensity)
 {    

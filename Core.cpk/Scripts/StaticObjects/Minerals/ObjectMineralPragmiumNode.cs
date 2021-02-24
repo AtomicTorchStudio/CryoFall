@@ -42,6 +42,9 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
+        public override ReadOnlySoundPreset<ObjectMaterial> OverrideSoundPresetHit
+            => MaterialHitsSoundPresets.OverridePragmium;
+
         public override double ServerUpdateIntervalSeconds => 60;
 
         public override float StructurePointsMax => 500;

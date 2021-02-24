@@ -45,13 +45,16 @@
         public override void Draw(
             IRenderTarget2D source,
             IRenderTarget2D destination,
-            IGraphicsDevice graphicsDevice)
+            IGraphicsDevice graphicsDevice,
+            Vector2D originalSize)
         {
             this.device.SetRenderTarget(destination);
             this.device.Clear(Color.FromArgb(0, 0, 0, 0));
 
             this.effect.Parameters
-                .Set("NoiseTextureUvScale", new Vector2F(source.Width, source.Height) / 256.0f);
+                .Set("NoiseTextureUvScale",
+                     new Vector2F((float)(originalSize.X / 256.0),
+                                  (float)(originalSize.Y / 256.0)));
 
             graphicsDevice.DrawTexture(
                 source,

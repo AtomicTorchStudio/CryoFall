@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     [SuppressMessage("ReSharper", "RedundantExplicitArraySize")]
@@ -69,13 +70,17 @@
 
             ServerLearningPointsGainMultiplier = ServerRates.Get(
                 "LearningPointsGainMultiplier",
-                defaultValue: 1.0,
+                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                  ? 2.0
+                                  : 1.0,
                 @"This rate determines the learning points rate
                   from skills experience and neural enhancer consumable item.");
 
             ServerSkillExperienceGainMultiplier = ServerRates.Get(
                 "SkillExperienceGainMultiplier",
-                defaultValue: 1.0,
+                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                  ? 2.0
+                                  : 1.0,
                 @"This rate determines the skill experience gain multiplier.                
                 If you want to make faster or slower skill progression (and so faster LP gain as well)
                 you can modify this multiplier to a higher value.");
@@ -85,6 +90,7 @@
             {
                 var key = "PvP.TimeGating";
                 var defaultValue = "24,72,120,168,216,216";
+
                 var description =
                     @"This rate determines the time-gating values for Tier 3-5 technologies on PvP servers.
                   Please configure a sequence in hours for Tier 3-5 technologies in the following format:

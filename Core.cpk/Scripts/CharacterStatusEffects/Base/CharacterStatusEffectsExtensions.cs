@@ -57,7 +57,7 @@
 
             ILogicObject statusEffect = null;
 
-            var statusEffects = InternalServerGetStatusEffects(character);
+            var statusEffects = InternalSharedGetStatusEffects(character);
             foreach (var existingStatusEffect in statusEffects)
             {
                 if (existingStatusEffect.ProtoGameObject == protoStatusEffect)
@@ -100,12 +100,12 @@
 
         public static IEnumerable<ILogicObject> ServerEnumerateCurrentStatusEffects(this ICharacter character)
         {
-            return InternalServerGetStatusEffects(character);
+            return InternalSharedGetStatusEffects(character);
         }
 
         public static void ServerRemoveAllStatusEffects(this ICharacter character, bool removeOnlyDebuffs = false)
         {
-            var statusEffects = InternalServerGetStatusEffects(character);
+            var statusEffects = InternalSharedGetStatusEffects(character);
             for (var index = 0; index < statusEffects.Count; index++)
             {
                 var statusEffect = statusEffects[index];
@@ -139,7 +139,7 @@
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }
 
-            var statusEffects = InternalServerGetStatusEffects(character);
+            var statusEffects = InternalSharedGetStatusEffects(character);
             for (var index = 0; index < statusEffects.Count; index++)
             {
                 var statusEffect = statusEffects[index];
@@ -183,7 +183,7 @@
                 throw new ArgumentException("Intensity to remove must be > 0", nameof(intensityToRemove));
             }
 
-            var statusEffects = InternalServerGetStatusEffects(character);
+            var statusEffects = InternalSharedGetStatusEffects(character);
             foreach (var statusEffect in statusEffects)
             {
                 if (statusEffect.ProtoGameObject != protoStatusEffect)
@@ -217,7 +217,7 @@
                 throw new ArgumentNullException(nameof(protoStatusEffect));
             }
 
-            var statusEffects = InternalServerGetStatusEffects(character);
+            var statusEffects = InternalSharedGetStatusEffects(character);
             foreach (var statusEffect in statusEffects)
             {
                 if (statusEffect.ProtoGameObject != protoStatusEffect)
@@ -266,7 +266,7 @@
                 if (Api.IsClient
                     && statusEffect.IsDestroyed)
                 {
-                    // the status effect might be already destroyed but its intensity could be > 0
+                    // the status effect might be already destroyed but still remain in the list
                     return 0;
                 }
 
@@ -288,7 +288,8 @@
             var statusEffects = InternalSharedGetStatusEffects(character);
             foreach (var statusEffect in statusEffects)
             {
-                if (!(statusEffect.ProtoGameObject is TProtoStatusEffect))
+                if (!(statusEffect.ProtoGameObject is TProtoStatusEffect)
+                    || Api.IsClient && statusEffect.IsDestroyed)
                 {
                     continue;
                 }
@@ -309,12 +310,6 @@
 
             // don't have such status effect
             return false;
-        }
-
-        private static NetworkSyncList<ILogicObject> InternalServerGetStatusEffects(ICharacter character)
-        {
-            Api.ValidateIsServer();
-            return InternalSharedGetStatusEffects(character);
         }
 
         private static NetworkSyncList<ILogicObject> InternalSharedGetStatusEffects(ICharacter character)

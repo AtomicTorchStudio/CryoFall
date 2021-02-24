@@ -13,12 +13,6 @@ sampler2D TextureScreenBufferSampler : register(s0) = sampler_state
 float Intensity;
 float Time;
 
-float GetVignettingCoef(float relativeScreenPosition)
-{
-	float result = 1 - abs(relativeScreenPosition - 0.5) * 2;
-	return result;
-}
-
 float4 MainPS(VSOutput input) : COLOR0
 {     
 	float2 uv = input.TexCoord;

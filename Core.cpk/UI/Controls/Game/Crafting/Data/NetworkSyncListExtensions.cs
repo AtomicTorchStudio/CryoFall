@@ -17,9 +17,7 @@
                 Func<TKey, TViewModel> func)
             where TViewModel : IDisposable
         {
-            return new(
-                netList,
-                func);
+            return new(netList, func);
         }
     }
 }

@@ -18,6 +18,8 @@
 
         private readonly EffectInstance effect;
 
+        private Size2F? scale;
+
         private IComponentSpriteRenderer spriteRendererOutline;
 
         private IRenderTarget2D spriteRendererOutlineTexture;
@@ -39,7 +41,8 @@
         public override void Draw(
             IRenderTarget2D source,
             IRenderTarget2D destination,
-            IGraphicsDevice graphicsDevice)
+            IGraphicsDevice graphicsDevice,
+            Vector2D originalSize)
         {
             // setup and draw the outline into a separate render texture that will be later drawn as an overlay
             this.effect.Parameters.Set("OutlineSize",
@@ -58,10 +61,10 @@
                                                     destination.Width,
                                                     destination.Height);
                 this.spriteRendererOutline.TextureResource = this.spriteRendererOutlineTexture;
-
-                var scale = 1 / (Rendering.WorldCameraCurrentZoom * Rendering.MainComposerViewportScale);
-                this.spriteRendererOutline.Scale = scale;
             }
+
+            this.spriteRendererOutline.Size = ((this.scale?.X ?? 1) * originalSize.X / 2,
+                                               (this.scale?.Y ?? 1) * originalSize.Y / 2);
 
             this.device.SetRenderTarget(this.spriteRendererOutlineTexture);
             this.device.Clear(Color.FromArgb(0, 0, 0, 0));
@@ -90,9 +93,10 @@
             return (source.Width, source.Height);
         }
 
-        public void Setup(IComponentSpriteRenderer spriteRendererOutline)
+        public void Setup(IComponentSpriteRenderer spriteRendererOutline, Size2F? scale)
         {
             this.spriteRendererOutline = spriteRendererOutline;
+            this.scale = scale;
         }
     }
 }
