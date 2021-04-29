@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+A República Galáctica é o núcleo da civilização humana e o principal poder da galáxia, com a Terra em seu centro. Cada um dos mundos da República tem o mesmo direito de voto, sendo legalmente obrigado a seguir a lei galáctica; no entanto, fora disso, cada mundo é amplamente independente para seguir políticas e interesses próprios.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+República Galáctica
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+Mundos independentes são aqueles que optaram por não aderir à República, mantendo o controle total de suas políticas e forças armadas. Entretanto, devido à pressão política e econômica, esses mundos ainda estão em grande parte interligados com a República Galáctica, semelhante às pequenas cidades-estado do século 21. Algumas pessoas também se referem a esses mundos independentes como mundos Marginais.
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+Mundos Independentes
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+O Protetorado da Orla Externa forma a periferia fora dos planetas centrais e consiste principalmente de mundos industriais menos desenvolvidos. Esses mundos geralmente seguem as políticas de uma das muitas grandes corporações industriais e estão unidos em coalizões formadas livremente, impulsionadas por interesses econômicos. À medida que a República Galáctica se expande, com o tempo estes mundos são absorvidos como estados-membros adequados da República.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+Protetorado da Orla Externa
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+O Diretorado é uma facção isolacionista composta de vários mundos que se separaram da República devido a uma disputa ideológica e mais tarde se tornaram um poder independente e bastante substancial. Está localizado no limite externo do núcleo da República e cercado por mundos da República de todos os lados. O Diretorado está em estado de guerra fria com a República há séculos, não tendo relações comerciais nem praticamente nenhum laço diplomático.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+O Diretorado
+

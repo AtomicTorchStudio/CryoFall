@@ -14,6 +14,7 @@
     xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid"
     xmlns:shieldProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowLandClaim, IsDesignTimeCreatable=True}">
@@ -96,7 +97,6 @@
             </Grid>
 
             <TabControl
-                x:Name="TabControl"
                 Visibility="{Binding IsLandClaimDecayInfoConfirmed, Converter={StaticResource BoolToVisibilityConverter}}"
                 Style="{StaticResource TabControlCompactStyle}">
 
@@ -371,51 +371,77 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
-                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="20" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Orientation="Vertical"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
-                            <StackPanel Orientation="Horizontal">
-                                <!-- Text: Owner -->
-                                <TextBlock Text="{x:Static loc:CoreStrings.TitleOwner}"
-                                           FontWeight="Bold"
-                                           FontSize="14"
-                                           Foreground="White" />
-                                <TextBlock Text=":"
-                                           FontWeight="Bold"
-                                           FontSize="14"
-                                           Foreground="White" />
+                            <i:Interaction.Triggers>
+                                <i:DataTrigger Binding="{Binding ViewModelOwnersEditor.IsMaxOwnersMoreThanOne}"
+                                               Value="False">
+                                    <i:ChangePropertyAction PropertyName="Grid.ColumnSpan" Value="3" />
+                                </i:DataTrigger>
+                            </i:Interaction.Triggers>
+
+                            <StackPanel Orientation="Vertical"
+                                        HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Text: Owner -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.TitleOwner}"
+                                               FontWeight="Bold"
+                                               FontSize="14"
+                                               Foreground="White" />
+                                    <TextBlock Text=":"
+                                               FontWeight="Bold"
+                                               FontSize="14"
+                                               Foreground="White" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,2">
+                                    <!-- Bullet point -->
+                                    <Ellipse
+                                        Width="6"
+                                        Height="6"
+                                        Fill="{StaticResource BrushColor6}"
+                                        VerticalAlignment="Center"
+                                        Margin="0,0,3,0" />
+
+                                    <TextBlock Text="{Binding FounderName}"
+                                               FontSize="12"
+                                               FontWeight="Bold"
+                                               Foreground="{StaticResource BrushColor6}"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+
+                                <Button Command="{Binding CommandTransferLandClaimToFactionOwnership}"
+                                        Content="{x:Static loc:CoreStrings.WindowLandClaim_TransferToFactionOwnership}"
+                                        IsEnabled="{Binding CanOpenTransferToFactionOwnershipDialog}"
+                                        Focusable="False"
+                                        Margin="0,5,0,10"
+                                        FontSize="13"
+                                        MinHeight="0"
+                                        Padding="10,3"
+                                        MinWidth="70"
+                                        HorizontalAlignment="Left" />
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,2">
-                                <!-- Bullet point -->
-                                <Ellipse
-                                    Width="6"
-                                    Height="6"
-                                    Fill="{StaticResource BrushColor6}"
-                                    VerticalAlignment="Center"
-                                    Margin="0,0,3,0" />
-
-                                <TextBlock Text="{Binding FounderName}"
-                                           FontSize="12"
-                                           FontWeight="Bold"
-                                           Foreground="{StaticResource BrushColor6}"
-                                           VerticalAlignment="Center" />
-                            </StackPanel>
-
-                            <Button Command="{Binding CommandTransferLandClaimToFactionOwnership}"
-                                    Content="{x:Static loc:CoreStrings.WindowLandClaim_TransferToFactionOwnership}"
-                                    IsEnabled="{Binding CanTransferToFactionOwnership}"
-                                    Focusable="False"
-                                    Margin="0,5,0,0"
-                                    FontSize="13"
-                                    MinHeight="0"
-                                    Padding="10,3"
-                                    MinWidth="70" />
+                            <ContentControl HorizontalAlignment="Left">
+                                <core:FormattedTextBlock
+                                    Text="{x:Static loc:CoreStrings.WindowLandClaim_TransferToFactionOwnership_Description}"
+                                    Visibility="{Binding IsMaxFactionSizeLargerThanSinglePlayer, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    Style="{StaticResource TextBlockMenuPlaceholderStyle}"
+                                    FontSize="12"
+                                    LineHeight="13" />
+                            </ContentControl>
                         </StackPanel>
+
+                        <Control Grid.Column="1"
+                                 Style="{StaticResource ControlVerticalSeparator}"
+                                 DataContext="{Binding ViewModelOwnersEditor}"
+                                 Visibility="{Binding IsMaxOwnersMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                         <worldObjects:WorldObjectOwnersEditorControl
                             Grid.Column="2"
@@ -431,7 +457,7 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         <core:FormattedTextBlock
-                            Text="{Binding OwnedByFactionClanTag, StringFormat={}{x:Static loc:CoreStrings.WindowLandClaim_ManagedByFaction_Format}}"
+                            Text="{Binding OwnedByFactionClanTag, StringFormat={x:Static loc:CoreStrings.WindowLandClaim_ManagedByFaction_Format}}"
                             Style="{StaticResource TextBlockMenuPlaceholderStyle}"
                             HorizontalAlignment="Left" />
                         <core:FormattedTextBlock

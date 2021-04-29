@@ -37,6 +37,15 @@ Ratel
 Scripts/Characters/Mobs/MobHyena@Name:
 Hyène
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+Cochon mutant
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+Hyène mutante
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+Loup mutant
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolin
 

@@ -43,7 +43,6 @@
         protected ProtoItemDroneControl()
         {
             var typeName = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Drones/" + typeName);
 
             this.CharacterTextureResource = new TextureResource(
                 "Characters/Tools/" + typeName,
@@ -59,8 +58,6 @@
         public sealed override uint DurabilityMax => this.durabilityMax;
 
         public override double GroundIconScale => 1.33;
-
-        public override ITextureResource Icon { get; }
 
         public override bool IsRepairable => true;
 

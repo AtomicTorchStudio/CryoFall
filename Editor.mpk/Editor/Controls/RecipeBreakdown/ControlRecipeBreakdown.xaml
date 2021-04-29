@@ -97,6 +97,7 @@
                 </StackPanel.Resources>
 
                 <Image Source="/UI/Images/Icons/Clock.png"
+                       UseLayoutRounding="True"
                        VerticalAlignment="Center"
                        Margin="0,0,1,0"
                        Width="15"

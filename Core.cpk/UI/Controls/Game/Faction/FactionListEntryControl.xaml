@@ -53,6 +53,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <!-- Emblem -->
         <Rectangle Grid.Row="0"
                    Grid.RowSpan="2"
                    Grid.Column="0"
@@ -61,7 +62,7 @@
                    VerticalAlignment="Top"
                    Width="64"
                    Height="64"
-                   Margin="0,3,0,3">
+                   Margin="0,3">
             <Rectangle.Effect>
                 <DropShadowEffect
                     BlurRadius="5"
@@ -73,37 +74,9 @@
         </Rectangle>
 
         <!-- Clan tag display -->
-        <StackPanel Grid.Row="0"
-                    Grid.Column="2"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    MinWidth="70">
-            <TextBlock Text="["
-                       Foreground="{StaticResource BrushColorAlt5}"
-                       FontFamily="{StaticResource WesternCondensedFontFamily}"
-                       FontSize="22"
-                       FontWeight="Bold" />
-            <TextBlock Text="{Binding ClanTag}"
-                       Foreground="#FFEEEEEE"
-                       FontFamily="{StaticResource WesternCondensedFontFamily}"
-                       FontSize="22"
-                       FontWeight="Bold"
-                       TextWrapping="NoWrap"
-                       TextTrimming="None" />
-            <TextBlock Text="]"
-                       Foreground="{StaticResource BrushColorAlt5}"
-                       FontFamily="{StaticResource WesternCondensedFontFamily}"
-                       FontSize="22"
-                       FontWeight="Bold" />
-            <StackPanel.Effect>
-                <DropShadowEffect
-                    BlurRadius="5"
-                    Direction="315"
-                    ShadowDepth="3"
-                    Opacity="0.8"
-                    Color="Black" />
-            </StackPanel.Effect>
-        </StackPanel>
+        <faction:FactionClientTagControl Grid.Row="0"
+                                         Grid.Column="2"
+                                         ClanTag="{Binding ClanTag}" />
 
         <Grid Grid.Row="0"
               Grid.Column="4"
@@ -132,7 +105,7 @@
                       Height="12"
                       Width="12" />
                 <core:FormattedTextBlock
-                    Text="{Binding FactionLevel, StringFormat={}{x:Static loc:CoreStrings.Faction_Level_Format}}"
+                    Text="{Binding FactionLevel, StringFormat={x:Static loc:CoreStrings.Faction_Level_Format}}"
                     Margin="3,0,0,0" />
             </StackPanel>
 
@@ -143,7 +116,7 @@
                         VerticalAlignment="Center">
                 <!-- Private faction icon -->
                 <Path
-                    Data="m 179.279,688.044 h -23.41 v 0 -37.891 c 0,-15.387 -12.478,-27.86 -27.869,-27.86 -15.392,0 -27.869,12.473 -27.869,27.86 v 37.891 0 H 76.7213 v -39.005 h 0.0282 C 77.3446,621.243 100.053,598.89 128,598.89 c 27.947,0 50.655,22.353 51.251,50.149 h 0.028 z m -111.278787,7.81377 c -4.418295,0 -7.999507,3.58152 -7.999507,7.99952 v 111.03222 c 0,4.418 3.581212,8.00097 7.999507,8.00097 H 188.00021 c 4.418,0 7.99951,-3.58297 7.99951,-8.00097 V 703.85729 c 0,-4.418 -3.58151,-7.99952 -7.99951,-7.99952 z m 60.556637,34.53369 c 8.31201,0 15.04981,6.73641 15.04981,15.04541 0,6.658 -4.33115,12.29684 -10.32715,14.27784 l 5.86816,26.39941 h -22.29638 l 5.95312,-26.77588 c -5.455,-2.259 -9.29589,-7.63037 -9.29589,-13.90137 0,-8.309 6.73734,-15.04541 15.04833,-15.04541 z"
+                    Data="{StaticResource IconGeometryFactionPrivate}"
                     Fill="{StaticResource BrushColorAlt7}"
                     Visibility="{Binding IsPublicFaction, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                     Stretch="Uniform"
@@ -153,7 +126,7 @@
 
                 <!-- Public faction icon -->
                 <Path
-                    Data="m 243.997,687.888 h -23.509 v 0 -37.824 c 0,-15.36 -12.531,-27.812 -27.988,-27.812 -15.457,0 -27.988,12.452 -27.988,27.812 v 37.824 0 h -23.509 v -38.937 h 0.028 c 0.598,-27.747 23.403,-50.061 51.469,-50.061 28.066,0 50.871,22.314 51.469,50.061 h 0.028 z m -189.997489,7.97026 c -4.418301,0 -7.999512,3.58151 -7.999512,7.99951 v 111.03222 c 0,4.418 3.581211,7.99952 7.999512,7.99952 H 173.99951 c 4.41799,0 8.00097,-3.58152 8.00097,-7.99952 V 703.85777 c 0,-4.418 -3.58298,-7.99951 -8.00097,-7.99951 z m 60.558099,34.53369 c 8.312,0 15.04981,6.73641 15.04981,15.0454 0,6.65801 -4.33215,12.29684 -10.32715,14.27784 l 5.8667,26.39941 h -22.29492 l 5.95166,-26.77588 c -5.455,-2.259 -9.295901,-7.63036 -9.295901,-13.90137 0,-8.30899 6.738801,-15.0454 15.049801,-15.0454 z"
+                    Data="{StaticResource IconGeometryFactionPublic}"
                     Fill="{StaticResource BrushColorAlt7}"
                     Visibility="{Binding IsPublicFaction, Converter={StaticResource BoolToVisibilityConverter}}"
                     Stretch="Uniform"
@@ -179,7 +152,7 @@
                         Orientation="Horizontal">
                 <!-- Members icon -->
                 <Path
-                    Data="m 128.5,686.435 c -14.268,0 -25.835,-11.179 -25.835,-24.968 0,-13.79 11.567,-24.968 25.835,-24.968 14.268,0 25.835,11.178 25.835,24.968 0,13.789 -11.567,24.968 -25.835,24.968 z m -16.147,1.56 c 0,0 6.863,4.682 16.147,4.682 9.284,0 16.147,-4.682 16.147,-4.682 l 6.458,1.561 35.523,51.496 -14.532,9.363 -19.376,-29.649 v 93.63 H 133.344 V 766.02 h -4.844 -4.844 v 48.376 H 104.28 v -93.63 L 84.9042,750.415 70.372,741.052 105.895,689.556 Z M 53.99345,617.876 c -11.534999,0 -20.885741,9.113 -20.885741,20.354 0,11.241 9.350742,20.35401 20.885741,20.35401 11.5352,0 20.887206,-9.11301 20.887206,-20.35401 0,-11.241 -9.352006,-20.354 -20.887206,-20.354 z m -13.053222,41.97949 -5.222167,1.27295 -28.7182609,41.97949 11.7480459,7.63184 15.665039,-24.16992 v 76.32714 h 15.665038 v -39.43652 h 3.915527 3.916992 v 39.43652 H 73.574016 V 750.2217 l -10.302245,-6.78516 10.302245,-14.86377 v -42.00292 l 14.068361,21.70605 8.49609,-12.25782 -23.869626,-34.88964 -5.220704,-1.27295 c 0,0 -5.548787,3.81592 -13.054687,3.81592 -7.505999,0 -13.053222,-3.81592 -13.053222,-3.81592 z M 203.00614,617.876 c -11.535,0 -20.88574,9.113 -20.88574,20.354 0,11.241 9.35074,20.35401 20.88574,20.35401 11.535,0 20.88574,-9.11301 20.88574,-20.35401 0,-11.241 -9.35074,-20.354 -20.88574,-20.354 z m -13.05468,41.97949 -5.22071,1.27295 -23.42871,34.24658 8.48438,12.23877 13.63916,-21.04394 v 40.72265 l 11.18994,16.14404 -11.18994,7.63916 v 11.82129 h 15.66503 v -39.43652 h 3.91553 3.91699 v 39.43652 h 15.66358 v -76.32714 l 15.66504,24.16992 11.74804,-7.63184 -28.71826,-41.97949 -5.22217,-1.27295 c 0,0 -5.54722,3.81592 -13.05322,3.81592 -7.506,0 -13.05468,-3.81592 -13.05468,-3.81592 z"
+                    Data="{StaticResource IconGeometryFactionMembers}"
                     Fill="{StaticResource BrushColorAlt7}"
                     Stretch="Uniform"
                     VerticalAlignment="Center"
@@ -350,7 +323,7 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Bottom">
                 <core:FormattedTextBlock
-                    Text="{Binding TotalScoreString, StringFormat={}{x:Static loc:CoreStrings.Faction_Score_Format}}"
+                    Text="{Binding TotalScoreString, StringFormat={x:Static loc:CoreStrings.Faction_Score_Format}}"
                     Foreground="{StaticResource BrushColorAltLabelForeground}"
                     FontSize="13"
                     FontWeight="Normal"
@@ -362,7 +335,8 @@
                     <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
                              Canvas.Top="1">
                         <base:ToolTipServiceExtend.ToolTip>
-                            <faction:FactionLeaderboardMetricsInfoControl ClanTag="{Binding ClanTag}" />
+                            <faction:FactionLeaderboardMetricsInfoControl ClanTag="{Binding ClanTag}"
+                                                                          TotalScore="{Binding TotalScore}" />
                         </base:ToolTipServiceExtend.ToolTip>
                     </Control>
                 </Canvas>

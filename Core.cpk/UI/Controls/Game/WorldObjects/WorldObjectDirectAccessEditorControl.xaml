@@ -7,6 +7,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
     d:DataContext="{d:DesignInstance data:ViewModelWorldObjectDirectAccessEditor, IsDesignTimeCreatable=True}"
@@ -61,6 +62,16 @@
                                             <TextBlock Text="{Binding Description}"
                                                        TextWrapping="Wrap" />
                                         </RadioButton.Content>
+                                        <RadioButton.Resources>
+                                            <Thickness x:Key="ExtraMargin">0,8,0,2</Thickness>
+                                        </RadioButton.Resources>
+                                        <i:Interaction.Triggers>
+                                            <i:DataTrigger Binding="{Binding HasExtraPadding}"
+                                                           Value="True">
+                                                <i:ChangePropertyAction PropertyName="Margin"
+                                                                        Value="{StaticResource ExtraMargin}" />
+                                            </i:DataTrigger>
+                                        </i:Interaction.Triggers>
                                     </RadioButton>
                                 </ControlTemplate>
                             </Setter.Value>

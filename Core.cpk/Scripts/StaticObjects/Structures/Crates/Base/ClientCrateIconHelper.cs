@@ -39,6 +39,11 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
             }
 
             var originalIcon = GetOriginalIcon(protoEntity);
+            if (originalIcon is null)
+            {
+                return null;
+            }
+
             if (IconsCache.TryGetValue(originalIcon, out var weakReference)
                 && weakReference.TryGetTarget(out var proceduralTexture))
             {
@@ -53,6 +58,32 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
                 dependsOn: new[] { originalIcon });
             IconsCache[originalIcon] = new WeakReference<ProceduralTexture>(proceduralTexture);
             return proceduralTexture;
+        }
+
+        public static ITextureResource GetOriginalIcon(IProtoEntity protoEntity)
+        {
+            switch (protoEntity)
+            {
+                case IProtoItem protoItem:
+                {
+                    return protoItem.Icon;
+                }
+
+                case IProtoCharacterMob protoCharacterMob:
+                {
+                    return protoCharacterMob.Icon;
+                }
+
+                case TechGroup techGroup:
+                {
+                    return techGroup.Icon;
+                }
+
+                default:
+                {
+                    return null;
+                }
+            }
         }
 
         private static async Task<ITextureResource> GenerateIcon(
@@ -97,32 +128,6 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
             renderTexture.Dispose();
             request.ThrowIfCancelled();
             return generatedTexture;
-        }
-
-        public static ITextureResource GetOriginalIcon(IProtoEntity protoEntity)
-        {
-            switch (protoEntity)
-            {
-                case IProtoItem protoItem:
-                {
-                    return protoItem.Icon;
-                }
-
-                case IProtoCharacterMob protoCharacterMob:
-                {
-                    return protoCharacterMob.Icon;
-                }
-
-                case TechGroup techGroup:
-                {
-                    return techGroup.Icon;
-                }
-
-                default:
-                {
-                    return null;
-                }
-            }
         }
     }
 }

@@ -45,7 +45,7 @@
         {
             var upgradeTargetStructure = this.effect.Structure;
 
-            foreach (var protoObjectStructure in StructuresHelper.AllStructuresIncludingUpgrades)
+            foreach (var protoObjectStructure in StructuresHelper.AllConstructableStructuresIncludingUpgrades)
             {
                 var configUpgrade = protoObjectStructure.ConfigUpgrade;
                 if (configUpgrade is null

@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Player
 {
     using System;
+    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
+    using AtomicTorch.CBND.CoreMod.CharacterOrigins;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.Characters.Input.ClientPrediction;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
@@ -17,6 +19,7 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
@@ -52,7 +55,7 @@
         /// <summary>
         /// Uncomment to let CryoFall Editor launch with the character customization menu.
         /// </summary>
-        public const bool IsEditorModeAutoSelectingAppearance = true;
+        public const bool IsEditorModeAutoSelectingAppearanceAndOrigin = true;
 
         private const double InteractionRadius = 1.5;
 
@@ -307,13 +310,24 @@
 
             RefreshCurrentSelectedItem();
 
+            // ReSharper disable all AccessToModifiedClosure
             void RefreshCurrentSelectedItem()
             {
-                previousSelectedProtoItem?.SharedGetItemSoundPreset()
-                                         .PlaySound(ItemSound.Deselect, character);
+                var currentItem = publicState.SelectedItem;
+                if (previousSelectedProtoItem is not null)
+                {
+                    var soundPreset = previousSelectedProtoItem.SharedGetItemSoundPreset();
+                    if (soundPreset.GetSound(ItemSound.Deselect) != SoundResource.NoSound)
+                    {
+                        soundPreset.PlaySound(ItemSound.Deselect, character);
+                    }
+                    else if (currentItem is null)
+                    {
+                        soundPreset.PlaySound(ItemSound.DeselectOnEmpty, character);
+                    }
+                }
 
                 currentItemIdleSoundEmitter.Stop();
-                var currentItem = publicState.SelectedItem;
                 var itemSoundPreset = currentItem?
                                       .ProtoItem
                                       .SharedGetItemSoundPreset();
@@ -374,7 +388,7 @@
                 clientState,
                 publicState);
 
-            if (!privateState.IsAppearanceSelected)
+            if (!CharacterCreationSystem.SharedIsCharacterCreated(character))
             {
                 MenuCharacterCreation.Open();
                 return;
@@ -450,7 +464,7 @@
             var character = data.GameObject;
             var publicState = data.PublicState;
 
-            if (!Api.IsEditor)
+            if (CharacterCreationSystem.SharedIsEnabled)
             {
                 NewbieProtectionSystem.ServerRegisterNewbie(character);
 
@@ -465,7 +479,8 @@
                 publicState.FaceStyle = SharedCharacterFaceStylesProvider
                                         .GetForGender(publicState.IsMale)
                                         .GetDefaultFaceInEditor();
-                data.PrivateState.IsAppearanceSelected = IsEditorModeAutoSelectingAppearance;
+                data.PrivateState.IsAppearanceSelected = IsEditorModeAutoSelectingAppearanceAndOrigin;
+                data.PrivateState.Origin = FindProtoEntities<ProtoCharacterOrigin>().FirstOrDefault();
             }
 
             ServerPlayerSpawnManager.ServerAddTorchItemIfNoItems(character);

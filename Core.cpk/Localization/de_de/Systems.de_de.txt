@@ -155,6 +155,19 @@ Neue Rezeptur kann nicht hinzugefügt werden
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Kein Abriss möglich
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+Deine Fraktion ist in der Rangliste von #{0} auf #{1} gefallen.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+Fraktionsrang gefallen
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`Deine Fraktion ist in der Rangliste von #{0} zu #{1} aufgestiegen.
+[br]Weiter so!`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+Fraktionsrang gestiegen
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 Mitgliedszahl
 
@@ -184,6 +197,12 @@ Mitglieder entfernen
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 Diplomatie-Management
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+Fahrzeugzugangsverwaltung
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+Basis-S.H.I.E.L.D-Verwaltung
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 Deputy
@@ -326,20 +345,41 @@ Fraktionsterritorium erweitert bei {0}.
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 Fraktionsterritorium entfernt bei {0}.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+Vergeben für Konstruktionen, die Fraktionsrangpunkte gewähren und sich innerhalb von Fraktionsbasen befinden (es zählen nur Land Claims, die in Fraktionsbesitz übergegangen sind).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-Vermögen aller Fraktionsbasen
+Reichtums-Score
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+Umso höher der Fraktionslevel ist, desto mehr Punkte werden vergeben!
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 Fraktionslevel
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+Vergeben für das Töten von Weltbossen, verhältnismäßig zur Menge der erhaltenen Beute.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Boss-Score
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+Vergeben für das Töten jedes Lebewesens als Mitglied einer Fraktion.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 Jagd-Score
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-LP insgesamt
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+Vergeben für das Erlangen von LP als Mitglied einer Fraktion. Gilt nicht für LP von Quests und konsumierbaren Gegenständen.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+Lernpunkte-Score
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+Vergeben für eroberte Öl- und Lithiumvorkommen pro Stunde (der Land Claim muss in Fraktionsbesitz übergegangen sein).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+Ressourcenvorherrschafts-Score
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 Du hast keinen Angelköder in deinem Inventar.

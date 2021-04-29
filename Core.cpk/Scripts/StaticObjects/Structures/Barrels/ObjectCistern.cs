@@ -9,6 +9,10 @@
 
     public class ObjectCistern : ProtoObjectBarrel
     {
+        public override byte ContainerInputSlotsCount => 2;
+
+        public override byte ContainerOutputSlotsCount => 2;
+
         public override string Description => "Huge cistern for long-term storage of large volumes of liquids.";
 
         public override ushort LiquidCapacity => 10000;

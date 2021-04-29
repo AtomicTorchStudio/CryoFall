@@ -37,6 +37,15 @@ Bal porsuğu
 Scripts/Characters/Mobs/MobHyena@Name:
 Sırtlan
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+Mutasyonlu domuz
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+Mutasyonlu hyena
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+Mutasyonlu kurt
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 Karıncayiyen
 

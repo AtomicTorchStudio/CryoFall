@@ -7,11 +7,11 @@
     {
         public delegate void StructureDelegate(IStaticWorldObject structure);
 
-        public static event StructureDelegate StructureDestroyed;
+        public static event StructureDelegate StructureRemoved;
 
-        public static void NotifyObjectDestroyed(IStaticWorldObject structure)
+        public static void NotifyObjectRemoved(IStaticWorldObject structure)
         {
-            Api.SafeInvoke(() => StructureDestroyed?.Invoke(structure));
+            Api.SafeInvoke(() => StructureRemoved?.Invoke(structure));
         }
     }
 }

@@ -155,6 +155,19 @@ Nie można dodać nowego przepisu
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Nie można wyburzyć
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+Twoja frakcja spadła z miejsca {0}. na {1}. w tabeli liderów.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+Ranking frakcji spada
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`Twoja frakcja wspięła się z miejsca {0}. na {1}. w tabeli liderów.
+[br]Dobra robota!`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+Ranking frakcji rośnie
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 Numer członka
 
@@ -184,6 +197,12 @@ Usuwanie członków
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 Zarządzanie dyplomacją
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+Zarządzanie dostępem do pojazdów
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+Zarządzanie T.A.R.C.Z.Ą. bazy
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 Zastępca
@@ -326,20 +345,41 @@ Terytorium frakcji powiększyło się: {0}.
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 Terytorium frakcji zostało usunięte: {0}.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+Przyznawane strukturom, które mają wartość punktową wyniku frakcji, znajdującym się na terenie baz należących do frakcji (zliczane są tylko działki, których właścicielami jest frakcja).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-Bogactwo baz frakcji
+Wynik – bogactwo
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+Im wyższy poziom frakcji, tym więcej punktów jest przyznawanych!
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 Poziom frakcji
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+Przyznawane za zabicie bossów; proporcjonalne do ilości otrzymanych łupów.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Wynik – boss
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+Przyznawane za zabicie dowolnego stworzenia, gdy gracz jest członkiem frakcji.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 Wynik – polowanie
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-PT łącznie
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+Przyznawane za zdobywanie PT w czasie przynależności do frakcji. Nie dotyczy PT zdobytych za zadania i przedmioty zużywalne.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+Wynik – punkty technologii
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+Przyznawane co godzinę za przejmowane złoża ropy i litu (właścicielem ziemi musi być frakcja).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+Wynik – posiadanie zasobów
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 W ekwipunku nie masz żadnej przynęty, którą można wykorzystać do wędkowania.

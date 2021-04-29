@@ -17,7 +17,7 @@
         public string ClanTag { get; }
 
         public Brush Emblem
-            => ClientFactionEmblemCache.GetEmblemTextureBrush(this.ClanTag);
+            => ClientFactionEmblemBrushCache.GetEmblemTextureBrush(this.ClanTag);
 
         public string LeaderName => null;
 

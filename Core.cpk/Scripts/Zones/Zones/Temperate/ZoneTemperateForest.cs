@@ -48,7 +48,10 @@
                 // aggressive
                 .Add(GetScript<SpawnMobsWolf>().Configure(densityMultiplier: 0.8))
                 .Add(GetScript<SpawnMobsWildBoar>().Configure(densityMultiplier: 0.8))
-                .Add(GetScript<SpawnMobsSnakeGreen>().Configure(densityMultiplier: 0.8));
+                .Add(GetScript<SpawnMobsSnakeGreen>().Configure(densityMultiplier: 0.8))
+                // mutants
+                .Add(GetScript<SpawnMobsMutantWolf>())
+                .Add(GetScript<SpawnMobsMutantBoar>());
         }
     }
 }

@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
 
     /// <summary>
     /// Item prototype for tool.
@@ -26,7 +25,6 @@
     {
         protected ProtoItemTool()
         {
-            this.Icon = new TextureResource("Items/Tools/" + this.GetType().Name);
             ToolsConstants.EnsureInitialized();
         }
 
@@ -34,14 +32,12 @@
 
         public override double GroundIconScale => 1.25;
 
-        public override ITextureResource Icon { get; }
-
         public virtual bool IsRepairable => true;
 
         /// <summary>
         /// Tool cannot have stacks.
         /// </summary>
-        public sealed override ushort MaxItemsPerStack => ItemStackSize.Single;
+        public sealed override ushort MaxItemsPerStack => 1;
 
         public void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
         {
@@ -58,6 +54,11 @@
         public virtual void ServerOnItemDamaged(IItem item, double damageApplied)
         {
             ItemDurabilitySystem.ServerModifyDurability(item, delta: -(int)damageApplied);
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Tools/" + this.GetType().Name;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

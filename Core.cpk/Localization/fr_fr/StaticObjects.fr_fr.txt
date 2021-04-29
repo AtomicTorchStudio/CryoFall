@@ -124,6 +124,9 @@ Bombe à résonance
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Explosion de gisement
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Explosion de réacteur au pragmium
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Explosion de source de pragmium
 
@@ -593,6 +596,9 @@ Une tourelle automatisée légère.
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Tourelle légère
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Trop proche d'une autre tourelle
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Désactivée
 
@@ -707,6 +713,12 @@ Ce générateur utilise de l'essence pour produire de l'énergie électrique.
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Groupe électrogène
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Une grosse centrale énergétique au pragmium peut faire office d'unique source d'énergie pour une énorme base, mais nécessite d'être alimentée régulièrement en pragmium.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Centrale au pragmium
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Installation de base pour la génération d'énergie solaire. Nécessite des panneaux solaires pour fonctionner.
 
@@ -718,6 +730,12 @@ Ce générateur utilise la vapeur d'eau pour alimenter une turbine et produire d
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Générateur à vapeur
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Placez au moins 1 {0} pour démarrer le réacteur.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+Impossible de démarrer le réacteur
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Vous aide à rendre votre base plus sûre en empêchant les autres survivants de construire ou de démonter quelque chose dans les alentours. Les revendications territoriales évitent également à vos structures de se délabrer au fil du temps.

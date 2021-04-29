@@ -25,7 +25,10 @@
                 typeof(ItemSand),
                 typeof(ItemSalt),
                 typeof(ItemAsh),
-                typeof(ItemRubberRaw)
+                typeof(ItemRubberRaw),
+                typeof(ItemKeinite),
+                typeof(ItemFuelSack),
+                typeof(ItemSlime)
             };
 
         private readonly bool hasNextEntry;

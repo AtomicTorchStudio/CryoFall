@@ -44,22 +44,10 @@
         {
             protected override void ClientOnCompleted()
             {
-                if (this.IsCancelled)
-                {
-                    return;
-                }
-
-                //if (this.Character.SharedGetPlayerSelectedHotbarItemProto()
-                //        is IProtoItemToolWateringCan protoWateringCan)
-                //{
-                //    protoWateringCan.SharedGetItemSoundPreset()
-                //                    .PlaySound(ItemSound.Refill, this.Character);
-                //}
             }
 
             protected override void ClientOnStart()
             {
-                // TODO: play animation
             }
         }
     }

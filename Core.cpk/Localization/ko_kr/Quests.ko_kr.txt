@@ -12,10 +12,14 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 공구함을 갖게 되어, 기술 메뉴에서 잠겨 있지 않은 다른 구조물을 지을 수 있게 되었습니다. 음식을 요리할 수 있는 모닥불을 만들어 봅시다.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] 컨트롤을 변경하지 않았다면, "Tab"을 눌러 [b]건설 메뉴[/b]로 빠르게 이동할 수 있습니다
-[*] 더 많은 구조물을 잠금 해제 하였다면, 다양한 [b]건물 유형[/b]을 [b]여러 페이지[/b]로 확인할 수 있습니다.
-[*] 공구함은 구조물을 [b]건설[/b]할 때 뿐만 아니라, [b]수리[/b]할 때도 사용됩니다.`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+[b]\[{0}\][/b] 키로 [b]빌드 메뉴[/b]에 빠르게 접근할 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+더 많은 구조물의 잠금을 해제할수록 건설 메뉴에는 다양한 [b]건물 유형[/b]이 포함된 [b]페이지[/b]가 늘어납니다.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+구조물 [b]건설[/b]뿐만 아니라 [b]수리[/b]하는 데에도 공구함을 사용할 수 있습니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 모닥불 만들기
@@ -50,8 +54,8 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 이제 얻은 자원으로 제작을 할 수 있습니다. 우선, 밧줄을 만들어 봅시다. 그런 다음, 도끼를 만드세요.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] 키보드 컨트롤을 변경하지 않았다면, "C"로 제작 메뉴를, "E"로 인벤토리를 빠르게 열 수 있습니다.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+[b]\[{0}\][/b] 키로 제작 메뉴를, [b]\[{1}\][/b] 키로 인벤토리를 빠르게 열 수 있습니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 도끼 만들기
@@ -59,9 +63,11 @@ Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 다양한 광물을 채굴할 수 있다는 것은 CryoFall의 매우 중요한 특징입니다. 광물을 채굴하려면 곡괭이를 만들어야 합니다.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] 제작 메뉴 (기본적으로 "C")에서 곡괭이를 만들어 보세요.
-[*] 밧줄이 없다면, 밧줄을 먼저 만들어야 합니다.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+제작 메뉴([b]\[{0}\][/b] 키)를 열고 곡괭이를 만드세요.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+밧줄 몇 개가 없다면, 만들어야 할지도 모릅니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 곡괭이 만들기
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 초록색 약초 찾아 사용하기
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+학습 포인트는 유의미한 활동을 통해 획득되며, 스킬 경험치 획득과 정비례합니다.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+[b]\[{0}\][/b] 키로 기술 메뉴에 빠르게 접근할 수 있습니다.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+기술 노드의 잠금을 해제하려면 [b]LP[/b] (학습 포인트)가 필요합니다.
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `더 많은 구조물을 지으려면, 기술 메뉴에 있는 "기본 건물"의 잠금을 해제해야 합니다.`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] 컨트롤을 변경하지 않았다면, "G"를 눌러 기술 메뉴로 빠르게 이동할 수 있습니다.
-[*] 기술 노드의 잠금을 해제하려면 [b]LP[/b] (학습 포인트)가 필요합니다.
-[*] 학습 포인트는 다양한 활동으로 얻을 수 있으며, 이것으로 스킬을 배울 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 기본 건물 기술 배우기

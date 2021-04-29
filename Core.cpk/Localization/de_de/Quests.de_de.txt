@@ -12,10 +12,14 @@ Stelle einen Schlafsack her
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Jetzt, wo du einen Werkzeugkoffer besitzt, kannst du verschiedene Strukturen bauen, die du im Technologiemenü freigeschaltet hast. Beginnen wir mit einem Lagerfeuer, das zum Kochen von Nahrungsmitteln verwendet werden kann.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Drücke "Tab" um ins [b]Konstruktionsmenü[/b] zu gelangen, solange du nichts an der Steuerung verändert hast.
-[*] Das Konstruktionsmenü enthält [b]mehrere Seiten[/b] mit verschiedenen [b]Gebäudetypen[/b], die du nach und nach freischalten kannst.
-[*] Werkzeugkoffer dienen nicht nur zum [b]Bauen[/b], sondern auch zur [b]Reparatur[/b] von Strukturen.`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+Du kannst die [b]\[{0}\][/b] Taste drücken, um schnellen Zugang zum [b]Baumenü[/b] zu erhalten.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+Das Baumenü kann [b]mehrere Seiten[/b] mit verschiedenen [b]Konstruktionstypen[/b] enthalten, die du nach und nach freischalten kannst.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Werkzeugkoffer kannst du nicht nur zum [b]Bauen[/b] von Konstruktionen verwenden, sondern auch um diese zu [b]reparieren[/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Baue ein Lagerfeuer
@@ -50,8 +54,8 @@ Koche ein Lebensmittel
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Jetzt, wo du einige Ressourcen besitzt, kannst du mit ihrer Verarbeitung beginnen. Stelle zunächst ein Seil her. Wenn das erledigt ist – fertige eine Axt an.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] Falls du die standardmäßige Tastaturbelegung nicht verändert hast, kannst du das Werkstattmenü mit "C" und das Inventar mit "E" öffnen.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Du kannst die [b]\[{0}\][/b] Taste drücken, um schnellen Zugang zum Herstellungsmenü zu erhalten. Die [b]\[{1}\][/b] Taste öffnet das Inventar.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Stelle eine Axt her
@@ -59,9 +63,11 @@ Stelle eine Axt her
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Das Abbauen verschiedener Mineralien bietet dir Zugang zu den wertvollsten Ressourcen in CryoFall. Du musst eine Spitzhacke anfertigen, um diese Mineralien abbauen zu können.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Benutze dein Werkstattmenü (standardmäßig "C") und fertige eine Spitzhacke an.
-[*] Möglicherweise musst du Seil herstellen, sofern keines vorhanden ist.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Öffne dein Herstellungsmenü ([b]\[{0}\][/b] Taste) und fertige eine Spitzhacke.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+Falls du kein Seil besitzt, musst du dir eventuell eins fertigen.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Stelle eine Spitzhacke her
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Finde und benutze grünes Heilkraut
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Lernpunkte werden durch jede sinnvolle Tätigkeit gesammelt und verhalten sich direkt proportional zum Erfahrungsgewinn deiner Fähigkeiten.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+Du kannst die [b]\[{0}\][/b] Taste drücken, um schnellen Zugang zum Technologiemenü zu erhalten.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Um einen Technologiepunkt freizuschalten, benötigst du [b]LP[/b] (Lernpunkte).
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `Um Zugriff auf weitere Strukturen zu erhalten, musst du "Einfache Gebäude" im Technologiemenü freischalten.`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Sofern du die Tastaturbelegung nicht verändert hast, kannst du schnell aufs Technologiemenü zugreifen, indem du "G" drückst.
-[*] Um Technologieverbindungen freizuschalten, brauchst du [b]LP[/b] (Lernpunkte).
-[*] Lernpunkte können durch die Ausführung einer jeden sinnvollen Tätigkeit erhalten werden. Sie verhalten sich direkt proportional zum Erfahrungsanstieg deiner Fähigkeiten.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 Erlerne einfache Gebäudetechnologie

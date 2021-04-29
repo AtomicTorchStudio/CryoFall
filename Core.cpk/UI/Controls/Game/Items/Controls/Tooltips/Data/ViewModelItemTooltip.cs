@@ -29,9 +29,20 @@
         public string Description => this.protoItem.Description;
 
         public Brush Icon
-            => !IsDesignTime
-                   ? (Brush)Client.UI.GetTextureBrush(this.protoItem.Icon)
-                   : Brushes.BlueViolet;
+        {
+            get
+            {
+                if (IsDesignTime)
+                {
+                    return Brushes.BlueViolet;
+                }
+
+                return Client.UI.GetTextureBrush(
+                    this.item is null
+                        ? this.protoItem.Icon
+                        : this.protoItem.ClientGetIcon(this.item));
+            }
+        }
 
         public IReadOnlyList<UIElement> InfoControls { get; }
 

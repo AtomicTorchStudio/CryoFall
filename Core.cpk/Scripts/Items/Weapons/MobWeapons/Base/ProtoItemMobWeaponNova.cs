@@ -32,8 +32,6 @@
 
         public override uint DurabilityMax => 0;
 
-        public override ITextureResource Icon => null;
-
         public override bool IsLoopedAttackAnimation => false;
 
         public override string Name => this.ShortId;
@@ -107,6 +105,11 @@
         protected sealed override WeaponFireScatterPreset PrepareFireScatterPreset()
         {
             return new(Array.Empty<double>());
+        }
+
+        protected override ITextureResource PrepareIcon()
+        {
+            return null;
         }
 
         protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()

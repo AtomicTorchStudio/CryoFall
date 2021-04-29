@@ -46,9 +46,6 @@ Remplir d'eau le générateur à vapeur
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Ajouter de l'essence au groupe électrogène
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Sels de lithium de l'extracteur de minerai de lithium
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Remplir le bidon avec le pétrole brut de la pompe à pétrole
 
@@ -66,4 +63,7 @@ Faire bouillir l'eau
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Remplir la bouteille avec l'eau du puits
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Recyclage de composants de réacteur
 

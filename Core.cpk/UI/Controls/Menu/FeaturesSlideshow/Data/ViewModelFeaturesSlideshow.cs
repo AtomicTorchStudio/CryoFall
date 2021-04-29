@@ -144,21 +144,6 @@
             FeaturesSlideshow.IsDisplayed = false;
         }
 
-        private void RefreshIsButtonNextEnabled(double delay)
-        {
-            this.IsButtonNextEnabled = false;
-
-            var requestId = ++this.lastNextButtonEnableRequestId;
-            ClientTimersSystem.AddAction(delay,
-                                         () =>
-                                         {
-                                             if (requestId == this.lastNextButtonEnableRequestId)
-                                             {
-                                                 this.IsButtonNextEnabled = true;
-                                             }
-                                         });
-        }
-
         private void RefreshNavigationButtons()
         {
             var requestId = ++this.lastNextButtonEnableRequestId;

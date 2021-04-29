@@ -5,6 +5,8 @@
 
     public abstract class ProtoFactionScoreMetric : ProtoEntity
     {
+        public abstract string Description { get; }
+
         public abstract double FinalScoreCoefficient { get; }
 
         /// <summary>

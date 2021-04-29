@@ -11,6 +11,8 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.Systems.TeleportsSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character;
@@ -40,7 +42,7 @@
         where TPublicState : CharacterMobPublicState, new()
         where TClientState : BaseCharacterClientState, new()
     {
-        public const double AgroStateDuration = 5 * 60; // 5 minutes
+        public const double AggroStateDuration = 30; // 30 seconds
 
         // If the mob is too far away from the spawn position, it should be despawned after the delay.
         private const int DespawnTileDistanceThreshold = 10; // 10+ tiles away
@@ -74,9 +76,13 @@
 
         public abstract bool AiIsRunAwayFromHeavyVehicles { get; }
 
+        public virtual double AutoAggroNotificationDistance => 10;
+
         public virtual double BiomaterialValueMultiplier => 1.0;
 
         public virtual double CorpseInteractionAreaScale => 1.0;
+
+        public virtual double DespawnAnimationDuration => 1.0;
 
         public virtual ITextureResource Icon
         {
@@ -103,6 +109,8 @@
 
         public override string ShortId { get; }
 
+        public virtual double SpawnAnimationDuration => 1.0;
+
         public override double StatHealthRegenerationPerSecond => 10.0 / 60.0; // 10 health points per minute
 
         /// <summary>
@@ -125,6 +133,23 @@
             }
         }
 
+        public void ServerAggroNotification(
+            ICharacter currentCharacter,
+            ICharacter sourceCharacterMob,
+            ICharacter characterToAggro)
+        {
+            var privateState = GetPrivateState(currentCharacter);
+            if (privateState.CurrentAggroCharacter is not null)
+            {
+                return;
+            }
+
+            privateState.CurrentAggroCharacter = characterToAggro;
+            privateState.CurrentAggroTimeRemains = AggroStateDuration;
+            //Logger.Dev(
+            //    $"Mob aggro to player as friendly mob has aggroed: {currentCharacter} to {privateState.CurrentAggroCharacter} on {privateState.CurrentAggroTimeRemains:F2}s");
+        }
+
         public virtual void ServerOnDeath(ICharacter character)
         {
             this.ServerSendDeathSoundEvent(character);
@@ -140,32 +165,82 @@
 
             var objectCorpse = ServerWorld.CreateStaticWorldObject<ObjectCorpse>(tilePosition);
             ObjectCorpse.ServerSetupCorpse(objectCorpse,
+                                           character.Id,
                                            (IProtoCharacterMob)character.ProtoCharacter,
                                            (Vector2F)(position - tilePosition.ToVector2D()),
                                            isFlippedHorizontally: isFlippedHorizontally);
         }
 
-        public void ServerPlaySound(ICharacter characterNpc, CharacterSound characterSound)
+        public void ServerPlaySound(ICharacter character, CharacterSound characterSound)
         {
             using var observers = Api.Shared.GetTempList<ICharacter>();
 
             if (characterSound != CharacterSound.Aggression)
             {
-                ServerWorld.GetScopedByPlayers(characterNpc, observers);
+                ServerWorld.GetScopedByPlayers(character, observers);
             }
             else
             {
                 // this event is propagated on a larger distance and has sound cues
-                ServerWorld.GetCharactersInRadius(characterNpc.TilePosition,
+                ServerWorld.GetCharactersInRadius(character.TilePosition,
                                                   observers,
                                                   radius: this.SoundEventsNetworkRadius,
                                                   onlyPlayers: true);
             }
 
             this.CallClient(observers.AsList(),
-                            _ => _.ClientRemote_PlaySound(characterNpc,
-                                                          characterNpc.TilePosition,
+                            _ => _.ClientRemote_PlaySound(character,
+                                                          character.TilePosition,
                                                           characterSound));
+        }
+
+        public void ServerSetSpawnState(ICharacter character, MobSpawnState state)
+        {
+            var publicState = GetPublicState(character);
+            if (publicState.SpawnState == state)
+            {
+                return;
+            }
+
+            if (publicState.SpawnState == MobSpawnState.Despawning)
+            {
+                Logger.Warning(
+                    $"Cannot change the mob spawn state as it's despawning: {character} requested state: {state}");
+                return;
+            }
+
+            //Logger.Dev($"Mob spawn state is changing: {character} {publicState.SpawnState}->{state}");
+
+            switch (state)
+            {
+                case MobSpawnState.Spawned:
+                    publicState.SpawnState = MobSpawnState.Spawned;
+                    return;
+
+                case MobSpawnState.Spawning:
+                    publicState.SpawnState = MobSpawnState.Spawning;
+                    ServerTimersSystem.AddAction(
+                        this.SpawnAnimationDuration,
+                        () =>
+                        {
+                            if (!character.IsDestroyed
+                                && GetPublicState(character).SpawnState == MobSpawnState.Spawning)
+                            {
+                                this.ServerSetSpawnState(character, MobSpawnState.Spawned);
+                            }
+                        });
+                    return;
+
+                case MobSpawnState.Despawning:
+                    publicState.SpawnState = MobSpawnState.Despawning;
+                    ServerTimersSystem.AddAction(
+                        this.DespawnAnimationDuration,
+                        () => ServerWorld.DestroyObject(character));
+                    return;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(state), state, null);
+            }
         }
 
         public override IEnumerable<IItemsContainer> SharedEnumerateAllContainers(
@@ -189,10 +264,12 @@
             {
                 var characterMob = (ICharacter)targetObject;
                 var mobPrivateState = GetPrivateState(characterMob);
-                mobPrivateState.CurrentAgroCharacter = weaponCache.Character;
-                mobPrivateState.CurrentAgroTimeRemains = AgroStateDuration;
+                mobPrivateState.CurrentAggroCharacter = weaponCache.Character;
+                mobPrivateState.CurrentAggroTimeRemains = AggroStateDuration;
                 //Logger.Dev(
-                //    $"Mob damaged by player, let's agro: {targetObject} by {mobPrivateState.CurrentAgroCharacter} on {mobPrivateState.CurrentAgroTimeRemains:F2}s");
+                //    $"Mob damaged by player, let's aggro: {targetObject} by {mobPrivateState.CurrentAggroCharacter} on {mobPrivateState.CurrentAggroTimeRemains:F2}s");
+
+                this.ServerOnAggro(characterMob, mobPrivateState.CurrentAggroCharacter);
             }
 
             return base.SharedOnDamage(weaponCache,
@@ -227,11 +304,45 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
+
+            var character = data.GameObject;
+            var publicState = data.PublicState;
+            var clientState = data.ClientState;
+
             ClientCharacterEquipmentHelper.ClientRebuildAppearance(
-                data.GameObject,
-                data.ClientState,
-                data.PublicState,
-                data.PublicState.SelectedItem);
+                character,
+                clientState,
+                publicState,
+                publicState.SelectedItem);
+
+            publicState.ClientSubscribe(_ => _.SpawnState,
+                                        _ => this.ClientOnSpawnAnimationStateChanged(character),
+                                        clientState);
+
+            this.ClientOnSpawnAnimationStateChanged(character);
+        }
+
+        /// <summary>
+        /// Play spawn/despawn animation.
+        /// By default it's teleportation effect useful for bosses and their minions.
+        /// </summary>
+        protected virtual void ClientOnSpawnAnimationStateChanged(ICharacter character)
+        {
+            var state = GetPublicState(character).SpawnState;
+            if (state == MobSpawnState.Spawned)
+            {
+                return;
+            }
+
+            var isDespawning = state == MobSpawnState.Despawning;
+            ClientComponentTeleportationEffect.CreateEffect(
+                character,
+                character.TilePosition,
+                isDespawning
+                    ? this.DespawnAnimationDuration
+                    : this.SpawnAnimationDuration,
+                teleportationDelay: 0,
+                isTeleportationOut: isDespawning);
         }
 
         protected sealed override void PrepareProtoCharacter()
@@ -298,6 +409,37 @@
         {
         }
 
+        protected virtual void ServerOnAggro(ICharacter characterMob, ICharacter characterToAggro)
+        {
+            var maxDistanceSqr = this.AutoAggroNotificationDistance;
+            if (maxDistanceSqr == 0)
+            {
+                return;
+            }
+
+            maxDistanceSqr *= maxDistanceSqr;
+
+            using var tempList = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByCharacters(characterMob,
+                                               tempList.AsList(),
+                                               onlyPlayerCharacters: false);
+
+            foreach (var nearbyCharacter in tempList.AsList())
+            {
+                if (nearbyCharacter.IsNpc
+                    && nearbyCharacter != characterMob
+                    && nearbyCharacter.ProtoGameObject is IProtoCharacterMob nearbyProtoCharacterMob
+                    && (nearbyCharacter.Position.DistanceSquaredTo(characterMob.Position)
+                        < maxDistanceSqr
+                        || nearbyCharacter.Position.DistanceSquaredTo(characterToAggro.Position)
+                        < maxDistanceSqr))
+                {
+                    // try aggro similar mob nearby to the attacking character
+                    nearbyProtoCharacterMob.ServerAggroNotification(nearbyCharacter, characterMob, characterToAggro);
+                }
+            }
+        }
+
         protected void ServerSendDeathSoundEvent(ICharacter character)
         {
             using var tempList = Api.Shared.GetTempList<ICharacter>();
@@ -359,7 +501,7 @@
 
             this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
 
-            ServerUpdateAgroState(privateState, data.DeltaTime);
+            ServerUpdateAggroState(privateState, data.DeltaTime);
             this.ServerUpdateMob(data);
             this.ServerUpdateMobDespawn(character, privateState, data.DeltaTime);
 
@@ -396,23 +538,23 @@
             scale = this.protoSkeletonScale;
         }
 
-        private static void ServerUpdateAgroState(TPrivateState privateState, double deltaTime)
+        private static void ServerUpdateAggroState(TPrivateState privateState, double deltaTime)
         {
-            if (privateState.CurrentAgroTimeRemains <= 0)
+            if (privateState.CurrentAggroTimeRemains <= 0)
             {
                 return;
             }
 
-            var newAgroTime = privateState.CurrentAgroTimeRemains - deltaTime;
-            if (newAgroTime <= 0)
+            var newAggroTime = privateState.CurrentAggroTimeRemains - deltaTime;
+            if (newAggroTime <= 0)
             {
-                // reset agro state
-                newAgroTime = 0;
-                privateState.CurrentAgroCharacter = null;
-                //Logger.Dev("Agro state reset: " + privateState.GameObject);
+                // reset aggro state
+                newAggroTime = 0;
+                privateState.CurrentAggroCharacter = null;
+                //Logger.Dev("Aggro state reset: " + privateState.GameObject);
             }
 
-            privateState.CurrentAgroTimeRemains = newAgroTime;
+            privateState.CurrentAggroTimeRemains = newAggroTime;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

@@ -27,6 +27,17 @@
                                     .SetCustomPaddingWith(lizard,  18)
                                     .SetCustomPaddingWith(crawler, 18)
                                     .SetCustomPaddingWithSelf(18);
+
+            // spawn only few mutants in radtowns and central town to make a rare surprise
+            var mutants = spawnList.CreatePreset(interval: 80, padding: 0.5, useSectorDensity: false)
+                                   .AddExact<MobMutantBoar>()
+                                   .AddExact<MobMutantHyena>()
+                                   .AddExact<MobMutantWolf>()
+                                   .SetCustomPaddingWith(lizard,   8)
+                                   .SetCustomPaddingWith(crawler,  8)
+                                   .SetCustomPaddingWith(scorpion, 8)
+                                   // very large padding with self to prevent spawning mutants nearby
+                                   .SetCustomPaddingWithSelf(79);
         }
     }
 }

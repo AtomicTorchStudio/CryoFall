@@ -18,14 +18,20 @@
             EventPublicState,
             EmptyClientState>
     {
-        private const double EventDelayHoursSinceWipe = 24;
+        public const string Description_FirearmsUseless
+            = "Important: Firearms are useless; use melee or heat-based weapons.";
+
+        public const string Description_Primary
+            = "A strange alien growth has appeared in the mountainous areas making prospecting near impossible, but it is a great opportunity to obtain rare resources.";
 
         private static Lazy<IReadOnlyList<IServerZone>> serverSpawnZones;
 
         public override bool ConsolidateNotifications => false;
 
-        public override string Description =>
-            "A strange alien growth has appeared in the mountainous areas making prospecting near impossible, but it is a great opportunity to obtain rare resources.";
+        public override string Description
+            => Description_Primary
+               + "[br][br]"
+               + Description_FirearmsUseless;
 
         public override TimeSpan EventDuration => TimeSpan.FromMinutes(20);
 
@@ -33,6 +39,8 @@
         public override string Name => "Psi grove infestation";
 
         public SpawnConfig SpawnScriptConfig { get; private set; }
+
+        protected override double DelayHoursSinceWipe => 12 * EventConstants.ServerEventDelayMultiplier;
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -53,15 +61,6 @@
             {
                 Logger.Error("All zones are empty (not mapped in the world), no place to start the event: " + this);
                 return false;
-            }
-
-            if (trigger is TriggerTimeInterval)
-            {
-                if (Server.Game.HoursSinceWorldCreation < EventDelayHoursSinceWipe)
-                {
-                    // too early
-                    return false;
-                }
             }
 
             return true;

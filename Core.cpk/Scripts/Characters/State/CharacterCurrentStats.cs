@@ -78,29 +78,27 @@
                 return;
             }
 
+            var damagedCharacter = (ICharacter)this.GameObject;
             if (damageSource is not null)
             {
                 // it's important to register the damage source before the damage is applied
                 // (to use it in case of the subsequent death)
                 CharacterDamageTrackingSystem.ServerRegisterDamage(damage,
-                                                                   (ICharacter)this.GameObject,
+                                                                   damagedCharacter,
                                                                    new ServerDamageSourceEntry(damageSource));
             }
 
             var newHealth = this.HealthCurrent - damage;
 
             if (newHealth <= 0
-                && ((ICharacter)this.GameObject).IsNpc
+                && damagedCharacter.IsNpc
                 && damageSource?.ProtoGameObject is IProtoStatusEffect)
             {
                 var attackerCharacter = GetAttackerCharacter(damageSource, out _);
                 if (attackerCharacter is null
                     || attackerCharacter.IsNpc)
                 {
-                    // Don't allow killing mob by a status effect which is NOT added by a player character.
-                    // This is a workaround to kill quests which cannot be finished
-                    // when creature is killed by a status effect.
-                    // TODO: Should be removed when we enable the damage tracking for mobs damage.
+                    // don't allow killing a mob by a status effect which is NOT added by a player character
                     newHealth = float.Epsilon;
                 }
             }
@@ -112,7 +110,7 @@
                 var attackerCharacter = GetAttackerCharacter(damageSource, out var weaponSkill);
                 ServerCharacterDeathMechanic.OnCharacterKilled(
                     attackerCharacter,
-                    targetCharacter: (ICharacter)this.GameObject,
+                    targetCharacter: damagedCharacter,
                     weaponSkill);
             }
         }

@@ -133,7 +133,7 @@
 
         private void ServerLoadSystem()
         {
-            if (Api.Server.Database.TryGet(
+            if (Server.Database.TryGet(
                 nameof(WorldDiscoverySystem),
                 DatabaseKeyPlayerDiscoveredChunkTiles,
                 out serverPlayerDiscoveredChunkTiles))
@@ -149,7 +149,7 @@
 
             // the list is not stored, create a new one
             serverPlayerDiscoveredChunkTiles = new Dictionary<ICharacter, HashSet<Vector2Ushort>>();
-            Api.Server.Database.Set(
+            Server.Database.Set(
                 nameof(WorldDiscoverySystem),
                 DatabaseKeyPlayerDiscoveredChunkTiles,
                 serverPlayerDiscoveredChunkTiles);

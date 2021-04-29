@@ -12,10 +12,14 @@ Fabrica un saco de dormir
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Ahora que tienes una caja de herramientas, ya puedes empezar a construir las distintas estructuras que hayas desbloqueado en el menú Tecnología. Empecemos por una hoguera, que te será útil para cocinar.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Puedes pulsar "Tab" para acceder al [b]menú de construcción[/b] (si no has cambiado los controles).
-[*] A medida que desbloquees estructuras, el menú de construcción podrá llegar a tener [b]varias páginas[/b] con diferentes [b]tipos de edificios[/b].
-[*] Podrás usar las cajas de herramientas para [b]construir[/b] estructuras, pero también para [b]repararlas[/b].`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+Puedes pulsar la tecla [b]\[{0}\][/b] para acceder rápidamente al [b]menú de construcción[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+A medida que desbloquees nuevas estructuras, el menú de construcción podrá llegar a constar de [b]varias páginas[/b] con diferentes [b]tipos de construcciones[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Puedes usar las cajas de herramientas no solo para [b]construir[/b] estructuras, sino también para [b]repararlas[/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Haz una hoguera
@@ -50,8 +54,8 @@ Cocina cualquier alimento
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Ahora que tienes recursos, puedes empezar a fabricar. Empecemos con una cuerda y, cuando hayas acabado, fabrica un hacha.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] Si no has cambiado los ajustes predeterminados de las teclas, pulsa "C" para abrir el menú de fabricación y "E" para abrir el inventario.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Puedes pulsar la tecla [b]\[{0}\][/b] para acceder rápido al menú de fabricación o la tecla [b]\[{1}\][/b] para acceder al inventario.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Fabrica un hacha
@@ -59,9 +63,11 @@ Fabrica un hacha
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Extraer diversos minerales te permitirá acceder a los recursos más valiosos de CryoFall. Tendrás que crear un pico para poder extraer dichos minerales.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Accede al menú de fabricación ("C" en la configuración predeterminada) y fabrica un pico.
-[*] Si no tienes cuerda, es posible que tengas que fabricarla.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Abre el menú de fabricación (tecla [b]\[{0}\][/b]) y fabrica un pico.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+Si no tienes cuerda, tal vez tengas que fabricar una.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Fabrica un pico
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Encuentra y usa una hierba verde
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Los puntos de aprendizaje se obtienen con cualquier actividad importante y son directamente proporcionales a la obtención de experiencia de tus habilidades.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+Pulsa la tecla [b]\[{0}\][/b] para acceder rápido al menú de tecnologías.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Necesitas [b]PA[/b] (puntos de aprendizaje) para desbloquear cualquier nodo tecnológico.
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `Para poder acceder a más estructuras tienes que desbloquear los "Edificios básicos" en el menú Tecnología.`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Puedes acceder rápidamente al menú de tecnologías si pulsas "G" (con los controles predeterminados).
-[*] Se necesitan [b]PA[/b] (puntos de aprendizaje) para desbloquear nodos tecnológicos.
-[*] Los puntos de aprendizaje se consigue con cualquier actividad importante y son directamente proporcionales a la experiencia que consigas con tus habilidades.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 `Aprende la tecnología "Edificio básico"`

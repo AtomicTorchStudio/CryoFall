@@ -93,7 +93,7 @@
             }
 
             // below is the Server-side code only
-            if (Api.Server.Database.TryGet(
+            if (Server.Database.TryGet(
                 "creative",
                 "CreativeModeCharactersIdsList",
                 out serverUsersInCreativeMode))
@@ -104,7 +104,7 @@
 
             // characters list is not stored
             serverUsersInCreativeMode = new HashSet<string>(StringComparer.Ordinal);
-            Api.Server.Database.Set(
+            Server.Database.Set(
                 "creative",
                 "CreativeModeCharactersIdsList",
                 serverUsersInCreativeMode);
@@ -132,9 +132,9 @@
             {
                 // automatically enable creative mode for current player in Editor
                 // (and do this only once)
-                if (!Api.Server.Database.TryGet("creative", "EditorCreativeModeFirstTimeSet", out bool _))
+                if (!Server.Database.TryGet("creative", "EditorCreativeModeFirstTimeSet", out bool _))
                 {
-                    Api.Server.Database.Set("creative", "EditorCreativeModeFirstTimeSet", true);
+                    Server.Database.Set("creative", "EditorCreativeModeFirstTimeSet", true);
                     ServerSetCreativeMode(character, isCreativeModeEnabled: true);
                 }
             }

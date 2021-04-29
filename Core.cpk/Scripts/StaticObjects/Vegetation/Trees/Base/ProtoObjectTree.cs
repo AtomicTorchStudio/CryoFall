@@ -89,11 +89,6 @@
                 data.ClientState.RendererShadow.DrawOrderOffsetY = renderer.DrawOrderOffsetY;
             }
 
-            if (data.ClientState.RendererOcclusion is not null)
-            {
-                data.ClientState.RendererOcclusion.DrawOrderOffsetY = renderer.DrawOrderOffsetY;
-            }
-
             data.PublicState.ClientSubscribe(_ => _.GrowthStage,
                                              _ => worldObject.ClientInitialize(),
                                              data.ClientState);

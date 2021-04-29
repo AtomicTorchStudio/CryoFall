@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Props.WallsWooden
 {
-    public class ObjectPropWallWoodenTR : ProtoObjectProp
+    public class ObjectPropWallWoodenTR : ProtoPropWallWooden
     {
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {

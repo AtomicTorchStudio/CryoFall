@@ -387,14 +387,14 @@
             }
 
             // below is the Server-side code only
-            if (!Api.Server.Database.TryGet(
+            if (!Server.Database.TryGet(
                     nameof(NewbieProtectionSystem),
                     DatabaseNewbiesListEntryId,
                     out serverNewbies))
             {
                 // newbies list is not stored, create a new one
                 serverNewbies = new List<(ICharacter character, double timeRemains)>();
-                Api.Server.Database.Set(
+                Server.Database.Set(
                     nameof(NewbieProtectionSystem),
                     DatabaseNewbiesListEntryId,
                     serverNewbies);
@@ -417,14 +417,14 @@
                 }
             }
 
-            if (!Api.Server.Database.TryGet(
+            if (!Server.Database.TryGet(
                     nameof(NewbieProtectionSystem),
                     DatabaseNewbieLastDeathIsPvPlistEntryId,
                     out serverNewbieLastDeathIsPvPlist))
             {
                 // newbies last death list is not stored, create a new one
                 serverNewbieLastDeathIsPvPlist = new HashSet<ICharacter>();
-                Api.Server.Database.Set(
+                Server.Database.Set(
                     nameof(NewbieProtectionSystem),
                     DatabaseNewbieLastDeathIsPvPlistEntryId,
                     serverNewbieLastDeathIsPvPlist);

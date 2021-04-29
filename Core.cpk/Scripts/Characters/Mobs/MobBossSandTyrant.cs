@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
@@ -14,7 +12,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.BossLootSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -60,18 +57,15 @@
 
         private const double SpawnMinionsCheckDistance = 17;
 
-        private const double SpawnMinionsPerPlayer = 0.65; // 2 per 3-4 players, 3 per 5-6 players, 4 per 7+ players
+        private const int SpawnMinionsPerIterationLimit = 2; // will (re)spawn no more than two minions per iteration
 
-        private const int SpawnMinionsRespawnPerIteration = 2;
+        private const double SpawnMinionsPerPlayer = 0.65; // 2 per 3-4 players, 3 per 5-6 players, 4 per 7+ players
 
         private const int SpawnMinionsTotalNumberMax = 4;
 
         private const int SpawnMinionsTotalNumberMin = 1;
 
-        // Max distance to provide victory LP bonus (if player beyond this distance the bonus will be not provided).
-        private const double VictoryLearningPointsBonusMaxDistance = 17;
-
-        private const double VictoryLearningPointsBonusToEachAlivePlayer = 50;
+        private const double VictoryLearningPointsBonusPerLootObject = 15; // give bonus LP per loot pile
 
         private static readonly Lazy<IProtoStaticWorldObject> ProtoLootObjectLazy
             = new(GetProtoEntity<ObjectSandTyrantRemains>);
@@ -172,19 +166,6 @@
                 () =>
                 {
                     var bossPosition = character.Position;
-                    using var tempListPlayersNearby = Api.Shared.GetTempList<ICharacter>();
-                    Server.World.GetScopedByPlayers(character, tempListPlayersNearby);
-
-                    foreach (var player in tempListPlayersNearby.AsList())
-                    {
-                        if (player.Position.DistanceSquaredTo(bossPosition)
-                            <= VictoryLearningPointsBonusMaxDistance * VictoryLearningPointsBonusMaxDistance)
-                        {
-                            player.SharedGetTechnologies()
-                                  .ServerAddLearningPoints(VictoryLearningPointsBonusToEachAlivePlayer,
-                                                           allowModifyingByStatsAndRates: false);
-                        }
-                    }
 
                     // explode
                     var protoExplosion = Api.GetProtoEntity<ObjectPragmiumQueenDeathExplosion>();
@@ -211,6 +192,7 @@
                                     lootObjectProto: ProtoLootObjectLazy.Value,
                                     lootObjectsDefaultCount: DeathSpawnLootObjectsDefaultCount,
                                     lootObjectsRadius: DeathSpawnLootObjectsRadius,
+                                    learningPointsBonusPerLootObject: VictoryLearningPointsBonusPerLootObject,
                                     maxLootWinners: ServerMaxLootWinners);
                             }
                             finally
@@ -239,60 +221,9 @@
             }
 
             var serverTime = Server.Game.FrameTime;
-            var bossPrivateState = GetPrivateState(characterBoss);
+            var privateState = GetPrivateState(characterBoss);
 
-            var bossDamageTracker = bossPrivateState.DamageTracker;
-            var bossPosition = characterBoss.Position + (0, 1.0);
-
-            // calculate how many minions required
-            var minionsRequired = 0.0;
-            using var tempListCharacters = Api.Shared.GetTempList<ICharacter>();
-            Server.World.GetScopedByPlayers(characterBoss, tempListCharacters);
-
-            foreach (var player in tempListCharacters.AsList())
-            {
-                if (player.Position.DistanceSquaredTo(bossPosition)
-                    <= SpawnMinionsCheckDistance * SpawnMinionsCheckDistance)
-                {
-                    minionsRequired += SpawnMinionsPerPlayer;
-                }
-            }
-
-            minionsRequired = MathHelper.Clamp(minionsRequired,
-                                               SpawnMinionsTotalNumberMin,
-                                               SpawnMinionsTotalNumberMax);
-
-            // calculate how many minions present
-            tempListCharacters.Clear();
-            Server.World.GetScopedByCharacters(characterBoss, tempListCharacters.AsList(), onlyPlayerCharacters: false);
-
-            var minionsHave = 0;
-            var protoMobMinion = ProtoMinionObjectLazy.Value;
-            foreach (var otherCharacter in tempListCharacters.AsList())
-            {
-                if (otherCharacter.IsNpc
-                    && otherCharacter.ProtoGameObject == protoMobMinion
-                    && otherCharacter.Position.DistanceSquaredTo(bossPosition)
-                    <= SpawnMinionsCheckDistance * SpawnMinionsCheckDistance
-                    && !otherCharacter.GetPublicState<CharacterMobPublicState>().IsDead)
-                {
-                    minionsHave++;
-                }
-            }
-
-            //Logger.Dev($"Minions required: {minionsRequired} minions have: {minionsHave}");
-            minionsRequired -= minionsHave;
-            if (minionsRequired <= 0)
-            {
-                bossPrivateState.TimeSinceLastSpawnMinionsAttempt = serverTime;
-                return;
-            }
-
-            minionsRequired = Math.Min(minionsRequired, SpawnMinionsRespawnPerIteration);
-
-            if (bossPrivateState.TimeSinceLastSpawnMinionsAttempt
-                + MinionsSpawnCooldownDuration
-                - serverTime
+            if (privateState.TimeSinceLastSpawnMinionsAttempt + MinionsSpawnCooldownDuration - serverTime
                 > 0)
             {
                 // cannot spawn minions now - recently there was spawn
@@ -300,61 +231,33 @@
                 return;
             }
 
-            bossPrivateState.TimeSinceLastSpawnMinionsAttempt = serverTime;
-            var physicsSpace = characterBoss.PhysicsBody.PhysicsSpace;
+            privateState.TimeSinceLastSpawnMinionsAttempt = serverTime;
 
-            // spawn minions
-            var attemptsRemains = 300;
+            // force detect and despawn minions that have moved too far away
+            ServerBossMinionHelper.ServerProcessMinions(
+                characterBoss,
+                ProtoMinionObjectLazy.Value,
+                privateState.SpawnedMinionsList,
+                spawnedMinionsCount: out var currentMinionsCount,
+                despawnDistanceSqr: SpawnMinionsCheckDistance * SpawnMinionsCheckDistance);
 
-            const double spawnDistanceMin = 2.0;
-            const double spawnDistanceMax = 2.0;
-            while (minionsRequired > 0)
-            {
-                attemptsRemains--;
-                if (attemptsRemains <= 0)
-                {
-                    // attempts exceeded
-                    return;
-                }
-
-                var spawnDistance = spawnDistanceMin
-                                    + RandomHelper.NextDouble() * (spawnDistanceMax - spawnDistanceMin);
-                var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-                var spawnPosition = new Vector2Ushort(
-                    (ushort)(bossPosition.X + spawnDistance * Math.Cos(angle)),
-                    (ushort)(bossPosition.Y + spawnDistance * Math.Sin(angle)));
-
-                if (ServerTrySpawnMinion(spawnPosition))
-                {
-                    // spawned successfully!
-                    minionsRequired--;
-                }
-            }
-
-            bool ServerTrySpawnMinion(Vector2Ushort spawnPosition)
-            {
-                var worldPosition = spawnPosition.ToVector2D();
-                if (physicsSpace.TestCircle(worldPosition,
-                                            MinionSpawnNoObstaclesCircleRadius,
-                                            CollisionGroups.Default,
-                                            sendDebugEvent: true).EnumerateAndDispose().Any())
-                {
-                    // obstacles nearby
-                    return false;
-                }
-
-                var spawnedCharacter = Server.Characters.SpawnCharacter(protoMobMinion, worldPosition);
-                if (spawnedCharacter is null)
-                {
-                    return false;
-                }
-
-                // write this boss' damage tracker into the minion character
-                // so any damage dealt to it will be counted in the winners ranking
-                var privateState = spawnedCharacter.GetPrivateState<ICharacterPrivateStateWithBossDamageTracker>();
-                privateState.DamageTracker = bossDamageTracker;
-                return true;
-            }
+            ServerBossMinionHelper.ServerSpawnMinions(
+                characterBoss,
+                characterBossCenterPosition: characterBoss.Position + (0, 1.0),
+                protoMinion: ProtoMinionObjectLazy.Value,
+                minionsList: privateState.SpawnedMinionsList,
+                spawnCheckDistanceSqr: SpawnMinionsCheckDistance * SpawnMinionsCheckDistance,
+                bossDamageTracker: privateState.DamageTracker,
+                minionsPerPlayer: SpawnMinionsPerPlayer,
+                minionsTotalMin: SpawnMinionsTotalNumberMin,
+                minionsTotalMax: SpawnMinionsTotalNumberMax,
+                minionsSpawnPerIterationLimit: currentMinionsCount == 0
+                                                   ? int.MaxValue // no minions left, spawn as many as possible
+                                                   : SpawnMinionsPerIterationLimit,
+                baseMinionsNumber: 0,
+                spawnNoObstaclesCircleRadius: MinionSpawnNoObstaclesCircleRadius,
+                spawnDistanceMin: 2.0,
+                spawnDistanceMax: 2.0);
         }
 
         public override bool SharedOnDamage(
@@ -410,12 +313,16 @@
                 && byCharacter is not null
                 && !byCharacter.IsNpc)
             {
-                var privateState = GetPrivateState((ICharacter)targetObject);
-
                 // record the damage dealt by player
-                privateState.DamageTracker.RegisterDamage(byCharacter, damageApplied);
+                var targetCharacter = (ICharacter)targetObject;
+                var privateState = GetPrivateState(targetCharacter);
+                // calculate the original damage (without the applied difficulty coefficient)
+                var originalDamageApplied = damageApplied * ServerBossDifficultyCoef;
+                privateState.DamageTracker.RegisterDamage(byCharacter,
+                                                          targetCharacter,
+                                                          originalDamageApplied);
 
-                if (damageApplied > 1 / ServerBossDifficultyCoef)
+                if (originalDamageApplied > 3)
                 {
                     // record the last time a significant damage is dealt
                     privateState.LastDamageTime = Server.Game.FrameTime;
@@ -451,6 +358,8 @@
         {
             base.ServerInitializeCharacterMob(data);
 
+            this.ServerSetSpawnState(data.GameObject, MobSpawnState.Spawning);
+
             if (data.IsFirstTimeInit)
             {
                 data.PrivateState.HoldPosition = data.GameObject.TilePosition;
@@ -473,7 +382,7 @@
 
         protected override void ServerUpdateMob(ServerUpdateData data)
         {
-            var character = data.GameObject;
+            var characterBoss = data.GameObject;
             var publicState = data.PublicState;
 
             if (publicState.IsDead)
@@ -508,7 +417,7 @@
                                                           out var isSwitchingToMissilesAttack);
 
             ServerCharacterAiHelper.ProcessBossAi(
-                character,
+                characterBoss,
                 weaponList,
                 distanceEnemyTooClose: 2.0,
                 distanceEnemyTooFar: 15.5,
@@ -516,7 +425,7 @@
                 rotationAngleRad: out var rotationAngleRad);
 
             if (movementDirection != default
-                && !ServerCanMoveInDirection(character.TilePosition.ToVector2D(),
+                && !ServerCanMoveInDirection(characterBoss.TilePosition.ToVector2D(),
                                              movementDirection,
                                              privateState.HoldPosition.ToVector2D()))
             {
@@ -535,7 +444,18 @@
                 movementDirection = default;
             }
 
-            this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
+            this.ServerSetMobInput(characterBoss, movementDirection, rotationAngleRad);
+
+            if (!privateState.WeaponState.IsFiring)
+            {
+                // detect and despawn minions that have moved too far away
+                ServerBossMinionHelper.ServerProcessMinions(
+                    characterBoss,
+                    ProtoMinionObjectLazy.Value,
+                    privateState.SpawnedMinionsList,
+                    spawnedMinionsCount: out _,
+                    despawnDistanceSqr: SpawnMinionsCheckDistance * SpawnMinionsCheckDistance);
+            }
         }
 
         private static bool ServerCanMoveInDirection(
@@ -590,6 +510,9 @@
 
             [TempOnly]
             public double LastDamageTime { get; set; }
+
+            [TempOnly]
+            public List<ICharacter> SpawnedMinionsList { get; } = new();
 
             [TempOnly]
             public double TimeSinceLastSpawnMinionsAttempt { get; set; }

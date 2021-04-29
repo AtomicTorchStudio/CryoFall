@@ -2,6 +2,6 @@
 {
     public static class StatusEffectHints
     {
-        public static string CanBeRemediedWith_Format = "Can be remedied with {0}.";
+        public const string CanBeRemediedWith_Format = "Can be remedied with {0}.";
     }
 }

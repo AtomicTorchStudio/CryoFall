@@ -12,10 +12,14 @@ Bir yatak kur
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Artık bir alet çantan olduğuna göre teknoloji menüsünde kilidini açtığın yapıları inşa etmeye başlayabilirsin. Yemek pişirmek için kullanabileceğin bir kamp ateşiyle başlayalım.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Kontrolleri değiştirmediysen, [b]inşa menüsüne[/b] hızlıca ulaşmak için "Sekme" tuşunu kullanabilirsin.
-[*] İnşa menüsünde daha fazla yapının kilidini açtıkça farklı [b]yapı türlerinden[/b] oluşan [b]birkaç sayfa/b] bulunabilir.
-[*] Alet çantasını yalnızca yapıları [b]inşa etmek[/b] için değil, aynı zamanda [b]tamir[/b] etmek için de kullanabilirsin.`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+[b]Yapı menüsüne[/b] çabuk ulaşmak için [b]\[{0}\][/b] tuşuna basabilirsin.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+Yapı menüsünde farklı yapıların kilidini açtık.a farklı [b]yapı çeşitleri[/b] ile dolu [b]birden fazla sayfa[/b] bulunabilir.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Alet kutularını kullanarak sadece yapı [b]inşa[/b] etmezsin, ayrıca onları [b]tamir[/b] de edebilirsin.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Bir kamp ateşi kur
@@ -50,8 +54,8 @@ Bir yemek pişir
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Artık bazı kaynaklara sahip olduğuna göre üretime başlayabilirsin. Önce bir halat üret, hazır olduğunda bir balta üret.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] Varsayılan klavye ayarları değiştirmediysen, "C" tuşuyla üretim menüsüne "E" tuşuyla envantere hızlı bir şekilde ulaşabilirsin.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Zanaat menüsünü hızlıca [b]\[{0}\][/b] tuşuyla ve envanteri de [b]\[{1}\][/b] tuşuyla açabilirsin.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Bir balta üret
@@ -59,9 +63,11 @@ Bir balta üret
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Farklı mineraller kazmak, CryoFall'daki en değerli kaynaklara ulaşmanı sağlar. Minerallere ulaşmak için bir kazma üretmen gerekiyor.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Bir kazma üretmek için üretim menüsünü (varsayılan olarak "C") kullan.
-[*] Daha önce üretmediysen bir halat üretmen gerekli olabilir.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Elle zanaat menünü ([b]\[{0}\][/b] tuşuyla) aç ve bir kazma yap.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+İpin yoksa biraz yapman gerekebilir.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Bir kazma üret
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Yeşil bitki bul ve kullan
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Eğitim puanları anlamlı her aktiviteyle kazanılabilir ve yetenek tecrübe kazanımınla direkt olarak bağlantılıdır.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+[b]\[{0}\][/b] tuşuna basarak teknoloji menüsüne kolayca erişebilirsin.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Herhangi bir teknoloji düğümünü açmak için [b]EP[/b] (eğitim puanı) gerekir.
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `Daha fazla yapıya ulaşmak için teknoloji menüsü altındaki "basit yapıların" kilidini açman gerekiyor.`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Kontrolleri değiştirmediysen, "G" tuşuna basarak teknoloji menüsüne hızlıca ulaşabilirsin.
-[*] Bir teknoloji ağının kilidini açmak için [b]EP[/b] (eğitim puanları) gereklidir.
-[*] Eğitim puanları anlamlı etkinliklerden kazanılır ve yetenek deneyimi kazancıyla doğrudan orantılıdır.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 Basit inşa teknolojisi öğren

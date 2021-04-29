@@ -59,7 +59,7 @@
             var canvasPosition = this.WorldToCanvasPosition(droppedLootInfo.Position.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);
-            Panel.SetZIndex(mapControl, 12);
+            Panel.SetZIndex(mapControl, 19);
 
             this.AddControl(mapControl);
 

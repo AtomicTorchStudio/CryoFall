@@ -90,7 +90,8 @@
             private static void ServerRaidBlockStartedOrExtendedHandler(
                 ILogicObject area,
                 ICharacter raiderCharacter,
-                bool isNewRaidBlock)
+                bool isNewRaidBlock,
+                bool isStructureDestroyed)
             {
                 OnHostility(raiderCharacter, LandClaimSystem.SharedGetLandClaimAreasGroup(area));
             }

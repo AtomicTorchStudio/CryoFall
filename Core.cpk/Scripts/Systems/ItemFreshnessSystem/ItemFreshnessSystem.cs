@@ -172,17 +172,12 @@
         public static ItemFreshness SharedGetFreshnessEnum(IItem item)
         {
             var fraction = SharedGetFreshnessFraction(item);
-            if (fraction > 0.5)
+            return fraction switch
             {
-                return ItemFreshness.Green;
-            }
-
-            if (fraction > 0.2)
-            {
-                return ItemFreshness.Yellow;
-            }
-
-            return ItemFreshness.Red;
+                > 0.5 => ItemFreshness.Green,
+                > 0.2 => ItemFreshness.Yellow,
+                _     => ItemFreshness.Red
+            };
         }
 
         public static double SharedGetFreshnessFraction(IItem item)
@@ -207,20 +202,13 @@
         /// </summary>
         public static float SharedGetFreshnessPositiveEffectsCoef(ItemFreshness freshness)
         {
-            switch (freshness)
+            return freshness switch
             {
-                case ItemFreshness.Green:
-                    return 1.0f;
-
-                case ItemFreshness.Yellow:
-                    return 0.7f;
-
-                case ItemFreshness.Red:
-                    return 0.4f;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(freshness), freshness, null);
-            }
+                ItemFreshness.Green  => 1.0f,
+                ItemFreshness.Yellow => 0.7f,
+                ItemFreshness.Red    => 0.4f,
+                _                    => throw new ArgumentOutOfRangeException(nameof(freshness), freshness, null)
+            };
         }
 
         public static bool SharedIsRefrigerated(IItem item)

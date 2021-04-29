@@ -9,7 +9,7 @@
     public class ItemAmmo12gaSlugs : ProtoItemAmmo, IAmmoCaliber12g
     {
         public override string Description =>
-            "Slugs provide much higher stopping power than pellets and can be used against a variety of possible targets. Due to their high mass, the slugs are quite effective even against well-armored targets.";
+            "Slugs are versatile ammo that can be used against most types of opponents. Due to their high mass, they're quite effective even against well-armored targets.";
 
         public override bool IsReferenceAmmo => false;
 

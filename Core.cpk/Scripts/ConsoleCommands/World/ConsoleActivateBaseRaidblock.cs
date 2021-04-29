@@ -30,8 +30,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
             foreach (var logicObject in tempAreas.AsList())
             {
                 LandClaimSystem.ServerSetRaidblock(logicObject,
-                                                   isShort: false,
-                                                   byCharacter: null);
+                                                   byCharacter: null,
+                                                   durationMultiplier: 1.0,
+                                                   isStructureDestroyed: true);
             }
 
             return string.Empty;

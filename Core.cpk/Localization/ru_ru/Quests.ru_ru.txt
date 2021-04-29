@@ -12,10 +12,14 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Теперь, когда у вас есть набор инструментов, можно возводить разные постройки, которые стали доступны в меню технологий. Давайте разведем костер, на котором можно будет готовить пищу.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Нажмите клавишу "Tab" для быстрого доступа к [b]меню построек[/b], если вы не меняли управление.
-[*] Меню построек состоит из [b]нескольких страниц[/b] с разными [b]видами построек[/b], которые вы открываете по мере прохождения игры.
-[*] С помощью набора инструментов можно не только [b]строить[/b] здания, но и [b]ремонтировать[/b] их.`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+Нажмите клавишу [b]\[{0}\][/b], чтобы быстро получить доступ к [b]меню строительства[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+В меню строительства может быть [b]несколько страниц[/b] с различными [b]видами построек[/b], которые появляются по мере того, как вы открываете новые строения.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Вы можете использовать набор инструментов не только для [b]строительства[/b], но и для [b]ремонта[/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Собрать костер
@@ -50,8 +54,8 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Теперь, когда у вас появились ресурсы, можно что-то изготовить. Для начала сделайте веревку. С ее помощью можно будет смастерить топор.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] Если вы не меняли управление по умолчанию, то вы можете быстро открыть меню крафтинга, нажав клавишу "C", а инвентарь — нажав клавишу "E".`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Вы можете быстро открыть меню крафтинга, нажав клавишу [b]\[{0}\][/b], и инвентарь, нажав клавишу [b]\[{1}\][/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Изготовить топор
@@ -59,9 +63,11 @@ Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Добыча разных минералов позволит получить большинство ценных ресурсов в этой игре. Для того чтобы добывать минералы, требуется изготовить кирку.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Откройте меню крафтинга (клавиша "C" по умолчанию) и сделайте кирку.
-[*] Возможно, для этого вам придется изготовить веревку, если у вас ее нет.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Откройте меню крафтинга (клавиша [b]\[{0}\][/b]) и сделайте кирку.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+Возможно, для этого вам придется изготовить веревку, если у вас ее нет.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Изготовить кирку
@@ -356,13 +362,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Найти и использовать зеленую траву
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Очки технологий можно заработать, совершая конструктивные действия, и они прямо пропорциональны вашему набору опыта.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+Вы можете быстро открыть меню технологий, нажав клавишу [b]\[{0}\][/b].
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Для того чтобы изучить любую технологию, требуются [b]ОТ[/b] (очки технологий).
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `Чтобы получить доступ к большему числу строений, откройте "Базовые постройки" в меню технологий.`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Вы можете быстро открыть меню технологий, нажав клавишу G, если вы не меняли управление.
-[*] Для того чтобы изучить любую технологию, требуются [b]ОТ[/b] (очки технологий).
-[*] Очки технологий можно заработать, совершая конструктивные действия, и они прямо пропорциональны вашему набору опыта.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 Изучить базовые постройки

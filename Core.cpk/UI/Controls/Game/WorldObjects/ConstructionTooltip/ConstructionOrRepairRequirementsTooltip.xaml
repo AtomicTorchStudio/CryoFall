@@ -67,7 +67,7 @@
                                     Binding="{Binding CanInteract, ElementName=UserControl}"
                                     Value="True">
                                     <i:ChangePropertyAction PropertyName="Fill"
-                                                            Value="{StaticResource BrushCanInteract}" />
+                                                            Value="{StaticResource BrushColorAlt7}" />
                                 </i:DataTrigger>
                                 <i:DataTrigger
                                     Binding="{Binding CanInteract, ElementName=UserControl}"
@@ -98,7 +98,7 @@
                             Binding="{Binding CanInteract, ElementName=UserControl}"
                             Value="True">
                             <i:ChangePropertyAction PropertyName="Foreground"
-                                                    Value="{StaticResource BrushCanInteract}" />
+                                                    Value="{StaticResource BrushColorAlt7}" />
                         </i:DataTrigger>
                         <i:DataTrigger
                             Binding="{Binding CanInteract, ElementName=UserControl}"

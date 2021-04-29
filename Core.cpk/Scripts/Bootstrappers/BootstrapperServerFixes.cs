@@ -22,11 +22,10 @@
                 return;
             }
 
-            var db = Api.Server.Database;
-            if (!db.TryGet("Core", "ServerFixesVersionNumber", out int actualVersionNumber)
+            if (!Server.Database.TryGet("Core", "ServerFixesVersionNumber", out int actualVersionNumber)
                 || VersionNumber != actualVersionNumber)
             {
-                db.Set("Core", "ServerFixesVersionNumber", VersionNumber);
+                Server.Database.Set("Core", "ServerFixesVersionNumber", VersionNumber);
                 ServerTimersSystem.AddAction(1, ApplyFixes);
             }
         }

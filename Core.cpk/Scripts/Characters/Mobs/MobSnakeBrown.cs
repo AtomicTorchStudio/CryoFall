@@ -20,7 +20,7 @@
 
         public override double StatDefaultHealthMax => 80;
 
-        public override double StatMoveSpeed => 1.65;
+        public override double StatMoveSpeed => 2.25;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,
@@ -53,9 +53,9 @@
                 targetCharacter: ServerCharacterAiHelper.GetClosestTargetPlayer(character),
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 3,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
-                distanceRetreat: 7,
+                distanceRetreat: 8,
                 distanceEnemyTooClose: 1,
-                distanceEnemyTooFar: 4.5,
+                distanceEnemyTooFar: 7,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad);
 

@@ -11,6 +11,8 @@
     {
         public override string Description => "Impressive gold pile. Put this in your vault to keep it safe!";
 
+        public override double FactionWealthScorePoints => 100;
+
         public override string Name => "Gold pile";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;

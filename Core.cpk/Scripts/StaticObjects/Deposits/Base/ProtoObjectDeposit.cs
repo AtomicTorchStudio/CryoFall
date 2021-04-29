@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Deposits
 {
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;

@@ -57,10 +57,12 @@
 
             this.worldMapController = controller;
             var landClaimGroupVisualizer = new ClientWorldMapLandClaimsGroupVisualizer(controller);
+
             this.visualizers = new BaseWorldMapVisualizer[]
             {
                 landClaimGroupVisualizer,
                 new ClientWorldMapLandClaimVisualizer(controller, landClaimGroupVisualizer),
+                new ClientWorldMapAllyBaseUnderRaidVisualizer(controller),
                 new ClientWorldMapBedVisualizer(controller),
                 new ClientWorldMapDroppedItemsVisualizer(controller),
                 new ClientWorldMapTradingTerminalsVisualizer(controller),

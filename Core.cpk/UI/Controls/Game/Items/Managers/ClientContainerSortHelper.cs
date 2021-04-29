@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.DataLogs.Base;
+    using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
@@ -129,6 +130,16 @@
                              .ThenBy(protoItem => protoItem.Id);
         }
 
+        private static IProtoItem GetProtoItemForSorting(IItem item)
+        {
+            if (item.ProtoItem is ItemDroneReservedSlot)
+            {
+                return ItemDroneReservedSlot.GetPublicState(item).ProtoItemDrone;
+            }
+
+            return item.ProtoItem;
+        }
+
         private static int GetProtoItemSortIndex(IProtoItem protoItem)
         {
             var type = protoItem.GetType();
@@ -154,8 +165,8 @@
 
             var sorted = container.Items
                                   .ToList()
-                                  .OrderBy(item => GetProtoItemSortIndex(item.ProtoItem))
-                                  .ThenBy(item => item.ProtoItem.Id)
+                                  .OrderBy(item => GetProtoItemSortIndex(GetProtoItemForSorting(item)))
+                                  .ThenBy(item => GetProtoItemForSorting(item).Id)
                                   .ThenByDescending(
                                       item =>
                                       {
@@ -177,7 +188,7 @@
                                               return item.Count;
                                           }
 
-                                          return 0u;
+                                          return long.MaxValue;
                                       })
                                   .ToList();
 

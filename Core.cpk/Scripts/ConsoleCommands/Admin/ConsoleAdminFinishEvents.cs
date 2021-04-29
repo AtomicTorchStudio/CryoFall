@@ -7,7 +7,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
     public class ConsoleAdminFinishEvents : BaseConsoleCommand
     {
-        public override string Description => "Finishes all the active events.";
+        public override string Description => "Finishes all the active world events.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 

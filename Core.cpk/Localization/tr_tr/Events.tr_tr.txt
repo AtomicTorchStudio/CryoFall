@@ -13,7 +13,10 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 Bu dünyanın yerli yaşam formları farklı bir bölümden geliyormuş gibi duruyor. Bu avcılık için büyük fırsat sunuyor.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Önemli: Ateşli silahlar işe yaramaz; yakın saldırı veya ısı bazlı silahlar kullan.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Beliren tuhaf bir yabancı madde dağlık alanlarda gelişmeyi imkânsız kıldı ama nadir kaynaklar toplamak için de harika bir fırsat.
 
 Scripts/Events/EventSpaceDrop@Description:

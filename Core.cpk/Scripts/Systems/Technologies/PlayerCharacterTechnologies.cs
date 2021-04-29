@@ -4,7 +4,6 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -138,9 +137,6 @@
                 () => ServerCharacterGainedLearningPoints?.Invoke(this.Character,
                                                                   pointsToAdd,
                                                                   allowModifyingByStatsAndRates));
-
-            this.Character.ServerAddSkillExperience<SkillLearning>(
-                pointsToAdd * SkillLearning.ExperienceAddedPerLPEarned);
         }
 
         public void ServerAddNode(TechNode techNode)
@@ -215,6 +211,11 @@
 
         public void ServerRemoveLearningPoints(uint points)
         {
+            if (points == 0)
+            {
+                return;
+            }
+
             var result = this.LearningPoints - (long)points;
             if (result < 0)
             {

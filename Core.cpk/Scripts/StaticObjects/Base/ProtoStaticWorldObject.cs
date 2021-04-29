@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.AmbientOcclusion;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -45,13 +44,11 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
-        private TextureResource cachedTextureOcclusion;
-
-        private bool hasCachedTextureOcclusion;
-
         private ITextureResource icon;
 
         private IConstructionTileRequirementsReadOnly tileRequirements;
+
+        public virtual Vector2Int BlueprintTileOffset => default;
 
         // every frame
         public override double ClientUpdateIntervalSeconds => 0;
@@ -116,34 +113,6 @@
 
         public abstract float StructurePointsMax { get; }
 
-        public virtual ITextureResource TextureOcclusion
-        {
-            get
-            {
-                if (this.hasCachedTextureOcclusion)
-                {
-                    return this.cachedTextureOcclusion;
-                }
-
-                this.hasCachedTextureOcclusion = true;
-
-                var defaultTexture = this.DefaultTexture as TextureResource;
-                if (defaultTexture is not null)
-                {
-                    var textureResource = new TextureResource(
-                        defaultTexture.LocalPath.Replace(".png", "") + "Occlusion",
-                        isTransparent: false);
-
-                    if (Api.Shared.IsFileExists(textureResource))
-                    {
-                        this.cachedTextureOcclusion = textureResource;
-                    }
-                }
-
-                return this.cachedTextureOcclusion;
-            }
-        }
-
         public IConstructionTileRequirementsReadOnly TileRequirements => this.tileRequirements;
 
         public BoundsInt ViewBounds { get; private set; }
@@ -154,9 +123,21 @@
         /// </summary>
         public virtual BoundsInt ViewBoundsExpansion => default;
 
-        public bool CheckTileRequirements(Vector2Ushort startTilePosition, ICharacter character, bool logErrors)
+        public bool CheckTileRequirements(
+            Vector2Ushort startTilePosition,
+            ICharacter character,
+            out string errorMessage,
+            bool logErrors)
         {
-            return this.tileRequirements.Check(this, startTilePosition, character, logErrors);
+            return this.tileRequirements.Check(this, startTilePosition, character, out errorMessage, logErrors);
+        }
+
+        public bool CheckTileRequirements(
+            Vector2Ushort startTilePosition,
+            ICharacter character,
+            bool logErrors)
+        {
+            return this.CheckTileRequirements(startTilePosition, character, out _, logErrors);
         }
 
         /// <summary>
@@ -344,16 +325,6 @@
                 this.DefaultTexture);
 
             this.ClientSetupRenderer(clientState.Renderer);
-
-            var textureOcclusion = this.TextureOcclusion;
-            if (textureOcclusion is not null)
-            {
-                clientState.RendererOcclusion = ClientAmbientOcclusion.CreateOcclusionRenderer(
-                    worldObject,
-                    textureResource: textureOcclusion);
-
-                this.ClientSetupRenderer(clientState.RendererOcclusion);
-            }
         }
 
         protected override void ClientOnObjectDestroyed(Vector2D position)
@@ -414,7 +385,7 @@
 
             var defaultTexture = this.PrepareDefaultTexture(this.GetType());
             if (defaultTexture is ITextureAtlasResource defaultTextureAtlas
-                && !(defaultTexture is ITextureAtlasChunkResource))
+                && defaultTexture is not ITextureAtlasChunkResource)
             {
                 // use the first chunk of the atlas texture
                 defaultTexture = defaultTextureAtlas.Chunk(0, 0);

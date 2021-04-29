@@ -19,6 +19,8 @@
 
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
+        public virtual bool IsRemovesOtherCharredGroundInOccupiedTiles => true;
+
         public override StaticObjectKind Kind => StaticObjectKind.FloorDecal;
 
         // despawn after 32 hours by default

@@ -181,6 +181,9 @@
 
                 <TextBlock Style="{StaticResource Section}">Localization contributors</TextBlock>
 
+                <TextBlock Style="{StaticResource Title}">English proofread</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Paul Franzen</TextBlock>
+
                 <TextBlock Style="{StaticResource Title}">German translation, proofread and LQA</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Jane Schröder</TextBlock>
 
@@ -223,9 +226,13 @@
                     <LineBreak />Adrian, Robin and Mathias of toneworx GmbH
                     <LineBreak />Bartłomiej Terech aka Cosiek,
                     <LineBreak /><Run FontFamily="{StaticResource AsianFontFamily}">サーバー団地</Run>
-                    <LineBreak />Avakyn, Deathmall, RewinKant
-                    <LineBreak />Rekenbeker, PentaQ, Morgus
-                    <LineBreak />Buddaz, Ingvarr, torac
+                    <LineBreak />Avakyn, Deathmall, RewinKant,
+                    <LineBreak />Rekenbeker, PentaQ, Morgus,
+                    <LineBreak />Buddaz, Ingvarr, torac, Jburg,
+                    <LineBreak />Wys, Skipper12, Prometheus, Gravitavis,
+                    <LineBreak />moise, MilesD37, PCstrato, Zeor, Zaazaazuu,
+                    <LineBreak />chuhe, shayebushi, Master,
+                    <LineBreak />Mars24, Space, AnDrew0o, alex111
                 </TextBlock>
 
 

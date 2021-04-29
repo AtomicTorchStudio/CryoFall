@@ -6,8 +6,9 @@
 
     public class EventBossPrivateState : BasePrivateState
     {
-        public List<IWorldObject> SpawnedWorldObjects { get; }
-            = new();
+        public bool IsSpawnCompleted { get; set; }
+
+        public List<IWorldObject> SpawnedWorldObjects { get; } = new();
 
         public void Init()
         {

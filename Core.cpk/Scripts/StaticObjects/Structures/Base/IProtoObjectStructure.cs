@@ -25,6 +25,8 @@
 
         string DescriptionUpgrade { get; }
 
+        double FactionWealthScorePoints { get; }
+
         bool IsAutoUnlocked { get; }
 
         bool IsListedInTechNodes { get; }
@@ -34,6 +36,11 @@
         bool IsRepeatPlacement { get; }
 
         IReadOnlyList<TechNode> ListedInTechNodes { get; }
+
+        /// <summary>
+        /// Determines how much of the tool's durability should be deducted when relocating this structure.
+        /// </summary>
+        ushort RelocationToolDurabilityCost { get; }
 
         float StructurePointsMaxForConstructionSite { get; }
 

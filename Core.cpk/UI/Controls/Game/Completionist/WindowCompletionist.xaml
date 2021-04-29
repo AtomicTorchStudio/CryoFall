@@ -57,7 +57,7 @@
                             Orientation="Vertical"
                             Visibility="{Binding IsRewardClaimed, Converter={StaticResource BoolToHiddenVisibilityConverter}}">
                     <TextBlock
-                        Text="{Binding MaxWeightText, StringFormat={}{x:Static loc:CoreStrings.WindowCompletionist_BestFishWeight_Format}}"
+                        Text="{Binding MaxWeightText, StringFormat={x:Static loc:CoreStrings.WindowCompletionist_BestFishWeight_Format}}"
                         Style="{StaticResource TextBlockItemTitleStyle}"
                         HorizontalAlignment="Center"
                         TextAlignment="Center"
@@ -65,7 +65,7 @@
                         LineHeight="10"
                         Margin="0,3,0,0" />
                     <TextBlock
-                        Text="{Binding MaxLengthText, StringFormat={}{x:Static loc:CoreStrings.WindowCompletionist_BestFishLength_Format}}"
+                        Text="{Binding MaxLengthText, StringFormat={x:Static loc:CoreStrings.WindowCompletionist_BestFishLength_Format}}"
                         Style="{StaticResource TextBlockItemTitleStyle}"
                         HorizontalAlignment="Center"
                         TextAlignment="Center"

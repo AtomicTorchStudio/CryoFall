@@ -9,18 +9,19 @@
 
     public class DialogWindow : BaseContentControl
     {
-        public static readonly DependencyProperty TitleFontSizeProperty =
-            DependencyProperty.Register(
+        public static readonly DependencyProperty TitleFontSizeProperty
+            = DependencyProperty.Register(
                 nameof(TitleFontSize),
                 typeof(double),
                 typeof(DialogWindow),
-                new PropertyMetadata(10.0));
+                new PropertyMetadata(5.0));
 
-        public static readonly DependencyProperty WindowTitleProperty = DependencyProperty.Register(
-            nameof(WindowTitle),
-            typeof(string),
-            typeof(DialogWindow),
-            new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty WindowTitleProperty
+            = DependencyProperty.Register(
+                nameof(WindowTitle),
+                typeof(string),
+                typeof(DialogWindow),
+                new PropertyMetadata(string.Empty));
 
         private static readonly Action EmptyAction = () => { };
 

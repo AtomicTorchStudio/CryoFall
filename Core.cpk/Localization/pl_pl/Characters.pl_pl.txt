@@ -37,6 +37,15 @@ Miodożer
 Scripts/Characters/Mobs/MobHyena@Name:
 Hiena
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+Zmutowany dzik
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+Zmutowana hiena
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+Zmutowany wilk
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 Łuskowiec
 

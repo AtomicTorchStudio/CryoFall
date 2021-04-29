@@ -117,9 +117,9 @@
 
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;

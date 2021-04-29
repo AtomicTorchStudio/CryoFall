@@ -142,11 +142,11 @@ Implantatsabnutzung nach erlittenem Schaden
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 Abnutzungsgeschwindigkeit von installierten Implantaten
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-Geschwindigkeit der Nahrungsaufnahme
+Scripts/Base/Stats/StatName@HungerRate:
+Hungerrate
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-Geschwindigkeit des Wasserverbrauchs
+Scripts/Base/Stats/StatName@ThirstRate:
+Durstrate
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneration von Energieladungen (pro Minute)
@@ -186,6 +186,9 @@ Kontinuierlicher Schaden
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Kein Essen oder Trinken möglich
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+Nachtsicht
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Lernpunktgewinn

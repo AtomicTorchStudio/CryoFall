@@ -657,7 +657,9 @@
             PartyConstants.ClientSetSystemConstants(partyMembersMax);
         }
 
-        [RemoteCallSettings(timeInterval: 5)]
+        [RemoteCallSettings(timeInterval: 2,
+                            groupName: "CreateLeaveParty",
+                            deliveryMode: DeliveryMode.ReliableSequenced)]
         private void ServerRemote_CreateParty()
         {
             ServerCreateParty(ServerRemoteContext.Character);
@@ -724,6 +726,9 @@
             }
         }
 
+        [RemoteCallSettings(timeInterval: 2,
+                            groupName: "CreateLeaveParty",
+                            deliveryMode: DeliveryMode.ReliableSequenced)]
         private void ServerRemote_LeaveParty()
         {
             ServerLeaveParty(ServerRemoteContext.Character);

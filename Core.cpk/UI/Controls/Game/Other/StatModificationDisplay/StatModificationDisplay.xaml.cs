@@ -17,7 +17,8 @@
             = DependencyProperty.Register(nameof(StatsDictionary),
                                           typeof(IReadOnlyStatsDictionary),
                                           typeof(StatModificationDisplay),
-                                          new PropertyMetadata(default(IReadOnlyStatsDictionary)));
+                                          new PropertyMetadata(default(IReadOnlyStatsDictionary),
+                                                               StatsDictionaryPropertyChangedHandler));
 
         private FrameworkElement layoutRoot;
 
@@ -52,17 +53,46 @@
 
         protected override void OnLoaded()
         {
-            this.layoutRoot.DataContext
-                = this.viewModel
-                      = new ViewModelStatModificationDisplay(this.StatsDictionary,
-                                                             this.HideDefenseStats);
+            this.Refresh();
         }
 
         protected override void OnUnloaded()
         {
+            this.DisposeViewModel();
+        }
+
+        private static void StatsDictionaryPropertyChangedHandler(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
+        {
+            ((StatModificationDisplay)d).Refresh();
+        }
+
+        private void DisposeViewModel()
+        {
+            if (this.viewModel is null)
+            {
+                return;
+            }
+
             this.layoutRoot.DataContext = null;
             this.viewModel.Dispose();
             this.viewModel = null;
+        }
+
+        private void Refresh()
+        {
+            if (!this.isLoaded)
+            {
+                return;
+            }
+
+            this.DisposeViewModel();
+
+            this.layoutRoot.DataContext
+                = this.viewModel
+                      = new ViewModelStatModificationDisplay(this.StatsDictionary,
+                                                             this.HideDefenseStats);
         }
     }
 }

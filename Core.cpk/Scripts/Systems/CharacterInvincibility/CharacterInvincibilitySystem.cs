@@ -65,7 +65,7 @@
             }
 
             // below is the Server-side code only
-            if (Api.Server.Database.TryGet(
+            if (Server.Database.TryGet(
                 nameof(ServerOperatorSystem),
                 DatabaseEntryId,
                 out serverInvicibleCharactersList))
@@ -76,7 +76,7 @@
 
             // invincible list is not stored, create a new one
             serverInvicibleCharactersList = new HashSet<string>(StringComparer.Ordinal);
-            Api.Server.Database.Set(
+            Server.Database.Set(
                 nameof(ServerOperatorSystem),
                 DatabaseEntryId,
                 serverInvicibleCharactersList);

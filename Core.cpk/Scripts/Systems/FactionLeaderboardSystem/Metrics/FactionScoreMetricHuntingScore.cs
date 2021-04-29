@@ -12,6 +12,8 @@
     /// </summary>
     public class FactionScoreMetricHuntingScore : ProtoFactionScoreMetric
     {
+        public override string Description => "Awarded for killing any creatures while in the faction.";
+
         public override double FinalScoreCoefficient => 0.5; // it's the XP->LP conversion coefficient for Hunting skill
 
         public override string Name => "Hunting score";
@@ -55,10 +57,10 @@
             rawXP *= 0.01; // 0.01 is our default XP->LP conversion coefficient (see TechConstants)
 
             Faction.GetPrivateState(faction).ServerMetricHuntingScore += rawXP;
-            /*Api.Logger.Dev("Mob killing metric updated: "
-                           + rawXP.ToString("0.###")
-                           + " total metric: "
-                           + Faction.GetPrivateState(faction).ServerMetricHuntingScore.ToString("0.###"));*/
+            /*Logger.Dev("Mob killing metric updated: "
+                       + rawXP.ToString("0.###")
+                       + " total metric: "
+                       + Faction.GetPrivateState(faction).ServerMetricHuntingScore.ToString("0.###"));*/
         }
     }
 }

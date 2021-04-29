@@ -46,9 +46,6 @@ Llena de agua el generador de vapor
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Meter la gasolina del bidón en el generador del motor
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Sales de litio del extractor de mineral de litio
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Llevar el bidón con petróleo crudo de un depósito
 
@@ -66,4 +63,7 @@ Hervir agua
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Llena la botella con agua del pozo
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Reciclar componentes del reactor
 

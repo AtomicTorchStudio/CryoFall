@@ -29,7 +29,7 @@
             out double finalDamageMultiplier,
             DamageDistribution damageDistribution)
         {
-            damageValue = 90;
+            damageValue = 95;
             armorPiercingCoef = 0.2;
             finalDamageMultiplier = 1;
 

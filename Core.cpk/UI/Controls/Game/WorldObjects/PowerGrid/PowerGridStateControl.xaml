@@ -40,7 +40,8 @@
             <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         </Style>
 
-        <Style x:Key="TextBlockValue" TargetType="TextBlock"
+        <Style x:Key="TextBlockValue"
+               TargetType="TextBlock"
                BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
         </Style>
@@ -89,7 +90,7 @@
                            Style="{StaticResource TextBlockValue}" />
                 <TextBlock Text=" " />
                 <TextBlock
-                    Text="{Binding EfficiencyPercent, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}'}"
+                    Text="{Binding EfficiencyPercent, StringFormat={x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}}"
                     Style="{StaticResource TextBlockValue}" />
                 <Control Style="{StaticResource ControlInfoQuestionPointStyle}"
                          Margin="2,0,0,-2"
@@ -118,7 +119,7 @@
                 <TextBlock Text=" "
                            Style="{StaticResource TextBlockValue}" />
                 <TextBlock
-                    Text="{Binding NumberProducersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}"
+                    Text="{Binding NumberProducersActive, StringFormat={x:Static loc:CoreStrings.PowerGridState_ActiveFormat}}"
                     Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
@@ -136,7 +137,7 @@
                 <TextBlock Text=" "
                            Style="{StaticResource TextBlockValue}" />
                 <TextBlock
-                    Text="{Binding NumberConsumersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}"
+                    Text="{Binding NumberConsumersActive, StringFormat={x:Static loc:CoreStrings.PowerGridState_ActiveFormat}}"
                     Style="{StaticResource TextBlockValue}" />
             </StackPanel>
 
@@ -153,7 +154,8 @@
         </Grid>
 
         <Control Grid.Column="1"
-                 Style="{StaticResource ControlVerticalSeparator}" />
+                 Style="{StaticResource ControlVerticalSeparator}"
+                 Margin="0,-30" />
 
         <Grid Grid.Column="2"
               VerticalAlignment="Top"
@@ -179,7 +181,6 @@
                        Grid.ColumnSpan="3"
                        Text="{x:Static loc:CoreStrings.PowerGridState_EnergyInformation}"
                        Style="{StaticResource SectionTitleStyle}" />
-
 
             <!-- Text: Capacity: -->
             <TextBlock Grid.Row="1"

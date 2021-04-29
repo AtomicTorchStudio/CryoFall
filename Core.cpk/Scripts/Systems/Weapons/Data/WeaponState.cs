@@ -91,7 +91,6 @@
         public void SharedSetInputIsFiring(bool inputIsFiring)
         {
             this.inputIsFiring = inputIsFiring;
-            //Api.Logger.Dev($"Set is firing: {inputIsFiring}, ServerLastClientReportedShotsDoneCount: {shotsDone}");
         }
 
         public void SharedSetWeaponItem(IItem item, IProtoItemWeapon protoItem)

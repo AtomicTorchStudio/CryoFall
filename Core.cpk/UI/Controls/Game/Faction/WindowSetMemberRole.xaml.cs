@@ -46,7 +46,6 @@
             var window = new WindowSetMemberRole();
             window.MemberName = memberName;
             Api.Client.UI.LayoutRootChildren.Add(window);
-            //FactionSystem.ClientOfficerSetMemberRole(memberName, role)
         }
 
         protected override void InitControlWithWindow()
@@ -55,7 +54,7 @@
             this.buttonCancel = this.GetByName<Button>("ButtonCancel");
 
             this.Emblem = Api.Client.UI.GetTextureBrush(
-                ClientFactionEmblemTextureComposer.GetEmblemTexture(
+                ClientFactionEmblemTextureProvider.GetEmblemTexture(
                     FactionSystem.ClientCurrentFaction,
                     useCache: true));
 

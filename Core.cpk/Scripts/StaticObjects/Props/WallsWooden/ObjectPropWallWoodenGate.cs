@@ -1,9 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Props.WallsWooden
 {
-    using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.GameApi.Data.World;
-
-    public class ObjectPropWallWoodenGate : ProtoObjectProp
+    public class ObjectPropWallWoodenGate : ProtoPropWallWooden
     {
         public override bool CanFlipSprite => true;
 

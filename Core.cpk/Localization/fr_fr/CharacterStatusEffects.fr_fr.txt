@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+Remédiable avec {0}.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 Vous avez utilisé des stimulants : votre régénération d'endurance est accélérée.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Vous mourez de faim !
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Faim
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+Vous souffrez d'une importante blessure ouverte. Une lésion aussi sérieuse nécessite un traitement médical d'urgence.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+Lacération profonde
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 Vous avez été exposé à des niveaux de radiations extrêmes, et les cellules de votre organisme ont commencé à muter. C'est mal... Très mal... Essayez d'éviter de pénétrer à nouveau dans des zones irradiées.

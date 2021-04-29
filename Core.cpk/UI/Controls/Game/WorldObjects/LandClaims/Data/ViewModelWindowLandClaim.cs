@@ -2,6 +2,9 @@
 {
     using System;
     using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
@@ -20,6 +23,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelWindowLandClaim : BaseViewModel
     {
@@ -109,15 +113,17 @@
             ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacityChanged
                 += this.SafeItemsSlotsCapacityChangedHandler;
 
+            FactionConstants.ClientFactionMembersMaxChanged
+                += this.FactionMembersMaxChangedHandler;
+
             this.RequestDecayInfoTextAsync();
 
             this.ViewModelShieldProtectionControl = new ViewModelShieldProtectionControl(
                 LandClaimSystem.SharedGetLandClaimAreasGroup(area));
         }
 
-        public bool CanTransferToFactionOwnership
-            => !this.IsOwnedByFaction
-               && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement);
+        public bool CanOpenTransferToFactionOwnershipDialog
+            => !this.IsOwnedByFaction;
 
         public BaseCommand CommandConfirmLandClaimDecayMessage
             => new ActionCommand(this.ExecuteCommandConfirmLandClaimDecayMessage);
@@ -134,6 +140,9 @@
 
         public bool IsLandClaimDecayInfoConfirmed
             => LandClaimDecayInfoConfirmationHelper.IsConfirmedForCurrentServer;
+
+        public bool IsMaxFactionSizeLargerThanSinglePlayer
+            => FactionConstants.GetFactionMembersMax(FactionKind.Private) > 1;
 
         public bool IsOwnedByFaction
             => LandClaimSystem.SharedIsAreaOwnedByFaction(this.area);
@@ -187,6 +196,9 @@
             ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacityChanged
                 -= this.SafeItemsSlotsCapacityChangedHandler;
 
+            FactionConstants.ClientFactionMembersMaxChanged
+                -= this.FactionMembersMaxChangedHandler;
+
             this.DisposeViewModelItemsContainerExchange();
             base.DisposeViewModel();
         }
@@ -218,7 +230,53 @@
 
         private void ExecuteCommandTransferLandClaimToFactionOwnership()
         {
-            LandClaimSystem.ClientTransferLandClaimToFactionOwnership(this.area);
+            var accessRight = FactionMemberAccessRights.LandClaimManagement;
+            var hasAccessRight = FactionSystem.ClientHasAccessRight(accessRight);
+
+            var stackPanel = new StackPanel() { Orientation = Orientation.Vertical };
+            stackPanel.Children.Add(
+                DialogWindow.CreateTextElement(CoreStrings.Faction_DialogTransferLandClaimToFaction,
+                                               TextAlignment.Left));
+
+            {
+                // a warning about the potential access loss
+                var textElement = DialogWindow.CreateTextElement(
+                    "[br]"
+                    + CoreStrings.Faction_DialogTransferLandClaimToFaction_PotentialAccessLoss,
+                    TextAlignment.Left);
+
+                textElement.Foreground = Client.UI.GetApplicationResource<Brush>("BrushColor6");
+                stackPanel.Children.Add(textElement);
+            }
+
+            if (!hasAccessRight)
+            {
+                var message = FactionSystem.ClientHasFaction
+                                  ? string.Format(
+                                      CoreStrings.Faction_Permission_Required_Format,
+                                      accessRight.GetDescription())
+                                  : CoreStrings.Faction_ErrorDontHaveFaction;
+
+                var textElement = DialogWindow.CreateTextElement("[br]" + message,
+                                                                 TextAlignment.Left);
+
+                textElement.Foreground = Client.UI.GetApplicationResource<Brush>("BrushColorRed6");
+                textElement.FontWeight = FontWeights.Bold;
+                stackPanel.Children.Add(textElement);
+            }
+
+            var dialog = DialogWindow.ShowDialog(
+                CoreStrings.QuestionAreYouSure,
+                stackPanel,
+                okAction: () => LandClaimSystem.ClientTransferLandClaimToFactionOwnership(this.area),
+                cancelAction: () => { },
+                okText: CoreStrings.Button_Continue,
+                focusOnCancelButton: true);
+
+            if (!hasAccessRight)
+            {
+                dialog.ButtonOk.IsEnabled = false;
+            }
         }
 
         private void ExecuteCommandUpgrade()
@@ -229,6 +287,11 @@
             this.protoObjectLandClaim.ClientUpgrade(
                 this.landClaimWorldObject,
                 (IProtoObjectLandClaim)upgradeStructure);
+        }
+
+        private void FactionMembersMaxChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.IsMaxFactionSizeLargerThanSinglePlayer));
         }
 
         private void RefreshSafeStorageAndPowerGrid()

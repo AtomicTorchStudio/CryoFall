@@ -155,6 +155,19 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 無法拆除
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+你的派系的排名從#{0}降低到了#{1}。
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+派系排名降低
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`你的派系的排名從#{0}提高到了#{1}。
+[br]繼續努力！`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+派系排名提高
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 成員數
 
@@ -184,6 +197,12 @@ Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 外交管理
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+載具訪問管理
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+基地護盾管理
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 代理人
@@ -219,10 +238,10 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Tex
 [b]\[{0}\][/b] 接受了我們的和談提議。
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_AllianceAcceptedByUs_Format:
-我們接受了來自[b]\[{0}\][/b] 的和談提議。
+我們接受了來自 [b]\[{0}\][/b] 的和談提議。
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarByUs_Format:
-我們對[b]\[{0}\][/b] 宣戰了。
+我們對 [b]\[{0}\][/b] 宣戰了。
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryDiplomacyStatusChanged@Text_DeclaredWarOnUs_Format:
 [b]\[{0}\][/b] 對我們宣戰了。
@@ -315,7 +334,7 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Name:
 身份重命名
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryRoleRenamed@Text_Format:
-身份[b]{0}[/b] 被重命名為[b]{1}[/b]。
+身份 [b]{0}[/b] 被重命名為 [b]{1}[/b]。
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Name:
 派系領地變更
@@ -326,20 +345,41 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expa
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 派系位於{0} 的領地被移除。
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+對擁有派系分數，位於派系基地內建築的獎勵。（僅計算已向派系所有者共用的主權領地）
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-派系基地財富
+財富分數
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+派系等級越高，獎勵分數越多！
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 派系等級
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+獎勵擊殺世界boss，與獲取戰利品總量直接相關。
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Boss分數
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+獎勵再次派系內對任意生物的擊殺。
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 狩獵分數
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-總累計知識點
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+獎勵在此派系中時LP獲取。任務獎勵和消耗品獲取的LP不計算在內。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+知識點分數
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+獎勵佔領油田和鋰鹽。分數每小時計算，且主權建築必須已轉讓給派系所有者。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+資源佔領分數
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 你的物品欄中缺少魚餌。

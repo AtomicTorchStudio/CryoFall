@@ -10,10 +10,10 @@
 
         public void OnWorldInit()
         {
-            if (!Api.Server.Database.TryGet("Core", "IsWorldSpawned", out bool isWorldSpawned)
+            if (!Server.Database.TryGet("Core", "IsWorldSpawned", out bool isWorldSpawned)
                 || !isWorldSpawned)
             {
-                Api.Server.Database.Set("Core", "IsWorldSpawned", true);
+                Server.Database.Set("Core", "IsWorldSpawned", true);
             }
 
             if (isWorldSpawned

@@ -19,7 +19,7 @@
 
         static ClientWorldEventRegularNotificationManager()
         {
-            ClientTimersSystem.AddAction(1, RefreshActiveEventsInfo);
+            RefreshActiveEventsInfo();
         }
 
         public static int CalculateEventTimeRemains(ILogicObject activeEvent)
@@ -34,6 +34,7 @@
             bool addDescription)
         {
             var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
+            var description = protoEvent.ClientGetDescription(activeEvent);
             if (!protoEvent.ConsolidateNotifications)
             {
                 addDescription = true;
@@ -42,7 +43,7 @@
                     || timeRemains <= 0)
                 {
                     return
-                        $"{protoEvent.Description}[br][br][b]{ClientWorldMapEventVisualizer.Notification_ActiveEvent_Finished}[/b]";
+                        $"{description}[br][br][b]{ClientWorldMapEventVisualizer.Notification_ActiveEvent_Finished}[/b]";
                 }
             }
 
@@ -54,14 +55,36 @@
             var sb = new StringBuilder();
             if (addDescription)
             {
-                sb.Append(protoEvent.Description)
+                sb.Append(description)
                   .Append("[br][br]");
             }
 
             if (!activeEvent.IsDestroyed)
             {
-                sb.AppendFormat(ClientWorldMapEventVisualizer.Notification_ActiveEvent_TimeRemainingFormat,
-                                ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+                if (activeEvent.ProtoGameObject is ProtoEventBoss protoEventBoss)
+                {
+                    var timeRemainsToEventStart
+                        = protoEventBoss.SharedGetTimeRemainsToEventStart(ProtoEventBoss.GetPublicState(activeEvent));
+
+                    if (timeRemainsToEventStart > 0)
+                    {
+                        // the boss event is not yet started
+                        sb.AppendFormat(ClientWorldMapEventVisualizer.Notification_ActiveEvent_TimeStartsIn,
+                                        ClientTimeFormatHelper.FormatTimeDuration(timeRemainsToEventStart));
+                    }
+                    else
+                    {
+                        // the boss event has started
+                        sb.AppendFormat(ClientWorldMapEventVisualizer.Notification_ActiveEvent_TimeRemainingFormat,
+                                        ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+                    }
+                }
+                else
+                {
+                    // a regular event
+                    sb.AppendFormat(ClientWorldMapEventVisualizer.Notification_ActiveEvent_TimeRemainingFormat,
+                                    ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+                }
             }
 
             var progressText = protoEvent.SharedGetProgressText(activeEvent);
@@ -178,7 +201,7 @@
                 RefreshActiveEventInfo(pair.activeEvent);
             }
 
-            ClientTimersSystem.AddAction(1, RefreshActiveEventsInfo);
+            ClientTimersSystem.AddAction(0.333, RefreshActiveEventsInfo);
         }
 
         private static HudNotificationControl RemoveNotification(

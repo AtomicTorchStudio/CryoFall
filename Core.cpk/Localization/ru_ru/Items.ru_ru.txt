@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 Патроны 12-го калибра с солью
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-Жакан имеет более высокую останавливающую силу, чем дробь, и подходит против большинства целей. Благодаря массивности пули эффективны даже против хорошо бронированных целей.
+Эти универсальные патроны можно использовать против большинства противников. Благодаря большой массе они довольно эффективны даже против хорошо защищенных целей.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 Пули жакан 12-го калибра
@@ -111,6 +111,12 @@ Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 Зажигательная граната
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+Жидкий кейнит в небольших стеклянных капсулах. Используется для экзотического оружия.
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+Кейнитовые патроны
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Простейшие боеприпасы. Подходят только против слабых целей, зато дешевы и просты в изготовлении.
@@ -187,6 +193,9 @@ Scripts/Items/Base/ItemHints@ImplantApplication:
 Scripts/Items/Base/ItemHints@NeverConsumed:
 Вы это не пробовали
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+Этот предмет можно установить в прагмиевый реактор.
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Этот предмет получает энергию от экипированных аккумуляторов.
 
@@ -241,6 +250,12 @@ Scripts/Items/Devices/ItemHuntersTools@Description:
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Инструменты охотника
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+Специальный прибор, который может извлекать кейнит низкого качества из местных биологических видов и мутировавших животных.
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+Экстрактор кейнита
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 Небольшой лазерный целеуказатель, который облегчает прицеливание при стрельбе на дальние расстояния.
 
@@ -258,6 +273,12 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Стандартный аккумулятор
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+Этот слот временно зарезервирован для возвращения дрона.
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+Зарезервированный слот
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 Улучшенный пульт управления дроном
@@ -971,7 +992,7 @@ Scripts/Items/Food/ItemPizzaPineapple@Name:
 Пицца с ананасом
 
 Scripts/Items/Food/ItemPotatoBakedWithMeat@Description:
-Свежая картошка с золотистой корочкой и мясом.
+Свежая картошка с золотистой корочкой, запеченная с мясом.
 
 Scripts/Items/Food/ItemPotatoBakedWithMeat@Name:
 Запеченная картошка с мясом
@@ -1490,6 +1511,18 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Стальной слиток
 
+Scripts/Items/Generic/ItemKeinite@Description:
+Невероятно ценная экзотическая субстанция инопланетного происхождения. Применяется в различных современных научных проектах.
+
+Scripts/Items/Generic/ItemKeinite@Name:
+Кейнит
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+Сырой, необработанный кейнит. Требует обработки перед использованием.
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+Необработанный кейнит
+
 Scripts/Items/Generic/ItemLeather@Description:
 Кожа животного. Из нее можно сделать кожаную броню.
 
@@ -1600,18 +1633,6 @@ Scripts/Items/Generic/ItemPreservative@Description:
 
 Scripts/Items/Generic/ItemPreservative@Name:
 Консервант
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-Пустое ядро реактора, которое можно наполнить веществом, насыщенном реактивной энергией, например прагмием.
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-Пустое ядро реактора
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-Ядро реактора, заполненное прагмием. Относительно стабильный и портативный источник питания с длительным сроком службы.
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-Ядро реактора с прагмием
 
 Scripts/Items/Generic/ItemRice@Description:
 Собранные зерна риса. Можно сохранить для посадки или готовить разнообразные блюда.
@@ -1868,6 +1889,12 @@ Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 Имплант эндоскелетного укрепления
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+Особый орган, который соединен с крупной артерией и помогает очищать кровь от различных токсинов и ядов.
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+Имплант фильтрации токсинов
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 На теле не обнаружено бесконтрольных мутаций.
 
@@ -2116,6 +2143,48 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Малый стимулятор силы
 
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+Обломки одного из сломанных модулей реактора.
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+Сломанный модуль реактора
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+Специальный многослойный щит, который частично блокирует пси-излучение, исходящее от реактора.
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+Пси-отражатель
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+Специальное устройство, которое рассеивает пси-излучение в ядре реактора, повышая время полураспада топлива ценой снижения выработки энергии.
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+Пси-рассеиватель
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+Улучшает ответ реактора с помощью дополнительных контроллеров пси-потока, сильно сокращая время запуска и остановки реактора.
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+Активатор пси-потока
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+Топливный элемент реактора, наполненный прагмием. Относительно стабильный, портативный источник энергии длительного действия.
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+Прагмиевый топливный элемент
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+Пустой топливный элемент реактора, который можно наполнить прагмием.
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+Пустой топливный элемент
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+Меняет конфигурацию пси-полей, производимых в ядре реактора, повышая его выработку.
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+Пси-модератор
+
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Саженец дерева. Можно посадить, чтобы вырастить новое дерево.
 
@@ -2199,6 +2268,9 @@ Scripts/Items/Special/ItemTeleportLocationData@Description:
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 Позиционные данные телепорта
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+Вы уже обнаружили все местоположения телепортов.
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Железный топор отлично рубит деревья. Он более эффективен и крепок по сравнению с каменным топором.
@@ -2520,6 +2592,18 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Пистолет-пулемет
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Экзотическое оружие, которое запускает во врагов небольших насекомоподобных существ вместо пуль.
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+`Пусковая установка "Рой"`
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Экзотическое оружие, которое использует жидкий кейнит, чтобы создать и выпустить сильный токсин во врагов.
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Эвапоратор токсинов
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Тяжелая автоматическая пушка, разработанная для установки на руку в механизированной боевой броне. Использует боеприпасы крупного калибра.

@@ -58,6 +58,12 @@ Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 能量武器
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+在传统战斗中很少使用的实验性武器，但在极端状况下也许能派上用场。
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+异星武器
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 种子，基肥等农业用品的制备。
 

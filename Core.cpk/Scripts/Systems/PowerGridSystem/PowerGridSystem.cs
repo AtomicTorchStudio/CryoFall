@@ -33,6 +33,10 @@
     {
         public const double BaseCapacity = 10000.0;
 
+        public const double PowerGridEfficiencyDropPercentPerExtraLandClaim = 2.0;
+
+        public const double PowerGridMinEfficiencyPercents = 50.0;
+
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
 
@@ -55,9 +59,10 @@
 
         public static void ClientInitializeConsumerOrProducer(IStaticWorldObject worldObject)
         {
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer
-                && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0
-                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer)
+            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer
+                    { ElectricityConsumptionPerSecondWhenActive: > 0 }
+                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer
+                    { IsGeneratorAlwaysOn: false })
             {
                 ObjectPowerStateOverlay.CreateFor(worldObject);
             }
@@ -101,11 +106,12 @@
             IStaticWorldObject worldObject,
             BaseUserControlWithWindow window)
         {
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer
-                && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0
-                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer)
+            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer
+                    { ElectricityConsumptionPerSecondWhenActive: > 0 }
+                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer
+                    { IsGeneratorAlwaysOn: false })
             {
-                // consumer or producer object
+                // proper consumer or producer object
             }
             else
             {
@@ -299,8 +305,6 @@
 
             // process producers
             {
-                // power demand is used only to handle generators idle/active state
-                var powerDemand = consumptionCurrent;
                 if (state.ServerNeedToSortCacheProducers)
                 {
                     ServerSortProducers(state.ServerCacheProducers);
@@ -336,35 +340,44 @@
                     producerPrivateState.PowerGridChargePercent = gridElectricityAmountPercentByte;
 
                     var producerPublicState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
-                    switch (producerPublicState.ElectricityProducerState)
+                    if (protoProducer.IsGeneratorAlwaysOn)
                     {
-                        case ElectricityProducerState.PowerOff:
-                            continue;
-
-                        case ElectricityProducerState.PowerOnIdle:
+                        producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
+                    }
+                    else
+                    {
+                        switch (producerPublicState.ElectricityProducerState)
                         {
-                            // this generator is idle (not generating energy)
-                            if (gridElectricityAmountPercent
-                                <= producerPrivateState.ElectricityThresholds.StartupPercent)
+                            case ElectricityProducerState.PowerOff:
+                                continue;
+
+                            case ElectricityProducerState.PowerOnIdle:
                             {
-                                // startup threshold is reached
-                                producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
-                                numberProducersActive++;
+                                // this generator is idle (not generating energy)
+                                if (gridElectricityAmountPercent
+                                    <= producerPrivateState.ElectricityThresholds.StartupPercent)
+                                {
+                                    // startup threshold is reached
+                                    producerPublicState.ElectricityProducerState =
+                                        ElectricityProducerState.PowerOnActive;
+                                    numberProducersActive++;
+                                }
+
+                                break;
                             }
 
-                            break;
-                        }
-                        case ElectricityProducerState.PowerOnActive:
-                        {
-                            // this generator is active
-                            if (gridElectricityAmountPercent
-                                >= producerPrivateState.ElectricityThresholds.ShutdownPercent)
+                            case ElectricityProducerState.PowerOnActive:
                             {
-                                // shutdown threshold is reached
-                                producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
-                            }
+                                // this generator is active
+                                if (gridElectricityAmountPercent
+                                    >= producerPrivateState.ElectricityThresholds.ShutdownPercent)
+                                {
+                                    // shutdown threshold is reached
+                                    producerPublicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
+                                }
 
-                            break;
+                                break;
+                            }
                         }
                     }
                 }
@@ -421,7 +434,7 @@
         protected override void PrepareSystem()
         {
             ConstructionPlacementSystem.ServerStructureBuilt += ServerStructureBuiltHandler;
-            ServerStructuresManager.StructureDestroyed += ServerStructureDestroyedHandler;
+            ServerStructuresManager.StructureRemoved += ServerStructureRemovedHandler;
             LandClaimSystem.ServerAreasGroupCreated += ServerLandClaimsGroupCreatedHandler;
             LandClaimSystem.ServerAreasGroupDestroyed += ServerLandClaimsGroupDestroyedHandler;
             LandClaimSystem.ServerAreasGroupChanged += ServerLandClaimsGroupChangedHandler;
@@ -498,8 +511,10 @@
                                                                 .Count,
                                              byte.MaxValue);
 
-            var result = 1 - 0.05 * (landClaimsCount - 1);
-            return Math.Max(result, 0.5);
+            var result = 1
+                         - ((PowerGridEfficiencyDropPercentPerExtraLandClaim / 100.0)
+                            * (landClaimsCount - 1));
+            return Math.Max(result, PowerGridMinEfficiencyPercents / 100.0);
         }
 
         private static void ServerCutPower(
@@ -896,7 +911,19 @@
             }
         }
 
-        private static void ServerStructureDestroyedHandler(IStaticWorldObject structure)
+        private static void ServerStructureRelocatingOrRelocatedHandler(
+            ICharacter byCharacter,
+            Vector2Ushort fromPosition,
+            IStaticWorldObject worldObject)
+        {
+            var powerGrid = SharedGetPowerGrid(worldObject);
+            if (powerGrid is not null)
+            {
+                ServerRebuildPowerGrid(powerGrid);
+            }
+        }
+
+        private static void ServerStructureRemovedHandler(IStaticWorldObject structure)
         {
             var protoStructure = structure.ProtoGameObject;
             if (protoStructure is IProtoObjectElectricityConsumer protoConsumer
@@ -928,18 +955,6 @@
                 return powerGrid is null
                            ? null
                            : PowerGrid.GetPublicState(powerGrid);
-            }
-        }
-
-        private static void ServerStructureRelocatingOrRelocatedHandler(
-            ICharacter byCharacter,
-            Vector2Ushort fromPosition,
-            IStaticWorldObject worldObject)
-        {
-            var powerGrid = SharedGetPowerGrid(worldObject);
-            if (powerGrid is not null)
-            {
-                ServerRebuildPowerGrid(powerGrid);
             }
         }
 

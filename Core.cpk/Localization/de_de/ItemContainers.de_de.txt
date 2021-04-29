@@ -19,3 +19,15 @@ Um das Implantat zu entfernen, musst du die Krankenstation aufsuchen.
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
 Kann nicht entfernt werden
 
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Message:
+Nur Reaktorteile können hier platziert werden.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Title:
+Inkompatibler Gegenstand
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Message:
+Reaktorkomponenten nicht hinzufüg- oder entfernbar.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Title:
+Reaktor ist aktiv
+

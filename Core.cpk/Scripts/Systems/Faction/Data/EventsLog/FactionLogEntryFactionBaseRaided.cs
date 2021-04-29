@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;

@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -23,9 +24,9 @@
 
         private static readonly TextureAtlasResource TextureAtlasFire
             = new("Characters/Tools/ItemTorchFire",
-                columns: 4,
-                rows: 2,
-                isTransparent: true);
+                  columns: 4,
+                  rows: 2,
+                  isTransparent: true);
 
         public override string Description =>
             "This will keep you sane at night. Make sure you have a spare just in case.";
@@ -38,6 +39,19 @@
         public override double ServerUpdateIntervalSeconds => 1;
 
         protected override string ActiveLightCharacterAnimationName => "Torch";
+
+        public override void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
+        {
+            if (PveSystem.ServerIsPvE)
+            {
+                shouldDrop = true; // drop (if the PvE mechanic supports it)
+                return;
+            }
+
+            // destroy torches in PvP to prevent "noob loot" (when a loot pile contains only a torch)
+            Server.Items.DestroyItem(item);
+            shouldDrop = false;
+        }
 
         protected override BaseClientComponentLightSource ClientCreateLightSource(
             IItem item,

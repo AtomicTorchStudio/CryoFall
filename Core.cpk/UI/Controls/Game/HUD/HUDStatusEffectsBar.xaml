@@ -168,16 +168,16 @@
                                         Margin="0,2">
                                 <StackPanel.Visibility>
                                     <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}">
-                                        <Binding Path="IsTooltipIntensityPercentVisible" />
-                                        <Binding Path="IsTooltipTimeRemainsVisible" />
+                                        <Binding Path="IsTooltipIntensityPercentVisible" FallbackValue="False" />
+                                        <Binding Path="IsTooltipTimeRemainsVisible" FallbackValue="False" />
                                     </MultiBinding>
                                 </StackPanel.Visibility>
 
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Visibility>
                                         <MultiBinding Converter="{StaticResource AllBoolToVisibilityMultiConverter}">
-                                            <Binding Path="IsTooltipIntensityPercentVisible" />
-                                            <Binding Path="IsTooltipTimeRemainsVisible" />
+                                            <Binding Path="IsTooltipIntensityPercentVisible" FallbackValue="False" />
+                                            <Binding Path="IsTooltipTimeRemainsVisible" FallbackValue="False" />
                                         </MultiBinding>
                                     </StackPanel.Visibility>
 
@@ -189,6 +189,7 @@
 
                                     <!-- Text: Time remains -->
                                     <Image Source="/UI/Images/Icons/Clock.png"
+                                           UseLayoutRounding="True"
                                            VerticalAlignment="Center"
                                            Margin="10,0,1,-1"
                                            Width="15"
@@ -201,8 +202,8 @@
                                     <StackPanel.Visibility>
                                         <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}"
                                                       ConverterParameter="Reverse">
-                                            <Binding Path="IsTooltipIntensityPercentVisible" />
-                                            <Binding Path="IsTooltipTimeRemainsVisible" />
+                                            <Binding Path="IsTooltipIntensityPercentVisible" FallbackValue="False" />
+                                            <Binding Path="IsTooltipTimeRemainsVisible" FallbackValue="False" />
                                         </MultiBinding>
                                     </StackPanel.Visibility>
 
@@ -220,6 +221,7 @@
                                         Visibility="{Binding IsTooltipTimeRemainsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                         Orientation="Horizontal">
                                         <Image Source="/UI/Images/Icons/Clock.png"
+                                               UseLayoutRounding="True"
                                                VerticalAlignment="Center"
                                                Margin="0,0,1,-1"
                                                Width="15"

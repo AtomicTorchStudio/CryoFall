@@ -39,8 +39,7 @@
                 if (FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement))
                 {
                     this.ViewModelFactionAccessEditor = new ViewModelWorldObjectFactionAccessEditorControl(
-                        worldObjectCrate,
-                        canSetAccessMode: true);
+                        worldObjectCrate);
                 }
             }
             else

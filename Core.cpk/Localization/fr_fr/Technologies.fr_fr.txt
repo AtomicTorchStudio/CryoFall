@@ -58,6 +58,12 @@ Les armes à énergie représentent un nouveau bond technologique par rapport au
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Armes à énergie
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+Des armes expérimentales rarement utilisées en combat conventionnel, mais pouvant s'avérer utiles dans certains cas extrêmes.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+Armes exotiques
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 Tout sur la préparation des graines pour les semis, l'utilisation des engrais et les différentes techniques d'agriculture.
 

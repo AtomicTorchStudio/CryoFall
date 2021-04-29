@@ -23,6 +23,7 @@
             Vector2Ushort targetPosition,
             bool logErrors,
             out bool canPlace,
-            out bool isTooFar);
+            out bool isTooFar,
+            out string errorMessage);
     }
 }

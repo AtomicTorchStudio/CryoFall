@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeImplantArtificialLiver>();
 
-            config.SetRequiredNode<TechNodeImplantArtificialRetina>();
+            config.SetRequiredNode<TechNodeImplantATPEnergyExtractor>();
         }
     }
 }

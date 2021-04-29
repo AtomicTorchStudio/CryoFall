@@ -124,6 +124,9 @@ Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 매장지 폭발
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+프라그뮴 원자로 폭발
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 프라그뮴 원천 폭발
 
@@ -593,6 +596,9 @@ Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 경포탑
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+다른 포탑과 너무 가깝습니다
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 정지
 
@@ -707,6 +713,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 엔진 발전기
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+대형 프라그뮴 발전소는 대규모 기지의 유일하면서도 주된 동력원이 될 수 있으나, 꾸준히 프라그뮴을 공금해주어야 합니다.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+프라그뮴 발전소
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 태양열 발전기를 위한 기본 설비입니다. 작동시키려면 개별 태양 전지판이 필요합니다.
 
@@ -718,6 +730,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 증기 발전기
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+원자로를 가동하려면 {0}을/를 하나 이상 배치하세요.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+원자로를 가동할 수 없습니다
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 다른 생존자들이 주변에 어떤 것을 건설하거나 해체하는 것을 막아줌으로써 당신의 기지를 더 안전하게 해줍니다. 또한, 토지 점유소는 시간이 흘러도 구조물이 노후되지 않도록 해줍니다.
@@ -930,10 +948,10 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 의료소
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
-작동시키면 고강도의 초능력장을 방출하는 방어 구조물.
+작동시키면 고강도의 사이오닉장을 방출하는 방어 구조물.
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
-초능력장 발생기
+사이오닉장 발생기
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 보조 배터리나 손전등 같은 휴대용 전자 장비를 충전할 수 있습니다.

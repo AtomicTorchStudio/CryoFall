@@ -11,7 +11,7 @@
             config.Effects
                   .AddStructure<ObjectPsionicFieldGenerator>();
 
-            config.SetRequiredNode<TechNodeRechargingStationAdvanced>();
+            config.SetRequiredNode<TechNodeWaterCondenser>();
         }
     }
 }

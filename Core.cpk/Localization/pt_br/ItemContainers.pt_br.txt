@@ -19,3 +19,15 @@ Você precisa usar o posto médico para remover o implante.
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
 Não é possível remover
 
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Message:
+Somente peças de reatores podem ser colocadas aqui.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Title:
+Item incompatível
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Message:
+Não é possível adicionar ou remover componentes do reator.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Title:
+O reator está ativo
+

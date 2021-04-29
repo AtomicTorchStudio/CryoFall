@@ -124,6 +124,9 @@ Bomba rezonansowa
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Wybuch złoża
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Wybuch rektora pragmiumowego
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Wybuch źródła pragmium
 
@@ -593,6 +596,9 @@ W pełni zautomatyzowana lekka wieżyczka wartownicza.
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Lekka wieżyczka
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Zbyt blisko innej wieżyczki
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Wył.
 
@@ -707,6 +713,12 @@ Ten duży generator elektryczny działa na benzynę.
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Generator
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Duża elektrownia pragmiumowa może stanowić główne i jedyne źródło energii dla ogromnej bazy, ale wymaga stałych dostaw pragmium.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Elektrownia pragmiumowa
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Podstawowa instalacja do wytwarzania energii słonecznej. Do działania niezbędne są panele słoneczne.
 
@@ -718,6 +730,12 @@ Ten generator wykorzystuje gorącą parę do napędzania turbiny i wytwarzania e
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Generator pary
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Wstaw co najmniej 1 {0}, aby uruchomić reaktor.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+Nie można uruchomić reaktora
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Pomaga zabezpieczyć bazę, powstrzymując innych ocalałych przed budową lub wyburzaniem budynków w okolicy. Posiadanie działki gwarantuje również, że twoje budowle nie ulegną zniszczeniu z czasem.

@@ -16,6 +16,9 @@
         }
 
         [SyncToClient]
+        public ushort AccumulatedLearningPointsForUpgrade { get; set; }
+
+        [SyncToClient]
         public string DescriptionPrivate { get; set; }
 
         [SyncToClient]
@@ -82,11 +85,20 @@
         public double ServerMetricHuntingScore { get; set; }
 
         /// <summary>
+        /// This metric is incremented by the amount of learning points received by players.
+        /// </summary>
+        public uint ServerMetricLearningPoints { get; set; }
+
+        /// <summary>
+        /// This metric is incremented by the amount of controlled resource deposits every hour (PvP-only).
+        /// </summary>
+        public double ServerMetricResourceDominationScore { get; set; }
+
+        /// <summary>
         /// A dictionary containing faction leave date for each player character that has left it
         /// (the key is the character ID).
         /// </summary>
         public Dictionary<uint, double> ServerPlayerLeaveDateDictionary { get; set; }
-            = new();
 
         public void Init()
         {
@@ -96,6 +108,7 @@
             this.IncomingFactionAllianceRequests ??= new NetworkSyncDictionary<string, FactionAllianceRequest>();
             this.OutgoingFactionAllianceRequests ??= new NetworkSyncDictionary<string, FactionAllianceRequest>();
             this.RecentEventsLog ??= new NetworkSyncList<BaseFactionEventLogEntry>();
+            this.ServerPlayerLeaveDateDictionary ??= new Dictionary<uint, double>();
 
             this.AccessRightsBinding ??= new NetworkSyncDictionary<FactionMemberRole, FactionMemberAccessRights>
             {

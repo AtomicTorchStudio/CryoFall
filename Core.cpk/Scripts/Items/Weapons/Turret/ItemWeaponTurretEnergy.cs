@@ -14,7 +14,7 @@
 
         public override double CharacterAnimationAimingRecoilPower => 0.5;
 
-        public override double EnergyUsagePerShot => 100;
+        public override double EnergyUsagePerShot => 120;
 
         public override double FireInterval => 1 / 2.5; // 5 per 2 seconds
 

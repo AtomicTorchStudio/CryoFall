@@ -179,9 +179,12 @@
             // local method for updating public liquid state
             void UpdateIcon()
             {
-                var iconSource = publicState.IconSource;
-                spriteRenderIcon.IsEnabled = spriteRenderIconPlate.IsEnabled = iconSource is not null;
-                spriteRenderIcon.TextureResource = ClientCrateIconHelper.GetIcon(iconSource);
+                var icon = ClientCrateIconHelper.GetIcon(publicState.IconSource);
+                spriteRenderIcon.TextureResource = icon;
+                spriteRenderIcon.IsEnabled
+                    = spriteRenderIconPlate.IsEnabled
+                          = icon is not null
+                            && !TextureResource.NoTexture.Equals(icon);
             }
         }
 

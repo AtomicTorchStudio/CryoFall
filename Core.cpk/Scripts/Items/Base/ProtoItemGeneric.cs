@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items
 {
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
 
     /// <summary>
     /// Item prototype for generic items.
@@ -18,17 +17,15 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemGeneric()
-        {
-            this.Icon = new TextureResource("Items/Generic/" + this.GetType().Name);
-        }
-
-        public override ITextureResource Icon { get; }
-
         /// <summary>
         /// By default max stack size is "Medium".
         /// </summary>
         public override ushort MaxItemsPerStack => ItemStackSize.Medium;
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Generic/" + this.GetType().Name;
+        }
     }
 
     /// <summary>

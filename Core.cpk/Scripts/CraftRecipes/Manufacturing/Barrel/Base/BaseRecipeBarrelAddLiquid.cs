@@ -21,7 +21,7 @@
 
         public sealed override bool IsAutoUnlocked => true;
 
-        protected virtual TimeSpan CraftDuration => TimeSpan.FromSeconds(0.05);
+        protected virtual TimeSpan CraftDuration => TimeSpan.FromSeconds(0.025);
 
         public override bool CanBeCrafted(
             IWorldObject objectManufacturer,

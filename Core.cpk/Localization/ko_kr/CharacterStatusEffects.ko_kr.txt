@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+{0}(으)로 치료 가능.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 자극제를 사용하여 스태미나 자동 회복 속도가 훨씬 빨라집니다.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -88,6 +91,12 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 배고픔
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+몸에 매우 큰 상처가 났습니다. 이 정도로 위중한 상처를 치료하기 위해서는 일반적으로 큰 치료가 필요합니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+심한 열상
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 극심한 수준의 방사능에 노출되어 신체의 세포가 변이하기 시작했습니다. 큰일입니다! 방사능 지역에 들어가는 것을 피하시기 바랍니다.
 
@@ -110,10 +119,10 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
 심한 통증
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
-강한 초능력장의 영향을 받아 미쳐버리게 됩니다. 초능력장 밖으로 나가거나 초등력 차단 약을 사용하여 추가 피해를 막으십시오.
+강한 사이오닉장의 영향을 받아 미쳐버리게 됩니다. 사이오닉장 밖으로 나가거나 사이오닉 차단 약을 사용하여 추가 피해를 막으십시오.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
-초능력 영향
+사이오닉 영향
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
 사람을 천천히 죽이는 방사능 중독으로 고통받고 있습니다. 방사능 치료제를 찾으십시오.
@@ -212,10 +221,10 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
 진통제
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
-초능력 보호제의 효과로 초능력에 노출되더라도 그 영향을 적게 받습니다.
+사이오닉 보호제의 효과로 사이오닉에 노출되더라도 그 영향을 적게 받습니다.
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
-초능력 보호제
+사이오닉 보호제
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
 방사능 방호제의 효과로 새로 노출되는 방사능의 영향을 적게 받습니다.

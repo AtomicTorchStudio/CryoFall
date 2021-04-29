@@ -17,8 +17,6 @@
 
     public class EventFishingBlueGlider : ProtoEventFishing
     {
-        private const double EventDelayHoursSinceWipe = 24;
-
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public ushort AreaPaddingMax => PveSystem.ServerIsPvE
@@ -34,6 +32,8 @@
         [NotLocalizable]
         public override string Name => "Catch Blue glider fish";
 
+        protected override double DelayHoursSinceWipe => 24 * EventConstants.ServerEventDelayMultiplier;
+
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
             if (trigger is not null
@@ -48,15 +48,6 @@
             {
                 Logger.Error("All zones are empty (not mapped in the world), no place to start the event: " + this);
                 return false;
-            }
-
-            if (trigger is TriggerTimeInterval)
-            {
-                if (Server.Game.HoursSinceWorldCreation < EventDelayHoursSinceWipe)
-                {
-                    // too early
-                    return false;
-                }
             }
 
             return true;

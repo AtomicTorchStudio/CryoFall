@@ -124,6 +124,9 @@ Bomba de ressonância
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Explosão de depósito
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Explosão de reator de prágmio
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Explosão de fonte de prágmio
 
@@ -593,6 +596,9 @@ Torreta sentinela leve totalmente automatizada.
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Torreta leve
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Muito perto de outra torreta
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Desativada
 
@@ -707,6 +713,12 @@ Este grande gerador usa gasolina para produzir energia elétrica.
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Gerador motor
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Uma grande central elétrica de prágmio pode servir como principal e única fonte de energia para uma base imensa, mas requer um fornecimento constante de prágmio.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Central elétrica de prágmio
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Instalação básica para geração de energia solar. Requer painéis solares individuais para funcionar.
 
@@ -718,6 +730,12 @@ Este gerador utiliza vapor quente para acionar uma turbina e produzir eletricida
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Gerador de vapor
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Coloque pelo menos um(a) {0} para ligar o reator.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+Não é possível inicializar o reator
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Torna a base mais segura, evitando que outros sobreviventes construam ou desconstruam qualquer coisa na área circundante. A posse de terra também garante que suas estruturas não se deteriorem com o tempo.

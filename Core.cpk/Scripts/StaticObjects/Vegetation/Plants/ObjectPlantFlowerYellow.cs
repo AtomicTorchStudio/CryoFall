@@ -3,9 +3,11 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
@@ -38,6 +40,27 @@
             if (!(protoFarm is ObjectPlantPot))
             {
                 data.ClientState.Renderer.DrawOrderOffsetY += 0.5;
+            }
+        }
+
+        protected override void ClientRefreshVegetationRendering(
+            IStaticWorldObject worldObject,
+            VegetationClientState clientState,
+            VegetationPublicState publicState)
+        {
+            base.ClientRefreshVegetationRendering(worldObject, clientState, publicState);
+
+            if (publicState.GrowthStage > 1
+                && publicState.GrowthStage < this.GrowthStagesCount)
+            {
+                ClientGrassRenderingHelper.Setup(clientState.Renderer,
+                                                 power: 0.05f,
+                                                 pivotY: 0.2f);
+            }
+            else
+            {
+                // no grass swaying for the just planted and spoiled sprites
+                clientState.Renderer.RenderingMaterial = null;
             }
         }
 

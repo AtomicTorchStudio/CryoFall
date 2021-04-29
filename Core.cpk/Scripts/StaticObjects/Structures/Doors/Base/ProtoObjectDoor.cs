@@ -15,7 +15,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -658,21 +657,6 @@
             {
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
                     isDestroy: false);
-            }
-        }
-
-        protected override void ServerOnStaticObjectZeroStructurePoints(
-            WeaponFinalCache weaponCache,
-            ICharacter byCharacter,
-            IWorldObject targetObject)
-        {
-            base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
-
-            if (weaponCache is not null)
-            {
-                // door was destroyed (and not deconstructed by a crowbar or any other means)
-                LandClaimSystem.ServerOnRaid(((IStaticWorldObject)targetObject).Bounds,
-                                             byCharacter);
             }
         }
 

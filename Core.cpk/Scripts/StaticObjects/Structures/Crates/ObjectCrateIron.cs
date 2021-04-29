@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectCrateIron : ProtoObjectCrate
     {
@@ -22,6 +23,8 @@
         public override double StructureExplosiveDefenseCoef => 0.25;
 
         public override float StructurePointsMax => 700;
+
+        protected override Vector2D ItemIconOffset => (0, base.ItemIconOffset.Y + 0.1);
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

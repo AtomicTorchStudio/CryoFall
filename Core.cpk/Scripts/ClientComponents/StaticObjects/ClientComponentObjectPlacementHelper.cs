@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -44,6 +45,7 @@
         public delegate void ValidateCanBuildDelegate(
             Vector2Ushort tilePosition,
             bool logErrors,
+            out string errorMessage,
             out bool canPlace,
             out bool isTooFar);
 
@@ -128,19 +130,22 @@
                 }
             }
 
-            var tilePosition = Client.Input.MousePointedTilePosition;
-            var tilePositionVector2D = tilePosition.ToVector2D();
+            var tilePosition = (Client.Input.MousePointedTilePosition
+                                + this.protoStaticWorldObject.BlueprintTileOffset)
+                .ToVector2Ushort();
+
+            var tilePosition2D = tilePosition.ToVector2D();
 
             this.cachedTimeRemainsSeconds -= Client.Core.DeltaTime;
 
             var isCanBuildThisPhase = !isUpdateRequired;
 
-            var isPositionChanged = this.SceneObject.Position != tilePositionVector2D;
+            var isPositionChanged = this.SceneObject.Position != tilePosition2D;
             if (isUpdateRequired
                 || isPositionChanged
                 || this.cachedTimeRemainsSeconds <= 0)
             {
-                this.SceneObject.Position = tilePositionVector2D;
+                this.SceneObject.Position = tilePosition2D;
                 this.UpdateBlueprint(tilePosition);
 
                 if (this.isRepeatCallbackIfHeld
@@ -211,6 +216,7 @@
 
             this.validateCanBuildCallback(tilePosition,
                                           logErrors: !isButtonHeld,
+                                          out _,
                                           out var canPlace,
                                           out var isTooFar);
 
@@ -232,8 +238,12 @@
             this.sceneObjectForComponents
                 .AddComponent<SceneObjectPositionSynchronizer>()
                 .Setup(this.SceneObject);
-            this.blueprintRenderer = new ClientBlueprintRenderer(this.sceneObjectForComponents,
-                                                                 isConstructionSite: false);
+
+            this.blueprintRenderer = new ClientBlueprintRenderer(
+                this.sceneObjectForComponents,
+                isConstructionSite: false,
+                this.protoStaticWorldObject.SharedGetObjectCenterWorldOffset(null));
+
             this.blueprintRenderer.IsEnabled = false;
             this.tilesBlueprint = new ClientBlueprintTilesRenderer(this.sceneObjectForComponents);
             this.tilesBlueprint.Setup(this.protoStaticWorldObject.Layout);
@@ -290,6 +300,7 @@
             var tilePosition = tile.Position;
             this.validateCanBuildCallback(tilePosition,
                                           logErrors: false,
+                                          out var errorMessage,
                                           out var canPlace,
                                           out var isTooFar);
 
@@ -308,10 +319,17 @@
             this.blueprintRenderer.IsCanBuild = canPlace;
             this.tilesBlueprint.IsCanBuild = canPlace;
             this.blueprintRenderer.IsTooFar = isTooFar;
+
+            if (isTooFar && string.IsNullOrEmpty(errorMessage))
+            {
+                errorMessage = CoreStrings.Notification_TooFar;
+            }
+
+            this.blueprintRenderer.CannotBuildReason = errorMessage;
             this.blueprintRenderer.RefreshMaterial();
 
             // cache check result for 0.1 second
-            this.cachedTimeRemainsSeconds = 0.1d;
+            this.cachedTimeRemainsSeconds = 0.1;
         }
     }
 }

@@ -9,6 +9,8 @@
 
         int GenerationOrder { get; set; }
 
+        bool IsGeneratorAlwaysOn { get; }
+
         IObjectElectricityStructurePrivateState GetPrivateState(IStaticWorldObject worldObject);
 
         IObjectElectricityProducerPublicState GetPublicState(IStaticWorldObject worldObject);

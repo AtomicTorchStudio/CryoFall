@@ -44,6 +44,7 @@
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Extensions;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
@@ -825,7 +826,8 @@
         public delegate void DelegateServerRaidBlockStartedOrExtended(
             ILogicObject area,
             [CanBeNull] ICharacter raiderCharacter,
-            bool isNewRaidBlock);
+            bool isNewRaidBlock,
+            bool isStructureDestroyed);
 
         public delegate void ServerBaseBrokenDelegate(ILogicObject areasGroup, List<ILogicObject> newAreaGroups);
 
@@ -925,14 +927,6 @@
             NotificationSystem.ClientShowNotification(
                 title: null,
                 message: errorMessage,
-                color: NotificationColor.Bad);
-        }
-
-        public static void ClientShowNotificationActionForbiddenUnderRaidblock()
-        {
-            NotificationSystem.ClientShowNotification(
-                CoreStrings.Notification_ActionForbidden,
-                ErrorRaidBlockActionRestricted_Message,
                 color: NotificationColor.Bad);
         }
 
@@ -1044,6 +1038,10 @@
             return ServerIsOwnedArea(area, character, requireFactionPermission, hasNoFactionPermission: out _);
         }
 
+        /// <param name="requireFactionPermission">
+        /// Is LandClaimManagement permission required
+        /// in the case of the faction-owned area?
+        /// </param>
         public static bool ServerIsOwnedArea(
             ILogicObject area,
             ICharacter character,
@@ -1198,8 +1196,9 @@
         public static void ServerOnRaid(
             RectangleInt bounds,
             ICharacter byCharacter,
+            bool isStructureDestroyed,
             bool forceEvenIfNoCharacter = false,
-            bool isShort = false)
+            double durationMultiplier = 1.0)
         {
             if (PveSystem.ServerIsPvE)
             {
@@ -1239,7 +1238,7 @@
                     continue;
                 }
 
-                ServerSetRaidblock(area, isShort, byCharacter);
+                ServerSetRaidblock(area, byCharacter, durationMultiplier, isStructureDestroyed);
             }
         }
 
@@ -1303,7 +1302,11 @@
             }
         }
 
-        public static void ServerSetRaidblock(ILogicObject area, bool isShort, [CanBeNull] ICharacter byCharacter)
+        public static void ServerSetRaidblock(
+            ILogicObject area,
+            [CanBeNull] ICharacter byCharacter,
+            double durationMultiplier,
+            bool isStructureDestroyed)
         {
             var areaPrivateState = LandClaimArea.GetPrivateState(area);
             var areaPublicState = LandClaimArea.GetPublicState(area);
@@ -1311,10 +1314,10 @@
             var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             var time = Server.Game.FrameTime;
 
-            if (isShort)
+            durationMultiplier = MathHelper.Clamp(durationMultiplier, 0, 1);
+            if (durationMultiplier < 1.0)
             {
-                // HACK: as currently the game doesn't provide an actual duration for the raidblock, we're simply changing the raidblock duration
-                time -= LandClaimSystemConstants.SharedRaidBlockDurationSeconds * 0.9;
+                time -= LandClaimSystemConstants.SharedRaidBlockDurationSeconds * (1 - durationMultiplier);
             }
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -1336,7 +1339,8 @@
             Api.SafeInvoke(
                 () => ServerRaidBlockStartedOrExtended?.Invoke(area,
                                                                byCharacter,
-                                                               isNewRaidBlock: !wasUnderRaidblock));
+                                                               isNewRaidBlock: !wasUnderRaidblock,
+                                                               isStructureDestroyed: isStructureDestroyed));
         }
 
         public static void ServerUnregisterArea(ILogicObject area)

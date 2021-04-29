@@ -39,7 +39,8 @@
                                          this.TargetPosition,
                                          logErrors: true,
                                          canPlace: out var canPlace,
-                                         isTooFar: out var isTooFar);
+                                         isTooFar: out var isTooFar,
+                                         errorMessage: out _);
             if (!canPlace || isTooFar)
             {
                 this.AbortAction();

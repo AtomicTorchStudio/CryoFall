@@ -18,7 +18,7 @@
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillAddEffect<StatusEffectHealingFast>(intensity: 0.40); // adds fast health regeneration
+                .WillAddEffect<StatusEffectHealingFast>(intensity: 0.50); // adds fast health regeneration
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

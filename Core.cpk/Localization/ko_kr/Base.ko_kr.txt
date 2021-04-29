@@ -142,11 +142,11 @@ Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 설치된 임플란트 내구도 감소 속도
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-식량 소모 속도
+Scripts/Base/Stats/StatName@HungerRate:
+허기율
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-물 소모 속도
+Scripts/Base/Stats/StatName@ThirstRate:
+갈증률
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 분당 에너지 충전 자동 회복량
@@ -173,7 +173,7 @@ Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
 통증
 
 Scripts/Base/Stats/StatName@PsiEffectMultiplier:
-초능력 대미지
+사이오닉 대미지
 
 Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
 기절
@@ -186,6 +186,9 @@ Scripts/Base/Stats/StatName@VanityContinuousDamage:
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 먹거나 마실 수 없습니다
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+저조도 시야
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 학습 포인트 획득

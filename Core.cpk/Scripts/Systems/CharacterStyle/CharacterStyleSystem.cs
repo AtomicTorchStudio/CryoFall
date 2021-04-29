@@ -1,13 +1,17 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.CharacterStyle
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class CharacterStyleSystem : ProtoSystem<CharacterStyleSystem>
     {
+        public static event Action<ICharacter> ServerCharacterAppearanceSelected;
+
         public override string Name => "Character style system";
 
         public static void ClientChangeStyle(CharacterHumanFaceStyle style, bool isMale)
@@ -38,16 +42,7 @@
             publicState.IsMale = isMale;
             publicState.FaceStyle = style;
 
-            var privateState = PlayerCharacter.GetPrivateState(character);
-            if (privateState.IsAppearanceSelected)
-            {
-                Logger.Info("Character appearance changed");
-                return;
-            }
-
-            privateState.IsAppearanceSelected = true;
-            Logger.Info("Character appearance selected - spawning in the world");
-            CharacterRespawnSystem.ServerOnCharacterAppearanceSelected(character);
+            Api.SafeInvoke(() => ServerCharacterAppearanceSelected?.Invoke(character));
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.667)]

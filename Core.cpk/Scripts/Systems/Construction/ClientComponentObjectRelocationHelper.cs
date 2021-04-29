@@ -38,8 +38,10 @@
                 .Setup(objectStructure.ClientSceneObject);
 
             // use blueprint renderer to render the overlay
-            var overlay = new ClientBlueprintRenderer(this.sceneObjectForComponents,
-                                                      isConstructionSite: false);
+            var overlay = new ClientBlueprintRenderer(
+                this.sceneObjectForComponents,
+                isConstructionSite: false,
+                objectStructure.ProtoStaticWorldObject.SharedGetObjectCenterWorldOffset(objectStructure));
 
             objectStructure.ProtoStaticWorldObject.ClientSetupBlueprint(
                 objectStructure.OccupiedTile,

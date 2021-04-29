@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.CharacterDroneControl
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
@@ -17,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi;
@@ -96,7 +98,7 @@
             foreach (var item in privateState.ContainerHotbar.Items)
             {
                 if (IsValidDroneItem(item, out var order)
-                    && order >= selectedItemOrder)
+                    && order > selectedItemOrder)
                 {
                     selectedItem = item;
                     selectedItemOrder = order;
@@ -106,7 +108,7 @@
             foreach (var item in privateState.ContainerInventory.Items)
             {
                 if (IsValidDroneItem(item, out var order)
-                    && order >= selectedItemOrder)
+                    && order > selectedItemOrder)
                 {
                     selectedItem = item;
                     selectedItemOrder = order;
@@ -223,17 +225,17 @@
             return Server.World.CreateLogicObject<CharacterDroneController>();
         }
 
-        public static void ServerDeactivateDrone(IDynamicWorldObject worldObject)
+        public static void ServerDeactivateDrone(IDynamicWorldObject objectDrone)
         {
-            var privateState = worldObject.GetPrivateState<DronePrivateState>();
+            var privateState = objectDrone.GetPrivateState<DronePrivateState>();
             var characterOwner = privateState.CharacterOwner;
             var protoItemDrone = (IProtoItemDrone)privateState.AssociatedItem.ProtoItem;
-            var protoDrone = (IProtoDrone)worldObject.ProtoGameObject;
+            var protoDrone = (IProtoDrone)objectDrone.ProtoGameObject;
 
-            protoDrone.ServerDropDroneToGround(worldObject);
+            protoDrone.ServerDropDroneToGround(objectDrone, objectDrone.Tile, characterOwner);
 
-            Logger.Info("Drone deactivated: " + worldObject);
-            ServerDespawnDrone(worldObject, isReturnedToPlayer: false);
+            Logger.Info("Drone deactivated: " + objectDrone);
+            ServerDespawnDrone(objectDrone, isReturnedToPlayer: false);
 
             Instance.CallClient(characterOwner,
                                 _ => _.ClientRemote_OnDroneAbandoned(protoItemDrone));
@@ -241,11 +243,15 @@
 
         public static void ServerDespawnDrone(IDynamicWorldObject objectDrone, bool isReturnedToPlayer)
         {
+            if (objectDrone.IsDestroyed)
+            {
+                return;
+            }
+
             var privateState = objectDrone.GetPrivateState<DronePrivateState>();
             var publicState = objectDrone.GetPublicState<DronePublicState>();
 
             publicState.ResetTargetPosition();
-
             if (privateState.IsDespawned)
             {
                 return;
@@ -256,42 +262,57 @@
             var characterOwner = privateState.CharacterOwner;
             var world = Server.World;
 
+            ServerOnDroneControlRemoved(characterOwner, objectDrone);
+
             var protoDrone = protoItemDrone.ProtoDrone;
             protoDrone.ServerOnDroneDroppedOrReturned(objectDrone, characterOwner, isReturnedToPlayer);
+            privateState.IsDespawned = true;
+            privateState.CharacterOwner = null;
 
             // recreate physics (as despawned drone doesn't have any physics)
-            privateState.IsDespawned = true;
             world.StopPhysicsBody(objectDrone.PhysicsBody);
             objectDrone.ProtoWorldObject.SharedCreatePhysics(objectDrone);
             world.SetPosition(objectDrone,
                               ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
 
-            privateState.CharacterOwner = null;
-            ServerOnDroneControlRemoved(characterOwner, objectDrone);
-
-            var currentDurability = (int)(objectDrone.GetPublicState<DronePublicState>().StructurePointsCurrent
-                                          / protoItemDrone.DurabilityToStructurePointsConversionCoefficient);
-            if (currentDurability <= 1)
+            try
             {
-                currentDurability = 0;
+                DeductDurability();
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
             }
 
-            var deltaDurabilility = (int)(ItemDurabilitySystem.SharedGetDurabilityValue(droneItem)
-                                          - currentDurability);
-
-            if (deltaDurabilility <= 0)
+            void DeductDurability()
             {
-                return;
-            }
+                var currentDurability = (int)(objectDrone.GetPublicState<DronePublicState>().StructurePointsCurrent
+                                              / protoItemDrone.DurabilityToStructurePointsConversionCoefficient);
+                if (currentDurability <= 1)
+                {
+                    currentDurability = 0;
+                }
 
-            ItemDurabilitySystem.ServerModifyDurability(droneItem,
-                                                        -deltaDurabilility);
+                var deltaDurabilility = (int)(ItemDurabilitySystem.SharedGetDurabilityValue(droneItem)
+                                              - currentDurability);
 
-            if (droneItem.IsDestroyed)
-            {
+                if (deltaDurabilility <= 0)
+                {
+                    return;
+                }
+
+                ItemDurabilitySystem.ServerModifyDurability(droneItem,
+                                                            -deltaDurabilility);
+
+                if (!droneItem.IsDestroyed)
+                {
+                    return;
+                }
+
                 // drone item degraded to 100%, notify the player
                 ItemDurabilitySystem.Instance.CallClient(characterOwner,
                                                          _ => _.ClientRemote_ItemBroke(droneItem.ProtoItem));
+                Server.World.DestroyObject(objectDrone);
             }
         }
 
@@ -305,38 +326,10 @@
             return true;
         }
 
-        public static void ServerOnDroidDestroyed(IDynamicWorldObject worldObject)
+        public static void ServerNotifyDroneAbandoned(ICharacter characterOwner, IProtoItemDrone protoItemDrone)
         {
-            Logger.Info("Drone destroyed: " + worldObject);
-
-            var privateState = worldObject.GetPrivateState<DronePrivateState>();
-
-            ServerUnregisterCurrentMining(worldObject);
-            ServerOnDroneControlRemoved(privateState.CharacterOwner, worldObject);
-
-            var droneItem = privateState.AssociatedItem;
-            if (droneItem is not null)
-            {
-                Server.Items.DestroyItem(droneItem);
-            }
-
-            var protoDrone = (IProtoDrone)worldObject.ProtoGameObject;
-            protoDrone.ServerDropDroneToGround(worldObject);
-
-            if (droneItem is null)
-            {
-                return;
-            }
-
-            var characterOwner = privateState.CharacterOwner;
-            if (characterOwner is null)
-            {
-                return;
-            }
-
-            var protoItemDrone = (IProtoItemDrone)droneItem.ProtoItem;
             Instance.CallClient(characterOwner,
-                                _ => _.ClientRemote_OnDroneDestroyed(protoItemDrone));
+                                _ => _.ClientRemote_OnDroneAbandoned(protoItemDrone));
         }
 
         public static void ServerOnDroneControlRemoved(ICharacter character, IDynamicWorldObject objectDrone)
@@ -351,6 +344,57 @@
             {
                 Logger.Info("Drone control ended: " + objectDrone);
             }
+        }
+
+        public static void ServerOnDroneDestroyed(IDynamicWorldObject objectDrone)
+        {
+            Logger.Info("Drone destroyed: " + objectDrone);
+            var droneTile = objectDrone.Tile;
+
+            var privateState = objectDrone.GetPrivateState<DronePrivateState>();
+            var characterOwner = privateState.CharacterOwner;
+
+            ServerUnregisterCurrentMining(objectDrone);
+            ServerOnDroneControlRemoved(characterOwner, objectDrone);
+
+            var droneItem = privateState.AssociatedItem;
+            if (droneItem is not null)
+            {
+                Server.Items.DestroyItem(droneItem);
+            }
+
+            if (privateState.AssociatedItemReservedSlot is not null)
+            {
+                Server.Items.DestroyItem(privateState.AssociatedItemReservedSlot);
+            }
+
+            try
+            {
+                var protoDrone = (IProtoDrone)objectDrone.ProtoGameObject;
+                protoDrone.ServerDropDroneToGround(objectDrone, droneTile, characterOwner);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+            }
+
+            ServerTimersSystem.AddAction(
+                0,
+                () =>
+                {
+                    Server.Items.DestroyContainer(privateState.ReservedItemsContainer);
+                    Server.Items.DestroyContainer(privateState.StorageItemsContainer);
+                });
+
+            if (droneItem is null
+                || characterOwner is null)
+            {
+                return;
+            }
+
+            var protoItemDrone = (IProtoItemDrone)droneItem.ProtoItem;
+            Instance.CallClient(characterOwner,
+                                _ => _.ClientRemote_OnDroneDestroyed(protoItemDrone));
         }
 
         public static void ServerRecallAllDrones(ICharacter character)
@@ -415,20 +459,10 @@
             out bool isPveActionForbidden)
         {
             isPveActionForbidden = false;
-            var tile = IsServer
-                           ? Server.World.GetTile(worldPosition)
-                           : Client.World.GetTile(worldPosition);
-
-            var targetObject = tile.StaticObjects.FirstOrDefault();
+            var targetObject = SharedGetCompatibleTargetObject(worldPosition);
             if (targetObject is null)
             {
                 hasIncompatibleTarget = false;
-                return null;
-            }
-
-            if (!SharedIsValidDroneTarget(targetObject))
-            {
-                hasIncompatibleTarget = true;
                 return null;
             }
 
@@ -440,6 +474,32 @@
             }
 
             hasIncompatibleTarget = false;
+            return targetObject;
+        }
+
+        public static IStaticWorldObject SharedGetCompatibleTargetObject(Vector2Ushort worldPosition)
+        {
+            var tile = IsServer
+                           ? Server.World.GetTile(worldPosition)
+                           : Client.World.GetTile(worldPosition);
+
+            return SharedGetCompatibleTargetObject(tile);
+        }
+
+        public static IStaticWorldObject SharedGetCompatibleTargetObject(Tile tile)
+        {
+            IStaticWorldObject targetObject = null;
+            var tileStaticObjects = tile.StaticObjects;
+            for (var index = tileStaticObjects.Count - 1; index >= 0; index--)
+            {
+                var worldObject = tileStaticObjects[index];
+                if (SharedIsValidDroneTarget(worldObject))
+                {
+                    targetObject = worldObject;
+                    break;
+                }
+            }
+
             return targetObject;
         }
 
@@ -525,18 +585,12 @@
 
         public static bool SharedIsValidDroneTarget(IStaticWorldObject worldObject)
         {
-            switch (worldObject?.ProtoGameObject)
+            return worldObject?.ProtoGameObject switch
             {
-                case IProtoObjectTree:
-                    return true;
-
-                case IProtoObjectMineral protoMineral
-                    when protoMineral.IsAllowDroneMining:
-                    return true;
-
-                default:
-                    return false;
-            }
+                IProtoObjectTree                                 => true,
+                IProtoObjectMineral { IsAllowDroneMining: true } => true,
+                _                                                => false
+            };
         }
 
         /// <summary>
@@ -705,18 +759,9 @@
             controlledDrones.Add(objectDrone);
             Logger.Info("Drone control started: " + objectDrone);
 
-            // move drone from player inventory to its own storage items container
-            var isFromHotbarContainer = itemDrone.Container == character.SharedGetPlayerContainerHotbar();
-            var fromSlotIndex = itemDrone.ContainerSlotId;
-            Server.Items.MoveOrSwapItem(itemDrone,
-                                        protoDrone.ServerGetStorageItemsContainer(objectDrone),
-                                        out _);
-
             //Logger.Dev($"Drone start moving: {itemDrone} to {worldPosition}");
             protoDrone.ServerStartDrone(objectDrone,
-                                        character,
-                                        isFromHotbarContainer,
-                                        fromSlotIndex);
+                                        character);
 
             protoDrone.ServerSetDroneTarget(objectDrone,
                                             targetObject,

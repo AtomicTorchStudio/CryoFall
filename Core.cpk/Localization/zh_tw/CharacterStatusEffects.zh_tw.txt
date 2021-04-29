@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+可用{0}治療。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 你使用了刺激劑，精力恢復速度大幅上升。
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 饑餓
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+你身上有一道恐怖的開放創口。這樣嚴重的傷害需要專業的醫療救治。
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+嚴重出血
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 糟糕，你暴露在了極端輻射劑量下，你體內的細胞開始變異！請回避輻射區域。

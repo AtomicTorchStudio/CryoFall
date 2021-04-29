@@ -1,23 +1,18 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
     using System;
-    using System.Windows.Media;
-    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ComponentWeaponEnergyBeam : ClientComponent
     {
-        private static readonly EffectResource BeamEffectResource
-            = new("Special/WeaponLaserBeam");
+        private static readonly EffectResource BeamEffectResource = new("Special/WeaponLaserBeam");
 
-        private readonly RenderingMaterial renderingMaterial 
-            = RenderingMaterial.Create(BeamEffectResource);
+        private readonly RenderingMaterial renderingMaterial = RenderingMaterial.Create(BeamEffectResource);
 
         private double accumulatedTime;
 
@@ -84,7 +79,7 @@
 
             component.renderingMaterial
                      .EffectParameters
-                     .Set("Length", (float)length)
+                     .Set("Length",          (float)length)
                      .Set("FadeInFraction",  (float)fadeInFraction)
                      .Set("FadeOutFraction", (float)fadeOutFraction);
 

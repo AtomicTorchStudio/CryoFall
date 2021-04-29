@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Zones;
@@ -103,13 +104,13 @@
             ServerAddTorchItemIfNoItems(character);
 
             if (character.IsInitialized
-                && PlayerCharacter.GetPrivateState(character).IsAppearanceSelected)
+                && CharacterCreationSystem.SharedIsCharacterCreated(character))
             {
                 PlacePlayer(character, isRespawn);
             }
             else
             {
-                // first time spawn and requires appearance selection
+                // first time spawn, requires character creation
                 ServerCharacterDeathMechanic.DespawnCharacter(character);
             }
         }

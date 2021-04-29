@@ -10,7 +10,7 @@
         public override string Description =>
             "Drink made from squeezed cactus flesh. Tastes like crap, but will quench your thirst when no other options are available.";
 
-        public override float FoodRestore => 3;
+        public override float FoodRestore => 5;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
@@ -20,7 +20,7 @@
 
         public override float StaminaRestore => 25;
 
-        public override float WaterRestore => 15;
+        public override float WaterRestore => 20;
 
         protected override void PrepareEffects(EffectActionsList effects)
         {

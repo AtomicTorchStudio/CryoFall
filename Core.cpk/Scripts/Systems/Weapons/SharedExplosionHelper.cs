@@ -221,7 +221,11 @@
                                 switch (staticWorldObject.ProtoStaticWorldObject)
                                 {
                                     case ProtoObjectCharredGround:
-                                        Server.World.DestroyObject(staticWorldObject);
+                                        if (protoObjectCharredGround.IsRemovesOtherCharredGroundInOccupiedTiles)
+                                        {
+                                            Server.World.DestroyObject(staticWorldObject);
+                                        }
+
                                         break;
 
                                     case IProtoObjectDeposit:

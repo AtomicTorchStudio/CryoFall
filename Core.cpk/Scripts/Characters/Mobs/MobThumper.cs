@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
@@ -114,7 +113,7 @@
 
         protected virtual double DistanceEnemyTooFar => 14;
 
-        protected virtual double DistanceEnemyTooFarWhenAgro => 36;
+        protected virtual double DistanceEnemyTooFarWhenAggro => 36;
 
         protected IReadOnlyStatsDictionary ProtoCharacterEffectsRushAttack { get; private set; }
 
@@ -176,7 +175,7 @@
             lootDroplist
                 .Add<ItemFuelSack>(count: 5, countRandom: 5)
                 .Add<ItemCoal>(count: 2,     countRandom: 2)
-                .Add<ItemEggsRaw>(count: 1,  countRandom: 1);
+                .Add<ItemKeinite>(count: 4,  countRandom: 2);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
@@ -233,10 +232,10 @@
             directionToEnemyPosition = directionToEnemyPosition.Normalized;
 
             var distanceEnemyTooFar = this.DistanceEnemyTooFar;
-            if (ReferenceEquals(targetCharacter, privateState.CurrentAgroCharacter))
+            if (ReferenceEquals(targetCharacter, privateState.CurrentAggroCharacter))
             {
-                // increase distances if agro on this character
-                distanceEnemyTooFar = this.DistanceEnemyTooFarWhenAgro;
+                // increase distances if aggro on this character
+                distanceEnemyTooFar = this.DistanceEnemyTooFarWhenAggro;
             }
 
             // not retreating

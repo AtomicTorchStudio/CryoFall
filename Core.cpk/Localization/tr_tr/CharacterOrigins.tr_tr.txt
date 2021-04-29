@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+Galaktik Cumhuriyeti, insan uygarlığının özü ve galaksinin ana gücüdür. Merkezi Dünya'dır. Cumhuriyetin her noktasında herkesin oy hakkı eşittir ve galaktik kanun mutlaktır ama bu noktaların dışındaki dünyalarda herkes kendi çıkarına ve amaçlarına göre hareket eder.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+Galaktik Cumhuriyet
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+Cumhuriyet'e katılmamayı seçen bağımsız dünyalar kendi politikaları ve orduları üstünde tam hâkimiyete sahiptir. Ama siyasi ve ekonomik baskı sebebiyle tıpkı 21. yüzyıl küçük şehir devletleri gibi bu dünyalar da Galaktik Cumhuriyet'le yakın bağ içindedir. Kimileri bu bağımsız dünyalara Sınır Dünyalar da demektedir.
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+Bağımsız dünyalar
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+Dış Halka Hamiliği, ana gezegenlerin dışında bulunan ve genelde daha az gelişmiş endüstriyel dünyaları içerir. Bu dünyalar genelde ekonomik çıkarları doğrultusunda hareket eden ve hassas şekilde birbirine bağlanmış olan büyük endüstriyel şirketlerin kurallarına uyar. Galaktik Cumhuriyet genişledikçe bu dünyalar en nihayetinde Cumhuriyet'in üyeleri olarak yutulmaktadır.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+Dış Halka Hamiliği
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+Hamilik, ideolojik ayrışmalar sebebiyle Cumhuriyet'ten ayrılmış ve zamanla bağımsız ve dikkat çekici bir güce kavuşmuş bazı dünyaları içeren bir gruptur. Cumhuriyet merkezinin dış bölgesinde yer alır ve dört bir yanı Cumhuriyet dünyaları tarafından çevrilmiştir. Hamilik, Cumhuriyet'le yüzlerce yıldır soğuk savaştadır ve hiçbir ticaret yapılmaz. Diplomatik ilişkiler en alt düzeydedir.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+Hamilik
+

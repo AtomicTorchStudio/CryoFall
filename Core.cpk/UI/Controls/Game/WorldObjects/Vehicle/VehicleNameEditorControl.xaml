@@ -1,0 +1,56 @@
+﻿<ui:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.VehicleNameEditorControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelVehicleNameEditorControl}">
+    <Grid x:Name="LayoutRoot"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        <StackPanel Orientation="Vertical">
+            <StackPanel.Resources>
+                <Style TargetType="core:FormattedTextBlock"
+                       BasedOn="{StaticResource TextBlockMenuPlaceholderStyle}">
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="LineHeight" Value="15" />
+                    <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </StackPanel.Resources>
+
+            <TextBlock Text="{x:Static loc:CoreStrings.VehicleNameEditor_EnterName}"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Margin="0,0,0,2" />
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,0,0,10">
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                         Width="180"
+                         FontFamily="{StaticResource CondensedFontFamily}"
+                         FontSize="14"
+                         MaxLength="{Binding NameMaxLength}"
+                         AcceptsReturn="False" />
+
+                <Button Content="{x:Static loc:CoreStrings.Button_Save}"
+                        Command="{Binding CommandSave}"
+                        MinWidth="0"
+                        Height="16"
+                        Padding="10,0"
+                        Margin="5,0,0,0" />
+            </StackPanel>
+
+            <core:FormattedTextBlock Text="{Binding NameRequirements}" />
+            <core:FormattedTextBlock Text="{x:Static loc:CoreStrings.VehicleNameEditor_VisibleToVehicleOwnersOnly}" />
+        </StackPanel>
+    </Grid>
+</ui:BaseUserControl>

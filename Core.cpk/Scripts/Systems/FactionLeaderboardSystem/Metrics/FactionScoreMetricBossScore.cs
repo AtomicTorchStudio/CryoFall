@@ -14,6 +14,9 @@
     /// </summary>
     public class FactionScoreMetricBossScore : ProtoFactionScoreMetric
     {
+        public override string Description =>
+            "Awarded for killing world bosses, proportional to the amount of the loot share received.";
+
         public override double FinalScoreCoefficient => 300;
 
         public override string Name => "Boss score";
@@ -51,8 +54,7 @@
 
                 var factionPrivateState = Faction.GetPrivateState(faction);
                 factionPrivateState.ServerMetricBossScore += (ulong)pair.Value;
-                /*Api.Logger.Dev("Boss metric updated: "
-                               + factionPrivateState.ServerMetricBossScore);*/
+                /*Logger.Dev("Boss metric updated: " + factionPrivateState.ServerMetricBossScore);*/
             }
         }
     }

@@ -13,7 +13,10 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 Rdzenne formy życia migrują do innych obszarów – to świetna okazja na polowanie.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Ważne: broń palna jest bezużyteczna – użyj broni ręcznej lub termicznej.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Na terenach górskich pojawił się dziwny obcy twór, który spowodował, że poszukiwania są prawie niemożliwe, ale jest to też świetna okazja do pozyskania rzadkich zasobów.
 
 Scripts/Events/EventSpaceDrop@Description:

@@ -30,6 +30,8 @@
 
         public override bool IsFuelProduceByproducts => false;
 
+        public bool IsGeneratorAlwaysOn => false;
+
         public override bool IsRelocatable => true;
 
         public abstract double LiquidCapacity { get; }
@@ -45,12 +47,14 @@
             out double currentProduction,
             out double maxProduction);
 
-        IObjectElectricityStructurePrivateState IProtoObjectElectricityProducer.GetPrivateState(IStaticWorldObject worldObject)
+        IObjectElectricityStructurePrivateState IProtoObjectElectricityProducer.GetPrivateState(
+            IStaticWorldObject worldObject)
         {
             return GetPrivateState(worldObject);
         }
 
-        IObjectElectricityProducerPublicState IProtoObjectElectricityProducer.GetPublicState(IStaticWorldObject worldObject)
+        IObjectElectricityProducerPublicState IProtoObjectElectricityProducer.GetPublicState(
+            IStaticWorldObject worldObject)
         {
             return GetPublicState(worldObject);
         }

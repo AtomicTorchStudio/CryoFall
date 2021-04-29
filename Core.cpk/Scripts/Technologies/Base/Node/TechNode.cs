@@ -11,10 +11,12 @@
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     [PrepareOrder(afterType: typeof(Recipe))]
+    [PrepareOrder(afterType: typeof(IProtoStaticWorldObject))]
     public abstract class TechNode : ProtoEntity
     {
         public const string ErrorRequiresUnlockedTechGroup = "Requires unlocked tech: {0}";

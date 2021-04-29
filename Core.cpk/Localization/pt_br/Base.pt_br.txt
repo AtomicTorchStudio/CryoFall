@@ -142,11 +142,11 @@ Degradação de implante causada por danos recebidos
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 Velocidade de degradação de implante instalado
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-Velocidade de consumo de comida
+Scripts/Base/Stats/StatName@HungerRate:
+Taxa de fome
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-Velocidade de consumo de água
+Scripts/Base/Stats/StatName@ThirstRate:
+Taxa de sede
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneração da carga de energia (por minuto)
@@ -186,6 +186,9 @@ Dano contínuo
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Não é possível comer nem beber
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+Visão de luz baixa
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Ganho de pontos de aprendizagem

@@ -15,10 +15,10 @@
             base.PrepareEffects(effects);
 
             // reduced food consumption
-            effects.AddPercent(this, StatName.FoodConsumptionSpeedMultiplier, -40);
+            effects.AddPercent(this, StatName.HungerRate, -40);
 
             // reduced water consumption
-            effects.AddPercent(this, StatName.WaterConsumptionSpeedMultiplier, -40);
+            effects.AddPercent(this, StatName.ThirstRate, -40);
         }
     }
 }

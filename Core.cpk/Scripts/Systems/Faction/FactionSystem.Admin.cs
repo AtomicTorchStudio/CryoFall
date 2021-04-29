@@ -142,14 +142,11 @@
                     Foreground = Api.Client.UI.GetApplicationResource<Brush>("BrushColorRed6")
                 });
 
-            // TODO: introduce a different string for this case        
-            var checkbox1Message = CoreStrings.Faction_JoinCooldown_Description
-                                   + " ("
-                                   + ClientDefaultJoinCooldownDurationText
-                                   + ")";
+            var checkboxMessage = string.Format(CoreStrings.Faction_DialogDissolveFaction_Checkbox2Format,
+                                                ClientDefaultJoinCooldownDurationText);
             var checkbox = new CheckBox()
             {
-                Content = new FormattedTextBlock() { Content = checkbox1Message },
+                Content = new FormattedTextBlock() { Content = checkboxMessage },
                 Margin = new Thickness(0, 10, 0, 0)
             };
 
@@ -459,7 +456,8 @@
 
         private static void ServerRemoveMemberNoChecks(string characterName, ILogicObject faction)
         {
-            var members = ServerGetFactionMembersEditable(faction);
+            var factionPrivateState = Faction.GetPrivateState(faction);
+            var members = factionPrivateState.Members;
             for (var index = 0; index < members.Count; index++)
             {
                 var entry = members[index];
@@ -481,7 +479,7 @@
                 if (character is not null)
                 {
                     // record the time when player has left or was removed from the faction
-                    Faction.GetPrivateState(faction).ServerPlayerLeaveDateDictionary[character.Id]
+                    factionPrivateState.ServerPlayerLeaveDateDictionary[character.Id]
                         = Server.Game.FrameTime;
 
                     ServerCharacterFactionDictionary.Remove(character);

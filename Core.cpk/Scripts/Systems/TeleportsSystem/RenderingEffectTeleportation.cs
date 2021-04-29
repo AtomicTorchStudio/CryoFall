@@ -10,6 +10,8 @@
 
     public class RenderingEffectTeleportation : RenderingEffect
     {
+        private static readonly EffectResource EffectResource = new("Special/Teleportation");
+
         private readonly IGraphicsDevice device;
 
         private readonly EffectInstance effect;
@@ -19,7 +21,7 @@
         public RenderingEffectTeleportation()
         {
             this.device = Api.Client.Rendering.GraphicsDevice;
-            this.effect = EffectInstance.Create(new EffectResource("Special/Teleportation"));
+            this.effect = EffectInstance.Create(EffectResource);
             this.effect.Parameters
                 .Set("NoiseTexture",
                      new TextureResource("FX/Noise", isLinearSpace: true, qualityOffset: -100));

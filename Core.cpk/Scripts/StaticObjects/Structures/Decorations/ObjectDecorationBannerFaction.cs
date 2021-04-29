@@ -33,7 +33,7 @@
 
             var maskTextureResource = new TextureResource(
                 GenerateTexturePath(typeof(ObjectDecorationBannerFaction)) + "_Mask",
-                qualityOffset: ClientFactionEmblemTextureComposer.SpriteQualityOffset);
+                qualityOffset: ClientFactionEmblemTextureProvider.SpriteQualityOffset);
 
             RenderingMaterialEmblem.EffectParameters
                                    .Set("MaskTextureArray", maskTextureResource);
@@ -79,7 +79,7 @@
 
             var emblemRenderer = Api.Client.Rendering.CreateSpriteRenderer(
                 data.GameObject,
-                ClientFactionEmblemTextureComposer.GetEmblemTexture(emblem, useCache: true));
+                ClientFactionEmblemTextureProvider.GetEmblemTexture(emblem, useCache: true));
             emblemRenderer.Size = (209 / 2.0, 209 / 2.0);
             emblemRenderer.PositionOffset = (0.5, renderer.PositionOffset.Y + offsetY);
             emblemRenderer.DrawOrderOffsetY = renderer.DrawOrderOffsetY - offsetY;

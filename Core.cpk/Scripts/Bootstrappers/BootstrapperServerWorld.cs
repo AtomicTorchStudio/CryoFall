@@ -20,11 +20,11 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class BootstrapperServerWorld : BaseBootstrapper
     {
-        public const int MapVersion = 296;
+        public const int MapVersion = 300;
 
         public override void ServerInitialize(IServerConfiguration serverConfiguration)
         {
-            var db = Api.Server.Database;
+            var db = Server.Database;
 
             if (!db.TryGet("Core", "IsInitialMapLoaded", out bool isInitialMapLoaded)
                 || !isInitialMapLoaded)

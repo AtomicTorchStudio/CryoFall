@@ -24,6 +24,8 @@
     <helpers:ValuesAdditionMultiConverter x:Key="ValuesAdditionMultiConverter" />
     <helpers:ColorAlphaConverter x:Key="ColorAlphaConverter" />
     <helpers:ColorMultiplyConverter x:Key="ColorMultiplyConverter" />
+    <helpers:NumberEqualityToVisibilityConverter x:Key="NumberEqualityToVisibilityConverter" />
+    <helpers:NumberEqualityToVisibilityReverseConverter x:Key="NumberEqualityToVisibilityReverseConverter" />
 
     <Style TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{x:Null}" />

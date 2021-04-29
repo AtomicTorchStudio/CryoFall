@@ -42,6 +42,12 @@
 
                 if (privateState is PlayerCharacterPrivateState playerCharacterPrivateState)
                 {
+                    // merge origin effects
+                    if (playerCharacterPrivateState.Origin is not null)
+                    {
+                        tempStatsCache.Merge(playerCharacterPrivateState.Origin.Effects);
+                    }
+
                     // merge skill effects
                     var skills = playerCharacterPrivateState.Skills;
                     skills.SharedFillEffectsCache(tempStatsCache);

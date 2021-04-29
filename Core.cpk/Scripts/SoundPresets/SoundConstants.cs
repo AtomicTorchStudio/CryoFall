@@ -69,7 +69,7 @@
         /// <summary>
         /// Volume for character footsteps.
         /// </summary>
-        public const float VolumeFootstepsMultiplier = 0.5f;
+        public const float VolumeFootstepsMultiplier = 0.375f;
 
         /// <summary>
         /// Volume for all hit/damage sounds.

@@ -36,20 +36,25 @@
 
         protected override void OnLoaded()
         {
-            if (this.worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer)
+            switch (this.worldObject.ProtoStaticWorldObject)
             {
-                var publicState = this.worldObject.GetPublicState<IObjectElectricityProducerPublicState>();
-                this.viewModel = new ViewModelPowerStateOverlay(publicState);
-            }
-            else if (this.worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer)
-            {
-                var publicState = this.worldObject.GetPublicState<IObjectElectricityConsumerPublicState>();
-                this.viewModel = new ViewModelPowerStateOverlay(publicState);
-            }
-            else
-            {
-                Api.Logger.Error("The object is not an electricity consumer or producer: " + this.worldObject);
-                return;
+                case IProtoObjectElectricityProducer:
+                {
+                    var publicState = this.worldObject.GetPublicState<IObjectElectricityProducerPublicState>();
+                    this.viewModel = new ViewModelPowerStateOverlay(publicState);
+                    break;
+                }
+
+                case IProtoObjectElectricityConsumer:
+                {
+                    var publicState = this.worldObject.GetPublicState<IObjectElectricityConsumerPublicState>();
+                    this.viewModel = new ViewModelPowerStateOverlay(publicState);
+                    break;
+                }
+
+                default:
+                    Api.Logger.Error("The object is not an electricity consumer or producer: " + this.worldObject);
+                    return;
             }
 
             this.DataContext = this.viewModel;

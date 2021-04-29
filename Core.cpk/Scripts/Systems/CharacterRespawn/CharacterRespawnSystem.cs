@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Beds;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
@@ -52,7 +53,7 @@
 
         public override string Name => "Character respawn system";
 
-        public static void ServerOnCharacterAppearanceSelected(ICharacter character)
+        public static void ServerOnCharacterCreated(ICharacter character)
         {
             ServerPlayerSpawnManager.SpawnPlayer(character, isRespawn: false);
             ServerOnSuccessfulRespawn(character);
@@ -197,13 +198,20 @@
         private static bool ServerCanRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
         {
             if (stats.HealthCurrent <= 0
-                || PlayerCharacter.GetPublicState(character).IsDead
-                || !PlayerCharacter.GetPrivateState(character).IsAppearanceSelected)
+                || PlayerCharacter.GetPublicState(character).IsDead)
             {
+                if (!CharacterCreationSystem.SharedIsCharacterCreated(character))
+                {
+                    Logger.Warning(
+                        $"Cannot respawn {character} - character is not created");
+                    return false;
+                }
+
                 return true;
             }
 
-            Logger.Warning($"Cannot respawn {character} - character is not dead: HP={stats.HealthCurrent:F1}");
+            Logger.Warning(
+                $"Cannot respawn {character} - character is not dead or not valid: HP={stats.HealthCurrent:F1}");
             return false;
         }
 

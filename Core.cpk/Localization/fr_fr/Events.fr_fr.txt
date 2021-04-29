@@ -13,8 +13,11 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 Des formes de vies indigènes semblent avoir entamé une migration vers un autre secteur. Voilà une belle opportunité pour la chasse !
 
-Scripts/Events/EventPsiGroveInfestation@Description:
-Des pousses étranges ont fait leur apparition dans certaines zones montagneuses, ce qui y rend toute prospection impossible. Mais cela constitue également une bonne opportunité d'obtenir des ressources rares.
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Important : les armes à feu sont inefficaces. Utilisez des armes de corps-à-corps ou basées sur la chaleur.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
+Des pousses étranges ont fait leur apparition dans certaines zones montagneuses, ce qui y rend toute prospection impossible. Mais ceci constitue également une bonne opportunité d'obtenir des ressources rares.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Des débris spatiaux sont tombés dans la zone en surbrillance sur la carte.

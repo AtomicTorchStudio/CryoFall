@@ -1,0 +1,417 @@
+﻿<powerGrid:WindowGeneratorPragmiumBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.WindowGeneratorPragmium"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowGeneratorPragmium, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid>
+            <ItemsControl ItemsSource="{Binding Reactors}"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch"
+                          Margin="0,10">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid IsItemsHost="True"
+                                     Columns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MaxWidth="251"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                            <!-- Has a reactor -->
+                            <Grid x:Name="GridReactorPresent"
+                                  Visibility="{Binding HasReactor, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.7*" />
+                                    <RowDefinition Height="0.3*" />
+                                    <RowDefinition Height="3" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="9" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="2" Grid.RowSpan="2">
+                                    <Rectangle HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Stretch"
+                                               Fill="#99000000">
+                                        <Rectangle.Effect>
+                                            <!-- Glow effect -->
+                                            <DropShadowEffect
+                                                BlurRadius="25"
+                                                Direction="0"
+                                                ShadowDepth="0"
+                                                Opacity="{Binding DataContext.ItemsContainerGlowEffectOpacity, ElementName=GridReactorPresent}"
+                                                Color="#FF22AAFF" />
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                    <controls:ItemsContainerExchangeControl
+                                        DataContext="{Binding ViewModelItemsContainerExchange}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                    </controls:ItemsContainerExchangeControl>
+                                </Grid>
+
+                                <!-- Psi emission value bar -->
+                                <Grid Grid.Row="0"
+                                      Grid.RowSpan="2"
+                                      Grid.Column="0"
+                                      Width="26">
+                                    <core:ValueBarControl
+                                        Value="{Binding PsiEmissionLevelCurrent}"
+                                        MaxValue="{Binding PsiEmissionLevelMax}"
+                                        Style="{StaticResource DefenseStatBarStyle}"
+                                        TooltipFormat=" {1:F1}/{2:F1} "
+                                        BorderBrush="White"
+                                        BorderThickness="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top">
+                                        <core:ValueBarControl.Foreground>
+                                            <SolidColorBrush Color="White" />
+                                        </core:ValueBarControl.Foreground>
+                                        <core:ValueBarControl.LayoutTransform>
+                                            <TransformGroup>
+                                                <RotateTransform Angle="-90" />
+                                                <ScaleTransform ScaleY="0.615" />
+                                            </TransformGroup>
+                                        </core:ValueBarControl.LayoutTransform>
+                                    </core:ValueBarControl>
+
+                                    <!-- Psi max emission amount and icon -->
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="0,0,0,-2.5"
+                                                VerticalAlignment="Bottom"
+                                                ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.WindowGeneratorPragmium_ReactorStats_PsiEmissionLevelMax}">
+                                        <TextBlock Text="{Binding PsiEmissionLevelMax, StringFormat={}{0:F1}}"
+                                                   Foreground="{Binding PsiEmissionLevelMaxBrush}"
+                                                   FontFamily="{StaticResource DigitsFontFamily}"
+                                                   FontSize="11"
+                                                   HorizontalAlignment="Center" />
+                                        <Image Source="{StaticResource ImageSourceDamageTypePsi}"
+                                               UseLayoutRounding="True"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,-2,0,0"
+                                               Width="30"
+                                               Height="30" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Current efficiency value bar (the blue one) -->
+                                <Grid Grid.Row="0"
+                                      Grid.Column="4"
+                                      Width="36.5"
+                                      Margin="0,-4.5,0,-4">
+                                    <core:ValueBarControl
+                                        Value="{Binding EfficiencyPercentsCurrent}"
+                                        MaxValue="{Binding EfficiencyPercentsMax}"
+                                        Style="{StaticResource LiquidMediumValueBar}"
+                                        TooltipFormat=" {0}% "
+                                        BorderBrush="White"
+                                        BorderThickness="1"
+                                        Height="9"
+                                        Width="111">
+                                        <core:ValueBarControl.Foreground>
+                                            <SolidColorBrush Color="White" />
+                                        </core:ValueBarControl.Foreground>
+                                    </core:ValueBarControl>
+
+                                    <Rectangle Width="2"
+                                               UseLayoutRounding="False"
+                                               Margin="10,4.5,-3,4.5"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Stretch">
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush>
+                                                <GradientStop Color="#FFFFFFFF" Offset="0" />
+                                                <GradientStop Color="#FF00BBFF" Offset="0.5" />
+                                                <GradientStop Color="#FF0055FF" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                    <Canvas HorizontalAlignment="Left"
+                                            VerticalAlignment="Bottom"
+                                            UseLayoutRounding="False"
+                                            Margin="0,0,0,5.5">
+                                        <Line Stroke="White"
+                                              StrokeThickness="1"
+                                              X1="0"
+                                              X2="36.5"
+                                              Stretch="Fill" />
+                                        <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                                        <TextBlock Text="0%"
+                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                   FontSize="10"
+                                                   Foreground="White"
+                                                   Canvas.Left="16"
+                                                   Canvas.Top="-13" />
+                                    </Canvas>
+
+                                    <Canvas HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            UseLayoutRounding="False">
+                                        <Line Stroke="White"
+                                              StrokeThickness="1"
+                                              X1="0"
+                                              X2="36.5"
+                                              Stretch="Fill" />
+                                        <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                                        <TextBlock Text="{Binding EfficiencyPercentsMiddle, StringFormat={}{0}%}"
+                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                   FontSize="10"
+                                                   Foreground="White"
+                                                   Canvas.Left="16" />
+                                    </Canvas>
+
+                                    <Canvas HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Margin="0,4.5,0,0"
+                                            UseLayoutRounding="False">
+                                        <Line Stroke="White"
+                                              StrokeThickness="1"
+                                              X1="0"
+                                              X2="36.5"
+                                              Stretch="Fill" />
+                                        <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                                        <TextBlock Text="{Binding EfficiencyPercentsMax, StringFormat={}{0}%}"
+                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                   FontSize="10"
+                                                   Foreground="White"
+                                                   Canvas.Left="16" />
+                                    </Canvas>
+                                </Grid>
+
+                                <Grid Grid.Row="1"
+                                      Grid.Column="4"
+                                      Visibility="{Binding StatusIsStartingUpShuttingDown, Converter={StaticResource BoolToVisibilityConverter}}"
+                                      Width="36.5"
+                                      Margin="0,0,0,-2.5"
+                                      VerticalAlignment="Bottom">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding StatusTimeRemainsText}"
+                                                   FontFamily="{StaticResource DigitsFontFamily}"
+                                                   FontSize="11"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{StaticResource BrushColor6}" />
+                                        <Image Source="/UI/Images/Icons/Clock.png"
+                                               UseLayoutRounding="True"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,-1"
+                                               Width="30"
+                                               Height="30" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Column="2"
+                                      Grid.Row="3">
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type core:FormattedTextBlock}"
+                                               BasedOn="{StaticResource {x:Type core:FormattedTextBlock}}">
+                                            <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                                            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                                            <Setter Property="FontSize" Value="11" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+
+                                        <Style x:Key="TextBlockValue"
+                                               TargetType="{x:Type core:FormattedTextBlock}"
+                                               BasedOn="{StaticResource {x:Type core:FormattedTextBlock}}">
+                                            <Setter Property="Foreground"
+                                                    Value="{StaticResource BrushColorLabelForeground}" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="7" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{x:Static loc:CoreStrings.WindowGeneratorPragmium_ReactorStats_Output}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Text="{Binding OutputValueCurrent}"
+                                        Style="{StaticResource TextBlockValue}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Text="{x:Static loc:CoreStrings.WindowGeneratorPragmium_ReactorStats_OutputMax}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        Text="{Binding OutputValueMaxText}"
+                                        Style="{StaticResource TextBlockValue}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Text="{x:Static loc:CoreStrings.WindowGeneratorPragmium_ReactorStats_EfficiencyMax}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        Text="{Binding EfficiencyPercentsMax, StringFormat={}{0}%}"
+                                        Style="{StaticResource TextBlockValue}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Text="{x:Static loc:CoreStrings.WindowGeneratorPragmium_ReactorStats_FuelLifetime}" />
+
+                                    <core:FormattedTextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="2"
+                                        Text="{Binding FuelLifetimePercent, StringFormat={}{0}%}"
+                                        Style="{StaticResource TextBlockValue}" />
+                                </Grid>
+
+                                <Grid Grid.Column="0"
+                                      Grid.ColumnSpan="5"
+                                      Grid.Row="4"
+                                      Margin="10,3,10,-2"
+                                      HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="7" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Content="{Binding ToggleReactorButtonText}"
+                                            Command="{Binding CommandToggleReactor}"
+                                            Focusable="False"
+                                            FontSize="13"
+                                            Padding="3"
+                                            MinWidth="85"
+                                            VerticalAlignment="Center" />
+
+                                    <Border Grid.Column="2"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Padding="3,0"
+                                            BorderBrush="{StaticResource BrushColorAlt2}"
+                                            BorderThickness="1"
+                                            CornerRadius="3">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="{StaticResource ColorAlt2}" Opacity="0.33" />
+                                        </Border.Background>
+
+                                        <TextBlock Text="{Binding StatusText}"
+                                                   Foreground="{Binding StatusBrush}"
+                                                   FontSize="12"
+                                                   LineHeight="12.5"
+                                                   LineStackingStrategy="BlockLineHeight"
+                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                   FontWeight="Bold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   TextWrapping="Wrap"
+                                                   TextAlignment="Center" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+
+                            <!-- Has no reactor - display build requirements and "Build reactor" button -->
+                            <StackPanel
+                                Visibility="{Binding HasReactor, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                Orientation="Vertical"
+                                VerticalAlignment="Stretch">
+                                <TextBlock Text="{Binding ReactorName}"
+                                           FontSize="13"
+                                           FontWeight="Bold"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           Foreground="{StaticResource BrushColorAlt6}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,0,5" />
+                                <Border Padding="5"
+                                        CornerRadius="3"
+                                        BorderThickness="1"
+                                        HorizontalAlignment="Center">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource Color1}" Opacity="0.3" />
+                                    </Border.Background>
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{StaticResource Color6}" Opacity="0.3" />
+                                    </Border.BorderBrush>
+                                    <StackPanel Orientation="Vertical">
+                                        <!-- Text: Required -->
+                                        <TextBlock
+                                            Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingTitleRequiredItems}"
+                                            FontSize="10"
+                                            Margin="0,-2"
+                                            FontWeight="Bold"
+                                            Foreground="{StaticResource BrushColor6}"
+                                            HorizontalAlignment="Center" />
+
+                                        <!-- Display icons for required items (total) -->
+                                        <controls:RequiredItemsPanelControl
+                                            Items="{Binding BuildRequiredItems}"
+                                            CountMultiplier="1"
+                                            IconSize="40"
+                                            FontSize="11"
+                                            TextStrokeThickness="1"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,5" />
+
+                                        <Button
+                                            Content="{x:Static loc:CoreStrings.WindowGeneratorPragmium_BuildReactor}"
+                                            Command="{Binding CommandBuildReactor}"
+                                            Focusable="False"
+                                            FontSize="13"
+                                            Padding="5,3"
+                                            MinWidth="75"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Vertical separator -->
+            <Line Y1="0"
+                  Y2="1"
+                  Margin="0,-1,0,0"
+                  StrokeThickness="1"
+                  Stroke="{StaticResource WidgetBorderBrush}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Stretch"
+                  Stretch="Fill" />
+        </Grid>
+    </core:WindowMenuWithInventory>
+
+</powerGrid:WindowGeneratorPragmiumBase>

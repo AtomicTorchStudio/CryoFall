@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -56,15 +57,16 @@
             this.vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
             this.vehiclePrivateState = vehicle.GetPrivateState<VehiclePrivateState>();
 
-            this.vehiclePublicState.ClientSubscribe(_ => _.ClanTag,
-                                                    _ =>
-                                                    {
-                                                        this.NotifyPropertyChanged(nameof(this.IsOwnedByFaction));
-                                                        this.NotifyPropertyChanged(nameof(this.FactionClanTag));
-                                                        this.NotifyPropertyChanged(nameof(this.FactionEmblem));
-                                                        this.RefreshAccessEditor();
-                                                    },
-                                                    this);
+            this.vehiclePublicState.ClientSubscribe(
+                _ => _.ClanTag,
+                _ =>
+                {
+                    this.NotifyPropertyChanged(nameof(this.IsOwnedByFaction));
+                    this.NotifyPropertyChanged(nameof(this.FactionClanTag));
+                    this.NotifyPropertyChanged(nameof(this.FactionEmblem));
+                    this.RefreshAccessEditor();
+                },
+                this);
 
             var structurePointsMax = this.ProtoVehicle.SharedGetStructurePointsMax(vehicle);
             this.ViewModelStructurePoints = new ViewModelStructurePointsBarControl()
@@ -112,9 +114,9 @@
         public string FactionClanTag => this.vehiclePublicState.ClanTag;
 
         public Brush FactionEmblem
-            => ClientFactionEmblemCache.GetEmblemTextureBrush(this.vehiclePublicState.ClanTag);
+            => ClientFactionEmblemBrushCache.GetEmblemTextureBrush(this.vehiclePublicState.ClanTag);
 
-        public string FactionPermissionName => FactionMemberAccessRights.LandClaimManagement.GetDescription();
+        public string FactionPermissionName => FactionMemberAccessRights.VehicleAccessManagement.GetDescription();
 
         public IClientItemsContainer FuelItemsContainer
             => (IClientItemsContainer)this.vehiclePrivateState.FuelItemsContainer;
@@ -178,6 +180,8 @@
 
         public IReadOnlyList<ProtoItemWithCount> RepairStageRequiredItems => this.ProtoVehicle.RepairStageRequiredItems;
 
+        public IDynamicWorldObject Vehicle => this.vehicle;
+
         [ViewModelNotAutoDisposeField]
         public FrameworkElement VehicleExtraControl { get; }
 
@@ -231,7 +235,53 @@
 
         private void ExecuteCommandTransferToFactionOwnership()
         {
-            VehicleSystem.ClientTransferToFactionOwnership(this.vehicle);
+            var accessRight = FactionMemberAccessRights.VehicleAccessManagement;
+            var hasAccessRight = FactionSystem.ClientHasAccessRight(accessRight);
+
+            var stackPanel = new StackPanel() { Orientation = Orientation.Vertical };
+            stackPanel.Children.Add(
+                DialogWindow.CreateTextElement(CoreStrings.Faction_DialogTransferVehicleToFaction,
+                                               TextAlignment.Left));
+
+            {
+                // a warning about the potential access loss
+                var textElement = DialogWindow.CreateTextElement(
+                    "[br]"
+                    + CoreStrings.Faction_DialogTransferVehicleToFaction_PotentialAccessLoss,
+                    TextAlignment.Left);
+
+                textElement.Foreground = Client.UI.GetApplicationResource<Brush>("BrushColor6");
+                stackPanel.Children.Add(textElement);
+            }
+
+            if (!hasAccessRight)
+            {
+                var message = FactionSystem.ClientHasFaction
+                                  ? string.Format(
+                                      CoreStrings.Faction_Permission_Required_Format,
+                                      accessRight.GetDescription())
+                                  : CoreStrings.Faction_ErrorDontHaveFaction;
+
+                var textElement = DialogWindow.CreateTextElement("[br]" + message,
+                                                                 TextAlignment.Left);
+
+                textElement.Foreground = Client.UI.GetApplicationResource<Brush>("BrushColorRed6");
+                textElement.FontWeight = FontWeights.Bold;
+                stackPanel.Children.Add(textElement);
+            }
+
+            var dialog = DialogWindow.ShowDialog(
+                CoreStrings.QuestionAreYouSure,
+                stackPanel,
+                okAction: () => VehicleSystem.ClientTransferToFactionOwnership(this.vehicle),
+                cancelAction: () => { },
+                okText: CoreStrings.Button_Continue,
+                focusOnCancelButton: true);
+
+            if (!hasAccessRight)
+            {
+                dialog.ButtonOk.IsEnabled = false;
+            }
         }
 
         private void RefreshAccessEditor()
@@ -246,9 +296,7 @@
 
             if (this.IsOwnedByFaction)
             {
-                this.ViewModelFactionAccessEditor = new ViewModelWorldObjectFactionAccessEditorControl(
-                    this.vehicle,
-                    canSetAccessMode: true);
+                this.ViewModelFactionAccessEditor = new ViewModelWorldObjectFactionAccessEditorControl(this.vehicle);
             }
             else
             {

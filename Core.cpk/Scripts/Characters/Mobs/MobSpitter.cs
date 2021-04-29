@@ -8,10 +8,13 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class MobSpitter : ProtoCharacterMob
     {
         public override bool AiIsRunAwayFromHeavyVehicles => false;
+
+        public override double AutoAggroNotificationDistance => 0;
 
         public override float CharacterWorldHeight => 2.0f;
 
@@ -66,6 +69,11 @@
             data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
+        protected override void ServerOnAggro(ICharacter characterMob, ICharacter characterToAggro)
+        {
+            // cannot auto-aggro
+        }
+
         protected override void ServerUpdateMob(ServerUpdateData data)
         {
             var character = data.GameObject;
@@ -80,7 +88,7 @@
                 distanceEnemyTooFar: 8,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad,
-                attackFarOnlyIfAgro: true);
+                attackFarOnlyIfAggro: true);
 
             // it's a static mob
             movementDirection = default;

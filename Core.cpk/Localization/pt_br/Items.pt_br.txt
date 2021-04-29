@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 Carga de sal calibre 12
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-Cartuchos de caça possuem poder de parada muito maior que as pelotas, podendo ser usados contra uma variedade de possíveis alvos. Devido à sua alta massa, os cartuchos de caça são bastante eficazes mesmo contra alvos com forte armadura.
+Cartuchos de caça são munições versáteis que podem ser usadas contra a maioria dos tipos de oponentes. Devido à sua alta massa, são bastante eficazes mesmo contra alvos com forte armadura.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 Munição de caça calibre 12
@@ -111,6 +111,12 @@ Granada incendiária especial que inflige danos térmicos pesados no momento do 
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 Granada incendiária
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+Cainita liquefeita em pequenas cápsulas de vidro. Utiliza-se em armas exóticas.
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+Munição de cainita
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Munição padrão para armas de fogo. Adequada apenas para alvos mais fracos, mas simples e barata de produzir.
@@ -187,6 +193,9 @@ Implantes só podem ser instalados no posto médico.
 Scripts/Items/Base/ItemHints@NeverConsumed:
 Nunca consumido
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+Este item poderia ser instalado em um reator de prágmio.
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Este item usa energia dos carregadores portáteis equipados.
 
@@ -241,6 +250,12 @@ Este pacote de ferramentas úteis de caçador agiliza saquear qualquer criatura.
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Ferramentas de caçador
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+Dispositivo especial capaz de extrair cainita de baixa qualidade de certas formas de vida nativas e animais mutantes.
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+Extrator de cainita
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 Pequeno designador laser de alvos usado para facilitar a mira de longo alcance.
 
@@ -258,6 +273,12 @@ Carregador portátil bidirecional padrão. Armazena energia para uso conveniente
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Carregador portátil padrão
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+Este espaço está temporariamente reservado para o drone retornar.
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+Espaço reservado
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 Controle remoto de drones avançado
@@ -1490,6 +1511,18 @@ Aço industrial com alto teor de carbono.
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Lingote de aço
 
+Scripts/Items/Generic/ItemKeinite@Description:
+Substância exótica extremamente valiosa de origem alienígena. Encontra várias aplicações de nicho em projetos científicos de última geração.
+
+Scripts/Items/Generic/ItemKeinite@Name:
+Cainita
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+Cainita bruta, não refinada. Requer processamento antes de poder ser utilizada.
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+Cainita não refinada
+
 Scripts/Items/Generic/ItemLeather@Description:
 Couro animal. Pode ser usado na fabricação de armadura de couro.
 
@@ -1600,18 +1633,6 @@ Conservante alimentar. Pode-se adicionar a alimentos embalados, permitindo que d
 
 Scripts/Items/Generic/ItemPreservative@Name:
 Conservante
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-Núcleo vazio do reator que pode ser reabastecido com substância transportadora de energia reativa, como o prágmio.
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-Núcleo de reator vazio
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-Núcleo do reator cheio de prágmio. Fonte de energia relativamente estável, portátil e duradoura.
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-Núcleo de reator de prágmio
 
 Scripts/Items/Generic/ItemRice@Description:
 Grãos de arroz colhidos. Pode ser preparado para plantio ou cozido em uma variedade de pratos.
@@ -1868,6 +1889,12 @@ Reforços artificiais para os ossos e o crânio. Evita atordoamentos ou fraturas
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 Implante de reforço endoesquelético
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+Órgão especial que se conecta a uma grande artéria e ajuda a filtrar várias toxinas e venenos do sangue.
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+Implante de filtração de toxinas
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 Não foi detectada nenhuma mutação fora de controle no organismo.
 
@@ -2116,6 +2143,48 @@ Solução que deixa você temporariamente mais forte, melhorando seu desempenho 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Pequeno aumento de força
 
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+Restos de sucata após um dos módulos do reator ter se quebrado.
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+Módulo de reator quebrado
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+Blindagem especial multicamadas que bloqueia parcialmente a radiação psiônica emitida fora do reator.
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+Defletor psiônico
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+Dispositivo especial que difunde a radiação psiônica dentro do núcleo do reator, melhorando a vida útil do combustível ao custo de uma produção de energia reduzida.
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+Difusor psiônico
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+Melhora a resposta do reator introduzindo controladores de fluxo psiônico adicionais, melhorando muito os tempos de inicialização e desligamento do reator.
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+Trocador de fluxo psiônico
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+Barra de combustível de reator cheia de prágmio. Fonte de energia relativamente estável, portátil e de longa duração.
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+Barra de combustível de prágmio
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+Barra de combustível de reator vazia que pode ser reabastecida com prágmio.
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+Barra de combustível vazia
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+Altera a configuração dos campos psiônicos produzidos dentro do núcleo do reator, aumentando a produção.
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+Moderador psiônico
+
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Muda de uma árvore. Pode ser plantada para que cresça e se torne uma árvore.
 
@@ -2199,6 +2268,9 @@ Contém os registros de coordenadas e frequência de navegação para um dos mui
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 Dados do local de teletransporte
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+Você já descobriu todos os locais do teletransporte.
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 O machado de ferro é ótimo para cortar árvores. É mais rápido e resistente do que o de pedra.
@@ -2520,6 +2592,18 @@ Submetralhadora criada para utilizar cartuchos de 10 mm.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Submetralhadora
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Arma exótica que lança criaturinhas semelhantes a insetos nos inimigos em vez de balas.
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Lança-enxames
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Arma exótica que usa a cainita liquefeita para criar e lançar uma toxina potente nos inimigos.
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Proliferador de toxinas
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Canhão automático pesado desenvolvido para ser montado nos acoplamentos da armadura de combate mecanizada. Usa munição de calibre grosso e antimaterial.

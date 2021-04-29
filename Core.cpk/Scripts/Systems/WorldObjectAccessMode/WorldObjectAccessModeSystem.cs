@@ -4,7 +4,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
-    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -148,6 +147,29 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             }
         }
 
+        public static FactionMemberAccessRights SharedGetFactionAccessRightRequirementForObject(
+            IWorldObject worldObject)
+        {
+            if (worldObject is null)
+            {
+                Logger.Error("Game object is null for faction access right");
+                return FactionMemberAccessRights.LandClaimManagement; // fallback
+            }
+
+            if (worldObject.IsStatic)
+            {
+                return FactionMemberAccessRights.LandClaimManagement;
+            }
+
+            if (worldObject.ProtoGameObject is IProtoVehicle)
+            {
+                return FactionMemberAccessRights.VehicleAccessManagement;
+            }
+
+            Logger.Error("Unknown game object type for faction access right: " + worldObject);
+            return FactionMemberAccessRights.LandClaimManagement; // fallback
+        }
+
         public static bool SharedHasAccess(ICharacter character, IWorldObject worldObject, bool writeToLog)
         {
             if (IsClient)
@@ -210,11 +232,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 return true;
             }
 
-            if (CreativeModeSystem.SharedIsInCreativeMode(character))
-            {
-                return true;
-            }
-
             var playerClanTag = FactionSystem.SharedGetClanTag(character);
             if (string.IsNullOrEmpty(playerClanTag))
             {
@@ -271,13 +288,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         private void ServerRemote_SetDirectAccessMode(IStaticWorldObject worldObject, WorldObjectDirectAccessMode mode)
         {
             var character = ServerRemoteContext.Character;
-            InteractionCheckerSystem.SharedValidateIsInteracting(character,
-                                                                 worldObject,
-                                                                 requirePrivateScope: true);
-
             if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
             {
                 throw new Exception("This world object doesn't have an access mode");
+            }
+
+            if (!protoObjectWithAccessMode.SharedCanInteract(character, worldObject, writeToLog: true))
+            {
+                return;
             }
 
             var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(worldObject);
@@ -322,13 +340,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             WorldObjectFactionAccessModes modes)
         {
             var character = ServerRemoteContext.Character;
-            InteractionCheckerSystem.SharedValidateIsInteracting(character,
-                                                                 worldObject,
-                                                                 requirePrivateScope: true);
-
             if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
             {
                 throw new Exception("This world object doesn't have an access mode");
+            }
+
+            if (!protoObjectWithAccessMode.SharedCanInteract(character, worldObject, writeToLog: true))
+            {
+                return;
             }
 
             var faction = ServerGetOwningFaction(worldObject);
@@ -340,9 +359,10 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             if (!CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 // verify permission to access object
-                FactionSystem.ServerValidateHasAccessRights(character,
-                                                            FactionMemberAccessRights.LandClaimManagement,
-                                                            out var characterFaction);
+                FactionSystem.ServerValidateHasAccessRights(
+                    character,
+                    SharedGetFactionAccessRightRequirementForObject(worldObject),
+                    out var characterFaction);
 
                 if (!ReferenceEquals(faction, characterFaction))
                 {

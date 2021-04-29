@@ -12,9 +12,11 @@
 
         public override double DamageRadius => 2.1;
 
-        public override bool IsActivatesRaidModeForLandClaim => true;
+        public override bool IsActivatesRaidBlock => true;
 
         public override string Name => "Primitive bomb";
+
+        public override double RaidBlockDurationMutliplier => 0.5;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

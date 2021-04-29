@@ -56,7 +56,7 @@ Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
 生産：{0}
 
 Scripts/PlayerTasks/TaskRelocateAnyStructure@DefaultDescription:
-建造物を移設する
+建築物を移設する
 
 Scripts/PlayerTasks/TaskRun@DescriptionText:
 10メートルダッシュする

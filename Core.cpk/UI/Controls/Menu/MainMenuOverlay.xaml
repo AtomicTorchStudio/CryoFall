@@ -126,7 +126,7 @@
                                                        Foreground="#99FFFFFF">
                                                 <Run>CryoFall&#x2122;, RENKEI&#x2122; Engine &#x00A9; by AtomicTorch Studio Pte. Ltd.</Run>
                                                 <LineBreak />
-                                                <Run>&#x00A9; 2019-2020 Daedalic Entertainment GmbH. All rights reserved. </Run>
+                                                <Run>&#x00A9; 2019-2021 Daedalic Entertainment GmbH. All rights reserved.</Run>
                                                 <Hyperlink Foreground="#99FFFFFF"
                                                            Command="{Binding CommandOpenDaedalicPrivacyPolicy}">
                                                     Privacy Policy.

@@ -29,7 +29,6 @@
         protected ProtoItemToolPickaxe()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/" + name);
             this.WeaponTextureResource = new TextureResource(
                 "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
@@ -38,8 +37,6 @@
         public abstract double DamageToMinerals { get; }
 
         public abstract double DamageToNonMinerals { get; }
-
-        public override ITextureResource Icon { get; }
 
         public virtual double RangeMax => 1;
 
@@ -50,6 +47,11 @@
         public virtual double ServerGetDamageToMineral(IStaticWorldObject targetObject)
         {
             return this.DamageToMinerals;
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Tools/" + this.GetType().Name;
         }
 
         protected override void PrepareProtoWeapon(

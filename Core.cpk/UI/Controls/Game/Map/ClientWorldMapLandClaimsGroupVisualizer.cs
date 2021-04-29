@@ -4,11 +4,8 @@
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -18,9 +15,8 @@
 
     public class ClientWorldMapLandClaimsGroupVisualizer : BaseWorldMapVisualizer
     {
-        public const string NotificationBaseUnderAttack_MessageFormat
-            = @"One of your bases is being raided!
-  [br]({0};{1})";
+        public const string NotificationBaseUnderAttack_Message
+            = "One of your bases is being raided!";
 
         public const string NotificationBaseUnderAttack_Title = "Under attack!";
 
@@ -55,7 +51,7 @@
 
             if (!this.groupControllers.TryGetValue(areasGroup, out controller))
             {
-                controller = new Controller(areasGroup, this);
+                controller = new Controller(this, areasGroup);
                 this.groupControllers[areasGroup] = controller;
             }
 
@@ -111,17 +107,15 @@
 
             private readonly ClientWorldMapLandClaimsGroupVisualizer visualizer;
 
-            private bool isRaided;
+            private bool lastIsRaided;
 
             private FrameworkElement markRaidControl;
-
-            private HudNotificationControl raidNotification;
 
             private IStateSubscriptionOwner stateSubscriptionStorage;
 
             public Controller(
-                ILogicObject areasGroup,
-                ClientWorldMapLandClaimsGroupVisualizer visualizer)
+                ClientWorldMapLandClaimsGroupVisualizer visualizer,
+                ILogicObject areasGroup)
             {
                 this.areasGroup = areasGroup;
                 this.visualizer = visualizer;
@@ -158,7 +152,7 @@
 
             private void Cleanup()
             {
-                this.RemoveRaidNotification();
+                this.RemoveControl();
 
                 this.stateSubscriptionStorage?.Dispose();
                 this.stateSubscriptionStorage = null;
@@ -176,76 +170,45 @@
                 return LandClaimSystem.SharedGetLandClaimGroupCenterPosition(this.areasGroup);
             }
 
-            private void RaidRefreshTimerCallback()
-            {
-                if (this.IsDisposed)
-                {
-                    return;
-                }
-
-                this.RefreshRaidedState();
-
-                if (this.isRaided)
-                {
-                    // still raided
-                    ClientTimersSystem.AddAction(delaySeconds: 1,
-                                                 this.RaidRefreshTimerCallback);
-                }
-            }
-
             private void RefreshRaidedState()
             {
                 var isRaidedNow = LandClaimSystem.SharedIsAreasGroupUnderRaid(this.areasGroup);
-                if (this.isRaided == isRaidedNow)
+                if (this.lastIsRaided == isRaidedNow)
                 {
                     // no changes
                     return;
                 }
 
                 // remove outdated notifications (if exists)
-                this.RemoveRaidNotification();
+                this.RemoveControl();
 
-                this.isRaided = isRaidedNow;
-                if (!this.isRaided)
+                this.lastIsRaided = isRaidedNow;
+                if (!this.lastIsRaided)
                 {
                     return;
                 }
 
                 // was not raided, is raided now
                 var worldPosition = this.GetAreasGroupWorldPosition();
+                var notificationTitle = NotificationBaseUnderAttack_Title;
+                var notificationMessage = string.Format(NotificationBaseUnderAttack_Message);
+
                 // add raid mark control to map
-                this.markRaidControl = new WorldMapMarkRaid();
+                this.markRaidControl = new WorldMapMarkRaid()
+                {
+                    Description = "[b]" + notificationTitle + "[/b][br]" + notificationMessage
+                };
+
                 var canvasPosition = this.GetAreasGroupCanvasPosition(worldPosition);
                 Canvas.SetLeft(this.markRaidControl, canvasPosition.X);
                 Canvas.SetTop(this.markRaidControl, canvasPosition.Y);
                 Panel.SetZIndex(this.markRaidControl, 11);
                 this.visualizer.AddControl(this.markRaidControl);
-
-                // show notification message
-                var localPosition = worldPosition
-                                    - Api.Client.World.WorldBounds.Offset;
-
-                this.raidNotification = NotificationSystem.ClientShowNotification(
-                    NotificationBaseUnderAttack_Title,
-                    string.Format(NotificationBaseUnderAttack_MessageFormat,
-                                  WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(localPosition)
-                                  + "-"
-                                  + localPosition.X,
-                                  localPosition.Y),
-                    NotificationColor.Bad,
-                    autoHide: false,
-                    icon: Api.GetProtoEntity<ItemBombModern>().Icon);
-
-                // start refresh timer
-                ClientTimersSystem.AddAction(delaySeconds: 1,
-                                             this.RaidRefreshTimerCallback);
             }
 
-            private void RemoveRaidNotification()
+            private void RemoveControl()
             {
-                this.raidNotification?.Hide(quick: true);
-                this.raidNotification = null;
-
+                this.lastIsRaided = false;
                 if (this.markRaidControl is null)
                 {
                     return;

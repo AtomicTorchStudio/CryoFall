@@ -33,7 +33,7 @@
             // Preload the emblem texture.
             // Otherwise it will not load until the emblem is requested by UI
             // which causes a significant delay before the emblem could be rendered.
-            ClientFactionEmblemCache.GetEmblemTextureBrush(this.entry.ClanTag);
+            ClientFactionEmblemBrushCache.GetEmblemTextureBrush(this.entry.ClanTag);
         }
 
         public ApplicationDataEntry ActiveApplication { get; private set; }
@@ -75,7 +75,7 @@
                && this.ActiveInvitation is null;
 
         public Brush Emblem
-            => ClientFactionEmblemCache.GetEmblemTextureBrush(this.entry.ClanTag);
+            => ClientFactionEmblemBrushCache.GetEmblemTextureBrush(this.entry.ClanTag);
 
         public string FactionKindDescription
             => this.entry.Kind.GetAttribute<DescriptionTooltipAttribute>()

@@ -46,6 +46,7 @@
             if (PveSystem.ClientIsPve(true))
             {
                 accessRights = accessRights.ExceptOne(FactionMemberAccessRights.DiplomacyManagement)
+                                           .ExceptOne(FactionMemberAccessRights.BaseShieldManagement)
                                            .ToArray();
             }
 

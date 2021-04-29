@@ -49,12 +49,6 @@
                 return;
             }
 
-            this.character = Client.Characters.CurrentPlayerCharacter;
-
-            this.CommandCraftingCountIncrease = new ActionCommand(() => this.AddCraftingCount(+1));
-            this.CommandCraftingCountDecrease = new ActionCommand(() => this.AddCraftingCount(-1));
-            this.CommandCraftingCountSetOne = new ActionCommand(() => this.CountToCraft = 1);
-            this.CommandCraftingCountSetMax = new ActionCommand(this.SetMaximumCraftingCount);
             this.CommandCraft = new ActionCommandWithCondition(
                 this.ExecuteCommandCraft,
                 checkCanExecute: () => this.IsCanCraft);
@@ -62,6 +56,14 @@
             this.CommandCraftByDoubleClick = new ActionCommandWithCondition(
                 this.ExecuteCommandCraftByDoubleClick,
                 checkCanExecute: () => this.IsCanCraft);
+
+            this.CommandCraftingCountDecrease = new ActionCommand(
+                () => this.AddCraftingCount(-1));
+
+            this.CommandCraftingCountIncrease = new ActionCommand(
+                () => this.AddCraftingCount(+1));
+
+            this.character = Client.Characters.CurrentPlayerCharacter;
 
             ClientCurrentCharacterContainersHelper.ItemAddedOrRemovedOrCountChanged
                 += this.CharacterContainersItemsChangedHandler;
@@ -75,9 +77,15 @@
 
         public BaseCommand CommandCraftingCountIncrease { get; }
 
-        public BaseCommand CommandCraftingCountSetMax { get; }
+        public BaseCommand CommandCraftingCountSetMax
+            => new ActionCommand(this.SetMaximumCraftingCount);
 
-        public BaseCommand CommandCraftingCountSetOne { get; }
+        public BaseCommand CommandCraftingCountSetOne
+            => new ActionCommand(() =>
+                                 {
+                                     Client.UI.BlurFocus();
+                                     this.CountToCraft = 1;
+                                 });
 
         public ushort CountToCraft
         {
@@ -257,6 +265,10 @@
 
         private void AddCraftingCount(int delta)
         {
+            Client.UI.BlurFocus();
+
+            //Logger.Dev("Add crafting count: " + delta);
+
             if (Input.IsKeyHeld(InputKey.Shift, evenIfHandled: true))
             {
                 delta *= 5;
@@ -279,6 +291,7 @@
                 return;
             }
 
+            Client.UI.BlurFocus();
             if (this.customCallbackOnRecipeSelect is not null)
             {
                 this.customCallbackOnRecipeSelect.Invoke(this.viewModelRecipe.Recipe);
@@ -367,6 +380,7 @@
 
         private void SetMaximumCraftingCount()
         {
+            Client.UI.BlurFocus();
             this.CountToCraft = this.MaximumCraftingCount;
         }
     }

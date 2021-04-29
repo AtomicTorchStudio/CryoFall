@@ -142,11 +142,11 @@ Alınan hasardan dolayı implant aşınması
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 Yerleştirilmiş implantın aşınma hızı
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-Yemek yeme hızı
+Scripts/Base/Stats/StatName@HungerRate:
+Açlık oranı
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-Su içme hızı
+Scripts/Base/Stats/StatName@ThirstRate:
+Susuzluk oranı
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Enerji yenilenmesi (dakika başına)
@@ -186,6 +186,9 @@ Sürekli hasar
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Bir şey yiyemez veya içemez
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+Düşük ışık görüşü
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Eğitim puanları kazancı

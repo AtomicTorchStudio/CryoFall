@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
+    using AtomicTorch.CBND.CoreMod.CharacterOrigins;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -104,6 +105,9 @@
 
         [SyncToClient]
         public double LastFactionLeaveTime { get; set; } = double.MinValue;
+
+        [SyncToClient]
+        public ProtoCharacterOrigin Origin { get; set; }
 
         [SyncToClient]
         [TempOnly]

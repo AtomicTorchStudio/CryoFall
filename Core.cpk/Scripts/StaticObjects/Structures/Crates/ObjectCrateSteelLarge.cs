@@ -27,7 +27,7 @@
 
         public override float StructurePointsMax => 1500;
 
-        protected override Vector2D ItemIconOffset => (1, base.ItemIconOffset.Y);
+        protected override Vector2D ItemIconOffset => (1, base.ItemIconOffset.Y + 0.15);
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

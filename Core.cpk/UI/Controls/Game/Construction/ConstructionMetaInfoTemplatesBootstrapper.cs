@@ -24,11 +24,15 @@
                 Api.Client.UI.LoadResourceDictionary(
                     "UI/Controls/Game/Construction/ConstructionMetaInfoTemplates.xaml");
 
-            // add some default templates
             templates.Add(
                 new ConstructionMetaInfoTemplateDefinition(
                     condition: protoStructure => !protoStructure.IsRelocatable,
                     template: GetTemplate("TemplateUnmovable")));
+
+            templates.Add(
+                new ConstructionMetaInfoTemplateDefinition(
+                    condition: protoStructure => protoStructure.FactionWealthScorePoints > 0,
+                    template: GetTemplate("TemplateFactionWealthScore")));
 
             templates.Add(
                 new ConstructionMetaInfoTemplateDefinition(

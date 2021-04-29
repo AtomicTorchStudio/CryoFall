@@ -44,18 +44,18 @@
 
         protected static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDepletedDeposit
             = new(Error_TooCloseToDepletedDeposit,
-                c =>
-                {
-                    var startPosition = c.StartTilePosition;
-                    var objectsInBounds = SharedFindObjectsNearby<ObjectDepletedDeposit>(startPosition);
-                    if (objectsInBounds.Any())
-                    {
-                        // found a depleted deposit nearby
-                        return false;
-                    }
+                  c =>
+                  {
+                      var startPosition = c.StartTilePosition;
+                      var objectsInBounds = SharedFindObjectsNearby<ObjectDepletedDeposit>(startPosition);
+                      if (objectsInBounds.Any())
+                      {
+                          // found a depleted deposit nearby
+                          return false;
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         public override ProtoObjectConstructionSite ConstructionSitePrototype
             => Api.GetProtoEntity<ObjectConstructionSiteForExtractor>();
@@ -312,11 +312,10 @@
                 return;
             }
 
-            // explode
+            // the damage was dealt by a weapon or explosive - try to explode the deposit
             var tilePosition = targetObject.TilePosition;
             Server.World.CreateStaticWorldObject<ObjectDepositExplosion>(tilePosition);
 
-            // the damage was dealt by a weapon or explosive - try to explode the deposit
             var worldObjectDeposit = this.SharedGetDepositWorldObject(
                 Server.World.GetTile(tilePosition));
 

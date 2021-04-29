@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 100);
             inputItems.Add<ItemAramidFiber>(count: 20);
-            inputItems.Add<ItemOrePragmium>(count: 20);
+            inputItems.Add<ItemKeinite>(count: 20);
             inputItems.Add<ItemComponentsHighTech>(count: 10);
             inputItems.Add<ItemBallisticPlate>(count: 10);
 

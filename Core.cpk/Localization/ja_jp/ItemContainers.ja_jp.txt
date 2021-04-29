@@ -19,3 +19,15 @@ Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUs
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
 取外し不可
 
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Message:
+ここにはリアクター部品のみを置くことができます。
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Title:
+互換性のないアイテム
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Message:
+リアクター部品を追加・削除できません。
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Title:
+リアクター稼働中
+

@@ -124,6 +124,9 @@ Resonanzbombe
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Vorkommensexplosion
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Pragmiumreaktorexplosion
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Pragmiumquellen-Explosion
 
@@ -593,6 +596,9 @@ Ein vollautomatischer leichter Geschützturm.
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Leichtes Geschütz
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Zu nah an einem anderen Geschütz
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Deaktiviert
 
@@ -707,6 +713,12 @@ Dieser große Generator verwendet Benzin zur Stromerzeugung.
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Motorgenerator
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Ein großes Pragmiumkraftwerk kann als die primäre oder sogar einzige Energiequelle einer riesigen Basis dienen, benötigt dafür jedoch einen stetigen Vorrat an Pragmium.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Pragmiumkraftwerk
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Einfache Anlage zur solaren Stromerzeugung. Betrieb erfordert einzelne Solarpanels.
 
@@ -718,6 +730,12 @@ Dieser Generator verwendet heißen Dampf zum Antrieb einer Turbine und erzeugt s
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Dampferzeuger
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Bitte platziere mindestens ein/e/n {0} um den Reaktor zu starten.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+Reaktorstart nicht möglich
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Hilft dir dabei, deine Basis zu schützen, indem andere Überlebende davon abgehalten werden, Dinge zu bauen oder einzureißen. Ein Land Claim verhindert außerdem den allmählichen Verfall deiner Konstruktionen.

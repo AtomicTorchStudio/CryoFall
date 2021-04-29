@@ -13,6 +13,8 @@
 
     public class ObjectDecorationStatuePragmium : ProtoObjectDecoration
     {
+        public override double FactionWealthScorePoints => 25;
+
         public override string Description =>
             "Wasting this precious crystal purely for aesthetic purposes is a good demonstration of one's wealth.";
 

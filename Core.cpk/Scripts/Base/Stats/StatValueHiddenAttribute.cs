@@ -6,6 +6,7 @@
     /// Used to decorate StatName entries that have a hidden value (such as various perks).
     /// If it's applied, the tooltip will hide the stat value (such as "+1").
     /// </summary>
+    [AttributeUsage(AttributeTargets.Field)]
     public class StatValueHiddenAttribute : Attribute
     {
     }

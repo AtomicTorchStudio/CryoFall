@@ -11,6 +11,8 @@
         public override string Description =>
             "This metal fence will block movement, but will also allow bullets to fly through and could be a good choice as a strategic defense. Not very durable.";
 
+        public override bool IsActivatesRaidblockOnDestroy => false; // it's too easy/fast to destroy
+
         public override string Name => "Chain-link fence";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;

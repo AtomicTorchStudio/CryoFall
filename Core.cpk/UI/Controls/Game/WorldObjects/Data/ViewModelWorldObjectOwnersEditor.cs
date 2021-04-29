@@ -118,6 +118,7 @@
             newList.Add(name);
             this.PushChanges(newList);
             this.NewOwnerName = string.Empty;
+            Client.UI.BlurFocus();
         }
 
         private void ExecuteCommandAddPartyMembers()

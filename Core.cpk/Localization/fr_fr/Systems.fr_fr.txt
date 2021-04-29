@@ -155,6 +155,18 @@ Impossible d'ajouter une nouvelle recette
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Déconstruction impossible
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+Votre faction a chuté du rang {0} au rang {1} au classement général.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+Chute du rang de la faction
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+Votre faction est passée du rang {0} au rang {1} au classement général.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+Gain de rang de la faction
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 Nombre de membres
 
@@ -184,6 +196,12 @@ Renvoyer des membres
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 Gérer la diplomatie
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+Gestion d'accès aux véhicules
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+Gestion du bouclier de la base
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 Suppléant
@@ -326,20 +344,41 @@ Le territoire de la faction a été étendu à {0}.
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 Le territoire de la faction a été réduit à {0}.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+Augmente avec chaque structure ayant une valeur de score de faction située dans les bases contrôlées par la faction (seules les revendications territoriales dont la propriété a été octroyée à la faction sont comptées).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-Richesse des bases de la faction
+Score de richesse
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+Augmente en fonction du niveau de la faction.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 Niveau de la faction
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+Augmente avec l'élimination des boss mondiaux, proportionnellement à la part de butin reçue.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Score de boss
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+Augmente avec l'élimination de créatures par les joueurs qui font partie de la faction.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 Score de chasse
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-Total de PA accumulés
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+Augmente avec les gains de PA par les joueurs qui font partie de la faction. Ne s'applique pas aux PA gagnés via des quêtes ou des consommables.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+Score de points d'apprentissage
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+Augmente avec chaque heure de contrôle de gisements de pétrole et de lithium (la propriété de la revendication territoriale doit avoir été octroyée à la faction).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+Score de domination de ressources
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 Vous ne possédez pas d'appât dans votre inventaire pour pêcher.

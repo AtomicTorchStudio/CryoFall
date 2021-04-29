@@ -43,7 +43,12 @@
 
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
-            blueprint.SpriteRenderer.TextureResource = this.Icon;
+            base.ClientSetupBlueprint(tile, blueprint);
+
+            var rendererBack = Client.Rendering.CreateSpriteRenderer(blueprint.SceneObject,
+                                                                     null);
+            rendererBack.RenderingMaterial = blueprint.SpriteRenderer.RenderingMaterial;
+            this.ClientSetupRendererBack(rendererBack);
         }
 
         protected override ITextureResource ClientCreateIcon()
@@ -59,10 +64,9 @@
         {
             base.ClientInitialize(data);
 
-            Client.Rendering.CreateSpriteRenderer(
-                      data.GameObject,
-                      this.textureResourceBack)
-                  .DrawOrderOffsetY = 1.3;
+            var rendererBack = Client.Rendering.CreateSpriteRenderer(data.GameObject,
+                                                                     null);
+            this.ClientSetupRendererBack(rendererBack);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -113,6 +117,12 @@
                 .AddShapeCircle(radius: 0.75, center: (1, 1), group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (1.2, 0.25), offset: (0.4, 1.2), group: CollisionGroups.HitboxRanged)
                 .AddShapeCircle(radius: 0.6, center: (1, 1.1), group: CollisionGroups.ClickArea);
+        }
+
+        private void ClientSetupRendererBack(IComponentSpriteRenderer rendererBase)
+        {
+            rendererBase.TextureResource = this.textureResourceBack;
+            rendererBase.DrawOrderOffsetY = 1.3;
         }
     }
 }

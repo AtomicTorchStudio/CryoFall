@@ -37,8 +37,28 @@
 
             base.ServerOnDestroy(gameObject);
         }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            var tile = data.GameObject.OccupiedTile;
+
+            ClientTimersSystem.AddAction(
+                0,
+                () =>
+                {
+                    // reinitialize plants in this tile to ensure they're rendered in front of the pot
+                    foreach (var staticObject in tile.StaticObjects)
+                    {
+                        if (staticObject.ProtoGameObject is IProtoObjectPlant)
+                        {
+                            staticObject.ClientInitialize();
+                        }
+                    }
+                });
+        }
     }
-    
+
     public abstract class ProtoObjectPlantPot
         : ProtoObjectPlantPot
             <StructurePrivateState, StaticObjectPublicState, StaticObjectClientState>

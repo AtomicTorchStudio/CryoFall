@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -44,7 +45,10 @@
             Success = 1,
 
             [Description(CoreStrings.Faction_FactionFull)]
-            ErrorFactionFull = 2
+            ErrorFactionFull = 2,
+
+            [Description(CoreStrings.Faction_ErrorUnderJoinCooldown)]
+            ErrorCooldownLeftRecently = 3
         }
 
         [RemoteEnum]
@@ -85,7 +89,7 @@
             return !ClientIsFactionMember(name);
         }
 
-        public static void ClientInvitationAccept(string clanTag)
+        public static async void ClientInvitationAccept(string clanTag)
         {
             if (NewbieProtectionSystem.ClientIsNewbie)
             {
@@ -95,6 +99,22 @@
 
             if (ClientCheckIsUnderJoinCooldown(showErrorNotification: true))
             {
+                return;
+            }
+
+            var timeRemains = await Instance.CallServer(
+                                  _ => _.ServerRemote_GetCooldownRemainsToJoinReturnToFaction(clanTag));
+            if (timeRemains > 0)
+            {
+                var factionEmblem =
+                    await ClientFactionEmblemTextureProvider.GetEmblemTextureAsync(clanTag, useCache: true);
+                NotificationSystem.ClientShowNotification(
+                    title: CoreStrings.Faction_ErrorUnderJoinCooldown,
+                    // TODO: consider using a separate text constant here
+                    message: string.Format(CoreStrings.ShieldProtection_CooldownRemains_Format,
+                                           ClientTimeFormatHelper.FormatTimeDuration(timeRemains)),
+                    NotificationColor.Bad,
+                    icon: factionEmblem);
                 return;
             }
 
@@ -277,6 +297,20 @@
             }
         }
 
+        /// <summary>
+        /// Gets how many seconds remains until player can join-return the specified faction.
+        /// If player has never left that faction or the cooldown has expired, the result will be 0.
+        /// Please note: it doesn't perform a check to detect the general cooldown
+        /// and intended only for join-return case.
+        /// </summary>
+        private double ServerRemote_GetCooldownRemainsToJoinReturnToFaction(string clanTag)
+        {
+            var character = ServerRemoteContext.Character;
+            var faction = ServerGetFactionByClanTag(clanTag);
+            ServerInvitations.ServerIsUnderJoinCooldownForFaction(character, faction, out var cooldownTimeRemains);
+            return cooldownTimeRemains;
+        }
+
         private InvitationAcceptResult ServerRemote_InvitationAccept(string clanTag)
         {
             try
@@ -401,12 +435,16 @@
                 }
 
                 var inviterFactionMembers = ServerGetFactionMembersReadOnly(faction);
-                var maxMembers = FactionConstants.GetFactionMembersMax(
-                    Faction.GetPublicState(faction).Kind);
+                var maxMembers = FactionConstants.GetFactionMembersMax(Faction.GetPublicState(faction).Kind);
 
                 if (inviterFactionMembers.Count >= maxMembers)
                 {
                     return InvitationAcceptResult.ErrorFactionFull;
+                }
+
+                if (ServerIsUnderJoinCooldownForFaction(invitee, faction, out _))
+                {
+                    return InvitationAcceptResult.ErrorCooldownLeftRecently;
                 }
 
                 ServerApplications.RemoveAllApplicationsByApplicant(invitee);
@@ -569,6 +607,28 @@
                 {
                     invitations.Clear();
                 }
+            }
+
+            public static bool ServerIsUnderJoinCooldownForFaction(
+                ICharacter character,
+                ILogicObject faction,
+                out double cooldownTimeRemains)
+            {
+                if (!Faction.GetPrivateState(faction).ServerPlayerLeaveDateDictionary
+                            .TryGetValue(character.Id, out var lastLeaveData))
+                {
+                    cooldownTimeRemains = 0;
+                    return false;
+                }
+
+                cooldownTimeRemains = (lastLeaveData + FactionConstants.SharedFactionJoinReturnBackCooldownDuration)
+                                      - Server.Game.FrameTime;
+                if (cooldownTimeRemains < 0)
+                {
+                    cooldownTimeRemains = 0;
+                }
+
+                return cooldownTimeRemains > 0;
             }
 
             public static void SyncAllReceivedInvitationsList(ICharacter invitee)

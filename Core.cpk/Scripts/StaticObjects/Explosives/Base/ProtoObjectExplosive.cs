@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives
 {
     using System;
+    using System.Linq;
     using System.Windows.Media;
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -58,7 +59,7 @@
 
         public override bool HasIncreasedScopeSize => true;
 
-        public abstract bool IsActivatesRaidModeForLandClaim { get; }
+        public abstract bool IsActivatesRaidBlock { get; }
 
         public virtual bool IsDamageThroughObstacles => false;
 
@@ -67,6 +68,8 @@
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public sealed override double ObstacleBlockDamageCoef => 0;
+
+        public virtual double RaidBlockDurationMutliplier => 1.0;
 
         public sealed override double ServerUpdateIntervalSeconds => 0; // every frame
 
@@ -224,7 +227,7 @@
         protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             //base.ClientOnObjectDestroyed(tilePosition);
-            Logger.Important(this + " exploded at " + position);
+            //Logger.Important(this + " exploded at " + position);
             SharedExplosionHelper.ClientExplode(position: position + this.Layout.Center,
                                                 this.ExplosionPreset,
                                                 this.VolumeExplosion);
@@ -305,32 +308,55 @@
 
         protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
         {
-            tileRequirements.Clear()
-                            //// do these checks if the bomb will have physics!
-                            //.Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
-                            //.Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
-                            .Add(new ConstructionTileRequirements.Validator(
-                                     ConstructionTileRequirements.ErrorNoFreeSpace,
-                                     c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
-                                              c.Tile,
-                                              t =>
-                                              {
-                                                  if (!t.PhysicsBody.IsStatic)
-                                                  {
-                                                      // allow
-                                                      return false;
-                                                  }
+            tileRequirements
+                .Clear()
+                .Add(
+                    new ConstructionTileRequirements.Validator(
+                        ConstructionTileRequirements.ErrorNoFreeSpace,
+                        c =>
+                        {
+                            var kind = c.ProtoStaticObjectToBuild.Kind;
+                            if (kind == StaticObjectKind.Floor
+                                || kind == StaticObjectKind.FloorDecal)
+                            {
+                                return c.Tile.StaticObjects.All(
+                                    o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
+                                         && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
+                                         && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
+                            }
 
-                                                  switch (t.PhysicsBody.AssociatedWorldObject
-                                                           ?.ProtoWorldObject)
-                                                  {
-                                                      case IProtoObjectDeposit: // allow deposits
-                                                      case ObjectWallDestroyed: // allow destroyed walls
-                                                          return false;
-                                                  }
+                            if (c.Tile.StaticObjects.All(
+                                o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                                     || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
+                                     || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform))
+                            {
+                                // no static objects except floor
+                                return true;
+                            }
 
-                                                  return true;
-                                              })));
+                            // has any static objects in the tile - check whether they are physical obstacles
+                            return !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
+                                       c.Tile,
+                                       t =>
+                                       {
+                                           if (!t.PhysicsBody.IsStatic)
+                                           {
+                                               // allow
+                                               return false;
+                                           }
+
+                                           switch (t.PhysicsBody.AssociatedWorldObject
+                                                    ?.ProtoWorldObject)
+                                           {
+                                               case IProtoObjectDeposit: // allow deposits
+                                               case ObjectWallDestroyed: // allow destroyed walls
+                                                   return false;
+                                           }
+
+                                           return true;
+                                       });
+                        }))
+                .Add(ConstructionTileRequirements.ValidatorSolidGroundOrPlatform);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -387,7 +413,7 @@
                     executeExplosionCallback: this.ServerExecuteExplosion,
                     allowNpcToNpcDamage: this.AllowNpcToNpcDamage);
 
-                if (this.IsActivatesRaidModeForLandClaim)
+                if (this.IsActivatesRaidBlock)
                 {
                     var explosionRadius = (int)Math.Ceiling(this.DamageRadius);
                     var bounds = new RectangleInt(x: worldObject.TilePosition.X - explosionRadius,
@@ -399,7 +425,10 @@
                                                               showClientNotification: false))
                     {
                         // try activate the raidblock
-                        LandClaimSystem.ServerOnRaid(bounds, character);
+                        LandClaimSystem.ServerOnRaid(bounds,
+                                                     character,
+                                                     durationMultiplier: this.RaidBlockDurationMutliplier,
+                                                     isStructureDestroyed: false);
                     }
                     else
                     {

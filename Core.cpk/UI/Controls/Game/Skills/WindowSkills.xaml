@@ -31,7 +31,7 @@
                     Grid.Column="1"
                     x:Name="CategoriesControl"
                     ItemsSource="{Binding SkillCategories}"
-                    Margin="0,-5,0,15">
+                    Margin="0,-5,0,10">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Vertical" IsItemsHost="True" />
@@ -238,7 +238,7 @@
 
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
-                            Margin="0,0,5,0"
+                            Margin="0,0,5,-6"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
                     <StackPanel.Resources>
@@ -275,31 +275,25 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Vertical">
-                        <Grid Margin="0,2,0,0">
-                            <!-- Skill title glow effect -->
-                            <ContentControl Width="{Binding ActualWidth, ElementName=SkillDetailsTitle}"
-                                            VerticalAlignment="Stretch"
-                                            Margin="0,4,0,0">
-                                <Rectangle Margin="-35,0">
-                                    <Rectangle.Fill>
-                                        <RadialGradientBrush Opacity="0.5">
-                                            <GradientStop Color="#00CC9400" Offset="1" />
-                                            <GradientStop Color="#FFCC9400" Offset="0" />
-                                        </RadialGradientBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                            </ContentControl>
-
-                            <!-- Skill title -->
-                            <TextBlock Text="{Binding Title}"
-                                       FontSize="22"
-                                       TextWrapping="Wrap"
-                                       Foreground="{StaticResource BrushColor6}"
-                                       FontWeight="Bold"
-                                       FontFamily="{StaticResource CondensedFontFamily}"
-                                       HorizontalAlignment="Center"
-                                       x:Name="SkillDetailsTitle" />
-                        </Grid>
+                        <!-- Skill title -->
+                        <TextBlock Text="{Binding Title}"
+                                   FontSize="22"
+                                   TextWrapping="Wrap"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   FontWeight="Bold"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,2,0,0">
+                            <TextBlock.Effect>
+                                <!-- Glow effect -->
+                                <DropShadowEffect
+                                    BlurRadius="20"
+                                    Direction="0"
+                                    ShadowDepth="0"
+                                    Opacity="0.6"
+                                    Color="{StaticResource Color7}" />
+                            </TextBlock.Effect>
+                        </TextBlock>
 
                         <!-- Viewbox for big icon -->
                         <Rectangle Fill="{Binding Picture}"
@@ -366,7 +360,7 @@
                                         </Canvas>
 
                                         <TextBlock Grid.Column="1"
-                                                   Text="{Binding Level, StringFormat='{}{x:Static loc:CoreStrings.WindowSkills_CurrentLevelFormat}'}"
+                                                   Text="{Binding Level, StringFormat={x:Static loc:CoreStrings.WindowSkills_CurrentLevelFormat}}"
                                                    Foreground="{StaticResource BrushColor4}"
                                                    Visibility="{Binding VisibilityIsNotActive}" />
 

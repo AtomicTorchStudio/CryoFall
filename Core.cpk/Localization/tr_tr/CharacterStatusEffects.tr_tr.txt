@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+{0} ile iyileştirilebilir.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 Bazı uyarıcılar kullandın ve dayanıklılık yenilenmen çok daha hızlı.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Açlıktan ölüyorsun!
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Açlık
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+Vücudunda çok büyük bir yara var. Böyle ciddi yaralar normalde ciddi tedaviler gerektirir.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+Ağır kesik
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 Aşırı miktarda radyasyona maruz kaldın ve hücrelerin mutasyona uğramaya başladı. Bu hiç iyi değil! Radyasyonlu bölgelere tekrar girmekten kaçın.

@@ -13,7 +13,10 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 Похоже, местные биологические виды мигрируют в другую зону. Это отличная возможность для охоты.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Внимание: огнестрельное оружие бесполезно; используйте ближний бой или тепловое оружие.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 В горных районах появились странные инопланетные поросли, поэтому добыча минералов там почти невозможна, но это шанс добыть редкие ресурсы.
 
 Scripts/Events/EventSpaceDrop@Description:

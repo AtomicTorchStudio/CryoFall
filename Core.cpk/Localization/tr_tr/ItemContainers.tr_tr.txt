@@ -19,3 +19,15 @@ Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUs
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
 Sökülemez
 
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Message:
+Buraya sadece reaktör parçaları konulabilir.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Title:
+Uyumsuz eşya
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Message:
+Reaktör bileşeni eklenemiyor veya kaldırılamıyor.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Title:
+Reaktör aktif
+

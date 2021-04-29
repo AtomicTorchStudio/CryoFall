@@ -1,13 +1,21 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects
 {
+    using System.Windows;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
+#if GAME
+    using Vector4 = AtomicTorch.GameEngine.Common.Primitives.Vector4;
+#endif
+
     public class ClientBlueprintRenderer : IClientBlueprint
     {
+        private const double TextBlockCannotBuildReasonOffsetY = 1.125;
+
         private static readonly EffectParameters EffectParametersAllow =
             EffectParameters.Create()
                             .Set("ColorAdd",      new Vector4(0,     0.25f, 0,     0))
@@ -25,14 +33,24 @@
 
         private readonly IClientSceneObject sceneObjectRoot;
 
+        private readonly Vector2D textBlockCannotBuildReasonOffset;
+
+        private string cannotBuildReason;
+
         private bool isEnabled = true;
 
         private EffectParameters lastEffectParameters;
 
-        public ClientBlueprintRenderer(IClientSceneObject sceneObjectRoot, bool isConstructionSite)
+        private CannotBuildReasonControl textBlockCannotBuildReason;
+
+        public ClientBlueprintRenderer(
+            IClientSceneObject sceneObjectRoot,
+            bool isConstructionSite,
+            Vector2D centerOffset)
         {
             this.sceneObjectRoot = sceneObjectRoot;
             this.IsConstructionSite = isConstructionSite;
+            this.textBlockCannotBuildReasonOffset = centerOffset + (0, TextBlockCannotBuildReasonOffsetY);
 
             this.SpriteRenderer = Api.Client.Rendering.CreateSpriteRenderer(
                 sceneObjectRoot,
@@ -42,6 +60,35 @@
                 RenderingMaterial.Create(new EffectResource("ConstructionPlacement"));
 
             this.Reset();
+        }
+
+        public string CannotBuildReason
+        {
+            get => this.cannotBuildReason;
+            set
+            {
+                if (this.cannotBuildReason == value)
+                {
+                    return;
+                }
+
+                this.cannotBuildReason = value;
+
+                if (string.IsNullOrEmpty(this.cannotBuildReason))
+                {
+                    if (this.textBlockCannotBuildReason is not null)
+                    {
+                        this.textBlockCannotBuildReason.Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    this.CreateTextBlockControlIfNecessary();
+                    this.textBlockCannotBuildReason.Text = this.cannotBuildReason.TrimEnd('.', '。');
+                    this.textBlockCannotBuildReason.Visibility = Visibility.Visible;
+                    this.textBlockCannotBuildReason.IsWarning = this.IsTooFar;
+                }
+            }
         }
 
         public bool IsCanBuild { get; set; }
@@ -63,6 +110,7 @@
                 if (!this.isEnabled)
                 {
                     this.Reset();
+                    this.CannotBuildReason = null;
                 }
             }
         }
@@ -106,6 +154,21 @@
 
             this.SpriteRenderer.Reset();
             this.SpriteRenderer.DrawOrder = DrawOrder.Default + 1;
+        }
+
+        private void CreateTextBlockControlIfNecessary()
+        {
+            if (this.textBlockCannotBuildReason is not null)
+            {
+                return;
+            }
+
+            this.textBlockCannotBuildReason = new CannotBuildReasonControl();
+            Api.Client.UI.AttachControl(this.sceneObjectRoot,
+                                        this.textBlockCannotBuildReason,
+                                        positionOffset: this.textBlockCannotBuildReasonOffset,
+                                        isFocusable: false,
+                                        isScaleWithCameraZoom: true);
         }
     }
 }

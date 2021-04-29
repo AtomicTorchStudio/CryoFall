@@ -9,7 +9,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectPlantFlowerBlueSage : ProtoObjectPlant
@@ -26,12 +25,14 @@
 
         protected override TimeSpan TimeToGiveHarvest { get; } = TimeSpan.FromHours(1);
 
-        protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(3);
-
         protected override TimeSpan TimeToHarvestSpoil => TimeSpan.FromDays(5);
 
+        protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(3);
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.2);
+        {
+            return (0.5, 0.2);
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -60,7 +61,7 @@
             }
             else
             {
-                // no grass swaying for the just planted and spoiled plant
+                // no grass swaying for the just planted and spoiled sprites
                 clientState.Renderer.RenderingMaterial = null;
             }
         }

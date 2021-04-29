@@ -1,6 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Skills
 {
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.Technologies;
+    using AtomicTorch.CBND.CoreMod.Technologies;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class SkillLearning : ProtoSkill
     {
@@ -21,6 +25,12 @@
 
         protected override void PrepareProtoSkill(SkillConfig config)
         {
+            if (IsServer)
+            {
+                PlayerCharacterTechnologies.ServerCharacterGainedLearningPoints
+                    += this.ServerCharacterGainedLearningPointsHandler;
+            }
+
             config.Category = GetCategory<SkillCategoryPersonal>();
 
             var statName = StatName.LearningsPointsGainMultiplier;
@@ -42,6 +52,17 @@
                 statName,
                 level: 20,
                 percentBonus: 5);
+        }
+
+        private void ServerCharacterGainedLearningPointsHandler(
+            ICharacter character,
+            int gainedLearningPoints,
+            bool ismodifiedbystat)
+        {
+            var xp = gainedLearningPoints * ExperienceAddedPerLPEarned;
+            // compensate for the learning points gain speed (as it should not apply to the skill progression speed)
+            xp /= TechConstants.ServerLearningPointsGainMultiplier;
+            character.ServerAddSkillExperience(this, xp);
         }
     }
 }

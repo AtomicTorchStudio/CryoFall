@@ -13,8 +13,11 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 Die heimischen Lebensformen dieser Welt scheinen in ein anderes Gebiet abzuwandern und bieten so eine gute Gelegenheit zur Jagd.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
-Ein seltsames außerirdisches Gewächs ist in den Bergregionen aufgetaucht. Obwohl es jegliche Prospektion nahezu unmöglich macht, bietet sich die einmalige Gelegenheit, an seltene Ressourcen zu gelangen.
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Wichtig: Feuerwaffen sind nutzlos; benutze Nahkampf- oder auf Hitze basierende Waffen.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
+Seltsamer außerirdischer Bewuchs ist in den Bergregionen aufgetaucht. Obwohl es jegliche Prospektion nahezu unmöglich macht, bietet sich die einmalige Gelegenheit, an seltene Ressourcen zu gelangen.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Innerhalb des markierten Kartenbereichs ist Weltraumschrott niedergegangen.

@@ -5,7 +5,6 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.GameEngine.Common.Extensions;
@@ -41,7 +40,7 @@
             }
 
             this.AccessModes = accessModes
-                               .Select(e => new ViewModelEnum<WorldObjectDirectAccessMode>(e))
+                               .Select(e => new ViewModelAccessMode(e))
                                .OrderBy(vm => vm.Order)
                                .ToArray();
 
@@ -55,11 +54,11 @@
             this.RefreshAccessMode();
         }
 
-        public ViewModelEnum<WorldObjectDirectAccessMode>[] AccessModes { get; }
+        public ViewModelAccessMode[] AccessModes { get; }
 
         public bool CanSetAccessMode { get; }
 
-        public ViewModelEnum<WorldObjectDirectAccessMode> SelectedAccessMode
+        public ViewModelAccessMode SelectedAccessMode
         {
             get => new(this.selectedAccessMode);
             set => this.SetSelectedAccessMode(value.Value, sendToServer: true);
@@ -84,6 +83,63 @@
             if (sendToServer)
             {
                 WorldObjectAccessModeSystem.ClientSetDirectAccessMode(this.worldObject, mode);
+            }
+        }
+
+        public class ViewModelAccessMode
+            : IEquatable<ViewModelAccessMode>
+        {
+            public ViewModelAccessMode(WorldObjectDirectAccessMode value)
+            {
+                this.Value = value;
+            }
+
+            public string Description => this.Value.GetDescription();
+
+            public bool HasExtraPadding => this.Value == WorldObjectDirectAccessMode.OpensToEveryone;
+
+            public int Order => this.Value.GetDescriptionOrder();
+
+            public WorldObjectDirectAccessMode Value { get; }
+
+            public bool Equals(ViewModelAccessMode other)
+            {
+                if (ReferenceEquals(null, other))
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(this, other))
+                {
+                    return true;
+                }
+
+                return this.Value == other.Value;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj))
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(this, obj))
+                {
+                    return true;
+                }
+
+                if (obj.GetType() != this.GetType())
+                {
+                    return false;
+                }
+
+                return this.Equals((ViewModelAccessMode)obj);
+            }
+
+            public override int GetHashCode()
+            {
+                return (int)this.Value;
             }
         }
     }

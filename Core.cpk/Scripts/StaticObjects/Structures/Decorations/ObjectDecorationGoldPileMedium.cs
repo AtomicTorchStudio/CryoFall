@@ -11,6 +11,8 @@
     {
         public override string Description => GetProtoEntity<ObjectDecorationGoldPileLarge>().Description;
 
+        public override double FactionWealthScorePoints => 50;
+
         public override string Name => GetProtoEntity<ObjectDecorationGoldPileLarge>().Name;
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;

@@ -13,7 +13,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -35,11 +34,6 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemEquipment()
-        {
-            this.Icon = new TextureResource("Items/Equipment/" + this.GetType().Name);
-        }
-
         public byte[] CompatibleContainerSlotsIds { get; private set; }
 
         public abstract uint DurabilityMax { get; }
@@ -48,17 +42,12 @@
 
         public override double GroundIconScale => 1.5;
 
-        /// <summary>
-        /// Gets the item icon (it will be acquired and cached during script prepare).
-        /// </summary>
-        public override ITextureResource Icon { get; }
-
         public virtual bool IsRepairable => true;
 
         /// <summary>
         /// Equipment items cannot be stacked.
         /// </summary>
-        public sealed override ushort MaxItemsPerStack => ItemStackSize.Single;
+        public sealed override ushort MaxItemsPerStack => 1;
 
         public IReadOnlyStatsDictionary ProtoEffects { get; private set; }
 
@@ -127,6 +116,11 @@
 
             controls.Add(
                 ItemTooltipArmorStats.Create(this));
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Equipment/" + this.GetType().Name;
         }
 
         protected abstract void PrepareDefense(DefenseDescription defense);

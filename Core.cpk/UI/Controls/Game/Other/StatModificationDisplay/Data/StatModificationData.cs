@@ -36,6 +36,44 @@
                    ? Visibility.Visible
                    : Visibility.Collapsed;
 
+        public bool IsNegativeEffect
+        {
+            get
+            {
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (this.Percent != 1.0)
+                {
+                    if (this.StatName.GetAttribute<StatDebuffAttribute>() is not null)
+                    {
+                        // display in red color if the multiplier is above 1
+                        return this.Percent > 1.0;
+                    }
+
+                    if (this.StatName.GetAttribute<StatBuffAttribute>() is not null)
+                    {
+                        // display in red color if the multiplier is below 1
+                        return this.Percent < 1.0;
+                    }
+                }
+                else
+                {
+                    if (this.StatName.GetAttribute<StatDebuffAttribute>() is not null)
+                    {
+                        // display in red color if the multiplier is above 0
+                        return this.Value > 0;
+                    }
+
+                    if (this.StatName.GetAttribute<StatBuffAttribute>() is not null)
+                    {
+                        // display in red color if the multiplier is below 0
+                        return this.Value < 0;
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public double Percent { get; set; }
 
         public StatName StatName { get; }

@@ -135,7 +135,10 @@
 
         protected virtual double ShadowOpacity => 0.5;
 
-        public void ServerDropDroneToGround(IDynamicWorldObject objectDrone)
+        public void ServerDropDroneToGround(
+            IDynamicWorldObject objectDrone,
+            Tile tile,
+            ICharacter forOwnerCharacter)
         {
             var privateState = objectDrone.GetPrivateState<DronePrivateState>();
             var storageContainer = privateState.StorageItemsContainer;
@@ -146,10 +149,14 @@
 
             // drop all items on the ground
             IItemsContainer groundContainer = null;
-            if (privateState.CharacterOwner is not null)
+            if (forOwnerCharacter is not null
+                && storageContainer.Items.Contains(privateState.AssociatedItem))
             {
-                groundContainer = ObjectPlayerLootContainer.ServerTryCreateLootContainer(privateState.CharacterOwner,
-                    objectDrone.Position);
+                // a drone item will be dropped as well,
+                // use a loot container to have a map mark 
+                groundContainer = ObjectPlayerLootContainer.ServerTryCreateLootContainer(
+                    forOwnerCharacter,
+                    tile.Position.ToVector2D() + (0.5, 0.5));
 
                 if (groundContainer is not null)
                 {
@@ -164,24 +171,54 @@
 
             groundContainer ??=
                 ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(
-                    privateState.CharacterOwner,
-                    objectDrone.Tile);
+                    forOwnerCharacter,
+                    tile);
 
-            if (groundContainer is not null)
+            if (groundContainer is null)
             {
-                Server.Items.TryMoveAllItems(storageContainer, groundContainer);
-                WorldObjectClaimSystem.ServerTryClaim(
-                    groundContainer.OwnerAsStaticObject,
-                    privateState.CharacterOwner,
-                    durationSeconds: ObjectPlayerLootContainer.AutoDestroyTimeoutSeconds
-                                     + (10 * 60));
-            }
-            else
-            {
+                // no space around the player (extremely rare case)
                 // TODO: try to create a ground container in any other ground spot
-                Logger.Error("Cannot find a place to drop the drone contents on the ground - drone lost!"
+                Logger.Error("Cannot find a place to drop the drone contents on the ground - drone lost! "
                              + objectDrone);
+                return;
             }
+
+            Server.Items.TryMoveAllItems(storageContainer, groundContainer);
+
+            WorldObjectClaimSystem.ServerTryClaim(
+                groundContainer.OwnerAsStaticObject,
+                forOwnerCharacter,
+                durationSeconds: groundContainer.OwnerAsStaticObject.ProtoStaticWorldObject
+                                     is ObjectPlayerLootContainer
+                                     ? ObjectPlayerLootContainer.AutoDestroyTimeoutSeconds + (10 * 60)
+                                     : WorldObjectClaimDuration.DroppedGoods);
+
+            if (forOwnerCharacter is not null
+                && groundContainer.OccupiedSlotsCount > 0)
+            {
+                if (groundContainer.Items.Contains(privateState.AssociatedItem))
+                {
+                    CharacterDroneControlSystem.ServerNotifyDroneAbandoned(
+                        forOwnerCharacter,
+                        (IProtoItemDrone)privateState.AssociatedItem.ProtoGameObject);
+                }
+                else if (!objectDrone.IsDestroyed)
+                {
+                    NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                        forOwnerCharacter,
+                        protoItemForIcon: groundContainer.Items.First().ProtoItem);
+                }
+            }
+
+            if (storageContainer.OccupiedSlotsCount == 0)
+            {
+                return;
+            }
+
+            Logger.Error("Not all items dropped on the ground from the drone storage: "
+                         + objectDrone
+                         + " slots occupied: "
+                         + storageContainer.OccupiedSlotsCount);
         }
 
         public IItemsContainer ServerGetStorageItemsContainer(IDynamicWorldObject objectDrone)
@@ -192,7 +229,7 @@
         public override void ServerOnDestroy(IDynamicWorldObject gameObject)
         {
             base.ServerOnDestroy(gameObject);
-            CharacterDroneControlSystem.ServerOnDroidDestroyed(gameObject);
+            CharacterDroneControlSystem.ServerOnDroneDestroyed(gameObject);
         }
 
         public void ServerOnDroneDroppedOrReturned(
@@ -203,6 +240,17 @@
             if (!isReturnedToPlayer)
             {
                 toCharacter = null;
+            }
+
+            var privateState = GetPrivateState(objectDrone);
+            var itemReservedSlot = privateState.AssociatedItemReservedSlot;
+            if (itemReservedSlot is not null
+                && !itemReservedSlot.IsDestroyed
+                && itemReservedSlot.Container != privateState.ReservedItemsContainer)
+            {
+                Server.Items.MoveOrSwapItem(itemReservedSlot,
+                                            privateState.ReservedItemsContainer,
+                                            movedCount: out _);
             }
 
             using var observers = Api.Shared.GetTempList<ICharacter>();
@@ -256,16 +304,17 @@
             CharacterDroneControlSystem.ServerUnregisterCurrentMining(objectDrone);
         }
 
-        public void ServerSetupAssociatedItem(IDynamicWorldObject objectDrone, IItem item)
+        public void ServerSetupAssociatedItem(
+            IDynamicWorldObject objectDrone,
+            IItem item)
         {
-            GetPrivateState(objectDrone).AssociatedItem = item;
+            var dronePrivateState = GetPrivateState(objectDrone);
+            dronePrivateState.AssociatedItem = item;
         }
 
         public void ServerStartDrone(
             IDynamicWorldObject objectDrone,
-            ICharacter character,
-            bool isFromHotbarContainer,
-            byte fromSlotIndex)
+            ICharacter character)
         {
             var privateState = GetPrivateState(objectDrone);
             if (!privateState.IsDespawned)
@@ -274,11 +323,34 @@
                 return;
             }
 
+            var itemDrone = privateState.AssociatedItem;
+
+            // move drone from player inventory to its own storage items container
+            var characterContainer = itemDrone.Container;
+            var fromSlotIndex = itemDrone.ContainerSlotId;
+            Server.Items.MoveOrSwapItem(itemDrone,
+                                        this.ServerGetStorageItemsContainer(objectDrone),
+                                        out _);
+
+            // move reserved slot item into the slot where the drone was located previously
+            ServerCreateReservedSlotItemIfNecessary(privateState, objectDrone);
+            Server.Items.MoveOrSwapItem(privateState.AssociatedItemReservedSlot,
+                                        characterContainer,
+                                        out _,
+                                        slotId: fromSlotIndex);
+
+            // ensure the drone is the first item in the storage container
+            if (itemDrone.ContainerSlotId != 0)
+            {
+                Server.Items.MoveOrSwapItem(itemDrone,
+                                            characterContainer,
+                                            out _,
+                                            slotId: 0);
+            }
+
             privateState.CharacterOwner = character;
             privateState.IsDespawned = false;
             objectDrone.ProtoGameObject.ServerSetUpdateRate(objectDrone, isRare: false);
-            privateState.IsStartedFromHotbarContainer = isFromHotbarContainer;
-            privateState.StartedFromSlotIndex = fromSlotIndex;
             Server.World.SetPosition(objectDrone, character.Position, writeToLog: false);
             // recreate physics (as spawned drone has physics)
             objectDrone.ProtoWorldObject.SharedCreatePhysics(objectDrone);
@@ -340,7 +412,6 @@
                 worldObject,
                 this.DefaultTextureResource,
                 spritePivotPoint: (0.5, 0.5));
-            //spriteRenderer.DrawOrderOffsetY = -1;
             spriteRenderer.Scale = 0.75;
             spriteRenderer.PositionOffset = (0, this.DrawVerticalOffset);
             return spriteRenderer;
@@ -428,12 +499,13 @@
             var objectDrone = data.GameObject;
             base.ServerInitialize(data);
 
-            if (data.IsFirstTimeInit)
-            {
-                data.PrivateState.StorageItemsContainer
-                    = Api.Server.Items.CreateContainer<ItemsContainerDefault>(objectDrone,
-                                                                              slotsCount: 255);
-            }
+            data.PrivateState.StorageItemsContainer
+                ??= Api.Server.Items.CreateContainer<ItemsContainerDefault>(objectDrone,
+                                                                            slotsCount: 255);
+
+            data.PrivateState.ReservedItemsContainer
+                ??= Api.Server.Items.CreateContainer<ItemsContainerDefault>(objectDrone,
+                                                                            slotsCount: 255);
         }
 
         protected override void ServerOnDynamicObjectZeroStructurePoints(
@@ -485,8 +557,15 @@
             {
                 // incorrectly configured drone
                 Server.World.DestroyObject(objectDrone);
+                if (privateState.AssociatedItemReservedSlot is not null)
+                {
+                    Server.Items.DestroyItem(privateState.AssociatedItemReservedSlot);
+                }
+
                 return;
             }
+
+            ServerCreateReservedSlotItemIfNecessary(privateState, objectDrone);
 
             if (privateState.IsDespawned)
             {
@@ -759,15 +838,47 @@
 
         protected abstract void SharedCreatePhysicsDrone(CreatePhysicsData data);
 
+        private static void ServerCreateReservedSlotItem(IDynamicWorldObject objectDrone)
+        {
+            var privateState = GetPrivateState(objectDrone);
+            var itemDroneReservedSlot = Server.Items.CreateItem(
+                                                  Api.GetProtoEntity<ItemDroneReservedSlot>(),
+                                                  privateState.ReservedItemsContainer)
+                                              .ItemAmounts
+                                              .First()
+                                              .Key;
+
+            privateState.AssociatedItemReservedSlot = itemDroneReservedSlot;
+            ItemDroneReservedSlot.ServerSetup(itemDroneReservedSlot,
+                                              (IProtoItemDrone)privateState.AssociatedItem.ProtoItem);
+        }
+
+        private static void ServerCreateReservedSlotItemIfNecessary(
+            TPrivateState privateState,
+            IDynamicWorldObject objectDrone)
+        {
+            if (privateState.AssociatedItemReservedSlot is null
+                || privateState.AssociatedItemReservedSlot.IsDestroyed)
+            {
+                ServerCreateReservedSlotItem(objectDrone);
+            }
+        }
+
         private static WeaponFinalCache ServerCreateWeaponFinalCacheForDrone(
             ICharacter characterOwner,
             IProtoItemWeapon protoMiningTool,
             IDynamicWorldObject objectDrone)
         {
+            // take only the origin's effects and skills cache (status effects have no effect)
             using var tempStatsCache = TempStatsCache.GetFromPool();
 
-            // fill only the skills cache from character (status effects have no effect)
-            foreach (var pair in characterOwner.SharedGetSkills().Skills)
+            var playerCharacterPrivateState = PlayerCharacter.GetPrivateState(characterOwner);
+            if (playerCharacterPrivateState.Origin is not null)
+            {
+                tempStatsCache.Merge(playerCharacterPrivateState.Origin.Effects);
+            }
+
+            foreach (var pair in playerCharacterPrivateState.Skills.Skills)
             {
                 var protoSkill = pair.Key;
                 var skillLevel = pair.Value.Level;
@@ -786,101 +897,96 @@
                 objectDrone: objectDrone);
         }
 
-        private static void ServerOnDroneReturnedToPlayer(IDynamicWorldObject worldObject)
+        private static void ServerOnDroneReturnedToPlayer(IDynamicWorldObject objectDrone)
         {
-            var privateState = GetPrivateState(worldObject);
-            var character = privateState.CharacterOwner;
+            var privateState = GetPrivateState(objectDrone);
+            var characterOwner = privateState.CharacterOwner;
 
-            CharacterDroneControlSystem.ServerDespawnDrone(worldObject, isReturnedToPlayer: true);
-
+            var tile = objectDrone.Tile;
             var storageContainer = privateState.StorageItemsContainer;
-            if (storageContainer.OccupiedSlotsCount == 0)
+            if (storageContainer.OccupiedSlotsCount > 0)
             {
-                return;
+                MoveContents();
             }
 
-            // drop storage container contents to player
-            // but first, move the drone item to its original slot (if possible)
-            var characterContainerInventory = character.SharedGetPlayerContainerInventory();
-            var characterContainerHotbar = character.SharedGetPlayerContainerHotbar();
+            CharacterDroneControlSystem.ServerDespawnDrone(objectDrone, isReturnedToPlayer: true);
 
-            var itemInFirstSlot = storageContainer.GetItemAtSlot(0);
-            if (itemInFirstSlot is not null)
+            void MoveContents()
             {
-                // item in the first slot is the drone's associated item
-                // it could be destroyed in case the drone's HP dropped <= 1
-                Server.Items.MoveOrSwapItem(itemInFirstSlot,
-                                            privateState.IsStartedFromHotbarContainer
-                                                ? characterContainerHotbar
-                                                : characterContainerInventory,
-                                            slotId: privateState.StartedFromSlotIndex,
-                                            movedCount: out _);
-            }
+                // drop storage container contents to player
+                // but first, move the drone item to its original slot (if possible)
+                var characterContainerInventory = characterOwner.SharedGetPlayerContainerInventory();
+                var characterContainerHotbar = characterOwner.SharedGetPlayerContainerHotbar();
 
-            var result = Server.Items.TryMoveAllItems(storageContainer, characterContainerInventory);
-            try
-            {
-                if (storageContainer.OccupiedSlotsCount == 0)
+                var itemReservedSlot = privateState.AssociatedItemReservedSlot;
+                if (itemReservedSlot is not null
+                    && itemReservedSlot.IsDestroyed)
                 {
-                    // all items moved from drone to player
-                    return;
+                    itemReservedSlot = null;
                 }
 
-                // try move remaining items to hotbar
-                var resultToHotbar = Server.Items.TryMoveAllItems(storageContainer, characterContainerHotbar);
-                result.MergeWith(resultToHotbar,
-                                 areAllItemsMoved: resultToHotbar.AreAllItemMoved);
-
-                if (storageContainer.OccupiedSlotsCount == 0)
+                // ReSharper disable once PossibleNullReferenceException
+                var reservedContainer = itemReservedSlot?.Container;
+                var reservedContainerSlotId = itemReservedSlot?.ContainerSlotId ?? 0;
+                if (itemReservedSlot is not null)
                 {
-                    // all items moved from drone to player
-                    return;
+                    Server.Items.MoveOrSwapItem(itemReservedSlot,
+                                                privateState.ReservedItemsContainer,
+                                                movedCount: out _);
                 }
-            }
-            finally
-            {
-                if (result.MovedItems.Count > 0)
+
+                if (reservedContainer is not null
+                    && reservedContainer.OwnerAsCharacter == characterOwner
+                    && storageContainer.GetItemAtSlot(0) is { } itemDrone)
                 {
-                    // notify player about the received items
-                    NotificationSystem.ServerSendItemsNotification(
-                        character,
-                        result.MovedItems
-                              .GroupBy(p => p.Key.ProtoItem)
-                              .Where(p => !(p.Key is TItemDrone))
-                              .ToDictionary(p => p.Key, p => p.Sum(v => v.Value)));
+                    // Return the associated item (the drone item itself) to the reserved slot location.
+                    // (The item in the first slot is the drone's associated item.
+                    // It can be destroyed in the case when the drone's HP dropped <= 1
+                    // so we check whether the item in the first slot is not null)
+                    Server.Items.MoveOrSwapItem(itemDrone,
+                                                reservedContainer,
+                                                slotId: reservedContainerSlotId,
+                                                movedCount: out _);
                 }
-            }
 
-            // try to drop the remaining items on the ground
-            var groundContainer = ObjectGroundItemsContainer
-                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character, character.Tile);
-            if (groundContainer is not null)
-            {
-                var result2 = Server.Items.TryMoveAllItems(storageContainer, groundContainer);
-                if (result2.MovedItems.Count > 0)
+                var result = Server.Items.TryMoveAllItems(storageContainer, characterContainerInventory);
+                try
                 {
-                    var protoItemForIcon = result2.MovedItems.First().Key.ProtoItem;
+                    if (storageContainer.OccupiedSlotsCount == 0)
+                    {
+                        // all items moved from drone to player
+                        return;
+                    }
 
-                    NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
-                        character,
-                        protoItemForIcon);
+                    // try move remaining items to hotbar
+                    var resultToHotbar = Server.Items.TryMoveAllItems(storageContainer, characterContainerHotbar);
+                    result.MergeWith(resultToHotbar,
+                                     areAllItemsMoved: resultToHotbar.AreAllItemMoved);
 
-                    // ensure that these items could be lifted only by their owner in PvE
-                    WorldObjectClaimSystem.ServerTryClaim(groundContainer.OwnerAsStaticObject,
-                                                          character,
-                                                          WorldObjectClaimDuration.DroppedGoods);
+                    if (storageContainer.OccupiedSlotsCount == 0)
+                    {
+                        // all items moved from drone to player
+                        return;
+                    }
                 }
-            }
+                finally
+                {
+                    if (result.MovedItems.Count > 0)
+                    {
+                        // notify player about the received items
+                        NotificationSystem.ServerSendItemsNotification(
+                            characterOwner,
+                            result.MovedItems
+                                  .GroupBy(p => p.Key.ProtoItem)
+                                  .Where(p => !(p.Key is TItemDrone))
+                                  .ToDictionary(p => p.Key, p => p.Sum(v => v.Value)));
+                    }
+                }
 
-            if (storageContainer.OccupiedSlotsCount == 0)
-            {
-                return;
+                // try to drop the remaining items on the ground
+                ((IProtoDrone)objectDrone.ProtoGameObject)
+                    .ServerDropDroneToGround(objectDrone, tile, characterOwner);
             }
-
-            Logger.Error("Not all items dropped on the ground from the drone storage: "
-                         + worldObject
-                         + " slots occupied: "
-                         + storageContainer.OccupiedSlotsCount);
         }
 
         private void ClientRemote_OnDroneDroppedOrReturned(

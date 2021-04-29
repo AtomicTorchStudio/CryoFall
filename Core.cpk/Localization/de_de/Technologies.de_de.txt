@@ -58,6 +58,12 @@ Energiewaffen sind eine neuartige technologische Weiterentwicklung konventionell
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Energiewaffen
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+Experimentelle Waffen, die im herkömmlichen Gefecht kaum Anwendung finden, sich jedoch in Extremsituationen als nützlich erweisen können.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+Exotische Waffen
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 Das Aufbereiten von Saatgut, Düngemittel sowie diverse Anbaumethoden.
 

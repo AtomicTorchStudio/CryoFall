@@ -19,3 +19,15 @@ Implant można usunąć w stacji medycznej.
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
 Nie można usunąć
 
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Message:
+Tu można umieścić tylko składniki reaktora.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ErrorIncompatibleItem_Title:
+Niezgodny przedmiot
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Message:
+Nie można dodawać ani usuwać składników reaktora.
+
+Scripts/ItemContainers/Special/ItemsContainerGeneratorPragmium@Notification_ReactorActive_Title:
+Reaktor działa
+

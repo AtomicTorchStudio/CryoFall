@@ -28,9 +28,9 @@
                 damageValue: 40,
                 armorPiercingCoef: 0.1,
                 finalDamageMultiplier: 1,
-                // pragmium beetle is small and fast so the low range is not a problem here
+                // pragmium beetle is small and fast so the slightly lower range is not a problem here
                 // it's also required to match the attack animation 
-                rangeMax: 1.0,
+                rangeMax: 1.05,
                 damageDistribution: new DamageDistribution(DamageType.Impact, 1));
         }
 

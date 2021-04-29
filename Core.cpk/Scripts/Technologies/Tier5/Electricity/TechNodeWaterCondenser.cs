@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectWaterCondenser>();
 
-            config.SetRequiredNode<TechNodeProjectorTower>();
+            config.SetRequiredNode<TechNodeRechargingStationAdvanced>();
         }
     }
 }

@@ -10,11 +10,11 @@
     public static class StructureConstants
     {
         // Please note that changing this value will require distribution
-        // of a client+server mod so it will know about this change.
+        // of a client+server mod so the both sides will know about this change.
         public const byte BuildItemsCountMultiplier = 1;
 
         // Please note that changing this value will require distribution
-        // of a client+server mod so it will know about this change.
+        // of a client+server mod so the both sides will know about this change.
         public const byte RepairItemsCountMultiplier = 1;
 
         /// <summary>

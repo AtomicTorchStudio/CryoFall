@@ -122,5 +122,14 @@
                                                               isTransparent: true),
                             lightColor: LightColors.WeaponFireMuzzleFlashPlasma.WithAlpha(0x99),
                             useScreenBlending: true);
+
+        public static readonly IReadOnlyWeaponHitSparksPreset Toxin
+            = new WeaponHitSparksPreset()
+                .SetDefault(texturePivotY: 0.132,
+                            texture: new TextureAtlasResource("FX/HitSparks/HitSparksPoison",
+                                                              columns: 4,
+                                                              rows: 1,
+                                                              isTransparent: true),
+                            allowRandomizedHitPointOffset: false);
     }
 }

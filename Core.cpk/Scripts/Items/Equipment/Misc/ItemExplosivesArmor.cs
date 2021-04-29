@@ -136,7 +136,7 @@
                                                       showClientNotification: false))
             {
                 // try activate the raidblock
-                LandClaimSystem.ServerOnRaid(bounds, character);
+                LandClaimSystem.ServerOnRaid(bounds, character, isStructureDestroyed: false);
             }
             else
             {

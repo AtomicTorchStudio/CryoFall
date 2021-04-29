@@ -16,6 +16,7 @@
             ICharacter character,
             bool logErrors,
             out bool canPlace,
-            out bool isTooFar);
+            out bool isTooFar,
+            out string errorMessage);
     }
 }

@@ -107,7 +107,7 @@
                                                         result.GetDescription(),
                                                         NotificationColor.Bad)
                                                     .ViewModel
-                                                    .Icon = ClientFactionEmblemCache.GetEmblemTextureBrush(clanTag);
+                                                    .Icon = ClientFactionEmblemBrushCache.GetEmblemTextureBrush(clanTag);
                               }
                           },
                 okText: CoreStrings.Faction_SubmitApplication,
@@ -221,7 +221,7 @@
                               officerName,
                               @$"\[{clanTag}\]"),
                 NotificationColor.Good);
-            notification.ViewModel.Icon = ClientFactionEmblemCache.GetEmblemTextureBrush(clanTag);
+            notification.ViewModel.Icon = ClientFactionEmblemBrushCache.GetEmblemTextureBrush(clanTag);
             notification.HideAfterDelay(60);
         }
 

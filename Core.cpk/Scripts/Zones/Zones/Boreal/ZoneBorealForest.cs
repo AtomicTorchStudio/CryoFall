@@ -46,7 +46,10 @@
                 .Add(GetScript<SpawnMobsWolf>())
                 .Add(GetScript<SpawnMobsWildBoar>())
                 .Add(GetScript<SpawnMobsSnakeBlue>())
-                .Add(GetScript<SpawnMobsBear>());
+                .Add(GetScript<SpawnMobsBear>())
+                // mutants
+                .Add(GetScript<SpawnMobsMutantWolf>())
+                .Add(GetScript<SpawnMobsMutantBoar>());
         }
     }
 }

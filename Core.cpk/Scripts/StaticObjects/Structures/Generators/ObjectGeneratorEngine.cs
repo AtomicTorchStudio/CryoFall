@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -17,9 +18,9 @@
     {
         public override byte ContainerFuelSlotsCount => 0;
 
-        public override byte ContainerInputSlotsCount => 1;
+        public override byte ContainerInputSlotsCount => 2;
 
-        public override byte ContainerOutputSlotsCount => 1;
+        public override byte ContainerOutputSlotsCount => 2;
 
         public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
             => new(startupPercent: 90,
@@ -108,6 +109,7 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedLand);
             category = GetCategory<StructureCategoryElectricity>();
 
             build.StagesCount = 10;

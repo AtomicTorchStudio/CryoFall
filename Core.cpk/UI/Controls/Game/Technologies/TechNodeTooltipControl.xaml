@@ -36,7 +36,8 @@
                         BorderBrush="#33BBBBBB"
                         BorderThickness="1"
                         Padding="3"
-                        CornerRadius="3">
+                        CornerRadius="3"
+                        VerticalAlignment="Top">
                     <Rectangle Fill="{Binding Icon}"
                                Width="48"
                                Height="48"
@@ -216,7 +217,7 @@
             </StackPanel>
             <!-- Text: Learning points: X -->
             <TextBlock
-                Text="{Binding LearningPointsPrice, StringFormat='{}{x:Static loc:CoreStrings.TechGroupTooltip_LearningPointsFormat}'}"
+                Text="{Binding LearningPointsPrice, StringFormat={x:Static loc:CoreStrings.TechGroupTooltip_LearningPointsFormat}}"
                 Margin="7,0,0,0" />
 
             <TextBlock Text="{Binding CannotUnlockMessage}"

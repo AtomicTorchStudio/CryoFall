@@ -46,9 +46,6 @@ Napełnij generator pary wodą
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Dodaj benzynę z kanistra do generatora
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Sole litu z ekstraktora rudy litu
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Napełnij kanister naturalną ropą naftową z szybu naftowego
 
@@ -66,4 +63,7 @@ Gotowana woda
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Napełnij butelkę wodą ze studni
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Recykling składników reaktora
 

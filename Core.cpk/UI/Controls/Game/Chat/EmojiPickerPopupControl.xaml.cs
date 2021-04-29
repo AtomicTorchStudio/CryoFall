@@ -18,6 +18,7 @@
 
         public EmojiPickerPopupControl(ChatRoomControl chatRoomControl, FrameworkElement placementTarget)
         {
+            Instance?.Hide();
             this.chatRoomControl = chatRoomControl;
             this.placementTarget = placementTarget;
         }
@@ -25,6 +26,8 @@
         public EmojiPickerPopupControl()
         {
         }
+
+        public static EmojiPickerPopupControl Instance { get; private set; }
 
         protected override void InitControl()
         {
@@ -54,12 +57,17 @@
         {
             Api.Client.UI.LayoutRoot.PreviewMouseDown += this.GlobalRootPreviewMouseDownHandler;
             ClientUpdateHelper.UpdateCallback += this.Update;
+            Instance = this;
         }
 
         protected override void OnUnloaded()
         {
             Api.Client.UI.LayoutRoot.PreviewMouseDown -= this.GlobalRootPreviewMouseDownHandler;
             ClientUpdateHelper.UpdateCallback -= this.Update;
+            if (ReferenceEquals(Instance, this))
+            {
+                Instance = null;
+            }
         }
 
         private void ExecuteCommandSelectEmoji(object obj)

@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -183,6 +184,27 @@
             {
                 // give weapon experience for kill
                 protoSkillWeapon.ServerOnKill(playerCharacterSkills, killedCharacter: targetCharacter);
+            }
+
+            if (!WorldObjectClaimSystem.SharedIsEnabled)
+            {
+                return;
+            }
+
+            // try claim the corpse for the attacker player
+            using var tempListCorpses = Api.Shared.GetTempList<IStaticWorldObject>();
+            Api.GetProtoEntity<ObjectCorpse>()
+               .GetAllGameObjects(tempListCorpses.AsList());
+            foreach (var worldObjectCorpse in tempListCorpses.AsList())
+            {
+                if (targetCharacter.Id
+                    == ObjectCorpse.GetPublicState(worldObjectCorpse).DeadCharacterId)
+                {
+                    WorldObjectClaimSystem.ServerTryClaim(worldObjectCorpse,
+                                                          attackerCharacter,
+                                                          WorldObjectClaimDuration.CreatureCorpse);
+                    return;
+                }
             }
         }
 

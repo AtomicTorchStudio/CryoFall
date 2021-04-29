@@ -7,6 +7,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
     d:DataContext="{d:DesignInstance data:ViewModelWorldObjectFactionAccessEditorControl, IsDesignTimeCreatable=True}"
@@ -29,7 +30,6 @@
         <!-- Radiobuttons for the access mode selection -->
         <ListBox ItemsSource="{Binding ViewModelAccessModes}"
                  FontSize="12"
-                 IsEnabled="{Binding CanSetAccessMode}"
                  MaxWidth="230">
             <ListBox.Template>
                 <ControlTemplate>
@@ -47,7 +47,18 @@
                                               IsChecked="{Binding IsChecked}"
                                               IsEnabled="{Binding IsEnabled}"
                                               Focusable="False"
-                                              Margin="0,2" />
+                                              Margin="0,2">
+                                        <CheckBox.Resources>
+                                            <Thickness x:Key="ExtraMargin">0,8,0,2</Thickness>
+                                        </CheckBox.Resources>
+                                        <i:Interaction.Triggers>
+                                            <i:DataTrigger Binding="{Binding HasExtraPadding}"
+                                                           Value="True">
+                                                <i:ChangePropertyAction PropertyName="Margin"
+                                                                        Value="{StaticResource ExtraMargin}" />
+                                            </i:DataTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
                                 </ContentControl>
                             </ControlTemplate>
                         </Setter.Value>

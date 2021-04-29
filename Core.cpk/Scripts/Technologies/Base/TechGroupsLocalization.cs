@@ -53,6 +53,11 @@
         public const string EnergyWeaponsName =
             "Energy weapons";
 
+        public const string ExoticWeaponsDescription =
+            "Experimental weapons that are rarely used in conventional combat but could prove useful in extreme situations.";
+        public const string ExoticWeaponsName =
+            "Exotic weapons";
+
         public const string FarmingDescription =
             "Preparation of seeds for planting, fertilizers and various farming techniques.";
         public const string FarmingName = 

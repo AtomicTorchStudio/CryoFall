@@ -235,7 +235,7 @@
 
             this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
 
-            ServerUpdateAgroState(privateState, data.DeltaTime);
+            ServerUpdateAggroState(privateState, data.DeltaTime);
             this.ServerUpdateTurret(data, turretMode);
 
             // update weapon state (fires the weapon if needed)
@@ -269,7 +269,7 @@
                 distanceEnemyTooFar: 8,
                 movementDirection: out _,
                 rotationAngleRad: out var rotationAngleRad,
-                attackFarOnlyIfAgro: true,
+                attackFarOnlyIfAggro: true,
                 customIsValidTargetCallback: IsValidTargetCallback);
 
             var currentRotationAngleRad = (double)publicState.AppliedInput.RotationAngleRad;
@@ -319,23 +319,23 @@
             scale = this.protoSkeletonScale;
         }
 
-        private static void ServerUpdateAgroState(TPrivateState privateState, double deltaTime)
+        private static void ServerUpdateAggroState(TPrivateState privateState, double deltaTime)
         {
-            if (privateState.CurrentAgroTimeRemains <= 0)
+            if (privateState.CurrentAggroTimeRemains <= 0)
             {
                 return;
             }
 
-            var newAgroTime = privateState.CurrentAgroTimeRemains - deltaTime;
-            if (newAgroTime <= 0)
+            var timeRemains = privateState.CurrentAggroTimeRemains - deltaTime;
+            if (timeRemains <= 0)
             {
-                // reset agro state
-                newAgroTime = 0;
-                privateState.CurrentAgroCharacter = null;
-                //Logger.Dev("Agro state reset: " + privateState.GameObject);
+                // reset aggro state
+                timeRemains = 0;
+                privateState.CurrentAggroCharacter = null;
+                //Logger.Dev("Aggro state reset: " + privateState.GameObject);
             }
 
-            privateState.CurrentAgroTimeRemains = newAgroTime;
+            privateState.CurrentAggroTimeRemains = timeRemains;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

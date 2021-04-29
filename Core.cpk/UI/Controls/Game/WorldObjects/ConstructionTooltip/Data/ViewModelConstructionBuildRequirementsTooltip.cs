@@ -35,7 +35,7 @@
                 this.protoStructure = this.constructionSitePublicState.ConstructionProto;
                 this.constructionSitePublicState.ClientSubscribe(
                     _ => _.StructurePointsCurrent,
-                    newStructurePoints => this.UpdateStageCountRemains(),
+                    _ => this.UpdateStageCountRemains(),
                     this);
 
                 this.UpdateStageCountRemains();

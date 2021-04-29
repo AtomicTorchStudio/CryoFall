@@ -10,6 +10,11 @@
 
         private ViewModelCharacterCustomizationControl viewModel;
 
+        public (CharacterHumanFaceStyle style, bool isMale) GetSelectedStyle()
+        {
+            return this.viewModel.GetCurrentSelectedStyle();
+        }
+
         protected override void OnLoaded()
         {
             this.viewModel = new ViewModelCharacterCustomizationControl(callbackClose: this.InvokeClose);

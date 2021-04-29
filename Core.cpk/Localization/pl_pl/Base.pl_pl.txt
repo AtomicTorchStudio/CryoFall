@@ -142,11 +142,11 @@ Zużycie implantu spowodowane obrażeniami
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 Szybkość zużycia zainstalowanego implantu
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-Szybkość spożywania żywności
+Scripts/Base/Stats/StatName@HungerRate:
+Głód
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-Szybkość spożywania wody
+Scripts/Base/Stats/StatName@ThirstRate:
+Pragnienie
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Regeneracja ładunku energetycznego (na min)
@@ -186,6 +186,9 @@ Ciągłe obrażenia
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Nie możesz jeść ani pić
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+Widzenie po ciemku
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Przyrost punktów technologii

@@ -2,20 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class ParameterTypeBool : BaseConsoleCommandParameterType
     {
-        private static readonly string[] Suggestions =
-        {
-            "1",
-            "0"
-        };
+        private static readonly string[] Suggestions = { "1", "0" };
 
         public override Type ParameterType { get; } = typeof(bool);
-
-        public override string ShortDescription => "1 or 0, yes or no, true or false";
 
         public override IEnumerable<string> GetSuggestions()
         {

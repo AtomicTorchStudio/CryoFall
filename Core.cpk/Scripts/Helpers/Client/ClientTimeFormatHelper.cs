@@ -22,6 +22,8 @@
         // suffix for seconds
         public const string SuffixSeconds = "s";
 
+        private const char NonBreakingSpaceChar = '\u00A0';
+
         /// <summary>
         /// Format time in seconds to "30d 23h 59m 59s" format.
         /// </summary>
@@ -97,7 +99,7 @@
             // append seconds
             if (hasPreviousValue)
             {
-                sb.Append(' ');
+                sb.Append(NonBreakingSpaceChar);
             }
 
             var seconds = time.TotalSeconds % 60.0;
@@ -126,7 +128,7 @@
                 if (hasPreviousValue)
                 {
                     // add spacing
-                    sb.Append(' ');
+                    sb.Append(NonBreakingSpaceChar);
                     // format as two digits
                     sb.Append(value.ToString("D2"));
                 }

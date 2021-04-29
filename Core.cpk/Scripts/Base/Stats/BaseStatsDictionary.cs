@@ -32,7 +32,7 @@
                 return this;
             }
 
-            var multiplier = percent / 100d;
+            var multiplier = percent / 100.0;
 
             // simply sum multipliers (like values)
             if (multiplier == 0)

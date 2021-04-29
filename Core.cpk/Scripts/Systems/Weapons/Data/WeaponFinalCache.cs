@@ -92,8 +92,7 @@
 
             this.DamageDistributions = resultDamageDistributions;
 
-            this.DamageValue = damageDescription.DamageValue * (protoWeapon?.DamageMultiplier ?? 1.0)
-                               + characterFinalStatsCache[StatName.DamageAdd];
+            this.DamageValue = damageDescription.DamageValue * (protoWeapon?.DamageMultiplier ?? 1.0);
 
             var weaponSkillProto = protoWeapon?.WeaponSkillProto;
             if (weaponSkillProto is not null)

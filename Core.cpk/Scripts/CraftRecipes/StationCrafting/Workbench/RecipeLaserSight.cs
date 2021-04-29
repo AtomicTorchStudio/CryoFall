@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemIngotSteel>(count: 10);
+            inputItems.Add<ItemIngotSteel>(count: 5);
             inputItems.Add<ItemGlassRaw>(count: 10);
-            inputItems.Add<ItemWire>(count: 10);
+            inputItems.Add<ItemWire>(count: 5);
             inputItems.Add<ItemBatteryDisposable>(count: 1);
 
             outputItems.Add<ItemLaserSight>();

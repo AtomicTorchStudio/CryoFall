@@ -23,6 +23,22 @@
                   traceSpriteWidthPixels: 363,
                   traceStartOffsetPixels: -10);
 
+        public static readonly WeaponFireTracePreset ExoticWeaponPoison
+            = new(traceTexturePath: "FX/WeaponTraces/TracePoison",
+                  hitSparksPreset: WeaponHitSparksPresets.Toxin,
+                  traceSpeed: 20,
+                  traceSpriteWidthPixels: 362,
+                  traceStartScaleSpeedExponent: 0.5,
+                  traceStartOffsetPixels: -17);
+
+        public static readonly WeaponFireTracePreset ExoticWeaponPoisonBig
+            = new(traceTexturePath: "FX/WeaponTraces/TracePoisonBig",
+                  hitSparksPreset: WeaponHitSparksPresets.Toxin,
+                  traceSpeed: 20,
+                  traceSpriteWidthPixels: 514,
+                  traceStartScaleSpeedExponent: 0.5,
+                  traceStartOffsetPixels: -50);
+
         public static readonly WeaponFireTracePreset Firearm
             = new(traceTexturePath: "FX/WeaponTraces/TraceFirearm",
                   hitSparksPreset: WeaponHitSparksPresets.Firearm,
@@ -92,7 +108,7 @@
 
         public static readonly WeaponFireTracePreset MobPoison
             = new(traceTexturePath: "FX/WeaponTraces/TracePoison",
-                  hitSparksPreset: WeaponHitSparksPresets.NoWeapon,
+                  hitSparksPreset: WeaponHitSparksPresets.Toxin,
                   traceSpeed: 20,
                   traceSpriteWidthPixels: 362,
                   traceStartScaleSpeedExponent: 0.5,
@@ -100,7 +116,7 @@
 
         public static readonly WeaponFireTracePreset MobPoisonBig
             = new(traceTexturePath: "FX/WeaponTraces/TracePoisonBig",
-                  hitSparksPreset: WeaponHitSparksPresets.NoWeapon,
+                  hitSparksPreset: WeaponHitSparksPresets.Toxin,
                   traceSpeed: 35,
                   traceSpriteWidthPixels: 514,
                   traceStartScaleSpeedExponent: 0.5,

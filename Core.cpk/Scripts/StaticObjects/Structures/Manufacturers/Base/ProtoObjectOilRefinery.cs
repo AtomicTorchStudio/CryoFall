@@ -169,11 +169,11 @@
             privateState.LiquidStateMineralOil ??= new LiquidContainerState();
 
             // setup manufacturing state for gasoline
-            var manufacturingStateProcessedGasoline = privateState.ManufacturingStateGasoline;
-            if (manufacturingStateProcessedGasoline is null)
+            var manufacturingStateGasoline = privateState.ManufacturingStateGasoline;
+            if (manufacturingStateGasoline is null)
             {
                 privateState.ManufacturingStateGasoline
-                    = manufacturingStateProcessedGasoline
+                    = manufacturingStateGasoline
                           = new ManufacturingState(
                               data.GameObject,
                               containerInputSlotsCount: 1,
@@ -181,15 +181,15 @@
             }
             else
             {
-                manufacturingStateProcessedGasoline.SetSlotsCount(input: 1, output: 1);
+                manufacturingStateGasoline.SetSlotsCount(input: 1, output: 1);
             }
 
             // setup manufacturing state for mineral oil
-            var manufacturingStateProcessedMineralOil = privateState.ManufacturingStateMineralOil;
-            if (manufacturingStateProcessedMineralOil is null)
+            var manufacturingStateMineralOil = privateState.ManufacturingStateMineralOil;
+            if (manufacturingStateMineralOil is null)
             {
                 privateState.ManufacturingStateMineralOil
-                    = manufacturingStateProcessedMineralOil
+                    = manufacturingStateMineralOil
                           = new ManufacturingState(
                               data.GameObject,
                               containerInputSlotsCount: 1,
@@ -197,7 +197,7 @@
             }
             else
             {
-                manufacturingStateProcessedMineralOil.SetSlotsCount(input: 1, output: 1);
+                manufacturingStateMineralOil.SetSlotsCount(input: 1, output: 1);
             }
 
             // setup input container types
@@ -206,10 +206,10 @@
                 privateState.ManufacturingState.ContainerInput);
 
             itemsService.SetContainerType<ItemsContainerEmptyCanisters>(
-                manufacturingStateProcessedGasoline.ContainerInput);
+                manufacturingStateGasoline.ContainerInput);
 
             itemsService.SetContainerType<ItemsContainerEmptyCanisters>(
-                manufacturingStateProcessedMineralOil.ContainerInput);
+                manufacturingStateMineralOil.ContainerInput);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -218,11 +218,11 @@
             var deltaTime = data.DeltaTime;
             var privateState = data.PrivateState;
             var manufacturingStateRawPetroleum = data.PrivateState.ManufacturingState;
-            var manufacturingStateProcessedGasoline = data.PrivateState.ManufacturingStateGasoline;
-            var manufacturingStateProcessedMineralOil = data.PrivateState.ManufacturingStateMineralOil;
+            var manufacturingStateGasoline = data.PrivateState.ManufacturingStateGasoline;
+            var manufacturingStateMineralOil = data.PrivateState.ManufacturingStateMineralOil;
             var liquidStateRawPetroleum = privateState.LiquidStateRawPetroleum;
-            var liquidStateProcessedGasoline = privateState.LiquidStateGasoline;
-            var liquidStateProcessedMineralOil = privateState.LiquidStateMineralOil;
+            var liquidStateGasoline = privateState.LiquidStateGasoline;
+            var liquidStateMineralOil = privateState.LiquidStateMineralOil;
 
             // Force update all recipes:
             // it will auto-detect and verify current recipes for every crafting queue.
@@ -235,13 +235,13 @@
 
             ManufacturingMechanic.UpdateRecipeOnly(
                 worldObject,
-                manufacturingStateProcessedGasoline,
+                manufacturingStateGasoline,
                 this.ManufacturingConfigGasoline,
                 force: isLiquidStatesChanged);
 
             ManufacturingMechanic.UpdateRecipeOnly(
                 worldObject,
-                manufacturingStateProcessedMineralOil,
+                manufacturingStateMineralOil,
                 this.ManufacturingConfigMineralOil,
                 force: isLiquidStatesChanged);
 
@@ -251,8 +251,8 @@
             // need fuel when any of the output liquids capacity are not full
             // or any of the manufacturing states has active recipe.
             var isOutputLiquidCapacityFull
-                = liquidStateProcessedGasoline.Amount >= this.LiquidConfigGasoline.Capacity
-                  || liquidStateProcessedMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
+                = liquidStateGasoline.Amount >= this.LiquidConfigGasoline.Capacity
+                  || liquidStateMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
 
             var isNeedElectricityNow = !isOutputLiquidCapacityFull
                                        && liquidStateRawPetroleum.Amount > 0;
@@ -279,7 +279,7 @@
                 var deltaTimeLiquidProcessing = deltaTime;
                 deltaTimeLiquidProcessing *= StructureConstants.ManufacturingSpeedMultiplier;
 
-                // active, we can "transfer" liquids and progress crafting queues for processed liquids
+                // active, we can "transfer" liquids and progress crafting queues for output liquids
                 // try transfer ("use") raw petroleum bar
                 LiquidContainerSystem.UpdateWithoutManufacturing(
                     liquidStateRawPetroleum,
@@ -296,7 +296,7 @@
                 {
                     // increase gasoline level (if possible)
                     LiquidContainerSystem.UpdateWithoutManufacturing(
-                        liquidStateProcessedGasoline,
+                        liquidStateGasoline,
                         this.LiquidConfigGasoline,
                         deltaTimeLiquidProcessing,
                         isProduceLiquid: true,
@@ -305,7 +305,7 @@
 
                     // increase mineral oil level (if possible)
                     LiquidContainerSystem.UpdateWithoutManufacturing(
-                        liquidStateProcessedMineralOil,
+                        liquidStateMineralOil,
                         this.LiquidConfigMineralOil,
                         deltaTimeLiquidProcessing,
                         isProduceLiquid: true,
@@ -317,9 +317,9 @@
                 }
             }
 
-            // progress crafting queues for processed liquids (craft canisters with according liquids)
-            ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateProcessedGasoline,   deltaTime);
-            ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateProcessedMineralOil, deltaTime);
+            // progress crafting queues for output liquids (craft canisters with according liquids)
+            ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateGasoline,   deltaTime);
+            ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateMineralOil, deltaTime);
         }
 
         public class PrivateState : ObjectManufacturerPrivateState

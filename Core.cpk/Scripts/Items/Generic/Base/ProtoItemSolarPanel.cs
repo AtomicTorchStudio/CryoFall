@@ -27,7 +27,7 @@
 
         public virtual bool IsRepairable => false;
 
-        public override ushort MaxItemsPerStack => ItemStackSize.Single;
+        public override ushort MaxItemsPerStack => 1;
 
         public abstract ITextureResource ObjectSprite { get; }
 

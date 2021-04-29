@@ -138,7 +138,7 @@
                 return;
             }
 
-            if (Api.Server.Database.TryGet(nameof(CharacterDamageTrackingSystem),
+            if (Server.Database.TryGet(nameof(CharacterDamageTrackingSystem),
                                            DatabaseKeyPlayerDamageSourceStats,
                                            out serverPlayerCharacterDamageSourcesStats))
             {
@@ -147,7 +147,7 @@
 
             serverPlayerCharacterDamageSourcesStats =
                 new Dictionary<ICharacter, ServerCharacterDamageSourcesStats>();
-            Api.Server.Database.Set(nameof(CharacterDamageTrackingSystem),
+            Server.Database.Set(nameof(CharacterDamageTrackingSystem),
                                     DatabaseKeyPlayerDamageSourceStats,
                                     serverPlayerCharacterDamageSourcesStats);
         }

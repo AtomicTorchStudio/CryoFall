@@ -1,9 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection.Data
 {
     using System;
+    using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaimShield;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -71,6 +74,8 @@
             this.IsLandClaimInsideAnotherBase = LandClaimShieldProtectionHelper.SharedIsLandClaimInsideAnotherBase(
                 areasGroup);
 
+            FactionSystem.ClientCurrentFactionAccessRightsChanged += this.CurrentFactionAccessRightsChangedHandler;
+
             UpdateCurrentDurationsEverySecond();
 
             void UpdateCurrentDurationsEverySecond()
@@ -136,6 +141,10 @@
             => this.privateState.ShieldProtectionCurrentChargeElectricity;
 
         public double ElectricityCapacity { get; private set; }
+
+        public bool HasAccessRightToManageShield
+            => string.IsNullOrEmpty(this.publicState.FactionClanTag)
+               || FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.BaseShieldManagement);
 
         public bool HasFullCharge => this.ElectricityAmount >= this.ElectricityCapacity;
 
@@ -212,6 +221,24 @@
 
         public Brush StatusTextBrush { get; private set; }
 
+        public TextBlock TooltipTextAccessRightToManageShield
+            => this.HasAccessRightToManageShield
+                   ? null
+                   : new TextBlock()
+                   {
+                       Text = string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                            FactionMemberAccessRights.BaseShieldManagement.GetDescription()),
+                       TextWrapping = TextWrapping.Wrap,
+                       FontWeight = FontWeights.Bold,
+                       Foreground = Client.UI.GetApplicationResource<Brush>("BrushColorRed6")
+                   };
+
+        protected override void DisposeViewModel()
+        {
+            FactionSystem.ClientCurrentFactionAccessRightsChanged -= this.CurrentFactionAccessRightsChangedHandler;
+            base.DisposeViewModel();
+        }
+
         private static Brush GetStatusTextBrush(ShieldProtectionStatus status)
         {
             return status switch
@@ -221,6 +248,12 @@
                 ShieldProtectionStatus.Active     => StatusTextBrushGreen,
                 _                                 => throw new ArgumentOutOfRangeException(nameof(status), status, null)
             };
+        }
+
+        private void CurrentFactionAccessRightsChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.HasAccessRightToManageShield));
+            this.NotifyPropertyChanged(nameof(this.TooltipTextAccessRightToManageShield));
         }
 
         private double EstimateDuration(double charge)

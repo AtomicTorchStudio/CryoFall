@@ -49,6 +49,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Border BorderThickness="0,0,0,1"
@@ -59,11 +60,11 @@
                                         Margin="1" />
                 </Border>
 
-                <ListBox ItemsSource="{Binding StructuresList.Items}"
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding StructuresList.Items}"
                          SelectedItem="{Binding SelectedStructure}"
                          HorizontalAlignment="Stretch"
-                         VerticalAlignment="Top"
-                         Grid.Row="1">
+                         VerticalAlignment="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -203,6 +204,27 @@
                         </ResourceDictionary>
                     </ListBox.Resources>
                 </ListBox>
+
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            Margin="0,2,3,-6"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Visibility="{Binding TotalStructuresCountIncludingLocked, Converter={StaticResource CountToVisibilityConverter}}">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="10" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <!-- Text: Structures unlocked -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TitleStructuresUnlocked}" />
+                    <TextBlock Text=": " />
+                    <TextBlock Text="{Binding StructuresList.Items.Count}" />
+                    <TextBlock Text="/" />
+                    <TextBlock Text="{Binding TotalStructuresCountIncludingLocked}" />
+                </StackPanel>
             </Grid>
 
             <Control Style="{StaticResource ControlVerticalSeparatorLeft}" Grid.Row="1" />
@@ -226,34 +248,27 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Grid>
-                        <!-- Structure title glow effect -->
-                        <ContentControl Width="{Binding ActualWidth, ElementName=StructureDetailsTitle}"
-                                        VerticalAlignment="Stretch"
-                                        Margin="0,4,0,0">
-                            <Rectangle Margin="-35,0">
-                                <Rectangle.Fill>
-                                    <RadialGradientBrush Opacity="0.5">
-                                        <GradientStop Color="#00CC9400" Offset="1" />
-                                        <GradientStop Color="#FFCC9400" Offset="0" />
-                                    </RadialGradientBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                        </ContentControl>
-
-                        <!-- Structure title -->
-                        <TextBlock Text="{Binding Title}"
-                                   HorizontalAlignment="Center"
-                                   Foreground="{StaticResource BrushColor6}"
-                                   FontSize="22"
-                                   LineHeight="22"
-                                   LineStackingStrategy="BlockLineHeight"
-                                   FontWeight="Bold"
-                                   TextWrapping="Wrap"
-                                   TextAlignment="Center"
-                                   FontFamily="{StaticResource CondensedFontFamily}"
-                                   x:Name="StructureDetailsTitle" />
-                    </Grid>
+                    <!-- Structure title -->
+                    <TextBlock Text="{Binding Title}"
+                               HorizontalAlignment="Center"
+                               Foreground="{StaticResource BrushColor6}"
+                               FontSize="22"
+                               LineHeight="22"
+                               LineStackingStrategy="BlockLineHeight"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               FontFamily="{StaticResource CondensedFontFamily}">
+                        <TextBlock.Effect>
+                            <!-- Glow effect -->
+                            <DropShadowEffect
+                                BlurRadius="20"
+                                Direction="0"
+                                ShadowDepth="0"
+                                Opacity="0.6"
+                                Color="{StaticResource Color7}" />
+                        </TextBlock.Effect>
+                    </TextBlock>
 
                     <!-- Big icon (structure preview) -->
                     <Border Grid.Row="1"

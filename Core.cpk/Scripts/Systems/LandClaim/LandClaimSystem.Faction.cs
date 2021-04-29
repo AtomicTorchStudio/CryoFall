@@ -50,12 +50,12 @@
 
         public static ILogicObject ServerGetLandOwnerFactionOrFounderFaction(ILogicObject area)
         {
-            ILogicObject landOwnerFaction = null;
+            ILogicObject faction = null;
             {
-                var landOwnerFactionClanTag = SharedGetAreaOwnerFactionClanTag(area);
-                if (!string.IsNullOrEmpty(landOwnerFactionClanTag))
+                var clanTag = SharedGetAreaOwnerFactionClanTag(area);
+                if (!string.IsNullOrEmpty(clanTag))
                 {
-                    landOwnerFaction = FactionSystem.ServerGetFactionByClanTag(landOwnerFactionClanTag);
+                    faction = FactionSystem.ServerGetFactionByClanTag(clanTag);
                 }
                 else
                 {
@@ -64,11 +64,11 @@
                     var founderCharacter = Server.Characters.GetPlayerCharacter(founderName);
                     if (founderCharacter is not null)
                     {
-                        landOwnerFaction = FactionSystem.ServerGetFaction(founderCharacter);
+                        faction = FactionSystem.ServerGetFaction(founderCharacter);
                     }
                 }
             }
-            return landOwnerFaction;
+            return faction;
         }
 
         public static IEnumerable<ILogicObject> SharedEnumerateAllFactionAreas(string clanTag)

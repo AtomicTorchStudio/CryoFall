@@ -130,6 +130,35 @@
                 protoVehicleAssemblyBay.Icon);
         }
 
+        public static List<GarageVehicleEntry> ServerGetCharacterVehicles(
+            ICharacter character,
+            bool onlyVehiclesInGarage)
+        {
+            var result = new List<GarageVehicleEntry>();
+            var allVehicles = Server.World.GetWorldObjectsOfProto<IProtoVehicle>();
+
+            // ReSharper disable once PossibleInvalidCastExceptionInForeachLoop
+            foreach (IDynamicWorldObject vehicle in allVehicles)
+            {
+                if (!WorldObjectOwnersSystem.SharedIsOwner(character, vehicle))
+                {
+                    continue;
+                }
+
+                var vehicleStatus = ServerGetVehicleStatus(vehicle, forCharacter: character);
+                if (onlyVehiclesInGarage
+                    && vehicleStatus != VehicleStatus.InGarage)
+                {
+                    continue;
+                }
+
+                result.Add(new GarageVehicleEntry(vehicle,
+                                                  vehicleStatus));
+            }
+
+            return result;
+        }
+
         public static void ServerPutIntoGarage(IDynamicWorldObject vehicle)
         {
             var position = ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D();
@@ -182,6 +211,14 @@
             }
         }
 
+        protected override void PrepareSystem()
+        {
+            if (IsServer)
+            {
+                Server.Characters.PlayerOnlineStateChanged += this.ServerPlayerOnlineStateChangedHandler;
+            }
+        }
+
         private static bool ServerCanCharacterPutVehicleIntoGarage(IDynamicWorldObject vehicle, ICharacter byCharacter)
         {
             if (!PveSystem.ServerIsPvE)
@@ -206,35 +243,6 @@
                 default:
                     return false;
             }
-        }
-
-        private static List<GarageVehicleEntry> ServerGetCharacterVehicles(
-            ICharacter character,
-            bool onlyVehiclesInGarage)
-        {
-            var result = new List<GarageVehicleEntry>();
-            var allVehicles = Server.World.GetWorldObjectsOfProto<IProtoVehicle>();
-
-            // ReSharper disable once PossibleInvalidCastExceptionInForeachLoop
-            foreach (IDynamicWorldObject vehicle in allVehicles)
-            {
-                if (!WorldObjectOwnersSystem.SharedIsOwner(character, vehicle))
-                {
-                    continue;
-                }
-
-                var vehicleStatus = ServerGetVehicleStatus(vehicle, forCharacter: character);
-                if (onlyVehiclesInGarage
-                    && vehicleStatus != VehicleStatus.InGarage)
-                {
-                    continue;
-                }
-
-                result.Add(new GarageVehicleEntry(vehicle,
-                                                  vehicleStatus));
-            }
-
-            return result;
         }
 
         private static VehicleStatus ServerGetVehicleStatus(IDynamicWorldObject vehicle, ICharacter forCharacter)
@@ -315,10 +323,13 @@
                               .HideAfterDelay(delaySeconds: 60);
         }
 
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        private void ServerRemote_CheckHasVehiclesInGarage()
+        private void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
         {
-            var character = ServerRemoteContext.Character;
+            if (!isOnline)
+            {
+                return;
+            }
+
             var vehicles = ServerGetCharacterVehicles(character,
                                                       onlyVehiclesInGarage: true);
             if (vehicles.Count == 0)
@@ -338,6 +349,7 @@
             this.CallClient(character, _ => _.ClientRemote_VehiclesInGarage());
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1)]
         private IReadOnlyList<GarageVehicleEntry> ServerRemote_GetVehiclesList()
         {
             var character = ServerRemoteContext.Character;
@@ -490,26 +502,6 @@
                                 _ => _.ClientRemote_OnVehicleTakenFromGarageByOtherPlayer(soundPosition));
 
             return TakeVehicleResult.Success;
-        }
-
-        private class Bootstrapper : BaseBootstrapper
-        {
-            public override void ClientInitialize()
-            {
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-
-                Refresh();
-
-                void Refresh()
-                {
-                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
-                    {
-                        return;
-                    }
-
-                    Instance.CallServer(_ => _.ServerRemote_CheckHasVehiclesInGarage());
-                }
-            }
         }
     }
 }

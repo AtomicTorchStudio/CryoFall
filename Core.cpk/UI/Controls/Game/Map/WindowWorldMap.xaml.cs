@@ -144,7 +144,6 @@
             this.CloseContextMenu();
 
             var controller = this.controlWorldMap.WorldMapController;
-            var mapPositionRelative = controller.PointedMapWorldPositionRelative;
             if (this.MapClickOverride is not null)
             {
                 var mapPositionAbsolute = controller.PointedMapWorldPositionAbsolute;
@@ -158,11 +157,8 @@
                 Header = ContextMenuCopyCoordinates,
                 Command = new ActionCommand(
                     () => Api.Client.Core.CopyToClipboard(
-                        string.Format("{0}-{1},{2}",
-                                      WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(
-                                          mapPositionRelative),
-                                      mapPositionRelative.X,
-                                      mapPositionRelative.Y)))
+                        WorldMapSectorHelper.FormatWorldPositionWithSectorCoordinate(
+                            controller.PointedMapWorldPositionAbsolute)))
             });
 
             var character = Api.Client.Characters.CurrentPlayerCharacter;
@@ -260,6 +256,7 @@
 
             var landClaimGroupVisualizer = new ClientWorldMapLandClaimsGroupVisualizer(controller);
             this.AddVisualizer(landClaimGroupVisualizer);
+            this.AddVisualizer(new ClientWorldMapAllyBaseUnderRaidVisualizer(controller));
             this.AddVisualizer(new ClientWorldMapLandClaimVisualizer(controller, landClaimGroupVisualizer));
             this.AddVisualizer(new ClientWorldMapBedVisualizer(controller));
             this.AddVisualizer(new ClientWorldMapDroppedItemsVisualizer(controller));

@@ -24,17 +24,29 @@
         // Faster decay speed for blueprints outside the land claim areas to prevent world overcrowding with the blueprints.
         public const double DecaySpeedMultiplier = 4;
 
-        private static readonly Lazy<RenderingMaterial> BlueprintMaterial = new(
-            () =>
-            {
-                var material = RenderingMaterial.Create(new EffectResource("ConstructionBlueprint"));
-                material.EffectParameters
-                        .Set("ColorAdd",      new Vector4(0,     0.2f, 0.3f, 0))
-                        .Set("ColorMultiply", new Vector4(0.75f, 0.8f, 1f,   0.667f));
-                return material;
-            });
+        private static readonly Lazy<RenderingMaterial> BlueprintMaterial
+            = new(() =>
+                  {
+                      var material = RenderingMaterial.Create(new EffectResource("ConstructionBlueprint"));
+                      material.EffectParameters
+                              .Set("ColorAdd",      new Vector4(0,     0.2f, 0.3f, 0))
+                              .Set("ColorMultiply", new Vector4(0.75f, 0.8f, 1f,   0.667f));
+                      return material;
+                  });
+
+        private static readonly Lazy<RenderingMaterial> BlueprintMaterialMouseOver
+            = new(() =>
+                  {
+                      var material = RenderingMaterial.Create(new EffectResource("ConstructionBlueprintHover"));
+                      material.EffectParameters
+                              .Set("ColorAdd",      new Vector4(0,     0.2f, 0.3f, 0))
+                              .Set("ColorMultiply", new Vector4(0.75f, 0.8f, 1f,   1.0f));
+                      return material;
+                  });
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Deconstruct;
+
+        public override bool IsActivatesRaidblockOnDestroy => false;
 
         public override bool IsRelocatable => false;
 
@@ -109,10 +121,16 @@
                 return (0.5, 0.5);
             }
 
-            return GetPublicState((IStaticWorldObject)worldObject)
-                   .ConstructionProto
-                   .Layout
-                   .Center;
+            var constructionProto = GetPublicState((IStaticWorldObject)worldObject).ConstructionProto;
+            try
+            {
+                return constructionProto.SharedGetObjectCenterWorldOffset(null);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+                return constructionProto.Layout.Center;
+            }
         }
 
         public override float SharedGetStructurePointsMax(IStaticWorldObject worldObject)
@@ -158,10 +176,21 @@
             var publicState = data.PublicState;
 
             var protoStructure = publicState.ConstructionProto;
-            var blueprint = new ClientBlueprintRenderer(worldObject.ClientSceneObject, isConstructionSite: true);
+            var blueprint = new ClientBlueprintRenderer(
+                worldObject.ClientSceneObject,
+                isConstructionSite: true,
+                // not used
+                centerOffset: default);
+
             protoStructure.ClientSetupBlueprint(worldObject.OccupiedTile, blueprint);
             blueprint.SpriteRenderer.DrawOrder = DrawOrder.Default;
             blueprint.SpriteRenderer.RenderingMaterial = BlueprintMaterial.Value;
+            foreach (var spriteRenderer in blueprint.SceneObject.FindComponents<IComponentSpriteRenderer>())
+            {
+                spriteRenderer.RenderingMaterial = BlueprintMaterial.Value;
+            }
+
+            data.ClientState.Renderer = blueprint.SpriteRenderer;
 
             ClientConstructionSiteOutlineHelper.CreateOutlineRenderer(worldObject, protoStructure);
 
@@ -193,7 +222,19 @@
         {
             if (isObserving)
             {
+                if (data.ClientState?.Renderer is { } renderer)
+                {
+                    renderer.RenderingMaterial = BlueprintMaterialMouseOver.Value;
+                }
+
                 ConstructionSystem.ClientTryStartAction(allowReplacingCurrentConstructionAction: false);
+            }
+            else
+            {
+                if (data.ClientState?.Renderer is { } renderer)
+                {
+                    renderer.RenderingMaterial = BlueprintMaterial.Value;
+                }
             }
         }
 

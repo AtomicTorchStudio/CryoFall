@@ -1,10 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Drones
 {
     using System;
-    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDroneControl;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
@@ -96,9 +96,8 @@
             if (this.dronePublicState.TargetObjectPosition.HasValue)
             {
                 this.lastTargetPosition = this.dronePublicState.TargetObjectPosition.Value.ToVector2D();
-                this.hitWorldObject ??= Client.World.GetTile(this.lastTargetPosition.Value.ToVector2Ushort())
-                                              .StaticObjects
-                                              .FirstOrDefault();
+                this.hitWorldObject ??= CharacterDroneControlSystem.SharedGetCompatibleTargetObject(
+                    this.lastTargetPosition.Value.ToVector2Ushort());
 
                 if (this.hitWorldObject is not null)
                 {
@@ -199,6 +198,7 @@
                     objectMaterial: this.hitWorldObject.ProtoStaticWorldObject.SharedGetObjectMaterial(),
                     randomizeHitPointOffset: false,
                     randomRotation: true,
+                    rotationAngleRad: null,
                     drawOrder: DrawOrder.Light + 2,
                     animationFrameDuration: 3 / 60.0);
                 this.timeSinceLastHitSparks += HitSparksInterval;

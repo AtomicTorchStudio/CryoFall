@@ -55,16 +55,16 @@
 
         private void Refresh()
         {
-            if (this.IsDisposed)
+            if (this.IsDisposed
+                || !this.WorldObjectManufacturer.ClientHasPrivateState)
             {
                 return;
             }
 
             this.NotifyPropertyChanged(nameof(this.ElectricityProductionInfoText));
 
-            ClientTimersSystem.AddAction(
-                delaySeconds: 0.5,
-                this.Refresh);
+            ClientTimersSystem.AddAction(delaySeconds: 0.5,
+                                         this.Refresh);
         }
     }
 }

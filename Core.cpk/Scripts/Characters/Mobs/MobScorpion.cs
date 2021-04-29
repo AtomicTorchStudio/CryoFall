@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Items.Devices;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
@@ -65,7 +66,11 @@
                 .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
                 .Add<ItemAnimalFat>(count: 3,     countRandom: 2)
                 .Add<ItemToxin>(count: 2,         countRandom: 2)
-                .Add<ItemSlime>(count: 2,         countRandom: 2);
+                .Add<ItemSlime>(count: 2,         countRandom: 2)
+                // requires device
+                .Add<ItemKeiniteRaw>(count: 2,
+                                     countRandom: 1,
+                                     condition: ItemKeiniteCollector.ConditionHasDeviceEquipped);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,

@@ -34,7 +34,7 @@
 
         public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(2);
 
-        public override bool IsActivatesRaidModeForLandClaim => false;
+        public override bool IsActivatesRaidBlock => false;
 
         public override bool IsDamageThroughObstacles => true;
 

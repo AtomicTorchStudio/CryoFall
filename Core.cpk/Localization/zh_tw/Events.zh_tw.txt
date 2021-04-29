@@ -13,7 +13,10 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 此世界的生物似乎正在遷徙，這是狩獵的好機會。
 
-Scripts/Events/EventPsiGroveInfestation@Description:
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+重要：火器無效；請使用近戰或熱能武器。
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 一種奇異的靈能植物出現在了山區，令開發變得困難，但同時這也是獲得稀有資源的好機會。
 
 Scripts/Events/EventSpaceDrop@Description:

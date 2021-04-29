@@ -124,6 +124,9 @@ Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 埋蔵地爆発
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+プラグミウムリアクター爆発
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 プラグミウム源爆発
 
@@ -593,6 +596,9 @@ Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 ライトタレット
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+他のタレットに近すぎます
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 無効化
 
@@ -633,10 +639,10 @@ Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 農耕地
 
 Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Description:
-花を育て、家を飾ったり、花を集めるのに使うことができます。どこでも設置できます。
+花を育てて家に飾ったり、他の目的で花を集めたりすることができます。どこでも設置できます。
 
 Scripts/StaticObjects/Structures/Farms/ObjectPlantPot@Name:
-植物用の敷地
+植木鉢
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
 この土壌は農業に適していません。
@@ -707,6 +713,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 エンジン発電機
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+大規模なプラグミウム発電所は、巨大拠点の主要かつ唯一の動力源として機能しますが、安定したプラグミウムの供給が必要です。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+プラグミウム発電所
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 太陽光発電のための基本的な設備です。個々のソーラーパネルが必要です。
 
@@ -718,6 +730,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 蒸気発電機
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+リアクターを起動するには少なくとも1つの{0}を配置してください。
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+リアクターを起動できません
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 他の生存者が周辺地域で何かを建築または解体するのを防ぐことによって、拠点をより安全にします。また、所有地内では時間が経っても建物が劣化しにくくなります。

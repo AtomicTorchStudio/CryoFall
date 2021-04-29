@@ -8,7 +8,7 @@
     {
         DamageDescription DamageDescriptionCharacters { get; }
 
-        bool IsActivatesRaidModeForLandClaim { get; }
+        bool IsActivatesRaidBlock { get; }
 
         void ServerSetup(IStaticWorldObject worldObject, ICharacter deployedByCharacter);
     }

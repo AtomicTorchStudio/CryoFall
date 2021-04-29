@@ -3,6 +3,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     using System;
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -16,11 +17,10 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
             }
 
             SharedLandClaimOwnersMax = (byte)MathHelper.Clamp(
-                value: ServerRates.Get(
-                    key: "LandClaimOwnersMax",
+                ServerRates.Get(
+                    "LandClaimOwnersMax",
                     // by default it's 5 owners only, if players wish to add more they can create a faction
                     defaultValue: 5,
-                    description:
                     @"This rate determines the max number of land claim's owners (including the founder)
                       for land claims that are not transferred to faction ownership.
                       If you want to make a server where players must group in factions,
@@ -31,10 +31,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 max: byte.MaxValue);
 
             SharedRaidBlockDurationSeconds = MathHelper.Clamp(
-                value: ServerRates.Get(
-                    key: "RaidBlockDurationSeconds",
+                ServerRates.Get(
+                    "PvP.RaidBlockDurationSeconds",
                     defaultValue: 10 * 60, // 10 minutes
-                    description:
                     @"This rate determines the raid block duration in PvP.
                       Min value: 0 seconds.
                       Max value: 3600 seconds (one hour)."),
@@ -42,10 +41,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 max: 60 * 60);
 
             SharedLandClaimsNumberLimitIncrease = (ushort)MathHelper.Clamp(
-                value: ServerRates.Get(
-                    key: "LandClaimsNumberLimitIncrease",
-                    defaultValue: 0,
-                    description:
+                ServerRates.Get(
+                    "LandClaimsNumberLimitIncrease",
+                    defaultValue: ServerLocalModeHelper.IsLocalServer
+                                      ? 10 // more land claims for local server
+                                      : 0,
                     @"This rate determines the EXTRA number of land claims ANY player can own simultaneously.                                
                       Currently in the game every player can build max 3 land claims.
                       This rate allows to increase the number.

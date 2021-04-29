@@ -1,11 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
     using System;
-    using System.Collections.Generic;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -35,6 +32,16 @@
 
         public ComponentWeaponTrace() : base(isLateUpdateEnabled: true)
         {
+        }
+
+        public static void CalculateAngleAndDirection(
+            Vector2D deltaPos,
+            out double angleRad,
+            out Vector2D normalizedRay)
+        {
+            angleRad = -Math.Atan2(deltaPos.Y, deltaPos.X);
+            normalizedRay = new Vector2D(Math.Cos(-angleRad),
+                                         Math.Sin(-angleRad));
         }
 
         public static void Create(
@@ -161,16 +168,6 @@
             }
 
             this.componentSpriteRender.Color = Color.FromArgb(colorOpacity, 0xFF, 0xFF, 0xFF);
-        }
-
-        public static void CalculateAngleAndDirection(
-            Vector2D deltaPos,
-            out double angleRad,
-            out Vector2D normalizedRay)
-        {
-            angleRad = -Math.Atan2(deltaPos.Y, deltaPos.X);
-            normalizedRay = new Vector2D(Math.Cos(-angleRad),
-                                         Math.Sin(-angleRad));
         }
 
         private static double CalculateFireDistance(WeaponFireTracePreset weaponTracePreset, Vector2D deltaPos)

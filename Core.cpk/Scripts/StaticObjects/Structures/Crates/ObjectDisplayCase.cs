@@ -47,7 +47,8 @@
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
-            return base.SharedGetObjectCenterWorldOffset(worldObject) + (0, 0.275);
+            return base.SharedGetObjectCenterWorldOffset(worldObject)
+                   + (0, 0.35);
         }
 
         protected override ITextureResource ClientCreateIcon()
@@ -97,7 +98,9 @@
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
-            => this.textureResourceFront;
+        {
+            return this.textureResourceFront;
+        }
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

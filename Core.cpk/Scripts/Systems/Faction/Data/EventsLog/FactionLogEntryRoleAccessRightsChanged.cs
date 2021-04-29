@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     [Description(Name)]
     [Serializable]
@@ -30,7 +31,7 @@
 
         public override string ClientText
             => string.Format(Text_Format,
-                             this.RoleTitle);
+                             this.RoleTitle.GetDescription());
 
         public FactionMemberAccessRights NewAccessRights { get; }
 

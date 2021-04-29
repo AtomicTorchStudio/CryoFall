@@ -8,22 +8,22 @@
     public enum WorldObjectDirectAccessMode : byte
     {
         [Description("Opens to owners")]
-        [DescriptionOrder(0)]
+        [DescriptionOrder(1)]
         OpensToObjectOwners = 0,
 
         [Description("Opens to owners or land owners")]
-        [DescriptionOrder(1)]
+        [DescriptionOrder(2)]
         OpensToObjectOwnersOrAreaOwners = 10,
 
         [Description("Opens to everyone")]
-        [DescriptionOrder(2)]
+        [DescriptionOrder(3)]
         OpensToEveryone = 20,
 
         /// <summary>
         /// Used only for doors and specific crates (such as an armored safe).
         /// </summary>
         [Description("Always closed")]
-        [DescriptionOrder(3)]
+        [DescriptionOrder(0)]
         Closed = byte.MaxValue
     }
 }

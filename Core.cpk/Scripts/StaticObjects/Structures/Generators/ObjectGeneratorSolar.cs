@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -32,7 +33,9 @@
         public override float StructurePointsMax => 2000;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (1, 1.65);
+        {
+            return (1, 1.65);
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -63,6 +66,7 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedLand);
             category = GetCategory<StructureCategoryElectricity>();
 
             build.StagesCount = 5;

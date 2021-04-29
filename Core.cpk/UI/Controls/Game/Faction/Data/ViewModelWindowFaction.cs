@@ -43,6 +43,9 @@
             FactionConstants.ClientFactionMembersMaxChanged
                 += this.FactionMembersMaxNumberChangedHandler;
 
+            FactionConstants.ClientSharedFactionUpgradeCostsChanged
+                += this.FactionUpgradeCostsChangedHandler;
+
             FactionSystem.ClientCurrentFactionReceivedApplications.CollectionChanged
                 += this.ReceivedApplicationsCollectionChangedHandler;
 
@@ -75,7 +78,12 @@
 
             this.factionPublicState.ClientSubscribe(
                 _ => _.PlayersNumberCurrent,
-                () => this.NotifyPropertyChanged(nameof(this.PlayersNumberCurrent)),
+                () => this.NotifyPropertyChanged(nameof(this.MembersNumberCurrent)),
+                subscriptionOwner: this);
+
+            this.factionPublicState.ClientSubscribe(
+                _ => _.PlayersNumberCurrent,
+                () => this.NotifyPropertyChanged(nameof(this.MembersNumberText)),
                 subscriptionOwner: this);
 
             this.factionPublicState.ClientSubscribe(
@@ -95,6 +103,20 @@
                 () => this.NotifyPropertyChanged(nameof(this.IsAcceptingApplications)),
                 subscriptionOwner: this);
 
+            this.factionPublicState.ClientSubscribe(
+                _ => _.TotalScore,
+                () =>
+                {
+                    this.NotifyPropertyChanged(nameof(this.TotalScore));
+                    this.NotifyPropertyChanged(nameof(this.TotalScoreString));
+                },
+                subscriptionOwner: this);
+
+            this.factionPublicState.ClientSubscribe(
+                _ => _.LeaderboardRank,
+                () => this.NotifyPropertyChanged(nameof(this.LeaderboardRank)),
+                subscriptionOwner: this);
+
             this.factionPrivateState.ClientSubscribe(
                 _ => _.DescriptionPrivate,
                 () => this.NotifyPropertyChanged(nameof(this.DescriptionPrivate)),
@@ -103,6 +125,11 @@
             this.factionPrivateState.ClientSubscribe(
                 _ => _.DescriptionPublic,
                 () => this.NotifyPropertyChanged(nameof(this.DescriptionPublic)),
+                subscriptionOwner: this);
+
+            this.factionPrivateState.ClientSubscribe(
+                _ => _.AccumulatedLearningPointsForUpgrade,
+                () => this.NotifyPropertyChanged(nameof(this.FactionAccumulatedLearningPointsForUpgrade)),
                 subscriptionOwner: this);
 
             this.ViewModelFactionAdmin = new ViewModelFactionAdmin(this.factionPrivateState);
@@ -122,7 +149,7 @@
 
         public bool CanUpgradeFactionLevel
             => ClientCurrentCharacterHelper.PrivateState.Technologies.LearningPoints
-               >= this.FactionLevelUpgradeCostLearningPoints;
+               >= 1;
 
         public string ClanTag => this.factionPublicState?.ClanTag;
 
@@ -148,7 +175,7 @@
             => new ActionCommand(this.ExecuteCommandRejectAllApplications);
 
         public BaseCommand CommandUpgradeFactionLevel
-            => new ActionCommand(FactionSystem.ClientUpgradeFactionLevel);
+            => new ActionCommand(WindowFactionLearningPointsDonation.Open);
 
         public bool CurrentPlayerIsLeader
             => FactionSystem.ClientCurrentRole == FactionMemberRole.Leader;
@@ -227,9 +254,12 @@
 
         public Brush Emblem
             => Client.UI.GetTextureBrush(
-                ClientFactionEmblemTextureComposer.GetEmblemTexture(
+                ClientFactionEmblemTextureProvider.GetEmblemTexture(
                     this.factionPublicState.Emblem,
                     useCache: true));
+
+        public ushort FactionAccumulatedLearningPointsForUpgrade
+            => this.factionPrivateState.AccumulatedLearningPointsForUpgrade;
 
         public string FactionKindDescription
             => this.factionPublicState.Kind.GetAttribute<DescriptionTooltipAttribute>()
@@ -330,15 +360,28 @@
         public bool IsPrivateFaction
             => this.factionPublicState.Kind == FactionKind.Private;
 
+        public bool IsPublicFaction => this.factionPublicState.Kind == FactionKind.Public;
+
+        public ushort LeaderboardRank => this.factionPublicState.LeaderboardRank;
+
         public string LeaderName
             => this.factionPublicState.LeaderName;
 
-        public ushort PlayersNumberCurrent => this.factionPublicState.PlayersNumberCurrent;
+        public ushort MembersNumberCurrent => this.factionPublicState.PlayersNumberCurrent;
 
-        public int PlayersNumberMax
+        public int MembersNumberMax
             => FactionConstants.GetFactionMembersMax(this.factionPublicState.Kind);
 
+        public string MembersNumberText
+            => string.Format(CoreStrings.Faction_MembersNumber_Format,
+                             this.MembersNumberCurrent,
+                             this.MembersNumberMax);
+
         public int ReceivedApplicationsCount => FactionSystem.ClientCurrentFactionReceivedApplications.Count;
+
+        public ulong TotalScore => this.factionPublicState.TotalScore;
+
+        public string TotalScoreString => this.factionPublicState.TotalScore.ToString("#,##0");
 
         public ViewModelFactionAdmin ViewModelFactionAdmin { get; }
 
@@ -349,6 +392,9 @@
 
             FactionConstants.ClientFactionMembersMaxChanged
                 -= this.FactionMembersMaxNumberChangedHandler;
+
+            FactionConstants.ClientSharedFactionUpgradeCostsChanged
+                -= this.FactionUpgradeCostsChangedHandler;
 
             FactionSystem.ClientCurrentFactionReceivedApplications.CollectionChanged
                 -= this.ReceivedApplicationsCollectionChangedHandler;
@@ -544,6 +590,7 @@
 
             FactionSystem.ClientOfficerInviteMember(name);
             this.InviteeName = string.Empty;
+            Client.UI.BlurFocus();
         }
 
         [SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
@@ -618,7 +665,7 @@
 
             var checkboxMessage = string.Format(CoreStrings.Faction_DialogLeaveFaction_CheckboxFormat,
                                                 ClientTimeFormatHelper.FormatTimeDuration(
-                                                    FactionConstants.SharedFactionJoinCooldownDuration),
+                                                    FactionConstants.SharedFactionJoinReturnBackCooldownDuration),
                                                 ClientTimeFormatHelper.FormatTimeDuration(
                                                     FactionConstants.SharedFactionJoinCooldownDuration));
 
@@ -677,7 +724,13 @@
 
         private void FactionMembersMaxNumberChangedHandler()
         {
-            this.NotifyPropertyChanged(nameof(this.PlayersNumberMax));
+            this.NotifyPropertyChanged(nameof(this.MembersNumberMax));
+            this.NotifyPropertyChanged(nameof(this.MembersNumberText));
+        }
+
+        private void FactionUpgradeCostsChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.FactionLevelUpgradeCostLearningPoints));
         }
 
         private void IncomingFactionAllianceRequestsOnClientAnyModification(

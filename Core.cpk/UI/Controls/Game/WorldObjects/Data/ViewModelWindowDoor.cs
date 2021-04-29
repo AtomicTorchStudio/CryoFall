@@ -21,8 +21,7 @@
             if (this.IsInsideFactionClaim)
             {
                 this.ViewModelFactionAccessEditor = new ViewModelWorldObjectFactionAccessEditorControl(
-                    worldObjectDoor,
-                    canSetAccessMode: true);
+                    worldObjectDoor);
             }
             else
             {

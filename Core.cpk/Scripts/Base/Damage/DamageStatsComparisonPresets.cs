@@ -12,7 +12,7 @@
             = new(protoAmmos: AllAvailableAmmoGrenadesOnly,
                   protoWeapons: new Lazy<IReadOnlyList<IProtoItemWeapon>>(
                       Array.Empty<IProtoItemWeapon>),
-                  isRangedWeapon: false);
+                  isRangedWeapon: true);
 
         public static readonly DamageStatsComparisonPreset PresetMelee
             = new(protoAmmos: new Lazy<IReadOnlyList<IProtoItemAmmo>>(

@@ -32,13 +32,13 @@
             }
 
             var key = "IsMapDiscovered_" + playerCharacter.Name;
-            if (Api.Server.Database.TryGet("Core", key, out bool isMapDiscovered)
+            if (Server.Database.TryGet("Core", key, out bool isMapDiscovered)
                 && isMapDiscovered)
             {
                 return;
             }
 
-            Api.Server.Database.Set("Core", key, true);
+            Server.Database.Set("Core", key, true);
             WorldDiscoverySystem.Instance.ServerDiscoverWorldChunks(
                 playerCharacter,
                 new List<Vector2Ushort>(Server.World.GetAllChunkTilePositions()));

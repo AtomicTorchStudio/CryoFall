@@ -227,11 +227,12 @@
                     }
 
                     hitPosition = testResultPhysicsBody.Position
-                                  + WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
-                                      damagedObject,
-                                      damagedObject.ProtoWorldObject,
-                                      hitPoint: testResult.Penetration,
-                                      isRangedWeapon: true);
+                                  + testResult.Penetration;
+                    /*+ WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
+                        damagedObject,
+                        damagedObject.ProtoWorldObject,
+                        hitPoint: testResult.Penetration,
+                        isRangedWeapon: true);*/
                     break;
                 }
             }

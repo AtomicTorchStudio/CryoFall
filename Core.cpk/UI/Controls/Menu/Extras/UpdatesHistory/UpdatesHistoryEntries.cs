@@ -12,6 +12,14 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
+            new Entry("R30—Release",
+                      new DateTime(2021, month: 4, day: 29),
+                      "Updates/R30.jpg"),
+
+            new Entry("A30—Keinite Update",
+                      new DateTime(2021, month: 4, day: 18),
+                      "Updates/A30.jpg"),
+
             new Entry("A29—Factions Update",
                       new DateTime(2020, month: 12, day: 1),
                       "Updates/A29.jpg"),

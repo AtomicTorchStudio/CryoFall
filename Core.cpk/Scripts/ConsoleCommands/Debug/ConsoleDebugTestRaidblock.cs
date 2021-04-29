@@ -17,6 +17,7 @@
         {
             LandClaimSystem.ServerOnRaid(new RectangleInt(x, y, 1, 1),
                                          byCharacter: null,
+                                         isStructureDestroyed: true,
                                          forceEvenIfNoCharacter: true);
             return null;
         }

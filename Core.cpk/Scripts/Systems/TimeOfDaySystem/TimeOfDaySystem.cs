@@ -50,7 +50,7 @@
         {
             get
             {
-                if (IsClient 
+                if (IsClient
                     && !ClientIsInitialized)
                 {
                     return 0;
@@ -147,7 +147,7 @@
         {
             if (IsServer)
             {
-                if (Api.Server.Database.TryGet(
+                if (Server.Database.TryGet(
                     nameof(TimeOfDaySystem),
                     nameof(ServerTimeOfDayOffsetSeconds),
                     out double savedOffsetSeconds))
@@ -183,7 +183,7 @@
             Api.ValidateIsServer();
 
             serverTimeOfDayOffsetSeconds = offsetSeconds;
-            Api.Server.Database.Set(nameof(TimeOfDaySystem), nameof(ServerTimeOfDayOffsetSeconds), offsetSeconds);
+            Server.Database.Set(nameof(TimeOfDaySystem), nameof(ServerTimeOfDayOffsetSeconds), offsetSeconds);
 
             SharedWriteToLogCurrentTimeOfDay();
 

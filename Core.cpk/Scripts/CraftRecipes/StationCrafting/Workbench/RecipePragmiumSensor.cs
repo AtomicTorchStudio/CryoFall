@@ -22,7 +22,7 @@
 
             inputItems.Add<ItemPlastic>(count: 10);
             inputItems.Add<ItemComponentsElectronic>(count: 5);
-            inputItems.Add<ItemOrePragmium>(count: 5);
+            inputItems.Add<ItemOrePragmium>(count: 1);
             inputItems.Add<ItemPowerCell>(count: 1);
 
             outputItems.Add<ItemPragmiumSensor>();

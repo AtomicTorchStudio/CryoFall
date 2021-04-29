@@ -9,21 +9,25 @@
     d:DesignHeight="300" d:DesignWidth="300"
     x:Name="UserControl"
     Margin="0,10,0,0">
-
-    <ItemsControl ItemsSource="{Binding Entries, ElementName=UserControl}"
-                  Margin="0,-2">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <StackPanel Orientation="Vertical"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top" />
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Control Template="{Binding}" />
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
-
+    <Grid x:Name="LayoutRoot">
+        <ItemsControl ItemsSource="{Binding Entries, ElementName=UserControl}"
+                      Margin="0,-2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl x:Name="Wrapper">
+                        <ContentControl DataContext="{Binding DataContext, ElementName=LayoutRoot}">
+                            <Control Template="{Binding DataContext, ElementName=Wrapper}" />
+                        </ContentControl>
+                    </ContentControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
 </base:BaseUserControl>

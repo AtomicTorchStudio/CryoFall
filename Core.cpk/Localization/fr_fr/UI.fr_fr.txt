@@ -207,6 +207,9 @@ Cette structure produit de l'électricité.
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Cette structure stocke de l'électricité.
 
+UI/CoreStrings@ConstructionMetaInfo_FactionWealthScorePoints_Format:
+Cette structure fait gagner +{0} points de score de faction.
+
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Cette structure ne peut être déplacée une fois construite.
 
@@ -486,6 +489,25 @@ Transférer la propriété de la faction
 UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
 Important : vous êtes sur le point de soumettre une candidature pour rejoindre [b]{0}[/b].
 
+UI/CoreStrings@Faction_DialogTransferLandClaimToFaction:
+`La propriété de l'ensemble de la [b]base[/b] (potentiellement constituée de plusieurs revendications territoriales) sera octroyée à la faction.
+[br]
+[br]Seuls les membres de la faction disposant de la permission de [b]gestion des revendications territoriales[/b] pourront construire, réparer ou démonter des structures à l'intérieur de la base. Ils pourront également configurer l'accès aux portes, aux murs et aux autres structures.
+[br]
+[br][b]Notez bien :[/b] vous [b]ne pourrez pas[/b] récupérer la propriété de la base après l'avoir octroyée à la faction.`
+
+UI/CoreStrings@Faction_DialogTransferLandClaimToFaction_PotentialAccessLoss:
+[b]Attention :[/b] Les joueurs qui ne sont pas membres de votre faction mais qui ont accès à des revendications territoriales faisant partie de cette base [b]perdront TOTALEMENT cet accès[/b]. Pour pouvoir accéder à la base, ils devront rejoindre la faction.
+
+UI/CoreStrings@Faction_DialogTransferVehicleToFaction:
+`Si vous transférez la propriété du véhicule à la faction, les membres de votre faction pourront l'utiliser.
+[br]Seuls les membres de la faction disposant de la permission de gestion d'accès aux véhicules pourront configurer les autorisations d'accès.
+[br]
+[br][b]Notez bien :[/b] vous [b]ne pourrez pas[/b] récupérer la propriété d'un véhicule après l'avoir octroyée à la faction.`
+
+UI/CoreStrings@Faction_DialogTransferVehicleToFaction_PotentialAccessLoss:
+[b]Attention : [/b] Les joueurs qui ne sont pas membres de votre faction mais qui ont accès au véhicule [b]perdront TOTALEMENT cet accès[/b]. Pour pouvoir accéder au véhicule à nouveau, ils devront rejoindre la faction.
+
 UI/CoreStrings@Faction_Diplomacy:
 Diplomatie
 
@@ -539,6 +561,12 @@ Déclarations de guerre
 
 UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
 Rétracter la déclaration de guerre
+
+UI/CoreStrings@Faction_DonateLearningPoints_Button:
+Donner PA
+
+UI/CoreStrings@Faction_DonateLearningPoints_Label:
+Choisissez le montant de votre don :
 
 UI/CoreStrings@Faction_ErrorDontHaveFaction:
 Vous n'êtes membre d'aucune faction.
@@ -642,8 +670,14 @@ Participe au classement.
 UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
 Prochaine mise à jour dans :
 
+UI/CoreStrings@Faction_Leaderboard_NoteScorePersistence:
+Note : Le score de faction est persistant et ne peut pas être modifié en bannissant des membres existants, en quittant la faction ou en invitant de nouveaux membres.
+
 UI/CoreStrings@Faction_Leaderboard_Rank:
 Rang de classement
+
+UI/CoreStrings@Faction_Leaderboard_TotalScore:
+Score total
 
 UI/CoreStrings@Faction_LeaderField:
 Leader :
@@ -656,6 +690,9 @@ Niveau
 
 UI/CoreStrings@Faction_Level_Format:
 Niveau : [b]{0}[/b]
+
+UI/CoreStrings@Faction_LevelUpgradeProgress:
+Progression :
 
 UI/CoreStrings@Faction_MaxMembers_Format:
 Membres max : [b]{0}[/b]
@@ -694,7 +731,7 @@ UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
 Gestion des revendications territoriales
 
 UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
-Construction et démontage au sein des revendications territoriales de la faction. Attribution des droits d'accès, amélioration des revendications territoriales, accès aux stockages, activation du bouclier, transfert de revendications territoriales à la faction.
+Construction et démontage au sein des revendications territoriales de la faction. Également : attribution des droits d'accès, gestion des revendications territoriales, octroi de propriété de revendications à la faction.
 
 UI/CoreStrings@Faction_Permission_Required_Format:
 Permission de faction requise : {0}
@@ -972,6 +1009,9 @@ Serveur Maître
 
 UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
 Vous pourrez modifier votre apparence plus tard depuis le menu équipement.
+
+UI/CoreStrings@MenuCharacterCreation_OriginSelection:
+Choisissez l'origine de votre personnage
 
 UI/CoreStrings@MenuCharacterCreation_Title:
 Choisissez l'apparence de votre personnage
@@ -1652,17 +1692,20 @@ Trier par
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Intensité
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
-`[b]Vous pouvez :[/b]
-[*] Télécharger et lancer une copie non-Steam de CryoFall, tout en conservant un accès complet à votre partie, avec les mêmes personnages et les mêmes serveurs.
-[*] Obtenir l'accès à la mailing-list AtomicTorch avec des notifications concernant les fonctionnalités à venir, le lancement de nouvelles versions et divers goodies.
-[*] Participer à des sondages privés uniquement accessibles aux utilisateurs AtomicTorch.
-[br]
-[br][b]Prochainement :[/b]
-[*] Louer des serveurs cloud officiels pour CryoFall pour vous et vos amis en un seul clic.`
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
+[*] Recevoir la mailing list d'AtomicTorch Studio, ainsi que des notifications en cas d'ajout de nouvelles fonctionnalités, de lancement de nouvelle version, et tout un tas de trucs sympas.
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
+[*] Télécharger et jouer à une version non-Steam de CryoFall, tout en continuant à bénéficier d'un accès complet à votre partie, avec les mêmes personnages et sur les mêmes serveurs.
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
+[*] Participer à des sondages privés proposés uniquement aux utilisateurs d'AtomicTorch.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
 Pourquoi la liaison à un compte AtomicTorch est-elle recommandée ?
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_YouCan:
+[b]Vous pourrez : [/b]
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
 J'accepte les [url=atomictorch.com/Pages/Terms-of-Service]conditions d'utilisation[/url], y compris la [url=atomictorch.com/Pages/Privacy-Policy]politique de confidentialité[/url]
@@ -1913,6 +1956,15 @@ En cours d'utilisation
 UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
 Dans l'univers
 
+UI/CoreStrings@VehicleNameEditor_EnterName:
+Entrez un nom :
+
+UI/CoreStrings@VehicleNameEditor_NameRequirements_Format:
+Nom personnalisé : [b]{0}-{1}[/b] caractères de long.
+
+UI/CoreStrings@VehicleNameEditor_VisibleToVehicleOwnersOnly:
+Uniquement visible par les propriétaires du véhicule.
+
 UI/CoreStrings@VehiclesAssemblyList_Button_Build:
 Construire
 
@@ -2032,6 +2084,9 @@ UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 Placer le schéma
 
+UI/CoreStrings@WindowConstructionMenu_TitleStructuresUnlocked:
+Structures débloquées
+
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Total requis
 
@@ -2056,6 +2111,45 @@ Emplacement
 
 UI/CoreStrings@WindowDataLog_To:
 Vers
+
+UI/CoreStrings@WindowGeneratorPragmium_BuildReactor:
+Construire un réacteur
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_Offline:
+Réacteur désactivé
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_Operational:
+Réacteur opérationnel
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_ShuttingDown:
+Extinction du réacteur en cours
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_StartingUp:
+Démarrage du réacteur en cours
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_EfficiencyMax:
+Efficacité max :
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_FuelLifetime:
+Durée du combustible :
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_Output:
+Puissance :
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_OutputMax:
+Puissance max :
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_PsiEmissionLevelMax:
+Niveau d'émission psi max :
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_StartupShutdownTime:
+Temps de démarrage/extinction :
+
+UI/CoreStrings@WindowGeneratorPragmium_StartReactor:
+Démarrer le réacteur
+
+UI/CoreStrings@WindowGeneratorPragmium_StopReactor:
+Arrêter le réacteur
 
 UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 PANNEAUX SOLAIRES
@@ -2089,6 +2183,9 @@ Les objets stockés ici sont partagés entre les structures de revendications te
 
 UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
 Transférer la propriété à la faction
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership_Description:
+Vous pouvez partager cette revendication territoriale avec les membres de votre faction en octroyant sa propriété à la faction.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Seul le propriétaire peut améliorer cette structure.
@@ -2242,6 +2339,9 @@ Construction
 
 UI/CoreStrings@WindowsObjectVehicle_TabGarage:
 Garage
+
+UI/CoreStrings@WindowsObjectVehicle_TabName_Title:
+Nom personnalisé
 
 UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 Véhicule
@@ -2421,9 +2521,6 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]Revendication territoriale[/b]
 [br]Ceci est votre revendication territoriale.`
 
-UI/CoreStrings@WorldMapMarkRaid_Tooltip:
-[b]Base attaquée[/b] [br]Votre base est attaquée !
-
 UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
 `[b]Source géothermale infinie[/b]
 [br]Source publique de lithium.`
@@ -2540,18 +2637,29 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Vos objets sont tombés au sol
 
+UI/Controls/Game/Map/ClientWorldMapAllyBaseUnderRaidVisualizer@NotificationRaid_AllyBase_MessageFormat:
+Une base d'une faction alliée \[{0}\] subit un assaut !
+
+UI/Controls/Game/Map/ClientWorldMapAllyBaseUnderRaidVisualizer@NotificationRaid_FactionMember_MessageFormat:
+Une base privée d'un membre de votre faction (@{0}) subit un assaut !
+
+UI/Controls/Game/Map/ClientWorldMapAllyBaseUnderRaidVisualizer@NotificationRaid_Title:
+Une base alliée est attaquée !
+
 UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
 Évènement terminé !
 
 UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
 Temps restant : {0}
 
-UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
-Évènement actif
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeStartsIn:
+Démarre dans : {0}
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
-`L'une de vos bases est attaquée !
-[br]({0};{1})`
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Évènement mondial
+
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Message:
+Une de vos bases subit un assaut !
 
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
 Attaque en cours !
@@ -2768,6 +2876,9 @@ Pas assez de biomatériau
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
 permanent
 
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorPragmium@ReactorNameFormat:
+Réacteur {0}
+
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
 `Génération de courant {0} UE/s à {1}% de niveau de lumière.
 [br]Puissance maximale {2} UE/s.`
@@ -2839,6 +2950,11 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_D
 Nous sommes également disponibles sur Discord et sur nos forums, n'hésitez pas à venir nous dire bonjour ! :)[br][br]
 Si vous rencontrez la moindre difficulté ou désirez signaler un bug, nous sommes là pour vous aider !`
 
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description2:
+`Nous vous remercions d'avoir accordé votre confiance à CryoFall. Notre petit studio s'est consacré corps et âme plusieurs années durant à la concrétisation de ce projet. Amusez-vous bien ![br][br]
+Nous demeurons disponibles sur Discord et sur nos forums, passez donc nous dire bonjour ! :)[br][br]
+Si vous rencontrez des difficultés ou que vous souhaitez nous signaler un problème, nous restons à votre écoute et sommes prêts à vous aider !`
+
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
 Un dernier mot
 
@@ -2867,7 +2983,7 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_T
 Véhicules
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-Nous aimerions présenter certaines des fonctionnalités que vous allez découvrir dans le jeu ! CryoFall est toujours en cours de développement, mais les éléments suivants sont déjà opérationnels :
+Avant que vous ne commenciez, nous souhaiterions vous présenter certaines des fonctionnalités que vous trouverez en jeu, et vous offrir un aperçu global de ce qu'est CryoFall !
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
 Bienvenue à CryoFall !

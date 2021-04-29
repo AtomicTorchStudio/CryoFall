@@ -8,6 +8,8 @@
     /// </summary>
     public class FactionScoreFactionLevel : ProtoFactionScoreMetric
     {
+        public override string Description => "The higher the faction level is, the more points are awarded!";
+
         public override double FinalScoreCoefficient => 3000;
 
         public override string Name => "Faction level";

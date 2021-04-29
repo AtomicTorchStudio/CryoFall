@@ -428,8 +428,6 @@
                 return;
             }
 
-            ServerItemUseObserver.NotifyItemUsed(itemOwnerCharacter, item);
-
             this.ItemFuelConfig.SharedTryConsumeFuel(item, data.PrivateState, data.DeltaTime, out var isFuelRanOut);
             if (isFuelRanOut)
             {
@@ -483,6 +481,11 @@
             publicState.IsActive = setIsActive;
             this.ServerSetUpdateRate(item, isRare: !setIsActive);
             Logger.Info($"Player switched light mode: {item}, isActive={setIsActive}", character);
+
+            if (setIsActive)
+            {
+                ServerItemUseObserver.NotifyItemUsed(character, item);
+            }
         }
     }
 

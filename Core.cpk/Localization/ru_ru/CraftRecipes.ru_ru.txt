@@ -46,9 +46,6 @@ Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBott
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Перелить бензин из канистры в двигатель-генератор
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Литиевые соли из экстрактора литиевой руды
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Наполнить канистру нефтью из нефтекачалки
 
@@ -66,4 +63,7 @@ Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Наполнить бутылку водой из колодца
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Переработка компонентов реактора
 

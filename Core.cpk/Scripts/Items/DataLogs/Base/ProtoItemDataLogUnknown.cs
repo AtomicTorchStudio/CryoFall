@@ -25,8 +25,6 @@
 
         private IReadOnlyList<IProtoItemDataLog> dataLogCandidates;
 
-        public override ITextureResource Icon => null;
-
         public string ItemUseCaption => ItemUseCaptions.Decrypt;
 
         public override ushort MaxItemsPerStack => ItemStackSize.Medium;
@@ -45,6 +43,11 @@
         }
 
         protected abstract void PrepareDataLogCandidates(ItemDataLogList candidates);
+
+        protected override ITextureResource PrepareIcon()
+        {
+            return null;
+        }
 
         protected sealed override void PrepareProtoItem()
         {

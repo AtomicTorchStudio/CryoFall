@@ -30,7 +30,7 @@
             compatibleAmmoProtos = null;
 
             overrideDamageDescription = new DamageDescription(
-                damageValue: 10,
+                damageValue: 15,
                 armorPiercingCoef: 0,
                 finalDamageMultiplier: 1,
                 rangeMax: 1.35,
@@ -44,9 +44,10 @@
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
         {
-            if (RandomHelper.RollWithProbability(0.05))
+            if (RandomHelper.RollWithProbability(0.10))
             {
                 damagedCharacter.ServerAddStatusEffect<StatusEffectBleeding>(intensity: 0.1);
+                damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.15);
             }
         }
     }

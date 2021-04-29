@@ -103,7 +103,7 @@
         /// <summary>
         /// Gets the item icon.
         /// </summary>
-        public abstract ITextureResource Icon { get; }
+        public ITextureResource Icon { get; private set; }
 
         /// <summary>
         /// Returns true if this item could be stacked (has count more than 1 per item slot).
@@ -120,6 +120,11 @@
         public override string ShortId { get; }
 
         public ReadOnlySoundPreset<ItemSound> SoundPresetItem { get; private set; }
+
+        public virtual ITextureResource ClientGetIcon(IItem item)
+        {
+            return this.Icon;
+        }
 
         public void ClientItemHotbarSelectionChanged(IItem item, bool isSelected, bool isByPlayer)
         {
@@ -246,6 +251,10 @@
             }
         }
 
+        public virtual void ServerOnItemContainerSlotChanged(IItem item, ICharacter byCharacter)
+        {
+        }
+
         public void ServerOnSplitItem(IItem itemFrom, IItem newItem, int countSplit)
         {
             ValidateIsServer();
@@ -309,6 +318,27 @@
             return false;
         }
 
+        protected static string SharedGetRelativeFolderPath(Type type, Type baseType)
+        {
+            var ns = type.Namespace;
+            var defaultNamespace = baseType.Namespace;
+
+            if (string.Equals(ns, defaultNamespace))
+            {
+                return string.Empty;
+            }
+
+            // ReSharper disable once PossibleNullReferenceException
+            if (!ns.StartsWith(defaultNamespace))
+            {
+                throw new Exception(
+                    "Namespace for " + type.FullName + " must start with base class namespace: " + defaultNamespace);
+            }
+
+            var folderPath = ns.Substring(defaultNamespace.Length + 1).Replace('.', '/');
+            return folderPath;
+        }
+
         protected virtual void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)
         {
         }
@@ -356,8 +386,20 @@
             }
         }
 
+        protected virtual string GenerateIconPath()
+        {
+            var type = this.GetType();
+            var folderPath = SharedGetRelativeFolderPath(type, typeof(ProtoItem<,,>));
+            return $"Items/{folderPath}/{type.Name}";
+        }
+
         protected virtual void PrepareHints(List<string> hints)
         {
+        }
+
+        protected virtual ITextureResource PrepareIcon()
+        {
+            return new TextureResource(this.GenerateIconPath());
         }
 
         /// <summary>
@@ -367,7 +409,15 @@
         /// </summary>
         protected sealed override void PrepareProto()
         {
-            base.PrepareProto();
+            var icon = this.PrepareIcon();
+            if (icon is ITextureAtlasResource iconAtlas
+                && icon is not ITextureAtlasChunkResource)
+            {
+                // use the first chunk of the atlas texture
+                icon = iconAtlas.Chunk(0, 0);
+            }
+
+            this.Icon = icon;
 
             var type = this.GetType();
             this.isUsableItem = type.HasOverride(nameof(ClientItemUseStart),     isPublic: false)

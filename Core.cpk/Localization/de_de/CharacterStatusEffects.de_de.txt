@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+Behandelbar mit {0}.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 Du hast Stimulanzien zu dir genommen. Deine Ausdauerregeneration ist beschleunigt.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Du verhungerst!
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Hunger
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+Du hast eine großflächige offene Wunde davongetragen. Diese Art von ernsthafter Verletzung bedarf einer eingehenden medizinischen Behandlung.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+Schwere Schnittverletzung
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 Du warst einem extrem hohen Grad an Radioaktivität ausgesetzt. Die Zellen deines Körpers haben begonnen zu mutieren. Das kann nicht gut sein! Versuche fortan, dich von verstrahltem Gebiet fernzuhalten.

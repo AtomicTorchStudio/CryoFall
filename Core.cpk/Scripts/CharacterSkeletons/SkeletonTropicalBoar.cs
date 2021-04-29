@@ -20,14 +20,14 @@
         public override SkeletonResource SkeletonResourceFront { get; }
             = new("TropicalBoar/Front");
 
-        public override double WorldScale => 0.3;
+        public override double WorldScale => 0.35;
 
         protected override string SoundsFolderPath => "Skeletons/Boar";
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {
-            shadowRenderer.PositionOffset = (0, -0.01 * scaleMultiplier);
-            shadowRenderer.Scale = 0.65 * scaleMultiplier;
+            shadowRenderer.PositionOffset = (0, 0.01 * scaleMultiplier);
+            shadowRenderer.Scale = 0.7 * scaleMultiplier;
         }
 
         public override void CreatePhysics(IPhysicsBody physicsBody)

@@ -142,11 +142,11 @@ Dégradation d'implant après dégâts subis
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 Vitesse de dégradation d'implant posé
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-Vitesse de consommation de nourriture
+Scripts/Base/Stats/StatName@HungerRate:
+Aggravation de la faim
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-Vitesse de consommation d'eau
+Scripts/Base/Stats/StatName@ThirstRate:
+Aggravation de la soif
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Régénération de charge d'énergie (par minute)
@@ -186,6 +186,9 @@ Dégâts continus
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Impossible de manger ou de boire
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+Vision basse luminosité
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Gain de Points d'apprentissage

@@ -6,9 +6,15 @@
 
     public class StatusEffectToxins : ProtoStatusEffect
     {
+        // double damage to creatures as they have way more HP in comparison to player characters
+        public const double DamageMultiplierPvE = 5.0;
+
         public const double DamagePerSecondBase = 0.2;
 
         public const double DamagePerSecondByIntensity = 0.3;
+
+        // 5x faster effect to creatures as nobody in their sane mind will wait 5 minutes to kill a wolf
+        public const double EffectDecaySpeedMultiplierPvE = 5.0;
 
         public override string Description =>
             "You have been exposed to dangerous toxins. Use anti-toxin medicine to prevent further health loss.";
@@ -39,9 +45,40 @@
                                        + intensityToAdd * intensityToAdd);
         }
 
+        protected override void ServerOnAutoDecreaseIntensity(StatusEffectData data)
+        {
+            var intensity = data.Intensity;
+            if (intensity <= 0)
+            {
+                if (!data.StatusEffect.IsDestroyed)
+                {
+                    data.Intensity = 0;
+                }
+
+                return;
+            }
+
+            var delta = this.IntensityAutoDecreasePerSecondValue * data.DeltaTime;
+            if (data.Character.IsNpc)
+            {
+                // faster effect's decay for creatures
+                delta *= EffectDecaySpeedMultiplierPvE;
+            }
+
+            intensity -= delta;
+
+            data.Intensity = intensity;
+        }
+
         protected override void ServerUpdate(StatusEffectData data)
         {
-            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity) * data.DeltaTime;
+            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity)
+                         * data.DeltaTime;
+            if (data.Character.IsNpc)
+            {
+                // more damage to creatures
+                damage *= DamageMultiplierPvE;
+            }
 
             data.CharacterCurrentStats.ServerReduceHealth(damage, data.StatusEffect);
         }

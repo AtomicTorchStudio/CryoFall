@@ -13,7 +13,7 @@
             var colums = grid.ColumnDefinitions;
             var children = grid.Children;
 
-            colums.Add(new ColumnDefinition() { Width = GridLength.Auto, MinWidth = 80 });
+            colums.Add(new ColumnDefinition() { Width = GridLength.Auto });
             colums.Add(new ColumnDefinition() { Width = new GridLength(5) });
             colums.Add(new ColumnDefinition() { Width = GridLength.Auto });
 

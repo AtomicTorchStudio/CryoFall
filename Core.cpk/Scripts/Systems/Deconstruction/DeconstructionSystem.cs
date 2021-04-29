@@ -40,8 +40,12 @@
         public static void ClientTryStartAction()
         {
             var worldObject = ClientWorldObjectInteractHelper.ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure protoObjectStructure)
-                || !protoObjectStructure.ConfigRepair.IsAllowed)
+            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
+            {
+                return;
+            }
+
+            if (!SharedIsDeconstructable(protoObjectStructure))
             {
                 return;
             }
@@ -148,6 +152,11 @@
                                                                       checkRaidblock: true);
         }
 
+        public static bool SharedIsDeconstructable(IProtoObjectStructure protoObjectStructure)
+        {
+            return protoObjectStructure.ConfigRepair.IsAllowed;
+        }
+
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
         {
             if (worldObject is null)
@@ -160,9 +169,14 @@
                 return;
             }
 
-            if (!(worldObject.ProtoGameObject is IProtoObjectStructure))
+            if (!(worldObject.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
             {
                 throw new Exception("Not a structure: " + worldObject);
+            }
+
+            if (!SharedIsDeconstructable(protoObjectStructure))
+            {
+                throw new Exception("Not deconstructable: " + worldObject);
             }
 
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);

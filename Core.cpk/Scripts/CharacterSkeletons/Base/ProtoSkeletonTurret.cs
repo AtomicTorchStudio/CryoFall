@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons.Mech;
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -188,6 +189,12 @@
             this.textureResourceTop = new TextureResource(path + "Top");
             this.textureResourceBottom = new TextureResource(path + "Bottom");
             this.textureResourceBarrel = new TextureResource(path + "Barrel");
+        }
+
+        protected override ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()
+        {
+            // no character sounds for turrets
+            return new SoundPreset<CharacterSound>();
         }
     }
 }

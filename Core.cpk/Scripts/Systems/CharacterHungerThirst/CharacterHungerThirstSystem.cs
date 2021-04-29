@@ -134,8 +134,8 @@
                 }
 
                 // apply stat effects
-                waterDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(WaterConsumptionSpeedMultiplier);
-                foodDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(FoodConsumptionSpeedMultiplier);
+                waterDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(ThirstRate);
+                foodDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(HungerRate);
 
                 // calculate decrease values
                 var waterDecrease = WaterDecreasePerSecond * TimeIntervalSeconds * waterDecreaseMultiplier;

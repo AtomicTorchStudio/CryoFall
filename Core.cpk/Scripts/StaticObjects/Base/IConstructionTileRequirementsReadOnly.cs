@@ -10,6 +10,7 @@
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort tilePosition,
             ICharacter character,
+            out string errorMessage,
             bool logErrors);
 
         bool Check(ConstructionTileRequirements.Context context, out string errorMessage);

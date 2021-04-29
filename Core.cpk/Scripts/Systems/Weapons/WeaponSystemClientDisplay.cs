@@ -38,6 +38,7 @@
             ObjectMaterial objectMaterial,
             bool randomizeHitPointOffset,
             bool randomRotation,
+            double? rotationAngleRad,
             DrawOrder drawOrder,
             double scale = 1.0,
             double animationFrameDuration = 2 / 60.0)
@@ -46,7 +47,9 @@
             sceneObject.Position = worldObjectPosition;
             var hitPoint = hitData.HitPoint.ToVector2D();
 
-            if (!hitData.IsCliffsHit)
+            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
+            if (!hitData.IsCliffsHit
+                && randomizeHitPointOffset)
             {
                 // move hitpoint a bit closer to the center of the object
                 hitPoint = WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
@@ -56,7 +59,6 @@
                     isRangedWeapon: randomizeHitPointOffset);
             }
 
-            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
             if (projectilesCount == 1
                 && randomizeHitPointOffset
                 && sparksEntry.AllowRandomizedHitPointOffset)
@@ -87,6 +89,10 @@
             if (randomRotation)
             {
                 componentSpriteRender.RotationAngleRad = (float)(RandomHelper.NextDouble() * 2 * Math.PI);
+            }
+            else if (rotationAngleRad.HasValue)
+            {
+                componentSpriteRender.RotationAngleRad = (float)(rotationAngleRad.Value - Math.PI / 2);
             }
 
             var componentAnimator = sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
@@ -253,21 +259,35 @@
                                                              objectMaterial,
                                                              worldObjectPosition);
 
-                        if (weaponTracePreset is not null)
+                        if (weaponTracePreset is null)
                         {
-                            ClientAddHitSparks(weaponTracePreset.HitSparksPreset,
-                                               hitData,
-                                               hitWorldObject,
-                                               protoWorldObject,
-                                               worldObjectPosition,
-                                               projectilesCount,
-                                               objectMaterial,
-                                               randomizeHitPointOffset: !weaponTracePreset.HasTrace,
-                                               randomRotation: !weaponTracePreset.HasTrace,
-                                               drawOrder: weaponTracePreset.DrawHitSparksAsLight
-                                                              ? DrawOrder.Light
-                                                              : DrawOrder.Default);
+                            return;
                         }
+
+                        var randomRotation = !weaponTracePreset.HasTrace;
+                        double? angleRad = null;
+                        if (!randomRotation)
+                        {
+                            var deltaPos = endPosition - worldPositionSource;
+                            ComponentWeaponTrace.CalculateAngleAndDirection(deltaPos,
+                                                                            out var angleRadLocal,
+                                                                            out _);
+                            angleRad = angleRadLocal;
+                        }
+
+                        ClientAddHitSparks(weaponTracePreset.HitSparksPreset,
+                                           hitData,
+                                           hitWorldObject,
+                                           protoWorldObject,
+                                           worldObjectPosition,
+                                           projectilesCount,
+                                           objectMaterial,
+                                           randomizeHitPointOffset: !weaponTracePreset.HasTrace,
+                                           randomRotation: randomRotation,
+                                           rotationAngleRad: angleRad,
+                                           drawOrder: weaponTracePreset.DrawHitSparksAsLight
+                                                          ? DrawOrder.Light
+                                                          : DrawOrder.Default);
                     });
 
                 static Vector2D CalculateWorldObjectPosition(IWorldObject worldObject, WeaponHitData hitData)

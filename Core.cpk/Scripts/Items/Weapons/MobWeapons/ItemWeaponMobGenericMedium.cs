@@ -49,6 +49,11 @@
                 damagedCharacter.ServerAddStatusEffect<StatusEffectBleeding>(intensity: 0.1);
                 damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.15);
             }
+
+            if (RandomHelper.RollWithProbability(0.02))
+            {
+                damagedCharacter.ServerAddStatusEffect<StatusEffectLaceration>(intensity: 0.25);
+            }
         }
     }
 }

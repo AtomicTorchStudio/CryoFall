@@ -128,6 +128,8 @@
 
         public ViewModelStructuresSelectList StructuresList { get; private set; }
 
+        public int TotalStructuresCountIncludingLocked { get; private set; }
+
         public Visibility VisibilityBuildButtons { get; set; } = Visibility.Visible;
 
         public Visibility VisibilityPleaseEquipTool { get; set; } = Visibility.Visible;
@@ -204,6 +206,8 @@
             if (hasSearchText)
             {
                 structuresEnumeration = ProtoSearchHelper.SearchProto(structuresEnumeration, search);
+                // don't display this number while searching
+                this.TotalStructuresCountIncludingLocked = 0;
             }
             else
             {
@@ -212,6 +216,9 @@
                 {
                     structuresEnumeration = structuresEnumeration.Where(s => s.Category == category);
                 }
+
+                this.TotalStructuresCountIncludingLocked = StructuresHelper.AllConstructableStructures
+                                                                           .Count(s => s.Category == category);
             }
 
             //// uncomment for scrollviewer test (long list of all structures in game)

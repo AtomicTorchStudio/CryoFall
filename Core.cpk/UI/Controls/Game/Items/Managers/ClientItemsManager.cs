@@ -45,26 +45,23 @@
                     // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                     clientInputContextDropItem = ClientInputContext
                                                  .Start("Drop item from hand to ground")
-                                                 .HandleAll(
-                                                     () =>
-                                                     {
-                                                         if (ClientInputManager.IsButtonDown(
-                                                             GameButton.ActionUseCurrentItem))
-                                                         {
-                                                             ClientInputManager.ConsumeButton(
-                                                                 GameButton.ActionUseCurrentItem);
-                                                             TryPlaceItemInHandOnGround();
-                                                         }
-                                                         else if (ClientInputManager.IsButtonDown(
-                                                             GameButton.ActionInteract))
-                                                         {
-                                                             if (TryPlaceItemInHandOnGround(count: 1))
-                                                             {
-                                                                 ClientInputManager.ConsumeButton(
-                                                                     GameButton.ActionInteract);
-                                                             }
-                                                         }
-                                                     });
+                                                 .HandleAll(ProcessInputCallback);
+                }
+
+                static void ProcessInputCallback()
+                {
+                    if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
+                    {
+                        ClientInputManager.ConsumeButton(GameButton.ActionUseCurrentItem);
+                        TryPlaceItemInHandOnGround();
+                    }
+                    else if (ClientInputManager.IsButtonDown(GameButton.ActionInteract))
+                    {
+                        if (TryPlaceItemInHandOnGround(count: 1))
+                        {
+                            ClientInputManager.ConsumeButton(GameButton.ActionInteract);
+                        }
+                    }
                 }
             }
         }
@@ -122,6 +119,28 @@
             ItemInHand = HandContainer.GetItemAtSlot(0);
         }
 
+        private static async void TryDropItemToGroundAsync(IItem item, ushort countToDrop, Vector2Ushort tilePosition)
+        {
+            if (await ObjectGroundItemsContainer.ClientTryDropItemOnGround(item,
+                                                                           countToDrop,
+                                                                           tilePosition,
+                                                                           showNotifications: false))
+            {
+                return;
+            }
+
+            if (item.IsDestroyed)
+            {
+                return;
+            }
+
+            // simply drop in the character's position or anywhere nearby (like Alt+RMB click)
+            await ObjectGroundItemsContainer.ClientTryDropItemOnGround(item,
+                                                                       countToDrop,
+                                                                       dropTilePosition: null,
+                                                                       showNotifications: true);
+        }
+
         private static bool TryPlaceItemInHandOnGround(ushort? count = null)
         {
             if (Api.Client.UI.GetVisualInPointedPosition() is not null)
@@ -154,10 +173,7 @@
                 return false;
             }
 
-            ObjectGroundItemsContainer.ClientTryDropItemOnGround(item,
-                                                                 countToDrop,
-                                                                 tilePosition);
-
+            TryDropItemToGroundAsync(item, countToDrop, tilePosition);
             return true;
         }
     }

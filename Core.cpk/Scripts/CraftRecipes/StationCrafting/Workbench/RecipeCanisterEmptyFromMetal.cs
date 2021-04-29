@@ -19,10 +19,10 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemIngotCopper>(count: 2);
-            inputItems.Add<ItemIngotIron>(count: 2);
+            inputItems.Add<ItemIngotCopper>(count: 5);
+            inputItems.Add<ItemIngotIron>(count: 5);
 
-            outputItems.Add<ItemCanisterEmpty>(count: 1);
+            outputItems.Add<ItemCanisterEmpty>(count: 5);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",

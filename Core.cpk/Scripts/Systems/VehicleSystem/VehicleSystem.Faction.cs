@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -32,6 +33,8 @@
 
                 publicState.ClanTag = null;
                 Logger.Important("Faction-owned vehicle returned to non-faction ownership: " + vehicle);
+
+                WorldObjectOwnersSystem.ServerOnOwnersChanged(vehicle);
             }
         }
 
@@ -77,6 +80,8 @@
             //privateState.Owners.Clear(); // keep the original owners list in case the faction is dissolved
             privateState.FactionAccessMode = WorldObjectFactionAccessModes.AllFactionMembers;
             Logger.Important($"Vehicle transferred to faction ownership: {vehicle} - [{clanTag}]", character);
+
+            WorldObjectOwnersSystem.ServerOnOwnersChanged(vehicle);
         }
     }
 }

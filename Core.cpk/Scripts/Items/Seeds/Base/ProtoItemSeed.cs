@@ -18,7 +18,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -44,14 +43,7 @@
 
         private IConstructionTileRequirementsReadOnly tileRequirementsPlantPlacement;
 
-        protected ProtoItemSeed()
-        {
-            this.Icon = new TextureResource("Items/Seeds/" + this.GetType().Name);
-        }
-
         public IReadOnlyList<IProtoObjectFarm> AllowedToPlaceAtFarmObjects { get; private set; }
-
-        public override ITextureResource Icon { get; }
 
         /// <summary>
         /// By default max stack size is "Medium".
@@ -71,11 +63,13 @@
             ICharacter character,
             bool logErrors,
             out bool canPlace,
-            out bool isTooFar)
+            out bool isTooFar,
+            out string errorMessage)
         {
             canPlace = this.tileRequirementsPlantPlacement.Check(this.ObjectPlantProto,
                                                                  tilePosition,
                                                                  character,
+                                                                 errorMessage: out errorMessage,
                                                                  logErrors);
             if (!canPlace)
             {
@@ -103,6 +97,11 @@
         protected override void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)
         {
             ClientSeedPlacerHelper.Setup(data.Item, data.IsSelected);
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Seeds/" + this.GetType().Name;
         }
 
         protected sealed override void PrepareProtoItem()
@@ -198,7 +197,8 @@
                 character,
                 logErrors: true,
                 canPlace: out var canPlace,
-                isTooFar: out var isTooFar);
+                isTooFar: out var isTooFar,
+                errorMessage: out _);
             if (!canPlace || isTooFar)
             {
                 return;

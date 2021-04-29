@@ -42,8 +42,6 @@
 
         public override string Name => "Heavy autocannon";
 
-        public override double ReadyDelayDuration => 0;
-
         public override double SpecialEffectProbability => 0.1;
 
         public override string WeaponAttachmentName => "TurretLeft";

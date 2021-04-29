@@ -30,6 +30,7 @@
         {
             base.WindowOpening();
             this.viewModel.RemoveNewFlagFromTheExpandedQuests();
+            this.viewModel.IsCurrentQuestsTabSelected = true;
         }
     }
 }

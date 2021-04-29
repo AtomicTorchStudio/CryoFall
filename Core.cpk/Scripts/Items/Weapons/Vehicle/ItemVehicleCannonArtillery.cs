@@ -41,8 +41,6 @@
         // this way shells will have 12 tile radius + the shell itself has an explosion radius
         public override double RangeMultiplier => 1.2;
 
-        public override double ReadyDelayDuration => 0;
-
         public override string WeaponAttachmentName => "TurretLeft";
 
         public override VehicleWeaponHardpoint WeaponHardpoint => VehicleWeaponHardpoint.Large;
@@ -63,6 +61,11 @@
             }
 
             return false;
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Weapons/Ranged/" + this.GetType().Name;
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

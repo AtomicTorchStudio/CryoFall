@@ -41,6 +41,11 @@
         Deselect,
 
         /// <summary>
+        /// Item deselected in hotbar.
+        /// </summary>
+        DeselectOnEmpty,
+
+        /// <summary>
         /// Item cannot be selected.
         /// </summary>
         CannotSelect,

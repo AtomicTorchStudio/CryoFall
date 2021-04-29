@@ -59,6 +59,7 @@
         private static void OnValidate(
             Vector2Ushort tilePosition,
             bool logErrors,
+            out string errorMessage,
             out bool canPlace,
             out bool isTooFar)
         {
@@ -67,7 +68,8 @@
                 Api.Client.Characters.CurrentPlayerCharacter,
                 logErrors: logErrors,
                 canPlace: out canPlace,
-                isTooFar: out isTooFar);
+                isTooFar: out isTooFar,
+                errorMessage: out errorMessage);
         }
     }
 }

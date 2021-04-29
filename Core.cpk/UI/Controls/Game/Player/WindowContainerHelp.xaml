@@ -24,13 +24,13 @@
 
     <core:GameWindow x:Name="GameWindow"
                      Background="{StaticResource WindowBackgroundLessTransparentBrush}"
-                     Width="510"
+                     Width="530"
                      FocusOnControl="{Binding ElementName=GameWindow}"
-                     Padding="20,10">
+                     Padding="15,10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="30" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>

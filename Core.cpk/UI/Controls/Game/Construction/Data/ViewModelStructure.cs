@@ -47,6 +47,8 @@
 
         public string DescriptionUpgrade => this.ProtoStructure.DescriptionUpgrade;
 
+        public double FactionWealthScorePoints => this.ProtoStructure?.FactionWealthScorePoints ?? 0;
+
         public Brush Icon { get; }
 
         public bool IsCanBuild { get; private set; }

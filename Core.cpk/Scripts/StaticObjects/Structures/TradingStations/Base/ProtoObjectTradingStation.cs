@@ -1,9 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations
 {
-    using System;
     using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -16,7 +13,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -193,12 +189,7 @@
             void RefreshAppearance()
             {
                 rendererTradingStationContent.TextureResource
-                    = new ProceduralTexture(
-                        this.Id + " ID=" + worldObject.Id,
-                        isTransparent: true,
-                        isUseCache: true,
-                        generateTextureCallback:
-                        request => this.ClientGenerateProceduralTextureForTradingStationContent(publicState, request));
+                    = TradingStationTextureHelper.CreateProceduralTexture(worldObject);
             }
         }
 
@@ -263,61 +254,6 @@
 
         // Generate texture containing text.
         // For text rendering we will use UI.
-        private async Task<ITextureResource> ClientGenerateProceduralTextureForTradingStationContent(
-            TPublicState publicState,
-            ProceduralTextureRequest request)
-        {
-            var rendering = Client.Rendering;
-            var renderingTag = request.TextureName;
-
-            var qualityScaleCoef = rendering.CalculateCurrentQualityScaleCoefWithOffset(-1);
-            var scale = 1.0 / qualityScaleCoef;
-
-            var controlWidth = (int)Math.Floor(90 * (this.LotsCount / 2.0));
-            var controlHeight = 268;
-            // create and prepare UI renderer for the sign text to render
-            var control = new ObjectTradingStationDisplayControl
-            {
-                IsBuyMode = publicState.Mode == TradingStationMode.StationBuying,
-                TradingLots = publicState.Lots
-                                         .Select(l => new TradingStationsMapMarksSystem.TradingStationLotInfo(l))
-                                         .ToArray(),
-                Width = controlWidth,
-                Height = controlHeight,
-                LayoutTransform = new ScaleTransform(scale, scale)
-            };
-
-            var textureSize = new Vector2Ushort((ushort)(scale * controlWidth),
-                                                (ushort)(scale * controlHeight));
-
-            // create camera and render texture
-            var renderTexture = rendering.CreateRenderTexture(renderingTag,
-                                                              textureSize.X,
-                                                              textureSize.Y);
-            var cameraObject = Client.Scene.CreateSceneObject(renderingTag);
-            var camera = rendering.CreateCamera(cameraObject,
-                                                renderingTag,
-                                                drawOrder: -200);
-            camera.RenderTarget = renderTexture;
-            camera.SetOrthographicProjection(textureSize.X, textureSize.Y);
-
-            rendering.CreateUIElementRenderer(
-                cameraObject,
-                control,
-                size: textureSize,
-                renderingTag: renderingTag);
-
-            await camera.DrawAsync();
-            cameraObject.Destroy();
-
-            request.ThrowIfCancelled();
-
-            var generatedTexture = await renderTexture.SaveToTexture(isTransparent: true,
-                                                                     qualityScaleCoef: qualityScaleCoef);
-            renderTexture.Dispose();
-            request.ThrowIfCancelled();
-            return generatedTexture;
-        }
     }
 
     public abstract class ProtoObjectTradingStation

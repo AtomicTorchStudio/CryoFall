@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
@@ -159,6 +160,7 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedLand);
             category = GetCategory<StructureCategoryElectricity>();
 
             build.StagesCount = 10;

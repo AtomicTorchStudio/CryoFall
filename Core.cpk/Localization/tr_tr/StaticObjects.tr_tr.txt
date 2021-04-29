@@ -124,6 +124,9 @@ Titreşim bombası
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Yatak patlaması
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Pragmium reaktör patlaması
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Pragmium kaynağı patlaması
 
@@ -593,6 +596,9 @@ Tamamen otomatik hafif taret.
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Hafif taret
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Başka bir tarete çok yakın
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Kapalı
 
@@ -707,6 +713,12 @@ Bu büyük jeneratör elektrik enerjisi üretmek için benzin yakıtı kullanır
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Motor jeneratörü
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Büyük bir pragmium enerji santrali dev bir üsse gereken bütün enerjiyi sağlayabilir ama istikrarlı bir pragmium tedariğine ihtiyaç duyar.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Pragmium enerji santrali
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Güneş enerjisi üretimi için temel bir tesis. Çalışmak için bireysel güneş panelleri gerektirir.
 
@@ -718,6 +730,12 @@ Bu jeneratör sıcak buharı kullanarak türbini döndürür ve elektrik üretir
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Buhar jeneratörü
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Reaktörü başlatmak için en az bir {0} koy.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+Reaktör başlatılamıyor
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Diğer hayatta kalanların bu bölgede bir şey inşa etmelerini veya yıkmalarını engelleyerek üssünü daha güvenli hâle getirir. Alan tutucu aynı zamanda yapılarının zamanla zayıflamasını da engeller.

@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
 
     /// <summary>
     /// Item prototype for device equipment.
@@ -28,14 +27,7 @@
 
         public const string NotificationCannotUseDirectly_Title = "Cannot use directly";
 
-        protected ProtoItemEquipmentDevice()
-        {
-            this.Icon = new TextureResource("Items/Devices/" + this.GetType().Name);
-        }
-
         public sealed override EquipmentType EquipmentType => EquipmentType.Device;
-
-        public override ITextureResource Icon { get; }
 
         public abstract bool OnlySingleDeviceOfThisProtoAppliesEffect { get; }
 
@@ -74,6 +66,11 @@
 
         protected sealed override void ClientItemUseStart(ClientItemData data)
         {
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Devices/" + this.GetType().Name;
         }
 
         protected sealed override void PrepareDefense(DefenseDescription defense)

@@ -6,6 +6,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -14,8 +15,15 @@
     {
         public static readonly string[] EmptySuggestions = new string[0];
 
-        private static readonly Dictionary<Type, BaseConsoleCommandParameterType> ParameterTypes =
-            new();
+        private static readonly Dictionary<Type, BaseConsoleCommandParameterType> ParameterTypes = new();
+
+        static ConsoleCommandsParametersHelper()
+        {
+            foreach (var type in Api.Shared.FindScriptingTypes<BaseConsoleCommandParameterType>())
+            {
+                Register(type.CreateInstance());
+            }
+        }
 
         /// <summary>
         /// Extracts segments from text.

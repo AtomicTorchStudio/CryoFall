@@ -20,21 +20,21 @@
 
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
-            var itemClothHelmet = Api.GetProtoEntity<ItemClothHelmet>();
-            var itemClothArmor = Api.GetProtoEntity<ItemClothArmor>();
+            var protoItemClothHelmet = Api.GetProtoEntity<ItemClothHelmet>();
+            var protoItemClothArmor = Api.GetProtoEntity<ItemClothArmor>();
 
             tasks
                 .Add(TaskHaveTechNode.Require<TechNodeClothArmor>())
                 // suggest cloth hat but require any head item
                 .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentHead>(
                                              string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                                           itemClothHelmet.Name))
-                                         .WithIcon(itemClothHelmet.Icon))
+                                                           protoItemClothHelmet.Name))
+                                         .WithIcon(protoItemClothHelmet.Icon))
                 // suggest cloth armor but require any armor item
                 .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentArmor>(
                                              string.Format(TaskHaveItemEquipped.DescriptionFormat,
-                                                           itemClothArmor.Name))
-                                         .WithIcon(itemClothArmor.Icon));
+                                                           protoItemClothArmor.Name))
+                                         .WithIcon(protoItemClothArmor.Icon));
 
             prerequisites
                 .Add<QuestUnlockAndBuildWorkbench>();

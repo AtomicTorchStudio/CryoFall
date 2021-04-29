@@ -42,8 +42,6 @@
             this.CharacterTextureResource = new TextureResource(
                 "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
-
-            this.Icon = new TextureResource("Items/Fishing/" + this.GetType().Name);
         }
 
         public virtual TextureResource CharacterTextureResource { get; }
@@ -51,8 +49,6 @@
         public abstract Vector2F FishingLineStartScreenOffset { get; }
 
         public abstract double FishingSpeedMultiplier { get; }
-
-        public override ITextureResource Icon { get; }
 
         public Control ClientCreateHotbarOverlayControl(IItem item)
         {
@@ -103,6 +99,11 @@
             }
 
             FishingSystem.Instance.ClientTryStartAction();
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Fishing/" + this.GetType().Name;
         }
 
         protected sealed override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

@@ -23,7 +23,7 @@
 
         public override double StatDefaultHealthMax => 120;
 
-        public override double StatMoveSpeed => 1.8;
+        public override double StatMoveSpeed => 2.3;
 
         protected override void FillDefaultEffects(Effects effects)
         {

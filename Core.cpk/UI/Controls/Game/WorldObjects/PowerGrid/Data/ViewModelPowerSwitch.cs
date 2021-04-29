@@ -312,7 +312,8 @@
 
         private void RefreshPowerAmountText()
         {
-            if (this.IsDisposed)
+            if (this.IsDisposed
+                || !this.worldObject.ClientHasPrivateState)
             {
                 return;
             }

@@ -35,6 +35,12 @@
         [DescriptionTooltip(CoreStrings.Faction_Permission_LandClaimManagement_Tooltip)]
         LandClaimManagement = 1 << 5,
 
+        [Description("Vehicle access management")]
+        VehicleAccessManagement = 1 << 6,
+
+        [Description("Base S.H.I.E.L.D. management")]
+        BaseShieldManagement = 1 << 7,
+
         /// <summary>
         /// Special entry for the leader (full access rights).
         /// </summary>

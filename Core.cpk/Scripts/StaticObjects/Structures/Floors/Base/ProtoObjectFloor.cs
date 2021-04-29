@@ -42,11 +42,15 @@
         /// </summary>
         public abstract GroundSoundMaterial GroundSoundMaterial { get; }
 
+        public override bool IsActivatesRaidblockOnDestroy => false;
+
         public override bool IsRepeatPlacement => true;
 
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
         public sealed override double ObstacleBlockDamageCoef => 0;
+
+        public override ushort RelocationToolDurabilityCost => 1;
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
@@ -156,7 +160,7 @@
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
-                .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
+                .Add(LandClaimSystem.ValidatorIsOwnedLand)
                 .Add(LandClaimSystem.ValidatorNoRaid)
                 .Add(LandClaimSystem.ValidatorNoShieldProtection);
 

@@ -33,8 +33,6 @@
 
         public sealed override uint DurabilityMax => 0;
 
-        public sealed override ITextureResource Icon => null;
-
         public sealed override string Name { get; }
 
         public override (float min, float max) SoundPresetWeaponDistance
@@ -50,6 +48,11 @@
         public double ServerGetDamageToTree(IStaticWorldObject targetObject)
         {
             return this.DamageToTree;
+        }
+
+        protected override ITextureResource PrepareIcon()
+        {
+            return null;
         }
 
         protected sealed override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

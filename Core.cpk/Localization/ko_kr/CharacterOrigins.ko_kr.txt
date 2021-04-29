@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+은하 공화국은 인류 문명의 핵심이자 은하계의 주요 세력이며, 지구를 중심에 두고 있습니다. 공화국에 있는 여러 세계는 동등한 투표권을 지니고 있으며, 은하법을 따라야 합니다. 그러나 이러한 부분을 제외하고는 각 세계는 자신들의 정책과 이익에 따라 대부분 독자적으로 움직입니다.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+은하 공화국
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+독립 세계는 공화국에 합류하지 않기로 한 국가들로, 각자 자신들의 정책과 군사에 대한 완전한 통제권을 가지고 있습니다. 그러나 정치적 그리고 경제적 압력에 의해 이 세계들은 여전히 21세기의 작은 도시국가들과 마찬가지로 은하 공화국과 밀접하게 연결되어 있습니다. 어떤 사람들은 독립 세계를 변두리 세계로 부르곤 합니다.
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+독립 세계
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+외면 보호국은 중심 행성 바깥 주변에 형성되어 있으며, 대부분 저개발된 산업 세계로 이루어져 있습니다. 이러한 세계들은 일반적으로는 다수 대기업의 정책을 따르며, 경제적 이익에 주도되는, 느슨한 연합으로 이어져 있습니다. 은하 공화국이 팽창하면서 외면 보호국은 결국 공화국의 정식 회원으로 흡수됩니다.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+외면 보호국
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+이사회는 이념적 분쟁으로 공화국을 떠난 여러 세계로 구성된 고립주의 파벌로, 독립적이면서 꽤나 상당한 세력으로 성장하였습니다. 공화국 중심부에서 바깥쪽 가장자리에 위치해 있으며, 사방이 공화국으로 둘러싸여 있습니다. 이사회는 수백 년 동안 공화국과 무역이나 외교 관계가 거의 없는 냉전 상태를 유지하고 있습니다.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+이사회
+

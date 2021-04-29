@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 12 kalibre tuz fişeği
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-Çeşitli hedeflere karşı kullanılabilen yivsiz mühimmat, saçma fişeklerinden çok daha iyi durdurma gücü sağlar. Büyük kütlesi nedeniyse ağır zırhlı hedeflere karşı oldukça kullanışlıdır.
+Saçmalar, çoğu tür düşmana karşı kullanlabilecek çok amaçlı mühimmatlardır. Yüksek kitleleri sebebiyle iyi zırhlı hedeflere karşı bile çok etkilidir.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 12 kalibre yivsiz mühimmat
@@ -111,6 +111,12 @@ Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 Yanıcı bomba
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+Küçük cam kapsüllere konulmuş sıvı keinite. Egzotik silahlar için kullanılır.
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+Keinite mermisi
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Temel ateşli silah mühimmatı. Yalnızca zayıf hedefler için uygun, fakat üretilmesi ucuz ve kolay.
@@ -187,6 +193,9 @@ Implantlar sadece tıbbi istasyonda kurulabilir.
 Scripts/Items/Base/ItemHints@NeverConsumed:
 Hiç tüketilmedi
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+Bu eşya bir pragmium reaktörüne kurulabilir.
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Bu eşya kullanılan güç bankalarından enerji alır.
 
@@ -241,6 +250,12 @@ Bu kullanışlı avcılık aletleri canlıları yağmalamağı hızlandırır.
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Avcılık aletleri
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+Belli başlı yerli yaşam formlarından ve mutasyonlu hayvanlardan düşük seviye keinite çıkarabilen özel silah.
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+Keinite çıkarıcısı
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 Uzun mesafeli nişan almayı kolaylaştırmak için kullanılan küçük lazer hedef belirleyicisi.
 
@@ -258,6 +273,12 @@ Standart çift yönlü taşınabilir güç kaynağı. Hareket halindeyken kullan
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Standart taşınabilir güç kaynağı
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+Bu slot geçici olarak dronun dönmesi için ayrılmıştır.
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+Ayrılmış slot
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 Gelişmiş dron uzaktan kumandası
@@ -1443,10 +1464,10 @@ Scripts/Items/Generic/ItemGlue@Name:
 Tutkal
 
 Scripts/Items/Generic/ItemGoldNugget@Description:
-Arıtılmamış küçük altın külçeleri.
+Arıtılmamış küçük altın parçaları.
 
 Scripts/Items/Generic/ItemGoldNugget@Name:
-Altın külçeleri
+Altın parçaları
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Description:
 Toprağı bütünleyici özel higroskopik tanecikler. Bu tanecikler havadaki nemi çekerek bitkinin suya olan ihtiyacını ortadan kaldırır.
@@ -1489,6 +1510,18 @@ Yüksek miktarda karbon içeren endüstriyel çelik.
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Çelik külçe
+
+Scripts/Items/Generic/ItemKeinite@Description:
+Yabancı bir kaynağı olan aşırı değerli egzotik madde. En modern bilimsel projelerde kendine yer bulur.
+
+Scripts/Items/Generic/ItemKeinite@Name:
+Keinite
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+Saf, rafine olmayan keinite. Kullanılmadan önce işlemden geçmesi gerekir.
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+Saf keinite
 
 Scripts/Items/Generic/ItemLeather@Description:
 Hayvan derisi. Zırh yapımı için kullanışlı olabilir.
@@ -1600,18 +1633,6 @@ Gıda koruyucu. Paketlenmiş yiyeceklere eklenebilir, çok daha uzun süre dayan
 
 Scripts/Items/Generic/ItemPreservative@Name:
 Koruyucu
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-Pragmium gibi reaktif enerji taşıyıcıyla doldurulabilecek boş bir reaktör çekirdeği.
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-Boş reaktör çekirdeği
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-Pragmium dolu reaktör çekirdeği. Kısmen stabil, taşınabilir ve uzun süreli güç kaynağı.
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-Pragmium reaktör çekirdeği
 
 Scripts/Items/Generic/ItemRice@Description:
 Hasat edilmiş pirinç taneleri. Ekim için de hazırlanabilir, çeşitli yemekler için de pişirilebilir.
@@ -1868,6 +1889,12 @@ Yapay kemik ve kafatası geliştirmeleri. Kullanıcının sersemlemesini ve kemi
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 İçiskeletsel güçlendirme implantı
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+Büyük bir damara bağlanan ve kandan çeşitli toksinleri ve zehirleri temizleyen özel bir organ.
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+Toksin filtre implantı
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 Vücutta kontrol dışı mutasyon saptanmadı.
 
@@ -2116,6 +2143,48 @@ Güç artırıcı ilaç, seni geçici olarak güçlendirerek, fiziksel işleri d
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Küçük güç artışı
 
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+Reaktör modüllerinden biri bozulduktan sonra kalan hurda.
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+Bozuk reaktör modulü
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+Reaktörün dışında emilen psiyonik radyasyonu kısmen bloklayan özel bir çok katmanlı kalkan.
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+Psionic yansıtıcı
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+Reaktör çekirdeiğinin içinde psionic radyasyon yayan ve güç çıktısını azaltarak yakıt ömrünü uzatan özel bir aygıt.
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+Psionic yayıcı
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+Reaktör yanıtını ek psionic hareket kontrolleri ekleyerek ve reaktör başlangıç ve kapanış zamanlarını hızlandırarak artırır.
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+Psionic akım değiştirici
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+Pragmium dolu reaktör çekirdeği. Kısmen stabil, taşınabilir ve uzun süreli güç kaynağı.
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+Pragmium yakıt hücresi
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+Pragmiumla doldurulabilecek boş reaktör yakıt hücresi.
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+Boş yakıt hücresi
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+Reaktör çekirdeğinin içindeki psionic alanların ayarlarıyla oynayarak çıktıyı artırır.
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+Psionic moderator
+
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Bir ağacın fidanı. Ağaç olarak yetiştirmek için ekilebilir.
 
@@ -2199,6 +2268,9 @@ Birçok ışınlanma noktalarından birinin koordinatlarını ve navigasyon frek
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 Işınlanma konumu verisi
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+Tüm ışınlanma konumlarını zaten keşfettin.
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Demir balta ağaçları kesmek için oldukça iyidir. Taş baltadan daha hızlı ve dayanıklıdır.
@@ -2520,6 +2592,18 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Hafif makineli tüfek
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Mermi yerine düşmanların üstüne küçük böcek gibi yaratıklar ateşleyen egzotik silah.
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Sürü atıcı
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Düşmana toksin atmak için sıvı keinite kullanan egzotik silah.
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Toksin kümesi
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Mekanize savaş zırhlarında kullanılması için yapılmış ağır otomatik top. Yüksek kalibreli, anti-materyal mermisi kullanır.

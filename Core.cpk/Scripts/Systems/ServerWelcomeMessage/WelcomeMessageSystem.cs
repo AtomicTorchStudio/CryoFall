@@ -160,7 +160,7 @@
             {
                 serverWelcomeMessageText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.WelcomeMessageText);
                 serverDescriptionText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.DescriptionMessageText);
-                Api.Server.Database.TryGet(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
+                Server.Database.TryGet(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
                                            ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
                                            out DateTime? wipeDateUtc);
 
@@ -407,7 +407,7 @@
             }
 
             ServerScheduledWipeDateUtc = dateTime;
-            Api.Server.Database.Set(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
+            Server.Database.Set(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
                                     ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
                                     ServerScheduledWipeDateUtc);
             Logger.Important("Next scheduled wipe date changed: "

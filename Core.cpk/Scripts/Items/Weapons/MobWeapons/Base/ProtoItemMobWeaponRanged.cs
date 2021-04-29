@@ -29,8 +29,6 @@
 
         public override uint DurabilityMax => 0;
 
-        public override ITextureResource Icon => null;
-
         public override bool IsLoopedAttackAnimation => false;
 
         public override string Name => this.ShortId;
@@ -61,6 +59,11 @@
         public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {
             return character.ProtoCharacter is IProtoCharacterMob;
+        }
+
+        protected override ITextureResource PrepareIcon()
+        {
+            return null;
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

@@ -46,9 +46,6 @@ Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBott
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 将罐子中的汽油倒入发电机
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-从锂矿萃取器中获得锂盐
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 用油泵中的原油装满容器
 
@@ -66,4 +63,7 @@ Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 用井水装满瓶子
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+反应堆元件回收
 

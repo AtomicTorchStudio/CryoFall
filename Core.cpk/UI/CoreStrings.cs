@@ -178,6 +178,9 @@
 
         public const string ConstructionMetaInfo_ElectricityPowerStorage = "This structure stores electricity.";
 
+        public const string ConstructionMetaInfo_FactionWealthScorePoints_Format =
+            "This structure provides +{0} faction score points.";
+
         // an info message for a structure that cannot be relocated in the base once it's built
         public const string ConstructionMetaInfo_Unmovable =
             "This structure is unmovable once built.";
@@ -407,6 +410,25 @@
         public const string Faction_DialogSubmitApplication_Message_Format =
             "Important: You're about to submit an application to join [b]{0}[/b].";
 
+        public const string Faction_DialogTransferLandClaimToFaction =
+            @"The whole [b]base[/b] (possibly consisting of several land claims) will be transferred to the faction ownership.
+              [br]
+              [br]Only faction members with the [b]land claim access management[/b] permission will be able to build, repair, and deconstruct structures inside the base. They can also configure access to doors, walls, and other structures.
+              [br]
+              [br][b]Please note:[/b] You [b]cannot return[/b] the base back from the faction ownership once it's transferred.";
+
+        public const string Faction_DialogTransferLandClaimToFaction_PotentialAccessLoss =
+            "[b]Attention:[/b] Players that are not members of your faction but have access to any of the land claims within this base [b]will lose access[/b] to it [b]COMPLETELY[/b]. To access the base they will need to join the faction.";
+
+        public const string Faction_DialogTransferVehicleToFaction =
+            @"If you transfer the vehicle to faction ownership, your faction members will be able to use it.
+              [br]Only faction members with the vehicle access management permission will be able to configure access to it.
+              [br]
+              [br][b]Please note:[/b] You [b]cannot return[/b] the vehicle back from the faction ownership once it's transferred.";
+
+        public const string Faction_DialogTransferVehicleToFaction_PotentialAccessLoss =
+            "[b]Attention:[/b] Players that are not members of your faction but have access to the vehicle [b]will lose access[/b] to it [b]COMPLETELY[/b]. To access the vehicle they will need to join the faction.";
+
         public const string Faction_Diplomacy = "Diplomacy";
 
         public const string Faction_Diplomacy_AllianceRequest_AcceptIncoming = "Accept alliance proposal";
@@ -450,6 +472,10 @@
         public const string Faction_Diplomacy_WarDeclarations = "War declarations";
 
         public const string Faction_Diplomacy_WithdrawWarDeclaration = "Withdraw war declaration";
+
+        public const string Faction_DonateLearningPoints_Button = "Donate LP";
+
+        public const string Faction_DonateLearningPoints_Label = "Select your donation:";
 
         public const string Faction_ErrorDontHaveFaction
             = "You are not a member of any faction.";
@@ -530,7 +556,12 @@
 
         public const string Faction_Leaderboard_NextUpdateIn = "Next update in:";
 
+        public const string Faction_Leaderboard_NoteScorePersistence =
+            "Please note: Faction score is persistent and cannot be changed by kicking existing members, leaving the faction, or inviting new members.";
+
         public const string Faction_Leaderboard_Rank = "Leaderboard rank";
+
+        public const string Faction_Leaderboard_TotalScore = "Total score";
 
         public const string Faction_LeaderField = "Leader:";
 
@@ -539,6 +570,8 @@
         public const string Faction_Level = "Level";
 
         public const string Faction_Level_Format = "Level: [b]{0}[/b]";
+
+        public const string Faction_LevelUpgradeProgress = "Progress:";
 
         public const string Faction_MaxMembers_Format = "Maximum members: [b]{0}[/b]";
 
@@ -551,15 +584,15 @@
 
         public const string Faction_NotAcceptingApplications = "Not accepting applications";
 
-        public const string Faction_NotificationCurrentPlayerApproved_Format
-            = "{0} has approved you to join {1}! Welcome!";
+        public const string Faction_NotificationCurrentPlayerApproved_Format =
+            "{0} has approved you to join {1}! Welcome!";
 
-        public const string Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format
-            = "{0} has removed you from the faction.";
+        public const string Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format =
+            "{0} has removed you from the faction.";
 
         // Displayed to player when kicked from the faction due to low reputation (killing members/allies).
-        public const string Faction_NotificationCurrentPlayerRemoved_LowStanding
-            = "You were automatically removed from the faction due to low standing.";
+        public const string Faction_NotificationCurrentPlayerRemoved_LowStanding =
+            "You were automatically removed from the faction due to low standing.";
 
         public const string Faction_NotificationCurrentPlayerStandingDecreased_Description =
             "Killing faction members and allies decreases your standing in the current faction.";
@@ -572,7 +605,7 @@
         public const string Faction_Permission_LandClaimManagement_Title = "Land claim management";
 
         public const string Faction_Permission_LandClaimManagement_Tooltip =
-            "Construction and deconstruction within the faction land claim area. Also: assigning access rights, upgrading claims, accessing land claim safe storage, activating S.H.I.E.L.D., transferring claims to faction.";
+            "Construction and deconstruction within the faction land claim area. Also: assigning access rights, managing land claims, transferring claims to faction.";
 
         public const string Faction_Permission_Required_Format = "Faction permission {0} required.";
 
@@ -773,6 +806,8 @@
 
         public const string MenuCharacterCreation_CanChangeAppearanceLater =
             "You can change your appearance later in the equipment menu.";
+
+        public const string MenuCharacterCreation_OriginSelection = "Choose your character's origin";
 
         public const string MenuCharacterCreation_Title = "Choose your character's appearance";
 
@@ -1329,17 +1364,20 @@
 
         public const string StatusEffect_TitleIntensity = "Intensity";
 
-        public const string SteamAccountLinkingBenefitsDescription_Message =
-            @"[b]You can:[/b]
-              [*] Download and run a Steam-free copy of CryoFall and still have full access to your game with the same characters and servers.
-              [*] Get access to AtomicTorch's mailing list with notifications about upcoming features, new version launches and other goodies.
-              [*] Participate in private polls available to AtomicTorch users.
-              [br]
-              [br][b]Coming soon:[/b]
-              [*] Rent official cloud servers for CryoFall for you and your friends with the click of a button.";
+        public const string SteamAccountLinkingBenefitsDescription_Newsletters =
+            "[*] Get access to AtomicTorch Studio's mailing list with notifications about upcoming features, new version launches, and other goodies.";
+
+        public const string SteamAccountLinkingBenefitsDescription_PlayWithoutSteam =
+            "[*] Download and run a Steam-free copy of CryoFall and still have full access to your game with the same characters and servers.";
+
+        public const string SteamAccountLinkingBenefitsDescription_Polls =
+            "[*] Participate in private polls available to AtomicTorch users.";
 
         public const string SteamAccountLinkingBenefitsDescription_Title =
             "Why is linking to an AtomicTorch account recommended?";
+
+        public const string SteamAccountLinkingBenefitsDescription_YouCan =
+            "[b]You can:[/b]";
 
         public const string SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement =
             "I accept the [url=atomictorch.com/Pages/Terms-of-Service]Terms of Service[/url], including the [url=atomictorch.com/Pages/Privacy-Policy]Privacy Policy[/url]";
@@ -1520,6 +1558,15 @@
 
         public const string VehicleGarage_VehicleStatus_InWorld = "In the world";
 
+        public const string VehicleNameEditor_EnterName = "Enter name:";
+
+        // {0} is the min name length and {1} is the max length
+        public const string VehicleNameEditor_NameRequirements_Format
+            = "Custom name requirements: [b]{0}-{1}[/b] chars long.";
+
+        public const string VehicleNameEditor_VisibleToVehicleOwnersOnly
+            = "Visible only to the vehicle owners.";
+
         // build the selected vehicle
         public const string VehiclesAssemblyList_Button_Build = "Build";
 
@@ -1612,6 +1659,9 @@
 
         public const string WindowConstructionMenu_PlaceBlueprint = "Place blueprint";
 
+        // number of unlocked/researched structures
+        public const string WindowConstructionMenu_TitleStructuresUnlocked = "Structures unlocked";
+
         public const string WindowConstructionMenu_TotalRequired = "Total required";
 
         public const string WindowCrateIconSelector_CanPickIcon =
@@ -1630,6 +1680,33 @@
         public const string WindowDataLog_Location = "Location";
 
         public const string WindowDataLog_To = "To";
+
+        public const string WindowGeneratorPragmium_BuildReactor = "Build reactor";
+
+        public const string WindowGeneratorPragmium_ReactorState_Offline = "Reactor offline";
+
+        public const string WindowGeneratorPragmium_ReactorState_Operational = "Reactor operational";
+
+        public const string WindowGeneratorPragmium_ReactorState_ShuttingDown = "Reactor shutting down";
+
+        public const string WindowGeneratorPragmium_ReactorState_StartingUp = "Reactor starting up";
+
+        public const string WindowGeneratorPragmium_ReactorStats_EfficiencyMax = "Max efficiency:";
+
+        public const string WindowGeneratorPragmium_ReactorStats_FuelLifetime = "Fuel lifetime:";
+
+        public const string WindowGeneratorPragmium_ReactorStats_Output = "Output:";
+
+        public const string WindowGeneratorPragmium_ReactorStats_OutputMax = "Max output:";
+
+        public const string WindowGeneratorPragmium_ReactorStats_PsiEmissionLevelMax = "Max psi emission level:";
+
+        // startup/shutdown duration
+        public const string WindowGeneratorPragmium_ReactorStats_StartupShutdownTime = "Startup/shutdown time:";
+
+        public const string WindowGeneratorPragmium_StartReactor = "Start reactor";
+
+        public const string WindowGeneratorPragmium_StopReactor = "Stop reactor";
 
         public const string WindowGeneratorSolar_SolarPanelsTitle = "SOLAR PANELS";
 
@@ -1650,6 +1727,7 @@
         public const string WindowLandClaim_ManagedByFaction_Description =
             "Access to doors and other structures is determined by faction roles and permissions.";
 
+        // extra \\\\ are intended here to escape the clan tag brackets
         public const string WindowLandClaim_ManagedByFaction_Format =
             "This land claim is managed by [b]\\\\[{0}\\\\][/b] faction.";
 
@@ -1657,6 +1735,9 @@
             "The safe storage items are shared between all the land claim structures on this base.";
 
         public const string WindowLandClaim_TransferToFactionOwnership = "Transfer to faction ownership";
+
+        public const string WindowLandClaim_TransferToFactionOwnership_Description =
+            "You can share this land claim with your faction members if you transfer it to faction ownership.";
 
         public const string WindowLandClaim_UpgradingOnlyOwnerCanDo = "Only the owner can upgrade this structure.";
 
@@ -1785,6 +1866,9 @@
 
         public const string WindowsObjectVehicle_TabGarage = "Garage";
 
+        // custom vehicle name/title
+        public const string WindowsObjectVehicle_TabName_Title = "Custom name";
+
         public const string WindowsObjectVehicle_TabVehicleTitle = "Vehicle";
 
         public const string WindowSocial_OnlineNow = "Online now";
@@ -1814,6 +1898,7 @@
         public const string WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist =
             "You absolutely don't have to do it and can simply use your existing Steam account to play. However, there are certain benefits in doing so.";
 
+        // not used
         public const string WindowSteamAccountLinking_YouCanLinkYourSteam =
             "You can link your Steam account with your AtomicTorch.com account or create a new one.";
 
@@ -1931,10 +2016,6 @@
         public const string WorldMapMarkLandClaim_Tooltip_Owner =
             @"[b]Land claim[/b]
               [br]This is your land claim.";
-
-        public const string WorldMapMarkRaid_Tooltip =
-            @"[b]Base being raided[/b]
-              [br]Your base is under attack!";
 
         public const string WorldMapMarkResourceLithium_Infinite_Tooltip =
             @"[b]Infinite geothermal spring[/b]

@@ -33,8 +33,8 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
+            renderer.PositionOffset += (0, 0.35);
             renderer.DrawOrderOffsetY = 0.2;
-            renderer.PositionOffset += (0, 0.25);
         }
 
         protected override void PrepareConstructionConfig(
@@ -60,11 +60,10 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var yOffset = 0.25;
             data.PhysicsBody
-                .AddShapeRectangle((0.9, 0.6), offset: (0.05, yOffset))
-                .AddShapeRectangle((1, 1),     offset: (0, yOffset), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1, 1),     offset: (0, yOffset), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.95, 0.475), offset: (0.025, 0.4))
+                .AddShapeRectangle((0.95, 0.75),  offset: (0.025, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.95, 0.85),  offset: (0.025, 0.4), group: CollisionGroups.ClickArea);
         }
     }
 }

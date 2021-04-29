@@ -12,10 +12,14 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 工具箱が完成したので、技術メニューでアンロックしたさまざまな建築物を作ることができます。 食物を調理するのに使うキャンプファイヤーから始めましょう。
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] 操作方法を変更していなければ、"Tab"を押して[b]建築メニュー[/b]に素早くアクセスできます。
-[*] より多くの建築物をアンロックすると、さまざまな[b]建物類[/b]を[b]複数ページ[/b]にわたって確認することができます。
-[*] 工具箱は建物を[b]建築[/b]するためだけでなく、それらを修理するためにも使用できます。`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+[b]\[{0}\][/b]キーを押すと、[b]建築メニュー[/b]に素早くアクセスできます。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+建築物のアンロックに伴い、[b]建築物の種類[/b]が増えると建築メニューが[b]複数ページ[/b]にまたがります。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+工具箱は、建築物を建築するだけでなく、修理することもできます。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 キャンプファイヤーを設置
@@ -50,8 +54,8 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 材料がいくらかあるので、製作を始めましょう。まず、ロープを作り、次に斧を作ります。
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] キー設定を変更していないのであれば、"C"で製作メニューを開き、"E"でインベントリを開くことができます。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+製作メニューは[b]\[{0}\][/b]キーで、インベントリは[b]\[{1}\][/b]キーで素早く開くことができます。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 斧を作る
@@ -59,9 +63,11 @@ Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 さまざまな鉱物を採掘し、CryoFallの貴重な資源を入手できます。鉱物を採掘できるようにつるはしを作る必要があります。
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] 製作メニュー（デフォルトは"C"）でつるはしを作りましょう。
-[*] ロープがなければ、まずロープを作る必要があります。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+つるはしを作るには製作メニュー（[b]\[{0}\][/b]キー）を開きます。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+ロープがない場合は製作する必要があるかもしれません。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 つるはしを作る
@@ -358,13 +364,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 グリーンハーブを見つけて使う
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+学習ポイントは、あらゆる意味ある活動から得られるもので、スキルの経験値獲得に直接比例します。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+技術メニューは[b]\[{0}\][/b]キーで素早く呼び出すことができます。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+技術ノードの解除には、[b]LP[/b]（学習ポイント）が必要です。
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 より多くの建築物を造るためには、技術メニューの「基本建築」のロックを解除する必要があります。
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] 操作方法を変更していなければ、"G"を押すことで技術メニューに素早くアクセスできます。
-[*] 各技術のロックを解除するには、[b]LP[/b]（学習ポイント）が必要です。
-[*] 学習ポイントは様々な活動から得られ、スキル経験値が増えると共に獲得量が増えていきます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 基本的な建築技術を学ぶ

@@ -26,8 +26,6 @@
 
         public override double FireAnimationDuration => 0.6;
 
-        public override ITextureResource Icon => null;
-
         public override string Name => "No weapon";
 
         // TODO: the ready cooldown indicator is not displayed over the no-weapon slot
@@ -51,6 +49,11 @@
         protected override WeaponFireTracePreset PrepareFireTracePreset()
         {
             return WeaponFireTracePresets.NoWeapon;
+        }
+
+        protected override ITextureResource PrepareIcon()
+        {
+            return null;
         }
 
         protected override void PrepareProtoItem()

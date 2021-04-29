@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Vehicles
 {
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
@@ -74,7 +75,8 @@
                                 currentPlayerCharacter))
             {
                 return this.IsArmorBarDisplayedWhenPiloted
-                       && GeneralOptionDisplayHealthbarAboveCurrentCharacter.IsDisplay;
+                       && GeneralOptionDisplayHealthbarAboveCurrentCharacter.IsDisplay
+                       && currentPlayerCharacter.ProtoGameObject.GetType() == typeof(PlayerCharacter);
             }
 
             if (ClientInputManager.IsButtonHeld(GameButton.DisplayLandClaim)

@@ -19,7 +19,7 @@
 
         private ConsoleCommandVariant currentCommandVariant;
 
-        private IReadOnlyList<string> currentSuggestions;
+        private string[] currentSuggestions;
 
         private byte lastSuggestionRequestId;
 
@@ -39,6 +39,35 @@
         }
 
         public bool IsSuggestionMode { get; private set; }
+
+        public void CompleteSuggestionIfNecessary()
+        {
+            if (this.currentSuggestions is null
+                || this.currentSuggestions.Length == 0)
+            {
+                return;
+            }
+
+            ConsoleCommandParser.ParseCommandNameAndArguments(
+                this.inputTextBox.Text,
+                (ushort)this.inputTextBox.CaretIndex,
+                out _,
+                out var parsedArguments,
+                out var parsedArgumentIndexForSuggestion);
+
+            if (parsedArguments.Length == 0
+                || parsedArgumentIndexForSuggestion < 0)
+            {
+                return;
+            }
+
+            // autocomplete the current entry
+            var suggestedText = this.currentSuggestions.Length > 0
+                                    ? this.currentSuggestions[this.suggestionCurrentIndex]
+                                    : string.Empty;
+
+            this.SetSuggestedText(suggestedText);
+        }
 
         public void ExitSuggestionMode(bool resetSuggestions)
         {
@@ -73,7 +102,7 @@
         public bool SelectSuggestion(bool isPreviousSuggestion, int itemsDistance = 1)
         {
             if (this.currentSuggestions is null
-                || this.currentSuggestions.Count <= 0)
+                || this.currentSuggestions.Length == 0)
             {
                 return false;
             }
@@ -87,7 +116,7 @@
                     if (itemsDistance == 1)
                     {
                         // cycle from end
-                        this.suggestionCurrentIndex = this.currentSuggestions.Count - 1;
+                        this.suggestionCurrentIndex = this.currentSuggestions.Length - 1;
                     }
                     else
                     {
@@ -100,7 +129,7 @@
             {
                 // switch forward
                 this.suggestionCurrentIndex += itemsDistance;
-                if (this.suggestionCurrentIndex > this.currentSuggestions.Count - 1)
+                if (this.suggestionCurrentIndex > this.currentSuggestions.Length - 1)
                 {
                     if (itemsDistance == 1)
                     {
@@ -110,14 +139,14 @@
                     else
                     {
                         // stuck in beginning
-                        this.suggestionCurrentIndex = this.currentSuggestions.Count - 1;
+                        this.suggestionCurrentIndex = this.currentSuggestions.Length - 1;
                     }
                 }
             }
 
             this.viewModelConsoleControl.SuggestionsListSelectedItemIndex = this.suggestionCurrentIndex;
 
-            var suggestedText = this.currentSuggestions.Count > 0
+            var suggestedText = this.currentSuggestions.Length > 0
                                     ? this.currentSuggestions[this.suggestionCurrentIndex]
                                     : string.Empty;
 
@@ -235,6 +264,35 @@
             this.textBlockSuggestionGhost.Text = stringBuilder.ToString();
         }
 
+        private int FindCurrentSuggestionIndex()
+        {
+            if (this.currentSuggestions is null
+                || this.currentSuggestions.Length == 0)
+            {
+                return 0;
+            }
+
+            ConsoleCommandParser.ParseCommandNameAndArguments(
+                this.inputTextBox.Text,
+                (ushort)this.inputTextBox.CaretIndex,
+                out _,
+                out var parsedArguments,
+                out var parsedArgumentIndexForSuggestion);
+
+            if (parsedArguments.Length == 0
+                || parsedArgumentIndexForSuggestion < 0)
+            {
+                return 0;
+            }
+
+            var currentArgument = parsedArguments[parsedArgumentIndexForSuggestion];
+            return Math.Max(0,
+                            Array.FindIndex(this.currentSuggestions,
+                                            s => string.Equals(s,
+                                                               currentArgument,
+                                                               StringComparison.OrdinalIgnoreCase)));
+        }
+
         /// <summary>
         /// Request suggestions - it will return matched command variant and current parameter suggestions.
         /// </summary>
@@ -253,9 +311,6 @@
 
                 return;
             }
-
-            //this.currentSuggestions = null;
-            //this.viewModelConsoleControl.SetSuggestions(null);
 
             this.lastText = text;
             var textPosition = (ushort)this.inputTextBox.CaretIndex;
@@ -373,15 +428,19 @@
             {
                 var sortedSuggestions = new List<string>(suggestions);
                 sortedSuggestions.Sort(StringComparer.OrdinalIgnoreCase);
-                this.currentSuggestions = sortedSuggestions;
+                this.currentSuggestions = sortedSuggestions.ToArray();
             }
             else
             {
                 this.currentSuggestions = null;
             }
 
-            this.suggestionCurrentIndex = 0;
+            this.suggestionCurrentIndex = this.FindCurrentSuggestionIndex();
             this.viewModelConsoleControl.SetSuggestions(this.currentSuggestions);
+            if (this.currentSuggestions is not null)
+            {
+                this.viewModelConsoleControl.SuggestionsListSelectedItemIndex = this.suggestionCurrentIndex;
+            }
 
             if (!this.IsSuggestionMode)
             {
@@ -390,14 +449,14 @@
             }
 
             // select suggested text
-            var suggestion = this.currentSuggestions?.Count > 0
+            var suggestion = this.currentSuggestions?.Length > 0
                                  ? this.currentSuggestions[this.suggestionCurrentIndex]
                                  : string.Empty;
 
             this.SetSuggestedText(suggestion);
 
             if (this.currentSuggestions is not null
-                && this.currentSuggestions.Count == 1)
+                && this.currentSuggestions.Length == 1)
             {
                 // reset suggestions as there are no other suggestions except the one which was set right now
                 this.ExitSuggestionMode(resetSuggestions: true);

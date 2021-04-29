@@ -92,18 +92,25 @@
                                         <ContentPresenter />
                                     </ControlTemplate>
                                 </Button.Template>
-                                <Rectangle x:Name="Icon"
-                                           Fill="{TemplateBinding BrushNormal}"
-                                           Width="40"
-                                           Height="40" />
+                                <Grid>
+                                    <Rectangle x:Name="IconNormal"
+                                               Fill="{TemplateBinding BrushNormal}"
+                                               Width="40"
+                                               Height="40" />
+                                    <Rectangle x:Name="IconHighlighted"
+                                               Fill="{TemplateBinding BrushHighlighted}"
+                                               Width="40"
+                                               Height="40"
+                                               Visibility="Hidden" />
+                                </Grid>
                             </Button>
+
                             <Border x:Name="BorderDisabled"
                                     BorderThickness="1,0,1,1"
                                     CornerRadius="0,0,5,5"
                                     Background="#88555555"
                                     BorderBrush="#88555555"
                                     Visibility="Collapsed" />
-
                             <!-- Content presenter cannot be used here due to DataContext binding issue -->
                             <ContentControl Content="{TemplateBinding BadgeContent}"
                                             HorizontalAlignment="Right"
@@ -120,9 +127,12 @@
                             </Trigger>
 
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Icon"
-                                        Property="Fill"
-                                        Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter TargetName="IconNormal"
+                                        Property="Visibility"
+                                        Value="Hidden" />
+                                <Setter TargetName="IconHighlighted"
+                                        Property="Visibility"
+                                        Value="Visible" />
                                 <Setter Property="Background"
                                         Value="{StaticResource HUDButtonBackgroundSelected}" />
                                 <Setter Property="BorderBrush"
@@ -370,8 +380,10 @@
                     <hud:HUDButtonBadgeControl>
                         <hud:HUDButtonBadgeControl.Number>
                             <MultiBinding Converter="{StaticResource ValuesAdditionMultiConverter}">
-                                <Binding Path="MenuInstance.DataContext.ReceivedApplicationsCount" />
-                                <Binding Path="MenuInstance.DataContext.IncomingAllianceRequestsCount" />
+                                <Binding Path="MenuInstance.DataContext.ReceivedApplicationsCount"
+                                         FallbackValue="0" />
+                                <Binding Path="MenuInstance.DataContext.IncomingAllianceRequestsCount"
+                                         FallbackValue="0" />
                             </MultiBinding>
                         </hud:HUDButtonBadgeControl.Number>
                     </hud:HUDButtonBadgeControl>

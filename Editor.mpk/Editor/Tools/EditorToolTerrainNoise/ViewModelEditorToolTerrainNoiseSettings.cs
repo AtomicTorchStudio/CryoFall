@@ -84,7 +84,7 @@
                 }
 
                 // round to 0.01 precision
-                value = (int)(value * 100) / 100d;
+                value = (int)(value * 100) / 100.0;
 
                 if (value == this.noiseProbability)
                 {
@@ -112,7 +112,7 @@
 
         private void ExecuteCommandApply()
         {
-            Api.Client.UI.BlurFocus();
+            Client.UI.BlurFocus();
 
             try
             {

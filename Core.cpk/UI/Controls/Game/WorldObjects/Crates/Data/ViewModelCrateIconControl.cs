@@ -44,6 +44,7 @@
             {
                 var icon = ClientCrateIconHelper.GetIcon(this.publicState.IconSource);
                 return icon is not null
+                       && !TextureResource.NoTexture.Equals(icon)
                            ? Api.Client.UI.GetTextureBrush(icon)
                            : null;
             }

@@ -37,6 +37,15 @@ Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Scripts/Characters/Mobs/MobHyena@Name:
 Гиена
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+Кабан-мутант
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+Гиена-мутант
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+Волк-мутант
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 Панголин
 

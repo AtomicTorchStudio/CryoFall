@@ -141,7 +141,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1"
-                    Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Visibility="{Binding CanCreateParty, Converter={StaticResource BoolToVisibilityConverter}}"
                     Orientation="Vertical"
                     Margin="0,2,0,0">
             <!-- Text: You don't have a party yet... -->
@@ -156,6 +156,19 @@
                     Focusable="False"
                     Margin="0,13,0,0" />
         </StackPanel>
+
+        <Grid Grid.Row="1"
+              Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+              Margin="0,2,0,0">
+            <core:FormattedTextBlock Text="{x:Static loc:CoreStrings.FeatureDisabledForCurrentServer}"
+                                     Visibility="{Binding CanCreateParty, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                     Foreground="{StaticResource BrushColor5}"
+                                     FontSize="11"
+                                     LineHeight="12"
+                                     LineStackingStrategy="BlockLineHeight"
+                                     TextWrapping="Wrap"
+                                     HorizontalAlignment="Left" />
+        </Grid>
 
     </Grid>
 </base:BaseUserControl>

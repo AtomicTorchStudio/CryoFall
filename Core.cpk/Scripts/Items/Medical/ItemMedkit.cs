@@ -19,9 +19,10 @@
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.70) // 70 seconds (70hp)
+                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.80) // 80 seconds (80hp)
                 .WillAddEffect<StatusEffectHealingFast>(intensity: 0.10) // 1 seconds (+10 HP each second)
                 .WillRemoveEffect<StatusEffectBleeding>()
+                .WillRemoveEffect<StatusEffectLaceration>()
                 .WillRemoveEffect<StatusEffectNausea>()
                 // adds splinted leg status effect when player has a broken leg status effect
                 .WillAddEffect<StatusEffectSplintedLeg>(

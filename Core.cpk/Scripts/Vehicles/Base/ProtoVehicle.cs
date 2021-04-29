@@ -28,6 +28,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleNamesSystem;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
@@ -204,7 +205,8 @@
 
         public override string ClientGetTitle(IWorldObject worldObject)
         {
-            return this.Name;
+            return VehicleNamesSystem.ClientTryGetVehicleName(worldObject.Id)
+                   ?? this.Name;
         }
 
         public override void ClientOnServerPhysicsUpdate(
@@ -601,9 +603,9 @@
                 if (isRunning)
                 {
                     var moveSpeedMultiplier = this.StatMoveSpeedRunMultiplier;
-                    if (moveSpeedMultiplier > 0)
+                    if (moveSpeedMultiplier > 1.0)
                     {
-                        moveSpeed = moveSpeed * moveSpeedMultiplier;
+                        moveSpeed *= moveSpeedMultiplier;
                     }
                     else
                     {
@@ -924,12 +926,14 @@
 
         public bool SharedPlayerHasRequiredItemsToBuild(ICharacter character, bool allowIfAdmin = true)
         {
-            return SharedPlayerHasRequiredItems(this.BuildRequiredItems, character, allowIfAdmin);
+            return InputItemsHelper.SharedPlayerHasRequiredItems(character, this.BuildRequiredItems, allowIfAdmin);
         }
 
         public bool SharedPlayerHasRequiredItemsToRepair(ICharacter character, bool allowIfAdmin = true)
         {
-            return SharedPlayerHasRequiredItems(this.RepairStageRequiredItems, character, allowIfAdmin);
+            return InputItemsHelper.SharedPlayerHasRequiredItems(character,
+                                                                 this.RepairStageRequiredItems,
+                                                                 allowIfAdmin);
         }
 
         protected virtual ITextureResource ClientCreateIcon()
@@ -1354,30 +1358,6 @@
             IDynamicWorldObject gameObject,
             out ProtoCharacterSkeleton protoSkeleton,
             ref double scale);
-
-        private static bool SharedPlayerHasRequiredItems(
-            IReadOnlyList<ProtoItemWithCount> requiredItems,
-            ICharacter character,
-            bool allowIfAdmin)
-        {
-            if (allowIfAdmin
-                && CreativeModeSystem.SharedIsInCreativeMode(character))
-            {
-                return true;
-            }
-
-            foreach (var requiredItem in requiredItems)
-            {
-                if (!character.ContainsItemsOfType(requiredItem.ProtoItem, requiredItem.Count))
-                {
-                    // some item is not available
-                    return false;
-                }
-            }
-
-            // all required items are available
-            return true;
-        }
 
         private void ClientRemote_OnVehicleBuiltByOtherPlayer(Vector2D position)
         {

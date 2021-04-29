@@ -19,7 +19,8 @@
             return new[]
             {
                 this.Character.SharedGetPlayerContainerInventory(),
-                this.Character.SharedGetPlayerContainerHotbar()
+                this.Character.SharedGetPlayerContainerHotbar(),
+                this.Character.SharedGetPlayerContainerEquipment()
             };
         }
     }

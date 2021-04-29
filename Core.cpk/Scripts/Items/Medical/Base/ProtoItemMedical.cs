@@ -18,7 +18,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -38,11 +37,6 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemMedical()
-        {
-            this.Icon = new TextureResource("Items/Medical/" + this.GetType().Name);
-        }
-
         public override bool CanBeSelectedInVehicle => true;
 
         public abstract double CooldownDuration { get; }
@@ -54,8 +48,6 @@
         public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public virtual float HealthRestore => 0;
-
-        public override ITextureResource Icon { get; }
 
         public string ItemUseCaption => ItemUseCaptions.Use;
 
@@ -125,6 +117,11 @@
             {
                 controls.Add(ItemTooltipInfoEffectActionsControl.Create(this.Effects));
             }
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Medical/" + this.GetType().Name;
         }
 
         protected virtual void PrepareEffects(EffectActionsList effects)

@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -65,6 +66,13 @@
                 throw new Exception("Not a gatherable resource: " + worldObject);
             }
 
+            if (IsServer)
+            {
+                WorldObjectClaimSystem.ServerTryClaim(staticWorldObject,
+                                                      character,
+                                                      WorldObjectClaimDuration.RegularObjects);
+            }
+
             var durationSeconds = protoGatherable.DurationGatheringSeconds;
             var multiplier = protoGatherable.GetGatheringSpeedMultiplier(staticWorldObject, character);
             durationSeconds /= multiplier;
@@ -82,8 +90,8 @@
 
         protected override void SharedValidateRequest(WorldActionRequest request)
         {
-            var worldObject = request.WorldObject;
-            if (!(worldObject?.ProtoWorldObject is IProtoObjectGatherable))
+            var worldObject = (IStaticWorldObject)request.WorldObject;
+            if (!(worldObject?.ProtoWorldObject is IProtoObjectGatherable protoGatherable))
             {
                 throw new Exception("The world object must be gatherable");
             }
@@ -93,23 +101,27 @@
                 throw new Exception("Cannot interact with " + worldObject);
             }
 
-            if (!(worldObject.ProtoGameObject is IProtoObjectGatherable protoGatherable))
+            if (!WorldObjectClaimSystem.SharedIsAllowInteraction(request.Character,
+                                                                 worldObject,
+                                                                 showClientNotification: true))
             {
-                throw new Exception("Not a gatherable resource: " + worldObject);
+                throw new Exception("Locked for another player: " + worldObject);
             }
 
-            if (!protoGatherable.SharedIsCanGather((IStaticWorldObject)worldObject))
+            if (protoGatherable.SharedIsCanGather(worldObject))
             {
-                Logger.Warning("Cannot gather now: " + worldObject, request.Character);
-                if (Api.IsClient)
-                {
-                    CannotInteractMessageDisplay.ShowOn(worldObject, NotificationNothingToHarvestYet);
-                    worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                               .PlaySound(ObjectSound.InteractFail);
-                }
-
-                throw new Exception("Cannot gather now: " + worldObject);
+                return;
             }
+
+            Logger.Warning("Cannot gather now: " + worldObject, request.Character);
+            if (Api.IsClient)
+            {
+                CannotInteractMessageDisplay.ShowOn(worldObject, NotificationNothingToHarvestYet);
+                worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
+                           .PlaySound(ObjectSound.InteractFail);
+            }
+
+            throw new Exception("Cannot gather now: " + worldObject);
         }
     }
 }

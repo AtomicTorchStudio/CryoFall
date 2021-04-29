@@ -1,15 +1,20 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player
 {
     using System.Windows;
+    using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.CharacterOrigins;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStyle;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelWindowInventory : BaseViewModel
@@ -21,6 +26,8 @@
         private bool isActive;
 
         private bool isHeadEquipmentDisplayed;
+
+        private ProtoCharacterOrigin protoOrigin;
 
         public ViewModelWindowInventory(FrameworkElement controlSkeletonView = null)
         {
@@ -41,6 +48,21 @@
 
             var publicState = ClientCurrentCharacterHelper.PublicState;
             this.isHeadEquipmentDisplayed = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers;
+
+            var privateState = ClientCurrentCharacterHelper.PrivateState;
+            this.protoOrigin = privateState.Origin;
+
+            privateState.ClientSubscribe(
+                _ => _.Origin,
+                _ =>
+                {
+                    this.protoOrigin = privateState.Origin;
+                    this.NotifyPropertyChanged(nameof(this.OriginTitle));
+                    this.NotifyPropertyChanged(nameof(this.OriginDescription));
+                    this.NotifyPropertyChanged(nameof(this.OriginIcon));
+                    this.NotifyPropertyChanged(nameof(this.OriginStatsDictionary));
+                },
+                this);
         }
 
         public BaseCommand CommandOpenHelpMenu
@@ -126,6 +148,14 @@
         public bool IsHeadSlotBlocked { get; private set; }
 
         public string ItemInHandUseText { get; private set; }
+
+        public string OriginDescription => this.protoOrigin?.Description;
+
+        public Brush OriginIcon => Api.Client.UI.GetTextureBrush(this.protoOrigin?.Icon);
+
+        public IReadOnlyStatsDictionary OriginStatsDictionary => this.protoOrigin?.Effects;
+
+        public string OriginTitle => this.protoOrigin?.Name;
 
         protected override void DisposeViewModel()
         {

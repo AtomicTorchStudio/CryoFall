@@ -437,12 +437,12 @@
             }
         }
 
-        private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
+        private static void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
         {
             var logMessage = string.Format(isOnline
                                                ? PlayerWentOnlineChatMessageFormat
                                                : PlayerWentOfflineChatMessageFormat,
-                                           playerCharacter.Name);
+                                           character.Name);
 
             // write entry into the server log file
             // no need to send it to client (clients are using OnlinePlayersSystem to display these messages)
@@ -454,20 +454,20 @@
             }
 
             // add the public chat rooms to the player scope
-            ServerAddChatRoomToPlayerScope(playerCharacter, sharedGlobalChatRoomHolder);
+            ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
             if (ServerIsTradeChatRoomEnabled)
             {
-                ServerAddChatRoomToPlayerScope(playerCharacter, sharedTradeChatRoomHolder);
+                ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
             }
 
-            ServerAddChatRoomToPlayerScope(playerCharacter, sharedLocalChatRoomHolder);
+            ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
 
             // add the private chat rooms to the player scope
-            if (ServerPrivateChatRoomsCache.TryGetValue(playerCharacter, out var characterPrivateChatRooms))
+            if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
             {
                 foreach (var chatRoomHolder in characterPrivateChatRooms)
                 {
-                    ServerAddChatRoomToPlayerScope(playerCharacter, chatRoomHolder);
+                    ServerAddChatRoomToPlayerScope(character, chatRoomHolder);
                 }
             }
         }

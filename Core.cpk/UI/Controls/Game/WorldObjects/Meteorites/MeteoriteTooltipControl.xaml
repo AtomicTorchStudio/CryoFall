@@ -36,7 +36,7 @@
                 Text="{x:Static loc:CoreStrings.Meteorite_CooldownMessage_TooHotForMining}" />
 
             <TextBlock
-                Text="{Binding CooldownTimeRemainsText, StringFormat={}{x:Static loc:CoreStrings.Meteorite_CooldownMessage_TimeRemainsFormat}}" />
+                Text="{Binding CooldownTimeRemainsText, StringFormat={x:Static loc:CoreStrings.Meteorite_CooldownMessage_TimeRemainsFormat}}" />
         </StackPanel>
     </Border>
 

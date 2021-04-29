@@ -17,7 +17,7 @@
 
         public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(1);
 
-        public override bool IsShortRaidblockOnHit => true;
+        public override double HitRaidblockDurationMultiplier => 0.1;
 
         public override ushort LandClaimSize => 14;
 

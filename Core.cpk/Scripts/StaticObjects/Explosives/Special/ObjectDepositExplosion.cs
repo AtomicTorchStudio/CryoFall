@@ -15,7 +15,7 @@
 
         public override TimeSpan ExplosionDelay => TimeSpan.Zero;
 
-        public override bool IsActivatesRaidModeForLandClaim => false;
+        public override bool IsActivatesRaidBlock => false;
 
         // resource deposit (oil seep, geothermal spring, etc) explosion
         public override string Name => "Deposit explosion";

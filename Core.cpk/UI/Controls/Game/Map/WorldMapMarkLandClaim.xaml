@@ -23,10 +23,12 @@
             <Image.Visibility>
                 <MultiBinding Converter="{StaticResource AllBoolToVisibilityMultiConverter}">
                     <Binding Path="IsFounder"
-                             ElementName="UserControl" />
+                             ElementName="UserControl"
+                             FallbackValue="False" />
                     <Binding Path="IsFactionOwned"
                              ElementName="UserControl"
-                             Converter="{StaticResource BoolReverseConverter}" />
+                             Converter="{StaticResource BoolReverseConverter}"
+                             FallbackValue="False" />
                 </MultiBinding>
             </Image.Visibility>
         </Image>
@@ -38,10 +40,12 @@
                 <MultiBinding Converter="{StaticResource AllBoolToVisibilityMultiConverter}">
                     <Binding Path="IsFounder"
                              ElementName="UserControl"
-                             Converter="{StaticResource BoolReverseConverter}" />
+                             Converter="{StaticResource BoolReverseConverter}"
+                             FallbackValue="False" />
                     <Binding Path="IsFactionOwned"
                              ElementName="UserControl"
-                             Converter="{StaticResource BoolReverseConverter}" />
+                             Converter="{StaticResource BoolReverseConverter}"
+                             FallbackValue="False" />
                 </MultiBinding>
             </Image.Visibility>
         </Image>

@@ -39,16 +39,21 @@
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
         {
-            if (RandomHelper.RollWithProbability(0.20))
+            if (RandomHelper.RollWithProbability(0.25))
             {
                 damagedCharacter.ServerAddStatusEffect<StatusEffectBleeding>(intensity: 0.2);
                 damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.1);
             }
 
-            if (RandomHelper.RollWithProbability(0.05))
+            if (RandomHelper.RollWithProbability(0.1))
             {
                 damagedCharacter.ServerAddStatusEffect<StatusEffectBrokenLeg>(intensity: 1);
                 damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.2);
+            }
+
+            if (RandomHelper.RollWithProbability(0.1))
+            {
+                damagedCharacter.ServerAddStatusEffect<StatusEffectLaceration>(intensity: 0.4);
             }
         }
     }

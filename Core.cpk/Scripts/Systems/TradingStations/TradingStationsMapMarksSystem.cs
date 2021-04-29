@@ -46,7 +46,7 @@
 
         public static void ServerTryAddMark(IStaticWorldObject tradingStation)
         {
-            var owners = WorldObjectOwnersSystem.SharedGetOwners(tradingStation);
+            var owners = WorldObjectOwnersSystem.SharedGetDirectOwners(tradingStation);
             if (owners.Count == 0)
             {
                 // no owners - incomplete trading station

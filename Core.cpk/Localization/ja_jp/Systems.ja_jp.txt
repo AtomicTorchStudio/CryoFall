@@ -155,6 +155,19 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 解体できません
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+あなたの派閥のランキングが#{0}から#{1}に下がりました。
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+派閥のランクが低下
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`あなたの派閥のランキングが#{0}から#{1}に上がりました。
+[br]その調子！`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+派閥のランクが上昇
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 メンバー数
 
@@ -184,6 +197,12 @@ Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 外交管理
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+乗り物アクセス管理
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+拠点シールド管理
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 代理人
@@ -270,10 +289,10 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLandClaimDecayed@Text_Form
 派閥の所有地は{0}で劣化し、削除されます。
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Name:
-リーダーが所有権を譲渡
+リーダーが所有権を移行
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryLeaderTransferredOwnership@Text_Format:
-リーダーが派閥の所有権を[b]\[{0}\][/b]に譲渡しました
+リーダーが派閥の所有権を[b]\[{0}\][/b]に移行しました
 
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryMemberJoined@Name:
 メンバー加入
@@ -326,20 +345,41 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expa
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 派閥の領土が{0}で除去されました
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+派閥スコアポイント値を持つ建築物が、派閥所有の拠点内に設置されている場合に付与されます（派閥所有に移行した所有地のみがカウントされる）。
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-派閥拠点の財産
+富裕度スコア
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+派閥レベルが高いほど、多くのポイントが付与されます。
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 派閥レベル
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+ワールドのボスを倒した際に付与され、獲得した戦利品のシェアに比例します。
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 ボススコア
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+派閥内で生物を殺害した場合に付与されます。
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 狩猟スコア
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-トータル累積LP
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+派閥に所属している間にLPを獲得すると付与されます。クエストや消耗品から得られるLPには適用されません。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+学習ポイントスコア
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+占拠した油田やリチウム埋蔵地に対して1時間ごとに付与されます（派閥所有に移行する必要あり）。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+資源占有スコア
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 釣りに使うエサがインベントリにありません。
@@ -622,7 +662,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} レベル{1}。
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`{0}以上の学習ポイント(LP)があります。ポイントを利用して新しい技術をアンロックするとよいでしょう。
+`{0}以上の学習ポイント（LP）があります。ポイントを利用して新しい技術をアンロックするとよいでしょう。
 [br](クリックして技術メニューを開く)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

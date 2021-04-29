@@ -37,6 +37,15 @@ Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Scripts/Characters/Mobs/MobHyena@Name:
 土狼
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+变异野猪
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+变异鬣狗
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+变异狼
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 穿山甲
 

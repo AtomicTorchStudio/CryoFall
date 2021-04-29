@@ -22,7 +22,7 @@
 
         public override TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(3);
 
-        public override bool IsActivatesRaidModeForLandClaim => false;
+        public override bool IsActivatesRaidBlock => false;
 
         public override string Name => "Mining charge";
 

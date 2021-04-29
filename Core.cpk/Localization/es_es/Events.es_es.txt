@@ -13,8 +13,11 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 Parece que las formas de vida indígenas de este mundo están migrando a una zona diferente. Es el momento ideal para ir de caza.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
-Una especie de planta alienígena extraña ha aparecido en las zonas montañosas, lo cual hace que la exploración minera sea casi imposible. No obstante, es una gran oportunidad para obtener recursos raros.
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Importante: Las armas de fuego no sirven para nada. Usa armas cuerpo o a cuerpo o basadas en el calor.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
+En las zonas montañosas ha aparecido una extraña especie de planta alienígena que hace casi imposible la prospección. No obstante, es una gran oportunidad para obtener recursos raros.
 
 Scripts/Events/EventSpaceDrop@Description:
 `Ha caído basura espacial en la zona destacada del mapa.

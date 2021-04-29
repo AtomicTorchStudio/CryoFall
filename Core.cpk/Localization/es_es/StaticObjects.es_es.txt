@@ -124,6 +124,9 @@ Bomba de resonancia
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Explosión de depósito
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Explosión de reactor de pragmio
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Explosión de pragmio
 
@@ -593,6 +596,9 @@ Una torreta ligera de vigilancia completamente automatizada.
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Torreta ligera
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Demasiado cerca de otra torreta
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Desactivada
 
@@ -707,6 +713,12 @@ Este gran generador usa gasolina para producir energía eléctrica.
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Generador de motor
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Una gran central eléctrica de pragmio que puede ser la principal y única fuente de energía de una gran base. Eso sí, necesita un suministro constante de pragmio.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Central eléctrica de pragmio
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Instalación básica para la generación de energía solar. Necesita paneles solares individuales para funcionar.
 
@@ -718,6 +730,12 @@ Este generador usa vapor caliente para activar una turbina y producir electricid
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Generador de vapor
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Para iniciar el reactor, es necesario que coloques, al menos, una unidad de {0}.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+No se puede iniciar el reactor
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Te ayuda a que tu base sea más segura, puesto que los demás supervivientes no podrán construir o desmantelar nada en la zona circundante. La adjudicación de terrenos también te asegura que las estructuras no se deteriorarán con el tiempo.

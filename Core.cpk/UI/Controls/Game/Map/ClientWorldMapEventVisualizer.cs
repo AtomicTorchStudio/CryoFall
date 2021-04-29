@@ -18,7 +18,9 @@
 
         public const string Notification_ActiveEvent_TimeRemainingFormat = "Time remaining: {0}";
 
-        public const string Notification_ActiveEvent_Title = "Active event";
+        public const string Notification_ActiveEvent_TimeStartsIn = "Starts in: {0}";
+
+        public const string Notification_ActiveEvent_Title = "World event";
 
         private static readonly IWorldClientService ClientWorld = Api.Client.World;
 

@@ -11,6 +11,8 @@
         public override string Description =>
             "Royal throne ideal for your main audience chamber. Let the peasants know who's the boss.";
 
+        public override double FactionWealthScorePoints => 50;
+
         public override string Name => "Throne";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;

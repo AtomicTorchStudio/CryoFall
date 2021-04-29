@@ -24,21 +24,23 @@
             return result;
         }
 
-        public void RegisterDamage(ICharacter character, double damageApplied)
+        public void RegisterDamage(ICharacter byCharacter, ICharacter damagedMobCharacter, double damageApplied)
         {
-            if (character is null
-                || character.IsNpc)
+            if (byCharacter is null
+                || byCharacter.IsNpc)
             {
                 return;
             }
 
             var newDamageValue = damageApplied;
-            if (this.damageByCharacter.TryGetValue(character, out var currentValue))
+            //Api.Logger.Dev($"Registering damage: {damageApplied} to {damagedMobCharacter}", byCharacter);
+
+            if (this.damageByCharacter.TryGetValue(byCharacter, out var currentValue))
             {
                 newDamageValue += currentValue;
             }
 
-            this.damageByCharacter[character] = newDamageValue;
+            this.damageByCharacter[byCharacter] = newDamageValue;
         }
 
         public void Update(double deltaTime)

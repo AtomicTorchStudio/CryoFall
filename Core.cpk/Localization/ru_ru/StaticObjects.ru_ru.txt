@@ -124,6 +124,9 @@ Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 Взрыв в месторождении
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+Взрыв прагмиевого реактора
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 Взрыв источника прагмия
 
@@ -593,6 +596,9 @@ Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 Легкая турель
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+Слишком близко к другой турели
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 Отключено
 
@@ -707,6 +713,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 Бензиновый генератор
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+Большая прагмиевая электростанция может служить главным и единственным источником питания для большой базы, но требует постоянных поставок прагмия.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+Прагмиевая электростанция
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 Базовая установка для производства солнечной энергии. Для работы требуются индивидуальные солнечные панели.
 
@@ -718,6 +730,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 Паровой электрогенератор
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+Поместите хотя бы один {0}, чтобы запустить реактор.
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+Нельзя запустить реактор
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Защищает вашу базу, не позволяя другим игрокам строить или разбирать что-либо на выделенной территории. Также постройки в зоне контроля не будут портиться со временем.

@@ -1,9 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ItemContainers.Turrets
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Turret;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons.Vehicle;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ContainerTurretHeavyAmmo : BaseItemsContainerTurretAmmo
@@ -12,7 +10,7 @@
 
         public override IProtoItemWeapon ProtoWeapon => this.protoWeapon;
 
-        public override byte SlotsCount => 8;
+        public override byte SlotsCount => 4;
 
         protected override void PrepareProto()
         {

@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+Die Galaktische Republik gilt als Zentrum der menschlichen Zivilisation und ist die größte Macht innerhalb der Galaxis. Ihr Herzstück ist die Erde. Jede der republikanischen Welten besitzt gleiches Stimmrecht und ist dazu verpflichtet, galaktischer Gesetzgebung zu folgen. Abgesehen davon agiert jede der Welten größtenteils unabhängig und verfolgt eigene Strategien und Interessen.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+Galaktische Republik
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+Die Unabhängigen Welten waren entschieden gegen einen Anschluss an die Republik und behielten so die vollständige Kontrolle über eigene politische und militärische Geschicke. Dennoch sind diese Welten aufgrund ihrer Wirtschaftspolitik stark mit der Galaktischen Republik verbunden, ähnlich wie es auch bei Stadtstaaten des 21. Jahrhunderts der Fall ist. Manche bezeichnen diese unabhängigen Welten gar als Randwelten.
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+Unabhängige Welten
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+Das Randprotektorat bildet die Peripherie außerhalb der Kernplaneten und besteht hauptsächlich aus weniger hochentwickelten Industriewelten. Für gewöhnlich folgen diese Welten den Interessen einer von vielen industriellen Großkonzernen und sind in einer lockeren Koalition miteinander verbunden, die auf gemeinsamen wirtschaftlichen Interessen basiert. Im Zuge ihrer Expandierungspolitik werden diese Welten der Galaktischen Republik früher oder später als vollständige Mitgliedsstaaten einverleibt.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+Randprotektorat
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+Das Direktorat ist eine abgeschottete, mehrere Welten umspannende Fraktion, die sich nach einem ideologischen Disput vom Rest der Republik abspaltete und im Laufe der Zeit zu einer unabhängigen und einflussreichen Macht heranreifte. Es befindet sich am äußeren Rand des republikanischen Kerngebiets und ist von allen Seiten von republikanischen Welten umringt. Das Direktorat befindet sich seit Hunderten von Jahren mit der Republik in einem Zustand des Kalten Kriegs. Es gibt keinen Handel und kaum diplomatische Beziehungen.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+Das Direktorat
+

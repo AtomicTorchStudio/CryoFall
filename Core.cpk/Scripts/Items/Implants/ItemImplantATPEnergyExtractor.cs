@@ -15,10 +15,10 @@
             base.PrepareEffects(effects);
 
             // will produce some energy (EU) every minute
-            effects.AddValue(this, StatName.EnergyChargeRegenerationPerMinute, 60);
+            effects.AddValue(this, StatName.EnergyChargeRegenerationPerMinute, 75); // large powerpack is charged in 2 hours with this speed (75)
 
             // will consume 100% more food
-            effects.AddPercent(this, StatName.FoodConsumptionSpeedMultiplier, 100);
+            effects.AddPercent(this, StatName.HungerRate, 100);
         }
     }
 }

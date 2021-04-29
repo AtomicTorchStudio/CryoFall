@@ -7,8 +7,8 @@
         [SyncToClient]
         public bool HasHarvest { get; set; }
 
-        [TempOnly]
         [SyncToClient]
+        [TempOnly]
         public bool IsFertilized { get; set; }
 
         [SyncToClient]

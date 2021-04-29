@@ -120,6 +120,11 @@
                           return true;
                       }
 
+                      if (CreativeModeSystem.SharedIsInCreativeMode(c.CharacterBuilder))
+                      {
+                          return true;
+                      }
+
                       var physicsSpace = WorldService.GetPhysicsSpace();
                       using var tempList = physicsSpace.TestCircle(
                           position: c.Tile.Position.ToVector2D() + (0.5, 0.5),
@@ -149,6 +154,11 @@
                           return true;
                       }
 
+                      if (CreativeModeSystem.SharedIsInCreativeMode(c.CharacterBuilder))
+                      {
+                          return true;
+                      }
+
                       return c.Tile.Height
                              == c.CharacterBuilder.Tile.Height;
                   });
@@ -160,15 +170,21 @@
             = new(ErrorPlayerNearby,
                   c =>
                   {
-                      if (c.CharacterBuilder is null)
+                      var forCharacter = c.CharacterBuilder;
+                      if (forCharacter is null)
                       {
                           // don't perform this check if the action is done by the server only
                           return true;
                       }
 
+                      if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                      {
+                          return true;
+                      }
+
                       var tilePosition = c.Tile.Position;
                       if (LandClaimSystem.SharedIsOwnedLand(tilePosition,
-                                                            c.CharacterBuilder,
+                                                            forCharacter,
                                                             requireFactionPermission: false,
                                                             out _))
                       {
@@ -184,9 +200,9 @@
                           sendDebugEvent: false);
                       foreach (var entry in tempList.AsList())
                       {
-                          if (entry.PhysicsBody.AssociatedWorldObject is ICharacter { IsNpc: false } character
-                              && !PartySystem.SharedArePlayersInTheSameParty(c.CharacterBuilder, character)
-                              && !FactionSystem.SharedArePlayersInTheSameFaction(c.CharacterBuilder, character))
+                          if (entry.PhysicsBody.AssociatedWorldObject is ICharacter { IsNpc: false } otherCharacter
+                              && !PartySystem.SharedArePlayersInTheSameParty(forCharacter, otherCharacter)
+                              && !FactionSystem.SharedArePlayersInTheSameFaction(forCharacter, otherCharacter))
                           {
                               // found player nearby and they're not a party member
                               return false;
@@ -220,19 +236,19 @@
                   c =>
                   {
                       var kind = c.ProtoStaticObjectToBuild.Kind;
-                      if (kind != StaticObjectKind.Floor
-                          && kind != StaticObjectKind.FloorDecal)
+                      if (kind == StaticObjectKind.Floor
+                          || kind == StaticObjectKind.FloorDecal)
                       {
                           return c.Tile.StaticObjects.All(
-                              o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
-                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
-                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform);
+                              o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
+                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
+                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
                       }
 
                       return c.Tile.StaticObjects.All(
-                          o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
-                               && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
-                               && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
+                          o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
+                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform);
                   });
 
         public static readonly Validator ValidatorNoStaticObjectsExceptPlayersStructures
@@ -245,6 +261,12 @@
             = new(ErrorNoFreeSpace,
                   c => c.Tile.StaticObjects.All(
                       o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
+
+        public static readonly Validator ValidatorNoPlatformsOnlyIfPlatform
+            = new(ErrorNoFreeSpace,
+                  c => c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.Platform
+                       || c.Tile.StaticObjects.All(
+                           o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
 
         public static readonly Validator ValidatorNoFarmPlot
             = new(ErrorCannotBuildOnFarmPlot,
@@ -375,7 +397,8 @@
                                       .Add(ValidatorNoFarmPlot)
                                       .Add(ValidatorNoStaticObjectsExceptFloor)
                                       .AddClientOnly(ValidatorClientOnlyNoCurrentPlayer)
-                                      .Add(ValidatorNoPhysicsBodyDynamic);
+                                      .Add(ValidatorNoPhysicsBodyDynamic)
+                                      .Add(ValidatorNoPlatformsOnlyIfPlatform);
 
             var defaultForStructures = DefaultForStaticObjects
                                        .Clone()
@@ -487,6 +510,7 @@
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort startTilePosition,
             ICharacter character,
+            out string errorMessage,
             bool logErrors)
         {
             foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
@@ -494,8 +518,6 @@
                 var tile = WorldService.GetTile(startTilePosition.X + tileOffset.X,
                                                 startTilePosition.Y + tileOffset.Y,
                                                 logOutOfBounds: false);
-                string errorMessage;
-
                 if (tile.IsOutOfBounds)
                 {
                     errorMessage = "Out of bounds";
@@ -536,6 +558,7 @@
                 return false;
             }
 
+            errorMessage = null;
             return true;
         }
 

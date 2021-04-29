@@ -18,7 +18,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -39,18 +38,11 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemFood()
-        {
-            this.Icon = new TextureResource("Items/Food/" + this.GetType().Name);
-        }
-
         public override bool CanBeSelectedInVehicle => true;
 
         public IReadOnlyList<EffectAction> Effects { get; private set; }
 
         public virtual float FoodRestore => 0;
-
-        public override ITextureResource Icon { get; }
 
         public virtual bool IsAvailableInCompletionist => true;
 
@@ -130,6 +122,11 @@
             }
         }
 
+        protected override string GenerateIconPath()
+        {
+            return "Items/Food/" + this.GetType().Name;
+        }
+
         protected virtual void PrepareEffects(EffectActionsList effects)
         {
         }
@@ -204,32 +201,6 @@
                 value *= freshnessCoef;
                 return value;
             }
-        }
-
-        protected override void ServerOnStackItems(ServerOnStackItemData data)
-        {
-            base.ServerOnStackItems(data);
-
-            // source item
-            var item1 = data.ItemFrom;
-            var item1State = GetPrivateState(item1);
-            var item1Freshness = item1State.FreshnessCurrent;
-
-            // destination item
-            var item2 = data.ItemTo;
-            var item2State = GetPrivateState(item2);
-            var item2Freshness = item2State.FreshnessCurrent;
-
-            var deltaCount = data.CountStacked;
-
-            // calculate average freshness between the already existing (item2) food count
-            // and the added food count (item1) and its freshness
-            var previousItem2Count = item2.Count - deltaCount;
-            var newItem2Freshness = ((ulong)item1Freshness * (ulong)deltaCount
-                                     + (ulong)item2Freshness * (ulong)previousItem2Count)
-                                    / item2.Count;
-
-            item2State.FreshnessCurrent = (uint)MathHelper.Clamp(newItem2Freshness, 0, uint.MaxValue);
         }
 
         protected virtual bool SharedCanEat(ItemEatData data)

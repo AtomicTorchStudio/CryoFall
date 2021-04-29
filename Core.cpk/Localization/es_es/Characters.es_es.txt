@@ -37,6 +37,15 @@ Ratel
 Scripts/Characters/Mobs/MobHyena@Name:
 Hiena
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+Jabalí mutado
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+Hiena mutada
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+Lobo mutado
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolín
 

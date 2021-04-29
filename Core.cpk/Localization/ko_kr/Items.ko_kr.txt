@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 12 구경 소금탄
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-슬러그는 펠릿보다 훨씬 높은 저지력을 제공하며, 다양한 표적에 대해 사용됩니다. 높은 질량 덕분에 장갑 표적에도 효과적입니다.
+슬러그 탄은 대부분의 상대에 사용할 수 있는 범용성 높은 탄약입니다. 질량이 크기 때문에 제대로 무장된 표적에게도 상당히 효과적입니다.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 12 구경 슬러그
@@ -111,6 +111,12 @@ Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 소이 수류탄
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+작은 유리 캡슐에 든 액화 케이나이트. 신식 무기에 사용됩니다.
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+케이나이트 탄약
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 기본적인 총기 탄약. 약한 표적에만 적합하지만, 값싸고 생산하기 쉽습니다.
@@ -187,6 +193,9 @@ Scripts/Items/Base/ItemHints@ImplantApplication:
 Scripts/Items/Base/ItemHints@NeverConsumed:
 섭취한 적 없음
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+이 아이템은 프라그뮴 원자로에 설치할 수 있습니다.
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 이 아이템은 장착된 보조 배터리에서 전력을 끌어옵니다.
 
@@ -241,6 +250,12 @@ Scripts/Items/Devices/ItemHuntersTools@Description:
 Scripts/Items/Devices/ItemHuntersTools@Name:
 사냥꾼의 도구
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+특정 토착 생명체와 변이 동물로부터 낮은 등급의 케이나이트를 추출할 수 있는 특수 장치.
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+케이나이트 추출기
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 소형 레이저 표적 지시기는 장거리 조준을 더 쉽게 하는 데 사용됩니다.
 
@@ -258,6 +273,12 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 기본 보조 배터리
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+이 슬롯은 복귀 드론을 위해 일시적으로 확보됩니다.
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+예약 슬롯
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 고급 드론 원격 조종기
@@ -1490,6 +1511,18 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 Scripts/Items/Generic/ItemIngotSteel@Name:
 강철괴
 
+Scripts/Items/Generic/ItemKeinite@Description:
+외계에서 온 아주 가치 높은 외계 물질. 최첨단 과학 프로젝트에서 적재적소로 다양하게 사용되고 있습니다.
+
+Scripts/Items/Generic/ItemKeinite@Name:
+케이나이트
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+정제되지 않은 그대로의 케이나이트. 사용하기 전에 처리 과정이 필요합니다.
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+정제되지 않은 케이나이트
+
 Scripts/Items/Generic/ItemLeather@Description:
 동물의 가죽. 가죽 방어구 제작에 유용하게 사용됩니다.
 
@@ -1600,18 +1633,6 @@ Scripts/Items/Generic/ItemPreservative@Description:
 
 Scripts/Items/Generic/ItemPreservative@Name:
 방부제
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-프라그뮴과 같은 반응성 에너지 운반 물질로 다시 채울 수 있는 빈 원자로 노심.
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-빈 원자로 노심
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-프라그뮴이 채워진 원자로 노심. 비교적 안정적이고 휴대 가능하며, 전원이 오래 지속됩니다.
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-프라그뮴 원자로 노심
 
 Scripts/Items/Generic/ItemRice@Description:
 수확한 쌀알. 심거나 다양한 요리에 사용할 수 있습니다.
@@ -1868,6 +1889,12 @@ Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 내골격 보강 임플란트
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+대동맥에 연결하여 혈액에서 다양한 독소를 걸러내는 것을 도와주는 특수 기관입니다.
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+독소 여과 임플란트
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 신체에서 통제할 수 없는 변이가 발견되지 않습니다.
 
@@ -2075,10 +2102,10 @@ Scripts/Items/Medical/ItemPlasterCast@Name:
 석고 붕대
 
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
-초능력장 노출로 인한 신경 손상을 완화시키는 데 도움이 되는 특수 신경 조절 화학 물질.
+사이오닉장 노출로 인한 신경 손상을 완화시키는 데 도움이 되는 특수 신경 조절 화학 물질.
 
 Scripts/Items/Medical/ItemPsiPreExposure@Name:
-초능력 차단제
+사이오닉 차단제
 
 Scripts/Items/Medical/ItemRemedyHerbal@Description:
 자가 약초 치료. 체력을 일부 회복시키고 메스꺼움을 제거합니다. 아마 부작용은 없을 겁니다.
@@ -2115,6 +2142,48 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 소 근력강화제
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+원자로 모듈 중 하나가 고장난 후 남은 고철.
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+고장난 원자로 모듈
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+원자로 외부로 방출되는 사이오닉 방사선을 부분적으로 차단하는 특수 다층 차폐물.
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+사이오닉 차폐기
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+원자로 노심 내부에 사이오닉 방사선을 확산시켜 출력을 떨어뜨리는 대신 연료의 수명을 향상시키는 특수 장치.
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+사이오닉 확산기
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+추가적인 사이오닉 유동 제어기를 넣어 원자로의 가동 및 정지 시간을 대폭 단축합니다.
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+사이오닉 유동 교환기
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+프라그뮴이 채워진 원자로 연료봉. 비교적 안정적이고 휴대 가능하며, 전원이 오래 지속됩니다.
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+프라그뮴 연료봉
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+프라그뮴을 주입할 수 있는 빈 원자로 연료봉
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+빈 연료봉
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+원자로 노심 내부에서 생성된 사이오닉장의 구성을 변경하여 출력을 향상시킵니다.
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+사이오닉 조정기
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 나무 묘목. 새 나무를 심어서 키울 수 있습니다.
@@ -2200,6 +2269,9 @@ Scripts/Items/Special/ItemTeleportLocationData@Description:
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 순간 이동 장소 데이터
 
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+이미 모든 순간 이동 장소를 발견했습니다.
+
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 쇠도끼는 나무를 자르기에 좋습니다. 돌도끼보다 빠르고 내구도가 뛰어납니다.
 
@@ -2282,7 +2354,7 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 돌곡괭이
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Description:
-이 감지기는 대형 프라그뮴 크리스털에서 뿜어져 나오는 특유의 초능력 발자국을 탐지하여 그것을 찾을 수 있게 해줍니다.
+이 감지기는 대형 프라그뮴 크리스털에서 뿜어져 나오는 특유의 사이오닉 발자국을 탐지하여 그것을 찾을 수 있게 해줍니다.
 
 Scripts/Items/Tools/Special/ItemPragmiumSensor@Name:
 프라그뮴 감지기
@@ -2520,6 +2592,18 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 기관단총
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+총알 대신 작은 곤충 같은 생물체를 적에게 발사하는 신식 무기.
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+군체 발사기
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+액화 케이나이트로 강력한 독소를 만들어 적에게 발사하는 신식 무기.
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+독소 증식체
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 기계화된 전투 장갑의 손 위치에 고정할 수 있도록 고안된 중기관포. 대구경 및 대물 탄약을 사용합니다.

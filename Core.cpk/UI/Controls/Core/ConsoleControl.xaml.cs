@@ -36,7 +36,7 @@
 
         private string filterText;
 
-        private bool isDisplayed = false;
+        private bool isDisplayed;
 
         private ListView listViewSuggestionsList;
 
@@ -355,17 +355,22 @@
                 return;
             }
 
-            if (key == Key.Return)
+            if (key == Key.Return) // Enter key
             {
                 // execute command
                 e.Handled = true;
 
                 if (this.viewModel.SuggestionsListVisibility == Visibility.Visible)
                 {
-                    this.suggestionsProvider.OnTab();
+                    this.suggestionsProvider.CompleteSuggestionIfNecessary();
                     this.suggestionsProvider.ExitSuggestionMode(resetSuggestions: true);
+                    // commented out: as it was the Enter key, just commit the command as entered
+                    /*// insert a space char and advance the caret index
+                    var caretIndex = this.textBoxConsoleInput.CaretIndex;
+                    this.textBoxConsoleInput.Text = this.textBoxConsoleInput.Text.Insert(caretIndex, " ");
+                    this.textBoxConsoleInput.CaretIndex = caretIndex + 1;
                     this.suggestionsProvider.OnTextChanged();
-                    return;
+                    return;*/
                 }
 
                 var consoleCommandText = this.textBoxConsoleInput.Text

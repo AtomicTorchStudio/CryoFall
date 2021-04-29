@@ -155,6 +155,19 @@ No se puede añadir la nueva receta
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 No se puede desmantelar
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+Tu facción ha caído del puesto {0} al puesto {1} del marcador.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+La facción ha bajado de rango
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`Tu facción ha pasado del puesto {0} al puesto {1} del marcador.
+[br]¡Seguid así!`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+La facción ha subido de rango
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 Número de miembros
 
@@ -184,6 +197,12 @@ Expulsar miembros
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 Gestión de diplomacia
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+Gestión del acceso a vehículos
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+Gestión del E.S.C.U.D.O. de la base
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 Suplente
@@ -326,20 +345,41 @@ El territorio de la facción se ha expandido en {0}.
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 Se ha eliminado territorio de la facción en {0}.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+Se otorga por estructuras que tengan un valor de puntos para la puntuación de facción y que se encuentren dentro de bases que pertenezcan a la facción (solo se cuentan las adjudicaciones de terreno que hayan sido transferidas a la facción).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-Riqueza de las bases de facción
+Puntuación de riqueza
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+¡Cuanto mayor sea el nivel de la facción, más puntos se recibirán!
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 Nivel de facción
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+Se recibe al matar a jefes del mundo, de manera proporcional a la cantidad de botín recibido.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Puntuación de jefe
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+Se otorga por matar a cualquier criatura mientras se está en la facción.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 Puntuación de caza
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-Total acumulado de PA
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+Se otorga al obtener PA mientras se está en la facción. No se aplica a los PA obtenidos por misiones y objetos consumibles.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+Puntuación de puntos de aprendizaje
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+Se otorga por los depósitos de litio y petróleo capturados cada hora (los terrenos adjudicados han de ser transferidos a la facción).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+Puntuación de dominio de recursos
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 No tenes ningún cebo en el inventario que puedas usar para pescar.

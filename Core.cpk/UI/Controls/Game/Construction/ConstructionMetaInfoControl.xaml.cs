@@ -4,25 +4,29 @@
     using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class ConstructionMetaInfoControl : BaseUserControl
     {
-        public static readonly DependencyProperty EntriesProperty =
-            DependencyProperty.Register(nameof(Entries),
-                                        typeof(List<ControlTemplate>),
-                                        typeof(ConstructionMetaInfoControl),
-                                        new PropertyMetadata(default(List<ControlTemplate>)));
+        public static readonly DependencyProperty EntriesProperty
+            = DependencyProperty.Register(nameof(Entries),
+                                          typeof(List<ControlTemplate>),
+                                          typeof(ConstructionMetaInfoControl),
+                                          new PropertyMetadata(default(List<ControlTemplate>)));
 
-        public static List<ConstructionMetaInfoTemplateDefinition> Templates
-            = new();
+        public static readonly List<ConstructionMetaInfoTemplateDefinition> Templates = new();
 
-        public static readonly DependencyProperty ProtoObjectStructureProperty =
-            DependencyProperty.Register(nameof(ProtoObjectStructure),
-                                        typeof(IProtoObjectStructure),
-                                        typeof(ConstructionMetaInfoControl),
-                                        new PropertyMetadata(default(IProtoObjectStructure),
-                                                             DependencyPropertyChanged));
+        public static readonly DependencyProperty ProtoObjectStructureProperty
+            = DependencyProperty.Register(nameof(ProtoObjectStructure),
+                                          typeof(IProtoObjectStructure),
+                                          typeof(ConstructionMetaInfoControl),
+                                          new PropertyMetadata(default(IProtoObjectStructure),
+                                                               DependencyPropertyChanged));
+
+        private Grid layoutRoot;
+
+        private ViewModelStructure viewModel;
 
         public List<ControlTemplate> Entries
         {
@@ -36,14 +40,36 @@
             set => this.SetValue(ProtoObjectStructureProperty, value);
         }
 
+        protected override void InitControl()
+        {
+            this.layoutRoot = this.GetByName<Grid>("LayoutRoot");
+        }
+
         protected override void OnLoaded()
         {
             this.Refresh();
         }
 
+        protected override void OnUnloaded()
+        {
+            this.DestroyViewModel();
+        }
+
         private static void DependencyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((ConstructionMetaInfoControl)d).Refresh();
+        }
+
+        private void DestroyViewModel()
+        {
+            if (this.viewModel is null)
+            {
+                return;
+            }
+
+            this.layoutRoot.DataContext = null;
+            this.viewModel.Dispose();
+            this.viewModel = null;
         }
 
         private void Refresh()
@@ -52,6 +78,9 @@
             {
                 return;
             }
+
+            this.DestroyViewModel();
+            this.layoutRoot.DataContext = this.viewModel = new ViewModelStructure(this.ProtoObjectStructure);
 
             ConstructionMetaInfoTemplatesBootstrapper.InitIfNecessary();
 

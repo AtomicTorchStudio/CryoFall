@@ -12,10 +12,14 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 現在有了工具箱，你可以建造那些在科技功能表裡解鎖的不同建築了。從營火開始吧，你能用它來烹飪食物。
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] 你可以按下"Tab"鍵來快速訪問[b]建築功能表[/b]（預設按鍵）。
-[*] 建築功能表擁有[b]複數頁[/b]以及不同的[b]建築類型[/b]，將隨研究不斷解鎖。
-[*] 你可以用工具箱來[b]建造[/b]和[b]維修[/b]建築。`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+你可以通過按下[b]\[{0}\][/b]來快速訪問[b]建築菜單[/b]。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+建築功能表可能有[b]多個頁面[/b]，隨著解鎖將包含不同的[b]建築類型[/b]。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+你可以使用工具箱[b]建造[/b]或[b]修理[/b]建築。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 建造營火
@@ -50,8 +54,8 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 現在你有了資源，可以開始製造了。首先製造一條繩子。然後再製作一把斧頭。
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-[*] 你可以用預設按鍵C打開製造功能表，用預設按鍵E打開物品欄。
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+你可以使用[b]\[{0}\][/b]鍵打開製造功能表，用[b]\[{1}\][/b]鍵打開物品欄。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 製造一把斧頭
@@ -59,9 +63,11 @@ Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 通過採礦可以獲得遊戲內最珍貴的資源。你需要製造鎬才能採礦。
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] 使用徒手製作功能表("C")並製造一把鎬。
-[*] 如果你的繩子不夠，也可以製造一些。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+打開你的手動製造功能表([b]\[{0}\][/b] 鍵) 並製造一把鎬。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+你可能會先需要製造一些繩子。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 製造一把鎬
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 找到並使用綠草藥
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+可通過進行有意義的活動獲得學習點，與你的技能經驗獲取直接相關。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+你可以通過按下[b]\[{0}\][/b]來快速訪問科技菜單。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+解鎖科技需要LP（學習點）
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `要建造更多建築，你需要在科技功能表中解鎖"基礎建築"。`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] 你可以通過按下"G"鍵來快速訪問科技菜單。
-[*] 解鎖科技節點需要花費[b]LP[/b] (學習點數)。
-[*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 學習基礎建築科技
@@ -392,7 +402,7 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintCompletionist:
 `當發現新東西時，它就會出現在你的[b]生涯菜單[/b]中! 
- 使用此功能表來追蹤你的進度，並通過探索CryoFall的世界來獲取[u]額外知識點[/u]。`
+使用此功能表來追蹤你的進度，並通過探索CryoFall的世界來獲取[u]額外知識點[/u]。`
 
 Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@HintSortInventory:
 要整理物品欄，只需打開物品欄後將滑鼠懸浮至物品欄上，然後按下[u]{0}[/u]或[u]{1}[/u]鍵即可。你可以以此方法整理任何物品欄，例如箱子。

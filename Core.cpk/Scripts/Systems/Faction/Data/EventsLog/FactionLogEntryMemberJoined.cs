@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using JetBrains.Annotations;
 
@@ -21,6 +22,12 @@
         {
             this.MemberName = member.Name;
         }
+
+        public override bool ClientIsLongNotification => false;
+
+        public override NotificationColor ClientNotificationColor => NotificationColor.Good;
+
+        public override bool ClientShowNotification => true;
 
         public override string ClientText
             => string.Format(Text_Format,

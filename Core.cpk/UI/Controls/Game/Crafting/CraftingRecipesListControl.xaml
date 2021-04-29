@@ -80,6 +80,7 @@
                                                                FontWeight="Bold" />
                                                     <StackPanel Orientation="Horizontal">
                                                         <Image Source="/UI/Images/Icons/Clock.png"
+                                                               UseLayoutRounding="True"
                                                                VerticalAlignment="Center"
                                                                Margin="0,0,1,0"
                                                                Width="15"
@@ -153,7 +154,6 @@
                         </Style>
                     </ListBox.ItemContainerStyle>
                 </ListBox>
-
 
                 <StackPanel Grid.Row="1"
                             Orientation="Horizontal"

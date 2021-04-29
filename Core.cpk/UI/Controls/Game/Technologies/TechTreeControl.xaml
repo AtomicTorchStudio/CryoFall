@@ -28,12 +28,12 @@
         <system:Double x:Key="NodeLinkArrowHeight">6</system:Double>
 
         <SolidColorBrush x:Key="BrushLockedNodeOverlayBrush" Color="Black" Opacity="0.4" />
-        <SolidColorBrush x:Key="BrushMouseOverHighlightBrush" Color="White" Opacity="0.25" />
+        <SolidColorBrush x:Key="BrushUnlockedNodeBackgroundBrush" Color="{StaticResource ColorAlt2}" Opacity="0.2" />
 
-        <SolidColorBrush x:Key="BrushUnlocked" Color="{StaticResource ColorAlt6}" />
+        <SolidColorBrush x:Key="BrushUnlocked" Color="{StaticResource ColorAlt5}" />
         <SolidColorBrush x:Key="BrushLocked" Color="#FF555555" />
-        <SolidColorBrush x:Key="BrushCanUnlock" Color="{StaticResource ColorAlt4}" />
-        <SolidColorBrush x:Key="BrushCanUnlockMouseOver" Color="{StaticResource Color6}" />
+        <SolidColorBrush x:Key="BrushCanUnlock" Color="{StaticResource ColorAlt3}" />
+        <SolidColorBrush x:Key="BrushCanUnlockMouseOver" Color="{StaticResource Color7}" />
 
         <!-- Template for node -->
         <DataTemplate DataType="{x:Type data:ViewModelTechNode}">
@@ -74,6 +74,14 @@
                                             </Border.Background>
                                         </Border>
 
+                                        <Rectangle x:Name="IconBackgroundNodeUnlocked"
+                                                   Fill="{StaticResource BrushUnlockedNodeBackgroundBrush}"
+                                                   RadiusX="{StaticResource NodeCornerRadiusNumber}"
+                                                   RadiusY="{StaticResource NodeCornerRadiusNumber}"
+                                                   Margin="0.5"
+                                                   IsHitTestVisible="False"
+                                                   Visibility="Collapsed" />
+
                                         <Rectangle Fill="{Binding Icon}"
                                                    RadiusX="{StaticResource NodeCornerRadiusNumber}"
                                                    RadiusY="{StaticResource NodeCornerRadiusNumber}"
@@ -98,6 +106,9 @@
                                             <Setter TargetName="IconOverlayNodeLocked"
                                                     Property="Visibility"
                                                     Value="Collapsed" />
+                                            <Setter TargetName="IconBackgroundNodeUnlocked"
+                                                    Property="Visibility"
+                                                    Value="Visible" />
                                             <Setter TargetName="Border"
                                                     Property="BorderBrush"
                                                     Value="{StaticResource BrushUnlocked}" />

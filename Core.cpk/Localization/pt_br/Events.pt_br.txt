@@ -13,7 +13,10 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 As formas de vida nativas deste mundo parecem estar migrando para uma área diferente, proporcionando uma grande oportunidade de caça.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+Importante: As armas de fogo são inúteis; use armas de contato ou de calor.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Um estranho crescimento alienígena surgiu na região das montanhas, impossibilitando a prospecção na região, mas é uma ótima oportunidade de se obter recursos raros.
 
 Scripts/Events/EventSpaceDrop@Description:

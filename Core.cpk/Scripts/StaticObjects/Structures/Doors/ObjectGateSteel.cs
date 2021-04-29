@@ -3,7 +3,9 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ObjectGateSteel : ProtoObjectGate
     {
@@ -41,6 +43,17 @@
         public override double StructureExplosiveDefenseCoef => 0.5;
 
         public override float StructurePointsMax => 50000;
+
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+        {
+            var result = base.SharedGetObjectCenterWorldOffset(worldObject);
+            if (!this.IsHorizontalGate)
+            {
+                result += (0, 0.5);
+            }
+
+            return result;
+        }
 
         protected override void PrepareConstructionConfig(
             ConstructionStageConfig build,

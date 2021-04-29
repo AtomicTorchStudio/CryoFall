@@ -55,7 +55,7 @@
                     message = string.Format(CoreStrings.ShieldProtection_NotificationBaseUnderShield_Message_Format,
                                             ClientTimeFormatHelper.FormatTimeDuration(
                                                 timeRemains,
-                                                appendSeconds: false));
+                                                appendSeconds: true));
 
                     if (canDeactivate)
                     {

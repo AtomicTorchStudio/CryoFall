@@ -155,6 +155,19 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 해체 불가
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+우리 파벌의 점수판 순위가 #{0}에서 #{1}(으)로 떨어졌습니다.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+파벌 순위 하락
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`우리 파벌의 점수판 순위가 #{0}에서 #{1}(으)로 상승했습니다.
+[br]이 기세를 유지하세요!`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+파벌 순위 상승
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 구성원 수
 
@@ -184,6 +197,12 @@ Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 외교 관리
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+탈것 접근 관리
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+기지 실드 관리
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 대리관
@@ -326,20 +345,41 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expa
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 {0}에 있는 파벌의 영역이 제거되었습니다.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+파벌 점수 포인트 값을 가진 구조물이 파벌 소유 기지 내에 설치되어 있는 경우 부여됩니다 (파벌 소유로 이전된 소유지만 계산됩니다).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-파벌 기지의 재산
+부유도 점수
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+파벌 레벨이 높을수록 더 많은 점수가 부여됩니다!
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 파벌 레벨
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+월드 보스 처치의 대가로 부여되며, 획득한 전리품의 점유율에 비례합니다.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 보스 점수
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+파벌에 속해 있는 동안 생명체를 처치한 경우 부여됩니다.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 사냥 점수
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-누적된 LP 합계
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+파벌에 속해 있는 동안 LP 얻게 된 경우 부여됩니다. 퀘스트 및 소모품으로 얻은 LP에는 적용되지 않습니다.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+학습 포인트 점수
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+점유한 석유 및 리튬 매장지에 대해 1시간마다 부여됩니다(토지 점유가 파벌 소유로 이전되어야 합니다).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+자원 점유 점수
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 낚시에 사용할 미끼가 인벤토리에 없습니다!

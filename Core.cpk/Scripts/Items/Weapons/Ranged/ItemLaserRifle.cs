@@ -126,6 +126,7 @@
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
         {
             ServerWeaponSpecialEffectsHelper.OnLaserHit(damagedCharacter, damage);
+            // also, see SharedOnHit as it adds Dazed
         }
     }
 }

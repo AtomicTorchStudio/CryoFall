@@ -15,7 +15,7 @@
         <TPrivateState,
          TPublicState,
          TClientState>
-        : ProtoItemGeneric
+        : ProtoItem
           <TPrivateState,
               TPublicState,
               TClientState>,
@@ -76,8 +76,6 @@
 
         protected override void ServerOnStackItems(ServerOnStackItemData data)
         {
-            base.ServerOnStackItems(data);
-
             // source item
             var item1 = data.ItemFrom;
             var item1State = GetPrivateState(item1);

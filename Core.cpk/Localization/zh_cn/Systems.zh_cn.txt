@@ -155,6 +155,19 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 无法拆除
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+你的派系的排名从#{0}降低到了#{1}。
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+派系排名降低
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`你的派系的排名从#{0}提高到了#{1}。
+[br]继续努力！`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+派系排名提高
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 成员数
 
@@ -184,6 +197,12 @@ Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 外交管理
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+载具访问管理
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+基地护盾管理
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 代理人
@@ -326,20 +345,41 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expa
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 派系位于{0} 的领地被移除。
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+对拥有派系分数，位于派系基地内建筑的奖励。（仅计算已向派系所有者共享的主权领地）
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-派系基地财富
+财富分数
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+派系等级越高，奖励分数越多！
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 派系等级
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+奖励击杀世界boss，与获取战利品总量直接相关。
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Boss分数
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+奖励再次派系内对任意生物的击杀。
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 狩猎分数
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-总累计知识点
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+奖励在此派系中时LP获取。任务奖励和消耗品获取的LP不计算在内。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+知识点分数
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+奖励占领油田和锂盐。分数每小时计算，且主权建筑必须已转让给派系所有者。
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+资源占领分数
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 你的物品栏中缺少鱼饵。

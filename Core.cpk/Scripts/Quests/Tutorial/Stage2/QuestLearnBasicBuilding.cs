@@ -1,20 +1,24 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options.Data;
 
     public class QuestLearnBasicBuilding : ProtoQuest
     {
+        public const string HintLPGain =
+            "Learning points are earned from any meaningful activity and are directly proportional to your skills experience gain.";
+
+        public const string HintTechMenu =
+            "You can quickly access the technologies menu by pressing the [b]\\[{0}\\][/b] key.";
+
+        public const string HintTechUnlock = "Unlocking any technology node requires [b]LP[/b] (learning points).";
+
         public override string Description =>
             @"To get access to more structures, you need to unlock ""basic buildings"" in the technology menu.";
-
-        public override string Hints =>
-            @"[*] You can quickly access the technologies menu by pressing ""G"" if you haven't changed the controls.
-              [*] Unlocking any technology node requires [b]LP[/b] (learning points).
-              [*] Learning points are earned from any meaningful activity and are directly proportional to your skills experience gain.";
 
         public override string Name => "Learn basic building technology";
 
@@ -30,6 +34,17 @@
 
             prerequisites
                 .Add<QuestBuildAPermanentBase>();
+
+            hints
+                .Add(() =>
+                     {
+                         var keyForButton =
+                             InputKeyNameHelper.GetKeyText(
+                                 ClientInputManager.GetKeyForButton(GameButton.TechnologiesMenu));
+                         return string.Format(HintTechMenu, keyForButton);
+                     })
+                .Add(HintTechUnlock)
+                .Add(HintLPGain);
         }
     }
 }

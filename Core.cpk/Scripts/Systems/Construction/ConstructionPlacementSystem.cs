@@ -28,11 +28,11 @@
 
     public class ConstructionPlacementSystem : ProtoSystem<ConstructionPlacementSystem>, IMenu
     {
+        public const double MaxDistanceToBuild = 5;
+
         public const string NotificationCannotBuild_Title = "Cannot build there";
 
         private const bool AllowInstantPlacementInCreativeMode = true;
-
-        private const double MaxDistanceToBuild = 5;
 
         private static ClientComponentObjectPlacementHelper componentObjectPlacementHelper;
 
@@ -257,6 +257,7 @@
         private static void ClientValidateCanBuild(
             Vector2Ushort tilePosition,
             bool logErrors,
+            out string errorMessage,
             out bool canPlace,
             out bool isTooFar)
         {
@@ -270,6 +271,7 @@
                 // this building is already built here
                 canPlace = false;
                 isTooFar = false;
+                errorMessage = null;
                 return;
             }
 
@@ -277,6 +279,7 @@
             if (!protoStructure.CheckTileRequirements(
                     tilePosition,
                     character,
+                    errorMessage: out errorMessage,
                     logErrors: logErrors))
             {
                 // time requirements are not valid

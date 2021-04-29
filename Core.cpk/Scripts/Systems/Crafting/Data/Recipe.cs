@@ -20,6 +20,7 @@
     /// <summary>
     /// Please use specific recipes abstract types. You cannot create instances of this type yourself.
     /// </summary>
+    [PrepareOrder(afterType: typeof(IProtoItem))]
     public abstract class Recipe : ProtoEntity
     {
         private static readonly IReadOnlyList<TechNode> EmptyList = new TechNode[0];

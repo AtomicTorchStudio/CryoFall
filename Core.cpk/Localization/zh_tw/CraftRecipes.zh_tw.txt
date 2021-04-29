@@ -1,7 +1,4 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
-打碎瓶子
-
-Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+﻿Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 用汽油裝滿桶
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
@@ -49,9 +46,6 @@ Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBott
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 將罐子中的汽油倒入發電機
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-從鋰礦萃取器中獲得鋰鹽
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 用油泵中的原油裝滿容器
 
@@ -69,4 +63,7 @@ Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 用井水裝滿瓶子
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+反應堆元件回收
 

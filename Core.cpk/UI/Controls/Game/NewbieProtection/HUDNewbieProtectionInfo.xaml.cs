@@ -3,7 +3,9 @@
     using System.Windows;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.NewbieProtection.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class HUDNewbieProtectionInfo : BaseUserControl
@@ -41,6 +43,7 @@
                 += this.NewbieProtectionTimeRemainingReceivedHandler;
             this.MouseEnter += this.MouseEnterOrLeaveHandler;
             this.MouseLeave += this.MouseEnterOrLeaveHandler;
+            this.MouseDown += MouseDownHandler;
         }
 
         protected override void OnUnloaded()
@@ -53,6 +56,12 @@
                 -= this.NewbieProtectionTimeRemainingReceivedHandler;
             this.MouseEnter -= this.MouseEnterOrLeaveHandler;
             this.MouseLeave -= this.MouseEnterOrLeaveHandler;
+            this.MouseDown -= MouseDownHandler;
+        }
+
+        private static void MouseDownHandler(object sender, MouseButtonEventArgs e)
+        {
+            Menu.Open<WindowSocial>();
         }
 
         private void MouseEnterOrLeaveHandler(object sender, MouseEventArgs e)

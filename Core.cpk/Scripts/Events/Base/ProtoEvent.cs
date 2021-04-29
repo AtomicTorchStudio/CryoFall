@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.Systems.ActiveEventsSystem;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldEvents;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data;
@@ -31,6 +31,8 @@
     {
         protected ProtoEvent()
         {
+            EventConstants.EnsureInitialized();
+
             var name = this.GetType().Name;
             if (name.StartsWith("Event"))
             {
@@ -68,6 +70,17 @@
 
         public IReadOnlyList<BaseTriggerConfig> Triggers { get; private set; }
 
+        /// <summary>
+        /// The event will not start on the server earlier than this delay
+        /// (can be adjusted by editing event delay multiplier in the server rates config file).
+        /// </summary>
+        protected abstract double DelayHoursSinceWipe { get; }
+
+        public virtual string ClientGetDescription(ILogicObject gameObject)
+        {
+            return this.Description;
+        }
+
         public virtual bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
             return true;
@@ -75,7 +88,7 @@
 
         public sealed override void ServerOnDestroy(ILogicObject gameObject)
         {
-            ActiveEventsSystem.ServerUnregisterEvent(gameObject);
+            WorldEventsSystem.ServerUnregisterEvent(gameObject);
             this.ServerOnEventDestroyed(gameObject);
             Logger.Important("Event destroyed: " + gameObject);
         }
@@ -160,7 +173,7 @@
         protected (TimeSpan from, TimeSpan to) ServerGetIntervalForThisEvent(
             (TimeSpan from, TimeSpan to) defaultInterval)
         {
-            var rateKey = "EventInterval." + this.ShortId;
+            var rateKey = "WorldEventInterval." + this.ShortId;
             var rateDefaultValue = defaultInterval.from != defaultInterval.to
                                        ? defaultInterval.from.TotalHours.ToString("0.0#")
                                          + "-"
@@ -263,7 +276,7 @@
                         return;
                     }
 
-                    ActiveEventsSystem.ServerRegisterEvent(activeEvent);
+                    WorldEventsSystem.ServerRegisterEvent(activeEvent);
                 });
 
             this.ServerInitializeEvent(data);
@@ -370,19 +383,29 @@
                 return;
             }
 
-            if (this.ServerIsTriggerAllowed(triggerConfig.Trigger))
+            var trigger = triggerConfig.Trigger;
+            if (trigger is TriggerTimeInterval
+                && Server.Game.HoursSinceWorldCreation < this.DelayHoursSinceWipe)
             {
-                this.ServerOnEventStartRequested(triggerConfig);
+                // too early
+                PostponeEvent();
                 return;
             }
 
-            if (!(triggerConfig.Trigger is TriggerTimeInterval))
+            if (!this.ServerIsTriggerAllowed(trigger))
             {
+                // cannot trigger now
+                if (trigger is TriggerTimeInterval)
+                {
+                    PostponeEvent();
+                }
+
                 return;
             }
 
-            // try to postpone the event
-            double postponeDuration;
+            this.ServerOnEventStartRequested(triggerConfig);
+
+            void PostponeEvent()
             {
                 var postponeDurationFrom = this.EventStartPostponeDurationFrom.TotalSeconds;
                 if (postponeDurationFrom <= 0)
@@ -396,12 +419,12 @@
                     postponeDurationTo = postponeDurationFrom;
                 }
 
-                postponeDuration = postponeDurationFrom
-                                   + RandomHelper.NextDouble() * (postponeDurationTo - postponeDurationFrom);
-            }
+                var postponeDuration = postponeDurationFrom
+                                       + RandomHelper.NextDouble() * (postponeDurationTo - postponeDurationFrom);
 
-            TriggerTimeInterval.ApplyPostpone(triggerConfig, postponeDuration);
-            Logger.Important($"Event start postponed on {TimeSpan.FromSeconds(postponeDuration)} - {this}");
+                TriggerTimeInterval.ApplyPostpone(triggerConfig, postponeDuration);
+                Logger.Important($"Event start postponed on {TimeSpan.FromSeconds(postponeDuration)} - {this}");
+            }
         }
     }
 }

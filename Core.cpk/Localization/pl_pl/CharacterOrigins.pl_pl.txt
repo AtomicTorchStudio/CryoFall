@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+Republika Galaktyczna to centrum ludzkiej cywilizacji i główna siła w galaktyce, w której na piedestale jest Ziemia. Każdy ze światów należących do republiki ma równy głos i jest prawnie zobowiązany do przestrzegania galaktycznego prawa, jednak poza tym każdy z nich jest w dużym stopniu niezależny i może realizować własną politykę i interesy.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+Republika Galaktyczna
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+Światy Niezależne to społeczeństwa, które nie zdecydowały się na przystąpienie do Republiki i zachowały pełną kontrolę nad swoją polityką i wojskiem. Jednak ze względu na presję polityczną i ekonomiczną, światy te są nadal dość ściśle związane z Republiką Galaktyczną, podobnie jak małe miasta-państwa z XXI wieku. Niektórzy określają te niezależne światy mianem światów obrzeżnych.
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+Światy Niezależne
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+Protektorat Zewnętrznego Pierścienia to światy peryferyjne znajdujące się poza zespołem głównych planet, a w jego skład wchodzą przede wszystkim mniej rozwinięte światy przemysłowe. Światy te zazwyczaj kierują się polityką jednej z wielu olbrzymich korporacji przemysłowych i są zjednoczone w formie luźnych koalicji przejawiających wspólne interesy ekonomiczne. W miarę ekspansji Republiki Galaktycznej światy te są wchłaniane jako pełnoprawne państwa członkowskie Republiki.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+Protektorat Zewnętrznego Pierścienia
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+Dyrektoriat to izolacjonistyczna frakcja obejmująca kilku światów, które odłączyły się od Republiki w wyniku sporu ideologicznego, a następnie wyrosły na niezależną i całkiem liczącą się potęgę. Dyrektoriat znajduje się na rubieżach Republiki i z każdej strony jest otoczony planetami Republiki. Od wieków prowadzi on zimną wojnę z Republiką, nie utrzymuje stosunków handlowych ani prawie żadnych dyplomatycznych.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+Dyrektoriat
+

@@ -466,6 +466,11 @@
             publicState.IsActive = setIsActive;
             this.ServerSetUpdateRate(item, isRare: !setIsActive);
             Logger.Info($"Player switched light mode: {item}, isActive={setIsActive}", character);
+
+            if (setIsActive)
+            {
+                ServerItemUseObserver.NotifyItemUsed(character, item);
+            }
         }
 
         // it's shared - but can be executed for the current character on client side

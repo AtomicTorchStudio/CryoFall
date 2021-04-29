@@ -11,7 +11,7 @@
 
         public override double GroundIconScale => 2;
 
-        public override ushort MaxItemsPerStack => ItemStackSize.Single;
+        public override ushort MaxItemsPerStack => 1;
 
         public override string Name => "Broken solar panel";
     }

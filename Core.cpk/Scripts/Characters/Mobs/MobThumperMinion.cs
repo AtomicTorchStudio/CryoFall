@@ -14,15 +14,15 @@
 
         protected override double DistanceEnemyTooFar => 24;
 
-        protected override double DistanceEnemyTooFarWhenAgro => 36;
+        protected override double DistanceEnemyTooFarWhenAggro => 36;
 
         public override void ServerOnDeath(ICharacter character)
         {
             this.ServerSendDeathSoundEvent(character);
 
-            // remove by timer
-            ServerTimersSystem.AddAction(5,
-                                         action: () => Server.World.DestroyObject(character));
+            ServerTimersSystem.AddAction(
+                delaySeconds: 5,
+                () => this.ServerSetSpawnState(character, MobSpawnState.Despawning));
         }
 
         public override bool SharedOnDamage(
@@ -39,12 +39,26 @@
                 damagePreMultiplier *= 1.5;
             }
 
-            return base.SharedOnDamage(weaponCache,
-                                       targetObject,
-                                       damagePreMultiplier,
-                                       damagePostMultiplier,
-                                       out obstacleBlockDamageCoef,
-                                       out damageApplied);
+            var byCharacter = weaponCache.Character;
+            var result = base.SharedOnDamage(weaponCache,
+                                             targetObject,
+                                             damagePreMultiplier,
+                                             damagePostMultiplier,
+                                             out obstacleBlockDamageCoef,
+                                             out damageApplied);
+
+            if (IsServer
+                && result
+                && byCharacter is not null
+                && !byCharacter.IsNpc)
+            {
+                // record the damage dealt by player
+                var targetCharacter = (ICharacter)targetObject;
+                var privateState = GetPrivateState(targetCharacter);
+                privateState.DamageTracker?.RegisterDamage(byCharacter, targetCharacter, damageApplied);
+            }
+
+            return result;
         }
 
         protected override void PrepareProtoCharacterMob(

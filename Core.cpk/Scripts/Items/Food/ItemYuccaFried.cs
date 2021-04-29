@@ -8,7 +8,7 @@
         public override string Description =>
             "Well-cooked yucca fruit. Not the highest class cuisine, but it tastes fine and gives you valuable nutrients.";
 
-        public override float FoodRestore => 10;
+        public override float FoodRestore => 11;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 

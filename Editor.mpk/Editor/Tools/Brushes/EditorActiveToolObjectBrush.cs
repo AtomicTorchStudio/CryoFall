@@ -155,12 +155,14 @@
         private void ValidateCanBuild(
             Vector2Ushort tilePosition,
             bool logErrors,
+            out string errorMessage,
             out bool canPlace,
             out bool isTooFar)
         {
             isTooFar = false;
             canPlace = this.protoStaticObject.CheckTileRequirements(tilePosition,
                                                                     character: null,
+                                                                    out errorMessage,
                                                                     logErrors: logErrors);
         }
     }

@@ -7,15 +7,13 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     Width="20"
     VerticalAlignment="Stretch"
     d:DesignHeight="50" d:DesignWidth="30"
     d:DataContext="{d:DesignInstance data:ViewModelHUDVehicleEnergyIndicator}"
-    Visibility="{Binding IndicatorVisibility}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    Visibility="{Binding IndicatorVisibility}">
     <base:BaseUserControl.Resources>
         <system:Double x:Key="BarCornerRadius">4</system:Double>
     </base:BaseUserControl.Resources>

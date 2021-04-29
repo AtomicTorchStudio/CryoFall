@@ -336,7 +336,8 @@
             </TabControl.Resources>
 
             <!-- Text: Current quests -->
-            <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_CurrentQuests}">
+            <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_CurrentQuests}"
+                     IsSelected="{Binding IsCurrentQuestsTabSelected}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

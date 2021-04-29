@@ -11,7 +11,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     /// <summary>
@@ -32,11 +31,6 @@
     {
         private double durabilityDecreasePerServerUpdate;
 
-        protected ProtoItemEquipmentImplant()
-        {
-            this.Icon = new TextureResource("Items/Implants/" + this.GetType().Name);
-        }
-
         public virtual ushort BiomaterialAmountRequiredToInstall => 25;
 
         public virtual ushort BiomaterialAmountRequiredToUninstall => 10;
@@ -46,8 +40,6 @@
         public sealed override EquipmentType EquipmentType => EquipmentType.Implant;
 
         public override double GroundIconScale => 0.85;
-
-        public override ITextureResource Icon { get; }
 
         public override bool IsRepairable => false;
 
@@ -111,6 +103,11 @@
             }
 
             ItemDurabilitySystem.ServerModifyDurability(item, delta: -(int)damageApplied);
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Implants/" + this.GetType().Name;
         }
 
         protected sealed override void PrepareDefense(DefenseDescription defense)

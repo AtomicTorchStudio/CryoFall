@@ -17,8 +17,6 @@
 
     public class EventMigration : ProtoEventDrop
     {
-        private const double EventDelayHoursSinceWipe = 48;
-
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
@@ -35,6 +33,8 @@
         [NotLocalizable]
         public override string Name => "Migration";
 
+        protected override double DelayHoursSinceWipe => 24 * EventConstants.ServerEventDelayMultiplier;
+
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
             if (trigger is not null
@@ -48,13 +48,6 @@
             if (serverSpawnZones.Value.All(z => z.Zone.IsEmpty))
             {
                 Logger.Error("All zones are empty (not mapped in the world), no place to start the event: " + this);
-                return false;
-            }
-
-            if (trigger is TriggerTimeInterval
-                && Server.Game.HoursSinceWorldCreation < EventDelayHoursSinceWipe)
-            {
-                // too early
                 return false;
             }
 

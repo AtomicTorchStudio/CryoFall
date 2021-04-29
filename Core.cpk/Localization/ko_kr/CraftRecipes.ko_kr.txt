@@ -46,9 +46,6 @@ Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBott
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 용기에서 엔진 발전기로 휘발유 옮기기
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-리튬 광석에서 추출한 리튬 소금
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 오일펌프에 있는 원유를 용기에 채우기
 
@@ -66,4 +63,7 @@ Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 우물에 든 물로 병 채우기
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+원자로 부품 재활용
 

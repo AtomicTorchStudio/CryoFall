@@ -124,6 +124,9 @@ Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 矿点爆炸
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+普拉格反应堆爆炸
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 普拉格源爆炸
 
@@ -593,6 +596,9 @@ Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 轻型炮台
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+过于靠近另一个炮台
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 禁用
 
@@ -707,6 +713,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 汽油发电机
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+可作为大型基地电力源的巨型普拉格反应堆，需要源源不断的普拉格供给。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+普拉格反应堆
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 基础的太阳能发电装置。需要独立的太阳能电池板才能进行发电。
 
@@ -718,6 +730,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 蒸汽发电机
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+放置至少一个{0}来启动反应堆。
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+无法启动反应堆
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 防止其他幸存者在周围区域建造或拆毁任何东西，使您的基地更安全。占领土地还可确保您的建筑物不会随着时间的推移而劣化。

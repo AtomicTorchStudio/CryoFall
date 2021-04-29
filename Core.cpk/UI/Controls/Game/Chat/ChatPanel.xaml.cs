@@ -8,6 +8,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
@@ -43,6 +44,11 @@
             get => this.isActive ?? false;
             private set
             {
+                if (value && !CanOpen)
+                {
+                    value = false;
+                }
+
                 if (this.isActive == value)
                 {
                     return;
@@ -114,6 +120,12 @@
                 this.tabsScrollViewer.ScrollToEnd();
             }
         }
+
+        private static bool CanOpen
+            => ClientCurrentCharacterHelper.Character is not null
+               && ClientCurrentCharacterHelper.Character.IsInitialized
+               && !ClientCurrentCharacterHelper.PublicState.IsDead
+               && !ClientCurrentCharacterHelper.PrivateState.IsDespawned;
 
         public void Close()
         {
@@ -239,9 +251,9 @@
             ChatSystem.ClientChatRoomAdded += this.ChatRoomAddedHandler;
             ChatSystem.ClientChatRoomRemoved += this.ChatRoomRemovedHandler;
             ChatSystem.ClientChatRoomMessageReceived += this.ClientChatRoomMessageReceivedHandler;
-            this.MouseDown += this.MouseButtonDownHandler;
             ClientInputManager.ButtonKeyMappingUpdated += this.ClientInputManagerButtonKeyMappingUpdatedHandler;
             Api.Client.CurrentGame.ConnectionStateChanged += this.CurrentGameOnConnectionStateChangedHandler;
+            Api.Client.UI.LayoutRoot.PreviewMouseDown += this.LayoutRootPreviewMouseButtonDownHandler;
             ClientUpdateHelper.UpdateCallback += this.Update;
 
             this.RefreshState();
@@ -266,9 +278,9 @@
             ChatSystem.ClientChatRoomAdded -= this.ChatRoomAddedHandler;
             ChatSystem.ClientChatRoomRemoved -= this.ChatRoomRemovedHandler;
             ChatSystem.ClientChatRoomMessageReceived -= this.ClientChatRoomMessageReceivedHandler;
-            this.MouseDown -= this.MouseButtonDownHandler;
             ClientInputManager.ButtonKeyMappingUpdated -= this.ClientInputManagerButtonKeyMappingUpdatedHandler;
             Api.Client.CurrentGame.ConnectionStateChanged -= this.CurrentGameOnConnectionStateChangedHandler;
+            Api.Client.UI.LayoutRoot.PreviewMouseDown -= this.LayoutRootPreviewMouseButtonDownHandler;
             ClientUpdateHelper.UpdateCallback -= this.Update;
         }
 
@@ -405,9 +417,10 @@
             }
         }
 
-        private void MouseButtonDownHandler(object sender, MouseButtonEventArgs e)
+        private void LayoutRootPreviewMouseButtonDownHandler(object sender, MouseButtonEventArgs e)
         {
-            if (this.tabControl.IsMouseOver)
+            if (this.tabControl.IsMouseOver
+                || (EmojiPickerPopupControl.Instance?.IsMouseOver ?? false))
             {
                 // ignore
                 return;
@@ -441,6 +454,12 @@
                 || WindowsManager.OpenedWindowsCount > 0
                 || !MainMenuOverlay.IsHidden)
             {
+                return;
+            }
+
+            if (!CanOpen)
+            {
+                this.IsActive = false;
                 return;
             }
 

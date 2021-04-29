@@ -30,13 +30,31 @@
                             <Setter Property="FontSize" Value="11" />
                             <Setter Property="LineHeight" Value="12" />
                             <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsNegativeEffect}"
+                                             Value="True">
+                                    <Setter Property="Foreground"
+                                            Value="{StaticResource BrushColorRed6}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Fill"
+                                    Value="{StaticResource BrushColor5}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsNegativeEffect}"
+                                             Value="True">
+                                    <Setter Property="Fill"
+                                            Value="{StaticResource BrushColorRed5}" />
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </Grid.Resources>
 
                     <!-- Bullet point -->
                     <Ellipse Width="4"
                              Height="4"
-                             Fill="{StaticResource BrushColor5}"
                              VerticalAlignment="Center" />
 
                     <TextBlock Grid.Column="1"
@@ -48,7 +66,7 @@
                                Text="{Binding EffectText}"
                                Visibility="{Binding EffectTextVisibility}"
                                TextWrapping="Wrap"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Top"
                                Margin="3,0,0,0" />
                 </Grid>
             </DataTemplate>

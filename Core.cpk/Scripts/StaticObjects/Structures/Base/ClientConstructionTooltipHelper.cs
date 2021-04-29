@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip;
@@ -97,7 +98,8 @@
             }
 
             // process structure deconstruction tooltip
-            var canDeconstruct = selectedProtoItem is IProtoItemToolCrowbar;
+            var canDeconstruct = selectedProtoItem is IProtoItemToolCrowbar
+                                 && DeconstructionSystem.SharedIsDeconstructable(protoStructure);
             if (tooltipDeconstruct is null)
             {
                 if (canDeconstruct)

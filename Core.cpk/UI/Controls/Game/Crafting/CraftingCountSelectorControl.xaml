@@ -28,6 +28,7 @@
         </Grid.ColumnDefinitions>
 
         <RepeatButton Grid.Column="0"
+                      Command="{Binding CommandCraftingCountSetOne}"
                       Content="{x:Static loc:CoreStrings.CraftingCountSelector_Min}"
                       FontSize="14"
                       FontWeight="Bold"
@@ -37,10 +38,10 @@
                       MinHeight="{StaticResource ButtonSize}"
                       VerticalAlignment="Center"
                       Focusable="False"
-                      Command="{Binding CommandCraftingCountSetOne}"
                       FontFamily="{StaticResource CondensedFontFamily}" />
 
         <RepeatButton Grid.Column="1"
+                      Command="{Binding CommandCraftingCountDecrease}"
                       Content="&#x2212;"
                       FontSize="14"
                       FontWeight="Bold"
@@ -49,7 +50,6 @@
                       MinHeight="{StaticResource ButtonSize}"
                       Focusable="False"
                       VerticalAlignment="Center"
-                      Command="{Binding CommandCraftingCountDecrease}"
                       FontFamily="{StaticResource DigitsFontFamily}" />
 
         <TextBox x:Name="TextBoxCount"
@@ -62,6 +62,7 @@
                  FontFamily="{StaticResource DigitsFontFamily}" />
 
         <RepeatButton Grid.Column="3"
+                      Command="{Binding CommandCraftingCountIncrease}"
                       Content="&#x002B;"
                       FontSize="18"
                       FontWeight="Bold"
@@ -70,10 +71,10 @@
                       MinHeight="{StaticResource ButtonSize}"
                       VerticalAlignment="Center"
                       Focusable="False"
-                      Command="{Binding CommandCraftingCountIncrease}"
                       FontFamily="{StaticResource DigitsFontFamily}" />
 
         <RepeatButton Grid.Column="4"
+                      Command="{Binding CommandCraftingCountSetMax}"
                       Content="{x:Static loc:CoreStrings.CraftingCountSelector_Max}"
                       FontSize="14"
                       FontWeight="Bold"
@@ -83,7 +84,6 @@
                       MinHeight="{StaticResource ButtonSize}"
                       VerticalAlignment="Center"
                       Focusable="False"
-                      Command="{Binding CommandCraftingCountSetMax}"
                       FontFamily="{StaticResource CondensedFontFamily}" />
     </Grid>
 </base:BaseUserControl>

@@ -10,9 +10,10 @@
         public ViewModelItemTooltipCompatibleWeaponsControl(IProtoItemAmmo protoItemAmmo)
         {
             this.CompatibleWeaponProtos = protoItemAmmo.CompatibleWeaponProtos
-                                                       .OrderBy(e => e.GetType().Namespace)
-                                                       .ThenBy(e => e.Name)
-                                                       .Select(e => e.Name)
+                                                       .Where(p => p.Icon != null)
+                                                       .OrderBy(p => p.GetType().Namespace)
+                                                       .ThenBy(p => p.Name)
+                                                       .Select(p => p.Name)
                                                        .ToArray();
         }
 

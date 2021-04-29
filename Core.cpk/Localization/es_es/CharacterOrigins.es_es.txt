@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+La República Galáctica es el corazón de la civilización humana y el principal poder político de la galaxia, con la Tierra como eje central. Todos los mundos de la república tienen el mismo derecho a voto y están obligados legalmente a cumplir la ley galáctica. No obstante, más allá de eso, todos ellos son mayormente independientes para desarrollar sus propias políticas e intereses.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+República Galáctica
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+`Los mundos independientes son aquellos que decidieron no unirse a la República y mantener así el control total sobre sus políticas y ejércitos. Sin embargo, debido a la presión política y económica, estos mundos siguen mayormente vinculados a la República Galáctica, de forma similar al funcionamiento de las ciudades estado del siglo XXI. Hay gente que prefiere llamar a estos mundos independientes "mundos de la periferia".`
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+Mundos independientes
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+El Protectorado del Borde Exterior conforma la periferia más allá de los planetas centrales y consta, fundamentalmente, de mundos industriales menos desarrollados. Por norma general, dichos mundos están al amparo de las políticas de una de las numerosas empresas industriales grandes y están unidos por coaliciones derivadas de intereses económicos. A medida que la República Galáctica se expande, estos mundos van siendo absorbidos como estados de pleno derecho de la República.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+Protectorado del Borde Exterior
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+El Directorado es una facción aislacionista que está compuesta por varios mundos que se separaron de la República debido a una disputa ideológica y que, posteriormente, acabarían convirtiéndose en una potencia independiente y bastante relevante. Está ubicado en los bordes exteriores del centro de la República y rodeado por mundos de la República a ambos lados. El Directorado ha estado cientos de años en guerra fría con la República y carece casi completamente de vínculos comerciales y diplomáticos.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+El Directorado
+

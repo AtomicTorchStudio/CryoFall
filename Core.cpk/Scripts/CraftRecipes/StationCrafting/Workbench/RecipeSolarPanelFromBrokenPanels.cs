@@ -21,6 +21,7 @@
 
             inputItems.Add<ItemSolarPanelBroken>(count: 4);
             inputItems.Add<ItemComponentsOptical>(count: 10);
+            inputItems.Add<ItemComponentsElectronic>(count: 10);
 
             outputItems.Add<ItemSolarPanel>(count: 1);
 

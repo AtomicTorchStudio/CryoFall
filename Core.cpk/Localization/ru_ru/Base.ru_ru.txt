@@ -142,11 +142,11 @@ Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 Скорость износа установленного импланта
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-Скорость потребления пищи
+Scripts/Base/Stats/StatName@HungerRate:
+Скорость накопления голода
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-Скорость потребления воды
+Scripts/Base/Stats/StatName@ThirstRate:
+Скорость накопления жажды
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Регенерация заряда энергии (в мин.)
@@ -186,6 +186,9 @@ Scripts/Base/Stats/StatName@VanityContinuousDamage:
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Невозможно есть или пить
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+Видение при низкой освещенности
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Получение очков технологий

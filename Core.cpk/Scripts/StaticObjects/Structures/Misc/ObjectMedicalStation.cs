@@ -117,16 +117,16 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Long;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 5);
-            build.AddStageRequiredItem<ItemPlastic>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 3);
+            build.AddStageRequiredItem<ItemPlastic>(count: 3);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Long;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 3);
-            repair.AddStageRequiredItem<ItemPlastic>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.AddStageRequiredItem<ItemPlastic>(count: 2);
         }
 
         protected override void PrepareProtoStaticWorldObject()

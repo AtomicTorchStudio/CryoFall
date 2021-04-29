@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.Actions
 {
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.ClientOptions.General;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -73,6 +75,14 @@
             }
 
             Vector2D offset = (0, 1.13);
+
+            if (targetWorldObject == ClientCurrentCharacterHelper.Character
+                && GeneralOptionDisplayHealthbarAboveCurrentCharacter.IsDisplay)
+            {
+                // adjust the offset so the circle will not overlap with the current character's name and healthbar
+                offset += (0, 0.2);
+            }
+
             switch (targetWorldObject.ProtoWorldObject)
             {
                 case IProtoStaticWorldObject protoStaticWorldObject:

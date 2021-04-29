@@ -30,7 +30,7 @@
 
         public override uint DurabilityMax => 400;
 
-        public override double FireInterval => 1 / 10d; // 10 per second
+        public override double FireInterval => 1 / 10.0; // 10 per second
 
         public override string Name => "Machine pistol";
 

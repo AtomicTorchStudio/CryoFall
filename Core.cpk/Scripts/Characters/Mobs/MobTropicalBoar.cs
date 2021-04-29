@@ -13,19 +13,17 @@
     {
         public override bool AiIsRunAwayFromHeavyVehicles => true;
 
-        public override float CharacterWorldHeight => 0.8f;
+        public override float CharacterWorldHeight => 0.9f;
 
-        public override float CharacterWorldWeaponOffsetRanged => 0.35f;
-
-        public override double MobKillExperienceMultiplier => 0.7;
+        public override double MobKillExperienceMultiplier => 1.0;
 
         public override string Name => "Tropical boar";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
-        public override double StatDefaultHealthMax => 50;
+        public override double StatDefaultHealthMax => 70;
 
-        public override double StatMoveSpeed => 1.5;
+        public override double StatMoveSpeed => 1.9;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -80,7 +78,7 @@
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
-                distanceEnemyTooFar: 3.5,
+                distanceEnemyTooFar: 5,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad);
 

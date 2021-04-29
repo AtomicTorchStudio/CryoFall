@@ -22,8 +22,15 @@
 
         double MobKillExperienceMultiplier { get; }
 
+        void ServerAggroNotification(
+            ICharacter currentCharacter,
+            ICharacter sourceCharacterMob,
+            ICharacter characterToAggro);
+
         void ServerOnDeath(ICharacter character);
 
-        void ServerPlaySound(ICharacter characterNpc, CharacterSound characterSound);
+        void ServerPlaySound(ICharacter character, CharacterSound characterSound);
+
+        void ServerSetSpawnState(ICharacter character, MobSpawnState state);
     }
 }

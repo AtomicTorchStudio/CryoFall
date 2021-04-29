@@ -28,6 +28,8 @@
 
         public virtual bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public virtual bool IsGeneratorAlwaysOn => false;
+
         public override bool IsRelocatable => true;
 
         public override double ServerUpdateIntervalSeconds => 0.2;

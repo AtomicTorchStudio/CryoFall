@@ -46,9 +46,6 @@ Encher de água o gerador de vapor
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Adicionar gasolina do reservatório ao gerador motor
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Sais de lítio do extrator de minério de lítio
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Encha o reservatório com óleo de petróleo bruto da bomba de óleo
 
@@ -66,4 +63,7 @@ Ferver água
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Encher a garrafa com água do poço
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Reciclagem de componentes de reatores
 

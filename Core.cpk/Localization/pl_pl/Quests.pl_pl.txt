@@ -12,10 +12,14 @@ Uszyj śpiwór
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Masz już skrzynkę z narzędziami, więc możesz zacząć tworzyć różne pozycje odblokowane w menu technologii. Najpierw zajmij się ogniskiem, na którym będziesz gotować potrawy.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Klawisz „Tab” pozwala szybko uzyskać dostęp do menu [b]budowania[/b], jeśli nie zmieniono przypisań klawiszy.
-[*] Menu budowania może zawierać [b]kilka stron[/b] różnych [b]typów budynków[/b], w miarę jak odblokowujesz kolejne budowle.
-[*] Skrzynki z narzędziami służą nie tylko do [b]budowania[/b], ale także do [b]naprawy[/b] budowli.`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+Klawisz [b]\[{0}\][/b] pozwala szybko przejść do [b]menu budowania[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+W miarę postępów w grze menu budowania może zawierać [b]wiele stron[/b] różnych [b]typów budynków[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Skrzynki z narzędziami pozwalają [b]budować[/b] budowle, ale i [b]naprawiać[/b] je.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Rozpal ognisko
@@ -50,8 +54,8 @@ Ugotuj dowolną żywność
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Dzięki zasobom, które już posiadasz, możesz zacząć coś wytwarzać. Najpierw wypleć linę, a następnie wykonaj siekierę.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-[*] Jeśli domyślne przypisania klawiszy nie zostały zmienione, możesz szybko otworzyć menu wytwarzania klawiszem „C”, menu ekwipunek klawiszem „E”.
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Menu rzemiosła można szybko otworzyć klawiszem [b]\[{0}\][/b], a ekwipunek – klawiszem [b]\[{1}\][/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Wykonaj siekierę
@@ -59,9 +63,11 @@ Wykonaj siekierę
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Wydobywanie różnych minerałów daje dostęp do najcenniejszych zasobów w CryoFall. Aby wydobywać minerały, musisz wykonać kilof.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Za pomocą menu wytwarzania (domyślnie klawisz „C”) wykonaj kilof.
-[*] Jeśli nie masz liny, to też musisz ją wykonać.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Otwórz menu wytwarzania (klawisz [b]\[{0}\][/b]) i wykonaj kilof.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+Jeśli nie masz liny, to też musisz ją wykonać.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Wykonaj kilof
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Znajdź i użyj zielone zioło
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Punkty technologii dostajesz za wykonywanie sensownych działań w grze; ich liczba jest proporcjonalna do poziomu zyskiwanego doświadczenia w umiejętnościach.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+Klawisz [b]\[{0}\][/b] pozwala szybko przejść do menu technologii.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Odblokowanie węzła technologii wymaga użycia [b]PT[/b] (punktów technologii).
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 Aby uzyskać dostęp do większej ilości struktur, w menu technologii należy odblokować „budynki podstawowe”.
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Naciśnij klawisz G, aby przejść do menu technologii (jeśli sterowanie nie zostało zmienione).
-[*] Odblokowanie węzła technologii wymaga użycia [b]PT[/b] (punkty technologii).
-[*] Punkty technologii (PT) dostajesz za wykonywanie sensownych działań w grze; ich liczba jest proporcjonalna do poziomu zyskiwanego doświadczenia w umiejętnościach.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 Poznaj podstawowe technologie budowlane

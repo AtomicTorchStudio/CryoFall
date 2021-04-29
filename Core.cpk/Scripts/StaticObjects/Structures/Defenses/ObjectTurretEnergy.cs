@@ -14,13 +14,13 @@
         public override string Description =>
             "Fully automated sentry turret that uses coherent energy beam to damage its target.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.5;
 
         public override string Name => "Energy turret";
 
-        public override double StructureExplosiveDefenseCoef => 0.7;
+        public override double StructureExplosiveDefenseCoef => 0.4;
 
-        public override float StructurePointsMax => 1500;
+        public override float StructurePointsMax => 3000;
 
         protected override void PrepareConstructionConfigTurret(
             ConstructionTileRequirements tileRequirements,
@@ -28,22 +28,22 @@
             ConstructionStageConfig repair,
             ConstructionUpgradeConfig upgrade)
         {
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 10);
-            build.AddStageRequiredItem<ItemWire>(count: 10);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemWire>(count: 5);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 1);
             build.AddStageRequiredItem<ItemComponentsOptical>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 10);
-            repair.AddStageRequiredItem<ItemWire>(count: 10);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            repair.AddStageRequiredItem<ItemWire>(count: 5);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
         {
-            defense.Set(ObjectDefensePresets.Tier4);
+            defense.Set(ObjectDefensePresets.Tier3);
         }
 
         protected override void PrepareProtoTurretObject(out IProtoCharacterTurret protoCharacter)

@@ -225,6 +225,7 @@
                 projectilesCount: 1,
                 objectMaterial: ObjectMaterial.Wood,
                 randomizeHitPointOffset: false,
+                rotationAngleRad: null,
                 randomRotation: false,
                 drawOrder: DrawOrder.Light);
         }

@@ -49,7 +49,10 @@
             var tile = Api.Client.World.GetTile(this.TargetPosition);
             this.ProtoItemExplosive.ObjectExplosiveProto.ClientSetupBlueprint(
                 tile,
-                new ClientBlueprintRenderer(this.sceneObjectVisualizer, isConstructionSite: false));
+                new ClientBlueprintRenderer(
+                    this.sceneObjectVisualizer,
+                    isConstructionSite: false,
+                    this.ProtoItemExplosive.ObjectExplosiveProto.SharedGetObjectCenterWorldOffset(null)));
         }
     }
 }

@@ -14,7 +14,7 @@
 
     public class ViewModelWorldObjectFactionAccessEditorControl : BaseViewModel
     {
-        private readonly bool canChangeSelfRoleAccess;
+        private readonly FactionMemberAccessRights accessRight;
 
         private readonly bool isClosedModeAvailable;
 
@@ -24,12 +24,10 @@
 
         private readonly IWorldObject worldObject;
 
-        public ViewModelWorldObjectFactionAccessEditorControl(
-            IWorldObject worldObject,
-            bool canSetAccessMode)
+        public ViewModelWorldObjectFactionAccessEditorControl(IWorldObject worldObject)
         {
             this.worldObject = worldObject;
-            this.CanSetAccessMode = canSetAccessMode;
+            this.accessRight = WorldObjectAccessModeSystem.SharedGetFactionAccessRightRequirementForObject(worldObject);
 
             if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
             {
@@ -38,26 +36,21 @@
 
             this.isClosedModeAvailable = protoObjectWithAccessMode.IsClosedAccessModeAvailable;
             this.isEveryoneModeAvailable = protoObjectWithAccessMode.IsEveryoneAccessModeAvailable;
-            this.canChangeSelfRoleAccess = canSetAccessMode
-                                           && protoObjectWithAccessMode.CanChangeFactionRoleAccessForSelfRole;
 
             this.privateState = worldObject.GetPrivateState<IObjectWithAccessModePrivateState>();
-            this.privateState.ClientSubscribe(
-                _ => _.FactionAccessMode,
-                _ => this.RefreshCheckboxes(),
-                this);
+            this.privateState.ClientSubscribe(_ => _.FactionAccessMode,
+                                              _ => this.RefreshCheckboxes(),
+                                              this);
 
             FactionSystem.ClientCurrentFactionAccessRightsChanged += this.CurrentFactionAccessRightsChanged;
 
             this.RecreateViewModelAccessModes();
         }
 
-        public bool CanSetAccessMode { get; }
-
         public bool HasFactionAccessRight
-            => CreativeModeSystem.ClientIsInCreativeMode()
-               || (FactionSystem.ClientCurrentFaction is not null
-                   && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement));
+            => FactionSystem.ClientCurrentFaction is not null
+               && (CreativeModeSystem.ClientIsInCreativeMode()
+                   || FactionSystem.ClientHasAccessRight(this.accessRight));
 
         public ViewModelFactionAccessMode[] ViewModelAccessModes { get; set; }
 
@@ -140,7 +133,8 @@
                 this.ViewModelAccessModes[0].IsEnabled = false;
             }
 
-            if (!this.canChangeSelfRoleAccess)
+            var protoObjectWithAccessMode = (IProtoObjectWithAccessMode)this.worldObject.ProtoGameObject;
+            if (!protoObjectWithAccessMode.CanChangeFactionRoleAccessForSelfRole)
             {
                 var currentRole = FactionSystem.ClientCurrentRole;
                 foreach (var vm in this.ViewModelAccessModes)
@@ -187,6 +181,8 @@
                 this.Mode = mode;
                 this.callbackIsCheckedChanged = callbackIsCheckedChanged;
             }
+
+            public bool HasExtraPadding => this.Mode == WorldObjectFactionAccessModes.Everyone;
 
             public bool IsChecked
             {

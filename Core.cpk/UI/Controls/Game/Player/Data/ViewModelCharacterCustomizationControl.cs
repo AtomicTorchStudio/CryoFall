@@ -148,10 +148,10 @@
             }
         }
 
-        public string SaveButtonTitle
-            => this.CanCancel
-                   ? CoreStrings.Button_Save
-                   : CoreStrings.Button_Continue;
+        public (CharacterHumanFaceStyle CurrentStyle, bool isMale) GetCurrentSelectedStyle()
+        {
+            return (this.CurrentFaceStyleCustomizer.CurrentStyle, this.isMale);
+        }
 
         protected override void DisposeViewModel()
         {
@@ -182,7 +182,7 @@
 
         private void ExecuteCommandSave()
         {
-            this.callbackClose((this.CurrentFaceStyleCustomizer.CurrentStyle, this.isMale));
+            this.callbackClose(this.GetCurrentSelectedStyle());
         }
 
         private void OnStyleSet(ViewModelFaceStyleCustomizer viewModelFaceStyleCustomizer)

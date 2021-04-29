@@ -454,6 +454,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     projectilesCount: 1,
                     objectMaterial: objectMaterial,
                     randomizeHitPointOffset: true,
+                    rotationAngleRad: null,
                     randomRotation: true,
                     drawOrder: DrawOrder.Light);
             }

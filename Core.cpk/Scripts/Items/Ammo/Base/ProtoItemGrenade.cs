@@ -114,6 +114,22 @@
             }
         }
 
+        protected virtual void ClientExplodeAt(
+            IProtoItemWeapon protoWeapon,
+            Vector2D shotSourcePosition,
+            Vector2D explosionWorldPosition)
+        {
+            var timeToHit = WeaponSystemClientDisplay.SharedCalculateTimeToHit(protoWeapon.FireTracePreset
+                                                                               ?? this.FireTracePreset,
+                                                                               shotSourcePosition,
+                                                                               explosionWorldPosition);
+
+            ClientTimersSystem.AddAction(timeToHit,
+                                         () => SharedExplosionHelper.ClientExplode(explosionWorldPosition,
+                                             this.ExplosionPreset,
+                                             this.VolumeExplosion));
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -253,22 +269,6 @@
                 hasTrace: true);
 
             this.ClientExplodeAt(protoWeapon, shotSourcePosition, explosionWorldPosition);
-        }
-
-        private void ClientExplodeAt(
-            IProtoItemWeapon protoWeapon,
-            Vector2D shotSourcePosition,
-            Vector2D explosionWorldPosition)
-        {
-            var timeToHit = WeaponSystemClientDisplay.SharedCalculateTimeToHit(protoWeapon.FireTracePreset
-                                                                               ?? this.FireTracePreset,
-                                                                               shotSourcePosition,
-                                                                               explosionWorldPosition);
-
-            ClientTimersSystem.AddAction(timeToHit,
-                                         () => SharedExplosionHelper.ClientExplode(explosionWorldPosition,
-                                             this.ExplosionPreset,
-                                             this.VolumeExplosion));
         }
 
         private void ClientRemote_OnExplosion(

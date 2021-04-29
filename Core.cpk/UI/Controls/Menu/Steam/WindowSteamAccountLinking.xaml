@@ -37,6 +37,13 @@
                     HorizontalAlignment="Left"
                     Margin="20,0,0,10" />-->
 
+                <TextBlock
+                    Text="{x:Static loc:CoreStrings.MainMenuOverlay_Button_LinkAccount}"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource WindowTitleForeground}"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,10" />
+
                 <!-- Create new AtomicTorch account -->
                 <Button
                     Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}"

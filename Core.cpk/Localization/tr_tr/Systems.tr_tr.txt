@@ -155,6 +155,19 @@ Yeni tarif eklenemez
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Yıkım yapılamaz
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+Grubun liderlik tablosunda #{0} konumundan #{1} konumuna düştü.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+Grup sıralaması düştü
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`Grubun liderlik tablosunda #{0} konumundan #{1} konumuna yükseldi.
+[br]Böyle devam et!`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+Grup sıralaması yükseldi
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 Üye sayısı
 
@@ -184,6 +197,12 @@ Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 Diplomasi yönetimi
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+Araç erişim yönetimi
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+Üs K.A.L.K.A.N. yönetimi
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 Yardımcı
@@ -326,20 +345,41 @@ Grup bölgesi {0} noktasına genişletildi.
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 {0} noktasındaki grup bölgesi kaldırıldı.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+Grubun sahibi olduğu üslerin içinde yer alan ve grup skor puanı değeri bulunan yapılar için hediye edilir (sadece grup sahipliğine nakledilen alan tutucular sayılır).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-Grup serveti üsleri
+Refahlık puanı
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+Grup seviyesi ne kadar yüksekse o kadar çok puan verilir!
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 Grup seviyesi
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+Dünya patronlarını öldürme karşılığında, alınan yağmayla orantılı olarak verilir.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Boss puanı
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+Gruptayken öldürülen herhangi bir yaratık karşılığı verilir.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 Avlanma puanı
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-Toplam birikmiş EP
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+Gruptayken EP kazanma karşılığı verilir. Görevlerden ve tüketilebilir eşyalardan kazanılan EP sayılmaz.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+Eğitim puanı skoru
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+Saat başı elde edilen petrol ve liyum yatakları karşılığı verilir (alan tutucu grup sahipliğine nakledilmiş olmalıdır).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+Kaynak hâkimiyet skoru
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 Envanterinde balıkçılık için kullanılabilecek yem yok.

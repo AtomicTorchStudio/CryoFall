@@ -69,23 +69,23 @@
         protected override void PrepareProtoMineral(MineralDropItemsConfig config)
         {
             config.Stage1
-                  .Add<ItemOrePragmium>(count: 4, countRandom: 2)
+                  .Add<ItemOrePragmium>(count: 3, countRandom: 2)
                   .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage2
-                  .Add<ItemOrePragmium>(count: 4, countRandom: 2)
+                  .Add<ItemOrePragmium>(count: 3, countRandom: 2)
                   .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage3
-                  .Add<ItemOrePragmium>(count: 4, countRandom: 2)
+                  .Add<ItemOrePragmium>(count: 3, countRandom: 2)
                   .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage4
                   .Add<ItemPragmiumHeart>(count: 1)
-                  .Add<ItemOrePragmium>(count: 6, countRandom: 2)
+                  .Add<ItemOrePragmium>(count: 4, countRandom: 2)
                   .Add<ItemGoldNugget>(count: 4,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 2);
         }

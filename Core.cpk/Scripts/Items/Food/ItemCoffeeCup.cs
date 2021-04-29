@@ -17,12 +17,12 @@
 
         public override ushort OrganicValue => 2;
 
-        public override float WaterRestore => 10;
+        public override float WaterRestore => 25;
 
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillAddEffect<StatusEffectEnergyRush>(intensity: 0.40);
+                .WillAddEffect<StatusEffectEnergyRush>(intensity: 0.50);
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

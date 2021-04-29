@@ -59,7 +59,8 @@
                     <StackPanel Orientation="Vertical"
                                 Grid.Row="2"
                                 VerticalAlignment="Bottom"
-                                HorizontalAlignment="Left">
+                                HorizontalAlignment="Center"
+                                Margin="0,0,8,0">
                         <!-- Text: Empty -->
                         <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
@@ -67,7 +68,6 @@
                                    Margin="0" />
                         <controls:ItemsContainerControl
                             Container="{Binding ViewModelManufacturingState.ContainerOutput}"
-                            MaxWidth="100"
                             DesignTimeSlotsCount="1" />
                     </StackPanel>
 

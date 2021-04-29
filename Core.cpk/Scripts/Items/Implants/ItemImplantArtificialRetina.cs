@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -41,6 +42,14 @@
             var sceneObject = character.ClientSceneObject;
             var componentNightVisionEffect = sceneObject.AddComponent<ClientComponentArtificialRetinaEffect>();
             skeletonComponents.Add(componentNightVisionEffect);
+        }
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            base.PrepareEffects(effects);
+
+            // just adds information into the tooltip about the effect of this implant
+            effects.AddPerk(this, StatName.VanityLowLightVision);
         }
 
         /// <summary>

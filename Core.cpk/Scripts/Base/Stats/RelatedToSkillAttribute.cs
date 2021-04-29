@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using JetBrains.Annotations;
 
+    [AttributeUsage(AttributeTargets.Field)]
     public class RelatedToSkillAttribute : Attribute
     {
         private readonly Type skillType;

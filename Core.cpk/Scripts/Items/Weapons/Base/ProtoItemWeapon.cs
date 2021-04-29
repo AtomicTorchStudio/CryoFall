@@ -99,8 +99,6 @@
 
         public override double GroundIconScale => 1.5;
 
-        public override ITextureResource Icon => new TextureResource("Items/Weapons/" + this.GetType().Name);
-
         public virtual bool IsLoopedAttackAnimation => (this.FireInterval / this.FireAnimationDuration) < 1.5;
 
         public virtual bool IsRepairable => true;
@@ -213,7 +211,7 @@
 
             var soundPresetHit = (protoWorldObject as IDamageableProtoWorldObject)?.OverrideSoundPresetHit
                                  ?? this.SoundPresetHit;
-            
+
             if (hitWorldObject is not null)
             {
                 soundPresetHit.PlaySound(

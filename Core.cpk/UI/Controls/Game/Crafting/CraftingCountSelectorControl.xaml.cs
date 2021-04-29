@@ -2,6 +2,7 @@
 {
     using System.Windows.Controls;
     using System.Windows.Input;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -37,19 +38,26 @@
                 return;
             }
 
-            if (key == Key.Tab)
+            switch (key)
             {
-                return;
-            }
+                case Key.Tab:
+                case Key.Escape:
+                    Api.Client.UI.BlurFocus();
+                    return;
 
-            if (key == Key.Escape)
-            {
-                Api.Client.UI.BlurFocus();
-                return;
-            }
+                case Key.Enter:
+                    if (this.DataContext is ViewModelCraftingMenuRecipeDetails viewModel)
+                    {
+                        viewModel.CommandCraft.Execute(null);
+                    }
 
-            // suppress key input
-            e.Handled = true;
+                    return;
+
+                default:
+                    // suppress key input
+                    e.Handled = true;
+                    break;
+            }
         }
     }
 }

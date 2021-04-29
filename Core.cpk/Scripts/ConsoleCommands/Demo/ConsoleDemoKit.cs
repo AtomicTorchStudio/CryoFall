@@ -48,6 +48,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
 
             wMelee,
 
+            wExotic,
+
             // tools, prefix "t"
             tToolsAll,
 
@@ -114,6 +116,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemRifle10mm>();
                     CreateItem<ItemAmmo10mmStandard>();
                     CreateItem<ItemAmmo10mmArmorPiercing>();
+                    CreateItem<ItemAmmo10mmArmorPiercing>();
+                    CreateItem<ItemAmmo10mmArmorPiercing>();
                     CreateItem<ItemAmmo10mmHollowPoint>();
                     CreateItem<ItemAmmo10mmBlank>();
                     return "Added 10mm arms and ammo.";
@@ -130,6 +134,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                 case KitCategory.w300:
                     CreateItem<ItemMachinegun300>();
                     CreateItem<ItemRifle300>();
+                    CreateItem<ItemAmmo300ArmorPiercing>();
+                    CreateItem<ItemAmmo300ArmorPiercing>();
                     CreateItem<ItemAmmo300ArmorPiercing>();
                     CreateItem<ItemAmmo300Incendiary>();
                     return "Added .300 arms and ammo.";
@@ -151,6 +157,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemPowerBankLarge>();
                     CreateItem<ItemBatteryDisposable>(amount: 100);
                     return "Added energy weapons and related items.";
+
+                case KitCategory.wExotic:
+                    CreateItem<ItemToxinProliferator>();
+                    CreateItem<ItemSwarmLauncher>();
+                    CreateItem<ItemAmmoKeinite>();
+                    CreateItem<ItemAmmoKeinite>();
+                    return "Added exotic weapons and related items.";
 
                 case KitCategory.wMelee:
                     CreateItem<ItemKnifeStone>();

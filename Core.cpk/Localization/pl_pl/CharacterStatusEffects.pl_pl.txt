@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+Można wyleczyć za pomocą: {0}.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 Używasz środków pobudzających i twoja regeneracja wytrzymałości jest znacznie szybsza.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -26,7 +29,7 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Ostatni obfity posiłek był bardzo zdrowy. Każde zadanie będzie teraz łatwiejsze.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
-Zdrowa żywność
+Obfita żywność
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectQuantumAcceleration@Description:
 Skraca czas wytwarzania, tworząc odizolowaną przestrzeń kwantową wokół gracza.
@@ -87,6 +90,12 @@ Umierasz z głodu!
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Głód
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+Masz bardzo niebezpieczną, otwartą ranę. Standardowo takie obrażenia wymagają poważnej pomocy medycznej.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+Poważna rana
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 Po narażeniu na ekstremalnie intensywne promieniowanie komórki w twoim ciele zaczęły mutować. Nie jest zabawnie! Nie wchodź już do stref promieniowania.

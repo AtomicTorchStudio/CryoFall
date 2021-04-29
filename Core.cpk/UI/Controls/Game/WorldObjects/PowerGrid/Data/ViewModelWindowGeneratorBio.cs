@@ -81,9 +81,8 @@
 
             this.NotifyPropertyChanged(nameof(this.ElectricityProductionInfoText));
 
-            ClientTimersSystem.AddAction(
-                delaySeconds: 0.5,
-                this.Refresh);
+            ClientTimersSystem.AddAction(delaySeconds: 0.5,
+                                         this.Refresh);
         }
     }
 }

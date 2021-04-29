@@ -19,9 +19,9 @@
 
         public override string Name => "Light turret";
 
-        public override double StructureExplosiveDefenseCoef => 0.7;
+        public override double StructureExplosiveDefenseCoef => 0.5;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 2000;
 
         protected override void PrepareConstructionConfigTurret(
             ConstructionTileRequirements tileRequirements,
@@ -29,22 +29,22 @@
             ConstructionStageConfig repair,
             ConstructionUpgradeConfig upgrade)
         {
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemWire>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            build.AddStageRequiredItem<ItemWire>(count: 3);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
             build.AddStageRequiredItem<ItemComponentsWeapon>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            repair.AddStageRequiredItem<ItemWire>(count: 5);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            repair.AddStageRequiredItem<ItemWire>(count: 3);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
         {
-            defense.Set(ObjectDefensePresets.Tier4);
+            defense.Set(ObjectDefensePresets.Tier3);
         }
 
         protected override void PrepareProtoTurretObject(out IProtoCharacterTurret protoCharacter)

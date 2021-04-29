@@ -58,6 +58,12 @@ Enerji silahları, geleneksel silahlardan sonra büyük bir teknolojik gelişme.
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Enerji silahları
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+Geleneksel savaşta nadiren kullanılan ama sıra dışı durumlarda kullanışlı olan deneysel silahlar.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+Egzotik silahlar
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 Ekim için tohum hazırlığı, gübreler ve çeşitli çiftçilik teknikleri.
 

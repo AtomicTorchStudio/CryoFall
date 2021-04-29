@@ -58,6 +58,12 @@ Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Энергетическое оружие
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+Экспериментальное оружие, которое редко используется в обычном бою, но может здорово пригодиться в экстремальных ситуациях.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+Экзотическое оружие
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 Подготовка семян для посадки, изготовление удобрений и различные фермерские технологии.
 

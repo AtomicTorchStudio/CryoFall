@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
 
     /// <summary>
     /// Item prototype for item with durability.
@@ -24,18 +23,11 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemWithDurability()
-        {
-            this.Icon = new TextureResource("Items/Generic/" + this.GetType().Name);
-        }
-
         public abstract uint DurabilityMax { get; }
-
-        public override ITextureResource Icon { get; }
 
         public abstract bool IsRepairable { get; }
 
-        public sealed override ushort MaxItemsPerStack => ItemStackSize.Single;
+        public sealed override ushort MaxItemsPerStack => 1;
 
         public virtual void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
         {

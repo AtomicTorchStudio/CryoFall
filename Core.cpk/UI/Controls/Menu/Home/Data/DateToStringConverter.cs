@@ -13,10 +13,8 @@
             CultureInfo culture)
         {
             var date = (DateTime)value;
-            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            var format = parameter as string ?? "d MMMM yyyy";
             return date.ToLocalTime()
-                       .ToString(format, CultureInfo.CurrentUICulture)
+                       .ToString(CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern)
                        .ToUpperInvariant();
         }
 

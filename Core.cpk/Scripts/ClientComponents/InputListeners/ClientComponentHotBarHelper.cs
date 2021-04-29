@@ -35,7 +35,7 @@
 
         private ClientInputContext clientInputContext;
 
-        private bool isMouseLeftButtonDown;
+        private bool inputIsUsingItem;
 
         private PlayerCharacterPublicState publicState;
 
@@ -47,26 +47,20 @@
         {
             set
             {
-                if (this.isMouseLeftButtonDown == value)
+                if (this.inputIsUsingItem == value)
                 {
                     return;
                 }
 
-                this.isMouseLeftButtonDown = value;
+                this.inputIsUsingItem = value;
 
                 var selectedItem = ClientHotbarSelectedItemManager.SelectedItem;
                 var protoItem = selectedItem is not null
                                     ? selectedItem.ProtoItem
                                     : ItemNoWeapon.Instance;
 
-                if (this.isMouseLeftButtonDown)
+                if (this.inputIsUsingItem)
                 {
-                    if (ClientItemsManager.ItemInHand is not null)
-                    {
-                        // cannot start using any item because there is an item held in hand
-                        return;
-                    }
-
                     protoItem.ClientItemUseStart(selectedItem);
                     return;
                 }
@@ -169,7 +163,17 @@
                 return;
             }
 
-            this.InputIsUsingItem = ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem);
+            if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem)
+                && !this.inputIsUsingItem)
+            {
+                // start using item
+                this.InputIsUsingItem = true;
+            }
+            else if (!ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem))
+            {
+                // stop using item
+                this.InputIsUsingItem = false;
+            }
         }
     }
 }

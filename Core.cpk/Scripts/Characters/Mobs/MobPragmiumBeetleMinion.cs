@@ -41,8 +41,9 @@
             this.ServerSendDeathSoundEvent(character);
 
             // remove by timer
-            ServerTimersSystem.AddAction(5,
-                                         action: () => Server.World.DestroyObject(character));
+            ServerTimersSystem.AddAction(
+                delaySeconds: 5,
+                () => this.ServerSetSpawnState(character, MobSpawnState.Despawning));
         }
 
         public override bool SharedOnDamage(
@@ -66,9 +67,10 @@
                 && byCharacter is not null
                 && !byCharacter.IsNpc)
             {
-                var privateState = GetPrivateState((ICharacter)targetObject);
                 // record the damage dealt by player
-                privateState.DamageTracker?.RegisterDamage(byCharacter, damageApplied);
+                var targetCharacter = (ICharacter)targetObject;
+                var privateState = GetPrivateState(targetCharacter);
+                privateState.DamageTracker?.RegisterDamage(byCharacter, targetCharacter, damageApplied);
             }
 
             return result;

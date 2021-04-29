@@ -38,9 +38,13 @@
 
     public class TeleportsSystem : ProtoSystem<TeleportsSystem>
     {
-        public const double TeleportationAnimationDuration = TeleportationDelay / 2.0;
+        public const double TeleportationAnimationDuration = 1.5;
 
-        public const double TeleportationDelay = 3.0;
+        /// <summary>
+        /// The delay is necessary to apply the full screen fade out effect for current character
+        /// after it has disappeared.
+        /// </summary>
+        public const double TeleportationDelay = 1.5;
 
         private const string DatabaseKeyPlayerDiscoveredTeleports = "PlayerDiscoveredTeleports";
 
@@ -230,9 +234,9 @@
             TriggerEveryFrame.ServerRegister(this.ServerUpdate,
                                              $"{nameof(TeleportsSystem)}.{nameof(this.ServerUpdate)}");
 
-            if (Api.Server.Database.TryGet(nameof(TeleportsSystem),
-                                           DatabaseKeyPlayerDiscoveredTeleports,
-                                           out serverPlayerDiscoveredTeleports))
+            if (Server.Database.TryGet(nameof(TeleportsSystem),
+                                       DatabaseKeyPlayerDiscoveredTeleports,
+                                       out serverPlayerDiscoveredTeleports))
             {
                 return;
             }
@@ -295,9 +299,9 @@
             ServerTeleports.Clear();
 
             serverPlayerDiscoveredTeleports = new Dictionary<ICharacter, HashSet<Vector2Ushort>>();
-            Api.Server.Database.Set(nameof(TeleportsSystem),
-                                    DatabaseKeyPlayerDiscoveredTeleports,
-                                    serverPlayerDiscoveredTeleports);
+            Server.Database.Set(nameof(TeleportsSystem),
+                                DatabaseKeyPlayerDiscoveredTeleports,
+                                serverPlayerDiscoveredTeleports);
         }
 
         private static Vector2D ServerSelectTeleportTargetPosition(
@@ -474,11 +478,12 @@
         {
             foreach (var entry in objectsToTeleport)
             {
-                ClientComponentTeleportationEffect.CreateEffect(ClientGetGameObjectByEntry(entry),
-                                                                entry.tilePosition,
-                                                                TeleportationAnimationDuration,
-                                                                TeleportationDelay,
-                                                                isTeleportationOut);
+                ClientComponentTeleportationEffect.CreateEffect(
+                    ClientGetGameObjectByEntry(entry),
+                    entry.tilePosition,
+                    TeleportationAnimationDuration,
+                    isTeleportationOut ? TeleportationDelay : 0,
+                    isTeleportationOut);
             }
         }
 
@@ -603,9 +608,9 @@
             // block player movement and prevent calling teleportation again while under delay
             characterPrivateState.SetCurrentActionState(new CharacterTeleportAction(character));
 
-            // teleport after delay
+            // teleport after the animation and delay
             ServerTimersSystem.AddAction(
-                TeleportationDelay,
+                TeleportationAnimationDuration + TeleportationDelay,
                 () =>
                 {
                     if (characterPrivateState.CurrentActionState is not CharacterTeleportAction)
@@ -682,13 +687,12 @@
                         {
                             throw new Exception("Don't have a required item");
                         }
-
-                        return;
                     }
-
-                    // pay with blood, deduct the HP
-                    characterCurrentStats.ServerSetHealthCurrent(
-                        characterCurrentStats.HealthCurrent - hpCost);
+                    else // pay with blood, deduct the HP
+                    {
+                        characterCurrentStats.ServerSetHealthCurrent(
+                            characterCurrentStats.HealthCurrent - hpCost);
+                    }
 
                     var tempObserversTeleportIn = Api.Shared.GetTempList<ICharacter>();
                     Server.World.GetScopedByPlayers(targetTeleport, tempObserversTeleportIn.AsList());

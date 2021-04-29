@@ -142,11 +142,11 @@ Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 取付済みインプラントの劣化速度
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-食物の消費速度
+Scripts/Base/Stats/StatName@HungerRate:
+飢餓率
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-水の消費速度
+Scripts/Base/Stats/StatName@ThirstRate:
+脱水率
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 エネルギー充電量（毎分）
@@ -186,6 +186,9 @@ Scripts/Base/Stats/StatName@VanityContinuousDamage:
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 食事と水飲みができません
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+低照度視力
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 学習ポイント獲得

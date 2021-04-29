@@ -62,10 +62,19 @@
             }
         }
 
-        public Brush Icon =>
-            !IsDesignTime
-                ? (Brush)Client.UI.GetTextureBrush(this.item?.ProtoItem.Icon)
-                : Brushes.BlueViolet;
+        public Brush Icon
+        {
+            get
+            {
+                if (IsDesignTime)
+                {
+                    return Brushes.BlueViolet;
+                }
+
+                return Client.UI.GetTextureBrush(
+                    this.item?.ProtoItem.ClientGetIcon(this.item));
+            }
+        }
 
         public IClientItem Item => this.item;
 

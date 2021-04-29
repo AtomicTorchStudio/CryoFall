@@ -11,7 +11,8 @@
     d:DesignHeight="80" d:DesignWidth="850"
     d:DataContext="{d:DesignInstance player:ViewModelWindowInventory, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:statModificationDisplay="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay">
 
     <core:BaseWindowMenu.Resources>
         <Style x:Key="ItemSlotDelimiterHorizontalControlStyle" TargetType="Control">
@@ -109,10 +110,71 @@
                         </Style>
                     </Grid.Resources>
 
+                    <!-- Character origin display -->
+                    <ContentControl Padding="1"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top">
+                        <Rectangle Fill="{Binding OriginIcon}"
+                                   UseLayoutRounding="True"
+                                   Width="33"
+                                   Height="33" />
+                        <ui:ToolTipServiceExtend.ToolTip>
+                            <Grid MaxWidth="330">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding OriginTitle}"
+                                    Foreground="{StaticResource BrushColor7}"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    TextDecorations="Underline" />
+
+                                <statModificationDisplay:StatModificationDisplay
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    StatsDictionary="{Binding OriginStatsDictionary}"
+                                    Margin="0,10"
+                                    MaxWidth="224" />
+
+                                <core:FormattedTextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Content="{Binding OriginDescription}"
+                                    Foreground="{StaticResource BrushColorAltLabelForeground}" />
+
+                                <Rectangle Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Grid.Column="1"
+                                           Fill="{Binding OriginIcon}"
+                                           UseLayoutRounding="True"
+                                           Width="70"
+                                           Height="70"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Right"
+                                           Margin="10,2,0,10" />
+                            </Grid>
+                        </ui:ToolTipServiceExtend.ToolTip>
+                    </ContentControl>
+
                     <Button Command="{Binding CommandOpenStyleMenu}"
                             Style="{StaticResource InventoryExtraButton}"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top">
+                        <Image Source="/UI/Images/Icons/icon_customize.png"
+                               Width="33"
+                               Height="33" />
                         <ui:ToolTipServiceExtend.ToolTip>
                             <StackPanel Orientation="Vertical">
                                 <core:FormattedTextBlock
@@ -122,9 +184,6 @@
                                     Content="{x:Static loc:CoreStrings.WindowInventory_Button_Customize_Tooltip}" />
                             </StackPanel>
                         </ui:ToolTipServiceExtend.ToolTip>
-                        <Image Source="/UI/Images/Icons/icon_customize.png"
-                               Width="33"
-                               Height="33" />
                     </Button>
 
                     <StackPanel Orientation="Vertical"
@@ -132,6 +191,9 @@
                                 VerticalAlignment="Bottom">
                         <Button Command="{Binding CommandOpenUnstuckMenu}"
                                 Style="{StaticResource InventoryExtraButton}">
+                            <Image Source="/UI/Images/Icons/icon_stuck.png"
+                                   Width="22"
+                                   Height="22" />
                             <ui:ToolTipServiceExtend.ToolTip>
                                 <StackPanel Orientation="Vertical">
                                     <core:FormattedTextBlock
@@ -141,9 +203,6 @@
                                         Content="{x:Static player:WindowCharacterUnstuckHelper.DialogUnstuck_Message}" />
                                 </StackPanel>
                             </ui:ToolTipServiceExtend.ToolTip>
-                            <Image Source="/UI/Images/Icons/icon_stuck.png"
-                                   Width="22"
-                                   Height="22" />
                         </Button>
 
                         <Button Command="{Binding CommandOpenHelpMenu}"
@@ -298,7 +357,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <!-- separator -->
+                <!-- Vertical separator -->
                 <Rectangle Grid.Row="2"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"

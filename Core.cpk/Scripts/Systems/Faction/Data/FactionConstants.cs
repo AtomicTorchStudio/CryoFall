@@ -2,8 +2,10 @@
 {
     using System;
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class FactionConstants
@@ -12,6 +14,11 @@
 
         public const double FactionInvitationLifetimeSeconds = 48 * 60 * 60; // 48 hours
 
+        /// <summary>
+        /// Maximum faction level.
+        /// If you change it, please ensure that the code for "Faction.UpgradeCostPerLevel"
+        /// below is adjusted accordingly.
+        /// </summary>
         public const byte MaxFactionLevel = 10;
 
         private static ushort sharedPrivateFactionMembersMax;
@@ -29,7 +36,7 @@
                 = (ushort)MathHelper.Clamp(
                     ServerRates.Get(
                         "Faction.MembersMax.PublicFaction",
-                        defaultValue: 250,
+                        defaultValue: 100,
                         @"How many faction members are allowed for a public faction
                           (that anyone can join freely at any time).
                           IMPORTANT: You can set this to 0 to disable public factions altogether.
@@ -41,7 +48,7 @@
                 = (ushort)MathHelper.Clamp(
                     ServerRates.Get(
                         "Faction.MembersMax.PrivateFaction",
-                        defaultValue: 25,
+                        defaultValue: 10,
                         @"How many faction members are allowed for a private faction
                           (that players can join only by submitting an application or receiving an invite).
                           The value should be within 1-250 range."),
@@ -52,7 +59,9 @@
                 = (ushort)MathHelper.Clamp(
                     ServerRates.Get(
                         "Faction.CreateCostLearningPoints",
-                        defaultValue: PveSystem.ServerIsPvE ? 100 : 200,
+                        defaultValue: PveSystem.ServerIsPvE
+                                          ? 100
+                                          : 200,
                         @"How many learning points are required in order to create a faction.
                           The default value is 100 for PvE and 200 for PvP servers.
                           The value should be within 1-65000 range."),
@@ -63,13 +72,31 @@
                 = (uint)MathHelper.Clamp(
                     ServerRates.Get(
                         "Faction.JoinCooldownDuration",
+                        defaultValue: 6 * 60 * 60,
+                        @"Faction switch cooldown duration (in seconds).
+                          Applied when leaving a faction so player cannot join or create another faction quickly.                          
+                          Default value: 6 hours or 21600 seconds.
+                          Min duration: 60 seconds. Max duration: 7 days (604800 seconds)."),
+                    min: 60,
+                    max: 7 * 24 * 60 * 60);
+
+            SharedFactionJoinReturnBackCooldownDuration
+                = (uint)MathHelper.Clamp(
+                    ServerRates.Get(
+                        "Faction.JoinReturnCooldownDuration",
                         defaultValue: 24 * 60 * 60,
-                        @"Faction re-join/switch cooldown duration (in seconds).
-                          Applied when leaving a faction so player cannot join or create another faction quickly.
+                        @"Faction join-return cooldown duration (in seconds).
+                          Applied when player attempts to join the faction back after leaving it recently.
+                          Please note: this value cannot be lower than Faction.JoinCooldownDuration.
                           Default value: 24 hours or 86400 seconds.
                           Min duration: 60 seconds. Max duration: 7 days (604800 seconds)."),
                     min: 60,
                     max: 7 * 24 * 60 * 60);
+
+            if (SharedFactionJoinReturnBackCooldownDuration < SharedFactionJoinCooldownDuration)
+            {
+                SharedFactionJoinReturnBackCooldownDuration = SharedFactionJoinCooldownDuration;
+            }
 
             SharedFactionLandClaimsPerLevel
                 = (float)MathHelper.Clamp(
@@ -90,6 +117,50 @@
                         By default PvP alliances are allowed.
                         Change to 0 to disable alliances. Please note: already existing alliance will remain.")
                   == 1;
+
+            {
+                var key = "Faction.UpgradeCostPerLevel";
+                var defaultValue
+                    = ServerLocalModeHelper.IsLocalServer
+                          ? "100,200,350,500,700,1000,1500,2500,5000" // cheaper for local server
+                          : "200,500,1000,1700,2500,3500,5000,7000,10000";
+                var description =
+                    @"This rate determines the faction upgrade Learning Points cost for each faction level.
+                      Please note: the max faction level is 10 and the first one is received automatically,
+                      so this setting contains 9 comma-separated values.";
+
+                var currentValue = ServerRates.Get(key, defaultValue, description);
+
+                try
+                {
+                    SharedFactionUpgradeCosts = ParseFactionUpgradeCosts(currentValue);
+                }
+                catch
+                {
+                    Api.Logger.Error($"Incorrect format for server rate: {key} current value {currentValue}");
+                    ServerRates.Reset(key, defaultValue, description);
+                    currentValue = defaultValue;
+                    SharedFactionUpgradeCosts = ParseFactionUpgradeCosts(currentValue);
+                }
+
+                static ushort[] ParseFactionUpgradeCosts(string str)
+                {
+                    var split = str.Split(',');
+                    if (split.Length != MaxFactionLevel - 1)
+                    {
+                        throw new FormatException();
+                    }
+
+                    var result = new ushort[MaxFactionLevel - 1];
+                    for (var index = 0; index < split.Length; index++)
+                    {
+                        var entry = split[index];
+                        result[index] = ushort.Parse(entry);
+                    }
+
+                    return result;
+                }
+            }
         }
 
         public static event Action ClientCreateFactionLearningPointsCostChanged;
@@ -102,11 +173,17 @@
 
         public static event Action ClientPvpAlliancesEnabledChanged;
 
+        public static event Action ClientSharedFactionUpgradeCostsChanged;
+
         public static ushort SharedCreateFactionLearningPointsCost { get; private set; }
 
         public static uint SharedFactionJoinCooldownDuration { get; private set; }
 
+        public static uint SharedFactionJoinReturnBackCooldownDuration { get; private set; }
+
         public static float SharedFactionLandClaimsPerLevel { get; private set; }
+
+        public static ushort[] SharedFactionUpgradeCosts { get; private set; }
 
         public static bool SharedPvpAlliancesEnabled { get; private set; }
 
@@ -115,8 +192,10 @@
             ushort privateFactionMembersMax,
             ushort createFactionLpCost,
             uint factionJoinCooldownDuration,
+            uint factionJoinReturnCooldownDuration,
             float factionLandClaimsPerLevel,
-            bool pvpAlliancesEnabled)
+            bool pvpAlliancesEnabled,
+            ushort[] factionUpgradeCosts)
         {
             Api.ValidateIsClient();
 
@@ -135,7 +214,10 @@
             Api.SafeInvoke(ClientCreateFactionLearningPointsCostChanged);
 
             SharedFactionJoinCooldownDuration = factionJoinCooldownDuration;
+            SharedFactionJoinReturnBackCooldownDuration = factionJoinReturnCooldownDuration;
             Api.Logger.Info("Faction join cooldown duration constant received from server: "
+                            + SharedFactionJoinCooldownDuration);
+            Api.Logger.Info("Faction join-return cooldown duration constant received from server: "
                             + SharedFactionJoinCooldownDuration);
             Api.SafeInvoke(ClientFactionJoinCooldownDurationChanged);
 
@@ -146,6 +228,11 @@
 
             SharedPvpAlliancesEnabled = pvpAlliancesEnabled;
             Api.SafeInvoke(ClientPvpAlliancesEnabledChanged);
+
+            SharedFactionUpgradeCosts = factionUpgradeCosts;
+            Api.Logger.Info("Faction upgrade LP cost per level constants received from server: "
+                            + SharedFactionUpgradeCosts.GetJoinedString(","));
+            Api.SafeInvoke(ClientSharedFactionUpgradeCostsChanged);
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
@@ -177,7 +264,8 @@
                 throw new Exception("Cannot upgrade beyond level " + MaxFactionLevel);
             }
 
-            return (ushort)(toLevel * 100);
+            // -2 is correct here (e.g. when faction upgrades to level 2 the cost of upgrade is at the index 0)
+            return SharedFactionUpgradeCosts[toLevel - 2];
         }
     }
 }

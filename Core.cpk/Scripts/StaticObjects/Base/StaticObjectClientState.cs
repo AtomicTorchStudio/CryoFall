@@ -11,8 +11,6 @@
 
         public BaseClientComponentLightSource RendererLight { get; set; }
 
-        public IComponentSpriteRenderer RendererOcclusion { get; set; }
-
         public IComponentSoundEmitter SoundEmitter { get; set; }
     }
 }

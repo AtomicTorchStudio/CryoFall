@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip
 {
     using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -25,11 +27,17 @@
                                           typeof(ConstructionDeconstructTooltip),
                                           new PropertyMetadata(InteractionTooltipTexts.Deconstruct));
 
+        private static readonly Color ColorMultiply
+            = Color.FromArgb(0x60, 0xFF, 0x80, 0x80);
+
+        private static readonly Color ColorOutline
+            = Color.FromArgb(0xFF, 0xE5, 0x26, 0x40);
+
         private IComponentSpriteRenderer spriteRendererOutline;
 
         private IComponentSpriteRenderer worldObjectComponentSpriteRenderer;
 
-        private EffectDeconstructionOutline worldObjectComponentSpriteRendererEffect;
+        private EffectObjectOutline worldObjectComponentSpriteRendererEffect;
 
         public bool CanInteract
         {
@@ -102,7 +110,8 @@
 
             var clientState = this.WorldObject.GetClientState<IClientStateWithObjectRenderer>();
             if (!canInteract
-                || clientState is null)
+                || clientState is null
+                || this.WorldObject.ProtoGameObject is ProtoObjectConstructionSite)
             {
                 this.DestroyEffect();
                 return;
@@ -124,7 +133,10 @@
 
             this.worldObjectComponentSpriteRenderer = clientState.Renderer;
             this.worldObjectComponentSpriteRendererEffect = this.worldObjectComponentSpriteRenderer
-                                                                ?.AddEffect<EffectDeconstructionOutline>();
+                                                                ?.AddEffect<EffectObjectOutline>();
+
+            this.worldObjectComponentSpriteRendererEffect.ColorOutline = ColorOutline;
+            this.worldObjectComponentSpriteRendererEffect.ColorMultiply = ColorMultiply;
 
             this.spriteRendererOutline = Api.Client.Rendering.CreateSpriteRenderer(this.WorldObject);
             this.spriteRendererOutline.PositionOffset = this.worldObjectComponentSpriteRenderer.PositionOffset;

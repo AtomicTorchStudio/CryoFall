@@ -39,7 +39,9 @@
                 .Add(GetScript<SpawnMobsPangolin>())
                 .Add(GetScript<SpawnMobsSnakeBrown>())
                 .Add(GetScript<SpawnMobsHyena>())
-                .Add(GetScript<SpawnMobsThumper>());
+                .Add(GetScript<SpawnMobsThumper>())
+                // mutants
+                .Add(GetScript<SpawnMobsMutantHyena>());
         }
     }
 }

@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -222,12 +223,13 @@
                     return false;
                 }
 
-                if (!Api.IsEditor)
+                if (CharacterCreationSystem.SharedIsEnabled)
                 {
                     if (Api.Client.World.AvailableWorldChunksCount == 0
-                        && ClientCurrentCharacterHelper.PrivateState.IsAppearanceSelected)
+                        && ClientCurrentCharacterHelper.Character is not null
+                        && CharacterCreationSystem.SharedIsCharacterCreated(ClientCurrentCharacterHelper.Character))
                     {
-                        // some world chunks are not yet loaded
+                        // character is created but some world chunks are not yet loaded
                         return false;
                     }
                 }

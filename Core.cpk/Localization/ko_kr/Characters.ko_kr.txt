@@ -37,6 +37,15 @@ Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Scripts/Characters/Mobs/MobHyena@Name:
 하이에나
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+변이 멧돼지
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+변이 하이에나
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+변이 늑대
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 천산갑
 
@@ -44,7 +53,7 @@ Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 프라그뮴 딱정벌레
 
 Scripts/Characters/Mobs/MobPsiGrove@Name:
-초능력 수풀
+사이오닉 수풀
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 달팽이

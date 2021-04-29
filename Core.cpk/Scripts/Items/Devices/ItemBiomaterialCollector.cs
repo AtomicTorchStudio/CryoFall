@@ -2,10 +2,10 @@
 {
     using System;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -77,8 +78,8 @@
                 return;
             }
 
-            var protoMob = (IProtoCharacterMob)worldObject.GetPublicState<ObjectCorpse.PublicState>()
-                                                          .ProtoCharacterMob;
+            var protoMob = worldObject.GetPublicState<ObjectCorpse.PublicState>()
+                                      .ProtoCharacterMob;
             var healthMax = protoMob.StatDefaultHealthMax;
             var maxVialsToUse = (ushort)MathHelper.Clamp(
                 Math.Floor(protoMob.BiomaterialValueMultiplier * healthMax / 100.0),
@@ -99,8 +100,44 @@
             }
 
             // spawn biomaterial vials
-            var createItemResult = Server.Items.CreateItem<ItemVialBiomaterial>(character,
-                count: destroyedEmptyVialsCount);
+            var protoItemVialBiomaterial = Api.GetProtoEntity<ItemVialBiomaterial>();
+            var createItemResult = Server.Items.CreateItem(protoItemVialBiomaterial,
+                                                           character,
+                                                           count: destroyedEmptyVialsCount);
+
+            if (!createItemResult.IsEverythingCreated)
+            {
+                createItemResult.Rollback();
+                var groundItemsContainer =
+                    ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character,
+                        character.Tile);
+                if (groundItemsContainer is null)
+                {
+                    Logger.Error("Not enough space around the player to drop a full vial");
+                    // restore items
+                    Server.Items.CreateItem(protoItemVialEmpty,
+                                            character,
+                                            destroyedEmptyVialsCount);
+                    return;
+                }
+
+                createItemResult = Server.Items.CreateItem(protoItemVialBiomaterial,
+                                                           groundItemsContainer,
+                                                           count: destroyedEmptyVialsCount);
+                if (!createItemResult.IsEverythingCreated)
+                {
+                    createItemResult.Rollback();
+                    Logger.Error("Not enough space around the player to drop a full vial");
+                    // restore items
+                    Server.Items.CreateItem(protoItemVialEmpty,
+                                            character,
+                                            destroyedEmptyVialsCount);
+                    return;
+                }
+
+                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(character,
+                    protoItemVialBiomaterial);
+            }
 
             var itemChangedCount = NotificationSystem.SharedGetItemsChangedCount(createItemResult);
             itemChangedCount.Add(protoItemVialEmpty, -(int)destroyedEmptyVialsCount);

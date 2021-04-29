@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
-    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
@@ -120,7 +119,19 @@
 
             // add the player character to the owners list
             GetPrivateState(structure).Owners.Add(byCharacter.Name);
-            ServerInvokeOwnersChangedEvent(structure);
+            ServerOnOwnersChanged(structure);
+        }
+
+        public static void ServerOnOwnersChanged(IWorldObject worldObject)
+        {
+            try
+            {
+                ServerOwnersChanged?.Invoke(worldObject);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, $"Exception during the {nameof(ServerOwnersChanged)} event call");
+            }
         }
 
         public static SetOwnersResult ServerSetOwners(
@@ -204,7 +215,7 @@
                 InteractableWorldObjectHelper.ServerTryAbortInteraction(removedPlayer, worldObject);
             }
 
-            ServerInvokeOwnersChangedEvent(worldObject);
+            ServerOnOwnersChanged(worldObject);
             return SetOwnersResult.Success;
         }
 
@@ -234,9 +245,52 @@
             return false;
         }
 
-        public static IReadOnlyList<string> SharedGetOwners(IWorldObject worldObject)
+        /// <summary>
+        /// Gets the direct owners of the world object.
+        /// Unlike SharedGetOwners method, in the case of faction ownership,
+        /// faction owners will be not provided.
+        /// </summary>
+        public static IReadOnlyList<string> SharedGetDirectOwners(IWorldObject worldObject)
         {
             return GetPrivateState(worldObject).Owners;
+        }
+
+        public static IReadOnlyList<string> SharedGetOwners(IWorldObject worldObject, out bool isFactionAccess)
+        {
+            isFactionAccess = false;
+
+            switch (worldObject)
+            {
+                case IStaticWorldObject staticWorldObject:
+                {
+                    var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(staticWorldObject);
+                    if (areasGroup is null
+                        || LandClaimAreasGroup.GetPublicState(areasGroup).FactionClanTag is not { } clanTag
+                        || string.IsNullOrEmpty(clanTag))
+                    {
+                        break;
+                    }
+
+                    // the static object is inside the faction-owned land claim,
+                    var faction = FactionSystem.ServerGetFactionByClanTag(clanTag);
+                    return FactionSystem.ServerGetFactionMemberNames(faction).ToList();
+                }
+
+                case IDynamicWorldObject when worldObject.ProtoGameObject is IProtoVehicle:
+                {
+                    var clanTag = worldObject.GetPublicState<VehiclePublicState>().ClanTag;
+                    if (string.IsNullOrEmpty(clanTag))
+                    {
+                        break;
+                    }
+
+                    // the vehicle is owned by faction
+                    var faction = FactionSystem.ServerGetFactionByClanTag(clanTag);
+                    return FactionSystem.ServerGetFactionMemberNames(faction).ToList();
+                }
+            }
+
+            return SharedGetDirectOwners(worldObject);
         }
 
         public static bool SharedIsOwner(ICharacter who, IWorldObject worldObject)
@@ -283,7 +337,7 @@
                 }
             }
 
-            return SharedGetOwners(worldObject).Contains(who.Name);
+            return SharedGetDirectOwners(worldObject).Contains(who.Name);
         }
 
         public byte ServerRemote_GetDoorOwnersMax()
@@ -302,18 +356,6 @@
         private static IObjectWithOwnersPrivateState GetPrivateState(IWorldObject structure)
         {
             return structure.GetPrivateState<IObjectWithOwnersPrivateState>();
-        }
-
-        private static void ServerInvokeOwnersChangedEvent(IWorldObject worldObject)
-        {
-            try
-            {
-                ServerOwnersChanged?.Invoke(worldObject);
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex, $"Exception during the {nameof(ServerOwnersChanged)} event call");
-            }
         }
 
         private static void ServerPlayerNameChangedHandler(string oldName, string newName)
@@ -381,9 +423,11 @@
             var character = ServerRemoteContext.Character;
             if (worldObject is IStaticWorldObject staticWorldObject)
             {
-                InteractionCheckerSystem.SharedValidateIsInteracting(character,
-                                                                     worldObject,
-                                                                     requirePrivateScope: true);
+                if (!staticWorldObject.ProtoStaticWorldObject
+                                      .SharedCanInteract(character, worldObject, writeToLog: true))
+                {
+                    throw new Exception("Cannot interact with " + worldObject);
+                }
 
                 if (!SharedIsOwner(character, worldObject))
                 {

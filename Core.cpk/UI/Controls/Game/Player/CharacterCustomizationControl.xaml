@@ -187,14 +187,14 @@
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        Visibility="{Binding CanCancel, Converter={StaticResource BoolToVisibilityConverter}}">
                 <!-- Text: Save -->
-                <Button Content="{Binding SaveButtonTitle}"
+                <Button Content="{x:Static loc:CoreStrings.Button_Save}"
                         Command="{Binding CommandSave}" />
                 <!-- Text: Cancel -->
                 <Button Content="{x:Static loc:CoreStrings.Button_Cancel}"
                         Command="{Binding CommandCancel}"
-                        Visibility="{Binding CanCancel, Converter={StaticResource BoolToVisibilityConverter}}"
                         Margin="10,0,0,0" />
             </StackPanel>
         </StackPanel>

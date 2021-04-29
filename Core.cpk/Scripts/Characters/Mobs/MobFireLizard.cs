@@ -20,13 +20,13 @@
 
         public override float CharacterWorldWeaponOffsetRanged => 0.4f;
 
-        public override double MobKillExperienceMultiplier => 2.0;
+        public override double MobKillExperienceMultiplier => 2.5;
 
         public override string Name => "Fire lizard";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
-        public override double StatDefaultHealthMax => 300;
+        public override double StatDefaultHealthMax => 250;
 
         public override double StatMoveSpeed => 1.65;
 

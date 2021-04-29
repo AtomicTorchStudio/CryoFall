@@ -795,9 +795,9 @@
                                 _ => _.ClientRemote_FixAmmoCount(itemWeapon, currentProtoItemAmmo, extraShotsDone));
         }
 
-        private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
+        private static void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
         {
-            var weaponState = playerCharacter.GetPrivateState<PlayerCharacterPrivateState>().WeaponState;
+            var weaponState = character.GetPrivateState<PlayerCharacterPrivateState>().WeaponState;
             weaponState?.ClearFiringStateData();
         }
 

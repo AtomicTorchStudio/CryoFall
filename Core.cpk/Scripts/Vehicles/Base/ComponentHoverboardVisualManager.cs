@@ -82,7 +82,8 @@
             {
                 // no pilot - hoverboard off
                 offsetY = OffsetOff;
-                this.spriteRendererHoverboard.DrawOrder = DrawOrder.Occlusion - 1;
+                // draw under the ground item's shadow
+                this.spriteRendererHoverboard.DrawOrder = DrawOrder.GroundItem - 2;
                 this.spriteRendererLight.IsEnabled = false;
 
                 this.spriteRendererHoverboard.PositionOffset = (0, HoverboardBaseOffset + offsetY);

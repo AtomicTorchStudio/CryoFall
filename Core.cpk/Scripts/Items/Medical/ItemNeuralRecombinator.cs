@@ -31,7 +31,7 @@
         public override double CooldownDuration => MedicineCooldownDuration.None;
 
         public override string Description =>
-            "Completely clears all knowledge of all technologies upon use and returns all spent Learning Points so you can redistribute them. Cannot be used often.";
+            "Completely clears all knowledge of all technologies upon use and returns all spent learning points so you can redistribute them. Cannot be used often.";
 
         public override ushort MaxItemsPerStack => ItemStackSize.Small;
 

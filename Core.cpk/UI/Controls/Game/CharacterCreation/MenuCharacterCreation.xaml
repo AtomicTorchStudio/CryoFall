@@ -8,6 +8,8 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:player="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.CharacterCreation.Data"
+    xmlns:statModificationDisplay="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay"
     mc:Ignorable="d"
     d:DesignHeight="80" d:DesignWidth="850"
     Foreground="{StaticResource WindowForeground}"
@@ -15,7 +17,8 @@
     Panel.ZIndex="8800"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
-    UseLayoutRounding="True">
+    UseLayoutRounding="True"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuCharacterCreation}">
     <base:BaseUserControl.Background>
         <ImageBrush ImageSource="Images/Background.jpg"
                     Stretch="UniformToFill" />
@@ -29,47 +32,195 @@
 
         <Grid Margin="15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition />
+                <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{x:Static loc:CoreStrings.MenuCharacterCreation_Title}"
-                       FontSize="13"
-                       FontWeight="Bold"
-                       Foreground="{StaticResource WindowTitleForeground}"
-                       HorizontalAlignment="Center"
-                       TextWrapping="Wrap"
-                       Margin="0,0,0,5" />
+            <!-- First screen - character style customization -->
+            <Grid Grid.Row="0"
+                  Visibility="{Binding ScreenIndex, Converter={StaticResource NumberEqualityToVisibilityConverter}, ConverterParameter=0}"
+                  MinHeight="482">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <player:CharacterCustomizationControl Grid.Row="1"
-                                                  x:Name="CharacterCustomizationControl" />
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuCharacterCreation_Title}"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource WindowTitleForeground}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,5" />
 
-            <Grid Grid.Row="2"
-                  HorizontalAlignment="Center"
-                  MaxWidth="{Binding ActualWidth, ElementName=CharacterCustomizationControl}"
-                  Margin="0,15,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="3" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                <player:CharacterCustomizationControl Grid.Row="1"
+                                                      x:Name="CharacterCustomizationControl" />
 
-                <Control Style="{StaticResource ControlInfoPointStyle}"
-                         Width="11"
-                         Height="11"
-                         FontSize="11"
-                         Margin="-1,-0.5,0,0"
-                         VerticalAlignment="Center" />
+                <Grid Grid.Row="2"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      MaxWidth="{Binding ActualWidth, ElementName=CharacterCustomizationControl}"
+                      Margin="0,15,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Control Style="{StaticResource ControlInfoPointStyle}"
+                             Width="11"
+                             Height="11"
+                             FontSize="11"
+                             Margin="-1,-0.5,0,0"
+                             VerticalAlignment="Center" />
+
+                    <core:FormattedTextBlock
+                        Grid.Column="2"
+                        Text="{x:Static loc:CoreStrings.MenuCharacterCreation_CanChangeAppearanceLater}"
+                        Foreground="{StaticResource BrushColorAlt7}"
+                        FontSize="12"
+                        LineHeight="12"
+                        LineStackingStrategy="BlockLineHeight"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Grid>
+
+            <!-- Second screen - character origin selection -->
+            <Grid Grid.Row="0"
+                  Visibility="{Binding ScreenIndex, Converter={StaticResource NumberEqualityToVisibilityConverter}, ConverterParameter=1}"
+                  Width="300"
+                  MinHeight="482">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuCharacterCreation_OriginSelection}"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource WindowTitleForeground}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,5" />
+
+                <ListBox Grid.Row="2"
+                         x:Name="ListBoxOriginSelection"
+                         ItemsSource="{Binding AllOrigins}"
+                         SelectedItem="{Binding SelectedOrigin}"
+                         HorizontalAlignment="Center">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Icon -->
+                            <ContentControl Padding="8">
+                                <base:ToolTipServiceExtend.ToolTip>
+                                    <core:FormattedTextBlock Text="{Binding Title}" />
+                                </base:ToolTipServiceExtend.ToolTip>
+                                <Rectangle Fill="{Binding Icon}"
+                                           Width="64"
+                                           Height="64"
+                                           UseLayoutRounding="True" />
+                            </ContentControl>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2" IsItemsHost="True" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundListElementClick}" />
+                            <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundListElementEnter}" />
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.4" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Margin" Value="2" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <Grid Background="{TemplateBinding Background}">
+                                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="0,0,0,2" />
+                                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="{StaticResource BrushColorAlt0}" />
+                                    <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt5}" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="true">
+                                    <Setter Property="Background" Value="{StaticResource BrushColorAlt1}" />
+                                    <Setter Property="BorderBrush" Value="{StaticResource BrushColorAlt6}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="{Binding SelectedOrigin.Title}"
+                    Foreground="{StaticResource BrushColor7}"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    TextDecorations="Underline" />
+
+                <statModificationDisplay:StatModificationDisplay
+                    Grid.Row="6"
+                    StatsDictionary="{Binding SelectedOrigin.StatsDictionary}"
+                    HorizontalAlignment="Left" />
 
                 <core:FormattedTextBlock
-                    Grid.Column="2"
-                    Content="{x:Static loc:CoreStrings.MenuCharacterCreation_CanChangeAppearanceLater}"
+                    Grid.Row="8"
+                    Text="{Binding SelectedOrigin.Description}"
                     Foreground="{StaticResource BrushColorAlt7}"
                     FontSize="12"
-                    LineHeight="12"
+                    LineHeight="13.5"
                     LineStackingStrategy="BlockLineHeight"
                     TextWrapping="Wrap" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Content="{x:Static loc:CoreStrings.Button_Previous}"
+                        Command="{Binding CommandPreviousScreen}"
+                        Visibility="{Binding IsButtonPreviousVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Focusable="False" />
+
+                <Button Grid.Column="2"
+                        Content="{x:Static loc:CoreStrings.Button_Next}"
+                        IsEnabled="{Binding IsButtonNextEnabled}"
+                        Command="{Binding CommandNextScreen}"
+                        Focusable="False" />
             </Grid>
         </Grid>
     </Grid>

@@ -94,8 +94,8 @@
                  Height="8">
             <Control.Visibility>
                 <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}">
-                    <Binding Path="HasEffectsToAdd" />
-                    <Binding Path="HasEffectsToRemove" />
+                    <Binding Path="HasEffectsToAdd" FallbackValue="False" />
+                    <Binding Path="HasEffectsToRemove" FallbackValue="False" />
                 </MultiBinding>
             </Control.Visibility>
         </Control>

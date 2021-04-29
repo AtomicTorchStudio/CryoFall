@@ -20,7 +20,7 @@
         /// Determines how many bonus Learning Points this effect
         /// could provide for 100% effect intensity.
         /// Please note: this value is automatically multiplied on
-        /// the server rate "ServerLearningPointsGainMultiplier". 
+        /// the server rate "ServerLearningPointsGainMultiplier".
         /// </summary>
         public const int LearningPointsBonusForFullEffect = 200;
 
@@ -62,8 +62,8 @@
                     callback: ServerGlobalUpdate,
                     name: "System." + this.ShortId);
 
-                PlayerCharacterTechnologies.ServerCharacterGainedLearningPoints +=
-                    this.ServerPlayerCharacterGainedLearningPointsHandler;
+                PlayerCharacterTechnologies.ServerCharacterGainedLearningPoints
+                    += this.ServerPlayerCharacterGainedLearningPointsHandler;
             }
         }
 

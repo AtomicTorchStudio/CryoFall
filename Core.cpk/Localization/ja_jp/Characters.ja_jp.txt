@@ -37,6 +37,15 @@ Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Scripts/Characters/Mobs/MobHyena@Name:
 ハイエナ
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+変異イノシシ
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+変異ハイエナ
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+変異オオカミ
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 センザンコウ
 

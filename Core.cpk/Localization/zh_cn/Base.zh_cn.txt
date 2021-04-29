@@ -142,11 +142,11 @@ Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
 已安装植入磨损率
 
-Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
-食物消耗速度
+Scripts/Base/Stats/StatName@HungerRate:
+饥饿率
 
-Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
-水消耗速度
+Scripts/Base/Stats/StatName@ThirstRate:
+口渴率
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 充能速度（每分钟）
@@ -186,6 +186,9 @@ Scripts/Base/Stats/StatName@VanityContinuousDamage:
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 无法进食或饮水。
+
+Scripts/Base/Stats/StatName@VanityLowLightVision:
+夜视
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 获得学习点数

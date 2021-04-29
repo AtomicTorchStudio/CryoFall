@@ -9,6 +9,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ShieldProtection.Data"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelShieldProtectionControl}"
@@ -25,7 +26,8 @@
             <Setter Property="LineHeight" Value="13" />
         </Style>
 
-        <Style x:Key="TextBlockValue" TargetType="TextBlock"
+        <Style x:Key="TextBlockValue"
+               TargetType="TextBlock"
                BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
         </Style>
@@ -129,32 +131,33 @@
                     </StackPanel>
 
                     <!-- Text: Activate shield -->
-                    <Button Grid.Row="1"
-                            Grid.Column="2"
-                            Content="{x:Static loc:CoreStrings.ShieldProtection_Button_ActivateShield}"
-                            Command="{Binding CommandActivateShield}"
-                            Visibility="{Binding CanActivateShield, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
-                            Focusable="False"
-                            Padding="5,3"
-                            MinWidth="0"
-                            MinHeight="0"
-                            FontSize="13"
-                            HorizontalAlignment="Left"
-                            Margin="0,2,0,0" />
+                    <Grid Grid.Row="1"
+                          Grid.Column="2"
+                          HorizontalAlignment="Left"
+                          Margin="0,2,0,0"
+                          base:ToolTipServiceExtend.ToolTip="{Binding TooltipTextAccessRightToManageShield}"
+                          Background="Transparent">
+                        <Button Content="{x:Static loc:CoreStrings.ShieldProtection_Button_ActivateShield}"
+                                Command="{Binding CommandActivateShield}"
+                                Visibility="{Binding CanActivateShield, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
+                                IsEnabled="{Binding HasAccessRightToManageShield}"
+                                Focusable="False"
+                                Padding="5,3"
+                                MinWidth="0"
+                                MinHeight="0"
+                                FontSize="13" />
 
-                    <!-- Text: Deactivate shield -->
-                    <Button Grid.Row="1"
-                            Grid.Column="2"
-                            Content="{x:Static loc:CoreStrings.ShieldProtection_Button_DeactivateShield}"
-                            Command="{Binding CommandDeactivateShield}"
-                            Visibility="{Binding CanDeactivateShield, Converter={StaticResource BoolToVisibilityConverter}}"
-                            Focusable="False"
-                            Padding="5,3"
-                            MinWidth="0"
-                            MinHeight="0"
-                            FontSize="13"
-                            HorizontalAlignment="Left"
-                            Margin="0,2,0,0" />
+                        <!-- Text: Deactivate shield -->
+                        <Button Content="{x:Static loc:CoreStrings.ShieldProtection_Button_DeactivateShield}"
+                                Command="{Binding CommandDeactivateShield}"
+                                Visibility="{Binding CanDeactivateShield, Converter={StaticResource BoolToVisibilityConverter}}"
+                                IsEnabled="{Binding HasAccessRightToManageShield}"
+                                Focusable="False"
+                                Padding="5,3"
+                                MinWidth="0"
+                                MinHeight="0"
+                                FontSize="13" />
+                    </Grid>
 
                     <!-- Text: Estimated duration -->
                     <TextBlock Grid.Row="3"

@@ -58,6 +58,12 @@ Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 エネルギー武器
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+通常の戦闘ではほとんど使用されませんが、極限状況では役に立つかもしれない実験的な武器。
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+新型武器
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 植物の種、肥料、また各種園芸の技術。
 

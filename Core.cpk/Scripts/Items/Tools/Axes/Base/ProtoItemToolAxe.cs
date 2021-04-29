@@ -29,7 +29,6 @@
         protected ProtoItemToolAxe()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/" + name);
             this.WeaponTextureResource = new TextureResource(
                 "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
@@ -38,8 +37,6 @@
         public abstract double DamageToNonTree { get; }
 
         public abstract double DamageToTree { get; }
-
-        public override ITextureResource Icon { get; }
 
         public virtual double RangeMax => 1;
 
@@ -50,6 +47,11 @@
         public virtual double ServerGetDamageToTree(IStaticWorldObject targetObject)
         {
             return this.DamageToTree;
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Tools/" + this.GetType().Name;
         }
 
         protected override void PrepareProtoWeapon(

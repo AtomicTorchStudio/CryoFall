@@ -46,9 +46,6 @@ Buhar jeneratörünü suyla doldur
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Motor jeneratörüne tenekeden benzin doldur
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Lityum cevheri çıkarıcıdan gelen lityum tuzları
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Bidonu yağ pompasından gelen ham petrolle doldur
 
@@ -66,4 +63,7 @@ Su kaynat
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Şişeyi kuyudan gelen suyla doldur
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Reaktör bileşen geri dönüşümü
 

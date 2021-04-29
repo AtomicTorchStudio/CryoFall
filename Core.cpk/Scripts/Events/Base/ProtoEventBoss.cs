@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data;
@@ -42,6 +45,13 @@
 
         public override bool ConsolidateNotifications => false;
 
+        public override TimeSpan EventDuration
+            => this.EventDurationWithoutDelay + this.EventStartDelayDuration;
+
+        public abstract TimeSpan EventDurationWithoutDelay { get; }
+
+        public abstract TimeSpan EventStartDelayDuration { get; }
+
         public override TimeSpan EventStartPostponeDurationFrom { get; }
             = TimeSpan.FromMinutes(10);
 
@@ -49,6 +59,8 @@
             = TimeSpan.FromMinutes(30);
 
         public IReadOnlyList<IProtoSpawnableObject> SpawnPreset { get; private set; }
+
+        public virtual ushort SpawnRadiusMax => 20;
 
         protected Lazy<IReadOnlyList<IServerZone>> ServerSpawnZones { get; }
 
@@ -71,6 +83,17 @@
 
         public abstract bool ServerIsTriggerAllowedForBossEvent(ProtoTrigger trigger);
 
+        public double SharedGetTimeRemainsToEventStart(EventWithAreaPublicState publicState)
+        {
+            var time = IsServer
+                           ? Server.Game.FrameTime
+                           : Client.CurrentGame.ServerFrameTimeApproximated;
+            var eventCreatedTime = publicState.EventEndTime - this.EventDuration.TotalSeconds;
+            var timeSinceCreation = time - eventCreatedTime;
+            var result = this.EventStartDelayDuration.TotalSeconds - timeSinceCreation;
+            return Math.Max(result, 0);
+        }
+
         protected override bool ServerCreateEventSearchArea(
             IWorldServerService world,
             Vector2Ushort eventPosition,
@@ -91,9 +114,22 @@
             return true;
         }
 
-        protected virtual bool ServerIsValidSpawnPosition(Vector2Ushort spawnPosition)
+        protected virtual bool ServerIsValidSpawnPosition(Vector2D worldPosition)
         {
-            return true;
+            const double noObstaclesCheckRadius = 1.5;
+            var physicsSpace = Server.World.GetPhysicsSpace();
+            foreach (var _ in physicsSpace.TestCircle(worldPosition,
+                                                      radius: noObstaclesCheckRadius,
+                                                      CollisionGroups.Default,
+                                                      sendDebugEvent: false).EnumerateAndDispose())
+            {
+                // position is not valid for spawning
+                return false;
+            }
+
+            return ServerCharacterSpawnHelper.IsValidSpawnTile(
+                Api.Server.World.GetTile(worldPosition.ToVector2Ushort()),
+                checkNeighborTiles: true);
         }
 
         protected virtual void ServerOnBossEventStarted(ILogicObject activeEvent)
@@ -114,14 +150,6 @@
 
         protected sealed override void ServerOnEventWithAreaStarted(ILogicObject activeEvent)
         {
-            var privateState = GetPrivateState(activeEvent);
-            var publicState = GetPublicState(activeEvent);
-
-            this.ServerSpawnObjects(activeEvent,
-                                    publicState.AreaCirclePosition,
-                                    publicState.AreaCircleRadius,
-                                    privateState.SpawnedWorldObjects);
-
             this.ServerOnBossEventStarted(activeEvent);
         }
 
@@ -214,11 +242,6 @@
             this.SpawnPreset = list;
         }
 
-        protected virtual Vector2Ushort ServerSelectSpawnPosition(Vector2Ushort circlePosition, ushort circleRadius)
-        {
-            return circlePosition;
-        }
-
         protected virtual IReadOnlyList<IServerZone> ServerSetupSpawnZones()
         {
             var result = new List<IServerZone>();
@@ -233,9 +256,9 @@
             return result;
         }
 
-        protected virtual void ServerSpawnObjects(
+        protected virtual void ServerSpawnBossEventObjects(
             ILogicObject activeEvent,
-            Vector2Ushort circlePosition,
+            Vector2D circlePosition,
             ushort circleRadius,
             List<IWorldObject> spawnedObjects)
         {
@@ -245,12 +268,17 @@
 
                 void TrySpawn()
                 {
-                    var attempts = 1_000;
+                    const int maxAttempts = 3000;
+                    var attempt = 0;
 
                     do
                     {
                         // select random position inside the circle
-                        var spawnPosition = this.ServerSelectSpawnPosition(circlePosition, circleRadius);
+                        // (the circle is expanded proportionally by the number of attempts performed)
+                        var spawnPosition =
+                            SharedCircleLocationHelper.SharedSelectRandomPositionInsideTheCircle(
+                                circlePosition,
+                                this.SpawnRadiusMax * (attempt / (double)maxAttempts));
 
                         if (!this.ServerIsValidSpawnPosition(spawnPosition))
                         {
@@ -259,14 +287,21 @@
                         }
 
                         var spawnedObject = Server.Characters.SpawnCharacter((IProtoCharacter)protoObjectToSpawn,
-                                                                             spawnPosition.ToVector2D());
+                                                                             spawnPosition);
                         spawnedObjects.Add(spawnedObject);
                         Logger.Important($"Spawned world object: {spawnedObject} for active event {activeEvent}");
+
+                        if (spawnedObject.ProtoGameObject is IProtoCharacterMob protoCharacterMob)
+                        {
+                            protoCharacterMob.ServerSetSpawnState(spawnedObject,
+                                                                  MobSpawnState.Spawning);
+                        }
+
                         break;
                     }
-                    while (--attempts > 0);
+                    while (++attempt < maxAttempts);
 
-                    if (attempts == 0)
+                    if (attempt == maxAttempts)
                     {
                         Logger.Error($"Cannot spawn world object: {protoObjectToSpawn} for active event {activeEvent}");
                     }
@@ -279,17 +314,26 @@
             var canFinish = true;
 
             var spawnedWorldObjects = GetPrivateState(activeEvent).SpawnedWorldObjects;
-            var list = spawnedWorldObjects;
-            for (var index = list.Count - 1; index >= 0; index--)
+            for (var index = spawnedWorldObjects.Count - 1; index >= 0; index--)
             {
-                var spawnedObject = list[index];
+                var spawnedObject = spawnedWorldObjects[index];
                 if (spawnedObject.IsDestroyed)
                 {
                     spawnedWorldObjects.RemoveAt(index);
                     continue;
                 }
 
-                if (!Server.World.IsObservedByAnyPlayer(spawnedObject))
+                if (Server.World.IsObservedByAnyPlayer(spawnedObject))
+                {
+                    // use despawn animation
+                    if (spawnedObject.ProtoGameObject is IProtoCharacterMob protoCharacterMob
+                        && !spawnedObject.GetPublicState<CharacterMobPublicState>().IsDead)
+                    {
+                        protoCharacterMob.ServerSetSpawnState((ICharacter)spawnedObject,
+                                                              MobSpawnState.Despawning);
+                    }
+                }
+                else
                 {
                     Server.World.DestroyObject(spawnedObject);
                     spawnedWorldObjects.RemoveAt(index);
@@ -313,6 +357,33 @@
 
             var activeEvent = data.GameObject;
             var privateState = GetPrivateState(activeEvent);
+            var publicState = GetPublicState(activeEvent);
+
+            var timeRemainsToEventStart = this.SharedGetTimeRemainsToEventStart(publicState);
+            if (timeRemainsToEventStart > 0)
+            {
+                // the boss event is not yet started
+                return;
+            }
+
+            if (!privateState.IsSpawnCompleted)
+            {
+                privateState.IsSpawnCompleted = true;
+
+                // time to spawn
+                this.ServerSpawnBossEventObjects(activeEvent,
+                                                 publicState.AreaCirclePosition.ToVector2D(),
+                                                 publicState.AreaCircleRadius,
+                                                 privateState.SpawnedWorldObjects);
+
+                if (privateState.SpawnedWorldObjects.Count == 0)
+                {
+                    Logger.Error($"Incorrect boss event spawn: {activeEvent} - destroying it immediately");
+                    Server.World.DestroyObject(activeEvent);
+                }
+
+                return;
+            }
 
             var countDestroyed = 0;
             var totalCount = privateState.SpawnedWorldObjects.Count;

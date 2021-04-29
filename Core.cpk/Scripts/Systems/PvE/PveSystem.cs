@@ -69,12 +69,12 @@
             }
 
             serverIsPvE = ServerRates.Get(
-                              "PvE",
-                              defaultValue: Api.IsEditor ? 0 : 1,
+                              "PvP",
+                              defaultValue: Api.IsEditor ? 1 : 0,
                               description:
                               @"PvP / PvE mode switch.
-                              Set it to 0 to make this server PvP-only. Otherwise it will default to PvE.")
-                          > 0;
+                              Set it to 1 to make this server PvP. Otherwise it will be PvE-only.")
+                          != 1;
         }
 
         public static event Action ClientIsPvEChanged;
@@ -402,11 +402,11 @@
                 color: NotificationColor.Bad);
         }
 
-        private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
+        private static void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
         {
             if (!isOnline)
             {
-                ServerSetDuelMode(playerCharacter, isEnabled: false);
+                ServerSetDuelMode(character, isEnabled: false);
             }
         }
 

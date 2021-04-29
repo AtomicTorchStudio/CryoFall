@@ -286,37 +286,30 @@
                         </Border>
 
                         <!-- Vehicle title -->
-                        <Grid Grid.Row="0"
-                              Grid.Column="0"
-                              Grid.ColumnSpan="3"
-                              Margin="0,5,0,0">
-                            <!-- Vehicle title glow effect -->
-                            <ContentControl Width="{Binding ActualWidth, ElementName=VehicleSchematicDetailsTitle}"
-                                            VerticalAlignment="Stretch"
-                                            Margin="0,4,0,0">
-                                <Rectangle Margin="-35,0">
-                                    <Rectangle.Fill>
-                                        <RadialGradientBrush Opacity="0.5">
-                                            <GradientStop Color="#00CC9400" Offset="1" />
-                                            <GradientStop Color="#FFCC9400" Offset="0" />
-                                        </RadialGradientBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                            </ContentControl>
-
-                            <!-- Vehicle title text -->
-                            <TextBlock Text="{Binding Title}"
-                                       HorizontalAlignment="Center"
-                                       Foreground="{StaticResource BrushColor6}"
-                                       FontSize="19"
-                                       LineHeight="19"
-                                       LineStackingStrategy="BlockLineHeight"
-                                       FontWeight="Bold"
-                                       TextWrapping="Wrap"
-                                       TextAlignment="Center"
-                                       FontFamily="{StaticResource CondensedFontFamily}"
-                                       x:Name="VehicleSchematicDetailsTitle" />
-                        </Grid>
+                        <TextBlock Text="{Binding Title}"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   FontSize="19"
+                                   LineHeight="19"
+                                   LineStackingStrategy="BlockLineHeight"
+                                   FontWeight="Bold"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   Margin="0,5,0,0">
+                            <TextBlock.Effect>
+                                <!-- Glow effect -->
+                                <DropShadowEffect
+                                    BlurRadius="17.5"
+                                    Direction="0"
+                                    ShadowDepth="0"
+                                    Opacity="0.6"
+                                    Color="{StaticResource Color7}" />
+                            </TextBlock.Effect>
+                        </TextBlock>
 
                         <!-- Description text -->
                         <TextBlock Grid.Row="1"
@@ -498,10 +491,8 @@
                                FontSize="13"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />
-
                 </Grid>
             </TabItem>
         </TabControl>
     </core:WindowMenuWithInventory>
-
 </core:BaseUserControlWithWindow>

@@ -12,10 +12,14 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 现在有了工具箱，你可以建造那些在科技菜单里解锁的不同建筑了。从营火开始吧，你能用它来烹饪食物。
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] 你可以按下"Tab"键来快速访问[b]建筑菜单[/b]（默认按键）。
-[*] 建筑菜单拥有[b]复数页[/b]以及不同的[b]建筑类型[/b]，将随研究不断解锁。
-[*] 你可以用工具箱来[b]建造[/b]和[b]维修[/b]建筑。`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+你可以通过按下[b]\[{0}\][/b]来快速访问[b]建筑菜单[/b]。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+建筑菜单可能有[b]多个页面[/b]，随着解锁将包含不同的[b]建筑类型[/b]。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+你可以使用工具箱[b]建造[/b]或[b]修理[/b]建筑。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 建造营火
@@ -50,8 +54,8 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 现在你有了资源，可以开始制造了。首先制造一条绳子。然后再制作一把斧头。
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-[*] 你可以用默认按键C打开制造菜单，用默认按键E打开物品栏。
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+你可以使用[b]\[{0}\][/b]键打开制造菜单，用[b]\[{1}\][/b]键打开物品栏。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 制造一把斧头
@@ -59,9 +63,11 @@ Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 通过采矿可以获得游戏内最珍贵的资源。你需要制造镐才能采矿。
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] 使用徒手制作菜单("C")并制造一把镐。
-[*] 如果你的绳子不够，也可以制造一些。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+打开你的手动制造菜单([b]\[{0}\][/b] 键) 并制造一把镐。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+你可能会先需要制造一些绳子。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 制造一把镐
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 找到并使用绿草药
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+可通过进行有意义的活动获得学习点，与你的技能经验获取直接相关。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+你可以通过按下[b]\[{0}\][/b]来快速访问科技菜单。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+解锁科技需要LP（学习点）
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `要建造更多建筑，你需要在科技菜单中解锁"基础建筑"。`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] 你可以通过按下"G"键来快速访问科技菜单。
-[*] 解锁科技节点需要花费[b]LP[/b] (学习点数)。
-[*] 学习点数可以从所有的有意义活动中获得，与你的技能经验获取挂钩。`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 学习基础建筑科技

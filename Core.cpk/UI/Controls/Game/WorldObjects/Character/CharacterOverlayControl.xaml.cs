@@ -2,6 +2,7 @@
 {
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -75,6 +76,7 @@
         private void Update()
         {
             var currentVisibility = GeneralOptionDisplayHealthbarAboveCurrentCharacter.IsDisplay
+                                    && this.character.ProtoGameObject.GetType() == typeof(PlayerCharacter)
                                         ? Visibility.Visible
                                         : Visibility.Collapsed;
 

@@ -30,9 +30,9 @@
 
     public class ConstructionRelocationSystem : ProtoSystem<ConstructionRelocationSystem>
     {
-        public const double MaxRelocationDistance = 15;
+        public const double MaxRelocationDistancePvE = 15;
 
-        public const int ToolDurabilityCostForStructureRelocation = 10;
+        public const double MaxRelocationDistancePvP = ConstructionPlacementSystem.MaxDistanceToBuild;
 
         private static ClientComponentObjectPlacementHelper componentObjectPlacementHelper;
 
@@ -146,6 +146,7 @@
             void ClientValidateCanRelocate(
                 Vector2Ushort tilePosition,
                 bool logErrors,
+                out string errorMessage,
                 out bool canPlace,
                 out bool isTooFar)
             {
@@ -153,12 +154,14 @@
                 {
                     canPlace = true;
                     isTooFar = false;
+                    errorMessage = null;
                     return;
                 }
 
                 if (!SharedCheckTileRequirementsForRelocation(character,
                                                               objectStructure,
                                                               tilePosition,
+                                                              out errorMessage,
                                                               logErrors: logErrors))
                 {
                     // time requirements are not valid
@@ -170,6 +173,7 @@
                 if (!SharedValidateCanCharacterRelocateStructure(character,
                                                                  objectStructure,
                                                                  tilePosition,
+                                                                 out errorMessage,
                                                                  logErrors: logErrors))
                 {
                     canPlace = true;
@@ -190,6 +194,7 @@
                             isOutOfRange: true);
                     }
 
+                    errorMessage = CoreStrings.Notification_ObstaclesOnTheWay;
                     canPlace = true;
                     isTooFar = true;
                     return;
@@ -223,8 +228,7 @@
 
         public static bool SharedIsRelocatable(IStaticWorldObject objectStructure)
         {
-            var protoStructure = objectStructure.ProtoGameObject as IProtoObjectStructure;
-            if (protoStructure is null)
+            if (objectStructure.ProtoGameObject is not IProtoObjectStructure protoStructure)
             {
                 return false;
             }
@@ -239,16 +243,19 @@
             ICharacter character,
             IStaticWorldObject objectStructure,
             Vector2Ushort toPosition,
+            out string errorMessage,
             bool logErrors)
         {
             if (!SharedIsRelocatable(objectStructure))
             {
+                errorMessage = null;
                 return false;
             }
 
             if (!SharedCheckTileRequirementsForRelocation(character,
                                                           objectStructure,
                                                           toPosition,
+                                                          out errorMessage,
                                                           logErrors))
             {
                 return false;
@@ -259,8 +266,12 @@
                 return false;
             }
 
+            var maxRelocationDistance = PveSystem.SharedIsPve(true)
+                                            ? MaxRelocationDistancePvE
+                                            : MaxRelocationDistancePvP;
+
             if (objectStructure.TilePosition.TileSqrDistanceTo(toPosition)
-                > MaxRelocationDistance * MaxRelocationDistance)
+                > maxRelocationDistance * maxRelocationDistance)
             {
                 if (logErrors)
                 {
@@ -270,6 +281,7 @@
                         protoStructure);
                 }
 
+                errorMessage = CoreStrings.Notification_TooFar;
                 return false;
             }
 
@@ -281,6 +293,7 @@
 
             if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
+                errorMessage = null;
                 return true;
             }
 
@@ -291,6 +304,9 @@
                                                    ownedArea: out _)
                 || !IsOwnedLand(toPosition, out hasNoFactionPermission))
             {
+                errorMessage = string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                             CoreStrings.Faction_Permission_LandClaimManagement_Title);
+
                 // the building location or destination is in an area that is not owned by the player
                 if (logErrors)
                 {
@@ -306,6 +322,7 @@
             if (LandClaimSystem.SharedIsUnderRaidBlock(character, objectStructure))
             {
                 // the building is in an area under the raid
+                errorMessage = LandClaimSystem.ErrorRaidBlockActionRestricted_Message;
                 if (logErrors)
                 {
                     ConstructionSystem.SharedShowCannotPlaceNotification(
@@ -320,6 +337,7 @@
             if (LandClaimShieldProtectionSystem.SharedIsUnderShieldProtection(objectStructure))
             {
                 // the building is in an area under shield protection
+                errorMessage = CoreStrings.ShieldProtection_ActionRestrictedBaseUnderShieldProtection;
                 if (logErrors)
                 {
                     LandClaimShieldProtectionSystem.SharedSendNotificationActionForbiddenUnderShieldProtection(
@@ -329,6 +347,7 @@
                 return false;
             }
 
+            errorMessage = null;
             return true;
 
             bool IsOwnedLand(
@@ -357,10 +376,12 @@
             ICharacter character,
             IStaticWorldObject objectStructure,
             Vector2Ushort toPosition,
+            out string errorMessage,
             bool logErrors)
         {
             if (!(objectStructure.ProtoGameObject is IProtoObjectStructure protoStructure))
             {
+                errorMessage = null;
                 return false;
             }
 
@@ -383,8 +404,6 @@
 
                 var tile = world.GetTile(tilePosition,
                                          logOutOfBounds: false);
-
-                string errorMessage;
 
                 if (tile.IsOutOfBounds)
                 {
@@ -427,6 +446,7 @@
                 return false;
             }
 
+            errorMessage = null;
             return true;
         }
 
@@ -540,6 +560,7 @@
             if (!SharedValidateCanCharacterRelocateStructure(character,
                                                              objectStructure,
                                                              toPosition,
+                                                             errorMessage: out _,
                                                              logErrors: true))
             {
                 return;
@@ -575,8 +596,9 @@
 
             // the item in hotbar is definitely a construction tool as it was validated above
             var itemConstructionTool = character.SharedGetPlayerSelectedHotbarItem();
-            ItemDurabilitySystem.ServerModifyDurability(itemConstructionTool,
-                                                        delta: -ToolDurabilityCostForStructureRelocation);
+            ItemDurabilitySystem.ServerModifyDurability(
+                itemConstructionTool,
+                delta: -((IProtoObjectStructure)objectStructure.ProtoGameObject).RelocationToolDurabilityCost);
         }
     }
 }

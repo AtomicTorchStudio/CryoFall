@@ -211,7 +211,7 @@
             var imageLoadingId = ++this.lastImageLoadingId;
 
             var textureBrush = Client.UI.GetTextureBrush(
-                ClientFactionEmblemTextureComposer.GetEmblemTexture(this.currentEmblem, useCache: false));
+                ClientFactionEmblemTextureProvider.GetEmblemTexture(this.currentEmblem, useCache: false));
 
             await textureBrush.WaitLoaded();
 

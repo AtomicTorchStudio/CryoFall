@@ -25,9 +25,12 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Glass;
 
+        // higher update rate is necessary to improve the attack rate as the attack range is very close
+        public override double ServerUpdateIntervalSeconds => 0.05;
+
         public override double StatDefaultHealthMax => 120;
 
-        public override double StatMoveSpeed => 2.475;
+        public override double StatMoveSpeed => 3.2;
 
         public override bool SharedOnDamage(
             WeaponFinalCache weaponCache,

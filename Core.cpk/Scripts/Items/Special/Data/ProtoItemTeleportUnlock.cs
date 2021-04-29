@@ -9,7 +9,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.TeleportsSystem;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
 
@@ -18,17 +17,10 @@
           IProtoItemUsableFromContainer
         where TObjectTeleport : ProtoObjectTeleport, new()
     {
-        private const string Notification_AlreadyDiscoveredAllTeleports
+        public const string Notification_AlreadyDiscoveredAllTeleports
             = "You have already discovered all of the teleport locations.";
 
         private Task<bool> lastTask;
-
-        protected ProtoItemTeleportUnlock()
-        {
-            this.Icon = new TextureResource("Items/Special/" + this.GetType().Name);
-        }
-
-        public override ITextureResource Icon { get; }
 
         public string ItemUseCaption => ItemUseCaptions.Use;
 
@@ -38,6 +30,11 @@
         {
             this.ClientUseAsync(data.Item);
             return true;
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Special/" + this.GetType().Name;
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()

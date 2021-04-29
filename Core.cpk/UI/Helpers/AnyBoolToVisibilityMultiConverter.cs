@@ -13,11 +13,7 @@
 
             foreach (var o in values)
             {
-                if (!(o is bool b))
-                {
-                    throw new Exception("Not a boolean value: " + o);
-                }
-
+                var b = System.Convert.ToBoolean(o);
                 if (isReversed)
                 {
                     b = !b;

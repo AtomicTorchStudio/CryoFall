@@ -16,7 +16,6 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Extensions;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -37,16 +36,9 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemExplosive()
-        {
-            this.Icon = new TextureResource("Items/Explosives/Bombs/" + this.GetType().Name);
-        }
-
         public virtual double DeployDistanceMax => 1.5; // allow to place in the neighbor tiles
 
         public abstract TimeSpan DeployDuration { get; }
-
-        public override ITextureResource Icon { get; }
 
         public override ushort MaxItemsPerStack => ItemStackSize.Small;
 
@@ -67,7 +59,8 @@
                                          targetPosition,
                                          logErrors: true,
                                          canPlace: out var canPlace,
-                                         isTooFar: out var isTooFar);
+                                         isTooFar: out var isTooFar,
+                                         errorMessage: out _);
             if (!canPlace || isTooFar)
             {
                 return;
@@ -118,7 +111,8 @@
             Vector2Ushort targetPosition,
             bool logErrors,
             out bool canPlace,
-            out bool isTooFar)
+            out bool isTooFar,
+            out string errorMessage)
         {
             if (NewbieProtectionSystem.SharedIsNewbie(character))
             {
@@ -129,6 +123,7 @@
 
                 canPlace = false;
                 isTooFar = false;
+                errorMessage = null;
                 return;
             }
 
@@ -151,8 +146,10 @@
                         is ItemExplosiveActionPublicState explosiveActionState
                     && explosiveActionState.TargetPosition == targetPosition)
                 {
+                    // someone is already planting a bomb here
                     canPlace = false;
                     isTooFar = false;
+                    errorMessage = null;
                     return;
                 }
             }
@@ -202,7 +199,19 @@
                 return false;
             }
 
-            // let's test by casting rays from character center to the center of the planted bomb
+            if (!this.ObjectExplosiveProto.CheckTileRequirements(targetPosition,
+                                                                 character,
+                                                                 out errorMessage,
+                                                                 logErrors))
+            {
+                // explosive static object placement requirements failed
+                canPlace = false;
+                isTooFar = false;
+                return;
+            }
+
+            // let's check whether there are any obstacles by casting rays
+            // from character's center to the center of the planted bomb
             if (TestHasObstacle(worldObjectCenter))
             {
                 // has obstacle
@@ -221,16 +230,7 @@
 
                 canPlace = false;
                 isTooFar = false;
-                return;
-            }
-
-            if (!this.ObjectExplosiveProto.CheckTileRequirements(targetPosition,
-                                                                 character,
-                                                                 logErrors))
-            {
-                // explosive static object placement requirements failed
-                canPlace = false;
-                isTooFar = false;
+                errorMessage = CoreStrings.Notification_ObstaclesOnTheWay;
                 return;
             }
 
@@ -249,7 +249,7 @@
         protected override void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)
         {
             if (data.IsSelected
-                && this.ObjectExplosiveProto.IsActivatesRaidModeForLandClaim)
+                && this.ObjectExplosiveProto.IsActivatesRaidBlock)
             {
                 RaidingProtectionSystem.ClientShowNotificationRaidingNotAvailableIfNecessary();
             }

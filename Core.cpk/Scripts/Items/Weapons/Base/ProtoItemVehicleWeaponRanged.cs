@@ -10,6 +10,11 @@
     {
         public abstract VehicleWeaponHardpoint WeaponHardpoint { get; }
 
+        protected override string GenerateIconPath()
+        {
+            return "Items/Weapons/Ranged/" + this.GetType().Name;
+        }
+
         protected override void PrepareHints(List<string> hints)
         {
             base.PrepareHints(hints);

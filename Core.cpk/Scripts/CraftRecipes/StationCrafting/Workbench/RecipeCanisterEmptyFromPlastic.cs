@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemPlastic>(count: 3);
+            inputItems.Add<ItemPlastic>(count: 5);
 
-            outputItems.Add<ItemCanisterEmpty>(count: 1);
+            outputItems.Add<ItemCanisterEmpty>(count: 5);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",

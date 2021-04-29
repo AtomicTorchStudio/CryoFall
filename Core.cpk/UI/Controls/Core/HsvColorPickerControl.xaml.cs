@@ -5,7 +5,6 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     /// <summary>
@@ -93,7 +92,7 @@
             }
 
             var newColor = e.NewValue is Color color ? color : default;
-            Api.Logger.Dev("Color property changed: " + newColor);
+            //Api.Logger.Dev("Color property changed: " + newColor);
             control.SetHsvFromColor(newColor);
             control.Update();
         }

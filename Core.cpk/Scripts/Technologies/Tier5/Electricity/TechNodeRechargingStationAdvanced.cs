@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectRechargingStationAdvanced>();
 
-            config.SetRequiredNode<TechNodeProjectorTower>();
+            config.SetRequiredNode<TechNodeGeneratorPragmiumReactor>();
         }
     }
 }

@@ -155,6 +155,19 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Невозможно разобрать
 
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Message_Format:
+Ваша фракция спустилась с #{0} до #{1} в таблице лидеров.
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankDecreased_Title:
+Ранг фракции снижен
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Message_Format:
+`Ваша фракция поднялась с #{0} до #{1} в таблице лидеров.
+[br]Так держать!`
+
+Scripts/Systems/Faction/ClientFactionLeaderboardRankWatcher@Notification_RankIncreased_Title:
+Ранг фракции повышен
+
 Scripts/Systems/Faction/FactionListSortOrder@MembersNumber:
 Количество участников
 
@@ -184,6 +197,12 @@ Scripts/Systems/Faction/Data/FactionMemberAccessRights@RemoveMembers:
 
 Scripts/Systems/Faction/Data/FactionMemberAccessRights@DiplomacyManagement:
 Управлять дипломатией
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@VehicleAccessManagement:
+Управление доступом к транспорту
+
+Scripts/Systems/Faction/Data/FactionMemberAccessRights@BaseShieldManagement:
+Управление Щ.И.Т.ом базы
 
 Scripts/Systems/Faction/Data/FactionOfficerRoleTitle@Deputy:
 Заместитель
@@ -326,20 +345,41 @@ Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Expa
 Scripts/Systems/Faction/Data/EventsLog/FactionLogEntryTerritoryAltered@Text_Removed_Format:
 Территория фракции удалена в {0}.
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Description:
+Присуждается за постройки, которые приносят очки для счета фракции и расположены на базах во владении фракции (учитываются только точки контроля, переданные во владение фракции).
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionBasesWealth@Name:
-Богатство баз фракции
+Счет благосостояния
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Description:
+Чем выше уровень фракции, тем больше очков присуждается!
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreFactionLevel@Name:
 Уровень фракции
 
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Description:
+Присуждается за убийство мировых боссов, пропорционален количеству полученной добычи.
+
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricBossScore@Name:
 Очки за победу над боссами
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Description:
+Присуждается за убийство любых существ игроком, состоящим во фракции.
 
 Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricHuntingScore@Name:
 Очки за охоту
 
-Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricTotalAccumulatedLearningPoints@Name:
-Общие накопленные ОТ
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Description:
+Присуждается за получение ОТ игроком, состоящим во фракции. Не учитываются ОТ, полученные за квесты и расходуемые предметы.
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreMetricLearningPointsScore@Name:
+Счет очков технологий
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Description:
+Присуждается за захваченные месторождения нефти и лития каждый час (точка контроля должна находиться во владении фракции).
+
+Scripts/Systems/FactionLeaderboardSystem/Metrics/FactionScoreResourceDomination@Name:
+Счет ресурсного доминирования
 
 Scripts/Systems/FishingBaitReloadingSystem/FishingBaitReloadingSystem@NotificationNoBait_Message:
 У вас в инвентаре нет наживки, которая подойдет для рыбной ловли.

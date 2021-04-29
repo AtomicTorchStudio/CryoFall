@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+Pode-se remediar com {0}.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 Você usou estimulantes e a regeneração do seu vigor está muito mais rápida.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Você está morrendo de fome!
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Fome
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+Você tem uma ferida aberto muito grande no corpo. Esses ferimentos graves normalmente exigem tratamento médico sério.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+Laceração grave
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 Você foi exposto a níveis extremos de radiação, e as células do seu corpo começaram a sofrer mutações. Isto não pode ser bom! Tente evitar entrar em áreas irradiadas novamente.

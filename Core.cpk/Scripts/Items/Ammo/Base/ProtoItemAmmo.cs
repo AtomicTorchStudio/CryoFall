@@ -14,7 +14,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemAmmo
@@ -30,12 +29,7 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        private List<IProtoItemWeapon> listCompatibleWeaponProtos;
-
-        protected ProtoItemAmmo()
-        {
-            this.Icon = new TextureResource("Items/Ammo/" + this.GetType().Name);
-        }
+        private readonly List<IProtoItemWeapon> listCompatibleWeaponProtos = new();
 
         public IReadOnlyList<IProtoItemWeapon> CompatibleWeaponProtos
             => this.listCompatibleWeaponProtos;
@@ -46,8 +40,6 @@
             => DamageStatsComparisonPresets.PresetRangedExceptGrenades;
 
         public WeaponFireTracePreset FireTracePreset { get; private set; }
-
-        public sealed override ITextureResource Icon { get; }
 
         public abstract bool IsReferenceAmmo { get; }
 
@@ -150,8 +142,6 @@
         protected override void PrepareProtoItem()
         {
             base.PrepareProtoItem();
-
-            this.listCompatibleWeaponProtos = new List<IProtoItemWeapon>();
 
             var damageDistribution = new DamageDistribution();
             this.FireTracePreset = this.PrepareFireTracePreset();

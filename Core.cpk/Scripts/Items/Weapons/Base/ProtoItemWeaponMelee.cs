@@ -17,7 +17,6 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemWeaponMelee
@@ -47,8 +46,6 @@
         public virtual double DurabilityDecreaseMultiplierWhenHittingBuildings => 10.0;
 
         public override double FireInterval => this.FireAnimationDuration;
-
-        public override ITextureResource Icon => new TextureResource("Items/Weapons/Melee/" + this.GetType().Name);
 
         public override double ReadyDelayDuration => WeaponReadyDelays.DefaultMelee;
 

@@ -13,7 +13,7 @@
 
         public override double DamageRadius => 2.1;
 
-        public override bool IsActivatesRaidModeForLandClaim => true;
+        public override bool IsActivatesRaidBlock => true;
 
         public override string Name => "Modern bomb";
 

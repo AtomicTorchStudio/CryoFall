@@ -156,21 +156,15 @@
                                                                              isDestroy: false);
         }
 
-        protected override void ServerOnStaticObjectZeroStructurePoints(
-            WeaponFinalCache weaponCache,
+        protected override void ServerOnStaticObjectDestroyedByCharacter(
             ICharacter byCharacter,
-            IWorldObject targetObject)
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject)
         {
-            var tilePosition = targetObject.TilePosition;
-            base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
+            // wall was destroyed (and not deconstructed by a crowbar or any other means)
+            ObjectWallDestroyed.ServerSpawnDestroyedWall(targetObject.TilePosition, this);
 
-            if (weaponCache is not null)
-            {
-                // wall was destroyed (and not deconstructed by a crowbar or any other means)
-                ObjectWallDestroyed.ServerSpawnDestroyedWall(tilePosition, this);
-                LandClaimSystem.ServerOnRaid(((IStaticWorldObject)targetObject).Bounds,
-                                             byCharacter);
-            }
+            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, weaponCache, targetObject);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

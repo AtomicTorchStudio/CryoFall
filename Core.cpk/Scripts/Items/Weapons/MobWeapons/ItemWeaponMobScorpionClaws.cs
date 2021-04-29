@@ -48,7 +48,7 @@
                 damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.2);
             }
 
-            if (RandomHelper.RollWithProbability(0.1))
+            if (RandomHelper.RollWithProbability(0.15))
             {
                 damagedCharacter.ServerAddStatusEffect<StatusEffectBrokenLeg>(intensity: 1);
             }

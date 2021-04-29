@@ -54,6 +54,11 @@
               We are also always available on Discord and our forums—come say hi! :)[br][br]
               If you have any difficulties or would like to report a bug or exploit, we are willing to listen and help!";
 
+        public const string EntryLastWord_Description2 =
+            @"We thank you for giving CryoFall a go. Our soul and years of work from our small studio have gone into making this happen. Enjoy the game![br][br]
+              Oh, and we are always available on Discord and our forums—come say hi! :)[br][br]
+              If you have any difficulties or would like to report an issue—we are willing to listen and help!";
+
         public const string EntryLastWord_Title = "Last word";
 
         public const string EntryMedicine_Description =
@@ -77,7 +82,7 @@
         public const string EntryVehicles_Title = "Vehicles";
 
         public const string EntryWelcome_Description =
-            "We would like to take this opportunity to introduce you to some of the features you can expect in the game! CryoFall is still in active development but all of the following is already available.";
+            "Before you begin, we would like to take this opportunity to introduce you to some of the features you can find in the game and give you a general idea of what CryoFall is!";
 
         public const string EntryWelcome_Title = "Welcome to CryoFall!";
 
@@ -126,7 +131,7 @@
                       EntryCreatures_Description,
                       "Features/Creatures.png"),
             new Entry(EntryLastWord_Title,
-                      EntryLastWord_Description,
+                      EntryLastWord_Description2,
                       "Features/LastWord.jpg")
         };
 

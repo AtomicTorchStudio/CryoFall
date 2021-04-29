@@ -9,6 +9,8 @@
 
     public class ObjectCharredGround2Pragmium : ProtoObjectCharredGround
     {
+        public override bool IsRemovesOtherCharredGroundInOccupiedTiles => false;
+
         [NotLocalizable]
         public override string Name => "Charred ground (Pragmium)";
 

@@ -28,12 +28,25 @@
                     (ushort)(worldOffset.Y + ((y - worldOffset.Y) / SectorWorldSize) * SectorWorldSize));
         }
 
-        public static string GetSectorCoordinateText(Vector2Ushort worldPosition)
+        public static string FormatWorldPositionWithSectorCoordinate(Vector2Ushort worldPosition)
+        {
+            return FormatRelativePositionWithSectorCoordinate(worldPosition - Api.Client.World.WorldBounds.Offset);
+        }
+
+        private static string FormatRelativePositionWithSectorCoordinate(Vector2Ushort worldPositionRelative)
+        {
+            return string.Format("{0}-{1},{2}",
+                                 GetSectorCoordinateTextForRelativePosition(worldPositionRelative),
+                                 worldPositionRelative.X,
+                                 worldPositionRelative.Y);
+        }
+
+        private static string GetSectorCoordinateTextForAbsolutePosition(Vector2Ushort worldPosition)
         {
             return GetSectorCoordinateTextForRelativePosition(worldPosition - Api.Client.World.WorldBounds.Offset);
         }
 
-        public static string GetSectorCoordinateTextForRelativePosition(Vector2Ushort worldPositionRelative)
+        private static string GetSectorCoordinateTextForRelativePosition(Vector2Ushort worldPositionRelative)
         {
             var offsetX = worldPositionRelative.X / SectorWorldSize;
             var offsetY = worldPositionRelative.Y / SectorWorldSize;

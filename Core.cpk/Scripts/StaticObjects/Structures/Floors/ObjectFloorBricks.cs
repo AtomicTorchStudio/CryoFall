@@ -23,7 +23,7 @@
         {
             build.StagesCount = 1;
             //build.StageDurationSeconds = BuildDuration.Short; <-- irrelevant here
-            build.AddStageRequiredItem<ItemBricks>(count: 3);
+            build.AddStageRequiredItem<ItemBricks>(count: 1);
 
             repair.StagesCount = 1;
             repair.StageDurationSeconds = BuildDuration.Short;

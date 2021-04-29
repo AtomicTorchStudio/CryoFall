@@ -298,9 +298,9 @@
                                             .Intensity;
 
                 if (intensity < minIntensity
-                    && intensity > maxIntensity)
+                    || intensity > maxIntensity)
                 {
-                    // the status effect intensity is out of the required range
+                    // the status effect exist but its intensity is out of the required range
                     continue;
                 }
 

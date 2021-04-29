@@ -10,10 +10,10 @@
         public double AttackRange { get; set; }
 
         [TempOnly]
-        public ICharacter CurrentAgroCharacter { get; set; }
+        public ICharacter CurrentAggroCharacter { get; set; }
 
         [TempOnly]
-        public double CurrentAgroTimeRemains { get; set; }
+        public double CurrentAggroTimeRemains { get; set; }
 
         [TempOnly]
         public ICharacter CurrentTargetCharacter { get; set; }

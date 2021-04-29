@@ -65,6 +65,8 @@
         public const string NeverConsumed =
             "Never consumed";
 
+        public const string ReactorItem = "This item could be installed into a pragmium reactor.";
+
         public const string UsesPowerBanks =
             "This item draws power from the equipped powerbanks.";
 

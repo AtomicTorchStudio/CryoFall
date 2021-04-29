@@ -103,14 +103,14 @@
                 ITextureResource[] spriteSheetAnimationFrames,
                 Color? lightColor,
                 bool useScreenBlending,
-                double pivoY,
+                double pivotY,
                 bool allowRandomizedHitPointOffset)
             {
                 this.AllowRandomizedHitPointOffset = allowRandomizedHitPointOffset;
                 this.SpriteSheetAnimationFrames = spriteSheetAnimationFrames;
                 this.LightColor = lightColor;
                 this.UseScreenBlending = useScreenBlending;
-                this.PivotY = pivoY;
+                this.PivotY = pivotY;
             }
         }
     }

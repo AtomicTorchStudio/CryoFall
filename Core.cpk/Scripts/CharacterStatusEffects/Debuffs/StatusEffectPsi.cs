@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class StatusEffectPsi : ProtoRadiantStatusEffect
     {
@@ -67,19 +66,25 @@
                 return 0;
             }
 
-            Vector2D position;
-            switch (worldObject)
+            if (protoPsiSource is IProtoObjectPsiSourceCustom protoPsiSourceCustom)
             {
-                case IStaticWorldObject staticWorldObject:
-                    position = staticWorldObject.TilePosition.ToVector2D()
-                               + staticWorldObject.ProtoStaticWorldObject.Layout.Center;
-                    break;
-                case IDynamicWorldObject dynamicWorldObject:
-                    position = dynamicWorldObject.Position;
-                    break;
-                default:
-                    throw new InvalidOperationException();
+                return MathHelper.Clamp(
+                    protoPsiSourceCustom.ServerCalculatePsiIntensity(worldObject, character),
+                    min: 0,
+                    max: 1);
             }
+
+            var position = worldObject switch
+            {
+                IStaticWorldObject staticWorldObject
+                    => staticWorldObject.TilePosition.ToVector2D()
+                       + staticWorldObject.ProtoStaticWorldObject.Layout.Center,
+
+                IDynamicWorldObject dynamicWorldObject
+                    => dynamicWorldObject.Position,
+
+                _ => throw new InvalidOperationException()
+            };
 
             var distance = position.DistanceTo(character.Position);
 

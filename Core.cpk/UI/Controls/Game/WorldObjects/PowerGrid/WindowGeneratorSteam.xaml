@@ -131,15 +131,6 @@
                 </StackPanel>
 
                 <Grid Margin="20,0,0,0">
-                    <Canvas Margin="-18,-16,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
-                        <!--Add steam icon-->
-                        <!--<Rectangle Fill="{Binding ViewModelLiquidContainerState.LiquidIcon}"
-                                   Width="18"
-                                   Height="18" />-->
-                    </Canvas>
-
                     <core:ValueBarControl
                         Value="{Binding TemperatureCurrent}"
                         MaxValue="{Binding TemperatureMax}"
@@ -147,7 +138,8 @@
                         TooltipFormat=" {1:F0} / {2:F0} °C"
                         BorderBrush="White"
                         BorderThickness="1"
-                        Height="9">
+                        Height="9"
+                        Width="147">
                         <core:ValueBarControl.Foreground>
                             <SolidColorBrush Color="White" />
                         </core:ValueBarControl.Foreground>

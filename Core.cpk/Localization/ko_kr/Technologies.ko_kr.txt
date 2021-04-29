@@ -58,6 +58,12 @@ Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 에너지 무기
 
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
+재래식 전투에서는 거의 사용되지 않지만 극한의 상황에서는 유용하게 사용할 수 있는 실험 단계의 무기.
+
+Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsName:
+신식 무기
+
 Scripts/Technologies/Base/TechGroupsLocalization@FarmingDescription:
 식물의 씨앗과 비료 및 다양한 농사 기술 마련.
 

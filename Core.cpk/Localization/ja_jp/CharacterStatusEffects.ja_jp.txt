@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+{0}で治療可能。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 興奮剤を使用しました。スタミナの回復速度が上がります。
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 飢え
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+あなたの体には非常に大きな傷があります。このような深刻な傷は、通常、緊急治療を必要とします。
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+重度の裂傷
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 異常なレベルの放射能にさらされたため、体の細胞が変異し始めています。危険です！放射能エリアを避けてください。

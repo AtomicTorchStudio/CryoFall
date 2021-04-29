@@ -8,6 +8,8 @@
         {
             config.Effects
                   .AddStructure<ObjectGeneratorSolar>();
+
+            config.SetRequiredNode<TechNodeProjectorTower>();
         }
     }
 }

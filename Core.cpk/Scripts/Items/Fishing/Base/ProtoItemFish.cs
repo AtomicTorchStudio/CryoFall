@@ -6,22 +6,14 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemFish : ProtoItemWithFreshness, IProtoItemFish
     {
-        protected ProtoItemFish()
-        {
-            this.Icon = new TextureResource("Items/Fishing/" + this.GetType().Name);
-        }
-
         public FishingBaitWeightReadOnlyList BaitWeightList { get; private set; }
 
         public IReadOnlyDropItemsList DropItemsList { get; private set; }
-
-        public override ITextureResource Icon { get; }
 
         public abstract bool IsSaltwaterFish { get; }
 
@@ -46,6 +38,11 @@
             var item = data.Item;
             this.CallServer(_ => _.ServerRemote_Cut(item));
             return true;
+        }
+
+        protected override string GenerateIconPath()
+        {
+            return "Items/Fishing/" + this.GetType().Name;
         }
 
         protected override void PrepareHints(List<string> hints)

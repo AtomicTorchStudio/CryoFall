@@ -19,7 +19,8 @@
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillRemoveEffect<StatusEffectBleeding>(intensityToRemove: 0.30) // remove some bleeding
+                .WillRemoveEffect<StatusEffectBleeding>(intensityToRemove: 0.30) // remove bleeding (partially)
+                .WillRemoveEffect<StatusEffectLaceration>(intensityToRemove: 0.10) // remove laceration (partially)
                 .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.10);        // add small healing effect
         }
 

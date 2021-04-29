@@ -9,11 +9,10 @@
     {
         public ViewModelItemTooltipCompatibleAmmoControl(IProtoItemWeapon protoItemWeapon)
         {
-            var list = protoItemWeapon.CompatibleAmmoProtos
-                                      .OrderBy(e => e.Name)
-                                      .Select(e => e.Name)
-                                      .ToList();
-            this.CompatibleAmmoProtos = list;
+            this.CompatibleAmmoProtos = protoItemWeapon.CompatibleAmmoProtos
+                                                       .OrderBy(p => p.Name)
+                                                       .Select(p => p.Name)
+                                                       .ToList();
         }
 
         public IReadOnlyCollection<string> CompatibleAmmoProtos { get; }

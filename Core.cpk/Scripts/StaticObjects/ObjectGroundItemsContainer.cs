@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers;
@@ -74,6 +75,8 @@
             instance = this;
         }
 
+        public Vector2Int BlueprintTileOffset => default;
+
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public ITextureResource DefaultTexture => TextureResource.NoTexture;
@@ -103,14 +106,16 @@
 
         public BoundsInt ViewBounds { get; } = StaticObjectLayout.DefaultOneTileLayout.Bounds;
 
-        public static async void ClientTryDropItemOnGround(
+        public static async Task<bool> ClientTryDropItemOnGround(
             IItem itemToDrop,
             ushort countToDrop,
-            Vector2Ushort? dropTilePosition = null)
+            Vector2Ushort? dropTilePosition = null,
+            bool showNotifications = true)
         {
             countToDrop = Math.Min(countToDrop, itemToDrop.Count);
 
             var character = Client.Characters.CurrentPlayerCharacter;
+            var obstaclesInTheWay = false;
             if (!dropTilePosition.HasValue)
             {
                 if (ClientTryDropItemToGroundContainerNearby(
@@ -121,25 +126,28 @@
                     out var resultItemsContainer))
                 {
                     OnSuccess(resultItemsContainer);
-                    return;
+                    return true;
                 }
 
                 countToDrop = Math.Min(countToDrop, itemToDrop.Count);
 
-                var obstaclesInTheWay = false;
                 if (!dropTilePosition.HasValue
                     || !SharedIsWithinInteractionDistance(
                         character,
                         dropTilePosition.Value,
                         out obstaclesInTheWay))
                 {
-                    NotificationSystem.ClientShowNotification(
-                        obstaclesInTheWay
-                            ? CoreStrings.Notification_ObstaclesOnTheWay
-                            : NotificationNoFreeSpaceToDrop,
-                        color: NotificationColor.Bad,
-                        icon: TextureResourceSack);
-                    return;
+                    if (showNotifications)
+                    {
+                        NotificationSystem.ClientShowNotification(
+                            obstaclesInTheWay
+                                ? CoreStrings.Notification_ObstaclesOnTheWay
+                                : NotificationNoFreeSpaceToDrop,
+                            color: NotificationColor.Bad,
+                            icon: TextureResourceSack);
+                    }
+
+                    return false;
                 }
             }
 
@@ -149,14 +157,18 @@
                     tilePosition,
                     out var obstaclesInTheWay2))
             {
-                NotificationSystem.ClientShowNotification(
-                    obstaclesInTheWay2
-                        ? CoreStrings.Notification_ObstaclesOnTheWay
-                        : CoreStrings.Notification_TooFar,
-                    NotificationCannotDropItemThere,
-                    NotificationColor.Bad,
-                    TextureResourceSack);
-                return;
+                if (showNotifications)
+                {
+                    NotificationSystem.ClientShowNotification(
+                        obstaclesInTheWay2
+                            ? CoreStrings.Notification_ObstaclesOnTheWay
+                            : CoreStrings.Notification_TooFar,
+                        NotificationCannotDropItemThere,
+                        NotificationColor.Bad,
+                        TextureResourceSack);
+                }
+
+                return false;
             }
 
             var tile = Client.World.GetTile(tilePosition);
@@ -166,12 +178,16 @@
                 if (!instance.CheckTileRequirements(tilePosition, character, logErrors: false))
                 {
                     // cannot drop item here
-                    NotificationSystem.ClientShowNotification(
-                        CoreStrings.Notification_ObstaclesOnTheWay,
-                        NotificationCannotDropItemThere,
-                        NotificationColor.Bad,
-                        TextureResourceSack);
-                    return;
+                    if (showNotifications)
+                    {
+                        NotificationSystem.ClientShowNotification(
+                            CoreStrings.Notification_ObstaclesOnTheWay,
+                            NotificationCannotDropItemThere,
+                            NotificationColor.Bad,
+                            TextureResourceSack);
+                    }
+
+                    return false;
                 }
 
                 Logger.Info(
@@ -185,30 +201,30 @@
                 {
                     // successfully placed on ground
                     OnSuccess(GetPublicState(objectGroundContainer).ItemsContainer);
-                    return;
+                    return true;
                 }
 
                 // we're continue the async call - the context might have been changed
                 if (itemToDrop.IsDestroyed)
                 {
-                    return;
+                    return false;
                 }
 
                 // was unable to place the item on the ground - maybe it was already placed with an earlier call
                 if (itemToDrop.Container?.OwnerAsStaticObject?.ProtoStaticWorldObject is ObjectGroundItemsContainer)
                 {
                     // it seems to be on the ground now
-                    return;
+                    return false;
                 }
 
                 // the action is definitely failed
                 instance.SoundPresetObject.PlaySound(ObjectSound.InteractFail);
-                return;
+                return false;
             }
 
             if (!instance.SharedCanInteract(character, objectGroundContainer, writeToLog: true))
             {
-                return;
+                return false;
             }
 
             // get items container instance
@@ -223,11 +239,12 @@
             {
                 // cannot move - open container UI
                 ClientOpenContainerExchangeUI(objectGroundContainer);
-                return;
+                return true;
             }
 
             // item moved successfully
             OnSuccess(groundItemsContainer);
+            return true;
 
             void OnSuccess(IItemsContainer resultGroundItemsContainer)
             {
@@ -509,9 +526,21 @@
             return null;
         }
 
-        public bool CheckTileRequirements(Vector2Ushort startTilePosition, ICharacter character, bool logErrors)
+        public bool CheckTileRequirements(
+            Vector2Ushort startTilePosition,
+            ICharacter character,
+            out string errorMessage,
+            bool logErrors)
         {
-            return this.tileRequirements.Check(this, startTilePosition, null, logErrors);
+            return this.tileRequirements.Check(this, startTilePosition, character, out errorMessage, logErrors);
+        }
+
+        public bool CheckTileRequirements(
+            Vector2Ushort startTilePosition,
+            ICharacter character,
+            bool logErrors)
+        {
+            return this.CheckTileRequirements(startTilePosition, character, out _, logErrors);
         }
 
         public override string ClientGetTitle(IWorldObject worldObject)
@@ -545,87 +574,6 @@
         public StaticObjectLayoutReadOnly GetLayout(IStaticWorldObject worldObject)
         {
             return this.Layout;
-        }
-
-        public IStaticWorldObject ServerRemote_DropItemOnGround(
-            IItem item,
-            ushort countToDrop,
-            Vector2Ushort tilePosition)
-        {
-            var character = ServerRemoteContext.Character;
-            if (item is null)
-            {
-                Logger.Error(
-                    "Cannot drop item - the item is not found",
-                    character);
-                return null;
-            }
-
-            if (countToDrop > item.Count)
-            {
-                Logger.Error(
-                    $"Cannot drop item: {item} - count to drop={countToDrop} is > than available item count. Will request a container re-sync.",
-                    character);
-                ServerItems.ServerForceContainersResync(character);
-                return null;
-            }
-
-            if (item.Container.OwnerAsStaticObject?.ProtoStaticWorldObject is ObjectGroundItemsContainer)
-            {
-                Logger.Warning(
-                    $"Cannot drop item: {item} - already dropped to ground",
-                    character);
-                return null;
-            }
-
-            item.Container.ProtoItemsContainer.SharedValidateCanInteract(
-                character,
-                item.Container,
-                writeToLog: true);
-
-            if (!SharedIsWithinInteractionDistance(
-                    character,
-                    tilePosition,
-                    out _))
-            {
-                Logger.Error(
-                    $"Cannot drop item: {item} - character is too far from the requested tile position or there are obstacles in the way.",
-                    character);
-                return null;
-            }
-
-            var groundItemsContainer = ServerTryGetOrCreateGroundContainerAtTile(character, tilePosition);
-            if (groundItemsContainer is null)
-            {
-                return null;
-            }
-
-            // try move item to the ground items container
-            if (!ServerItems.MoveOrSwapItem(
-                    item,
-                    groundItemsContainer,
-                    out _,
-                    countToMove: countToDrop,
-                    byCharacter: character,
-                    sendUpdateToCharacter: true))
-            {
-                if (groundItemsContainer.OccupiedSlotsCount == 0)
-                {
-                    Server.World.DestroyObject(groundItemsContainer.OwnerAsStaticObject);
-                }
-
-                return null;
-            }
-
-            // notify other players
-            using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(groundItemsContainer.Owner, scopedBy);
-                scopedBy.Remove(character);
-                this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_OtherPlayerDroppedItem(tilePosition));
-            }
-
-            return groundItemsContainer.OwnerAsStaticObject;
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -882,6 +830,87 @@
         {
             Client.Audio.PlayOneShot(ItemsSoundPresets.SoundResourceOtherPlayerPickItem,
                                      position.ToVector2D() + this.Layout.Center);
+        }
+
+        private IStaticWorldObject ServerRemote_DropItemOnGround(
+            IItem item,
+            ushort countToDrop,
+            Vector2Ushort tilePosition)
+        {
+            var character = ServerRemoteContext.Character;
+            if (item is null)
+            {
+                Logger.Error(
+                    "Cannot drop item - the item is not found",
+                    character);
+                return null;
+            }
+
+            if (countToDrop > item.Count)
+            {
+                Logger.Error(
+                    $"Cannot drop item: {item} - count to drop={countToDrop} is > than available item count. Will request a container re-sync.",
+                    character);
+                ServerItems.ServerForceContainersResync(character);
+                return null;
+            }
+
+            if (item.Container.OwnerAsStaticObject?.ProtoStaticWorldObject is ObjectGroundItemsContainer)
+            {
+                Logger.Warning(
+                    $"Cannot drop item: {item} - already dropped to ground",
+                    character);
+                return null;
+            }
+
+            item.Container.ProtoItemsContainer.SharedValidateCanInteract(
+                character,
+                item.Container,
+                writeToLog: true);
+
+            if (!SharedIsWithinInteractionDistance(
+                    character,
+                    tilePosition,
+                    out _))
+            {
+                Logger.Error(
+                    $"Cannot drop item: {item} - character is too far from the requested tile position or there are obstacles in the way.",
+                    character);
+                return null;
+            }
+
+            var groundItemsContainer = ServerTryGetOrCreateGroundContainerAtTile(character, tilePosition);
+            if (groundItemsContainer is null)
+            {
+                return null;
+            }
+
+            // try move item to the ground items container
+            if (!ServerItems.MoveOrSwapItem(
+                    item,
+                    groundItemsContainer,
+                    out _,
+                    countToMove: countToDrop,
+                    byCharacter: character,
+                    sendUpdateToCharacter: true))
+            {
+                if (groundItemsContainer.OccupiedSlotsCount == 0)
+                {
+                    Server.World.DestroyObject(groundItemsContainer.OwnerAsStaticObject);
+                }
+
+                return null;
+            }
+
+            // notify other players
+            using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
+            {
+                Server.World.GetScopedByPlayers(groundItemsContainer.Owner, scopedBy);
+                scopedBy.Remove(character);
+                this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_OtherPlayerDroppedItem(tilePosition));
+            }
+
+            return groundItemsContainer.OwnerAsStaticObject;
         }
 
         public class PrivateState : BasePrivateState

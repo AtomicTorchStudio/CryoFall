@@ -275,6 +275,11 @@
 
         public static bool ClientHasAccessRight(FactionMemberAccessRights accessRights)
         {
+            if (ClientCurrentFaction is null)
+            {
+                return false;
+            }
+
             return SharedHasAccessRight(ClientCurrentCharacterHelper.Character.Name,
                                         ClientCurrentFaction,
                                         accessRights);
@@ -349,15 +354,17 @@
                 okAction: async () =>
                           {
                               var result = await Instance.CallServer(_ => _.ServerRemote_JoinFaction(clanTag));
-                              if (result != ApplicationCreateResult.Success)
+                              if (result == ApplicationCreateResult.Success)
                               {
-                                  NotificationSystem.ClientShowNotification(
-                                                        title: CoreStrings.Faction_Title,
-                                                        result.GetDescription(),
-                                                        NotificationColor.Bad)
-                                                    .ViewModel
-                                                    .Icon = ClientFactionEmblemCache.GetEmblemTextureBrush(clanTag);
+                                  return;
                               }
+
+                              var notification = NotificationSystem.ClientShowNotification(
+                                  title: CoreStrings.Faction_Title,
+                                  result.GetDescription(),
+                                  NotificationColor.Bad);
+                              notification.ViewModel.Icon
+                                  = ClientFactionEmblemBrushCache.GetEmblemTextureBrush(clanTag);
                           },
                 okText: CoreStrings.Faction_Join,
                 cancelAction: () => { },
@@ -381,29 +388,20 @@
             ChatSystem.ClientOpenPrivateChat(withCharacterName: leaderName);
         }
 
-        public static void ClientUpgradeFactionLevel()
+        public static void ClientUpgradeFactionLevel(ushort learningPointsDonation, byte toLevel)
         {
-            var toLevel = (byte)(Faction.GetPublicState(ClientCurrentFaction).Level + 1);
             if (toLevel > FactionConstants.MaxFactionLevel)
             {
                 throw new Exception("Cannot upgrade beyond max level");
             }
 
-            var upgradeCost = FactionConstants.SharedGetFactionUpgradeCost(toLevel);
-            if (ClientCurrentCharacterHelper.PrivateState.Technologies.LearningPoints
-                < upgradeCost)
+            if (toLevel != Faction.GetPublicState(ClientCurrentFaction).Level + 1)
             {
-                throw new Exception("Not enough learning points");
+                return;
             }
 
-            DialogWindow.ShowDialog(
-                title: CoreStrings.QuestionAreYouSure,
-                text: string.Format(CoreStrings.LearningPointsCost_Format, upgradeCost),
-                okAction: () => Instance.CallServer(
-                              _ => _.ServerRemote_UpgradeFactionLevel(toLevel)),
-                okText: CoreStrings.Button_Upgrade,
-                cancelAction: () => { },
-                focusOnCancelButton: true);
+            Instance.CallServer(
+                _ => _.ServerRemote_DonateLearningPoints(learningPointsDonation, toLevel));
         }
 
         public static CreateFactionResult ServerCreateFaction(
@@ -1114,19 +1112,67 @@
             };
 
             static int CompareByRank(ILogicObject a, ILogicObject b)
-                // reverse comparison (lower rank number comes first)
-                => Faction.GetPublicState(a).LeaderboardRank
-                          .CompareTo(Faction.GetPublicState(b).LeaderboardRank);
+            {
+                var stateA = Faction.GetPublicState(a);
+                var stateB = Faction.GetPublicState(b);
+
+                var rankA = stateA.LeaderboardRank;
+                var rankB = stateB.LeaderboardRank;
+
+                if (rankA == 0)
+                {
+                    rankA = ushort.MaxValue;
+                }
+
+                if (rankB == 0)
+                {
+                    rankB = ushort.MaxValue;
+                }
+
+                var result = rankA.CompareTo(rankB); // lower rank comes first
+                if (result != 0)
+                {
+                    return result;
+                }
+
+                result = stateB.TotalScore.CompareTo(stateA.TotalScore); // higher score comes first
+                if (result != 0)
+                {
+                    return result;
+                }
+
+                // sort by clan tag
+                return string.Compare(stateA.ClanTag, stateB.ClanTag, StringComparison.OrdinalIgnoreCase);
+            }
 
             static int CompareByLevel(ILogicObject a, ILogicObject b)
-                // reverse comparison (higher level comes first)
-                => Faction.GetPublicState(b).Level
-                          .CompareTo(Faction.GetPublicState(a).Level);
+            {
+                var stateA = Faction.GetPublicState(a);
+                var stateB = Faction.GetPublicState(b);
+                var result = stateB.Level.CompareTo(stateA.Level); // higher level comes first
+                if (result != 0)
+                {
+                    return result;
+                }
+
+                // sort by clan tag
+                return string.Compare(stateA.ClanTag, stateB.ClanTag, StringComparison.OrdinalIgnoreCase);
+            }
 
             static int CompareByPlayersNumberCurrent(ILogicObject a, ILogicObject b)
-                // reverse comparison (higher players number comes first)
-                => Faction.GetPublicState(b).PlayersNumberCurrent
-                          .CompareTo(Faction.GetPublicState(a).PlayersNumberCurrent);
+            {
+                var stateA = Faction.GetPublicState(a);
+                var stateB = Faction.GetPublicState(b);
+                var result = stateB.PlayersNumberCurrent // higher players number comes first
+                                   .CompareTo(stateA.PlayersNumberCurrent);
+                if (result != 0)
+                {
+                    return result;
+                }
+
+                // sort by clan tag
+                return string.Compare(stateA.ClanTag, stateB.ClanTag, StringComparison.OrdinalIgnoreCase);
+            }
         }
 
         private static bool ServerIsEmblemUsed(FactionEmblem emblem)
@@ -1185,8 +1231,10 @@
                                     FactionConstants.GetFactionMembersMax(FactionKind.Private),
                                     FactionConstants.SharedCreateFactionLearningPointsCost,
                                     FactionConstants.SharedFactionJoinCooldownDuration,
+                                    FactionConstants.SharedFactionJoinReturnBackCooldownDuration,
                                     FactionConstants.SharedFactionLandClaimsPerLevel,
-                                    FactionConstants.SharedPvpAlliancesEnabled));
+                                    FactionConstants.SharedPvpAlliancesEnabled,
+                                    FactionConstants.SharedFactionUpgradeCosts));
 
             ServerSendCurrentFaction(character);
 
@@ -1294,21 +1342,26 @@
             ushort privateFactionMembersMax,
             ushort createFactionLpCost,
             uint factionJoinCooldownDuration,
+            uint factionJoinReturnCooldownDuration,
             float factionLandClaimsPerLevel,
-            bool pvpAlliancesEnabled)
+            bool pvpAlliancesEnabled,
+            ushort[] factionUpgradeCosts)
         {
             FactionConstants.ClientSetSystemConstants(publicFactionMembersMax,
                                                       privateFactionMembersMax,
                                                       createFactionLpCost,
                                                       factionJoinCooldownDuration,
+                                                      factionJoinReturnCooldownDuration,
                                                       factionLandClaimsPerLevel,
-                                                      pvpAlliancesEnabled);
+                                                      pvpAlliancesEnabled,
+                                                      factionUpgradeCosts);
         }
 
         private void ServerLandClaimAreaRaidBlockStartedOrExtendedHandler(
             ILogicObject area,
             ICharacter raiderCharacter,
-            bool isNewRaidBlock)
+            bool isNewRaidBlock,
+            bool isStructureDestroyed)
         {
             if (!isNewRaidBlock)
             {
@@ -1339,6 +1392,60 @@
                                        factionKind,
                                        clanTag,
                                        emblem);
+        }
+
+        [RemoteCallSettings(timeInterval: 0.333)]
+        private void ServerRemote_DonateLearningPoints(ushort learningPointsDonation, byte toLevel)
+        {
+            var character = ServerRemoteContext.Character;
+            var faction = ServerGetFaction(character);
+            if (faction is null)
+            {
+                throw new Exception("Not a member of any faction");
+            }
+
+            var factionPrivateState = Faction.GetPrivateState(faction);
+            var factionPublicState = Faction.GetPublicState(faction);
+            if (toLevel != factionPublicState.Level + 1)
+            {
+                throw new Exception("Incorrect target upgrade level");
+            }
+
+            if (toLevel > FactionConstants.MaxFactionLevel)
+            {
+                throw new Exception("Cannot upgrade beyond max level");
+            }
+
+            var characterTechnologies = character.SharedGetTechnologies();
+            if (characterTechnologies.LearningPoints < learningPointsDonation)
+            {
+                throw new Exception("Not enough learning points");
+            }
+
+            var upgradeCost = FactionConstants.SharedGetFactionUpgradeCost(toLevel);
+
+            // allow to donate not more than necessary to the next level 
+            learningPointsDonation
+                = (ushort)Math.Min(learningPointsDonation,
+                                   Math.Max(0, upgradeCost - factionPrivateState.AccumulatedLearningPointsForUpgrade));
+
+            if (learningPointsDonation > 0)
+            {
+                characterTechnologies.ServerRemoveLearningPoints(learningPointsDonation);
+                factionPrivateState.AccumulatedLearningPointsForUpgrade += learningPointsDonation;
+                Logger.Info($"Player donated {learningPointsDonation} LP to {faction}", character);
+            }
+
+            if (factionPrivateState.AccumulatedLearningPointsForUpgrade < upgradeCost)
+            {
+                // not enough points to upgrade the faction
+                return;
+            }
+
+            factionPrivateState.AccumulatedLearningPointsForUpgrade -= upgradeCost;
+            factionPublicState.Level++;
+            ServerAddLogEntry(faction, new FactionLogEntryFactionLevelUpgraded(character, toLevel));
+            Logger.Info("Faction upgraded to level: " + factionPublicState.Level, character);
         }
 
         [RemoteCallSettings(timeInterval: 1, deliveryMode: DeliveryMode.ReliableSequenced)]
@@ -1586,41 +1693,6 @@
         private void ServerRemote_LeaveFaction()
         {
             ServerLeaveFaction(ServerRemoteContext.Character);
-        }
-
-        [RemoteCallSettings(timeInterval: 0.333)]
-        private void ServerRemote_UpgradeFactionLevel(byte toLevel)
-        {
-            var character = ServerRemoteContext.Character;
-            var faction = ServerGetFaction(character);
-            if (faction is null)
-            {
-                throw new Exception("Not a member of any faction");
-            }
-
-            var factionPublicState = Faction.GetPublicState(faction);
-            if (toLevel != factionPublicState.Level + 1)
-            {
-                throw new Exception("Incorrect target upgrade level");
-            }
-
-            if (toLevel > FactionConstants.MaxFactionLevel)
-            {
-                throw new Exception("Cannot upgrade beyond max level");
-            }
-
-            var upgradeCost = FactionConstants.SharedGetFactionUpgradeCost(toLevel);
-            var technologies = character.SharedGetTechnologies();
-            if (technologies.LearningPoints < upgradeCost)
-            {
-                throw new Exception("Not enough learning points");
-            }
-
-            technologies.ServerRemoveLearningPoints(upgradeCost);
-
-            factionPublicState.Level++;
-            ServerAddLogEntry(faction, new FactionLogEntryFactionLevelUpgraded(character, toLevel));
-            Logger.Info("Faction upgraded to level: " + factionPublicState.Level);
         }
 
         public readonly struct FactionListPage : IRemoteCallParameter

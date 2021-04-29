@@ -3,12 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Defenses;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -113,18 +117,48 @@
                 return;
             }
 
-            var message = string.Format(CoreStrings.ShieldProtection_DeactivationNotes_Format,
-                                        ClientTimeFormatHelper.FormatTimeDuration(
-                                            SharedCooldownDuration,
-                                            appendSeconds: false));
+            var stackPanel = new StackPanel();
+            stackPanel.Children.Add(
+                DialogWindow.CreateTextElement(
+                    string.Format(CoreStrings.ShieldProtection_DeactivationNotes_Format,
+                                  ClientTimeFormatHelper.FormatTimeDuration(
+                                      SharedCooldownDuration,
+                                      appendSeconds: false)),
+                    TextAlignment.Left));
 
-            DialogWindow.ShowDialog(
+            var accessRight = FactionMemberAccessRights.BaseShieldManagement;
+            var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            var hasNoFactionPermission = !string.IsNullOrEmpty(areasGroupPublicState.FactionClanTag)
+                                         && !FactionSystem.ClientHasAccessRight(accessRight);
+
+            if (hasNoFactionPermission)
+            {
+                var message = FactionSystem.ClientHasFaction
+                                  ? string.Format(
+                                      CoreStrings.Faction_Permission_Required_Format,
+                                      accessRight.GetDescription())
+                                  : CoreStrings.Faction_ErrorDontHaveFaction;
+
+                var textElement = DialogWindow.CreateTextElement("[br]" + message,
+                                                                 TextAlignment.Left);
+
+                textElement.Foreground = Client.UI.GetApplicationResource<Brush>("BrushColorRed6");
+                textElement.FontWeight = FontWeights.Bold;
+                stackPanel.Children.Add(textElement);
+            }
+
+            var dialog = DialogWindow.ShowDialog(
                 CoreStrings.ShieldProtection_Dialog_ConfirmDeactivation,
-                message,
+                stackPanel,
                 okText: CoreStrings.ShieldProtection_Button_DeactivateShield,
                 okAction: () => Instance.CallServer(_ => _.ServerRemote_DeactivateShield(areasGroup)),
                 cancelAction: () => { },
                 focusOnCancelButton: true);
+
+            if (hasNoFactionPermission)
+            {
+                dialog.ButtonOk.IsEnabled = false;
+            }
         }
 
         public static void ClientRechargeShield(ILogicObject areasGroup, double targetChargeElectricity)
@@ -373,6 +407,7 @@
 
             LandClaimSystem.ServerAreasGroupCreated += ServerAreasGroupCreatedHandler;
             LandClaimSystem.ServerBaseMerge += ServerBaseMergeHandler;
+            LandClaimSystem.ServerRaidBlockStartedOrExtended += ServerRaidBlockStartedOrExtendedHandler;
             TriggerEveryFrame.ServerRegister(ServerUpdate, this.ShortId);
 
             static void ProcessAllBases()
@@ -476,6 +511,36 @@
             ServerSetDoorsLockdownStatus(areasGroup, areDoorsBlocked: false);
         }
 
+        private static void ServerRaidBlockStartedOrExtendedHandler(
+            ILogicObject area,
+            ICharacter raiderCharacter,
+            bool isNewRaidBlock,
+            bool isStructureDestroyed)
+        {
+            if (!isStructureDestroyed)
+            {
+                return;
+            }
+
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(area);
+            var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            if (publicState.Status != ShieldProtectionStatus.Activating)
+            {
+                return;
+            }
+
+            Logger.Important($"Shield activation cancelled due to the raidblock: {areasGroup} by {raiderCharacter}");
+            ServerDeactivateShield(areasGroup);
+
+            var allOwners = LandClaimAreasGroup.GetPrivateState(areasGroup)
+                                               .ServerLandClaimsAreas
+                                               .SelectMany(a => LandClaimArea.GetPrivateState(a).ServerGetLandOwners())
+                                               .Distinct(StringComparer.Ordinal)
+                                               .Select(a => Server.Characters.GetPlayerCharacter(a))
+                                               .ToList();
+            Instance.CallClient(allOwners, _ => _.ClientRemote_ShieldActivationCancelledDueToRaidblock());
+        }
+
         private static void ServerSetDoorsLockdownStatus(ILogicObject areasGroup, bool areDoorsBlocked)
         {
             var boundingBox = LandClaimSystem.SharedGetLandClaimGroupBoundingArea(areasGroup);
@@ -552,7 +617,10 @@
                 var privateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
                 var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
 
-                if (LandClaimSystem.SharedIsAreasGroupUnderRaid(areasGroup))
+                // Commented-out - now the shield activation is cancelled only if there is a structure is destroyed
+                // inside the land claim area (no matter the raid block).
+                // See method ServerRaidBlockStartedOrExtendedHandler.
+                /*if (LandClaimSystem.SharedIsAreasGroupUnderRaid(areasGroup))
                 {
                     if (publicState.Status == ShieldProtectionStatus.Inactive)
                     {
@@ -577,7 +645,7 @@
                                                        .ToList();
                     Instance.CallClient(allOwners, _ => _.ClientRemote_ShieldActivationCancelledDueToRaidblock());
                     return;
-                }
+                }*/
 
                 double maxDuration, electricityCapacity;
                 var status = SharedGetShieldPublicStatus(areasGroup);
@@ -629,7 +697,8 @@
         private static bool ServerValidateCharacterAccessToAreasGroup(
             ILogicObject areasGroup,
             ICharacter character,
-            bool requireFactionPermission)
+            bool requireFactionPermission,
+            bool writeToLog = true)
         {
             var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
             foreach (var area in areas)
@@ -638,6 +707,12 @@
                 {
                     return true;
                 }
+            }
+
+            if (writeToLog)
+            {
+                Logger.Warning("Player has no access to the land claim: " + areasGroup,
+                               character);
             }
 
             return false;
@@ -739,13 +814,22 @@
             }
 
             var privateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             if (privateState.ShieldProtectionCurrentChargeElectricity <= 0)
             {
                 Logger.Warning("The shield doesn't have charge: " + areasGroup);
                 return;
             }
 
-            var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            if (!string.IsNullOrEmpty(publicState.FactionClanTag)
+                && !FactionSystem.ServerHasAccessRights(character,
+                                                        FactionMemberAccessRights.BaseShieldManagement,
+                                                        out _))
+            {
+                Logger.Warning("Has no faction permission to manage the shield");
+                return;
+            }
+
             var cooldownRemains = SharedCalculateCooldownRemains(areasGroup);
             publicState.ShieldActivationTime = Server.Game.FrameTime
                                                + SharedActivationDuration
@@ -775,6 +859,16 @@
             if (status == ShieldProtectionStatus.Inactive)
             {
                 Logger.Info("The shield is already inactive: " + areasGroup);
+                return;
+            }
+
+            var publicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            if (!string.IsNullOrEmpty(publicState.FactionClanTag)
+                && !FactionSystem.ServerHasAccessRights(character,
+                                                        FactionMemberAccessRights.BaseShieldManagement,
+                                                        out _))
+            {
+                Logger.Warning("Has no faction permission to manage the shield");
                 return;
             }
 

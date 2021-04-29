@@ -36,7 +36,7 @@
 
         public override double DamageRadius => DamageRadiusMax;
 
-        public override bool IsActivatesRaidModeForLandClaim => true;
+        public override bool IsActivatesRaidBlock => true;
 
         public override string Name => "Resonance bomb";
 

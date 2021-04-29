@@ -35,7 +35,7 @@
         public void Setup(double duration, double teleportationDelay)
         {
             this.durationAnimation = duration;
-            this.durationTeleportation = teleportationDelay;
+            this.durationTeleportation = teleportationDelay + duration;
             this.isTeleportationOut = true;
             this.Update(0);
         }

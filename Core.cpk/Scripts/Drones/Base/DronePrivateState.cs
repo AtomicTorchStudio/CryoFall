@@ -10,16 +10,16 @@
     {
         public IItem AssociatedItem { get; set; }
 
+        public IItem AssociatedItemReservedSlot { get; set; }
+
         public ICharacter CharacterOwner { get; set; }
+
+        public bool IsDespawned { get; set; } = true;
 
         [TempOnly]
         public FinalStatsCache LastCharacterOwnerFinalStatsCache { get; set; }
 
-        public bool IsDespawned { get; set; } = true;
-
-        public bool IsStartedFromHotbarContainer { get; set; }
-
-        public byte StartedFromSlotIndex { get; set; }
+        public IItemsContainer ReservedItemsContainer { get; set; }
 
         public IItemsContainer StorageItemsContainer { get; set; }
 

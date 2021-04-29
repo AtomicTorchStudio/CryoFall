@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 Kaliber 12 Steinsalzmunition
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-Flintenlaufgeschosse, auch Slugs genannt, besitzen eine höhere Bremswirkung als Schrot und können gegen eine ganze Reihe von möglichen Zielen eingesetzt werden. Aufgrund ihres hohen Gewichts sind Slugs auch gegen gepanzerte Ziele effektiv.
+Geschosse sind vielseitig einsetzbare Munition, die gegen die meisten Gegner wirksam ist. Aufgrund ihrer hohen Masse sind sie selbst gegen gut gepanzerte Ziele effektiv.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 Kaliber 12 Slug-Munition
@@ -111,6 +111,12 @@ Spezielle Brandgranate, die beim Einschlag schweren thermischen Schaden verursac
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 Brandgranate
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+Verflüssigtes Keinit in kleinen Glaskapseln. Zur Anwendung in exotischen Waffen.
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+Keinitmunition
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Herkömmliche Schusswaffenmunition. Geeignet nur für schwächere Ziele, jedoch einfach und billig in der Produktion.
@@ -187,6 +193,9 @@ Implantate können nur in der Krankenstation installiert werden.
 Scripts/Items/Base/ItemHints@NeverConsumed:
 Nie probiert
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+Dieser Gegenstand könnte in einen Pragmiumreaktor eingebaut werden.
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Dieser Gegenstand bezieht Strom aus den ausgerüsteten Powerbanks.
 
@@ -241,6 +250,12 @@ Ein Bündel nützlicher Jagdwerkzeuge, die das Plündern von Kreaturen stark bes
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Jagdwerkzeuge
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+Ein spezielles Gerät zur Entnahme von minderwertigem Keinit aus bestimmten Lebensformen und mutierten Tieren.
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+Keinit-Extraktor
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 Eine kleine Laserzielerfassung, die das Zielen aus großer Distanz vereinfacht.
 
@@ -258,6 +273,12 @@ Gewöhnliche bidirektionale Powerbank. Speichert Energie für die bequeme Nutzun
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Gewöhnliche Powerbank
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+Dieser Slot ist bis zur Rückkehr der Drohne vorübergehend belegt.
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+Reservierter Slot
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 Hochentwickelte Drohnen-Fernsteuerung
@@ -1490,6 +1511,18 @@ Qualitativ hochwertiger Stahl mit hohem Kohlenstoffgehalt.
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Stahlbarren
 
+Scripts/Items/Generic/ItemKeinite@Description:
+Eine extrem wertvolle und fremdartige Substanz außerirdischen Urprungs, die vereinzelt in innovativen Forschungsprojekten Anwendung findet.
+
+Scripts/Items/Generic/ItemKeinite@Name:
+Keinit
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+Rohes, unraffiniertes Keinit. Muss vor Verwendung veredelt werden.
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+Unraffiniertes Keinit
+
 Scripts/Items/Generic/ItemLeather@Description:
 Tierleder. Könnte bei der Herstellung von Lederrüstung nützlich sein.
 
@@ -1600,18 +1633,6 @@ Nahrungskonservierungsmittel. Kann verpackten Lebenmitteln hinzugefügt werden, 
 
 Scripts/Items/Generic/ItemPreservative@Name:
 Konservierungsmittel
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-Leerer Reaktorkern, der mit einer reaktiven Energieträgersubstanz wie Pragmium aufgefüllt werden kann.
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-Leerer Reaktorkern
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-Ein mit Pragmium befüllter Reaktorkern. Relativ stabile, tragbare und langlebige Stromquelle.
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-Pragmium-Reaktorkern
 
 Scripts/Items/Generic/ItemRice@Description:
 Geerntete Reiskörner. Können gepflanzt oder in einer Vielzahl von Gerichten verwendet werden.
@@ -1868,6 +1889,12 @@ Skelettverstärkung durch künstliche (Schädel-)Knochen. Verhindert, dass der B
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 Verstärktes Endoskelett-Implantat
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+Ein spezielles Organ, das mit einer großen Arterie verbunden wird und dadurch hilft, etliche Giftstoffe aus dem Körper zu filtern.
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+Giftfilter-Implantat
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 Keine unkontrollierten Mutationen im Körper vorhanden.
 
@@ -2033,7 +2060,7 @@ Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
 [br]Bitte warte {0}, bis du diesen Gegenstand erneut benutzen kannst.`
 
 Scripts/Items/Medical/ItemNeuralRecombinator@Description:
-Löscht das gesamte bestehende Wissen aller Technologien und erstattet alle bereits investierten Lernpunkte, sodass diese neu verteilt werden können. Kann nicht oft benutzt werden.
+Löscht das gesamte bestehende Wissen aller Technologien und erstattet alle bereits investierten Lernpunkte, sodass diese neu verteilt werden können. Nicht oft einsetzbar.
 
 Scripts/Items/Medical/ItemNeuralRecombinator@Name:
 Neuraler Rekombinator
@@ -2115,6 +2142,48 @@ Kraftsteigernde Medizin macht dich vorübergehend stärker und erhöht so deine 
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Kleiner Stärke-Boost
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+Von einem kaputten Reaktormodul übriggebliebener Schrott.
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+Kaputtes Reaktormodul
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+Spezielles mehrschichtiges Schild, das psionische Strahlung außerhalb des Reaktors teilweise blockiert.
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+Psionischer Deflektor
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+Ein spezielles Gerät zur Streuung psionischer Strahlung innerhalb des Reaktorkerns, das die Laufzeit des Brennstoffs verlängert, dafür jedoch dessen Leistungskraft reduziert.
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+Psionischer Diffusor
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+Verbessert durch zusätzliche psionische Fluxregler die Reaktorreaktion und verkürzt so dessen Hoch- und Runterfahrdauer.
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+Psionischer Fluxumwandler
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+Ein mit Pragmium gefüllter Reaktorbrennstab. Eine relativ stabile, tragbare und langlebige Energiequelle.
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+Pragmiumbrennstab
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+Ein leerer Reaktorbrennstab, der mit Pragmium aufgefüllt werden kann.
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+Leerer Brennstab
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+Verändert die Konfiguration der psionischen Felder innerhalb des Reaktorkerns und erhöht so dessen Ausgabe.
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+Psionischer Moderator
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Setzling eines Baums. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
@@ -2199,6 +2268,9 @@ Enthält Koordinaten und Navigationsfrequenzen für eine von vielen Teleport-Sta
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 Teleport-Stationsdaten
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+Du hast bereits alle Teleport-Stationen entdeckt.
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Eisenaxt, ideal zum Fällen von Bäumen. Schneller und langlebiger als eine Steinaxt.
@@ -2520,6 +2592,18 @@ Maschinenpistole entwickelt für 10mm-Munition.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Maschinenpistole
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Eine exotische Waffe, die kleine, insektenartige Kreaturen anstatt Kugeln auf Gegner verschießt.
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Schwarmwerfer
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Eine exotische Waffe, die verflüssigtes Keinit in wirksames Gift umwandelt und auf Gegner verschießt.
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Toxin-Proliferator
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Schwere Autokanone entwickelt für montierte Außenlaststationen auf mechanisierter Kampfrüstung. Vewendet großkalibrige Anti-Material-Munition.

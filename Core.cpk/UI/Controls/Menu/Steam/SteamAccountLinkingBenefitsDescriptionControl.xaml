@@ -25,14 +25,27 @@
                    TextWrapping="Wrap" />
 
         <base:ToolTipServiceExtend.ToolTip>
-            <core:FormattedTextBlock
-                Content="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_Message}"
-                MaxWidth="330"
-                TextWrapping="Wrap"
-                Foreground="White"
-                Margin="5"
-                FontSize="13"
-                FontFamily="{StaticResource CondensedFontFamily}" />
+            <StackPanel Orientation="Vertical">
+                <StackPanel.Resources>
+                    <Style TargetType="core:FormattedTextBlock">
+                        <Setter Property="MaxWidth" Value="330" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="FontSize" Value="13" />
+                        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_YouCan}" />
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_PlayWithoutSteam}" />
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_Newsletters}" />
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_Polls}" />
+            </StackPanel>
         </base:ToolTipServiceExtend.ToolTip>
     </Grid>
 </base:BaseUserControl>

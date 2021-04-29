@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Items.Devices;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
@@ -23,7 +24,7 @@
 
         public override double StatDefaultHealthMax => 150;
 
-        public override double StatMoveSpeed => 1.8;
+        public override double StatMoveSpeed => 2.0;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -47,7 +48,10 @@
             lootDroplist
                 .Add<ItemMeatRaw>(count: 1)
                 .Add<ItemSlime>(count: 1, countRandom: 1)
-                .Add<ItemBones>(count: 2, countRandom: 1);
+                .Add<ItemBones>(count: 2, countRandom: 1)
+                // requires device
+                .Add<ItemKeiniteRaw>(count: 1,
+                                     condition: ItemKeiniteCollector.ConditionHasDeviceEquipped);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,

@@ -314,7 +314,7 @@
             }
 
             if (mode == ObjectLightMode.Auto
-                && TimeOfDaySystem.IsNight)
+                && TimeOfDaySystem.NightFraction > 0)
             {
                 using var charactersNearby = Api.Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(lightObject, charactersNearby);

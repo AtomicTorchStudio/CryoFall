@@ -33,6 +33,9 @@
             this.PartyChangedHandler();
         }
 
+        public bool CanCreateParty => PartySystem.ClientCurrentParty is null
+                                      && PartyConstants.SharedPartyMembersMax > 1;
+
         public bool CanInvite => this.Members.Count < this.MaxPartySize;
 
         public BaseCommand CommandCreateParty
@@ -161,6 +164,7 @@
 
                 this.NotifyPropertyChanged(nameof(this.HasParty));
                 this.NotifyPropertyChanged(nameof(this.CanInvite));
+                this.NotifyPropertyChanged(nameof(this.CanCreateParty));
             }
         }
     }

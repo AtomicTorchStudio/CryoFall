@@ -1,0 +1,24 @@
+﻿Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Description:
+La République Galactique représente le noyau de la civilisation humaine et le pouvoir principal au sein de la galaxie, avec la Terre en son centre. Chacun des mondes de la République dispose de droits de vote égaux et se doit d'obéir à la loi galactique. Sorti de cela, chaque monde dispose d'une large liberté pour adopter sa propre politique et poursuivre ses intérêts.
+
+Scripts/CharacterOrigins/CharacterOriginGalacticRepublic@Name:
+République Galactique
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Description:
+Les mondes indépendants sont ceux qui ont choisi de ne pas rejoindre la République, afin de conserver le contrôle total de leur politique et de leur armée. Cependant, en raison des pressions politiques et économiques, ces mondes demeurent fortement connectés à la République Galactique, de manière assez similaire aux états-cités du XXIe siècle. Certains font également référence à ces mondes indépendants sous le nom de mondes frontaliers.
+
+Scripts/CharacterOrigins/CharacterOriginIndependentWorlds@Name:
+Mondes indépendants
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Description:
+Le Protectorat de la Bordure Extérieure forme la périphérie des planètes centrales et rassemble principalement des mondes industriels moins développés. Ces mondes suivent en général la politique de grosses corporations industrielles et forment des coalitions guidées par des intérêts économiques. Avec l'expansion de la République Galactique, ces mondes finissent en général par être absorbés pour devenir des états membres de la République.
+
+Scripts/CharacterOrigins/CharacterOriginOuterRimProtectorate@Name:
+Protectorat de la Bordure Extérieure
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Description:
+Le Directorat est une faction isolationniste constituée de plusieurs mondes ayant fait sécession d'avec la République suite à un conflit idéologique, et s'étant regroupés pour former un pouvoir indépendant. Il se situe en bordure de la République, tout en étant totalement entouré de mondes appartenant à la République. Une sorte de guerre froide perdure entre le Directorat et la République depuis plusieurs centaines d'années, et les liens diplomatiques et commerciaux entre les deux entités ont quasiment tous été rompus.
+
+Scripts/CharacterOrigins/CharacterOriginTheDirectorate@Name:
+Le Directorat
+

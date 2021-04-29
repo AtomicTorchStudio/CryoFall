@@ -14,7 +14,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Resources;
 
     public abstract class ProtoItemWeaponRanged
         <TPrivateState,
@@ -55,8 +54,6 @@
         public override double FireAnimationDuration => 0;
 
         public override double FirePatternCooldownDuration => this.FireInterval + 0.4;
-
-        public override ITextureResource Icon => new TextureResource("Items/Weapons/Ranged/" + this.GetType().Name);
 
         public IMuzzleFlashDescriptionReadOnly MuzzleFlashDescription { get; private set; }
 

@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 12ゲージソルト弾
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-スラグ弾は拡散弾よりはるかに高い抑止力を提供し、多種多様な標的に対して使用することができます。その高い質量のために、スラグ弾は重装甲の標的に対しても非常に効果的です。
+スラグ弾は、ほとんどの相手に使用できる汎用性の高い弾薬です。質量が大きいため、装甲の厚い標的にも効果的です。
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 12ゲージスラグ弾
@@ -111,6 +111,12 @@ Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 焼夷グレネード
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+液体化したケイナイトを小さなガラスのカプセルに入れたもの。新型武器に使われます。
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+ケイナイト弾
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 一般的な銃器の弾薬。弱い標的に対してのみ適していますが、安価で製造が容易です。
@@ -187,6 +193,9 @@ Scripts/Items/Base/ItemHints@ImplantApplication:
 Scripts/Items/Base/ItemHints@NeverConsumed:
 消費したことなし
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+このアイテムは、プラグミウム・リアクターに取り付けることができます。
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 このアイテムは、補助バッテリーを装着して電力を供給する必要があります。
 
@@ -241,6 +250,12 @@ Scripts/Items/Devices/ItemHuntersTools@Description:
 Scripts/Items/Devices/ItemHuntersTools@Name:
 ハンターの道具
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+特定の原生生物や突然変異した動物から低品位のケイナイトを抽出することができる特殊な装置。
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+ケイナイト抽出機
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 遠距離の照準を容易にするために使う小型レーザー照準器。
 
@@ -258,6 +273,12 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 標準補助バッテリー
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+このスロットは、ドローン帰還用に一時的に確保されます。
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+予約スロット
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 高級ドローンコントローラー
@@ -1490,6 +1511,18 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 Scripts/Items/Generic/ItemIngotSteel@Name:
 鋼のインゴット
 
+Scripts/Items/Generic/ItemKeinite@Description:
+異星人由来の非常に貴重な外来物質。最先端の科学プロジェクトで様々なニッチな用途に使われています。
+
+Scripts/Items/Generic/ItemKeinite@Name:
+ケイナイト
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+精製されていない生のケイナイト。使用するには加工が必要です。
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+未精製ケイナイト
+
 Scripts/Items/Generic/ItemLeather@Description:
 動物の革。革防具の製作に役立ちます。
 
@@ -1600,18 +1633,6 @@ Scripts/Items/Generic/ItemPreservative@Description:
 
 Scripts/Items/Generic/ItemPreservative@Name:
 防腐剤
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-フラグミウムのような反応性エネルギー搬送物質を補充可能な空のリアクターコア。
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-空のリアクターコア
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-フラグミウムが詰まったリアクターコア。携帯可能で、比較的安定した電源が長く持続します。
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-プラグミウム・リアクターコア
 
 Scripts/Items/Generic/ItemRice@Description:
 収穫した米粒。植えたり、様々な料理の材料として使えます。
@@ -1868,6 +1889,12 @@ Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 骨格内補強インプラント
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+大動脈につながる特殊な器官で、血液中のさまざまな毒素や毒物をろ過する働きをします。
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+毒素ろ過インプラント
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 体内で突然変異は検出されませんでした。
 
@@ -2116,6 +2143,48 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 筋肉増強剤（小）
 
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+リアクターモジュールの一つが故障した後の残骸。
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+壊れたリアクターモジュール
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+リアクター外に放出されるサイオニック放射線を部分的に遮断する特殊な多層構造のシールド。
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+サイオニックディフレクター
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+リアクターコア内でサイオニック放射線を拡散させる特殊な装置で、出力は低下するものの、燃料の寿命を向上させることができます。
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+サイオニックディフューザー
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+サイオニックフラックスコントローラーを追加導入することで、リアクターのレスポンスを向上させ、リアクターの起動・停止時間を大幅に短縮します。
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+サイオニックフラックス交換機
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+プラグミウムを充填したリアクターの燃料棒。比較的安定しており、持ち運び可能で長持ちする動力源。
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+プラグミウム燃料棒
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+空のリアクター燃料棒で、プラグラムを補充することができます。
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+空の燃料棒
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+リアクターコア内で生成されるサイオニック磁場の構成を変更し、その出力を増幅させます。
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+サイオニックモデレーター
+
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 木の苗木。植えて新しい木を育てることができます。
 
@@ -2199,6 +2268,9 @@ Scripts/Items/Special/ItemTeleportLocationData@Description:
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 テレポート位置情報
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+あなたは既に全てのテレポート場所を発見しました。
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 鉄の斧は木を伐るのに最適です。石造りの斧より速く、より耐久性があります。
@@ -2520,6 +2592,18 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 サブマシンガン
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+弾丸の代わりに小さな虫のようなものを敵に向けて発射する新型武器。
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+スワームランチャー
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+液体化ケイナイトを使って強力な毒物を作り、敵に向けて発射する新型武器。
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+毒素増殖銃
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 メカアーマーに搭載されたハードポイント用に設計された重機関砲。 大口径および対物弾薬を使用します。

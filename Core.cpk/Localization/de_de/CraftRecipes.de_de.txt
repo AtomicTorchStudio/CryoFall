@@ -46,9 +46,6 @@ Befülle Dampferzeuger mit Wasser
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 Füge Benzin aus Kanister zum Motorgenerator hinzu
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-Lithiumsalze aus Lithiumerzextraktor
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Fülle Kanister mit unbehandeltem Erdöl aus Ölpumpe
 
@@ -66,4 +63,7 @@ Koche Wasser
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Fülle Flasche mit Wasser aus Brunnen
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+Aufbereitung von Reaktorkomponenten
 

@@ -37,6 +37,8 @@
 
         protected override string SoundsFolderPath => "Skeletons/Human";
 
+        protected override double VolumeFootsteps => 0.667;
+
         public override void ClientResetItemInHand(IComponentSkeleton skeletonRenderer)
         {
             skeletonRenderer.SetAttachmentSprite(this.SlotNameItemInHand,

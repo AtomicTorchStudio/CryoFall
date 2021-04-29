@@ -37,6 +37,15 @@ Honigdachs
 Scripts/Characters/Mobs/MobHyena@Name:
 Hyäne
 
+Scripts/Characters/Mobs/MobMutantBoar@Name:
+Mutiertes Wildschwein
+
+Scripts/Characters/Mobs/MobMutantHyena@Name:
+Mutierte Hyäne
+
+Scripts/Characters/Mobs/MobMutantWolf@Name:
+Mutierter Wolf
+
 Scripts/Characters/Mobs/MobPangolin@Name:
 Schuppentier
 

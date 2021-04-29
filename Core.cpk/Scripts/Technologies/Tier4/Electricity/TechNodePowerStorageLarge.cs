@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectPowerStorageLarge>();
 
-            config.SetRequiredNode<TechNodeGeneratorSolar>();
+            config.SetRequiredNode<TechNodeProjectorTower>();
         }
     }
 }

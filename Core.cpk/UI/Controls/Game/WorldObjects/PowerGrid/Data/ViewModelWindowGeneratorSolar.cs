@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
 
     public class ViewModelWindowGeneratorSolar : BaseViewModel
@@ -18,15 +17,12 @@
 
         private readonly ProtoObjectGeneratorSolar protoGenerator;
 
-        private readonly ObjectGeneratorSolarPublicState publicState;
-
         public ViewModelWindowGeneratorSolar(
             IStaticWorldObject objectGenerator,
             ObjectGeneratorSolarPublicState publicState)
         {
             this.objectGenerator = objectGenerator;
             this.protoGenerator = (ProtoObjectGeneratorSolar)objectGenerator.ProtoGameObject;
-            this.publicState = publicState;
 
             this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(
                     publicState.PanelsContainer)
@@ -57,8 +53,6 @@
             }
         }
 
-        public IItemsContainer PanelsItemsContainer => this.publicState.PanelsContainer;
-
         public ViewModelItemsContainerExchange ViewModelItemsContainerExchange { get; }
 
         protected override void DisposeViewModel()
@@ -76,9 +70,8 @@
 
             this.NotifyPropertyChanged(nameof(this.ElectricityProductionInfoText));
 
-            ClientTimersSystem.AddAction(
-                delaySeconds: 0.5,
-                this.Refresh);
+            ClientTimersSystem.AddAction(delaySeconds: 0.5,
+                                         this.Refresh);
         }
     }
 }

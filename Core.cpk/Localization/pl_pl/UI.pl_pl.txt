@@ -207,6 +207,9 @@ Ta struktura wytwarza elektryczność.
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 Ta struktura magazynuje elektryczność.
 
+UI/CoreStrings@ConstructionMetaInfo_FactionWealthScorePoints_Format:
+Ta struktura zapewnia punkty frakcji: +{0}.
+
 UI/CoreStrings@ConstructionMetaInfo_Unmovable:
 Tej konstrukcji nie można przenieść po wybudowaniu.
 
@@ -487,6 +490,25 @@ Przenieś własność frakcji
 UI/CoreStrings@Faction_DialogSubmitApplication_Message_Format:
 Ważne: Masz zamiar złożyć wniosek o dołączenie do: [b]{0}[/b].
 
+UI/CoreStrings@Faction_DialogTransferLandClaimToFaction:
+`Własność całej [b]bazy[/b] (która może się składać nawet z kilku działek) zostanie przekazana frakcji.
+[br]
+[br]Tylko członkowie frakcji dysponujący dostępem do [b]zarządzania działkami[/b] będą mogli budować, naprawiać i burzyć struktury na terenie bazy. Będą również mogli konfigurować dostęp do drzwi, ścian i innych struktur.
+[br]
+[br][b]Uwaga:[/b] bazy przekazanej frakcji [b]nie można odzyskać[/b].`
+
+UI/CoreStrings@Faction_DialogTransferLandClaimToFaction_PotentialAccessLoss:
+[b]Ważne:[/b] gracze niebędący członkami frakcji, ale dysponujący dostępem do dowolnej działki w bazie [b]utracą ten dostęp[/b] [b]CAŁKOWICIE[/b]. Aby wejść do bazy, będą musieli oni dołączyć do frakcji.
+
+UI/CoreStrings@Faction_DialogTransferVehicleToFaction:
+`Jeśli przekażesz pojazd na własność frakcji, jej członkowie będą mogli z niego korzystać.
+[br]Tylko członkowie frakcji dysponujący uprawnieniami do pojazdu będą mogli konfigurować dostęp do niego.
+[br]
+[br][b]Uwaga:[/b] pojazdu przekazanego frakcji [b]nie można odzyskać[/b].`
+
+UI/CoreStrings@Faction_DialogTransferVehicleToFaction_PotentialAccessLoss:
+[b]Ważne:[/b] gracze niebędący członkami frakcji, ale dysponujący dostępem do pojazdu [b]utracą ten dostęp[/b] [b]CAŁKOWICIE[/b]. Aby wejść do pojazdu, będą musieli oni dołączyć do frakcji.
+
 UI/CoreStrings@Faction_Diplomacy:
 Dyplomacja
 
@@ -541,6 +563,12 @@ Wypowiedziane wojny
 
 UI/CoreStrings@Faction_Diplomacy_WithdrawWarDeclaration:
 Wycofaj wypowiedzenie wojny
+
+UI/CoreStrings@Faction_DonateLearningPoints_Button:
+Przekaż PT
+
+UI/CoreStrings@Faction_DonateLearningPoints_Label:
+Wybierz przekaz:
 
 UI/CoreStrings@Faction_ErrorDontHaveFaction:
 Nie należysz do żadnej frakcji.
@@ -644,8 +672,14 @@ Uczestniczy w tabeli liderów.
 UI/CoreStrings@Faction_Leaderboard_NextUpdateIn:
 Następna aktualizacja:
 
+UI/CoreStrings@Faction_Leaderboard_NoteScorePersistence:
+Uwaga: wynik frakcji jest trwały i nie można go zmienić, usuwając jej członków, opuszczając ją lub zapraszając nowych członków.
+
 UI/CoreStrings@Faction_Leaderboard_Rank:
 Ranga na tabeli liderów
+
+UI/CoreStrings@Faction_Leaderboard_TotalScore:
+Wynik łączny
 
 UI/CoreStrings@Faction_LeaderField:
 Lider:
@@ -658,6 +692,9 @@ Poziom
 
 UI/CoreStrings@Faction_Level_Format:
 Poziom: [b]{0}[/b]
+
+UI/CoreStrings@Faction_LevelUpgradeProgress:
+Postęp:
 
 UI/CoreStrings@Faction_MaxMembers_Format:
 Maks. członków: [b]{0}[/b]
@@ -696,7 +733,7 @@ UI/CoreStrings@Faction_Permission_LandClaimManagement_Title:
 Zarządzanie działkami
 
 UI/CoreStrings@Faction_Permission_LandClaimManagement_Tooltip:
-Budowa i rozbiórka na terenie działek frakcji. Również: dodawanie uprawnień dostępowych, ulepszenia działek, używanie bezpiecznego przechowywania, aktywacja T.A.R.C.Z.Y., przenoszenie działek na frakcję.
+Budowa i rozbiórka na terenie działek frakcji. Również: przydzielanie uprawnień dostępowych, zarządzanie działkami, przekazywanie działek frakcjom.
 
 UI/CoreStrings@Faction_Permission_Required_Format:
 Wymagane jest uprawnienie frakcji: {0}.
@@ -974,6 +1011,9 @@ Serwer główny
 
 UI/CoreStrings@MenuCharacterCreation_CanChangeAppearanceLater:
 Wygląd można zmienić później w menu wyposażenia.
+
+UI/CoreStrings@MenuCharacterCreation_OriginSelection:
+Wybierz pochodzenie postaci
 
 UI/CoreStrings@MenuCharacterCreation_Title:
 Wybierz wygląd postaci
@@ -1658,17 +1698,20 @@ Sortuj wg
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Wartość
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
-`[b]Możesz:[/b]
-[*] Pobrać i uruchomić kopie gry CryoFall bez Steam i nadal w pełni korzystać z tych samych postaci i serwerów.
-[*] Uzyskać dostęp do listy mailingowej AtomicTorch i otrzymywać powiadomienia o nowych funkcjach, wersjach gry i inne informacje.
-[*] Uczestniczyć w ankietach dla użytkowników AtomicTorch.
-[br]
-[br][b]Wkrótce:[/b]
-[*] Wygodnie wypożyczać oficjalne serwery w chmurze dla CryoFall przeznaczone do własnych zastosowań.`
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
+[*] Uzyskaj dostęp do listy mailingowej AtomicTorch i otrzymuj powiadomienia o nowych funkcjach, wersjach gry i inne informacje.
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
+[*] Pobierz i uruchom kopię gry CryoFall bez Steam i nadal w pełni korzystaj z tych samych postaci i serwerów.
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
+[*] Bierz udział w ankietach dla użytkowników AtomicTorch.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
 Dlaczego warto połączyć konto AtomicTorch?
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_YouCan:
+[b]Korzyści:[/b]
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
 Akceptuję [url=atomictorch.com/Pages/Terms-of-Service]Warunki świadczenia usług[/url] wraz z [url=atomictorch.com/Pages/Privacy-Policy]Polityką prywatności[/url]
@@ -1919,6 +1962,15 @@ Używany
 UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
 W terenie
 
+UI/CoreStrings@VehicleNameEditor_EnterName:
+Wpisz nazwę:
+
+UI/CoreStrings@VehicleNameEditor_NameRequirements_Format:
+Wymagania nazwy niestandardowej: liczba znaków – [b]{0}-{1}[/b].
+
+UI/CoreStrings@VehicleNameEditor_VisibleToVehicleOwnersOnly:
+Widoczne tylko dla właścicieli pojazdów.
+
 UI/CoreStrings@VehiclesAssemblyList_Button_Build:
 Buduj
 
@@ -2038,6 +2090,9 @@ UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 Ustaw
 
+UI/CoreStrings@WindowConstructionMenu_TitleStructuresUnlocked:
+Odblokowane struktury
+
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Wymagane przedmioty
 
@@ -2062,6 +2117,45 @@ Lokalizacja
 
 UI/CoreStrings@WindowDataLog_To:
 Do
+
+UI/CoreStrings@WindowGeneratorPragmium_BuildReactor:
+Zbuduj reaktor
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_Offline:
+Reaktor offline
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_Operational:
+Reaktor pracuje
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_ShuttingDown:
+Wyłączanie reaktora
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorState_StartingUp:
+Rozruch reaktora
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_EfficiencyMax:
+Maks. sprawność:
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_FuelLifetime:
+Czas przydatności paliwa:
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_Output:
+Moc wyj.:
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_OutputMax:
+Maks. moc wyj.:
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_PsiEmissionLevelMax:
+Maks. poz. emisji psi:
+
+UI/CoreStrings@WindowGeneratorPragmium_ReactorStats_StartupShutdownTime:
+Czas wł./wył.:
+
+UI/CoreStrings@WindowGeneratorPragmium_StartReactor:
+Włącz reaktor
+
+UI/CoreStrings@WindowGeneratorPragmium_StopReactor:
+Wyłącz reaktor
 
 UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 PANELE SŁONECZNE
@@ -2095,6 +2189,9 @@ Bezpiecznie przechowywane przedmioty są współdzielone we wszystkich posiadany
 
 UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership:
 Przenieś w posiadanie frakcji
+
+UI/CoreStrings@WindowLandClaim_TransferToFactionOwnership_Description:
+Możesz udostępnić tę działkę frakcji, jeśli przeniesiesz jej prawa własności na frakcję.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Tylko właściciel może ulepszyć tę strukturę.
@@ -2248,6 +2345,9 @@ Budowa
 
 UI/CoreStrings@WindowsObjectVehicle_TabGarage:
 Garaż
+
+UI/CoreStrings@WindowsObjectVehicle_TabName_Title:
+Nazwa niestandardowa
 
 UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
 Pojazd
@@ -2430,10 +2530,6 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]Posiadana działka[/b]
 [br]To twoje włości.`
 
-UI/CoreStrings@WorldMapMarkRaid_Tooltip:
-`[b]Baza jest atakowana[/b]
-[br]Trwa atak na bazę!`
-
 UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
 `[b]Niekończące się źródło geotermalne[/b]
 [br]Publiczne źródło litu.`
@@ -2550,18 +2646,29 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Przedmioty zostały upuszczone
 
+UI/Controls/Game/Map/ClientWorldMapAllyBaseUnderRaidVisualizer@NotificationRaid_AllyBase_MessageFormat:
+Trwa najazd na bazę frakcji sojuszniczej: \[{0}\]!
+
+UI/Controls/Game/Map/ClientWorldMapAllyBaseUnderRaidVisualizer@NotificationRaid_FactionMember_MessageFormat:
+Trwa najazd na prywatną bazę członka twojej frakcji – @{0}!
+
+UI/Controls/Game/Map/ClientWorldMapAllyBaseUnderRaidVisualizer@NotificationRaid_Title:
+Trwa atak na bazę sojusznika!
+
 UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
 Koniec wydarzenia!
 
 UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
 Pozostały czas: {0}
 
-UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
-Aktywne wydarzenie
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeStartsIn:
+Rozpoczęcie za: {0}
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
-`Jedna z twoich baz jest atakowana!
-[br]({0};{1})`
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Wydarzenie światowe
+
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Message:
+Jedna z twoich baz jest atakowana!
 
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
 Trwa atak!
@@ -2778,6 +2885,9 @@ Za mało biomateriału
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
 nieodwracalne
 
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorPragmium@ReactorNameFormat:
+Reaktor {0}
+
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
 `Bieżące wytwarzanie: {0} JE/s przy {1}% poziomie oświetlenia.
 [br]Maks. wydajność {2} JE/s.`
@@ -2849,6 +2959,11 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_D
 Zawsze jesteśmy dostępni na Discordzie i naszych forach, więc wpadnijcie się przywitać! :)[br][br]
 W razie problemów lub jeśli będziecie chcieli zgłosić problem lub błąd, z przyjemnością Wam pomożemy!`
 
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description2:
+`Dziękujemy, że sprawdziliście CryoFall, bo to nasze ukochane dziecko, do stworzenia którego nasze małe studio dało z siebie wszystko. Udanego grania![br][br]
+Zawsze jesteśmy dostępni na Discordzie i naszych forach, więc wpadnijcie się przywitać! :)[br][br]
+W razie problemów lub jeśli będziecie chcieli zgłosić problem lub błąd, z przyjemnością Wam pomożemy!`
+
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
 Na koniec
 
@@ -2877,7 +2992,7 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_T
 Pojazdy
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-Przedstawimy Ci kilka funkcji, z którymi zetkniesz się w grze! CryoFall jest nadal aktywnie rozwijana, ale wszystkie poniższe elementy są już dostępne.
+Zanim zaczniesz grać, przedstawimy Ci kilka funkcji, z którymi zetkniesz się później, i ogólnie przedstawimy CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
 Witaj w CryoFall!

@@ -13,7 +13,10 @@ Scripts/Events/EventMeteoriteDrop@Description:
 Scripts/Events/EventMigration@Description:
 이 세계의 토착 생명체는 다른 지역으로 이동한 것 같습니다. 덕분에 사냥하기에 좋은 기회가 마련되었습니다.
 
-Scripts/Events/EventPsiGroveInfestation@Description:
+Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
+중요: 화기는 유효하지 않으니 근거리 또는 열 기반 무기를 사용하세요.
+
+Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 산악 지역에 기이한 외계 식물이 나타났습니다. 덕분에 탐사는 불가능해졌지만, 희귀한 자원을 얻을 수 있는 좋은 기회입니다.
 
 Scripts/Events/EventSpaceDrop@Description:

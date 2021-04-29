@@ -46,9 +46,6 @@ Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBott
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 容器のガソリンをエンジン発電機に充填
 
-Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-リチウム鉱石から抽出したリチウム塩
-
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 オイルポンプの原油を容器に充填
 
@@ -66,4 +63,7 @@ Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 井戸の水をボトルに充填
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeReactorBrokenModuleRecycle@Name:
+リアクター部品のリサイクル
 

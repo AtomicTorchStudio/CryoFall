@@ -137,7 +137,7 @@
                 return;
             }
 
-            ClientTimersSystem.AddAction(delaySeconds: 0.5,
+            ClientTimersSystem.AddAction(delaySeconds: 1.0,
                                          this.Refresh);
 
             var protoVab = (IProtoVehicleAssemblyBay)this.vehicleAssemblyBay.ProtoGameObject;

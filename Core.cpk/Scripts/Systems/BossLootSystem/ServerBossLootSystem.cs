@@ -49,6 +49,7 @@
             IProtoStaticWorldObject lootObjectProto,
             int lootObjectsDefaultCount,
             double lootObjectsRadius,
+            double learningPointsBonusPerLootObject,
             int maxLootWinners)
         {
             var approximatedTotalLootCountToSpawn = (int)Math.Ceiling(lootObjectsDefaultCount * bossDifficultyCoef);
@@ -98,6 +99,15 @@
                 ServerCharacters.EnumerateAllPlayerCharacters(onlyOnline: true),
                 _ => _.ClientRemote_VictoryAnnouncement(protoCharacterBoss,
                                                         winnerNamesWithClanTags));
+
+            foreach (var entry in winnerEntries)
+            {
+                // provide bonus LP
+                entry.Character.SharedGetTechnologies()
+                     .ServerAddLearningPoints(
+                         learningPointsBonusPerLootObject * entry.LootCount,
+                         allowModifyingByStatsAndRates: false);
+            }
 
             Api.Logger.Important(
                 protoCharacterBoss.ShortId

@@ -1521,9 +1521,9 @@
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.SharedGetObjectCenterWorldOffset(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
             <summary>
-            World offset to object center - currently used as the sound emitting position.
+            World offset to object center.
+            Use cases include: sound emitting position, attaching overlay UI elements, etc.
             </summary>
-            <param name="worldObject"></param>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject`1">
             <summary>

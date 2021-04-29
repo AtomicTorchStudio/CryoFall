@@ -18,6 +18,8 @@
         /// </summary>
         double ServerLastActiveTime { get; }
 
+        string ClientGetDescription(ILogicObject gameObject);
+
         void ServerForceCreateAndStart();
 
         bool ServerIsTriggerAllowed(ProtoTrigger trigger);

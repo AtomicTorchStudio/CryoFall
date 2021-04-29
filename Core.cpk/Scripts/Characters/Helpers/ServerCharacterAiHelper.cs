@@ -256,7 +256,7 @@
             out Vector2F movementDirection,
             out double rotationAngleRad,
             IReadOnlyList<AiWeaponPreset> weaponList = null,
-            bool attackFarOnlyIfAgro = false,
+            bool attackFarOnlyIfAggro = false,
             Func<IWorldObject, bool> customIsValidTargetCallback = null)
         {
             var privateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
@@ -288,9 +288,9 @@
                 }
             }
 
-            if (ReferenceEquals(targetCharacter, privateState.CurrentAgroCharacter))
+            if (ReferenceEquals(targetCharacter, privateState.CurrentAggroCharacter))
             {
-                // increase distances if agro on this character
+                // increase distances if aggro on this character
                 distanceRetreat *= 3;
                 distanceEnemyTooFar *= 3;
             }
@@ -364,12 +364,12 @@
                 }
 
                 if (isAttacking
-                    && attackFarOnlyIfAgro
+                    && attackFarOnlyIfAggro
                     && distanceToTarget > distanceEnemyTooFar
-                    && (privateState.CurrentAgroCharacter is null
-                        || !ReferenceEquals(privateState.CurrentAgroCharacter, targetCharacter)))
+                    && (privateState.CurrentAggroCharacter is null
+                        || !ReferenceEquals(privateState.CurrentAggroCharacter, targetCharacter)))
                 {
-                    // don't attack a non-agro target that is far
+                    // don't attack a non-aggro target that is far
                     isAttacking = false;
                 }
 
@@ -523,9 +523,9 @@
             var characterNpcPrivateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
             var targetCharacter = GetClosestTargetPlayer(characterNpc);
 
-            if (targetCharacter == characterNpcPrivateState.CurrentAgroCharacter)
+            if (targetCharacter == characterNpcPrivateState.CurrentAggroCharacter)
             {
-                // increase distances if agro on this character
+                // increase distances if aggro on this character
                 distanceRetreat *= 3;
             }
 

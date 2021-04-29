@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 Amunicja solna do strzelby kaliber 12
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-Kule znacznie skuteczniej powstrzymują wrogów niż śrut i są bardziej uniwersalne. Ze względu na dużą masę, kule są dość skuteczne nawet w przypadku dobrze opancerzonych celów.
+Kule to uniwersalna amunicja skuteczna przeciwko wielu rodzajom wrogów. Ze względu na jej dużą masę jest ona dość skuteczne nawet w przypadku dobrze opancerzonych celów.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 Kula do strzelby kaliber 12
@@ -101,16 +101,22 @@ Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
 Granat helowy
 
 Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
-Standardowy granat odłamkowy, który niszczy wszystko w niewielkiej odległości od miejsca eksplozji.
+Standardowy granat obronny, który niszczy wszystko w niewielkiej odległości od miejsca eksplozji.
 
 Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
-Granat odłamkowy
+Granat obronny
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
 Specjalny granat zapalający zadający poważne obrażenia termiczne.
 
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 Granat zapalający
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+Upłynniony kainit zamknięty w małych szklanych kapsułach. Używany w egzotycznych broniach.
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+Amunicja kainitowa
 
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Podstawowa amunicja do broni palnej. Odpowiednia tylko do powstrzymywania słabszych celów, ale tania i łatwa w produkcji.
@@ -187,6 +193,9 @@ Implanty można instalować tylko w stacji medycznej.
 Scripts/Items/Base/ItemHints@NeverConsumed:
 Nigdy nie spożyto
 
+Scripts/Items/Base/ItemHints@ReactorItem:
+Tego przedmiotu nie można zainstalować w reaktorze pragmiumowym.
+
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 Ten element pobiera moc z zamontowanych banków zasilania.
 
@@ -241,6 +250,12 @@ Zestaw użytecznych narzędzi łowcy sprawia, że szybciej zbierasz łupy z dowo
 Scripts/Items/Devices/ItemHuntersTools@Name:
 Narzędzia łowcy
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+Specjalne urządzenie pozwalające na ekstrahowanie niskiej jakości kainitu z niektórych rodzimych form życia i zmutowanych zwierząt.
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+Ekstraktor kainitowy
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 Mały celownik laserowy ułatwiający celowanie na duże odległości.
 
@@ -258,6 +273,12 @@ Standardowy dwukierunkowy bank zasilania. Przechowuje energię podczas podróży
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 Standardowy bank zasilania
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+To gniazdo jest zarezerwowane na powracającego drona.
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+Zarezerwowane gniazdo
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 Zaawansowany system zdalnego sterowania dronem
@@ -1490,6 +1511,18 @@ Stal przemysłowa o wysokiej zawartości węgla.
 Scripts/Items/Generic/ItemIngotSteel@Name:
 Sztabka stali
 
+Scripts/Items/Generic/ItemKeinite@Description:
+Niezwykle cenna, egzotyczna substancja obcego pochodzenia stosowana w najnowocześniejszych projektach naukowych.
+
+Scripts/Items/Generic/ItemKeinite@Name:
+Kainit
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+Nieobrobiony kainit. Przed użyciem należy go poddać obróbce.
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+Nieobrobiony kainit
+
 Scripts/Items/Generic/ItemLeather@Description:
 Skóra zwierzęca. Może posłużyć do uszycia zbroi skórzanej.
 
@@ -1600,18 +1633,6 @@ Konserwanty spożywcze. Można dodać do pakowanej żywności, wydłużając jej
 
 Scripts/Items/Generic/ItemPreservative@Name:
 Konserwanty
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-Pusty rdzeń reaktora, który można ponownie napełnić reaktywnym nośnikiem energii, np. pragmium.
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-Pusty rdzeń reaktora
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-Rdzeń reaktora wypełniony pragmium. Względnie stabilne, przenośne i trwałe źródło zasilania.
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-Rdzeń reaktora z pragmium
 
 Scripts/Items/Generic/ItemRice@Description:
 Ziarna ryżu, które można ugotować lub zasadzić.
@@ -1868,6 +1889,12 @@ Sztuczne wzmocnienie kości i czaszki. Zapobiega ogłuszeniom i złamaniom.
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 Implant wzmacniający szkielet
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+Specjalny organ połączony z dużą tętnicą, który wspomaga usuwanie różnych toksyn i trucizn z krwi.
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+Implant usuwający toksyny
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 W organizmie nie wykryto niekontrolowanych mutacji.
 
@@ -2033,7 +2060,7 @@ Scripts/Items/Medical/ItemNeuralRecombinator@Message_UsedRecently_Format:
 [br]Kolejne użycie dostępne za: {0}.`
 
 Scripts/Items/Medical/ItemNeuralRecombinator@Description:
-Całkowicie usuwa całą dobytą wiedzę na temat wszystkich technologi i pozwala odzyskać wszystkie punkty technologii, dzięki czemu można je wydać na nowo. Nie można używać często.
+Całkowicie usuwa całą zdobytą wiedzę na temat wszystkich technologi i pozwala odzyskać wszystkie punkty technologii, dzięki czemu można je wydać na nowo. Nie można używać często.
 
 Scripts/Items/Medical/ItemNeuralRecombinator@Name:
 Rekombinator neuronowy
@@ -2115,6 +2142,48 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Mały wzmacniacz siły
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+Resztki jednego z zepsutych modułów reaktora.
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+Zepsuty moduł reaktora
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+Specjalna wielowarstwowa osłona, która częściowo blokuje promieniowanie psioniczne emitowane przez reaktor.
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+Deflektor psioniczny
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+Specjalne urządzenie, które rozprasza promieniowanie psioniczne wewnątrz rdzenia reaktora, wydłużając czas przydatności paliwa kosztem jego zmniejszonej mocy.
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+Dyfuzor psioniczny
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+Zwiększa sprawność reakcji w reaktorze poprzez wprowadzenie dodatkowych psionicznych kontrolerów strumienia, co znacznie poprawia czas uruchamiania i wyłączania reaktora.
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+Psioniczny wymiennik strumienia
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+Pręt paliwowy do zasilania reaktora pragmiumowego. Względnie stabilne, przenośne i pozwalające na długą pracę źródło energii.
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+Pragmiumowy pręt paliwowy
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+Pusty pręt paliwowy do reaktora, który można ponownie napełnić pragmium.
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+Pusty pręt paliwowy
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+Modyfikuje konfigurację pól psionicznych wytwarzanych wewnątrz rdzenia reaktora, zwiększając tym samym jego sprawność.
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+Moderator psioniczny
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Sadzonka, z której można wyhodować nowe drzewo.
@@ -2199,6 +2268,9 @@ Zawiera współrzędne i częstotliwości nawigacyjne jednego z wielu teleportó
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 Lokalizacja teleportu
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+Odkryto już lokalizacje wszystkich teleportów.
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Żelazna siekiera dobrze sprawdza się podczas wyrębu drzew. Szybsza i bardziej wytrzymała niż siekiera kamienna.
@@ -2520,6 +2592,18 @@ Pistolet maszynowy przystosowany do amunicji 10 mm.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Pistolet maszynowy
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Egzotyczna broń, która zamiast pocisków wystrzeliwuje małe owadopodobne stworzenia.
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Miotacz roju
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Egzotyczna broń, która wystrzeliwuje silną truciznę produkowaną na bazie upłynnionego kainitu.
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Proliferator toksyn
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Ciężkie działko automatyczne przeznaczone do montażu węźle uzbrojenia na bojowych pancerzach wspomaganych. Wykorzystuje wielkokalibrową amunicję przeciwpancerną.

@@ -7,13 +7,13 @@
     {
         public static readonly ReadOnlySoundPreset<ItemSound> ItemGeneric
             = new SoundPreset<ItemSound>().Add(Pick, "Items/Pick")
-                                          .Add(Drop,     "Items/Drop")
-                                          .Add(Use,      "Items/Use")
-                                          .Add(Equip,    "Items/Equip")
-                                          .Add(Unequip,  "Items/Unequip")
-                                          .Add(Broken,   "Items/Broken")
-                                          .Add(Select,   "Items/Select")
-                                          .Add(Deselect, "Items/Deselect");
+                                          .Add(Drop,            "Items/Drop")
+                                          .Add(Use,             "Items/Use")
+                                          .Add(Equip,           "Items/Equip")
+                                          .Add(Unequip,         "Items/Unequip")
+                                          .Add(Broken,          "Items/Broken")
+                                          .Add(Select,          "Items/Select")
+                                          .Add(DeselectOnEmpty, "Items/Deselect");
 
         public static readonly ReadOnlySoundPreset<ItemSound> ItemDataLog
             = ItemGeneric.Clone()

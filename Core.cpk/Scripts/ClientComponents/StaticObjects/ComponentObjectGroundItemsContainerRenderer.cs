@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.AmbientOcclusion;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -19,10 +19,16 @@
 
         private const float TextureObjectSackScale = 0.5f;
 
+        private const double TextureResourceItemIconShadowScaleMultiplier = 2.0;
+
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
 
         private readonly Dictionary<IItem, SlotRenderer> slotRenderers
             = new();
+
+        private readonly ITextureResource TextureResourceItemIconShadow
+            = new TextureResource("FX/GroundItemShadow",
+                                  qualityOffset: -100);
 
         private bool isObjectSackMode;
 
@@ -79,7 +85,7 @@
             if (occupiedSlotsCount <= 1)
             {
                 // center
-                return (0.5, 0.25);
+                return (0.5, 0.5);
             }
 
             if (occupiedSlotsCount <= 2)
@@ -88,9 +94,9 @@
                 switch (virtualSlotId)
                 {
                     case 0:
-                        return (0.25, 0.25);
+                        return (0.25, 0.5);
                     case 1:
-                        return (0.75, 0.25);
+                        return (0.75, 0.5);
                 }
             }
 
@@ -100,30 +106,23 @@
                 switch (virtualSlotId)
                 {
                     case 0:
-                        return (0.5, 0.5);
+                        return (0.5, 0.75);
                     case 1:
-                        return (0.75, 0.05);
+                        return (0.75, 0.25);
                     case 2:
-                        return (0.25, 0.05);
+                        return (0.25, 0.25);
                 }
             }
 
             // quad layout (that's right, only first 4 objects of container can be drawn this way)
-            Vector2D drawOffset;
-            switch (virtualSlotId)
+            return virtualSlotId switch
             {
-                case 0:
-                    return (0.25, 0.55);
-                case 1:
-                    return (0.75, 0.55);
-                case 2:
-                    return (0.25, 0.05);
-                case 3:
-                    return (0.75, 0.05);
-                default:
-                    // drop by center
-                    return (0.5, 0.25);
-            }
+                0 => (0.25, 0.75),
+                1 => (0.75, 0.75),
+                2 => (0.25, 0.25),
+                3 => (0.75, 0.25),
+                _ => (0.5, 0.5)
+            };
         }
 
         private void CreateSpriteRenderer(IItem item)
@@ -133,23 +132,23 @@
             var spriteRenderer = Rendering.CreateSpriteRenderer(
                 this.SceneObject,
                 icon,
-                // draw over floor and occlusion layers
-                drawOrder: DrawOrder.Occlusion + 1);
+                // draw over floor and low shadow
+                drawOrder: DrawOrder.GroundItem);
 
-            var occlusionRenderer = ClientAmbientOcclusion.CreateOcclusionRenderer(
+            var shadowRenderer = Client.Rendering.CreateSpriteRenderer(
                 this.SceneObject,
-                icon,
-                extractMaskFromColor: true);
+                this.TextureResourceItemIconShadow,
+                drawOrder: DrawOrder.GroundItem - 1);
 
             spriteRenderer.PositionOffset = GetDrawOffset(item);
-            spriteRenderer.SpritePivotPoint = (0.5, 0);
+            spriteRenderer.SpritePivotPoint = (0.5, 0.5);
             spriteRenderer.Scale = protoItem.GroundIconScale * ItemOnGroundScaleMultiplier;
 
-            occlusionRenderer.PositionOffset = spriteRenderer.PositionOffset;
-            occlusionRenderer.SpritePivotPoint = spriteRenderer.SpritePivotPoint;
-            occlusionRenderer.Scale = spriteRenderer.Scale;
+            shadowRenderer.PositionOffset = spriteRenderer.PositionOffset;
+            shadowRenderer.SpritePivotPoint = spriteRenderer.SpritePivotPoint;
+            shadowRenderer.Scale = spriteRenderer.Scale * TextureResourceItemIconShadowScaleMultiplier;
 
-            var slotRenderer = new SlotRenderer(spriteRenderer, occlusionRenderer);
+            var slotRenderer = new SlotRenderer(spriteRenderer, shadowRenderer);
             this.slotRenderers.Add(item, slotRenderer);
         }
 
@@ -293,31 +292,30 @@
                 var slotRenderer = pair.Value;
                 slotRenderer.Renderer.PositionOffset = drawOffset;
 
-                if (slotRenderer.RendererOcclusion is not null)
+                if (slotRenderer.RendererShadow is not null)
                 {
-                    slotRenderer.RendererOcclusion.PositionOffset = drawOffset;
+                    slotRenderer.RendererShadow.PositionOffset = drawOffset;
                 }
             }
         }
 
-        private struct SlotRenderer
+        private readonly struct SlotRenderer
         {
             [NotNull]
             public readonly IComponentSpriteRenderer Renderer;
 
-            [CanBeNull]
-            public readonly IComponentSpriteRenderer RendererOcclusion;
+            public readonly IComponentSpriteRenderer RendererShadow;
 
-            public SlotRenderer(IComponentSpriteRenderer renderer, IComponentSpriteRenderer rendererOcclusion)
+            public SlotRenderer(IComponentSpriteRenderer renderer, IComponentSpriteRenderer rendererShadow)
             {
                 this.Renderer = renderer;
-                this.RendererOcclusion = rendererOcclusion;
+                this.RendererShadow = rendererShadow;
             }
 
             public void Destroy()
             {
                 this.Renderer.Destroy();
-                this.RendererOcclusion?.Destroy();
+                this.RendererShadow?.Destroy();
             }
         }
     }

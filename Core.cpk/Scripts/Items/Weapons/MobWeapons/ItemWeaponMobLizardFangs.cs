@@ -47,6 +47,11 @@
             {
                 damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.2);
             }
+
+            if (RandomHelper.RollWithProbability(0.02))
+            {
+                damagedCharacter.ServerAddStatusEffect<StatusEffectLaceration>(intensity: 0.2);
+            }
         }
     }
 }

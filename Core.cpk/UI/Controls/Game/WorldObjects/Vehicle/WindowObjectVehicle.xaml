@@ -12,6 +12,7 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:electricityRequirements="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ElectricityRequirements"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:vehicle="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
 
@@ -141,7 +142,7 @@
                                                    Margin="0,0,0,2" />
 
                                         <TextBlock
-                                            Text="{Binding RepairPercentPerStage, StringFormat='{}{x:Static loc:CoreStrings.WindowsObjectVehicle_RepairTextFormat}'}" />
+                                            Text="{Binding RepairPercentPerStage, StringFormat={x:Static loc:CoreStrings.WindowsObjectVehicle_RepairTextFormat}}" />
                                         <StackPanel Orientation="Horizontal"
                                                     HorizontalAlignment="Left">
                                             <!-- Display icons for required items (one repair stage) -->
@@ -289,6 +290,11 @@
                                                         Margin="0,-7,0,0" />
             </TabItem>
 
+            <!-- Text: Name -->
+            <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabName_Title}">
+                <vehicle:VehicleNameEditorControl Vehicle="{Binding Vehicle}" />
+            </TabItem>
+
             <!-- Text: Owners -->
             <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}">
                 <Grid>
@@ -373,7 +379,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="3"
                                 Visibility="{Binding ViewModelFactionAccessEditor.HasFactionAccessRight, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                Width="250"
+                                MaxWidth="300"
                                 Padding="5"
                                 Margin="0,10,0,0"
                                 CornerRadius="3"
@@ -385,7 +391,7 @@
                             <core:FormattedTextBlock
                                 Text="{Binding FactionPermissionName, StringFormat={x:Static loc:CoreStrings.Faction_Permission_Required_Format}}"
                                 FontSize="10"
-                                FontWeight="Normal"
+                                FontWeight="Bold"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center" />
                         </Border>
@@ -394,5 +400,4 @@
             </TabItem>
         </TabControl>
     </core:WindowMenuWithInventory>
-
 </core:BaseUserControlWithWindow>

@@ -34,11 +34,11 @@
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
                                    HorizontalAlignment="Center"
                                    Margin="0" />
-                        <controls:ItemsContainerControl
-                            Container="{Binding InputItemsContainer}"
-                            MaxWidth="100"
-                            HorizontalAlignment="Center"
-                            DesignTimeSlotsCount="1" />
+                        <controls:ItemsContainerControl Container="{Binding InputItemsContainer}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        DesignTimeSlotsCount="4"
+                                                        MaxWidth="120" />
                     </StackPanel>
 
                     <core:ValueBarControl

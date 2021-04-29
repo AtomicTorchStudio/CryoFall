@@ -12,10 +12,14 @@ Construire un sac de couchage
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Maintenant que vous disposez d'une boîte à outils, vous pouvez commencer à construire les différentes structures que vous avez déverrouillées dans votre menu de technologie. Commençons avec un feu de camp, qui vous permettra de cuire votre nourriture.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Vous pouvez appuyer sur Tab pour accéder rapidement à votre [b]menu de construction[/b] si vous n'avez pas modifié les commandes par défaut.
-[*] Le menu de construction peut comporter [b]plusieurs pages[/b] avec différents [b]types de constructions[/b] au fur et à mesure que vous débloquerez de nouvelles structures.
-[*] Vous pouvez utiliser les boîtes à outils non seulement pour [b]construire[/b] des structures, mais aussi pour les [b]réparer[/b].`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+Vous pouvez utiliser la touche [b]\[{0}\][/b] pour accéder rapidement au [b]menu de construction[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+Le menu de construction peut comporter [b]plusieurs pages[/b] avec différents [b]types de bâtiments[/b] selon les structures que vous avez débloquées.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Vous pouvez utiliser les boîtes à outils pour [b]bâtir[/b] des structures, mais également pour les [b]réparer[/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Construire un feu de camp
@@ -50,8 +54,8 @@ Cuire de la nourriture
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Maintenant que vous disposez de ressources, vous pouvez commencer à fabriquer des choses. Commencez par une corde. Ensuite, vous fabriquerez une hache.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-[*] Si vous n'avez pas modifié les commandes par défaut, vous pouvez ouvrir le menu d'artisanat avec la touche C et l'inventaire avec E.
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Vous pouvez rapidement accéder au menu d'artisanat avec la touche [b]\[{0}\][/b] ou à l'inventaire avec la touche [b]\[{1}\][/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Fabriquer une hache
@@ -59,9 +63,11 @@ Fabriquer une hache
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Récolter du minerai vous donnera accès aux ressources les plus précieuses de CryoFall. Vous devez fabriquer une pioche pour récupérer ce minerai.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Utilisez le menu d'artisanat (touche C par défaut) et fabriquez une pioche.
-[*] Vous aurez peut-être besoin de fabriquer de la corde si vous n'en avez plus.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Ouvrez le menu d'artisanat (touche [b]\[{0}\][/b]) et fabriquez une pioche.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+Vous aurez besoin de fabriquer de la corde si vous n'en avez pas déjà.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Fabriquer une pioche
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Trouver et utiliser de l'herbe verte
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Vous gagnerez des points d'apprentissage en effectuant des actions utiles. Ce gain est proportionnel à votre gain d'expérience de compétence.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+Vous pouvez accéder rapidement au menu technologies en appuyant sur la touche [b]\[{0}\][/b].
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Vous aurez besoin de [b]PA[/b] (points d'apprentissage) pour débloquer de nouvelles technologies.
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 Afin de pouvoir accéder à d'autres structures, vous devez déverrouiller la catégorie Construction de base dans le menu Technologies.
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Vous pouvez afficher le menu Technologies en appuyant sur la touche G (si vous n'avez pas modifié les commandes par défaut).
-[*] Vous aurez besoin de [b]PA[/b] (points d'apprentissage) pour débloquer de nouvelles technologies.
-[*] Vous gagnez des points d'apprentissage lorsque vous effectuez des actions utiles. Ce gain est directement proportionnel à votre gain d'expérience de compétence.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 Apprendre la technologie Construction de base

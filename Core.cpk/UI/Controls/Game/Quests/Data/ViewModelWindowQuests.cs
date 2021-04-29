@@ -48,6 +48,8 @@
 
         public ObservableCollection<ViewModelQuestEntry> CompletedQuests { get; }
 
+        public bool IsCurrentQuestsTabSelected { get; set; } = true;
+
         public bool IsQuestsPanelHidden => GeneralOptionHideQuestsPanel.IsQuestsPanelHidden;
 
         public int TotalQuestsCount { get; }

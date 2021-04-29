@@ -63,7 +63,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             DamagePvpMultiplier = ServerRates.Get(
                 "DamagePvpMultiplier",
-                defaultValue: 0.4,
+                defaultValue: 0.5,
                 @"All damage dealt from player to player (via weapons only) is multiplied by this rate.
                   It allows to decrease or increase the combat duration.
                   You can set it to 0 to disable PvP damage (it doesn't apply to bombs damage).");

@@ -12,10 +12,14 @@ Construir um saco de dormir
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 Agora que você tem uma caixa de ferramentas, dá para começar a criar as diferentes estruturas desbloqueadas no menu de tecnologia. Vamos começar com uma fogueira, que pode ser usada para cozinhar.
 
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*] Para acessar rapidamente o [b]menu de construir[/b] pressione "Tab", caso não tenha alterado os controles.
-[*] O menu construir pode ter [b]diversas páginas[/b] com diferentes [b]tipos de construção[/b], contanto que você desbloqueie novas estruturas.
-[*] É possível usar caixas de ferramentas não apenas para [b]construir[/b] estruturas, mas também para [b]repará-las[/b].`
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintBuildMenu:
+Você pode pressionar a tecla \[\[b]\\[{0}\]\[/b] para acessar rapidamente o \[\[b]menu de construção\[/b].
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintPages:
+O menu de construção pode ter \[b]várias páginas\[/b] com diferentes \[b]tipos de construção\[/b] à medida que você desbloquear mais estruturas.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@HintRepair:
+Você pode usar caixas de ferramentas não apenas para [b]construir[/b] estruturas, mas também para [b]consertá-las[/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 Construir uma fogueira
@@ -50,8 +54,8 @@ Cozinhar qualquer comida
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 Agora que você tem recursos, dá para começar a produzir. Primeiro, produza uma corda. Depois, quando estiver pronta, produza um machado.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*] Se você não alterou os atalhos padrão do teclado, pode abrir rapidamente o menu de produção com "C" e o inventário com "E".`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@HintHotkeys:
+Você pode abrir rapidamente o menu de produção com a tecla [b]\[{0}\][/b] e o inventário com a tecla [b]\[{1}\][/b].
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 Produzir um machado
@@ -59,9 +63,11 @@ Produzir um machado
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 Garimpar diferentes minerais oferece acesso aos mais valiosos recursos de CryoFall. Para poder extrair esses minerais, você precisa produzir uma picareta.
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*] Use o menu de produção (o padrão é "C") para produzir uma picareta.
-[*] Talvez você precise produzir uma corda, se não tiver nenhuma.`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintCrafting:
+Abra seu menu de produção (tecla [b]\[{0}\][/b]) e faça uma picareta.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@HintRope:
+Talvez você precise produzir uma corda, se não tiver nenhuma.
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 Produzir uma picareta
@@ -357,13 +363,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Encontrar e usar uma erva verde
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
+Os pontos de aprendizagem são obtidos a partir de qualquer atividade significativa, sendo diretamente proporcionais ao seu ganho de experiência em habilidades.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
+Você pode acessar rapidamente o menu de tecnologias pressionando a tecla [[b]\[{0}\][/b].
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
+Desbloquear qualquer nó de tecnologia requer [b]PA[/b] (pontos de aprendizagem).
+
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
 `Para ter acesso a mais estruturas, você precisa desbloquear "básico de construção" no menu de tecnologia.`
-
-Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
-`[*] Se você não tiver alterado os controles, é possível acessar rapidamente o menu de tecnologias pressionando "G".
-[*] São necessários [b]PA[/b] (pontos de aprendizagem) para desbloquear qualquer nó de tecnologia.
-[*] Pontos de aprendizagem são obtidos a partir de qualquer atividade significativa, sendo diretamente proporcionais ao seu ganho de experiência em habilidades.`
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
 `Aprender tecnologia "básico de construção"`

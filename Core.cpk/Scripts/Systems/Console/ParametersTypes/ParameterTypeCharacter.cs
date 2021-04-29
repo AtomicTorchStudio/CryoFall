@@ -2,17 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class ParameterTypeCharacter : BaseConsoleCommandParameterType
     {
         public override Type ParameterType { get; } = typeof(ICharacter);
-
-        public override string ShortDescription => "player character nickname";
 
         public static IEnumerable<string> GetNameSuggestionsNonStrict(string startsWith)
         {

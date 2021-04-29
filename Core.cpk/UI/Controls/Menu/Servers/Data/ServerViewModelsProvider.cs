@@ -301,8 +301,11 @@
             viewModel.Description = serverInfo.Description;
 
             viewModel.Version = serverInfo.ServerVersion;
-            viewModel.IsCompatible = serverInfo.ServerVersion.WithoutBuildNumber
-                                     == Api.Shared.GameVersionNumber.WithoutBuildNumber;
+
+            // don't check the major version (first number)
+            // as only the second and third numbers determine the actual compatibility
+            viewModel.IsCompatible = serverInfo.ServerVersion.Minor == Api.Shared.GameVersionNumber.Minor
+                                     && serverInfo.ServerVersion.Revision == Api.Shared.GameVersionNumber.Revision;
 
             viewModel.NetworkProtocolVersion = serverInfo.ServerNetworkProtocolVersion;
             viewModel.PlayersText = $"{serverInfo.PlayersOnlineCount}/{serverInfo.PlayersMaxCount}";

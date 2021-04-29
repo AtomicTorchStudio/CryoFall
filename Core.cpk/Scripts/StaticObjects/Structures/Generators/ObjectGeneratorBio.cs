@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -12,7 +13,7 @@
     [ElectricityProductionOrder(afterType: typeof(ObjectGeneratorSolar))]
     public class ObjectGeneratorBio : ProtoObjectGeneratorBio
     {
-        public override byte ContainerInputSlotsCount => 1;
+        public override byte ContainerInputSlotsCount => 4;
 
         public override ElectricityThresholdsPreset DefaultGenerationElectricityThresholds
             => new(startupPercent: 99,
@@ -97,6 +98,7 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedLand);
             category = GetCategory<StructureCategoryElectricity>();
 
             build.StagesCount = 10;

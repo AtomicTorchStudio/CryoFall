@@ -80,6 +80,10 @@
         /// </summary>
         public virtual string DescriptionUpgrade => "No upgrade description.";
 
+        public virtual double FactionWealthScorePoints => 0;
+
+        public virtual bool IsActivatesRaidblockOnDestroy => true;
+
         public virtual bool IsAutoUnlocked => false;
 
         public bool IsListedInTechNodes
@@ -96,6 +100,8 @@
         public IReadOnlyList<TechNode> ListedInTechNodes
             => this.listedInTechNodes
                ?? (IReadOnlyList<TechNode>)Array.Empty<TechNode>();
+
+        public virtual ushort RelocationToolDurabilityCost => 10;
 
         public override string ShortId { get; }
 
@@ -205,7 +211,7 @@
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
             base.ServerOnDestroy(gameObject);
-            ServerStructuresManager.NotifyObjectDestroyed(gameObject);
+            ServerStructuresManager.NotifyObjectRemoved(gameObject);
         }
 
         public virtual void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character)
@@ -423,6 +429,21 @@
                 this.ConfigRepair.ServerReturnRequiredItems(
                     byCharacter,
                     stagesCount: (byte)MathHelper.Clamp(returns, 1, byte.MaxValue));
+            }
+        }
+
+        protected override void ServerOnStaticObjectDestroyedByCharacter(
+            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject)
+        {
+            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, weaponCache, targetObject);
+
+            if (this.IsActivatesRaidblockOnDestroy)
+            {
+                LandClaimSystem.ServerOnRaid(targetObject.Bounds,
+                                             byCharacter,
+                                             isStructureDestroyed: true);
             }
         }
 

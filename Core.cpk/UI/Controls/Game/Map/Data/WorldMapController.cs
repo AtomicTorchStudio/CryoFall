@@ -90,13 +90,13 @@
 
         private Vector2D lastCoordinateLettersCanvasPositionBottomRight;
 
-        private Vector2Ushort lastCurrentMapPosition;
+        private Vector2Ushort lastCurrentWorldPosition;
 
         private double lastExtraControlsScale = 1;
 
         private Vector2D? lastPlayerCanvasPosition;
 
-        private Vector2Ushort lastPointedMapPosition;
+        private Vector2Ushort lastPointedMapPositionAbsolute;
 
         private IClientSceneObject sceneObject;
 
@@ -338,7 +338,7 @@
 
         protected void MarkDirty()
         {
-            this.lastCurrentMapPosition = Vector2Ushort.Max;
+            this.lastCurrentWorldPosition = Vector2Ushort.Max;
             this.lastPlayerCanvasPosition = null;
             this.panningPanel.Refresh();
         }
@@ -646,7 +646,7 @@
             if (!this.IsActive)
             {
                 // update world map only when it's active (visible)
-                this.lastCurrentMapPosition = Vector2Ushort.Max;
+                this.lastCurrentWorldPosition = Vector2Ushort.Max;
                 return;
             }
 
@@ -664,16 +664,11 @@
             this.UpdateMapExplorationProgress();
 
             var currentWorldPosition = this.componentCurrentCharacterUpdater.WorldPosition.ToVector2Ushort();
-            var currentMapPosition = currentWorldPosition - this.worldBounds.Offset;
-            if (currentMapPosition != this.lastCurrentMapPosition)
+            if (currentWorldPosition != this.lastCurrentWorldPosition)
             {
-                this.lastCurrentMapPosition = currentMapPosition;
+                this.lastCurrentWorldPosition = currentWorldPosition;
                 this.viewModelControlWorldMap.CurrentPositionText
-                    = string.Format("{0}-{1},{2}",
-                                    WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(
-                                        currentMapPosition),
-                                    currentMapPosition.X,
-                                    currentMapPosition.Y);
+                    = WorldMapSectorHelper.FormatWorldPositionWithSectorCoordinate(currentWorldPosition);
 
                 if (this.newChunksHashSet.Count == 0)
                 {
@@ -686,19 +681,15 @@
                 }
             }
 
-            var pointedMapPosition = this.PointedMapWorldPositionRelative;
-            if (pointedMapPosition != this.lastPointedMapPosition)
+            var pointedMapPositionAbsolute = this.PointedMapWorldPositionAbsolute;
+            if (pointedMapPositionAbsolute != this.lastPointedMapPositionAbsolute)
             {
-                this.lastPointedMapPosition = pointedMapPosition;
+                this.lastPointedMapPositionAbsolute = pointedMapPositionAbsolute;
 
                 if (this.isListeningToInput)
                 {
                     this.viewModelControlWorldMap.PointedPositionText
-                        = string.Format("{0}-{1},{2}",
-                                        WorldMapSectorHelper.GetSectorCoordinateTextForRelativePosition(
-                                            pointedMapPosition),
-                                        pointedMapPosition.X,
-                                        pointedMapPosition.Y);
+                        = WorldMapSectorHelper.FormatWorldPositionWithSectorCoordinate(pointedMapPositionAbsolute);
 
                     var protoTile = this.panningPanel.IsMouseOver
                                         ? Api.Client.World.GetTile(this.PointedMapWorldPositionAbsolute).ProtoTile

@@ -69,14 +69,14 @@
 
         public override bool HasIncreasedScopeSize => true;
 
+        public virtual double HitRaidblockDurationMultiplier => 1.0;
+
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public override bool IsRelocatable
             => false; // land claims relocation is not possible as it will cause multiple issues
-
-        public virtual bool IsShortRaidblockOnHit => false;
 
         public ushort LandClaimGraceAreaPaddingSizeOneDirection
             => this.lazyLandClaimGraceAreaPaddingSizeOneDirection.Value;
@@ -483,7 +483,8 @@
                     // trigger raid block when a non-faction owned land claim is hit
                     LandClaimSystem.ServerOnRaid(targetObject.Bounds,
                                                  weaponCache.Character,
-                                                 isShort: this.IsShortRaidblockOnHit);
+                                                 durationMultiplier: this.HitRaidblockDurationMultiplier,
+                                                 isStructureDestroyed: false);
                 }
                 else
                 {
@@ -497,7 +498,8 @@
                     {
                         LandClaimSystem.ServerOnRaid(targetObject.Bounds,
                                                      weaponCache.Character,
-                                                     isShort: this.IsShortRaidblockOnHit);
+                                                     durationMultiplier: this.HitRaidblockDurationMultiplier,
+                                                     isStructureDestroyed: false);
                     }
                 }
             }

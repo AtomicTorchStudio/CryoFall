@@ -43,16 +43,22 @@
             double teleportationDelay,
             bool isTeleportationOut)
         {
-            var isCurrentCharacter
-                = worldObject == ClientCurrentCharacterHelper.Character;
+            var isCurrentCharacter = worldObject == ClientCurrentCharacterHelper.Character;
 
-            var sceneObject = Client.Scene.CreateSceneObject("Temp teleportation effect holder");
-            sceneObject.Destroy(isTeleportationOut
-                                    ? teleportationDelay // teleportation delay includes the animation duration
-                                    : animationDuration);
+            var sceneObject = worldObject.ClientSceneObject;
+            sceneObject.FindComponent<ClientComponentTeleportationEffect>()
+                       ?.Destroy();
 
-            sceneObject.AddComponent<ClientComponentTeleportationEffect>()
-                       .Setup(worldObject, fallbackTilePosition, animationDuration, isTeleportationOut);
+            var componentTeleportationEffect = sceneObject.AddComponent<ClientComponentTeleportationEffect>();
+            componentTeleportationEffect
+                .Setup(worldObject,
+                       fallbackTilePosition,
+                       animationDuration,
+                       isTeleportationOut);
+
+            // the effect destroy time has a bit of extra delay but it doesn't matter
+            // (required to prevent flickering for teleporting-away character)
+            componentTeleportationEffect.Destroy(animationDuration * 2 + teleportationDelay);
 
             var soundResource = isTeleportationOut
                                     ? SoundResourceTeleportOut
@@ -69,10 +75,10 @@
             if (isCurrentCharacter
                 && isTeleportationOut)
             {
-                worldObject.ClientSceneObject
-                           .AddComponent<ClientComponentTeleportationEffectCurrentCharacter>()
-                           .Setup(animationDuration,
-                                  teleportationDelay);
+                sceneObject
+                    .AddComponent<ClientComponentTeleportationEffectCurrentCharacter>()
+                    .Setup(animationDuration,
+                           teleportationDelay);
             }
         }
 
@@ -80,15 +86,6 @@
         {
             this.time += deltaTime;
             this.time = Math.Min(this.time, this.duration);
-
-            if (this.worldObject?.IsInitialized ?? false)
-            {
-                this.SceneObject.Position = this.worldObject.Position;
-            }
-            else
-            {
-                this.SceneObject.Position = this.fallbackTilePosition.ToVector2D() + (0.5, 0.5);
-            }
 
             var teleportationProgress = this.time / this.duration;
             if (this.isTeleportationOut)
@@ -120,6 +117,19 @@
             foreach (var effect in this.currentRenderingEffects)
             {
                 effect.Progress = teleportationProgress;
+            }
+
+            // ensure that the teleporting object is not rendered until the effect is ready
+            var isRendered = this.isTeleportationOut
+                             || (this.currentRenderingEffects.Count > 0
+                                 && this.currentRenderingEffects[0].IsReady);
+
+            foreach (var component in tempComponents.AsList())
+            {
+                if (component is IComponentSkeleton componentSkeleton)
+                {
+                    componentSkeleton.IsEnabled = isRendered;
+                }
             }
         }
 

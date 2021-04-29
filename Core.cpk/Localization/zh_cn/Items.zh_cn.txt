@@ -41,7 +41,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 12号盐弹
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-独头弹比起霰弹提供更强的阻止力，并能够用于攻击各种目标。其高质量能够有效应对着甲目标。
+铅弹是一种对大多数敌人都很有效的泛用弹药。由于其重量，对高护甲敌人特别有效。
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 12号独头弹
@@ -112,6 +112,12 @@ Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
 Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
 燃烧榴弹
 
+Scripts/Items/Ammo/ItemAmmoKeinite@Description:
+装在小玻璃瓶里的液化翠铜矿。可用于异星武器。
+
+Scripts/Items/Ammo/ItemAmmoKeinite@Name:
+翠铜弹药
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 基础枪械弹药。只对弱小目标有效，但是便宜易生产。
 
@@ -176,7 +182,7 @@ Scripts/Items/Base/ItemHints@FuelCellForVehicles:
 用于驱动各种载具的燃料电池。
 
 Scripts/Items/Base/ItemHints@HelmetLightAndNightVision:
-您可以通过按下[b]\[{0}\][/b]键来在光照或夜视模式间切换。
+您可以通过按下[b]\[{0}\][/b]键来在手电或夜视模式间切换。
 
 Scripts/Items/Base/ItemHints@HintShootGrenadeLauncher:
 按住 [b]Alt[/b] 或 [b]Ctrl[/b] 来向鼠标方向进行最远距离射击，而非射击至鼠标位置。
@@ -186,6 +192,9 @@ Scripts/Items/Base/ItemHints@ImplantApplication:
 
 Scripts/Items/Base/ItemHints@NeverConsumed:
 未曾食用
+
+Scripts/Items/Base/ItemHints@ReactorItem:
+此物品可被安装进普拉格反应堆。
 
 Scripts/Items/Base/ItemHints@UsesPowerBanks:
 此物品将会从装备的移动电源上抽取能量。
@@ -241,6 +250,12 @@ Scripts/Items/Devices/ItemHuntersTools@Description:
 Scripts/Items/Devices/ItemHuntersTools@Name:
 猎人工具
 
+Scripts/Items/Devices/ItemKeiniteCollector@Description:
+用于从外星和变异生物身上萃取低纯度翠铜的特殊装置。
+
+Scripts/Items/Devices/ItemKeiniteCollector@Name:
+翠铜提取器
+
 Scripts/Items/Devices/ItemLaserSight@Description:
 用于辅助瞄准的小型激光瞄准器。
 
@@ -258,6 +273,12 @@ Scripts/Items/Devices/ItemPowerBankStandard@Description:
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
 标准移动电源
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Description:
+此栏位正被无人机临时占用。
+
+Scripts/Items/Drones/Base/ItemDroneReservedSlot@Name:
+预留槽位
 
 Scripts/Items/Drones/DroneControls/ItemDroneControlAdvanced@Name:
 高级远程无人机控制。
@@ -1490,6 +1511,18 @@ Scripts/Items/Generic/ItemIngotSteel@Description:
 Scripts/Items/Generic/ItemIngotSteel@Name:
 钢锭
 
+Scripts/Items/Generic/ItemKeinite@Description:
+来自异星的极其珍贵的物质。在各种尖端科技中有所应用。
+
+Scripts/Items/Generic/ItemKeinite@Name:
+翠铜
+
+Scripts/Items/Generic/ItemKeiniteRaw@Description:
+未提纯的翠铜。需要经过处理才能使用。
+
+Scripts/Items/Generic/ItemKeiniteRaw@Name:
+未提纯翠铜
+
 Scripts/Items/Generic/ItemLeather@Description:
 动物皮革。可以制成皮甲。
 
@@ -1600,18 +1633,6 @@ Scripts/Items/Generic/ItemPreservative@Description:
 
 Scripts/Items/Generic/ItemPreservative@Name:
 防腐剂
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
-空反应堆核心，可以用可反应能量载体物质补充，比如普拉格。
-
-Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
-空反应堆核心
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Description:
-装满了普拉格的反应堆核心。是一种相对稳定，便携耐用的能量源。
-
-Scripts/Items/Generic/ItemReactorCorePragmium@Name:
-普拉格反应堆核心
 
 Scripts/Items/Generic/ItemRice@Description:
 收获的谷物。 可以继续种植或煮成各种餐点。
@@ -1868,6 +1889,12 @@ Scripts/Items/Implants/ItemImplantReinforcedBones@Description:
 Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 内骨骼强化植入
 
+Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
+连接着大动脉的特殊器官，可以从血液中滤除各种毒素。
+
+Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
+滤毒植入物
+
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 身体中检测到异常突变
 
@@ -2116,6 +2143,48 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 小型力量增强
 
+Scripts/Items/Reactor/ItemReactorBrokenModule@Description:
+反应堆模组破损后剩余的废料。
+
+Scripts/Items/Reactor/ItemReactorBrokenModule@Name:
+破损反应堆模组
+
+Scripts/Items/Reactor/ItemReactorDeflector@Description:
+特殊多人游戏护盾，能够部分防护反应堆外逸散的灵能辐射。
+
+Scripts/Items/Reactor/ItemReactorDeflector@Name:
+灵能遮蔽器
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Description:
+中和反应堆内产生灵能辐射的特殊装置，以降低能量输出功率为代价延长燃料使用时间。
+
+Scripts/Items/Reactor/ItemReactorDiffuser@Name:
+灵能中和器
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Description:
+通过加入额外的灵能通量控制器来极大的减少反应堆启动与停止时间。
+
+Scripts/Items/Reactor/ItemReactorFluxExchanger@Name:
+灵能通量控制器
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Description:
+装满了普拉格的反应堆燃料棒。相对稳定，便于携带，生命周期长。
+
+Scripts/Items/Reactor/ItemReactorFuelRod@Name:
+普拉格燃料棒
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Description:
+空燃料棒，可装入普拉格。
+
+Scripts/Items/Reactor/ItemReactorFuelRodEmpty@Name:
+空燃料棒
+
+Scripts/Items/Reactor/ItemReactorModerator@Description:
+调整灵能场配置，提升反应堆输出。
+
+Scripts/Items/Reactor/ItemReactorModerator@Name:
+灵能调整器
+
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 树苗。可以种下并长出新树。
 
@@ -2199,6 +2268,9 @@ Scripts/Items/Special/ItemTeleportLocationData@Description:
 
 Scripts/Items/Special/ItemTeleportLocationData@Name:
 传送点数据
+
+Scripts/Items/Special/Data/ProtoItemTeleportUnlock@Notification_AlreadyDiscoveredAllTeleports:
+你已经发现了所有传送地点。
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 铁斧可以用来砍树。效率和耐久度都高于石斧。
@@ -2520,6 +2592,18 @@ Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 冲锋枪
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+向敌人发射昆虫弹药的异星武器。
+
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+虫群发射器
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+将液态翠铜转化为强力毒素并向敌人射出的异星武器。
+
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+剧毒增生
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 为战斗装甲设计的手持重型自动加农炮。使用大口径反器材弹药。

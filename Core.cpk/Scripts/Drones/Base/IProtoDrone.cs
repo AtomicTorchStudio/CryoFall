@@ -15,7 +15,10 @@
 
         double StatMoveSpeed { get; }
 
-        void ServerDropDroneToGround(IDynamicWorldObject objectDrone);
+        void ServerDropDroneToGround(
+            IDynamicWorldObject objectDrone,
+            Tile tile,
+            ICharacter forOwnerCharacter);
 
         IItemsContainer ServerGetStorageItemsContainer(IDynamicWorldObject objectDrone);
 
@@ -29,12 +32,12 @@
             IStaticWorldObject targetWorldObject,
             Vector2D fromStartPosition);
 
-        void ServerSetupAssociatedItem(IDynamicWorldObject objectDrone, IItem item);
+        void ServerSetupAssociatedItem(
+            IDynamicWorldObject objectDrone,
+            IItem item);
 
         void ServerStartDrone(
             IDynamicWorldObject objectDrone,
-            ICharacter character,
-            bool isFromHotbarContainer,
-            byte fromSlotIndex);
+            ICharacter character);
     }
 }

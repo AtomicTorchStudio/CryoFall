@@ -124,6 +124,9 @@ Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 礦點爆炸
 
+Scripts/StaticObjects/Explosives/Special/ObjectGeneratorPragmiumReactorActiveExplosion@Name:
+普拉格反應堆爆炸
+
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
 普拉格源爆炸
 
@@ -593,6 +596,9 @@ Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Description:
 Scripts/StaticObjects/Structures/Defenses/ObjectTurretLight@Name:
 輕型炮臺
 
+Scripts/StaticObjects/Structures/Defenses/Base/ProtoObjectTurret@ErrorTooCloseToAnotherTurret:
+過於靠近另一個炮臺
+
 Scripts/StaticObjects/Structures/Defenses/Base/TurretMode@Disabled:
 禁用
 
@@ -707,6 +713,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 汽油發電機
 
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Description:
+可作為大型基地電力源的巨型普拉格反應堆，需要源源不斷的普拉格供給。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorPragmium@Name:
+普拉格反應堆
+
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 基礎的太陽能發電裝置。需要獨立的太陽能電池板才能進行發電。
 
@@ -718,6 +730,12 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 蒸汽發電機
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Description_Format:
+放置至少一個{0}來啟動反應堆。
+
+Scripts/StaticObjects/Structures/Generators/Base/ProtoObjectGeneratorPragmium@ErrorCannotStartReactor_Title:
+無法啟動反應堆
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 防止其他倖存者在周圍區域建造或拆毀任何東西，使您的基地更安全。佔領土地還可確保您的建築物不會隨著時間的推移而劣化。

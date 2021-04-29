@@ -14,6 +14,12 @@
                                           typeof(FactionLeaderboardMetricsInfoControl),
                                           new PropertyMetadata(null, ClanTagPropertyChanged));
 
+        public static readonly DependencyProperty TotalScoreProperty
+            = DependencyProperty.Register(nameof(TotalScore),
+                                          typeof(string),
+                                          typeof(FactionLeaderboardMetricsInfoControl),
+                                          new PropertyMetadata(default(string)));
+
         private Grid layoutRoot;
 
         private ViewModelFactionLeaderboardMetricsInfoControl viewModel;
@@ -22,6 +28,12 @@
         {
             get => (string)this.GetValue(ClanTagProperty);
             set => this.SetValue(ClanTagProperty, value);
+        }
+
+        public string TotalScore
+        {
+            get => (string)this.GetValue(TotalScoreProperty);
+            set => this.SetValue(TotalScoreProperty, value);
         }
 
         protected override void InitControl()
@@ -55,13 +67,14 @@
                 return;
             }
 
+            this.viewModel.Reset();
             var scoreMetrics = await FactionLeaderboardSystem.ClientGetFactionScoreMetricsAsync(this.ClanTag);
             if (!this.isLoaded)
             {
                 return;
             }
 
-            this.viewModel.SetData(scoreMetrics);
+            this.viewModel.SetData(scoreMetrics, this.TotalScore);
         }
     }
 }

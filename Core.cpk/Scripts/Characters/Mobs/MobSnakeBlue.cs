@@ -20,7 +20,7 @@
 
         public override double StatDefaultHealthMax => 80;
 
-        public override double StatMoveSpeed => 1.65;
+        public override double StatMoveSpeed => 2.0;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,
@@ -55,7 +55,7 @@
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,
                 distanceEnemyTooClose: 1,
-                distanceEnemyTooFar: 3.5,
+                distanceEnemyTooFar: 4.5,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad);
 

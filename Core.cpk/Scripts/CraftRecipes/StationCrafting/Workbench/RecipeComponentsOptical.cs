@@ -18,9 +18,9 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemGlassRaw>(count: 50);
+            inputItems.Add<ItemGlassRaw>(count: 100);
+            inputItems.Add<ItemOreLithium>(count: 25);
             inputItems.Add<ItemIngotSteel>(count: 10);
-            inputItems.Add<ItemOrePragmium>(count: 5);
 
             outputItems.Add<ItemComponentsOptical>(count: 10);
         }

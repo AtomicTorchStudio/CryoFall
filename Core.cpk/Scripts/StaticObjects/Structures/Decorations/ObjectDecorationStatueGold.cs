@@ -11,6 +11,8 @@
         public override string Description =>
             "True demonstration of your wealth. Only the richest of the rich can afford to build something like this.";
 
+        public override double FactionWealthScorePoints => 50;
+
         public override string Name => "Golden statue";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;

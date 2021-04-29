@@ -1,4 +1,7 @@
-﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+﻿Scripts/CharacterStatusEffects/Base/StatusEffectHints@CanBeRemediedWith_Format:
+Способы лечения: {0}.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
 Вы приняли стимуляторы, ваша выносливость регенерируется быстрее.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
@@ -87,6 +90,12 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Голод
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Description:
+У вас большая открытая рана на теле. Такие серьезные ранения требуют срочного медикаментозного лечения.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectLaceration@Name:
+Тяжелая резаная рана
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 Вы подверглись сильному радиоактивному облучению, и клетки вашего тела начали мутировать. Это к добру не приведет! Постарайтесь впредь избегать радиоактивных областей.
