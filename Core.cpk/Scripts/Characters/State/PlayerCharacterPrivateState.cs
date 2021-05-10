@@ -154,7 +154,7 @@
 
             this.ContainerHotbar ??= serverItemsService.CreateContainer<ItemsContainerCharacterHotbar>(
                 character,
-                slotsCount: 10);
+                slotsCount: PlayerConstants.HotbarSlotsCount);
 
             this.CraftingQueue ??= new CharacterCraftingQueue();
             this.Skills ??= new PlayerCharacterSkills();
