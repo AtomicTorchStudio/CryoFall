@@ -136,7 +136,7 @@
                 .Add(ErrorSoilNotSuitable, c => c.Tile.ProtoTile is IProtoTileFarmAllowed)
                 .Add(ConstructionTileRequirements.ValidatorNoFarmPlot)
                 .Add(ConstructionTileRequirements.ValidatorNoFloor)
-                .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
+                .Add(ConstructionTileRequirements.ValidatorNoStaticObjects)
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)

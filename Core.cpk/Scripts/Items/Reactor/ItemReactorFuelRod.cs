@@ -15,7 +15,7 @@
 
         public override string Name => "Pragmium fuel rod";
 
-        public double OutputElectricityPerSecond => 8;
+        public double OutputElectricityPerSecond => 10;
 
         public double PsiEmissionLevel => 1.2;
 

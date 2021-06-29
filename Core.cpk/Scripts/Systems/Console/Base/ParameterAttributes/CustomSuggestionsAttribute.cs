@@ -26,9 +26,17 @@
             {
                 // cache function delegate
                 this.cachedType = type;
-                this.cachedFuncGetSuggestions = (CustomSuggestionsDelegate)
-                    type.ScriptingGetMethod(this.methodName)
-                        .CreateDelegate(typeof(CustomSuggestionsDelegate));
+                try
+                {
+                    this.cachedFuncGetSuggestions = (CustomSuggestionsDelegate)
+                        type.ScriptingGetMethod(this.methodName)
+                            .CreateDelegate(typeof(CustomSuggestionsDelegate));
+                }
+                catch (NullReferenceException)
+                {
+                    throw new Exception(
+                        $"Please ensure that the static method with name {this.methodName} exists in {type.Name}");
+                }
             }
             else if (this.cachedType != type)
             {

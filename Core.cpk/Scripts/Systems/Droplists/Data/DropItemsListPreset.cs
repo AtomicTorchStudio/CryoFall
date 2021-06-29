@@ -115,6 +115,16 @@
                               && this.cachedConditionForProbabilityRoll(context);
         }
 
+        public double GetCountMultiplierForDroplist()
+        {
+            if (!this.UseGuaranteedProbabilityAlgorithm)
+            {
+                return 1.0;
+            }
+
+            return ServerDropItemsListProbabilityRollHelper.CalculateOutputCountMultiplier(this.probability);
+        }
+
         public double GetProbabilityForDroplist()
         {
             if (!this.UseGuaranteedProbabilityAlgorithm)

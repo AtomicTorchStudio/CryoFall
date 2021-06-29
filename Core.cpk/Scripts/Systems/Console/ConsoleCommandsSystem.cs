@@ -472,7 +472,9 @@
 
             NotificationSystem.ClientShowNotification(
                 "Console command executed: " + commandName,
-                result.Replace("\n", "[br]"),
+                result.Replace("[", "\\[")
+                      .Replace("]",  "\\]")
+                      .Replace("\n", "[br]"),
                 NotificationColor.Neutral,
                 writeToLog: false);
         }

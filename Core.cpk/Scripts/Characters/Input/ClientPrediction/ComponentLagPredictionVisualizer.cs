@@ -156,9 +156,7 @@
                       canvas,
                       positionOffset: (0, 0),
                       isFocusable: true)
-                  .UseWorldPositionZIndex = false;
-
-            Panel.SetZIndex((UIElement)canvas.Parent, 1);
+                  .SetCustomZIndex(1);
         }
 
         private static void DestroyInstance()

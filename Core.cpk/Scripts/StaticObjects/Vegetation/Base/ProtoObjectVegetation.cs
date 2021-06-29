@@ -4,11 +4,13 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Drones;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
@@ -76,11 +78,6 @@
         {
             base.ClientSetupBlueprint(tile, blueprint);
             blueprint.SpriteRenderer.TextureResource = this.Icon;
-        }
-
-        public virtual double GetGrowthStageDurationSeconds(byte growthStage)
-        {
-            return this.cachedGrowthStageDurationSeconds;
         }
 
         /// <summary>
@@ -280,7 +277,16 @@
             TPrivateState privateState,
             TPublicState publicState)
         {
-            return this.cachedGrowthStageDurationSeconds;
+            var objectVegetation = privateState.GameObject;
+            var duration = this.cachedGrowthStageDurationSeconds;
+            if (LandClaimSystem.SharedIsObjectInsideAnyArea((IStaticWorldObject)objectVegetation))
+            {
+                // don't apply scaled rate to vegetation located inside the land claim areas
+                // (as these are usually planted by players inside their bases and protected)
+                return duration;
+            }
+
+            return ServerSpawnRateScaleHelper.AdjustDurationByRate(duration);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

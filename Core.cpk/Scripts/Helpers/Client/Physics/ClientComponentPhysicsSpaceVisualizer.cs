@@ -456,9 +456,7 @@
                       canvas,
                       positionOffset: (0, 0),
                       isFocusable: IsTooltipsEnabled)
-                  .UseWorldPositionZIndex = false;
-
-            Panel.SetZIndex((UIElement)canvas.Parent, 1);
+                  .SetCustomZIndex(1);
 
             sceneObject.Destroy(delay: lifetime ?? DebugShapeLifetime);
         }

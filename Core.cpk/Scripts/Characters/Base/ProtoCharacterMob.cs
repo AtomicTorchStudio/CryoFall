@@ -42,14 +42,6 @@
         where TPublicState : CharacterMobPublicState, new()
         where TClientState : BaseCharacterClientState, new()
     {
-        public const double AggroStateDuration = 30; // 30 seconds
-
-        // If the mob is too far away from the spawn position, it should be despawned after the delay.
-        private const int DespawnTileDistanceThreshold = 10; // 10+ tiles away
-
-        // If the mob is too far away from the spawn position it will be despawned after this delay (if not observed).
-        private const int DespawnTimeThreshold = 10 * 60; // 10 minutes
-
         private static readonly IWorldServerService ServerWorld = IsServer
                                                                       ? Server.World
                                                                       : null;
@@ -73,6 +65,8 @@
 
             this.ShortId = name.Substring("Mob".Length);
         }
+
+        public virtual double AggroStateDuration => 30; // 30 seconds
 
         public abstract bool AiIsRunAwayFromHeavyVehicles { get; }
 
@@ -114,6 +108,16 @@
         public override double StatHealthRegenerationPerSecond => 10.0 / 60.0; // 10 health points per minute
 
         /// <summary>
+        /// If the mob is too far away from the spawn position, it should be despawned after the delay.
+        /// </summary>
+        protected virtual int DespawnTileDistanceThreshold => 10; // 10+ tiles away
+
+        /// <summary>
+        /// If the mob is too far away from the spawn position it will be despawned after this delay (if not observed).
+        /// </summary>
+        protected virtual int DespawnTimeThreshold => 10 * 60; // 10 minutes
+
+        /// <summary>
         /// Determines whether the creature should be automatically despawned
         /// if it's too far from the spawn location for too long.
         /// </summary>
@@ -145,7 +149,7 @@
             }
 
             privateState.CurrentAggroCharacter = characterToAggro;
-            privateState.CurrentAggroTimeRemains = AggroStateDuration;
+            privateState.CurrentAggroTimeRemains = this.AggroStateDuration;
             //Logger.Dev(
             //    $"Mob aggro to player as friendly mob has aggroed: {currentCharacter} to {privateState.CurrentAggroCharacter} on {privateState.CurrentAggroTimeRemains:F2}s");
         }
@@ -265,7 +269,7 @@
                 var characterMob = (ICharacter)targetObject;
                 var mobPrivateState = GetPrivateState(characterMob);
                 mobPrivateState.CurrentAggroCharacter = weaponCache.Character;
-                mobPrivateState.CurrentAggroTimeRemains = AggroStateDuration;
+                mobPrivateState.CurrentAggroTimeRemains = this.AggroStateDuration;
                 //Logger.Dev(
                 //    $"Mob damaged by player, let's aggro: {targetObject} by {mobPrivateState.CurrentAggroCharacter} on {mobPrivateState.CurrentAggroTimeRemains:F2}s");
 
@@ -516,6 +520,55 @@
         {
         }
 
+        protected virtual void ServerUpdateMobDespawn(
+            ICharacter characterMob,
+            TPrivateState privateState,
+            double deltaTime)
+        {
+            if (!this.IsAutoDespawn)
+            {
+                return;
+            }
+
+            var distanceToSpawnSqr = privateState.SpawnPosition
+                                                 .TileSqrDistanceTo(characterMob.TilePosition);
+            if (distanceToSpawnSqr < this.DespawnTileDistanceThreshold * this.DespawnTileDistanceThreshold)
+            {
+                // close to spawn area, no need to despawn
+                privateState.TimerDespawn = 0;
+                return;
+            }
+
+            // too far from spawn area, should despawn after delay
+            if (privateState.TimerDespawn < this.DespawnTimeThreshold)
+            {
+                // delay is not finished yet
+                privateState.TimerDespawn += deltaTime;
+                return;
+            }
+
+            // should despawn
+            // check that nobody is observing the mob
+            var playersInView = TempListPlayersInView;
+            playersInView.Clear();
+            ServerWorld.GetCharactersInView(characterMob,
+                                            playersInView,
+                                            onlyPlayerCharacters: true);
+
+            foreach (var playerCharacter in playersInView)
+            {
+                if (playerCharacter.ServerIsOnline)
+                {
+                    // cannot despawn - scoped by a player
+                    return;
+                }
+            }
+
+            // nobody is observing, can despawn
+            Logger.Important("Mob despawned as it went too far from the spawn position for too long: " + characterMob);
+            ServerWorld.DestroyObject(characterMob);
+        }
+
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.GameObject.PhysicsBody.Friction = this.PhysicsBodyFriction;
@@ -609,52 +662,6 @@
 
             // rebuild stats cache
             this.ServerForceBuildFinalStatsCache(privateState, publicState);
-        }
-
-        private void ServerUpdateMobDespawn(ICharacter characterMob, TPrivateState privateState, double deltaTime)
-        {
-            if (!this.IsAutoDespawn)
-            {
-                return;
-            }
-
-            var distanceToSpawnSqr = privateState.SpawnPosition
-                                                 .TileSqrDistanceTo(characterMob.TilePosition);
-            if (distanceToSpawnSqr < DespawnTileDistanceThreshold * DespawnTileDistanceThreshold)
-            {
-                // close to spawn area, no need to despawn
-                privateState.TimerDespawn = 0;
-                return;
-            }
-
-            // too far from spawn area, should despawn after delay
-            if (privateState.TimerDespawn < DespawnTimeThreshold)
-            {
-                // delay is not finished yet
-                privateState.TimerDespawn += deltaTime;
-                return;
-            }
-
-            // should despawn
-            // check that nobody is observing the mob
-            var playersInView = TempListPlayersInView;
-            playersInView.Clear();
-            ServerWorld.GetCharactersInView(characterMob,
-                                            playersInView,
-                                            onlyPlayerCharacters: true);
-
-            foreach (var playerCharacter in playersInView)
-            {
-                if (playerCharacter.ServerIsOnline)
-                {
-                    // cannot despawn - scoped by a player
-                    return;
-                }
-            }
-
-            // nobody is observing, can despawn
-            Logger.Important("Mob despawned as it went too far from the spawn position for too long: " + characterMob);
-            ServerWorld.DestroyObject(characterMob);
         }
     }
 

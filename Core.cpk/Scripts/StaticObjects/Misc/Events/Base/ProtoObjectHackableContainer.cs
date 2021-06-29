@@ -30,6 +30,19 @@
     {
         public const double SearchSkillExperienceMultiplier = 2;
 
+        private readonly double serverRateLootCountMultiplier;
+
+        protected ProtoObjectHackableContainer()
+        {
+            if (IsServer)
+            {
+                this.serverRateLootCountMultiplier = ServerRates.Get(
+                    "DropListItemsCountMultiplier." + this.ShortId,
+                    defaultValue: 1.0,
+                    @"This rate determines the item droplist multiplier for loot in " + this.Name + ".");
+            }
+        }
+
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public abstract double HackingStageDuration { get; }
@@ -71,10 +84,14 @@
             var lootDroplist = this.LootDroplist;
             var dropItemContext = new DropItemContext(character, worldObject);
 
-            var dropItemResult = lootDroplist.TryDropToCharacterOrGround(character,
-                                                                         character.TilePosition,
-                                                                         dropItemContext,
-                                                                         out _);
+            var dropItemResult = lootDroplist.TryDropToCharacterOrGround(
+                character,
+                character.TilePosition,
+                dropItemContext,
+                out _,
+                // compensate for the general server items drop rate
+                // but apply a separate rate
+                probabilityMultiplier: this.ServerGetDropListProbabilityMultiplier(worldObject));
 
             if (dropItemResult.TotalCreatedCount > 0)
             {
@@ -177,6 +194,12 @@
             tileRequirements.Add(LandClaimSystem.ValidatorFreeLandEvenForServer)
                             .Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer)
                             .Add(ConstructionTileRequirements.ValidatorTileNotRestrictingConstructionEvenForServer);
+        }
+
+        protected virtual double ServerGetDropListProbabilityMultiplier(IStaticWorldObject worldObject)
+        {
+            return this.serverRateLootCountMultiplier
+                   / DropItemsList.DropListItemsCountMultiplier;
         }
     }
 }

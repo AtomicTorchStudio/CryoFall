@@ -82,6 +82,7 @@
                 if (this.isActive)
                 {
                     this.ScheduleSortEntries();
+                    this.ForceLoadingPendingServersFirst();
                 }
             }
         }
@@ -202,6 +203,25 @@
             }
 
             this.NotifyPropertyChanged(nameof(this.SelectedServer));
+        }
+
+        public void ForceLoadingPendingServersFirst()
+        {
+            foreach (var server in this.ServersList)
+            {
+                if (!server.ViewModelServerInfo.IsInfoReceived
+                    || server.ViewModelServerInfo.IsInaccessible)
+                {
+                    server.ViewModelServerInfo
+                          .CommandRefreshWithoutReset?
+                          .Execute(server.ViewModelServerInfo);
+                }
+            }
+        }
+
+        public void ReloadList()
+        {
+            this.controller.ReloadServersList();
         }
 
         public void ScheduleSortEntries()

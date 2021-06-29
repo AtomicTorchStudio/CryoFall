@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Helpers.Server;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -27,7 +27,7 @@
         {
             DropListItemsCountMultiplier = ServerRates.Get(
                 "DropListItemsCountMultiplier",
-                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                defaultValue: Api.IsServer && SharedLocalServerHelper.IsLocalServer
                                   ? 1.5
                                   : 1.0,
                 @"This rate determines the item droplist multiplier.                
@@ -75,7 +75,6 @@
         /// (inclusive) when spawning).
         /// </param>
         /// <param name="weight">Probability of spawn/add at all.</param>
-        /// ///
         /// <param name="condition">(optional) Special condition.</param>
         public DropItemsList Add<TProtoItem>(
             ushort? count = null,
@@ -121,7 +120,7 @@
         {
             var dropItem = new DropItem(protoItem, count, countRandom);
             this.entries.Add(new ValueWithWeight<Entry>(
-                                 new Entry(dropItem, condition, probability),
+                                 new Entry(dropItem, condition, probability, countMultiplier: 1.0),
                                  weight));
             return this;
         }
@@ -149,7 +148,7 @@
             }
 
             this.entries.Add(new ValueWithWeight<Entry>(
-                                 new Entry(nestedList, condition, probability),
+                                 new Entry(nestedList, condition, probability, countMultiplier: 1.0),
                                  weight));
             return this;
         }
@@ -174,7 +173,10 @@
             condition = preset.CreateCompoundConditionIfNecessary(condition);
 
             this.entries.Add(new ValueWithWeight<Entry>(
-                                 new Entry(nestedList, condition, preset.GetProbabilityForDroplist()),
+                                 new Entry(nestedList,
+                                           condition,
+                                           preset.GetProbabilityForDroplist(),
+                                           countMultiplier: preset.GetCountMultiplierForDroplist()),
                                  weight));
             return this;
         }
@@ -295,7 +297,10 @@
             double probabilityMultiplier)
         {
             probabilityMultiplier *= DropListItemsCountMultiplier;
-            return this.ExecuteInternal(delegateSpawnDropItem, dropItemContext, probabilityMultiplier);
+            return this.ExecuteInternal(delegateSpawnDropItem, 
+                                        dropItemContext,
+                                        probabilityMultiplier,
+                                        countMultiplier: 1.0);
         }
 
         private static void ExecuteEntry(
@@ -303,6 +308,7 @@
             DropItemContext dropItemContext,
             out CreateItemResult createItemResult,
             double probabilityMultiplier,
+            double countMultiplier,
             DelegateSpawnDropItem delegateSpawnDropItem)
         {
             if (entry.Condition is not null)
@@ -325,11 +331,13 @@
             }
 
             var entryProbability = probabilityMultiplier * entry.Probability;
+            var entryCountMultiplier = countMultiplier * entry.CountMultiplier;
             if (entry.EntryNestedList is null)
             {
                 createItemResult = ExecuteSpawnItem(entry.EntryItem,
                                                     delegateSpawnDropItem,
-                                                    probability: entryProbability);
+                                                    probability: entryProbability,
+                                                    countMultiplier: entryCountMultiplier);
                 return;
             }
 
@@ -350,13 +358,15 @@
             createItemResult = ((DropItemsList)entry.EntryNestedList)
                 .ExecuteInternal(delegateSpawnDropItem,
                                  dropItemContext,
-                                 probabilityMultiplier);
+                                 probabilityMultiplier,
+                                 entryCountMultiplier);
         }
 
         private static CreateItemResult ExecuteSpawnItem(
             DropItem dropItem,
             DelegateSpawnDropItem delegateSpawnDropItem,
-            double probability)
+            double probability,
+            double countMultiplier)
         {
             if (!RandomHelper.RollWithProbability(probability))
             {
@@ -380,8 +390,19 @@
 
             if (probability > 1)
             {
-                var multiplier = probability;
-                countToSpawn = (int)Math.Round(countToSpawn * multiplier,
+                countToSpawn = (int)Math.Round(countToSpawn * probability,
+                                               MidpointRounding.AwayFromZero);
+            }
+
+            if (countToSpawn <= 0)
+            {
+                return new CreateItemResult() { IsEverythingCreated = true };
+            }
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (countMultiplier != 1.0)
+            {
+                countToSpawn = (int)Math.Round(countToSpawn * countMultiplier,
                                                MidpointRounding.AwayFromZero);
             }
 
@@ -407,7 +428,8 @@
         private CreateItemResult ExecuteInternal(
             DelegateSpawnDropItem delegateSpawnDropItem,
             DropItemContext dropItemContext,
-            double probabilityMultiplier)
+            double probabilityMultiplier,
+            double countMultiplier)
         {
             this.Freeze();
 
@@ -424,6 +446,7 @@
                              dropItemContext,
                              out var entryResult,
                              probabilityMultiplier,
+                             countMultiplier,
                              delegateSpawnDropItem);
                 result.MergeWith(entryResult);
             }
@@ -569,13 +592,19 @@
         {
             public readonly DropItemConditionDelegate Condition;
 
+            public readonly double CountMultiplier;
+
             public readonly DropItem EntryItem;
 
             public readonly IReadOnlyDropItemsList EntryNestedList;
 
             public readonly double Probability;
 
-            public Entry(DropItemConditionDelegate condition, double probability) : this()
+            public Entry(
+                DropItemConditionDelegate condition,
+                double probability,
+                double countMultiplier)
+                : this()
             {
                 this.Condition = condition;
                 this.Probability = probability;
@@ -586,13 +615,16 @@
                     throw new ArgumentOutOfRangeException(nameof(probability),
                                                           "Probability must be larger than zero and less or greater to 1");
                 }
+
+                this.CountMultiplier = countMultiplier;
             }
 
             public Entry(
                 IReadOnlyDropItemsList entryNestedList,
                 DropItemConditionDelegate condition,
-                double probability)
-                : this(condition, probability)
+                double probability,
+                double countMultiplier)
+                : this(condition, probability, countMultiplier)
             {
                 this.EntryNestedList = entryNestedList;
             }
@@ -600,8 +632,9 @@
             public Entry(
                 DropItem dropEntryItem,
                 DropItemConditionDelegate condition,
-                double probability)
-                : this(condition, probability)
+                double probability,
+                double countMultiplier)
+                : this(condition, probability, countMultiplier)
             {
                 this.EntryItem = dropEntryItem;
             }

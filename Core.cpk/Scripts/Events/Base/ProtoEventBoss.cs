@@ -4,18 +4,28 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Windows;
+    using System.Windows.Media;
+    using System.Windows.Media.Animation;
+    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
-    using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
+    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -24,8 +34,8 @@
     public abstract class ProtoEventBoss
         : ProtoEventWithArea<
             EventBossPrivateState,
-            EventWithAreaPublicState,
-            EmptyClientState>
+            EventBossPublicState,
+            EventBossClientState>
     {
         // {0} is the boss name
         public const string Notification_VictoryAnnouncement_Format =
@@ -40,6 +50,8 @@
                     return this.ServerSetupSpawnZones();
                 });
         }
+
+        public virtual ushort AreaBarrierRadiusPvE => 24;
 
         public override ushort AreaRadius => 55;
 
@@ -63,6 +75,12 @@
         public virtual ushort SpawnRadiusMax => 20;
 
         protected Lazy<IReadOnlyList<IServerZone>> ServerSpawnZones { get; }
+
+        public override void ClientDeinitialize(ILogicObject gameObject)
+        {
+            base.ClientDeinitialize(gameObject);
+            this.ClientDestroyBossAreaBarrier(gameObject);
+        }
 
         public sealed override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -92,6 +110,21 @@
             var timeSinceCreation = time - eventCreatedTime;
             var result = this.EventStartDelayDuration.TotalSeconds - timeSinceCreation;
             return Math.Max(result, 0);
+        }
+
+        protected override void ClientUpdate(ClientUpdateData data)
+        {
+            base.ClientUpdate(data);
+
+            if (PveSystem.ClientIsPve(false)
+                && this.SharedGetTimeRemainsToEventStart(data.PublicState) > 0)
+            {
+                this.ClientCreateBossAreaBarrier(data.GameObject);
+            }
+            else
+            {
+                this.ClientDestroyBossAreaBarrier(data.GameObject);
+            }
         }
 
         protected override bool ServerCreateEventSearchArea(
@@ -363,8 +396,16 @@
             if (timeRemainsToEventStart > 0)
             {
                 // the boss event is not yet started
+                if (PveSystem.ServerIsPvE)
+                {
+                    // ensure the barrier exist
+                    this.ServerCreateBossAreaBarrier(data.GameObject);
+                }
+
                 return;
             }
+
+            this.ServerDestroyBossAreaBarrier(data.GameObject);
 
             if (!privateState.IsSpawnCompleted)
             {
@@ -400,6 +441,171 @@
             {
                 this.ServerTryFinishEvent(activeEvent);
             }
+        }
+
+        private void ClientCreateBossAreaBarrier(ILogicObject activeEvent)
+        {
+            var publicState = GetPublicState(activeEvent);
+            var clientState = GetClientState(activeEvent);
+            if (clientState.BarrierPhysicsBody is not null)
+            {
+                return;
+            }
+
+            clientState.BarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(activeEvent);
+
+            // create barrier visualizer
+            var position = publicState.AreaCirclePosition;
+            var ellipse = new Ellipse()
+            {
+                Width = 2 * this.AreaBarrierRadiusPvE * ScriptingConstants.TileSizeVirtualPixels,
+                Height = 2 * this.AreaBarrierRadiusPvE * ScriptingConstants.TileSizeVirtualPixels,
+                StrokeThickness = 6,
+                Stroke = new SolidColorBrush(Api.Client.UI.GetApplicationResource<Color>("ColorAlt5").WithAlpha(0xEE)),
+                Fill = new RadialGradientBrush()
+                {
+                    GradientStops = new GradientStopCollection()
+                    {
+                        new()
+                        {
+                            Color = Api.Client.UI.GetApplicationResource<Color>("ColorAlt2").WithAlpha(0xAA),
+                            Offset = 1
+                        },
+                        new()
+                        {
+                            Color = Api.Client.UI.GetApplicationResource<Color>("ColorAlt2").WithAlpha(0x00),
+                            Offset = 0.5
+                        }
+                    }
+                }
+            };
+
+            var sceneObjectVisualizer = Client.Scene.CreateSceneObject("Boss event area: " + activeEvent,
+                                                                       position.ToVector2D() + (0.5, 0.5));
+            var attachedControl = Api.Client.UI.AttachControl(
+                sceneObjectVisualizer,
+                positionOffset: (0, 0),
+                uiElement: ellipse,
+                isFocusable: false,
+                isScaleWithCameraZoom: true);
+            attachedControl.SetCustomZIndex(-1);
+
+            clientState.SceneObjectBarrierVisualizer = sceneObjectVisualizer;
+        }
+
+        private void ClientDestroyBossAreaBarrier(ILogicObject gameObject)
+        {
+            var clientState = GetClientState(gameObject);
+            if (clientState.BarrierPhysicsBody is not null)
+            {
+                Client.World.DestroyStandalonePhysicsBody(clientState.BarrierPhysicsBody);
+                clientState.BarrierPhysicsBody = null;
+            }
+
+            if (clientState.SceneObjectBarrierVisualizer is { } sceneObjectVisualizer)
+            {
+                clientState.SceneObjectBarrierVisualizer = null;
+
+                // instead of instantly removing the barrier, fade-out quickly
+                var durationFadeOut = 2.5;
+                sceneObjectVisualizer.Destroy(delay: durationFadeOut);
+
+                var control = sceneObjectVisualizer.FindComponent<IComponentAttachedControl>().Control;
+                var anim = new DoubleAnimation
+                {
+                    From = 1.0,
+                    To = (double)0,
+                    Duration = new Duration(TimeSpan.FromSeconds(durationFadeOut)),
+                    EasingFunction = new ExponentialEase() { EasingMode = EasingMode.EaseIn }
+                };
+
+                Storyboard.SetTarget(anim, control);
+                Storyboard.SetTargetProperty(anim, new PropertyPath(UIElement.OpacityProperty.Name));
+                var storyboard = new Storyboard();
+                storyboard.Children.Add(anim);
+                storyboard.Begin(control);
+            }
+        }
+
+        /// <summary>
+        /// Barrier (a circle impenetrable area) is present only in PvE to prevent players from rushing
+        /// into the boss area before the boss is spawned.
+        /// </summary>
+        private void ServerCreateBossAreaBarrier(ILogicObject activeEvent)
+        {
+            var publicState = GetPublicState(activeEvent);
+            if (publicState.ServerBarrierPhysicsBody is not null)
+            {
+                return;
+            }
+
+            // create the barrier
+            publicState.ServerBarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(activeEvent);
+
+            var activeEventPosition = publicState.AreaCirclePosition;
+            var barrierRadius = this.AreaBarrierRadiusPvE + 1;
+            if (barrierRadius > byte.MaxValue)
+            {
+                Logger.Error(
+                    "The boss area circle should never have a radius larger than 255 tiles as it prevents players despawn in PvE: "
+                    + activeEvent);
+                barrierRadius = byte.MaxValue;
+            }
+
+            var barrierRadiusSqr = barrierRadius * barrierRadius;
+
+            // despawn all player characters inside the barrier or very close to it
+            using var tempCharacters = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetCharactersInRadius(activeEventPosition,
+                                               tempCharacters,
+                                               (byte)barrierRadius,
+                                               onlyPlayers: true);
+
+            foreach (var character in tempCharacters.AsList())
+            {
+                ServerCharacterDeathMechanic.DespawnCharacter(character);
+            }
+
+            // despawn all vehicles inside the barrier or very close to it
+            using var tempListVehicles = Api.Shared.GetTempList<IDynamicWorldObject>();
+            foreach (var protoVehicle in Api.FindProtoEntities<IProtoVehicle>())
+            {
+                tempListVehicles.Clear();
+                protoVehicle.GetAllGameObjects(tempListVehicles.AsList());
+                foreach (var vehicle in tempListVehicles.AsList())
+                {
+                    if (vehicle.TilePosition.TileSqrDistanceTo(activeEventPosition)
+                        <= barrierRadiusSqr)
+                    {
+                        VehicleGarageSystem.ServerPutIntoGarage(vehicle);
+                    }
+                }
+            }
+
+            // Please note: NPC characters that are stuck inside the area are pushed outside it by the physics engine
+        }
+
+        private void ServerDestroyBossAreaBarrier(ILogicObject activeEvent)
+        {
+            var publicState = GetPublicState(activeEvent);
+            if (publicState.ServerBarrierPhysicsBody is not null)
+            {
+                Server.World.DestroyStandalonePhysicsBody(publicState.ServerBarrierPhysicsBody);
+                publicState.ServerBarrierPhysicsBody = null;
+            }
+        }
+
+        private IPhysicsBody SharedCreateBarrierPhysicsBody(ILogicObject activeEvent)
+        {
+            IWorldService world = IsClient
+                                      ? Client.World
+                                      : Server.World;
+            var publicState = GetPublicState(activeEvent);
+            var physicsBody = world.CreateStandalonePhysicsBody(publicState.AreaCirclePosition.ToVector2D()
+                                                                + (0.5, 0.5));
+            physicsBody.AddShapeCircle(this.AreaBarrierRadiusPvE);
+            world.AddStandalonePhysicsBody(physicsBody, world.GetPhysicsSpace());
+            return physicsBody;
         }
     }
 }

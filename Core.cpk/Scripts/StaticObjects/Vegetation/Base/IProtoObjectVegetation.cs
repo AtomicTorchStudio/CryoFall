@@ -13,8 +13,6 @@
 
         byte ClientGetTextureAtlasColumn(IStaticWorldObject worldObject, VegetationPublicState publicState);
 
-        double GetGrowthStageDurationSeconds(byte growthStage);
-
         void ServerSetFullGrown(IStaticWorldObject worldObject);
 
         /// <summary>

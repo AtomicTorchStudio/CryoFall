@@ -1469,7 +1469,7 @@
             Gets the neighbor tile at custom offset.
             </summary>
             <param name="offset">Offset vector.</param>
-            <returns>World tile at offsetted position.</returns>
+            <returns>World tile at offset position.</returns>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.Data.World.Tile.GetNeighborTile(System.Int32,System.Int32)">
             <summary>
@@ -1477,7 +1477,7 @@
             </summary>
             <param name="offsetX">Offset by X axis.</param>
             <param name="offsetY">Offset by Y axis.</param>
-            <returns>World tile at offsetted position.</returns>
+            <returns>World tile at offset position.</returns>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.World.IWorldObject">
             <summary>
@@ -2880,7 +2880,7 @@
             Gets or sets the draw offset in world units.
             </summary>
             <example>
-            If you want to render this element offsetted on +1 on axis X, -1 on axis Y, use "(1,-1)").
+            If you want to render this element with an offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
             </example>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer">
@@ -3302,7 +3302,7 @@
             </param>
             <param name="positionOffset">
             (optional) Draw offset in world units (if you want to render this skeleton
-            offsetted on +1 on axis X, -1 on axis Y, use "(1,-1)").
+            offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
             </param>
             <param name="drawOrder">(optional) Draw order. Use it if you need to render this skeleton over other objects.</param>
             <param name="worldScale">(optional) Skeleton world scale.</param>
@@ -3331,7 +3331,7 @@
             </param>
             <param name="positionOffset">
             (optional) Draw offset in world units (if you want to render this skeleton
-            offsetted on +1 on axis X, -1 on axis Y, use "(1,-1)").
+            offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
             </param>
             <param name="drawOrder">(optional) Draw order. Use it if you need to render this skeleton over other objects.</param>
             <param name="worldScale">(optional) Skeleton world scale.</param>
@@ -3354,7 +3354,7 @@
             <param name="drawOrder">(optional) Draw order. Use it if you need to render this skeleton over other objects.</param>
             <param name="positionOffset">
             (optional) Draw offset in world units (if you want to render this skeleton
-            offsetted on +1 on axis X, -1 on axis Y, use "(1,-1)").
+            offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
             </param>
             <param name="spritePivotPoint">
             <see cref="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer.SpritePivotPoint" />
@@ -3376,7 +3376,7 @@
             <param name="drawOrder">(optional) Draw order. Use it if you need to render this skeleton over other objects.</param>
             <param name="positionOffset">
             (optional) Draw offset in world units (if you want to render this skeleton
-            offsetted on +1 on axis X, -1 on axis Y, use "(1,-1)").
+            offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
             </param>
             <param name="spritePivotPoint">
             <see cref="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer.SpritePivotPoint" />

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -18,8 +19,8 @@
 
             ServerEventDelayMultiplier = ServerRates.Get(
                 "WorldEventDelayMultiplier",
-                defaultValue: ServerLocalModeHelper.IsLocalServer
-                                  ? 0.2
+                defaultValue: SharedLocalServerHelper.IsLocalServer
+                                  ? 0.05
                                   : 1.0,
                 @"Determines the world event delay multiplier.
                   Most events have a configured delay to prevent them from starting until players could advance enough.

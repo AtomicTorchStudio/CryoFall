@@ -6,6 +6,8 @@
     using System.Linq;
     using System.Text;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -42,21 +44,28 @@
                 var resultObj = this.MethodInfo.MethodInfo.Invoke(this.ConsoleCommand, parsedArgs);
                 if (resultObj is not null)
                 {
-                    var resultStr = resultObj.ToString();
+                    var result = resultObj.ToString();
                     Api.Logger.Important(
-                        $"Console command \"{this.ConsoleCommand.Name}\" completed: {resultStr}",
+                        $"Console command \"{this.ConsoleCommand.Name}\" completed: {result}",
                         byCharacter);
 
-                    if (sendNotification
-                        && resultStr.Length < 10000
-                        // it will break formatting so let's not include such results
-                        && !resultStr.Contains('['))
+                    if (sendNotification)
                     {
+                        var maxLength = ServerOperatorSystem.ServerIsOperator(byCharacter.Name)
+                                        || ServerModeratorSystem.ServerIsModerator(byCharacter.Name)
+                                            ? 30000
+                                            : 5000;
+
+                        if (result.Length > maxLength)
+                        {
+                            result = result.Substring(0, maxLength) + "... (server's response truncated)";
+                        }
+
                         // send notification to this character
                         ConsoleCommandsSystem.ServerOnConsoleCommandResult(
                             byCharacter,
                             this.ConsoleCommand,
-                            resultStr);
+                            result);
                     }
                 }
             }

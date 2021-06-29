@@ -13,11 +13,21 @@
 
     public partial class MenuRespawn : BaseUserControl
     {
+        /// <summary>
+        /// When fade-in used (such as in the case of character death), a short delay is necessary.
+        /// Its duration is defined by this constant.
+        /// </summary>
+        private const int FadeInDelaySeconds = 2;
+
         private static ClientInputContext inputContext;
 
         private static MenuRespawn instance;
 
         private static bool isClosed = true;
+
+        private bool IsFadeIn;
+
+        private bool isOpened;
 
         private Storyboard storyboardFadeIn;
 
@@ -32,7 +42,7 @@
             instance?.CloseMenu();
         }
 
-        public static void EnsureOpened()
+        public static void EnsureOpened(bool fadeIn)
         {
             if (!isClosed)
             {
@@ -40,18 +50,26 @@
             }
 
             isClosed = false;
+
+            if (fadeIn)
+            {
+                if (LoadingSplashScreenManager.Instance.CurrentState
+                        is LoadingSplashScreenState.Shown
+                        or LoadingSplashScreenState.Showing)
+                {
+                    // no fade-in required
+                    fadeIn = false;
+                }
+            }
+
             var menu = new MenuRespawn();
+            menu.IsFadeIn = fadeIn;
             instance = menu;
 
             Api.Client.UI.LayoutRootChildren.Add(instance);
 
-            var loadingSplashScreenState = LoadingSplashScreenManager.Instance.CurrentState;
-            var delay = loadingSplashScreenState == LoadingSplashScreenState.Shown
-                        || loadingSplashScreenState == LoadingSplashScreenState.Showing
-                            ? 0
-                            : 2;
             ClientTimersSystem.AddAction(
-                delaySeconds: delay,
+                delaySeconds: fadeIn ? FadeInDelaySeconds : 0,
                 action: () =>
                         {
                             if (isClosed)
@@ -77,21 +95,16 @@
             // special hack for NoesisGUI animation completed event
             this.Tag = this;
 
-            var loadingSplashScreenState = LoadingSplashScreenManager.Instance.CurrentState;
-            if (loadingSplashScreenState == LoadingSplashScreenState.Shown
-                || loadingSplashScreenState == LoadingSplashScreenState.Showing)
+            if (this.IsFadeIn)
             {
-                // no fade-in required
-                return;
+                this.storyboardFadeIn = AnimationHelper.CreateStoryboard(
+                    this,
+                    durationSeconds: 2,
+                    from: 0,
+                    to: 1,
+                    propertyName: OpacityProperty.Name);
+                this.Opacity = 0;
             }
-
-            this.storyboardFadeIn = AnimationHelper.CreateStoryboard(
-                this,
-                durationSeconds: 2,
-                from: 0,
-                to: 1,
-                propertyName: OpacityProperty.Name);
-            this.Opacity = 0;
         }
 
         private void BackgroundFadeOutCompleted()
@@ -122,7 +135,15 @@
 
         private void Open()
         {
+            if (this.isOpened)
+            {
+                return;
+            }
+
+            this.isOpened = true;
+            this.UpdateLayout();
             this.storyboardFadeIn?.Begin(this);
+
             Menu.CloseAll();
 
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp

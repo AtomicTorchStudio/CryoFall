@@ -111,7 +111,9 @@
             this.InvertedArmorPiercingCoef = 1 - armorPiercingCoef;
 
             this.FinalDamageMultiplier = damageDescription.FinalDamageMultiplier
-                                         + characterFinalStatsCache[StatName.AttackFinalDamageMultiplier];
+                                         * Math.Max(0,
+                                                    characterFinalStatsCache.GetMultiplier(
+                                                        StatName.AttackFinalDamageMultiplier));
 
             var probability = protoWeapon?.SpecialEffectProbability ?? 0;
             if (weaponSkillProto is not null)

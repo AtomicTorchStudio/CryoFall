@@ -20,6 +20,19 @@
 
         private static readonly char[] EndUrlSeparators = { ' ', '\r', '\n' };
 
+        public static string EscapeTags(string text)
+        {
+            // remove escaping first
+            text = text.Replace(@"\[", string.Empty)
+                       .Replace(@"\]", string.Empty);
+
+            // escape tags
+            text = text.Replace("[", @"\[")
+                       .Replace("]", @"\]");
+
+            return text;
+        }
+
         public static FormattedTextBlock NewFormattedTextBlock(string text)
         {
             return new() { Content = text };

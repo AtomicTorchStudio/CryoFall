@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -21,14 +22,16 @@
 
         private const double TextureResourceItemIconShadowScaleMultiplier = 2.0;
 
+        private const byte TextureResourceItemIconShadowOpacity = 0xCC; // a hex number, 0xFF max 
+
         private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
+
+        private static readonly ITextureResource TextureResourceItemIconShadow
+            = new TextureResource("FX/GroundItemShadow",
+                                  qualityOffset: -100);
 
         private readonly Dictionary<IItem, SlotRenderer> slotRenderers
             = new();
-
-        private readonly ITextureResource TextureResourceItemIconShadow
-            = new TextureResource("FX/GroundItemShadow",
-                                  qualityOffset: -100);
 
         private bool isObjectSackMode;
 
@@ -137,7 +140,7 @@
 
             var shadowRenderer = Client.Rendering.CreateSpriteRenderer(
                 this.SceneObject,
-                this.TextureResourceItemIconShadow,
+                TextureResourceItemIconShadow,
                 drawOrder: DrawOrder.GroundItem - 1);
 
             spriteRenderer.PositionOffset = GetDrawOffset(item);
@@ -147,6 +150,7 @@
             shadowRenderer.PositionOffset = spriteRenderer.PositionOffset;
             shadowRenderer.SpritePivotPoint = spriteRenderer.SpritePivotPoint;
             shadowRenderer.Scale = spriteRenderer.Scale * TextureResourceItemIconShadowScaleMultiplier;
+            shadowRenderer.Color = Color.FromArgb(TextureResourceItemIconShadowOpacity, 0xFF, 0xFF, 0xFF);
 
             var slotRenderer = new SlotRenderer(spriteRenderer, shadowRenderer);
             this.slotRenderers.Add(item, slotRenderer);

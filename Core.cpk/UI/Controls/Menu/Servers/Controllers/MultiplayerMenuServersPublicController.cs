@@ -23,6 +23,24 @@
             this.specialCondition = specialCondition;
         }
 
+        public override bool ContainsServerAddress(ServerAddress address)
+        {
+            foreach (var publicServerInfo in this.provider.List)
+            {
+                if (!this.specialCondition(publicServerInfo))
+                {
+                    continue;
+                }
+
+                if (publicServerInfo.Address == address)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public override void Dispose()
         {
             if (this.isDisposed)
@@ -31,8 +49,8 @@
             }
 
             this.isDisposed = true;
-            base.Dispose();
             this.provider.Updated -= this.PublicListUpdatedHandler;
+            base.Dispose();
         }
 
         public override void ReloadServersList()
@@ -40,7 +58,6 @@
             this.provider.Clear();
             this.RebuildServersList();
             this.IsListAvailable = false;
-            //this.provider.RequestPublicServersList();
         }
 
         protected override void PopulateServersList()

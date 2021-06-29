@@ -15,8 +15,10 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(20)));
 
             // mushrooms
-            spawnList.CreatePreset(interval: 12, padding: 2)
-                     .Add<ObjectSmallMushroomPink>()
+            spawnList.CreatePreset(interval: 16, padding: 2.0)
+                     .Add<ObjectSmallMushroomPink>();
+
+            spawnList.CreatePreset(interval: 16, padding: 1.5)
                      .Add<ObjectSmallMushroomRust>();
         }
     }

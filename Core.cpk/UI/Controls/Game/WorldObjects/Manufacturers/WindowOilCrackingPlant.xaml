@@ -14,12 +14,9 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator">
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-
             <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
-
-                <Grid Margin="0,0,10,0" VerticalAlignment="Center">
+                <Grid VerticalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -33,8 +30,7 @@
                         <!-- Text: Mineral oil -->
                         <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidMineralOil}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,-13,0,0" />
+                                   HorizontalAlignment="Center" />
 
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center">
@@ -70,7 +66,9 @@
                 </Grid>
 
                 <!-- Mineral oil bar -->
-                <StackPanel Orientation="Vertical" Margin="15,0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical"
+                            Margin="15,-10,15,0"
+                            VerticalAlignment="Bottom">
                     <Rectangle Fill="{StaticResource LiquidIconMineralOil}"
                                HorizontalAlignment="Center"
                                Width="18"
@@ -83,7 +81,9 @@
                         Style="{StaticResource LiquidBigValueBar}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10,90,10,0">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            Margin="10,92,10,0">
                     <Control Template="{StaticResource ControlTemplateArrow}" Width="46" Height="46">
                         <Control.LayoutTransform>
                             <RotateTransform Angle="-90" />
@@ -103,7 +103,9 @@
                 </StackPanel>
 
                 <!-- Gasoline bar -->
-                <StackPanel Orientation="Vertical" Margin="10,0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical"
+                            Margin="15,-10,15,0"
+                            VerticalAlignment="Bottom">
                     <Rectangle Fill="{StaticResource LiquidIconGasoline}"
                                HorizontalAlignment="Center"
                                Width="18"
@@ -117,12 +119,12 @@
                 </StackPanel>
 
                 <!-- Gasoline input/output slots -->
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
                     <!-- Text: Empty -->
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                Style="{StaticResource TextBlockStyleCraftingCaption}"
-                               HorizontalAlignment="Center"
-                               Margin="0,-13,0,0" />
+                               HorizontalAlignment="Center" />
 
                     <StackPanel Orientation="Horizontal">
                         <controls:ItemsContainerControl
@@ -151,6 +153,5 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-
     </core:WindowMenuWithInventory>
 </manufacturers:WindowOilCrackingPlantBase>

@@ -23,8 +23,6 @@
 
         private ViewModelServerInfoListEntry selectedServer;
 
-        private ServerViewModelsProvider serverViewModelsProvider;
-
         public ViewModelMenuServers()
         {
 #if !GAME
@@ -40,24 +38,24 @@
             Instance?.Dispose();
             Instance = this;
 
-            this.serverViewModelsProvider = ServerViewModelsProvider.Instance;
+            var viewModelsProvider = ServerViewModelsProvider.Instance;
 
             // ensure the localhost is always present in the custom servers list (for local server)
             this.serversProvider.Custom.SetFirstOrAdd(new ServerAddress("localhost"));
             this.CustomServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.Custom, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(this.serversProvider.Custom, viewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.FavoriteServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.Favorite, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(this.serversProvider.Favorite, viewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.FeaturedServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
-                            this.serverViewModelsProvider,
+                            viewModelsProvider,
                             specialCondition: info => info.IsOfficial
                                                       || info.IsFeatured)
                         {
@@ -69,7 +67,7 @@
             this.CommunityServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
-                            this.serverViewModelsProvider,
+                            viewModelsProvider,
                             specialCondition: info => !info.IsOfficial
                                                       && !info.IsFeatured
                                                       && !info.IsModded)
@@ -81,7 +79,7 @@
             this.ModdedServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
-                            this.serverViewModelsProvider,
+                            viewModelsProvider,
                             specialCondition: info => !info.IsOfficial
                                                       && !info.IsFeatured
                                                       && info.IsModded)
@@ -89,10 +87,10 @@
                             DefaultSortType = ServersListSortType.Ping
                         },
                     this.OnSelectedServerChanged);
-      
+
             this.HistoryServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.History, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(this.serversProvider.History, viewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.allServersLists = new[]
@@ -136,11 +134,13 @@
                                 });
             });
 
-        public BaseCommand CommandClearHistory => new ActionCommand(
-            () => ExecuteCommandClearHistory(
-                Client.MasterServer.ServersProvider.History));
+        public BaseCommand CommandClearHistory
+            => new ActionCommand(
+                () => ExecuteCommandClearHistory(
+                    Client.MasterServer.ServersProvider.History));
 
-        public BaseCommand CommandRefreshAll => new ActionCommand(this.ExecuteCommandRefreshAll);
+        public BaseCommand CommandRefreshAll
+            => new ActionCommand(this.ExecuteCommandRefreshAll);
 
         public ViewModelServersList CommunityServers { get; }
 
@@ -266,6 +266,25 @@
             return null;
         }
 
+        public bool IsServerAddressInCurrentActiveList(ServerAddress address)
+        {
+            if (this.allServersLists is null)
+            {
+                return false;
+            }
+
+            foreach (var viewModelServersList in this.allServersLists)
+            {
+                if (viewModelServersList.IsActive
+                    && viewModelServersList.Controller.ContainsServerAddress(address))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void ResetSortOrder()
         {
             foreach (var list in this.allServersLists)
@@ -299,8 +318,6 @@
             this.allServersLists = null;
 
             base.DisposeViewModel();
-
-            this.serverViewModelsProvider = null;
         }
 
         private static void ExecuteCommandClearHistory(
@@ -371,7 +388,38 @@
         private void ExecuteCommandRefreshAll()
         {
             RequestPublicServersList();
-            this.serverViewModelsProvider.RefreshAll();
+
+            // this will refresh all lists simultaneously which is undesirable
+            // as some of them long and the current tab will be refreshed too late
+            //this.serverViewModelsProvider.RefreshAll();
+
+            // first, refresh the active servers list
+            foreach (var viewModelServersList in this.allServersLists)
+            {
+                if (viewModelServersList.IsActive)
+                {
+                    viewModelServersList.ReloadList();
+                }
+            }
+
+            // then refresh the remaining server lists (all other tabs)
+            foreach (var viewModelServersList in this.allServersLists)
+            {
+                if (!viewModelServersList.IsActive)
+                {
+                    viewModelServersList.ReloadList();
+                }
+            }
+
+            // manually refresh all the server entries (as simply reloading lists is not enough) 
+            foreach (var viewModelServersList in this.allServersLists)
+            {
+                foreach (var entry in viewModelServersList.ServersList)
+                {
+                    var serverInfo = entry.ViewModelServerInfo;
+                    serverInfo.CommandRefresh?.Execute(serverInfo);
+                }
+            }
         }
 
         private void OnSelectedServerChanged(ViewModelServerInfoListEntry viewModelServerInfoListEntry)

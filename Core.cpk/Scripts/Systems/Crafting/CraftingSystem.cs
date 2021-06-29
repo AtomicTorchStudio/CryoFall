@@ -4,6 +4,8 @@
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -33,7 +35,9 @@
         {
             ServerCraftingSpeedMultiplier = ServerRates.Get(
                 "CraftingSpeedMultiplier",
-                defaultValue: 1.0,
+                defaultValue: IsServer && SharedLocalServerHelper.IsLocalServer
+                                  ? 2.0
+                                  : 1.0,
                 @"This rate determines the crafting speed of recipes
                   started from crafting menu or from any workbench.
                   Does NOT apply to manufacturing structures (such as furnace) - edit ManufacturingSpeedMultiplier for these.");

@@ -28,7 +28,7 @@
                          maxValue = 50;
 
             var description
-                = $@"Item stack size multiplier.
+                = $@"Item stack size (capacity) multiplier.
                      For example, by default one slot can contain up to 250 stone.
                      You can increase this number by raising this multiplier.
                      (allowed range: from {minValue:0.0###} to {maxValue:0.0###}).";

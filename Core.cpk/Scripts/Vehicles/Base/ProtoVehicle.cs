@@ -480,35 +480,7 @@
                 itemsContainer,
                 DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
 
-            if (objectGroundContainer is null)
-            {
-                return;
-            }
-
-            // apply PvE object claim to prevent other players from picking up the cargo
-            if (pilotCharacter is not null)
-            {
-                WorldObjectClaimSystem.ServerTryClaim(objectGroundContainer.OwnerAsStaticObject,
-                                                      pilotCharacter,
-                                                      WorldObjectClaimDuration.DroppedGoods);
-                return;
-            }
-
-            var ownerName = privateState.Owners.FirstOrDefault();
-            if (ownerName is null)
-            {
-                return;
-            }
-
-            var ownerCharacter = Server.Characters.GetPlayerCharacter(ownerName);
-            if (ownerCharacter is null)
-            {
-                return;
-            }
-
-            WorldObjectClaimSystem.ServerTryClaim(objectGroundContainer.OwnerAsStaticObject,
-                                                  ownerCharacter,
-                                                  WorldObjectClaimDuration.DroppedGoods);
+            ServerTryClaimGroundContainerWithDroppedGoods(objectGroundContainer, pilotCharacter, privateState);
         }
 
         public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
@@ -934,6 +906,42 @@
             return InputItemsHelper.SharedPlayerHasRequiredItems(character,
                                                                  this.RepairStageRequiredItems,
                                                                  allowIfAdmin);
+        }
+
+        protected static void ServerTryClaimGroundContainerWithDroppedGoods(
+            IItemsContainer objectGroundContainer,
+            ICharacter pilotCharacter,
+            TVehiclePrivateState privateState)
+        {
+            if (objectGroundContainer is null)
+            {
+                return;
+            }
+
+            // apply PvE object claim to prevent other players from picking up the cargo
+            if (pilotCharacter is not null)
+            {
+                WorldObjectClaimSystem.ServerTryClaim(objectGroundContainer.OwnerAsStaticObject,
+                                                      pilotCharacter,
+                                                      WorldObjectClaimDuration.DroppedGoods);
+                return;
+            }
+
+            var ownerName = privateState.Owners.FirstOrDefault();
+            if (ownerName is null)
+            {
+                return;
+            }
+
+            var ownerCharacter = Server.Characters.GetPlayerCharacter(ownerName);
+            if (ownerCharacter is null)
+            {
+                return;
+            }
+
+            WorldObjectClaimSystem.ServerTryClaim(objectGroundContainer.OwnerAsStaticObject,
+                                                  ownerCharacter,
+                                                  WorldObjectClaimDuration.DroppedGoods);
         }
 
         protected virtual ITextureResource ClientCreateIcon()

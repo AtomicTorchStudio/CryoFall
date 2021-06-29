@@ -1328,7 +1328,7 @@
             "Offline raiding protection shield is not available for this land claim, as it's completely inside another base that provides its own shield protection.";
 
         public const string ShieldProtection_NotificationBaseActivatingShield_Message_Format =
-            "Shield will become active in {0} unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).";
+            "Shield will become active in {0} unless interrupted—such as canceled by the base owner or disrupted by raiders destroying any structure (raid block is not enough).";
 
         public const string ShieldProtection_NotificationBaseActivatingShield_Title =
             "This base is activating shield protection";
@@ -1984,6 +1984,7 @@
         // the game server was just wiped (less than 2 hours ago)
         public const string WipedDate_JustWiped = "Just wiped";
 
+        // TODO: It's not used anymore as it was confusing (displaying something like \"47 hours ago\" is preferable).
         // the game server has been wiped yesterday (more than 24 hours but less than 2 days ago)
         public const string WipedDate_Yesterday = "Yesterday";
 

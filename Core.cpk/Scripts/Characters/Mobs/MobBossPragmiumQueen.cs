@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
@@ -91,7 +92,7 @@
 
             var key = "BossDifficultyPragmiumQueen";
             // by default the boss is balanced for 5 players
-            var defaultValue = Api.IsServer && ServerLocalModeHelper.IsLocalServer
+            var defaultValue = Api.IsServer && SharedLocalServerHelper.IsLocalServer
                                    ? 1.0
                                    : 5.0;
 

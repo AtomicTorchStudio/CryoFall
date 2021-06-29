@@ -471,22 +471,12 @@
             }
 
             actionState = new ConstructionActionState(character, (IStaticWorldObject)worldObject, selectedHotbarItem);
-            if (!actionState.CheckIsAllowed())
+            if (!actionState.CheckIsAllowed(showClientNotification: true))
             {
                 // not allowed to construct - currently it's possible only due to PvE limitation
                 Logger.Warning(
                     $"Construction is not allowed: {worldObject} by {character}",
                     character);
-
-                if (Api.IsClient)
-                {
-                    NotificationSystem.ClientShowNotification(
-                        title: PveSystem.Notification_StuffBelongsToAnotherPlayer_Message,
-                        LandClaimSystem.ErrorNotLandOwner_Message,
-                        NotificationColor.Bad,
-                        selectedHotbarItem.ProtoItem.Icon);
-                }
-
                 return;
             }
 

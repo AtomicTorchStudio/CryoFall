@@ -27,6 +27,8 @@
 
         private bool? isActive;
 
+        private bool isTextBlockPressKeyToOpenChatTimeoutElapsed;
+
         private ClientInputContext openedChatInputContext;
 
         private TabControlCached tabControl;
@@ -437,10 +439,27 @@
                 return;
             }
 
+            if (this.isTextBlockPressKeyToOpenChatTimeoutElapsed)
+            {
+                this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
+                return;
+            }
+
             if (ClientChatDisclaimerConfirmationHelper.IsNeedToDisplayDisclaimerForCurrentServer)
             {
                 this.textBlockPressKeyToOpenChat.Visibility = Visibility.Visible;
                 this.UpdateTextBlockPressKeyToOpen();
+
+                // auto hide after timeout
+                ClientTimersSystem.AddAction(60,
+                                             () =>
+                                             {
+                                                 if (ReferenceEquals(this, Instance))
+                                                 {
+                                                     this.isTextBlockPressKeyToOpenChatTimeoutElapsed = true;
+                                                     this.RefreshTextBlockPressKeyToOpenVisibility();
+                                                 }
+                                             });
             }
             else
             {

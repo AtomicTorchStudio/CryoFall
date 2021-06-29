@@ -29,6 +29,7 @@
             : base(worldMapController)
         {
             World.LogicObjectInitialized += this.LogicObjectInitializedHandler;
+            ClientUpdateHelper.UpdateCallback += this.Update;
         }
 
         public void Register(ILogicObject area)
@@ -82,6 +83,7 @@
         protected override void DisposeInternal()
         {
             World.LogicObjectInitialized -= this.LogicObjectInitializedHandler;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
 
             foreach (var controller in this.groupControllers)
             {
@@ -96,6 +98,16 @@
             if (this.groupControllers.TryGetValue(logicObject, out var controller))
             {
                 controller.ReInitialize();
+            }
+        }
+
+        private void Update()
+        {
+            foreach (var controller in this.groupControllers)
+            {
+                // updating is necessary as the raided state cannot be tracked
+                // entirely by the client subscription on a property in the public state
+                controller.Value.RefreshRaidedState();
             }
         }
 
@@ -137,6 +149,11 @@
 
             public void ReInitialize()
             {
+                if (this.IsDisposed)
+                {
+                    return;
+                }
+
                 this.Cleanup();
 
                 this.stateSubscriptionStorage = new StateSubscriptionStorage();
@@ -150,27 +167,7 @@
                 this.RefreshRaidedState();
             }
 
-            private void Cleanup()
-            {
-                this.RemoveControl();
-
-                this.stateSubscriptionStorage?.Dispose();
-                this.stateSubscriptionStorage = null;
-            }
-
-            private Vector2Ushort GetAreasGroupCanvasPosition(Vector2Ushort worldPosition)
-            {
-                return this.visualizer
-                           .WorldToCanvasPosition(worldPosition.ToVector2D())
-                           .ToVector2Ushort();
-            }
-
-            private Vector2Ushort GetAreasGroupWorldPosition()
-            {
-                return LandClaimSystem.SharedGetLandClaimGroupCenterPosition(this.areasGroup);
-            }
-
-            private void RefreshRaidedState()
+            internal void RefreshRaidedState()
             {
                 var isRaidedNow = LandClaimSystem.SharedIsAreasGroupUnderRaid(this.areasGroup);
                 if (this.lastIsRaided == isRaidedNow)
@@ -204,6 +201,26 @@
                 Canvas.SetTop(this.markRaidControl, canvasPosition.Y);
                 Panel.SetZIndex(this.markRaidControl, 11);
                 this.visualizer.AddControl(this.markRaidControl);
+            }
+
+            private void Cleanup()
+            {
+                this.RemoveControl();
+
+                this.stateSubscriptionStorage?.Dispose();
+                this.stateSubscriptionStorage = null;
+            }
+
+            private Vector2Ushort GetAreasGroupCanvasPosition(Vector2Ushort worldPosition)
+            {
+                return this.visualizer
+                           .WorldToCanvasPosition(worldPosition.ToVector2D())
+                           .ToVector2Ushort();
+            }
+
+            private Vector2Ushort GetAreasGroupWorldPosition()
+            {
+                return LandClaimSystem.SharedGetLandClaimGroupCenterPosition(this.areasGroup);
             }
 
             private void RemoveControl()

@@ -705,7 +705,7 @@
                 }
 
                 var protoStaticWorldObject = staticObject.ProtoStaticWorldObject;
-                if (!(protoStaticWorldObject is ObjectGroundItemsContainer))
+                if (protoStaticWorldObject is not ObjectGroundItemsContainer)
                 {
                     if (protoStaticWorldObject.IsIgnoredBySpawnScripts)
                     {
@@ -775,11 +775,6 @@
                 }
 
                 return null;
-//                throw new Exception("No zone area found for " + tilePosition);
-
-                //var newArea = new SpawnZoneArea(zoneChunkStartPosition, zoneChunk);
-                //areas.Add(newArea);
-                //return newArea;
             }
 
             Task YieldIfOutOfTime()

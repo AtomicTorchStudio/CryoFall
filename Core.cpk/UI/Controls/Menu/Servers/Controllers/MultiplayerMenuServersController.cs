@@ -30,6 +30,11 @@
             this.serversListProvider.Updated += this.ListUpdatedHandler;
         }
 
+        public override bool ContainsServerAddress(ServerAddress address)
+        {
+            return this.serversListProvider.Contains(address);
+        }
+
         public override void Dispose()
         {
             base.Dispose();

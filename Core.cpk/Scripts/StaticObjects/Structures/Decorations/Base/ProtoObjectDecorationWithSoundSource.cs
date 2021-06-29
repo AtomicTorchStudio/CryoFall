@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -24,6 +25,25 @@
         }
 
         protected abstract ReadOnlySoundResourceSet SoundSet { get; }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            if (!this.IsInteractableObject)
+            {
+                return false;
+            }
+
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
+            {
+                return false;
+            }
+
+            // Please note: no PvE access checks here. So base guests can use a door bell and similar structures.
+            return this.SharedIsInsideCharacterInteractionArea(character,
+                                                               worldObject,
+                                                               writeToLog);
+        }
 
         protected override void ClientInteractFinish(ClientObjectData data)
         {

@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.Damage;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -172,8 +173,9 @@
 
         public virtual void ClientOnFireModChanged(bool isFiring, uint shotsDone)
         {
+            var weaponState = ClientCurrentCharacterHelper.PrivateState.WeaponState;
             WeaponSystem.Instance.CallServer(
-                _ => _.ServerRemote_SetWeaponFiringMode(isFiring, shotsDone));
+                _ => _.ServerRemote_SetWeaponFiringMode(isFiring, shotsDone, weaponState.ProtoWeapon));
         }
 
         public virtual void ClientOnWeaponHitOrTrace(

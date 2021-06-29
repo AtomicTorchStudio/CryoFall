@@ -84,7 +84,7 @@
             DropItemConditionDelegate T5Specialized = IsAvailableT5Specialized;
 
             droplist.Outputs = 3;
-
+            
             // loot groups are sorted in the order of rarity (more common first)
             // ammo
             droplist.Add(

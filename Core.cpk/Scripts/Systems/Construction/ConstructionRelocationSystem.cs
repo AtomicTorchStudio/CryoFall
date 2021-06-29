@@ -32,7 +32,8 @@
     {
         public const double MaxRelocationDistancePvE = 15;
 
-        public const double MaxRelocationDistancePvP = ConstructionPlacementSystem.MaxDistanceToBuild;
+        // Please note: it should be larger than ConstructionPlacementSystem.MaxDistanceToBuild
+        public const double MaxRelocationDistancePvP = 8;
 
         private static ClientComponentObjectPlacementHelper componentObjectPlacementHelper;
 

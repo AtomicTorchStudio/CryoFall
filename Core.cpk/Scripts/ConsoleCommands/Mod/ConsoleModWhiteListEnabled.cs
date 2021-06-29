@@ -4,6 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
 {
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.ServerPlayerAccess;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ConsoleModWhiteListEnabled : BaseConsoleCommand
     {
@@ -19,10 +20,15 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
 
         public override string Name => "mod.whiteList.enabled";
 
-        public string Execute(bool isEnabled = true)
+        public string Execute(bool isEnabled)
         {
-            ServerPlayerAccessSystem.SetWhitelistModeEnabled(isEnabled);
-            return "Whitelist is " + (isEnabled ? "enabled" : "disabled");
+            ServerPlayerAccessSystem.SetWhitelistMode(isEnabled);
+            return "Whitelist mode switched: " + (isEnabled ? "enabled" : "disabled") + " now";
+        }
+
+        public string Execute()
+        {
+            return "Whitelist is currently " + (Api.Server.Core.IsAccessWhiteListEnabled ? "enabled" : "disabled");
         }
     }
 }

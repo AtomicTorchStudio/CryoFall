@@ -284,8 +284,12 @@
                     return message;
                 }
 
-                message += "[br]";
-                message += CoreStrings.Faction_LandClaimNumberLimit_CanIncrease;
+                if (this.FactionLevel + 1 < FactionConstants.MaxFactionLevel)
+                {
+                    message += "[br]";
+                    message += CoreStrings.Faction_LandClaimNumberLimit_CanIncrease;
+                }
+
                 return message;
             }
         }
@@ -306,13 +310,27 @@
                     return string.Empty;
                 }
 
-                var current = FactionConstants.SharedGetFactionLandClaimsLimit(this.FactionLevel);
-                var next = FactionConstants.SharedGetFactionLandClaimsLimit((byte)(this.FactionLevel + 1));
-                var delta = next - current;
+                var currentLimit = FactionConstants.SharedGetFactionLandClaimsLimit(this.FactionLevel);
+                var nextLimit = FactionConstants.SharedGetFactionLandClaimsLimit((byte)(this.FactionLevel + 1));
+                var deltaLimit = nextLimit - currentLimit;
+
+                if (deltaLimit == 0)
+                {
+                    // the next level will not raise the land claims number limit
+                    if (this.FactionLevel + 1 < FactionConstants.MaxFactionLevel)
+                    {
+                        // probably higher level will allow to raise the limit
+                        return CoreStrings.Faction_LandClaimNumberLimit_CanIncrease;
+                    }
+
+                    // max level reached
+                    return this.FactionLandClaimsNumberText;
+                }
+
                 return string.Format(CoreStrings.Faction_LandClaimNumberLimit_Format
                                                 .Replace("/",   string.Empty)
                                                 .Replace("{1}", string.Empty),
-                                     "[b]+" + delta + "[/b]");
+                                     "[b]+" + deltaLimit + "[/b]");
             }
         }
 

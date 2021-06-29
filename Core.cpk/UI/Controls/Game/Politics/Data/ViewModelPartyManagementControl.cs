@@ -34,7 +34,7 @@
         }
 
         public bool CanCreateParty => PartySystem.ClientCurrentParty is null
-                                      && PartyConstants.SharedPartyMembersMax > 1;
+                                      && this.IsFeatureAvailable;
 
         public bool CanInvite => this.Members.Count < this.MaxPartySize;
 
@@ -53,6 +53,8 @@
         public bool HasParty => PartySystem.ClientCurrentParty is not null;
 
         public string InviteeName { get; set; }
+
+        public bool IsFeatureAvailable => PartyConstants.SharedPartyMembersMax > 1;
 
         public bool IsPartyLeader { get; private set; }
 

@@ -82,15 +82,19 @@
 
         public override void ServerOnDestroy(IDynamicWorldObject gameObject)
         {
+            var publicState = GetPublicState(gameObject);
+            var privateState = GetPrivateState(gameObject);
+            var pilotCharacter = publicState.PilotCharacter
+                                 ?? privateState.ServerLastPilotCharacter;
+
             base.ServerOnDestroy(gameObject);
 
             // try drop extra containers on the ground
-            var privateState = GetPrivateState(gameObject);
-
-            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+            var objectGroundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
                 gameObject.Tile,
                 privateState.EquipmentItemsContainer,
                 DestroyedCargoDroppedItemsDestructionTimeout.TotalSeconds);
+            ServerTryClaimGroundContainerWithDroppedGoods(objectGroundContainer, pilotCharacter, privateState);
             // assume that the fuel items were destroyed during the explosion
         }
 

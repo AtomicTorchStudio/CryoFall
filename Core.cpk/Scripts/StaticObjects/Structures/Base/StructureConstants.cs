@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -60,7 +61,7 @@
                 ServerRates.Get(
                     "StructuresDecayEnabled",
                     defaultValue: Api.IsEditor
-                                  || Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                                  || Api.IsServer && SharedLocalServerHelper.IsLocalServer
                                       ? 0
                                       : 1,
                     @"Set it to 0 to disable the structures decay.
@@ -75,7 +76,7 @@
 
             StructuresLandClaimDecayDelayDurationMultiplier = ServerRates.Get(
                 "StructuresLandClaimDecayDelayDurationMultiplier",
-                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                defaultValue: Api.IsServer && SharedLocalServerHelper.IsLocalServer
                                   ? 30.0
                                   : 5.0,
                 @"Time multiplier before an abandoned land claim (or base) will start decaying.
@@ -133,7 +134,7 @@
                 SharedDoorOwnersMax = (byte)MathHelper.Clamp(
                     value: ServerRates.Get(
                         key: "DoorOwnersMax",
-                        defaultValue: byte.MaxValue,
+                        defaultValue: 5,
                         description:
                         @"This rate determines the max number of door's owners (including the builder).
                       Min value: 1 owner.

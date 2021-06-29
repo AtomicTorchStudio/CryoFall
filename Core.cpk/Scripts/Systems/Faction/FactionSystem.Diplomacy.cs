@@ -21,7 +21,14 @@
     {
         private static NetworkSyncDictionary<string, FactionDiplomacyStatus> clientCurrentFactionDiplomacyStatuses;
 
+        public delegate void DelegateFactionDiplomacyStatusChanged(
+            ILogicObject faction,
+            ILogicObject otherFaction,
+            FactionDiplomacyStatus status);
+
         public static event Action<(string clanTag, FactionDiplomacyStatus status)> ClientFactionDiplomacyStatusChanged;
+
+        public static event DelegateFactionDiplomacyStatusChanged ServerFactionDiplomacyStatusChanged;
 
         [Serializable]
         [RemoteEnum]
@@ -366,6 +373,9 @@
                               SharedGetClanTag(faction),
                               otherFactionClanTag,
                               status));
+
+            Api.SafeInvoke(
+                () => ServerFactionDiplomacyStatusChanged?.Invoke(faction, otherFaction, status));
         }
 
         private static void ServerUpdateAllianceRequestsExpiration()

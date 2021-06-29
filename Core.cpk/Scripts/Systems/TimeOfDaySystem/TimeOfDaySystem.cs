@@ -106,7 +106,7 @@
             // calculate desired time of day
             var desiredTimeOfDay = 60 * 60 * (hour + minute / 60.0);
 
-            // calculate current time of day (not offsetted!)
+            // calculate current time of day (without offset!)
             // (using algorithm similar to the CurrentTimeOfDaySeconds property except the offset part)
             var realTime = Api.Server.Game.FrameTime;
             // game day time fraction (from 0 to 1)

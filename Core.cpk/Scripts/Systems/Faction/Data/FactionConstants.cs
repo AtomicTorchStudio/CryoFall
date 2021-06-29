@@ -2,6 +2,7 @@
 {
     using System;
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -105,8 +106,9 @@
                         defaultValue: 1.2,
                         @"Determines how many land claims each faction level provides.
                           Total number is calculated as a faction level multiplied by this rate,
-                          then rounded to the nearest integer number."),
-                    min: 1,
+                          then rounded to the nearest integer number.
+                          Min value: 0. Max value: 20.0."),
+                    min: 0,
                     max: 20);
 
             SharedPvpAlliancesEnabled
@@ -121,13 +123,14 @@
             {
                 var key = "Faction.UpgradeCostPerLevel";
                 var defaultValue
-                    = ServerLocalModeHelper.IsLocalServer
+                    = SharedLocalServerHelper.IsLocalServer
                           ? "100,200,350,500,700,1000,1500,2500,5000" // cheaper for local server
                           : "200,500,1000,1700,2500,3500,5000,7000,10000";
                 var description =
                     @"This rate determines the faction upgrade Learning Points cost for each faction level.
                       Please note: the max faction level is 10 and the first one is received automatically,
-                      so this setting contains 9 comma-separated values.";
+                      so this setting contains 9 comma-separated values.
+                      Max value per level: 65535";
 
                 var currentValue = ServerRates.Get(key, defaultValue, description);
 
@@ -137,7 +140,8 @@
                 }
                 catch
                 {
-                    Api.Logger.Error($"Incorrect format for server rate: {key} current value {currentValue}");
+                    Api.Logger.Error(
+                        $"Incorrect format for server rate: {key} current value {currentValue}. Please note that the values must be separated by comma and each value must be NOT higher than 65535.");
                     ServerRates.Reset(key, defaultValue, description);
                     currentValue = defaultValue;
                     SharedFactionUpgradeCosts = ParseFactionUpgradeCosts(currentValue);

@@ -100,6 +100,8 @@
             }
         }
 
+        public abstract bool ContainsServerAddress(ServerAddress address);
+
         public virtual void Dispose()
         {
             this.RemoveAllViewModels();
@@ -235,9 +237,7 @@
             this.isSortScheduled = false;
 
             using var tempOrderedList = Api.Shared.WrapInTempList(this.GetOrderedList());
-            var currentList = this.ServersCollection;
-            var order = tempOrderedList.AsList();
-            currentList.ApplySortOrder(order);
+            this.ServersCollection.ApplySortOrder(tempOrderedList.AsList());
         }
     }
 }

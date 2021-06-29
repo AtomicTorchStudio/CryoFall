@@ -475,6 +475,15 @@
             return CreateFactionResult.Success;
         }
 
+        public static List<string> ServerFindClanTags(string startsWith)
+        {
+            using var tempListFactions = ServerGetFactionsTempList();
+            return tempListFactions.AsList()
+                                   .Select(SharedGetClanTag)
+                                   .Where(t => t.StartsWith(startsWith, StringComparison.OrdinalIgnoreCase))
+                                   .ToList();
+        }
+
         public static ILogicObject ServerFindFactionByClanTag(string clanTag)
         {
             if (string.IsNullOrEmpty(clanTag))

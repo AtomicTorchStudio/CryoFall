@@ -3,6 +3,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     using System;
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -43,7 +44,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
             SharedLandClaimsNumberLimitIncrease = (ushort)MathHelper.Clamp(
                 ServerRates.Get(
                     "LandClaimsNumberLimitIncrease",
-                    defaultValue: ServerLocalModeHelper.IsLocalServer
+                    defaultValue: SharedLocalServerHelper.IsLocalServer
                                       ? 10 // more land claims for local server
                                       : 0,
                     @"This rate determines the EXTRA number of land claims ANY player can own simultaneously.                                

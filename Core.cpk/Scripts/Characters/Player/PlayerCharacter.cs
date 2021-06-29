@@ -396,8 +396,8 @@
 
             if (publicState.IsDead)
             {
-                // dead - stops processing character
-                MenuRespawn.EnsureOpened();
+                // dead/despawned - stops processing character
+                MenuRespawn.EnsureOpened(fadeIn: !privateState.IsDespawned);
                 return;
             }
 

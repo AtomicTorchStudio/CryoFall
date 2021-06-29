@@ -5,6 +5,8 @@
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
 
     public class ObjectTreeRubber : ProtoObjectTree
@@ -42,6 +44,23 @@
                 .Add<ItemSaplingRubbertree>(condition: SkillLumbering.ConditionGetExtraSapplings,
                                             count: 1,
                                             probability: 0.15);
+        }
+
+        protected override double ServerCalculateGrowthStageDuration(
+            byte growthStage,
+            VegetationPrivateState privateState,
+            VegetationPublicState publicState)
+        {
+            var objectTree = (IStaticWorldObject)privateState.GameObject;
+            var duration = base.ServerCalculateGrowthStageDuration(growthStage, privateState, publicState);
+            if (LandClaimSystem.SharedIsObjectInsideAnyArea(objectTree))
+            {
+                return duration;
+            }
+
+            // x1.5 faster growth when not inside any land claim area as this resource
+            // is rare and essential especially for PvP 
+            return duration / 1.5;
         }
     }
 }

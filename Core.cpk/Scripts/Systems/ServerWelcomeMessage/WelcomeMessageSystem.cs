@@ -161,8 +161,8 @@
                 serverWelcomeMessageText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.WelcomeMessageText);
                 serverDescriptionText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.DescriptionMessageText);
                 Server.Database.TryGet(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
-                                           ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
-                                           out DateTime? wipeDateUtc);
+                                       ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
+                                       out DateTime? wipeDateUtc);
 
                 if (wipeDateUtc.HasValue
                     && wipeDateUtc.Value < DateTime.Now)
@@ -290,7 +290,8 @@
             }
 
             var dialogWindow = DialogWindow.ShowDialog(
-                string.Format(WelcomeToServerTitleFormat, serverInfo.ServerName),
+                ClientTextTagFormatter.EscapeTags(
+                    string.Format(WelcomeToServerTitleFormat, serverInfo.ServerName)),
                 new ScrollViewer()
                 {
                     MaxHeight = 380,
@@ -408,8 +409,8 @@
 
             ServerScheduledWipeDateUtc = dateTime;
             Server.Database.Set(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
-                                    ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
-                                    ServerScheduledWipeDateUtc);
+                                ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
+                                ServerScheduledWipeDateUtc);
             Logger.Important("Next scheduled wipe date changed: "
                              + (ServerScheduledWipeDateUtc.HasValue
                                     ? $"{ServerScheduledWipeDateUtc.Value.ToLongDateString()} at {ServerScheduledWipeDateUtc.Value.ToShortTimeString()}"

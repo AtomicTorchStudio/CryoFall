@@ -356,7 +356,7 @@
 
             VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
-            // disable the visual scope so the player cannot not see anyone and nobody could see the player
+            // disable the visual scope so the player cannot see anyone and nobody could see the player
             Api.Server.Characters.SetViewScopeMode(character, isEnabled: false);
             var graveyardPosition = ServerGetGraveyardPosition();
             if (character.TilePosition != graveyardPosition)

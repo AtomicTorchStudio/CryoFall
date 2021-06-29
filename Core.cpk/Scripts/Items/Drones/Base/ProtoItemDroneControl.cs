@@ -141,9 +141,53 @@
                     targetPosition = mouseTilePosition;
                     var targetObject = CharacterDroneControlSystem
                         .SharedGetCompatibleTarget(character,
-                                                   mouseTilePosition,
+                                                   targetPosition,
                                                    out var hasIncompatibleTarget,
                                                    out var isPveActionForbidden);
+                    if (targetObject is null)
+                    {
+                        targetObject = FindInNeighborTiles(ref targetPosition,
+                                                           ref mouseTilePosition,
+                                                           checkIfAlreadyScheduled: true)
+                                       ?? FindInNeighborTiles(ref targetPosition,
+                                                              ref mouseTilePosition,
+                                                              checkIfAlreadyScheduled: false);
+
+                        IStaticWorldObject FindInNeighborTiles(
+                            // ReSharper disable once VariableHidesOuterVariable
+                            ref Vector2Ushort targetPosition,
+                            // ReSharper disable once VariableHidesOuterVariable
+                            ref Vector2Ushort mouseTilePosition,
+                            bool checkIfAlreadyScheduled)
+                        {
+                            foreach (var neighborTile in Client.World.GetTile(targetPosition)
+                                                               .EightNeighborTiles)
+                            {
+                                targetObject = CharacterDroneControlSystem
+                                    .SharedGetCompatibleTarget(character,
+                                                               neighborTile.Position,
+                                                               out hasIncompatibleTarget,
+                                                               out isPveActionForbidden);
+                                if (targetObject is null)
+                                {
+                                    continue;
+                                }
+
+                                if (!checkIfAlreadyScheduled
+                                    || !CharacterDroneControlSystem.SharedIsTargetAlreadyScheduledForAnyActiveDrone(
+                                        character,
+                                        mouseTilePosition,
+                                        logError: false))
+                                {
+                                    targetPosition = mouseTilePosition = neighborTile.Position;
+                                    return targetObject;
+                                }
+                            }
+
+                            return null;
+                        }
+                    }
+
                     if (targetObject is null)
                     {
                         if (showErrorNotification)

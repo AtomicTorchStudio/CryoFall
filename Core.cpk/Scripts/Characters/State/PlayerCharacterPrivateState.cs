@@ -148,9 +148,18 @@
                 character,
                 slotsCount: 1);
 
-            this.ContainerInventory ??= serverItemsService.CreateContainer<ItemsContainerCharacterInventory>(
-                character,
-                slotsCount: PlayerConstants.InventorySlotsCount);
+            if (this.ContainerInventory is null)
+            {
+                this.ContainerInventory = serverItemsService.CreateContainer<ItemsContainerCharacterInventory>(
+                    character,
+                    slotsCount: PlayerConstants.InventorySlotsCount);
+            }
+            else if (this.ContainerInventory.SlotsCount != PlayerConstants.InventorySlotsCount)
+            {
+                serverItemsService.SetSlotsCount(
+                    this.ContainerInventory,
+                    slotsCount: PlayerConstants.InventorySlotsCount);
+            }
 
             this.ContainerHotbar ??= serverItemsService.CreateContainer<ItemsContainerCharacterHotbar>(
                 character,

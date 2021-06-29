@@ -12,6 +12,10 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -64,13 +68,43 @@
 
         public override IWorldObject TargetWorldObject => this.WorldObject;
 
-        public bool CheckIsAllowed()
+        public bool CheckIsAllowed(bool showClientNotification = false)
         {
-            return LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(
                 this.WorldObject,
                 this.Character,
-                // players can progress construction and repair structures without a faction permission
-                requireFactionPermission: false);
+                // faction permission for faction-owned land claims required only to build, repair is always allowed
+                requireFactionPermission: !this.IsRepair,
+                out var hasNoFactionPermission))
+            {
+                return true;
+            }
+
+            if (Api.IsServer
+                || !showClientNotification)
+            {
+                return false;
+            }
+
+            if (hasNoFactionPermission)
+            {
+                NotificationSystem.ClientShowNotification(
+                    title: CoreStrings.Notification_ActionForbidden,
+                    string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                  CoreStrings.Faction_Permission_LandClaimManagement_Title),
+                    NotificationColor.Bad,
+                    ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem.Icon);
+            }
+            else
+            {
+                NotificationSystem.ClientShowNotification(
+                    title: PveSystem.Notification_StuffBelongsToAnotherPlayer_Message,
+                    LandClaimSystem.ErrorNotLandOwner_Message,
+                    NotificationColor.Bad,
+                    ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem.Icon);
+            }
+
+            return false;
         }
 
         public bool CheckIsNeeded()

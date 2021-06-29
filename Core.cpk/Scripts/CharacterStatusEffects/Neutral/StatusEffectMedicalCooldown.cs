@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class StatusEffectMedicalCooldown : ProtoStatusEffect
     {
@@ -35,17 +36,22 @@
         public static void ClientShowCooldownNotification()
         {
             var proto = LazyInstance.Value;
+
             NotificationSystem.ClientShowNotification(
                 proto.Name,
-                Notification_UnderCooldown_Message,
+                message: "[*]"
+                         + StatName.PerkCannotAttack.GetDescription()
+                         + "[*]"
+                         + StatName.PerkCannotUseMedicalItems.GetDescription()
+                         + "[br]"
+                         + "[br]"
+                         + Notification_UnderCooldown_Message,
                 color: NotificationColor.Bad,
                 icon: proto.Icon);
         }
 
         protected override void PrepareEffects(Effects effects)
         {
-            //effects.AddPerk(this, StatName.PerkCannotRun);
-
             effects.AddPerk(this, StatName.PerkCannotAttack);
             effects.AddPerk(this, StatName.PerkCannotUseMedicalItems);
         }

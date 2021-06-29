@@ -155,6 +155,11 @@
             this.DropItemsConfig = dropItemsConfig.AsReadOnly();
         }
 
+        protected virtual double ServerGetDropListProbabilityMultiplier(IStaticWorldObject mineralObject)
+        {
+            return 1.0;
+        }
+
         protected override void ServerOnStaticObjectDamageApplied(
             WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject,
@@ -292,20 +297,24 @@
                                                           mineralObject,
                                                           byWeaponProto,
                                                           weaponCache.ProtoExplosive);
-
+                var probabilityMultiplier = this.ServerGetDropListProbabilityMultiplier(mineralObject);
+                
                 var objectDrone = weaponCache.Drone;
                 if (objectDrone is not null)
                 {
                     // drop resources into the internal storage of the drone
                     var storageItemsContainer = ((IProtoDrone)objectDrone.ProtoGameObject)
                         .ServerGetStorageItemsContainer(objectDrone);
-                    dropItemsList.TryDropToContainer(storageItemsContainer, dropItemContext);
+                    dropItemsList.TryDropToContainer(storageItemsContainer,
+                                                     dropItemContext,
+                                                     probabilityMultiplier: probabilityMultiplier);
                 }
                 else if (byWeaponProto is IProtoItemWeaponMelee)
                 {
                     var result = dropItemsList.TryDropToCharacterOrGround(byCharacter,
                                                                           mineralObject.TilePosition,
                                                                           dropItemContext,
+                                                                          probabilityMultiplier: probabilityMultiplier,
                                                                           groundContainer: out _);
                     if (result.TotalCreatedCount > 0)
                     {
@@ -317,7 +326,8 @@
                     // not a melee weapon or cannot drop to the character inventory - drop on the ground only
                     dropItemsList.TryDropToGround(mineralObject.TilePosition,
                                                   dropItemContext,
-                                                  out _);
+                                                  out _,
+                                                  probabilityMultiplier: probabilityMultiplier);
                 }
             }
             finally

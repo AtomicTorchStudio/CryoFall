@@ -256,6 +256,10 @@
                   c => c.Tile.StaticObjects.All(
                       o => o.ProtoStaticWorldObject is IProtoObjectStructure
                            || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
+        
+        public static readonly Validator ValidatorNoStaticObjects
+            = new(ErrorNoFreeSpace,
+                  c => !c.Tile.StaticObjects.Any());
 
         public static readonly Validator ValidatorNoPlatforms
             = new(ErrorNoFreeSpace,

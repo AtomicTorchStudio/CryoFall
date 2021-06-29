@@ -41,6 +41,31 @@
             }
         }
 
+        /// <summary>
+        /// The problem: when using a custom probability roll helper,
+        /// the droplist entry probability is always 1.0
+        /// (as probability is handled over the special condition so it should be executed always).
+        /// 
+        /// But it means that the resulting amount the server items drop rate will affect not only probability,
+        /// but also the output amount (e.g. x2000 rate will make items with 1/1000 probability to drop with 2000 amount
+        /// every time as the entry probability will be 1.0).
+        /// 
+        /// Tis method is used to calculate the output count multiplier.
+        /// It ensures the player will receive a proper amount of item
+        /// that is proportional to its probability and in reverse to the server items drop rate.
+        ///
+        /// E.g with the server items drop rate of x2000 and 1/1000 item probability,
+        /// it will provide output count multiplier of 2/1000
+        /// that will result in getting x2 items every roll due to an excessive probability.
+        /// </summary>
+        public static double CalculateOutputCountMultiplier(double probability)
+        {
+            var dropRate = DropItemsList.DropListItemsCountMultiplier;
+            var newProbability = probability * dropRate;
+            return Math.Max(1.0, newProbability)
+                   / dropRate;
+        }
+
         public static DropItemConditionDelegate CreateRollCondition(double probability, string key)
         {
             var maxAttemptsNumberRaw = Math.Round(1 / probability, MidpointRounding.AwayFromZero);
@@ -50,15 +75,22 @@
                 throw new Exception("Incorrect probability. It should be within 1/10th and 1/65535th");
             }
 
+            // adjust probability depending on the server items rate (higher rate == higher probability)
+            probability *= DropItemsList.DropListItemsCountMultiplier;
+            maxAttemptsNumberRaw = Math.Round(1 / probability, MidpointRounding.AwayFromZero);
+            if (maxAttemptsNumberRaw < 10)
+            {
+                return _ => RandomHelper.RollWithProbability(probability);
+            }
+
+            maxAttemptsNumberRaw = Math.Min(maxAttemptsNumberRaw, ushort.MaxValue);
             var maxAttemptsNumber = (ushort)maxAttemptsNumberRaw;
 
             key += "_1/" + maxAttemptsNumber.ToString("0.#####") + "th";
 
             if (!RollHistory.TryGetValue(key, out var dictionaryCharacterRollAttempts))
             {
-                RollHistory[key]
-                    = dictionaryCharacterRollAttempts
-                          = new Dictionary<uint, ushort>();
+                RollHistory[key] = dictionaryCharacterRollAttempts = new Dictionary<uint, ushort>();
             }
 
             return context =>

@@ -232,8 +232,11 @@
                 var radius = 0.35;
                 var colliderY = -0.115;
 
-                AddShapes(offsetY: 0.0);
-                AddShapes(offsetY: -0.14);
+                // Please note: the top edge of the collider should match the top edge of standing player character,
+                // otherwise player character's hitbox may go a bit outside the wall above when the hoverboard
+                // is too close to it.
+                AddShapes(offsetY: 0.04); 
+                AddShapes(offsetY: -0.1);
 
                 void AddShapes(double offsetY)
                 {

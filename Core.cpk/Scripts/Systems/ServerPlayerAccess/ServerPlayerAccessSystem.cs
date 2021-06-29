@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
@@ -12,7 +11,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.Extensions;
 
     public static class ServerPlayerAccessSystem
     {
@@ -34,26 +32,24 @@
         public const string KickReasonNetworkProtocolViolationDetected
             = "Violation of the networking protocol detected by the server. Client protocol modifications could lead to account suspension for repeated violations.";
 
-        private const string DatabaseKeyIsWhitelistEnabled = "IsWhitelistEnabled";
-
         private const string DatabaseKeyKickedPlayersDictionary = "KickedPlayersDictionary";
+
+        private static readonly ICoreServerCharactersList BlackList = Api.Server.Core.AccessBlackList;
 
         private static readonly IDatabaseService Database = Api.Server.Database;
 
-        private static List<string> blackList;
-
-        private static bool isWhiteListEnabled;
+        private static readonly ICoreServerCharactersList WhiteList = Api.Server.Core.AccessWhiteList;
 
         private static Dictionary<string, KickEntry> kickedPlayersDictionary;
 
-        private static List<string> whiteList;
+        private static bool IsWhiteListEnabled => Api.Server.Core.IsAccessWhiteListEnabled;
 
         /// <summary>
         /// Please use only for logging purposes.
         /// </summary>
         public static IEnumerable<string> GetBlackList()
         {
-            return blackList.OrderBy(n => n);
+            return BlackList.Entries.OrderBy(n => n);
         }
 
         /// <summary>
@@ -69,12 +65,12 @@
         /// </summary>
         public static IEnumerable<string> GetWhiteList()
         {
-            return whiteList.OrderBy(n => n);
+            return WhiteList.Entries.OrderBy(n => n);
         }
 
         public static bool IsInBlackList(string playerName)
         {
-            return blackList.Contains(playerName, StringComparer.OrdinalIgnoreCase);
+            return BlackList.Entries.Contains(playerName, StringComparer.OrdinalIgnoreCase);
         }
 
         public static void Kick(ICharacter character, int minutes, string message)
@@ -101,20 +97,14 @@
             return ModifyAccessList(isWhiteList: true, playerName, isEnabled);
         }
 
-        public static void SetWhitelistModeEnabled(bool isEnabled)
+        public static void SetWhitelistMode(bool isEnabled)
         {
-            if (isWhiteListEnabled == isEnabled)
+            if (IsWhiteListEnabled == isEnabled)
             {
                 return;
             }
 
-            isWhiteListEnabled = isEnabled;
-            Database.Set(nameof(ServerPlayerAccessSystem),
-                         DatabaseKeyIsWhitelistEnabled,
-                         isWhiteListEnabled);
-
-            Api.Logger.Important("Whitelist mode changed: " + (isWhiteListEnabled ? "enabled" : "disabled"));
-
+            Api.Server.Core.IsAccessWhiteListEnabled = isEnabled;
             RefreshCurrentCharacters();
         }
 
@@ -149,8 +139,8 @@
 
         private static bool ModifyAccessList(bool isWhiteList, string playerName, bool isEnabled)
         {
-            var list = isWhiteList ? whiteList : blackList;
-            var contains = list.Contains(playerName, StringComparer.OrdinalIgnoreCase);
+            var list = isWhiteList ? WhiteList : BlackList;
+            var contains = list.Contains(playerName);
             if (!contains
                 && !isEnabled)
             {
@@ -198,8 +188,8 @@
                 return;
             }
 
-            if (isWhiteListEnabled
-                && !whiteList.Contains(playerName, StringComparer.OrdinalIgnoreCase))
+            if (IsWhiteListEnabled
+                && !WhiteList.Contains(playerName))
             {
                 errorMessage = CannotJoinNotInWhitelist;
                 return;
@@ -266,27 +256,6 @@
             }
         }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        private static void ServerLogCharactersList(bool isWhiteList)
-        {
-            var list = isWhiteList ? whiteList : blackList;
-            var sb = new StringBuilder("Server ")
-                     .Append(isWhiteList ? "whitelist" : "blacklist")
-                     .Append(" characters list: ");
-
-            if (list.Count > 0)
-            {
-                sb.AppendLine()
-                  .Append(list.GetJoinedString(separator: Environment.NewLine));
-            }
-            else
-            {
-                sb.Append("<empty list>");
-            }
-
-            Api.Logger.Important(sb);
-        }
-
         [Serializable]
         public readonly struct KickEntry
         {
@@ -309,10 +278,6 @@
                 serverConfiguration.SetupPlayerLoginHook(PlayerLoginHook);
                 serverConfiguration.PlayerRemoteCallRateExceeded += PlayerRemoteCallRateExceededHandler;
 
-                Database.TryGet(nameof(ServerPlayerAccessSystem),
-                                DatabaseKeyIsWhitelistEnabled,
-                                out isWhiteListEnabled);
-
                 if (!Database.TryGet(nameof(ServerPlayerAccessSystem),
                                      DatabaseKeyKickedPlayersDictionary,
                                      out kickedPlayersDictionary))
@@ -323,25 +288,37 @@
                                  kickedPlayersDictionary);
                 }
 
-                whiteList = LoadOrCreateList(isWhiteList: true);
-                ServerLogCharactersList(isWhiteList: true);
+                // fill the legacy lists
+                // TODO: remove once we no longer need this
+                LoadLegacyList(isWhiteList: true);
+                LoadLegacyList(isWhiteList: false);
+                
+                if (Database.TryGet(nameof(ServerPlayerAccessSystem),
+                                    "IsWhitelistEnabled",
+                                    out bool legacyIsWhiteListEnabled))
+                {
+                    Database.Remove(nameof(ServerPlayerAccessSystem),
+                                    "IsWhitelistEnabled");
+                    SetWhitelistMode(legacyIsWhiteListEnabled);
+                }
 
-                blackList = LoadOrCreateList(isWhiteList: false);
-                ServerLogCharactersList(isWhiteList: false);
-
-                List<string> LoadOrCreateList(bool isWhiteList)
+                static void LoadLegacyList(bool isWhiteList)
                 {
                     var key = isWhiteList ? "WhiteList" : "BlackList";
-                    if (Database.TryGet(nameof(ServerPlayerAccessSystem), key, out List<string> list)
-                        && list is not null)
+                    if (!Database.TryGet(nameof(ServerPlayerAccessSystem),
+                                         key,
+                                         out List<string> legacyEntries)
+                        || legacyEntries is null)
                     {
-                        return list;
+                        return;
                     }
 
-                    list = new List<string>();
-                    Database.Set(nameof(ServerPlayerAccessSystem), key, list);
-
-                    return list;
+                    var list = isWhiteList ? WhiteList : BlackList;
+                    Database.Remove(nameof(ServerPlayerAccessSystem), key);
+                    foreach (var entry in legacyEntries)
+                    {
+                        list.Add(entry);
+                    }
                 }
             }
         }

@@ -124,39 +124,44 @@
                             </Rectangle.Effect>
                         </Rectangle>
 
-                        <Grid HorizontalAlignment="Center"
-                              VerticalAlignment="Bottom"
-                              Margin="0,0,0,1">
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="FontSize" Value="13" />
-                                    <Setter Property="Foreground" Value="{StaticResource BrushColorAltLabelForeground}" />
-                                    <Setter Property="Padding" Value="0" />
-                                    <Setter Property="Margin" Value="0" />
-                                    <Setter Property="noesis:Text.Stroke" Value="Black" />
-                                    <Setter Property="noesis:Text.StrokeThickness" Value="2" />
-                                    <!-- In order to correctly draw the stroke ensure there is enough width -->
-                                    <Setter Property="TextAlignment" Value="Center" />
-                                    <Setter Property="Width" Value="50" />
-                                </Style>
-                            </Grid.Resources>
+                        <Viewbox Stretch="Uniform"
+                                 Width="47"
+                                 Height="17.75"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Bottom"
+                                 Margin="0,0,0,1">
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="FontSize" Value="13" />
+                                        <Setter Property="Foreground"
+                                                Value="{StaticResource BrushColorAltLabelForeground}" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="Margin" Value="0" />
+                                        <Setter Property="noesis:Text.Stroke" Value="Black" />
+                                        <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </Grid.Resources>
 
-                            <TextBlock Text="{Binding TimeRemains}"
-                                       Visibility="{Binding IsIconTimeRemainsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                                       FontFamily="{StaticResource CondensedFontFamily}"
-                                       FontSize="14"
-                                       FontWeight="Normal" />
+                                <TextBlock Text="{Binding TimeRemains}"
+                                           Visibility="{Binding IsIconTimeRemainsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           FontSize="14"
+                                           FontWeight="Normal"
+                                           HorizontalAlignment="Center" />
 
-                            <TextBlock Text="{Binding IntensityPercent, StringFormat={}{0}% }"
-                                       Visibility="{Binding IsIconIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                                       FontFamily="{StaticResource DigitsFontFamily}" />
+                                <TextBlock Text="{Binding IntensityPercent, StringFormat={}{0}% }"
+                                           Visibility="{Binding IsIconIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                           FontFamily="{StaticResource DigitsFontFamily}" />
 
-                            <TextBlock Text=" — "
-                                       Visibility="{Binding IsIconPlaceholderVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                                       FontFamily="{StaticResource DigitsFontFamily}" />
+                                <TextBlock Text=" — "
+                                           Visibility="{Binding IsIconPlaceholderVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                           FontFamily="{StaticResource DigitsFontFamily}" />
 
-                        </Grid>
+                            </Grid>
+                        </Viewbox>
                     </Grid>
                     <base:ToolTipServiceExtend.ToolTip>
                         <StackPanel Orientation="Vertical" MinWidth="150" MaxWidth="275">

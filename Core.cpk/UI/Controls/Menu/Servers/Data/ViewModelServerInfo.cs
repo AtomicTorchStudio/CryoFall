@@ -38,8 +38,6 @@
 
         private ServerAddress address;
 
-        private BaseCommand commandRefresh;
-
         private DialogWindow dialogWindowPleaseWait;
 
         private Action dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach;
@@ -69,13 +67,17 @@
             bool isFavorite,
             ActionCommandWithParameter commandFavoriteToggle,
             ActionCommandWithParameter commandDisplayModsInfo,
-            BaseCommand commandJoinServer)
+            BaseCommand commandJoinServer,
+            BaseCommand commandRefresh,
+            BaseCommand commandRefreshWithoutReset)
             : base(isAutoDisposeFields: false)
         {
             this.IsFavorite = isFavorite;
             this.CommandFavoriteToggle = commandFavoriteToggle;
             this.CommandDisplayModsInfo = commandDisplayModsInfo;
             this.CommandJoinServer = commandJoinServer;
+            this.CommandRefresh = commandRefresh;
+            this.CommandRefreshWithoutReset = commandRefreshWithoutReset;
             this.address = address;
             this.Reset();
         }
@@ -102,21 +104,9 @@
 
         public BaseCommand CommandJoinServer { get; }
 
-        public BaseCommand CommandRefresh
-        {
-            get => this.commandRefresh;
-            set
-            {
-                if (this.commandRefresh == value)
-                {
-                    return;
-                }
+        public BaseCommand CommandRefresh { get; }
 
-                this.commandRefresh = value;
-                this.NotifyThisPropertyChanged();
-                this.RefreshButtonVisibility = value is not null ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
+        public BaseCommand CommandRefreshWithoutReset { get; }
 
         public string Description { get; set; } = "Some description text.";
 
@@ -291,8 +281,6 @@
 
         public string PlayersText { get; set; } = "128/256";
 
-        public Visibility RefreshButtonVisibility { get; private set; }
-
         public string TimeAlreadyConvertedToLocalTimeZoneText
             => ClientLocalTimeZoneHelper.GetTextTimeAlreadyConvertedToLocalTimeZone();
 
@@ -363,13 +351,8 @@
                 return "—";
             }
 
-            if (totalDays >= 1)
+            if (totalDays >= 2)
             {
-                if (totalDays < 2)
-                {
-                    return CoreStrings.WipedDate_Yesterday;
-                }
-
                 return string.Format(CoreStrings.WipedDate_DaysAgo_Format, (int)totalDays);
             }
 
@@ -537,11 +520,15 @@
             this.IsInfoReceived = false;
             this.Ping = null;
             //this.Title = string.Empty;
-            //this.IsFeatured = false; // do not reset is featured flag!
+            // do not reset the flags
+            //this.IsFeatured = false;
+            //this.IsOfficial = false;
+            //this.IsCommunity = false;
+            //this.IsPvP = false;
+            //this.IsPvE = false;
             this.Description = CoreStrings.PleaseWait;
             this.PlayersOnlineCount = 0;
             this.PlayersText = "...";
-            this.CommandRefresh = null;
             this.LoadingDisplayVisibility = Visibility.Visible;
             this.IncompatibleVisibility = Visibility.Collapsed;
             this.JoinServerButtonVisibility = Visibility.Collapsed;
@@ -550,14 +537,10 @@
             this.IsCompatible = null;
             this.Version = AppVersion.Zero;
             this.IconHash = null;
-            this.IsPvP = false;
-            this.IsPvE = false;
             this.IsNoClientModsAllowed = false;
             this.WipedDate = null;
             this.NextScheduledWipeDate = null;
             this.VisibilityInList = Visibility.Visible;
-            this.IsOfficial = false;
-            this.IsCommunity = false;
         }
 
         /// <summary>

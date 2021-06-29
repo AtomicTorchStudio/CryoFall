@@ -1653,7 +1653,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 이 토지 점유소가 자체적으로 오프라인 습격 보호 실드를 제공하는 다른 기지 안에 있으므로 오프라인 습격 보호 실드를 사용할 수 없습니다.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-지장(예: 기지 주인이 취소하거나 습격 방해 상태인 습격자의 방해 등)을 받지 않는 한 실드가 {0} 후에 활성화됩니다. unless interrupted (such as canceled by the base owner or disrupted by raiders applying the raid block).
+지장(예: 기지 주인이 취소하거나 습격 방해 상태인 습격자의 방해 등)을 받지 않는 한 실드가 {0} 후에 활성화됩니다. unless interrupted—such as canceled by the base owner or disrupted by raiders destroying any structure (raid block is not enough).
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 기지가 실드 보호를 활성화하고 있는 상태입니다

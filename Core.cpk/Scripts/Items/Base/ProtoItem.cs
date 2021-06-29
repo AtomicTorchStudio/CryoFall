@@ -173,7 +173,7 @@
         {
         }
 
-        public void ClientOnItemDrop(IItem item, IItemsContainer itemsContainer = null)
+        public virtual void ClientOnItemDrop(IItem item, IItemsContainer itemsContainer = null)
         {
             if (itemsContainer is null)
             {
@@ -195,7 +195,7 @@
             this.SoundPresetItem.PlaySound(ItemSound.Drop);
         }
 
-        public void ClientOnItemPick(IItem item, IItemsContainer fromContainer)
+        public virtual void ClientOnItemPick(IItem item, IItemsContainer fromContainer)
         {
             if (fromContainer?.ProtoItemsContainer is ItemsContainerCharacterEquipment)
             {

@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -17,16 +19,25 @@
     /// </summary>
     public class VehicleDespawnSystem : ProtoSystem<VehicleDespawnSystem>
     {
-        public const double OfflineDurationToDespawn = CharacterDespawnSystem.OfflineDurationToDespawn;
+        private static readonly Lazy<IProtoVehicle[]> LazyAllProtoVehicles
+            = new(() => Api.FindProtoEntities<IProtoVehicle>().ToArray());
 
         [NotLocalizable]
         public override string Name => "Vehicle despawn system";
 
         public static bool ServerIsVehicleInsideOwnerBase(IDynamicWorldObject vehicle)
         {
+            return ServerIsVehicleInsideOwnerBase(vehicle, out _);
+        }
+
+        public static bool ServerIsVehicleInsideOwnerBase(
+            IDynamicWorldObject vehicle,
+            out bool isInsideNotOwnedBase)
+        {
             var vehicleCurrentBase = LandClaimSystem.SharedGetLandClaimAreasGroup(vehicle.TilePosition);
             if (vehicleCurrentBase is null)
             {
+                isInsideNotOwnedBase = false;
                 return false;
             }
 
@@ -42,11 +53,13 @@
                 {
                     if (areaOwners.Contains(ownerName))
                     {
+                        isInsideNotOwnedBase = false;
                         return true;
                     }
                 }
             }
 
+            isInsideNotOwnedBase = true;
             return false;
         }
 
@@ -62,31 +75,69 @@
                 return;
             }
 
-            TriggerTimeInterval.ServerConfigureAndRegister(
-                callback: ServerUpdate,
-                name: "System." + this.ShortId,
-                interval: TimeSpan.FromSeconds(10));
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                // don't despawn abandoned vehicles on the local server
+                return;
+            }
+
+            // setup timer (tick every frame)
+            TriggerEveryFrame.ServerRegister(
+                callback: ServerGlobalUpdate,
+                name: "System." + this.ShortId);
+        }
+
+        private static void ServerGlobalUpdate()
+        {
+            // perform update once per 10 seconds per vehicle
+            const double spreadDeltaTime = 10;
+
+            using var tempListVehicles = Api.Shared.GetTempList<IDynamicWorldObject>();
+            foreach (var protoVehicle in LazyAllProtoVehicles.Value)
+            {
+                tempListVehicles.Clear();
+                protoVehicle.EnumerateGameObjectsWithSpread(tempListVehicles.AsList(),
+                                                            spreadDeltaTime: spreadDeltaTime,
+                                                            Server.Game.FrameNumber,
+                                                            Server.Game.FrameRate);
+                foreach (var vehicle in tempListVehicles.AsList())
+                {
+                    if (ServerIsNeedDespawn(vehicle))
+                    {
+                        VehicleGarageSystem.ServerPutIntoGarage(vehicle);
+                    }
+                }
+            }
         }
 
         private static bool ServerIsNeedDespawn(IDynamicWorldObject vehicle)
         {
             var privateState = vehicle.GetPrivateState<VehiclePrivateState>();
-            return !privateState.IsInGarage
-                   && privateState.ServerTimeSinceLastUse > OfflineDurationToDespawn
-                   && !ServerIsVehicleInsideOwnerBase(vehicle);
-        }
-
-        private static void ServerUpdate()
-        {
-            var allVehicles = Server.World.GetWorldObjectsOfProto<IProtoVehicle>();
-            // ReSharper disable once PossibleInvalidCastExceptionInForeachLoop
-            foreach (IDynamicWorldObject vehicle in allVehicles)
+            if (privateState.IsInGarage)
             {
-                if (ServerIsNeedDespawn(vehicle))
-                {
-                    VehicleGarageSystem.ServerPutIntoGarage(vehicle);
-                }
+                return false;
             }
+
+            var publicState = vehicle.GetPublicState<VehiclePublicState>();
+            if (publicState.PilotCharacter is not null)
+            {
+                return false;
+            }
+
+            if (ServerIsVehicleInsideOwnerBase(vehicle, out var isInsideNotOwnedBase))
+            {
+                return false;
+            }
+
+            var durationToDespawn = isInsideNotOwnedBase
+                                        ? CharacterDespawnSystem.OfflineDurationToDespawnWhenInsideNotOwnedClaim
+                                        : CharacterDespawnSystem.OfflineDurationToDespawnWhenInFreeLand;
+            if (privateState.ServerTimeSinceLastUse < durationToDespawn)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

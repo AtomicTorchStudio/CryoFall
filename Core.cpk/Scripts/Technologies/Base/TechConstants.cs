@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -70,7 +71,7 @@
 
             ServerLearningPointsGainMultiplier = ServerRates.Get(
                 "LearningPointsGainMultiplier",
-                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                defaultValue: Api.IsServer && SharedLocalServerHelper.IsLocalServer
                                   ? 2.0
                                   : 1.0,
                 @"This rate determines the learning points rate
@@ -78,7 +79,7 @@
 
             ServerSkillExperienceGainMultiplier = ServerRates.Get(
                 "SkillExperienceGainMultiplier",
-                defaultValue: Api.IsServer && ServerLocalModeHelper.IsLocalServer
+                defaultValue: Api.IsServer && SharedLocalServerHelper.IsLocalServer
                                   ? 2.0
                                   : 1.0,
                 @"This rate determines the skill experience gain multiplier.                

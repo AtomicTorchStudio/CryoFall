@@ -27,6 +27,7 @@
             World.LogicObjectInitialized += LogicObjectInitializedHandler;
             ClientLandClaimAreaManager.AreaAdded += AreaAddedHandler;
             ClientLandClaimAreaManager.AreaRemoved += AreaRemovedHandler;
+            ClientUpdateHelper.UpdateCallback += Update;
         }
 
         private static void AreaAddedHandler(ILogicObject area)
@@ -105,6 +106,16 @@
             }
         }
 
+        private static void Update()
+        {
+            foreach (var controller in GroupControllers)
+            {
+                // updating is necessary as the raided state cannot be tracked
+                // entirely by the client subscription on a property in the public state
+                controller.Value.RefreshRaidedState();
+            }
+        }
+
         private class Bootstrapper : BaseBootstrapper
         {
             public override void ClientInitialize()
@@ -159,7 +170,7 @@
                 this.RefreshRaidedState();
             }
 
-            private void RefreshRaidedState()
+            internal void RefreshRaidedState()
             {
                 var isRaidedNow = LandClaimSystem.SharedIsAreasGroupUnderRaid(this.areasGroup);
                 if (this.lastIsRaided == isRaidedNow)

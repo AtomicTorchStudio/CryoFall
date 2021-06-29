@@ -385,7 +385,6 @@
                                 HorizontalAlignment="Stretch"
                                 Command="{Binding ViewModelServerInfo.CommandRefresh}"
                                 CommandParameter="{Binding ViewModelServerInfo}"
-                                Visibility="{Binding ViewModelServerInfo.RefreshButtonVisibility}"
                                 Style="{StaticResource MainMenuButtonStyle}"
                                 Focusable="False">
                                 <Button.Content>

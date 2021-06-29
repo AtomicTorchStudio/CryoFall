@@ -3,6 +3,8 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -27,7 +29,9 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants
 
             ServerFarmPlantsGrowthSpeedMultiplier = ServerRates.Get(
                 "FarmPlantsGrowthSpeedMultiplier",
-                defaultValue: 1.0,
+                defaultValue: SharedLocalServerHelper.IsLocalServer
+                                  ? 2.0
+                                  : 1.0,
                 @"This rate determines how fast the farm plants grow.
                   (it doesn't apply to the already planted plants until harvested, watered, or fertilizer applied)");
 

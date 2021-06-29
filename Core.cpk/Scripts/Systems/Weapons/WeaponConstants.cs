@@ -24,20 +24,28 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 @"All damage dealt by creatures (to player and/or other creatures) is multiplied by this rate.
                   It allows to make it harder or easier to kill players by creatures.");
 
-            DamageExplosivesToCharactersMultiplier = ServerRates.Get(
-                "DamageExplosivesToCharactersMultiplier",
-                defaultValue: 1.0,
-                @"All damage dealt by bombs to characters is multiplied by this rate.
+            DamageExplosivesToCharactersMultiplier = MathHelper.Clamp(
+                ServerRates.Get(
+                    "DamageExplosivesToCharactersMultiplier",
+                    defaultValue: 1.0,
+                    @"All damage dealt by bombs to characters is multiplied by this rate.
                   You can set it to 0 to disable bomb/grenade damage to characters.
                   Please note that in PvE it's always not possible to damage other characters
-                  unless the duel mode is explicitly enabled by players.");
+                  unless the duel mode is explicitly enabled by players.
+                  Range: from 0.0 to 100.0."),
+                0,
+                100);
 
-            DamageExplosivesToStructuresMultiplier = ServerRates.Get(
-                "DamageExplosivesToStructuresMultiplier",
-                defaultValue: 1.0,
-                @"All damage dealt by bombs and grenades to structures is multiplied by this rate.
+            DamageExplosivesToStructuresMultiplier = MathHelper.Clamp(
+                ServerRates.Get(
+                    "DamageExplosivesToStructuresMultiplier",
+                    defaultValue: 1.0,
+                    @"All damage dealt by bombs and grenades to structures is multiplied by this rate.
                   You can set it to 0 to disable explosives damage to structures.
-                  Applies only on PvP servers, on PvE it will always be 0.");
+                  Applies only on PvP servers, on PvE it will always be 0.
+                  Range: from 0.0 to 100.0."),
+                0,
+                100);
 
             DamageFriendlyFireMultiplier = MathHelper.Clamp(
                 ServerRates.Get(

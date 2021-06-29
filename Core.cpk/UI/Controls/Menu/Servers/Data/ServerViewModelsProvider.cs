@@ -44,6 +44,8 @@
 
         private readonly BaseCommand commandRefresh;
 
+        private readonly BaseCommand commandRefreshWithoutReset;
+
         private readonly IServersProvider serversProvider = Api.Client.MasterServer.ServersProvider;
 
         private readonly ListDictionary<ServerAddress, ViewModelServerInfo> serverViewModels
@@ -55,7 +57,13 @@
         {
             this.commandRefresh = new ActionCommandWithParameter(
                 viewModelServerInfo => this.ExecuteCommandRefresh((ViewModelServerInfo)viewModelServerInfo,
-                                                                  forceReset: true));
+                                                                  forceReset: true,
+                                                                  isHighPriority: true));
+
+            this.commandRefreshWithoutReset = new ActionCommandWithParameter(
+                viewModelServerInfo => this.ExecuteCommandRefresh((ViewModelServerInfo)viewModelServerInfo,
+                                                                  forceReset: false,
+                                                                  isHighPriority: true));
 
             this.serversProvider.ServerCannotConnect += this.ServerCannotConnectHandler;
             this.serversProvider.ServerInfoReceived += this.ServerInfoReceivedHandler;
@@ -155,7 +163,7 @@
                 if (this.isEnabled)
                 {
                     Api.Client.MasterServer.ServersProvider.EnableInfoConnections();
-                    this.RefreshAll();
+                    ViewModelMenuServers.Instance?.CommandRefreshAll.Execute(null);
                 }
                 else
                 {
@@ -212,7 +220,9 @@
                     isFavorite: this.serversProvider.Favorite.Contains(address),
                     commandFavoriteToggle: new ActionCommandWithParameter(this.ExecuteCommandFavoriteToggle),
                     commandDisplayModsInfo: new ActionCommandWithParameter(this.ExecuteCommandDisplayModsInfo),
-                    commandJoinServer: CommandJoinServer);
+                    commandJoinServer: CommandJoinServer,
+                    this.commandRefresh,
+                    this.commandRefreshWithoutReset);
 
                 this.serverViewModels[address] = viewModelServerInfo;
 
@@ -220,15 +230,20 @@
                 {
                     if (!string.IsNullOrEmpty(address.HostAddress))
                     {
-                        this.serversProvider.RequestServerInfo(address);
+                        // the code below will perform the same action but we can manage the priority
+                        //this.serversProvider.RequestServerInfo(address);
+                        var isHighPriority = ViewModelMenuServers.Instance
+                                                                 ?.IsServerAddressInCurrentActiveList(
+                                                                     address)
+                                             ?? false;
+
+                        this.serversProvider.RefreshServerInfo(
+                            address,
+                            isHighPriority: isHighPriority);
                     }
                     else if (address.PublicGuid != AtomicGuid.Empty)
                     {
                         this.serversProvider.RequestResolveServerPublicGuid(address.PublicGuid);
-                    }
-                    else
-                    {
-                        // impossible
                     }
                 }
             }
@@ -242,7 +257,7 @@
         {
             foreach (var server in this.serverViewModels)
             {
-                this.ExecuteCommandRefresh(server.Value, forceReset: true);
+                this.ExecuteCommandRefresh(server.Value, forceReset: true, isHighPriority: true);
             }
         }
 
@@ -340,12 +355,11 @@
             }
 
             viewModelServer.Ping = pingMs;
-            viewModelServer.CommandRefresh ??= this.commandRefresh;
 
             if (isPingMeasurementDone)
             {
                 viewModelServer.IsPingMeasurementDone = true;
-                // measure only once
+                // measure the ping only once, new ping measurement requires pressing Refresh manually
                 //this.ScheduleAutoRefresh(viewModelServer);
             }
         }
@@ -452,7 +466,10 @@
             this.SetFavorite(serverInfo.Address, serverInfo.IsFavorite);
         }
 
-        private void ExecuteCommandRefresh(ViewModelServerInfo viewModelServerInfo, bool forceReset)
+        private void ExecuteCommandRefresh(
+            ViewModelServerInfo viewModelServerInfo,
+            bool forceReset,
+            bool isHighPriority)
         {
             if (viewModelServerInfo is null
                 || !this.IsEnabled)
@@ -480,7 +497,7 @@
                 viewModelServer.Reset();
             }
 
-            this.serversProvider.RefreshServerInfo(address);
+            this.serversProvider.RefreshServerInfo(address, isHighPriority);
         }
 
         private string GetModTypeString(ServerModInfo.GameModType type)
@@ -504,8 +521,15 @@
                     }
 
                     //Api.Logger.Info("Refreshing game server info after delay: " + viewModelServer.Address);
-                    this.ExecuteCommandRefresh(viewModelServer,
-                                               forceReset: viewModelServer.IsInaccessible);
+                    this.ExecuteCommandRefresh(
+                        viewModelServer,
+                        forceReset: viewModelServer.IsInaccessible,
+                        isHighPriority: viewModelServer.IsOfficial
+                                        || viewModelServer.IsFeatured
+                                        || (!string.IsNullOrEmpty(viewModelServer.Address.HostAddress)
+                                            && (viewModelServer.Address.HostAddress.IndexOf("localhost",
+                                                    StringComparison.OrdinalIgnoreCase)
+                                                >= 0)));
                 });
         }
 
@@ -519,7 +543,7 @@
 
             viewModelServer.Reset();
             viewModelServer.Description = InfoServerNotAccessibleTitle;
-            viewModelServer.CommandRefresh = this.commandRefresh;
+            //viewModelServer.CommandRefresh = this.commandRefresh;
             viewModelServer.LoadingDisplayVisibility = Visibility.Collapsed;
             viewModelServer.Version = AppVersion.Zero;
             viewModelServer.IsCompatible = null;
@@ -535,8 +559,8 @@
             bool isOfficial,
             bool isFeatured)
         {
-            var serverAddress = new ServerAddress(guid, hostAddress);
-            var viewModelServer = this.serverViewModels.Find(serverAddress);
+            var address = new ServerAddress(guid, hostAddress);
+            var viewModelServer = this.serverViewModels.Find(address);
             if (!isSuccess)
             {
                 Api.Logger.Info("Server public GUID not resolved: " + guid);
@@ -559,9 +583,9 @@
             Api.Logger.Info($"Server public GUID resolved: {guid}: {hostAddress}");
 
             // re-add view model under new server address
-            this.serverViewModels.Remove(serverAddress);
-            this.serverViewModels[serverAddress] = viewModelServer;
-            viewModelServer.UpdateAddress(serverAddress);
+            this.serverViewModels.Remove(address);
+            this.serverViewModels[address] = viewModelServer;
+            viewModelServer.UpdateAddress(address);
             viewModelServer.Reset();
 
             viewModelServer.IsOfficial = isOfficial;
@@ -570,7 +594,15 @@
 
             if (this.serversProvider.AreInfoConnectionsEnabled)
             {
-                this.serversProvider.RequestServerInfo(serverAddress);
+                // the code below will perform the same action but we can manage the priority
+                //this.serversProvider.RequestServerInfo(serverAddress);
+                var isHighPriority = ViewModelMenuServers.Instance
+                                                         ?.IsServerAddressInCurrentActiveList(address)
+                                     ?? false;
+
+                this.serversProvider.RefreshServerInfo(
+                    address,
+                    isHighPriority: isHighPriority);
             }
         }
     }

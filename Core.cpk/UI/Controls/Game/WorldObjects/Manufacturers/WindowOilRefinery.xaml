@@ -30,8 +30,7 @@
                         <!-- Text: Petroleum -->
                         <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidPetroleum}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,-13,0,0" />
+                                   HorizontalAlignment="Center" />
 
                         <StackPanel Orientation="Horizontal">
                             <controls:ItemsContainerControl
@@ -66,7 +65,9 @@
                 </Grid>
 
                 <!-- Petroleum bar -->
-                <StackPanel Orientation="Vertical" Margin="15,0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical"
+                            Margin="15,-10,15,0"
+                            VerticalAlignment="Bottom">
                     <Rectangle Fill="{StaticResource LiquidIconPetroleum}"
                                HorizontalAlignment="Center"
                                Width="18"
@@ -79,7 +80,9 @@
                         Style="{StaticResource LiquidBigValueBar}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10,90,10,0">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            Margin="10,92,10,0">
                     <Control Template="{StaticResource ControlTemplateArrow}" Width="46" Height="46">
                         <Control.LayoutTransform>
                             <RotateTransform Angle="-90" />
@@ -99,7 +102,9 @@
                 </StackPanel>
 
                 <!-- Gasoline bar -->
-                <StackPanel Orientation="Vertical" Margin="10,0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical"
+                            Margin="10,-10,0,0"
+                            VerticalAlignment="Bottom">
                     <Rectangle Fill="{StaticResource LiquidIconGasoline}"
                                HorizontalAlignment="Center"
                                Width="18"
@@ -113,7 +118,9 @@
                 </StackPanel>
 
                 <!-- Mineral oil bar -->
-                <StackPanel Orientation="Vertical" Margin="0,0,10,0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical"
+                            Margin="10,-10,10,0"
+                            VerticalAlignment="Bottom">
                     <Rectangle Fill="{StaticResource LiquidIconMineralOil}"
                                HorizontalAlignment="Center"
                                Width="18"
@@ -131,8 +138,7 @@
                     <!-- Text: Empty -->
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                Style="{StaticResource TextBlockStyleCraftingCaption}"
-                               HorizontalAlignment="Center"
-                               Margin="0,-13,0,0" />
+                               HorizontalAlignment="Center" />
 
                     <StackPanel Orientation="Horizontal">
                         <controls:ItemsContainerControl
@@ -168,8 +174,7 @@
                     <!-- Text: Empty -->
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                Style="{StaticResource TextBlockStyleCraftingCaption}"
-                               HorizontalAlignment="Center"
-                               Margin="0,-13,0,0" />
+                               HorizontalAlignment="Center" />
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center">

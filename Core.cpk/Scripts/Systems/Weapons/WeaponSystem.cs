@@ -93,9 +93,9 @@
 
             // set firing mode on server
             state.ProtoWeapon.ClientOnFireModChanged(isFiring, shotsDone);
-            //Logger.Dev(isFiring
-            //               ? "SetWeaponFiringMode: firing!"
-            //               : $"SetWeaponFiringMode: stop firing! Shots done: {shotsDone}");
+            /*Logger.Dev(isFiring
+                           ? "SetWeaponFiringMode: firing!"
+                           : $"SetWeaponFiringMode: stop firing! Shots done: {shotsDone}");*/
         }
 
         /// <summary>
@@ -701,14 +701,21 @@
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1 / 120.0)]
         public void ServerRemote_SetWeaponFiringMode(
             bool isFiring,
-            uint clientShotsDone)
+            uint clientShotsDone,
+            IProtoItemWeapon protoItemWeapon)
         {
             var character = ServerRemoteContext.Character;
             var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
+            if (weaponState.ProtoWeapon != protoItemWeapon)
+            {
+                // received weapon firing mode change for a different weapon
+                // (not in sync, could happen when dismounting a mech and stopping firing together)
+                clientShotsDone = 0;
+            }
 
-            //Logger.Dev(isFiring
-            //               ? "SetWeaponFiringMode: firing!"
-            //               : $"SetWeaponFiringMode: stop firing! Shots done: {clientShotsDone}");
+            /*Logger.Dev(isFiring
+                           ? "SetWeaponFiringMode: firing!"
+                           : $"SetWeaponFiringMode: stop firing! Shots done: {clientShotsDone}");*/
 
             weaponState.SharedSetInputIsFiring(isFiring);
             weaponState.ServerLastClientReportedShotsDoneCount = clientShotsDone;
@@ -787,8 +794,8 @@
                 return;
             }
 
-            //Logger.Dev($"Shots count mismatch: requested={requestedShotsCount} actualShotsDone={actualShotsDone}",
-            //           character);
+            /*Logger.Dev($"Shots count mismatch: requested={requestedShotsCount} actualShotsDone={actualShotsDone}",
+                       character);*/
             var currentProtoItemAmmo = itemWeapon.GetPrivateState<WeaponPrivateState>()
                                                  .CurrentProtoItemAmmo;
             Instance.CallClient(character,

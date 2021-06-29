@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -23,6 +24,7 @@
 
         public override TimeSpan EventStartDelayDuration
             => PveSystem.SharedIsPve(true)
+               && !SharedLocalServerHelper.IsLocalServer
                    ? TimeSpan.FromMinutes(20)
                    : TimeSpan.Zero;
 
@@ -73,7 +75,7 @@
         {
             // default interval is configured here (but can be adjusted in the ServerRates.config)
             double fromHours, toHours;
-            if (ServerLocalModeHelper.IsLocalServer)
+            if (SharedLocalServerHelper.IsLocalServer)
             {
                 fromHours = 3;
                 toHours = 5;

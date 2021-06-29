@@ -140,9 +140,7 @@
                       this.SelectionRectange,
                       positionOffset: (0, 1),
                       isFocusable: false)
-                  .UseWorldPositionZIndex = false;
-
-            Panel.SetZIndex(this.SelectionRectange, -1);
+                  .SetCustomZIndex(-1);
         }
 
         protected virtual void OnSelectionEnded()
