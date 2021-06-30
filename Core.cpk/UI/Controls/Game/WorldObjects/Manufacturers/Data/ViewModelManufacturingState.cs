@@ -291,6 +291,7 @@
             }
 
             var isInputMatchSelectedRecipe = this.selectedRecipe.CanBeCrafted(
+                character: null,
                 this.worldObjectManufacturer,
                 this.ManufacturingState.CraftingQueue,
                 countToCraft: 1);

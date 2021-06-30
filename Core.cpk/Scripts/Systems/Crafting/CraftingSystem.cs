@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers;
-    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -131,27 +130,34 @@
 
             IStaticWorldObject station;
             var craftingQueue = characterServerState.CraftingQueue;
-            if (recipe.RecipeType == RecipeType.Hand)
-            {
-                // simply craft by character
-                station = null;
-            }
-            else
-            {
-                var recipeForStation = (Recipe.BaseRecipeForStation)recipe;
-                station = SharedFindNearbyStationOfTypes(recipeForStation.StationTypes, character);
-                if (station is null)
-                {
-                    Logger.Error(
-                        $"No crafting stations of types {recipeForStation.StationTypes.GetJoinedString()} found nearby character {character} at position {character.Position}");
-                    return false;
-                }
 
-                if (recipeForStation is Recipe.RecipeForManufacturing)
-                {
-                    // manufacture on station
-                    throw new Exception("Cannot craft in hand recipe for station manufacturing");
-                }
+            switch (recipe)
+            {
+                case Recipe.RecipeForHandCrafting:
+                    // simply craft by character
+                    station = null;
+                    break;
+
+                case Recipe.RecipeForStationCrafting recipeForStation:
+                    station = SharedFindNearbyStationOfTypes(recipeForStation.StationTypes, character);
+                    if (station is null)
+                    {
+                        Logger.Error(
+                            $"No crafting stations of types {recipeForStation.StationTypes.GetJoinedString()} found nearby character {character} at position {character.Position}");
+                        return false;
+                    }
+
+                    break;
+
+                default:
+                    throw new Exception("Incorrect recipe for in-hand or station crafting: " + recipe);
+            }
+
+            // extra check (it's also done in the recipe itself)
+            if (!recipe.SharedIsTechUnlocked(character))
+            {
+                // locked recipe
+                return false;
             }
 
             var maxCraftingQueueEntriesCount = SharedGetMaxCraftingQueueEntriesCount(character);

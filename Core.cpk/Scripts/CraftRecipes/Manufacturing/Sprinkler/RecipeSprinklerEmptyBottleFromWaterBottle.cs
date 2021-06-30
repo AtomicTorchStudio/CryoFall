@@ -19,8 +19,28 @@
         [NotLocalizable]
         public override string Name => "Add water from bottle to sprinkler";
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
+        public override void ServerOnManufacturingCompleted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue)
+        {
+            var liquidCapacity = GetLiquidCapacity(objectManufacturer);
+
+            // let's add liquid amount of the input item into the object liquid amount
+            var privateState = GetPrivateState(objectManufacturer);
+            var amount = privateState.WaterAmount;
+
+            amount += this.inputItem.Capacity;
+            if (amount >= liquidCapacity)
+            {
+                // cannot exceed capacity
+                amount = liquidCapacity;
+            }
+
+            privateState.SetWaterAmount(amount, liquidCapacity, GetPublicState(objectManufacturer));
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
@@ -48,26 +68,6 @@
             }
 
             return true;
-        }
-
-        public override void ServerOnManufacturingCompleted(
-            IStaticWorldObject objectManufacturer,
-            CraftingQueue craftingQueue)
-        {
-            var liquidCapacity = GetLiquidCapacity(objectManufacturer);
-
-            // let's add liquid amount of the input item into the object liquid amount
-            var privateState = GetPrivateState(objectManufacturer);
-            var amount = privateState.WaterAmount;
-
-            amount += this.inputItem.Capacity;
-            if (amount >= liquidCapacity)
-            {
-                // cannot exceed capacity
-                amount = liquidCapacity;
-            }
-
-            privateState.SetWaterAmount(amount, liquidCapacity, GetPublicState(objectManufacturer));
         }
 
         protected override void SetupRecipe(

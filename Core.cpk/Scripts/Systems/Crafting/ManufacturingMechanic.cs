@@ -54,7 +54,10 @@
 
             if (bestRecipe is not null
                 && selectedRecipe is not null
-                && selectedRecipe.CanBeCrafted(objectManufacturer, state.CraftingQueue, 1)
+                && selectedRecipe.CanBeCrafted(character: null,
+                                               objectManufacturer,
+                                               state.CraftingQueue,
+                                               1)
                 && bestRecipe.InputItems.Length <= selectedRecipe.InputItems.Length)
             {
                 // the best recipe is ignored because selected recipe is also valid
@@ -159,6 +162,7 @@
 
             // refresh selected recipe
             var isSelectedRecipeCanBeCrafted = selectedRecipe.CanBeCrafted(
+                character: null,
                 objectManufacturer,
                 state.CraftingQueue,
                 countToCraft: 1);

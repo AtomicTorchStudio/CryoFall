@@ -53,7 +53,7 @@
         /// Tis method is used to calculate the output count multiplier.
         /// It ensures the player will receive a proper amount of item
         /// that is proportional to its probability and in reverse to the server items drop rate.
-        ///
+        /// 
         /// E.g with the server items drop rate of x2000 and 1/1000 item probability,
         /// it will provide output count multiplier of 2/1000
         /// that will result in getting x2 items every roll due to an excessive probability.

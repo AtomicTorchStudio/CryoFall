@@ -21,15 +21,6 @@
 
         protected override TimeSpan CraftDuration => CraftingDuration.Instant;
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
-            CraftingQueue craftingQueue,
-            ushort countToCraft)
-        {
-            // Please note: no biome check here.
-            return base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft);
-        }
-
         protected override LiquidContainerState GetLiquidState(IStaticWorldObject objectManufacturer)
         {
             return ProtoObjectWell.GetPrivateState(objectManufacturer)

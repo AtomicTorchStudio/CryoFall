@@ -81,23 +81,14 @@
         {
             get
             {
-                switch (this.AvailableIn)
+                return this.AvailableIn switch
                 {
-                    case FeatureAvailability.None:
-                        return false;
-
-                    case FeatureAvailability.All:
-                        return true;
-
-                    case FeatureAvailability.OnlyPvP:
-                        return !PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
-
-                    case FeatureAvailability.OnlyPvE:
-                        return PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
-
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                    FeatureAvailability.None    => false,
+                    FeatureAvailability.All     => true,
+                    FeatureAvailability.OnlyPvP => !PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false),
+                    FeatureAvailability.OnlyPvE => PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false),
+                    _                           => throw new ArgumentOutOfRangeException()
+                };
             }
         }
 

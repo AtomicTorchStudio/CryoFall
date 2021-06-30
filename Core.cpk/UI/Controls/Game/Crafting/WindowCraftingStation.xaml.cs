@@ -37,7 +37,7 @@
 
             var recipes = this.GetAllRecipes();
             var recipesCountTotal = recipes.Count;
-            this.RemoveLockedRecipes(recipes);
+            RemoveLockedRecipes(recipes);
 
             this.DataContext = this.ViewModel = new WindowCraftingStationViewModel(
                                    recipes,
@@ -54,18 +54,18 @@
             Instance = null;
         }
 
+        private static void RemoveLockedRecipes(List<Recipe> list)
+        {
+            var character = Api.Client.Characters.CurrentPlayerCharacter;
+            list.RemoveAll(r => !r.SharedIsTechUnlocked(character));
+        }
+
         private List<Recipe> GetAllRecipes()
         {
             return Recipe.AllRecipes
                          .Where(r => r is Recipe.RecipeForStationCrafting stationRecipe1
                                      && stationRecipe1.StationTypes.Contains(this.protoObjectCraftStation))
                          .ToList();
-        }
-
-        private void RemoveLockedRecipes(List<Recipe> list)
-        {
-            var character = Api.Client.Characters.CurrentPlayerCharacter;
-            list.RemoveAll(r => !r.SharedIsTechUnlocked(character));
         }
     }
 }

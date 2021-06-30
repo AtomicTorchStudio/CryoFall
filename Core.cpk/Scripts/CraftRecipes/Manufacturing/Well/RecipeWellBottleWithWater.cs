@@ -20,12 +20,12 @@
 
         protected override TimeSpan CraftDuration => CraftingDuration.Instant;
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
-            if (((IStaticWorldObject)objectManufacturer).OccupiedTile.ProtoTile is IProtoTileWellAllowed protoTile
+            if (objectManufacturer.OccupiedTile.ProtoTile is IProtoTileWellAllowed protoTile
                 && !protoTile.IsStaleWellWater)
             {
                 return base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft);

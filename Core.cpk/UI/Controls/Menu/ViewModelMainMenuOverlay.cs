@@ -63,6 +63,9 @@
                 ? Visibility.Collapsed
                 : Visibility.Visible;
 
+        public ICommand CommandOpenAtomicTorchTermsOfService
+            => new ActionCommand(() => Client.Core.OpenWebPage(@"https://atomictorch.com/Pages/Terms-of-Service"));
+
         public ICommand CommandOpenDaedalicPrivacyPolicy
             => new ActionCommand(() => Client.Core.OpenWebPage(@"http://privacypolicy.daedalic.com"));
 

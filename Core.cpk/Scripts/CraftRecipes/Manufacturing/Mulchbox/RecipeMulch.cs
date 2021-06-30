@@ -13,15 +13,6 @@
 
         public override bool IsAutoUnlocked => true;
 
-        public override bool CanBeCrafted(
-            IWorldObject objectMulchbox,
-            CraftingQueue craftingQueue,
-            ushort countToCraft)
-        {
-            var privateState = GetPrivateState(objectMulchbox);
-            return privateState.OrganicAmount >= MulchOrganicValue;
-        }
-
         public override void ServerOnManufacturingCompleted(
             IStaticWorldObject objectMulchbox,
             CraftingQueue craftingQueue)
@@ -41,6 +32,15 @@
             }
 
             privateState.OrganicAmount = (ushort)organicAmount;
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue,
+            ushort countToCraft)
+        {
+            var privateState = GetPrivateState(objectManufacturer);
+            return privateState.OrganicAmount >= MulchOrganicValue;
         }
 
         protected override void SetupRecipe(

@@ -41,7 +41,7 @@
 
         public IReadOnlyList<Recipe.RecipeForManufacturingByproduct> RecipesForByproducts { get; }
 
-        public Recipe MatchRecipe(IWorldObject objectManufacturer, CraftingQueue craftingQueue)
+        public Recipe MatchRecipe(IStaticWorldObject objectManufacturer, CraftingQueue craftingQueue)
         {
             Recipe bestRecipe = null;
             foreach (var recipe in this.Recipes)
@@ -54,7 +54,10 @@
                     continue;
                 }
 
-                if (recipe.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft: 1))
+                if (recipe.CanBeCrafted(null,
+                                        objectManufacturer,
+                                        craftingQueue,
+                                        countToCraft: 1))
                 {
                     bestRecipe = recipe;
                 }

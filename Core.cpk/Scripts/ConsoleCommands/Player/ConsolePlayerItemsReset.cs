@@ -17,14 +17,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         public string Execute([CurrentCharacterIfNull] ICharacter player = null)
         {
-            foreach (var container
-                in new[]
-                {
-                    player.SharedGetPlayerContainerInventory(),
-                    player.SharedGetPlayerContainerEquipment(),
-                    player.SharedGetPlayerContainerHotbar(),
-                    player.SharedGetPlayerContainerHand()
-                })
+            foreach (var container in new[]
+            {
+                player.SharedGetPlayerContainerInventory(),
+                player.SharedGetPlayerContainerEquipment(),
+                player.SharedGetPlayerContainerHotbar(),
+                player.SharedGetPlayerContainerHand()
+            })
             {
                 foreach (var item in container.Items.ToList())
                 {

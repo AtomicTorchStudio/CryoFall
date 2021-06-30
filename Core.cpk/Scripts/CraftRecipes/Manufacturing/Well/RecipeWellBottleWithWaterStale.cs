@@ -15,9 +15,8 @@
             <ItemBottleEmpty,
                 ItemBottleWaterStale>
     {
-        private static readonly Lazy<ushort> LazyBottleWaterCapacity =
-            new(
-                () => Api.GetProtoEntity<ItemBottleWater>().Capacity);
+        private static readonly Lazy<ushort> LazyBottleWaterCapacity
+            = new(() => Api.GetProtoEntity<ItemBottleWater>().Capacity);
 
         public override bool IsAutoUnlocked => true;
 
@@ -28,12 +27,12 @@
         protected override double OutputItemLiquidCapacity
             => LazyBottleWaterCapacity.Value;
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
-            if (((IStaticWorldObject)objectManufacturer).OccupiedTile.ProtoTile is IProtoTileWellAllowed protoTile
+            if (objectManufacturer.OccupiedTile.ProtoTile is IProtoTileWellAllowed protoTile
                 && protoTile.IsStaleWellWater)
             {
                 return base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft);

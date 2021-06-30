@@ -20,38 +20,6 @@
 
         protected virtual TimeSpan CraftDuration => TimeSpan.FromSeconds(0.025);
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
-            CraftingQueue craftingQueue,
-            ushort countToCraft)
-        {
-            if (!base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft))
-            {
-                return false;
-            }
-
-            var output = this.outputItem;
-            var protoBarrel = (IProtoObjectBarrel)objectManufacturer.ProtoWorldObject;
-            var state = protoBarrel.GetBarrelPrivateState((IStaticWorldObject)objectManufacturer);
-
-            if (state.LiquidAmount < output.Capacity
-                || state.LiquidType != output.LiquidType)
-            {
-                // contains liquid of other type or not enough amount
-                return false;
-            }
-
-            if (craftingQueue.ContainerOutput.OccupiedSlotsCount > 0
-                && craftingQueue.ContainerOutput.Items.Any(
-                    i => !(i.ProtoItem is TOutputItem)))
-            {
-                // contains something other in the output container
-                return false;
-            }
-
-            return true;
-        }
-
         public override void ServerOnManufacturingCompleted(
             IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue)
@@ -73,6 +41,38 @@
 
             state.LiquidAmount = (ushort)amount;
             state.LiquidType = amount > 0 ? (LiquidType?)output.LiquidType : null;
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue,
+            ushort countToCraft)
+        {
+            if (!base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft))
+            {
+                return false;
+            }
+
+            var output = this.outputItem;
+            var protoBarrel = (IProtoObjectBarrel)objectManufacturer.ProtoWorldObject;
+            var state = protoBarrel.GetBarrelPrivateState(objectManufacturer);
+
+            if (state.LiquidAmount < output.Capacity
+                || state.LiquidType != output.LiquidType)
+            {
+                // contains liquid of other type or not enough amount
+                return false;
+            }
+
+            if (craftingQueue.ContainerOutput.OccupiedSlotsCount > 0
+                && craftingQueue.ContainerOutput.Items.Any(
+                    i => !(i.ProtoItem is TOutputItem)))
+            {
+                // contains something other in the output container
+                return false;
+            }
+
+            return true;
         }
 
         protected sealed override void SetupRecipe(

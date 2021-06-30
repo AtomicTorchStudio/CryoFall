@@ -16,6 +16,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Extensions;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Please use specific recipes abstract types. You cannot create instances of this type yourself.
@@ -111,17 +112,16 @@
         public abstract RecipeType RecipeType { get; }
 
         public virtual bool CanBeCrafted(
-            IWorldObject characterOrStationObject,
+            [CanBeNull] ICharacter character,
+            [CanBeNull] IStaticWorldObject objectStation,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
-            if (characterOrStationObject is ICharacter character)
+            if (character is not null
+                && !this.SharedIsTechUnlocked(character))
             {
-                if (!this.SharedIsTechUnlocked(character))
-                {
-                    // locked recipe
-                    return false;
-                }
+                // locked recipe
+                return false;
             }
 
             foreach (var craftingInputItem in this.InputItems)
@@ -280,24 +280,20 @@
             public IReadOnlyStationsList StationTypes { get; private set; }
 
             public override bool CanBeCrafted(
-                IWorldObject characterOrStationObject,
+                ICharacter character,
+                IStaticWorldObject objectStation,
                 CraftingQueue craftingQueue,
                 ushort countToCraft)
             {
-                if (characterOrStationObject is null)
-                {
-                    // require character or station
-                    return false;
-                }
-
                 if (this.RecipeType != RecipeType.Hand
-                    && !this.StationTypes.Contains(characterOrStationObject.ProtoWorldObject))
+                    && (objectStation is null
+                        || !this.StationTypes.Contains(objectStation.ProtoWorldObject)))
                 {
-                    // requires station
+                    // requires a specific station
                     return false;
                 }
 
-                return base.CanBeCrafted(characterOrStationObject, craftingQueue, countToCraft);
+                return base.CanBeCrafted(character, objectStation, craftingQueue, countToCraft);
             }
 
             protected sealed override void SetupRecipe(
@@ -328,9 +324,26 @@
             }
         }
 
+        // For technical reasons, RecipeForHandCrafting is inherited from RecipeForStationCrafting
+        // in order to provide optional stations (that will list the recipe even though it's a hand-crafting recipe)
         public abstract class RecipeForHandCrafting : RecipeForStationCrafting
         {
             public sealed override RecipeType RecipeType => RecipeType.Hand;
+
+            public override bool CanBeCrafted(
+                ICharacter character,
+                IStaticWorldObject objectStation,
+                CraftingQueue craftingQueue,
+                ushort countToCraft)
+            {
+                if (character is null)
+                {
+                    // this recipe requires a character
+                    return false;
+                }
+
+                return base.CanBeCrafted(character, objectStation, craftingQueue, countToCraft);
+            }
 
             protected sealed override void SetupRecipe(
                 StationsList stations,
@@ -360,11 +373,34 @@
         {
             public sealed override RecipeType RecipeType => RecipeType.Manufacturing;
 
+            public sealed override bool CanBeCrafted(
+                ICharacter character,
+                IStaticWorldObject objectStation,
+                CraftingQueue craftingQueue,
+                ushort countToCraft)
+            {
+                if (character is not null)
+                {
+                    // this recipe cannot be crafted by character as it's a manufacturing recipe
+                    return false;
+                }
+
+                return this.CanBeCrafted(objectStation, craftingQueue, countToCraft);
+            }
+
             public virtual void ServerOnManufacturingCompleted(
                 IStaticWorldObject objectManufacturer,
                 CraftingQueue craftingQueue)
             {
-                // do nothing (could be overridden)
+                // do nothing (override where necessary)
+            }
+
+            protected virtual bool CanBeCrafted(
+                IStaticWorldObject objectManufacturer,
+                CraftingQueue craftingQueue,
+                ushort countToCraft)
+            {
+                return base.CanBeCrafted(null, objectManufacturer, craftingQueue, countToCraft);
             }
         }
 
@@ -380,11 +416,12 @@
             }
 
             public override bool CanBeCrafted(
-                IWorldObject characterOrStationObject,
+                ICharacter character,
+                IStaticWorldObject objectStation,
                 CraftingQueue craftingQueue,
                 ushort countToCraft)
             {
-                throw new Exception("Incorrect method for RecipeForStationByproduct.");
+                throw new Exception("Incorrect method for " + nameof(RecipeForManufacturingByproduct));
             }
 
             protected override void SetupRecipe(
@@ -407,6 +444,22 @@
         public abstract class RecipeForStationCrafting : BaseRecipeForStation
         {
             public override RecipeType RecipeType => RecipeType.StationCrafting;
+
+            public override bool CanBeCrafted(
+                ICharacter character,
+                IStaticWorldObject objectStation,
+                CraftingQueue craftingQueue,
+                ushort countToCraft)
+            {
+                if (character is null)
+                {
+                    // this recipe requires a character
+                    return false;
+                }
+
+                // Please note: base type check will perform whether the station argument is provided and valid.
+                return base.CanBeCrafted(character, objectStation, craftingQueue, countToCraft);
+            }
         }
 
         protected class StationsList : List<IProtoStaticWorldObject>, IReadOnlyStationsList

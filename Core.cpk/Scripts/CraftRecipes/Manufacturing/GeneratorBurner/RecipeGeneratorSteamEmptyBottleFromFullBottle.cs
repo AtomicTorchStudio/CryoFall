@@ -18,8 +18,29 @@
 
         public override string Name => "Fill steam generator with water";
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
+        public override void ServerOnManufacturingCompleted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue)
+        {
+            var liquidCapacity = GetLiquidCapacity(objectManufacturer);
+
+            // let's add liquid amount of the input item into the object liquid amount
+            var privateState = GetPrivateState(objectManufacturer);
+            var liquidState = this.GetLiquidState(privateState);
+            var amount = liquidState.Amount;
+
+            amount += this.inputItem.Capacity;
+            if (amount >= liquidCapacity)
+            {
+                // cannot exceed capacity
+                amount = liquidCapacity;
+            }
+
+            liquidState.Amount = amount;
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
@@ -47,27 +68,6 @@
             }
 
             return true;
-        }
-
-        public override void ServerOnManufacturingCompleted(
-            IStaticWorldObject objectManufacturer,
-            CraftingQueue craftingQueue)
-        {
-            var liquidCapacity = GetLiquidCapacity(objectManufacturer);
-
-            // let's add liquid amount of the input item into the object liquid amount
-            var privateState = GetPrivateState(objectManufacturer);
-            var liquidState = this.GetLiquidState(privateState);
-            var amount = liquidState.Amount;
-
-            amount += this.inputItem.Capacity;
-            if (amount >= liquidCapacity)
-            {
-                // cannot exceed capacity
-                amount = liquidCapacity;
-            }
-
-            liquidState.Amount = amount;
         }
 
         protected override void SetupRecipe(

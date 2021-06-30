@@ -6,8 +6,8 @@
 
         DropItemConditionDelegate CreateCompoundConditionIfNecessary(DropItemConditionDelegate otherCondition);
 
-        double GetProbabilityForDroplist();
-        
         double GetCountMultiplierForDroplist();
+
+        double GetProbabilityForDroplist();
     }
 }

@@ -21,8 +21,22 @@
 
         protected abstract double OutputItemLiquidCapacity { get; }
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
+        public sealed override void ServerOnManufacturingCompleted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue)
+        {
+            // let's remove the liquid amount of the output item from the refinery liquid state
+            var liquidState = this.GetLiquidState(objectManufacturer);
+            var amount = liquidState.Amount;
+            amount -= this.OutputItemLiquidCapacity;
+
+            liquidState.Amount = amount;
+
+            this.ServerOnLiquidAmountChanged(objectManufacturer);
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
@@ -31,7 +45,7 @@
                 return false;
             }
 
-            var state = this.GetLiquidState((IStaticWorldObject)objectManufacturer);
+            var state = this.GetLiquidState(objectManufacturer);
             if (state.Amount < this.OutputItemLiquidCapacity)
             {
                 // not enough amount
@@ -47,20 +61,6 @@
             }
 
             return true;
-        }
-
-        public sealed override void ServerOnManufacturingCompleted(
-            IStaticWorldObject objectManufacturer,
-            CraftingQueue craftingQueue)
-        {
-            // let's remove the liquid amount of the output item from the refinery liquid state
-            var liquidState = this.GetLiquidState(objectManufacturer);
-            var amount = liquidState.Amount;
-            amount -= this.OutputItemLiquidCapacity;
-
-            liquidState.Amount = amount;
-
-            this.ServerOnLiquidAmountChanged(objectManufacturer);
         }
 
         protected abstract LiquidContainerState GetLiquidState(IStaticWorldObject staticWorldObject);

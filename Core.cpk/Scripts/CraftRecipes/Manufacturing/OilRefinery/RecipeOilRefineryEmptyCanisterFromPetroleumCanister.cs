@@ -17,37 +17,6 @@
 
         public override string Name => "Add raw petroleum oil from canister to oil refinery";
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
-            CraftingQueue craftingQueue,
-            ushort countToCraft)
-        {
-            if (!base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft))
-            {
-                return false;
-            }
-
-            var liquidCapacity = GetLiquidCapacity(objectManufacturer);
-            var state = this.GetLiquidState(objectManufacturer);
-
-            if (state.Amount + this.inputItem.Capacity
-                > liquidCapacity)
-            {
-                // capacity will exceeded - cannot craft
-                return false;
-            }
-
-            if (craftingQueue.ContainerOutput.OccupiedSlotsCount > 0
-                && craftingQueue.ContainerOutput.Items.Any(
-                    i => !(i.ProtoItem is ItemCanisterEmpty)))
-            {
-                // contains something other in the output container
-                return false;
-            }
-
-            return true;
-        }
-
         public override void ServerOnManufacturingCompleted(
             IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue)
@@ -68,6 +37,37 @@
 
             liquidState.Amount = amount;
             privateState.IsLiquidStatesChanged = true;
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue,
+            ushort countToCraft)
+        {
+            if (!base.CanBeCrafted(objectManufacturer, craftingQueue, countToCraft))
+            {
+                return false;
+            }
+
+            var liquidCapacity = GetLiquidCapacity(objectManufacturer);
+            var state = this.GetLiquidState(objectManufacturer);
+
+            if (state.Amount + this.inputItem.Capacity
+                > liquidCapacity)
+            {
+                // capacity will exceeded - cannot craft
+                return false;
+            }
+
+            if (craftingQueue.ContainerOutput.OccupiedSlotsCount > 0
+                && craftingQueue.ContainerOutput.Items.Any(
+                    i => i.ProtoItem is not ItemCanisterEmpty))
+            {
+                // contains something other in the output container
+                return false;
+            }
+
+            return true;
         }
 
         protected override void SetupRecipe(

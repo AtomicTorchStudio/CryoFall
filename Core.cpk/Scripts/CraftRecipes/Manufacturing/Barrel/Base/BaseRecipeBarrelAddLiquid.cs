@@ -23,8 +23,29 @@
 
         protected virtual TimeSpan CraftDuration => TimeSpan.FromSeconds(0.025);
 
-        public override bool CanBeCrafted(
-            IWorldObject objectManufacturer,
+        public override void ServerOnManufacturingCompleted(
+            IStaticWorldObject objectManufacturer,
+            CraftingQueue craftingQueue)
+        {
+            // let's add liquid amount of the input item into the barrel amount
+            var input = this.inputItem;
+            var protoBarrel = (IProtoObjectBarrel)objectManufacturer.ProtoWorldObject;
+            var state = protoBarrel.GetBarrelPrivateState(objectManufacturer);
+            int amount = state.LiquidAmount;
+
+            state.LiquidType = input.LiquidType;
+            amount += input.Capacity;
+            if (amount >= protoBarrel.LiquidCapacity)
+            {
+                // cannot exceed barrel capacity
+                amount = protoBarrel.LiquidCapacity;
+            }
+
+            state.LiquidAmount = (ushort)amount;
+        }
+
+        protected override bool CanBeCrafted(
+            IStaticWorldObject objectManufacturer,
             CraftingQueue craftingQueue,
             ushort countToCraft)
         {
@@ -35,7 +56,7 @@
 
             var input = this.inputItem;
             var protoBarrel = (IProtoObjectBarrel)objectManufacturer.ProtoWorldObject;
-            var state = protoBarrel.GetBarrelPrivateState((IStaticWorldObject)objectManufacturer);
+            var state = protoBarrel.GetBarrelPrivateState(objectManufacturer);
             if (state.LiquidAmount > 0
                 && state.LiquidType != input.LiquidType)
             {
@@ -58,27 +79,6 @@
             }
 
             return true;
-        }
-
-        public override void ServerOnManufacturingCompleted(
-            IStaticWorldObject objectManufacturer,
-            CraftingQueue craftingQueue)
-        {
-            // let's add liquid amount of the input item into the barrel amount
-            var input = this.inputItem;
-            var protoBarrel = (IProtoObjectBarrel)objectManufacturer.ProtoWorldObject;
-            var state = protoBarrel.GetBarrelPrivateState(objectManufacturer);
-            int amount = state.LiquidAmount;
-
-            state.LiquidType = input.LiquidType;
-            amount += input.Capacity;
-            if (amount >= protoBarrel.LiquidCapacity)
-            {
-                // cannot exceed barrel capacity
-                amount = protoBarrel.LiquidCapacity;
-            }
-
-            state.LiquidAmount = (ushort)amount;
         }
 
         protected sealed override void SetupRecipe(

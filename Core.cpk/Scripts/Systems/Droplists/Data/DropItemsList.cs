@@ -297,7 +297,7 @@
             double probabilityMultiplier)
         {
             probabilityMultiplier *= DropListItemsCountMultiplier;
-            return this.ExecuteInternal(delegateSpawnDropItem, 
+            return this.ExecuteInternal(delegateSpawnDropItem,
                                         dropItemContext,
                                         probabilityMultiplier,
                                         countMultiplier: 1.0);

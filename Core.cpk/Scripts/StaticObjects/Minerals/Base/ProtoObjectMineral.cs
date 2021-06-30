@@ -298,7 +298,7 @@
                                                           byWeaponProto,
                                                           weaponCache.ProtoExplosive);
                 var probabilityMultiplier = this.ServerGetDropListProbabilityMultiplier(mineralObject);
-                
+
                 var objectDrone = weaponCache.Drone;
                 if (objectDrone is not null)
                 {

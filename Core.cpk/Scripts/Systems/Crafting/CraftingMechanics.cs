@@ -98,8 +98,8 @@
             ushort countToCraft,
             ushort? maxQueueSize = null)
         {
-            var characterOrStation = (IWorldObject)station ?? character;
-            if (characterOrStation is null)
+            if (station is null
+                && character is null)
             {
                 throw new NullReferenceException("Character AND station cannot be null simultaneously");
             }
@@ -114,14 +114,14 @@
 
             if (!isAdminMode
                 && recipe.RecipeType != RecipeType.ManufacturingByproduct
-                && !recipe.CanBeCrafted(
-                    characterOrStation,
-                    craftingQueue,
-                    countToCraft: recipe.RecipeType == RecipeType.Manufacturing
-                                      ? (ushort)1
-                                      : countToCraft))
+                && !recipe.CanBeCrafted(character,
+                                        station,
+                                        craftingQueue,
+                                        countToCraft: recipe.RecipeType == RecipeType.Manufacturing
+                                                          ? (ushort)1
+                                                          : countToCraft))
             {
-                Logger.Error($"Recipe cannot be crafted - check failed: {recipe} at {characterOrStation}.");
+                Logger.Error($"Recipe cannot be crafted - check failed: {recipe} at {station}.", character);
                 return;
             }
 
@@ -156,7 +156,8 @@
                     {
                         existingQueueItem.CountToCraftRemains = lastQueueItemCountNew;
                         Logger.Info(
-                            $"Recipe count extended for crafting: {recipe} at {characterOrStation}: from x{lastQueueItemCountBefore} to x{countToCraft}");
+                            $"Recipe count extended for crafting: {recipe} at {station}: from x{lastQueueItemCountBefore} to x{countToCraft}",
+                            character);
 
                         ServerDestroyInputItems(craftingQueue,
                                                 recipe,
@@ -187,7 +188,8 @@
                 && craftingQueue.QueueItems.Count >= maxQueueSize.Value)
             {
                 Logger.Info(
-                    $"Recipe cannot be queue for crafting due to max queue size limitation: {recipe} at {characterOrStation} with max queue size {maxQueueSize.Value}.");
+                    $"Recipe cannot be queue for crafting due to max queue size limitation: {recipe} at {station} with max queue size {maxQueueSize.Value}.",
+                    character);
                 return;
             }
 
@@ -204,7 +206,7 @@
                 craftingQueue.SetDurationFromCurrentRecipe();
             }
 
-            Logger.Info($"Recipe queued for crafting: {recipe} at {characterOrStation}.");
+            Logger.Info($"Recipe queued for crafting: {recipe} at {station}.", character);
         }
 
         /// <summary>
@@ -456,17 +458,17 @@
 
             Api.SafeInvoke(() => ServerNonManufacturingRecipeCrafted?.Invoke(queueItem));
 
-            if (recipe.RecipeType == RecipeType.Manufacturing
-                || recipe.RecipeType == RecipeType.ManufacturingByproduct)
+            if (recipe.RecipeType
+                    is RecipeType.Manufacturing
+                    or RecipeType.ManufacturingByproduct)
             {
                 // do not reduce count to craft as this is a manufacturing recipe
-                var station = (IWorldObject)craftingQueue.GameObject;
-
+                var station = craftingQueue.GameObject as IStaticWorldObject;
                 if (recipe.RecipeType == RecipeType.Manufacturing
-                    && !recipe.CanBeCrafted(
-                        station,
-                        craftingQueue,
-                        countToCraft: 1))
+                    && !recipe.CanBeCrafted(character: null,
+                                            station,
+                                            craftingQueue,
+                                            countToCraft: 1))
                 {
                     Logger.Info(
                         $"Manufacturing recipe cannot be crafted anymore - check failed: {recipe} at {station}.");
