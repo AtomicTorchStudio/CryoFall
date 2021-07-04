@@ -15,15 +15,31 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SpawnDepositOilSeep : ProtoZoneSpawnScript
     {
+        private double spawnRateMultiplier;
+
         // because this script called very rare we're increasing the spawn attempts count
         protected override double MaxSpawnAttemptsMultiplier => 300;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
+            this.spawnRateMultiplier = MathHelper.Clamp(
+                ServerRates.Get(
+                    "Resources.PvP.DepositOilSeepNumberMultiplier",
+                    defaultValue: 1.0,
+                    @"This multiplier determines how many oil deposits should be present in each suitable biome.
+                      E.g. to reduce the max number of oil seeps to half, change this to 0.5.
+                      You can also completely disable the spawn of oil deposits by changing this to 0.
+                      Please note: it's available only in PvP. (in PvE there is no need for deposits to capture). 
+                      It's not possible to define a specific number as it depends on the biome and map size.
+                      (allowed range: from 0.0 to 10.0)"),
+                min: 0,
+                max: 10);
+
             // this resource is not spawned on the world init
             triggers
                 // trigger on time interval
@@ -97,6 +113,10 @@
             int currentCount,
             int desiredCountByDensity)
         {
+            // apply the server rate
+            desiredCountByDensity = (int)Math.Round(desiredCountByDensity * this.spawnRateMultiplier,
+                                                    MidpointRounding.AwayFromZero);
+            
             if (Api.IsEditor)
             {
                 return desiredCountByDensity;

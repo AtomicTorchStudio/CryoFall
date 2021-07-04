@@ -10,6 +10,14 @@
     [NotPersistent]
     public class SharedLocalServerHelper : ProtoSystem<SharedLocalServerHelper>
     {
+        static SharedLocalServerHelper()
+        {
+            if (IsServer)
+            {
+                IsLocalServer = Api.Server.Core.GetLaunchArgumentValue("+localServer") == "1";
+            }
+        }
+
         public static event Action IsLocalServerPropertyChanged;
 
         /// <summary>
@@ -22,13 +30,10 @@
 
         protected override void PrepareSystem()
         {
-            if (IsClient)
+            if (IsServer)
             {
-                return;
+                Server.Characters.PlayerOnlineStateChanged += this.ServerPlayerOnlineStateChangedHandler;
             }
-
-            IsLocalServer = Api.Server.Core.GetLaunchArgumentValue("+localServer") == "1";
-            Server.Characters.PlayerOnlineStateChanged += this.ServerPlayerOnlineStateChangedHandler;
         }
 
         private void ClientRemote_SetIsLocalServer(bool isLocalServer)

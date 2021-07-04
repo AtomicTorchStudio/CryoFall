@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SpawnResourcePragmium : ProtoZoneSpawnScript
@@ -20,11 +21,26 @@
         public const int PaddingPragmiumWithOilDeposit
             = ObjectMineralPragmiumSourceExplosion.ExplosionDamageRadius + 6;
 
+        private double spawnRateMultiplier;
+
         // because this script called very rare we're increasing the spawn attempts count
         protected override double MaxSpawnAttemptsMultiplier => 150;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
+            this.spawnRateMultiplier = MathHelper.Clamp(
+                ServerRates.Get(
+                    "Resources.PragmiumSourceNumberMultiplier",
+                    defaultValue: 1.0,
+                    @"This multiplier determines how many pragmium sources (large pillars)
+                      should be present in the Barren biome (desert).
+                      E.g. to reduce the max number of pragmium sources to half, change this to 0.5.
+                      You can also completely disable the spawn of pragmium in desert by changing this to 0.
+                      It's not possible to define a specific number as it depends on the biome and map size.
+                      (allowed range: from 0.0 to 10.0)"),
+                min: 0,
+                max: 10);
+
             // this resource is not spawned on the world init
             triggers
                 // trigger on time interval
@@ -109,6 +125,9 @@
             int currentCount,
             int desiredCountByDensity)
         {
+            desiredCountByDensity = (int)Math.Round(desiredCountByDensity * this.spawnRateMultiplier,
+                                                    MidpointRounding.AwayFromZero);
+
             // respawn no more than 66% of pragmium source objects per iteration
             // but scale automatically with the number of players online
             var spawnMaxPerIteration = (int)Math.Ceiling(desiredCountByDensity

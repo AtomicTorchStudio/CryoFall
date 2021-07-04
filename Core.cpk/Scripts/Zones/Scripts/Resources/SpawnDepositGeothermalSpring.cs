@@ -14,15 +14,32 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SpawnDepositGeothermalSpring : ProtoZoneSpawnScript
     {
+        private double spawnRateMultiplier;
+
         // because this script called very rare we're increasing the spawn attempts count
         protected override double MaxSpawnAttemptsMultiplier => 300;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
+            this.spawnRateMultiplier = MathHelper.Clamp(
+                ServerRates.Get(
+                    "Resources.PvP.DepositGeothermalSpringNumberMultiplier",
+                    defaultValue: 1.0,
+                    @"This multiplier determines how many geothermal springs (Li deposits)
+                      should be present in each suitable biome.
+                      E.g. to reduce the max number of geothermal springs to half, change this to 0.5.
+                      You can also completely disable the spawn of Li deposits by changing this to 0.
+                      Please note: it's available only in PvP. (in PvE there is no need for deposits to capture). 
+                      It's not possible to define a specific number as it depends on the biome and map size.
+                      (allowed range: from 0.0 to 10.0)"),
+                min: 0,
+                max: 10);
+
             // this resource is not spawned on the world init
             triggers
                 // trigger on time interval
@@ -49,7 +66,7 @@
                                           => ServerCheckAnyTileCollisions(physicsSpace,
                                                                           // offset on object layout center
                                                                           new Vector2D(position.X + 1.5,
-                                                                                       position.Y + 1.5),
+                                                                              position.Y + 1.5),
                                                                           radius: 7));
 
             // don't spawn close to roads
@@ -90,6 +107,10 @@
             int currentCount,
             int desiredCountByDensity)
         {
+            // apply the server rate
+            desiredCountByDensity = (int)Math.Round(desiredCountByDensity * this.spawnRateMultiplier,
+                                                    MidpointRounding.AwayFromZero);
+
             if (zone.ProtoGameObject is ZoneBorealForest)
             {
                 // to balance boreal and temperate forests and ensure they have a bit different number of resources for A26
