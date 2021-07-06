@@ -140,6 +140,11 @@
                 // the key was pressed
                 var hotbarSlotId = pair.Value;
 
+                if (hotbarSlotId >= ClientHotbarSelectedItemManager.ContainerHotbar.SlotsCount)
+                {
+                    break;
+                }
+
                 if (Input.IsKeyHeld(InputKey.Control, evenIfHandled: true)
                     || Input.IsKeyHeld(InputKey.Alt,  evenIfHandled: true))
                 {
