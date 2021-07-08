@@ -134,7 +134,7 @@ Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Klicke auf diesen Gegenstand, während du die Alt-Taste gedrückt hältst, um diesen schnell zu benutzen oder zu verzehren.
 
 Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
-Du kannst den Munitionstyp der aktuell ausgewählten Waffe mit der [b]\{0}\[/b] Taste ändern.
+Du kannst den Munitionstyp der aktuell ausgewählten Waffe mit der [b]\[{0}\][/b] Taste ändern.
 
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Klicke auf ein beliebiges Gebäude, um es einzureißen.
