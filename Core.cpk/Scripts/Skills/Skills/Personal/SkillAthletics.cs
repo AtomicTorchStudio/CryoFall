@@ -12,8 +12,6 @@
         // LP is not provided for this skill as it's too easy to exploit
         public override double ExperienceToLearningPointsConversionMultiplier => 0;
 
-        public override bool IsSharingLearningPointsWithPartyMembers => false;
-
         public override string Name => "Athletics";
 
         protected override void PrepareProtoSkill(SkillConfig config)

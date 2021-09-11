@@ -32,6 +32,9 @@
         public static readonly Brush IconPlaceholderBrush
             = IsDesignTime ? Brushes.LightSlateGray : null;
 
+        public static readonly Brush LocalServerIconImageBrush
+            = Client.UI.GetApplicationResource<Brush>("LocalServerIconImageBrush");
+
         public byte AutoRefreshRequestId;
 
         public int ReferencesCount;
@@ -94,6 +97,11 @@
 #endif
 
         public ServerAddress Address => this.address;
+
+        public Visibility ButtonRefreshVisibility
+            => this.Address.IsLocalServer
+                   ? Visibility.Collapsed
+                   : Visibility.Visible;
 
         public BaseCommand CommandCopyPublicGuidToClipboard
             => new ActionCommand(() => Client.Core.CopyToClipboard(this.Address.PublicGuid.ToString()));
@@ -224,6 +232,12 @@
             }
         }
 
+        public string JoinServerButtonTitle
+            =>
+                this.Address.IsLocalServer
+                    ? CoreStrings.MenuLocalGame_Button_LoadWorld
+                    : CoreStrings.MenuServers_Button_JoinServer;
+
         public Visibility JoinServerButtonVisibility { get; private set; }
 
         public Visibility LoadingDisplayVisibility { get; set; }
@@ -321,7 +335,9 @@
         }
 
         public string WipedDateText
-            => FormatWipedDate(this.wipedDate);
+            => this.Address.IsLocalServer
+                   ? string.Empty
+                   : FormatWipedDate(this.wipedDate);
 
         public static string FormatWipedDate(DateTime? wipedDate)
         {
@@ -541,6 +557,21 @@
             this.WipedDate = null;
             this.NextScheduledWipeDate = null;
             this.VisibilityInList = Visibility.Visible;
+
+            if (this.Address.IsLocalServer)
+            {
+                this.IsInfoReceived = true;
+                this.Description = string.Empty;
+                this.PlayersText = string.Empty;
+                this.PingText = string.Empty;
+                this.Title = string.Format(CoreStrings.LocalServerSaveName_Format,
+                                           Client.LocalServer.GetSaveName(this.address.LocalServerSlotId)
+                                           ?? $"Slot #{this.Address.LocalServerSlotId}");
+                this.IsCompatible = true;
+                this.LoadingDisplayVisibility = Visibility.Collapsed;
+                this.JoinServerButtonVisibility = Visibility.Visible;
+                this.Icon = LocalServerIconImageBrush;
+            }
         }
 
         /// <summary>

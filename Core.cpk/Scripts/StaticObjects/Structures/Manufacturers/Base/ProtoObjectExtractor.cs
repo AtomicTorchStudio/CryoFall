@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
@@ -413,7 +414,7 @@
         private static double SharedGetSpeedMultiplier(IStaticWorldObject objectDeposit)
         {
             return GetDepositExtractionRateMultiplier()
-                   * StructureConstants.DepositsExtractionSpeedMultiplier;
+                   * RateDepositsExtractionSpeedMultiplier.SharedValue;
 
             double GetDepositExtractionRateMultiplier()
             {

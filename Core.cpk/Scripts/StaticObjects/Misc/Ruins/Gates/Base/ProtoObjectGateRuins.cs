@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public abstract class ProtoObjectGateRuins
         : ProtoObjectGate<
@@ -92,8 +91,8 @@
             out ProtoStructureCategory category)
         {
             // it's not buildable
+            category = GetCategory<StructureCategoryOther>();
             build.IsAllowed = false;
-            category = Api.GetProtoEntity<StructureCategoryOther>();
             repair.IsAllowed = false;
         }
 

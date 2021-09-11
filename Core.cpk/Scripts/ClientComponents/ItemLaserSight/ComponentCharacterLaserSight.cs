@@ -48,7 +48,7 @@
             ICharacter character,
             ItemLaserSight.PublicState itemPublicState)
         {
-            if (!(character.ProtoGameObject is PlayerCharacter))
+            if (character.ProtoGameObject is not PlayerCharacter)
             {
                 return null;
             }
@@ -64,9 +64,8 @@
         {
             var characterPublicState = this.currentCharacter.GetPublicState<ICharacterPublicState>();
             if (characterPublicState.IsDead
-                || (characterPublicState is PlayerCharacterPublicState playerCharacterPublicState
-                    && !playerCharacterPublicState.IsOnline)
-                || !(characterPublicState.SelectedItemWeaponProto is IProtoItemWeaponRanged protoWeaponRanged))
+                || characterPublicState is PlayerCharacterPublicState { IsOnline: false }
+                || characterPublicState.SelectedItemWeaponProto is not IProtoItemWeaponRanged protoWeaponRanged)
             {
                 this.componentBeam.IsEnabled = false;
                 return;

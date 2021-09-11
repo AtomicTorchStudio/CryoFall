@@ -4,11 +4,8 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
     public class ItemVehicleAutocannonHeavy : ProtoItemVehicleWeaponRanged
@@ -16,9 +13,6 @@
         public override ushort AmmoCapacity => 100;
 
         public override double AmmoReloadDuration => 3;
-
-        // need to be installed on a mech in order to use it
-        public override bool CanBeSelectedInVehicle => false;
 
         public override string CharacterAnimationAimingName => "WeaponAiming1Hand";
 
@@ -36,7 +30,7 @@
         public override string Description =>
             "Heavy autocannon designed for hand-mounted hardpoints on mechanized battle armor. Uses high-caliber, anti-material ammo.";
 
-        public override uint DurabilityMax => 1200;
+        public override uint DurabilityMax => 2000;
 
         public override double FireInterval => 1 / 8.0; // 8 per second
 
@@ -49,22 +43,6 @@
         public override VehicleWeaponHardpoint WeaponHardpoint => VehicleWeaponHardpoint.Normal;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillVehicles>();
-
-        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
-        {
-            if (IsClient
-                && !isAlreadySelected
-                && isByPlayer)
-            {
-                NotificationSystem.ClientShowNotification(
-                    this.Name,
-                    CoreStrings.Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech,
-                    NotificationColor.Bad,
-                    item.ProtoItem.Icon);
-            }
-
-            return false;
-        }
 
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
         {

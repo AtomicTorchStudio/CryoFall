@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
@@ -18,6 +19,10 @@
         public delegate void ServerCharacterRewardClaimedDelegate(ICharacter character, ICompletionistDataEntry entry);
 
         public static event ServerCharacterRewardClaimedDelegate ServerCharacterRewardClaimed;
+
+        [SyncToClient]
+        public NetworkSyncList<DataEntryCompletionist> ListEvents { get; private set; }
+            = new();
 
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionistFish> ListFish { get; }
@@ -87,12 +92,19 @@
             AddIfNotContains(protoMob, this.ListMobs);
         }
 
+        public void ServerOnParticipatedInEvent(IProtoEvent protoEvent)
+        {
+            Api.ValidateIsServer();
+            AddIfNotContains(protoEvent, this.ListEvents);
+        }
+
         public void ServerReset()
         {
             this.ListFood.Clear();
             this.ListMobs.Clear();
             this.ListLoot.Clear();
             this.ListFish.Clear();
+            this.ListEvents.Clear();
         }
 
         public void ServerTryClaimReward(IProtoEntity prototype)
@@ -143,6 +155,14 @@
                                                       protoItemFish,
                                                       reward,
                                                       finishedEntry);
+                    break;
+
+                case IProtoEvent protoEvent:
+                    this.ServerTryClaimRewardInternal(this.ListEvents,
+                                                      protoEvent,
+                                                      reward,
+                                                      new DataEntryCompletionist(isRewardClaimed: true,
+                                                          protoEvent));
                     break;
 
                 default:
@@ -207,6 +227,13 @@
             Api.Logger.Warning(
                 "Completionist: the reward cannot be claimed as the entry is not discovered: " + prototype,
                 characterRelated: character);
+        }
+
+        public void ServerInitState()
+        {
+            // TODO: remove this in future versions (R32?)
+            // it's required to provide savegame compatibility with R30
+            this.ListEvents ??= new NetworkSyncList<DataEntryCompletionist>();
         }
     }
 }

@@ -5,6 +5,9 @@
     public class EventDropPublicState : EventWithAreaPublicState
     {
         [SyncToClient]
+        public bool IsSpawnCompleted { get; set; }
+
+        [SyncToClient]
         public byte ObjectsRemains { get; set; }
 
         [SyncToClient]

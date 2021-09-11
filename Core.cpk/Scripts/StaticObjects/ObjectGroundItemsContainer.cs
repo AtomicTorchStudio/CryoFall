@@ -583,6 +583,13 @@
             if (character.GetPublicState<ICharacterPublicState>().IsDead
                 || IsServer && !character.ServerIsOnline)
             {
+                if (writeToLog)
+                {
+                    Logger.Warning(
+                        $"Character cannot interact with {worldObject} - character is dead or offline.",
+                        character);
+                }
+
                 return false;
             }
 

@@ -63,7 +63,7 @@
 
         public abstract string Name { get; }
 
-        public virtual IProtoOption OrderAfterOption { get; }
+        public virtual IProtoOption OrderAfterOption => null;
 
         public string ShortId => this.GetType().Name;
 

@@ -20,7 +20,7 @@
         public override string Description =>
             "Semi-automatic pistol of simple design. Relatively cheap to produce compared to modern firearms.";
 
-        public override uint DurabilityMax => 180; // slightly lower
+        public override uint DurabilityMax => 360; // slightly lower
 
         public override double FireInterval => 0.5;
 

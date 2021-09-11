@@ -16,8 +16,6 @@
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0.25; // this is 1/4 of the standard conversion, because building is very quick and relatively cheap
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Building";
 
         protected override void PrepareProtoSkill(SkillConfig config)

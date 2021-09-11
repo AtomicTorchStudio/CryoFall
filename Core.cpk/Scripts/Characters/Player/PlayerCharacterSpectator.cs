@@ -18,13 +18,13 @@
 
         public override string Name => "Player character in Spectator mode";
 
-        public override double PhysicsBodyAccelerationCoef => 10;
+        public override double PhysicsBodyAccelerationCoef => 14;
 
-        public override double PhysicsBodyFriction => 60;
+        public override double PhysicsBodyFriction => 84;
 
-        public override double StatMoveSpeed => 5;
+        public override double StatMoveSpeed => 6;
 
-        public override double StatMoveSpeedRunMultiplier => 2;
+        public override double StatMoveSpeedRunMultiplier => 2.333;
 
         public override double StatRunningStaminaConsumptionUsePerSecond => 0;
 

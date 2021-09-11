@@ -182,7 +182,7 @@
 
         private void WorldObjectOwnersSystemOwnersChangedHandler(IWorldObject worldObject)
         {
-            if (!(worldObject.ProtoGameObject is IProtoObjectTradingStation))
+            if (worldObject.ProtoGameObject is not IProtoObjectTradingStation)
             {
                 // not a trading station
                 return;

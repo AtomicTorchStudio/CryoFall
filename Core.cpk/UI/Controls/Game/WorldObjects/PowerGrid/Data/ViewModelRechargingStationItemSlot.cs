@@ -79,7 +79,7 @@
 
         private bool TrySetupFuelItem()
         {
-            if (!(this.item.ProtoItem is IProtoItemWithFuel protoItemWithFuel))
+            if (this.item.ProtoItem is not IProtoItemWithFuel protoItemWithFuel)
             {
                 return false;
             }
@@ -109,7 +109,7 @@
 
         private bool TrySetupPowerBank()
         {
-            if (!(this.item.ProtoItem is IProtoItemPowerBank protoPowerBank))
+            if (this.item.ProtoItem is not IProtoItemPowerBank protoPowerBank)
             {
                 return false;
             }

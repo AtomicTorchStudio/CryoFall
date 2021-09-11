@@ -25,7 +25,7 @@
         public override string Description =>
             "Old-school style musket. Uses paper cartridges. Offers better range and damage compared to flintlock pistol.";
 
-        public override uint DurabilityMax => 120;
+        public override uint DurabilityMax => 240;
 
         public override double FireInterval => 0; // can fire as soon as reloaded
 

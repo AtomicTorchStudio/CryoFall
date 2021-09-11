@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
@@ -54,28 +55,10 @@
         [NotLocalizable]
         private const string ServerTagPvP = "PvP";
 
-        private static readonly bool serverIsPvE;
-
         private static bool? clientIsPvE;
 
         private static TaskCompletionSource<bool> clientPvErequestTask
             = new();
-
-        static PveSystem()
-        {
-            if (IsClient)
-            {
-                return;
-            }
-
-            serverIsPvE = ServerRates.Get(
-                              "PvP",
-                              defaultValue: Api.IsEditor ? 1 : 0,
-                              description:
-                              @"PvP / PvE mode switch.
-                              Set it to 1 to make this server PvP. Otherwise it will be PvE-only.")
-                          != 1;
-        }
 
         public static event Action ClientIsPvEChanged;
 
@@ -95,15 +78,7 @@
 
         public static bool ClientIsPveFlagReceived => clientIsPvE.HasValue;
 
-        // for client this flag is received via bootstrapper call
-        public static bool ServerIsPvE
-        {
-            get
-            {
-                Api.ValidateIsServer();
-                return serverIsPvE;
-            }
-        }
+        public static bool ServerIsPvE => !RatePvPIsEnabled.SharedValue;
 
         [NotLocalizable]
         public override string Name => "PvE system";

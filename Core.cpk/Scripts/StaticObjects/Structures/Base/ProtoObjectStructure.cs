@@ -189,7 +189,7 @@
             // calculate decay damage
             // damage is proportional to the structure max HP and the decay duration constant
             var damage = this.SharedGetStructurePointsMax(worldObject)
-                         / StructureConstants.StructuresDecayDurationSeconds;
+                         / StructureConstants.DecayDurationSeconds;
 
             // damage is proportional to the decay system update rate
             damage *= deltaTime;
@@ -212,6 +212,13 @@
         {
             base.ServerOnDestroy(gameObject);
             ServerStructuresManager.NotifyObjectRemoved(gameObject);
+        }
+
+        public virtual void ServerOnRelocated(
+            IStaticWorldObject structure,
+            ICharacter byCharacter,
+            Vector2Ushort fromPosition)
+        {
         }
 
         public virtual void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character)
@@ -360,10 +367,6 @@
                 configUpgrade,
                 out var category);
 
-            configBuild.ApplyRates(StructureConstants.BuildItemsCountMultiplier);
-            configUpgrade.ApplyRates(StructureConstants.BuildItemsCountMultiplier);
-            configRepair.ApplyRates(StructureConstants.RepairItemsCountMultiplier);
-
             this.Category = category
                             ?? throw new Exception(
                                 "Structure category is not set during "
@@ -399,7 +402,7 @@
             if (data.IsFirstTimeInit)
             {
                 StructureDecaySystem.ServerResetDecayTimer(data.PrivateState,
-                                                           StructureConstants.StructuresAbandonedDecayDelaySeconds);
+                                                           StructureConstants.DecayDelaySeconds);
             }
             else
             {
@@ -475,7 +478,7 @@
             }
 
             if (IsServer
-                && !(this is ProtoObjectConstructionSite))
+                && this is not ProtoObjectConstructionSite)
             {
                 damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnclaimedBuilding(weaponCache,
                     targetObject,

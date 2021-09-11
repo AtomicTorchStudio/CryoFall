@@ -21,7 +21,7 @@
 
         public override string Description => "Heavy anti-material rifle developed for high-power .300 rounds.";
 
-        public override uint DurabilityMax => 360;
+        public override uint DurabilityMax => 720;
 
         public override double FireInterval => 0.7; // slower firing rate
 

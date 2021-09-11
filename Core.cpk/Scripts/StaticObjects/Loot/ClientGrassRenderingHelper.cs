@@ -59,6 +59,8 @@
 
             public readonly float Power;
 
+            public readonly float Speed;
+
             public GrassAnimationPreset(float power, float pivotY, byte phaseOffset, float speed, bool isFlip)
             {
                 this.IsFlip = isFlip;
@@ -67,8 +69,6 @@
                 this.PhaseOffset = phaseOffset;
                 this.Speed = speed;
             }
-
-            public readonly float Speed;
 
             public bool Equals(GrassAnimationPreset other)
             {

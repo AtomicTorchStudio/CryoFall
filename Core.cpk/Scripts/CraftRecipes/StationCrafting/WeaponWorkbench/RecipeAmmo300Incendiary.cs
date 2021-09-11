@@ -24,7 +24,7 @@
             inputItems.Add<ItemFormulatedGunpowder>(count: 25);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
 
-            outputItems.Add<ItemAmmo300Incendiary>(count: 10);
+            outputItems.Add<ItemAmmo300Incendiary>(count: 20);
         }
     }
 }

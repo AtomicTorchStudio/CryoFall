@@ -23,7 +23,8 @@
             return HasAny(completionistData.ListFood)
                    || HasAny(completionistData.ListMobs)
                    || HasAny(completionistData.ListLoot)
-                   || HasAny(completionistData.ListFish);
+                   || HasAny(completionistData.ListFish)
+                   || HasAny(completionistData.ListEvents);
 
             static bool HasAny<T>(IReadOnlyList<T> pageEntries)
                 where T : ICompletionistDataEntry

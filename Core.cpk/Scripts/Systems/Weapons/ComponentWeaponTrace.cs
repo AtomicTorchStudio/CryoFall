@@ -209,7 +209,7 @@
         private void UpdateDirectionRayAndDistance()
         {
             if (!this.hasHit
-                || !(this.hitData.WorldObject is IDynamicWorldObject dynamicWorldObject))
+                || this.hitData.WorldObject is not IDynamicWorldObject dynamicWorldObject)
             {
                 return;
             }

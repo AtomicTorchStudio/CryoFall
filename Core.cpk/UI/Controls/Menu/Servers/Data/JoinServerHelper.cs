@@ -50,6 +50,12 @@
                 throw new Exception("Bad server address");
             }
 
+            if (address.IsLocalServer)
+            {
+                Api.Client.LocalServer.Load(address.LocalServerSlotId);
+                return;
+            }
+
             if (serverInfo.IsInaccessible)
             {
                 var title = serverInfo.IsOfficial

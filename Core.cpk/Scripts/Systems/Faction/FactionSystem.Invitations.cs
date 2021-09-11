@@ -435,7 +435,8 @@
                 }
 
                 var inviterFactionMembers = ServerGetFactionMembersReadOnly(faction);
-                var maxMembers = FactionConstants.GetFactionMembersMax(Faction.GetPublicState(faction).Kind);
+                var maxMembers = FactionConstants.SharedGetFactionMembersMax(
+                    Faction.GetPublicState(faction).Kind);
 
                 if (inviterFactionMembers.Count >= maxMembers)
                 {
@@ -494,7 +495,7 @@
                 }
 
                 var factionMemberEntries = ServerGetFactionMembersReadOnly(faction);
-                var maxMembers = FactionConstants.GetFactionMembersMax(
+                var maxMembers = FactionConstants.SharedGetFactionMembersMax(
                     Faction.GetPublicState(faction).Kind);
 
                 if (factionMemberEntries.Count >= maxMembers)

@@ -17,7 +17,7 @@
         public override string Description =>
             "Revolver-type grenade launcher. Ideal for assault missions or when fighting against heavily armored targets.";
 
-        public override uint DurabilityMax => 120;
+        public override uint DurabilityMax => 250;
 
         public override double FireInterval => 1; // 1 second
 

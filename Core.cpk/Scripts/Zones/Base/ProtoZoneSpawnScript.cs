@@ -607,7 +607,7 @@
 
         private ObjectSpawnPreset FindPreset(IProtoGameObject protoGameObject)
         {
-            if (!(protoGameObject is IProtoSpawnableObject protoSpawnableObject))
+            if (protoGameObject is not IProtoSpawnableObject protoSpawnableObject)
             {
                 // not spawnable objects cannot have presets
                 return null;

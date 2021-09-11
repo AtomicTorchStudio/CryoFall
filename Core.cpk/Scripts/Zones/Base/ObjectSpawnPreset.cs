@@ -215,7 +215,7 @@
             var isContainsOnlyStaticObjects = true;
             foreach (var entry in this.frozenArray)
             {
-                if (!(entry.Value is IProtoStaticWorldObject))
+                if (entry.Value is not IProtoStaticWorldObject)
                 {
                     isContainsOnlyStaticObjects = false;
                 }

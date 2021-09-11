@@ -42,7 +42,7 @@
         private void ServerRemote_TransferToFactionOwnership(IDynamicWorldObject vehicle)
         {
             var character = ServerRemoteContext.Character;
-            if (!(vehicle.ProtoGameObject is IProtoVehicle))
+            if (vehicle.ProtoGameObject is not IProtoVehicle)
             {
                 throw new Exception("Not a vehicle");
             }

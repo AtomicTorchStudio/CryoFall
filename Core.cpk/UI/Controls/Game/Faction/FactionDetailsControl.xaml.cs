@@ -42,7 +42,6 @@
 
         protected override void InitControl()
         {
-            base.InitControl();
             this.RequestData();
         }
 

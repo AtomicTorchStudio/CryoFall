@@ -13,9 +13,7 @@
     Width="600"
     d:DataContext="{d:DesignInstance data:ViewModelMenuOptions, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
-
     <base:BaseUserControl.Resources>
-
         <!-- Used from codebehind -->
         <ControlTemplate x:Key="HeaderTemplate">
             <StackPanel Orientation="Horizontal"
@@ -23,14 +21,15 @@
                 <Rectangle Fill="{Binding Icon}"
                            Width="24"
                            Height="24"
+                           Stretch="Uniform"
                            UseLayoutRounding="True"
+                           VerticalAlignment="Center"
                            Margin="0,0,5,-2" />
                 <TextBlock Text="{Binding Name}"
                            FontSize="17"
                            VerticalAlignment="Center" />
             </StackPanel>
         </ControlTemplate>
-
     </base:BaseUserControl.Resources>
 
     <ContentControl Style="{StaticResource MainMenuWidgetStyle}">
@@ -59,7 +58,8 @@
                         HorizontalAlignment="Center"
                         Margin="0,0,0,5">
                 <StackPanel.Resources>
-                    <Style TargetType="Button" BasedOn="{StaticResource MainMenuButtonStyle}">
+                    <Style TargetType="Button"
+                           BasedOn="{StaticResource MainMenuButtonStyle}">
                         <Setter Property="Focusable" Value="False" />
                     </Style>
                 </StackPanel.Resources>
@@ -79,9 +79,6 @@
                         Command="{Binding CommandCancel}"
                         IsEnabled="{Binding AreApplyAndCancelButtonsEnabled}" />
             </StackPanel>
-
         </Grid>
-
-
     </ContentControl>
 </base:BaseUserControl>

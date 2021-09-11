@@ -23,7 +23,7 @@
 
         public override string Description => "Technology from the old times. Still works as well as before.";
 
-        public override uint DurabilityMax => 250;
+        public override uint DurabilityMax => 500;
 
         public override double FireInterval => 0; // can fire as soon as reloaded
 

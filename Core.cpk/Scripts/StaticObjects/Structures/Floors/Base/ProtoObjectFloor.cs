@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -82,6 +83,20 @@
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
             blueprint.SpriteRenderer.TextureResource = this.ClientGetTextureForTile(tile);
+        }
+
+        public override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
+        {
+            base.ServerOnBuilt(structure, byCharacter);
+            ServerOnBuiltOrRelocated(structure);
+        }
+
+        public override void ServerOnRelocated(
+            IStaticWorldObject structure,
+            ICharacter byCharacter,
+            Vector2Ushort fromPosition)
+        {
+            ServerOnBuiltOrRelocated(structure);
         }
 
         protected override ITextureResource ClientCreateIcon()
@@ -183,30 +198,23 @@
             ConstructionStageConfig build,
             ConstructionStageConfig repair);
 
-        protected override void ServerInitialize(ServerInitializeData data)
+        // no physics for floor
+        protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            base.ServerInitialize(data);
+        }
 
-            if (!data.IsFirstTimeInit)
-            {
-                return;
-            }
-
-            using var tempList = Api.Shared.WrapInTempList(data.GameObject.OccupiedTile.StaticObjects);
+        private static void ServerOnBuiltOrRelocated(IStaticWorldObject structure)
+        {
+            using var tempList = Api.Shared.WrapInTempList(structure.OccupiedTile.StaticObjects);
             foreach (var occupiedTileStaticObject in tempList.AsList())
             {
-                if (occupiedTileStaticObject != data.GameObject
+                if (occupiedTileStaticObject != structure
                     && occupiedTileStaticObject.ProtoStaticWorldObject is IProtoObjectFloor)
                 {
                     // found another floor built in the cell - destroy it
                     Server.World.DestroyObject(occupiedTileStaticObject);
                 }
             }
-        }
-
-        // no physics for floor
-        protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
-        {
         }
 
         /// <summary>

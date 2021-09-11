@@ -54,7 +54,7 @@
             var lowestDurabilityFraction = 1.0;
             foreach (var item in items)
             {
-                if (!(item.ProtoItem is IProtoItemEquipment protoItemEquipment))
+                if (item.ProtoItem is not IProtoItemEquipment protoItemEquipment)
                 {
                     // not an equipment
                     continue;

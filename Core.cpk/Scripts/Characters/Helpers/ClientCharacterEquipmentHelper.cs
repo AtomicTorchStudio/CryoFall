@@ -198,7 +198,7 @@
             // to make them ready for rendering (fixes light flickering issue)
             foreach (var c in skeletonComponents)
             {
-                if (!(c is ClientComponent component)
+                if (c is not ClientComponent component
                     || !component.IsEnabled)
                 {
                     continue;
@@ -276,8 +276,8 @@
             List<IClientComponent> skeletonComponents,
             bool isPreview = false)
         {
-            if (!(skeleton is SkeletonHumanMale)
-                && !(skeleton is SkeletonHumanFemale))
+            if (skeleton is not SkeletonHumanMale
+                && skeleton is not SkeletonHumanFemale)
             {
                 // not a human
                 // setup only implants
@@ -305,8 +305,8 @@
                 isMale = publicState.IsMale;
                 isHeadEquipmentHiddenForSelfAndPartyMembers = publicState.IsHeadEquipmentHiddenForSelfAndPartyMembers;
 
-                if (isMale && !(skeleton is SkeletonHumanMale)
-                    || !isMale && !(skeleton is SkeletonHumanFemale))
+                if (isMale && skeleton is not SkeletonHumanMale
+                    || !isMale && skeleton is not SkeletonHumanFemale)
                 {
                     throw new Exception(
                         $"Skeleton don\'t match the gender of the player\'s character: isMale={isMale}, {skeleton}");

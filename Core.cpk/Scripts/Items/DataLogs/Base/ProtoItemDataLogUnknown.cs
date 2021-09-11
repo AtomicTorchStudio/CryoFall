@@ -153,7 +153,7 @@
                     tempDropItemsList,
                     character,
                     sendNoFreeSpaceNotification: true,
-                    probabilityMultiplier: 1,
+                    probabilityMultiplier: 1.0,
                     context: new DropItemContext(character));
             }
 

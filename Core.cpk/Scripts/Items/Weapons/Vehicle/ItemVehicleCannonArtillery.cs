@@ -4,11 +4,8 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Items;
 
     public class ItemVehicleCannonArtillery : ProtoItemVehicleWeaponGrenadeLauncher
     {
@@ -32,7 +29,7 @@
         public override string Description =>
             "Special heavy artillery cannon that uses high-explosive shells, which are ideal against heavily armored targets.";
 
-        public override uint DurabilityMax => 200;
+        public override uint DurabilityMax => 400;
 
         public override double FireInterval => 1.5; // very slow
 
@@ -46,22 +43,6 @@
         public override VehicleWeaponHardpoint WeaponHardpoint => VehicleWeaponHardpoint.Large;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillVehicles>();
-
-        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
-        {
-            if (IsClient
-                && !isAlreadySelected
-                && isByPlayer)
-            {
-                NotificationSystem.ClientShowNotification(
-                    this.Name,
-                    CoreStrings.Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech,
-                    NotificationColor.Bad,
-                    item.ProtoItem.Icon);
-            }
-
-            return false;
-        }
 
         protected override string GenerateIconPath()
         {

@@ -24,8 +24,6 @@
         private static readonly double DestructionTimeoutSeconds
             = Math.Max(30 * 60, WorldObjectClaimDuration.BossLoot);
 
-        public override bool IsAllowDroneMining => false;
-
         public override bool IsAllowQuickMining => false;
 
         protected sealed override void ServerInitialize(ServerInitializeData data)

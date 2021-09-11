@@ -61,7 +61,6 @@
 
             this.PrepareAchievement(tasks);
 
-            Api.Assert(tasks.Count >= 1,   "At least one task required for a achievement");
             Api.Assert(tasks.Count <= 256, "Max 256 tasks per achievement");
 
             foreach (var task in tasks)

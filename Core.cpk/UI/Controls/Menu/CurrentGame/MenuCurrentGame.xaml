@@ -22,7 +22,7 @@
             <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Visibility="{Binding VisibilityConnected}"
+                        Visibility="{Binding IsConnected, Converter={StaticResource BoolToVisibilityConverter}}"
                         MinWidth="220">
 
                 <TextBlock Text="{Binding ServerName}"
@@ -44,9 +44,11 @@
                                UseLayoutRounding="True" />
                 </Border>
 
-                <Grid Margin="0,5"
-                      HorizontalAlignment="Center"
-                      MinWidth="200">
+                <Grid
+                    Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    MinWidth="200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="10" />
@@ -131,7 +133,9 @@
                          Margin="0,5,0,8" />
 
                 <!-- Description -->
-                <Grid HorizontalAlignment="Stretch">
+                <Grid
+                    Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="5" />
@@ -159,7 +163,7 @@
                             Command="{Binding CommandEditDescription}"
                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
                             Focusable="False"
-                            Margin="3,0,0,0"
+                            Margin="5,0,0,0"
                             MinWidth="40" />
 
                     <!-- Scheduled wipe date and edit button -->
@@ -181,13 +185,14 @@
                             Command="{Binding CommandEditScheduledWipeDate}"
                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
                             Focusable="False"
-                            Margin="3,0,0,0"
+                            Margin="5,0,0,0"
                             MinWidth="40" />
                 </Grid>
 
-
-                <Grid HorizontalAlignment="Stretch"
-                      Margin="0,15,0,0">
+                <Grid
+                    Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,15,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
@@ -204,43 +209,63 @@
                             Command="{Binding CommandEditWelcomeMessage}"
                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
                             Focusable="False"
-                            Margin="3,0,0,0"
+                            Margin="5,0,0,0"
+                            MinWidth="40" />
+                </Grid>
+
+                <Grid HorizontalAlignment="Center"
+                      Margin="0,15,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!-- Text: Browse server rates -->
+                    <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_BrowseServerRates}"
+                            Command="{Binding CommandBrowseServerRates}"
+                            Focusable="False"
+                            Margin="0" />
+
+                    <!-- Edit button -->
+                    <Button Grid.Column="1"
+                            Content="{x:Static loc:CoreStrings.Button_Edit}"
+                            Command="{Binding CommandEditServerRates}"
+                            Visibility="{Binding CanEditServerRates, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Focusable="False"
+                            Margin="5,0,0,0"
                             MinWidth="40" />
                 </Grid>
 
                 <!-- Text: Disconnect -->
                 <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_Disconnect}"
+                        Visibility="{Binding IsEditor, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                         Command="{Binding CommandDisconnect}"
                         Focusable="False"
                         Margin="0,10,0,5" />
+
+                <!-- Autosave description -->
+                <ContentControl
+                    Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding IsEditor, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                        <ContentControl Style="{StaticResource ControlInfoPointStyle}"
+                                        VerticalAlignment="Top"
+                                        Margin="0,2,4,0" />
+                        <TextBlock Text="{x:Static loc:CoreStrings.LocalServerAutosaveDescription}"
+                                   Foreground="{StaticResource BrushColorAltLabelForeground}"
+                                   TextWrapping="Wrap"
+                                   MaxWidth="190" />
+                    </StackPanel>
+                </ContentControl>
             </StackPanel>
 
-            <StackPanel Visibility="{Binding VisibilityNotConnected}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="15">
+            <StackPanel
+                Visibility="{Binding IsConnected, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="15">
                 <!-- Text: Not connected. -->
                 <TextBlock Text="{x:Static loc:CoreStrings.MenuCurrentGame_NotConnected}" FontSize="16" />
-            </StackPanel>
-
-            <StackPanel Visibility="{Binding VisibilityEditorMode}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Orientation="Vertical"
-                        Margin="15">
-                <!-- ReSharper disable CanExtractXamlLocalizableStringXaml -->
-                <TextBlock Text="Editor mode"
-                           FontSize="16"
-                           TextWrapping="Wrap"
-                           MaxWidth="250"
-                           TextAlignment="Center"
-                           Margin="0,-5,0,5" />
-                <TextBlock Text="You cannot disconnect from the internal server."
-                           FontSize="12"
-                           TextWrapping="Wrap"
-                           MaxWidth="250"
-                           TextAlignment="Center" />
-                <!-- ReSharper restore CanExtractXamlLocalizableStringXaml -->
             </StackPanel>
         </Grid>
     </ContentControl>

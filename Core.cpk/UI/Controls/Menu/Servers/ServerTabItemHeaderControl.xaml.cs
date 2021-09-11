@@ -6,36 +6,36 @@
 
     public partial class ServerTabItemHeaderControl : BaseUserControl
     {
-        public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register(
+        public static readonly DependencyProperty IconProperty
+            = DependencyProperty.Register(
                 nameof(Icon),
                 typeof(Brush),
                 typeof(ServerTabItemHeaderControl),
                 new PropertyMetadata(Brushes.DarkOrange));
 
-        public static readonly DependencyProperty ServersCountProperty =
-            DependencyProperty.Register(
+        public static readonly DependencyProperty ServersCountProperty
+            = DependencyProperty.Register(
                 nameof(ServersCount),
                 typeof(ushort),
                 typeof(ServerTabItemHeaderControl),
                 new PropertyMetadata(defaultValue: (ushort)1000));
 
-        public static readonly DependencyProperty IconImageSourceProperty =
-            DependencyProperty.Register(
+        public static readonly DependencyProperty IconImageSourceProperty
+            = DependencyProperty.Register(
                 nameof(IconImageSource),
                 typeof(ImageSource),
                 typeof(ServerTabItemHeaderControl),
                 new PropertyMetadata(default(ImageSource), IconBrushImageSourceChangedHandler));
 
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register(
+        public static readonly DependencyProperty TextProperty
+            = DependencyProperty.Register(
                 nameof(Text),
                 typeof(string),
                 typeof(ServerTabItemHeaderControl),
                 new PropertyMetadata("Text"));
 
-        public static readonly DependencyProperty VisibilityDetailsProperty =
-            DependencyProperty.Register(
+        public static readonly DependencyProperty VisibilityDetailsProperty
+            = DependencyProperty.Register(
                 nameof(VisibilityDetails),
                 typeof(Visibility),
                 typeof(ServerTabItemHeaderControl),

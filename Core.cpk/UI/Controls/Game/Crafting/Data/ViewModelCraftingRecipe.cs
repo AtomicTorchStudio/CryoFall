@@ -21,7 +21,7 @@
             get
             {
                 var character = ClientCurrentCharacterHelper.Character;
-                var duration = this.Recipe.SharedGetDurationForPlayer(character, cutForCreativeMode: false);
+                var duration = this.Recipe.SharedGetDurationForPlayer(character, shortenForCreativeMode: false);
 
                 if (InteractionCheckerSystem.SharedGetCurrentInteraction(character)?.ProtoWorldObject is
                         IProtoObjectManufacturer protoObjectManufacturer)

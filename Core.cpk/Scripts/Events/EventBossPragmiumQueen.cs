@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -27,7 +27,6 @@
                    ? TimeSpan.FromMinutes(20)
                    : TimeSpan.Zero;
 
-        [NotLocalizable]
         public override string Name => "Pragmium Queen";
 
         protected override double DelayHoursSinceWipe
@@ -35,7 +34,7 @@
             get
             {
                 var delayHours = 48.0; // 48 hours by default
-                delayHours *= EventConstants.ServerEventDelayMultiplier;
+                delayHours *= RateWorldEventInitialDelayMultiplier.SharedValue;
 
                 if (PveSystem.ServerIsPvE)
                 {
@@ -46,8 +45,9 @@
                 // T4 specialized tech (containing the necessary weapons) becomes available
                 delayHours = Math.Max(
                     delayHours,
-                    // convert seconds to hours
-                    TechConstants.PvpTechTimeGameTier4Specialized / 3600);
+                    TechConstants.PvPTimeGates
+                                 .Get(TechTier.Tier4, isSpecialized: true)
+                    / 3600);
 
                 return delayHours;
             }
@@ -72,27 +72,8 @@
             Triggers triggers,
             List<IProtoSpawnableObject> spawnPreset)
         {
-            // default interval is configured here (but can be adjusted in the ServerRates.config)
-            double fromHours, toHours;
-            if (SharedLocalServerHelper.IsLocalServer)
-            {
-                fromHours = 3;
-                toHours = 5;
-            }
-            else
-            {
-                fromHours = 5;
-                toHours = 10;
-            }
-
-            triggers
-                // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>()
-                         .Configure(
-                                 this.ServerGetIntervalForThisEvent(defaultInterval:
-                                                                    (from: TimeSpan.FromHours(fromHours),
-                                                                     to: TimeSpan.FromHours(toHours)))
-                             ));
+            triggers.Add(GetTrigger<TriggerTimeInterval>()
+                             .Configure(RateWorldEventIntervalBossPragmiumQueen.SharedValueIntervalHours));
 
             spawnPreset.Add(Api.GetProtoEntity<MobBossPragmiumQueen>());
         }

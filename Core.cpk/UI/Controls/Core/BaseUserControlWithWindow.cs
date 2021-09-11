@@ -32,11 +32,16 @@
 
         protected sealed override void InitControl()
         {
-            var windowHolder = this.FindName<WindowMenuWithInventory>("WindowMenuWithInventory");
-            this.Window = windowHolder?.Window ?? this.GetByName<GameWindow>("GameWindow");
+            this.Window = this.FindName<GameWindow>("GameWindow");
 
-            // TODO: fix possible memory leak
-            this.Window.StateChanged += this.GameWindowStateChangedHandler;
+            if (this.Window is null)
+            {
+                var windowHolder = this.FindName<WindowMenuWithInventory>("WindowMenuWithInventory");
+                this.Window = windowHolder?.Window ?? throw new Exception("GameWindow not found");
+            }
+
+            this.Window.Tag = this;
+            this.Window.StateChanged += GameWindowStateChangedHandler;
 
             this.InitControlWithWindow();
 
@@ -56,8 +61,6 @@
             {
                 Api.Client.UI.LayoutRootChildren.Remove(this);
             }
-
-            //this.EventWindowClosed?.Invoke();
         }
 
         protected virtual void WindowClosing()
@@ -72,26 +75,27 @@
         {
         }
 
-        private void GameWindowStateChangedHandler(GameWindow window)
+        private static void GameWindowStateChangedHandler(GameWindow window)
         {
+            var control = (BaseUserControlWithWindow)window.Tag;
             switch (window.State)
             {
                 case GameWindowState.Opening:
-                    this.WindowOpening();
+                    control.WindowOpening();
                     break;
 
                 case GameWindowState.Opened:
-                    this.WindowOpened();
+                    control.WindowOpened();
                     break;
 
                 case GameWindowState.Closing:
-                    this.WindowClosing();
-                    this.EventWindowClosing?.Invoke();
+                    control.WindowClosing();
+                    control.EventWindowClosing?.Invoke();
                     break;
 
                 case GameWindowState.Closed:
-                    this.WindowClosed();
-                    this.EventWindowClosed?.Invoke();
+                    control.WindowClosed();
+                    control.EventWindowClosed?.Invoke();
                     break;
 
                 default:

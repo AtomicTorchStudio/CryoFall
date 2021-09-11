@@ -75,8 +75,6 @@
 
         protected override void InitControl()
         {
-            base.InitControl();
-
             this.itemSlotControl = (ItemSlotControl)VisualTreeHelper.GetChild(this, 0);
             this.Setup();
         }

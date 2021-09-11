@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Helpers;
-    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.BossLootSystem;
@@ -19,7 +19,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class MobBossSandTyrant
@@ -64,7 +63,7 @@
 
         private const int SpawnMinionsTotalNumberMax = 4;
 
-        private const int SpawnMinionsTotalNumberMin = 1;
+        private const int SpawnMinionsTotalNumberMin = 2;
 
         private const double VictoryLearningPointsBonusPerLootObject = 15; // give bonus LP per loot pile
 
@@ -94,34 +93,7 @@
                 return;
             }
 
-            var key = "BossDifficultySandTyrant";
-            // by default the boss is balanced for 5 players
-            var defaultValue = Api.IsServer && SharedLocalServerHelper.IsLocalServer
-                                   ? 1.0
-                                   : 5.0;
-
-            var description =
-                @"Difficulty of the Sand Tyrant (and the amount of loot/reward).
-                  The number corresponds to the number of players necessary to kill the boss
-                  with a reasonable challenge
-                  (with mechs or without mechs but in T4 armor, machineguns, with Stimpacks).                  
-                  You can change this rate to make it possible to kill the boss
-                  by a single player (set it to 1, or 1.5 for extra challenge and reward)
-                  or any other number of players up to 10.
-                  It also affects the number of loot piles you get when the boss is defeated.
-                  The value range is from 1 to 10 (inclusive).";
-
-            var requiredPlayersNumber = ServerRates.Get(key, defaultValue: defaultValue, description);
-            {
-                var clampedValue = MathHelper.Clamp(requiredPlayersNumber, 1, 10);
-                if (clampedValue != requiredPlayersNumber)
-                {
-                    clampedValue = defaultValue;
-                    ServerRates.Reset(key, defaultValue, description);
-                }
-
-                requiredPlayersNumber = clampedValue;
-            }
+            var requiredPlayersNumber = RateBossDifficultySandTyrant.SharedValue;
 
             // coef range from 0.2 to 2.0
             ServerBossDifficultyCoef = requiredPlayersNumber / 5.0;
@@ -290,14 +262,20 @@
 
                 if (weaponCache.ProtoExplosive is not null)
                 {
-                    // the boss is massive so it will take increased damage from explosives/grenades
-                    if (weaponCache.ProtoExplosive is IAmmoCannonShell)
+                    switch (weaponCache.ProtoExplosive)
                     {
-                        damagePostMultiplier *= 1.333; // the artillery shells are too OP already
-                    }
-                    else
-                    {
-                        damagePostMultiplier *= 2;
+                        case ObjectMobSandTyrantMissileExplosion:
+                            damageApplied = 0; // cannot damage self with a missile explosion
+                            obstacleBlockDamageCoef = 0;
+                            return false;
+
+                        case IAmmoCannonShell:
+                            damagePostMultiplier *= 1.333; // the artillery shells are too OP already
+                            break;
+
+                        default:
+                            damagePostMultiplier *= 2;
+                            break;
                     }
                 }
             }
@@ -322,12 +300,8 @@
                 privateState.DamageTracker.RegisterDamage(byCharacter,
                                                           targetCharacter,
                                                           originalDamageApplied);
-
-                if (originalDamageApplied > 3)
-                {
-                    // record the last time a significant damage is dealt
-                    privateState.LastDamageTime = Server.Game.FrameTime;
-                }
+                // record the last time the damage is dealt
+                privateState.LastDamageTime = Server.Game.FrameTime;
             }
 
             return result;
@@ -342,7 +316,7 @@
                    .AddValue(this, StatName.DefenseExplosion, 0.5)
                    .AddValue(this, StatName.DefenseHeat,      0.75)
                    .AddValue(this, StatName.DefenseCold,      0.7)
-                   .AddValue(this, StatName.DefenseChemical,  1.0)
+                   .AddValue(this, StatName.DefenseChemical,  0.7)
                    .AddValue(this, StatName.DefensePsi,       1.0)
                    .AddPercent(this, StatName.DazedIncreaseRateMultiplier, -100);
         }

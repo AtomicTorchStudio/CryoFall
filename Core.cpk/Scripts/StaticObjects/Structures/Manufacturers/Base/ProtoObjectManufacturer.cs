@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
@@ -421,7 +422,7 @@
                     privateState.FuelBurningByproductsQueue,
                     this.ManufacturingConfig,
                     deltaTime: data.DeltaTime,
-                    byproductsQueueRate: StructureConstants.ManufacturingSpeedMultiplier,
+                    byproductsQueueRate: RateManufacturingSpeedMultiplier.SharedValue,
                     isNeedFuelNow: hasActiveRecipe
                                    && !manufacturingState.CraftingQueue.IsContainerOutputFull);
 
@@ -438,7 +439,7 @@
                 ManufacturingMechanic.UpdateCraftingQueueOnly(
                     manufacturingState,
                     deltaTime: data.DeltaTime
-                               * StructureConstants.ManufacturingSpeedMultiplier
+                               * RateManufacturingSpeedMultiplier.SharedValue
                                * this.ManufacturingSpeedMultiplier);
 
                 // it's important to synchronize this property here

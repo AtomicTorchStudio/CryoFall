@@ -7,7 +7,7 @@
         public override string Description =>
             "Advanced version of the industrial drone offers increased mining speed and range, as well as other improvements.";
 
-        public override uint DurabilityMax => 8000;
+        public override uint DurabilityMax => 10000;
 
         public override string Name => "Advanced industrial drone";
 

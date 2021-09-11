@@ -20,7 +20,7 @@
 
             inputItems.Add<ItemIngotCopper>(count: 10);
             inputItems.Add<ItemComponentsElectronic>(count: 5);
-            inputItems.Add<ItemOrePragmium>(count: 5);
+            inputItems.Add<ItemOrePragmium>(count: 10);
 
             outputItems.Add<ItemImpulseEngine>(count: 1);
         }

@@ -81,7 +81,7 @@
             }
 
             var weaponState = this.characterPrivateState.WeaponState;
-            if (!(weaponState.ProtoWeapon is IProtoItemWeaponRanged))
+            if (weaponState.ProtoWeapon is not IProtoItemWeaponRanged)
             {
                 this.Visibility = Visibility.Collapsed;
                 return;

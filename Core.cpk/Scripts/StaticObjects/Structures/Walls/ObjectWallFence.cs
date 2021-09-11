@@ -37,12 +37,11 @@
         {
             category = GetCategory<StructureCategoryBuildings>();
 
-            build.StagesCount = 5;
+            build.StagesCount = 3;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
-            repair.StagesCount = 5;
+            repair.StagesCount = 3;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
         }

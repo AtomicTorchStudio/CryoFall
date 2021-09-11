@@ -93,12 +93,16 @@
             var dropItemContext = new DropItemContext(character, worldObject);
 
             CreateItemResult dropItemResult;
+            var rate = this.ServerGetDropListRate();
             if (this.IsAutoTakeAll)
             {
                 // try to simply pickup the content
-                dropItemResult = lootDroplist.TryDropToCharacter(character,
-                                                                 dropItemContext,
-                                                                 sendNoFreeSpaceNotification: false);
+                dropItemResult = lootDroplist.TryDropToCharacter(
+                    character,
+                    dropItemContext,
+                    sendNoFreeSpaceNotification: false,
+                    probabilityMultiplier: rate);
+
                 if (dropItemResult.IsEverythingCreated
                     && dropItemResult.TotalCreatedCount > 0)
                 {
@@ -117,7 +121,10 @@
             var itemsContainer = privateState.ItemsContainer;
             do
             {
-                dropItemResult = lootDroplist.TryDropToContainer(itemsContainer, dropItemContext);
+                dropItemResult = lootDroplist.TryDropToContainer(
+                    itemsContainer,
+                    dropItemContext,
+                    probabilityMultiplier: rate);
             }
             // ensure that at least something is spawned...
             // perhaps that's not a good idea, but we have an attempts limit
@@ -237,6 +244,8 @@
         {
             tileRequirements.Add(ConstructionTileRequirements.ValidatorNoPlatforms);
         }
+
+        protected abstract double ServerGetDropListRate();
 
         protected virtual IReadOnlyDropItemsList ServerGetLootDroplist(IStaticWorldObject crateObject)
         {

@@ -13,8 +13,8 @@
         {
             this.scrollViewer = scrollViewer;
             this.scrollViewer.ScrollChanged += this.ScrollChangedHandler;
-            this.CommandScrollUp = new ActionCommand(this.ExecuteCommandScrollLeft);
-            this.CommandScrollDown = new ActionCommand(this.ExecuteCommandScrollRight);
+            this.CommandScrollUp = new ActionCommand(this.ExecuteCommandScrollUp);
+            this.CommandScrollDown = new ActionCommand(this.ExecuteCommandScrollDown);
             this.Refresh();
         }
 
@@ -28,18 +28,18 @@
 
         protected override void DisposeViewModel()
         {
-            base.DisposeViewModel();
             this.scrollViewer.ScrollChanged -= this.ScrollChangedHandler;
+            base.DisposeViewModel();
         }
 
-        private void ExecuteCommandScrollLeft()
-        {
-            this.scrollViewer.LineUp();
-        }
-
-        private void ExecuteCommandScrollRight()
+        private void ExecuteCommandScrollDown()
         {
             this.scrollViewer.LineDown();
+        }
+
+        private void ExecuteCommandScrollUp()
+        {
+            this.scrollViewer.LineUp();
         }
 
         private void Refresh()
@@ -53,7 +53,9 @@
 
             var verticalOffset = this.scrollViewer.VerticalOffset;
 
-            this.VisibilityScrollUp = verticalOffset > 0 ? Visibility.Visible : Visibility.Collapsed;
+            this.VisibilityScrollUp = verticalOffset > 0
+                                          ? Visibility.Visible
+                                          : Visibility.Collapsed;
 
             this.VisibilityScrollDown = scrollableHeight > 0
                                         && verticalOffset < scrollableHeight

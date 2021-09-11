@@ -179,7 +179,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemRapierLaserYellow>();
                     CreateItem<ItemPowerBankLarge>();
                     CreateItem<ItemBatteryDisposable>();
-                    return "Added 12ga arms and ammo.";
+                    return "Added melee weapons and some batteries for laser rapier.";
 
                 case KitCategory.iMedicine:
                     CreateItem<ItemAntiNausea>();

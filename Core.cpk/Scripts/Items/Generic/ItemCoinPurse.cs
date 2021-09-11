@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -35,10 +36,13 @@
 
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
-            var createItemResult = this.droplist.TryDropToCharacterOrGround(character,
-                                                                            character.TilePosition,
-                                                                            new DropItemContext(character),
-                                                                            out _);
+            var createItemResult = this.droplist.TryDropToCharacterOrGround(
+                character,
+                character.TilePosition,
+                new DropItemContext(character),
+                out _,
+                probabilityMultiplier: RateResourcesGatherBasic.SharedValue);
+
             if (!createItemResult.IsEverythingCreated)
             {
                 createItemResult.Rollback();

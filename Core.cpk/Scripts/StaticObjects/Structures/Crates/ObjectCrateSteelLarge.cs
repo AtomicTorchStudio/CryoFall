@@ -50,9 +50,9 @@
         {
             category = GetCategory<StructureCategoryStorage>();
 
-            build.StagesCount = 5;
+            build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 15);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

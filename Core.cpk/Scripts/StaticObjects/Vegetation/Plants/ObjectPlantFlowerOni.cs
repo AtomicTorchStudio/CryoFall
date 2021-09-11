@@ -10,7 +10,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ObjectPlantFlowerOni : ProtoObjectPlant
+    public class ObjectPlantFlowerOni : ProtoObjectPlantFlower
     {
         public override string Name => "Oniflower";
 
@@ -24,19 +24,21 @@
 
         protected override TimeSpan TimeToGiveHarvest { get; } = TimeSpan.FromHours(1);
 
-        protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(1);
-
         protected override TimeSpan TimeToHarvestSpoil => TimeSpan.FromDays(5);
 
+        protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(1);
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.2);
+        {
+            return (0.5, 0.2);
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
 
             var protoFarm = CommonGetFarmObjectProto(data.GameObject.OccupiedTile);
-            if (!(protoFarm is ObjectPlantPot))
+            if (protoFarm is not ObjectPlantPot)
             {
                 data.ClientState.Renderer.DrawOrderOffsetY += 0.5;
             }

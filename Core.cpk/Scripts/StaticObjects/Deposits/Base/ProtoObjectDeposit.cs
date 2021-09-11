@@ -93,7 +93,7 @@
                 using var tempScopedBy = Api.Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(targetObject, tempScopedBy);
                 this.CallClient(tempScopedBy.AsList(),
-                                _ => _.ClientRemote_NoDamageToDepositUnderCooldown(weaponCache.ProtoExplosive));
+                                _ => _.ClientRemote_NoDamageToDepositUnderClaimDelay(weaponCache.ProtoExplosive));
             }
 
             // only damage from explosives is accepted
@@ -261,7 +261,7 @@
             return true;
         }
 
-        private void ClientRemote_NoDamageToDepositUnderCooldown(IProtoGameObject protoObjectExplosive)
+        private void ClientRemote_NoDamageToDepositUnderClaimDelay(IProtoGameObject protoObjectExplosive)
         {
             var icon = protoObjectExplosive switch
             {

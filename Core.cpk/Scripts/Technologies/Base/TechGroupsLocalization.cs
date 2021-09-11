@@ -53,6 +53,11 @@
         public const string EnergyWeaponsName =
             "Energy weapons";
 
+        public const string EscapeDescription =
+            "Technologies necessary to finally escape this world!";
+        public const string EscapeName =
+            "Escape!";
+
         public const string ExoticWeaponsDescription =
             "Experimental weapons that are rarely used in conventional combat but could prove useful in extreme situations.";
         public const string ExoticWeaponsName =

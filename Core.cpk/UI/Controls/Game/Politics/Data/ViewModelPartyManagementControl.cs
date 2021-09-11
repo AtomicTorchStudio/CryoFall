@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -25,11 +26,11 @@
 
             PartySystem.ClientCurrentPartyChanged += this.PartyChangedHandler;
             PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.ClientCurrentPartyMemberAddedOrRemovedHandler;
-            PartyConstants.ClientPartyMembersMaxChanged += () =>
-                                                           {
-                                                               this.NotifyPropertyChanged(nameof(this.MaxPartySize));
-                                                               this.Refresh();
-                                                           };
+            RatePartyMembersMax.ClientValueChanged += () =>
+                                                      {
+                                                          this.NotifyPropertyChanged(nameof(this.MaxPartySize));
+                                                          this.Refresh();
+                                                      };
             this.PartyChangedHandler();
         }
 
@@ -54,11 +55,11 @@
 
         public string InviteeName { get; set; }
 
-        public bool IsFeatureAvailable => PartyConstants.SharedPartyMembersMax > 1;
+        public bool IsFeatureAvailable => PartyConstants.PartyMembersMax > 1;
 
         public bool IsPartyLeader { get; private set; }
 
-        public int MaxPartySize => PartyConstants.SharedPartyMembersMax;
+        public int MaxPartySize => PartyConstants.PartyMembersMax;
 
         public IReadOnlyList<ViewModelPartyMember> Members { get; private set; }
 

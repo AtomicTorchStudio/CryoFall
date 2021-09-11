@@ -353,7 +353,7 @@
         private void ServerRemote_EnterVehicle(IDynamicWorldObject vehicle)
         {
             var character = ServerRemoteContext.Character;
-            if (!(vehicle.ProtoGameObject is IProtoVehicle protoVehicle))
+            if (vehicle.ProtoGameObject is not IProtoVehicle protoVehicle)
             {
                 throw new Exception("Not a vehicle");
             }

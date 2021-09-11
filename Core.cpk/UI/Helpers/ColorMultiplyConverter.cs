@@ -9,7 +9,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is Color color))
+            if (value is not Color color)
             {
                 throw new Exception("Not a color");
             }

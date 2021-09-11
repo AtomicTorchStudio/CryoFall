@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -31,7 +31,9 @@
         protected override bool CanFlipSprite => true;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.3);
+        {
+            return (0.5, 0.3);
+        }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -48,6 +50,11 @@
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
         {
             return ObjectsSoundsPresets.ObjectLootPile;
+        }
+
+        protected override double ServerGetDropListRate()
+        {
+            return RateResourcesGatherBasic.SharedValue;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

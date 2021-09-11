@@ -62,7 +62,7 @@
             this.stageStructureAddValue = this.structurePointsMax / this.Config.StagesCount;
         }
 
-        public bool IsRepair => !(this.WorldObject.ProtoGameObject is ProtoObjectConstructionSite);
+        public bool IsRepair => this.WorldObject.ProtoGameObject is not ProtoObjectConstructionSite;
 
         public double StructurePointsMax => this.structurePointsMax;
 

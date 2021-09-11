@@ -20,6 +20,9 @@
 
     public class BootstrapperClientCore : BaseBootstrapper
     {
+        public const string DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message =
+            @"The local game is available even if you stay offline.";
+
         public const string DialogCannotConnectToTheMasterServer_Message =
             @"The client was unable to establish a connection to the Master Server.
               [br]Please ensure you are connected to the Internet and your firewall
@@ -115,14 +118,17 @@
 
         private static void CurrentGameServerConnectionChangedHandler()
         {
+            Logger.Important("Current game connection state changed: " + Client.CurrentGame.ConnectionState);
             RefreshCurrentGameServerConnectionState();
             DisconnectMasterServerIfNotNecessary();
 
             // selects "Current game" tab when connected
-            var state = Client.CurrentGame.ConnectionState;
-            ViewModelMainMenuOverlay.Instance.IsCurrentGameTabSelected
-                = state == ConnectionState.Connecting
-                  || state == ConnectionState.Connected;
+            if (Client.CurrentGame.ConnectionState
+                    is ConnectionState.Connecting
+                    or ConnectionState.Connected)
+            {
+                ViewModelMainMenuOverlay.Instance.IsCurrentGameTabSelected = true;
+            }
         }
 
         private static void GameServerConnectingFailedModsMissingHandler(IReadOnlyList<ServerModInfo> missingMods)
@@ -168,7 +174,7 @@
             Action cancelAction;
             if (Client.MasterServer.CurrentPlayerIsLoggedIn)
             {
-                cancelText = CoreStrings.Button_Cancel;
+                cancelText = CoreStrings.Button_StayOffline;
                 cancelAction = () => { };
             }
             else
@@ -179,7 +185,10 @@
 
             var dialog = DialogWindow.ShowDialog(
                 title: DialogCannotConnectToTheMasterServer_Title,
-                text: DialogCannotConnectToTheMasterServer_Message,
+                text: DialogCannotConnectToTheMasterServer_Message
+                      + "[br]"
+                      + "[br]"
+                      + DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message,
                 textAlignment: TextAlignment.Left,
                 okText: CoreStrings.Button_Retry,
                 cancelText: cancelText,

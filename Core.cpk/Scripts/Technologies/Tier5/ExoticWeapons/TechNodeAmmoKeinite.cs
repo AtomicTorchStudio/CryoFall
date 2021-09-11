@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeAmmoKeinite : TechNode<TechGroupExoticWeapons>
+    public class TechNodeAmmoKeinite : TechNode<TechGroupExoticWeaponsT5>
     {
         protected override void PrepareTechNode(Config config)
         {

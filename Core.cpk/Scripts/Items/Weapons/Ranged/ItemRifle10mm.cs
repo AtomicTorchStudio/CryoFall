@@ -17,11 +17,11 @@
 
         public override double CharacterAnimationAimingRecoilPower => 1.1;
 
-        public override double DamageMultiplier => 1.1;
+        public override double DamageMultiplier => 1.15;
 
         public override string Description => "Light automatic sniper rifle developed for 10mm ammo.";
 
-        public override uint DurabilityMax => 250;
+        public override uint DurabilityMax => 500;
 
         public override double FireInterval => 0.6;
 

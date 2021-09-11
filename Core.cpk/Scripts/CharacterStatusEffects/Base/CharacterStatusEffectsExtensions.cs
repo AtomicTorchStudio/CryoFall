@@ -288,7 +288,7 @@
             var statusEffects = InternalSharedGetStatusEffects(character);
             foreach (var statusEffect in statusEffects)
             {
-                if (!(statusEffect.ProtoGameObject is TProtoStatusEffect)
+                if (statusEffect.ProtoGameObject is not TProtoStatusEffect
                     || Api.IsClient && statusEffect.IsDestroyed)
                 {
                     continue;

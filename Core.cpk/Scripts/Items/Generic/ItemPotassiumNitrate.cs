@@ -6,5 +6,7 @@
             "Potassium nitrate is also known as saltpeter. Used to make gunpowder and in a variety of other recipes.";
 
         public override string Name => "Potassium nitrate";
+
+        public override ushort MaxItemsPerStack => ItemStackSize.Big;
     }
 }

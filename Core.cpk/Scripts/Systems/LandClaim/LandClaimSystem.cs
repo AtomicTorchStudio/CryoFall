@@ -8,8 +8,10 @@
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
+    using AtomicTorch.CBND.CoreMod.Perks.Base;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
@@ -30,6 +32,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data;
@@ -76,9 +79,11 @@
         public const string ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection =
             "Intersecting with another land claim area that is under active shield protection. Disable the shield there first.";
 
-        public const string ErrorCannotBuild_LandClaimAmountLimitExceeded =
-            @"You've used up your allotted number of land claims.
-              [br]You can increase that number by researching new technologies.";
+        public const string ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format =
+            @"You can increase the limit by researching tecnologies for higher tier land claims (up to {0} total).";
+
+        public const string ErrorCannotBuild_LandClaimAmountLimitExceeded_Format =
+            @"You've used up your allotted number of personal land claims ({0}/{1}).";
 
         public const string ErrorCannotBuild_NeedXenogeologyTech =
             "You need to research Xenogeology (Tier 3) to claim the Oil/Li deposits or to place a land claim close to it.";
@@ -592,8 +597,7 @@
                   });
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimAmountLimit
-            = new(ErrorCannotBuild_LandClaimAmountLimitExceeded,
-                  context =>
+            = new(context =>
                   {
                       var forCharacter = context.CharacterBuilder;
                       if (forCharacter is null)
@@ -611,28 +615,60 @@
                           return true;
                       }
 
-                      // calculate max number of land claims
-                      var finalStatsCache = forCharacter.SharedGetFinalStatsCache();
-                      var maxNumber = (int)Math.Round(finalStatsCache[StatName.LandClaimsMaxNumber],
-                                                      MidpointRounding.AwayFromZero);
+                      SharedGetPersonalLandClaimsNumberLimit(forCharacter,
+                                                             out var currentNumber,
+                                                             out var maxNumber);
 
-                      // calculate current number of land claims
-                      var currentNumber = 0;
-                      foreach (var area in sharedLandClaimAreas)
+                      return maxNumber > currentNumber; // ok only in case when the limit is not exceeded
+                  },
+                  getErrorMessage:
+                  _ =>
+                  {
+                      if (IsServer)
                       {
-                          if (IsClient && !area.ClientHasPrivateState)
-                          {
-                              continue;
-                          }
+                          return string.Empty;
+                      }
 
-                          var privateState = LandClaimArea.GetPrivateState(area);
-                          if (privateState.LandClaimFounder == forCharacter.Name)
+                      SharedGetPersonalLandClaimsNumberLimit(ClientCurrentCharacterHelper.Character,
+                                                             out var currentNumber,
+                                                             out var maxNumber);
+
+                      var error = string.Format(ErrorCannotBuild_LandClaimAmountLimitExceeded_Format,
+                                                currentNumber,
+                                                maxNumber);
+
+                      // find if player has any unresearched tech node than can raise the number of personal land claims
+                      var unresearchedTechNodes = TechGroup.AvailableTechGroups.SelectMany(t => t.Nodes)
+                                                           .Where(n => n.IsAvailable)
+                                                           .Except(ClientCurrentCharacterHelper.PrivateState
+                                                                       .Technologies.Nodes);
+
+                      var maxPossibleNumber = maxNumber;
+                      var canRaiseLimitNumber = false;
+                      foreach (var node in unresearchedTechNodes)
+                      {
+                          foreach (var effect in node.NodeEffects)
                           {
-                              currentNumber++;
+                              if (effect is TechNodeEffectPerkUnlock
+                              {
+                                  Perk: ProtoPerkIncreaseLandClaimLimit protoPerk
+                              })
+                              {
+                                  canRaiseLimitNumber = true;
+                                  maxPossibleNumber += protoPerk.LimitIncrease;
+                                  break;
+                              }
                           }
                       }
 
-                      return maxNumber > currentNumber; // ok only in case when the limit is not exceeded
+                      if (canRaiseLimitNumber)
+                      {
+                          error += "[br]"
+                                   + string.Format(ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format,
+                                                   maxPossibleNumber);
+                      }
+
+                      return error;
                   });
 
         public static readonly ConstructionTileRequirements.Validator
@@ -728,7 +764,7 @@
         public static readonly Lazy<ushort> MaxLandClaimSizeWithGraceArea
             = new(() => (ushort)(MaxLandClaimSize.Value + MinPaddingSizeOneDirection * 2));
 
-        public static readonly ConstructionTileRequirements.Validator ValidatorCheckLandClaimDepositCooldown
+        public static readonly ConstructionTileRequirements.Validator ValidatorCheckLandClaimDepositClaimDelay
             = new(ErrorCannotBuild_DepositCooldown,
                   context =>
                   {
@@ -887,7 +923,7 @@
                 throw new ArgumentNullException(nameof(area));
             }
 
-            if (!(area.ProtoLogicObject is LandClaimArea))
+            if (area.ProtoLogicObject is not LandClaimArea)
             {
                 throw new Exception($"{area} is not a {nameof(LandClaimArea)}");
             }
@@ -973,7 +1009,7 @@
                 return true;
             }
 
-            var maxSlotsCount = ItemsContainerLandClaimSafeStorage.ServerSafeItemsSlotsCapacity;
+            var maxSlotsCount = RatePvPSafeStorageCapacity.SharedValue;
             if (maxSlotsCount == 0)
             {
                 return true;
@@ -1003,11 +1039,11 @@
             bool isFounderDemoPlayer,
             out double normalDecayDelayDuration)
         {
-            var decayDelayDuration = StructureConstants.StructuresAbandonedDecayDelaySeconds;
-            var decayDelayMultiplier = isFounderDemoPlayer
-                                           ? StructureConstants
-                                               .StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers
-                                           : StructureConstants.StructuresLandClaimDecayDelayDurationMultiplier;
+            var decayDelayDuration = StructureConstants.DecayDelaySeconds;
+            var decayDelayMultiplier
+                = isFounderDemoPlayer
+                      ? RateStructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers.SharedValue
+                      : RateStructuresLandClaimDecayDelayDurationMultiplier.SharedValue;
             decayDelayDuration *= decayDelayMultiplier;
 
             normalDecayDelayDuration = decayDelayDuration;
@@ -1091,8 +1127,8 @@
             ICharacter byCharacter,
             IStaticWorldObject landClaimStructure)
         {
-            if (!(landClaimStructure?.ProtoStaticWorldObject
-                      is IProtoObjectLandClaim))
+            if (landClaimStructure?.ProtoStaticWorldObject
+                    is not IProtoObjectLandClaim)
             {
                 throw new Exception("Not a land claim structure: " + landClaimStructure);
             }
@@ -1128,8 +1164,8 @@
         public static void ServerOnObjectLandClaimDestroyed(
             IStaticWorldObject landClaimStructure)
         {
-            if (!(landClaimStructure?.ProtoStaticWorldObject
-                      is IProtoObjectLandClaim))
+            if (landClaimStructure?.ProtoStaticWorldObject
+                    is not IProtoObjectLandClaim)
             {
                 throw new Exception("Not a land claim structure: " + landClaimStructure);
             }
@@ -1373,11 +1409,10 @@
 
         public static IStaticWorldObject ServerUpgrade(
             IStaticWorldObject oldStructure,
-            IProtoObjectStructure upgradeStructure,
+            IProtoObjectStructure protoStructureUpgrade,
             ICharacter character)
         {
-            if (!(oldStructure?.ProtoStaticWorldObject
-                      is IProtoObjectLandClaim))
+            if (oldStructure?.ProtoStaticWorldObject is not IProtoObjectLandClaim)
             {
                 throw new Exception("Not a land claim structure: " + oldStructure);
             }
@@ -1392,7 +1427,7 @@
             ServerWorld.DestroyObject(oldStructure);
 
             // create new structure
-            var upgradedObject = ServerWorld.CreateStaticWorldObject(upgradeStructure, tilePosition);
+            var upgradedObject = ServerWorld.CreateStaticWorldObject(protoStructureUpgrade, tilePosition);
 
             // get area for the old land claim structure
             var areaPrivateState = LandClaimArea.GetPrivateState(area);
@@ -2506,12 +2541,6 @@
                 return;
             }
 
-            Instance.CallClient(character,
-                                _ => _.ClientRemote_SetSystemConstants(
-                                    LandClaimSystemConstants.SharedLandClaimOwnersMax,
-                                    LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease,
-                                    LandClaimSystemConstants.SharedRaidBlockDurationSeconds));
-
             // add to the character private scope all owned areas
             foreach (var area in SharedGetPlayerOwnedAreas(character))
             {
@@ -2661,6 +2690,33 @@
         {
             // 2 tiles - represents an extra 1 tile padding around every side of the base with all T5 land claims
             return 2 + MaxLandClaimSize.Value * MaxNumberOfLandClaimsInRow;
+        }
+
+        private static void SharedGetPersonalLandClaimsNumberLimit(
+            ICharacter character,
+            out int currentNumber,
+            out int maxNumber)
+        {
+            // calculate max number of land claims
+            var finalStatsCache = character.SharedGetFinalStatsCache();
+            maxNumber = (int)Math.Round(finalStatsCache[StatName.LandClaimsMaxNumber],
+                                        MidpointRounding.AwayFromZero);
+
+            // calculate current number of land claims
+            currentNumber = 0;
+            foreach (var area in sharedLandClaimAreas)
+            {
+                if (IsClient && !area.ClientHasPrivateState)
+                {
+                    continue;
+                }
+
+                var privateState = LandClaimArea.GetPrivateState(area);
+                if (privateState.LandClaimFounder == character.Name)
+                {
+                    currentNumber++;
+                }
+            }
         }
 
         private static NetworkSyncList<ILogicObject> SharedGetPlayerOwnedAreas(ICharacter player)
@@ -2822,16 +2878,6 @@
             ClientLandClaimAreaManager.OnLandOwnerStateChanged(area);
         }
 
-        private void ClientRemote_SetSystemConstants(
-            byte landClaimOwnersMax,
-            ushort landClaimsNumberLimitIncrease,
-            double raidBlockDurationSeconds)
-        {
-            LandClaimSystemConstants.ClientSetSystemConstants(landClaimOwnersMax,
-                                                              landClaimsNumberLimitIncrease,
-                                                              raidBlockDurationSeconds);
-        }
-
         private void ClientRemote_ShowNotificationActionForbiddenUnderRaidblock()
         {
             NotificationSystem.ClientShowNotification(
@@ -2861,7 +2907,7 @@
                 out var normalDecayDelayDuration);
 
             return new LandClaimsGroupDecayInfo(decayDelayDuration,
-                                                decayDuration: StructureConstants.StructuresDecayDurationSeconds,
+                                                decayDuration: StructureConstants.DecayDurationSeconds,
                                                 isFounderDemoPlayer,
                                                 normalDecayDelayDuration);
         }
@@ -2882,7 +2928,7 @@
                 throw new Exception("Cannot change owners of the faction land claim");
             }
 
-            if (newOwners.Count > LandClaimSystemConstants.SharedLandClaimOwnersMax)
+            if (newOwners.Count > RateLandClaimOwnersMax.SharedValue)
             {
                 return WorldObjectOwnersSystem.DialogCannotSetOwners_AccessListSizeLimitExceeded;
             }

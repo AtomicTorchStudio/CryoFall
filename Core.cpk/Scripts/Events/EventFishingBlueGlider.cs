@@ -5,10 +5,10 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Fishing;
     using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -29,10 +29,9 @@
 
         public override TimeSpan EventDuration => TimeSpan.FromMinutes(30);
 
-        [NotLocalizable]
-        public override string Name => "Catch Blue glider fish";
+        public override string Name => "Blue Glider";
 
-        protected override double DelayHoursSinceWipe => 24 * EventConstants.ServerEventDelayMultiplier;
+        protected override double DelayHoursSinceWipe => 24 * RateWorldEventInitialDelayMultiplier.SharedValue;
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -74,16 +73,16 @@
             }
         }
 
-        protected override void ServerOnFishingEventStarted(ILogicObject activeEvent)
+        protected override void ServerOnFishingEventStarted(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
             ServerEventLocationManager.AddUsedLocation(
                 publicState.AreaCirclePosition,
                 publicState.AreaCircleRadius * 1.2,
                 duration: TimeSpan.FromHours(8));
         }
 
-        protected override Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent)
+        protected override Vector2Ushort ServerPickEventPosition(ILogicObject worldEvent)
         {
             var world = Server.World;
             var areaRadius = this.AreaRadius;
@@ -93,7 +92,7 @@
                 world.GetGameObjectsOfProto<ILogicObject, IProtoEvent>(
                     this));
 
-            using var tempAllActiveEvents = Api.Shared.WrapInTempList(
+            using var tempAllWorldEvents = Api.Shared.WrapInTempList(
                 world.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
 
             for (var globalAttempt = 0; globalAttempt < 10; globalAttempt++)
@@ -129,7 +128,7 @@
                         && this.ServerCheckNoEventsNearby(
                             result,
                             areaRadius + areaPaddingMax * (attempts / (double)maxAttempts),
-                            tempAllActiveEvents.AsList()))
+                            tempAllWorldEvents.AsList()))
                     {
                         return result;
                     }
@@ -142,19 +141,8 @@
 
         protected override void ServerPrepareFishingEvent(Triggers triggers)
         {
-            var isPvE = PveSystem.ServerIsPvE;
-            var intervalHours = isPvE
-                                    ? (from: 7.0, to: 9.0)
-                                    : (from: 4.0, to: 6.0);
-
-            triggers
-                // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>()
-                         .Configure(
-                                 this.ServerGetIntervalForThisEvent(
-                                     (from: TimeSpan.FromHours(intervalHours.from),
-                                      to: TimeSpan.FromHours(intervalHours.to)))
-                             ));
+            triggers.Add(GetTrigger<TriggerTimeInterval>()
+                             .Configure(RateWorldEventIntervalFishingBlueGlider.SharedValueIntervalHours));
         }
 
         protected override void ServerWorldChangedHandler()

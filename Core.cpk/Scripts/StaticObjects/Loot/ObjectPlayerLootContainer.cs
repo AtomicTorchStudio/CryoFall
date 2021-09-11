@@ -309,8 +309,8 @@
                                   c.Tile,
                                   t => t.PhysicsBody.IsStatic
                                        // allow destroyed walls physics in the tile
-                                       && !(t.PhysicsBody.AssociatedWorldObject
-                                             ?.ProtoWorldObject is ObjectWallDestroyed)
+                                       && t.PhysicsBody.AssociatedWorldObject
+                                           ?.ProtoWorldObject is not ObjectWallDestroyed
                                        // allow opened doors in the tile
                                        && !(t.PhysicsBody.AssociatedWorldObject
                                              ?.ProtoWorldObject is ProtoObjectDoor
@@ -338,7 +338,7 @@
                     slotsCount: 1);
                 privateState.ItemsContainer = itemsContainer;
             }
-            else if (!(itemsContainer.ProtoItemsContainer is ItemsContainerOutputPublic))
+            else if (itemsContainer.ProtoItemsContainer is not ItemsContainerOutputPublic)
             {
                 ServerItemsService.SetContainerType<ItemsContainerOutputPublic>(itemsContainer);
             }

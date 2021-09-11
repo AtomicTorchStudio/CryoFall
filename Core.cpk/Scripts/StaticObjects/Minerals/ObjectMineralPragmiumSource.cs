@@ -158,7 +158,7 @@
             var hasSource = false;
             foreach (var worldObject in objectsInScope.AsList())
             {
-                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumSource))
+                if (worldObject.ProtoGameObject is not ObjectMineralPragmiumSource)
                 {
                     continue;
                 }
@@ -177,7 +177,7 @@
 
             foreach (var worldObject in objectsInScope.AsList())
             {
-                if (!(worldObject.ProtoGameObject is ObjectMineralPragmiumNode))
+                if (worldObject.ProtoGameObject is not ObjectMineralPragmiumNode)
                 {
                     continue;
                 }
@@ -257,7 +257,7 @@
             }
 
             if (weaponCache.ProtoWeapon is not null
-                && !(weaponCache.ProtoWeapon is IProtoItemWeaponMelee))
+                    and not IProtoItemWeaponMelee)
             {
                 // hit but not damaged - only melee weapons (including pickaxes can damage this)
                 obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
@@ -596,7 +596,7 @@
             {
                 foreach (var otherObject in neighborTile.StaticObjects)
                 {
-                    if (!(otherObject.ProtoStaticWorldObject is ObjectMineralPragmiumNode))
+                    if (otherObject.ProtoStaticWorldObject is not ObjectMineralPragmiumNode)
                     {
                         continue;
                     }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
@@ -14,8 +15,6 @@
 
     public class ViewModelMenuCurrentGame : BaseViewModel
     {
-        public const bool CurrentGameInfoEnabledInEditor = false;
-
         private readonly ICurrentGameService game = Client.CurrentGame;
 
         private ConnectionState? connectionState;
@@ -37,16 +36,6 @@
 
             ServerOperatorSystem.ClientIsOperatorChanged += this.IsServerOperatorChangedHandler;
 
-            if (Api.IsEditor
-                && !CurrentGameInfoEnabledInEditor)
-            {
-                this.VisibilityConnected = this.VisibilityNotConnected = Visibility.Collapsed;
-                this.VisibilityEditorMode = Visibility.Visible;
-                return;
-            }
-
-            this.VisibilityEditorMode = Visibility.Collapsed;
-
             this.game.PingAverageChanged += this.PingAverageChangedHandler;
             this.game.PingGameChanged += this.PingGameChangedHandler;
             this.game.ConnectionStateChanged += this.ConnectionStateChangedHandler;
@@ -60,6 +49,13 @@
 
         public static ViewModelMenuCurrentGame Instance { get; private set; }
 
+        public bool CanEditServerRates
+            => this.IsServerOperator
+               || this.IsLocalServer;
+
+        public BaseCommand CommandBrowseServerRates
+            => new ActionCommand(this.ExecuteCommandBrowseServerRates);
+
         public BaseCommand CommandCopyPublicGuidToClipboard
             => new ActionCommand(() => Client.Core.CopyToClipboard(this.ServerAddress.PublicGuid.ToString()));
 
@@ -71,6 +67,9 @@
 
         public BaseCommand CommandEditScheduledWipeDate
             => new ActionCommand(WelcomeMessageSystem.ClientEditScheduledWipeDate);
+
+        public BaseCommand CommandEditServerRates
+            => new ActionCommand(this.ExecuteCommandEditServerRates);
 
         public BaseCommand CommandEditWelcomeMessage
             => new ActionCommand(WelcomeMessageSystem.ClientEditWelcomeMessage);
@@ -91,10 +90,8 @@
                 this.connectionState = value;
                 this.ConnectionStateText = value.ToString();
 
-                var isConnected = value == ConnectionState.Connected
-                                  || value == ConnectionState.Connecting;
-                this.VisibilityConnected = isConnected ? Visibility.Visible : Visibility.Collapsed;
-                this.VisibilityNotConnected = !isConnected ? Visibility.Visible : Visibility.Collapsed;
+                this.IsConnected = value is ConnectionState.Connected
+                                       or ConnectionState.Connecting;
             }
         }
 
@@ -119,6 +116,12 @@
             }
         }
 
+        public bool IsConnected { get; private set; }
+
+        public bool IsEditor => Api.IsEditor;
+
+        public bool IsLocalServer { get; private set; }
+
         public bool IsServerOperator => ServerOperatorSystem.ClientIsOperator();
 
         public ushort PingAverageMilliseconds
@@ -141,12 +144,6 @@
 
         public string ServerName { get; private set; } = "Server name text";
 
-        public Visibility VisibilityConnected { get; private set; }
-
-        public Visibility VisibilityEditorMode { get; private set; }
-
-        public Visibility VisibilityNotConnected { get; private set; }
-
         public DateTime? WipedDate
         {
             get => this.wipedDate;
@@ -165,7 +162,9 @@
         }
 
         public string WipedDateText
-            => ViewModelServerInfo.FormatWipedDate(this.wipedDate);
+            => this.ServerAddress.IsLocalServer
+                   ? string.Empty
+                   : ViewModelServerInfo.FormatWipedDate(this.wipedDate);
 
         public async void ReloadIcon()
         {
@@ -218,14 +217,38 @@
             this.UpdateConnectionState();
         }
 
+        private void ExecuteCommandBrowseServerRates()
+        {
+            var dialogWindow = DialogWindow.ShowDialog(
+                CoreStrings.MenuCurrentGame_CurrentServerRates,
+                new ScrollViewer()
+                {
+                    MaxHeight = 380,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    Content = new CurrentServerRatesBrowserControl()
+                },
+                closeByEscapeKey: false);
+
+            dialogWindow.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            dialogWindow.GameWindow.FocusOnControl = null;
+            dialogWindow.GameWindow.Width = 530;
+            dialogWindow.GameWindow.UpdateLayout();
+        }
+
         private void ExecuteCommandDisconnect()
         {
             this.game.Disconnect();
         }
 
+        private void ExecuteCommandEditServerRates()
+        {
+            ClientCurrentGameServerRatesEditorHelper.OpenEditorWindow();
+        }
+
         private void IsServerOperatorChangedHandler()
         {
             this.NotifyPropertyChanged(nameof(this.IsServerOperator));
+            this.NotifyPropertyChanged(nameof(this.CanEditServerRates));
         }
 
         private void PingAverageChangedHandler()
@@ -261,6 +284,7 @@
         private void UpdateConnectionState()
         {
             this.ConnectionState = this.game.ConnectionState;
+            this.NotifyPropertyChanged(nameof(this.CanEditServerRates));
         }
 
         private void UpdateServerInfo()
@@ -273,8 +297,21 @@
                 return;
             }
 
-            this.ServerName = serverInfo.ServerName;
             this.ServerAddress = serverInfo.ServerAddress;
+            this.IsLocalServer = this.ServerAddress.IsLocalServer;
+
+            if (this.IsLocalServer)
+            {
+                this.ServerName = string.Format(CoreStrings.LocalServerSaveName_Format,
+                                                Client.LocalServer.GetSaveName(this.ServerAddress.LocalServerSlotId)
+                                                ?? $"Slot #{this.ServerAddress.LocalServerSlotId}");
+                this.ServerDescription = string.Empty;
+                this.Icon = ViewModelServerInfo.LocalServerIconImageBrush;
+                this.WipedDate = null;
+                return;
+            }
+
+            this.ServerName = serverInfo.ServerName;
             this.ServerDescription = serverInfo.Description;
             this.IconHash = serverInfo.IconHash;
             this.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();

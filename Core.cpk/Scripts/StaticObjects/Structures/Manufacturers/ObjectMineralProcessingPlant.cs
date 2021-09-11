@@ -84,8 +84,8 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
-            build.AddStageRequiredItem<ItemWire>(count: 4);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            build.AddStageRequiredItem<ItemWire>(count: 3);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
 
             repair.StagesCount = 10;

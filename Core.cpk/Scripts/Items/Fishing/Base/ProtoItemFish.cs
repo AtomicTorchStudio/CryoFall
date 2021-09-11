@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Fishing.Base
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -72,8 +73,11 @@
             var character = ServerRemoteContext.Character;
             this.ServerValidateItemForRemoteCall(item, character);
 
-            var createItemResult = this.DropItemsList.TryDropToCharacter(character,
-                                                                         new DropItemContext(character));
+            var createItemResult = this.DropItemsList.TryDropToCharacter(
+                character,
+                new DropItemContext(character),
+                probabilityMultiplier: RateResourcesGatherBasic.SharedValue);
+
             if (!createItemResult.IsEverythingCreated)
             {
                 createItemResult.Rollback();

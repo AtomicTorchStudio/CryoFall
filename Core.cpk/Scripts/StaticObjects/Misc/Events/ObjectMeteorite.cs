@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
@@ -11,12 +12,17 @@
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectMeteorite : ProtoObjectMineralMeteorite
     {
+        private const int WorldOffsetY = 2;
+
         public override string Name => "Meteorite";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
+
+        public override double ObstacleBlockDamageCoef => 0.5;
 
         public override double ServerCooldownDuration
             => PveSystem.ServerIsPvE
@@ -30,15 +36,24 @@
         // assume all the meteorites fall with the same angle so they have similar appearance
         protected override bool CanFlipSprite => false;
 
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+        {
+            return base.SharedGetObjectCenterWorldOffset(worldObject) + (0, WorldOffsetY);
+        }
+
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.PositionOffset = (211 / 256.0, 130 / 256.0);
+            renderer.PositionOffset = (211 / 256.0, WorldOffsetY + 130 / 256.0);
+            renderer.DrawOrderOffsetY += WorldOffsetY;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
+            // extra space below is used to ensure that the object will be not obscured by trees
             layout.Setup("###",
+                         "###",
+                         "###",
                          "###");
         }
 
@@ -76,6 +91,11 @@
                    && ServerTechTimeGateHelper.IsAvailableT5Specialized(context);
         }
 
+        protected override double ServerGetDropListProbabilityMultiplier(IStaticWorldObject mineralObject)
+        {
+            return RateResourcesGatherMeteorites.SharedValue;
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
@@ -84,19 +104,21 @@
                 && !data.GameObject.OccupiedTile.StaticObjects
                         .Any(o => o.ProtoGameObject is ObjectCrater))
             {
-                Server.World.CreateStaticWorldObject<ObjectCrater>(data.GameObject.TilePosition);
+                Server.World.CreateStaticWorldObject<ObjectCrater>(
+                    (data.GameObject.TilePosition + (0, WorldOffsetY)).ToVector2Ushort());
             }
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            var y = WorldOffsetY;
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.5),    offset: (1.0, 0.65))
-                .AddShapeRectangle(size: (0.9, 0.8),  offset: (1.05, 0.6), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 0.15), offset: (1.1, 1.35), group: CollisionGroups.HitboxRanged)
-                .AddShapeLineSegment(point1: (1.5, 0.7), point2: (1.5, 1.35), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1, 0.5),    offset: (1.0, y + 0.65))
+                .AddShapeRectangle(size: (0.9, 0.8),  offset: (1.05, y + 0.6), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 0.15), offset: (1.1, y + 1.35), group: CollisionGroups.HitboxRanged)
+                .AddShapeLineSegment(point1: (1.5, 0.7), point2: (1.5, y + 1.35), group: CollisionGroups.HitboxRanged)
                 // click area is necessary to display the message on mouse hover
-                .AddShapeRectangle(size: (0.9, 0.8), offset: (1.05, 0.6), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.9, 0.8), offset: (1.05, y + 0.6), group: CollisionGroups.ClickArea);
         }
     }
 }

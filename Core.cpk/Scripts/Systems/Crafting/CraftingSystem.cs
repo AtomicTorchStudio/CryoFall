@@ -4,14 +4,11 @@
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -24,25 +21,6 @@
         public const string NotificationCraftingQueueFull_Message = "The crafting queue is full.";
 
         public const string NotificationCraftingQueueFull_Title = "Cannot add new recipe";
-
-        public static readonly double ServerCraftingSpeedMultiplier;
-
-        // actual value is received from the server by bootstrapper
-        public static double ClientCraftingSpeedMultiplier = 1.0;
-
-        static CraftingSystem()
-        {
-            ServerCraftingSpeedMultiplier = ServerRates.Get(
-                "CraftingSpeedMultiplier",
-                defaultValue: IsServer && SharedLocalServerHelper.IsLocalServer
-                                  ? 2.0
-                                  : 1.0,
-                @"This rate determines the crafting speed of recipes
-                  started from crafting menu or from any workbench.
-                  Does NOT apply to manufacturing structures (such as furnace) - edit ManufacturingSpeedMultiplier for these.");
-        }
-
-        public static event Action ClientCraftingSpeedMultiplierChanged;
 
         public static ushort ClientCurrentMaxCraftingQueueEntriesCount
             => SharedGetMaxCraftingQueueEntriesCount(Client.Characters.CurrentPlayerCharacter);
@@ -57,18 +35,6 @@
         public static void ClientMakeItemFirstInQueue(CraftingQueueItem craftingQueueItem)
         {
             Instance.CallServer(_ => _.ServerRemote_MakeFirstInQueue(craftingQueueItem.LocalId));
-        }
-
-        public static void ClientSetLearningPointsGainMultiplier(double rate)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (ClientCraftingSpeedMultiplier == rate)
-            {
-                return;
-            }
-
-            ClientCraftingSpeedMultiplier = rate;
-            Api.SafeInvoke(ClientCraftingSpeedMultiplierChanged);
         }
 
         public static async Task ClientStartCrafting(Recipe recipe, ushort countToCraft)
@@ -295,42 +261,6 @@
             }
 
             Logger.Warning("Cannot find crafting queue entry with localId=" + localId);
-        }
-
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        private double ServerRemote_RequestLearningPointsGainMultiplierRate()
-        {
-            return ServerCraftingSpeedMultiplier;
-        }
-
-        // This bootstrapper requests CraftingSpeedMultiplier rate value from server.
-        private class Bootstrapper : BaseBootstrapper
-        {
-            public override void ClientInitialize()
-            {
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-                Refresh();
-
-                async void Refresh()
-                {
-                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
-                    {
-                        return;
-                    }
-
-                    var rate = await Instance.CallServer(
-                                   _ => _.ServerRemote_RequestLearningPointsGainMultiplierRate());
-
-                    // ReSharper disable once CompareOfFloatsByEqualityOperator
-                    if (ClientCraftingSpeedMultiplier == rate)
-                    {
-                        return;
-                    }
-
-                    ClientCraftingSpeedMultiplier = rate;
-                    Api.SafeInvoke(ClientCraftingSpeedMultiplierChanged);
-                }
-            }
         }
     }
 }

@@ -47,18 +47,15 @@
             if (!isFiring)
             {
                 weaponState.CustomTargetPosition = null;
-                return;
             }
-
-            var targetPosition = WeaponGrenadeLauncherHelper.ClientGetCustomTargetPosition();
-            weaponState.CustomTargetPosition = targetPosition;
         }
 
         public override bool SharedOnFire(ICharacter character, WeaponState weaponState)
         {
             if (IsClient)
             {
-                var targetPosition = weaponState.CustomTargetPosition.Value;
+                var targetPosition = WeaponGrenadeLauncherHelper.ClientGetCustomTargetPosition();
+                weaponState.CustomTargetPosition = targetPosition;
                 this.CallServer(
                     _ => _.ServerRemote_ShootOnce(targetPosition));
             }
@@ -73,7 +70,7 @@
             // preload all the explosion spritesheets
             foreach (var ammoProto in this.CompatibleAmmoProtos)
             {
-                if (!(ammoProto is IAmmoGrenade protoGrenade))
+                if (ammoProto is not IAmmoGrenade protoGrenade)
                 {
                     continue;
                 }
@@ -95,7 +92,7 @@
         protected abstract void PrepareProtoGrenadeLauncher(
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos);
 
-        protected sealed override void PrepareProtoWeaponRanged(
+        protected override void PrepareProtoWeaponRanged(
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,
             ref DamageDescription overrideDamageDescription)
         {

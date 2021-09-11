@@ -55,166 +55,270 @@
     </tinkerTable:WindowTinkerTableBase.Resources>
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-        <Grid HorizontalAlignment="Center"
-              VerticalAlignment="Center"
-              Margin="0,15,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <TabControl Margin="10,5"
+                    Style="{StaticResource TabControlCompactStyle}">
+            <TabItem Header="{x:Static loc:CoreStrings.WindowTinkerTable_TabRepair}"
+                     IsSelected="{Binding  IsActive}"
+                     DataContext="{Binding ViewModelWindowTinkerTableTabRepair}">
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                <controls:ItemSlotControlForBinding Grid.Column="0"
+                        <Grid Grid.Column="0">
+                            <Rectangle Fill="{Binding SelectedProtoItemIcon}"
+                                       Margin="0,-1,0,0"
+                                       Opacity="0.75"
+                                       Width="{StaticResource IconItemSize}"
+                                       Height="{StaticResource IconItemSize}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <controls:ItemSlotControlForBinding Container="{Binding ContainerInput}"
+                                                                SlotId="0"
+                                                                IsBackgroundEnabled="True" />
+                        </Grid>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                                   Style="{StaticResource TextBlockCaptionStyle}" />
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding PercentInput1Text}"
+                                   Style="{StaticResource TextBlockDurabilityPercentStyle}" />
+
+                        <Control Grid.Column="1"
+                                 Style="{StaticResource ControlPlusStyle}" />
+
+                        <Grid Grid.Column="2">
+                            <Rectangle Fill="{Binding SelectedProtoItemIcon}"
+                                       Margin="0,-1,0,0"
+                                       Opacity="0.75"
+                                       Width="{StaticResource IconItemSize}"
+                                       Height="{StaticResource IconItemSize}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <controls:ItemSlotControlForBinding Container="{Binding ContainerInput}"
+                                                                SlotId="1"
+                                                                IsBackgroundEnabled="True" />
+                        </Grid>
+
+                        <TextBlock Grid.Column="2"
+                                   Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                                   Style="{StaticResource TextBlockCaptionStyle}" />
+
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding PercentInput2Text}"
+                                   Style="{StaticResource TextBlockDurabilityPercentStyle}" />
+
+
+                        <Control Grid.Column="3"
+                                 Style="{StaticResource ControlPlusStyle}" />
+
+
+                        <Rectangle Grid.Column="4"
+                                   Width="52"
+                                   Height="52">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{StaticResource ColorAlt1}"
+                                                 Opacity="0.3" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <Rectangle Grid.Column="4"
+                                   Width="52"
+                                   Height="52"
+                                   Fill="{Binding SkillIcon}">
+                            <base:ToolTipServiceExtend.ToolTip>
+                                <StackPanel Grid.Column="0"
+                                            Orientation="Vertical"
+                                            MaxWidth="320">
+                                    <TextBlock Text="{Binding SkillName}"
+                                               FontWeight="Bold"
+                                               FontSize="13"
+                                               TextWrapping="Wrap" />
+
+                                    <TextBlock Text="{Binding SkillDescription}"
+                                               TextWrapping="Wrap"
+                                               FontSize="12" />
+
+                                    <TextBlock Text="{Binding SkillLevelText}"
+                                               TextWrapping="Wrap"
+                                               FontSize="12"
+                                               Margin="0,5,0,0" />
+                                </StackPanel>
+                            </base:ToolTipServiceExtend.ToolTip>
+                        </Rectangle>
+
+                        <TextBlock Grid.Column="4"
+                                   Text="{x:Static loc:CoreStrings.Skill}"
+                                   Style="{StaticResource TextBlockCaptionStyle}" />
+
+                        <TextBlock Grid.Column="4"
+                                   Text="{Binding PercentSkillText}"
+                                   Style="{StaticResource TextBlockDurabilityPercentStyle}" />
+
+
+                        <Control Template="{StaticResource ControlTemplateArrow}"
+                                 Grid.Column="5"
+                                 Width="32"
+                                 Height="32"
+                                 Margin="{StaticResource SpacersMargin}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                            <Control.LayoutTransform>
+                                <RotateTransform Angle="-90" />
+                            </Control.LayoutTransform>
+                        </Control>
+
+                        <Grid Grid.Column="6">
+                            <Rectangle Fill="{Binding SelectedProtoItemIcon}"
+                                       Visibility="{Binding HasOutputItem, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                       Margin="0,-1,0,0"
+                                       Opacity="0.75"
+                                       Width="{StaticResource IconItemSize}"
+                                       Height="{StaticResource IconItemSize}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <controls:ItemsContainerControl Container="{Binding ContainerOutput}"
+                                                            DesignTimeSlotsCount="1" />
+                        </Grid>
+
+                        <TextBlock Grid.Column="6"
+                                   Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                                   Style="{StaticResource TextBlockCaptionStyle}" />
+
+                        <TextBlock Grid.Column="6"
+                                   Text="{Binding PercentOutputText}"
+                                   Style="{StaticResource TextBlockDurabilityPercentStyle}" />
+                    </Grid>
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,10">
+                        <TextBlock Text="{x:Static loc:CoreStrings.ImplantSlotOnStation_Requirement}"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   FontSize="13"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text=":"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   FontSize="13"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   VerticalAlignment="Center" />
+                        <!-- Display icons for required items (total) -->
+                        <controls:RequiredItemsPanelControl Items="{Binding RequiredRepairComponentItems}"
+                                                            CountMultiplier="1"
+                                                            IconSize="40"
+                                                            FontSize="11"
+                                                            TextStrokeThickness="1"
+                                                            VerticalAlignment="Center"
+                                                            Margin="5,0,0,0" />
+                    </StackPanel>
+
+                    <!-- Text: Repair -->
+                    <Button Grid.Row="3"
+                            Content="{x:Static loc:CoreStrings.WindowTinkerTable_Button_Repair}"
+                            Command="{Binding CommandRepair}"
+                            Style="{StaticResource DefaultButtonStyle}"
+                            Focusable="False" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{x:Static loc:CoreStrings.WindowTinkerTable_TabDisassembly}"
+                     IsSelected="{Binding IsActive}"
+                     DataContext="{Binding ViewModelWindowTinkerTableTabDisassembly}">
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                               Style="{StaticResource TextBlockCaptionStyle}" />
+
+                    <controls:ItemsContainerControl Grid.Row="1"
+                                                    Grid.Column="0"
                                                     Container="{Binding ContainerInput}"
-                                                    SlotId="0"
-                                                    IsBackgroundEnabled="True" />
+                                                    DesignTimeSlotsCount="1"
+                                                    MaxWidth="200" />
 
-                <TextBlock Grid.Column="0"
-                           Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
-                           Style="{StaticResource TextBlockCaptionStyle}" />
+                    <Control Template="{StaticResource ControlTemplateArrow}"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Width="32"
+                             Height="32"
+                             Margin="{StaticResource SpacersMargin}"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center">
+                        <Control.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </Control.LayoutTransform>
+                    </Control>
 
-                <TextBlock Grid.Column="0"
-                           Text="{Binding PercentInput1Text}"
-                           Style="{StaticResource TextBlockDurabilityPercentStyle}" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2"
+                               Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                               Style="{StaticResource TextBlockCaptionStyle}" />
 
+                    <controls:ItemsContainerControl Grid.Row="1"
+                                                    Grid.Column="2"
+                                                    Container="{Binding ContainerOutput}"
+                                                    DesignTimeSlotsCount="1"
+                                                    MaxHeight="160" />
 
-                <Control Grid.Column="1"
-                         Style="{StaticResource ControlPlusStyle}" />
+                    <Button Grid.Row="3"
+                            Grid.Column="2"
+                            Command="{Binding CommandTakeAll}"
+                            Style="{StaticResource SmallButtonStyle}">
+                        <!-- Text: Take All -->
+                        <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_TakeAll}">
+                            <core:LabelWithButton.Button>
+                                <core:GameButtonReference Button="ContainerTakeAll" />
+                            </core:LabelWithButton.Button>
+                        </core:LabelWithButton>
+                    </Button>
 
-
-                <controls:ItemSlotControlForBinding Grid.Column="2"
-                                                    Container="{Binding ContainerInput}"
-                                                    SlotId="1"
-                                                    IsBackgroundEnabled="True" />
-
-                <TextBlock Grid.Column="2"
-                           Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
-                           Style="{StaticResource TextBlockCaptionStyle}" />
-
-                <TextBlock Grid.Column="2"
-                           Text="{Binding PercentInput2Text}"
-                           Style="{StaticResource TextBlockDurabilityPercentStyle}" />
-
-
-                <Control Grid.Column="3"
-                         Style="{StaticResource ControlPlusStyle}" />
-
-
-                <Rectangle Grid.Column="4"
-                           Width="52"
-                           Height="52">
-                    <Rectangle.Fill>
-                        <SolidColorBrush Color="{StaticResource ColorAlt1}"
-                                         Opacity="0.3" />
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <Rectangle Grid.Column="4"
-                           Width="52"
-                           Height="52"
-                           Fill="{Binding SkillIcon}">
-                    <base:ToolTipServiceExtend.ToolTip>
-                        <StackPanel Grid.Column="0"
-                                    Orientation="Vertical"
-                                    MaxWidth="320">
-                            <TextBlock Text="{Binding SkillName}"
-                                       FontWeight="Bold"
-                                       FontSize="13"
-                                       TextWrapping="Wrap" />
-
-                            <TextBlock Text="{Binding SkillDescription}"
-                                       TextWrapping="Wrap"
-                                       FontSize="12" />
-
-                            <TextBlock Text="{Binding SkillLevelText}"
-                                       TextWrapping="Wrap"
-                                       FontSize="12"
-                                       Margin="0,5,0,0" />
-                        </StackPanel>
-                    </base:ToolTipServiceExtend.ToolTip>
-                </Rectangle>
-
-                <TextBlock Grid.Column="4"
-                           Text="{x:Static loc:CoreStrings.Skill}"
-                           Style="{StaticResource TextBlockCaptionStyle}" />
-
-                <TextBlock Grid.Column="4"
-                           Text="{Binding PercentSkillText}"
-                           Style="{StaticResource TextBlockDurabilityPercentStyle}" />
-
-
-                <Control Template="{StaticResource ControlTemplateArrow}"
-                         Grid.Column="5"
-                         Width="32"
-                         Height="32"
-                         Margin="{StaticResource SpacersMargin}"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center">
-                    <Control.LayoutTransform>
-                        <RotateTransform Angle="-90" />
-                    </Control.LayoutTransform>
-                </Control>
-
-
-                <controls:ItemsContainerControl Grid.Column="6"
-                                                Container="{Binding ContainerOutput}"
-                                                DesignTimeSlotsCount="1" />
-
-                <TextBlock Grid.Column="6"
-                           Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
-                           Style="{StaticResource TextBlockCaptionStyle}" />
-
-                <TextBlock Grid.Column="6"
-                           Text="{Binding PercentOutputText}"
-                           Style="{StaticResource TextBlockDurabilityPercentStyle}" />
-            </Grid>
-
-            <StackPanel Grid.Row="2"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Margin="0,0,0,10">
-                <TextBlock Text="{x:Static loc:CoreStrings.ImplantSlotOnStation_Requirement}"
-                           FontFamily="{StaticResource CondensedFontFamily}"
-                           FontSize="13"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource BrushColor6}"
-                           VerticalAlignment="Center" />
-                <TextBlock Text=":"
-                           FontFamily="{StaticResource CondensedFontFamily}"
-                           FontSize="13"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource BrushColor6}"
-                           VerticalAlignment="Center" />
-                <!-- Display icons for required items (total) -->
-                <controls:RequiredItemsPanelControl Items="{Binding RequiredRepairComponentItems}"
-                                                    CountMultiplier="1"
-                                                    IconSize="40"
-                                                    FontSize="11"
-                                                    TextStrokeThickness="1"
-                                                    VerticalAlignment="Center"
-                                                    Margin="5,0,0,0" />
-            </StackPanel>
-
-            <!-- Text: Repair -->
-            <Button Grid.Row="3"
-                    Content="{x:Static loc:CoreStrings.WindowTinkerTable_Button_Repair}"
-                    Command="{Binding CommandRepair}"
-                    Style="{StaticResource DefaultButtonStyle}"
-                    Focusable="False" />
-        </Grid>
+                    <!-- Text: Disassemble -->
+                    <Button Grid.Row="3"
+                            Grid.Column="0"
+                            Content="{x:Static loc:CoreStrings.WindowTinkerTable_Button_Disassemble}"
+                            Command="{Binding CommandDisassemble}"
+                            Style="{StaticResource DefaultButtonStyle}"
+                            Focusable="False" />
+                </Grid>
+            </TabItem>
+        </TabControl>
     </core:WindowMenuWithInventory>
 </tinkerTable:WindowTinkerTableBase>

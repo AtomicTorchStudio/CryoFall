@@ -124,12 +124,10 @@
             return TrySpawnToContainer(this, toContainer);
         }
 
-        private static ushort GenerateCount(
-            OutputItem outputItem,
-            double probabilityMultiplier = 1.0)
+        private static ushort GenerateCount(OutputItem outputItem)
         {
             // perform random check
-            if (!RandomHelper.RollWithProbability(outputItem.Probability * probabilityMultiplier))
+            if (!RandomHelper.RollWithProbability(outputItem.Probability))
             {
                 // unlucky one! do not spawn this item
                 return 0;

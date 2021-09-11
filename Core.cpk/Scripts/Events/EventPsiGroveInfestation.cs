@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -35,12 +35,11 @@
 
         public override TimeSpan EventDuration => TimeSpan.FromMinutes(20);
 
-        [NotLocalizable]
         public override string Name => "Psi grove infestation";
 
         public SpawnConfig SpawnScriptConfig { get; private set; }
 
-        protected override double DelayHoursSinceWipe => 12 * EventConstants.ServerEventDelayMultiplier;
+        protected override double DelayHoursSinceWipe => 12 * RateWorldEventInitialDelayMultiplier.SharedValue;
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -71,10 +70,10 @@
             data.PrivateState.Init();
         }
 
-        protected override void ServerOnEventDestroyed(ILogicObject activeEvent)
+        protected override void ServerOnEventDestroyed(ILogicObject worldEvent)
         {
             // destroy all the spawned objects
-            foreach (var spawnedObject in GetPrivateState(activeEvent).SpawnedWorldObjects)
+            foreach (var spawnedObject in GetPrivateState(worldEvent).SpawnedWorldObjects)
             {
                 if (!spawnedObject.IsDestroyed)
                 {
@@ -83,32 +82,26 @@
             }
         }
 
-        protected override void ServerOnEventStarted(ILogicObject activeEvent)
+        protected override void ServerOnEventStarted(ILogicObject worldEvent)
         {
-            this.ServerSpawnObjects(activeEvent,
-                                    GetPrivateState(activeEvent).SpawnedWorldObjects);
+            this.ServerSpawnObjects(worldEvent,
+                                    GetPrivateState(worldEvent).SpawnedWorldObjects);
         }
 
         protected override void ServerPrepareEvent(Triggers triggers)
         {
-            triggers
-                // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>()
-                         .Configure(
-                                 this.ServerGetIntervalForThisEvent(defaultInterval:
-                                                                    (from: TimeSpan.FromHours(4),
-                                                                     to: TimeSpan.FromHours(6)))
-                             ));
+            triggers.Add(GetTrigger<TriggerTimeInterval>()
+                             .Configure(RateWorldEventIntervalPsiGroveInfestation.SharedValueIntervalHours));
 
             this.SpawnScriptConfig = Api.GetProtoEntity<SpawnEventPsiGroveInfestation>()
                                         .Configure(densityMultiplier: 1.0);
         }
 
         protected virtual async void ServerSpawnObjects(
-            ILogicObject activeEvent,
+            ILogicObject worldEvent,
             List<IWorldObject> spawnedObjects)
         {
-            Logger.Important("Starting mobs spawn for " + activeEvent);
+            Logger.Important("Starting mobs spawn for " + worldEvent);
 
             var spawnScriptConfig = this.SpawnScriptConfig;
             var spawnScript = (ProtoZoneSpawnScript)spawnScriptConfig.ZoneScript;
@@ -119,14 +112,14 @@
                 spawnedObjects.AddRange(mobsTracker.EnumerateAll());
             }
 
-            Logger.Important($"Finished mobs spawn for {activeEvent}: {spawnedObjects.Count} mobs spawned");
+            Logger.Important($"Finished mobs spawn for {worldEvent}: {spawnedObjects.Count} mobs spawned");
         }
 
-        protected override void ServerTryFinishEvent(ILogicObject activeEvent)
+        protected override void ServerTryFinishEvent(ILogicObject worldEvent)
         {
             var canFinish = true;
 
-            var spawnedWorldObjects = GetPrivateState(activeEvent).SpawnedWorldObjects;
+            var spawnedWorldObjects = GetPrivateState(worldEvent).SpawnedWorldObjects;
             var list = spawnedWorldObjects;
             for (var index = list.Count - 1; index >= 0; index--)
             {
@@ -151,7 +144,7 @@
 
             if (canFinish)
             {
-                base.ServerTryFinishEvent(activeEvent);
+                base.ServerTryFinishEvent(worldEvent);
             }
         }
 

@@ -302,50 +302,6 @@
             }
         }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        public void ServerInfoReceivedHandler(ServerInfo serverInfo)
-        {
-            var viewModel = this.serverViewModels.Find(serverInfo.ServerAddress);
-            if (viewModel is null)
-            {
-                // unknown server
-                return;
-            }
-
-            viewModel.Title = serverInfo.ServerName;
-            viewModel.Description = serverInfo.Description;
-
-            viewModel.Version = serverInfo.ServerVersion;
-
-            // don't check the major version (first number)
-            // as only the second and third numbers determine the actual compatibility
-            viewModel.IsCompatible = serverInfo.ServerVersion.Minor == Api.Shared.GameVersionNumber.Minor
-                                     && serverInfo.ServerVersion.Revision == Api.Shared.GameVersionNumber.Revision;
-
-            viewModel.NetworkProtocolVersion = serverInfo.ServerNetworkProtocolVersion;
-            viewModel.PlayersText = $"{serverInfo.PlayersOnlineCount}/{serverInfo.PlayersMaxCount}";
-            viewModel.PlayersOnlineCount = serverInfo.PlayersOnlineCount;
-            viewModel.IconHash = serverInfo.IconHash;
-            viewModel.ModsOnServer = serverInfo.ModsOnServer;
-            viewModel.IsPvP = serverInfo.ScriptingTags.Contains("PvP", StringComparer.Ordinal);
-            viewModel.IsPvE = serverInfo.ScriptingTags.Contains("PvE", StringComparer.Ordinal);
-            viewModel.IsNoClientModsAllowed = serverInfo.IsNoClientModsAllowed;
-            viewModel.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();
-            viewModel.NextScheduledWipeDate = NextWipeDateServerTagHelper.ClientGetServerNextWipeDateUtc(serverInfo);
-
-            if (!viewModel.IsOfficial)
-            {
-                viewModel.IsCommunity = true;
-                if (!viewModel.IsModded)
-                {
-                    viewModel.IsModded = serverInfo.IsModded;
-                }
-            }
-
-            viewModel.IsInfoReceived = true;
-            viewModel.RefreshVisibilityInList();
-        }
-
         public void ServerPingUpdatedHandled(ServerAddress address, ushort pingMs, bool isPingMeasurementDone)
         {
             var viewModelServer = this.serverViewModels.Find(address);
@@ -550,6 +506,50 @@
             viewModelServer.IsInaccessible = true;
 
             this.ScheduleAutoRefresh(viewModelServer);
+        }
+
+        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
+        private void ServerInfoReceivedHandler(ServerInfo serverInfo)
+        {
+            var viewModel = this.serverViewModels.Find(serverInfo.ServerAddress);
+            if (viewModel is null)
+            {
+                // unknown server
+                return;
+            }
+
+            viewModel.Title = serverInfo.ServerName;
+            viewModel.Description = serverInfo.Description;
+
+            viewModel.Version = serverInfo.ServerVersion;
+
+            // don't check the major version (first number)
+            // as only the second and third numbers determine the actual compatibility
+            viewModel.IsCompatible = serverInfo.ServerVersion.Minor == Api.Shared.GameVersionNumber.Minor
+                                     && serverInfo.ServerVersion.Revision == Api.Shared.GameVersionNumber.Revision;
+
+            viewModel.NetworkProtocolVersion = serverInfo.ServerNetworkProtocolVersion;
+            viewModel.PlayersText = $"{serverInfo.PlayersOnlineCount}/{serverInfo.PlayersMaxCount}";
+            viewModel.PlayersOnlineCount = serverInfo.PlayersOnlineCount;
+            viewModel.IconHash = serverInfo.IconHash;
+            viewModel.ModsOnServer = serverInfo.ModsOnServer;
+            viewModel.IsPvP = serverInfo.ScriptingTags.Contains("PvP", StringComparer.Ordinal);
+            viewModel.IsPvE = serverInfo.ScriptingTags.Contains("PvE", StringComparer.Ordinal);
+            viewModel.IsNoClientModsAllowed = serverInfo.IsNoClientModsAllowed;
+            viewModel.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();
+            viewModel.NextScheduledWipeDate = NextWipeDateServerTagHelper.ClientGetServerNextWipeDateUtc(serverInfo);
+
+            if (!viewModel.IsOfficial)
+            {
+                viewModel.IsCommunity = true;
+                if (!viewModel.IsModded)
+                {
+                    viewModel.IsModded = serverInfo.IsModded;
+                }
+            }
+
+            viewModel.IsInfoReceived = true;
+            viewModel.RefreshVisibilityInList();
         }
 
         private void ServerPublicGuidAddressResolvedHandler(

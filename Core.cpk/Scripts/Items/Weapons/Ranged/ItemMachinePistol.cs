@@ -28,7 +28,7 @@
 
         public override string Description => "Light machine pistol developed for 8mm rounds.";
 
-        public override uint DurabilityMax => 400;
+        public override uint DurabilityMax => 800;
 
         public override double FireInterval => 1 / 10.0; // 10 per second
 

@@ -102,7 +102,7 @@
         public ushort MembersNumberCurrent => this.entry.MembersNumberCurrent;
 
         public ushort MembersNumberMax
-            => FactionConstants.GetFactionMembersMax(this.entry.Kind);
+            => FactionConstants.SharedGetFactionMembersMax(this.entry.Kind);
 
         public string MembersNumberText
             => string.Format(CoreStrings.Faction_MembersNumber_Format,

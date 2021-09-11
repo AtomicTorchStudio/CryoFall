@@ -153,8 +153,8 @@
                      c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                               c.Tile,
                               o => o.PhysicsBody.IsStatic
-                                   && !(o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
-                                            is ObjectDepositOilSeep)))
+                                   && o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
+                                       is not ObjectDepositOilSeep))
                 .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
                      c => c.Tile.StaticObjects.All(
                          o => o.ProtoWorldObject is ObjectDepositOilSeep

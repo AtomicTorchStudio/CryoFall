@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -109,6 +110,11 @@
                     .Add<ItemAmmo10mmArmorPiercing>(count: 2, countRandom: 2)
                     .Add<ItemAmmo12gaSlugs>(count: 2,         countRandom: 2)
                     .Add<ItemAmmo12gaPellets>(count: 2,       countRandom: 2));
+        }
+
+        protected override double ServerGetDropListRate()
+        {
+            return RateResourcesGatherCratesLoot.SharedValue;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

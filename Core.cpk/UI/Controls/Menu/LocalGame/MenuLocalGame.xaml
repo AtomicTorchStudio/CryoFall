@@ -1,0 +1,432 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.MenuLocalGame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    SnapsToDevicePixels="False"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:localGame="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.Data"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuLocalGame, IsDesignTimeCreatable=True}"
+    Width="950">
+
+    <base:BaseUserControl.Resources>
+        <Style x:Key="SavedGamesListBoxStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+            <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Item" />
+            <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ScrollViewer Focusable="false"
+                                          HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                <ScrollViewer.Style>
+                                    <Style TargetType="ScrollViewer">
+                                        <Setter Property="services:ScrollViewerWithButtonsService.IsEnabled"
+                                                Value="True" />
+                                        <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                                    <Grid Background="Transparent">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <ScrollContentPresenter
+                                                            Content="{TemplateBinding Content}"
+                                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                            CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                                                        <RepeatButton
+                                                            VerticalAlignment="Top"
+                                                            Command="{Binding CommandScrollUp}"
+                                                            Visibility="{Binding VisibilityScrollUp}"
+                                                            IsEnabled="{TemplateBinding IsMouseOver}"
+                                                            Style="{StaticResource VerticalScrollWideRepeatButton}"
+                                                            Background="{TemplateBinding Background}" />
+
+                                                        <RepeatButton
+                                                            VerticalAlignment="Bottom"
+                                                            Command="{Binding CommandScrollDown}"
+                                                            Visibility="{Binding VisibilityScrollDown}"
+                                                            IsEnabled="{TemplateBinding IsMouseOver}"
+                                                            Style="{StaticResource VerticalScrollWideRepeatButton}"
+                                                            Background="{TemplateBinding Background}">
+                                                            <RepeatButton.LayoutTransform>
+                                                                <RotateTransform Angle="180" />
+                                                            </RepeatButton.LayoutTransform>
+                                                        </RepeatButton>
+
+                                                        <Border Grid.Column="1"
+                                                                Margin="{TemplateBinding BorderThickness}"
+                                                                BorderBrush="{x:Null}">
+                                                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                                                       Margin="1,1,1,1"
+                                                                       Value="{TemplateBinding VerticalOffset}"
+                                                                       Orientation="Vertical"
+                                                                       Minimum="0"
+                                                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                                                       ViewportSize="{TemplateBinding ViewportHeight}" />
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ScrollViewer.Style>
+                                <ItemsPresenter Margin="{TemplateBinding Padding}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </ScrollViewer>
+                            <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+
+        <Color x:Key="ColorSavedGameInfoItemBackground">#FF447799</Color>
+
+        <Style x:Key="SavedGamesListBoxContainerStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource ColorSavedGameInfoItemBackground}" Opacity="0.35" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="2,1" />
+            <Setter Property="Margin" Value="0,2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid>
+                            <Border x:Name="Bd" Padding="{TemplateBinding Padding}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{StaticResource ColorSavedGameInfoItemBackground}" Opacity="0.45" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="true">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{StaticResource ColorSavedGameInfoItemBackground}" Opacity="0.65" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="SavedGameInfoEntryItemTemplate"
+                      DataType="{x:Type data:DataEntryLocalServerSaveGame}">
+            <!-- Enter sound sounds not good when hovering over a long list -->
+            <!--core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"-->
+            <Grid Background="Transparent"
+                  core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
+                  services:DoubleClickService.CommandOnDoubleClick="{Binding CommandLoad}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Width="40"
+                           Height="40"
+                           Fill="#11FFFFFF" />
+
+                <Rectangle Width="40"
+                           Height="40"
+                           UseLayoutRounding="True">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/UI/Images/Icons/MenuServers/LocalServerIcon.png"
+                                    Stretch="Uniform" />
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Grid Grid.Column="1"
+                      Margin="7,0"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding Name}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="IsHitTestVisible" Value="False" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="FontWeight" Value="Normal" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal"
+                                Margin="0,1,0,0">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="IsHitTestVisible" Value="False" />
+                                <Setter Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White"
+                                                         Opacity="0.6" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                                <Setter Property="FontSize" Value="9" />
+                                <Setter Property="FontWeight" Value="Normal" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="{Binding FileName}" />
+                        <TextBlock Text="|" Margin="3,0,0,0" />
+                        <TextBlock Text="{Binding DateText}" Margin="3,0,0,0" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </base:BaseUserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.4*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Style="{StaticResource MainMenuWidgetStyle}">
+            <core:TabControlCached Margin="0,3,0,0">
+                <TabItem Margin="-5,0,0,0">
+                    <TabItem.Header>
+                        <localGame:MenuLocalGameTabHeader
+                            Text="{x:Static loc:CoreStrings.MenuLocalGame_TabLocalWorlds}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/LocalWorlds.png"
+                            MinWidth="110" />
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid
+                            Visibility="{Binding IsLocalServerRunningOrStopping, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            Margin="0,0,0,15">
+                            <ListBox ItemsSource="{Binding SavedGames}"
+                                     SelectedItem="{Binding SelectedSaveGame}"
+                                     Style="{StaticResource SavedGamesListBoxStyle}"
+                                     ItemContainerStyle="{StaticResource SavedGamesListBoxContainerStyle}"
+                                     ItemTemplate="{StaticResource SavedGameInfoEntryItemTemplate}"
+                                     Margin="-5,-3,-5,0" />
+                            <core:FormattedTextBlock
+                                Text="{x:Static loc:CoreStrings.MenuLocalGame_NoSaves}"
+                                Visibility="{Binding SavedGames, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                                MaxWidth="450"
+                                LineHeight="20"
+                                LineStackingStrategy="BlockLineHeight" />
+                        </Grid>
+
+                        <core:HyperlinkControl
+                            Visibility="{Binding IsLocalServerRunningOrStopping, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            Command="{Binding CommandBrowseSavesFolder}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            FontSize="13"
+                            FontWeight="Bold"
+                            FontFamily="{StaticResource CondensedFontFamily}"
+                            Foreground="{StaticResource BrushColorAlt6}">
+                            <TextBlock Text="{x:Static loc:CoreStrings.MenuLocalGame_BrowseSavesFolder}"
+                                       TextDecorations="Underline" />
+                        </core:HyperlinkControl>
+
+                        <Grid
+                            Visibility="{Binding IsLocalServerRunningOrStopping, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <Border Padding="20,15"
+                                    BorderBrush="{StaticResource BrushColor4}"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource Color0}" Opacity="0.333" />
+                                </Border.Background>
+                                <Grid>
+                                    <Grid
+                                        Visibility="{Binding IsLocalServerRunning, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <core:FormattedTextBlock
+                                            Text="{x:Static loc:CoreStrings.MenuLocalGame_LocalServerRunning}"
+                                            Foreground="{StaticResource BrushColor6}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            TextWrapping="Wrap"
+                                            MaxWidth="450"
+                                            LineHeight="20"
+                                            LineStackingStrategy="BlockLineHeight" />
+
+                                        <Button Grid.Row="1"
+                                                Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_Disconnect}"
+                                                Command="{Binding CommandDisconnect}"
+                                                Margin="0,15,0,0" />
+                                    </Grid>
+
+                                    <Grid
+                                        Visibility="{Binding IsLocalServerStopping, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <core:FormattedTextBlock
+                                            Text="{x:Static loc:CoreStrings.MenuLocalGame_LocalServerStopping}"
+                                            Foreground="{StaticResource BrushColor6}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            TextWrapping="Wrap"
+                                            MaxWidth="450"
+                                            LineHeight="20"
+                                            LineStackingStrategy="BlockLineHeight" />
+                                        <ContentControl Grid.Row="1"
+                                                        Width="42"
+                                                        Height="42"
+                                                        Margin="0,10,0,0">
+                                            <core:LoadingDisplayControl />
+                                        </ContentControl>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <TabItem IsSelected="{Binding IsTabNewWorldSelected}">
+                    <TabItem.Header>
+                        <localGame:MenuLocalGameTabHeader
+                            Text="{x:Static loc:CoreStrings.MenuLocalGame_TabNewWorld}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/LocalWorldNewWorld.png"
+                            MinWidth="110" />
+                    </TabItem.Header>
+                    <localGame:NewWorldControl x:Name="NewWorldControl" />
+                </TabItem>
+            </core:TabControlCached>
+        </ContentControl>
+
+        <ContentControl Grid.Column="1"
+                        Style="{StaticResource MainMenuWidgetStyle}">
+            <Viewbox Stretch="Uniform">
+                <Grid HorizontalAlignment="Center"
+                      MinHeight="600"
+                      Width="200">
+                    <Border UseLayoutRounding="True"
+                            BorderBrush="{StaticResource BrushColorAlt3}"
+                            BorderThickness="1"
+                            Margin="-13,20,-13,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top">
+                        <Image Source="../Play/Images/PanelLocalServer.jpg"
+                               UseLayoutRounding="True"
+                               Stretch="Uniform"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Width="223" />
+                    </Border>
+
+                    <StackPanel VerticalAlignment="Bottom"
+                                Margin="0,0,0,10">
+                        <Border
+                            Visibility="{Binding Path=IsTabNewWorldSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                            CornerRadius="{StaticResource ControlCornerRadius}"
+                            Margin="-19,0,-10,20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Control Style="{StaticResource ControlInfoPointStyle}"
+                                         Margin="0,0,4,0"
+                                         VerticalAlignment="Top" />
+                                <TextBlock Grid.Column="1"
+                                           FontSize="13"
+                                           LineHeight="14"
+                                           LineStackingStrategy="BlockLineHeight"
+                                           Text="{x:Static loc:CoreStrings.RatesEditorControl_LocalServerRatesDescription}"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </Border>
+
+                        <Button Content="{x:Static loc:CoreStrings.MenuLocalGame_Button_CreateNewWorld}"
+                                Command="{Binding CommandStartNewGame, ElementName=NewWorldControl}"
+                                Visibility="{Binding Path=IsTabNewWorldSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,5,0,0"
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False" />
+
+                        <Button Content="{x:Static loc:CoreStrings.MenuLocalGame_Button_LoadWorld}"
+                                Command="{Binding SelectedSaveGame.CommandLoad}"
+                                Visibility="{Binding Path=IsTabNewWorldSelected, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                IsEnabled="{Binding Path=SelectedSaveGame, Converter={StaticResource IsNullConverter}, ConverterParameter=Reverse}"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,5,0,0"
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False" />
+                    </StackPanel>
+                </Grid>
+            </Viewbox>
+        </ContentControl>
+    </Grid>
+</base:BaseUserControl>

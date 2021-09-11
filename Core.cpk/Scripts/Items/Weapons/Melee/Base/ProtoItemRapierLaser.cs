@@ -17,11 +17,11 @@
 
         public override string Description => "Incredibly powerful short-range weapon. Requires energy to operate.";
 
-        public override uint DurabilityMax => 500;
+        public override uint DurabilityMax => 750;
 
         public override double EnergyUsePerHit => 25;
 
-        public override double EnergyUsePerShot => 5;
+        public override double EnergyUsePerShot => 3;
 
         public override double FireAnimationDuration => 0.6;
 

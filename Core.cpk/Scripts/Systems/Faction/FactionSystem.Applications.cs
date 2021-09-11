@@ -425,7 +425,7 @@
                 }
 
                 var factionMembers = ServerGetFactionMembersReadOnly(faction);
-                var maxMembers = FactionConstants.GetFactionMembersMax(
+                var maxMembers = FactionConstants.SharedGetFactionMembersMax(
                     Faction.GetPublicState(faction).Kind);
 
                 if (factionMembers.Count >= maxMembers)
@@ -583,7 +583,7 @@
                     return ApplicationCreateResult.NotAcceptingApplications;
                 }
 
-                var maxMembers = FactionConstants.GetFactionMembersMax(
+                var maxMembers = FactionConstants.SharedGetFactionMembersMax(
                     Faction.GetPublicState(faction).Kind);
 
                 if (ServerGetFactionMembersReadOnly(faction).Count >= maxMembers)

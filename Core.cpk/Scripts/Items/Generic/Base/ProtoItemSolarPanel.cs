@@ -61,7 +61,7 @@
         {
             var item = data.GameObject;
 
-            if (!(item.Container?.ProtoItemsContainer is ItemsContainerGeneratorSolar))
+            if (item.Container?.ProtoItemsContainer is not ItemsContainerGeneratorSolar)
             {
                 // the panel is not installed
                 return;

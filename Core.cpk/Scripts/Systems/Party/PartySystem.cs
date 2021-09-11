@@ -360,8 +360,6 @@
 
         protected override void PrepareSystem()
         {
-            PartyConstants.EnsureInitialized();
-
             if (IsClient)
             {
                 return;
@@ -485,7 +483,7 @@
             }
 
             var members = ServerGetPartyMembersEditable(party);
-            var partyMembersMax = PartyConstants.SharedPartyMembersMax;
+            var partyMembersMax = PartyConstants.PartyMembersMax;
             if (members.Count >= partyMembersMax)
             {
                 throw new Exception("Party size exceeded - max " + partyMembersMax);
@@ -540,9 +538,6 @@
             {
                 return;
             }
-
-            Instance.CallClient(character,
-                                _ => _.ClientRemote_SetSystemConstants(PartyConstants.SharedPartyMembersMax));
 
             ServerSendCurrentParty(character);
             ServerInvitations.SendAllInvitations(invitee: character);
@@ -652,11 +647,6 @@
                               .HideAfterDelay(60);
         }
 
-        private void ClientRemote_SetSystemConstants(ushort partyMembersMax)
-        {
-            PartyConstants.ClientSetSystemConstants(partyMembersMax);
-        }
-
         [RemoteCallSettings(timeInterval: 2,
                             groupName: "CreateLeaveParty",
                             deliveryMode: DeliveryMode.ReliableSequenced)]
@@ -708,7 +698,7 @@
 
                 if (!invitee.ServerIsOnline)
                 {
-                    if (!OnlinePlayersSystem.ServerIsListHidden)
+                    if (!OnlinePlayersSystem.SharedIsListHidden)
                     {
                         return InvitationCreateResult.ErrorInviteeOffline;
                     }
@@ -788,7 +778,7 @@
                 Api.Assert(party != currentInviteeParty, "Cannot join the same party");
 
                 var inviterPartyMembers = ServerGetPartyMembersReadOnly(party);
-                if (inviterPartyMembers.Count >= PartyConstants.SharedPartyMembersMax)
+                if (inviterPartyMembers.Count >= PartyConstants.PartyMembersMax)
                 {
                     return InvitationAcceptResult.ErrorPartyFull;
                 }
@@ -842,7 +832,7 @@
                 }
 
                 var partyMembers = ServerGetPartyMembersReadOnly(party);
-                if (partyMembers.Count >= PartyConstants.SharedPartyMembersMax)
+                if (partyMembers.Count >= PartyConstants.PartyMembersMax)
                 {
                     return InvitationCreateResult.ErrorPartyFull;
                 }

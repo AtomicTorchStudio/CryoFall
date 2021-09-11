@@ -21,7 +21,7 @@
             ComponentAttachedUIElement = Api.Client.UI.AttachControl(
                 SceneObject,
                 MeteoriteTooltipControl,
-                positionOffset: (0, 1),
+                positionOffset: (0, 0.25),
                 isFocusable: false);
 
             ComponentAttachedUIElement.IsEnabled = false;
@@ -37,7 +37,8 @@
             }
 
             SceneObject.Position = worldObjectMeteorite.TilePosition.ToVector2D()
-                                   + worldObjectMeteorite.ProtoStaticWorldObject.Layout.Center;
+                                   + worldObjectMeteorite.ProtoStaticWorldObject
+                                                         .SharedGetObjectCenterWorldOffset(worldObjectMeteorite);
             MeteoriteTooltipControl.Setup(worldObjectMeteorite);
             ComponentAttachedUIElement.IsEnabled = true;
         }

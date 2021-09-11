@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
     using AtomicTorch.CBND.CoreMod.Items.Food;
@@ -26,6 +27,8 @@
 
         public static readonly SoundResource RewardClaimedSoundResource
             = new("UI/Completionist/RewardClaimed");
+
+        public static IReadOnlyCollection<IProtoEvent> CompletionistAllEvents { get; private set; }
 
         public static IReadOnlyCollection<IProtoItemFish> CompletionistAllFish { get; private set; }
 
@@ -65,6 +68,10 @@
             CompletionistAllFish = new HashSet<IProtoItemFish>(
                 Api.FindProtoEntities<IProtoItemFish>());
 
+            CompletionistAllEvents = new HashSet<IProtoEvent>(
+                Api.FindProtoEntities<IProtoEvent>()
+                   .Where(p => p.IsAvailableInCompletionist));
+
             if (IsServer)
             {
                 ServerItemUseObserver.ItemUsed += ServerItemUsedHandler;
@@ -103,7 +110,7 @@
 
         private static void ServerItemUsedHandler(ICharacter character, IItem item)
         {
-            if (!(item.ProtoGameObject is IProtoItemFood protoItemFood)
+            if (item.ProtoGameObject is not IProtoItemFood protoItemFood
                 || !CompletionistAllFood.Contains(protoItemFood))
             {
                 return;
@@ -115,7 +122,7 @@
 
         private static void ServerLootReceivedHandler(ICharacter character, IStaticWorldObject staticWorldObject)
         {
-            if (!(staticWorldObject.ProtoGameObject is IProtoObjectLoot protoObjectLoot)
+            if (staticWorldObject.ProtoGameObject is not IProtoObjectLoot protoObjectLoot
                 || !CompletionistAllLoot.Contains(protoObjectLoot))
             {
                 return;

@@ -9,7 +9,6 @@
 
         protected override void InitControl()
         {
-            base.InitControl();
             this.TextBlock = this.GetByName<TextBlock>("TextBlockControl");
         }
     }

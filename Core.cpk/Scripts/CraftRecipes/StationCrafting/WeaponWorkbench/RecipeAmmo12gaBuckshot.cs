@@ -23,7 +23,7 @@
             inputItems.Add<ItemPaper>(count: 10);
             inputItems.Add<ItemBlackpowder>(count: 30);
 
-            outputItems.Add<ItemAmmo12gaBuckshot>(count: 10);
+            outputItems.Add<ItemAmmo12gaBuckshot>(count: 20);
         }
     }
 }

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -65,9 +66,14 @@
             using var tempListCharacters = Api.Shared.GetTempList<ICharacter>();
             Api.Server.World.GetScopedByPlayers(characterBoss, tempListCharacters);
 
-            foreach (var player in tempListCharacters.AsList())
+            foreach (var playerCharacter in tempListCharacters.AsList())
             {
-                if (player.Position.DistanceSquaredTo(characterBossCenterPosition)
+                if (playerCharacter.ProtoGameObject is PlayerCharacterSpectator)
+                {
+                    continue;
+                }
+
+                if (playerCharacter.Position.DistanceSquaredTo(characterBossCenterPosition)
                     <= spawnCheckDistanceSqr)
                 {
                     minionsRequired += minionsPerPlayer;

@@ -33,7 +33,8 @@
         public static double SharedGetCurrentRangeMax(
             ICharacterPublicState characterPublicState)
         {
-            if (!(characterPublicState.SelectedItemWeaponProto is IProtoItemWeaponRanged protoWeaponRanged))
+            if (characterPublicState.SelectedItemWeaponProto 
+                    is not IProtoItemWeaponRanged protoWeaponRanged)
             {
                 return 0;
             }

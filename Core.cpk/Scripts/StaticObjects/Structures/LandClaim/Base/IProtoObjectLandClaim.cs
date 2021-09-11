@@ -23,13 +23,13 @@
 
         double ShieldProtectionTotalElectricityCost { get; }
 
-        void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim upgradeStructure);
+        void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim protoStructureUpgrade);
 
         bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner);
 
         ObjectLandClaimCanUpgradeCheckResult SharedCanUpgrade(
             IStaticWorldObject worldObjectLandClaim,
-            IProtoObjectLandClaim protoUpgradedLandClaim,
+            IProtoObjectLandClaim protoStructureUpgrade,
             ICharacter character,
             out IConstructionUpgradeEntryReadOnly upgradeEntry,
             bool writeErrors = true);

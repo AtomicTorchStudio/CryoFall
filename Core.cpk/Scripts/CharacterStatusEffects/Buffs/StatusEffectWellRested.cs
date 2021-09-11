@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -57,10 +58,12 @@
 
             if (IsServer)
             {
-                // setup timer (tick every frame)
-                TriggerEveryFrame.ServerRegister(
-                    callback: ServerGlobalUpdate,
-                    name: "System." + this.ShortId);
+                if (!SharedLocalServerHelper.IsLocalServer)
+                {
+                    TriggerEveryFrame.ServerRegister(
+                        callback: ServerGlobalUpdate,
+                        name: "System." + this.ShortId);
+                }
 
                 PlayerCharacterTechnologies.ServerCharacterGainedLearningPoints
                     += this.ServerPlayerCharacterGainedLearningPointsHandler;

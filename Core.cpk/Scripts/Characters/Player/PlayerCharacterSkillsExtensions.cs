@@ -65,7 +65,7 @@
         /// <returns></returns>
         public static PlayerCharacterSkills SharedGetSkills(this ICharacter character)
         {
-            if (!(character.ProtoCharacter is PlayerCharacter))
+            if (character.ProtoCharacter is not PlayerCharacter)
             {
                 return null;
             }

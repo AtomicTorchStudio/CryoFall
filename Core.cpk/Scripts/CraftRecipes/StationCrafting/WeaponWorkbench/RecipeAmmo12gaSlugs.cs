@@ -23,7 +23,7 @@
             inputItems.Add<ItemIngotIron>(count: 2);
             inputItems.Add<ItemNitrocellulosePowder>(count: 30);
 
-            outputItems.Add<ItemAmmo12gaSlugs>(count: 10);
+            outputItems.Add<ItemAmmo12gaSlugs>(count: 20);
         }
     }
 }

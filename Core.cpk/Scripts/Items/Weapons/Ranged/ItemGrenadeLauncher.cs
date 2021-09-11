@@ -17,7 +17,7 @@
         public override string Description =>
             "Single grenade launcher fires specially designed large caliber rounds that explode upon impact, dealing massive damage.";
 
-        public override uint DurabilityMax => 100;
+        public override uint DurabilityMax => 200;
 
         public override double FireInterval => 0; // can fire as soon as reloaded
 

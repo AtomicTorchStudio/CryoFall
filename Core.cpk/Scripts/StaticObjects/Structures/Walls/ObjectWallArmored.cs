@@ -29,12 +29,12 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.VeryLong;
-            build.AddStageRequiredItem<ItemCement>(count: 10);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemCement>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

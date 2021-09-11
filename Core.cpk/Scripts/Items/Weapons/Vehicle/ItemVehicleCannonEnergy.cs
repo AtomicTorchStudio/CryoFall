@@ -19,7 +19,7 @@
         public override string Description =>
             "Heavy cannon that uses coherent charges of accelerated particles to damage the target.";
 
-        public override uint DurabilityMax => 2500;
+        public override uint DurabilityMax => 5000;
 
         public override ushort EnergyUsePerShot => 750;
 

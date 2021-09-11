@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.CharacterCreation
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.CharacterOrigins;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
@@ -11,6 +12,8 @@
 
     public class CharacterCreationSystem : ProtoSystem<CharacterCreationSystem>
     {
+        public static event Action<ICharacter> ServerCharacterCreated;
+
         public static bool SharedIsEnabled => !Api.IsEditor;
 
         public override string Name => nameof(CharacterCreationSystem);
@@ -35,6 +38,7 @@
                 return;
             }
 
+            // character appearance selected for the first time
             privateState.IsAppearanceSelected = true;
             Logger.Info("Character appearance selected");
 
@@ -43,10 +47,13 @@
 
         private static void ServerSpawnIfReady(ICharacter character)
         {
-            if (SharedIsCharacterCreated(character))
+            if (!SharedIsCharacterCreated(character))
             {
-                CharacterRespawnSystem.ServerOnCharacterCreated(character);
+                return;
             }
+
+            Api.SafeInvoke(() => ServerCharacterCreated?.Invoke(character));
+            CharacterRespawnSystem.ServerOnCharacterCreated(character);
         }
 
         private void ServerRemote_SelectOrigin(ProtoCharacterOrigin origin)

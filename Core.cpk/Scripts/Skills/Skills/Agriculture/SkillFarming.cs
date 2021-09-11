@@ -17,7 +17,7 @@
         public const double ExperienceForWatering = 25.0; // 0.0625 LP
 
         public static readonly DropItemConditionDelegate ConditionExtraYield
-            = context => context.HasCharacter 
+            = context => context.HasCharacter
                          && context.Character.SharedHasSkillFlag(Flags.AdditionalYield);
 
         public enum Flags
@@ -31,8 +31,6 @@
 
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0.25; // this is 1/4 of the standard conversion, because it is possible to make a huge farm quickly
-
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
 
         public override string Name => "Farming";
 

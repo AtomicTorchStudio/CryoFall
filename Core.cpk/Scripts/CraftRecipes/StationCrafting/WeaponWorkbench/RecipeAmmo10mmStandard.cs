@@ -23,7 +23,7 @@
             inputItems.Add<ItemIngotIron>(count: 1);
             inputItems.Add<ItemNitrocellulosePowder>(count: 15);
 
-            outputItems.Add<ItemAmmo10mmStandard>(count: 10);
+            outputItems.Add<ItemAmmo10mmStandard>(count: 20);
         }
     }
 }

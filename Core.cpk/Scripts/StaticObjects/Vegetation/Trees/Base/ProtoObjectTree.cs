@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -140,7 +141,7 @@
 
                 return protoItemToolWoodCutting.ServerGetDamageToTree(targetObject)
                        * damageMultiplier
-                       * ToolsConstants.ActionWoodcuttingSpeedMultiplier
+                       * RateActionWoodcuttingSpeedMultiplier.SharedValue
                        * this.SharedGetDamageMultiplierByGrowthProgress(targetObject);
             }
 

@@ -27,7 +27,7 @@
         {
             // If update rate is 1, updating will happen for each character once a second.
             // We can set it to 2 to have updates every half second.
-            // If we set it to 1/2 it will update every 2 seconds and so on.
+            // If we set it to 1/10.0 it will update every 10 seconds and so on.
             const double updateRate = 1 / 10.0;
 
             foreach (var character in Server.Characters.EnumerateAllCharactersWithSpread(updateRate,

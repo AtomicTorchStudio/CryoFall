@@ -24,7 +24,7 @@
             inputItems.Add<ItemBlackpowder>(count: 15);
             inputItems.Add<ItemSalt>(count: 10);
 
-            outputItems.Add<ItemAmmo12gaSaltCharge>(count: 10);
+            outputItems.Add<ItemAmmo12gaSaltCharge>(count: 20);
         }
     }
 }

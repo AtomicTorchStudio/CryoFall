@@ -55,16 +55,16 @@
             return true;
         }
 
-        protected override void ServerOnEventDestroyed(ILogicObject activeEvent)
+        protected override void ServerOnEventDestroyed(ILogicObject worldEvent)
         {
         }
 
-        protected sealed override void ServerOnEventWithAreaStarted(ILogicObject activeEvent)
+        protected sealed override void ServerOnEventWithAreaStarted(ILogicObject worldEvent)
         {
-            this.ServerOnFishingEventStarted(activeEvent);
+            this.ServerOnFishingEventStarted(worldEvent);
         }
 
-        protected virtual void ServerOnFishingEventStarted(ILogicObject activeEvent)
+        protected virtual void ServerOnFishingEventStarted(ILogicObject worldEvent)
         {
         }
 

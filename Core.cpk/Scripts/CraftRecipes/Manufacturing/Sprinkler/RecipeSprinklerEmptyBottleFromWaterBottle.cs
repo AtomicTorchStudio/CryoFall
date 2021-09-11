@@ -61,7 +61,7 @@
 
             if (craftingQueue.ContainerOutput.OccupiedSlotsCount > 0
                 && craftingQueue.ContainerOutput.Items.Any(
-                    i => !(i.ProtoItem is ItemBottleEmpty)))
+                    i => i.ProtoItem is not ItemBottleEmpty))
             {
                 // contains something other in the output container
                 return false;

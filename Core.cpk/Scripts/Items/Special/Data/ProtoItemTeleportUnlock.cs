@@ -63,7 +63,7 @@
             }
         }
 
-        [RemoteCallSettings(timeInterval: 1)]
+        [RemoteCallSettings(timeInterval: 0.5)]
         private bool ServerRemote_UseItem(IItem item)
         {
             var character = ServerRemoteContext.Character;

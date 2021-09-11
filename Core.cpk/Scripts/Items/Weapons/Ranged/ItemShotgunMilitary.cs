@@ -19,7 +19,7 @@
 
         public override string Description => "Military shotgun with large ammo capacity. Uses 12ga ammunition.";
 
-        public override uint DurabilityMax => 250;
+        public override uint DurabilityMax => 500;
 
         public override double FireInterval => 0.4;
 

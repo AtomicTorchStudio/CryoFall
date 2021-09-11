@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Food;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
@@ -145,7 +146,7 @@
                 this.LiquidContainerConfig,
                 privateState.ManufacturingState,
                 this.ManufacturingConfig,
-                data.DeltaTime * StructureConstants.ManufacturingSpeedMultiplier,
+                data.DeltaTime * RateManufacturingSpeedMultiplier.SharedValue,
                 isProduceLiquid: isActive,
                 forceUpdateRecipe: !isFull);
         }

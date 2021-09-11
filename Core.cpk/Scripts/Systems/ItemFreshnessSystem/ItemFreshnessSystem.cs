@@ -4,10 +4,9 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -17,7 +16,7 @@
 
         private static readonly IItemsServerService ServerItemsService = IsServer ? Server.Items : null;
 
-        private static IProtoItem protoItemRottenFood;
+        private static IProtoItem serverProtoItemRottenFood;
 
         public override string Name => "Food spoilage system";
 
@@ -46,7 +45,7 @@
             var freshness = (long)privateState.FreshnessCurrent;
             var freshnessDecrease = (uint)(deltaTime
                                            * FreshnessFractionsPerSecond
-                                           * ItemFreshnessConstants.SharedFreshnessDecaySpeedMultiplier);
+                                           / RateItemFoodAndConsumablesShelfLifeMultiplier.SharedValue);
             if (freshnessDecrease == 0)
             {
                 // no freshness decrease
@@ -91,13 +90,13 @@
 
             // food spoiled
             var containerSlotId = item.ContainerSlotId;
-            var count = Math.Min(item.Count, protoItemRottenFood.MaxItemsPerStack);
+            var count = Math.Min(item.Count, serverProtoItemRottenFood.MaxItemsPerStack);
 
             // destroy food item
             ServerItemsService.DestroyItem(item);
 
             // spawn a rotten item in place of the destroyed spoiled item
-            ServerItemsService.CreateItem(protoItemRottenFood, container, count, containerSlotId);
+            ServerItemsService.CreateItem(serverProtoItemRottenFood, container, count, containerSlotId);
         }
 
         public static uint SharedCalculateFreshnessMaxValue(IProtoItemWithFreshness protoItem)
@@ -133,8 +132,8 @@
             }
 
             var result = privateState.FreshnessCurrent
-                         / (FreshnessFractionsPerSecond
-                            * ItemFreshnessConstants.SharedFreshnessDecaySpeedMultiplier);
+                         * RateItemFoodAndConsumablesShelfLifeMultiplier.SharedValue
+                         / FreshnessFractionsPerSecond;
 
             if (container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge)
             {
@@ -174,9 +173,9 @@
             var fraction = SharedGetFreshnessFraction(item);
             return fraction switch
             {
-                > 0.5 => ItemFreshness.Green,
-                > 0.2 => ItemFreshness.Yellow,
-                _     => ItemFreshness.Red
+                >= 0.5 => ItemFreshness.Green,
+                >= 0.2 => ItemFreshness.Yellow,
+                _      => ItemFreshness.Red
             };
         }
 
@@ -220,7 +219,7 @@
                 return false;
             }
 
-            if (!(container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge))
+            if (container.ProtoItemsContainer is not IProtoItemsContainerFridge protoFridge)
             {
                 return false;
             }
@@ -239,32 +238,10 @@
 
         protected override void PrepareSystem()
         {
-            ItemFreshnessConstants.EnsureInitialized();
-
-            if (IsClient)
+            if (IsServer)
             {
-                return;
+                serverProtoItemRottenFood = Api.GetProtoEntity<ItemRot>();
             }
-
-            protoItemRottenFood = Api.GetProtoEntity<ItemRot>();
-            Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
-        }
-
-        private static void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
-        {
-            if (!isOnline)
-            {
-                return;
-            }
-
-            Instance.CallClient(character,
-                                _ => _.ClientRemote_SetSystemConstants(
-                                    ItemFreshnessConstants.SharedFreshnessDecaySpeedMultiplier));
-        }
-
-        private void ClientRemote_SetSystemConstants(double freshnessDecaySpeedMultiplier)
-        {
-            ItemFreshnessConstants.ClientSetSystemConstants(freshnessDecaySpeedMultiplier);
         }
     }
 }

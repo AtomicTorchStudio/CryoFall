@@ -10,24 +10,24 @@
         // for 1080p/1440p screens or lower
         private static readonly CursorPreset Resolution1080p
             = new(normal: new CursorResource("1080p/cursor_crosshair_normal",
-                                           pivotPosition: (16, 16)),
-                offset1: new CursorResource("1080p/cursor_crosshair_offset1",
-                                            pivotPosition: (22, 22)),
-                offset2: new CursorResource("1080p/cursor_crosshair_offset2",
-                                            pivotPosition: (32, 32)),
-                reloading: new CursorResource("1080p/cursor_crosshair_reloading",
-                                              pivotPosition: (32, 32)));
+                                             pivotPosition: (16, 16)),
+                  offset1: new CursorResource("1080p/cursor_crosshair_offset1",
+                                              pivotPosition: (22, 22)),
+                  offset2: new CursorResource("1080p/cursor_crosshair_offset2",
+                                              pivotPosition: (32, 32)),
+                  reloading: new CursorResource("1080p/cursor_crosshair_reloading",
+                                                pivotPosition: (32, 32)));
 
         // for anything higher than 1440p
         private static readonly CursorPreset Resolution4K
             = new(normal: new CursorResource("4K/cursor_crosshair_normal",
-                                           pivotPosition: (24, 24)),
-                offset1: new CursorResource("4K/cursor_crosshair_offset1",
-                                            pivotPosition: (32, 32)),
-                offset2: new CursorResource("4K/cursor_crosshair_offset2",
-                                            pivotPosition: (48, 48)),
-                reloading: new CursorResource("4K/cursor_crosshair_reloading",
-                                              pivotPosition: (48, 48)));
+                                             pivotPosition: (24, 24)),
+                  offset1: new CursorResource("4K/cursor_crosshair_offset1",
+                                              pivotPosition: (32, 32)),
+                  offset2: new CursorResource("4K/cursor_crosshair_offset2",
+                                              pivotPosition: (48, 48)),
+                  reloading: new CursorResource("4K/cursor_crosshair_reloading",
+                                                pivotPosition: (48, 48)));
 
         public static CursorResource CurrentCursorResource { get; set; }
 
@@ -45,7 +45,7 @@
 
             var state = ClientCurrentCharacterHelper.PrivateState?.WeaponState;
             var protoWeapon = state?.ProtoWeapon;
-            if (!(protoWeapon is IProtoItemWeaponRanged))
+            if (protoWeapon is not IProtoItemWeaponRanged)
             {
                 return null;
             }

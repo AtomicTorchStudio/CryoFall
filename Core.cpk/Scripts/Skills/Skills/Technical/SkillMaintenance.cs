@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Skills
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -10,10 +11,17 @@
     public class SkillMaintenance : ProtoSkill<SkillMaintenance.Flags>
     {
         // Base percent of durability restore when repairing an item (even when skill is 0 level).
-        public const double BaseTinkerTableBonus = 20; // +20%
+        public const double BaseTinkerTableBonus = 40; // +40%
+
+        public const string BaseTinkerTableBonus_TextFormat = "Tinker table base effectiveness {0}%";
 
         /// <summary>
-        /// Exp given for each individual item repaired.
+        /// XP given for each individual item disassembled.
+        /// </summary>
+        public const double ExperiencePerItemDisassembled = 100.0;
+
+        /// <summary>
+        /// XP given for each individual item repaired.
         /// </summary>
         public const double ExperiencePerItemRepaired = 1000.0;
 
@@ -29,8 +37,6 @@
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0.1f; // essentially 1 LP per repair, higher values would prompt players to grind-repair for LP
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Maintenance";
 
         public static byte SharedGetCurrentBonusPercent(ICharacter character)
@@ -40,14 +46,21 @@
             return (byte)MathHelper.Clamp(bonus, 0, 100);
         }
 
+        protected override void PrepareExtraDescriptionEntries(List<string> extraDescriptionEntries)
+        {
+            extraDescriptionEntries.Add(
+                string.Format(BaseTinkerTableBonus_TextFormat,
+                              (byte)Math.Round(BaseTinkerTableBonus, MidpointRounding.AwayFromZero)));
+        }
+
         protected override void PrepareProtoSkill(SkillConfig config)
         {
             config.Category = GetCategory<SkillCategoryTechnical>();
 
-            // each level +1% bonus
+            // each level +2% bonus
             config.AddStatEffect(
                 StatName.TinkerTableBonus,
-                formulaPercentBonus: level => level);
+                formulaPercentBonus: level => level * 2);
 
             config.AddFlagEffect(
                 Flags.ChanceToRepairCompletely,

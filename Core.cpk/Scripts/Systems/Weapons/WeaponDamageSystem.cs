@@ -358,7 +358,7 @@
             using var tempList = Api.Shared.WrapInTempList(targetCharacter.SharedGetPlayerContainerEquipment().Items);
             foreach (var item in tempList.AsList())
             {
-                if (!(item.ProtoItem is IProtoItemWithDurability protoItemWithDurability))
+                if (item.ProtoItem is not IProtoItemWithDurability protoItemWithDurability)
                 {
                     continue;
                 }

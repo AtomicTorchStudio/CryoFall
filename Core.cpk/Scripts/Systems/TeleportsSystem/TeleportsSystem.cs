@@ -106,7 +106,7 @@
 
         public static void ServerAddTeleportToDiscoveredList(ICharacter character, IStaticWorldObject objectTeleport)
         {
-            if (!(objectTeleport.ProtoGameObject is ProtoObjectTeleport protoObjectTeleport))
+            if (objectTeleport.ProtoGameObject is not ProtoObjectTeleport protoObjectTeleport)
             {
                 throw new Exception($"Not a {nameof(ProtoObjectTeleport)}: {objectTeleport}");
             }

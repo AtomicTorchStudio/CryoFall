@@ -30,7 +30,7 @@
 
             this.SubscribeToEvents();
 
-            if (!(item.ProtoItem is IProtoItemWithSlotOverlay protoItemWithSlotOverlay))
+            if (item.ProtoItem is not IProtoItemWithSlotOverlay protoItemWithSlotOverlay)
             {
                 return;
             }

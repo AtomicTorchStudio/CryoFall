@@ -393,7 +393,7 @@
 
             var members = ServerGetFactionMembersEditable(faction);
             var factionPublicState = Faction.GetPublicState(faction);
-            var maxMembers = FactionConstants.GetFactionMembersMax(factionPublicState.Kind);
+            var maxMembers = FactionConstants.SharedGetFactionMembersMax(factionPublicState.Kind);
 
             if (members.Count >= maxMembers)
             {

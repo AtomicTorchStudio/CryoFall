@@ -4,10 +4,6 @@
     {
         IReadOnlyDropItemsList DropItemsList { get; }
 
-        DropItemConditionDelegate CreateCompoundConditionIfNecessary(DropItemConditionDelegate otherCondition);
-
-        double GetCountMultiplierForDroplist();
-
-        double GetProbabilityForDroplist();
+        DropItemRollFunctionDelegate ProbabilityRollFunction { get; }
     }
 }

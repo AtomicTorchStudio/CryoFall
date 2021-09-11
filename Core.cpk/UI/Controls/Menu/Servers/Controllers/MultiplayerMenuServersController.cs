@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -56,6 +58,10 @@
             this.RebuildServersList();
         }
 
+        protected virtual void ApplyListFilters(List<ServerAddress> servers)
+        {
+        }
+
         protected void ExecuteCommandEdit(ViewModelServerInfo viewModelServerInfo)
         {
             var oldServerAddress = viewModelServerInfo.Address;
@@ -102,7 +108,9 @@
 
         protected override void PopulateServersList()
         {
-            var servers = this.serversListProvider.CurrentList;
+            var servers = this.serversListProvider.CurrentList.ToList();
+            this.ApplyListFilters(servers);
+
             foreach (var address in servers)
             {
                 var item = this.ServerViewModelsProvider.GetServerInfoViewModel(address);

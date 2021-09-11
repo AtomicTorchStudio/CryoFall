@@ -58,8 +58,6 @@
 
         protected override void InitControl()
         {
-            base.InitControl();
-
             this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
             this.storyboardFadeOut = this.GetResource<Storyboard>("StoryboardFadeOut");
         }

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Droplists
 {
+    using System;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -9,8 +10,6 @@
 
         private readonly double probability;
 
-        private DropItemConditionDelegate cachedConditionForProbabilityRoll;
-
         public DropItemsListPreset(
             ushort outputs,
             double probability,
@@ -18,6 +17,12 @@
             string storageKey,
             ushort outputsRandom = 0)
         {
+            if (probability is <= 0 or > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(probability),
+                                                      "Probability must be larger than zero and less or greater to 1");
+            }
+
             this.UseGuaranteedProbabilityAlgorithm = useGuaranteedProbabilityAlgorithm;
             this.StorageKey = storageKey;
             this.probability = probability;
@@ -26,6 +31,8 @@
         }
 
         public IReadOnlyDropItemsList DropItemsList => this.dropItemsList;
+
+        public DropItemRollFunctionDelegate ProbabilityRollFunction => this.Roll;
 
         public string StorageKey { get; }
 
@@ -86,54 +93,30 @@
             return this;
         }
 
-        public DropItemConditionDelegate CreateCompoundConditionIfNecessary(DropItemConditionDelegate otherCondition)
+        private bool Roll(
+            DropItemContext context,
+            double probabilityMultiplier,
+            out double resultProbability)
         {
-            if (Api.IsClient)
+            resultProbability = this.probability * probabilityMultiplier;
+            resultProbability = Math.Max(resultProbability, 0);
+
+            if (resultProbability <= 0)
             {
-                // cannot create advanced conditions on client
-                // (and not necessary there as items rolling is server-side only)
-                return otherCondition;
+                return false;
             }
 
-            if (!this.UseGuaranteedProbabilityAlgorithm)
+            if (resultProbability >= 1)
             {
-                return otherCondition;
+                return true;
             }
 
-            this.cachedConditionForProbabilityRoll
-                ??= ServerDropItemsListProbabilityRollHelper.CreateRollCondition(
-                    this.probability,
-                    key: this.StorageKey);
+            var character = context.HasCharacter
+                                ? context.Character
+                                : null;
 
-            if (otherCondition is null)
-            {
-                return this.cachedConditionForProbabilityRoll;
-            }
-
-            // require both conditions
-            return context => otherCondition(context)
-                              && this.cachedConditionForProbabilityRoll(context);
-        }
-
-        public double GetCountMultiplierForDroplist()
-        {
-            if (!this.UseGuaranteedProbabilityAlgorithm)
-            {
-                return 1.0;
-            }
-
-            return ServerDropItemsListProbabilityRollHelper.CalculateOutputCountMultiplier(this.probability);
-        }
-
-        public double GetProbabilityForDroplist()
-        {
-            if (!this.UseGuaranteedProbabilityAlgorithm)
-            {
-                return this.probability;
-            }
-
-            // the chance is rolled independently via the condition (see CreateCompoundConditionIfNecessary)
-            return 1.0;
+            return ServerDropItemsListProbabilityRollHelper
+                .Roll(resultProbability, this.StorageKey, character);
         }
     }
 }

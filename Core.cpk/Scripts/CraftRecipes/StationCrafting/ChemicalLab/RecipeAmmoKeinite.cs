@@ -20,8 +20,8 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemGlassRaw>(count: 20);
-            inputItems.Add<ItemKeinite>(count: 5);
+            inputItems.Add<ItemGlassRaw>(count: 10);
+            inputItems.Add<ItemKeinite>(count: 4);
             inputItems.Add<ItemSolvent>(count: 5);
 
             outputItems.Add<ItemAmmoKeinite>(count: 100);

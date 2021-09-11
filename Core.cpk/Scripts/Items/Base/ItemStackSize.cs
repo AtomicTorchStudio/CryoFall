@@ -1,11 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items
 {
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     /// <summary>
@@ -13,43 +12,15 @@
     /// </summary>
     public class ItemStackSize : ProtoEntity
     {
-        private static double itemStackSizeMultiplier = 1.0;
-
         static ItemStackSize()
         {
-            if (Api.IsClient)
+            if (Api.IsServer)
             {
-                return;
+                SharedApplyRates();
             }
-
-            const string key = "ItemStackSizeMultiplier";
-            const double defaultValue = 1.0,
-                         minValue = 1.0,
-                         maxValue = 50;
-
-            var description
-                = $@"Item stack size (capacity) multiplier.
-                     For example, by default one slot can contain up to 250 stone.
-                     You can increase this number by raising this multiplier.
-                     (allowed range: from {minValue:0.0###} to {maxValue:0.0###}).";
-            itemStackSizeMultiplier = ServerRates.Get(key,
-                                                      defaultValue,
-                                                      description);
-
-            if (itemStackSizeMultiplier < minValue
-                || itemStackSizeMultiplier > maxValue)
-            {
-                itemStackSizeMultiplier = defaultValue;
-                ServerRates.Reset(key,
-                                  defaultValue,
-                                  description);
-            }
-
-            SharedApplyRates();
-            Logger.Important($"Item stack size multiplier from rates config: x{itemStackSizeMultiplier:0.##}");
         }
 
-        // see the default values defined below 
+        // Do NOT edit these properties here, see the default values defined below.
         public static ushort Big { get; private set; } = Defaults.Big;
 
         public static ushort Huge { get; private set; } = Defaults.Huge;
@@ -65,13 +36,19 @@
         {
             if (IsServer)
             {
-                Server.Characters.PlayerOnlineStateChanged += this.ServerPlayerOnlineStateChangedHandler;
+                return;
+            }
+
+            RateItemStackSizeMultiplier.ClientValueChanged += SharedApplyRates;
+            if (RateItemStackSizeMultiplier.ClientIsValueReceived)
+            {
+                SharedApplyRates();
             }
         }
 
         private static ushort ApplyRate(ushort defaultValue)
         {
-            return (ushort)MathHelper.Clamp(defaultValue * itemStackSizeMultiplier,
+            return (ushort)MathHelper.Clamp(defaultValue * RateItemStackSizeMultiplier.SharedValue,
                                             min: 1,
                                             max: ushort.MaxValue);
         }
@@ -82,22 +59,6 @@
             Medium = ApplyRate(Defaults.Medium);
             Big = ApplyRate(Defaults.Big);
             Huge = ApplyRate(Defaults.Huge);
-        }
-
-        private void ClientRemote_SetItemStackSizeMultiplier(double multiplier)
-        {
-            Logger.Important($"Received item stack size multiplier from server: x{multiplier:0.##}");
-            itemStackSizeMultiplier = multiplier;
-            SharedApplyRates();
-        }
-
-        private void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
-        {
-            if (isOnline)
-            {
-                this.CallClient(character,
-                                _ => this.ClientRemote_SetItemStackSizeMultiplier(itemStackSizeMultiplier));
-            }
         }
 
         [SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]

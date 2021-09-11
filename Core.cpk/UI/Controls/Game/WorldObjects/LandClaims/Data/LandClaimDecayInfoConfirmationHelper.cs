@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.LandClaims.Data
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
@@ -21,7 +22,8 @@
         {
             get
             {
-                if (Api.IsEditor)
+                if (Api.IsEditor
+                    || !RateStructuresDecayEnabled.SharedValue)
                 {
                     return true;
                 }

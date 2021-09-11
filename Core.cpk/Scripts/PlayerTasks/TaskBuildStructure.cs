@@ -60,7 +60,7 @@
             }
 
             if (!this.IsSharedWithPartyAndFactionMembers
-                || !(this.TaskTarget is IProtoQuest))
+                || this.TaskTarget is not IProtoQuest)
             {
                 return false;
             }

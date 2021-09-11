@@ -28,8 +28,6 @@
         /// </summary>
         public override double ExperienceToLearningPointsConversionMultiplier => 0.2;
 
-        public override bool IsSharingLearningPointsWithPartyMembers => false;
-
         public override string Name => "Cybernetic affinity";
 
         protected override void PrepareProtoSkill(SkillConfig config)
@@ -45,7 +43,7 @@
             var stats = new[]
             {
                 ImplantDegradationFromDamageMultiplier,
-                ImplantDegradationSpeedMultiplier,
+                ImplantDegradationSpeedMultiplier
             };
 
             foreach (var statName in stats)

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -317,7 +318,7 @@
         {
             var character = weaponCache.Character;
             if (character is not null
-                && !(weaponCache.ProtoWeapon is IProtoItemWeaponRanged)
+                && weaponCache.ProtoWeapon is not IProtoItemWeaponRanged
                 && WorldObjectClaimSystem.SharedIsEnabled)
             {
                 this.ServerTryClaimObject(targetObject, character);
@@ -349,14 +350,18 @@
                                                           weaponCache.ProtoExplosive);
 
                 var objectDrone = weaponCache.Drone;
+                var probabilityMultiplier = growthProgressFraction
+                                            * RateResourcesGatherBasic.SharedValue;
+
                 if (objectDrone is not null)
                 {
                     // drop resources into the internal storage of the drone
                     var storageItemsContainer = ((IProtoDrone)objectDrone.ProtoGameObject)
                         .ServerGetStorageItemsContainer(objectDrone);
-                    dropItemsList.TryDropToContainer(storageItemsContainer,
-                                                     dropItemContext,
-                                                     probabilityMultiplier: growthProgressFraction);
+                    dropItemsList.TryDropToContainer(
+                        storageItemsContainer,
+                        dropItemContext,
+                        probabilityMultiplier: probabilityMultiplier);
                 }
                 else if (weaponCache.ProtoWeapon is IProtoItemWeaponMelee)
                 {
@@ -366,7 +371,7 @@
                         targetObject.TilePosition,
                         dropItemContext,
                         groundContainer: out _,
-                        probabilityMultiplier: growthProgressFraction);
+                        probabilityMultiplier: probabilityMultiplier);
                     if (result.TotalCreatedCount > 0)
                     {
                         NotificationSystem.ServerSendItemsNotification(byCharacter, result);
@@ -378,7 +383,7 @@
                     dropItemsList.TryDropToGround(
                         targetObject.TilePosition,
                         dropItemContext,
-                        probabilityMultiplier: growthProgressFraction,
+                        probabilityMultiplier: probabilityMultiplier,
                         groundContainer: out _);
                 }
             }

@@ -16,7 +16,8 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
             {
                 typeof(RecipeFibersFromPlastic),
                 typeof(RecipeCoinPennyRecycle),
-                typeof(RecipeCoinShinyRecycle)
+                typeof(RecipeCoinShinyRecycle),
+                typeof(RecipeReactorBrokenModuleRecycle)
             };
 
         static RecipesHelper()

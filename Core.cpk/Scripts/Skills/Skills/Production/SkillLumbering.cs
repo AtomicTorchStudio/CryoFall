@@ -37,8 +37,6 @@
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0.4; // lower since each tree gives 150 exp (which would mean 1.5LP without this multiplier)
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Lumbering";
 
         protected override void PrepareProtoSkill(SkillConfig config)

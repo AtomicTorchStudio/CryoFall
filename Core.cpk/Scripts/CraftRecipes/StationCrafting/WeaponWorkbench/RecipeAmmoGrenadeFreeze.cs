@@ -23,7 +23,7 @@
             inputItems.Add<ItemNitrocellulosePowder>(count: 30);
             inputItems.Add<ItemOrePragmium>(count: 4);
 
-            outputItems.Add<ItemAmmoGrenadeFreeze>(count: 5);
+            outputItems.Add<ItemAmmoGrenadeFreeze>(count: 10);
         }
     }
 }

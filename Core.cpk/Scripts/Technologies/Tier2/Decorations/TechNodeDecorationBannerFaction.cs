@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationBannerFaction>();
 
-            config.SetRequiredNode<TechNodeSignWood>();
+            config.SetRequiredNode<TechNodeDisplayCase>();
         }
     }
 }

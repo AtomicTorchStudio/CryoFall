@@ -321,6 +321,12 @@
                     return;
                 }
 
+                if (this.TaskStates.Count == 0)
+                {
+                    // there are no tasks so this achievement is added manually only
+                    return;
+                }
+
                 var completed = false;
                 try
                 {

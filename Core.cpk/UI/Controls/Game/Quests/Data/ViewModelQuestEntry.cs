@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -63,8 +64,8 @@
                 _ => this.NotifyPropertyChanged(nameof(this.IsNew)),
                 this);
 
-            TechConstants.ClientLearningPointsGainMultiplierReceived +=
-                this.ClientLearningPointsGainMultiplierReceivedHandler;
+            RateLearningPointsGainMultiplier.ClientValueChanged
+                += this.ClientLearningPointsGainMultiplierReceivedHandler;
         }
 
         public bool AreAllTasksCompleted => this.QuestEntry.AreAllTasksCompleted;
@@ -130,8 +131,8 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            TechConstants.ClientLearningPointsGainMultiplierReceived -=
-                this.ClientLearningPointsGainMultiplierReceivedHandler;
+            RateLearningPointsGainMultiplier.ClientValueChanged
+                -= this.ClientLearningPointsGainMultiplierReceivedHandler;
         }
 
         private void ClientLearningPointsGainMultiplierReceivedHandler()

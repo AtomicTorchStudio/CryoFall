@@ -118,7 +118,8 @@
 
         public static void ServerInitialize(IStaticWorldObject tradingStation)
         {
-            if (!(tradingStation.ProtoStaticWorldObject is IProtoObjectTradingStation protoTradingStation))
+            if (tradingStation.ProtoStaticWorldObject
+                    is not IProtoObjectTradingStation protoTradingStation)
             {
                 throw new Exception($"Not an {typeof(IProtoObjectTradingStation).FullName}: {tradingStation}");
             }

@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -180,7 +181,7 @@
             this.listedInTechNodes.AddIfNotContains(techNode);
         }
 
-        public double SharedGetDurationForPlayer(ICharacter character, bool cutForCreativeMode = true)
+        public double SharedGetDurationForPlayer(ICharacter character, bool shortenForCreativeMode = true)
         {
             if (this.RecipeType == RecipeType.Manufacturing
                 || this.RecipeType == RecipeType.ManufacturingByproduct)
@@ -188,19 +189,14 @@
                 return this.OriginalDuration;
             }
 
-            double result;
-            if (cutForCreativeMode
+            if (shortenForCreativeMode
                 && CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                result = 0.5; // creative mode - craft in 0.5 seconds 
+                return 0.25; // creative mode - craft nearly instantly 
             }
-            else
-            {
-                result = this.OriginalDuration
-                         / (IsServer
-                                ? CraftingSystem.ServerCraftingSpeedMultiplier
-                                : CraftingSystem.ClientCraftingSpeedMultiplier);
-            }
+
+            var result = this.OriginalDuration
+                         / RateCraftingSpeedMultiplier.SharedValue;
 
             // hand or station crafting - apply crafting speed bonus
             var multiplier = character.SharedGetFinalStatMultiplier(StatName.CraftingSpeed);
@@ -316,7 +312,7 @@
 
             protected virtual void ValidateRecipe()
             {
-                if (!(this is RecipeForManufacturingByproduct))
+                if (this is not RecipeForManufacturingByproduct)
                 {
                     // only for non-byproduct recipes
                     Api.Assert(this.StationTypes.Count > 0, "Crafting station type cannot be null.");

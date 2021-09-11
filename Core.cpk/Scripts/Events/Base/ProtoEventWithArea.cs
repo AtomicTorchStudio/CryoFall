@@ -28,9 +28,9 @@
 
         protected static bool ServerCheckNoEventsInZone(IServerZone zoneInstance, List<ILogicObject> events)
         {
-            foreach (var activeEvent in events)
+            foreach (var worldEvent in events)
             {
-                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var publicState = worldEvent.GetPublicState<EventWithAreaPublicState>();
                 if (zoneInstance.IsContainsPosition(publicState.AreaEventOriginalPosition))
                 {
                     // this event is in the same biome
@@ -45,11 +45,11 @@
             Vector2Ushort position,
             double areaRadius)
         {
-            using var tempAllActiveEvents =
+            using var tempAllWorldEvents =
                 Api.Shared.WrapInTempList(
                     Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
 
-            return this.ServerCheckNoEventsNearby(position, areaRadius, tempAllActiveEvents.AsList());
+            return this.ServerCheckNoEventsNearby(position, areaRadius, tempAllWorldEvents.AsList());
         }
 
         protected bool ServerCheckNoEventsNearby(
@@ -58,9 +58,9 @@
             List<ILogicObject> allActiveEvents)
         {
             var position2D = position.ToVector2D();
-            foreach (var activeEvent in allActiveEvents)
+            foreach (var worldEvent in allActiveEvents)
             {
-                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var publicState = worldEvent.GetPublicState<EventWithAreaPublicState>();
                 var distance = (publicState.AreaCirclePosition.ToVector2D() - position2D).Length;
                 distance -= publicState.AreaCircleRadius;
                 distance -= areaRadius;
@@ -94,7 +94,7 @@
         }
 
         protected virtual void ServerCreateEventArea(
-            ILogicObject activeEvent,
+            ILogicObject worldEvent,
             ushort circleRadius,
             out Vector2Ushort circlePosition,
             out Vector2Ushort eventPosition)
@@ -106,7 +106,7 @@
             var attemptsRemains = attemptsMax;
             do
             {
-                eventPosition = this.ServerPickEventPosition(activeEvent);
+                eventPosition = this.ServerPickEventPosition(worldEvent);
 
                 // a valid spawn position found, try to create a search area circle which is including this location
                 if (!this.ServerCreateEventSearchArea(world, eventPosition, circleRadius, out circlePosition))
@@ -121,7 +121,7 @@
             }
             while (--attemptsRemains > 0);
 
-            throw new Exception("Unable to create the event area for " + activeEvent);
+            throw new Exception("Unable to create the event area for " + worldEvent);
         }
 
         protected virtual bool ServerCreateEventSearchArea(
@@ -141,11 +141,11 @@
 
         protected abstract bool ServerIsValidEventPosition(Vector2Ushort tilePosition);
 
-        protected override void ServerOnEventStarted(ILogicObject activeEvent)
+        protected override void ServerOnEventStarted(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
 
-            this.ServerCreateEventArea(activeEvent,
+            this.ServerCreateEventArea(worldEvent,
                                        this.AreaRadius,
                                        out var circlePosition,
                                        out var originalEventPosition);
@@ -154,11 +154,11 @@
             publicState.AreaCirclePosition = circlePosition;
             publicState.AreaCircleRadius = this.AreaRadius;
 
-            this.ServerOnEventWithAreaStarted(activeEvent);
+            this.ServerOnEventWithAreaStarted(worldEvent);
         }
 
-        protected abstract void ServerOnEventWithAreaStarted(ILogicObject activeEvent);
+        protected abstract void ServerOnEventWithAreaStarted(ILogicObject worldEvent);
 
-        protected abstract Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent);
+        protected abstract Vector2Ushort ServerPickEventPosition(ILogicObject worldEvent);
     }
 }

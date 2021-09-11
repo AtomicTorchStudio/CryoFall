@@ -24,8 +24,8 @@
         VehicleIsNotInsideVehicleAssemblyBay = 5,
 
         // re-use description string from SetPowerModeResult
-        NotEnoughPower = 6
+        NotEnoughPower = 6,
 
-        // BaseUnderRaidblock = 7
+        NotRepairable = 255
     }
 }

@@ -66,8 +66,8 @@
         {
             buildRequiredItems
                 .Add<ItemStructuralPlating>(3)
-                .Add<ItemImpulseEngine>(3)
-                .Add<ItemComponentsElectronic>(10);
+                .Add<ItemImpulseEngine>(1)
+                .Add<ItemComponentsElectronic>(5);
 
             repairStageRequiredItems
                 .Add<ItemIngotSteel>(5);

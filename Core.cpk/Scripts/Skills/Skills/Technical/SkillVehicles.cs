@@ -20,8 +20,6 @@
 
         public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 
-        public override bool IsSharingLearningPointsWithPartyMembers => false;
-
         public override string Name => "Vehicles";
 
         public override StatName StatNameDamageBonusMultiplier

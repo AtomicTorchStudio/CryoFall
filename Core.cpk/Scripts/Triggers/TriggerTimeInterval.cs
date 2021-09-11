@@ -51,12 +51,12 @@
         }
 
         public BaseTriggerConfig Configure(
-            (TimeSpan From, TimeSpan To) intervals,
+            (TimeSpan from, TimeSpan to) interval,
             bool adjustRateToPlayersNumber = false)
         {
             return new TriggerTimeIntervalConfig(trigger: this,
-                                                 intervalFromSeconds: intervals.From.TotalSeconds,
-                                                 intervalToSeconds: intervals.To.TotalSeconds,
+                                                 intervalFromSeconds: interval.from.TotalSeconds,
+                                                 intervalToSeconds: interval.to.TotalSeconds,
                                                  adjustRateToPlayersNumber: adjustRateToPlayersNumber);
         }
 

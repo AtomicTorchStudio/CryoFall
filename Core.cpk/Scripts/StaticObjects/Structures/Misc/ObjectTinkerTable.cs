@@ -34,7 +34,15 @@
               StaticObjectClientState>,
           IInteractableProtoWorldObject
     {
+        public const byte DisassemblyContainerInputSlotsNumber = 9;
+
+        public const byte DisassemblyContainerOutputMinSlotsNumber = 12;
+
         public const string ErrorMessage_ComponentItemsRequried = "Need more components.";
+
+        public const string ErrorMessage_Disassembly_PlaceInput = "Place items to disassemble.";
+
+        public const string ErrorMessage_Disassembly_RemoveOutput = "Take out the output items first.";
 
         public const string ErrorMessage_Input = "Place two identical items to repair.";
 
@@ -43,6 +51,8 @@
         public const string ErrorMessage_OutputIsFull = "Remove the item from the output slot first.";
 
         public const string ErrorTitle = "Cannot repair";
+
+        public const string ErrorTitleCannotDisassemble = "Cannot disassemble";
 
         public const string Notification_PerfectRepair_Format = "You were lucky![br]{0} repaired completely!";
 
@@ -70,6 +80,23 @@
         public override double ObstacleBlockDamageCoef => 1;
 
         public override float StructurePointsMax => 1200;
+
+        public static void ClientDisassemble(IStaticWorldObject tinkerTableObject)
+        {
+            if (ValidateCanDisassemble(Client.Characters.CurrentPlayerCharacter,
+                                       tinkerTableObject,
+                                       out var errorMessage))
+            {
+                instance.CallServer(_ => _.ServerRemote_Disassemble());
+                return;
+            }
+
+            NotificationSystem.ClientShowNotification(
+                ErrorTitleCannotDisassemble,
+                errorMessage,
+                NotificationColor.Bad,
+                icon: instance.Icon);
+        }
 
         public static void ClientRepair(IStaticWorldObject tinkerTableObject)
         {
@@ -99,6 +126,28 @@
 
             result = MathHelper.Clamp(result, 0, 100);
             return result / 100.0;
+        }
+
+        public static bool ValidateCanDisassemble(
+            ICharacter character,
+            IStaticWorldObject tinkerTableObject,
+            out string errorMessage)
+        {
+            var privateState = GetPrivateState(tinkerTableObject);
+            if (privateState.ContainerDisassemblyInput.OccupiedSlotsCount == 0)
+            {
+                errorMessage = ErrorMessage_Disassembly_PlaceInput;
+                return false;
+            }
+
+            if (privateState.ContainerDisassemblyOutput.OccupiedSlotsCount > 0)
+            {
+                errorMessage = ErrorMessage_Disassembly_RemoveOutput;
+                return false;
+            }
+
+            errorMessage = null;
+            return true;
         }
 
         public static bool ValidateCanRepair(
@@ -245,12 +294,19 @@
             var privateState = data.PrivateState;
 
             privateState.ContainerInput
-                ??= Server.Items.CreateContainer<ItemsContainerTinkerTableInput>(worldObject,
+                ??= Server.Items.CreateContainer<ItemsContainerTinkerTableRepairInput>(worldObject,
                     slotsCount: 2);
 
             privateState.ContainerOutput
+                ??= Server.Items.CreateContainer<ItemsContainerOutput>(worldObject, slotsCount: 1);
+
+            privateState.ContainerDisassemblyInput
+                ??= Server.Items.CreateContainer<ItemsContainerTinkerTableDisassemblyInput>(worldObject,
+                    DisassemblyContainerInputSlotsNumber);
+
+            privateState.ContainerDisassemblyOutput
                 ??= Server.Items.CreateContainer<ItemsContainerOutput>(worldObject,
-                                                                       slotsCount: 1);
+                                                                       DisassemblyContainerOutputMinSlotsNumber);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
@@ -298,11 +354,36 @@
                 skill.Icon);
         }
 
+        private void ServerRemote_Disassemble()
+        {
+            var character = ServerRemoteContext.Character;
+            var tinkerTableObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character)
+                                        as IStaticWorldObject;
+            this.VerifyGameObject(tinkerTableObject);
+
+            if (!ValidateCanDisassemble(character,
+                                        tinkerTableObject,
+                                        out var error))
+            {
+                Logger.Warning(tinkerTableObject + " cannot disassemble: " + error, character);
+                return;
+            }
+
+            var worldObjectPrivateState = GetPrivateState(tinkerTableObject);
+            var containerInput = worldObjectPrivateState.ContainerDisassemblyInput;
+            var containerOutput = worldObjectPrivateState.ContainerDisassemblyOutput;
+
+            ItemDisassemblySystem.ServerDisassemble(character,
+                                                    containerInput,
+                                                    containerOutput,
+                                                    DisassemblyContainerOutputMinSlotsNumber);
+        }
+
         private void ServerRemote_Repair()
         {
             var character = ServerRemoteContext.Character;
-            var tinkerTableObject =
-                InteractionCheckerSystem.SharedGetCurrentInteraction(character) as IStaticWorldObject;
+            var tinkerTableObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character)
+                                        as IStaticWorldObject;
             this.VerifyGameObject(tinkerTableObject);
 
             var worldObjectPrivateState = GetPrivateState(tinkerTableObject);
@@ -364,6 +445,12 @@
 
         public class PrivateState : StructurePrivateState
         {
+            [SyncToClient]
+            public IItemsContainer ContainerDisassemblyInput { get; set; }
+
+            [SyncToClient]
+            public IItemsContainer ContainerDisassemblyOutput { get; set; }
+
             [SyncToClient]
             public IItemsContainer ContainerInput { get; set; }
 

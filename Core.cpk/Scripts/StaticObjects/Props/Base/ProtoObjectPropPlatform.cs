@@ -80,7 +80,7 @@
             {
                 var tilePosition = tile.Position;
                 occupiedTilePositions.Add(tilePosition);
-                if (!(tile.ProtoTile is IProtoTileWater))
+                if (tile.ProtoTile is not IProtoTileWater)
                 {
                     continue;
                 }
@@ -109,7 +109,7 @@
             foreach (var tile in gameObject.OccupiedTiles)
             {
                 var currentProtoTile = tile.ProtoTile;
-                if (!(currentProtoTile is IProtoTileWater protoTileWater))
+                if (currentProtoTile is not IProtoTileWater protoTileWater)
                 {
                     if (tile.IsCliffOrSlope)
                     {

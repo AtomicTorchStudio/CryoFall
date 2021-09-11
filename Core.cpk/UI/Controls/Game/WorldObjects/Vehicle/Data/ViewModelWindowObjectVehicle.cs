@@ -129,6 +129,8 @@
 
         public bool IsOwnedByFaction => !string.IsNullOrEmpty(this.FactionClanTag);
 
+        public bool IsRepairable => this.ProtoVehicle.IsRepairable;
+
         public bool IsVehicleTabActive
         {
             get => this.isVehicleTabActive;

@@ -23,7 +23,7 @@
             inputItems.Add<ItemThread>(count: 3);
             inputItems.Add<ItemBlackpowder>(count: 20);
 
-            outputItems.Add<ItemAmmoPaperCartridge>(count: 10);
+            outputItems.Add<ItemAmmoPaperCartridge>(count: 20);
         }
     }
 }

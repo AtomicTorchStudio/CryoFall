@@ -3,6 +3,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
@@ -277,7 +278,7 @@
             {
                 // apply extraction rate multiplier (it applies to oil refinery production rate)
                 var deltaTimeLiquidProcessing = deltaTime;
-                deltaTimeLiquidProcessing *= StructureConstants.ManufacturingSpeedMultiplier;
+                deltaTimeLiquidProcessing *= RateManufacturingSpeedMultiplier.SharedValue;
 
                 // active, we can "transfer" liquids and progress crafting queues for output liquids
                 // try transfer ("use") raw petroleum bar

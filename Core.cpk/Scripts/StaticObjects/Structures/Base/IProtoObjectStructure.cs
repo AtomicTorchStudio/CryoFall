@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public interface IProtoObjectStructure : IProtoStaticWorldObject, IDamageableProtoWorldObject
     {
@@ -63,6 +64,8 @@
         void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime);
 
         void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter);
+
+        void ServerOnRelocated(IStaticWorldObject structure, ICharacter byCharacter, Vector2Ushort fromPosition);
 
         void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character);
 

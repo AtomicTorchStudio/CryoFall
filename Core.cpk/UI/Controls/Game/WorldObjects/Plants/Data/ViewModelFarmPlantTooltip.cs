@@ -228,8 +228,8 @@
                 // update rotten time
                 var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
                     this.nextHarvestOrSpoilTime,
-                    this.protoPlant.TimeToHarvestSpoilTotalSeconds
-                    / FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier,
+                    duration: this.protoPlant.TimeToHarvestSpoilTotalSeconds 
+                              * FarmingConstants.SharedFarmPlantsLifetimeMultiplier,
                     out var timeRemainingSeconds);
 
                 this.SpoiledInTimeText = ClientTimeFormatHelper.FormatTimeDuration(Math.Max(0, timeRemainingSeconds));

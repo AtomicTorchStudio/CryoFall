@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data;
@@ -30,7 +31,7 @@
             if (IsClient)
             {
                 PveSystem.ClientIsPvEChanged += SharedRebuildAllNodes;
-                TechConstants.ClientPvpTechTimeGameReceivedHandler += SharedRebuildAllNodes;
+                RatePvPTimeGates.ClientValueChanged += SharedRebuildAllNodes;
             }
         }
 
@@ -201,14 +202,14 @@
                 SetupTimeGate(techGroup);
 
                 techGroup.Nodes = techGroup.IsAvailable
-                                      ? (IReadOnlyList<TechNode>)LazyAllNodesWithoutFiltering
-                                                                 .Value
-                                                                 .Where(n => n.Group == techGroup
-                                                                             && n.IsAvailable)
-                                                                 .OrderBy(n => n.HierarchyLevel)
-                                                                 .ThenBy(n => n.Order)
-                                                                 .ThenBy(n => n.ShortId)
-                                                                 .ToList()
+                                      ? LazyAllNodesWithoutFiltering
+                                        .Value
+                                        .Where(n => n.Group == techGroup
+                                                    && n.IsAvailable)
+                                        .OrderBy(n => n.HierarchyLevel)
+                                        .ThenBy(n => n.Order)
+                                        .ThenBy(n => n.ShortId)
+                                        .ToList()
                                       : new TechNode[0];
 
                 var rootNodes = new List<TechNode>();
@@ -253,26 +254,8 @@
                     return;
                 }
 
-                if (techGroup.IsPrimary)
-                {
-                    techGroup.TimeGatePvP = techGroup.Tier switch
-                    {
-                        TechTier.Tier3 => TechConstants.PvpTechTimeGameTier3Basic,
-                        TechTier.Tier4 => TechConstants.PvpTechTimeGameTier4Basic,
-                        TechTier.Tier5 => TechConstants.PvpTechTimeGameTier5Basic,
-                        _              => 0
-                    };
-                }
-                else
-                {
-                    techGroup.TimeGatePvP = techGroup.Tier switch
-                    {
-                        TechTier.Tier3 => TechConstants.PvpTechTimeGameTier3Specialized,
-                        TechTier.Tier4 => TechConstants.PvpTechTimeGameTier4Specialized,
-                        TechTier.Tier5 => TechConstants.PvpTechTimeGameTier5Specialized,
-                        _              => 0
-                    };
-                }
+                techGroup.TimeGatePvP = TechConstants.PvPTimeGates.Get(techGroup.Tier,
+                                                                       isSpecialized: !techGroup.IsPrimary);
             }
         }
 

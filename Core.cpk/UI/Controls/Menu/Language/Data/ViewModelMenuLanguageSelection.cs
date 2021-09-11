@@ -16,7 +16,7 @@
         {
             this.Languages = ClientLanguagesManager.AllLanguageDefinitions
                                                    // English first
-                                                   .OrderBy(l => !(l is Language_en_us))
+                                                   .OrderBy(l => l is not Language_en_us)
                                                    // other languages sorted by the ISO code
                                                    .ThenBy(l => l.LanguageTag)
                                                    .Select(l => new ViewModelLanguageDefinition(l))

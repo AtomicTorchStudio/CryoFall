@@ -1,0 +1,96 @@
+﻿<core:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Launchpad.LaunchpadStageProgressControl"
+    x:Name="UserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300">
+
+    <core:BaseUserControl.Resources>
+        <system:Double x:Key="EllipseSize">60</system:Double>
+        <system:Double x:Key="RectangleHeight">30</system:Double>
+
+        <Style x:Key="CompletedStageTextBlockStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="LineHeight" Value="24" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColorGreen7}" />
+        </Style>
+
+        <Style x:Key="NonCompletedStageTextBlockStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource CompletedStageTextBlockStyle}">
+            <Setter Property="Foreground" Value="#FFBBBBBB" />
+        </Style>
+
+        <Style x:Key="CompletedStageEllipseStyle"
+               TargetType="Ellipse">
+            <Setter Property="Width" Value="{StaticResource EllipseSize}" />
+            <Setter Property="Height" Value="{StaticResource EllipseSize}" />
+            <Setter Property="Fill" Value="{StaticResource BrushColorGreen1}" />
+            <Setter Property="Stroke" Value="{StaticResource BrushColorGreen3}" />
+            <Setter Property="StrokeThickness" Value="1" />
+        </Style>
+
+        <Style x:Key="NonCompletedStageEllipseStyle"
+               TargetType="Ellipse"
+               BasedOn="{StaticResource CompletedStageEllipseStyle}">
+            <Setter Property="Fill" Value="#FF222222" />
+            <Setter Property="Stroke" Value="#FF555555" />
+        </Style>
+
+        <Style x:Key="CompletedStageBackgroundRectangleStyle"
+               TargetType="Rectangle">
+            <Setter Property="Height" Value="{StaticResource RectangleHeight}" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource BrushColorGreen1}" />
+            <Setter Property="Stroke" Value="{StaticResource BrushColorGreen3}" />
+        </Style>
+
+        <Style x:Key="LastCompletedStageBackgroundRectangleStyle"
+               TargetType="Rectangle"
+               BasedOn="{StaticResource CompletedStageBackgroundRectangleStyle}">
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource ColorGreen1}" Offset="0.333" />
+                        <GradientStop Color="#FF222222" Offset="0.667" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Stroke">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource ColorGreen3}" Offset="0.333" />
+                        <GradientStop Color="#FF555555" Offset="0.667" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NonCompletedStageBackgroundRectangleStyle"
+               TargetType="Rectangle"
+               BasedOn="{StaticResource CompletedStageBackgroundRectangleStyle}">
+            <Setter Property="Fill" Value="#FF222222" />
+            <Setter Property="Stroke" Value="#FF555555" />
+        </Style>
+
+    </core:BaseUserControl.Resources>
+
+    <Canvas x:Name="LayoutRoot"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Height="{StaticResource EllipseSize}">
+
+    </Canvas>
+</core:BaseUserControl>

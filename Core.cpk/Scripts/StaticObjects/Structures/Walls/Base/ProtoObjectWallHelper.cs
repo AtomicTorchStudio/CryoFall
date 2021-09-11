@@ -16,9 +16,9 @@
         public static void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {
             var isDestroyedWall = false;
-            if (!(worldObject.ProtoGameObject is IProtoObjectWall protoWall))
+            if (worldObject.ProtoGameObject is not IProtoObjectWall protoWall)
             {
-                if (!(worldObject.ProtoGameObject is ObjectWallDestroyed))
+                if (worldObject.ProtoGameObject is not ObjectWallDestroyed)
                 {
                     return;
                 }

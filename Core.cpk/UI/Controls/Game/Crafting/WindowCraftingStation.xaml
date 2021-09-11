@@ -8,7 +8,7 @@
                                 xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                                 mc:Ignorable="d"
                                 d:DesignHeight="300" d:DesignWidth="300"
-                                d:DataContext="{d:DesignInstance data:WindowCraftingStationViewModel, IsDesignTimeCreatable=True}">
+                                d:DataContext="{d:DesignInstance data:ViewModelWindowCraftingStation, IsDesignTimeCreatable=True}">
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"
                      Height="{StaticResource GameMenuStandardWindowHeight}"

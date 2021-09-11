@@ -100,7 +100,8 @@
 
                 var controlInfoEntry = ItemTooltipInfoEntryControl.Create(
                     statusEffectMedicalCooldown.Name,
-                    ClientTimeFormatHelper.FormatTimeDuration(this.CooldownDuration));
+                    ClientTimeFormatHelper.FormatTimeDuration(
+                        Math.Min(this.CooldownDuration, StatusEffectMedicalCooldown.MaxDuration)));
                 controlInfoEntry.Margin = new Thickness(4, 0, 0, -5);
                 controlInfoEntry.VerticalAlignment = VerticalAlignment.Center;
                 controlInfoEntry.Foreground
@@ -147,10 +148,25 @@
 
             if (this.CooldownDuration > 0)
             {
-                // medical cooldown is added automatically and it's hidden
-                // (the cooldown duration is displayed separately in the tooltip)
+                if (this.CooldownDuration > StatusEffectMedicalCooldown.MaxDuration)
+                {
+                    Logger.Error("Exceeding maximum medical cooldown duration in "
+                                 + this.Id
+                                 + ": "
+                                 + this.CooldownDuration
+                                 + " seconds."
+                                 + Environment.NewLine
+                                 + "Maximum allowed: "
+                                 + StatusEffectMedicalCooldown.MaxDuration
+                                 + " seconds");
+                }
+
+                // The medical cooldown status effect is added automatically when using this medicine
+                // It's hidden in the list of status effects in the tooltip
+                // because the cooldown duration is displayed separately in the tooltip.
                 effects.WillAddEffect<StatusEffectMedicalCooldown>(
-                    intensity: Math.Min(this.CooldownDuration / StatusEffectMedicalCooldown.MaxDuration, 1),
+                    intensity: Math.Min(this.CooldownDuration, StatusEffectMedicalCooldown.MaxDuration)
+                               / StatusEffectMedicalCooldown.MaxDuration,
                     isHidden: true);
             }
 

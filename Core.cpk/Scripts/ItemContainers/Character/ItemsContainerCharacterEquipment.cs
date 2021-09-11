@@ -40,7 +40,8 @@
 
         public override bool CanAddItem(CanAddItemContext context)
         {
-            if (!(context.Item.ProtoItem is IProtoItemEquipment protoItemEquipment))
+            if (context.Item.ProtoItem 
+                    is not IProtoItemEquipment protoItemEquipment)
             {
                 // not an equipment - cannot be placed here
                 return false;
@@ -122,7 +123,7 @@
 
                 if (IsClient
                     && !context.IsExploratoryCheck
-                    && !(protoItemEquipment is ItemImplantBroken))
+                    && protoItemEquipment is not ItemImplantBroken)
                 {
                     NotificationSystem.ClientShowNotification(
                         NotificationUseStationToInstallImplant_Title,
@@ -160,7 +161,8 @@
 
         public override bool CanRemoveItem(CanRemoveItemContext context)
         {
-            if (!(context.Item.ProtoItem is IProtoItemEquipmentImplant protoItemEquipment))
+            if (context.Item.ProtoItem 
+                    is not IProtoItemEquipmentImplant protoItemEquipment)
             {
                 // impossible - how did it end up here?
                 return true;
@@ -197,7 +199,7 @@
 
         public override byte? FindSlotForItem(IItemsContainer container, IProtoItem protoItem)
         {
-            if (!(protoItem is IProtoItemEquipment protoEquipment))
+            if (protoItem is not IProtoItemEquipment protoEquipment)
             {
                 // not an equipment - cannot be placed here
                 return null;

@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
@@ -31,10 +31,9 @@
 
         public override double MinDistanceBetweenSpawnedObjects => 32;
 
-        [NotLocalizable]
         public override string Name => "Space debris";
 
-        protected override double DelayHoursSinceWipe => 2 * EventConstants.ServerEventDelayMultiplier;
+        protected override double DelayHoursSinceWipe => 2 * RateWorldEventInitialDelayMultiplier.SharedValue;
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -68,9 +67,9 @@
             return false;
         }
 
-        protected override void ServerOnDropEventStarted(ILogicObject activeEvent)
+        protected override void ServerOnDropEventStarted(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
             ServerEventLocationManager.AddUsedLocation(
                 publicState.AreaCirclePosition,
                 publicState.AreaCircleRadius * 1.2,
@@ -98,14 +97,14 @@
             }
         }
 
-        protected override Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent)
+        protected override Vector2Ushort ServerPickEventPosition(ILogicObject worldEvent)
         {
             var world = Server.World;
             using var tempExistingEventsSameType = Api.Shared.WrapInTempList(
                 world.GetGameObjectsOfProto<ILogicObject, IProtoEvent>(
                     this));
 
-            using var tempAllActiveEvents = Api.Shared.WrapInTempList(
+            using var tempAllWorldEvents = Api.Shared.WrapInTempList(
                 world.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
 
             for (var globalAttempt = 0; globalAttempt < 10; globalAttempt++)
@@ -141,7 +140,7 @@
                         && this.ServerCheckNoEventsNearby(
                             result,
                             this.AreaRadius * (1 + 3 * (attempts / (double)maxAttempts)),
-                            tempAllActiveEvents.AsList()))
+                            tempAllWorldEvents.AsList()))
                     {
                         return result;
                     }
@@ -156,21 +155,12 @@
             Triggers triggers,
             List<IProtoWorldObject> spawnPreset)
         {
-            var isPvE = PveSystem.ServerIsPvE;
-            var intervalHours = isPvE
-                                    ? (from: 3.0, to: 4.5)
-                                    : (from: 2.0, to: 3.5);
+            var intervalHours = RateWorldEventIntervalSpaceDrop.SharedValueIntervalHours;
+            triggers.Add(GetTrigger<TriggerTimeInterval>()
+                             .Configure((intervalHours.From,
+                                         intervalHours.To)));
 
-            triggers
-                // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>()
-                         .Configure(
-                                 this.ServerGetIntervalForThisEvent(
-                                     (from: TimeSpan.FromHours(intervalHours.from),
-                                      to: TimeSpan.FromHours(intervalHours.to)))
-                             ));
-
-            var debrisToSpawn = isPvE ? 2 : 3;
+            var debrisToSpawn = PveSystem.ServerIsPvE ? 2 : 3;
             for (var index = 0; index < debrisToSpawn; index++)
             {
                 spawnPreset.Add(Api.GetProtoEntity<ObjectSpaceDebris>());

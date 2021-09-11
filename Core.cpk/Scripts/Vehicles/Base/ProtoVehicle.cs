@@ -50,6 +50,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -122,7 +123,7 @@
 
         public bool HasOwnersList => true;
 
-        public bool HasVehicleLights => this.VehicleLightConfig.IsLightEnabled;
+        public virtual bool HasVehicleLights => this.VehicleLightConfig.IsLightEnabled;
 
         public ITextureResource Icon { get; }
 
@@ -141,6 +142,8 @@
         public abstract bool IsHeavyVehicle { get; }
 
         public abstract bool IsPlayersHotbarAndEquipmentItemsAllowed { get; }
+
+        public bool IsRepairable => this.RepairStagesCount > 0;
 
         public IReadOnlyList<TechNode> ListedInTechNodes
             => this.listedInTechNodes
@@ -282,6 +285,7 @@
             }
 
             Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleRepair);
+            ToolTipServiceExtend.CloseOpenedTooltip();
         }
 
         public virtual void ClientSetupSkeleton(
@@ -692,6 +696,14 @@
             return false;
         }
 
+        public virtual double SharedGetCurrentEnergyConsumption(IDynamicWorldObject vehicle)
+        {
+            var isMoving = vehicle.PhysicsBody.Velocity != Vector2D.Zero;
+            return isMoving
+                       ? this.EnergyUsePerSecondMoving
+                       : this.EnergyUsePerSecondIdle;
+        }
+
         public virtual IItemsContainer SharedGetHotbarItemsContainer(IDynamicWorldObject vehicle)
         {
             return null;
@@ -820,8 +832,7 @@
         {
             var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
             var protoWorldObject = currentInteractionObject?.ProtoWorldObject;
-            if (!(protoWorldObject is IProtoVehicleAssemblyBay
-                      protoVehicleAssemblyBay))
+            if (protoWorldObject is not IProtoVehicleAssemblyBay protoVehicleAssemblyBay)
             {
                 return VehicleCanBuildCheckResult.NotInteractingWithVehicleBay;
             }
@@ -868,6 +879,11 @@
             }
 
             this.VerifyGameObject(vehicle);
+
+            if (!this.IsRepairable)
+            {
+                return VehicleCanRepairCheckResult.NotRepairable;
+            }
 
             var publicState = GetPublicState(vehicle);
             if (publicState.StructurePointsCurrent >= this.SharedGetStructurePointsMax(vehicle))
@@ -1101,7 +1117,10 @@
             this.PrepareProtoVehicle(requiredItemsBuild,
                                      repairStageRequiredItems,
                                      out var repairStagesCount);
-            Api.Assert(repairStagesCount > 0, "The repair stages number should a positive number larger than zero");
+            Api.Assert(repairStagesCount >= 0, "The repair stages number should be a positive number or zero");
+            Api.Assert(repairStagesCount == 0 && repairStageRequiredItems.Count == 0
+                       || repairStagesCount > 0,
+                       "The repair required items list should be empty as there are zero repair stages");
             this.BuildRequiredItems = requiredItemsBuild.AsReadOnly();
             this.RepairStageRequiredItems = repairStageRequiredItems.AsReadOnly();
             this.RepairStagesCount = repairStagesCount;

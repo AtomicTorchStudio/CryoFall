@@ -221,7 +221,7 @@
             // restore structure points and reset decay for the farm(s) in the tile where the seed was planted
             foreach (var tileObject in plantObject.OccupiedTile.StaticObjects)
             {
-                if (!(tileObject.ProtoStaticWorldObject is IProtoObjectFarm protoFarm))
+                if (tileObject.ProtoStaticWorldObject is not IProtoObjectFarm protoFarm)
                 {
                     continue;
                 }

@@ -2,7 +2,6 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -55,7 +54,7 @@
 
         public override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
         {
-            if (!(byCharacter.ProtoCharacter is PlayerCharacter))
+            if (byCharacter.ProtoCharacter is not PlayerCharacter)
             {
                 // built without player
                 return;
@@ -86,6 +85,21 @@
 
             playerPrivateState.CurrentBedObject = null;
             Logger.Important($"Player's bed for {ownerCharacter} destroyed - {gameObject}");
+        }
+
+        public override void ServerOnRelocated(
+            IStaticWorldObject structure,
+            ICharacter byCharacter,
+            Vector2Ushort fromPosition)
+        {
+            base.ServerOnRelocated(structure, byCharacter, fromPosition);
+
+            var bedPrivateState = GetPrivateState(structure);
+            var currentOwner = bedPrivateState.Owner;
+            if (currentOwner is not null)
+            {
+                ServerSetCurrentBed(structure, currentOwner);
+            }
         }
 
         protected override async void ClientInteractStart(ClientObjectData data)
@@ -127,11 +141,6 @@
         {
             base.PrepareProtoStaticWorldObject();
             this.PrepareProtoObjectBed();
-
-            if (IsServer)
-            {
-                ConstructionRelocationSystem.ServerStructureRelocated += this.ServerStructureRelocatedHandler;
-            }
         }
 
         private static void ServerSetCurrentBed(IStaticWorldObject bedObject, ICharacter owner)
@@ -225,24 +234,6 @@
             }
 
             return ErrorClaimBed_AlreadyHasOwner;
-        }
-
-        private void ServerStructureRelocatedHandler(
-            ICharacter character,
-            Vector2Ushort fromPosition,
-            IStaticWorldObject structure)
-        {
-            if (structure.ProtoGameObject != this)
-            {
-                return;
-            }
-
-            var bedPrivateState = GetPrivateState(structure);
-            var currentOwner = bedPrivateState.Owner;
-            if (currentOwner is not null)
-            {
-                ServerSetCurrentBed(structure, currentOwner);
-            }
         }
     }
 

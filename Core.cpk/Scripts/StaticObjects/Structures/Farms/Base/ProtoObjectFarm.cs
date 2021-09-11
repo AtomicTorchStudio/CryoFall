@@ -69,6 +69,41 @@
             base.ServerOnDestroy(gameObject);
         }
 
+        public override void ServerOnRelocated(
+            IStaticWorldObject structure,
+            ICharacter byCharacter,
+            Vector2Ushort fromPosition)
+        {
+            base.ServerOnRelocated(structure, byCharacter, fromPosition);
+
+            // Relocate plant in farm plot when relocating the farm.
+            if (!ReferenceEquals(structure.ProtoGameObject, this))
+            {
+                return;
+            }
+
+            foreach (var otherObject in Server.World.GetTile(fromPosition).StaticObjects)
+            {
+                if (otherObject.ProtoGameObject is not IProtoObjectPlant)
+                {
+                    continue;
+                }
+
+                Server.World.SetPosition(otherObject, structure.TilePosition);
+
+                try
+                {
+                    otherObject.ServerInitialize();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Exception(ex);
+                }
+
+                break;
+            }
+        }
+
         protected sealed override void ClientUpdate(ClientUpdateData data)
         {
         }
@@ -96,12 +131,6 @@
         protected sealed override void PrepareProtoStaticWorldObject()
         {
             base.PrepareProtoStaticWorldObject();
-
-            if (IsServer)
-            {
-                ConstructionRelocationSystem.ServerStructureRelocated += this.ServerStructureRelocatedHandler;
-            }
-
             this.PrepareProtoObjectFarmPlot();
         }
 
@@ -112,41 +141,6 @@
         protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
             return true;
-        }
-
-        /// <summary>
-        /// Relocate plant in farm plot when relocating the farm.
-        /// </summary>
-        private void ServerStructureRelocatedHandler(
-            ICharacter character,
-            Vector2Ushort fromPosition,
-            IStaticWorldObject staticWorldObject)
-        {
-            if (!ReferenceEquals(staticWorldObject.ProtoGameObject, this))
-            {
-                return;
-            }
-
-            foreach (var otherObject in Server.World.GetTile(fromPosition).StaticObjects)
-            {
-                if (!(otherObject.ProtoGameObject is IProtoObjectPlant))
-                {
-                    continue;
-                }
-
-                Server.World.SetPosition(otherObject, staticWorldObject.TilePosition);
-
-                try
-                {
-                    otherObject.ServerInitialize();
-                }
-                catch (Exception ex)
-                {
-                    Logger.Exception(ex);
-                }
-
-                break;
-            }
         }
     }
 }

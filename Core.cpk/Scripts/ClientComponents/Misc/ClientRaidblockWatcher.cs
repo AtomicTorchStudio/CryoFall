@@ -2,7 +2,6 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -72,8 +71,7 @@
                 title: Notification_Title,
                 message: text,
                 autoHide: false,
-                // TODO: add custom icon here, currently we're using a placeholder icon
-                icon: Api.GetProtoEntity<ItemBombModern>().Icon,
+                icon: ClientCurrentBaseUnderRaidWatcher.TextureIconRaidNotification,
                 playSound: false);
         }
 

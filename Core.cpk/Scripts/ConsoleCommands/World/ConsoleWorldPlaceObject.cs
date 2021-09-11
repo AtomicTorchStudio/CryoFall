@@ -26,7 +26,7 @@
             IProtoStaticWorldObject protoStaticWorldObject,
             [CurrentCharacterIfNull] ICharacter character)
         {
-            if (!(character.ProtoCharacter is PlayerCharacterSpectator)
+            if (character.ProtoCharacter is not PlayerCharacterSpectator
                 && !Server.Characters.IsSpectator(character))
             {
                 throw new Exception("Player character should be in a spectator mode."

@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationRugBear>();
 
-            config.SetRequiredNode<TechNodeSignIron>();
+            config.SetRequiredNode<TechNodeDecorationFoldingScreen>();
         }
     }
 }

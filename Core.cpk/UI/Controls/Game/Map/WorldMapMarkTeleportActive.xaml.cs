@@ -35,7 +35,6 @@
 
         protected override void InitControl()
         {
-            base.InitControl();
             this.DataContext = this;
         }
 

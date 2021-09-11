@@ -78,7 +78,7 @@
                     $"{request.Character} cannot access {request.Item} because its container is not in the private scope");
             }
 
-            if (!(request.Item.ProtoItem is IProtoItemExplosive protoItemExplosive))
+            if (request.Item.ProtoItem is not IProtoItemExplosive protoItemExplosive)
             {
                 throw new Exception("The item must be an explosive");
             }
@@ -103,7 +103,7 @@
         private ItemExplosiveRequest ClientTryCreateRequest(ICharacter character, Vector2Ushort targetPosition)
         {
             var item = character.SharedGetPlayerSelectedHotbarItem();
-            if (!(item.ProtoItem is IProtoItemExplosive protoItemExplosive))
+            if (item.ProtoItem is not IProtoItemExplosive protoItemExplosive)
             {
                 // no explosive item selected
                 return null;

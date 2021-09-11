@@ -375,7 +375,7 @@
             if (mouseOverObjectCandidate is not null
                 && (ConstructionPlacementSystem.IsInObjectPlacementMode
                     || ConstructionRelocationSystem.IsInObjectPlacementMode)
-                && !(mouseOverObjectCandidate.ProtoGameObject is ProtoObjectConstructionSite))
+                && mouseOverObjectCandidate.ProtoGameObject is not ProtoObjectConstructionSite)
             {
                 // cannot observe already built structures while in placement selection mode
                 mouseOverObjectCandidate = null;

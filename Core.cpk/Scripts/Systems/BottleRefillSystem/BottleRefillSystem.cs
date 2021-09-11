@@ -42,7 +42,7 @@
             }
 
             var tile = character.Tile;
-            if (!(tile.ProtoTile is IProtoTileWater protoTileWater)
+            if (tile.ProtoTile is not IProtoTileWater protoTileWater
                 || !protoTileWater.CanCollect)
             {
                 // pointed tile is not a water - find a neighbor tile with water

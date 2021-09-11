@@ -17,10 +17,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
         {
             var events = Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEvent>().ToList();
 
-            foreach (var activeEvent in events)
+            foreach (var worldEvent in events)
             {
-                activeEvent.GetPublicState<EventPublicState>()
-                           .EventEndTime = 0;
+                worldEvent.GetPublicState<EventPublicState>()
+                          .EventEndTime = 0;
             }
 
             return "All events are marked for expiration and should finish as soon as possible.";

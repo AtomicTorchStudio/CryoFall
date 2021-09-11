@@ -24,8 +24,7 @@
         {
             FactionSystem.ClientCurrentFactionChanged += this.CurrentFactionChangedHandler;
             NewbieProtectionSystem.ClientNewbieProtectionTimeRemainingReceived += this.NewbieProtectionChangedHandler;
-            FactionConstants.ClientCreateFactionLearningPointsCostChanged +=
-                this.CreateFactionLearningPointsCostChangedHandler;
+            FactionConstants.ClientFactionCreateCostChanged += this.FactionCreateCostChangedHandler;
         }
 
         public string ClanTag { get; set; }
@@ -34,7 +33,7 @@
             => new ActionCommand(this.ExecuteCommandCreateFaction);
 
         public string CostText => string.Format(CoreStrings.LearningPointsCost_Format,
-                                                FactionConstants.SharedCreateFactionLearningPointsCost);
+                                                FactionConstants.SharedCreateFactionCost);
 
         public FactionKindData[] FactionKinds => Enum.GetValues(typeof(FactionKind))
                                                      .Cast<FactionKind>()
@@ -60,14 +59,8 @@
         {
             FactionSystem.ClientCurrentFactionChanged -= this.CurrentFactionChangedHandler;
             NewbieProtectionSystem.ClientNewbieProtectionTimeRemainingReceived -= this.NewbieProtectionChangedHandler;
-            FactionConstants.ClientCreateFactionLearningPointsCostChanged -=
-                this.CreateFactionLearningPointsCostChangedHandler;
+            FactionConstants.ClientFactionCreateCostChanged -= this.FactionCreateCostChangedHandler;
             base.DisposeViewModel();
-        }
-
-        private void CreateFactionLearningPointsCostChangedHandler()
-        {
-            this.NotifyPropertyChanged(nameof(this.CostText));
         }
 
         private void CurrentFactionChangedHandler()
@@ -94,7 +87,7 @@
             }
 
             var technologies = ClientCurrentCharacterHelper.Character.SharedGetTechnologies();
-            if (technologies.LearningPoints < FactionConstants.SharedCreateFactionLearningPointsCost)
+            if (technologies.LearningPoints < FactionConstants.SharedCreateFactionCost)
             {
                 NotificationSystem.ClientShowNotification(
                     title: null,
@@ -174,6 +167,11 @@
                         return;
                 }
             }
+        }
+
+        private void FactionCreateCostChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.CostText));
         }
 
         private void NewbieProtectionChangedHandler(double obj)

@@ -11,7 +11,7 @@
         protected override List<IProtoStaticWorldObject> GetProtoEntitiesList()
         {
             return FindProtoEntities<IProtoStaticWorldObject>()
-                   .Where(e => !(e is IProtoObjectLandClaim))
+                   .Where(e => e is not IProtoObjectLandClaim)
                    .OrderBy(i => i.ShortId, StringComparer.OrdinalIgnoreCase)
                    .ToList();
         }

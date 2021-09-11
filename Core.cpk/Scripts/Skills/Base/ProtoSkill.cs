@@ -7,8 +7,6 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
-    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -52,16 +50,13 @@
         /// </summary>
         public abstract double ExperienceToLearningPointsConversionMultiplier { get; }
 
+        public IReadOnlyList<string> ExtraDescriptionEntries { get; private set; }
+
         public IReadOnlyList<FlagEffect> FlagEffects { get; private set; }
 
         public bool HasStatEffects { get; private set; }
 
         public ITextureResource Icon { get; }
-
-        /// <summary>
-        /// If true, this skill will share the gained learning with the party members (if there are other party members).
-        /// </summary>
-        public abstract bool IsSharingLearningPointsWithPartyMembers { get; }
 
         public byte MaxLevel { get; private set; }
 
@@ -184,72 +179,14 @@
                                                    currentLevel / (double)this.MaxLevel);
 
             multiplier *= lpRateMultiplier;
-
             if (multiplier <= 0)
             {
                 return;
             }
 
             var learningPointsToAdd = experienceAdded * multiplier;
-
-            var partyMembersNames = this.IsSharingLearningPointsWithPartyMembers
-                                        ? PartySystem.ServerGetPartyMembersReadOnly(character)
-                                        : Array.Empty<string>();
-
-            if (partyMembersNames.Count <= 1)
-            {
-                // no experience share, no party or a single member party - add all LP to the current character
-                character.SharedGetTechnologies()
-                         .ServerAddLearningPoints(learningPointsToAdd);
-                return;
-            }
-
-            using var onlinePartyMembers = Api.Shared.GetTempList<ICharacter>();
-            foreach (var partyMemberName in partyMembersNames)
-            {
-                var partyMember = Server.Characters.GetPlayerCharacter(partyMemberName);
-                if (partyMember is null)
-                {
-                    continue;
-                }
-
-                if (ReferenceEquals(partyMember, character)
-                    || (partyMember.ServerIsOnline
-                        && !CharacterIdleSystem.ServerIsIdlePlayer(partyMember)))
-                {
-                    onlinePartyMembers.Add(partyMember);
-                }
-            }
-
-            if (onlinePartyMembers.Count <= 1
-                || PartyConstants.PartyLearningPointsSharePercent == 0)
-            {
-                // no party, or a single member party, or no party share %
-                // - add all LP to the current character
-                character.SharedGetTechnologies()
-                         .ServerAddLearningPoints(learningPointsToAdd);
-                return;
-            }
-
-            // player has a party
-            // add only a share of LP to current character
-            var currentCharacterLearningPointsShare = learningPointsToAdd * (1 - PartyConstants.PartyLearningPointsSharePercent);
             character.SharedGetTechnologies()
-                     .ServerAddLearningPoints(currentCharacterLearningPointsShare);
-
-            // distribute the rest equally to the other party members
-            var learningPointsShare = learningPointsToAdd
-                                      * PartyConstants.PartyLearningPointsSharePercent
-                                      / (onlinePartyMembers.Count - 1);
-
-            foreach (var partyMember in onlinePartyMembers.AsList())
-            {
-                if (!ReferenceEquals(partyMember, character))
-                {
-                    partyMember.SharedGetTechnologies()
-                               .ServerAddLearningPoints(learningPointsShare);
-                }
-            }
+                     .ServerAddLearningPoints(learningPointsToAdd);
         }
 
         public void ServerUpdateSkillData(SkillLevelData data)
@@ -293,6 +230,10 @@
             return Api.GetProtoEntity<TProtoSkillCategory>();
         }
 
+        protected virtual void PrepareExtraDescriptionEntries(List<string> extraDescriptionEntries)
+        {
+        }
+
         protected sealed override void PrepareProto()
         {
             base.PrepareProto();
@@ -310,6 +251,10 @@
             this.StatEffects = config.GetStatEffects();
             this.FlagEffects = config.GetFlagEffects();
             this.HasStatEffects = this.StatEffects.Count > 0;
+
+            var extraDescriptionEntries = new List<string>(capacity: 0);
+            this.PrepareExtraDescriptionEntries(extraDescriptionEntries);
+            this.ExtraDescriptionEntries = extraDescriptionEntries;
 
             this.experienceRequirementForLevels = CalculateExperienceTable(
                 this.MaxLevel,

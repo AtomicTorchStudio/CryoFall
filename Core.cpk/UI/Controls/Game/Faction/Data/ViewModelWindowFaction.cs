@@ -11,6 +11,7 @@
     using System.Windows.Data;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -43,7 +44,7 @@
             FactionConstants.ClientFactionMembersMaxChanged
                 += this.FactionMembersMaxNumberChangedHandler;
 
-            FactionConstants.ClientSharedFactionUpgradeCostsChanged
+            RateFactionUpgradeCostPerLevel.ClientValueChanged
                 += this.FactionUpgradeCostsChangedHandler;
 
             FactionSystem.ClientCurrentFactionReceivedApplications.CollectionChanged
@@ -388,7 +389,7 @@
         public ushort MembersNumberCurrent => this.factionPublicState.PlayersNumberCurrent;
 
         public int MembersNumberMax
-            => FactionConstants.GetFactionMembersMax(this.factionPublicState.Kind);
+            => FactionConstants.SharedGetFactionMembersMax(this.factionPublicState.Kind);
 
         public string MembersNumberText
             => string.Format(CoreStrings.Faction_MembersNumber_Format,
@@ -411,7 +412,7 @@
             FactionConstants.ClientFactionMembersMaxChanged
                 -= this.FactionMembersMaxNumberChangedHandler;
 
-            FactionConstants.ClientSharedFactionUpgradeCostsChanged
+            RateFactionUpgradeCostPerLevel.ClientValueChanged
                 -= this.FactionUpgradeCostsChangedHandler;
 
             FactionSystem.ClientCurrentFactionReceivedApplications.CollectionChanged

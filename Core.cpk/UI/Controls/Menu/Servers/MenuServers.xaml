@@ -369,8 +369,8 @@
                         <StackPanel Grid.Row="1"
                                     Orientation="Vertical"
                                     VerticalAlignment="Bottom">
-                            <!-- Text: Join Server -->
-                            <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_JoinServer}"
+                            <!-- Text: Join Server / Load game -->
+                            <Button Content="{Binding ViewModelServerInfo.JoinServerButtonTitle}"
                                     Margin="0,5,0,0"
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding ViewModelServerInfo.CommandJoinServer}"
@@ -384,6 +384,7 @@
                                 Margin="0,5,0,0"
                                 HorizontalAlignment="Stretch"
                                 Command="{Binding ViewModelServerInfo.CommandRefresh}"
+                                Visibility="{Binding ViewModelServerInfo.ButtonRefreshVisibility}"
                                 CommandParameter="{Binding ViewModelServerInfo}"
                                 Style="{StaticResource MainMenuButtonStyle}"
                                 Focusable="False">
@@ -436,7 +437,6 @@
         </Grid.ColumnDefinitions>
 
         <ContentControl Style="{StaticResource MainMenuWidgetStyle}">
-
             <core:TabControlCached Margin="0,3,0,0">
                 <TabItem
                     DataContext="{Binding FeaturedServers}"
@@ -533,10 +533,10 @@
             </core:TabControlCached>
         </ContentControl>
 
-        <ContentControl Grid.Column="1" Style="{StaticResource MainMenuWidgetStyle}">
+        <ContentControl Grid.Column="1"
+                        Style="{StaticResource MainMenuWidgetStyle}">
             <Viewbox Stretch="Uniform">
                 <Grid HorizontalAlignment="Center"
-                      VerticalAlignment="Top"
                       MinHeight="600"
                       Width="200">
                     <Grid.RowDefinitions>

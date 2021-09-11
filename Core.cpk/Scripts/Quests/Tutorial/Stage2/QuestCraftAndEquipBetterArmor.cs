@@ -27,11 +27,11 @@
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             var headEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentHead>()
-                                              .Where(i => !(i is ItemClothHelmet))
+                                              .Where(i => i is not ItemClothHelmet)
                                               .ToList();
 
             var chestEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentArmor>()
-                                               .Where(i => !(i is ItemClothArmor))
+                                               .Where(i => i is not ItemClothArmor)
                                                .ToList();
 
             tasks

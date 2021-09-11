@@ -45,7 +45,7 @@
         {
             build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 10);
+            build.AddStageRequiredItem<ItemPlanks>(count: 5);
             build.AddStageRequiredItem<ItemSand>(count: 5);
 
             repair.StagesCount = 1;

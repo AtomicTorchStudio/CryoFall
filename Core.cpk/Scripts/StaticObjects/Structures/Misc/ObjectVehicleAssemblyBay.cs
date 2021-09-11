@@ -135,14 +135,14 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Long;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemCement>(count: 5);
-            build.AddStageRequiredItem<ItemComponentsMechanical>(count: 2);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            build.AddStageRequiredItem<ItemCement>(count: 2);
+            build.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Long;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             repair.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
             repair.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
         }

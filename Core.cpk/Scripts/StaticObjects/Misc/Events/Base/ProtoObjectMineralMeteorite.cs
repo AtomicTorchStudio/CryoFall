@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
-    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -21,21 +20,6 @@
               DefaultMineralClientState>,
           IProtoObjectEventEntry
     {
-        private readonly double serverRateLootCountMultiplier;
-
-        protected ProtoObjectMineralMeteorite()
-        {
-            if (IsServer)
-            {
-                this.serverRateLootCountMultiplier = ServerRates.Get(
-                    "DropListItemsCountMultiplier." + this.ShortId,
-                    defaultValue: 1.0,
-                    @"This rate determines the item droplist multiplier for loot in " + this.Name + ".");
-            }
-        }
-
-        public override bool IsAllowDroneMining => false;
-
         public override bool IsAllowQuickMining => false;
 
         public abstract double ServerCooldownDuration { get; }
@@ -53,14 +37,6 @@
             tileRequirements.Add(LandClaimSystem.ValidatorFreeLandEvenForServer)
                             .Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer)
                             .Add(ConstructionTileRequirements.ValidatorTileNotRestrictingConstructionEvenForServer);
-        }
-
-        protected override double ServerGetDropListProbabilityMultiplier(IStaticWorldObject mineralObject)
-        {
-            // compensate for the general server items drop rate
-            // but apply a separate rate
-            return this.serverRateLootCountMultiplier
-                   / DropItemsList.DropListItemsCountMultiplier;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

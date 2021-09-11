@@ -261,8 +261,9 @@
 
         public void Toggle()
         {
-            if (this.state == GameWindowState.Opened
-                || this.state == GameWindowState.Opening)
+            if (this.state
+                    is GameWindowState.Opened 
+                    or GameWindowState.Opening)
             {
                 this.Close(DialogResult.Cancel);
             }

@@ -165,14 +165,14 @@
                 checkNeighborTiles: true);
         }
 
-        protected virtual void ServerOnBossEventStarted(ILogicObject activeEvent)
+        protected virtual void ServerOnBossEventStarted(ILogicObject worldEvent)
         {
         }
 
-        protected override void ServerOnEventDestroyed(ILogicObject activeEvent)
+        protected override void ServerOnEventDestroyed(ILogicObject worldEvent)
         {
             // destroy all the spawned objects
-            foreach (var spawnedObject in GetPrivateState(activeEvent).SpawnedWorldObjects)
+            foreach (var spawnedObject in GetPrivateState(worldEvent).SpawnedWorldObjects)
             {
                 if (!spawnedObject.IsDestroyed)
                 {
@@ -181,12 +181,12 @@
             }
         }
 
-        protected sealed override void ServerOnEventWithAreaStarted(ILogicObject activeEvent)
+        protected sealed override void ServerOnEventWithAreaStarted(ILogicObject worldEvent)
         {
-            this.ServerOnBossEventStarted(activeEvent);
+            this.ServerOnBossEventStarted(worldEvent);
         }
 
-        protected override Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent)
+        protected override Vector2Ushort ServerPickEventPosition(ILogicObject worldEvent)
         {
             var stopwatch = Stopwatch.StartNew();
 
@@ -290,7 +290,7 @@
         }
 
         protected virtual void ServerSpawnBossEventObjects(
-            ILogicObject activeEvent,
+            ILogicObject worldEvent,
             Vector2D circlePosition,
             ushort circleRadius,
             List<IWorldObject> spawnedObjects)
@@ -322,7 +322,7 @@
                         var spawnedObject = Server.Characters.SpawnCharacter((IProtoCharacter)protoObjectToSpawn,
                                                                              spawnPosition);
                         spawnedObjects.Add(spawnedObject);
-                        Logger.Important($"Spawned world object: {spawnedObject} for active event {activeEvent}");
+                        Logger.Important($"Spawned world object: {spawnedObject} for world event {worldEvent}");
 
                         if (spawnedObject.ProtoGameObject is IProtoCharacterMob protoCharacterMob)
                         {
@@ -336,17 +336,17 @@
 
                     if (attempt == maxAttempts)
                     {
-                        Logger.Error($"Cannot spawn world object: {protoObjectToSpawn} for active event {activeEvent}");
+                        Logger.Error($"Cannot spawn world object: {protoObjectToSpawn} for world event {worldEvent}");
                     }
                 }
             }
         }
 
-        protected override void ServerTryFinishEvent(ILogicObject activeEvent)
+        protected override void ServerTryFinishEvent(ILogicObject worldEvent)
         {
             var canFinish = true;
 
-            var spawnedWorldObjects = GetPrivateState(activeEvent).SpawnedWorldObjects;
+            var spawnedWorldObjects = GetPrivateState(worldEvent).SpawnedWorldObjects;
             for (var index = spawnedWorldObjects.Count - 1; index >= 0; index--)
             {
                 var spawnedObject = spawnedWorldObjects[index];
@@ -380,7 +380,7 @@
 
             if (canFinish)
             {
-                base.ServerTryFinishEvent(activeEvent);
+                base.ServerTryFinishEvent(worldEvent);
             }
         }
 
@@ -443,16 +443,16 @@
             }
         }
 
-        private void ClientCreateBossAreaBarrier(ILogicObject activeEvent)
+        private void ClientCreateBossAreaBarrier(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
-            var clientState = GetClientState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
+            var clientState = GetClientState(worldEvent);
             if (clientState.BarrierPhysicsBody is not null)
             {
                 return;
             }
 
-            clientState.BarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(activeEvent);
+            clientState.BarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(worldEvent);
 
             // create barrier visualizer
             var position = publicState.AreaCirclePosition;
@@ -480,7 +480,7 @@
                 }
             };
 
-            var sceneObjectVisualizer = Client.Scene.CreateSceneObject("Boss event area: " + activeEvent,
+            var sceneObjectVisualizer = Client.Scene.CreateSceneObject("Boss event area: " + worldEvent,
                                                                        position.ToVector2D() + (0.5, 0.5));
             var attachedControl = Api.Client.UI.AttachControl(
                 sceneObjectVisualizer,
@@ -531,16 +531,16 @@
         /// Barrier (a circle impenetrable area) is present only in PvE to prevent players from rushing
         /// into the boss area before the boss is spawned.
         /// </summary>
-        private void ServerCreateBossAreaBarrier(ILogicObject activeEvent)
+        private void ServerCreateBossAreaBarrier(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
             if (publicState.ServerBarrierPhysicsBody is not null)
             {
                 return;
             }
 
             // create the barrier
-            publicState.ServerBarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(activeEvent);
+            publicState.ServerBarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(worldEvent);
 
             var activeEventPosition = publicState.AreaCirclePosition;
             var barrierRadius = this.AreaBarrierRadiusPvE + 1;
@@ -548,7 +548,7 @@
             {
                 Logger.Error(
                     "The boss area circle should never have a radius larger than 255 tiles as it prevents players despawn in PvE: "
-                    + activeEvent);
+                    + worldEvent);
                 barrierRadius = byte.MaxValue;
             }
 
@@ -585,9 +585,9 @@
             // Please note: NPC characters that are stuck inside the area are pushed outside it by the physics engine
         }
 
-        private void ServerDestroyBossAreaBarrier(ILogicObject activeEvent)
+        private void ServerDestroyBossAreaBarrier(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
             if (publicState.ServerBarrierPhysicsBody is not null)
             {
                 Server.World.DestroyStandalonePhysicsBody(publicState.ServerBarrierPhysicsBody);
@@ -595,12 +595,12 @@
             }
         }
 
-        private IPhysicsBody SharedCreateBarrierPhysicsBody(ILogicObject activeEvent)
+        private IPhysicsBody SharedCreateBarrierPhysicsBody(ILogicObject worldEvent)
         {
             IWorldService world = IsClient
                                       ? Client.World
                                       : Server.World;
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
             var physicsBody = world.CreateStandalonePhysicsBody(publicState.AreaCirclePosition.ToVector2D()
                                                                 + (0.5, 0.5));
             physicsBody.AddShapeCircle(this.AreaBarrierRadiusPvE);

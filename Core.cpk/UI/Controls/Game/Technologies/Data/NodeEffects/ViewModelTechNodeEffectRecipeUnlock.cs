@@ -38,7 +38,7 @@
         {
             get
             {
-                if (!(this.effect.Recipe is Recipe.BaseRecipeForStation recipeForStation))
+                if (this.effect.Recipe is not Recipe.BaseRecipeForStation recipeForStation)
                 {
                     return null;
                 }

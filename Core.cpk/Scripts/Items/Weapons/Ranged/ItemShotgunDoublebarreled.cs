@@ -19,7 +19,7 @@
 
         public override string Description => "Old grandpa shotgun. Uses 12ga ammunition.";
 
-        public override uint DurabilityMax => 120;
+        public override uint DurabilityMax => 240;
 
         public override double FireInterval => 0.2; // can fire as soon as reloaded
 

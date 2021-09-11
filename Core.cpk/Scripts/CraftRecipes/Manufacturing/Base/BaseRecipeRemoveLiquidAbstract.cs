@@ -54,7 +54,7 @@
 
             if (craftingQueue.ContainerOutput.OccupiedSlotsCount > 0
                 && craftingQueue.ContainerOutput.Items.Any(
-                    i => !(i.ProtoItem is TOutputProtoItem)))
+                    i => i.ProtoItem is not TOutputProtoItem))
             {
                 // contains something other in the output container
                 return false;

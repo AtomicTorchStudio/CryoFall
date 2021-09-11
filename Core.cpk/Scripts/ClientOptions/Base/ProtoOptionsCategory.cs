@@ -109,7 +109,7 @@
                        tableControl.Clear();
 
                        // local helper method for getting option order
-                       IEnumerable<IProtoOption> GetOptionOrder(IProtoOption tab)
+                       static IEnumerable<IProtoOption> GetOptionOrder(IProtoOption tab)
                        {
                            if (tab.OrderAfterOption is not null)
                            {
@@ -117,7 +117,8 @@
                            }
                        }
 
-                       foreach (var option in options.OrderBy(o => o.ShortId)
+                       foreach (var option in options.OrderBy(r => r.OrderAfterOption is null)
+                                                     .ThenBy(r => r.ShortId)
                                                      .TopologicalSort(GetOptionOrder)
                                                      .Where(o => !o.IsHidden))
                        {

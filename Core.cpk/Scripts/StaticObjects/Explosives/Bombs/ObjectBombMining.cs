@@ -18,7 +18,7 @@
 
         private ITextureAtlasResource atlasTexture;
 
-        public override double DamageRadius => 3.8;
+        public override double DamageRadius => 4.0;
 
         public override TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(3);
 

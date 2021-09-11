@@ -52,7 +52,7 @@
 
         public ItemFuelRefillRequest ClientTryCreateRequest(ICharacter character, IItem item)
         {
-            if (!(item?.ProtoGameObject is IProtoItemWithFuel protoItemFuelRefillable))
+            if (item?.ProtoGameObject is not IProtoItemWithFuel protoItemFuelRefillable)
             {
                 // no item selected
                 return null;
@@ -210,7 +210,7 @@
             //    throw new Exception("The item is not selected");
             //}
 
-            if (!(request.Item.ProtoItem is IProtoItemWithFuel))
+            if (request.Item.ProtoItem is not IProtoItemWithFuel)
             {
                 throw new Exception("The item must be refillable");
             }

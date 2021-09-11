@@ -20,7 +20,7 @@
             craftDuration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemFishFilletWhite>(count: 5);
-            inputItems.Add<ItemFishFilletRed>(count: 3);
+            inputItems.Add<ItemFishFilletRed>(count: 5);
 
             outputItems.Add<ItemFishingBaitFish>(count: 5);
         }

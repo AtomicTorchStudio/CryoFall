@@ -122,7 +122,7 @@
             // collect ordered list of fuel cell items (assume all items in the fuel container are fuel cells)
             foreach (var item in fuelItemsContainer.Items)
             {
-                if (!(item.ProtoItem is IProtoItemWithDurability))
+                if (item.ProtoItem is not IProtoItemWithDurability)
                 {
                     continue;
                 }

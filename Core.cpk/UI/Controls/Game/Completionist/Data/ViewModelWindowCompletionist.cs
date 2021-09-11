@@ -17,6 +17,9 @@
         public const string Notification_CreatureDiscovered_MessageFormat
             = "Killed for the first time.";
 
+        public const string Notification_EventParticipated_MessageFormat
+            = "Participated for the first time.";
+
         public const string Notification_FishDiscovered_MessageFormat
             = "Caught for the first time.";
 
@@ -26,6 +29,8 @@
         // Related to "Pry open" action on the loot containers and the "Searching" skill.
         public const string Notification_LootDiscovered_MessageFormat
             = "Found for the first time.";
+
+        private static Dictionary<IProtoEntity, ViewDataEntryCompletionist> allEventEntries;
 
         private static Dictionary<IProtoEntity, ViewDataEntryFishCompletionist> allFishEntries;
 
@@ -66,6 +71,11 @@
                 proto => new ViewDataEntryFishCompletionist(proto,
                                                             commandClaimReward));
 
+            allEventEntries ??= CompletionistSystem.CompletionistAllEvents.ToDictionary(
+                proto => (IProtoEntity)proto,
+                proto => new ViewDataEntryCompletionist(proto,
+                                                        commandClaimReward));
+
             this.EntriesFood = new ViewModelCompletionistPageDefault(
                 allFoodEntries,
                 columnsCount: 4,
@@ -90,6 +100,12 @@
                 iconSize: 111,
                 entriesPendingCountChanged: this.EntriesPendingCountChangedHandler);
 
+            this.EntriesEvent = new ViewModelCompletionistPageDefault(
+                allEventEntries,
+                columnsCount: 3,
+                iconSize: 111,
+                entriesPendingCountChanged: this.EntriesPendingCountChangedHandler);
+
             BootstrapperClientGame.InitCallback += this.BootstrapperClientGameInitCallbackHandler;
 
             this.RefreshLists();
@@ -106,6 +122,8 @@
 
         public static ViewModelWindowCompletionist Instance { get; }
             = new();
+
+        public ViewModelCompletionistPageDefault EntriesEvent { get; }
 
         public ViewModelCompletionistPageFish EntriesFish { get; }
 
@@ -133,6 +151,7 @@
             this.EntriesMobs.Source = data.ListMobs;
             this.EntriesLoot.Source = data.ListLoot;
             this.EntriesFish.Source = data.ListFish;
+            this.EntriesEvent.Source = data.ListEvents;
         }
 
         protected override void DisposeViewModel()
@@ -151,7 +170,8 @@
             this.totalPendingEntries = this.EntriesFood.PendingEntriesCount
                                        + this.EntriesMobs.PendingEntriesCount
                                        + this.EntriesLoot.PendingEntriesCount
-                                       + this.EntriesFish.PendingEntriesCount;
+                                       + this.EntriesFish.PendingEntriesCount
+                                       + this.EntriesEvent.PendingEntriesCount;
 
             ClientTimersSystem.AddAction(
                 delaySeconds: previousNumber < this.totalPendingEntries

@@ -22,9 +22,9 @@
         public override string Description =>
             "Exotic weapon that launches small insect-like creatures at enemies instead of bullets.";
 
-        public override uint DurabilityMax => 600;
+        public override uint DurabilityMax => 1200;
 
-        public override double FireInterval => 0.3;
+        public override double FireInterval => 1 / 4.0; // 4 per second
 
         public override string Name => "Swarm launcher";
 

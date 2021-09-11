@@ -376,6 +376,8 @@
         <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" Offset="0.33" />
     </LinearGradientBrush>
 
+    <Geometry x:Key="CheckboxGeometry">M 100,14.270347 C 95.243217,9.5135647 90.486435,4.7567823 85.729652,0 69.61874,16.110912 53.507828,32.221824 37.396916,48.332736 29.68806,40.623879 21.979204,32.915023 14.270348,25.206166 9.5135653,29.962949 4.7567827,34.719731 0,39.476514 12.465639,51.9302 24.931277,64.383886 37.396916,76.837572 58.263115,55.980335 79.114103,35.107869 100,14.270347 Z</Geometry>
+
     <!-- Apply default font settings for all root elements -->
     <Style x:Key="DefaultStyleForRoot" TargetType="{x:Type UserControl}"
            BasedOn="{StaticResource {x:Type UserControl}}">
@@ -883,9 +885,8 @@
 
                                 <Grid x:Name="ToggleCheck" Width="10" Height="10" HorizontalAlignment="Center"
                                       VerticalAlignment="Center" Visibility="Visible">
-                                    <Path x:Name="path" Data="M2,0 L10,8 8,10 0,2 z" Stretch="Fill"
-                                          Fill="{TemplateBinding Foreground}" />
-                                    <Path x:Name="path1" Data="M8,0 L10,2 2,10 0,8 z" Stretch="Fill"
+                                    <Path Data="{StaticResource CheckboxGeometry}"
+                                          Stretch="Fill"
                                           Fill="{TemplateBinding Foreground}" />
                                 </Grid>
                                 <!--<Rectangle x:Name="ToggleIndeterminate" Margin="4" Fill="{TemplateBinding BorderBrush}"
@@ -965,9 +966,8 @@
                                          VerticalAlignment="Stretch" />
                                 <Grid x:Name="ToggleCheck" Width="10" Height="10" HorizontalAlignment="Center"
                                       VerticalAlignment="Center" Visibility="Visible">
-                                    <Path x:Name="path" Data="M2,0 L10,8 8,10 0,2 z" Stretch="Fill"
-                                          Fill="{TemplateBinding Foreground}" />
-                                    <Path x:Name="path1" Data="M8,0 L10,2 2,10 0,8 z" Stretch="Fill"
+                                    <Path Data="{StaticResource CheckboxGeometry}"
+                                          Stretch="Fill"
                                           Fill="{TemplateBinding Foreground}" />
                                 </Grid>
                                 <!--<Rectangle x:Name="BackgroundDisabled" Margin="2"
@@ -1467,7 +1467,9 @@
                         </Border>
 
                         <!-- The visibility of the ScrollBars is controlled by the implementation for the control -->
-                        <Border Grid.Column="1" Grid.Row="0" Margin="{TemplateBinding BorderThickness}"
+                        <Border Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="{TemplateBinding BorderThickness}"
                                 BorderBrush="{x:Null}">
                             <ScrollBar x:Name="PART_VerticalScrollBar"
                                        Margin="1,1,1,1"
@@ -3603,5 +3605,9 @@
     <ImageSource x:Key="ImageSourceDamageTypeChemical">/UI/Images/Icons/Damage/icon_damage_chemical.png</ImageSource>
     <ImageSource x:Key="ImageSourceDamageTypeRadiation">/UI/Images/Icons/Damage/icon_damage_radiation.png</ImageSource>
     <ImageSource x:Key="ImageSourceDamageTypePsi">/UI/Images/Icons/Damage/icon_damage_psi.png</ImageSource>
+
+    <ImageBrush x:Key="LocalServerIconImageBrush"
+                ImageSource="/UI/Images/Icons/MenuServers/LocalServerIcon.png"
+                Stretch="Uniform" />
 
 </ResourceDictionary>

@@ -68,7 +68,7 @@
                     var requirements = questEntry.Quest.Tasks;
                     for (var index = 0; index < requirements.Count; index++)
                     {
-                        if (!(requirements[index] is TaskSortItemsContainer))
+                        if (requirements[index] is not TaskSortItemsContainer)
                         {
                             continue;
                         }

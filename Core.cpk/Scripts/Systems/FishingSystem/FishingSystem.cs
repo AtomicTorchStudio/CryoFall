@@ -206,7 +206,7 @@
 
             if (itemRod is null
                 || itemRod != character.SharedGetPlayerSelectedHotbarItem()
-                || !(itemRod.ProtoItem is IProtoItemToolFishing))
+                || itemRod.ProtoItem is not IProtoItemToolFishing)
             {
                 throw new Exception("The fishing rod is not selected");
             }
@@ -223,7 +223,7 @@
                             ? (IWorldService)Server.World
                             : (IWorldService)Client.World;
             var tile = world.GetTile(fishingTargetPosition.ToVector2Ushort());
-            if (!(tile.ProtoTile is IProtoTileWater protoTileWater)
+            if (tile.ProtoTile is not IProtoTileWater protoTileWater
                 || !protoTileWater.IsFishingAllowed)
             {
                 if (IsClient)
@@ -348,8 +348,8 @@
                 0,
                 () =>
                 {
-                    if (!(ClientCurrentCharacterHelper.PrivateState.CurrentActionState
-                              is FishingActionState actionState)
+                    if (ClientCurrentCharacterHelper.PrivateState.CurrentActionState
+                            is not FishingActionState actionState
                         || !actionState.Request.Equals(request))
                     {
                         return;
@@ -386,8 +386,8 @@
         private void ServerRemote_PullFish()
         {
             var character = ServerRemoteContext.Character;
-            if (!(PlayerCharacter.GetPrivateState(character).CurrentActionState
-                      is FishingActionState state))
+            if (PlayerCharacter.GetPrivateState(character).CurrentActionState
+                    is not FishingActionState state)
             {
                 // received too late, the fishing session has ended
                 return;
@@ -456,10 +456,9 @@
                     character.TilePosition,
                     new DropItemContext(character),
                     out _,
-                    // compensate for the server rate to ensure that
-                    // it doesn't affect the number of fish spawned
-                    probabilityMultiplier: 1.0
-                                           / DropItemsList.DropListItemsCountMultiplier);
+                    // no rate is applied here, but the basic gathering rate
+                    // is applied in ProtoItemFish.ServerRemote_Cut method
+                    probabilityMultiplier: 1.0);
 
                 var fishCaught = createItemResult.ItemAmounts.FirstOrDefault().Key;
                 if (fishCaught is null)

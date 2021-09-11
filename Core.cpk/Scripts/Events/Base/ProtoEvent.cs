@@ -31,8 +31,6 @@
     {
         protected ProtoEvent()
         {
-            EventConstants.EnsureInitialized();
-
             var name = this.GetType().Name;
             if (name.StartsWith("Event"))
             {
@@ -58,6 +56,8 @@
             = TimeSpan.FromMinutes(15);
 
         public virtual ITextureResource Icon { get; }
+
+        public virtual bool IsAvailableInCompletionist => true;
 
         /// <summary>
         /// Determines when this event was active last time.
@@ -93,7 +93,7 @@
             Logger.Important("Event destroyed: " + gameObject);
         }
 
-        public virtual string SharedGetProgressText(ILogicObject activeEvent)
+        public virtual string SharedGetProgressText(ILogicObject worldEvent)
         {
             return null;
         }
@@ -153,78 +153,21 @@
 
         protected bool ServerCreateAndStartEventInstance()
         {
-            var activeEvent = Server.World.CreateLogicObject(this);
-            Logger.Important("Event created: " + activeEvent);
+            var worldEvent = Server.World.CreateLogicObject(this);
+            Logger.Important("Event created: " + worldEvent);
 
             try
             {
-                this.ServerOnEventStarted(activeEvent);
+                this.ServerOnEventStarted(worldEvent);
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, "Error when starting an event. The event will be destroyed: " + activeEvent);
-                Server.World.DestroyObject(activeEvent);
+                Logger.Exception(ex, "Error when starting an event. The event will be destroyed: " + worldEvent);
+                Server.World.DestroyObject(worldEvent);
             }
 
             return false;
-        }
-
-        protected (TimeSpan from, TimeSpan to) ServerGetIntervalForThisEvent(
-            (TimeSpan from, TimeSpan to) defaultInterval)
-        {
-            var rateKey = "WorldEventInterval." + this.ShortId;
-            var rateDefaultValue = defaultInterval.from != defaultInterval.to
-                                       ? defaultInterval.from.TotalHours.ToString("0.0#")
-                                         + "-"
-                                         + defaultInterval.to.TotalHours.ToString("0.0#")
-                                       : defaultInterval.from.TotalHours.ToString("0.0#");
-            var rateDescription = $"{this.Name} world event interval (in hours).";
-
-            var configIntervalString = ServerRates.Get(key: rateKey,
-                                                       defaultValue: rateDefaultValue,
-                                                       description: rateDescription);
-
-            if (string.Equals(configIntervalString, rateDefaultValue, StringComparison.Ordinal))
-            {
-                return defaultInterval;
-            }
-
-            // try parse the interval
-            try
-            {
-                TimeSpan from, to;
-
-                if (configIntervalString.IndexOf("-", StringComparison.Ordinal) > 0)
-                {
-                    // parse range
-                    var split = configIntervalString.Split('-');
-                    from = TimeSpan.FromHours(double.Parse(split[0]));
-                    to = TimeSpan.FromHours(double.Parse(split[1]));
-                }
-                else
-                {
-                    // parse single value
-                    from = to = TimeSpan.FromHours(double.Parse(configIntervalString));
-                }
-
-                if (from.TotalSeconds <= 0
-                    || to.TotalSeconds <= 0
-                    || to < from)
-                {
-                    throw new Exception("Incorrect time interval for: " + rateKey);
-                }
-
-                return (from, to);
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex);
-                ServerRates.Reset(key: rateKey,
-                                  defaultValue: rateDefaultValue,
-                                  description: rateDescription);
-                return defaultInterval;
-            }
         }
 
         protected bool ServerHasAnyEventOfType<TProtoEvent>()
@@ -293,9 +236,9 @@
             return tempEvents.Count > 0;
         }
 
-        protected abstract void ServerOnEventDestroyed(ILogicObject activeEvent);
+        protected abstract void ServerOnEventDestroyed(ILogicObject worldEvent);
 
-        protected abstract void ServerOnEventStarted(ILogicObject activeEvent);
+        protected abstract void ServerOnEventStarted(ILogicObject worldEvent);
 
         protected virtual void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
@@ -337,7 +280,7 @@
             return list[list.Count - 1].Zone;
         }
 
-        protected virtual void ServerTryFinishEvent(ILogicObject activeEvent)
+        protected virtual void ServerTryFinishEvent(ILogicObject worldEvent)
         {
             // destroy after a second delay
             // to ensure the public state is synchronized with the clients
@@ -345,9 +288,9 @@
                 1,
                 () =>
                 {
-                    if (!activeEvent.IsDestroyed)
+                    if (!worldEvent.IsDestroyed)
                     {
-                        Server.World.DestroyObject(activeEvent);
+                        Server.World.DestroyObject(worldEvent);
                     }
                 });
         }

@@ -131,6 +131,21 @@
                                                       icon: this.Icon);
         }
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+
+            var privateState = GetPrivateState(gameObject);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ManufacturingState.ContainerInput);
+
+            ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                gameObject.OccupiedTile,
+                privateState.ManufacturingState.ContainerOutput);
+        }
+
         public SprinklerWateringRequestResult ServerTryWaterNow(IStaticWorldObject worldObjectSprinkler)
         {
             var privateState = GetPrivateState(worldObjectSprinkler);

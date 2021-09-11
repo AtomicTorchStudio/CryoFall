@@ -21,7 +21,7 @@
 
         public override string Description => "Primitive bolt-action rifle developed for commonly used 8mm ammunition.";
 
-        public override uint DurabilityMax => 200;
+        public override uint DurabilityMax => 400;
 
         public override double FireInterval => 0.7; // slower firing rate
 

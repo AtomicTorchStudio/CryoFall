@@ -23,7 +23,7 @@
             inputItems.Add<ItemIngotSteel>(count: 3);
             inputItems.Add<ItemFormulatedGunpowder>(count: 30);
 
-            outputItems.Add<ItemAmmo300ArmorPiercing>(count: 10);
+            outputItems.Add<ItemAmmo300ArmorPiercing>(count: 20);
         }
     }
 }

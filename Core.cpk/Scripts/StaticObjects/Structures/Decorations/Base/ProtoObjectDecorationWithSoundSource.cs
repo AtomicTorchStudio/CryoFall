@@ -33,12 +33,6 @@
                 return false;
             }
 
-            if (character.GetPublicState<ICharacterPublicState>().IsDead
-                || IsServer && !character.ServerIsOnline)
-            {
-                return false;
-            }
-
             // Please note: no PvE access checks here. So base guests can use a door bell and similar structures.
             return this.SharedIsInsideCharacterInteractionArea(character,
                                                                worldObject,

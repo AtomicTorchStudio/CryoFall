@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectSignIron>();
 
-            config.SetRequiredNode<TechNodeDecorationDoorBell2>();
+            config.SetRequiredNode<TechNodeSignWood>();
         }
     }
 }

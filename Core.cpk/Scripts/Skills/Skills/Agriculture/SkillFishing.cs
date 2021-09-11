@@ -24,8 +24,6 @@
 
         public override double ExperienceToLearningPointsConversionMultiplier => 0.2; // effectively 2 LP per fish
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Fishing";
 
         protected override void PrepareProtoSkill(SkillConfig config)

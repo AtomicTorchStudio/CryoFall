@@ -7,6 +7,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
@@ -52,8 +53,7 @@
 
             WorldMapResourceMarksSystem.ClientMarkAdded += this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved += this.MarkRemovedHandler;
-            WorldMapResourceMarksSystem.ClientDepositClaimCooldownDurationReceived +=
-                this.MarkDepositClaimCooldownDurationReceivedHandler;
+            RateResourcesPvPDepositClaimDelay.ClientValueChanged += this.DepositClaimDelayChangedHandler;
 
             foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
             {
@@ -65,8 +65,7 @@
         {
             WorldMapResourceMarksSystem.ClientMarkAdded -= this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved -= this.MarkRemovedHandler;
-            WorldMapResourceMarksSystem.ClientDepositClaimCooldownDurationReceived -=
-                this.MarkDepositClaimCooldownDurationReceivedHandler;
+            RateResourcesPvPDepositClaimDelay.ClientValueChanged -= this.DepositClaimDelayChangedHandler;
 
             if (this.visualizedMarks.Count > 0)
             {
@@ -126,6 +125,14 @@
         {
             this.RemoveNotification(mark, quick: true);
             this.notifications.Add((mark, notification));
+        }
+
+        private void DepositClaimDelayChangedHandler()
+        {
+            foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
+            {
+                this.TryCreateNotification(mark);
+            }
         }
 
         private HudNotificationControl FindNotification(in WorldMapResourceMark mark)
@@ -188,14 +195,6 @@
             }
 
             this.TryCreateNotification(mark);
-        }
-
-        private void MarkDepositClaimCooldownDurationReceivedHandler()
-        {
-            foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
-            {
-                this.TryCreateNotification(mark);
-            }
         }
 
         private void MarkRemovedHandler(WorldMapResourceMark mark)

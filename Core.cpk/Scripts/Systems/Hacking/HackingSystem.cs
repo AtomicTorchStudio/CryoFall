@@ -32,7 +32,7 @@
         public static void ClientTryStartAction()
         {
             var worldObject = ClientWorldObjectInteractHelper.ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoGameObject is IProtoObjectHackableContainer))
+            if (worldObject?.ProtoGameObject is not IProtoObjectHackableContainer)
             {
                 return;
             }
@@ -192,7 +192,7 @@
                 return;
             }
 
-            if (!(worldObject.ProtoGameObject is IProtoObjectHackableContainer))
+            if (worldObject.ProtoGameObject is not IProtoObjectHackableContainer)
             {
                 throw new Exception("Not a hackable container: " + worldObject);
             }

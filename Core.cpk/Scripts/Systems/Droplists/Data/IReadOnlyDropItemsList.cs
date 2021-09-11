@@ -21,26 +21,26 @@
         CreateItemResult TryDropToCharacter(
             ICharacter character,
             DropItemContext context,
-            bool sendNoFreeSpaceNotification = true,
-            double probabilityMultiplier = 1.0);
+            double probabilityMultiplier,
+            bool sendNoFreeSpaceNotification = true);
 
         CreateItemResult TryDropToCharacterOrGround(
             ICharacter character,
             Vector2Ushort tilePosition,
             DropItemContext context,
             [CanBeNull] out IItemsContainer groundContainer,
-            bool sendNotificationWhenDropToGround = true,
-            double probabilityMultiplier = 1.0);
+            double probabilityMultiplier,
+            bool sendNotificationWhenDropToGround = true);
 
         CreateItemResult TryDropToContainer(
             IItemsContainer container,
             DropItemContext context,
-            double probabilityMultiplier = 1.0);
+            double probabilityMultiplier);
 
         CreateItemResult TryDropToGround(
             Vector2Ushort tilePosition,
             DropItemContext context,
             [CanBeNull] out IItemsContainer groundContainer,
-            double probabilityMultiplier = 1.0);
+            double probabilityMultiplier);
     }
 }

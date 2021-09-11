@@ -16,9 +16,9 @@
         public override string Description =>
             "Plasma rifle forms and projects large, concentrated plasma packets that severely burn the target upon impact, dealing massive damage. Very high power consumption.";
 
-        public override uint DurabilityMax => 400;
+        public override uint DurabilityMax => 800;
 
-        public override double EnergyUsePerShot => 150;
+        public override double EnergyUsePerShot => 75;
 
         public override double FireInterval => 0.7;
 

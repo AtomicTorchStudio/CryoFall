@@ -6,9 +6,11 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Reactor;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Objects;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -113,7 +115,10 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
                 return;
             }
 
-            this.CallServer(_ => _.ServerRemote_BuildReactor(worldObjectGenerator, reactorIndex));
+            ProtoEntityRemoteExtensions.CallServer(this,
+                                                   _ => _.ServerRemote_BuildReactor(
+                                                       worldObjectGenerator,
+                                                       reactorIndex));
         }
 
         public void ClientSetReactorMode(
@@ -134,7 +139,11 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
                 return;
             }
 
-            this.CallServer(_ => _.ServerRemote_SetReactorMode(worldObjectGenerator, reactorIndex, isEnabled));
+            ProtoEntityRemoteExtensions.CallServer(this,
+                                                   _ => _.ServerRemote_SetReactorMode(
+                                                       worldObjectGenerator,
+                                                       reactorIndex,
+                                                       isEnabled));
         }
 
         public override void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime)
@@ -340,7 +349,6 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
                                                     repair,
                                                     buildAdditionalReactor,
                                                     out category);
-            buildAdditionalReactor.ApplyRates(StructureConstants.BuildItemsCountMultiplier);
             this.BuildAdditionalReactorRequiredItems = buildAdditionalReactor.AsReadOnly();
         }
 
@@ -451,7 +459,7 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
                     this.ServerRebuildReactorStats(reactorPrivateState, reactorPublicState);
                 }
 
-                this.ServerApplyItemsDecay(reactorPrivateState, data.DeltaTime);
+                ServerApplyItemsDecay(reactorPrivateState, data.DeltaTime);
 
                 double deltaProgress;
                 if (reactorPrivateState.IsEnabled)
@@ -465,15 +473,23 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
 
                 deltaProgress *= 100.0 / reactorPrivateState.Stats.StartupShutdownTimePercent;
 
-                var activationProgressPercents = reactorPrivateState.ActivationProgressPercents
+                var previousActivationProgressPercents = reactorPrivateState.ActivationProgressPercents;
+                var activationProgressPercents = previousActivationProgressPercents
                                                  + deltaProgress * 100;
                 activationProgressPercents = MathHelper.Clamp(activationProgressPercents, 0, 100);
 
                 reactorPrivateState.ActivationProgressPercents = activationProgressPercents;
                 publicReactorStates[reactorIndex].ActivationProgressPercents
-                    = activationProgressPercents > 0 && activationProgressPercents <= 1
+                    = activationProgressPercents is > 0 and <= 1
                           ? (byte)1 // at least 1% should be provided to start the active reactor animation immediately
                           : (byte)activationProgressPercents;
+
+                if (!reactorPrivateState.IsEnabled
+                    && previousActivationProgressPercents > 0
+                    && activationProgressPercents == 0)
+                {
+                    ServerOnReactorShutdown(reactorPrivateState);
+                }
             }
         }
 
@@ -504,13 +520,22 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
                 }
             }
 
-            fuelLifetimePercent = MathHelper.Clamp(fuelLifetimePercent,               1, ushort.MaxValue);
-            efficiencyPercents = MathHelper.Clamp(efficiencyPercents,                 0, ushort.MaxValue);
+            var generatorRate = RateTimeDependentGeneratorsRate.SharedValue;
+
+            // do not apply it here as the player should not see the change here! 
+            //fuelLifetimePercent /= generatorRate; // apply generator rate (faster generation but faster fuel decay)
+            fuelLifetimePercent = MathHelper.Clamp(fuelLifetimePercent, 1, ushort.MaxValue);
+
+            efficiencyPercents = MathHelper.Clamp(efficiencyPercents, 0, ushort.MaxValue);
+
+            // apply generator rate (faster generation and activation but faster fuel decay)
+            startupShutdownTimePercent /= generatorRate;
             startupShutdownTimePercent = MathHelper.Clamp(startupShutdownTimePercent, 5, ushort.MaxValue);
 
             psiEmissionLevel = MathHelper.Clamp(psiEmissionLevel, 0, byte.MaxValue);
 
             outputValue *= efficiencyPercents / 100.0;
+            outputValue *= generatorRate; // apply generator rate (faster generation but faster fuel decay)
 
             return new PragmiumReactorStatsData((ushort)fuelLifetimePercent,
                                                 (ushort)efficiencyPercents,
@@ -520,6 +545,94 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
         }
 
         protected abstract Vector2D SharedGetReactorWorldPositionOffset(int reactorIndex);
+
+        private static void ServerApplyItemsDecay(
+            ObjectGeneratorPragmiumReactorPrivateState reactorPrivateState,
+            double deltaTime)
+        {
+            var activationProgress = reactorPrivateState.ActivationProgressPercents / 100.0;
+            if (activationProgress <= 0)
+            {
+                reactorPrivateState.ServerAccumulatedDecayDuration = 0;
+                return;
+            }
+
+            using var tempItemsList = Api.Shared.WrapInTempList(reactorPrivateState.ItemsContainer.Items);
+            if (tempItemsList.Count == 0)
+            {
+                return;
+            }
+
+            reactorPrivateState.ServerAccumulatedDecayDuration += deltaTime;
+            if (reactorPrivateState.ServerAccumulatedDecayDuration < ItemDecayIntervalDuration)
+            {
+                return;
+            }
+
+            // let's apply accumulated decay
+            reactorPrivateState.ServerAccumulatedDecayDuration -= ItemDecayIntervalDuration;
+            var decayMultiplier = activationProgress * ItemDecayIntervalDuration;
+
+            // apply generator rate (faster generation but faster fuel decay)
+            decayMultiplier *= RateTimeDependentGeneratorsRate.SharedValue;
+
+            var fuelDecayMultiplier = 100.0 / reactorPrivateState.Stats.FuelLifetimePercent;
+
+            foreach (var item in tempItemsList.AsList())
+            {
+                var protoGameObject = item.ProtoGameObject;
+                switch (protoGameObject)
+                {
+                    case ItemReactorFuelRod protoFuelRod:
+                    {
+                        var decayAmount = decayMultiplier
+                                          * protoFuelRod.DurabilityMax
+                                          / protoFuelRod.LifetimeDuration;
+
+                        decayAmount *= fuelDecayMultiplier;
+
+                        ItemDurabilitySystem.ServerModifyDurability(item, -(int)decayAmount);
+                        break;
+                    }
+
+                    case ProtoItemReactorModule protoItemModule:
+                    {
+                        var decayAmount = decayMultiplier
+                                          * protoItemModule.DurabilityMax
+                                          / protoItemModule.LifetimeDuration;
+
+                        // Don't allow for modules to decay completely.
+                        // When the reactor completely shut downs, it will destroy all modules
+                        // that have remaining durability below 1% (see ServerOnReactorShutdown).
+                        var privateState = item.GetPrivateState<IItemWithDurabilityPrivateState>();
+                        decayAmount = Math.Min(decayAmount, privateState.DurabilityCurrent - 1);
+
+                        if (decayAmount > 0)
+                        {
+                            ItemDurabilitySystem.ServerModifyDurability(item, -(int)decayAmount);
+                        }
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// When the reactor completely shut downs, it will destroy all modules
+        /// that have remaining durability below 1%.
+        /// </summary>
+        private static void ServerOnReactorShutdown(ObjectGeneratorPragmiumReactorPrivateState reactorPrivateState)
+        {
+            foreach (var item in reactorPrivateState.ItemsContainer.Items.ToList())
+            {
+                if (item.ProtoGameObject is ProtoItemReactorModule
+                    && ItemDurabilitySystem.SharedGetDurabilityPercent(item) < 1)
+                {
+                    ItemDurabilitySystem.ServerBreakItem(item);
+                }
+            }
+        }
 
         private static void ServerResetReactorContents(IStaticWorldObject worldObject)
         {
@@ -594,64 +707,6 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators
             var reactorPrivateState = reactorPrivateStates[reactorIndex];
             return reactorPrivateState
                    ?? throw new Exception($"The reactor is not built: #{reactorIndex} in {worldObjectGenerator}");
-        }
-
-        private void ServerApplyItemsDecay(
-            ObjectGeneratorPragmiumReactorPrivateState reactorPrivateState,
-            double deltaTime)
-        {
-            var activationProgress = reactorPrivateState.ActivationProgressPercents / 100.0;
-            if (activationProgress <= 0)
-            {
-                reactorPrivateState.ServerAccumulatedDecayDuration = 0;
-                return;
-            }
-
-            using var tempItemsList = Api.Shared.WrapInTempList(reactorPrivateState.ItemsContainer.Items);
-            if (tempItemsList.Count == 0)
-            {
-                return;
-            }
-
-            reactorPrivateState.ServerAccumulatedDecayDuration += deltaTime;
-            if (reactorPrivateState.ServerAccumulatedDecayDuration < ItemDecayIntervalDuration)
-            {
-                return;
-            }
-
-            // apply accumulated decay
-            reactorPrivateState.ServerAccumulatedDecayDuration -= ItemDecayIntervalDuration;
-            var decayMultiplier = activationProgress * ItemDecayIntervalDuration;
-            var fuelDecayMultiplier = 100.0 / reactorPrivateState.Stats.FuelLifetimePercent;
-
-            foreach (var item in tempItemsList.AsList())
-            {
-                var protoGameObject = item.ProtoGameObject;
-                switch (protoGameObject)
-                {
-                    case ItemReactorFuelRod protoFuelRod:
-                    {
-                        var decayAmount = decayMultiplier
-                                          * protoFuelRod.DurabilityMax
-                                          / protoFuelRod.LifetimeDuration;
-
-                        decayAmount *= fuelDecayMultiplier;
-
-                        ItemDurabilitySystem.ServerModifyDurability(item, -(int)decayAmount);
-                        break;
-                    }
-
-                    case ProtoItemReactorModule protoItemModule:
-                    {
-                        var decayAmount = decayMultiplier
-                                          * protoItemModule.DurabilityMax
-                                          / protoItemModule.LifetimeDuration;
-
-                        ItemDurabilitySystem.ServerModifyDurability(item, -(int)decayAmount);
-                        break;
-                    }
-                }
-            }
         }
 
         private void ServerRebuildReactorStats(

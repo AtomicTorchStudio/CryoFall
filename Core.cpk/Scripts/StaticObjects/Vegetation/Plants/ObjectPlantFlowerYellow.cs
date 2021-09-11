@@ -11,7 +11,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public class ObjectPlantFlowerYellow : ProtoObjectPlant
+    public class ObjectPlantFlowerYellow : ProtoObjectPlantFlower
     {
         public override string Name => "Yellow flower";
 
@@ -37,7 +37,7 @@
             base.ClientInitialize(data);
 
             var protoFarm = CommonGetFarmObjectProto(data.GameObject.OccupiedTile);
-            if (!(protoFarm is ObjectPlantPot))
+            if (protoFarm is not ObjectPlantPot)
             {
                 data.ClientState.Renderer.DrawOrderOffsetY += 0.5;
             }

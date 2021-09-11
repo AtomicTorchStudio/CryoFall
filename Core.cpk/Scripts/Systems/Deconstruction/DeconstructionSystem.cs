@@ -40,7 +40,7 @@
         public static void ClientTryStartAction()
         {
             var worldObject = ClientWorldObjectInteractHelper.ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
+            if (worldObject?.ProtoGameObject is not IProtoObjectStructure protoObjectStructure)
             {
                 return;
             }
@@ -169,7 +169,7 @@
                 return;
             }
 
-            if (!(worldObject.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
+            if (worldObject.ProtoGameObject is not IProtoObjectStructure protoObjectStructure)
             {
                 throw new Exception("Not a structure: " + worldObject);
             }
@@ -190,10 +190,10 @@
             }
 
             var selectedHotbarItem = characterPublicState.SelectedItem;
-            if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemToolCrowbar))
+            if (selectedHotbarItem?.ProtoGameObject is not IProtoItemToolCrowbar)
             {
                 selectedHotbarItem = null;
-                if (!(worldObject.ProtoWorldObject is ProtoObjectConstructionSite))
+                if (worldObject.ProtoWorldObject is not ProtoObjectConstructionSite)
                 {
                     // no crowbar tool is selected, only construction sites
                     // can be deconstructed without the crowbar

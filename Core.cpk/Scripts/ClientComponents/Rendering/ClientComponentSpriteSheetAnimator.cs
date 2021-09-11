@@ -138,7 +138,7 @@
             bool isLooped,
             double frameDurationSeconds,
             bool isManualUpdate = false,
-            int? initialFrameOffset = 0,
+            int? initialFrameOffset = null,
             bool randomizeInitialFrame = false)
         {
             if (framesTextureResources is null

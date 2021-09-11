@@ -170,7 +170,7 @@
 
         private static bool SharedCanRechargeItemWithFuel(IItem item)
         {
-            if (!(item.ProtoItem is IProtoItemWithFuel protoItemWithFuel))
+            if (item.ProtoItem is not IProtoItemWithFuel protoItemWithFuel)
             {
                 return false;
             }
@@ -194,7 +194,7 @@
 
         private static bool SharedCanRechargePowerBank(IItem item)
         {
-            if (!(item.ProtoItem is IProtoItemPowerBank protoPowerBank))
+            if (item.ProtoItem is not IProtoItemPowerBank protoPowerBank)
             {
                 return false;
             }
@@ -205,7 +205,7 @@
 
         private void ServerTryRechargeItemWithFuel(IItem item, double deltaTime)
         {
-            if (!(item.ProtoItem is IProtoItemWithFuel protoItemWithFuel))
+            if (item.ProtoItem is not IProtoItemWithFuel protoItemWithFuel)
             {
                 return;
             }
@@ -238,7 +238,7 @@
 
         private void ServerTryRechargePowerBank(IItem item, double deltaTime)
         {
-            if (!(item.ProtoItem is IProtoItemPowerBank protoPowerBank))
+            if (item.ProtoItem is not IProtoItemPowerBank protoPowerBank)
             {
                 return;
             }

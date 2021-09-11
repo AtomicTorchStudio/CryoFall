@@ -4,7 +4,6 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -15,8 +14,6 @@
         private static ViewModelMainMenuOverlay instance;
 
         private bool isCurrentGameTabEnabled;
-
-        private bool isServersMenuSelected;
 
         private TabItem selectedTab;
 
@@ -42,6 +39,8 @@
             }
 
             Client.MasterServer.DemoVersionInfoChanged += this.MasterServerDemoVersionInfoChangedHandler;
+
+            MainMenuOverlay.IsHiddenChanged += this.MainMenuOverlayOnIsHiddenChanged;
         }
 
         public static ViewModelMainMenuOverlay Instance
@@ -101,27 +100,7 @@
 
         public bool IsOptionsMenuSelected { get; set; }
 
-        public bool IsServersMenuSelected
-        {
-            get => this.isServersMenuSelected;
-            set
-            {
-                if (this.isServersMenuSelected == value)
-                {
-                    return;
-                }
-
-                this.isServersMenuSelected = value;
-                this.NotifyThisPropertyChanged();
-
-                ViewModelMenuServers.Instance?.ResetSortOrder();
-
-                // ensure master server is connected
-                Client.MasterServer.Connect();
-            }
-        }
-
-        public bool IsServersMenuVisible => !Api.IsEditor;
+        public bool IsPlayMenuVisible => !Api.IsEditor;
 
         public TabItem SelectedTab
         {
@@ -162,6 +141,17 @@
         }
 
         public string Username { get; private set; }
+
+        private void MainMenuOverlayOnIsHiddenChanged()
+        {
+            // selects "Current game" tab when connected
+            if (Client.CurrentGame.ConnectionState
+                    is ConnectionState.Connecting
+                    or ConnectionState.Connected)
+            {
+                this.IsCurrentGameTabSelected = true;
+            }
+        }
 
         private void MasterServerDemoVersionInfoChangedHandler()
         {

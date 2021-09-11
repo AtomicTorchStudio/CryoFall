@@ -1,0 +1,12 @@
+ * AtomicTorch.CBND.CoreMod.Events.EventMigration
+   -> AtomicTorch.CBND.CoreMod.Events.EventMigrationFloater
+ * AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants.FarmingConstants+FarmingConstantsProvider
+   -> null
+ * AtomicTorch.CBND.CoreMod.Technologies.Tier2.Decorations.TechNodeSignWood
+   -> AtomicTorch.CBND.CoreMod.Technologies.Tier3.Decorations.TechNodeSignWood
+ * AtomicTorch.CBND.CoreMod.Technologies.Tier3.Decorations.TechNodeDecorationAltar
+   -> AtomicTorch.CBND.CoreMod.Technologies.Tier2.Decorations.TechNodeDecorationAltar
+ * AtomicTorch.CBND.CoreMod.ItemContainers.ItemsContainerTinkerTableInput
+   -> AtomicTorch.CBND.CoreMod.ItemContainers.ItemsContainerTinkerTableDisassemblyInput
+ * AtomicTorch.CBND.CoreMod.Technologies.Tier5.ExoticWeapons.TechGroupExoticWeapons
+   -> AtomicTorch.CBND.CoreMod.Technologies.Tier5.ExoticWeapons.TechGroupExoticWeaponsT5

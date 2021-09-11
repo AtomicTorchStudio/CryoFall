@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -157,10 +158,12 @@
 
         protected virtual bool ServerTryGatherByCharacter(ICharacter who, IStaticWorldObject vegetationObject)
         {
-            var result = this.GatherDroplist.TryDropToCharacterOrGround(who,
-                                                                        who.TilePosition,
-                                                                        new DropItemContext(who, vegetationObject),
-                                                                        out var groundItemsContainer);
+            var result = this.GatherDroplist.TryDropToCharacterOrGround(
+                who,
+                who.TilePosition,
+                new DropItemContext(who, vegetationObject),
+                out var groundItemsContainer,
+                probabilityMultiplier: RateResourcesGatherBasic.SharedValue);
             if (result.TotalCreatedCount == 0)
             {
                 return false;

@@ -96,7 +96,7 @@
         /// <param name="worldObject">WorldObject of this object type.</param>
         public void ClientInteractFinish(IWorldObject worldObject)
         {
-            if (!(worldObject is TWorldObject gameObject))
+            if (worldObject is not TWorldObject gameObject)
             {
                 throw new ArgumentException("Wrong argument type", nameof(worldObject));
             }
@@ -132,7 +132,7 @@
         /// <param name="worldObject">WorldObject of this object type.</param>
         public void ClientInteractStart(IWorldObject worldObject)
         {
-            if (!(worldObject is TWorldObject gameObject))
+            if (worldObject is not TWorldObject gameObject)
             {
                 throw new ArgumentException("Wrong argument type", nameof(worldObject));
             }
@@ -165,9 +165,18 @@
                 return false;
             }
 
+            this.VerifyGameObject(worldObject);
+
             if (character.GetPublicState<ICharacterPublicState>().IsDead
                 || IsServer && !character.ServerIsOnline)
             {
+                if (writeToLog)
+                {
+                    Logger.Warning(
+                        $"Character cannot interact with {worldObject} - character is dead or offline.",
+                        character);
+                }
+
                 return false;
             }
 

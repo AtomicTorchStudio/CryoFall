@@ -21,7 +21,7 @@
 
         public override string Description => "Handgun developed for 10mm rounds.";
 
-        public override uint DurabilityMax => 250;
+        public override uint DurabilityMax => 600;
 
         public override double FireInterval => 0.5;
 

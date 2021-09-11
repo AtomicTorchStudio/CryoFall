@@ -15,10 +15,11 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public interface IProtoVehicle : IProtoDynamicWorldObject, 
-                                     IProtoObjectWithOwnersList,
-                                     IProtoObjectWithAccessMode,
-                                     IInteractableProtoWorldObject
+    public interface IProtoVehicle
+        : IProtoDynamicWorldObject,
+          IProtoObjectWithOwnersList,
+          IProtoObjectWithAccessMode,
+          IInteractableProtoWorldObject
     {
         uint BuildRequiredElectricityAmount { get; }
 
@@ -39,6 +40,8 @@
         bool IsHeavyVehicle { get; }
 
         bool IsPlayersHotbarAndEquipmentItemsAllowed { get; }
+
+        bool IsRepairable { get; }
 
         IReadOnlyList<TechNode> ListedInTechNodes { get; }
 
@@ -97,6 +100,8 @@
             ICharacter character,
             PlayerCharacterPrivateState characterPrivateState,
             PlayerCharacterPublicState characterPublicState);
+
+        double SharedGetCurrentEnergyConsumption(IDynamicWorldObject vehicle);
 
         IItemsContainer SharedGetHotbarItemsContainer(IDynamicWorldObject vehicle);
 

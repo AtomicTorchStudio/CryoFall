@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.GameApi;
@@ -42,7 +43,7 @@
                 if (slotsNeeded > 0)
                 {
                     Server.Items.SetSlotsCount(toContainer,
-                                               Math.Max(ItemsContainerLandClaimSafeStorage.ServerSafeItemsSlotsCapacity,
+                                               Math.Max(RatePvPSafeStorageCapacity.SharedValue,
                                                         (byte)(toContainer.OccupiedSlotsCount + slotsNeeded)));
                     Server.Items.TryMoveAllItems(fromContainer, toContainer, onlyToExistingStacks: false);
                 }
@@ -101,7 +102,7 @@
         protected override void ServerInitialize(ServerInitializeData data)
         {
             var itemsContainerSafeStorage = data.PrivateState.ItemsContainerSafeStorage;
-            var safeStorageCapacity = ItemsContainerLandClaimSafeStorage.ServerSafeItemsSlotsCapacity;
+            var safeStorageCapacity = RatePvPSafeStorageCapacity.SharedValue;
 
             if (itemsContainerSafeStorage is null)
             {

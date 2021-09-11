@@ -357,9 +357,9 @@
             <TextBlock Text="{Binding UpdateTitle}"
                        FontSize="35" />
             <TextBlock Text="{Binding UpdateReleaseDateText}"
-                       Foreground="{StaticResource BrushColorAlt7}"
-                       FontSize="22"
-                       Margin="0,-5,0,0" />
+                       Foreground="{StaticResource BrushColor7}"
+                       FontSize="24"
+                       Margin="0,-3,0,0" />
         </StackPanel>
 
         <StackPanel Grid.Row="0"
@@ -413,7 +413,8 @@
                 </StackPanel>
             </core:HyperlinkControl>
 
-            <core:HyperlinkControl Url="https://trello.com/b/B5ckffAW"
+            <!-- Roadmap button -->
+            <!--<core:HyperlinkControl Url="https://trello.com/b/B5ckffAW"
                                    Margin="15,0,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_RoadmapTooltip}">
                 <StackPanel Orientation="Horizontal"
@@ -421,10 +422,9 @@
                     <Image Source="/UI/Images/Icons/Social/btn_roadmap.png"
                            Stretch="Uniform"
                            Width="40" />
-                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
                     <TextBlock Text="Roadmap" />
                 </StackPanel>
-            </core:HyperlinkControl>
+            </core:HyperlinkControl>-->
 
             <core:HyperlinkControl Url="http://forums.atomictorch.com/index.php?board=2.0"
                                    Margin="15,0,0,0"
@@ -460,7 +460,9 @@
                        Fill="Transparent" />
         </StackPanel>
 
-        <ContentControl Grid.Row="3" Grid.Column="1" Style="{StaticResource MainMenuWidgetStyle}">
+        <ContentControl Grid.Row="3"
+                        Grid.Column="1"
+                        Style="{StaticResource MainMenuWidgetStyle}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

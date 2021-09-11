@@ -13,6 +13,8 @@
 
         ITextureResource Icon { get; }
 
+        bool IsAvailableInCompletionist { get; }
+
         /// <summary>
         /// Determines when this event was active last time.
         /// </summary>
@@ -24,6 +26,6 @@
 
         bool ServerIsTriggerAllowed(ProtoTrigger trigger);
 
-        string SharedGetProgressText(ILogicObject activeEvent);
+        string SharedGetProgressText(ILogicObject worldEvent);
     }
 }

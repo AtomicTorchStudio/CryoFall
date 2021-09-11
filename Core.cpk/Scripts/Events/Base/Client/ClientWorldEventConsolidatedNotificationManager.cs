@@ -14,9 +14,9 @@
         private static readonly Dictionary<IProtoEvent, ConsolidatedEventNotification> EventNotifications
             = new();
 
-        public static void RegisterEvent(ILogicObject activeEvent)
+        public static void RegisterEvent(ILogicObject worldEvent)
         {
-            var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
+            var protoEvent = (IProtoEvent)worldEvent.ProtoGameObject;
             if (!protoEvent.ConsolidateNotifications)
             {
                 return;
@@ -28,12 +28,12 @@
                 EventNotifications[protoEvent] = entry;
             }
 
-            entry.AddEvent(activeEvent);
+            entry.AddEvent(worldEvent);
         }
 
-        public static void UnregisterEvent(ILogicObject activeEvent)
+        public static void UnregisterEvent(ILogicObject worldEvent)
         {
-            var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
+            var protoEvent = (IProtoEvent)worldEvent.ProtoGameObject;
             if (!protoEvent.ConsolidateNotifications)
             {
                 return;
@@ -44,7 +44,7 @@
                 return;
             }
 
-            entry.RemoveEvent(activeEvent);
+            entry.RemoveEvent(worldEvent);
             if (entry.IsDestroyed)
             {
                 EventNotifications.Remove(protoEvent);
@@ -55,7 +55,7 @@
         {
             public readonly IProtoEvent ProtoEvent;
 
-            private readonly List<ILogicObject> activeEvents = new();
+            private readonly List<ILogicObject> worldEvents = new();
 
             private HudNotificationControl notification;
 
@@ -66,21 +66,21 @@
 
             public bool IsDestroyed { get; private set; }
 
-            public void AddEvent(ILogicObject activeEvent)
+            public void AddEvent(ILogicObject worldEvent)
             {
                 if (this.IsDestroyed)
                 {
                     Api.Logger.Error("The consolidated event notification is destroyed");
                 }
 
-                this.activeEvents.Add(activeEvent);
+                this.worldEvents.Add(worldEvent);
                 this.TryCreateNotification();
             }
 
-            public void RemoveEvent(ILogicObject activeEvent)
+            public void RemoveEvent(ILogicObject worldEvent)
             {
-                this.activeEvents.Remove(activeEvent);
-                if (this.activeEvents.Count != 0)
+                this.worldEvents.Remove(worldEvent);
+                if (this.worldEvents.Count != 0)
                 {
                     return;
                 }
@@ -93,9 +93,9 @@
             {
                 var maxTimeRemains = 0;
                 var serverTime = Api.Client.CurrentGame.ServerFrameTimeApproximated;
-                foreach (var activeEvent in this.activeEvents)
+                foreach (var worldEvent in this.worldEvents)
                 {
-                    var eventState = activeEvent.GetPublicState<EventPublicState>();
+                    var eventState = worldEvent.GetPublicState<EventPublicState>();
                     var timeRemains = (int)(eventState.EventEndTime - serverTime);
                     if (timeRemains > maxTimeRemains)
                     {
@@ -108,8 +108,8 @@
 
             private string GetUpdatedEventNotificationText(int timeRemains)
             {
-                if (this.activeEvents.Count == 0
-                    || this.activeEvents.TrueForAll(e => e.IsDestroyed)
+                if (this.worldEvents.Count == 0
+                    || this.worldEvents.TrueForAll(e => e.IsDestroyed)
                     || timeRemains < 1)
                 {
                     return string.Format("{0}[br][br][b]{1}[/b]",
@@ -130,7 +130,7 @@
             {
                 if (this.notification is null
                     || this.IsDestroyed
-                    || this.activeEvents.TrueForAll(e => e.IsDestroyed))
+                    || this.worldEvents.TrueForAll(e => e.IsDestroyed))
                 {
                     // the notification will be automatically marked to hide after delay when active event is destroyed
                     // (a finished event)

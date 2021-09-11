@@ -515,8 +515,8 @@
             ICharacter character,
             bool clientShowErrorNotification = true)
         {
-            if (!(character.SharedGetPlayerSelectedHotbarItemProto()
-                      is IProtoItemDroneControl protoItemControl))
+            if (character.SharedGetPlayerSelectedHotbarItemProto()
+                    is not IProtoItemDroneControl protoItemControl)
             {
                 return true;
             }
@@ -684,7 +684,7 @@
                 return;
             }
 
-            if (!(itemDrone.ProtoItem is IProtoItemDrone protoItemDrone))
+            if (itemDrone.ProtoItem is not IProtoItemDrone protoItemDrone)
             {
                 // not a drone item
                 Logger.Warning("Not a drone item: " + itemDrone, character);
@@ -692,7 +692,7 @@
             }
 
             var itemDroneControl = character.SharedGetPlayerSelectedHotbarItem();
-            if (!(itemDroneControl.ProtoItem is IProtoItemDroneControl))
+            if (itemDroneControl.ProtoItem is not IProtoItemDroneControl)
             {
                 Logger.Info("Don't have a drone remote control selected", character);
                 return;

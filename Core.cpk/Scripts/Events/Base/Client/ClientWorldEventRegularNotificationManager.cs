@@ -14,32 +14,32 @@
     {
         public const byte FinishedEventHideDelay = 10;
 
-        private static readonly List<(ILogicObject activeEvent, HudNotificationControl notification)> notifications
+        private static readonly List<(ILogicObject worldEvent, HudNotificationControl notification)> notifications
             = new();
 
         static ClientWorldEventRegularNotificationManager()
         {
-            RefreshActiveEventsInfo();
+            RefreshWorldEventsInfo();
         }
 
-        public static int CalculateEventTimeRemains(ILogicObject activeEvent)
+        public static int CalculateEventTimeRemains(ILogicObject worldEvent)
         {
-            return (int)(activeEvent.GetPublicState<EventPublicState>().EventEndTime
+            return (int)(worldEvent.GetPublicState<EventPublicState>().EventEndTime
                          - Api.Client.CurrentGame.ServerFrameTimeApproximated);
         }
 
         public static string GetUpdatedEventNotificationText(
-            ILogicObject activeEvent,
+            ILogicObject worldEvent,
             int timeRemains,
             bool addDescription)
         {
-            var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
-            var description = protoEvent.ClientGetDescription(activeEvent);
+            var protoEvent = (IProtoEvent)worldEvent.ProtoGameObject;
+            var description = protoEvent.ClientGetDescription(worldEvent);
             if (!protoEvent.ConsolidateNotifications)
             {
                 addDescription = true;
 
-                if (activeEvent.IsDestroyed
+                if (worldEvent.IsDestroyed
                     || timeRemains <= 0)
                 {
                     return
@@ -59,12 +59,12 @@
                   .Append("[br][br]");
             }
 
-            if (!activeEvent.IsDestroyed)
+            if (!worldEvent.IsDestroyed)
             {
-                if (activeEvent.ProtoGameObject is ProtoEventBoss protoEventBoss)
+                if (worldEvent.ProtoGameObject is ProtoEventBoss protoEventBoss)
                 {
                     var timeRemainsToEventStart
-                        = protoEventBoss.SharedGetTimeRemainsToEventStart(ProtoEventBoss.GetPublicState(activeEvent));
+                        = protoEventBoss.SharedGetTimeRemainsToEventStart(ProtoEventBoss.GetPublicState(worldEvent));
 
                     if (timeRemainsToEventStart > 0)
                     {
@@ -87,7 +87,7 @@
                 }
             }
 
-            var progressText = protoEvent.SharedGetProgressText(activeEvent);
+            var progressText = protoEvent.SharedGetProgressText(worldEvent);
             if (progressText is null)
             {
                 return sb.ToString();
@@ -97,29 +97,29 @@
             return sb.ToString();
         }
 
-        public static void RegisterEvent(ILogicObject activeEvent)
+        public static void RegisterEvent(ILogicObject worldEvent)
         {
-            TryCreateNotification(activeEvent);
+            TryCreateNotification(worldEvent);
         }
 
-        public static void UnregisterEvent(ILogicObject activeEvent)
+        public static void UnregisterEvent(ILogicObject worldEvent)
         {
-            var notification = RemoveNotification(activeEvent,
+            var notification = RemoveNotification(worldEvent,
                                                   quick: false,
                                                   delaySeconds: FinishedEventHideDelay);
             if (notification is not null)
             {
-                notification.Message = GetUpdatedEventNotificationText(activeEvent,
-                                                                       CalculateEventTimeRemains(activeEvent),
+                notification.Message = GetUpdatedEventNotificationText(worldEvent,
+                                                                       CalculateEventTimeRemains(worldEvent),
                                                                        addDescription: false);
             }
         }
 
-        private static HudNotificationControl FindNotification(ILogicObject activeEvent)
+        private static HudNotificationControl FindNotification(ILogicObject worldEvent)
         {
             foreach (var pair in notifications)
             {
-                if (pair.activeEvent.Equals(activeEvent))
+                if (pair.worldEvent.Equals(worldEvent))
                 {
                     return pair.notification;
                 }
@@ -128,20 +128,20 @@
             return null;
         }
 
-        private static void RefreshActiveEventInfo(ILogicObject activeEvent)
+        private static void RefreshWorldEventInfo(ILogicObject worldEvent)
         {
-            if (activeEvent.IsDestroyed)
+            if (worldEvent.IsDestroyed)
             {
                 // the notification will be automatically marked to hide after delay when active event is destroyed
                 // (a finished event)
                 return;
             }
 
-            var notification = FindNotification(activeEvent);
-            if (activeEvent.ProtoGameObject is IProtoEventWithArea { ConsolidateNotifications: true })
+            var notification = FindNotification(worldEvent);
+            if (worldEvent.ProtoGameObject is IProtoEventWithArea { ConsolidateNotifications: true })
             {
                 // display the non-consolidated notification only if player is inside the event area
-                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var publicState = worldEvent.GetPublicState<EventWithAreaPublicState>();
                 var playerPosition = ClientCurrentCharacterHelper.Character?.Position
                                      ?? Vector2D.Zero;
 
@@ -157,11 +157,11 @@
                     // inside the interaction area but has no notification displayed
                     if (notification is not null)
                     {
-                        RemoveNotification(activeEvent, quick: true);
+                        RemoveNotification(worldEvent, quick: true);
                     }
 
-                    TryCreateNotification(activeEvent);
-                    notification = FindNotification(activeEvent);
+                    TryCreateNotification(worldEvent);
+                    notification = FindNotification(worldEvent);
                 }
             }
 
@@ -170,15 +170,15 @@
                 return;
             }
 
-            var timeRemains = CalculateEventTimeRemains(activeEvent);
+            var timeRemains = CalculateEventTimeRemains(worldEvent);
             if (timeRemains <= 0)
             {
                 if (!notification.IsHiding)
                 {
-                    notification.Message = GetUpdatedEventNotificationText(activeEvent,
+                    notification.Message = GetUpdatedEventNotificationText(worldEvent,
                                                                            timeRemains,
                                                                            addDescription: false);
-                    RemoveNotification(activeEvent,
+                    RemoveNotification(worldEvent,
                                        quick: false,
                                        delaySeconds: FinishedEventHideDelay);
                 }
@@ -188,31 +188,31 @@
 
             if (!notification.IsHiding)
             {
-                notification.Message = GetUpdatedEventNotificationText(activeEvent,
+                notification.Message = GetUpdatedEventNotificationText(worldEvent,
                                                                        timeRemains,
                                                                        addDescription: false);
             }
         }
 
-        private static void RefreshActiveEventsInfo()
+        private static void RefreshWorldEventsInfo()
         {
             foreach (var pair in Api.Shared.WrapInTempList(notifications).EnumerateAndDispose())
             {
-                RefreshActiveEventInfo(pair.activeEvent);
+                RefreshWorldEventInfo(pair.worldEvent);
             }
 
-            ClientTimersSystem.AddAction(0.333, RefreshActiveEventsInfo);
+            ClientTimersSystem.AddAction(0.333, RefreshWorldEventsInfo);
         }
 
         private static HudNotificationControl RemoveNotification(
-            ILogicObject activeEvent,
+            ILogicObject worldEvent,
             bool quick,
             double delaySeconds = 0)
         {
             for (var index = 0; index < notifications.Count; index++)
             {
                 var pair = notifications[index];
-                if (!pair.activeEvent.Equals(activeEvent))
+                if (!pair.worldEvent.Equals(worldEvent))
                 {
                     continue;
                 }
@@ -234,15 +234,15 @@
             return null;
         }
 
-        private static void TryCreateNotification(ILogicObject activeEvent)
+        private static void TryCreateNotification(ILogicObject worldEvent)
         {
-            var timeRemains = CalculateEventTimeRemains(activeEvent);
+            var timeRemains = CalculateEventTimeRemains(worldEvent);
             if (timeRemains <= 0)
             {
                 return;
             }
 
-            var notification = FindNotification(activeEvent);
+            var notification = FindNotification(worldEvent);
             if (notification is not null)
             {
                 // notification already exist
@@ -250,10 +250,10 @@
             }
 
             // notify player about the new event
-            var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
+            var protoEvent = (IProtoEvent)worldEvent.ProtoGameObject;
             notification = NotificationSystem.ClientShowNotification(
                 ClientWorldMapEventVisualizer.Notification_ActiveEvent_Title,
-                GetUpdatedEventNotificationText(activeEvent,
+                GetUpdatedEventNotificationText(worldEvent,
                                                 timeRemains,
                                                 addDescription: false),
                 icon: protoEvent.Icon,
@@ -266,9 +266,9 @@
                 ClientEventSoundHelper.PlayEventStartedSound();
             }
 
-            RemoveNotification(activeEvent, true);
-            notifications.Add((activeEvent, notification));
-            RefreshActiveEventInfo(activeEvent);
+            RemoveNotification(worldEvent, true);
+            notifications.Add((worldEvent, notification));
+            RefreshWorldEventInfo(worldEvent);
         }
     }
 }

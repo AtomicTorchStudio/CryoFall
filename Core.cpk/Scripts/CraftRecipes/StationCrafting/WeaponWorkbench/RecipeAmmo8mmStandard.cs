@@ -22,7 +22,7 @@
             inputItems.Add<ItemIngotCopper>(count: 2);
             inputItems.Add<ItemBlackpowder>(count: 15);
 
-            outputItems.Add<ItemAmmo8mmStandard>(count: 10);
+            outputItems.Add<ItemAmmo8mmStandard>(count: 20);
         }
     }
 }

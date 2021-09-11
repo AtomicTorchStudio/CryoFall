@@ -25,7 +25,7 @@
 
         public override string Description => "Simple repeating handgun with a revolving cylinder that holds ammo.";
 
-        public override uint DurabilityMax => 200; // slightly higher
+        public override uint DurabilityMax => 400; // slightly higher
 
         public override double FireInterval => 0.6; // slightly slower
 

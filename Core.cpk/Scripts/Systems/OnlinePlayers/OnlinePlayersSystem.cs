@@ -4,11 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -16,32 +18,15 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
 
+    [PrepareOrder(afterType: typeof(RatesSynchronizationSystem))]
     public class OnlinePlayersSystem : ProtoSystem<OnlinePlayersSystem>
     {
-        public static readonly bool ServerIsListHidden;
-
         private static readonly HashSet<Entry> ClientOnlinePlayersList
             = Api.IsClient ? new HashSet<Entry>() : null;
 
         private static int clientReceivedOnlinePlayersCountWhenListHidden;
 
         private static int serverLastTotalPlayersCount;
-
-        static OnlinePlayersSystem()
-        {
-            if (IsClient)
-            {
-                return;
-            }
-
-            ServerIsListHidden
-                = ServerRates.Get(
-                      "PvP.IsOnlinePlayersListHidden",
-                      defaultValue: 0,
-                      @"For PvP servers you can hide the online players list.
-                        Please note: it's always visible for players with administrator and moderator access.")
-                  != 0;
-        }
 
         public delegate void OnlinePlayedAddedOrRemoved(Entry entry, bool isOnline);
 
@@ -53,12 +38,10 @@
 
         public static event Action<int> ClientTotalServerPlayersCountChanged;
 
-        public static bool ClientIsListHidden { get; private set; }
-
         public static bool ClientIsReady { get; private set; }
 
         public static int ClientOnlinePlayersCount
-            => ClientIsListHidden
+            => SharedIsListHidden
                    ? clientReceivedOnlinePlayersCountWhenListHidden
                    : ClientOnlinePlayersList.Count + 1;
 
@@ -66,6 +49,9 @@
         /// Please note: this property will return zero in case the player is not a server operator.
         /// </summary>
         public static int ClientTotalServerPlayersCount { get; private set; }
+
+        public static bool SharedIsListHidden
+            => RateIsOnlinePlayersListHidden.SharedValue;
 
         public override string Name => "Online players system";
 
@@ -141,7 +127,7 @@
             }
 
             List<ICharacter> onlineStatusChangeReceivers;
-            if (ServerIsListHidden)
+            if (SharedIsListHidden)
             {
                 // only server operators, moderators, and party members will receive a notification
                 onlineStatusChangeReceivers = new List<ICharacter>(list.Count);
@@ -213,19 +199,16 @@
 
         private void ClientRemote_OnlinePlayersList(
             IReadOnlyList<Entry> list,
-            bool isListHidden,
             int totalOnlineCountIfListHidden)
         {
             ClientIsReady = false;
 
             try
             {
-                ClientIsListHidden = isListHidden;
                 clientReceivedOnlinePlayersCountWhenListHidden = totalOnlineCountIfListHidden;
 
                 Logger.Important(
-                    "Online players list received from server. Is list hidden: "
-                    + isListHidden
+                    "Online players list received from server."
                     + Environment.NewLine
                     + "Total entries: "
                     + list.Count
@@ -284,7 +267,7 @@
                                 new Entry(playerCharacter.Name,
                                           FactionSystem.SharedGetClanTag(playerCharacter))));
 
-            if (!ServerIsListHidden)
+            if (!SharedIsListHidden)
             {
                 return;
             }
@@ -308,7 +291,7 @@
                                           FactionSystem.SharedGetClanTag(playerCharacter)),
                                 isOnline));
 
-            if (ServerIsListHidden)
+            if (SharedIsListHidden)
             {
                 this.CallClient(Server.Characters
                                       .EnumerateAllPlayerCharacters(onlyOnline: true)
@@ -335,7 +318,7 @@
             }
 
             var isOperatorOrModerator = ServerIsOperatorOrModerator(playerCharacter);
-            var isListHidden = ServerIsListHidden
+            var isListHidden = SharedIsListHidden
                                && !isOperatorOrModerator;
 
             var onlinePlayersList = new List<Entry>();
@@ -399,7 +382,6 @@
 
             this.CallClient(playerCharacter,
                             _ => _.ClientRemote_OnlinePlayersList(onlinePlayersList,
-                                                                  isListHidden,
                                                                   isListHidden
                                                                       ? Server.Characters.OnlinePlayersCount
                                                                       : 0));

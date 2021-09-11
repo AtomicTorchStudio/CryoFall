@@ -4,6 +4,7 @@
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
@@ -51,6 +52,7 @@
                 IProtoItem         => ViewModelWindowCompletionist.Notification_FoodDiscovered_MessageFormat,
                 IProtoCharacterMob => ViewModelWindowCompletionist.Notification_CreatureDiscovered_MessageFormat,
                 IProtoObjectLoot   => ViewModelWindowCompletionist.Notification_LootDiscovered_MessageFormat,
+                IProtoEvent        => ViewModelWindowCompletionist.Notification_EventParticipated_MessageFormat,
                 _                  => throw new Exception("Unknown prototype: " + this.Prototype)
             };
 
@@ -103,28 +105,14 @@
 
             ITextureResource GetPrototypeIconTexture()
             {
-                switch (this.Prototype)
+                return this.Prototype switch
                 {
-                    case IProtoItem protoItem:
-                    {
-                        return protoItem.Icon;
-                    }
-
-                    case IProtoCharacterMob protoCharacterMob:
-                    {
-                        return protoCharacterMob.Icon;
-                    }
-
-                    case IProtoStaticWorldObject protoStaticWorldObject:
-                    {
-                        return protoStaticWorldObject.Icon;
-                    }
-
-                    default:
-                    {
-                        throw new Exception("Unknown prototype: " + this.Prototype);
-                    }
-                }
+                    IProtoItem protoItem => protoItem.Icon,
+                    IProtoCharacterMob protoCharacterMob => protoCharacterMob.Icon,
+                    IProtoStaticWorldObject protoStaticWorldObject => protoStaticWorldObject.Icon,
+                    IProtoEvent protoEvent => protoEvent.Icon,
+                    _ => throw new Exception("Unknown prototype: " + this.Prototype)
+                };
             }
         }
 

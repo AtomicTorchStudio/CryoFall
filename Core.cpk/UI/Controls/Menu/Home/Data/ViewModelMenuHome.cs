@@ -53,11 +53,9 @@
             }
 
             this.serverViewModelsProvider = ServerViewModelsProvider.Instance;
-            var serversProvider = Client.MasterServer.ServersProvider;
 
             this.HistoryServers = new ViewModelServersList(
-                new MultiplayerMenuServersController(serversProvider.History,
-                                                     this.serverViewModelsProvider),
+                new MultiplayerMenuServersHistoryController(this.serverViewModelsProvider),
                 this.OnSelectedServerChanged);
             this.HistoryServers.IsActive = true;
 

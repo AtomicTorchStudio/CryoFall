@@ -5,8 +5,10 @@
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -61,24 +63,9 @@
 
         private const int ServerUpdateInterval = 10;
 
-        /// <summary>
-        /// Duration of newbie protection (in seconds).
-        /// </summary>
-        public static readonly int NewbieProtectionDuration;
-
         private static HashSet<ICharacter> serverNewbieLastDeathIsPvPlist;
 
         private static List<(ICharacter character, double timeRemains)> serverNewbies;
-
-        static NewbieProtectionSystem()
-        {
-            NewbieProtectionDuration = ServerRates.Get("NewbieProtectionDuration",
-                                                       // 2 hours
-                                                       defaultValue: 2 * 60 * 60,
-                                                       @"Newbie protection duration (in seconds). Applies only to PvP servers.
-                              Default value: 2 hours or 7200 seconds. Don't set it higher than 2 billions.
-                              If you set it to 0 the Newbie Protection will be not applied to the new players.");
-        }
 
         public static event Action<double> ClientNewbieProtectionTimeRemainingReceived;
 
@@ -207,7 +194,8 @@
                 return;
             }
 
-            if (NewbieProtectionDuration <= 0)
+            var newbieProtectionDuration = RatePvPNewbieProtectionDuration.SharedValue;
+            if (newbieProtectionDuration <= 0)
             {
                 return;
             }
@@ -225,12 +213,12 @@
                 }
 
                 isFound = true;
-                serverNewbies[index] = (character, timeRemains: NewbieProtectionDuration);
+                serverNewbies[index] = (character, timeRemains: newbieProtectionDuration);
             }
 
             if (!isFound)
             {
-                serverNewbies.Add((character, timeRemains: NewbieProtectionDuration));
+                serverNewbies.Add((character, timeRemains: newbieProtectionDuration));
             }
 
             PlayerCharacter.GetPublicState(character)
@@ -264,7 +252,7 @@
             }
 
             var protoWorldObject = targetObject.ProtoWorldObject;
-            if (!(protoWorldObject is IProtoObjectStructure))
+            if (protoWorldObject is not IProtoObjectStructure)
             {
                 // can damage such objects everywhere
                 return true;
@@ -386,6 +374,8 @@
                 return;
             }
 
+            CharacterCreationSystem.ServerCharacterCreated += ServerCharacterCreatedHandler;
+
             // below is the Server-side code only
             if (!Server.Database.TryGet(
                     nameof(NewbieProtectionSystem),
@@ -434,6 +424,14 @@
                 callback: this.ServerUpdate,
                 name: "System." + this.ShortId,
                 interval: TimeSpan.FromSeconds(ServerUpdateInterval));
+        }
+
+        private static void ServerCharacterCreatedHandler(ICharacter character)
+        {
+            if (!Api.IsEditor)
+            {
+                ServerRegisterNewbie(character);
+            }
         }
 
         private static void ServerSendNewbieProtectionTimeRemaining(ICharacter character)

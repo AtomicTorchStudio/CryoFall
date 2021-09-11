@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
@@ -22,16 +22,15 @@
         public override ushort AreaRadius => 70;
 
         public override string Description
-            => Api.GetProtoEntity<EventMigration>().Description;
+            => Api.GetProtoEntity<EventMigrationFloater>().Description;
 
         public override TimeSpan EventDuration => TimeSpan.FromMinutes(30);
 
         public override double MinDistanceBetweenSpawnedObjects => 22;
 
-        [NotLocalizable]
-        public override string Name => "Migration (Thumper)";
+        public override string Name => "Thumper migration";
 
-        protected override double DelayHoursSinceWipe => 24 * EventConstants.ServerEventDelayMultiplier;
+        protected override double DelayHoursSinceWipe => 24 * RateWorldEventInitialDelayMultiplier.SharedValue;
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
@@ -65,9 +64,9 @@
             return false;
         }
 
-        protected override void ServerOnDropEventStarted(ILogicObject activeEvent)
+        protected override void ServerOnDropEventStarted(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
             ServerEventLocationManager.AddUsedLocation(
                 publicState.AreaCirclePosition,
                 publicState.AreaCircleRadius * 1.2,
@@ -95,7 +94,7 @@
             }
         }
 
-        protected override Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent)
+        protected override Vector2Ushort ServerPickEventPosition(ILogicObject worldEvent)
         {
             var world = Server.World;
             using var tempExistingEventsSameType = Api.Shared.WrapInTempList(
@@ -151,14 +150,8 @@
 
         protected override void ServerPrepareDropEvent(Triggers triggers, List<IProtoWorldObject> spawnPreset)
         {
-            triggers
-                // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>()
-                         .Configure(
-                                 this.ServerGetIntervalForThisEvent(defaultInterval:
-                                                                    (from: TimeSpan.FromHours(6),
-                                                                     to: TimeSpan.FromHours(9)))
-                             ));
+            triggers.Add(GetTrigger<TriggerTimeInterval>()
+                             .Configure(RateWorldEventIntervalMigrationThumper.SharedValueIntervalHours));
 
             var mobsToSpawn = 5;
             for (var index = 0; index < mobsToSpawn; index++)

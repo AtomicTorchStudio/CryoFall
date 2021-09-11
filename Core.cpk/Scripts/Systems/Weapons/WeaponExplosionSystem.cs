@@ -189,7 +189,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                         continue;
                     }
 
-                    if (!(damagedObject?.ProtoWorldObject is IDamageableProtoWorldObject))
+                    if (damagedObject?.ProtoWorldObject is not IDamageableProtoWorldObject)
                     {
                         // non-damageable world object
                         continue;
@@ -238,7 +238,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
                     foreach (var tileObject in tileObjects)
                     {
-                        if (!(tileObject.ProtoStaticWorldObject is IDamageableProtoWorldObject))
+                        if (tileObject.ProtoStaticWorldObject is not IDamageableProtoWorldObject)
                         {
                             // non-damageable
                             continue;
@@ -525,8 +525,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             Vector2D positionEpicenter,
             CollisionGroup collisionGroup)
         {
-            if (!(physicsBody.AssociatedWorldObject?.ProtoWorldObject
-                      is IProtoStaticWorldObject protoStaticWorldObject))
+            if (physicsBody.AssociatedWorldObject?.ProtoWorldObject
+                    is not IProtoStaticWorldObject protoStaticWorldObject)
             {
                 return physicsBody.ClampPointInside(
                     positionEpicenter,

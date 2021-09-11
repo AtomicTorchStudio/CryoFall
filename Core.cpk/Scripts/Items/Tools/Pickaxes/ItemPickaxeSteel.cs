@@ -2,7 +2,7 @@
 {
     public class ItemPickaxeSteel : ProtoItemToolPickaxe
     {
-        public override double DamageApplyDelay => 0.075;
+        public override double DamageApplyDelay => 0.0625;
 
         public override double DamageToMinerals => 90;
 
@@ -13,7 +13,7 @@
 
         public override uint DurabilityMax => 1800;
 
-        public override double FireAnimationDuration => 0.6;
+        public override double FireAnimationDuration => 0.5;
 
         public override string Name => "Steel pickaxe";
     }

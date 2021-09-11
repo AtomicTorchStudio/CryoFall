@@ -18,7 +18,7 @@
 
         public override bool IsRepairable => true;
 
-        public virtual double LifetimeDuration => 10 * 24 * 60 * 60;
+        public virtual double LifetimeDuration => 10 * 24 * 60 * 60; // a bit more than 3 times longer than fuel rods
 
         public virtual double PsiEmissionModifierValue => 0;
 

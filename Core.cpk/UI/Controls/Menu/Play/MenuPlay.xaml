@@ -1,0 +1,274 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Play.MenuPlay"
+    x:Name="UserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    SnapsToDevicePixels="False"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
+    xmlns:localGame="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Play.Data"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuPlay}">
+
+    <Grid x:Name="LayoutRoot">
+        <!-- This tab control is displayed before any tab is selected -->
+        <TabControl
+            Visibility="{Binding IsAnyTabSelected, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TabControl.Style>
+                <Style TargetType="{x:Type TabControl}">
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabControl">
+                                <Grid>
+                                    <TabPanel IsItemsHost="true"
+                                              Panel.ZIndex="1"
+                                              HorizontalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundTabSwitched}" />
+                            <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Width" Value="Auto" />
+                            <Setter Property="MinHeight" Value="Auto" />
+                            <Setter Property="FontSize" Value="18" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Grid x:Name="LayoutRoot"
+                                              Margin="10,0">
+                                            <Border x:Name="Border"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Background="{TemplateBinding Background}" />
+                                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                              ContentSource="Header"
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" TargetName="Border">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="{StaticResource ColorAlt6}"
+                                                                         Opacity="0.5" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="BorderBrush" TargetName="Border">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="{StaticResource ColorAlt7}"
+                                                                         Opacity="1.0" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Opacity" TargetName="LayoutRoot" Value="0.33" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </TabControl.Style>
+
+            <!-- These are just placeholder tabs, actual tabs are in the second tab control (see below) -->
+            <TabItem IsSelected="{Binding IsTabMultiplayerSelected}">
+                <TabItem.Header>
+                    <ContentControl Style="{StaticResource MainMenuWidgetStyle}"
+                                    Margin="0"
+                                    Padding="15">
+                        <Grid>
+                            <TextBlock Text="{x:Static loc:CoreStrings.MenuPlay_TabMultiplayer}"
+                                       FontSize="19"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="5,-4" />
+                            <Border BorderBrush="{StaticResource BrushColorAlt3}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Margin="0,30,0,0">
+                                <Image Source="Images/PanelMultiplayer.jpg"
+                                       UseLayoutRounding="True"
+                                       Stretch="Uniform"
+                                       Width="223" />
+                            </Border>
+                        </Grid>
+                    </ContentControl>
+                </TabItem.Header>
+            </TabItem>
+
+            <TabItem IsSelected="{Binding IsTabLocalServerSelected}">
+                <TabItem.Header>
+                    <ContentControl Style="{StaticResource MainMenuWidgetStyle}"
+                                    Margin="0"
+                                    Padding="15">
+                        <Grid>
+                            <TextBlock Text="{x:Static loc:CoreStrings.MenuPlay_TabLocalGame}"
+                                       FontSize="19"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="5,-4" />
+                            <Border BorderBrush="{StaticResource BrushColorAlt3}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Margin="0,30,0,0">
+                                <Image Source="Images/PanelLocalServer.jpg"
+                                       UseLayoutRounding="True"
+                                       Stretch="Uniform"
+                                       Width="223" />
+                            </Border>
+                        </Grid>
+                    </ContentControl>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
+
+        <!-- This tab control is displayed after any tab is selected -->
+        <core:TabControlCached VerticalAlignment="Stretch"
+                               Visibility="{Binding IsAnyTabSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+            <core:TabControlCached.Style>
+                <Style TargetType="{x:Type core:TabControlCached}">
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type core:TabControlCached}">
+                                <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TabPanel IsItemsHost="true"
+                                              Panel.ZIndex="1"
+                                              HorizontalAlignment="Center" />
+                                    <Grid x:Name="ContentGrid"
+                                          Grid.Row="1"
+                                          Margin="0,10,0,0" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundTabSwitched}" />
+                            <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            <Setter Property="Padding" Value="15,7" />
+                            <Setter Property="Width" Value="Auto" />
+                            <Setter Property="FontSize" Value="18" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                            <Setter Property="Visibility" Value="{Binding Visibility}" />
+                            <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+                            <Setter Property="Header" Value="{Binding Title}" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Grid x:Name="LayoutRoot"
+                                              Margin="5,0">
+                                            <Border x:Name="Border"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Background="{TemplateBinding Background}" />
+
+                                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                              ContentSource="Header"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" TargetName="Border">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="#FF557799" Opacity="0.3" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" TargetName="Border">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="#FF557799" Opacity="0.45" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Opacity" TargetName="LayoutRoot" Value="0.33" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </core:TabControlCached.Style>
+
+            <TabItem IsSelected="{Binding IsTabMultiplayerSelected}"
+                     Header="{x:Static loc:CoreStrings.MenuPlay_TabMultiplayer}">
+                <servers:MenuServers />
+            </TabItem>
+
+            <TabItem IsSelected="{Binding IsTabLocalServerSelected}"
+                     Header="{x:Static loc:CoreStrings.MenuPlay_TabLocalGame}">
+                <localGame:MenuLocalGame IsSelected="{Binding IsTabLocalServerSelected}" />
+            </TabItem>
+        </core:TabControlCached>
+    </Grid>
+</base:BaseUserControl>

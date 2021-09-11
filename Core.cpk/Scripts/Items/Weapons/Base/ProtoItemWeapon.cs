@@ -612,7 +612,7 @@
                 controls.Add(ItemTooltipCurrentAmmoControl.Create(item));
             }
 
-            if (!(this is IProtoItemTool))
+            if (this is not IProtoItemTool)
             {
                 controls.Add(
                     ItemTooltipWeaponStats.Create(item, this));

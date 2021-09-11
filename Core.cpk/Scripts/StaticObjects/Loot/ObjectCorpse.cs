@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -85,11 +86,14 @@
             var attemptRemains = 200;
             do
             {
-                dropItemResult = lootDroplist.TryDropToCharacterOrGround(character,
-                                                                         character.TilePosition,
-                                                                         dropItemContext,
-                                                                         out _);
+                dropItemResult = lootDroplist.TryDropToCharacterOrGround(
+                    character,
+                    character.TilePosition,
+                    dropItemContext,
+                    out _,
+                    probabilityMultiplier: RateResourcesGatherCreaturesLoot.SharedValue);
             }
+
             // ensure that at least something is spawned...
             // perhaps that's not a good idea, but we have an attempts limit
             while (dropItemResult.TotalCreatedCount == 0
@@ -118,12 +122,6 @@
             IStaticWorldObject staticWorldObject,
             bool writeToLog)
         {
-            if (character.GetPublicState<ICharacterPublicState>().IsDead
-                || IsServer && !character.ServerIsOnline)
-            {
-                return false;
-            }
-
             return this.SharedIsInsideCharacterInteractionArea(character,
                                                                staticWorldObject,
                                                                writeToLog);

@@ -219,7 +219,7 @@
         {
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
             var state = characterPrivateState.CurrentActionState;
-            if (!(state is TActionState actionState))
+            if (state is not TActionState actionState)
             {
                 // no action or action of another state type
                 return;

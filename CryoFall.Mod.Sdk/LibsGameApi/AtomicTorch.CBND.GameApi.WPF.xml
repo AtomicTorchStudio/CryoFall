@@ -224,6 +224,48 @@
             Do not inherit from it directly - inherit from <see cref="T:AtomicTorch.CBND.GameApi.Data.State.NetSync.BaseNetObject" /> instead.
             </summary>
         </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BaseClientState">
+            <summary>
+            Base class for client state of game object.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState">
+            <summary>
+            Base class for server private state of game object.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState.IsPrivateState">
+            <summary>
+            Returns true - this is a server private state.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BasePublicState">
+            <summary>
+            Base class for server public state of game object.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.State.BasePublicState.IsPrivateState">
+            <summary>
+            Returns false - this is not a server private state.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BaseServerState">
+            <summary>
+            Base class for server private state of game object. You cannot inherit from it directly. Inherit from private
+            and/or public states - <see cref="T:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState" /> and
+            <see cref="T:AtomicTorch.CBND.GameApi.Data.State.BasePublicState" />.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.State.BaseServerState.IsPrivateState">
+            <summary>
+            Returns true if this is a server private state (instance of <see cref="T:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState" />).
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BaseState">
+            <summary>
+            Base class for storing and manipulating object states
+            </summary>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.State.DeliveryMode">
             <summary>
             (from Lidgren/LiteNetLib library) How the library deals with resends and handling of late messages.
@@ -262,6 +304,61 @@
             <summary>
             Separate reliable channel with ordered delivery (unique channel).
             That's it - same as Default, but uses unique channel.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.EmptyClientState">
+            <summary>
+            Empty client state - you this when you don't need any state.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState">
+            <summary>
+            Empty server private state - you this when you don't need any state.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState.Instance">
+            <summary>
+            Returns instance of this class. Only one instance of this class is created and used by the game.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState.#ctor">
+            <summary>
+            Public constructor. Never call it - an exception will be thrown in that case because creating instances of this type is
+            forbidden.
+            You must use <see cref="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState.Instance" /> static field instead.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState">
+            <summary>
+            Empty server public state - you this when you don't need any state.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState.Instance">
+            <summary>
+            Returns instance of this class. Only one instance of this class is created and used by the game.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState.#ctor">
+            <summary>
+            Public constructor. Never call it - an exception will be thrown in that case because creating instances of this type is
+            forbidden.
+            You must use <see cref="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState.Instance" /> static field instead.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.IStateSubscriptionOwner">
+            <summary>
+            Special interface for class storing subscriptions. Use only on Client-side!
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.State.IStateSubscriptionOwner.RegisterSubscription(AtomicTorch.CBND.GameApi.Data.State.NetSync.StateSubscriptionToken)">
+            <summary>
+            Registers a subscription.
+            </summary>
+            <param name="stateSubscriptionToken">Token of subscription (will be used to unsubscribe).</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.State.IStateSubscriptionOwner.ReleaseSubscriptions">
+            <summary>
+            Releases all the subscriptions.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.State.RemoteCallSettingsAttribute">
@@ -312,89 +409,6 @@
             Sequenced delivery methods will use a max queue size of a single entry.
             </param>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers">
-            <summary>
-            Special enumeration of receivers for SyncToClient properties.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.Owner">
-            <summary>
-            Owner only.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.ScopePlayers">
-            <summary>
-            Other players only (without owner).
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.Everyone">
-            <summary>
-            Owner and other players.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.Default">
-            <summary>
-            Default mode - send to everyone (owner and other players).
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState">
-            <summary>
-            Base class for server private state of game object.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState.IsPrivateState">
-            <summary>
-            Returns true - this is a server private state.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BasePublicState">
-            <summary>
-            Base class for server public state of game object.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.State.BasePublicState.IsPrivateState">
-            <summary>
-            Returns false - this is not a server private state.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState">
-            <summary>
-            Empty server public state - you this when you don't need any state.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState.Instance">
-            <summary>
-            Returns instance of this class. Only one instance of this class is created and used by the game.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState.#ctor">
-            <summary>
-            Public constructor. Never call it - an exception will be thrown in that case because creating instances of this type is
-            forbidden.
-            You must use <see cref="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPublicState.Instance" /> static field instead.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.IStateSubscriptionOwner">
-            <summary>
-            Special interface for class storing subscriptions. Use only on Client-side!
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.State.IStateSubscriptionOwner.RegisterSubscription(AtomicTorch.CBND.GameApi.Data.State.NetSync.StateSubscriptionToken)">
-            <summary>
-            Registers a subscription.
-            </summary>
-            <param name="stateSubscriptionToken">Token of subscription (will be used to unsubscribe).</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.State.IStateSubscriptionOwner.ReleaseSubscriptions">
-            <summary>
-            Releases all the subscriptions.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.TempOnlyAttribute">
-            <summary>
-            Attribute for marking auto-properties as non-serializable.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.State.StateSubscriptionStorage">
             <summary>
             Special class for storing subscriptions. Use only on Client-side.
@@ -428,50 +442,6 @@
             Attribute for marking auto-properties as sending events on change.
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BaseClientState">
-            <summary>
-            Base class for client state of game object.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BaseState">
-            <summary>
-            Base class for storing and manipulating object states
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.BaseServerState">
-            <summary>
-            Base class for server private state of game object. You cannot inherit from it directly. Inherit from private
-            and/or public states - <see cref="T:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState" /> and
-            <see cref="T:AtomicTorch.CBND.GameApi.Data.State.BasePublicState" />.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.State.BaseServerState.IsPrivateState">
-            <summary>
-            Returns true if this is a server private state (instance of <see cref="T:AtomicTorch.CBND.GameApi.Data.State.BasePrivateState" />).
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.EmptyClientState">
-            <summary>
-            Empty client state - you this when you don't need any state.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState">
-            <summary>
-            Empty server private state - you this when you don't need any state.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState.Instance">
-            <summary>
-            Returns instance of this class. Only one instance of this class is created and used by the game.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState.#ctor">
-            <summary>
-            Public constructor. Never call it - an exception will be thrown in that case because creating instances of this type is
-            forbidden.
-            You must use <see cref="F:AtomicTorch.CBND.GameApi.Data.State.EmptyPrivateState.Instance" /> static field instead.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.State.SyncToClientAttribute">
             <summary>
             Attribute for marking network synchronized auto-properties of game object server state as network synchronizable.
@@ -501,6 +471,36 @@
             <param name="isAllowClientSideModification">
             If set to true, no exception will thrown on modification on the client side (false by default).
             </param>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers">
+            <summary>
+            Special enumeration of receivers for SyncToClient properties.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.Owner">
+            <summary>
+            Owner only.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.ScopePlayers">
+            <summary>
+            Other players only (without owner).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.Everyone">
+            <summary>
+            Owner and other players.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers.Default">
+            <summary>
+            Default mode - send to everyone (owner and other players).
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.State.TempOnlyAttribute">
+            <summary>
+            Attribute for marking auto-properties as non-serializable.
+            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Characters.ICharacter">
             <summary>
@@ -538,6 +538,123 @@
             Enumerate all the items containers for specified character.
             </summary>
         </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.GameObjectType">
+            <summary>
+            Enumeration of game object types.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Player">
+            <summary>
+            Player. Is not available in scripting yet.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Character">
+            <summary>
+            Character - such as player character or mob.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.StaticObject">
+            <summary>
+            Static object.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.ItemsContainer">
+            <summary>
+            Items container.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Item">
+            <summary>
+            Item.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.DynamicObject">
+            <summary>
+            Dynamic object (projectile, vehicle, etc).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.LogicObject">
+            <summary>
+            Logic object.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.ServerZone">
+            <summary>
+            Zone object (only on the Server-side).
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.IGameObject">
+            <summary>
+            All game objects are implements this interface.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObject.GameObjectType">
+            <summary>
+            Gets the type of game object. Please note: this is not the same as GetType() which returns .NET object type.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObject.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto">
+            <summary>
+            Scriptable GameObject provides API for working with states defined in scripts
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.IsInitialized">
+            <summary>
+            Returns true if ClientInitialize() or ServerInitialize() was invoked for this game object.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.ProtoGameObject">
+            <summary>
+            Gets the abstract game object type.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.ClientInitialize">
+            <summary>
+            Force (re-)initialization of the object.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.ServerInitialize">
+            <summary>
+            Force (re-)initialization of the object.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoEntity">
+            <summary>
+            Interface for prototype - such as <see cref="T:AtomicTorch.CBND.GameApi.Data.IProtoGameObject" />, etc.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IProtoEntity.Id">
+            <summary>
+            Gets the Id. It's equals to C# type full name (with the namespace).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IProtoEntity.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.IProtoEntity.ShortId">
+            <summary>
+            Gets the Id. Usually it's equals to C# type name (without the namespace) but in some case it's even shorter (when used
+            for console commands arguments).
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoGameObject">
+            <summary>
+            Interface for game object proto-classes.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoGameObject`1">
+            <summary>
+            Interface for game object proto-classes.
+            </summary>
+            <typeparam name="TGameObject">GameObject of this object type</typeparam>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoTrigger">
             <summary>
             Server trigger - use ProtoTrigger implementation.
@@ -565,50 +682,6 @@
             the container.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.Containers">
-            <summary>
-            Enumerates all the nested item containers (if there are many, or simply returns the current container).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.ContainersForAddingIntoExistingStacksOnly">
-            <summary>
-            Enumerates all the nested item containers (if there are many, or simply returns the current container)
-            with a purpose to add into the existing stacks only.
-            Could be empty.
-            This is useful in case when it's necessary to prioritize
-            certain containers for adding newly created items into their existing stacks.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.EmptySlotsCount">
-            <summary>
-            Gets how many empty slots are available.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3">
-            <summary>
-            Base class for items container type with specific generics parameters for states.
-            </summary>
-            <typeparam name="TPrivateState">Type of server private state.</typeparam>
-            <typeparam name="TPublicState">Type of server public state.</typeparam>
-            <typeparam name="TClientState">Type of client state.</typeparam>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3.CanAddItem(AtomicTorch.CBND.GameApi.Data.Items.CanAddItemContext)">
-            <summary>
-            Checks if item can be added into a container of this items container type.
-            </summary>
-            <returns>True if item can be placed into this container.</returns>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3.CanRemoveItem(AtomicTorch.CBND.GameApi.Data.Items.CanRemoveItemContext)">
-            <summary>
-            Checks if item can be removed from a container of this items container type.
-            </summary>
-            <returns>True if item can be removed from this container.</returns>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer">
-            <summary>
-            Base class for items container type without states.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Items.DelegateItem">
             <summary>
             Represents the method that will handle any item-related event.
@@ -629,81 +702,6 @@
             </summary>
             <param name="item">Item.</param>
             <param name="slotId">Slot Id.</param>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer">
-            <summary>
-            Interface for items container type.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer.CanAddItem(AtomicTorch.CBND.GameApi.Data.Items.CanAddItemContext)">
-            <summary>
-            Checks if item can be added into a container of this items container type.
-            </summary>
-            <returns>True if item can be placed into this container.</returns>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer.CanRemoveItem(AtomicTorch.CBND.GameApi.Data.Items.CanRemoveItemContext)">
-            <summary>
-            Checks if item can be removed from a container of this items container type.
-            </summary>
-            <returns>True if item can be removed from this container.</returns>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem">
-            <summary>
-            Interface of all item types.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.Icon">
-            <summary>
-            Gets the item icon.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.IsStackable">
-            <summary>
-            Returns true if this item could be stacked (has count more than 1 per item slot).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.MaxItemsPerStack">
-            <summary>
-            Gets how many items could be stored in one stack (item slot). For non-stackable items this will be 1.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ClientItemUseFinish(AtomicTorch.CBND.GameApi.Data.Items.IItem)">
-            <summary>
-            Client use item finish method. Called for current selected item in hotbar when Client release the left mouse button.
-            </summary>
-            <param name="item">Current selected item.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ClientItemUseStart(AtomicTorch.CBND.GameApi.Data.Items.IItem)">
-            <summary>
-            Client use item start method. Called for current selected item in hotbar when Client press the left mouse button.
-            </summary>
-            <param name="item">Current selected item.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ServerOnSplitItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItem,System.Int32)">
-            <summary>
-            Server callback method when splitting items (of this item type) from one slot into another slot.
-            This method is called only if the item type is stackable.
-            Use it to split items states (if any).
-            Please note that the new item already has a copy of the source item state.
-            </summary>
-            <param name="itemFrom">Item of this prototype.</param>
-            <param name="newItem">Item of this prototype.</param>
-            <param name="countSplit">Count subtracted from itemFrom and added to newItem.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ServerOnStackItems(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItem,System.Int32)">
-            <summary>
-            Server callback method when stacking items (of this item type) from one slot into another slot.
-            This method is called only if the item type is stackable.
-            Use it to merge items states (if any).
-            </summary>
-            <param name="itemFrom">Item of this prototype.</param>
-            <param name="itemTo">Item of this prototype.</param>
-            <param name="countStacked">Count subtracted from itemFrom and added to itemTo.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.SharedCanSelect(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean,System.Boolean)">
-            <summary>
-            Checks whether the item can be selected in hotbar.
-            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Items.IClientItem">
             <summary>
@@ -882,6 +880,125 @@
             <param name="countToMove"></param>
             <returns>true - if operation performed and item.Count become 0 (fully moved).</returns>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.Containers">
+            <summary>
+            Enumerates all the nested item containers (if there are many, or simply returns the current container).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.ContainersForAddingIntoExistingStacksOnly">
+            <summary>
+            Enumerates all the nested item containers (if there are many, or simply returns the current container)
+            with a purpose to add into the existing stacks only.
+            Could be empty.
+            This is useful in case when it's necessary to prioritize
+            certain containers for adding newly created items into their existing stacks.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider.EmptySlotsCount">
+            <summary>
+            Gets how many empty slots are available.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem">
+            <summary>
+            Interface of all item types.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.Icon">
+            <summary>
+            Gets the item icon.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.IsStackable">
+            <summary>
+            Returns true if this item could be stacked (has count more than 1 per item slot).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.MaxItemsPerStack">
+            <summary>
+            Gets how many items could be stored in one stack (item slot). For non-stackable items this will be 1.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ClientItemUseFinish(AtomicTorch.CBND.GameApi.Data.Items.IItem)">
+            <summary>
+            Client use item finish method. Called for current selected item in hotbar when Client release the left mouse button.
+            </summary>
+            <param name="item">Current selected item.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ClientItemUseStart(AtomicTorch.CBND.GameApi.Data.Items.IItem)">
+            <summary>
+            Client use item start method. Called for current selected item in hotbar when Client press the left mouse button.
+            </summary>
+            <param name="item">Current selected item.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ServerOnSplitItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItem,System.Int32)">
+            <summary>
+            Server callback method when splitting items (of this item type) from one slot into another slot.
+            This method is called only if the item type is stackable.
+            Use it to split items states (if any).
+            Please note that the new item already has a copy of the source item state.
+            </summary>
+            <param name="itemFrom">Item of this prototype.</param>
+            <param name="newItem">Item of this prototype.</param>
+            <param name="countSplit">Count subtracted from itemFrom and added to newItem.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.ServerOnStackItems(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItem,System.Int32)">
+            <summary>
+            Server callback method when stacking items (of this item type) from one slot into another slot.
+            This method is called only if the item type is stackable.
+            Use it to merge items states (if any).
+            </summary>
+            <param name="itemFrom">Item of this prototype.</param>
+            <param name="itemTo">Item of this prototype.</param>
+            <param name="countStacked">Count subtracted from itemFrom and added to itemTo.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.SharedCanSelect(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean,System.Boolean)">
+            <summary>
+            Checks whether the item can be selected in hotbar.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer">
+            <summary>
+            Interface for items container type.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer.CanAddItem(AtomicTorch.CBND.GameApi.Data.Items.CanAddItemContext)">
+            <summary>
+            Checks if item can be added into a container of this items container type.
+            </summary>
+            <returns>True if item can be placed into this container.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer.CanRemoveItem(AtomicTorch.CBND.GameApi.Data.Items.CanRemoveItemContext)">
+            <summary>
+            Checks if item can be removed from a container of this items container type.
+            </summary>
+            <returns>True if item can be removed from this container.</returns>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3">
+            <summary>
+            Base class for items container type with specific generics parameters for states.
+            </summary>
+            <typeparam name="TPrivateState">Type of server private state.</typeparam>
+            <typeparam name="TPublicState">Type of server public state.</typeparam>
+            <typeparam name="TClientState">Type of client state.</typeparam>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3.CanAddItem(AtomicTorch.CBND.GameApi.Data.Items.CanAddItemContext)">
+            <summary>
+            Checks if item can be added into a container of this items container type.
+            </summary>
+            <returns>True if item can be placed into this container.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer`3.CanRemoveItem(AtomicTorch.CBND.GameApi.Data.Items.CanRemoveItemContext)">
+            <summary>
+            Checks if item can be removed from a container of this items container type.
+            </summary>
+            <returns>True if item can be removed from this container.</returns>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Items.ProtoItemsContainer">
+            <summary>
+            Base class for items container type without states.
+            </summary>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.ILogicObject">
             <summary>
             Special scriptable GameObject which don't have any world representation.
@@ -890,67 +1007,6 @@
         <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.IProtoLogicObject">
             <summary>
             Logic object type - scriptable GameObjectType for LogicObject.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.IsEmpty">
-            <summary>
-            Returns true is FilledPositionsCount==0 (but works much faster, without calculating the count).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.IsNodeFilled">
-            <summary>
-            Returns true if the node is completely filled. If a node is filled, it cannot contain the subnodes.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.GetRandomPosition(System.Random)">
-            <summary>
-            Gets random filled position inside the zone.
-            </summary>
-            <param name="random"></param>
-            <returns>Please note it will return Vector2Ushort.Max when the node is empty</returns>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot)">
-            <summary>
-            Load (additive).
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(System.Collections.Generic.IReadOnlyList{AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeSnapshot})">
-            <summary>
-            Load (additive).
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(System.Collections.Generic.List{AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort},AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
-            <summary>
-            Load positions (additive). Include only those that are inside (no exceptions thrown).
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(System.Collections.Generic.IEnumerable{AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort})">
-            <summary>
-            Load positions (additive). Include only those that are inside (no exceptions thrown).
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.ToList">
-            <summary>
-            Get list of all the stored positions.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeFactory.Create(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.UInt16)">
-            <param name="position">QuadTreeNode start position</param>
-            <param name="size">Size (will be rounded up to power of two; for example: 50->64, 200->256, 500->512, etc)</param>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeSnapshotGroup">
-            <summary>
-            Represents collection of quadtree node snapshots grouped by their size.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeSnapshotGroup.GetEnumerator">
-            <summary>
-            Gets node snapshots (enumerate with extraction).
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot.GetEnumerator">
-            <summary>
-            Gets node snapshots (enumerate with extraction from <see cref="F:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot.NodeSnapshotsGroups" />).
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.ProtoEntity">
@@ -1222,37 +1278,92 @@
             Verifies that the game object is not null or destroyed and that this prototype is matching it.
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoEntity">
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.IsEmpty">
             <summary>
-            Interface for prototype - such as <see cref="T:AtomicTorch.CBND.GameApi.Data.IProtoGameObject" />, etc.
+            Returns true is FilledPositionsCount==0 (but works much faster, without calculating the count).
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IProtoEntity.Id">
+        <member name="P:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.IsNodeFilled">
             <summary>
-            Gets the Id. It's equals to C# type full name (with the namespace).
+            Returns true if the node is completely filled. If a node is filled, it cannot contain the subnodes.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IProtoEntity.Name">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.GetRandomPosition(System.Random)">
             <summary>
-            Gets the name.
+            Gets random filled position inside the zone.
+            </summary>
+            <param name="random"></param>
+            <returns>Please note it will return Vector2Ushort.Max when the node is empty</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot)">
+            <summary>
+            Load (additive).
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IProtoEntity.ShortId">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(System.Collections.Generic.IReadOnlyList{AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeSnapshot})">
             <summary>
-            Gets the Id. Usually it's equals to C# type name (without the namespace) but in some case it's even shorter (when used
-            for console commands arguments).
+            Load (additive).
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoGameObject">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(System.Collections.Generic.List{AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort},AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
             <summary>
-            Interface for game object proto-classes.
+            Load positions (additive). Include only those that are inside (no exceptions thrown).
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoGameObject`1">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.Load(System.Collections.Generic.IEnumerable{AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort})">
             <summary>
-            Interface for game object proto-classes.
+            Load positions (additive). Include only those that are inside (no exceptions thrown).
             </summary>
-            <typeparam name="TGameObject">GameObject of this object type</typeparam>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.ToList">
+            <summary>
+            Get list of all the stored positions.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeFactory.Create(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.UInt16)">
+            <param name="position">QuadTreeNode start position</param>
+            <param name="size">Size (will be rounded up to power of two; for example: 50->64, 200->256, 500->512, etc)</param>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeSnapshotGroup">
+            <summary>
+            Represents collection of quadtree node snapshots grouped by their size.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeNodeSnapshotGroup.GetEnumerator">
+            <summary>
+            Gets node snapshots (enumerate with extraction).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot.GetEnumerator">
+            <summary>
+            Gets node snapshots (enumerate with extraction from <see cref="F:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot.NodeSnapshotsGroups" />).
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject">
+            <summary>
+            World object which is dynamic in game world - such as character, projectile and vehicle.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject.Position">
+            <summary>
+            Gets the exact position at the world.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject.Tile">
+            <summary>
+            Gets the world tile in which this world object is located currently.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject">
+            <summary>
+            Interface for static world object type - inherits from world object type for static world objects.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject.ClientSetupBlueprint(AtomicTorch.CBND.GameApi.Data.World.Tile,AtomicTorch.CBND.GameApi.Data.World.IClientBlueprint)">
+            <summary>
+            Gets the texture used for construction place selection (blueprint). Usually the same texture is used for the object
+            rendering as well.
+            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoTile">
             <summary>
@@ -1275,25 +1386,76 @@
             tile.
             </returns>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.TileHeightData">
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject">
             <summary>
-            Store tile height and slope/cliff data in a single byte.
+            World object type.
             </summary>
         </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.World.TileHeightData.packedData">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.ClientInteractFinish(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
             <summary>
-            Packed data (single byte) stores the tile height and the cliff/slope flags together.
+            Client interact with world object finish method. Called for current world object when Client release the left mouse
+            button.
+            </summary>
+            <param name="worldObject">WorldObject of this object type.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.ClientInteractStart(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
+            <summary>
+            Client interact with world object start method. Called for pointed world object when Client press the left mouse
+            button.
+            </summary>
+            <param name="worldObject">WorldObject of this object type.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.SharedGetObjectCenterWorldOffset(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
+            <summary>
+            World offset to object center.
+            Use cases include: sound emitting position, attaching overlay UI elements, etc.
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject">
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject`1">
             <summary>
-            Interface for static world object type - inherits from world object type for static world objects.
+            World object type for specific <typeparamref name="TWorldObject" /> type of world objects.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject.ClientSetupBlueprint(AtomicTorch.CBND.GameApi.Data.World.Tile,AtomicTorch.CBND.GameApi.Data.World.IClientBlueprint)">
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject">
             <summary>
-            Gets the texture used for construction place selection (blueprint). Usually the same texture is used for the object
-            rendering as well.
+            World object which is static in game world - such as any structure.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTile">
+            <summary>
+            Gets the first occupied tile.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTilePositions">
+            <summary>
+            Gets the world tile offests occupied by this static world object.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTiles">
+            <summary>
+            Gets the world tiles occupied by this static world object.
+            Please note - this is quite slow and you should prefer <see cref="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTilePositions" /> where possible.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IWorldObject">
+            <summary>
+            Game object which is represented in the game world.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IWorldObject.IsStatic">
+            <summary>
+            Returns true if this world object is static (instance of <see cref="T:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject" />). Otherwise, it's dynamic
+            (instance of <see cref="T:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject" />).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IWorldObject.ProtoWorldObject">
+            <summary>
+            Gets the abstract world object type. Use it to determine if this object have a specific world object type.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IWorldObject.TilePosition">
+            <summary>
+            Gets the position of tile where world object is located.
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Data.World.StaticObjectKind.FloorDecal">
@@ -1331,42 +1493,6 @@
             "#",
             <para />
             "###");
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject">
-            <summary>
-            World object which is dynamic in game world - such as character, projectile and vehicle.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject.Position">
-            <summary>
-            Gets the exact position at the world.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject.Tile">
-            <summary>
-            Gets the world tile in which this world object is located currently.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject">
-            <summary>
-            World object which is static in game world - such as any structure.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTile">
-            <summary>
-            Gets the first occupied tile.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTilePositions">
-            <summary>
-            Gets the world tile offests occupied by this static world object.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTiles">
-            <summary>
-            Gets the world tiles occupied by this static world object.
-            Please note - this is quite slow and you should prefer <see cref="P:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject.OccupiedTilePositions" /> where possible.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.World.Tile">
@@ -1479,145 +1605,81 @@
             <param name="offsetY">Offset by Y axis.</param>
             <returns>World tile at offset position.</returns>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IWorldObject">
+        <member name="T:AtomicTorch.CBND.GameApi.Data.World.TileHeightData">
             <summary>
-            Game object which is represented in the game world.
+            Store tile height and slope/cliff data in a single byte.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IWorldObject.IsStatic">
+        <member name="F:AtomicTorch.CBND.GameApi.Data.World.TileHeightData.packedData">
             <summary>
-            Returns true if this world object is static (instance of <see cref="T:AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject" />). Otherwise, it's dynamic
-            (instance of <see cref="T:AtomicTorch.CBND.GameApi.Data.World.IDynamicWorldObject" />).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IWorldObject.ProtoWorldObject">
-            <summary>
-            Gets the abstract world object type. Use it to determine if this object have a specific world object type.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.World.IWorldObject.TilePosition">
-            <summary>
-            Gets the position of tile where world object is located.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject">
-            <summary>
-            World object type.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.ClientInteractFinish(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
-            <summary>
-            Client interact with world object finish method. Called for current world object when Client release the left mouse
-            button.
-            </summary>
-            <param name="worldObject">WorldObject of this object type.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.ClientInteractStart(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
-            <summary>
-            Client interact with world object start method. Called for pointed world object when Client press the left mouse
-            button.
-            </summary>
-            <param name="worldObject">WorldObject of this object type.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject.SharedGetObjectCenterWorldOffset(AtomicTorch.CBND.GameApi.Data.World.IWorldObject)">
-            <summary>
-            World offset to object center.
-            Use cases include: sound emitting position, attaching overlay UI elements, etc.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject`1">
-            <summary>
-            World object type for specific <typeparamref name="TWorldObject" /> type of world objects.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.GameObjectType">
-            <summary>
-            Enumeration of game object types.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Player">
-            <summary>
-            Player. Is not available in scripting yet.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Character">
-            <summary>
-            Character - such as player character or mob.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.StaticObject">
-            <summary>
-            Static object.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.ItemsContainer">
-            <summary>
-            Items container.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Item">
-            <summary>
-            Item.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.DynamicObject">
-            <summary>
-            Dynamic object (projectile, vehicle, etc).
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.LogicObject">
-            <summary>
-            Logic object.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.ServerZone">
-            <summary>
-            Zone object (only on the Server-side).
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.IGameObject">
-            <summary>
-            All game objects are implements this interface.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObject.GameObjectType">
-            <summary>
-            Gets the type of game object. Please note: this is not the same as GetType() which returns .NET object type.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObject.Id">
-            <summary>
-            Gets the Id.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto">
-            <summary>
-            Scriptable GameObject provides API for working with states defined in scripts
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.IsInitialized">
-            <summary>
-            Returns true if ClientInitialize() or ServerInitialize() was invoked for this game object.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.ProtoGameObject">
-            <summary>
-            Gets the abstract game object type.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.ClientInitialize">
-            <summary>
-            Force (re-)initialization of the object.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto.ServerInitialize">
-            <summary>
-            Force (re-)initialization of the object.
+            Packed data (single byte) stores the tile height and the cliff/slope flags together.
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.Resources.ProceduralTexture.IsUseCache">
             <summary>
             TODO: implement procedural textures cache.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Resources.BaseResource">
+            <summary>
+            Base resource type.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.BaseResource.FullPath">
+            <summary>
+            Full path(virtual, relative to the mod) of the resource file.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Resources.BaseResource.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of resource with provided full path to the resource file.
+            </summary>
+            <param name="fullPath">Full path to the resource.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Resources.BaseResource.CheckExtraFieldsEquals(AtomicTorch.CBND.GameApi.Resources.BaseResource)">
+            <summary>
+            Check all extra fields for equality.
+            </summary>
+            <param name="other">Other resource to compare with this resource.</param>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Resources.ContentPaths">
+            <summary>
+            Content folders paths.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Animations">
+            <summary>
+            Animations folder path.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.ContentRoot">
+            <summary>
+            Content root folder path (relative to mod root).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Effects">
+            <summary>
+            Effects folder path.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Maps">
+            <summary>
+            Maps folder path.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Music">
+            <summary>
+            Music folder path.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Sounds">
+            <summary>
+            Sounds folder path.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Textures">
+            <summary>
+            Textures folder path.
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Resources.CursorResource.LocalFilePath">
@@ -1667,6 +1729,35 @@
             Server map resource constructor.
             </summary>
             <param name="localMapPath">Local file path of the world map (inside "Content/Maps/").</param>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Resources.SkeletonResource">
+            <summary>
+            Skeleton animation resource. Root folder is "Content/Animations/".<br />
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Resources.SkeletonResource.#ctor(System.String)">
+            <summary>
+            Skeleton animation resource constructor.
+            </summary>
+            <param name="localFilePath">
+            Local file path of the skeleton animation without the file extension (inside "Content/Animations/").
+            </param>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Resources.SoundResource">
+            <summary>
+            Sound resource. Root folder is "Content/Sounds/".<br />
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Resources.SoundResource.NoSound">
+            <summary>
+            The placeholder sound resource - no sound will be played.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Resources.SoundResource.#ctor(System.String)">
+            <summary>
+            Sound resource constructor.
+            </summary>
+            <param name="localFilePath">Local file path of the sound (inside "Content/Sounds/").</param>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Resources.TextureAtlasChunkPosition">
             <summary>
@@ -1736,97 +1827,6 @@
             Determines whether the texture is transparent (in the transparent case a special rendering
             effect will be used and it's much slower).
             </param>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Resources.SkeletonResource">
-            <summary>
-            Skeleton animation resource. Root folder is "Content/Animations/".<br />
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Resources.SkeletonResource.#ctor(System.String)">
-            <summary>
-            Skeleton animation resource constructor.
-            </summary>
-            <param name="localFilePath">
-            Local file path of the skeleton animation without the file extension (inside "Content/Animations/").
-            </param>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Resources.BaseResource">
-            <summary>
-            Base resource type.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.BaseResource.FullPath">
-            <summary>
-            Full path(virtual, relative to the mod) of the resource file.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Resources.BaseResource.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of resource with provided full path to the resource file.
-            </summary>
-            <param name="fullPath">Full path to the resource.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Resources.BaseResource.CheckExtraFieldsEquals(AtomicTorch.CBND.GameApi.Resources.BaseResource)">
-            <summary>
-            Check all extra fields for equality.
-            </summary>
-            <param name="other">Other resource to compare with this resource.</param>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Resources.ContentPaths">
-            <summary>
-            Content folders paths.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Animations">
-            <summary>
-            Animations folder path.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.ContentRoot">
-            <summary>
-            Content root folder path (relative to mod root).
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Effects">
-            <summary>
-            Effects folder path.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Maps">
-            <summary>
-            Maps folder path.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Music">
-            <summary>
-            Music folder path.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Sounds">
-            <summary>
-            Sounds folder path.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.ContentPaths.Textures">
-            <summary>
-            Textures folder path.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Resources.SoundResource">
-            <summary>
-            Sound resource. Root folder is "Content/Sounds/".<br />
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Resources.SoundResource.NoSound">
-            <summary>
-            The placeholder sound resource - no sound will be played.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Resources.SoundResource.#ctor(System.String)">
-            <summary>
-            Sound resource constructor.
-            </summary>
-            <param name="localFilePath">Local file path of the sound (inside "Content/Sounds/").</param>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Resources.TextureAtlasSize.ColumnsCount">
             <summary>
@@ -1995,6 +1995,76 @@
             <summary>
             The character who invoked the server remote method.
             </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Scripting.Api">
+            <summary>
+            Global API class. It's static and contains <see cref="P:AtomicTorch.CBND.GameApi.Scripting.Api.Client" /> and <see cref="P:AtomicTorch.CBND.GameApi.Scripting.Api.Server" /> API access properties as
+            well, as various supplement properties and methods.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.Client">
+            <summary>
+            Gets the ClientApi - use only on Client-side.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.IsClient">
+            <summary>
+            Returns true if current code is executing on Client-side.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.IsServer">
+            <summary>
+            Returns true if current code is executing on Server-side.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.Logger">
+            <summary>
+            Gets the Logger instance.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.Server">
+            <summary>
+            Returns ServerApi - use only on Server-side.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.Assert(System.Boolean,System.String)">
+            <summary>
+            Check if something is true. If not, an exception will be thrown with provided message text.
+            </summary>
+            <param name="checkResult">Value to check.</param>
+            <param name="message">Message text to display in exception if assert failed (when provided value is not true).</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.FindProtoEntities``1">
+            <summary>
+            Gets the instances of proto-classes of the specified type. For example, use IItemType as type parameter to get all
+            proto-classes of IItemType.
+            </summary>
+            <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
+            <returns>Collection of instances which implements specified prototype.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.GetProtoEntity``1">
+            <summary>
+            Gets the instance of proto-class by its type.
+            </summary>
+            <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
+            <returns>Instance of proto-class.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.ValidateIsClient">
+            <summary>
+            Validates if the code is executing on the Client-side. If not, an exception will be thrown.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.ValidateIsServer">
+            <summary>
+            Validates if the code is executing on the Server-side. If not, an exception will be thrown.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.SafeInvoke(System.Action,System.String)">
+            <summary>
+            Invoke an action in a try-catch block, handling all exceptions.
+            </summary>
+            <param name="action">Action to invoke.</param>
+            <param name="messageIfError">Message to write into the log if an exception is thrown.</param>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Scripting.BaseBootstrapper">
             <summary>
@@ -2285,81 +2355,6 @@
             <param name="z">Z coordinate.</param>
             <returns>Value in [0;1] range.</returns>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Scripting.Api">
-            <summary>
-            Global API class. It's static and contains <see cref="P:AtomicTorch.CBND.GameApi.Scripting.Api.Client" /> and <see cref="P:AtomicTorch.CBND.GameApi.Scripting.Api.Server" /> API access properties as
-            well, as various supplement properties and methods.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.Client">
-            <summary>
-            Gets the ClientApi - use only on Client-side.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.IsClient">
-            <summary>
-            Returns true if current code is executing on Client-side.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.IsServer">
-            <summary>
-            Returns true if current code is executing on Server-side.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.Logger">
-            <summary>
-            Gets the Logger instance.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Scripting.Api.Server">
-            <summary>
-            Returns ServerApi - use only on Server-side.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.Assert(System.Boolean,System.String)">
-            <summary>
-            Check if something is true. If not, an exception will be thrown with provided message text.
-            </summary>
-            <param name="checkResult">Value to check.</param>
-            <param name="message">Message text to display in exception if assert failed (when provided value is not true).</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.FindProtoEntities``1">
-            <summary>
-            Gets the instances of proto-classes of the specified type. For example, use IItemType as type parameter to get all
-            proto-classes of IItemType.
-            </summary>
-            <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
-            <returns>Collection of instances which implements specified prototype.</returns>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.GetProtoEntity``1">
-            <summary>
-            Gets the instance of proto-class by its type.
-            </summary>
-            <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
-            <returns>Instance of proto-class.</returns>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.ValidateIsClient">
-            <summary>
-            Validates if the code is executing on the Client-side. If not, an exception will be thrown.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.ValidateIsServer">
-            <summary>
-            Validates if the code is executing on the Server-side. If not, an exception will be thrown.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.Api.SafeInvoke(System.Action,System.String)">
-            <summary>
-            Invoke an action in a try-catch block, handling all exceptions.
-            </summary>
-            <param name="action">Action to invoke.</param>
-            <param name="messageIfError">Message to write into the log if an exception is thrown.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Scripting.ScriptPerformanceMeasurementKey.#ctor(System.String)">
-            <summary>
-            Please use Api.Shared.CreatePerformanceMeasurementKey(profilerKey) and save the resulting instance for further use.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Scripting.RemoteAuthorizeServerOperator">
             <summary>
             Remote methods or classes, marked with this attribute, will verify if the remote method caller player has a server
@@ -2382,6 +2377,11 @@
             <summary>
             One game world tile width/height in virtual pixels. It's 128.
             See <see cref="F:AtomicTorch.CBND.GameApi.Scripting.ScriptingConstants.TileSizeRealPixels" /> for real pixels size of one game world tile.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.ScriptPerformanceMeasurementKey.#ctor(System.String)">
+            <summary>
+            Please use Api.Shared.CreatePerformanceMeasurementKey(profilerKey) and save the resulting instance for further use.
             </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.Extensions.DictionaryProcessingExtensions.ProcessAndRemove``2(System.Collections.Generic.IDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},System.Boolean})">
@@ -2499,6 +2499,28 @@
             <param name="callerLineNumber">Auto-provided parameter. Do not set it.</param>
             <param name="callerFile">Auto-provided parameter. Do not set it.</param>
         </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin">
+            <summary>
+            LogEntry containing information where it was logged - on the server or the client.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin.IsServerLogEntry">
+            <summary>
+            True if log entry is logged on the server.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin.LogEntry">
+            <summary>
+            Log entry.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin.#ctor(AtomicTorch.GameEngine.Common.Logging.LogEntry,System.Boolean)">
+            <summary>
+            Initializes instance of this class.
+            </summary>
+            <param name="logEntry">Log entry.</param>
+            <param name="isServerLogEntry">True if log entry is logged on the server.</param>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Logging.LogEntryWithSource">
             <summary>
             LogEntry with source file information.
@@ -2529,28 +2551,6 @@
             File path in real file system (null if mod is packed).
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin">
-            <summary>
-            LogEntry containing information where it was logged - on the server or the client.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin.IsServerLogEntry">
-            <summary>
-            True if log entry is logged on the server.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin.LogEntry">
-            <summary>
-            Log entry.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Logging.LogEntryWithOrigin.#ctor(AtomicTorch.GameEngine.Common.Logging.LogEntry,System.Boolean)">
-            <summary>
-            Initializes instance of this class.
-            </summary>
-            <param name="logEntry">Log entry.</param>
-            <param name="isServerLogEntry">True if log entry is logged on the server.</param>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.Logging.NewLogEntryCallback">
             <summary>
             Represents the method that will handle event when a new log entry written.
@@ -2573,36 +2573,6 @@
             <summary>
             Attribute for marking any type (enum/class/struct) to exclude it from serialization.
             (by default all enums are registered to both network and persistent serialization providers)
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.Duration">
-            <summary>
-            Returns current music resource duration is seconds (only if IsReady).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.IsLooped">
-            <summary>
-            Gets or sets the flag determining if the music should be played in loop (auto-restart after end).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.IsReady">
-            <summary>
-            Returns true if the music resource is loaded in memory and can be played.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.MusicResource">
-            <summary>
-            Gets or sets the music resource to play.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.Position">
-            <summary>
-            Returns current music resource position is seconds (only if IsReady).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.Volume">
-            <summary>
-            Gets or sets the sound volume.
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera.CameraDrawMode.Auto">
@@ -2644,6 +2614,31 @@
             <param name="width">Viewport width.</param>
             <param name="height">Viewport height.</param>
         </member>
+        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode">
+            <summary>
+            Draw mode (of sprite or skeleton animation).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.Default">
+            <summary>
+            Default draw mode. No extra modifications will be applied during rendering.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.FlipHorizontally">
+            <summary>
+            Flip horizontally.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.FlipVertically">
+            <summary>
+            Flip vertically.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.FlipHorizontallyAndVertically">
+            <summary>
+            Flip both horizontally and vertically (bitwise OR: FlipHorizontally | FlipVertically).
+            </summary>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawOrder">
             <summary>
             Specifies rendering order.<br />
@@ -2676,6 +2671,29 @@
             You cannot create instances of this class. Use <see cref="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.EffectInstance.Create(AtomicTorch.CBND.GameApi.Resources.EffectResource)" />.
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.EffectParameters.#ctor">
+            <summary>
+            You cannot create instances of this class. Use <see cref="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.EffectParameters.Create" />.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentAttachedControl">
+            <summary>
+            Attached UI element component.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentAttachedControl.Control">
+            <summary>
+            Gets or sets the attached UI element.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentAttachedControl.PositionOffset">
+            <summary>
+            Gets or sets the draw offset in world units.
+            </summary>
+            <example>
+            If you want to render this element with an offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
+            </example>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentLayerRenderer.DrawOrder">
             <summary>
             Gets or sets the draw order. Higher value means draws over.
@@ -2690,6 +2708,36 @@
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentLayerRenderer.TextureResource">
             <summary>
             Gets or sets the texture resource to draw.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.Duration">
+            <summary>
+            Returns current music resource duration is seconds (only if IsReady).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.IsLooped">
+            <summary>
+            Gets or sets the flag determining if the music should be played in loop (auto-restart after end).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.IsReady">
+            <summary>
+            Returns true if the music resource is loaded in memory and can be played.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.MusicResource">
+            <summary>
+            Gets or sets the music resource to play.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.Position">
+            <summary>
+            Returns current music resource position is seconds (only if IsReady).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentMusicSource.Volume">
+            <summary>
+            Gets or sets the sound volume.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton">
@@ -2865,23 +2913,41 @@
             <param name="worldRotationAngleRad">(out) Bone world rotation angle (radians).</param>
             <returns>World position of the bone with the applied offset.</returns>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentAttachedControl">
+        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter">
             <summary>
-            Attached UI element component.
+            Sound emitter component.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentAttachedControl.Control">
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.IsLooped">
             <summary>
-            Gets or sets the attached UI element.
+            Gets or sets the flag determining if the sound should be played in loop (auto-restart after end).
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentAttachedControl.PositionOffset">
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.NextSoundResource">
             <summary>
-            Gets or sets the draw offset in world units.
+            Gets os sets the sound resource which will be played next (after current sound completed).
             </summary>
-            <example>
-            If you want to render this element with an offset on +1 on axis X, -1 on axis Y, use "(1,-1)").
-            </example>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.Pitch">
+            <summary>
+            Pitch value. Default: 1.0.
+            Use 0.5 for half pitch, 2.0 for double pitch.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.Radius">
+            <summary>
+            Radius for sound emitter (in 3D).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.SoundResource">
+            <summary>
+            Gets or sets the sound resource to play.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.Volume">
+            <summary>
+            Gets or sets the sound volume.
+            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer">
             <summary>
@@ -2956,36 +3022,6 @@
             Gets or sets the texture resource to draw.
             </summary>
         </member>
-        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode">
-            <summary>
-            Draw mode (of sprite or skeleton animation).
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.Default">
-            <summary>
-            Default draw mode. No extra modifications will be applied during rendering.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.FlipHorizontally">
-            <summary>
-            Flip horizontally.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.FlipVertically">
-            <summary>
-            Flip vertically.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawMode.FlipHorizontallyAndVertically">
-            <summary>
-            Flip both horizontally and vertically (bitwise OR: FlipHorizontally | FlipVertically).
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.EffectParameters.#ctor">
-            <summary>
-            You cannot create instances of this class. Use <see cref="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.EffectParameters.Create" />.
-            </summary>
-        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.RenderingMaterial.#ctor">
             <summary>
             You cannot create this class instances. Use <see cref="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.RenderingMaterial.Create(AtomicTorch.CBND.GameApi.Resources.EffectResource)" />.
@@ -2999,52 +3035,6 @@
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.RenderingMaterial.EffectResource">
             <summary>
             Gets or sets effect resource used for rendering (shader).
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter">
-            <summary>
-            Sound emitter component.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.IsLooped">
-            <summary>
-            Gets or sets the flag determining if the sound should be played in loop (auto-restart after end).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.NextSoundResource">
-            <summary>
-            Gets os sets the sound resource which will be played next (after current sound completed).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.Pitch">
-            <summary>
-            Pitch value. Default: 1.0.
-            Use 0.5 for half pitch, 2.0 for double pitch.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.Radius">
-            <summary>
-            Radius for sound emitter (in 3D).
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.SoundResource">
-            <summary>
-            Gets or sets the sound resource to play.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSoundEmitter.Volume">
-            <summary>
-            Gets or sets the sound volume.
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Rendering.TextureFilter.Linear">
-            <summary>
-            Linear filtering (trilinear if texture has mip-maps, otherwise bilinear).
-            </summary>
-        </member>
-        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Rendering.TextureFilter.Point">
-            <summary>
-            Point filtering (neighert neigbbor). Ideal for pixel-perfect rendering.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.IAudioClientService">
@@ -3239,6 +3229,19 @@
             <param name="itemTo">Item to add count.</param>
             <param name="count">Count to move (if 0 - move as much as possible).</param>
             <returns>True if operation is successful.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.ILocalServerService.ChangeServerRatesConfig(System.UInt16,AtomicTorch.CBND.GameApi.ServicesClient.IServerRatesConfig)">
+            <summary>
+            Please use this method only to modify the rates config for an existing savegame only
+            (see RatesSynchronizationSystem to modify it for the connected server, local or multiplayer).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.ILocalServerService.WriteRatesConfig(System.UInt16,AtomicTorch.CBND.GameApi.ServicesClient.IServerRatesConfig)">
+            <summary>
+            This method will open the savegame and overwrite its rates config.
+            Please note: the slot must be not active currently (e.g. as during browsing the saves list)
+            otherwise the server will overwrite the savegame on shutdown with the old rates config.
+            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.InputKey">
             <summary>
@@ -3474,6 +3477,16 @@
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.TileAtCurrentMousePosition">
             <summary>
             Gets the tile at current mouse position.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Rendering.TextureFilter.Linear">
+            <summary>
+            Linear filtering (trilinear if texture has mip-maps, otherwise bilinear).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Rendering.TextureFilter.Point">
+            <summary>
+            Point filtering (neighert neigbbor). Ideal for pixel-perfect rendering.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.CreateItemResult">
@@ -3720,45 +3733,6 @@
             Provides properties to access the server API services (available only on Server-side).
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2(``1)">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto(AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject)">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
-            <summary>
-            Please note—on the server side this method might return the same object several times. Be sure to filter such
-            duplicates.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetTile(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.Boolean)">
-            <summary>
-            Gets the tile for specified tile position.
-            </summary>
-            <param name="tilePosition">Tile position.</param>
-            <param name="logOutOfBounds"></param>
-            <returns>Tile.</returns>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService">
             <summary>
             Provides methods for accessing and manipulating world objects.
@@ -3915,6 +3889,45 @@
             Updates the world map. All static world objects and zones will be loaded from the map file too.
             In order to prevent prop objects duplication, remove them before calling this method.
             (See how it's used in Core.cpk BootstrapperServerWorld)
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2(``1)">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto``1">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto(AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject)">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
+            <summary>
+            Please note—on the server side this method might return the same object several times. Be sure to filter such
+            duplicates.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetTile(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.Boolean)">
+            <summary>
+            Gets the tile for specified tile position.
+            </summary>
+            <param name="tilePosition">Tile position.</param>
+            <param name="logOutOfBounds"></param>
+            <returns>Tile.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetWorldObjectsOfProto``1">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
     </members>

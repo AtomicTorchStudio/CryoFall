@@ -7,7 +7,7 @@
     {
         public override bool CanAddItem(CanAddItemContext context)
         {
-            return !(context.Item.ProtoItem is IProtoItemFuelSolid);
+            return context.Item.ProtoItem is not IProtoItemFuelSolid;
         }
     }
 }

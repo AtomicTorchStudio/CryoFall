@@ -43,7 +43,7 @@
         protected override WateringCanRefillRequest ClientTryCreateRequest(ICharacter character)
         {
             var item = character.SharedGetPlayerSelectedHotbarItem();
-            if (!(item?.ProtoGameObject is IProtoItemToolWateringCan))
+            if (item?.ProtoGameObject is not IProtoItemToolWateringCan)
             {
                 // no watering can is selected
                 return null;
@@ -59,7 +59,7 @@
             // try to find a well object
             var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject;
             if (worldObject is not null
-                && !(worldObject.ProtoWorldObject is ProtoObjectWell))
+                && worldObject.ProtoWorldObject is not ProtoObjectWell)
             {
                 worldObject = null;
             }
@@ -202,7 +202,7 @@
                 throw new Exception("The item is not selected");
             }
 
-            if (!(request.Item.ProtoItem is IProtoItemToolWateringCan))
+            if (request.Item.ProtoItem is not IProtoItemToolWateringCan)
             {
                 throw new Exception("The item must be a watering can");
             }
@@ -222,7 +222,7 @@
             }
             else
             {
-                if (!(worldObject.ProtoWorldObject is ProtoObjectWell))
+                if (worldObject.ProtoWorldObject is not ProtoObjectWell)
                 {
                     throw new Exception("The world object must be a well");
                 }

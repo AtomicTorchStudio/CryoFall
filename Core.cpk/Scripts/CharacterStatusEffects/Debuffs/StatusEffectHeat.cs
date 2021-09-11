@@ -105,7 +105,7 @@
             ICharacter character,
             IWorldObject worldObject)
         {
-            if (!(worldObject.ProtoWorldObject is IProtoObjectHeatSource protoHeatSource))
+            if (worldObject.ProtoWorldObject is not IProtoObjectHeatSource protoHeatSource)
             {
                 return 0;
             }

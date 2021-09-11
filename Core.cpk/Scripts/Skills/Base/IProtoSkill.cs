@@ -15,6 +15,8 @@
 
         string Description { get; }
 
+        IReadOnlyList<string> ExtraDescriptionEntries { get; }
+
         bool HasStatEffects { get; }
 
         ITextureResource Icon { get; }

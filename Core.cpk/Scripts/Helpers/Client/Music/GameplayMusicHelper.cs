@@ -105,7 +105,7 @@
 
             if (!shouldPlay)
             {
-                if (!(ClientMusicSystem.CurrentPlaylist is PlaylistMainMenu))
+                if (ClientMusicSystem.CurrentPlaylist is not PlaylistMainMenu)
                 {
                     // stop playing current playlist
                     ClientMusicSystem.CurrentPlaylist = null;

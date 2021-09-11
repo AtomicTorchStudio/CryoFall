@@ -133,8 +133,8 @@
 
         public static void ClientTryStartAction(bool allowReplacingCurrentConstructionAction)
         {
-            if (!(ClientHotbarSelectedItemManager.SelectedItem?.ProtoGameObject
-                      is IProtoItemToolToolbox))
+            if (ClientHotbarSelectedItemManager.SelectedItem?.ProtoGameObject
+                    is not IProtoItemToolToolbox)
             {
                 // no tool is selected
                 return;
@@ -159,7 +159,7 @@
             // find first damaged or incomplete structure there
             foreach (var worldObject in worldObjects)
             {
-                if (!(worldObject.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
+                if (worldObject.ProtoGameObject is not IProtoObjectStructure protoObjectStructure)
                 {
                     continue;
                 }
@@ -398,7 +398,7 @@
 
             foreach (var worldObject in worldObjects)
             {
-                if (!(worldObject is IStaticWorldObject staticWorldObject)
+                if (worldObject is not IStaticWorldObject staticWorldObject
                     || !ConstructionRelocationSystem.SharedIsRelocatable(staticWorldObject))
                 {
                     continue;
@@ -413,7 +413,7 @@
                             continue;
 
                         case ProtoObjectDecorationFloor
-                            when !(selectedObject.ProtoGameObject is IProtoObjectFloor):
+                            when selectedObject.ProtoGameObject is not IProtoObjectFloor:
                             // don't select decoration when selected anything else except the floor
                             continue;
                     }
@@ -447,7 +447,7 @@
 
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
         {
-            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure))
+            if (worldObject?.ProtoGameObject is not IProtoObjectStructure)
             {
                 return;
             }
@@ -463,7 +463,7 @@
             }
 
             var selectedHotbarItem = characterPublicState.SelectedItem;
-            if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemToolToolbox))
+            if (selectedHotbarItem?.ProtoGameObject is not IProtoItemToolToolbox)
             {
                 // no tool is selected
                 return;

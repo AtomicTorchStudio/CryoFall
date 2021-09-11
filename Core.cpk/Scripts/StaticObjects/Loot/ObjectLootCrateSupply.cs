@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -119,6 +120,11 @@
                     .Add<ItemGlue>(count: 1,    countRandom: 2)
                     .Add<ItemComponentsMechanical>(count: 2)
                     .Add<ItemComponentsElectronic>(count: 1));
+        }
+
+        protected override double ServerGetDropListRate()
+        {
+            return RateResourcesGatherCratesLoot.SharedValue;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

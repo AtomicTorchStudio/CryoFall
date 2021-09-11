@@ -23,7 +23,7 @@
             inputItems.Add<ItemIngotCopper>(count: 2);
             inputItems.Add<ItemBlackpowder>(count: 35);
 
-            outputItems.Add<ItemAmmo50SH>(count: 10);
+            outputItems.Add<ItemAmmo50SH>(count: 20);
         }
     }
 }

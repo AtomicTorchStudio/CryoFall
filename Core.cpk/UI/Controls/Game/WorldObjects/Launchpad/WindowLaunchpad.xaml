@@ -1,0 +1,138 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Launchpad.WindowLaunchpad"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Launchpad.Data"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:launchpad="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Launchpad"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowLaunchpad, IsDesignTimeCreatable=True}">
+    <core:GameWindow x:Name="GameWindow"
+                     Width="{StaticResource GameMenuStandardWindowWidth}"
+                     Height="{StaticResource GameMenuStandardWindowHeight}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+
+            <launchpad:LaunchpadStageProgressControl Grid.Row="0"
+                                                     CurrentStageIndex="{Binding CurrentStageIndex}"
+                                                     MaxStageIndex="{Binding MaxStageIndex}"
+                                                     HorizontalAlignment="Stretch"
+                                                     VerticalAlignment="Center" />
+
+            <Grid Grid.Row="1"
+                  Visibility="{Binding Tasks, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Button Command="{Binding CommandLaunchRocket}"
+                        Visibility="{Binding IsLaunched, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        Content="{x:Static loc:CoreStrings.WindowLaunchpad_Launchpad}"
+                        Focusable="False"
+                        Padding="28,16"
+                        FontSize="22" />
+
+                <StackPanel Visibility="{Binding IsLaunched, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Orientation="Vertical"
+                            MaxWidth="400">
+                    <TextBlock Text="{Binding LaunchedByPlayerName}"
+                               FontFamily="{StaticResource CondensedFontFamily}"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource WindowForeground}"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,25" />
+                    <Button Command="{Binding CommandResetLaunchpad}"
+                            Content="{x:Static loc:CoreStrings.WindowLaunchpad_ResetLaunchpad}"
+                            Focusable="False"
+                            Padding="20,8"
+                            FontSize="16" />
+                </StackPanel>
+            </Grid>
+
+            <ItemsControl Grid.Row="1"
+                          ItemsSource="{Binding Tasks}"
+                          Visibility="{Binding Tasks, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                <ItemsControl.LayoutTransform>
+                    <ScaleTransform ScaleX="0.8"
+                                    ScaleY="0.8" />
+                </ItemsControl.LayoutTransform>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical"
+                                    Width="216">
+                            <TextBlock Text="{Binding Name}"
+                                       TextTrimming="None"
+                                       TextWrapping="Wrap"
+                                       FontSize="16"
+                                       LineHeight="16"
+                                       LineStackingStrategy="BlockLineHeight"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource BrushColor6}"
+                                       FontFamily="{StaticResource CondensedFontFamily}"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center" />
+
+                            <!-- Big icon (structure preview) -->
+                            <Rectangle
+                                Fill="{Binding Icon}"
+                                Width="180"
+                                Height="180"
+                                UseLayoutRounding="True"
+                                HorizontalAlignment="Center"
+                                Margin="0,15" />
+
+                            <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="0,5">
+                                <TextBlock Text="{x:Static loc:CoreStrings.WindowLaunchpad_CompletedTaskLabel}"
+                                           Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}}"
+                                           Foreground="{StaticResource BrushColorGreen6}"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+
+                                <Button Content="{x:Static loc:CoreStrings.WindowLaunchpad_ButtonCompleteTask}"
+                                        Command="{Binding CommandComplete}"
+                                        Visibility="{Binding IsCompleted, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
+                                        Focusable="False"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                    <Button.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.25"
+                                                        ScaleY="1.25" />
+                                    </Button.LayoutTransform>
+                                </Button>
+                            </Grid>
+
+                            <controls:RequiredItemsPanelControl
+                                MaxWidth="340"
+                                Items="{Binding InputItems}"
+                                Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                MinSlotsCount="1"
+                                IsChecksItemAvailability="True"
+                                FontSize="13"
+                                HorizontalAlignment="Center"
+                                Margin="0,10,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </core:GameWindow>
+</core:BaseUserControlWithWindow>

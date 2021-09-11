@@ -77,7 +77,6 @@
 
         protected override void InitControl()
         {
-            base.InitControl();
             this.textBlock = this.GetByName<TextBlock>("TextBlock");
             if (IsDesignTime)
             {

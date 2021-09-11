@@ -1,0 +1,77 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.RatesEditorControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
+                      xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:ViewModelRatesEditorControl}"
+                      Width="600"
+                      HorizontalAlignment="Center">
+    <base:BaseUserControl.Resources>
+        <Style x:Key="ItemsControlRateEntriesStyle" TargetType="ItemsControl">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2"
+                                     IsItemsHost="True"
+                                     Margin="0,0,-30,0" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <servers:RateEditorControl DataContext="{Binding}"
+                                                   Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                   Margin="0,4,30,4" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Border.Background>
+                                <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.5" />
+                            </Border.Background>
+                            <ItemsPresenter Margin="5" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </base:BaseUserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding RatesPrimary}"
+                      Style="{StaticResource ItemsControlRateEntriesStyle}" />
+        <CheckBox Grid.Row="1"
+                  IsChecked="{Binding AreAdvancedRatesVisible}"
+                  Content="{x:Static loc:CoreStrings.RatesEditorControl_AdvancedRatesVisibleCheckbox}"
+                  Margin="0,15,0,10"
+                  HorizontalAlignment="Center"
+                  Focusable="False" />
+        <ContentControl Grid.Row="2"
+                        Margin="0,5,0,0"
+                        Visibility="{Binding AreAdvancedRatesVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ItemsControl ItemsSource="{Binding RatesAdvanced}"
+                          Style="{StaticResource ItemsControlRateEntriesStyle}" />
+        </ContentControl>
+    </Grid>
+</base:BaseUserControl>

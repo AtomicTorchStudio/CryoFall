@@ -23,7 +23,7 @@
             inputItems.Add<ItemFibers>(count: 20);
             inputItems.Add<ItemIngotIron>(count: 1);
 
-            outputItems.Add<ItemAmmoArrowIron>(count: 10);
+            outputItems.Add<ItemAmmoArrowIron>(count: 20);
         }
     }
 }

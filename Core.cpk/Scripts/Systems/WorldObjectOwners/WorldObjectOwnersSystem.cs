@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -340,11 +340,6 @@
             return SharedGetDirectOwners(worldObject).Contains(who.Name);
         }
 
-        public byte ServerRemote_GetDoorOwnersMax()
-        {
-            return StructureConstants.SharedDoorOwnersMax;
-        }
-
         protected override void PrepareSystem()
         {
             if (IsServer)
@@ -412,7 +407,7 @@
         private SetOwnersResult ServerRemote_SetOwners(IWorldObject worldObject, List<string> newOwners)
         {
             var maxOwners = worldObject.ProtoGameObject is IProtoObjectDoor
-                                ? StructureConstants.SharedDoorOwnersMax
+                                ? RateDoorOwnersMax.SharedValue
                                 : byte.MaxValue;
 
             if (newOwners.Count > maxOwners)

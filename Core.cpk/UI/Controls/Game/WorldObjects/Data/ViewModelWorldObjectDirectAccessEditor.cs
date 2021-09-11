@@ -22,7 +22,7 @@
             this.worldObject = worldObject;
             this.CanSetAccessMode = canSetAccessMode;
 
-            if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
+            if (worldObject.ProtoGameObject is not IProtoObjectWithAccessMode protoObjectWithAccessMode)
             {
                 throw new Exception("This world object doesn't have an access mode");
             }

@@ -14,18 +14,18 @@
                             ? (IWorldService)Api.Server.World
                             : (IWorldService)Api.Client.World;
 
-            using var tempAllActiveEvents =
+            using var tempAllWorldEvents =
                 Api.Shared.WrapInTempList(
                     world.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
 
-            foreach (var activeEvent in tempAllActiveEvents.AsList())
+            foreach (var worldEvent in tempAllWorldEvents.AsList())
             {
-                if (activeEvent.ProtoGameObject is not TProtoEvent)
+                if (worldEvent.ProtoGameObject is not TProtoEvent)
                 {
                     continue;
                 }
 
-                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var publicState = worldEvent.GetPublicState<EventWithAreaPublicState>();
                 var distance = (publicState.AreaCirclePosition.ToVector2D() - worldPosition).Length;
                 distance -= publicState.AreaCircleRadius;
                 if (distance <= 0)

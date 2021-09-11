@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Special;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -83,6 +84,11 @@
                     .Add<ItemComponentsMechanical>(count: 2, countRandom: 4)
                     .Add<ItemComponentsElectronic>(count: 1, countRandom: 2)
                     .Add<ItemBatteryDisposable>(count: 1,    countRandom: 1));
+        }
+
+        protected override double ServerGetDropListRate()
+        {
+            return RateResourcesGatherCratesLoot.SharedValue;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

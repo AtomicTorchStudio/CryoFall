@@ -23,11 +23,6 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        protected ProtoItemTool()
-        {
-            ToolsConstants.EnsureInitialized();
-        }
-
         public abstract uint DurabilityMax { get; }
 
         public override double GroundIconScale => 1.25;

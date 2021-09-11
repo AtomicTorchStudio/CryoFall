@@ -19,7 +19,8 @@
     using AtomicTorch.GameEngine.Common.Primitives;
 
     /// <summary>
-    /// It's a raiding window/hours system for PvP server. Server owner could configure hours when every day raiding is possible.
+    /// It's a raiding window/hours system for PvP server. Server owner could configure hours when every day raiding is
+    /// possible.
     /// </summary>
     public class RaidingProtectionSystem : ProtoSystem<RaidingProtectionSystem>
     {
@@ -133,7 +134,7 @@
             {
                 // full day raiding - disable raiding protection
                 newWindowUTC = new DayTimeInterval(fromHour: newWindowUTC.FromHour,
-                                                toHour: newWindowUTC.FromHour + 24);
+                                                   toHour: newWindowUTC.FromHour + 24);
             }
 
             if (ServerRaidingWindowUTC.Equals(newWindowUTC))
@@ -204,7 +205,7 @@
             IStaticWorldObject targetObject,
             bool showClientNotification)
         {
-            if (!(targetObject.ProtoWorldObject is IProtoObjectStructure))
+            if (targetObject.ProtoWorldObject is not IProtoObjectStructure)
             {
                 return true;
             }

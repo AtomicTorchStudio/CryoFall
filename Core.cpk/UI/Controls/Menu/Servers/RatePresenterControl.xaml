@@ -1,0 +1,217 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.RatePresenterControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      xmlns:client="clr-namespace:AtomicTorch.CBND.CoreMod.Helpers.Client"
+                      xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:IViewModelRate}"
+                      Width="450">
+    <base:BaseUserControl.Resources>
+
+        <Style x:Key="TextBlockRateIdStyle"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="FontFamily" Value="{StaticResource MonospacedFontFamily}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="LineHeight" Value="12" />
+        </Style>
+
+        <Style x:Key="TextBlockRateTitleStyle"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="LineHeight" Value="11" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="Text" Value="{Binding Name}" />
+            <Setter Property="base:ToolTipServiceExtend.ToolTip">
+                <Setter.Value>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Id}"
+                                   Style="{StaticResource TextBlockRateIdStyle}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Text="{Binding ValueDefaultText, StringFormat={x:Static loc:CoreStrings.RatesEditorControl_DefaultRateValueFormat}}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="SliderWithTextBoxDataTemplate">
+            <ContentControl x:Name="Root"
+                            Margin="-10,0"
+                            Background="Transparent"
+                            VerticalAlignment="Center">
+                <Grid Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Foreground="{StaticResource BrushColorAltLabelForeground}"
+                               Style="{StaticResource TextBlockRateTitleStyle}" />
+
+                    <Grid Grid.Row="1"
+                          HorizontalAlignment="Stretch"
+                          d:DataContext="{d:DesignInstance data:ViewModelRateDouble}">
+                        <TextBlock Text="{Binding ValueText}"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   FontFamily="{StaticResource MonospacedFontFamily}"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Center"
+                                   Margin="0"
+                                   Padding="1,2.5"
+                                   MinWidth="0"
+                                   MinHeight="0" />
+                    </Grid>
+                </Grid>
+            </ContentControl>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="TextBoxDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Foreground="{StaticResource BrushColorAltLabelForeground}"
+                           Style="{StaticResource TextBlockRateTitleStyle}" />
+
+                <Grid Grid.Row="1"
+                      HorizontalAlignment="Stretch"
+                      Margin="0,3,20,0">
+                    <TextBlock Text="{Binding Value}"
+                               FontSize="11"
+                               FontFamily="{StaticResource MonospacedFontFamily}"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               Margin="0"
+                               Padding="1,2.5"
+                               MinWidth="0"
+                               MinHeight="0" />
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </base:BaseUserControl.Resources>
+
+    <Border Padding="5,1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="35" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Foreground="{StaticResource BrushColorAltLabelForeground}"
+                       Style="{StaticResource TextBlockRateTitleStyle}" />
+
+            <TextBlock Grid.Column="1"
+                       Text="—"
+                       Foreground="{StaticResource BrushColorAltLabelForeground}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top" />
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal">
+                <ContentControl Content="{Binding}"
+                                Foreground="{StaticResource BrushColorAltLabelForeground}"
+                                VerticalAlignment="Top">
+                    <ContentControl.ContentTemplateSelector>
+                        <data:RatePresenterControlDataTemplateSelector>
+                            <data:RatePresenterControlDataTemplateSelector.TemplateDefault>
+                                <!-- Default template useful to present most rates -->
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ValueText}"
+                                               FontSize="11"
+                                               FontFamily="{StaticResource MonospacedFontFamily}"
+                                               VerticalAlignment="Center"
+                                               Margin="0"
+                                               Padding="1,2.5"
+                                               MinWidth="0"
+                                               MinHeight="0"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </data:RatePresenterControlDataTemplateSelector.TemplateDefault>
+
+                            <data:RatePresenterControlDataTemplateSelector.TemplateWithRange>
+                                <!-- Default template useful to present most rates -->
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ValueText}"
+                                               FontSize="11"
+                                               FontFamily="{StaticResource MonospacedFontFamily}"
+                                               VerticalAlignment="Center"
+                                               Margin="0"
+                                               Padding="1,2.5"
+                                               MinWidth="0"
+                                               MinHeight="0"
+                                               TextWrapping="Wrap" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding IsExpandedRangeUnlocked}"
+                                                     Value="True">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground"
+                                                        Value="{StaticResource BrushColorRed6}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </data:RatePresenterControlDataTemplateSelector.TemplateWithRange>
+
+                            <!-- Custom template for presenting rates with optional multiplier prefix or duration suffix -->
+                            <data:RatePresenterControlDataTemplateSelector.TemplateDouble>
+                                <DataTemplate DataType="{x:Type data:ViewModelRateDouble}">
+                                    <TextBlock Text="{Binding ValueText}"
+                                               FontSize="11"
+                                               FontFamily="{StaticResource MonospacedFontFamily}"
+                                               VerticalAlignment="Center"
+                                               Margin="0"
+                                               Padding="1,2.5"
+                                               MinWidth="0"
+                                               MinHeight="0"
+                                               TextWrapping="Wrap" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding IsExpandedRangeUnlocked}"
+                                                     Value="True">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground"
+                                                        Value="{StaticResource BrushColorRed6}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </data:RatePresenterControlDataTemplateSelector.TemplateDouble>
+                        </data:RatePresenterControlDataTemplateSelector>
+                    </ContentControl.ContentTemplateSelector>
+                </ContentControl>
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding IsDefaultValue, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                    <TextBlock
+                        Text="{Binding ValueDefaultText, StringFormat={x:Static loc:CoreStrings.RatesEditorControl_DefaultRateValueFormat}}"
+                        Foreground="{StaticResource BrushColor4}"
+                        FontFamily="{StaticResource MonospacedFontFamily}"
+                        FontSize="11"
+                        VerticalAlignment="Center"
+                        Margin="10,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</base:BaseUserControl>

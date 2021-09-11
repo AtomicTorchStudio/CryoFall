@@ -5,10 +5,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-    xmlns:extras="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    SnapsToDevicePixels="False" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    SnapsToDevicePixels="False"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:updatesHistory="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.UpdatesHistory"
     xmlns:credits="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.Credits">
@@ -120,7 +120,5 @@
         <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabCredits}">
             <credits:MenuCredits />
         </TabItem>
-
     </TabControl>
-
 </base:BaseUserControl>

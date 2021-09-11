@@ -11,7 +11,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ObjectPlantFlowerBlueSage : ProtoObjectPlant
+    public class ObjectPlantFlowerBlueSage : ProtoObjectPlantFlower
     {
         public override string Name => "Blue sage";
 
@@ -39,7 +39,7 @@
             base.ClientInitialize(data);
 
             var protoFarm = CommonGetFarmObjectProto(data.GameObject.OccupiedTile);
-            if (!(protoFarm is ObjectPlantPot))
+            if (protoFarm is not ObjectPlantPot)
             {
                 data.ClientState.Renderer.DrawOrderOffsetY += 0.5;
             }

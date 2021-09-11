@@ -83,8 +83,8 @@
             effects.AddValue(this, StatName.DefenseImpact, 0.4)
                    .AddValue(this, StatName.DefenseKinetic,   0.4)
                    .AddValue(this, StatName.DefenseExplosion, 0.4)
-                   .AddValue(this, StatName.DefenseHeat,      0.6)
-                   .AddValue(this, StatName.DefenseChemical,  1.0)
+                   .AddValue(this, StatName.DefenseHeat,      0.3) // lower, to make energy weapons more useful
+                   .AddValue(this, StatName.DefenseChemical,  0.25)
                    .AddValue(this, StatName.DefenseCold,      0.2)
                    .AddValue(this, StatName.DefensePsi,       1.0)
                    .AddValue(this, StatName.DefenseRadiation, 1.0);

@@ -82,7 +82,7 @@
             }
         }
 
-        public bool IsListHidden => OnlinePlayersSystem.ClientIsListHidden;
+        public bool IsListHidden => OnlinePlayersSystem.SharedIsListHidden;
 
         public SuperObservableCollection<ViewModelPlayerEntry> PlayersOnline { get; private set; }
             = new();

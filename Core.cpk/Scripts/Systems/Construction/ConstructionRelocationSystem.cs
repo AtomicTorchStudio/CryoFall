@@ -262,7 +262,7 @@
                 return false;
             }
 
-            if (!(objectStructure.ProtoGameObject is IProtoObjectStructure protoStructure))
+            if (objectStructure.ProtoGameObject is not IProtoObjectStructure protoStructure)
             {
                 return false;
             }
@@ -287,7 +287,7 @@
             }
 
             var itemInHands = character.SharedGetPlayerSelectedHotbarItem();
-            if (!(itemInHands.ProtoGameObject is IProtoItemToolToolbox))
+            if (itemInHands.ProtoGameObject is not IProtoItemToolToolbox)
             {
                 return false;
             }
@@ -380,7 +380,7 @@
             out string errorMessage,
             bool logErrors)
         {
-            if (!(objectStructure.ProtoGameObject is IProtoObjectStructure protoStructure))
+            if (objectStructure.ProtoGameObject is not IProtoObjectStructure protoStructure)
             {
                 errorMessage = null;
                 return false;
@@ -578,6 +578,16 @@
             {
                 // ensure the structure is reinitialized (has its physics rebuilt, etc)
                 objectStructure.ServerInitialize();
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+            }
+
+            try
+            {
+                ((IProtoObjectStructure)objectStructure.ProtoStaticWorldObject)
+                    .ServerOnRelocated(objectStructure, character, fromPosition);
             }
             catch (Exception ex)
             {

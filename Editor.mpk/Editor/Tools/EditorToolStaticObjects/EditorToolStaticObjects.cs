@@ -82,8 +82,8 @@
                 new EditorToolItemFilter<EditorToolStaticObjectsItem>(
                     "Structures",
                     this.GetFilterTexture("Structures"),
-                    _ => _.ProtoStaticObject is IProtoObjectStructure protoStructure
-                         && !(protoStructure is IProtoObjectFloor)));
+                    _ => _.ProtoStaticObject is IProtoObjectStructure
+                             and not IProtoObjectFloor));
 
             filters.Add(
                 new EditorToolItemFilter<EditorToolStaticObjectsItem>(
@@ -107,11 +107,12 @@
                 new EditorToolItemFilter<EditorToolStaticObjectsItem>(
                     "Misc",
                     this.GetFilterTexture("Misc"),
-                    o => !(o.ProtoStaticObject is IProtoObjectStructure)
-                         && !(o.ProtoStaticObject is IProtoObjectVegetation)
-                         && !(o.ProtoStaticObject is IProtoObjectMineral)
-                         && !(o.ProtoStaticObject is ProtoObjectProp)
-                         && !(o.ProtoStaticObject is IProtoObjectLoot)));
+                    o => o.ProtoStaticObject is not
+                             (IProtoObjectStructure
+                             or IProtoObjectVegetation
+                             or IProtoObjectMineral
+                             or ProtoObjectProp
+                             or IProtoObjectLoot)));
         }
 
         protected override void SetupItems(List<EditorToolStaticObjectsItem> items)
@@ -123,13 +124,15 @@
                                       .OrderBy(t => t.Kind)
                                       .ThenBy(t => t.ShortId))
             {
-                if (!(prototype is ObjectGroundItemsContainer)
-                    && !(prototype is ProtoObjectConstructionSite)
-                    && !(prototype is ObjectCorpse))
+                if (prototype is ObjectGroundItemsContainer
+                        or ProtoObjectConstructionSite
+                        or ObjectCorpse)
                 {
-                    var item = new EditorToolStaticObjectsItem(prototype);
-                    items.Add(item);
+                    continue;
                 }
+
+                var item = new EditorToolStaticObjectsItem(prototype);
+                items.Add(item);
             }
         }
 

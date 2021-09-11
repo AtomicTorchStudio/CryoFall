@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -35,22 +36,27 @@
         {
             // adding LP
             var technologies = character.SharedGetTechnologies();
-            technologies.ServerAddLearningPoints(UsageGivesLearningPointsAmount
-                                                 * TechConstants.ServerLearningPointsGainMultiplier,
+            var lpReceived = (uint)Math.Min(
+                Math.Round(UsageGivesLearningPointsAmount
+                           * TechConstants.ServerLearningPointsGainMultiplier,
+                           MidpointRounding.AwayFromZero),
+                uint.MaxValue);
+
+            technologies.ServerAddLearningPoints(lpReceived,
                                                  allowModifyingByStatsAndRates: false);
 
             // notify player
-            this.CallClient(character, _ => _.ClientRemote_DisplayUseNotification());
+            this.CallClient(character, _ => _.ClientRemote_DisplayUseNotification(lpReceived));
 
             base.ServerOnUse(character, currentStats);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_DisplayUseNotification()
+        private void ClientRemote_DisplayUseNotification(uint lpReceived)
         {
             NotificationSystem.ClientShowNotification(
                 NotificationNeuralEnhancer_Title,
-                string.Format(NotificationNeuralEnhancer_Message, UsageGivesLearningPointsAmount),
+                string.Format(NotificationNeuralEnhancer_Message, lpReceived),
                 NotificationColor.Good,
                 icon: this.Icon);
         }

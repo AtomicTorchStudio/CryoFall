@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemIngotSteel>(count: 5);
+            inputItems.Add<ItemIngotSteel>(count: 1);
             inputItems.Add<ItemExplosives>(count: 5);
-            inputItems.Add<ItemFormulatedGunpowder>(count: 20);
+            inputItems.Add<ItemFormulatedGunpowder>(count: 10);
 
             outputItems.Add<ItemAmmoShellHeavy>(count: 1);
         }

@@ -581,12 +581,14 @@
             var hasMiningTargets = publicState.TargetObjectPosition.HasValue;
 
             if (hasMiningTargets
+                && !publicState.IsMining
                 && !(CharacterDroneControlSystem.SharedIsValidDroneOperationDistance(objectDrone.TilePosition,
                          characterOwner.TilePosition)
                      && objectDrone.Tile.Height == characterOwner.Tile.Height))
             {
-                Logger.Info("The drone is beyond operation distance or has different tile height and will be recalled: "
-                            + objectDrone);
+                Logger.Info(
+                    "The drone is beyond operation distance or has different tile height while not mining and will be recalled: "
+                    + objectDrone);
                 CharacterDroneControlSystem.ServerRecallDrone(objectDrone);
                 hasMiningTargets = false;
             }
@@ -978,7 +980,7 @@
                             characterOwner,
                             result.MovedItems
                                   .GroupBy(p => p.Key.ProtoItem)
-                                  .Where(p => !(p.Key is TItemDrone))
+                                  .Where(p => p.Key is not TItemDrone)
                                   .ToDictionary(p => p.Key, p => p.Sum(v => v.Value)));
                     }
                 }

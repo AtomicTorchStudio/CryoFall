@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -37,7 +38,9 @@
                 return 0;
             }
 
-            return SharedGetCurrentLightFraction();
+            var lightFraction = SharedGetCurrentLightFraction();
+            var rate = RateTimeDependentGeneratorsRate.SharedValue;
+            return lightFraction * rate;
         }
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)

@@ -17,6 +17,9 @@
 
         public const string Tier5Letter = "V";
 
+        // Please note: Tier 6 has a custom title. It's not about prison break or something, but rather escape from a hostile planet.
+        public const string TierEscape = "Escape";
+
         public const string TierTitleFormat = "Tier {0}";
 
         public ViewModelTechTier(TechTier tier)
@@ -30,6 +33,9 @@
         public List<ViewModelTechGroup> GroupsPrimary { get; private set; }
 
         public List<ViewModelTechGroup> GroupsSecondary { get; private set; }
+
+        public bool HasOnlySingleTechGroup
+            => this.GroupsPrimary.Count + this.GroupsSecondary.Count == 1;
 
         public bool IsSelected { get; set; }
 
@@ -46,7 +52,7 @@
                 3 => Tier3Letter,
                 4 => Tier4Letter,
                 5 => Tier5Letter,
-                // not supported by the vanilla game as we don't use more than 5 tiers 
+                // not supported by the vanilla game as we don't use more than 5 tiers (Tier 6 is "Escape")
                 6  => "VI",
                 7  => "VII",
                 8  => "VIII",
@@ -58,6 +64,11 @@
 
         public static string GetTierText(TechTier tier)
         {
+            if (tier == TechTier.Tier6)
+            {
+                return TierEscape;
+            }
+
             return string.Format(TierTitleFormat, GetTierLetterOnly(tier));
         }
 

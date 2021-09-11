@@ -87,7 +87,7 @@
         {
             base.ServerOnItemBrokeAndDestroyed(item, container, slotId);
 
-            if (!(item.ProtoItem is ItemImplantBroken))
+            if (item.ProtoItem is not ItemImplantBroken)
             {
                 // place a broken implant to the released container slot
                 Server.Items.CreateItem<ItemImplantBroken>(container, slotId: slotId);

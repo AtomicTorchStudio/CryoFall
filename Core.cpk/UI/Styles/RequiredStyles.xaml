@@ -20,6 +20,7 @@
     <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
     <helpers:BoolReverseConverter x:Key="BoolReverseConverter" />
     <helpers:InstanceToBooleanConverter x:Key="InstanceToBooleanConverter" />
+    <helpers:IsNullConverter x:Key="IsNullConverter" />
     <helpers:NumberToHexStringConverter x:Key="NumberToHexStringConverter" />
     <helpers:ValuesAdditionMultiConverter x:Key="ValuesAdditionMultiConverter" />
     <helpers:ColorAlphaConverter x:Key="ColorAlphaConverter" />

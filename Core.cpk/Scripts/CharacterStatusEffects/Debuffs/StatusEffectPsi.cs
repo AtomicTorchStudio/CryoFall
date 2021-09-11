@@ -60,7 +60,7 @@
             ICharacter character,
             IWorldObject worldObject)
         {
-            if (!(worldObject.ProtoWorldObject is IProtoObjectPsiSource protoPsiSource)
+            if (worldObject.ProtoWorldObject is not IProtoObjectPsiSource protoPsiSource
                 || !protoPsiSource.ServerIsPsiSourceActive(worldObject))
             {
                 return 0;

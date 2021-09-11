@@ -58,9 +58,9 @@
 
         public override byte ReactorsCountMax => 2;
 
-        public override double ShutdownDuration => 1 * 60 * 60; // 1 hour
+        public override double ShutdownDuration => 30 * 60; // 30 minutes
 
-        public override double StartupDuration => 2 * 60 * 60; // 2 hours
+        public override double StartupDuration => 60 * 60; // 1 hour
 
         public override float StructurePointsMax => 15000;
 

@@ -24,7 +24,7 @@
 
         public override string Description => "Heavy machine gun developed for high-power .300 rounds.";
 
-        public override uint DurabilityMax => 600;
+        public override uint DurabilityMax => 1200;
 
         public override double FireInterval => 1 / 8d; // 8 per second
 

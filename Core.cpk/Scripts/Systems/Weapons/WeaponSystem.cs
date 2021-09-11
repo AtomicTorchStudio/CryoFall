@@ -121,8 +121,8 @@
             var characterPublicState = character.GetPublicState<PlayerCharacterPublicState>();
             if (characterPublicState.IsDead
                 || !characterPublicState.IsOnline
-                || !(characterPublicState.SelectedItemWeaponProto
-                         is IProtoItemWeaponRanged protoWeaponRanged))
+                || characterPublicState.SelectedItemWeaponProto
+                    is not IProtoItemWeaponRanged protoWeaponRanged)
             {
                 return null;
             }
@@ -1153,7 +1153,7 @@
                         continue;
                     }
 
-                    if (!(damagedObject.ProtoGameObject is IDamageableProtoWorldObject damageableProto))
+                    if (damagedObject.ProtoGameObject is not IDamageableProtoWorldObject damageableProto)
                     {
                         // shoot through this object
                         continue;

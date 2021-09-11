@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -25,7 +26,7 @@
         private static readonly List<IStaticWorldObject> TempList
             = new(capacity: 100000);
 
-        private static IProtoObjectStructure[] ServerDecayingProtoStructures;
+        private static IProtoObjectStructure[] serverListProtoStructuresToApplyDecay;
 
         public override string Name => "Structure decay system";
 
@@ -53,7 +54,7 @@
                 {
                     var prototype = worldObject.ProtoStaticWorldObject;
                     if (prototype is IProtoObjectStructure
-                        && !(prototype is IProtoObjectLandClaim))
+                            and not IProtoObjectLandClaim)
                     {
                         var privateState = worldObject.GetPrivateState<StructurePrivateState>();
                         privateState.ServerDecayStartTime = decayStartTime;
@@ -71,22 +72,16 @@
 
         protected override void PrepareSystem()
         {
-            if (IsClient)
-            {
-                // only server will update structure decay
-                return;
-            }
-
-            if (!StructureConstants.IsStructuresDecayEnabled)
+            if (IsClient
+                || !RateStructuresDecayEnabled.SharedValue)
             {
                 return;
             }
 
-            ServerDecayingProtoStructures = Api.FindProtoEntities<IProtoObjectStructure>().ToArray();
-            // configure time interval trigger
-            TriggerEveryFrame.ServerRegister(
-                callback: ServerUpdate,
-                name: "System." + this.ShortId);
+            serverListProtoStructuresToApplyDecay = Api.FindProtoEntities<IProtoObjectStructure>()
+                                                       .ToArray();
+            TriggerEveryFrame.ServerRegister(callback: ServerUpdate,
+                                             name: "System." + this.ShortId);
         }
 
         private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime, double deltaTime)
@@ -96,7 +91,7 @@
                 return false;
             }
 
-            if (!(worldObject.ProtoStaticWorldObject is IProtoObjectStructure protoObjectStructure))
+            if (worldObject.ProtoStaticWorldObject is not IProtoObjectStructure protoObjectStructure)
             {
                 // not a structure
                 return false;
@@ -113,7 +108,7 @@
             if (LandClaimSystem.SharedIsLandClaimedByAnyone(worldObject.TilePosition))
             {
                 // the object is in a land claim area
-                if (!(worldObject.ProtoStaticWorldObject is IProtoObjectLandClaim))
+                if (worldObject.ProtoStaticWorldObject is not IProtoObjectLandClaim)
                 {
                     // only the land claim object can decay in the land claim area
                     return false;
@@ -127,14 +122,14 @@
         // refresh structures decay
         private static void ServerUpdate()
         {
-            const double deltaTime = StructureConstants.StructureDecaySystemUpdateIntervalSeconds;
+            const double deltaTime = StructureConstants.DecaySystemUpdateIntervalSeconds;
             var serverTime = ServerGame.FrameTime;
             var frameNumber = ServerGame.FrameNumber;
             var frameRate = ServerGame.FrameRate;
 
             try
             {
-                foreach (var protoStructure in ServerDecayingProtoStructures)
+                foreach (var protoStructure in serverListProtoStructuresToApplyDecay)
                 {
                     protoStructure.EnumerateGameObjectsWithSpread(TempList, deltaTime, frameNumber, frameRate);
                 }

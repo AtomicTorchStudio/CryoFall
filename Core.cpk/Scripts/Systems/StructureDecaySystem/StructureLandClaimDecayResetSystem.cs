@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -23,7 +24,7 @@
         protected override void PrepareSystem()
         {
             if (IsClient
-                || !StructureConstants.IsStructuresDecayEnabled)
+                || !RateStructuresDecayEnabled.SharedValue)
             {
                 return;
             }
@@ -97,7 +98,10 @@
         /// </summary>
         private static void ServerUpdate()
         {
-            var spreadDeltaTime = StructureConstants.StructureDecayLandClaimResetSystemUpdateIntervalSeconds;
+            // Check interval (in seconds) for land claims.
+            // Currently every 3 seconds every player is checked whether it's inside an owned land claim,
+            // and if so, decay for it is reset.
+            const double spreadDeltaTime = 3;
 
             using var tempListPlayers = Api.Shared.GetTempList<ICharacter>();
             PlayerCharacter.Instance
@@ -122,7 +126,7 @@
                     continue;
                 }
 
-                // the land claim area contains an online owner character
+                // the land claim area contains an online owner
                 var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(ownedArea);
                 ServerResetDecayTimerForLandClaimAreasGroup(areasGroup);
             }

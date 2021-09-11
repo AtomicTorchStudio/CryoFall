@@ -13,10 +13,6 @@
 
     public class ViewModelMenuServers : BaseViewModel
     {
-        public const string DialogClearServerList_Message = "Are you sure you want to clear this servers list?";
-
-        public const string DialogClearServerList_Title = "Clear server list";
-
         private readonly IServersProvider serversProvider = Api.Client.MasterServer.ServersProvider;
 
         private ViewModelServersList[] allServersLists;
@@ -40,8 +36,6 @@
 
             var viewModelsProvider = ServerViewModelsProvider.Instance;
 
-            // ensure the localhost is always present in the custom servers list (for local server)
-            this.serversProvider.Custom.SetFirstOrAdd(new ServerAddress("localhost"));
             this.CustomServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersController(this.serversProvider.Custom, viewModelsProvider),
@@ -90,7 +84,7 @@
 
             this.HistoryServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(this.serversProvider.History, viewModelsProvider),
+                    new MultiplayerMenuServersHistoryController(viewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.allServersLists = new[]
@@ -324,17 +318,16 @@
             IServersListProvider list,
             Action onFinished = null)
         {
-            DialogWindow.ShowDialog(
-                DialogClearServerList_Title,
-                DialogClearServerList_Message,
-                okAction: () =>
-                          {
-                              list.Clear();
-                              list.Save();
-                              onFinished?.Invoke();
-                          },
-                okText: CoreStrings.Yes,
-                hideCancelButton: false);
+            DialogWindow.ShowDialog(CoreStrings.DialogClearServerList_Title,
+                                    CoreStrings.DialogClearList_Message,
+                                    okAction: () =>
+                                              {
+                                                  list.Clear();
+                                                  list.Save();
+                                                  onFinished?.Invoke();
+                                              },
+                                    okText: CoreStrings.Yes,
+                                    hideCancelButton: false);
         }
 
         private static void MasterServerConnectionStateChangedHandler()

@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -157,7 +158,7 @@
 
         protected virtual double ServerGetDropListProbabilityMultiplier(IStaticWorldObject mineralObject)
         {
-            return 1.0;
+            return RateResourcesGatherBasic.SharedValue;
         }
 
         protected override void ServerOnStaticObjectDamageApplied(
@@ -230,7 +231,7 @@
 
                 return protoItemToolMining.ServerGetDamageToMineral(targetObject)
                        * damageMultiplier
-                       * ToolsConstants.ActionMiningSpeedMultiplier;
+                       * RateActionMiningSpeedMultiplier.SharedValue;
             }
 
             if (weaponCache.ProtoWeapon is ItemNoWeapon)

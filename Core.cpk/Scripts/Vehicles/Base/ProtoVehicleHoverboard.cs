@@ -97,7 +97,7 @@
             foreach (var statusEffect in statusEffects)
             {
                 var protoStatusEffect = statusEffect.ProtoGameObject;
-                if (!(protoStatusEffect is BaseStatusEffectEnvironmentalRadiation))
+                if (protoStatusEffect is not BaseStatusEffectEnvironmentalRadiation)
                 {
                     continue;
                 }

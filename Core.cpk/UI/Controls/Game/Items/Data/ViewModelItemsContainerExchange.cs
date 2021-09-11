@@ -205,8 +205,7 @@
         {
             this.ExecuteCommandMatchDown();
 
-            var scriptingApi = Api.Client;
-            var character = scriptingApi.Characters.CurrentPlayerCharacter;
+            var character = ClientCurrentCharacterHelper.Character;
             character.ProtoCharacter.ClientTryTakeAllItems(character,
                                                            this.Container,
                                                            showNotificationIfInventoryFull: true);

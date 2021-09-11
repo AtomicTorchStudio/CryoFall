@@ -53,23 +53,19 @@
 
         private static void IsEnabledChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(d is ScrollViewer scrollViewer))
+            if (d is not ScrollViewer scrollViewer)
             {
                 Api.Logger.Error(d + " is not a ScrollViewer");
                 return;
             }
 
-            if (e.NewValue is null
-                || !(e.NewValue is bool isEnabled)
-                || !isEnabled)
+            if (e.NewValue is not true)
             {
                 Unregister(scrollViewer);
                 return;
             }
 
-            if (e.OldValue is not null
-                && e.OldValue is bool wasEnabled
-                && wasEnabled)
+            if (e.OldValue is true)
             {
                 // already registered
                 return;

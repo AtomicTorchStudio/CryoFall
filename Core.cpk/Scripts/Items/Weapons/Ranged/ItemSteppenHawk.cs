@@ -23,7 +23,7 @@
 
         public override string Description => "Semi-automatic handgun with extreme muzzle energy.";
 
-        public override uint DurabilityMax => 360;
+        public override uint DurabilityMax => 720;
 
         public override double FireInterval => 0.9;
 

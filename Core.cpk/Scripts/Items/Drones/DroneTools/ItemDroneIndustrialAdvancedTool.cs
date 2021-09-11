@@ -7,9 +7,9 @@
     /// </summary>
     public class ItemDroneIndustrialAdvancedTool : ProtoItemDroneTool
     {
-        public override double DamageToMinerals => 30;
+        public override double DamageToMinerals => 40;
 
-        public override double DamageToTree => 25;
+        public override double DamageToTree => 32;
 
         public override double FireInterval => 1 / 3.0;
     }

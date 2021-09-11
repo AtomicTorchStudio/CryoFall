@@ -27,7 +27,7 @@
                           .Add<ItemFishingBaitMix>(weight: 30)
                           .Add<ItemFishingBaitFish>(weight: 65);
 
-            dropItemsList.Add<ItemFishFilletRed>(count: 4);
+            dropItemsList.Add<ItemFishFilletRed>(count: 3);
         }
     }
 }

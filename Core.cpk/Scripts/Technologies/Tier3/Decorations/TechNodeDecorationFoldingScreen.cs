@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationFoldingScreen>();
 
-            config.SetRequiredNode<TechNodeDecorationAltar>();
+            config.SetRequiredNode<TechNodeDecorationDoorBell2>();
         }
     }
 }

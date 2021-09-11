@@ -834,7 +834,7 @@
                 throw new Exception("Item not found.");
             }
 
-            if (!(itemWeapon.ProtoItem is IProtoItemWeapon itemProto))
+            if (itemWeapon.ProtoItem is not IProtoItemWeapon itemProto)
             {
                 throw new Exception("Not a weapon: " + itemWeapon);
             }

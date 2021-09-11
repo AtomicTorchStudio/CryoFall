@@ -9,8 +9,7 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data:ViewModelTechRequiredItemsControl, IsDesignTimeCreatable=True}"
-    Visibility="{Binding Visibility}">
+    d:DataContext="{d:DesignInstance data:ViewModelTechRequiredItemsControl, IsDesignTimeCreatable=True}">
 
     <base:BaseUserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
@@ -24,7 +23,8 @@
 
     <Grid x:Name="LayoutRoot"
           HorizontalAlignment="Left"
-          VerticalAlignment="Top">
+          VerticalAlignment="Top"
+          Visibility="{Binding Visibility}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />

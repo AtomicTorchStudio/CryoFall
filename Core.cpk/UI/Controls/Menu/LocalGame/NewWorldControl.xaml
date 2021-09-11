@@ -1,0 +1,50 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.NewWorldControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.Data"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:ViewModelNewWorldControl}">
+    <ScrollViewer HorizontalAlignment="Stretch">
+        <Grid x:Name="LayoutRoot"
+              HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <servers:RatesPresetSelectionControl x:Name="RatesPresetSelectionControl" />
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,15">
+                <TextBlock Text="{x:Static loc:CoreStrings.NewWorldControl_WorldName}"
+                           VerticalAlignment="Center" />
+                <TextBox Text="{Binding SaveName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         Margin="5,0,0,0"
+                         MinWidth="150"
+                         MaxLength="30" />
+            </StackPanel>
+
+            <Button Grid.Row="2"
+                    Content="{x:Static loc:CoreStrings.NewWorldControl_CustomizeServerRates}"
+                    Command="{Binding CommandToggleRatesEditor}"
+                    Focusable="False"
+                    Visibility="{Binding IsRatesEditorVisible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+
+            <servers:RatesEditorControl
+                Grid.Row="3"
+                x:Name="RatesEditorControl"
+                Visibility="{Binding IsRatesEditorVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+        </Grid>
+    </ScrollViewer>
+</base:BaseUserControl>

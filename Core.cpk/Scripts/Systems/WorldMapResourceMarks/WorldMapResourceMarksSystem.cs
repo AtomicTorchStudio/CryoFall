@@ -5,7 +5,7 @@
     using System.Diagnostics;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -19,34 +19,13 @@
     {
         private const int DepositSearchAreaCircleRadius = 130;
 
-        private static int? clientServerResourceSpawnClaimingCooldownDuration;
-
         private static ILogicObject serverManagerInstance;
 
         private static NetworkSyncList<WorldMapResourceMark> sharedResourceMarksList;
 
-        static WorldMapResourceMarksSystem()
-        {
-            IsResourceDepositCoordinatesHiddenUntilCapturePossible =
-                ServerRates.Get(
-                    "IsResourceDepositCoordinatesHiddenUntilCapturePossible",
-                    defaultValue: Api.IsEditor
-                                      ? 0
-                                      : 1,
-                    @"(for PvP servers only) Set it to 1 to hide the resource deposit (such as oil or Li)
-                       world coordinates until the capture is possible.
-                       When coordinates are hidden, players will receive only a biome name
-                       instead of the actual coordinates for the resource deposit.")
-                > 0;
-        }
-
-        public static event Action ClientDepositClaimCooldownDurationReceived;
-
         public static event Action<WorldMapResourceMark> ClientMarkAdded;
 
         public static event Action<WorldMapResourceMark> ClientMarkRemoved;
-
-        public static bool IsResourceDepositCoordinatesHiddenUntilCapturePossible { get; }
 
         public override string Name => "World map resource marks system";
 
@@ -61,7 +40,7 @@
             var biome = staticWorldObject.OccupiedTile.ProtoTile;
             var position = SharedGetObjectCenterPosition(staticWorldObject);
 
-            if (IsResourceDepositCoordinatesHiddenUntilCapturePossible
+            if (RatePvPIsResourceDepositCoordinatesHidden.SharedValue
                 && timeToClaimRemains > 0)
             {
                 var stopwatch = Stopwatch.StartNew();
@@ -101,7 +80,7 @@
                                          searchAreaCirclePosition: searchAreaCirclePosition,
                                          searchAreaCircleRadius: searchAreaCircleRadius));
 
-            if (!IsResourceDepositCoordinatesHiddenUntilCapturePossible)
+            if (!RatePvPIsResourceDepositCoordinatesHidden.SharedValue)
             {
                 return;
             }
@@ -191,24 +170,8 @@
 
             var timeSinceSpawn = serverTime - markServerSpawnTime;
 
-            int claimCooldownDuration;
-            if (Api.IsServer)
-            {
-                claimCooldownDuration = StructureConstants.DepositsSpawnClaimingCooldownDuration;
-            }
-            else
-            {
-                if (!clientServerResourceSpawnClaimingCooldownDuration.HasValue)
-                {
-                    Logger.Info("No data received yet for "
-                                + nameof(clientServerResourceSpawnClaimingCooldownDuration));
-                    return 0;
-                }
-
-                claimCooldownDuration = clientServerResourceSpawnClaimingCooldownDuration.Value;
-            }
-
-            var resultSeconds = claimCooldownDuration - timeSinceSpawn;
+            var claimDelay = RateResourcesPvPDepositClaimDelay.SharedValue;
+            var resultSeconds = claimDelay - timeSinceSpawn;
             return Math.Max(resultSeconds, 0);
         }
 
@@ -259,7 +222,9 @@
             }
 
             Logger.Important("World marks system initialized. Deposit marks are "
-                             + (IsResourceDepositCoordinatesHiddenUntilCapturePossible ? "hidden" : "displayed")
+                             + (RatePvPIsResourceDepositCoordinatesHidden.SharedValue
+                                    ? "hidden"
+                                    : "displayed")
                              + " until it's possible to capture them.");
         }
 
@@ -268,11 +233,6 @@
             Logger.Info("World map resources requested from server");
             Server.World.ForceEnterScope(ServerRemoteContext.Character, serverManagerInstance);
             return serverManagerInstance;
-        }
-
-        private int ServerRemote_AcquireServerResourceSpawnClaimingCooldownDuration()
-        {
-            return StructureConstants.DepositsSpawnClaimingCooldownDuration;
         }
 
         [PrepareOrder(afterType: typeof(BootstrapperServerCore))]
@@ -350,16 +310,6 @@
                                 }
                             }
                         });
-
-                    clientServerResourceSpawnClaimingCooldownDuration = null;
-                    var taskGetCooldownDuration = Instance.CallServer(
-                        _ => _.ServerRemote_AcquireServerResourceSpawnClaimingCooldownDuration());
-                    await taskGetCooldownDuration;
-                    clientServerResourceSpawnClaimingCooldownDuration = taskGetCooldownDuration.Result;
-                    Logger.Important("Received deposit claiming cooldown duration: "
-                                     + clientServerResourceSpawnClaimingCooldownDuration);
-
-                    Api.SafeInvoke(ClientDepositClaimCooldownDurationReceived);
                 }
             }
 

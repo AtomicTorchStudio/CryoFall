@@ -8,6 +8,9 @@
         Normal,
 
         [Description("Large")]
-        Large
+        Large,
+
+        [Description("Exotic")]
+        Exotic
     }
 }

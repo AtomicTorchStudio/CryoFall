@@ -7,11 +7,11 @@
 
     public partial class MenuUpdatesHistory : BaseUserControl
     {
-        public static readonly DependencyProperty EntriesProperty =
-            DependencyProperty.Register("Entries",
-                                        typeof(IReadOnlyList<UpdatesHistoryEntries.Entry>),
-                                        typeof(MenuUpdatesHistory),
-                                        new PropertyMetadata(default(IReadOnlyList<UpdatesHistoryEntries.Entry>)));
+        public static readonly DependencyProperty EntriesProperty
+            = DependencyProperty.Register("Entries",
+                                          typeof(IReadOnlyList<UpdatesHistoryEntries.Entry>),
+                                          typeof(MenuUpdatesHistory),
+                                          new PropertyMetadata(default(IReadOnlyList<UpdatesHistoryEntries.Entry>)));
 
         private AutoScrollViewer autoScrollViewer;
 
@@ -24,7 +24,6 @@
         protected override void InitControl()
         {
             this.Entries = UpdatesHistoryEntries.Entries;
-
             var scrollViewer = this.GetByName<ScrollViewer>("ScrollViewer");
             this.autoScrollViewer = new AutoScrollViewer(scrollViewer);
         }

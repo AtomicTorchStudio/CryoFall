@@ -10,11 +10,11 @@
     xmlns:options="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options"
     xmlns:extras="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras"
     xmlns:quit="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Quit"
-    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
     xmlns:menu="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:language="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language"
+    xmlns:play="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Play"
     mc:Ignorable="d"
     d:DesignWidth="1366"
     d:DesignHeight="768"
@@ -328,16 +328,16 @@
             <TabItem Style="{StaticResource TabItemDelimiterStyle}"
                      Visibility="{Binding IsCurrentGameTabEnabled, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-            <!-- Text: SERVERS -->
-            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabServers}"
-                     IsSelected="{Binding IsServersMenuSelected, Mode=TwoWay}"
+            <!-- Text: PLAY -->
+            <TabItem x:Name="TabPlay"
+                     Header="{x:Static loc:CoreStrings.MainMenu_TabPlay}"
                      Style="{StaticResource TabItemHeader}"
-                     Visibility="{Binding IsServersMenuVisible, Converter={StaticResource BoolToVisibilityConverter}}">
-                <servers:MenuServers />
+                     Visibility="{Binding IsPlayMenuVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                <play:MenuPlay IsSelected="{Binding IsSelected, ElementName=TabPlay}" />
             </TabItem>
 
             <TabItem Style="{StaticResource TabItemDelimiterStyle}"
-                     Visibility="{Binding IsServersMenuVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+                     Visibility="{Binding IsPlayMenuVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
 
             <!-- Text: OPTIONS -->
             <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabOptions}"

@@ -41,7 +41,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 await yieldIfOutOfTime();
 
                 var protoStaticWorldObject = worldObject.ProtoStaticWorldObject;
-                if (!(protoStaticWorldObject is IProtoObjectStructure)
+                if (protoStaticWorldObject is not IProtoObjectStructure
                     || LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject))
                 {
                     continue;
@@ -124,7 +124,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 await yieldIfOutOfTime();
 
                 var protoStaticWorldObject = worldObject.ProtoStaticWorldObject;
-                if (!(protoStaticWorldObject is IProtoObjectStructure)
+                if (protoStaticWorldObject is not IProtoObjectStructure
                     || LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject))
                 {
                     continue;

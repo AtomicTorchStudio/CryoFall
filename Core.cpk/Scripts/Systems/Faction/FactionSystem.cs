@@ -430,7 +430,7 @@
                 throw new Exception("The faction emblem is invalid");
             }
 
-            if (FactionConstants.GetFactionMembersMax(factionKind) == 0)
+            if (FactionConstants.SharedGetFactionMembersMax(factionKind) == 0)
             {
                 throw new Exception("This faction kind is disabled by server settings");
             }
@@ -448,7 +448,7 @@
             }
 
             var technologies = character.SharedGetTechnologies();
-            if (technologies.LearningPoints < FactionConstants.SharedCreateFactionLearningPointsCost)
+            if (technologies.LearningPoints < FactionConstants.SharedCreateFactionCost)
             {
                 // should be impossible as client performs the same check
                 return CreateFactionResult.Other;
@@ -459,7 +459,7 @@
                 return CreateFactionResult.EmblemUsed;
             }
 
-            technologies.ServerRemoveLearningPoints(FactionConstants.SharedCreateFactionLearningPointsCost);
+            technologies.ServerRemoveLearningPoints(FactionConstants.SharedCreateFactionCost);
 
             faction = Server.World.CreateLogicObject<Faction>();
             var publicState = Faction.GetPublicState(faction);
@@ -865,8 +865,6 @@
 
         protected override void PrepareSystem()
         {
-            FactionConstants.EnsureInitialized();
-
             if (IsClient)
             {
                 return;
@@ -1234,17 +1232,6 @@
                 return;
             }
 
-            Instance.CallClient(character,
-                                _ => _.ClientRemote_SetSystemConstants(
-                                    FactionConstants.GetFactionMembersMax(FactionKind.Public),
-                                    FactionConstants.GetFactionMembersMax(FactionKind.Private),
-                                    FactionConstants.SharedCreateFactionLearningPointsCost,
-                                    FactionConstants.SharedFactionJoinCooldownDuration,
-                                    FactionConstants.SharedFactionJoinReturnBackCooldownDuration,
-                                    FactionConstants.SharedFactionLandClaimsPerLevel,
-                                    FactionConstants.SharedPvpAlliancesEnabled,
-                                    FactionConstants.SharedFactionUpgradeCosts));
-
             ServerSendCurrentFaction(character);
 
             var faction = ServerGetFaction(character);
@@ -1344,26 +1331,6 @@
                                       CoreStrings.Faction_NotificationCurrentPlayerRemoved_ByOfficer_Format,
                                       officerName))
                               .HideAfterDelay(60);
-        }
-
-        private void ClientRemote_SetSystemConstants(
-            ushort publicFactionMembersMax,
-            ushort privateFactionMembersMax,
-            ushort createFactionLpCost,
-            uint factionJoinCooldownDuration,
-            uint factionJoinReturnCooldownDuration,
-            float factionLandClaimsPerLevel,
-            bool pvpAlliancesEnabled,
-            ushort[] factionUpgradeCosts)
-        {
-            FactionConstants.ClientSetSystemConstants(publicFactionMembersMax,
-                                                      privateFactionMembersMax,
-                                                      createFactionLpCost,
-                                                      factionJoinCooldownDuration,
-                                                      factionJoinReturnCooldownDuration,
-                                                      factionLandClaimsPerLevel,
-                                                      pvpAlliancesEnabled,
-                                                      factionUpgradeCosts);
         }
 
         private void ServerLandClaimAreaRaidBlockStartedOrExtendedHandler(
@@ -1682,8 +1649,8 @@
                 return ApplicationCreateResult.CannotRejoinInvitationRequired;
             }
 
-            var maxMembers = FactionConstants.GetFactionMembersMax(FactionKind.Public);
-            if (ServerGetFactionMembersReadOnly(faction).Count >= maxMembers)
+            if (ServerGetFactionMembersReadOnly(faction).Count
+                >= FactionConstants.SharedMembersMaxPublicFaction)
             {
                 return ApplicationCreateResult.ErrorFactionFull;
             }

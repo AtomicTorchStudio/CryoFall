@@ -269,6 +269,7 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -309,8 +310,58 @@
                                    Margin="5,0,0,0" />
                     </StackPanel>
 
-                    <!-- Selected skill effects list -->
+                    <!-- Selected skill extra description entries as bullet points -->
                     <ScrollViewer Grid.Row="1"
+                                  Margin="9,5,0,-5"
+                                  VerticalAlignment="Stretch"
+                                  Visibility="{Binding ExtraDescriptionEntries, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
+                        <ItemsControl ItemsSource="{Binding ExtraDescriptionEntries}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                                                <Setter Property="FontWeight" Value="Bold" />
+                                                <Setter Property="FontSize" Value="10" />
+                                                <Setter Property="LineHeight" Value="11" />
+                                                <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                                            </Style>
+                                        </Grid.Resources>
+
+                                        <!-- Bullet point -->
+                                        <Canvas Width="12" Height="12" Margin="0,-1,4,0" VerticalAlignment="Top">
+                                            <Ellipse
+                                                Width="12"
+                                                Height="12"
+                                                Stroke="{StaticResource BrushColor5}"
+                                                StrokeThickness="1" />
+
+                                            <Ellipse
+                                                Width="8"
+                                                Height="8"
+                                                Canvas.Top="2"
+                                                Canvas.Left="2"
+                                                Fill="{StaticResource BrushColor5}" />
+                                        </Canvas>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding}"
+                                                   Foreground="{StaticResource BrushColor6}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <!-- Selected skill effects list -->
+                    <ScrollViewer Grid.Row="2"
                                   Margin="9,5,0,0"
                                   VerticalAlignment="Stretch">
                         <ItemsControl ItemsSource="{Binding Effects}">
@@ -384,11 +435,11 @@
                         </ItemsControl>
                     </ScrollViewer>
 
-                    <Control Grid.Row="2" Height="1" Margin="0,0,0,7"
+                    <Control Grid.Row="3" Height="1" Margin="0,0,0,7"
                              Style="{StaticResource ControlHorizontalSeparator}" />
 
                     <!-- Level details, experience bar -->
-                    <Border Grid.Row="3" HorizontalAlignment="Stretch">
+                    <Border Grid.Row="4" HorizontalAlignment="Stretch">
                         <StackPanel>
                             <Grid>
                                 <StackPanel Orientation="Vertical">

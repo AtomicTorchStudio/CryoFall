@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.WateringCanRefill;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -25,9 +26,6 @@
             WateringActionState.PublicState>
     {
         public const string NotificationAlreadyWatered = "Already watered";
-
-        public const string NotificationCannotWater_MessageHarvestReady =
-            "The plant is ready to be harvested. No point in watering it now.";
 
         public const string NotificationCannotWater_MessageOnlyFarmPlants =
             "Only farm plants can be watered.";
@@ -54,14 +52,13 @@
                 return false;
             }
 
-            if (!protoPlant.ServerCanBeWatered((IStaticWorldObject)objectPlant))
+            if (protoPlant.ServerCanBeWatered((IStaticWorldObject)objectPlant))
             {
-                // no need to water the plant
-                Instance.CallClient(character, _ => _.ClientRemote_CannotWaterLastHarvestOrRotten(protoItem));
-                return false;
+                return true;
             }
-            
-            return true;
+
+            Instance.CallClient(character, _ => _.ClientRemote_CannotWaterSpoiled(protoItem));
+            return false;
         }
 
         protected override ItemWorldActionRequest ClientTryCreateRequest(ICharacter character)
@@ -123,7 +120,7 @@
             var character = request.Character;
 
             var item = request.Item;
-            if (!(item?.ProtoGameObject is IProtoItemToolWateringCan protoWateringCan))
+            if (item?.ProtoGameObject is not IProtoItemToolWateringCan protoWateringCan)
             {
                 // no watering can is selected
                 return null;
@@ -165,8 +162,7 @@
         {
             var character = request.Character;
             var objectPlant = request.WorldObject;
-            if (objectPlant is null
-                || !(objectPlant.ProtoWorldObject is IProtoObjectPlant protoPlant))
+            if (objectPlant?.ProtoWorldObject is not IProtoObjectPlant protoPlant)
             {
                 throw new Exception("The world object must be a plant");
             }
@@ -181,7 +177,7 @@
                 throw new Exception("The item is not selected");
             }
 
-            if (!(request.Item.ProtoItem is IProtoItemToolWateringCan protoItem))
+            if (request.Item.ProtoItem is not IProtoItemToolWateringCan protoItem)
             {
                 throw new Exception("The item must be a watering can");
             }
@@ -207,16 +203,6 @@
                 protoItem.Icon);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotWaterLastHarvestOrRotten(IProtoItem protoItem)
-        {
-            NotificationSystem.ClientShowNotification(
-                NotificationCannotWater_Title,
-                NotificationCannotWater_MessageHarvestReady,
-                NotificationColor.Bad,
-                protoItem.Icon);
-        }
-
         private void ClientRemote_CannotWaterNotEnoughWaterAmount(IItem item, byte waterAmount)
         {
             var privateState = item.GetPrivateState<ItemWateringCanPrivateState>();
@@ -236,6 +222,16 @@
                 // try refill
                 WateringCanRefillSystem.Instance.ClientTryStartAction();
             }
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        private void ClientRemote_CannotWaterSpoiled(IProtoItem protoItem)
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationCannotWater_Title,
+                CoreStrings.NotificationPlantSpoiled_Message,
+                NotificationColor.Bad,
+                protoItem.Icon);
         }
     }
 }

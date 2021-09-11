@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -71,6 +72,11 @@
                                      .Add<ItemWheatGrains>(count: 5, countRandom: 10)
                                      .Add<ItemSugar>(count: 3,       countRandom: 3)
                                      .Add<ItemSalt>(count: 10,       countRandom: 5));
+        }
+
+        protected override double ServerGetDropListRate()
+        {
+            return RateResourcesGatherCratesLoot.SharedValue;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

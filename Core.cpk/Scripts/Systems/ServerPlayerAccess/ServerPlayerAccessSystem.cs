@@ -292,7 +292,7 @@
                 // TODO: remove once we no longer need this
                 LoadLegacyList(isWhiteList: true);
                 LoadLegacyList(isWhiteList: false);
-                
+
                 if (Database.TryGet(nameof(ServerPlayerAccessSystem),
                                     "IsWhitelistEnabled",
                                     out bool legacyIsWhiteListEnabled))

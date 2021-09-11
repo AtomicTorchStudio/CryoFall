@@ -59,18 +59,18 @@
 
             // chance to also drop seeds
             droplist.Add(
-                new DropItemsListPreset(
-                        outputs: 1,
-                        probability: 1 / 40.0,
-                        useGuaranteedProbabilityAlgorithm: true,
-                        storageKey: "SeedsFromGrass")
+                    new DropItemsListPreset(
+                            outputs: 1,
+                            probability: 1 / 40.0,
+                            useGuaranteedProbabilityAlgorithm: true,
+                            storageKey: "SeedsFromGrass")
                         .Add<ItemSeedsCarrot>(count: 1)
                         .Add<ItemSeedsCucumber>(count: 1)
                         .Add<ItemSeedsTomato>(count: 1)
                         .Add<ItemSeedsBellPepper>(count: 1)
                         .Add<ItemSeedsCorn>(count: 1)
                         .Add<ItemSeedsPotato>(count: 1)
-                    );
+                );
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()

@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Scripting;
     using static Stats.StatName;
@@ -39,36 +40,11 @@
                 return;
             }
 
-            var foodDecreaseSpeedMultiplier = ServerRates.Get(
-                "PlayerFoodDecreaseSpeedMultiplier",
-                defaultValue: 1.0,
-                @"Food consumption speed multiplier for hunger mechanic. 
-                  By default the game will consume 100 food points in 1.2 hours,
-                  you can make it faster or slower, or disable altogether.");
+            FoodDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.2); // consume 100 food points in 1.2 hour(s).
+            FoodDecreasePerSecond *= RateHunger.SharedValue; // apply the multiplier
 
-            var waterDecreaseSpeedMultiplier = ServerRates.Get(
-                "PlayerWaterDecreaseSpeedMultiplier",
-                defaultValue: 1.0,
-                @"Water consumption speed multiplier for thirst mechanic.
-                  By default the game will consume 100 water points in 1 hour,
-                  you can make it faster or slower, or disable altogether.
-                  Please note the game will consume water twice as fast if player's stamina is regenerating.");
-
-            if (foodDecreaseSpeedMultiplier < 0)
-            {
-                foodDecreaseSpeedMultiplier = 0;
-            }
-
-            if (waterDecreaseSpeedMultiplier < 0)
-            {
-                waterDecreaseSpeedMultiplier = 0;
-            }
-
-            FoodDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.2);  // consume 100 food points in 1.2 hour(s).
-            FoodDecreasePerSecond *= foodDecreaseSpeedMultiplier; // apply the multiplier
-
-            WaterDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.0);   // consume 100 water points in 1.0 hour(s)
-            WaterDecreasePerSecond *= waterDecreaseSpeedMultiplier; // apply the multiplier
+            WaterDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.0); // consume 100 water points in 1.0 hour(s)
+            WaterDecreasePerSecond *= RateThirst.SharedValue; // apply the multiplier
         }
 
         public override string Name => "Hunger and thirst system";

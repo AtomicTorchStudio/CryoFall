@@ -63,7 +63,7 @@
 
         private static void UpdateSceneObject()
         {
-            if (!(focusedWorldObject is IStaticWorldObject)
+            if (focusedWorldObject is not IStaticWorldObject
                 || focusedWorldObject.IsInitialized
                 || focusedWorldObject.IsDestroyed)
             {

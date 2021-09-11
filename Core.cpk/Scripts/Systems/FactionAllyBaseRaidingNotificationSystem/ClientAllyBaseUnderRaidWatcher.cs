@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Runtime.CompilerServices;
-    using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
@@ -84,7 +84,7 @@
                 message,
                 NotificationColor.Bad,
                 autoHide: false,
-                icon: Api.GetProtoEntity<ItemBombModern>().Icon);
+                icon: ClientCurrentBaseUnderRaidWatcher.TextureIconRaidNotification);
 
             Notifications[areasGroupId] = notification;
         }

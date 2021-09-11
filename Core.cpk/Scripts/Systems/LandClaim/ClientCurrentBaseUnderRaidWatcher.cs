@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
@@ -11,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using JetBrains.Annotations;
@@ -18,6 +18,9 @@
     [UsedImplicitly]
     public static class ClientCurrentBaseUnderRaidWatcher
     {
+        public static readonly TextureResource TextureIconRaidNotification
+            = new("Icons/IconRaidNotification");
+
         private static readonly Dictionary<ILogicObject, Controller> GroupControllers = new();
 
         private static readonly IWorldClientService World = Api.Client.World;
@@ -200,7 +203,7 @@
                     message,
                     NotificationColor.Bad,
                     autoHide: false,
-                    icon: Api.GetProtoEntity<ItemBombModern>().Icon);
+                    icon: TextureIconRaidNotification);
             }
 
             private void RemoveRaidNotification()

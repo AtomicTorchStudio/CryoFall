@@ -118,7 +118,8 @@
 
             var currentInteractionObject =
                 InteractionCheckerSystem.SharedGetCurrentInteraction(ClientCurrentCharacterHelper.Character);
-            if (!(currentInteractionObject?.ProtoWorldObject is IProtoVehicleAssemblyBay protoVehicleAssemblyBay))
+            if (currentInteractionObject?.ProtoWorldObject
+                    is not IProtoVehicleAssemblyBay protoVehicleAssemblyBay)
             {
                 return;
             }
@@ -265,7 +266,7 @@
                                     .GetTile(vehicle.TilePosition)
                                     .StaticObjects)
             {
-                if (!(o.ProtoGameObject is IProtoVehicleAssemblyBay protoVehicleAssemblyBay))
+                if (o.ProtoGameObject is not IProtoVehicleAssemblyBay protoVehicleAssemblyBay)
                 {
                     continue;
                 }
@@ -354,7 +355,7 @@
         {
             var character = ServerRemoteContext.Character;
             var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
-            if (!(currentInteractionObject?.ProtoWorldObject is IProtoVehicleAssemblyBay))
+            if (currentInteractionObject?.ProtoWorldObject is not IProtoVehicleAssemblyBay)
             {
                 Logger.Warning(character + " is not interacting with any vehicle assembly bay");
                 return Array.Empty<GarageVehicleEntry>();
@@ -373,7 +374,8 @@
 
             var character = ServerRemoteContext.Character;
             var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
-            if (!(currentInteractionObject?.ProtoWorldObject is IProtoVehicleAssemblyBay protoVehicleAssemblyBay))
+            if (currentInteractionObject?.ProtoWorldObject
+                    is not IProtoVehicleAssemblyBay protoVehicleAssemblyBay)
             {
                 throw new Exception("Player is not interacting with an vehicle assembly bay");
             }
@@ -413,7 +415,8 @@
         {
             var character = ServerRemoteContext.Character;
             var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
-            if (!(currentInteractionObject?.ProtoWorldObject is IProtoVehicleAssemblyBay protoVehicleAssemblyBay))
+            if (currentInteractionObject?.ProtoWorldObject
+                    is not IProtoVehicleAssemblyBay protoVehicleAssemblyBay)
             {
                 Logger.Warning("Player is not interacting with an vehicle assembly bay", character);
                 return TakeVehicleResult.Unknown;

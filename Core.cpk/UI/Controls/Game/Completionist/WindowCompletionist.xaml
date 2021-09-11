@@ -334,7 +334,7 @@
                         </Grid.RowDefinitions>
                         <TabPanel IsItemsHost="true"
                                   Panel.ZIndex="1"
-                                  HorizontalAlignment="Center" />
+                                  HorizontalAlignment="Left" />
                         <ContentPresenter Grid.Row="1"
                                           ContentSource="SelectedContent" />
                     </Grid>
@@ -343,8 +343,10 @@
 
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemCompactStyle}">
-                    <Setter Property="HorizontalAlignment" Value="Stretch" />
-                    <Setter Property="MinWidth" Value="132" />
+                    <Setter Property="MinWidth" Value="85" />
+                    <!-- Large horizontal padding is required here in order to have
+                         enough space to put a label with the pending entries number. -->
+                    <Setter Property="Padding" Value="24,5" />
                 </Style>
             </TabControl.Resources>
 
@@ -388,6 +390,19 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabLoot}"
+                                       Style="{StaticResource TextBlockTabStyle}" />
+                            <Control Template="{StaticResource ControlTemplateTabBadge}" />
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem.Header>
+                <Control Template="{StaticResource ControlTemplateEntriesGrid}" />
+            </TabItem>
+
+            <TabItem DataContext="{Binding EntriesEvent}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowCompletionist_TabEvents}"
                                        Style="{StaticResource TextBlockTabStyle}" />
                             <Control Template="{StaticResource ControlTemplateTabBadge}" />
                         </StackPanel>

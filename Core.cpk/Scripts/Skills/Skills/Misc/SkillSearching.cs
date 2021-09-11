@@ -24,8 +24,6 @@
 
         public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Searching";
 
         public static bool ServerRollExtraLoot(DropItemContext context)

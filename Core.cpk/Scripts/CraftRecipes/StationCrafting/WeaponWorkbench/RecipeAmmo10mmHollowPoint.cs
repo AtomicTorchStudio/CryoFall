@@ -22,7 +22,7 @@
             inputItems.Add<ItemIngotCopper>(count: 2);
             inputItems.Add<ItemNitrocellulosePowder>(count: 15);
 
-            outputItems.Add<ItemAmmo10mmHollowPoint>(count: 10);
+            outputItems.Add<ItemAmmo10mmHollowPoint>(count: 20);
         }
     }
 }

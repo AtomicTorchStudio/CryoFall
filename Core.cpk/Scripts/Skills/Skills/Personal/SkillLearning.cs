@@ -19,8 +19,6 @@
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0; // this skill doesn't give any LP as it is derivative skill of other skills EXP/LP gain
 
-        public override bool IsSharingLearningPointsWithPartyMembers => false;
-
         public override string Name => "Learning";
 
         protected override void PrepareProtoSkill(SkillConfig config)

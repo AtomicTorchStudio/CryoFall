@@ -22,7 +22,7 @@
         public override string Description =>
             "Exotic weapon that uses liquified keinite to create and launch a potent toxin at enemies.";
 
-        public override uint DurabilityMax => 400;
+        public override uint DurabilityMax => 800;
 
         public override double FireInterval => 0.5;
 
@@ -74,7 +74,7 @@
             // guaranteed small toxin effect per hit
             // (please note the addition formula inside the Toxins effect class is NOT linear
             //  so subsequent hits increasing it on less than 20%)
-            damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.5);
+            damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.6);
         }
     }
 }

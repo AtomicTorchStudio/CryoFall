@@ -39,8 +39,6 @@
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0.6; // lower since each mineral gives 120 exp (which would mean 1.2LP without this multiplier)
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Prospecting";
 
         protected override void PrepareProtoSkill(SkillConfig config)

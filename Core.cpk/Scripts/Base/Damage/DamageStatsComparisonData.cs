@@ -13,8 +13,8 @@ namespace AtomicTorch.CBND.CoreMod.Damage
     {
         public static readonly Lazy<IReadOnlyList<IProtoItemAmmo>> AllAvailableAmmoExceptGrenades
             = new(() => Api.FindProtoEntities<IProtoItemAmmo>()
-                         .Where(p => !(p is IAmmoGrenade))
-                         .ToArray());
+                           .Where(p => p is not IAmmoGrenade)
+                           .ToArray());
 
         public static readonly Lazy<IReadOnlyList<IProtoItemAmmo>> AllAvailableAmmoGrenadesOnly
             = new(Api.FindProtoEntities<IAmmoGrenade>);

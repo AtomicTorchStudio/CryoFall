@@ -52,7 +52,8 @@
                                   EditorButton.MakeQuickSavegame,
                                   EditorToolMap.ClientSaveSavegameQuick);
 
-            if (Api.Shared.IsDebug)
+            if (!Api.IsEditor
+                || Api.Shared.IsDebug)
             {
                 return;
             }

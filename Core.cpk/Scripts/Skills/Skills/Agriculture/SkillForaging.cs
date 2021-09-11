@@ -23,8 +23,6 @@
         public override double ExperienceToLearningPointsConversionMultiplier =>
             0.3; // less exp for foraging, since it is so easy to do
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Foraging";
 
         protected override void PrepareProtoSkill(SkillConfig config)

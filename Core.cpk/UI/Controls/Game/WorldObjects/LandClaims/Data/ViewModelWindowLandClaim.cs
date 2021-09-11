@@ -6,7 +6,7 @@
     using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
@@ -85,7 +85,7 @@
                     canEditOwners: canEditOwners,
                     // exclude founder name
                     ownersListFilter: name => name != this.FounderName,
-                    maxOwnersListLength: LandClaimSystemConstants.SharedLandClaimOwnersMax,
+                    maxOwnersListLength: RateLandClaimOwnersMax.SharedValue,
                     displayedOwnersNumberAdjustment: -1);
             }
 
@@ -110,7 +110,7 @@
 
             this.ViewModelProtoLandClaimInfoCurrent = new ViewModelProtoLandClaimInfo(this.protoObjectLandClaim);
 
-            ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacityChanged
+            RateResourcesGatherBasic.ClientValueChanged
                 += this.SafeItemsSlotsCapacityChangedHandler;
 
             FactionConstants.ClientFactionMembersMaxChanged
@@ -142,7 +142,7 @@
             => LandClaimDecayInfoConfirmationHelper.IsConfirmedForCurrentServer;
 
         public bool IsMaxFactionSizeLargerThanSinglePlayer
-            => FactionConstants.GetFactionMembersMax(FactionKind.Private) > 1;
+            => FactionConstants.SharedMembersMaxPrivateFaction > 1;
 
         public bool IsOwnedByFaction
             => LandClaimSystem.SharedIsAreaOwnedByFaction(this.area);
@@ -153,11 +153,12 @@
                    && FactionSystem.ClientHasAccessRight(FactionMemberAccessRights.LandClaimManagement))
                || CreativeModeSystem.ClientIsInCreativeMode();
 
-        public bool IsSafeStorageAvailable => ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity > 0;
+        public bool IsSafeStorageAvailable
+            => RatePvPSafeStorageCapacity.SharedValue > 0;
 
-        public bool IsSafeStorageCapacityExceeded =>
-            this.ViewModelSafeStorageItemsContainerExchange.Container.SlotsCount
-            > ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity;
+        public bool IsSafeStorageCapacityExceeded
+            => this.ViewModelSafeStorageItemsContainerExchange.Container.SlotsCount
+               > RatePvPSafeStorageCapacity.SharedValue;
 
         public bool IsSafeStorageTabSelected
         {
@@ -193,7 +194,7 @@
 
         protected override void DisposeViewModel()
         {
-            ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacityChanged
+            RateResourcesGatherBasic.ClientValueChanged
                 -= this.SafeItemsSlotsCapacityChangedHandler;
 
             FactionConstants.ClientFactionMembersMaxChanged

@@ -11,11 +11,6 @@
                                           typeof(FactionClientTagControl),
                                           new PropertyMetadata(default(string)));
 
-        public FactionClientTagControl()
-        {
-            this.InitializeComponent();
-        }
-
         public string ClanTag
         {
             get => (string)this.GetValue(ClanTagProperty);

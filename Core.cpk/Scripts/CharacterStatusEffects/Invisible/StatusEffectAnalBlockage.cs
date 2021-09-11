@@ -13,6 +13,10 @@
 
         public override double IntensityAutoDecreasePerSecondValue => 1.0 / 600.0; // total of 10 minutes for max time
 
+        public override bool IsPublic => false;
+
+        public override bool IsRemovedOnRespawn => true;
+
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
         public override string Name => this.ShortId;

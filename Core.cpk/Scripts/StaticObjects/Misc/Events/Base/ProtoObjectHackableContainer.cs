@@ -30,19 +30,6 @@
     {
         public const double SearchSkillExperienceMultiplier = 2;
 
-        private readonly double serverRateLootCountMultiplier;
-
-        protected ProtoObjectHackableContainer()
-        {
-            if (IsServer)
-            {
-                this.serverRateLootCountMultiplier = ServerRates.Get(
-                    "DropListItemsCountMultiplier." + this.ShortId,
-                    defaultValue: 1.0,
-                    @"This rate determines the item droplist multiplier for loot in " + this.Name + ".");
-            }
-        }
-
         public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public abstract double HackingStageDuration { get; }
@@ -89,8 +76,6 @@
                 character.TilePosition,
                 dropItemContext,
                 out _,
-                // compensate for the general server items drop rate
-                // but apply a separate rate
                 probabilityMultiplier: this.ServerGetDropListProbabilityMultiplier(worldObject));
 
             if (dropItemResult.TotalCreatedCount > 0)
@@ -196,10 +181,6 @@
                             .Add(ConstructionTileRequirements.ValidatorTileNotRestrictingConstructionEvenForServer);
         }
 
-        protected virtual double ServerGetDropListProbabilityMultiplier(IStaticWorldObject worldObject)
-        {
-            return this.serverRateLootCountMultiplier
-                   / DropItemsList.DropListItemsCountMultiplier;
-        }
+        protected abstract double ServerGetDropListProbabilityMultiplier(IStaticWorldObject staticWorldObject);
     }
 }

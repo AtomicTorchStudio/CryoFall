@@ -158,7 +158,7 @@
 
             foreach (var effect in this.techNode.NodeEffects)
             {
-                if (!(effect is TechNodeEffectRecipeUnlock recipeUnlock))
+                if (effect is not TechNodeEffectRecipeUnlock recipeUnlock)
                 {
                     continue;
                 }

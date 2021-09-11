@@ -149,11 +149,16 @@
 
         private void RefreshProgress()
         {
-            this.ClaimedEntriesCount =
-                this.Entries.Count(e => e.State == ViewModelWindowCompletionist.CompletionistEntryState.RewardClaimed);
-            this.PendingEntriesCount =
-                this.Entries.Count(e => e.State
-                                        == ViewModelWindowCompletionist.CompletionistEntryState.RewardAvailable);
+            this.ClaimedEntriesCount = this.Entries
+                                           .Count(e => e.State
+                                                       == ViewModelWindowCompletionist.CompletionistEntryState
+                                                           .RewardClaimed);
+
+            this.PendingEntriesCount = this.Entries
+                                           .Count(e => e.State
+                                                       == ViewModelWindowCompletionist.CompletionistEntryState
+                                                           .RewardAvailable);
+
             this.NotifyPropertyChanged(nameof(this.ProgressText));
         }
 

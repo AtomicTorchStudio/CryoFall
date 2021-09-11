@@ -86,6 +86,8 @@
 
         public const string Button_Save = "Save";
 
+        public const string Button_StayOffline = "Stay offline";
+
         public const string Button_Upgrade = "Upgrade";
 
         public const string CannotSelectDateInThePast = "Cannot select a date in the past.";
@@ -292,6 +294,10 @@
 
         public const string Dialog_AreYouSureWantToUse_Format =
             "Are you sure want to use {0}?";
+
+        public const string DialogClearList_Message = "Are you sure you want to clear this list?";
+
+        public const string DialogClearServerList_Title = "Clear servers list";
 
         // Max number of simultaneously controlled drones by a remote control device.
         public const string DroneControl_MaxSimultaneouslyControlledDrones =
@@ -771,6 +777,11 @@
 
         public const string LoadingSplashScreen_Title = "LOADING";
 
+        public const string LocalServerAutosaveDescription =
+            "Your progress is saved automatically (usually every hour) and when you disconnect or quit the game (even if you do this by closing the game or pressing Alt+F4).";
+
+        public const string LocalServerSaveName_Format = "Local game — {0}";
+
         public const string LoginAtomicTorchForm_Button_Login = "Login";
 
         public const string LoginAtomicTorchForm_KeepMeLoggedIn = "Keep me logged in";
@@ -790,8 +801,11 @@
 
         public const string MainMenu_TabOptions = "OPTIONS";
 
+        public const string MainMenu_TabPlay = "PLAY";
+
         public const string MainMenu_TabQuit = "QUIT";
 
+        // not used anymore, replaced with PLAY
         public const string MainMenu_TabServers = "SERVERS";
 
         public const string MainMenu_TabUpdates = "UPDATES HISTORY";
@@ -811,9 +825,13 @@
 
         public const string MenuCharacterCreation_Title = "Choose your character's appearance";
 
+        public const string MenuCurrentGame_Button_BrowseServerRates = "Browse server rates";
+
         public const string MenuCurrentGame_Button_Disconnect = "Disconnect";
 
         public const string MenuCurrentGame_Button_ShowWelcomeMessage = "Show welcome message";
+
+        public const string MenuCurrentGame_CurrentServerRates = "Current server rates";
 
         public const string MenuCurrentGame_NotConnected = "Not connected.";
 
@@ -833,6 +851,27 @@
         // this is a small block with links on our social pages
         public const string MenuHome_Social = "Social";
 
+        public const string MenuLocalGame_BrowseSavesFolder = "Browse saves folder";
+
+        // this is a button
+        public const string MenuLocalGame_Button_CreateNewWorld = "Create new world";
+
+        public const string MenuLocalGame_Button_LoadWorld = "Load world";
+
+        public const string MenuLocalGame_LocalServerRunning
+            = "The local server is operating.[br]The saved games list cannot be obtained until you disconnect from it.";
+
+        public const string MenuLocalGame_LocalServerStopping
+            = "The local server is stopping.[br]Please wait until it finishes in order to obtain the actual saved games list.";
+
+        public const string MenuLocalGame_NoSaves =
+            "Currently there are no saved games for local server.[br]You can create a new world.";
+
+        public const string MenuLocalGame_TabLocalWorlds = "Local worlds";
+
+        // this is a tab name
+        public const string MenuLocalGame_TabNewWorld = "New world";
+
         public const string MenuLogin_SteamError_Message =
             "Please quit the game, restart the Steam client and launch the game again.";
 
@@ -841,6 +880,10 @@
         public const string MenuOptions_DialogUnappliedChanges_Message = "Do you want to apply the changes?";
 
         public const string MenuOptions_DialogUnappliedChanges_Title = "You didn't apply the changes";
+
+        public const string MenuPlay_TabLocalGame = "LOCAL GAME";
+
+        public const string MenuPlay_TabMultiplayer = "MULTIPLAYER";
 
         public const string MenuQuit_QuestionAreYouSure = "Are you sure you want to quit to desktop?";
 
@@ -992,6 +1035,14 @@
               [*] Consider [b]closing[/b] other applications (especially web browsers, torrent clients, and downloaders).
               [*] Consider switching to a [b]cable connection[/b] if your PC is currently connected via Wi-Fi or mobile connection (wireless connections are often the reason for significant jitter and latency fluctuations).";
 
+        public const string NewWorldControl_CustomizeServerRates = "Customize server rates";
+
+        public const string NewWorldControl_CustomPresetDescription = "Custom scenario.";
+
+        public const string NewWorldControl_WorldName = "World name:";
+
+        public const string NewWorldControl_WorldName_Default = "New world";
+
         // displayed over an offline player character nickname
         public const string NicknameOfflinePlayer = "Offline Zzz...";
 
@@ -1010,6 +1061,8 @@
         public const string Notification_ObstaclesOnTheWay = "Obstacles in the way!";
 
         public const string Notification_TooFar = "Too far!";
+
+        public const string NotificationPlantSpoiled_Message = "The plant has spoiled.";
 
         public const string ObjectAccessModeEditor_CurrentAccessMode = "Current access mode";
 
@@ -1211,6 +1264,21 @@
         public const string Quest_Label_Ready = "READY";
 
         public const string QuestionAreYouSure = "Are you sure?";
+
+        public const string RatesEditorControl_AdvancedRatesVisibleCheckbox = "Display advanced rates";
+
+        public const string RatesEditorControl_DefaultRateValueFormat = "Default: {0}";
+
+        public const string RatesEditorControl_LocalServerRatesDescription =
+            "All local server presets have customized rates to ensure optimal gameplay for local server operating intermittently (compared to a multiplayer server which runs 24/7). E.g. plants grow faster, solar panels generate more electricity, events happen more often, etc.";
+
+        public const string RatesEditorControl_ModifiedRates = "Modified rates";
+
+        public const string RatesEditorControl_ResetRange = "Reset to reasonable range";
+
+        public const string RatesEditorControl_UnlockRange = "Unlock expanded range";
+
+        public const string RatesEditorControl_UnmodifiedRates = "Unmodified rates";
 
         public const string RebindKeyWindow_RebindingKey = "Rebinding key";
 
@@ -1460,7 +1528,11 @@
 
         public const string TitleDestructionTimeout = "Destruction timeout";
 
+        public const string TitleDisabled = "Disabled";
+
         public const string TitleDurability = "Durability";
+
+        public const string TitleEnabled = "Enabled";
 
         public const string TitleEnergyCharge = "Charge";
 
@@ -1641,6 +1713,8 @@
 
         public const string WindowCompletionist_TabCreatures = "Creatures";
 
+        public const string WindowCompletionist_TabEvents = "Events";
+
         public const string WindowCompletionist_TabFish = "Fish";
 
         public const string WindowCompletionist_TabFood = "Food";
@@ -1745,6 +1819,16 @@
             "Upgrading this structure requires learning relevant technology.";
 
         public const string WindowLandClaim_UpgradingTitleRequiredItems = "Required";
+
+        public const string WindowLaunchpad_ButtonCompleteTask = "Complete";
+
+        public const string WindowLaunchpad_CompletedTaskLabel = "Completed";
+
+        public const string WindowLaunchpad_Launchpad = "Launch!";
+
+        public const string WindowLaunchpad_ResetLaunchpad = "Reset launchpad";
+
+        public const string WindowLaunchpad_RocketLaunchedByPlayer_Format = "The rocket has been launched by {0}.";
 
         public const string WindowManufacturer_BestMatchingRecipe = "Best matching recipe";
 
@@ -1935,7 +2019,13 @@
               [br]The LP gain is directly proportional to
               [br]your character skill experience gain.";
 
+        public const string WindowTinkerTable_Button_Disassemble = "Disassemble";
+
         public const string WindowTinkerTable_Button_Repair = "Repair";
+
+        public const string WindowTinkerTable_TabDisassembly = "Disassembly";
+
+        public const string WindowTinkerTable_TabRepair = "Repair";
 
         public const string WindowTradingStationAdmin_LotConfig = "Lot config";
 

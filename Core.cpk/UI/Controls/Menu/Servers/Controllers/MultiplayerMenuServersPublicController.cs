@@ -77,7 +77,8 @@
                 item.IsOfficial = publicServerInfo.IsOfficial;
                 item.IsCommunity = !publicServerInfo.IsOfficial;
 
-                if (!item.IsInfoReceived)
+                if (!item.IsInfoReceived
+                    && !item.Address.IsLocalServer)
                 {
                     // set info from public info - but never overwrite the data already set from the actual server info
                     item.Title = publicServerInfo.Title;

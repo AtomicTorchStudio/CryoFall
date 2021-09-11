@@ -30,8 +30,6 @@
 
         public override double ExperienceToLearningPointsConversionMultiplier => 1; // standard speed
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public override string Name => "Crafting";
 
         protected override void PrepareProtoSkill(SkillConfig config)
@@ -70,7 +68,7 @@
         // Reward player for the crafted item.
         private static void ServerOnRecipeCraftedHandler(CraftingQueueItem craftingQueueItem)
         {
-            if (!(craftingQueueItem.GameObject is ICharacter character)
+            if (craftingQueueItem.GameObject is not ICharacter character
                 || character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
             {
                 // not crafted by player or player prototype is not exactly PlayerCharacter

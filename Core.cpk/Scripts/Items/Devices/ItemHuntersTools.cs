@@ -51,7 +51,7 @@
 
         private void ServerGatheringSystemGatherHandler(ICharacter character, IStaticWorldObject worldObject)
         {
-            if (!(worldObject.ProtoStaticWorldObject is ObjectCorpse))
+            if (worldObject.ProtoStaticWorldObject is not ObjectCorpse)
             {
                 return;
             }

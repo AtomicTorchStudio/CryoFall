@@ -157,8 +157,8 @@
                      c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                               c.Tile,
                               t => t.PhysicsBody.IsStatic
-                                   && !(t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject is
-                                            ObjectDepositGeothermalSpring)))
+                                   && t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject 
+                                       is not ObjectDepositGeothermalSpring))
                 .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
                      c => c.Tile.StaticObjects.All(
                          o => o.ProtoWorldObject is ObjectDepositGeothermalSpring

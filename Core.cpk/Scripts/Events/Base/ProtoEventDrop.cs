@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -11,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoEventDrop
@@ -27,9 +30,14 @@
 
         public IReadOnlyList<IProtoWorldObject> SpawnPreset { get; private set; }
 
-        public override string SharedGetProgressText(ILogicObject activeEvent)
+        public override string SharedGetProgressText(ILogicObject worldEvent)
         {
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
+            if (!publicState.IsSpawnCompleted)
+            {
+                return null;
+            }
+
             return string.Format(ProgressTextFormat,
                                  publicState.ObjectsTotal - publicState.ObjectsRemains,
                                  publicState.ObjectsTotal);
@@ -37,7 +45,30 @@
 
         protected override void ServerInitializeEvent(ServerInitializeData data)
         {
-            data.PrivateState.Init();
+            var privateState = data.PrivateState;
+            var publicState = data.PublicState;
+
+            privateState.Init();
+
+            if (data.IsFirstTimeInit
+                || publicState.IsSpawnCompleted)
+            {
+                return;
+            }
+
+            // the event was not properly initialized (spawn was not finished)
+            // destroy the already spawned objects and restart the spawn
+            foreach (var spawnedObject in privateState.SpawnedWorldObjects)
+            {
+                if (!spawnedObject.IsDestroyed)
+                {
+                    Server.World.DestroyObject(spawnedObject);
+                }
+            }
+
+            this.ServerSpawnObjectsAsync(data.GameObject,
+                                         publicState.AreaCirclePosition,
+                                         publicState.AreaCircleRadius);
         }
 
         protected override bool ServerIsValidEventPosition(Vector2Ushort tilePosition)
@@ -60,14 +91,14 @@
 
         protected abstract bool ServerIsValidSpawnPosition(Vector2Ushort spawnPosition);
 
-        protected virtual void ServerOnDropEventStarted(ILogicObject activeEvent)
+        protected virtual void ServerOnDropEventStarted(ILogicObject worldEvent)
         {
         }
 
-        protected override void ServerOnEventDestroyed(ILogicObject activeEvent)
+        protected override void ServerOnEventDestroyed(ILogicObject worldEvent)
         {
             // destroy all the spawned objects
-            foreach (var spawnedObject in GetPrivateState(activeEvent).SpawnedWorldObjects)
+            foreach (var spawnedObject in GetPrivateState(worldEvent).SpawnedWorldObjects)
             {
                 if (!spawnedObject.IsDestroyed)
                 {
@@ -76,19 +107,15 @@
             }
         }
 
-        protected sealed override void ServerOnEventWithAreaStarted(ILogicObject activeEvent)
+        protected sealed override void ServerOnEventWithAreaStarted(ILogicObject worldEvent)
         {
-            var privateState = GetPrivateState(activeEvent);
-            var publicState = GetPublicState(activeEvent);
+            var publicState = GetPublicState(worldEvent);
 
-            this.ServerSpawnObjects(activeEvent,
-                                    publicState.AreaCirclePosition,
-                                    publicState.AreaCircleRadius,
-                                    privateState.SpawnedWorldObjects);
+            this.ServerSpawnObjectsAsync(worldEvent,
+                                         publicState.AreaCirclePosition,
+                                         publicState.AreaCircleRadius);
 
-            this.ServerOnDropEventStarted(activeEvent);
-
-            ServerRefreshEventState(activeEvent);
+            this.ServerOnDropEventStarted(worldEvent);
         }
 
         protected abstract void ServerPrepareDropEvent(Triggers triggers, List<IProtoWorldObject> spawnPreset);
@@ -116,28 +143,148 @@
             this.SpawnPreset = list;
         }
 
-        protected virtual void ServerSpawnObjects(
-            ILogicObject activeEvent,
-            Vector2Ushort circlePosition,
-            ushort circleRadius,
-            List<IWorldObject> spawnedObjects)
+        protected override void ServerTryFinishEvent(ILogicObject worldEvent)
         {
-            var sqrMinDistanceBetweenSpawnedObjects =
-                this.MinDistanceBetweenSpawnedObjects * this.MinDistanceBetweenSpawnedObjects;
+            var canFinish = true;
 
-            foreach (var protoObjectToSpawn in this.SpawnPreset)
+            foreach (var spawnedObject in GetPrivateState(worldEvent).SpawnedWorldObjects)
             {
-                TrySpawn();
-
-                void TrySpawn()
+                if (spawnedObject.IsDestroyed)
                 {
-                    var attempts = 2_000;
+                    continue;
+                }
+
+                if (!Server.World.IsObservedByAnyPlayer(spawnedObject))
+                {
+                    Server.World.DestroyObject(spawnedObject);
+                    continue;
+                }
+
+                // still has a spawned object which cannot be destroyed as it's observed by a player
+                canFinish = false;
+                break;
+            }
+
+            if (canFinish)
+            {
+                base.ServerTryFinishEvent(worldEvent);
+            }
+        }
+
+        protected override void ServerUpdate(ServerUpdateData data)
+        {
+            base.ServerUpdate(data);
+
+            var publicState = data.PublicState;
+            if (!publicState.IsSpawnCompleted)
+            {
+                return;
+            }
+
+            var worldEvent = data.GameObject;
+            ServerRefreshEventState(worldEvent);
+
+            if (publicState.ObjectsRemains == 0)
+            {
+                this.ServerTryFinishEvent(worldEvent);
+            }
+        }
+
+        private static bool ServerCheckCanSpawn(IProtoWorldObject protoObjectToSpawn, Vector2Ushort spawnPosition)
+        {
+            return protoObjectToSpawn switch
+            {
+                IProtoCharacterMob
+                    => ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(
+                           spawnPosition.ToVector2D(),
+                           isPlayer: false)
+                       && !LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition),
+
+                IProtoStaticWorldObject protoStaticWorldObject
+                    // Please note: land claim check must be integrated in the object tile requirements
+                    => protoStaticWorldObject.CheckTileRequirements(
+                        spawnPosition,
+                        character: null,
+                        logErrors: false),
+
+                _ => throw new ArgumentOutOfRangeException("Unknown object type to spawn: " + protoObjectToSpawn)
+            };
+        }
+
+        private static void ServerRefreshEventState(ILogicObject worldEvent)
+        {
+            var privateState = GetPrivateState(worldEvent);
+            var publicState = GetPublicState(worldEvent);
+
+            var countDestroyed = 0;
+            var totalCount = privateState.SpawnedWorldObjects.Count;
+
+            foreach (var spawnedObject in privateState.SpawnedWorldObjects)
+            {
+                if (spawnedObject.IsDestroyed)
+                {
+                    countDestroyed++;
+                }
+            }
+
+            publicState.ObjectsRemains = (byte)Math.Min(byte.MaxValue, totalCount - countDestroyed);
+            publicState.ObjectsTotal = (byte)Math.Min(byte.MaxValue,   totalCount);
+        }
+
+        private static IWorldObject ServerTrySpawn(IProtoWorldObject protoObjectToSpawn, Vector2Ushort spawnPosition)
+        {
+            return protoObjectToSpawn switch
+            {
+                IProtoCharacterMob protoCharacterMob
+                    => Server.Characters.SpawnCharacter(protoCharacterMob,
+                                                        spawnPosition.ToVector2D()),
+
+                IProtoStaticWorldObject protoStaticWorldObject
+                    => Server.World.CreateStaticWorldObject(
+                        protoStaticWorldObject,
+                        spawnPosition),
+
+                _ => throw new Exception("Unknown object type to spawn: " + protoObjectToSpawn)
+            };
+        }
+
+        private async void ServerSpawnObjectsAsync(
+            ILogicObject worldEvent,
+            Vector2Ushort circlePosition,
+            ushort circleRadius)
+        {
+            var publicState = GetPublicState(worldEvent);
+            Api.Assert(!publicState.IsSpawnCompleted, "Spawn already completed");
+
+            var privateState = GetPrivateState(worldEvent);
+            var spawnedObjects = privateState.SpawnedWorldObjects;
+            var sqrMinDistanceBetweenSpawnedObjects = this.MinDistanceBetweenSpawnedObjects
+                                                      * this.MinDistanceBetweenSpawnedObjects;
+
+            var spawnedCount = 0;
+            var yieldIfOutOfTime = (Func<Task>)Api.Server.Core.YieldIfOutOfTime;
+
+            var protoObjectToSpawns = this.SpawnPreset;
+            Logger.Important(
+                $"Started async objects spawn for world event {worldEvent}: {this.SpawnPreset.Count} objects to spawn");
+
+            try
+            {
+                foreach (var protoObjectToSpawn in protoObjectToSpawns)
+                {
+                    var attemptsRemains = 5000;
                     do
                     {
-                        var spawnPosition =
-                            SharedCircleLocationHelper.SharedSelectRandomPositionInsideTheCircle(
-                                circlePosition,
-                                circleRadius);
+                        if (RandomHelper.RollWithProbability(0.5))
+                        {
+                            Thread.Sleep(16);
+                        }
+
+                        await yieldIfOutOfTime();
+
+                        var spawnPosition = SharedCircleLocationHelper.SharedSelectRandomPositionInsideTheCircle(
+                            circlePosition,
+                            circleRadius);
                         if (!this.ServerIsValidSpawnPosition(spawnPosition))
                         {
                             // doesn't match any specific checks determined by the inheritor (such as a zone test)
@@ -176,116 +323,27 @@
 
                         var spawnedObject = ServerTrySpawn(protoObjectToSpawn, spawnPosition);
                         spawnedObjects.Add(spawnedObject);
-                        Logger.Important($"Spawned world object: {spawnedObject} for active event {activeEvent}");
+                        spawnedCount++;
+                        Logger.Important($"Spawned world object: {spawnedObject} for world event {worldEvent}");
                         break;
                     }
-                    while (--attempts > 0);
+                    while (--attemptsRemains > 0);
 
-                    if (attempts == 0)
+                    if (attemptsRemains == 0)
                     {
-                        Logger.Error($"Cannot spawn world object: {protoObjectToSpawn} for active event {activeEvent}");
+                        Logger.Error(
+                            $"Cannot spawn world object: {protoObjectToSpawn} for world event {worldEvent}");
                     }
                 }
             }
-        }
-
-        protected override void ServerTryFinishEvent(ILogicObject activeEvent)
-        {
-            var canFinish = true;
-
-            foreach (var spawnedObject in GetPrivateState(activeEvent).SpawnedWorldObjects)
+            finally
             {
-                if (spawnedObject.IsDestroyed)
-                {
-                    continue;
-                }
+                publicState.IsSpawnCompleted = true;
+                Logger.Important(
+                    $"Completed async objects spawn for world event {worldEvent}: {spawnedCount}/{protoObjectToSpawns.Count} objects spawned");
 
-                if (!Server.World.IsObservedByAnyPlayer(spawnedObject))
-                {
-                    Server.World.DestroyObject(spawnedObject);
-                    continue;
-                }
-
-                // still has a spawned object which cannot be destroyed as it's observed by a player
-                canFinish = false;
-                break;
+                ServerRefreshEventState(worldEvent);
             }
-
-            if (canFinish)
-            {
-                base.ServerTryFinishEvent(activeEvent);
-            }
-        }
-
-        protected override void ServerUpdate(ServerUpdateData data)
-        {
-            base.ServerUpdate(data);
-
-            var activeEvent = data.GameObject;
-            ServerRefreshEventState(activeEvent);
-
-            if (data.PublicState.ObjectsRemains == 0)
-            {
-                this.ServerTryFinishEvent(activeEvent);
-            }
-        }
-
-        private static bool ServerCheckCanSpawn(IProtoWorldObject protoObjectToSpawn, Vector2Ushort spawnPosition)
-        {
-            return protoObjectToSpawn switch
-            {
-                IProtoCharacterMob
-                    => ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(
-                           spawnPosition.ToVector2D(),
-                           isPlayer: false)
-                       && !LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition),
-
-                IProtoStaticWorldObject protoStaticWorldObject
-                    // Please note: land claim check must be integrated in the object tile requirements
-                    => protoStaticWorldObject.CheckTileRequirements(
-                        spawnPosition,
-                        character: null,
-                        logErrors: false),
-
-                _ => throw new ArgumentOutOfRangeException("Unknown object type to spawn: " + protoObjectToSpawn)
-            };
-        }
-
-        private static void ServerRefreshEventState(ILogicObject activeEvent)
-        {
-            var privateState = GetPrivateState(activeEvent);
-            var publicState = GetPublicState(activeEvent);
-
-            var countDestroyed = 0;
-            var totalCount = privateState.SpawnedWorldObjects.Count;
-
-            foreach (var spawnedObject in privateState.SpawnedWorldObjects)
-            {
-                if (spawnedObject.IsDestroyed)
-                {
-                    countDestroyed++;
-                }
-            }
-
-            publicState.ObjectsRemains = (byte)Math.Min(byte.MaxValue, totalCount - countDestroyed);
-            publicState.ObjectsTotal = (byte)Math.Min(byte.MaxValue,   totalCount);
-        }
-
-        private static IWorldObject ServerTrySpawn(IProtoWorldObject protoObjectToSpawn, Vector2Ushort spawnPosition)
-        {
-            return protoObjectToSpawn switch
-            {
-                IProtoCharacterMob protoCharacterMob
-                    => Server.Characters.SpawnCharacter(protoCharacterMob,
-                                                        spawnPosition.ToVector2D()),
-
-                IProtoStaticWorldObject protoStaticWorldObject
-                    => Server.World.CreateStaticWorldObject(
-                        protoStaticWorldObject,
-                        spawnPosition),
-
-                _ => throw new Exception("Unknown object type to spawn: " + protoObjectToSpawn)
-            };
         }
     }
 }

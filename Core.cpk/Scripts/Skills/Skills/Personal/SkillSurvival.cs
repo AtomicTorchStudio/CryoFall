@@ -18,8 +18,6 @@
         // LP is not provided for this skill as it's too easy to gain just by being online and it's causing confusing LP gained notification
         public override double ExperienceToLearningPointsConversionMultiplier => 0;
 
-        public override bool IsSharingLearningPointsWithPartyMembers => false;
-
         public override string Name => "Survival";
 
         protected override void PrepareProtoSkill(SkillConfig config)

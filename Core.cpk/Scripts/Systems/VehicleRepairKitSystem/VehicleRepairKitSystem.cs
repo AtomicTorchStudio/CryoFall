@@ -23,22 +23,32 @@
 
     public class VehicleRepairKitSystem : ProtoSystem<VehicleRepairKitSystem>
     {
+        public const string NotificationErrorCannotRepairThisVehicle = "Cannot repair this vehicle";
+
         public const double RepairStageDurationSeconds = 10;
 
         private const double MaxDistanceForRepairAction = 2.24;
 
         public override string Name => "Vehicle repair kit system";
 
-        public static IDynamicWorldObject ClientGetObjectToRepairAtCurrentMousePosition()
+        public static IDynamicWorldObject ClientGetObjectToRepairAtCurrentMousePosition(
+            bool showErrorIfNoCompatibleVehicle)
         {
             var worldObjects = ClientGetObjectsAtCurrentMousePosition();
             IDynamicWorldObject vehicleToRepair = null;
+            IProtoVehicle protoVehicleIncompatible = null;
 
             // find first damaged vehicle there
             foreach (var worldObject in worldObjects)
             {
-                if (!(worldObject.ProtoGameObject is IProtoVehicle protoVehicle))
+                if (worldObject.ProtoGameObject is not IProtoVehicle protoVehicle)
                 {
+                    continue;
+                }
+
+                if (!protoVehicle.IsRepairable)
+                {
+                    protoVehicleIncompatible = protoVehicle;
                     continue;
                 }
 
@@ -51,6 +61,15 @@
                     vehicleToRepair = vehicle;
                     break;
                 }
+            }
+
+            if (vehicleToRepair is null
+                && protoVehicleIncompatible is not null
+                && showErrorIfNoCompatibleVehicle)
+            {
+                NotificationSystem.ClientShowNotification(NotificationErrorCannotRepairThisVehicle,
+                                                          color: NotificationColor.Bad,
+                                                          icon: protoVehicleIncompatible.Icon);
             }
 
             return vehicleToRepair;
@@ -72,8 +91,8 @@
 
         public static void ClientTryStartAction()
         {
-            if (!(ClientHotbarSelectedItemManager.SelectedItem?.ProtoGameObject
-                      is IProtoItemVehicleRepairKit))
+            if (ClientHotbarSelectedItemManager.SelectedItem?.ProtoGameObject
+                    is not IProtoItemVehicleRepairKit protoItemVehicleRepairKit)
             {
                 // no tool is selected
                 return;
@@ -85,7 +104,9 @@
                 return;
             }
 
-            var vehicleToRepair = ClientGetObjectToRepairAtCurrentMousePosition();
+            var vehicleToRepair = ClientGetObjectToRepairAtCurrentMousePosition(
+                showErrorIfNoCompatibleVehicle: ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem,
+                    evenIfHandled: true));
             if (vehicleToRepair is null)
             {
                 return;
@@ -290,7 +311,7 @@
 
         private static void SharedStartAction(ICharacter character, IDynamicWorldObject vehicle)
         {
-            if (!(vehicle?.ProtoGameObject is IProtoVehicle))
+            if (vehicle?.ProtoGameObject is not IProtoVehicle)
             {
                 return;
             }
@@ -306,7 +327,7 @@
             }
 
             var selectedHotbarItem = characterPublicState.SelectedItem;
-            if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemVehicleRepairKit))
+            if (selectedHotbarItem?.ProtoGameObject is not IProtoItemVehicleRepairKit)
             {
                 // no tool is selected
                 return;

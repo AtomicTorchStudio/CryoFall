@@ -238,8 +238,8 @@
                 this.fishingTargetPosition = this.FishingCompletedVisualizer.SceneObject.Position;
             }
 
-            if (!(this.character.GetPublicState<ICharacterPublicState>()
-                      .SelectedItem?.ProtoItem is IProtoItemToolFishing))
+            if (this.character.GetPublicState<ICharacterPublicState>()
+                    .SelectedItem?.ProtoItem is not IProtoItemToolFishing)
             {
                 // character switched to another item
                 this.Destroy();

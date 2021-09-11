@@ -25,7 +25,7 @@
 
         public override double GroundIconScale => 2;
 
-        public override ushort MaxItemsPerStack => ItemStackSize.Small;
+        public override ushort MaxItemsPerStack => ItemStackSize.Medium;
 
         protected abstract void PrepareProtoItemSapling(
             out IProtoObjectVegetation objectPlantProto);

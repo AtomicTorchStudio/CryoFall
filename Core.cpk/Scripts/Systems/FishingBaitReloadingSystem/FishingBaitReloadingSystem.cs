@@ -33,10 +33,9 @@
             var character = Api.Client.Characters.CurrentPlayerCharacter;
 
             var itemRod = character.SharedGetPlayerSelectedHotbarItem();
-            if (itemRod is null
-                || !(itemRod.ProtoItem is IProtoItemToolFishing protoRod))
+            if (itemRod?.ProtoItem is not IProtoItemToolFishing protoRod)
             {
-                // no active item to reload
+                // no selected rod to refill
                 return;
             }
 
@@ -202,7 +201,7 @@
                 throw new Exception("The item is not selected");
             }
 
-            if (!(itemFishingRod.ProtoItem is IProtoItemToolFishing))
+            if (itemFishingRod.ProtoItem is not IProtoItemToolFishing)
             {
                 throw new Exception("The item must be a fishing rod");
             }

@@ -392,7 +392,7 @@
                                      c => c.Tile.EightNeighborTiles.All(
                                          neighbor => neighbor.ProtoTile.Kind != TileKind.Water))
                                 .Add(ValidatorSameHeightLevelAsPlayer)
-                                .Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown)
+                                .Add(LandClaimSystem.ValidatorCheckLandClaimDepositClaimDelay)
                                 .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE)
                                 .Add(ValidatorCheckNoEventObjectNearby);
 

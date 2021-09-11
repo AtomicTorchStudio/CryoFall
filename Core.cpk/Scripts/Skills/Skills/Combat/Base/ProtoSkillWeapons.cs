@@ -22,8 +22,6 @@
         /// </summary>
         public abstract double ExperienceAddedPerShot { get; }
 
-        public override bool IsSharingLearningPointsWithPartyMembers => true;
-
         public abstract StatName StatNameDamageBonusMultiplier { get; }
 
         public abstract StatName StatNameDegrationRateMultiplier { get; }

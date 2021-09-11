@@ -86,8 +86,7 @@
 
             // try consume input item and add it's organic value into the mulchbox organic amount
             var inputItem = privateState.InputItemsCointainer.Items.FirstOrDefault();
-            if (inputItem is null
-                || !(inputItem.ProtoItem is IProtoItemOrganic protoItemOrganic))
+            if (inputItem?.ProtoItem is not IProtoItemOrganic protoItemOrganic)
             {
                 return;
             }

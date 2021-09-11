@@ -24,7 +24,7 @@
 
         public override string Description => "Submachine gun developed for 10mm rounds.";
 
-        public override uint DurabilityMax => 400;
+        public override uint DurabilityMax => 800;
 
         public override double FireInterval => 1 / 10.0; // 10 per second
 

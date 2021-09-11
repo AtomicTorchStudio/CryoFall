@@ -238,7 +238,7 @@
 
         public bool SharedHasCompletedTask(IPlayerTask task)
         {
-            if (!(task.TaskTarget is IProtoQuest quest))
+            if (task.TaskTarget is not IProtoQuest quest)
             {
                 throw new Exception("Task must have an associated quest");
             }

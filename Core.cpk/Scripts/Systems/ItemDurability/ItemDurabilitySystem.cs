@@ -24,6 +24,45 @@
 
         public override string Name => "Item durability system";
 
+        /// <summary>
+        /// An item with durability can be broken by using this method.
+        /// (item that has unlimited durability will be ignored)
+        /// </summary>
+        public static void ServerBreakItem(IItem item)
+        {
+            if ((item?.IsDestroyed ?? true)
+                || item.ProtoItem is not IProtoItemWithDurability protoItem)
+            {
+                return;
+            }
+
+            var durabilityMax = protoItem.DurabilityMax;
+            if (durabilityMax == 0)
+            {
+                // unlimited durability
+                return;
+            }
+
+            var privateState = item.GetPrivateState<IItemWithDurabilityPrivateState>();
+            privateState.DurabilityCurrent = 0;
+
+            // destroy the item and notify its owner that item is broken
+            Logger.Important("Item broke (durability 0): " + item);
+
+            var container = item.Container;
+            var slotId = item.ContainerSlotId;
+            var owner = container.OwnerAsCharacter;
+
+            Api.Server.Items.DestroyItem(item);
+            Api.SafeInvoke(() => protoItem.ServerOnItemBrokeAndDestroyed(item, container, slotId));
+
+            if (owner is not null)
+            {
+                Instance.CallClient(owner,
+                                    _ => _.ClientRemote_ItemBroke(item.ProtoItem));
+            }
+        }
+
         public static void ServerInitializeItem(IItemWithDurabilityPrivateState privateState, bool isFirstTimeInit)
         {
             var item = (IItem)privateState.GameObject;
@@ -55,12 +94,12 @@
         public static void ServerModifyDurability(IItem item, int delta)
         {
             if ((item?.IsDestroyed ?? true)
-                || delta == 0)
+                || delta == 0
+                || item.ProtoItem is not IProtoItemWithDurability protoItem)
             {
                 return;
             }
 
-            var protoItem = (IProtoItemWithDurability)item.ProtoItem;
             var durabilityMax = protoItem.DurabilityMax;
             if (durabilityMax == 0)
             {
@@ -80,21 +119,7 @@
                 return;
             }
 
-            // destroy the item and notify its owner that item is broken!
-            Logger.Important("Item broke (durability 0): " + item);
-
-            var container = item.Container;
-            var slotId = item.ContainerSlotId;
-            var owner = container.OwnerAsCharacter;
-
-            Api.Server.Items.DestroyItem(item);
-            Api.SafeInvoke(() => protoItem.ServerOnItemBrokeAndDestroyed(item, container, slotId));
-
-            if (owner is not null)
-            {
-                Instance.CallClient(owner,
-                                    _ => _.ClientRemote_ItemBroke(item.ProtoItem));
-            }
+            ServerBreakItem(item);
         }
 
         public static double SharedGetDurabilityFraction(IItem item)

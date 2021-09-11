@@ -26,9 +26,9 @@
         public override string Description =>
             "Laser rifle emits strong pulses of high-energy light, mostly in infrared spectrum, that burn the target. Offers much higher range than laser pistol.";
 
-        public override uint DurabilityMax => 1000;
+        public override uint DurabilityMax => 2000;
 
-        public override double EnergyUsePerShot => 100;
+        public override double EnergyUsePerShot => 50;
 
         public override double FireInterval => 0.5;
 

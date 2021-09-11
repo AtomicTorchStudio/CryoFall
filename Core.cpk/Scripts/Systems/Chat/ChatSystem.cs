@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
@@ -36,8 +37,6 @@
 
         public const string PlayerWentOnlineChatMessageFormat = "{0} joined the game";
 
-        private static readonly bool ServerIsTradeChatRoomEnabled;
-
         private static readonly Dictionary<ICharacter, List<ILogicObject>> ServerPrivateChatRoomsCache
             = new();
 
@@ -46,16 +45,6 @@
         private static ILogicObject sharedLocalChatRoomHolder;
 
         private static ILogicObject sharedTradeChatRoomHolder;
-
-        static ChatSystem()
-        {
-            ServerIsTradeChatRoomEnabled
-                = ServerRates.Get("IsTradeChatRoomEnabled",
-                                  defaultValue: 1,
-                                  description: @"Is ""Trade"" chat room available on this server?
-                                                 You can set it to 0 to disable it")
-                  > 0;
-        }
 
         public delegate void ClientReceivedMessageDelegate(BaseChatRoom chatRoom, in ChatEntry chatEntry);
 
@@ -310,7 +299,7 @@
         /// </summary>
         private static void ClientPlayerJoinedOrLeftHandler(OnlinePlayersSystem.Entry entry, bool isOnline)
         {
-            if (OnlinePlayersSystem.ClientIsListHidden
+            if (OnlinePlayersSystem.SharedIsListHidden
                 && !ServerOperatorSystem.ClientIsOperator()
                 && !ServerModeratorSystem.ClientIsModerator()
                 && !PartySystem.ClientIsPartyMember(entry.Name))
@@ -418,7 +407,7 @@
         {
             foreach (var chatRoomHolder in Api.Server.World.GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>())
             {
-                if (!(SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom))
+                if (SharedGetChatRoom(chatRoomHolder) is not ChatRoomPrivate privateChatRoom)
                 {
                     continue;
                 }
@@ -455,7 +444,7 @@
 
             // add the public chat rooms to the player scope
             ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
-            if (ServerIsTradeChatRoomEnabled)
+            if (RateIsTradeChatRoomEnabled.SharedValue)
             {
                 ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
             }
@@ -660,7 +649,7 @@
                                                        .GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
                                                        .ToList())
                         {
-                            if (!(SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom))
+                            if (SharedGetChatRoom(chatRoomHolder) is not ChatRoomPrivate privateChatRoom)
                             {
                                 continue;
                             }

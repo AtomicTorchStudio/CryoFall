@@ -109,7 +109,7 @@
 
         private void RecipeCraftedHandler(CraftingQueueItem craftingQueueItem)
         {
-            if (!(craftingQueueItem.GameObject is ICharacter character))
+            if (craftingQueueItem.GameObject is not ICharacter character)
             {
                 return;
             }

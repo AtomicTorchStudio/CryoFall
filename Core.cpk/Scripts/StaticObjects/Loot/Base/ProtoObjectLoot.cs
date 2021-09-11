@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -198,10 +199,13 @@
             }
 
             var lootDroplist = this.ServerGetLootDroplist(worldObject);
-            var result = lootDroplist.TryDropToCharacterOrGround(character,
-                                                                 worldObject.TilePosition,
-                                                                 new DropItemContext(character, worldObject),
-                                                                 groundContainer: out _);
+            var result = lootDroplist.TryDropToCharacterOrGround(
+                character,
+                worldObject.TilePosition,
+                new DropItemContext(character, worldObject),
+                groundContainer: out _,
+                probabilityMultiplier: RateResourcesGatherBasic.SharedValue);
+
             if (!result.IsEverythingCreated)
             {
                 // cannot create all the drop items

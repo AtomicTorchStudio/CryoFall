@@ -27,7 +27,8 @@
                 && ClientCurrentCharacterHelper.PublicState.CurrentPublicActionState
                     is not VehicleRepairActionState.PublicState)
             {
-                vehicle = VehicleRepairKitSystem.ClientGetObjectToRepairAtCurrentMousePosition();
+                vehicle = VehicleRepairKitSystem.ClientGetObjectToRepairAtCurrentMousePosition(
+                    showErrorIfNoCompatibleVehicle: false);
                 protoVehicle = vehicle?.ProtoGameObject as IProtoVehicle;
             }
 

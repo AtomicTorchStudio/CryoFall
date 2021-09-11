@@ -4,8 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class TechnologiesSystem : ProtoSystem<TechnologiesSystem>
@@ -140,24 +138,6 @@
             technologies.IsTechTreeChanged = false;
         }
 
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        private (double LearningPointsGainMultiplier,
-            double TimeGameTier3Basic,
-            double TimeGameTier3Specialized,
-            double TimeGameTier4Basic,
-            double TimeGameTier4Specialized,
-            double TimeGameTier5Basic,
-            double TimeGameTier5Specialized) ServerRemote_RequestTechRates()
-        {
-            return (TechConstants.ServerLearningPointsGainMultiplier,
-                    TechConstants.PvpTechTimeGameTier3Basic,
-                    TechConstants.PvpTechTimeGameTier3Specialized,
-                    TechConstants.PvpTechTimeGameTier4Basic,
-                    TechConstants.PvpTechTimeGameTier4Specialized,
-                    TechConstants.PvpTechTimeGameTier5Basic,
-                    TechConstants.PvpTechTimeGameTier5Specialized);
-        }
-
         private void ServerRemote_UnlockGroup(TechGroup techGroup)
         {
             ServerUnlockGroup(ServerRemoteContext.Character, techGroup);
@@ -166,34 +146,6 @@
         private void ServerRemote_UnlockNode(TechNode techNode)
         {
             ServerUnlockNode(ServerRemoteContext.Character, techNode);
-        }
-
-        // This bootstrapper requests tech-related rates from the server.
-        private class Bootstrapper : BaseBootstrapper
-        {
-            public override void ClientInitialize()
-            {
-                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
-                Refresh();
-
-                static async void Refresh()
-                {
-                    if (Client.Characters.CurrentPlayerCharacter is null)
-                    {
-                        return;
-                    }
-
-                    var rates = await Instance.CallServer(
-                                    _ => _.ServerRemote_RequestTechRates());
-                    TechConstants.ClientSetLearningPointsGainMultiplier(rates.LearningPointsGainMultiplier);
-                    TechConstants.ClientSetPvpTechTimeGame(rates.TimeGameTier3Basic,
-                                                           rates.TimeGameTier3Specialized,
-                                                           rates.TimeGameTier4Basic,
-                                                           rates.TimeGameTier4Specialized,
-                                                           rates.TimeGameTier5Basic,
-                                                           rates.TimeGameTier5Specialized);
-                }
-            }
         }
     }
 }

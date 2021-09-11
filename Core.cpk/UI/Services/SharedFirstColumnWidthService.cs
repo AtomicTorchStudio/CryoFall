@@ -72,7 +72,7 @@
             DependencyObject obj,
             DependencyPropertyChangedEventArgs e)
         {
-            if (!(obj is Grid grid))
+            if (obj is not Grid grid)
             {
                 Api.Logger.Error("Element must be a Grid");
                 return;

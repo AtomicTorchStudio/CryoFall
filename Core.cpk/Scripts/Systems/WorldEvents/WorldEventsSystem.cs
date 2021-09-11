@@ -12,7 +12,7 @@
 
     public class WorldEventsSystem : ProtoSystem<WorldEventsSystem>
     {
-        private static readonly List<ILogicObject> ServerListActiveEvents
+        private static readonly List<ILogicObject> ServerListWorldEvents
             = Api.IsServer ? new List<ILogicObject>() : null;
 
         private static readonly IWorldServerService ServerWorld
@@ -21,39 +21,39 @@
         [NotLocalizable]
         public override string Name => "World events system";
 
-        public static void ServerAddActiveEventToPlayerScope(ICharacter character, ILogicObject activeEvent)
+        public static void ServerAddWorldEventToPlayerScope(ICharacter character, ILogicObject worldEvent)
         {
             if (character.ServerIsOnline)
             {
-                ServerWorld.ForceEnterScope(character, activeEvent);
+                ServerWorld.ForceEnterScope(character, worldEvent);
             }
         }
 
-        public static void ServerRegisterEvent(ILogicObject activeEvent)
+        public static void ServerRegisterEvent(ILogicObject worldEvent)
         {
-            ServerListActiveEvents.Add(activeEvent);
+            ServerListWorldEvents.Add(worldEvent);
 
             var onlinePlayers = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
             foreach (var character in onlinePlayers)
             {
-                ServerAddActiveEventToPlayerScope(character, activeEvent);
+                ServerAddWorldEventToPlayerScope(character, worldEvent);
             }
         }
 
-        public static void ServerUnregisterEvent(ILogicObject activeEvent)
+        public static void ServerUnregisterEvent(ILogicObject worldEvent)
         {
-            ServerListActiveEvents.Remove(activeEvent);
+            ServerListWorldEvents.Remove(worldEvent);
             // the event will be automatically removed from players' scope as it's destroyed
         }
 
         [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        private void ServerRemote_RequestActiveEvents()
+        private void ServerRemote_RequestWorldEvents()
         {
             var character = ServerRemoteContext.Character;
 
-            foreach (var activeEvent in ServerListActiveEvents)
+            foreach (var worldEvent in ServerListWorldEvents)
             {
-                ServerAddActiveEventToPlayerScope(character, activeEvent);
+                ServerAddWorldEventToPlayerScope(character, worldEvent);
             }
         }
 
@@ -70,7 +70,7 @@
                 {
                     if (Api.Client.Characters.CurrentPlayerCharacter is not null)
                     {
-                        Instance.CallServer(_ => _.ServerRemote_RequestActiveEvents());
+                        Instance.CallServer(_ => _.ServerRemote_RequestWorldEvents());
                     }
                 }
             }

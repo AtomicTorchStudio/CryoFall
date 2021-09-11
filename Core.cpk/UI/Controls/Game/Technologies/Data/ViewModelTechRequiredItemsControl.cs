@@ -49,6 +49,11 @@
 
         public IEnumerable<Inline> CreateRequiredProtoItemsInlines()
         {
+            if (this.RequiredProtoItems is null)
+            {
+                yield break;
+            }
+
             foreach (var entry in this.RequiredProtoItems)
             {
                 var isAvailabe = entry.IsTechAvailable;

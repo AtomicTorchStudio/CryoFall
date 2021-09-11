@@ -288,7 +288,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         private void ServerRemote_SetDirectAccessMode(IStaticWorldObject worldObject, WorldObjectDirectAccessMode mode)
         {
             var character = ServerRemoteContext.Character;
-            if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
+            if (worldObject.ProtoGameObject is not IProtoObjectWithAccessMode protoObjectWithAccessMode)
             {
                 throw new Exception("This world object doesn't have an access mode");
             }
@@ -340,7 +340,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             WorldObjectFactionAccessModes modes)
         {
             var character = ServerRemoteContext.Character;
-            if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
+            if (worldObject.ProtoGameObject is not IProtoObjectWithAccessMode protoObjectWithAccessMode)
             {
                 throw new Exception("This world object doesn't have an access mode");
             }

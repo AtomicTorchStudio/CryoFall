@@ -11,8 +11,6 @@
 
     public class ItemPeredozin : ProtoItemMedical
     {
-        public const double MedicalCooldownDuration = MedicineCooldownDuration.Medium;
-
         public const string NotificationNoMedicineOveruse_Message =
             "You don't have any symptoms of medicine overuse. There's no point in using Peredozin now.";
 
@@ -26,6 +24,8 @@
             "You've already used Peredozin recently, and you feel the next one will not fit...";
 
         public const string NotificationTooMuch_Title = "Too much!";
+
+        public static double MedicalCooldownDuration => MedicineCooldownDuration.Medium;
 
         public override double CooldownDuration => MedicalCooldownDuration;
 

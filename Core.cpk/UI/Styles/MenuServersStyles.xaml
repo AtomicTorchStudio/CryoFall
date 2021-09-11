@@ -24,7 +24,9 @@
 
     <Color x:Key="ColorServerItemBackground">#FF447799</Color>
 
-    <SolidColorBrush x:Key="ServerAddressForegroundBrush" Color="White" Opacity="0.6" />
+    <SolidColorBrush x:Key="ServerAddressForegroundBrush"
+                     Color="White"
+                     Opacity="0.6" />
 
     <ControlTemplate x:Key="ColumnWipedDateContentTemplate"
                      TargetType="ContentControl">
@@ -358,8 +360,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Item" />
-        <!-- Cannot use Recycling mode here due to a bug in NoesisGUI 2.2 -->
-        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Standard" />
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Template">
             <Setter.Value>

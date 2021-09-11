@@ -29,6 +29,8 @@
 
         public override string Description => string.Empty;
 
+        public override bool IsPublic => false;
+
         public override StatusEffectKind Kind => StatusEffectKind.Neutral;
 
         public override string Name => this.ShortId;

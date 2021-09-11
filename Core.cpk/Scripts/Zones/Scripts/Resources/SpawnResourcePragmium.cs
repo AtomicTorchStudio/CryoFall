@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
@@ -13,7 +14,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SpawnResourcePragmium : ProtoZoneSpawnScript
@@ -28,18 +28,7 @@
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
-            this.spawnRateMultiplier = MathHelper.Clamp(
-                ServerRates.Get(
-                    "Resources.PragmiumSourceNumberMultiplier",
-                    defaultValue: 1.0,
-                    @"This multiplier determines how many pragmium sources (large pillars)
-                      should be present in the Barren biome (desert).
-                      E.g. to reduce the max number of pragmium sources to half, change this to 0.5.
-                      You can also completely disable the spawn of pragmium in desert by changing this to 0.
-                      It's not possible to define a specific number as it depends on the biome and map size.
-                      (allowed range: from 0.0 to 10.0)"),
-                min: 0,
-                max: 10);
+            this.spawnRateMultiplier = RateResourcesPragmiumSourceMultiplier.SharedValue;
 
             // this resource is not spawned on the world init
             triggers

@@ -61,7 +61,7 @@
             var character = request.Character;
 
             var staticWorldObject = (IStaticWorldObject)worldObject;
-            if (!(worldObject.ProtoGameObject is IProtoObjectGatherable protoGatherable))
+            if (worldObject.ProtoGameObject is not IProtoObjectGatherable protoGatherable)
             {
                 throw new Exception("Not a gatherable resource: " + worldObject);
             }
@@ -91,7 +91,7 @@
         protected override void SharedValidateRequest(WorldActionRequest request)
         {
             var worldObject = (IStaticWorldObject)request.WorldObject;
-            if (!(worldObject?.ProtoWorldObject is IProtoObjectGatherable protoGatherable))
+            if (worldObject?.ProtoWorldObject is not IProtoObjectGatherable protoGatherable)
             {
                 throw new Exception("The world object must be gatherable");
             }

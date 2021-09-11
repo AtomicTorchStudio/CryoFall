@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
 
-    public class TechNodeToxinProliferator : TechNode<TechGroupExoticWeapons>
+    public class TechNodeToxinProliferator : TechNode<TechGroupExoticWeaponsT5>
     {
         protected override void PrepareTechNode(Config config)
         {

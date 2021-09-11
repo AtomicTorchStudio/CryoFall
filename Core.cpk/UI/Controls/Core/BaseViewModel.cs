@@ -144,12 +144,12 @@
                 }
 
                 if (fieldValue is IDisposable disposableFieldValue
-                    && !(fieldValue is BaseState))
+                        and not BaseState)
                 {
                     try
                     {
-                        if (!(fieldValue is BaseViewModel)
-                            && !(fieldValue is StateSubscriptionStorage))
+                        if (fieldValue is not BaseViewModel
+                                and not StateSubscriptionStorage)
                         {
                             Logger.Warning(
                                 $"Auto-disposing view model field (IDisposable): {fieldInfo.Name} in type {this.GetType().FullName} - value: {fieldValue}");

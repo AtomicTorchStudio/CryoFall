@@ -351,7 +351,7 @@
             out uint destroyedCount)
         {
             var serverItemsService = Api.Server.Items;
-            if (!(protoItem is IProtoItemWithFreshness))
+            if (protoItem is not IProtoItemWithFreshness)
             {
                 // for items without freshness use the default approach
                 serverItemsService.DestroyItemsOfType(containers,
@@ -409,7 +409,7 @@
 
             static void SortItems(IProtoItem protoItem, List<IItem> items)
             {
-                if (!(protoItem is IProtoItemWithFreshness protoItemWithFreshness)
+                if (protoItem is not IProtoItemWithFreshness protoItemWithFreshness
                     || protoItemWithFreshness.FreshnessMaxValue == 0)
                 {
                     return;

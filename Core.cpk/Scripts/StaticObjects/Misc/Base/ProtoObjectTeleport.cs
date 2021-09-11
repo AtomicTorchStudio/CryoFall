@@ -96,7 +96,7 @@
 
             foreach (var worldObject in tempObjects.AsList())
             {
-                if (!(worldObject.ProtoGameObject is IProtoVehicle)
+                if (worldObject.ProtoGameObject is not IProtoVehicle
                     || !WorldObjectOwnersSystem.SharedIsOwner(forCharacter, worldObject))
                 {
                     // not a vehicle or player doesn't own it

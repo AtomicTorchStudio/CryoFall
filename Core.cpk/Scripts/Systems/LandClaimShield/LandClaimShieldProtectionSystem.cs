@@ -382,13 +382,6 @@
             }
         }
 
-        [RemoteCallSettings(timeInterval: RemoteCallSettingsAttribute.MaxTimeInterval)]
-        public (bool SharedIsEnabled, double SharedActivationDuration, double SharedCooldownDuration)
-            ServerRemote_GetSettings()
-        {
-            return (SharedIsEnabled, SharedActivationDuration, SharedCooldownDuration);
-        }
-
         protected override void PrepareSystem()
         {
             if (IsClient)

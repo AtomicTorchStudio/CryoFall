@@ -40,6 +40,12 @@
                 completionistData.ServerTryClaimReward(protoFish);
             }
 
+            foreach (var protoEvent in CompletionistSystem.CompletionistAllEvents)
+            {
+                completionistData.ServerOnParticipatedInEvent(protoEvent);
+                completionistData.ServerTryClaimReward(protoEvent);
+            }
+
             return null;
         }
     }

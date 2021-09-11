@@ -78,6 +78,9 @@
 
         public double ExperienceTotalNextLevel { get; private set; }
 
+        public IReadOnlyList<string> ExtraDescriptionEntries
+            => this.skill.ExtraDescriptionEntries;
+
         public Brush Icon => IsDesignTime
                                  ? (Brush)Brushes.Red
                                  : Client.UI.GetTextureBrush(this.skill.Icon);
@@ -170,6 +173,7 @@
                            .ToList();
 
             // create combined display view models for stat effects
+            // (these are not rendered separately even if they're present in the list)
             // please note - we're using combined display even for the single stat effects
             var maxLevel = this.skill.MaxLevel;
             foreach (var group in list.OfType<ViewModelSkillEffectStat>()

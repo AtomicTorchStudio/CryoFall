@@ -5,6 +5,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
     using AtomicTorch.CBND.CoreMod.Helpers;
@@ -276,6 +277,11 @@
 
                 foreach (var playerCharacter in listPlayers)
                 {
+                    if (playerCharacter.ProtoGameObject is PlayerCharacterSpectator)
+                    {
+                        continue;
+                    }
+
                     if (RandomHelper.RollWithProbability(MissileProbabilityToTargetDirectly))
                     {
                         TrySpawnMissile(playerCharacter.TilePosition);

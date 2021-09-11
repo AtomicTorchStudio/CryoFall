@@ -25,6 +25,7 @@
             Append("Mobs", completionistData.ListMobs);
             Append("Loot", completionistData.ListLoot);
             AppendFish("Fish", completionistData.ListFish);
+            Append("Events", completionistData.ListEvents);
 
             return sb.ToString();
 

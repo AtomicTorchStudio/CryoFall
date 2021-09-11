@@ -13,6 +13,8 @@
 
         Tier4 = 4,
 
-        Tier5 = 5
+        Tier5 = 5,
+
+        Tier6 = 6
     }
 }

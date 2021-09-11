@@ -63,13 +63,15 @@
                                                  Foreground="{StaticResource BrushColorLabelForeground}"
                                                  FontWeight="Bold"
                                                  FontSize="14.5"
-                                                 LineHeight="15.5"
+                                                 LineHeight="16.5"
                                                  LineStackingStrategy="BlockLineHeight"
+                                                 MinHeight="100"
                                                  FontFamily="{StaticResource CondensedFontFamily}"
                                                  TextWrapping="Wrap"
                                                  TextTrimming="None"
                                                  TextAlignment="Left"
-                                                 HorizontalAlignment="Center"
+                                                 HorizontalAlignment="Left"
+                                                 VerticalContentAlignment="Center"
                                                  Margin="0,10,0,0" />
 
                         <Rectangle Grid.Row="2"

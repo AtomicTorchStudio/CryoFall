@@ -27,14 +27,14 @@
         {
             category = GetCategory<StructureCategoryBuildings>();
 
-            build.StagesCount = 5;
+            build.StagesCount = 3;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 3);
-            build.AddStageRequiredItem<ItemClay>(count: 3);
+            build.AddStageRequiredItem<ItemStone>(count: 1);
+            build.AddStageRequiredItem<ItemClay>(count: 1);
 
-            repair.StagesCount = 5;
+            repair.StagesCount = 3;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 2);
+            repair.AddStageRequiredItem<ItemStone>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

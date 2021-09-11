@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -125,14 +126,13 @@
             return character.SharedGetFinalStatMultiplier(StatName.FarmingTasksSpeed);
         }
 
-        public bool ServerCanBeWatered(IStaticWorldObject worldObjectPlant)
+        public virtual bool ServerCanBeWatered(IStaticWorldObject worldObjectPlant)
         {
-            var plantPrivateState = GetPrivateState(worldObjectPlant);
             var plantPublicState = GetPublicState(worldObjectPlant);
-            if ((plantPrivateState.ProducedHarvestsCount == this.NumberOfHarvests
-                 && this.NumberOfHarvests > 0)
-                || plantPublicState.IsSpoiled)
+            if (plantPublicState.IsSpoiled)
             {
+                // Please note: it's possible to water a plant that is ready to harvest
+                // (useful to reset the spoil timer for flowers).
                 return false;
             }
 
@@ -183,6 +183,18 @@
                 privateState.ServerTimeWateringEnds,
                 privateState.LastWateringDuration,
                 out _);
+
+            if (publicState.HasHarvest)
+            {
+                // reset the spoil timer
+                // calculate the actual growth duration (with current bonuses)
+                var duration =
+                    this.ServerCalculateGrowthStageDuration(publicState.GrowthStage, privateState, publicState);
+
+                // calculate and apply the remaining duration (with current bonuses)
+                privateState.ServerTimeNextGrowthStage = Server.Game.FrameTime + duration;
+                privateState.ServerTimeLastDurationSeconds = (float)duration;
+            }
 
             var wateringFractionAdded = newWateringFraction - previousWateringFraction;
             wateringFractionAdded = MathHelper.Clamp(wateringFractionAdded, 0, 1);
@@ -386,8 +398,8 @@
                               .TileHasAnyPhysicsObjectsWhere(
                                   c.Tile,
                                   o => o.PhysicsBody.IsStatic
-                                       && !(o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
-                                                is IProtoObjectFarm)));
+                                       && o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
+                                           is not IProtoObjectFarm));
         }
 
         protected override double ServerCalculateGrowthStageDuration(
@@ -410,7 +422,7 @@
 
             // next stage is spoiling (the growth speed multiplier variable is not applicable here)
             return this.TimeToHarvestSpoilTotalSeconds
-                   / FarmingConstants.SharedFarmPlantsSpoilSpeedMultiplier;
+                   * FarmingConstants.SharedFarmPlantsLifetimeMultiplier;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -475,7 +487,8 @@
                     who,
                     who.TilePosition,
                     new DropItemContext(who, vegetationObject),
-                    out var groundItemsContainer);
+                    out var groundItemsContainer,
+                    probabilityMultiplier: RateResourcesGatherBasic.SharedValue);
                 if (result.TotalCreatedCount == 0)
                 {
                     result.Rollback();

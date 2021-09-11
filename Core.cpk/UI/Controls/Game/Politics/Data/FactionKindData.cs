@@ -36,7 +36,7 @@
                                this.MembersMax);
 
         public ushort MembersMax
-            => FactionConstants.GetFactionMembersMax(this.FactionKind);
+            => FactionConstants.SharedGetFactionMembersMax(this.FactionKind);
 
         public string Title => this.FactionKind.GetDescription();
     }

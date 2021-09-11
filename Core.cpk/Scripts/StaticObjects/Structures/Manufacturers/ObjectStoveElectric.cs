@@ -90,7 +90,7 @@
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            build.AddStageRequiredItem<ItemWire>(count: 3);
+            build.AddStageRequiredItem<ItemWire>(count: 2);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;

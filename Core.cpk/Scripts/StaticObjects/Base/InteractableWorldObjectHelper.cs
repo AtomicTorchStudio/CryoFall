@@ -86,7 +86,7 @@
             }
 
             Api.SafeInvoke(() => ClientMenuCreated?.Invoke(worldObject, objectWindow));
-            if (!(objectWindow is IMenu))
+            if (objectWindow is not IMenu)
             {
                 ClientCurrentInteractionMenu.RegisterMenuWindow(objectWindow);
             }

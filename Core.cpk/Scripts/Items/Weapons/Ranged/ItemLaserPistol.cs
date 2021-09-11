@@ -17,9 +17,9 @@
         public override string Description =>
             "Laser pistol emits quick pulses of high-energy light that burn the target.";
 
-        public override uint DurabilityMax => 1400;
+        public override uint DurabilityMax => 3000;
 
-        public override double EnergyUsePerShot => 20;
+        public override double EnergyUsePerShot => 10;
 
         public override double FireInterval => 0.15;
 

@@ -78,7 +78,7 @@
                 return;
             }
 
-            if (!(queue.GameObject is ICharacter character))
+            if (queue.GameObject is not ICharacter character)
             {
                 return;
             }

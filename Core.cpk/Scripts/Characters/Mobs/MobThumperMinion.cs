@@ -12,9 +12,11 @@
     {
         public override bool IsAvailableInCompletionist => false;
 
-        protected override double DistanceEnemyTooFar => 24;
+        public override double StatDefaultHealthMax => 250;
 
-        protected override double DistanceEnemyTooFarWhenAggro => 36;
+        protected override double DistanceEnemyTooFar => 30;
+
+        protected override double DistanceEnemyTooFarWhenAggro => 40;
 
         public override void ServerOnDeath(ICharacter character)
         {

@@ -7,6 +7,7 @@
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -233,7 +234,7 @@
         public virtual void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
         {
             // only unequipped items will drop unless full loot system enabled
-            shouldDrop = ItemConstants.ServerPvpIsFullLootEnabled
+            shouldDrop = RatePvPIsFullLootEnabled.SharedValue
                          || !isEquipped;
 
             if (!isEquipped)

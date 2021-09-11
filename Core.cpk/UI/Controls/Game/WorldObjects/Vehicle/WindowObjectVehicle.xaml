@@ -125,6 +125,7 @@
                             <!-- Repair button -->
                             <ContentControl Grid.Row="3"
                                             Grid.Column="0"
+                                            Visibility="{Binding IsRepairable, Converter={StaticResource BoolToVisibilityConverter}}"
                                             Background="Transparent"
                                             Margin="0,30,0,7">
                                 <Button Content="{x:Static loc:CoreStrings.WindowTinkerTable_Button_Repair}"

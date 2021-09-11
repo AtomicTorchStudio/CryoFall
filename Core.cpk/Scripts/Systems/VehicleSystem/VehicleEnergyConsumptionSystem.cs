@@ -83,15 +83,16 @@
 
                 var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
                 var isMoving = vehicle.PhysicsBody.Velocity != Vector2D.Zero;
-                var energyConsumption = isMoving
-                                            ? protoVehicle.EnergyUsePerSecondMoving
-                                            : protoVehicle.EnergyUsePerSecondIdle;
 
                 var energyConsumptionRate = character.SharedGetFinalStatMultiplier(StatName.VehicleFuelConsumptionRate);
                 energyConsumptionRate = Math.Max(energyConsumptionRate, 0);
 
-                energyConsumption = (ushort)Math.Floor(energyConsumption * spreadDeltaTime * energyConsumptionRate);
-                if (VehicleEnergySystem.ServerDeductEnergyCharge(vehicle, energyConsumption))
+                var energyConsumption = protoVehicle.SharedGetCurrentEnergyConsumption(vehicle);
+                energyConsumption = energyConsumption * energyConsumptionRate * spreadDeltaTime;
+
+                if (VehicleEnergySystem.ServerDeductEnergyCharge(
+                    vehicle,
+                    requiredEnergyAmount: (ushort)Math.Floor(energyConsumption)))
                 {
                     // consumed energy
                     if (isMoving)

@@ -47,9 +47,10 @@
             }
         }
 
-        private void ServerStructureRelocatedHandler(ICharacter character, 
-                                                     Vector2Ushort fromPosition,
-                                                     IStaticWorldObject staticWorldObject)
+        private void ServerStructureRelocatedHandler(
+            ICharacter character,
+            Vector2Ushort fromPosition,
+            IStaticWorldObject staticWorldObject)
         {
             var context = this.GetActiveContext(character, out _);
             context?.SetCompleted();

@@ -37,7 +37,10 @@
             Loot = 2,
 
             [Description(CoreStrings.WindowCompletionist_TabFish)]
-            Fish = 3
+            Fish = 3,
+
+            [Description(CoreStrings.WindowCompletionist_TabEvents)]
+            Events = 4
         }
 
         public CompletionistPageName CompletionistPage { get; }
@@ -65,6 +68,7 @@
                 CompletionistPageName.Creatures => completionistData.ListMobs,
                 CompletionistPageName.Loot      => completionistData.ListLoot,
                 CompletionistPageName.Fish      => completionistData.ListFish,
+                CompletionistPageName.Events    => completionistData.ListEvents,
                 _                               => throw new ArgumentOutOfRangeException()
             };
 
@@ -86,6 +90,7 @@
                 CompletionistPageName.Creatures => CompletionistSystem.CompletionistAllMobs.Count,
                 CompletionistPageName.Loot      => CompletionistSystem.CompletionistAllLoot.Count,
                 CompletionistPageName.Fish      => CompletionistSystem.CompletionistAllFish.Count,
+                CompletionistPageName.Events    => CompletionistSystem.CompletionistAllEvents.Count,
                 _                               => throw new ArgumentOutOfRangeException()
             };
 

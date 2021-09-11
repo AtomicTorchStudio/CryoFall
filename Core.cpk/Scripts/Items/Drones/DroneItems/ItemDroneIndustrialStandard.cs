@@ -6,7 +6,7 @@
     {
         public override string Description => "Standard industrial drone can be used for quick resource acquisition.";
 
-        public override uint DurabilityMax => 6000;
+        public override uint DurabilityMax => 7500;
 
         public override string Name => "Industrial drone";
 

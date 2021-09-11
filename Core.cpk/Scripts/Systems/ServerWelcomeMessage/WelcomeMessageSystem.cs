@@ -327,9 +327,16 @@
 
         private static async void RefreshWelcomeMessage()
         {
-            if (Api.IsEditor
-                && !ViewModelMenuCurrentGame.CurrentGameInfoEnabledInEditor)
+            if (Api.IsEditor)
             {
+                // no welcome message for Editor
+                return;
+            }
+
+            await SharedLocalServerHelper.ClientTaskIsLocalServerPropertyReceived;
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                // no welcome message for local server
                 return;
             }
 
@@ -361,12 +368,19 @@
         [RemoteCallSettings(timeInterval: 1)]
         private string ServerRemote_GetDescriptionMessage()
         {
-            return serverDescriptionText;
+            return SharedLocalServerHelper.IsLocalServer
+                       ? null
+                       : serverDescriptionText;
         }
 
         [RemoteCallSettings(timeInterval: 1)]
         private WelcomeMessageRemoteData ServerRemote_GetInfo()
         {
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                return new WelcomeMessageRemoteData(null, null);
+            }
+
             if (ServerScheduledWipeDateUtc.HasValue
                 && ServerScheduledWipeDateUtc.Value <= DateTime.Now)
             {

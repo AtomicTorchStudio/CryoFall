@@ -115,11 +115,13 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotApplyLastHarvestOrRotten()
+        private void ClientRemote_CannotApplyLastHarvestOrSpoiled(bool isSpoiled)
         {
             NotificationSystem.ClientShowNotification(
                 CannotApplyErrorTitle,
-                NotificationPlantHarvestReady,
+                isSpoiled
+                    ? CoreStrings.NotificationPlantSpoiled_Message
+                    : NotificationPlantHarvestReady,
                 NotificationColor.Bad,
                 this.Icon);
         }
@@ -155,7 +157,8 @@
                 || plantPublicState.IsSpoiled)
             {
                 // no need to apply
-                this.CallClient(character, _ => _.ClientRemote_CannotApplyLastHarvestOrRotten());
+                this.CallClient(character,
+                                _ => _.ClientRemote_CannotApplyLastHarvestOrSpoiled(plantPublicState.IsSpoiled));
                 return false;
             }
 
