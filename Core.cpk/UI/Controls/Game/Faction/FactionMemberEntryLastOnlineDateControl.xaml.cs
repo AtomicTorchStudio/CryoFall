@@ -42,13 +42,8 @@
                 return "—";
             }
 
-            if (totalDays >= 1)
+            if (totalDays >= 2)
             {
-                if (totalDays < 2)
-                {
-                    return CoreStrings.WipedDate_Yesterday;
-                }
-
                 return string.Format(CoreStrings.WipedDate_DaysAgo_Format, (int)totalDays);
             }
 

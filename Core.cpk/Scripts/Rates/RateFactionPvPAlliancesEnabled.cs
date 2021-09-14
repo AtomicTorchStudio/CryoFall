@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFactionPvPAlliancesEnabled
         : BaseRateBoolean<RateFactionPvPAlliancesEnabled>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines whether the alliances list is available for PvP servers.
               By default PvP alliances are allowed.

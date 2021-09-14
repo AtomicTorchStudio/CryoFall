@@ -12,7 +12,7 @@
         where TServerRate : BaseRateWorldEventInterval<TWorldEvent, TServerRate>, new()
         where TWorldEvent : IProtoEntity, new()
     {
-        private const string Name_Format = "World event interval — {0}";
+        public const string Name_Format = "World event interval—{0}";
 
         public static readonly Lazy<string> LazyProtoEventId
             = new(() => typeof(TWorldEvent).Name.Substring("Event".Length));

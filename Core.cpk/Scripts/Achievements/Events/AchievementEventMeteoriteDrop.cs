@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Achievements
 {
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
 
     public class AchievementEventMeteoriteDrop : ProtoAchievement
     {
@@ -10,7 +10,7 @@
         protected override void PrepareAchievement(TasksList tasks)
         {
             tasks
-                .Add(TaskDestroy.Require<ObjectMeteorite>());
+                .Add(TaskCompleteCompletionistEntry.Require<EventMeteoriteDrop>());
         }
     }
 }

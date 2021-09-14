@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateDamageByCreaturesMultiplier
         : BaseRateDouble<RateDamageByCreaturesMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             "All damage dealt by creatures (to player and/or other creatures) is multiplied by this rate.";
 

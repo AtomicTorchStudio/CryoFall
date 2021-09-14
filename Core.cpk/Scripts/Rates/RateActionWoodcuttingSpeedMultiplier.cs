@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateActionWoodcuttingSpeedMultiplier
         : BaseRateDouble<RateActionWoodcuttingSpeedMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             "Adjusts the damage to trees by tools and drones.";
 

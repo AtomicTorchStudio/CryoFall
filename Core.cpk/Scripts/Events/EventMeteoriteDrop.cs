@@ -20,6 +20,7 @@
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
+                                             && !Server.Core.IsLocalServer
                                                  ? (ushort)58
                                                  : (ushort)80;
 
@@ -79,7 +80,8 @@
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
             int locationsCount;
-            if (PveSystem.ServerIsPvE)
+            if (PveSystem.ServerIsPvE
+                && !Server.Core.IsLocalServer)
             {
                 locationsCount = 9;
             }
@@ -158,7 +160,10 @@
             triggers.Add(GetTrigger<TriggerTimeInterval>()
                              .Configure(RateWorldEventIntervalMeteoriteDrop.SharedValueIntervalHours));
 
-            var meteoritesToSpawn = PveSystem.ServerIsPvE ? 4 : 7;
+            var meteoritesToSpawn = PveSystem.ServerIsPvE
+                                    && !Server.Core.IsLocalServer
+                                        ? 4
+                                        : 7;
             for (var index = 0; index < meteoritesToSpawn; index++)
             {
                 spawnPreset.Add(Api.GetProtoEntity<ObjectMeteorite>());

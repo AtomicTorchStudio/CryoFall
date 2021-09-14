@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateResourcesPvPDepositLithiumMultiplier
         : BaseRateDouble<RateResourcesPvPDepositLithiumMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"This multiplier determines how many lithium deposits should be present in each suitable biome.
               E.g. to reduce the max number of geothermal springs to half, change this to 0.5.

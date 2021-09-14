@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateHunger
         : BaseRateDouble<RateHunger>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Food consumption speed multiplier for hunger mechanic. 
               By default the game will consume 100 food points in 1.2 hours,

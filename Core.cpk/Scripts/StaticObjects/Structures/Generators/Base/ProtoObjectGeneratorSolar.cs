@@ -38,9 +38,7 @@
                 return 0;
             }
 
-            var lightFraction = SharedGetCurrentLightFraction();
-            var rate = RateTimeDependentGeneratorsRate.SharedValue;
-            return lightFraction * rate;
+            return SharedGetCurrentLightFraction();
         }
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
@@ -73,6 +71,7 @@
                 return;
             }
 
+            maxProduction *= RateTimeDependentGeneratorsRate.SharedValue;
             var rate = SharedGetElectricityProductionRate(worldObject);
             currentProduction = maxProduction * rate;
         }

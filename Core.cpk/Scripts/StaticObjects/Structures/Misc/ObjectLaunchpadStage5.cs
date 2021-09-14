@@ -58,7 +58,7 @@
 
         public override string Description => GetProtoEntity<ObjectLaunchpadStage1>().Description;
 
-        public override string Name => "Launchpad — Stage 5";
+        public override string Name => "Launchpad—Stage 5";
 
         public static bool SharedCanResetLaunchpad(IStaticWorldObject objectLaunchpad)
         {

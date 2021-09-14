@@ -23,6 +23,7 @@
         public override void ServerInitialize(IServerConfiguration serverConfiguration)
         {
             if (!PveSystem.ServerIsPvE
+                && !Api.IsEditor
                 && !Api.Shared.IsDebug)
             {
                 // invoke players despawn with some small delay because the world objects are not yet loaded
@@ -45,12 +46,6 @@
 
         private static void DespawnIdlePlayersInPvP()
         {
-            if (Api.IsEditor
-                || PveSystem.ServerIsPvE)
-            {
-                return;
-            }
-
             using var playerCharacters = Api.Shared.WrapInTempList(
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: false));
 
@@ -85,12 +80,6 @@
 
         private static void DespawnIdleVehiclesInPvP()
         {
-            if (Api.IsEditor
-                || PveSystem.ServerIsPvE)
-            {
-                return;
-            }
-
             var allVehicles = Server.World.GetWorldObjectsOfProto<IProtoVehicle>();
             // ReSharper disable once PossibleInvalidCastExceptionInForeachLoop
             foreach (IDynamicWorldObject vehicle in allVehicles)

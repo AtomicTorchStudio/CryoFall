@@ -3,12 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Fishing;
     using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
     using AtomicTorch.CBND.CoreMod.Rates;
+    using AtomicTorch.CBND.CoreMod.Systems.FishingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -20,10 +24,12 @@
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public ushort AreaPaddingMax => PveSystem.ServerIsPvE
+                                        && !Server.Core.IsLocalServer
                                             ? (ushort)(30 * 12)
                                             : (ushort)(70 * 5);
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
+                                             && !Server.Core.IsLocalServer
                                                  ? (ushort)30
                                                  : (ushort)70;
 
@@ -55,7 +61,8 @@
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
             int locationsCount;
-            if (PveSystem.ServerIsPvE)
+            if (PveSystem.ServerIsPvE
+                && !Server.Core.IsLocalServer)
             {
                 locationsCount = 9;
             }
@@ -143,6 +150,8 @@
         {
             triggers.Add(GetTrigger<TriggerTimeInterval>()
                              .Configure(RateWorldEventIntervalFishingBlueGlider.SharedValueIntervalHours));
+
+            FishingSystem.ServerFishCaught += ServerFishCaughtHandler;
         }
 
         protected override void ServerWorldChangedHandler()
@@ -156,6 +165,17 @@
         {
             protoItemFish = Api.GetProtoEntity<ItemFishBlueGlider>();
             requiredFishingSkillLevel = ItemFishBlueGlider.SkillFishingLevelRequired;
+        }
+
+        private static void ServerFishCaughtHandler(ICharacter character, IItem itemFish, float sizeValue)
+        {
+            if (itemFish.ProtoItem is ItemFishBlueGlider
+                && SharedEventHelper.SharedIsInsideEventArea<EventFishingBlueGlider>(character.Position))
+            {
+                PlayerCharacter.GetPrivateState(character)
+                               .CompletionistData
+                               .ServerOnParticipatedInEvent(Api.GetProtoEntity<EventFishingBlueGlider>());
+            }
         }
 
         private static IReadOnlyList<(IServerZone, uint)> ServerSetupSpawnZones()

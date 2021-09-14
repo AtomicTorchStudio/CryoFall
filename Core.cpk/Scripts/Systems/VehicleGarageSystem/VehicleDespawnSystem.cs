@@ -2,7 +2,6 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers;
-    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -72,6 +71,7 @@
 
             if (!PveSystem.ServerIsPvE)
             {
+                // see BootstrapperWorldInit.DespawnIdleVehiclesInPvP
                 return;
             }
 

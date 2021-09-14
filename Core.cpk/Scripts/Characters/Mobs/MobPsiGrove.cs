@@ -1,14 +1,19 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class MobPsiGrove : ProtoCharacterMob, IProtoObjectPsiSource
     {
@@ -70,6 +75,26 @@
                                          .Add<ItemSlime>(count: 1)
                                          .Add<ItemTwigs>(count: 2)
                 );
+
+            if (!IsServer)
+            {
+                return;
+            }
+
+            ServerCharacterDeathMechanic.CharacterKilled += ServerCharacterKilledHandler;
+
+            static void ServerCharacterKilledHandler(
+                ICharacter attackerCharacter,
+                ICharacter targetCharacter)
+            {
+                if (!attackerCharacter.IsNpc
+                    && targetCharacter.ProtoCharacter.GetType() == typeof(MobPsiGrove))
+                {
+                    PlayerCharacter.GetPrivateState(attackerCharacter)
+                                   .CompletionistData
+                                   .ServerOnParticipatedInEvent(Api.GetProtoEntity<EventPsiGroveInfestation>());
+                }
+            }
         }
     }
 }

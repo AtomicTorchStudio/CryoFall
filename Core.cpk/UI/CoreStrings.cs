@@ -759,6 +759,8 @@
 
         public const string ItemsContainer_TitleOutput = "Output";
 
+        public const string ItemTooltipSolarPanelControl_EstimatedCapacity = "Estimated capacity";
+
         public const string LandClaimPlacementDisplayHelper_LabelBuffer = "Buffer";
 
         public const string LandClaimPlacementDisplayHelper_LabelTier_Format = "Tier {0}";
@@ -780,7 +782,7 @@
         public const string LocalServerAutosaveDescription =
             "Your progress is saved automatically (usually every hour) and when you disconnect or quit the game (even if you do this by closing the game or pressing Alt+F4).";
 
-        public const string LocalServerSaveName_Format = "Local game — {0}";
+        public const string LocalServerSaveName_Format = "Local game—{0}";
 
         public const string LoginAtomicTorchForm_Button_Login = "Login";
 
@@ -833,7 +835,24 @@
 
         public const string MenuCurrentGame_CurrentServerRates = "Current server rates";
 
+        public const string MenuCurrentGame_DisconnectReason = "Disconnect reason:";
+
         public const string MenuCurrentGame_NotConnected = "Not connected.";
+
+        public const string MenuGameFinished_ButtonEject_Hint = "Continue your current game.";
+
+        public const string MenuGameFinished_ButtonEject_Title = "Eject and continue";
+
+        public const string MenuGameFinished_ButtonMainMenu_Hint = "Decide later.";
+
+        public const string MenuGameFinished_ButtonMainMenu_Title = "Return to Main menu";
+
+        public const string MenuGameFinished_ButtonNewGamePlus_Hint = "Keep your character, but start a new game.";
+
+        public const string MenuGameFinished_ButtonNewGamePlus_Title = "Start New Game +";
+
+        public const string MenuGameFinished_DialogNewGamePlus =
+            "Do you wish to start a new game while keeping your character? The new world will replace your existing world.";
 
         public const string MenuHome_Forums = "Forums";
 
@@ -859,10 +878,10 @@
         public const string MenuLocalGame_Button_LoadWorld = "Load world";
 
         public const string MenuLocalGame_LocalServerRunning
-            = "The local server is operating.[br]The saved games list cannot be obtained until you disconnect from it.";
+            = "The local server is now running.[br]Local game must be stopped first in order to obtain the saved games list.";
 
-        public const string MenuLocalGame_LocalServerStopping
-            = "The local server is stopping.[br]Please wait until it finishes in order to obtain the actual saved games list.";
+        public const string MenuLocalGame_LocalServerShuttingDown
+            = "The local server is shutting down and saving your progress.[br]Please wait until it finishes in order to obtain the actual saved games list.";
 
         public const string MenuLocalGame_NoSaves =
             "Currently there are no saved games for local server.[br]You can create a new world.";
@@ -1822,6 +1841,9 @@
 
         public const string WindowLaunchpad_ButtonCompleteTask = "Complete";
 
+        public const string WindowLaunchpad_CanContinuePlaying =
+            "You will be able to continue playing after launching the rocket if you choose to.";
+
         public const string WindowLaunchpad_CompletedTaskLabel = "Completed";
 
         public const string WindowLaunchpad_Launchpad = "Launch!";
@@ -2073,11 +2095,7 @@
 
         // the game server was just wiped (less than 2 hours ago)
         public const string WipedDate_JustWiped = "Just wiped";
-
-        // TODO: It's not used anymore as it was confusing (displaying something like \"47 hours ago\" is preferable).
-        // the game server has been wiped yesterday (more than 24 hours but less than 2 days ago)
-        public const string WipedDate_Yesterday = "Yesterday";
-
+        
         public const string WipeInfoEditor_WipeManual =
             @"Please note: The wipe is not performed automatically!
               [br]You have to manually stop the server and delete the savegame.

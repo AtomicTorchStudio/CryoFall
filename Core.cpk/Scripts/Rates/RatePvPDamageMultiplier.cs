@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RatePvPDamageMultiplier
         : BaseRateDouble<RatePvPDamageMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"All damage dealt from player to player (via weapons only) is multiplied by this rate.
               It allows you to decrease or increase the combat duration.

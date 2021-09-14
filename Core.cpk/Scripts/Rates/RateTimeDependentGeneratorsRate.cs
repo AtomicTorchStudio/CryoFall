@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateTimeDependentGeneratorsRate
         : BaseRateDouble<RateTimeDependentGeneratorsRate>
     {
+        [NotLocalizable] 
         public override string Description =>
             @"This rate determines how fast the slow generators (such as solar and pragmium power plants)
               produce power and consumes the fuel (such as pragmium rods or simple solar panels).

@@ -10,7 +10,7 @@
         protected override void PrepareAchievement(TasksList tasks)
         {
             tasks
-                .Add(TaskKill.Require<MobFloater>());
+                .Add(TaskCompleteCompletionistEntry.Require<MobFloater>());
         }
     }
 }

@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateCraftingSpeedMultiplier
         : BaseRateDouble<RateCraftingSpeedMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines the crafting speed of recipes
               started from crafting menu or from any workbench.

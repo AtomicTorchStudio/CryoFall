@@ -1,13 +1,18 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class MobFloater : ProtoCharacterMob
     {
@@ -69,6 +74,28 @@
                                          .Add<ItemSlime>(count: 5)
                                          .Add<ItemToxin>(count: 2)
                                          .Add<ItemSalt>(count: 2));
+
+            if (!IsServer)
+            {
+                return;
+            }
+
+            ServerCharacterDeathMechanic.CharacterKilled += ServerCharacterKilledHandler;
+
+            static void ServerCharacterKilledHandler(
+                ICharacter attackerCharacter,
+                ICharacter targetCharacter)
+            {
+                if (!attackerCharacter.IsNpc
+                    && targetCharacter.ProtoCharacter.GetType() == typeof(MobFloater)
+                    && (SharedEventHelper.SharedIsInsideEventArea<EventMigrationFloater>(attackerCharacter.Position)
+                        || SharedEventHelper.SharedIsInsideEventArea<EventMigrationFloater>(targetCharacter.Position)))
+                {
+                    PlayerCharacter.GetPrivateState(attackerCharacter)
+                                   .CompletionistData
+                                   .ServerOnParticipatedInEvent(Api.GetProtoEntity<EventMigrationFloater>());
+                }
+            }
         }
 
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)

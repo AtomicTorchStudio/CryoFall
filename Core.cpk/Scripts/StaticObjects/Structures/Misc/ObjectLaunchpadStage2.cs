@@ -12,11 +12,11 @@
 
         public const string TaskBuildPropulsionSystem = "Build propulsion system";
 
-        public const string TaskBuiltControlElectronics = "Built control electronics";
+        public const string TaskBuildControlElectronics = "Build control electronics";
 
         public override string Description => GetProtoEntity<ObjectLaunchpadStage1>().Description;
 
-        public override string Name => "Launchpad — Stage 2";
+        public override string Name => "Launchpad—Stage 2";
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -55,7 +55,7 @@
                                   .Add<ItemImpulseEngine>(25)
                                   .Add<ItemPragmiumHeart>(5)
                                   .Add<ItemTyrantHeart>(5))
-                     .AddTask(TaskBuiltControlElectronics,
+                     .AddTask(TaskBuildControlElectronics,
                               new TextureResource("Misc/LaunchpadTasks/ControlElectronics.png"),
                               new InputItems()
                                   .Add<ItemComponentsElectronic>(25)

@@ -1,11 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -51,6 +54,15 @@
         {
         }
 
+        protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
+        {
+            base.ClientTooltipCreateControlsInternal(item, controls);
+            controls.Add(
+                item is not null
+                    ? ItemTooltipSolarPanelControl.Create(item)
+                    : ItemTooltipSolarPanelControl.Create(this));
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
@@ -83,6 +95,7 @@
                 return;
             }
 
+            rate *= RateTimeDependentGeneratorsRate.SharedValue;
             var decrease = this.DurabilityDecreasePerMinuteWhenInstalled
                            * (data.DeltaTime / this.ServerUpdateIntervalSeconds);
             decrease *= rate;

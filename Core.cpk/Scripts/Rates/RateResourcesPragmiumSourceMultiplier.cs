@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateResourcesPragmiumSourceMultiplier
         : BaseRateDouble<RateResourcesPragmiumSourceMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"This multiplier determines the number pragmium sources (large pillars)
               present in the Barren biome (desert).

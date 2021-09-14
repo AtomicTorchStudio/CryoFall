@@ -41,9 +41,10 @@
 
         protected override void PrepareProtoItemFish(FishingBaitWeightList baitWeightList, DropItemsList dropItemsList)
         {
-            baitWeightList.Add<ItemFishingBaitInsect>(weight: 30)
-                          .Add<ItemFishingBaitMix>(weight: 40)
-                          .Add<ItemFishingBaitFish>(weight: 30);
+            var weightMultiplier = 5.0;
+            baitWeightList.Add<ItemFishingBaitInsect>(weight: 30 * weightMultiplier)
+                          .Add<ItemFishingBaitMix>(weight: 40 * weightMultiplier)
+                          .Add<ItemFishingBaitFish>(weight: 30 * weightMultiplier);
 
             dropItemsList.Add<ItemOrePragmium>(count: 2, countRandom: 1)
                          .Add<ItemSlime>(count: 3,         countRandom: 2)

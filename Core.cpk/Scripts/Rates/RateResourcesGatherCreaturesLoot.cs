@@ -12,7 +12,7 @@
 
         public override string Id => "Resources.Gather.CreaturesLoot";
 
-        public override string Name => "[Resources] Gather — Creatures loot";
+        public override string Name => "[Resources] Gather—Creatures loot";
 
         public override IRate OrderAfterRate
             => this.GetRate<RateResourcesGatherBasic>();

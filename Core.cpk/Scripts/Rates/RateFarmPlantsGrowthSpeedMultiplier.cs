@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFarmPlantsGrowthSpeedMultiplier
         : BaseRateDouble<RateFarmPlantsGrowthSpeedMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines how fast player planted farm plants grow.
               Note: changing this rate mid-game won't apply to the existing

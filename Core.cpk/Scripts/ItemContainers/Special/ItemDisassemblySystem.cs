@@ -21,9 +21,11 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
     public class ItemDisassemblySystem : ProtoSystem<ItemDisassemblySystem>
     {
         /// <summary>
-        /// Player can recover from 20% to 50% of the original item's ingredients (for 100% repaired item).
-        /// Please note: for some rare items (e.g. a single electronic component) this will serve
-        /// as the probability of recovering the item.
+        /// Player can recover from 20% to 50% of the original item's ingredients for an item with 100% durability.
+        /// It scales linearly with the item's durability (e.g. for an item with 50% durability player will
+        /// receive 10-25% of the ingredients).
+        /// Please note: for some rare ingredients (e.g. only a single electronic component) this will serve
+        /// as the probability of recovering this ingredient item.
         /// </summary>
         public static readonly (double min, double max) DisassemblyOutputRange = (0.2, 0.5);
 

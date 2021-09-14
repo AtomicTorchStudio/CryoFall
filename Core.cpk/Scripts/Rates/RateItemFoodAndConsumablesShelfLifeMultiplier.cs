@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateItemFoodAndConsumablesShelfLifeMultiplier
         : BaseRateDouble<RateItemFoodAndConsumablesShelfLifeMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             "Adjusts the shelf life of the food, drinks, and other consumable items.";
 

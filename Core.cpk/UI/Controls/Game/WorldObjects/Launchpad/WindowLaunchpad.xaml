@@ -31,12 +31,42 @@
                   Visibility="{Binding Tasks, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center">
-                <Button Command="{Binding CommandLaunchRocket}"
-                        Visibility="{Binding IsLaunched, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                        Content="{x:Static loc:CoreStrings.WindowLaunchpad_Launchpad}"
-                        Focusable="False"
-                        Padding="28,16"
-                        FontSize="22" />
+                <StackPanel
+                    Visibility="{Binding IsLaunched, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Orientation="Vertical">
+                    <Button Command="{Binding CommandLaunchRocket}"
+                            IsEnabled="False"
+                            Content="{x:Static loc:CoreStrings.WindowLaunchpad_Launchpad}"
+                            Focusable="False"
+                            Padding="28,16"
+                            FontSize="22" />
+                    
+                    <TextBlock Text="The launch function is coming soon! (before R31 Update release)" 
+                               FontFamily="{StaticResource CondensedFontFamily}"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushColor6}"
+                               TextWrapping="Wrap"
+                               Margin="0,25,0,0" />
+                    
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,25,0,0">
+                        <Control Style="{StaticResource ControlInfoPointStyle}"
+                                 Width="11"
+                                 Height="11"
+                                 FontSize="11"
+                                 Margin="0,2,4,0"
+                                 VerticalAlignment="Top" />
+
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowLaunchpad_CanContinuePlaying}"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   FontSize="12"
+                                   FontWeight="Normal"
+                                   Foreground="{StaticResource BrushColorAltLabelForeground}"
+                                   TextWrapping="Wrap"
+                                   MaxWidth="250" />
+                    </StackPanel>
+                </StackPanel>
 
                 <StackPanel Visibility="{Binding IsLaunched, Converter={StaticResource BoolToVisibilityConverter}}"
                             Orientation="Vertical"

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers;
@@ -13,7 +13,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoEventDrop
@@ -267,6 +266,7 @@
             var protoObjectToSpawns = this.SpawnPreset;
             Logger.Important(
                 $"Started async objects spawn for world event {worldEvent}: {this.SpawnPreset.Count} objects to spawn");
+            var stopwatch = Stopwatch.StartNew();
 
             try
             {
@@ -275,11 +275,6 @@
                     var attemptsRemains = 5000;
                     do
                     {
-                        if (RandomHelper.RollWithProbability(0.5))
-                        {
-                            Thread.Sleep(16);
-                        }
-
                         await yieldIfOutOfTime();
 
                         var spawnPosition = SharedCircleLocationHelper.SharedSelectRandomPositionInsideTheCircle(
@@ -340,7 +335,7 @@
             {
                 publicState.IsSpawnCompleted = true;
                 Logger.Important(
-                    $"Completed async objects spawn for world event {worldEvent}: {spawnedCount}/{protoObjectToSpawns.Count} objects spawned");
+                    $"Completed async objects spawn for world event {worldEvent}: {spawnedCount}/{protoObjectToSpawns.Count} objects spawned. Total time: {stopwatch.ElapsedMilliseconds} ms");
 
                 ServerRefreshEventState(worldEvent);
             }

@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFactionMembersMaxPrivateFaction
         : BaseRateUshort<RateFactionMembersMaxPrivateFaction>
     {
+        [NotLocalizable]
         public override string Description =>
             @"How many faction members are allowed for a private faction
               (where players can join only by submitting an application or receiving an invite).";

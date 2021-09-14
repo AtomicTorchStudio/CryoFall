@@ -20,6 +20,7 @@
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
+                                             && !Server.Core.IsLocalServer
                                                  ? (ushort)64
                                                  : (ushort)90;
 
@@ -78,7 +79,8 @@
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
             int locationsCount;
-            if (PveSystem.ServerIsPvE)
+            if (PveSystem.ServerIsPvE
+                && !Server.Core.IsLocalServer)
             {
                 locationsCount = 9;
             }
@@ -155,7 +157,10 @@
             triggers.Add(GetTrigger<TriggerTimeInterval>()
                              .Configure(RateWorldEventIntervalMigrationFloater.SharedValueIntervalHours));
 
-            var mobsToSpawn = PveSystem.ServerIsPvE ? 6 : 12;
+            var mobsToSpawn = PveSystem.ServerIsPvE
+                              && !Server.Core.IsLocalServer
+                                  ? 6
+                                  : 12;
             for (var index = 0; index < mobsToSpawn; index++)
             {
                 spawnPreset.Add(Api.GetProtoEntity<MobFloater>());

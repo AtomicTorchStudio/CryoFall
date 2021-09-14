@@ -14,7 +14,7 @@
 
         public override string Id => "Resources.Gather.Basic";
 
-        public override string Name => "[Resources] Gather — Basic gathering";
+        public override string Name => "[Resources] Gather—Basic gathering";
 
         public override IRate OrderAfterRate
             => this.GetRate<RateSkillExperienceGainMultiplier>();

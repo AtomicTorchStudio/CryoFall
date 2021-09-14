@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateManufacturingSpeedMultiplier
         : BaseRateDouble<RateManufacturingSpeedMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             "Manufacturing speed for all manufacturers (such as furnaces, oil refineries, wells, mulchboxes, etc.)";
 

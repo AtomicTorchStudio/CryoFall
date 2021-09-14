@@ -332,7 +332,7 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <core:FormattedTextBlock
-                                            Text="{x:Static loc:CoreStrings.MenuLocalGame_LocalServerStopping}"
+                                            Text="{x:Static loc:CoreStrings.MenuLocalGame_LocalServerShuttingDown}"
                                             Foreground="{StaticResource BrushColor6}"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"

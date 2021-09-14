@@ -1,10 +1,12 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class RateResourcesPvPDepositClaimDelay
         : BaseRateUint<RateResourcesPvPDepositClaimDelay>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Delay (in seconds) before the spawned resource deposit could be claimed on a PvP server.
               The notification about the spawned resource is displayed with this timer.

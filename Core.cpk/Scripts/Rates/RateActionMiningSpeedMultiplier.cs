@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateActionMiningSpeedMultiplier
         : BaseRateDouble<RateActionMiningSpeedMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             "Adjusts the damage to minerals by tools and drones.";
 

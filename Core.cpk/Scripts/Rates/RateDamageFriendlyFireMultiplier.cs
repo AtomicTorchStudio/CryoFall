@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateDamageFriendlyFireMultiplier
         : BaseRateDouble<RateDamageFriendlyFireMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Multiplier for the friendly fire damage i.e. when a player
               damages another friendly player (same party/faction, or an ally)

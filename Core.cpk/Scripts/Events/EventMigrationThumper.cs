@@ -76,7 +76,8 @@
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
             int locationsCount;
-            if (PveSystem.ServerIsPvE)
+            if (PveSystem.ServerIsPvE
+                && !Server.Core.IsLocalServer)
             {
                 locationsCount = Api.Server.Characters.OnlinePlayersCount >= 100 ? 3 : 2;
             }

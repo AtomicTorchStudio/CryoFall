@@ -380,6 +380,13 @@
 
         private void ExecuteCommandRefreshAll()
         {
+            if (Api.Client.MasterServer.ServersProvider.AreInfoConnectionsEnabled)
+            {
+                // reset info clients
+                Api.Client.MasterServer.ServersProvider.DisableInfoConnections();
+                Api.Client.MasterServer.ServersProvider.EnableInfoConnections();
+            }
+
             RequestPublicServersList();
 
             // this will refresh all lists simultaneously which is undesirable

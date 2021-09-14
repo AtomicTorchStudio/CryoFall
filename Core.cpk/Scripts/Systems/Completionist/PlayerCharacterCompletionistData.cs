@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Completionist
 {
     using System;
+    using System.Collections;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -16,9 +17,19 @@
 
     public class PlayerCharacterCompletionistData : BaseNetObject
     {
-        public delegate void ServerCharacterRewardClaimedDelegate(ICharacter character, ICompletionistDataEntry entry);
+        public delegate void ServerCharacterCompletionistEntryDelegate(
+            ICharacter character,
+            ICompletionistDataEntry entry);
 
-        public static event ServerCharacterRewardClaimedDelegate ServerCharacterRewardClaimed;
+        /// <summary>
+        /// This event is raised when a new entry is unlocked (but not yet claimed).
+        /// </summary>
+        public static event ServerCharacterCompletionistEntryDelegate ServerCharacterEntryUnlocked;
+
+        /// <summary>
+        /// This event is raised when a reward is claimed for a previously unlocked entry.
+        /// </summary>
+        public static event ServerCharacterCompletionistEntryDelegate ServerCharacterRewardClaimed;
 
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionist> ListEvents { get; private set; }
@@ -39,6 +50,26 @@
         [SyncToClient]
         public NetworkSyncList<DataEntryCompletionist> ListMobs { get; }
             = new();
+
+        public IEnumerable GetPageEntries(CompletionistPageName completionistPage)
+        {
+            return completionistPage switch
+            {
+                CompletionistPageName.Food      => this.ListFood,
+                CompletionistPageName.Creatures => this.ListMobs,
+                CompletionistPageName.Loot      => this.ListLoot,
+                CompletionistPageName.Fish      => this.ListFish,
+                CompletionistPageName.Events    => this.ListEvents,
+                _                               => throw new ArgumentOutOfRangeException()
+            };
+        }
+
+        public void ServerInitState()
+        {
+            // TODO: remove this in future versions (R32?)
+            // it's required to provide savegame compatibility with R30
+            this.ListEvents ??= new NetworkSyncList<DataEntryCompletionist>();
+        }
 
         public void ServerOnFishCaught(IProtoItemFish protoItemFish, float sizeValue)
         {
@@ -77,25 +108,25 @@
         public void ServerOnItemUsed(IProtoItemFood protoItemFood)
         {
             Api.ValidateIsServer();
-            AddIfNotContains(protoItemFood, this.ListFood);
+            this.AddIfNotContains(protoItemFood, this.ListFood);
         }
 
         public void ServerOnLootReceived(IProtoObjectLoot protoObjectLoot)
         {
             Api.ValidateIsServer();
-            AddIfNotContains(protoObjectLoot, this.ListLoot);
+            this.AddIfNotContains(protoObjectLoot, this.ListLoot);
         }
 
         public void ServerOnMobKilled(IProtoCharacterMob protoMob)
         {
             Api.ValidateIsServer();
-            AddIfNotContains(protoMob, this.ListMobs);
+            this.AddIfNotContains(protoMob, this.ListMobs);
         }
 
         public void ServerOnParticipatedInEvent(IProtoEvent protoEvent)
         {
             Api.ValidateIsServer();
-            AddIfNotContains(protoEvent, this.ListEvents);
+            this.AddIfNotContains(protoEvent, this.ListEvents);
         }
 
         public void ServerReset()
@@ -170,13 +201,13 @@
             }
         }
 
-        private static void AddIfNotContains(
+        private void AddIfNotContains(
             IProtoEntity prototype,
             NetworkSyncList<DataEntryCompletionist> list)
         {
-            foreach (var entry in list)
+            foreach (var e in list)
             {
-                if (ReferenceEquals(entry.Prototype, prototype))
+                if (ReferenceEquals(e.Prototype, prototype))
                 {
                     // already have an entry
                     return;
@@ -184,8 +215,12 @@
             }
 
             // add an entry
-            list.Add(new DataEntryCompletionist(isRewardClaimed: false, prototype));
+            var entry = new DataEntryCompletionist(isRewardClaimed: false, prototype);
+            list.Add(entry);
             Api.Logger.Info("Completionist entry added: " + prototype.ShortId);
+
+            var character = (ICharacter)this.GameObject;
+            Api.SafeInvoke(() => ServerCharacterEntryUnlocked?.Invoke(character, entry));
         }
 
         private void ServerTryClaimRewardInternal<TDataEntry>(
@@ -227,13 +262,6 @@
             Api.Logger.Warning(
                 "Completionist: the reward cannot be claimed as the entry is not discovered: " + prototype,
                 characterRelated: character);
-        }
-
-        public void ServerInitState()
-        {
-            // TODO: remove this in future versions (R32?)
-            // it's required to provide savegame compatibility with R30
-            this.ListEvents ??= new NetworkSyncList<DataEntryCompletionist>();
         }
     }
 }

@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateLandClaimOwnersMax
         : BaseRateByte<RateLandClaimOwnersMax>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines the max number of land claim's owners (including the founder)
               for land claims that are not transferred to faction ownership.

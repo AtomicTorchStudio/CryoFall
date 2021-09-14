@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Achievements
 {
-    using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Items.Fishing;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
@@ -11,7 +10,7 @@
         protected override void PrepareAchievement(TasksList tasks)
         {
             tasks
-                .Add(TaskCatchFish.Require<ItemFishBlueGlider>());
+                .Add(TaskCompleteCompletionistEntry.Require<ItemFishBlueGlider>());
         }
     }
 }

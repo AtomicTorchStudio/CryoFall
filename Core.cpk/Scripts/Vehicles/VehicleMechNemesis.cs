@@ -38,7 +38,7 @@
         public override byte CargoItemsSlotsCount => 24; // same as T3 Skipper mech
 
         public override string Description =>
-            "Experimental design for mechanized battle armor. Features automatic regeneration of structural damages and powerful exotic weapons.";
+            "Experimental design for mechanized battle armor. Features automatic regeneration of structural damage and powerful exotic weapons.";
 
         public override ushort EnergyUsePerSecondIdle => 70;
 
@@ -68,6 +68,14 @@
             List<IClientComponent> skeletonComponents)
         {
             var publicState = GetPublicState(vehicle);
+
+            if (!vehicle.IsInitialized
+                || publicState.PilotCharacter is null
+                || !publicState.PilotCharacter.IsCurrentClientCharacter)
+            {
+                return;
+            }
+
             var componentNightVision = vehicle.ClientSceneObject
                                               .AddComponent<ClientComponentNightVisionEffectMechNemesis>();
 

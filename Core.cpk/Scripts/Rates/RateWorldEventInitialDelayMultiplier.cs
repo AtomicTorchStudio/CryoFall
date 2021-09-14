@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateWorldEventInitialDelayMultiplier
         : BaseRateDouble<RateWorldEventInitialDelayMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines the world event delay multiplier.
               Most events have a configured delay to prevent them from starting until players could advance enough.

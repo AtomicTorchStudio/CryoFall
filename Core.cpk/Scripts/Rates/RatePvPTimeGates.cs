@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
@@ -27,6 +28,7 @@
             }
         }
 
+        [NotLocalizable]
         public override string Description =>
             @"Determines the time gate durations for Tier 3-6 technologies on PvP servers.
               Please configure a sequence in hours for Tier 3-6 technologies in the following order:

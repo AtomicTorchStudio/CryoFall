@@ -44,7 +44,7 @@ namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Vehicle
         public double DamageRadius => 1.575;
 
         public override string Description =>
-            "Launches large exploding capsules containing cotail of acids and toxins which will deal damage not only to living things, but even structures.";
+            "Launches large exploding capsules containing a cocktail of acids and toxins which will deal damage not only to living things but even structures.";
 
         public override uint DurabilityMax => 500;
 

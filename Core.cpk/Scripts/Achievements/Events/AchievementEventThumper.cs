@@ -10,7 +10,7 @@
         protected override void PrepareAchievement(TasksList tasks)
         {
             tasks
-                .Add(TaskKill.Require<MobThumper>());
+                .Add(TaskCompleteCompletionistEntry.Require<MobThumper>());
         }
     }
 }

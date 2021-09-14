@@ -160,15 +160,14 @@
 
                 this.isEnabled = value;
 
-                if (this.isEnabled)
-                {
-                    Api.Client.MasterServer.ServersProvider.EnableInfoConnections();
-                    ViewModelMenuServers.Instance?.CommandRefreshAll.Execute(null);
-                }
-                else
+                if (!this.isEnabled)
                 {
                     Api.Client.MasterServer.ServersProvider.DisableInfoConnections();
+                    return;
                 }
+
+                Api.Client.MasterServer.ServersProvider.EnableInfoConnections();
+                ViewModelMenuServers.Instance?.CommandRefreshAll.Execute(null);
             }
         }
 

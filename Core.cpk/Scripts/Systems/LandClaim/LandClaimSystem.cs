@@ -80,10 +80,10 @@
             "Intersecting with another land claim area that is under active shield protection. Disable the shield there first.";
 
         public const string ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format =
-            @"You can increase the limit by researching tecnologies for higher tier land claims (up to {0} total).";
+            "You can increase the limit by researching technologies for higher-tier land claims (up to {0} total).";
 
         public const string ErrorCannotBuild_LandClaimAmountLimitExceeded_Format =
-            @"You've used up your allotted number of personal land claims ({0}/{1}).";
+            "You've used up your allotted number of personal land claims ({0}/{1}).";
 
         public const string ErrorCannotBuild_NeedXenogeologyTech =
             "You need to research Xenogeology (Tier 3) to claim the Oil/Li deposits or to place a land claim close to it.";

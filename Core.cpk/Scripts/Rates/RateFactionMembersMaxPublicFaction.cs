@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFactionMembersMaxPublicFaction
         : BaseRateUshort<RateFactionMembersMaxPublicFaction>
     {
+        [NotLocalizable]
         public override string Description =>
             @"How many faction members are allowed for a public faction
               (where anyone can join freely at any time).

@@ -20,6 +20,7 @@
         private static Lazy<IReadOnlyList<(IServerZone Zone, uint Weight)>> serverSpawnZones;
 
         public override ushort AreaRadius => PveSystem.ServerIsPvE
+                                             && !Server.Core.IsLocalServer
                                                  ? (ushort)64
                                                  : (ushort)90;
 
@@ -79,7 +80,8 @@
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
             int locationsCount;
-            if (PveSystem.ServerIsPvE)
+            if (PveSystem.ServerIsPvE
+                && !Server.Core.IsLocalServer)
             {
                 locationsCount = 9;
             }
@@ -160,7 +162,10 @@
                              .Configure((intervalHours.From,
                                          intervalHours.To)));
 
-            var debrisToSpawn = PveSystem.ServerIsPvE ? 2 : 3;
+            var debrisToSpawn = PveSystem.ServerIsPvE
+                                && !Server.Core.IsLocalServer
+                                    ? 2
+                                    : 3;
             for (var index = 0; index < debrisToSpawn; index++)
             {
                 spawnPreset.Add(Api.GetProtoEntity<ObjectSpaceDebris>());

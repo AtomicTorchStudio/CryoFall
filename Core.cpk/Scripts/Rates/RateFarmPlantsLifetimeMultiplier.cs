@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFarmPlantsLifetimeMultiplier
         : BaseRateDouble<RateFarmPlantsLifetimeMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines the farm plants lifetime.
               To make plants spoil twice slower - set it 2.0, alternatively to make them spoil twice as fast set it to 0.5.

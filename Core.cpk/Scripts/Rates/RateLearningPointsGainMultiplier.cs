@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateLearningPointsGainMultiplier
         : BaseRateDouble<RateLearningPointsGainMultiplier>
     {
+        [NotLocalizable]
         public override string Description => "Determines the learning points acquisition rate.";
 
         public override string Id => "LearningPointsGainMultiplier";

@@ -1,10 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.PlayerTasks
 {
-    using System;
-    using System.Collections;
-    using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Systems.Completionist;
-    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.GameEngine.Common.Extensions;
@@ -21,26 +17,6 @@
             : base(description: null)
         {
             this.CompletionistPage = completionistPageName;
-        }
-
-        [NotPersistent]
-        [NotNetworkAvailableAttribute]
-        public enum CompletionistPageName : byte
-        {
-            [Description(CoreStrings.WindowCompletionist_TabFood)]
-            Food = 0,
-
-            [Description(CoreStrings.WindowCompletionist_TabCreatures)]
-            Creatures = 1,
-
-            [Description(CoreStrings.WindowCompletionist_TabLoot)]
-            Loot = 2,
-
-            [Description(CoreStrings.WindowCompletionist_TabFish)]
-            Fish = 3,
-
-            [Description(CoreStrings.WindowCompletionist_TabEvents)]
-            Events = 4
         }
 
         public CompletionistPageName CompletionistPage { get; }
@@ -62,18 +38,9 @@
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskState state)
         {
             var completionistData = CompletionistSystem.SharedGetCompletionistData(character);
-            IEnumerable pageEntries = this.CompletionistPage switch
-            {
-                CompletionistPageName.Food      => completionistData.ListFood,
-                CompletionistPageName.Creatures => completionistData.ListMobs,
-                CompletionistPageName.Loot      => completionistData.ListLoot,
-                CompletionistPageName.Fish      => completionistData.ListFish,
-                CompletionistPageName.Events    => completionistData.ListEvents,
-                _                               => throw new ArgumentOutOfRangeException()
-            };
 
             var claimedEntriesCount = 0;
-            foreach (var entry in pageEntries)
+            foreach (var entry in completionistData.GetPageEntries(this.CompletionistPage))
             {
                 if (!((ICompletionistDataEntry)entry).IsRewardClaimed)
                 {
@@ -84,17 +51,7 @@
                 claimedEntriesCount++;
             }
 
-            var requiredPageEntriesCount = this.CompletionistPage switch
-            {
-                CompletionistPageName.Food      => CompletionistSystem.CompletionistAllFood.Count,
-                CompletionistPageName.Creatures => CompletionistSystem.CompletionistAllMobs.Count,
-                CompletionistPageName.Loot      => CompletionistSystem.CompletionistAllLoot.Count,
-                CompletionistPageName.Fish      => CompletionistSystem.CompletionistAllFish.Count,
-                CompletionistPageName.Events    => CompletionistSystem.CompletionistAllEvents.Count,
-                _                               => throw new ArgumentOutOfRangeException()
-            };
-
-            return claimedEntriesCount >= requiredPageEntriesCount;
+            return claimedEntriesCount >= CompletionistSystem.GetPageTotalEntriesNumber(this.CompletionistPage);
         }
 
         protected override void SetTriggerActive(bool isActive)

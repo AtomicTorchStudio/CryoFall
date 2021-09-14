@@ -4,11 +4,13 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class ClientAutosaveNotifier
     {
+        [NotLocalizable]
         private const string NotificationMessageBaseText
             = CoreStrings.AutosaveNotification_Content1
               + "[br]"

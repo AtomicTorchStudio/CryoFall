@@ -18,11 +18,6 @@
                     Style="{StaticResource TabControlCompactStyle}">
             <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabConstructVehicle}">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="180" />
@@ -30,8 +25,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Row="1"
-                          Grid.Column="1"
+                    <Grid Grid.Column="1"
                           Visibility="{Binding VehicleSchematicsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -88,7 +82,8 @@
 
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical" />
+                                    <StackPanel Orientation="Vertical"
+                                                IsItemsHost="True" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
 
@@ -228,16 +223,15 @@
                         </StackPanel>
                     </Grid>
 
-                    <Control Style="{StaticResource ControlVerticalSeparatorLeft}" Grid.Row="1"
+                    <Control Style="{StaticResource ControlVerticalSeparatorLeft}"
                              Visibility="{Binding VehicleSchematicsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
-                    <Control Style="{StaticResource ControlVerticalSeparatorRight}" Grid.Row="1"
+
+                    <Control Style="{StaticResource ControlVerticalSeparatorRight}"
                              Visibility="{Binding VehicleSchematicsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
 
                     <!-- Text: You don't know any schematics... -->
                     <core:FormattedTextBlock
-                        Grid.Row="0"
                         Grid.Column="0"
-                        Grid.RowSpan="2"
                         Grid.ColumnSpan="4"
                         Content="{x:Static loc:CoreStrings.VehiclesAssemblyList_NoSchematicsKnown}"
                         HorizontalAlignment="Center"
@@ -249,8 +243,7 @@
                         Visibility="{Binding VehicleSchematicsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}" />
 
                     <!-- Details view -->
-                    <Grid Grid.Row="1"
-                          Grid.Column="3"
+                    <Grid Grid.Column="3"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
                           Visibility="{Binding Converter={StaticResource NullToVisibilityConverter}}"

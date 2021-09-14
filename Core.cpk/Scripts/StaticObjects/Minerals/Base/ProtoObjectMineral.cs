@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -159,6 +160,10 @@
         protected virtual double ServerGetDropListProbabilityMultiplier(IStaticWorldObject mineralObject)
         {
             return RateResourcesGatherBasic.SharedValue;
+        }
+
+        protected virtual void ServerOnMineralStageMined(ICharacter character, IStaticWorldObject mineralObject)
+        {
         }
 
         protected override void ServerOnStaticObjectDamageApplied(
@@ -341,6 +346,8 @@
                     exp *= this.StructurePointsMax / this.DamageStagesCount;
                     byCharacter?.ServerAddSkillExperience<SkillProspecting>(exp);
                 }
+
+                this.ServerOnMineralStageMined(byCharacter, mineralObject);
             }
         }
     }

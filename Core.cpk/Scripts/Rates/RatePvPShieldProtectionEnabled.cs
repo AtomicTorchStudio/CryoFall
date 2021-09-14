@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.GameApi;
 
     public class RatePvPShieldProtectionEnabled
         : BaseRateBoolean<RatePvPShieldProtectionEnabled>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines whether S.H.I.E.L.D. base protection is available.";
 

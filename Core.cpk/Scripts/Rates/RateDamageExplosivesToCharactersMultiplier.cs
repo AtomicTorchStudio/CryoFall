@@ -1,8 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateDamageExplosivesToCharactersMultiplier
         : BaseRateDouble<RateDamageExplosivesToCharactersMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"All damage dealt by bombs to characters is multiplied by this rate.
               You can set it to 0 to disable bomb/grenade damage to characters.

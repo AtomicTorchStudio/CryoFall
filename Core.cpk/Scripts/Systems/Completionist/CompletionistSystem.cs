@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Completionist
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
@@ -44,6 +45,49 @@
         {
             Client.Audio.PlayOneShot(RewardClaimedSoundResource, 0.5f);
             Instance.CallServer(_ => _.ServerRemote_ClaimReward(prototype));
+        }
+
+        public static CompletionistPageName GetCompletionistPageName<TProtoEntity>(TProtoEntity protoEntity)
+            where TProtoEntity : IProtoEntity, new()
+        {
+            switch (protoEntity)
+            {
+                case IProtoItemFood:
+                    return CompletionistPageName.Food;
+
+                case IProtoCharacterMob protoCharacterMob:
+                    if (!protoCharacterMob.IsAvailableInCompletionist)
+                    {
+                        throw new Exception(protoCharacterMob + " is not available in completionist menu");
+                    }
+
+                    return CompletionistPageName.Creatures;
+
+                case IProtoObjectLoot:
+                    return CompletionistPageName.Loot;
+
+                case IProtoEvent:
+                    return CompletionistPageName.Events;
+
+                case IProtoItemFish:
+                    return CompletionistPageName.Fish;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(protoEntity), "Unknown completionist entry type");
+            }
+        }
+
+        public static int GetPageTotalEntriesNumber(CompletionistPageName completionistPage)
+        {
+            return completionistPage switch
+            {
+                CompletionistPageName.Food      => CompletionistAllFood.Count,
+                CompletionistPageName.Creatures => CompletionistAllMobs.Count,
+                CompletionistPageName.Loot      => CompletionistAllLoot.Count,
+                CompletionistPageName.Fish      => CompletionistAllFish.Count,
+                CompletionistPageName.Events    => CompletionistAllEvents.Count,
+                _                               => throw new ArgumentOutOfRangeException()
+            };
         }
 
         public static PlayerCharacterCompletionistData SharedGetCompletionistData(ICharacter character)

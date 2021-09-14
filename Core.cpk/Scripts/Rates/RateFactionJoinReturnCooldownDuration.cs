@@ -1,10 +1,12 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
     using System;
+    using AtomicTorch.CBND.GameApi;
 
     public class RateFactionJoinReturnCooldownDuration
         : BaseRateUint<RateFactionJoinReturnCooldownDuration>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Applied when player attempts to join the faction back after leaving it recently.
               Please note: this value cannot be lower than Faction.JoinCooldownDuration.

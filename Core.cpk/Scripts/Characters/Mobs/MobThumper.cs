@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
@@ -10,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -19,6 +21,7 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -181,6 +184,28 @@
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
                              nestedList: new DropItemsList(outputs: 1)
                                  .Add<ItemCoal>(count: 2));
+
+            if (!IsServer)
+            {
+                return;
+            }
+
+            ServerCharacterDeathMechanic.CharacterKilled += ServerCharacterKilledHandler;
+
+            static void ServerCharacterKilledHandler(
+                ICharacter attackerCharacter,
+                ICharacter targetCharacter)
+            {
+                if (!attackerCharacter.IsNpc
+                    && targetCharacter.ProtoCharacter.GetType() == typeof(MobThumper)
+                    && (SharedEventHelper.SharedIsInsideEventArea<EventMigrationThumper>(attackerCharacter.Position)
+                        || SharedEventHelper.SharedIsInsideEventArea<EventMigrationThumper>(targetCharacter.Position)))
+                {
+                    PlayerCharacter.GetPrivateState(attackerCharacter)
+                                   .CompletionistData
+                                   .ServerOnParticipatedInEvent(Api.GetProtoEntity<EventMigrationThumper>());
+                }
+            }
         }
 
         protected override void ServerForceBuildFinalStatsCache(

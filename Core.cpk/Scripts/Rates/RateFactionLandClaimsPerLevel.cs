@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFactionLandClaimsPerLevel
         : BaseRateDouble<RateFactionLandClaimsPerLevel>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Determines how many land claims each faction level provides.
               Total number is calculated as a faction level multiplied by this rate,

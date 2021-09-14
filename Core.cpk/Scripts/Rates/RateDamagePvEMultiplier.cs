@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateDamagePvEMultiplier
         : BaseRateDouble<RateDamagePvEMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"All damage dealt from player to environment (NPC/creatures, world objects,
               also trees and rocks when player is not using a woodcutting/mining tool)

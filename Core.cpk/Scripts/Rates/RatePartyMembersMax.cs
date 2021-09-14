@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RatePartyMembersMax
         : BaseRateByte<RatePartyMembersMax>
     {
+        [NotLocalizable]
         public override string Description =>
             @"How many party members are allowed in a party.";
 

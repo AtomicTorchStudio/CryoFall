@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateSkillExperienceGainMultiplier
         : BaseRateDouble<RateSkillExperienceGainMultiplier>
     {
+        [NotLocalizable]
         public override string Description => "Determines how quickly skills are leveled up.";
 
         public override string Id => "SkillExperienceGainMultiplier";

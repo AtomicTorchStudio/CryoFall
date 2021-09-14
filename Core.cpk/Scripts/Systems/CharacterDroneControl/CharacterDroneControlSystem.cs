@@ -39,7 +39,7 @@
         /// If player walks away beyond this distance from its drone, it's considered abandoned,
         /// the control is lost and the drone drops on the ground.
         /// </summary>
-        public const double DroneAbandonedDistanceMax = 23;
+        public const double DroneAbandonedDistanceMax = 33;
 
         /// <summary>
         /// Cannot walk away from drone on more tiles than this constant. It will start returning.

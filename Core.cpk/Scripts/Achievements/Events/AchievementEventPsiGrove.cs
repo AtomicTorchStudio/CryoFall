@@ -10,7 +10,7 @@
         protected override void PrepareAchievement(TasksList tasks)
         {
             tasks
-                .Add(TaskKill.Require<MobPsiGrove>());
+                .Add(TaskCompleteCompletionistEntry.Require<MobPsiGrove>());
         }
     }
 }

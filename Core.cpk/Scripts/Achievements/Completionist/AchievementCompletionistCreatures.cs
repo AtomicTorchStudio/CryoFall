@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Achievements
 {
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
+    using AtomicTorch.CBND.CoreMod.Systems.Completionist;
 
     public class AchievementCompletionistCreatures : ProtoAchievement
     {
@@ -9,7 +10,7 @@
         protected override void PrepareAchievement(TasksList tasks)
         {
             tasks
-                .Add(TaskCompleteCompletionistPage.Require(TaskCompleteCompletionistPage.CompletionistPageName.Creatures));
+                .Add(TaskCompleteCompletionistPage.Require(CompletionistPageName.Creatures));
         }
     }
 }

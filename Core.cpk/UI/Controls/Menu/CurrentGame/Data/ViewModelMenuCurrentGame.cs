@@ -6,6 +6,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
+    using AtomicTorch.CBND.CoreMod.Systems.ShutdownNotification;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -123,6 +124,9 @@
         public bool IsLocalServer { get; private set; }
 
         public bool IsServerOperator => ServerOperatorSystem.ClientIsOperator();
+
+        public string LastDisconnectReason
+            => ShutdownNotificationSystem.LastDisconnectReasonMessage;
 
         public ushort PingAverageMilliseconds
             => (ushort)Math.Round(
@@ -285,6 +289,7 @@
         {
             this.ConnectionState = this.game.ConnectionState;
             this.NotifyPropertyChanged(nameof(this.CanEditServerRates));
+            this.NotifyPropertyChanged(nameof(this.LastDisconnectReason));
         }
 
         private void UpdateServerInfo()

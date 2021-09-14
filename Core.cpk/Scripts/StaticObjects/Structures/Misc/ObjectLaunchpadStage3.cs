@@ -18,7 +18,7 @@
 
         public override string Description => GetProtoEntity<ObjectLaunchpadStage1>().Description;
 
-        public override string Name => "Launchpad — Stage 3";
+        public override string Name => "Launchpad—Stage 3";
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

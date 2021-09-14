@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateFactionJoinCooldownDuration
         : BaseRateUint<RateFactionJoinCooldownDuration>
     {
+        [NotLocalizable]
         public override string Description =>
             @"Faction switch cooldown duration (in seconds).
               Applied when leaving a faction so player cannot join or create another faction quickly.                          

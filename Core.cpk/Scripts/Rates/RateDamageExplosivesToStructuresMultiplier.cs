@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.GameApi;
 
     public class RateDamageExplosivesToStructuresMultiplier
         : BaseRateDouble<RateDamageExplosivesToStructuresMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"All damage dealt by bombs and grenades to structures is multiplied by this rate.
               You can set it to 0 to disable explosives damage to structures.

@@ -1,8 +1,11 @@
 namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.GameApi;
+
     public class RateResourcesPvPDepositOilMultiplier
         : BaseRateDouble<RateResourcesPvPDepositOilMultiplier>
     {
+        [NotLocalizable]
         public override string Description =>
             @"This multiplier determines how many oil deposits should be present in each suitable biome.
               E.g. to reduce the max number of oil seeps to half, change this to 0.5.

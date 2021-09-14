@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Events;
     using AtomicTorch.CBND.CoreMod.Items.Fishing.Base;
+    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data;
@@ -49,7 +50,7 @@
             => this.Prototype switch
             {
                 IProtoItemFish     => ViewModelWindowCompletionist.Notification_FishDiscovered_MessageFormat,
-                IProtoItem         => ViewModelWindowCompletionist.Notification_FoodDiscovered_MessageFormat,
+                IProtoItemFood     => ViewModelWindowCompletionist.Notification_FoodDiscovered_MessageFormat,
                 IProtoCharacterMob => ViewModelWindowCompletionist.Notification_CreatureDiscovered_MessageFormat,
                 IProtoObjectLoot   => ViewModelWindowCompletionist.Notification_LootDiscovered_MessageFormat,
                 IProtoEvent        => ViewModelWindowCompletionist.Notification_EventParticipated_MessageFormat,
@@ -107,7 +108,8 @@
             {
                 return this.Prototype switch
                 {
-                    IProtoItem protoItem => protoItem.Icon,
+                    IProtoItemFood protoItem => protoItem.Icon,
+                    IProtoItemFish protoItemFish => protoItemFish.Icon,
                     IProtoCharacterMob protoCharacterMob => protoCharacterMob.Icon,
                     IProtoStaticWorldObject protoStaticWorldObject => protoStaticWorldObject.Icon,
                     IProtoEvent protoEvent => protoEvent.Icon,

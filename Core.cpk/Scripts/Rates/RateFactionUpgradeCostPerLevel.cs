@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
@@ -11,6 +12,7 @@
     {
         public static ushort[] SharedFactionUpgradeCosts { get; private set; }
 
+        [NotLocalizable]
         public override string Description =>
             @"Determines the upgrade cost (in LP) for each faction level increase.
               Please note: the max faction level is 10 and the first one is received automatically,

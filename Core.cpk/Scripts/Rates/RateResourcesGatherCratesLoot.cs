@@ -1,4 +1,4 @@
-namespace AtomicTorch.CBND.CoreMod.Rates
+﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
     using AtomicTorch.CBND.GameApi;
 
@@ -12,7 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.Rates
 
         public override string Id => "Resources.Gather.CratesLoot";
 
-        public override string Name => "[Resources] Gather — Crates and piles";
+        public override string Name => "[Resources] Gather—Crates and piles";
 
         public override IRate OrderAfterRate
             => this.GetRate<RateResourcesGatherCreaturesLoot>();

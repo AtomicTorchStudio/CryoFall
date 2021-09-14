@@ -265,7 +265,26 @@
                 VerticalAlignment="Center"
                 Margin="15">
                 <!-- Text: Not connected. -->
-                <TextBlock Text="{x:Static loc:CoreStrings.MenuCurrentGame_NotConnected}" FontSize="16" />
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuCurrentGame_NotConnected}"
+                           FontSize="16"
+                           HorizontalAlignment="Center" />
+
+                <!-- Disconnect reason: -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuCurrentGame_DisconnectReason}"
+                           Visibility="{Binding LastDisconnectReason, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left"
+                           TextDecorations="Underline"
+                           Margin="0,15,0,0" />
+
+                <core:FormattedTextBlock Text="{Binding LastDisconnectReason}"
+                                         Visibility="{Binding LastDisconnectReason, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                                         FontSize="14"
+                                         HorizontalAlignment="Left"
+                                         TextWrapping="Wrap"
+                                         MaxWidth="300"
+                                         Margin="0,0,0,-5" />
             </StackPanel>
         </Grid>
     </ContentControl>
