@@ -69,6 +69,8 @@
 
         void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character);
 
+        bool SharedCanDeconstruct(IStaticWorldObject worldObject, ICharacter character);
+
         void SharedCreatePhysicsConstructionBlueprint(IPhysicsBody physicsBody);
 
         float SharedGetStructurePointsMax(IStaticWorldObject worldObject);

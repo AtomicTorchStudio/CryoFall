@@ -2,16 +2,34 @@
 `普拉格女皇已出现在地表。
 [br]珍贵的宝藏等待着勇敢的幸存者！`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+普拉格女皇
+
 Scripts/Events/EventBossSandTyrant@Description:
 `沙漠暴君出现了。
 [br]珍贵的宝藏等待着勇敢的幸存者！`
+
+Scripts/Events/EventBossSandTyrant@Name:
+沙漠暴君
+
+Scripts/Events/EventFishingBlueGlider@Name:
+蓝飞鱼
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `陨石已落在高亮地区。
 [br]快去挖掘罕见的矿物!`
 
-Scripts/Events/EventMigration@Description:
+Scripts/Events/EventMeteoriteDrop@Name:
+陨石
+
+Scripts/Events/EventMigrationFloater@Description:
 此世界的生物似乎正在迁徙，这是狩猎的好机会。
+
+Scripts/Events/EventMigrationFloater@Name:
+漂浮者大迁徙
+
+Scripts/Events/EventMigrationThumper@Name:
+蛮兽大迁徙
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 重要：火器无效；请使用近战或热能武器。
@@ -19,9 +37,15 @@ Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 一种奇异的灵能植物出现在了山区，令开发变得困难，但同时这也是获得稀有资源的好机会。
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+灵能树丛感染
+
 Scripts/Events/EventSpaceDrop@Description:
 `太空残骸已落在高亮地区。
 [br]快去收集罕见的废料!`
+
+Scripts/Events/EventSpaceDrop@Name:
+太空残骸
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0}已被击败，击杀者：

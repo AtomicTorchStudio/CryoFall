@@ -44,7 +44,7 @@
                 text: DialogReport_AreYouSure
                       + "[br]"
                       + "[br]"
-                      + $"\"{name}: {chatEntry.Message}\""
+                      + $"\"{name}: {chatEntry.ClientGetFilteredMessage()}\""
                       + "[br]"
                       + "[br]"
                       + (Api.Client.CurrentGame.IsConnectedToOfficialServer

@@ -4,7 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
     public static class WeaponConstants
     {
-        public static double DamageCreaturesMultiplier
+        public static double DamageByCreaturesMultiplier
             => RateDamageByCreaturesMultiplier.SharedValue;
 
         public static double DamageExplosivesToCharactersMultiplier
@@ -19,7 +19,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
         public static double DamagePveMultiplier
             => RateDamagePvEMultiplier.SharedValue;
 
+        /// <summary>
+        /// Please note: we're using 0.5 multiplier here as this is how PvP damage was balanced.
+        /// Making it x1.0 is not reasonable as it will require completely reworking PvE damage balance
+        /// which is not viable considering how the damage calculation formula works.
+        /// </summary>
         public static double DamagePvpMultiplier
-            => RatePvPDamageMultiplier.SharedValue;
+            => 0.5 * RatePvPDamageMultiplier.SharedValue;
     }
 }

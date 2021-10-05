@@ -14,7 +14,7 @@
         public const string DialogNoChangesMade = "No changes were made.";
 
         public const string DialogServerRebootNecessary
-            = "To apply server rates changes, the server need to save, stop, and reload. The server restart may take a while.";
+            = "To apply server rates changes, the server needs to save, stop, and reload. The server restart may take a while.";
 
         public static void OpenEditorWindow()
         {

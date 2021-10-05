@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.PlayerTasks
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -42,7 +42,7 @@
         protected override bool ServerIsCompleted(ICharacter character, PlayerTaskState state)
         {
             if (!character.ServerIsOnline
-                || character.TilePosition == ServerCharacterDeathMechanic.ServerGetGraveyardPosition())
+                || character.TilePosition == CharacterDespawnSystem.ServerGetServiceAreaPosition())
             {
                 return false;
             }

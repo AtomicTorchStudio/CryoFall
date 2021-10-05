@@ -15,7 +15,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi;
@@ -56,9 +55,6 @@
             this.factionPrivateState.AccessRightsBinding.ClientAnyModification
                 += this.AccessRightsAnyModificationHandler;
 
-            ClientComponentTechnologiesWatcher.LearningPointsChanged
-                += this.LearningPointsChangedHandler;
-
             ClientLandClaimAreaManager.AreaAdded += this.LandClaimAreaAddedOrRemovedHandler;
             ClientLandClaimAreaManager.AreaRemoved += this.LandClaimAreaAddedOrRemovedHandler;
 
@@ -95,7 +91,6 @@
                     this.NotifyPropertyChanged(nameof(this.IsFactionMaxLevelReached));
                     this.NotifyPropertyChanged(nameof(this.FactionLevelUpgradeCostLearningPoints));
                     this.NotifyPropertyChanged(nameof(this.FactionLevelUpgradeNextLevelInfoText));
-                    this.NotifyPropertyChanged(nameof(this.CanUpgradeFactionLevel));
                 },
                 subscriptionOwner: this);
 
@@ -147,10 +142,6 @@
                                              }
                                          });
         }
-
-        public bool CanUpgradeFactionLevel
-            => ClientCurrentCharacterHelper.PrivateState.Technologies.LearningPoints
-               >= 1;
 
         public string ClanTag => this.factionPublicState?.ClanTag;
 
@@ -423,9 +414,6 @@
 
             this.factionPrivateState.AccessRightsBinding.ClientAnyModification
                 -= this.AccessRightsAnyModificationHandler;
-
-            ClientComponentTechnologiesWatcher.LearningPointsChanged
-                -= this.LearningPointsChangedHandler;
 
             ClientLandClaimAreaManager.AreaAdded -= this.LandClaimAreaAddedOrRemovedHandler;
             ClientLandClaimAreaManager.AreaRemoved -= this.LandClaimAreaAddedOrRemovedHandler;
@@ -762,11 +750,6 @@
         private void LandClaimAreaAddedOrRemovedHandler(ILogicObject obj)
         {
             this.NotifyPropertyChanged(nameof(this.FactionLandClaimsNumberText));
-        }
-
-        private void LearningPointsChangedHandler()
-        {
-            this.NotifyPropertyChanged(nameof(this.CanUpgradeFactionLevel));
         }
 
         private void ReceivedApplicationsCollectionChangedHandler(object sender, NotifyCollectionChangedEventArgs e)

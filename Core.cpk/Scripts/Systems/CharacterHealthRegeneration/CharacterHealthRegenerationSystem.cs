@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems
 {
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi;
@@ -31,12 +32,13 @@
             const double updateRate = 1 / 10.0;
 
             foreach (var character in Server.Characters.EnumerateAllCharactersWithSpread(updateRate,
-                                                                                         exceptSpectators: false))
+                exceptSpectators: false))
             {
                 var publicState = character.GetPublicState<ICharacterPublicState>();
-                if (publicState.IsDead)
+                if (publicState.IsDead
+                    || !character.IsNpc && PlayerCharacter.GetPrivateState(character).IsDespawned)
                 {
-                    // dead characters are not processed
+                    // dead/despawned characters are not processed
                     continue;
                 }
 

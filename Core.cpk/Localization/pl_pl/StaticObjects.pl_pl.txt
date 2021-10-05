@@ -941,6 +941,51 @@ Zbyt blisko innej pompy ropy.
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Ten typ gruntu nie zapewnia dostępu do wód gruntowych.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Zbuduj szkielet rakiety
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+Zwieńczenie twoich zmagań na tej planecie. Możesz w końcu napawać się nadzieją na ucieczkę stąd!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Stanowisko startowe
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Zbuduj elektronikę sterującą
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Zbuduj zbiornik paliwa
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+Zbuduj układ napędowy
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Stanowisko startowe – etap 2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Zbuduj system unikania anomalii
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Zbuduj system podtrzymywania życia
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Zbuduj system nawigacji
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Stanowisko startowe – etap 3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Paliwo rakietowe
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Przygotuj zapasy
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Stanowisko startowe – etap 4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Stanowisko startowe – etap 5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Zautomatyzowana stacja medyczna pozwalająca instalować i usuwać implanty cybernetyczne.
 
@@ -971,6 +1016,12 @@ Zraszacz wodny
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Wymaganych więcej elementów.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Umieścić przedmioty do zdemontowania.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Najpierw wyjmij przedmiot wyjściowe.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Umieść dwa identyczne przedmioty do naprawy.
 
@@ -982,6 +1033,9 @@ Najpierw usuń przedmiot z gniazda wyjściowego.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Nie można naprawić
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+Nie można zdemontować
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 Masz szczęście![br]W pełni naprawiono: {0}!
@@ -1102,7 +1156,7 @@ Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoS
 Brak miejsca
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
-Wyłączone
+Wył.
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
 Ciężko opancerzone mury bunkra. Doskonale chronią bazę.

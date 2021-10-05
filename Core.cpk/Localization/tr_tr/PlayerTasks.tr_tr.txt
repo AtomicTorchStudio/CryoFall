@@ -8,7 +8,7 @@ Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 Tamamla: {0} (teknoloji sınıfı)
 
 Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
-üzerinde {0}
+{0} üzerinde
 
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 Üret

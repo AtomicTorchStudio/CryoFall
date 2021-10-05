@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+採取速度
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+伐採速度
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+追加所有地数
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+ボス難易度：プラグミウムクイーン
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+ボス難易度：サンドタイラント
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+製作速度
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+生物によるダメージ
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+キャラクターへの爆弾によるダメージ
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+建物への爆弾によるダメージ
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+味方プレイヤーによるダメージ (PvP フレンドリーファイア)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+生物や環境へのダメージ
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[資源] 埋蔵地の抽出速度
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+ドアオーナー最大数
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[派閥] 作成コスト (LP)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[派閥] 加入待機時間
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[派閥] 再加入待機時間
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[派閥] レベルごとの派閥所有地
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[派閥] プライベート派閥の最大メンバー数
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[派閥] 公開派閥の最大メンバー数
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[派閥] [PvP] 同盟許可
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[派閥] レベル毎のアップグレードコスト
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+農場の植物の成長速度
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+農場の植物の寿命
+
+Scripts/Rates/RateHunger@Name:
+飢餓率
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+オンラインプレーヤーリストを隠す
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+トレード・チャットルーム
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+食料・消耗品の賞味期限
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+アイテム保有量
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+最大所有地オーナー数 (非派閥オーナー)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+学習ポイント
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+生産速度
+
+Scripts/Rates/RatePartyMembersMax@Name:
+パーティ最大メンバー数
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] プレイヤー間のダメージ
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] 死亡時に所有物を完全ドロップ
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] 新たな資源埋蔵地の座標を隠す
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] 初心者保護時間
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] 襲撃保護機能持続時間
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] 所有地の収納保管容量
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] 拠点シールド保護持続時間
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] 拠点シールド保護待機時間
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] 拠点シールド保護利用可能
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] タイムゲート
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[資源] 採集—基本採集
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[資源] 採集—箱や山
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[資源] 採集—生物略奪
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[資源] 採集—隕石
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[資源] 採集—宇宙ゴミ
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[資源] 採集—プラグミウム源の数
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[資源] [PvP] 埋蔵地所有待機時間
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[資源] [PvP] リチウム埋蔵地数
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[資源] [PvP] 油田数
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+スキル経験値
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[劣化] 放置建築物の劣化
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[劣化] 放置所有地の劣化カウントダウン時間
+
+Scripts/Rates/RateThirst@Name:
+脱水率
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+発電/電力消費速度
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+ワールドイベント初期化カウントダウン
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+ワールドイベント間隔—{0}
+

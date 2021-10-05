@@ -38,7 +38,6 @@
 
         public static void CreateEffect(
             IDynamicWorldObject worldObject,
-            Vector2Ushort fallbackTilePosition,
             double animationDuration,
             double teleportationDelay,
             bool isTeleportationOut)
@@ -52,7 +51,6 @@
             var componentTeleportationEffect = sceneObject.AddComponent<ClientComponentTeleportationEffect>();
             componentTeleportationEffect
                 .Setup(worldObject,
-                       fallbackTilePosition,
                        animationDuration,
                        isTeleportationOut);
 
@@ -207,12 +205,10 @@
 
         private void Setup(
             IDynamicWorldObject worldObject,
-            Vector2Ushort fallbackTilePosition,
             double duration,
             bool isTeleportationOut)
         {
             this.worldObject = worldObject;
-            this.fallbackTilePosition = fallbackTilePosition;
             this.time = 0;
             this.duration = duration;
             this.isTeleportationOut = isTeleportationOut;

@@ -134,7 +134,7 @@ Scripts/Items/Base/ItemHints@AltClickToUseItem:
 Klicke auf diesen Gegenstand, während du die Alt-Taste gedrückt hältst, um diesen schnell zu benutzen oder zu verzehren.
 
 Scripts/Items/Base/ItemHints@AmmoSwitch_Format:
-Du kannst den Munitionstyp der aktuell ausgewählten Waffe mit der [b]\{0}\[/b] Taste ändern.
+Du kannst den Munitionstyp der aktuell ausgewählten Waffe mit der [b]\[{0}\][/b] Taste ändern.
 
 Scripts/Items/Base/ItemHints@ClickToDisasseble:
 Klicke auf ein beliebiges Gebäude, um es einzureißen.
@@ -2628,4 +2628,16 @@ Schwere Kanone, die kohärente Ladungen beschleunigter Teilchen abfeuert, um das
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Energiekanone
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Feuert eine große explodierende Kapsel ab, die einen Cocktail aus Säure und Toxinen enthält und nicht nur Lebewesen, sondern sogar Gebäude beschädigt.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Keinitkanone
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Feuert große insektenartige Kreaturen ab, die sich beim Aufprall in das Ziel graben und so zusätzlichen Schaden verursachen.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+Schwerer Schwarmwerfer
 

@@ -20,8 +20,6 @@
 
         public bool IsVisible { get; set; }
 
-        public string TestText => "Test";
-
         public void TurnOff()
         {
             if (IsDesignTime)

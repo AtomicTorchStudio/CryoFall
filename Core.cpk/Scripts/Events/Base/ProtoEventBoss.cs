@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem;
@@ -563,7 +564,7 @@
 
             foreach (var character in tempCharacters.AsList())
             {
-                ServerCharacterDeathMechanic.DespawnCharacter(character);
+                CharacterDespawnSystem.DespawnCharacter(character);
             }
 
             // despawn all vehicles inside the barrier or very close to it

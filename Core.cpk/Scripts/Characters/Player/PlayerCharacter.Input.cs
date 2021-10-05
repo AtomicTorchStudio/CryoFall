@@ -257,7 +257,7 @@
             double moveSpeed;
 
             if (characterIsOffline
-                || (privateState.CurrentActionState?.IsBlocksMovement ?? false))
+                || (privateState.CurrentActionState?.IsBlockingMovement ?? false))
             {
                 // offline or current action blocks movement
                 moveSpeed = 0;

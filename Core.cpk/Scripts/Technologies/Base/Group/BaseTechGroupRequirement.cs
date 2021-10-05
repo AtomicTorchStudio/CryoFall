@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -29,8 +29,7 @@
             public ICharacter Character { get; }
 
             public PlayerCharacterTechnologies Technologies
-                => this.technologies ??= this.Character.GetPrivateState<PlayerCharacterPrivateState>()
-                                             .Technologies;
+                => this.technologies ??= PlayerCharacter.GetPrivateState(this.Character).Technologies;
         }
     }
 }

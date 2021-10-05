@@ -439,9 +439,11 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 실드로 보호 받고 있는 다른 토지 점유 구역과 겹치고 있습니다. 우선 그곳의 실드를 비활성화하세요.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`할당되어 있는 토지 점유소를 전부 사용하였습니다.
-[br]새로운 기술을 연구하면 최대치를 늘릴 수 있습니다.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+상위 단계 토지 점유소 기술을 연구하여 한도를 늘릴 수 있습니다(총 {0}까지).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+개인에게 할당된 토지 점유소 개수({0}/{1})를 모두 사용했습니다.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 석유/리튬 매장지를 점유하거나 토지 점유소를 그곳과 가까운 데 배치하려면 외계지질학 (3단계)을 연구해야 합니다.
@@ -644,6 +646,21 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}에 오신 것을 환영합니다
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+서버 점검.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+서버 설정이 변경됩니다.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+서버 재가동
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+서버를 최신 버전으로 업데이트합니다.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+서버 청소.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `{0} 후에서버가 닫힙니다.
 [br]
@@ -701,6 +718,9 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInG
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 격납고 내에 탈것 있음
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+이 탈것은 수리할 수 없습니다
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 에너지가 고갈되었습니다.
 
@@ -709,9 +729,6 @@ Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleF
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 이미 물을 줬습니다
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-농작물을 수확할 준비가 되었습니다. 이제 물을 더 줄 필요가 없습니다.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 농장의 농작물에만 물을 줄 수 있습니다.

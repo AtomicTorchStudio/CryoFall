@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Rates;
+    using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
@@ -93,20 +95,32 @@
             Api.SafeInvoke(() => ClientChatRoomRemoved?.Invoke(chatRoom));
         }
 
-        public static async void ClientOpenPrivateChat(string withCharacterName)
+        public static async Task<bool> ClientOpenPrivateChat(string withCharacterName)
         {
-            var privateChat = await GetOrCreatePrivateChatAsync();
-            if (privateChat is not null)
+            ILogicObject privateChat;
+            try
             {
-                if (OpenChat(privateChat))
-                {
-                    return;
-                }
-
-                // chat not initialized yet - open on the next frame
-                ClientTimersSystem.AddAction(delaySeconds: 0,
-                                             () => OpenChat(privateChat));
+                privateChat = await GetOrCreatePrivateChatAsync();
             }
+            catch
+            {
+                return false;
+            }
+
+            if (privateChat is null)
+            {
+                return false;
+            }
+
+            if (OpenChat(privateChat))
+            {
+                return true;
+            }
+
+            // chat not initialized yet - open on the next frame
+            ClientTimersSystem.AddAction(delaySeconds: 0,
+                                         () => OpenChat(privateChat));
+            return true;
 
             bool OpenChat(ILogicObject logicObject)
             {
@@ -152,6 +166,13 @@
                     isService: false,
                     DateTime.Now,
                     hasSupporterPack: Api.Client.MasterServer.IsSupporterPackOwner));
+
+            if (Api.Client.SteamApi.IsSteamClient)
+            {
+                message = Api.Client.SteamApi.FilterText(message);
+            }
+
+            message = ProfanityFilteringSystem.SharedApplyFilters(message);
 
             var chatRoomHolder = (ILogicObject)chatRoom.GameObject;
             Instance.CallServer(_ => _.ServerRemote_SendMessage(chatRoomHolder, message));
@@ -330,10 +351,12 @@
                                           DateTime.Now,
                                           hasSupporterPack: false);
 
-            // display player joined/left notification in global chat only for the party members
-            var skipGlobalChat = !PartySystem.ClientIsPartyMember(name);
-
-            if (!skipGlobalChat)
+            // display player joined/left notification in global chat only for the party/faction members
+            // or on local server
+            if (PartySystem.ClientIsPartyMember(name)
+                || (FactionSystem.ClientIsFactionMember(name)
+                    && FactionSystem.ClientCurrentFactionKind != FactionKind.Public)
+                || SharedLocalServerHelper.IsLocalServer)
             {
                 ClientReceiveChatEntry(
                     chatRoomHolderObject: sharedGlobalChatRoomHolder,
@@ -362,6 +385,17 @@
                         {
                             ClientReceiveChatEntry(
                                 chatRoomHolderObject: (ILogicObject)partyChatRoom.GameObject,
+                                chatEntry);
+                        }
+
+                        break;
+
+                    case ChatRoomFaction factionChatRoom:
+                        if (FactionSystem.ClientIsFactionMember(name)
+                            && FactionSystem.ClientCurrentFactionKind != FactionKind.Public)
+                        {
+                            ClientReceiveChatEntry(
+                                chatRoomHolderObject: (ILogicObject)factionChatRoom.GameObject,
                                 chatEntry);
                         }
 

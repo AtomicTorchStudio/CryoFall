@@ -167,12 +167,25 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Content="{x:Static loc:CoreStrings.Faction_DonateLearningPoints_Button}"
-                        Command="{Binding CommandDonate}" />
+                        Command="{Binding CommandDonate}"
+                        IsEnabled="{Binding CanDonate}" />
                 <Button Grid.Column="2"
                         x:Name="ButtonCancel"
                         Content="{x:Static loc:CoreStrings.Button_Cancel}"
                         Command="{Binding CommandCancel}" />
             </Grid>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,-5">
+                <!-- Text: Learning points -->
+                <TextBlock Text="{x:Static loc:CoreStrings.LearningPoints}"
+                           Foreground="{StaticResource BrushColorAlt6}" />
+                <TextBlock Text=": "
+                           Foreground="{StaticResource BrushColorAlt6}" />
+                <TextBlock Text="{Binding PlayerAvailableLearningPoints}"
+                           Foreground="{StaticResource BrushColorAlt6}" />
+            </StackPanel>
         </StackPanel>
     </core:GameWindow>
 </core:BaseUserControlWithWindow>

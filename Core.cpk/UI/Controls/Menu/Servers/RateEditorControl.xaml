@@ -349,16 +349,28 @@
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type data:ViewModelRateBoolean}">
-                    <Grid VerticalAlignment="Center">
+                    <Grid Background="Transparent"
+                          VerticalAlignment="Center">
                         <CheckBox IsChecked="{Binding Value}"
                                   Focusable="False">
                             <CheckBox.Content>
                                 <TextBlock Foreground="{StaticResource BrushColorAltLabelForeground}"
-                                           Style="{StaticResource TextBlockRateTitleStyle}" />
+                                           Style="{StaticResource TextBlockRateTitleStyle}"
+                                           base:ToolTipServiceExtend.ToolTip="{x:Null}" />
                             </CheckBox.Content>
                         </CheckBox>
                         <Button Style="{StaticResource ButtonSetDefaultStyle}"
                                 HorizontalAlignment="Right" />
+                        <base:ToolTipServiceExtend.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Id}"
+                                           Style="{StaticResource TextBlockRateIdStyle}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Text="{Binding ValueDefaultText, StringFormat={x:Static loc:CoreStrings.RatesEditorControl_DefaultRateValueFormat}}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </base:ToolTipServiceExtend.ToolTip>
                     </Grid>
                 </DataTemplate>
 

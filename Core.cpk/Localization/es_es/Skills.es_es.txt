@@ -148,6 +148,9 @@ Fabricar objetos cada vez más complejos y entender su estructura es una gran fo
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Fabricación
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+Efectividad básica de la mesa de manitas {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Probabilidad de reparar el objeto completamente
 

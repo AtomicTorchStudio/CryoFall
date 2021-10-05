@@ -16,6 +16,11 @@
 
         public override string Name => "Launchpad—Stage 4";
 
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return new TextureResource("StaticObjects/Structures/Misc/ObjectLaunchpad/Icon_Stage4.png");
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);

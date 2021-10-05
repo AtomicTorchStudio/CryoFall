@@ -2629,3 +2629,15 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 能量加农炮
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+发射装有酸液与毒素混合物的爆破胶囊，不仅能对活体单位造成伤害，建筑也不能幸免。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+翠铜加农炮
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+发射大型昆虫状生物，会在命中时钻入目标体内并造成额外伤害。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+重型虫群发射器
+

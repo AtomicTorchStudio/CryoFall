@@ -100,6 +100,10 @@
                 {
                     LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
                 }
+                else
+                {
+                    LandClaimSystem.ClientCannotInteractNotOwner(worldObject);
+                }
             }
 
             return false;

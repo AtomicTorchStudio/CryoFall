@@ -866,7 +866,7 @@ Scripts/Items/Food/ItemFishFilletRed@Description:
 高品質魚肉，是烹飪的高級材料。
 
 Scripts/Items/Food/ItemFishFilletRed@Name:
-紅雨肉
+紅鱼肉
 
 Scripts/Items/Food/ItemFishFilletWhite@Name:
 白魚肉
@@ -1563,7 +1563,7 @@ Scripts/Items/Generic/ItemOreCopper@Name:
 銅礦石
 
 Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
-銅礦集中區
+富集銅礦
 
 Scripts/Items/Generic/ItemOreIron@Description:
 能被溶成純鐵。
@@ -1572,7 +1572,7 @@ Scripts/Items/Generic/ItemOreIron@Name:
 鐵礦石
 
 Scripts/Items/Generic/ItemOreIronConcentrate@Name:
-鐵礦集中區
+富集鐵礦
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 從熱泉中提取的鋰鹽，能被加工成金屬鋰。
@@ -2628,4 +2628,16 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 能量加農炮
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+發射裝有酸液與毒素混合物的爆破膠囊，不僅能對活體單位造成傷害，建築也不能倖免。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+翠銅加農炮
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+發射大型昆蟲狀生物，會在命中時鑽入目標體內並造成額外傷害。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+重型蟲群發射器
 

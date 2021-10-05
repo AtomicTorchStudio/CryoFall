@@ -31,9 +31,8 @@
         public bool IsLocalServerRunning { get; private set; }
 
         public bool IsLocalServerRunningOrStopping
-            =>
-                this.IsLocalServerRunning
-                || this.IsLocalServerStopping;
+            => this.IsLocalServerRunning
+               || this.IsLocalServerStopping;
 
         public bool IsLocalServerStopping { get; private set; }
 
@@ -80,10 +79,13 @@
             var isLocalServerRunning = Client.LocalServer.Status
                                            is LocalServerStatus.Running
                                            or LocalServerStatus.Loading;
-            var isDisconnected = Client.CurrentGame.ConnectionState is ConnectionState.Disconnected;
+            var isLocalServerDisconnected = Client.CurrentGame.ConnectionState is ConnectionState.Disconnected
+                                            || (Client.CurrentGame.ConnectionState is ConnectionState.Connected
+                                                && Client.CurrentGame.ServerInfo is not null
+                                                && !Client.CurrentGame.ServerInfo.ServerAddress.IsLocalServer);
 
-            this.IsLocalServerStopping = isLocalServerRunning && isDisconnected;
-            this.IsLocalServerRunning = isLocalServerRunning && !isDisconnected;
+            this.IsLocalServerStopping = isLocalServerRunning && isLocalServerDisconnected;
+            this.IsLocalServerRunning = isLocalServerRunning && !isLocalServerDisconnected;
             this.NotifyPropertyChanged(nameof(this.IsLocalServerRunningOrStopping));
 
             this.isSelected = isSelected;

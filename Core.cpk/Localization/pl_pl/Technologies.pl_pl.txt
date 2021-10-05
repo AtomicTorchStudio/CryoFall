@@ -58,6 +58,12 @@ Broń energetyczną dzieli przepaść technologiczna do broni konwencjonalnej.
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Broń energetyczna
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+Technologie pozwalające w końcu uciec z tego świata!
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+Uciekaj!
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 Eksperymentalne uzbrojenie, która rzadko jest używane w konwencjonalnych starciach, ale może okazać się przydatne w ekstremalnych sytuacjach.
 

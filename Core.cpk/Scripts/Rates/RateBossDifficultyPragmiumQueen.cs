@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using System;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.GameApi;
 
     public class RateBossDifficultyPragmiumQueen
@@ -32,5 +34,16 @@
         public override RateValueType ValueType => RateValueType.Number;
 
         public override RateVisibility Visibility => RateVisibility.Primary;
+
+        protected override double ServerReadValueWithRange()
+        {
+            var value = base.ServerReadValueWithRange();
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                value = Math.Min(value, 1.0); // enforce value for local server as larger value will cause issues
+            }
+
+            return value;
+        }
     }
 }

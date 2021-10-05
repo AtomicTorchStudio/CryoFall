@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+即使處於離線狀態，也可進行本地遊戲。
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `客戶端無法連接至主服務器。
 [br]請確認您已連接至互聯網並且防火墻與運營商未阻止您的訪問。`
 

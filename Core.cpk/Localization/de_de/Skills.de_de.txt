@@ -148,6 +148,9 @@ Die Herstellung immer komplexerer Gegenstände und das Verständnis ihres Aufbau
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Herstellung
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+Basiseffizienz der Bastelwerkbank {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Chance auf vollständige Reparatur
 

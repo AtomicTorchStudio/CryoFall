@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeNeuralRecombinator>();
 
-            config.SetRequiredNode<TechNodeStrengthBoostBig>();
+            config.SetRequiredNode<TechNodeAntiRadiation>();
         }
     }
 }

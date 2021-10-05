@@ -1,0 +1,24 @@
+﻿Scripts/RatesPresets/RatesPresetLocalServerEasy@Description:
+Наслаждайтесь жизнью на этой райской планете! Исследуйте мир в комфортном для вас ритме и спокойно развивайте технологии. Подходит для игроков, которые хотят ознакомиться с миром игры без лишних трудностей. Хотя и здесь вам придется продвигаться с боем!
+
+Scripts/RatesPresets/RatesPresetLocalServerEasy@Name:
+Райское место
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Description:
+Добро пожаловать на планету, где всё и вся хочет вас убить. Этот режим предлагает схожие правила со стандартной игрой на выживание, но есть дополнительные сложности для опытных игроков, которые готовы к более высоким ставкам и более щедрым наградам, особенно в финале.
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Name:
+Хардкор
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Description:
+Стандартные игровые правила со сбалансированной сложностью, которые подходят для одиночной игры на локальном сервере. Если вы впервые играете в CryoFall, мы рекомендуем использовать именно эти настройки.
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Name:
+Выживание
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Description:
+Стандартные настройки многопользовательского сервера без измененных параметров. Именно таким задуман мультиплеер.
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Name:
+Обычный мультиплеер
+

@@ -6,6 +6,7 @@
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Data;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -23,6 +24,7 @@
             Storage.RegisterType(typeof(AtomicGuid));
 
             Api.Client.CurrentGame.ConnectionStateChanged += Refresh;
+            SharedLocalServerHelper.IsLocalServerPropertyChanged += Refresh;
             Refresh();
         }
 
@@ -128,6 +130,13 @@
             if (Api.Client.CurrentGame.ConnectionState != ConnectionState.Connected)
             {
                 IsChatAllowedForCurrentServer = false;
+                IsNeedToDisplayDisclaimerForCurrentServer = false;
+                return;
+            }
+
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                IsChatAllowedForCurrentServer = true;
                 IsNeedToDisplayDisclaimerForCurrentServer = false;
                 return;
             }

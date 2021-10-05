@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeAntiRadiation>();
 
-            config.SetRequiredNode<TechNodeStrengthBoostBig>();
+            config.SetRequiredNode<TechNodeMedkit>();
         }
     }
 }

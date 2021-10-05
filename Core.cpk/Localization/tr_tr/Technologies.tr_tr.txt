@@ -58,6 +58,12 @@ Enerji silahları, geleneksel silahlardan sonra büyük bir teknolojik gelişme.
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Enerji silahları
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+Bu dünyadan nihayet kaçmak için gereken teknolojiler!
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+Kaç!
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 Geleneksel savaşta nadiren kullanılan ama sıra dışı durumlarda kullanışlı olan deneysel silahlar.
 

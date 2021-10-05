@@ -257,10 +257,10 @@
                 return;
             }
 
-            if (character.GetPublicState<ICharacterPublicState>()
-                         .IsDead)
+            if (PlayerCharacter.GetPublicState(character).IsDead
+                || PlayerCharacter.GetPrivateState(character).IsDespawned)
             {
-                // character is dead
+                // character is dead/despawned
                 this.CallClient(character, _ => _.ClientRemote_UnstuckFailedDead());
                 return;
             }
@@ -303,10 +303,10 @@
                     var character = pair.Key;
                     var request = pair.Value;
 
-                    if (character.GetPublicState<ICharacterPublicState>()
-                                 .IsDead)
+                    if (PlayerCharacter.GetPublicState(character).IsDead
+                        || PlayerCharacter.GetPrivateState(character).IsDespawned)
                     {
-                        // character is dead
+                        // character is dead/despawned
                         this.CallClient(character, _ => _.ClientRemote_UnstuckFailedDead());
                         return true; // remove this request
                     }

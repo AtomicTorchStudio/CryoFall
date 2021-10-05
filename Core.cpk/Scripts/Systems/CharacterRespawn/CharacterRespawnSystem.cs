@@ -59,7 +59,7 @@
             ServerOnSuccessfulRespawn(character);
         }
 
-        public static void ServerRemoveInvalidStatusEffects(ICharacter character)
+        public static void ServerRemoveStatusEffectsOnRespawn(ICharacter character)
         {
             foreach (var statusEffect in Api.Shared.WrapInTempList(
                 character.ServerEnumerateCurrentStatusEffects()).EnumerateAndDispose())
@@ -198,6 +198,7 @@
         private static bool ServerCanRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
         {
             if (stats.HealthCurrent <= 0
+                || PlayerCharacter.GetPrivateState(character).IsDespawned
                 || PlayerCharacter.GetPublicState(character).IsDead)
             {
                 if (!CharacterCreationSystem.SharedIsCharacterCreated(character))
@@ -274,7 +275,7 @@
                 stats.SharedSetStaminaCurrent(stats.StaminaMax / 2f);
                 stats.ServerSetFoodCurrent(stats.FoodMax / 4f);
                 stats.ServerSetWaterCurrent(stats.WaterMax / 4f);
-                ServerRemoveInvalidStatusEffects(character);
+                ServerRemoveStatusEffectsOnRespawn(character);
             }
         }
 

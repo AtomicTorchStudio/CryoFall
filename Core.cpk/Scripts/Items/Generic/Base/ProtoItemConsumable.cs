@@ -77,7 +77,14 @@
             var character = ServerRemoteContext.Character;
             this.ServerValidateItemForRemoteCall(item, character);
 
-            var stats = PlayerCharacter.GetPublicState(character).CurrentStatsExtended;
+            var publicState = PlayerCharacter.GetPublicState(character);
+            if (publicState.IsDead
+                || PlayerCharacter.GetPrivateState(character).IsDespawned)
+            {
+                return;
+            }
+
+            var stats = publicState.CurrentStatsExtended;
             if (!this.SharedCanUse(character, stats))
             {
                 return;

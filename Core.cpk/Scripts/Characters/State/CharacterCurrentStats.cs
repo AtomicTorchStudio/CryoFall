@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
@@ -203,12 +204,12 @@
             {
                 case ICharacter character:
                     protoSkill = !character.IsNpc
-                                     ? character.GetPrivateState<PlayerCharacterPrivateState>().WeaponState
-                                                .ProtoWeapon?.WeaponSkillProto
+                                     ? PlayerCharacter.GetPrivateState(character)
+                                                      .WeaponState.ProtoWeapon?.WeaponSkillProto
                                      : null;
                     return character;
 
-                case { } when damageSource.ProtoGameObject is IProtoStatusEffect:
+                case { ProtoGameObject: IProtoStatusEffect }:
                     var statusEffectPublicState = damageSource.GetPublicState<StatusEffectPublicState>();
                     protoSkill = statusEffectPublicState.ServerStatusEffectWasAddedByCharacterWeaponSkill;
                     return statusEffectPublicState.ServerStatusEffectWasAddedByCharacter;

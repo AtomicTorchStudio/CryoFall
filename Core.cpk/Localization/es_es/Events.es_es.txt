@@ -2,16 +2,34 @@
 `La Reina de pragmio ha aparecido en la superficie.
 [br]¡Un botín muy jugoso aguarda a los supervivientes más valerosos!`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+Reina del pragmio
+
 Scripts/Events/EventBossSandTyrant@Description:
 `El Tirano de las arenas ha aparecido en la superficie.
 [br]¡Un botín muy jugoso aguarda a los supervivientes más valerosos!`
+
+Scripts/Events/EventBossSandTyrant@Name:
+Tirano de las arenas
+
+Scripts/Events/EventFishingBlueGlider@Name:
+Mopa azul
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `Han caído meteoritos en la zona destacada del mapa.
 [br]¡Ve rápido para obtener minerales raros!`
 
-Scripts/Events/EventMigration@Description:
-Parece que las formas de vida indígenas de este mundo están migrando a una zona diferente. Es el momento ideal para ir de caza.
+Scripts/Events/EventMeteoriteDrop@Name:
+Meteorito
+
+Scripts/Events/EventMigrationFloater@Description:
+Parece que las formas de vida nativas de este mundo están en plena migración hacia una zona nueva. Es la oportunidad perfecta para ir de caza.
+
+Scripts/Events/EventMigrationFloater@Name:
+Migración de flotadores
+
+Scripts/Events/EventMigrationThumper@Name:
+Migración de aporreadores
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Importante: Las armas de fuego no sirven para nada. Usa armas cuerpo o a cuerpo o basadas en el calor.
@@ -19,9 +37,15 @@ Importante: Las armas de fuego no sirven para nada. Usa armas cuerpo o a cuerpo 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 En las zonas montañosas ha aparecido una extraña especie de planta alienígena que hace casi imposible la prospección. No obstante, es una gran oportunidad para obtener recursos raros.
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+Plaga de Psicoarboledas
+
 Scripts/Events/EventSpaceDrop@Description:
 `Ha caído basura espacial en la zona destacada del mapa.
 [br]¡Ve rápido para conseguir basura valiosa!`
+
+Scripts/Events/EventSpaceDrop@Name:
+Basura espacial
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0} ha sucumbido ante:

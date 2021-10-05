@@ -2629,3 +2629,15 @@ Canon lourd utilisant des charges condensées de particules accélérées pour e
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Canon à énergie
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Projette de grosses capsules explosives contenant un mélange d'acides et de toxines qui infligeront des dégâts non seulement aux créatures vivantes mais aussi aux structures.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Canon de kénerite
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Projette de grosses créatures ressemblant à des insectes qui s'enfouissent dans la cible, infligeant des dégâts additionnels.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+Lance-essaim lourd
+

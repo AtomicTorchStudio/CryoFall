@@ -76,7 +76,7 @@
         </ListBox>
 
         <Grid Grid.Row="1"
-              MinHeight="60">
+              MinHeight="85">
             <TextBlock Text="{Binding SelectedPreset.Description}"
                        Style="{StaticResource TextBlockDescriptionStyle}"
                        Visibility="{Binding SelectedPreset, Converter={StaticResource NullToVisibilityConverter}}" />

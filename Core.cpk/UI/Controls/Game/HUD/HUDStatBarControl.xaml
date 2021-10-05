@@ -9,7 +9,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     d:DesignHeight="50" d:DesignWidth="200"
     x:Name="UserControl"
     HorizontalAlignment="Stretch"
@@ -22,9 +22,11 @@
         <ImageBrush x:Key="TicksOverlayImageTexture"
                     ImageSource="Images/HUDStatBarControlOverlay.png"
                     TileMode="Tile"
-                    Stretch="Uniform">
+                    Stretch="Uniform"
+                    Viewport="0,0,0.0715,1"
+                    ViewportUnits="RelativeToBoundingBox">
             <ImageBrush.Transform>
-                <TranslateTransform X="7" />
+                <TranslateTransform X="-0.5" />
             </ImageBrush.Transform>
         </ImageBrush>
     </base:BaseUserControl.Resources>

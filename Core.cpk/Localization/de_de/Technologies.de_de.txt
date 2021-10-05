@@ -58,6 +58,12 @@ Energiewaffen sind eine neuartige technologische Weiterentwicklung konventionell
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Energiewaffen
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+Benötigte Technologien, um dieser Welt endlich zu entkommen!
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+Entkomme!
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 Experimentelle Waffen, die im herkömmlichen Gefecht kaum Anwendung finden, sich jedoch in Extremsituationen als nützlich erweisen können.
 

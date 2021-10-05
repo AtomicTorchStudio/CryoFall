@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Retry:
 UI/CoreStrings@Button_Save:
 保存
 
+UI/CoreStrings@Button_StayOffline:
+保持離線
+
 UI/CoreStrings@Button_Upgrade:
 升級
 
@@ -345,6 +348,12 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 您確定要使用{0}嗎？
 
+UI/CoreStrings@DialogClearList_Message:
+確定要清空此列表？
+
+UI/CoreStrings@DialogClearServerList_Title:
+清空伺服器列表
+
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 同時控制的無人機
 
@@ -379,7 +388,7 @@ UI/CoreStrings@EnergyUnitAbbreviation:
 能量
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
-EU/s
+能量每秒
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 你需要造成至少{0}%總傷害才能在本次事件中獲得獎勵。祝下次好運！
@@ -936,6 +945,9 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 UI/CoreStrings@ItemsContainer_TitleOutput:
 輸出
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+預計容量
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 緩衝區
 
@@ -959,6 +971,12 @@ UI/CoreStrings@ListFilters:
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 載入中
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+你的進度將被自動保存（通常每小時保存一次），當您斷開連接或退出遊戲時也會自動保存，使用Alt+F4強制退出也不例外。
+
+UI/CoreStrings@LocalServerSaveName_Format:
+本地遊戲 —{0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 登錄
@@ -986,6 +1004,9 @@ UI/CoreStrings@MainMenu_TabHome:
 
 UI/CoreStrings@MainMenu_TabOptions:
 選項
+
+UI/CoreStrings@MainMenu_TabPlay:
+開始遊戲
 
 UI/CoreStrings@MainMenu_TabQuit:
 退出
@@ -1017,14 +1038,44 @@ UI/CoreStrings@MenuCharacterCreation_OriginSelection:
 UI/CoreStrings@MenuCharacterCreation_Title:
 選擇角色外觀
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+查看伺服器倍率
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 斷開
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 顯示歡迎資訊
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+當前伺服器倍率
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+斷連原因：
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 未連接。
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+繼續進行當前遊戲。
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+彈出並繼續
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+稍後決定。
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+返回主菜單
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+保留角色並開始新遊戲。
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+開始新周目
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+確定要保留角色並開始一場新的遊戲？您當前的世界將被一個新遊戲世界替代。
 
 UI/CoreStrings@MenuHome_Forums:
 論壇
@@ -1046,6 +1097,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 社交
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+流覽存檔資料夾
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+創建新世界
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+載入世界
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+本機伺服器正在進行中。[br]必須先停止本地遊戲才能獲取存檔列表。
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+本機伺服器正在保存並關閉。[br]請等待進程完成以獲取存檔清單。
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+當前本機伺服器無存檔。[br]你可以創建一個新的世界。
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+本地世界
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+新世界
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 請退出遊戲，重新啟動Steam用戶端並再次啟動遊戲。
 
@@ -1057,6 +1132,12 @@ UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Message:
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 您沒有應用更改
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+本地遊戲
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+多人遊戲
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 您確定要退出桌面嗎？
@@ -1245,6 +1326,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] 考慮[b]關閉[/b]其他應用程式（尤其是流覽器，BT用戶端和下載程式）。
 [*] 如果您的PC當前通過Wi-Fi或移動連接進行連接，則考慮切換到[b]網線連接[/b]（無線連接通常是導致顯著延遲波動的原因）。`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+自訂伺服器倍率
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+自訂場景
+
+UI/CoreStrings@NewWorldControl_WorldName:
+世界名稱：
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+新世界
+
 UI/CoreStrings@NicknameOfflinePlayer:
 離線 Zzz...
 
@@ -1268,6 +1361,9 @@ UI/CoreStrings@Notification_ObstaclesOnTheWay:
 
 UI/CoreStrings@Notification_TooFar:
 太遠！
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+植物朽壞了。
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 當前訪問模式
@@ -1520,6 +1616,27 @@ UI/CoreStrings@Quest_Label_Ready:
 
 UI/CoreStrings@QuestionAreYouSure:
 你確定嗎？
+
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+顯示高級倍率
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+默認: {0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+所有本機伺服器預設都有著特殊資源倍率，以確保本機伺服器的間歇式運行模式能提供與24小時運行的網路服務器相當的遊戲體驗。比如植物生長速度提高，太陽能板提供更多電力，事件頻率提高等等。
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+已調整倍率
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+重置到合理範圍
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+解鎖額外範圍
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+未調整倍率
 
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 重新綁定按鍵
@@ -1822,8 +1939,14 @@ UI/CoreStrings@TitleConnecting:
 UI/CoreStrings@TitleDestructionTimeout:
 銷毀超時
 
+UI/CoreStrings@TitleDisabled:
+禁用
+
 UI/CoreStrings@TitleDurability:
 耐久
+
+UI/CoreStrings@TitleEnabled:
+啟用
 
 UI/CoreStrings@TitleEnergyCharge:
 能量
@@ -2066,6 +2189,9 @@ UI/CoreStrings@WindowCompletionist_ProgressLabel:
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 生物
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+事件
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 魚
 
@@ -2202,6 +2328,24 @@ UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 需要
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+完成
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+如果您想的話，可以在火箭發射後繼續進行遊戲。
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+已完成
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+發射！
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+重置發射底座
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+{0}已發射火箭
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 最優匹配配方
@@ -2429,7 +2573,16 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]LP獲得量與你的角色
 [br]技能經驗獲取成正比。`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+拆解
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
+修理
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+拆解台
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
 修理
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
@@ -2494,9 +2647,6 @@ UI/CoreStrings@WipedDate_HoursAgo_Format:
 
 UI/CoreStrings@WipedDate_JustWiped:
 剛剛刪檔
-
-UI/CoreStrings@WipedDate_Yesterday:
-昨天
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `請注意：刪檔無法自動進行！
@@ -2600,6 +2750,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 第一次擊殺
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+首次參與。
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 第一次捕獲
@@ -2829,6 +2982,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+逃脫
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 T{0}
 
@@ -2890,16 +3046,22 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorPragmium@Re
 反應堆{0}
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
-`當前發電{0} EU/s ，光照水準{1}%
-[br]最高輸出 {2} EU/s。`
+`當前發電{0} 能量每秒 ，光照水準{1}%
+[br]最高輸出 {2} 能量每秒 。`
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
-`當前發電{0} EU/s ，溫度{1}°C ({2}% 效率)
-[br]最高輸出 {3} EU/s。`
+`當前發電{0} 能量每秒，溫度{1}°C ({2}% 效率)
+[br]最高輸出 {3} 能量每秒。`
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
-`當前發電{0} EU/s 
-[br]最高輸出 {1} EU/s。`
+`當前發電{0} 能量每秒
+[br]最高輸出 {1} 能量每秒。`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+未作出修改。
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+要應用伺服器倍率改動，伺服器需要保存，停止並重啟。伺服器重啟過程可能會需要一段時間。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 使用各種不同裝備和工具來定制你的角色，讓你顯得與眾不同。
@@ -3106,12 +3268,6 @@ UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTi
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 伺服器離線
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-您確定要清除此伺服器列表嗎？
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-清除伺服器列表
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 請等待獲取伺服器資訊。

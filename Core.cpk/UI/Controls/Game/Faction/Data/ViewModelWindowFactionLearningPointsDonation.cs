@@ -13,6 +13,8 @@
 
         private readonly byte toLevel;
 
+        private ushort learningPointsToDonateSelected;
+
         public ViewModelWindowFactionLearningPointsDonation([NotNull] Action callbackCloseWindow)
         {
             this.callbackCloseWindow = callbackCloseWindow;
@@ -36,9 +38,10 @@
             this.LearningPointsToDonateMax = (ushort)Math.Min(this.LearningPointsToDonateMax,
                                                               this.PlayerAvailableLearningPoints);
 
-            this.LearningPointsToDonateSelected = Math.Min(this.LearningPointsToDonateMax, (ushort)10);
+            this.LearningPointsToDonateSelected = this.LearningPointsToDonateMax;
 
-            if (this.LearningPointsToDonateMax == 0)
+            if (this.LearningPointsToDonateMax == 0
+                && this.PlayerAvailableLearningPoints > 0)
             {
                 // no need to donate anything as the required amount of LP is already present
                 FactionSystem.ClientUpgradeFactionLevel(learningPointsDonation: 0,
@@ -46,6 +49,8 @@
                 callbackCloseWindow();
             }
         }
+
+        public bool CanDonate => this.LearningPointsToDonateSelected > 0;
 
         public BaseCommand CommandCancel
             => new ActionCommand(this.ExecuteCommandCancel);
@@ -57,7 +62,21 @@
 
         public ushort LearningPointsToDonateMax { get; }
 
-        public ushort LearningPointsToDonateSelected { get; set; }
+        public ushort LearningPointsToDonateSelected
+        {
+            get => this.learningPointsToDonateSelected;
+            set
+            {
+                if (this.LearningPointsToDonateSelected == value)
+                {
+                    return;
+                }
+
+                this.learningPointsToDonateSelected = value;
+                this.NotifyThisPropertyChanged();
+                this.NotifyPropertyChanged(nameof(this.CanDonate));
+            }
+        }
 
         public uint PlayerAvailableLearningPoints { get; }
 

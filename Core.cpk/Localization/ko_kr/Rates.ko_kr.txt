@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+채굴 속도
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+벌목 속도
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+추가 토지 점유소 개수
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+보스 난이도: 프라그뮴 여왕
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+보스 난이도: 모래 폭군
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+제작 속도
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+생명체에게 받은 대미지
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+캐릭터의 폭탄으로부터 받은 대미지
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+구조물의 폭탄으로부터 받은 대미지
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+우호적인 플레이어에게서 받은 대미지 (PvP 아군 사격)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+생명체와 환경으로부터 받은 대미지
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Resources] 매장물 추출 속도
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+문 소유자 최대 수
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Faction] 생성 비용 (LP)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Faction] 가입 쿨타임 지속 시간
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Faction] 재가입 쿨타임 지속 시간
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Faction] 레벨 당 파벌 소유 토지 점유소
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Faction] 비공개 파벌의 최대 구성원 수
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Faction] 공개 파벌의 최대 구성원 수
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Faction] [PvP] 동맹 수락
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Faction] 레벨 당 레벨 업그레이드 비용
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+농작물 생장 속도
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+농작물 수명
+
+Scripts/Rates/RateHunger@Name:
+허기율
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+온라인 플레이어 목록 숨기기
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+거래 채팅 방
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+식품 및 소모품 유통 기한
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+아이템 중첩 개수
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+토지 점유소 최대 소유자 수 (비파벌 소유)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+학습 포인트
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+제조 속도
+
+Scripts/Rates/RatePartyMembersMax@Name:
+파티의 최대 구성원 수
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] 플레이어에게 받은 대미지
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] 사망 시, 장착 아이템 전부 떨어뜨리기
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] 새로운 자원 매장지 좌표 숨기기
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] 초보자 보호 기능 지속 시간
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] 습격 차단 지속 시간
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] 토지 점유소 금고 용량
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] 기지 실드 보호 활성화 지속 시간
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] 기지 실드 보호 쿨타임 지속 시간
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] 기지 실드 보호 이용 가능
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] 시간 차단문
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Resources] 수집—기본 수집
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Resources] 수집—상자와 더미
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Resources] 수집—생명체 전리품
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Resources] 수집—운석
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Resources] 수집—우주 쓰레기
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Resources] 프라그뮴 원천 개수
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Resources] [PvP] 매장지 점유 지연 시간
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Resources] [PvP] 리튬 매장지 개수
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Resources] [PvP] 석유 매장지 개수
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+스킬 XP
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Decay] 버려진 구조물 부식
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Decay] 버려진 토지 점유소 부식 지연 지속 시간
+
+Scripts/Rates/RateThirst@Name:
+갈증률
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+발전기 가동 속도
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+월드 이벤트 최초 지연 시간
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+월드 이벤트 간격—{0}
+

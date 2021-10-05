@@ -38,10 +38,10 @@
                     continue;
                 }
 
-                var publicState = PlayerCharacter.GetPublicState(character);
-                if (publicState.IsDead)
+                if (PlayerCharacter.GetPrivateState(character).IsDespawned
+                    || PlayerCharacter.GetPublicState(character).IsDead)
                 {
-                    // dead characters are not processed
+                    // despawned/dead characters are not processed
                     continue;
                 }
 

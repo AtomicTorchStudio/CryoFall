@@ -8,7 +8,7 @@ Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
 完成: {0}（科技組）
 
 Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
-正在 {0}
+在{0}
 
 Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
 製作

@@ -46,11 +46,19 @@
 
         public override bool IsRelocatable => true;
 
-        public void ClientSetSignText(IStaticWorldObject worldObjectSign, string signText)
+        public void ClientSetSignText(IStaticWorldObject worldObjectSign, string text)
         {
-            signText = signText?.Trim();
-            SharedValidateSignText(signText);
-            this.CallServer(_ => _.ServerRemote_SetSignText(worldObjectSign, signText));
+            text = text?.Trim();
+            SharedValidateSignText(text);
+
+            if (Client.SteamApi.IsSteamClient)
+            {
+                text = Client.SteamApi.FilterText(text);
+            }
+
+            text = ProfanityFilteringSystem.SharedApplyFilters(text);
+
+            this.CallServer(_ => _.ServerRemote_SetSignText(worldObjectSign, text));
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -256,7 +264,7 @@
                                    isOutOfRange: false);
         }
 
-        private void ServerRemote_SetSignText(IStaticWorldObject worldObjectSign, string signText)
+        private void ServerRemote_SetSignText(IStaticWorldObject worldObjectSign, string text)
         {
             this.VerifyGameObject(worldObjectSign);
 
@@ -265,10 +273,10 @@
                 return;
             }
 
-            signText = signText?.Trim();
-            SharedValidateSignText(signText);
-            signText = ProfanityFilteringSystem.SharedApplyFilters(signText);
-            GetPublicState(worldObjectSign).Text = signText;
+            text = text?.Trim();
+            SharedValidateSignText(text);
+            text = ProfanityFilteringSystem.SharedApplyFilters(text);
+            GetPublicState(worldObjectSign).Text = text;
         }
     }
 

@@ -22,6 +22,12 @@ Scripts/Vehicles/VehicleMechManul@Description:
 Scripts/Vehicles/VehicleMechManul@Name:
 Manul
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+Eksperymentalny projekt mechanicznego pancerza bojowego wyposażonego w funkcje automatycznej naprawy uszkodzeń strukturalnych oraz potężną egzotyczną broń.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+Nemezis
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 Lekki mechaniczny pancerz bojowy, charakteryzujący się stosunkowo dużą prędkością, a jednocześnie zapewniający dobrą ochronę i siłę ognia.
 
@@ -60,4 +66,7 @@ Normalny
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 Duży
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+Egzotycz.
 

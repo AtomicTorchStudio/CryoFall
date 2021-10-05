@@ -89,12 +89,20 @@
             BbTextEditorHelper.ClientOpenTextEditor(originalText,
                                                     maxLength: MaxDescriptionLength,
                                                     windowHeight: 200,
-                                                    onSave: async text =>
-                                                            {
-                                                                await Instance.CallServer(
-                                                                    _ => _.ServerRemote_SetDescription(text));
-                                                                RefreshDescription();
-                                                            });
+                                                    onSave: OnSave);
+
+            async void OnSave(string text)
+            {
+                if (Api.Client.SteamApi.IsSteamClient)
+                {
+                    text = Api.Client.SteamApi.FilterText(text);
+                }
+
+                text = ProfanityFilteringSystem.SharedApplyFilters(text);
+
+                await Instance.CallServer(_ => _.ServerRemote_SetDescription(text));
+                RefreshDescription();
+            }
         }
 
         public static async void ClientEditScheduledWipeDate()
@@ -121,16 +129,23 @@
         public static async void ClientEditWelcomeMessage()
         {
             var welcomeMessageData = await Instance.CallServer(_ => _.ServerRemote_GetInfo());
-
             BbTextEditorHelper.ClientOpenTextEditor(welcomeMessageData.WelcomeMessage,
                                                     maxLength: MaxWelcomeMessageLength,
                                                     windowHeight: 530,
-                                                    onSave: async text =>
-                                                            {
-                                                                await Instance.CallServer(
-                                                                    _ => _.ServerRemote_SetWelcomeMessage(text));
-                                                                RefreshWelcomeMessage();
-                                                            });
+                                                    onSave: OnSave);
+
+            async void OnSave(string text)
+            {
+                if (Api.Client.SteamApi.IsSteamClient)
+                {
+                    text = Api.Client.SteamApi.FilterText(text);
+                }
+
+                text = ProfanityFilteringSystem.SharedApplyFilters(text);
+
+                await Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));
+                RefreshWelcomeMessage();
+            }
         }
 
         public static async void ClientShowWelcomeMessage()
@@ -447,6 +462,7 @@
             }
 
             text = ProfanityFilteringSystem.SharedApplyFilters(text);
+
             Api.Server.Core.WelcomeMessageText = serverWelcomeMessageText = text;
 
             Logger.Important("Server welcome message changed to:"

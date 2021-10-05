@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Play.Data
 {
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Demo;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelMenuPlay : BaseViewModel
     {
@@ -21,10 +23,20 @@
                     return;
                 }
 
+                if (value
+                    && Api.Client.MasterServer.IsDemoVersion)
+                {
+                    value = false;
+                    DemoVersionDialogWindow.ShowDialog();
+                }
+
                 this.isTabLocalServerSelected = value;
                 this.NotifyThisPropertyChanged();
 
-                this.IsAnyTabSelected = true;
+                if (value)
+                {
+                    this.IsAnyTabSelected = true;
+                }
             }
         }
 
@@ -41,7 +53,10 @@
                 this.isTabMultiplayerSelected = value;
                 this.NotifyThisPropertyChanged();
 
-                this.IsAnyTabSelected = true;
+                if (value)
+                {
+                    this.IsAnyTabSelected = true;
+                }
 
                 ViewModelMenuServers.Instance?.ResetSortOrder();
 

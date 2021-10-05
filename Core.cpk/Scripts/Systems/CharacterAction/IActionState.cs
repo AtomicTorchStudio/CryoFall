@@ -7,7 +7,7 @@
     {
         event Action<double> ProgressPercentsChanged;
 
-        bool IsBlocksMovement { get; }
+        bool IsBlockingMovement { get; }
 
         bool IsCancelled { get; }
 

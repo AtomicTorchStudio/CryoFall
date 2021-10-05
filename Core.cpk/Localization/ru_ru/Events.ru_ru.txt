@@ -2,26 +2,50 @@
 `Прагмиевая королева выползла на поверхность.
 [br]Храбрейших из героев ждет ценная добыча!`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+Прагмиевая королева
+
 Scripts/Events/EventBossSandTyrant@Description:
 `Песчаный тиран выполз на поверхность.
 [br]Храбрейших из героев ждет ценная добыча!`
+
+Scripts/Events/EventBossSandTyrant@Name:
+Песчаный тиран
+
+Scripts/Events/EventFishingBlueGlider@Name:
+Лазурка
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `В зону, обозначенную на карте, упали метеориты.
 [br]Поспешите добыть редкие минералы!`
 
-Scripts/Events/EventMigration@Description:
+Scripts/Events/EventMeteoriteDrop@Name:
+Метеорит
+
+Scripts/Events/EventMigrationFloater@Description:
 Похоже, местные биологические виды мигрируют в другую зону. Это отличная возможность для охоты.
 
+Scripts/Events/EventMigrationFloater@Name:
+Миграция летунов
+
+Scripts/Events/EventMigrationThumper@Name:
+Миграция крушителей
+
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Внимание: огнестрельное оружие бесполезно; используйте ближний бой или тепловое оружие.
+Внимание: огнестрельное оружие бесполезно; используйте оружие ближнего боя или оружие с тепловым уроном.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 В горных районах появились странные инопланетные поросли, поэтому добыча минералов там почти невозможна, но это шанс добыть редкие ресурсы.
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+Нашествие пси-поросли
+
 Scripts/Events/EventSpaceDrop@Description:
 `В зону, отмеченную на карте, упали обломки из космоса.
 [br]Поспешите, вдруг там есть что-то ценное!`
+
+Scripts/Events/EventSpaceDrop@Name:
+Космический мусор
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0} терпит поражение от:

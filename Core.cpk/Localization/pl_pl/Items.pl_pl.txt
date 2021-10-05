@@ -2629,3 +2629,15 @@ Ciężkie działo, które niszczy cel za pomocą ładunków przyspieszonych czą
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Działo energetyczne
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Wystrzeliwuje wielkie wybuchowe pojemniki z mieszaniną kwasów i toksyn, które ranią nie tylko istoty żywe, ale i niszczą budowle.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Działo kainitow
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Wystrzeliwuje duże owadopodobne stwory, które po trafieniu wgryzają się w cel, zadając dodatkowe obrażenia.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+Ciężka wyrzutnia roju
+

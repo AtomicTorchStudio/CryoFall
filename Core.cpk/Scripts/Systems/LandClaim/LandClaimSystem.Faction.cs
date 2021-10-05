@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
@@ -224,6 +225,11 @@
                 [CanBeNull] ILogicObject areasGroupFrom,
                 [CanBeNull] ILogicObject areasGroupTo)
             {
+                var byMember = ServerPlayerCharacterCurrentActionStateContext.CurrentCharacter
+                               ?? (ServerRemoteContext.IsRemoteCall
+                                       ? ServerRemoteContext.Character
+                                       : null);
+
                 if (areasGroupTo is not null)
                 {
                     var clanTag = LandClaimAreasGroup.GetPublicState(areasGroupTo).FactionClanTag;
@@ -241,9 +247,7 @@
 
                     FactionSystem.ServerOnLandClaimExpanded(faction,
                                                             centerTilePosition,
-                                                            byMember: ServerRemoteContext.IsRemoteCall
-                                                                          ? ServerRemoteContext.Character
-                                                                          : null);
+                                                            byMember: byMember);
                 }
                 else if (areasGroupFrom is not null)
                 {
@@ -262,9 +266,7 @@
 
                     FactionSystem.ServerOnLandClaimRemoved(faction,
                                                            centerTilePosition,
-                                                           byMember: ServerRemoteContext.IsRemoteCall
-                                                                         ? ServerRemoteContext.Character
-                                                                         : null);
+                                                           byMember: byMember);
                 }
             }
 

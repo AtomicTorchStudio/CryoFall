@@ -13,9 +13,6 @@ namespace AtomicTorch.CBND.CoreMod.Rates
 
         public override string Name => "Woodcutting speed";
 
-        public override IRate OrderAfterRate
-            => this.GetRate<RateActionMiningSpeedMultiplier>();
-
         public override double ValueDefault => 1.0;
 
         public override double ValueMax => 10.0;

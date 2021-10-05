@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -162,7 +162,7 @@
 
         public static void ServerPutIntoGarage(IDynamicWorldObject vehicle)
         {
-            var position = ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D();
+            var position = CharacterDespawnSystem.ServerGetServiceAreaPosition().ToVector2D();
 
             var vehiclePrivateState = vehicle.GetPrivateState<VehiclePrivateState>();
             if (vehiclePrivateState.IsInGarage

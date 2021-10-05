@@ -14,7 +14,7 @@
         public override string Name => "Mining speed";
 
         public override IRate OrderAfterRate
-            => this.GetRate<RateCraftingSpeedMultiplier>();
+            => this.GetRate<RateActionWoodcuttingSpeedMultiplier>();
 
         public override double ValueDefault => 1.0;
 

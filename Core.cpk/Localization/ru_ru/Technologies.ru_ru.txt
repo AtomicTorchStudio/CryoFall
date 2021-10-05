@@ -58,6 +58,12 @@ Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Энергетическое оружие
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+Технологии, необходимые для того, чтобы наконец спастись с этой планеты!
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+Спасение
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 Экспериментальное оружие, которое редко используется в обычном бою, но может здорово пригодиться в экстремальных ситуациях.
 

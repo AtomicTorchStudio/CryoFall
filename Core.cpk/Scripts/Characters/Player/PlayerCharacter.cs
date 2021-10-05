@@ -24,7 +24,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
@@ -159,7 +158,8 @@
 
             // current character - use prediction system
             var publicState = GetPublicState(currentCharacter);
-            if (publicState.IsDead)
+            if (publicState.IsDead
+                || GetPrivateState(currentCharacter).IsDespawned)
             {
                 // don't use prediction system - player is dead
                 // don't change the position (don't move the corpse!)
@@ -292,21 +292,16 @@
                 },
                 clientState);
 
-            publicState.ClientSubscribe(
-                _ => _.IsDead,
-                _ =>
-                {
-                    // re-create physics on death state change
-                    this.SharedCreatePhysics(character);
-                    ResetRendering();
+            publicState.ClientSubscribe(_ => _.IsDead,
+                                        DeathOrDespawnedStateChangedHandler,
+                                        clientState);
 
-                    if (character.IsCurrentClientCharacter
-                        && publicState.IsDead)
-                    {
-                        Menu.CloseAll();
-                    }
-                },
-                clientState);
+            if (character.IsCurrentClientCharacter)
+            {
+                GetPrivateState(character).ClientSubscribe(_ => _.IsDespawned,
+                                                           DeathOrDespawnedStateChangedHandler,
+                                                           clientState);
+            }
 
             RefreshCurrentSelectedItem();
 
@@ -356,6 +351,20 @@
                     clientState.CurrentProtoSkeleton = null;
                 }
             }
+
+            void DeathOrDespawnedStateChangedHandler(bool _)
+            {
+                // re-create physics on death state change
+                this.SharedCreatePhysics(character);
+                ResetRendering();
+
+                if (character.IsCurrentClientCharacter
+                    && (publicState.IsDead
+                        || GetPrivateState(character).IsDespawned))
+                {
+                    Menu.CloseAll();
+                }
+            }
         }
 
         protected override void ClientUpdate(ClientUpdateData data)
@@ -394,7 +403,8 @@
                 return;
             }
 
-            if (publicState.IsDead)
+            if (privateState.IsDespawned
+                || publicState.IsDead)
             {
                 // dead/despawned - stops processing character
                 MenuRespawn.EnsureOpened(fadeIn: !privateState.IsDespawned);
@@ -464,7 +474,7 @@
             var character = data.GameObject;
             var publicState = data.PublicState;
             var privateState = data.PrivateState;
-            
+
             if (CharacterCreationSystem.SharedIsEnabled)
             {
                 publicState.IsMale = 1 == RandomHelper.Next(0, maxValueExclusive: 2); // male/female ratio: 50/50
@@ -533,7 +543,8 @@
             // update selected hotbar item
             SharedRefreshSelectedHotbarItem(character, privateState);
 
-            if (publicState.IsDead)
+            if (privateState.IsDespawned
+                || publicState.IsDead)
             {
                 VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
@@ -554,8 +565,28 @@
 
             // update weapon state (fires the weapon if needed)
             WeaponSystem.SharedUpdateCurrentWeapon(character, privateState.WeaponState, data.DeltaTime);
-            // update current action state (if any)
-            privateState.CurrentActionState?.SharedUpdate(data.DeltaTime);
+
+            if (privateState.CurrentActionState is { } actionState)
+            {
+                // update current action state
+                try
+                {
+                    if (IsServer)
+                    {
+                        ServerPlayerCharacterCurrentActionStateContext.CurrentCharacter = character;
+                    }
+
+                    actionState.SharedUpdate(data.DeltaTime);
+                }
+                finally
+                {
+                    if (IsServer)
+                    {
+                        ServerPlayerCharacterCurrentActionStateContext.CurrentCharacter = null;
+                    }
+                }
+            }
+
             // update crafting queue
             CraftingMechanics.ServerUpdate(privateState.CraftingQueue, data.DeltaTime);
             // consumes/restores stamina
@@ -564,10 +595,14 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var publicState = GetPublicState(data.GameObject);
-            if (publicState.IsDead)
+            var character = data.GameObject;
+            var publicState = GetPublicState(character);
+
+            if (publicState.IsDead
+                || ((IsServer || character.IsCurrentClientCharacter)
+                    && GetPrivateState(character).IsDespawned))
             {
-                // do not create any physics for dead character
+                // do not create any physics for dead/despawned character
                 return;
             }
 

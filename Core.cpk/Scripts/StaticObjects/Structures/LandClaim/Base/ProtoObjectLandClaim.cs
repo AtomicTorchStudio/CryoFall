@@ -271,10 +271,13 @@
             if (writeToLog)
             {
                 Logger.Warning($"Character cannot interact with {worldObject} - not the land owner.");
-                this.CallClient(
-                    character,
-                    _ => _.ClientRemote_OnCannotInteract(worldObject,
-                                                         LandClaimMenuOpenResult.FailPlayerIsNotOwner));
+                if (IsServer)
+                {
+                    this.CallClient(
+                        character,
+                        _ => _.ClientRemote_OnCannotInteract(worldObject,
+                                                             LandClaimMenuOpenResult.FailPlayerIsNotOwner));
+                }
             }
 
             return false;

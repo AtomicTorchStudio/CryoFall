@@ -13,7 +13,7 @@
     d:DesignHeight="600" d:DesignWidth="600"
     d:DataContext="{d:DesignInstance data:ViewModelLoadingSplashScreen}"
     Panel.ZIndex="8900"
-    UseLayoutRounding="True">
+    UseLayoutRounding="False">
 
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
@@ -30,7 +30,7 @@
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualStateGroup.Transitions>
-                    <VisualTransition GeneratedDuration="0:0:1.0" To="Shown" />
+                    <VisualTransition GeneratedDuration="0:0:0.7" To="Shown" />
                     <VisualTransition GeneratedDuration="0:0:1.0" To="Hidden" />
                 </VisualStateGroup.Transitions>
                 <VisualState x:Name="Shown">
@@ -62,6 +62,10 @@
                                                        Storyboard.TargetProperty="(Control.Opacity)">
                             <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                         </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LoadingDisplayControl"
+                                                       Storyboard.TargetProperty="(Control.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -86,6 +90,12 @@
                                FontWeight="Bold"
                                HorizontalAlignment="Center"
                                Margin="0,20,0,0" />
+
+                    <core:LoadingDisplayControl x:Name="LoadingDisplayControl"
+                                                HorizontalAlignment="Center"
+                                                Width="32"
+                                                Height="32"
+                                                Margin="0,15,0,0" />
 
                     <ItemsControl x:Name="StructureInfos"
                                   ItemsSource="{Binding StructureInfos}"

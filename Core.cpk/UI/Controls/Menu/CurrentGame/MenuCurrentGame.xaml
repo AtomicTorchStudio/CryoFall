@@ -135,7 +135,7 @@
                 <!-- Description -->
                 <Grid
                     Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                    HorizontalAlignment="Stretch">
+                    HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="5" />
@@ -146,15 +146,15 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <core:FormattedTextBlock Grid.Row="0"
-                                             Grid.Column="0"
-                                             Content="{Binding ServerDescription}"
-                                             Width="200"
-                                             FontSize="13"
-                                             HorizontalAlignment="Center"
-                                             VerticalAlignment="Center"
-                                             LineHeight="14.5"
-                                             LineStackingStrategy="BlockLineHeight" />
+                    <ScrollViewer MaxHeight="110">
+                        <core:FormattedTextBlock Content="{Binding ServerDescription}"
+                                                 Width="200"
+                                                 FontSize="13"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 LineHeight="14.5"
+                                                 LineStackingStrategy="BlockLineHeight" />
+                    </ScrollViewer>
 
                     <!-- Edit button -->
                     <Button Grid.Row="0"
@@ -166,32 +166,23 @@
                             Margin="5,0,0,0"
                             MinWidth="40" />
 
-                    <!-- Scheduled wipe date and edit button -->
-                    <core:FormattedTextBlock Grid.Row="2"
-                                             Grid.Column="0"
-                                             Content="{x:Static serverWelcomeMessage:WelcomeMessageSystem.HeaderWipeInformation}"
-                                             Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
-                                             Width="200"
-                                             FontSize="13"
-                                             HorizontalAlignment="Center"
-                                             VerticalAlignment="Center"
-                                             LineHeight="14.5"
-                                             LineStackingStrategy="BlockLineHeight" />
-
-                    <!-- Edit button -->
-                    <Button Grid.Row="2"
-                            Grid.Column="1"
-                            Content="{x:Static loc:CoreStrings.Button_Edit}"
-                            Command="{Binding CommandEditScheduledWipeDate}"
-                            Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
-                            Focusable="False"
-                            Margin="5,0,0,0"
-                            MinWidth="40" />
+                    <!-- Wipe date editor section -->
+                    <ContentControl Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    HorizontalAlignment="Center">
+                        <Button Content="{x:Static serverWelcomeMessage:WelcomeMessageSystem.HeaderWipeInformation}"
+                                Command="{Binding CommandEditScheduledWipeDate}"
+                                Focusable="False"
+                                Margin="5,0,0,0"
+                                MinWidth="40" />
+                    </ContentControl>
                 </Grid>
 
                 <Grid
                     Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                    HorizontalAlignment="Stretch"
+                    HorizontalAlignment="Center"
                     Margin="0,15,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

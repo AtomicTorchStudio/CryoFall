@@ -941,6 +941,51 @@ Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooC
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 この地形は地下水面へのアクセスを提供していません。
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+ロケットフレームの製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+この惑星でのあなたの成果の集大成です。ついに究極の脱出を考え始める準備ができました！
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+発射台
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+制御用電子機器の製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+燃料タンクの製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+推進システムの製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+発射台—ステージ2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+異常回避システムの製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+生命維持装置の製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+航行システムの製作
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+発射台—ステージ3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+ロケットの燃料
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+物資の準備
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+発射台—ステージ4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+発射台—ステージ5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 あらゆるタイプの人工生体インプラントの取り付けまたは取り外しができる特殊な自動医療ステーション。
 
@@ -971,6 +1016,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 もっと多くの材料が必要です。
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+分解するアイテムを置いてください。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+先に出力アイテムを取り出してください。
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 修理するには2つの同一アイテムを置いてください。
 
@@ -982,6 +1033,9 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 修理できません
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+分解不能
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 ツイてるね！[br]{0}が完全に修理されました！

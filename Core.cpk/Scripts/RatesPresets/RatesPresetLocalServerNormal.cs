@@ -1,4 +1,4 @@
-namespace AtomicTorch.CBND.CoreMod.RatesPresets
+﻿namespace AtomicTorch.CBND.CoreMod.RatesPresets
 {
     using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.RatesPresets.Base;
@@ -6,7 +6,7 @@ namespace AtomicTorch.CBND.CoreMod.RatesPresets
     public class RatesPresetLocalServerNormal : BaseRatesPreset
     {
         public override string Description =>
-            "Standard game rules with balanced difficulty suitable for solo experience on a local server. If this is your first time playing CryoFall - using this set of rules is the recommended choice.";
+            "Standard game rules with balanced difficulty, suitable for solo experience on a local server. If this is your first time playing CryoFall—we recommend using this set of rules.";
 
         public override bool IsMultiplayerOnly => false;
 

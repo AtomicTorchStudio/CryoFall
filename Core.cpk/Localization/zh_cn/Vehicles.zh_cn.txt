@@ -22,6 +22,12 @@ Scripts/Vehicles/VehicleMechManul@Description:
 Scripts/Vehicles/VehicleMechManul@Name:
 狲
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+实验型战斗护甲。可自动恢复结构损伤并带有强大的异星武器。
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+复仇者
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 轻量战斗铠甲。拥有较高的速度，同时也不牺牲护甲和火力。
 
@@ -60,4 +66,7 @@ Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 大
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+异星
 

@@ -101,6 +101,9 @@ Ponów
 UI/CoreStrings@Button_Save:
 Zapisz
 
+UI/CoreStrings@Button_StayOffline:
+Pozostań offline
+
 UI/CoreStrings@Button_Upgrade:
 Ulepsz
 
@@ -345,6 +348,12 @@ Zegar zniszczenia zaczyna odliczać w momencie, gdy działka zostanie zniszczona
 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Czy na pewno użyć: {0}?
+
+UI/CoreStrings@DialogClearList_Message:
+Czy na pewno wyczyścić tę listę?
+
+UI/CoreStrings@DialogClearServerList_Title:
+Wyczyść listę serwerów
 
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 Jednocześnie sterowane drony
@@ -937,6 +946,9 @@ Użyj
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Wynik
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+Szacunkowa wydajność
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 Bufor
 
@@ -960,6 +972,12 @@ Filtry
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 WCZYTYWANIE
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+Postępy są zapisywane automatycznie (zazwyczaj co godzinę) oraz po rozłączeniu lub zakończeniu gry (nawet jeśli zamkniesz grę lub naciśniesz klawisze Alt+F4).
+
+UI/CoreStrings@LocalServerSaveName_Format:
+Gra lokalna – {0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 Zaloguj
@@ -987,6 +1005,9 @@ GŁÓWNA
 
 UI/CoreStrings@MainMenu_TabOptions:
 OPCJE
+
+UI/CoreStrings@MainMenu_TabPlay:
+GRAJ
 
 UI/CoreStrings@MainMenu_TabQuit:
 WYJDŹ
@@ -1018,14 +1039,44 @@ Wybierz pochodzenie postaci
 UI/CoreStrings@MenuCharacterCreation_Title:
 Wybierz wygląd postaci
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+Przeglądaj wartości na serwerze
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Opuść
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 Pokaż wiadomość powitalną
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+Aktualne wartości na serwerze
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+Powód rozłączenia:
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 Brak połączenia.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+Kontynuuj bieżącą grę.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+Wyskocz i kontynuuj
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+Zdecyduj później.
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+Powrót do menu głównego
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+Zachowaj postać, ale rozpocznij nową grę.
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+Rozpocznij nową grę +
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+Czy chcesz rozpocząć nową grę, zachowując swoją postać? Nowy świat zastąpi dotychczasowy świat.
 
 UI/CoreStrings@MenuHome_Forums:
 Fora
@@ -1047,6 +1098,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 Społecznościowe
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+Przeglądaj folder z zapisami
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+Stwórz nowy świat
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+Wczytaj świat
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+Lokalny serwer już działa.[br]Aby uzyskać listę zapisanych gier, najpierw należy zatrzymać grę lokalną.
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+Lokalny serwer zostanie wyłączony, a postępy zostaną zapisane.[br]Poczekaj na zakończenie operacji, aby uzyskać listę zapisanych gier.
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+Obecnie brak zapisanych gier dla serwera lokalnego.[br]Możesz stworzyć nowy świat.
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+Światy lokalne
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+Nowy świat
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Wyjdź z gry, zrestartuj klienta Steam i uruchom grę ponownie.
 
@@ -1058,6 +1133,12 @@ Chcesz zastosować zmiany?
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 Nie zastosowano zmian
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+GRA LOKALNA
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+TRYB WIELOOSOBOWY
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 Czy na pewno wyjść do pulpitu?
@@ -1244,6 +1325,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] Warto [b]zamknąć[/b] inne aplikacje (zwłaszcza przeglądarki internetowe, klienty Torrent i menedżery pobierania plików).
 [*] Można wybrać [b]połączenie kablowe[/b], jeśli komputer jest połączony przez Wi-Fi lub połączenie komórkowe. Połączenia bezprzewodowe często są przyczynami opóźnień w komunikacji.`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+Dostosuj wartości serwera
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+Scenariusz własny.
+
+UI/CoreStrings@NewWorldControl_WorldName:
+Nazwa świata:
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+Nowy świat
+
 UI/CoreStrings@NicknameOfflinePlayer:
 Offline...
 
@@ -1267,6 +1360,9 @@ Przeszkody na drodze!
 
 UI/CoreStrings@Notification_TooFar:
 Za daleko!
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+Roślina zwiędła.
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Aktualny tryb dostępu
@@ -1520,6 +1616,27 @@ GOTOWE
 UI/CoreStrings@QuestionAreYouSure:
 Na pewno?
 
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+Wyświetl wartości zaawan.
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+Domyślnie: {0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+Wszystkie ustawienia wstępne serwera lokalnego zawierają wartości dostosowane, co zapewnia optymalną rozgrywkę na serwerze lokalnym działającym z przerwami (w porównaniu do serwera wieloosobowego, który działa non-stop). Przykładowo: rośliny rosną szybciej, panele słoneczne generują więcej energii elektrycznej, wydarzenia zdarzają się częściej i tak dalej.
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+Wartości zmodyfikowane
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+Przywróć rozsądny zakres
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+Odblokuj rozszerzony zakres
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+Wartości niezmienione
+
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 Zmiana funkcji klawisza
 
@@ -1654,7 +1771,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 Ochrona przed najazdem w trybie offline nie jest dostępna dla tej działki, ponieważ w całości znajduje się na terenie innej bazy zapewniającej własną ochronę.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-Osłona będzie aktywna za {0}, o ile operacja nie zostanie przerwana (np. anulowana przez właściciela bazy lub przerwana przez najeźdźców z blokadą najazdów).
+Tarcza będzie aktywna za {0}, o ile operacja nie zostanie przerwana (np. anulowana przez właściciela bazy lub przerwana przez najeźdźców, którzy zniszczą strukturę. Blokada najazdów nie wystarczy).
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 W tej bazie aktywowana jest tarcza
@@ -1675,7 +1792,7 @@ UI/CoreStrings@ShieldProtection_RechargeTo:
 Naładuj do:
 
 UI/CoreStrings@ShieldProtection_ShieldStatus:
-Status sieci:
+Status tarczy:
 
 UI/CoreStrings@ShieldProtection_Status_Activating:
 Aktywowanie
@@ -1821,8 +1938,14 @@ UI/CoreStrings@TitleConnecting:
 UI/CoreStrings@TitleDestructionTimeout:
 Czas do zniszczenia
 
+UI/CoreStrings@TitleDisabled:
+Wył.
+
 UI/CoreStrings@TitleDurability:
 Trwałość
+
+UI/CoreStrings@TitleEnabled:
+Wł.
 
 UI/CoreStrings@TitleEnergyCharge:
 Naładowanie
@@ -2065,6 +2188,9 @@ Postęp:
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Stwory
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+Wydarzenia
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 Ryba
 
@@ -2201,6 +2327,24 @@ Ulepszenie tej struktury wymaga opanowania odpowiedniej technologii.
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 Wymagane
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+Ukończ
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+Jeśli chcesz, to po wystrzeleniu rakiety, będzie można kontynuować grę.
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+Ukończono
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+Start!
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+Resetuj stanowisko startowe
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+Rakieta została wystrzelona przez: {0}.
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 Najlepszy przepis
@@ -2428,7 +2572,16 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]Liczba otrzymywanych PT jest proporcjonalna
 [br]do poziomu zyskiwanego doświadczenia w umiejętnościach.`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+Demontuj
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Napraw
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+Demontaż
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
 Napraw
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
@@ -2493,9 +2646,6 @@ UI/CoreStrings@WipedDate_HoursAgo_Format:
 
 UI/CoreStrings@WipedDate_JustWiped:
 Właśnie wyczyszczono
-
-UI/CoreStrings@WipedDate_Yesterday:
-Wczoraj
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `Uwaga: Czyszczenie serwera nie odbywa się automatycznie!
@@ -2599,6 +2749,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Pierwsza śmierć.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+Uczestniczono po raz pierwszy.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 Pierwsze złapanie.
@@ -2828,6 +2981,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+Ucieczka
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 Poziom {0}
 
@@ -2899,6 +3055,12 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Bieżące wytwarzanie: {0} JE/s.
 [br]Maks. wydajność {1} JE/s.`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+Nie wprowadzono żadnych zmian.
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+Aby zmienić wartości na serwerze, należy zapisać jego stan, zatrzymać go i ponownie uruchomić. Ponowne uruchomienie serwera może chwilę potrwać.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 Dostosuj wygląd swojej postaci i wyróżnij się z użyciem różnych urządzeń i narzędzi.
@@ -3105,12 +3267,6 @@ Serwer jest niedostępny.
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 Serwer offline
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-Czy na pewno wyczyścić listę serwerów?
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-Wyczyść listę serwerów
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 Czekaj na pobranie informacji o serwerze.

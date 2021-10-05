@@ -205,7 +205,14 @@
         public static void ClientOfficerSetFactionDescription(string text, bool isPrivateDescription)
         {
             ClientValidateHasAccessRights(FactionMemberAccessRights.EditDescription);
+
+            if (Api.Client.SteamApi.IsSteamClient)
+            {
+                text = Api.Client.SteamApi.FilterText(text);
+            }
+
             text = ProfanityFilteringSystem.SharedApplyFilters(text);
+
             SharedValidateDescriptionLength(text, isPrivateDescription);
             Instance.CallServer(
                 _ => _.ServerRemote_OfficerSetDescription(text, isPrivateDescription));

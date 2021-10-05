@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Retry:
 UI/CoreStrings@Button_Save:
 保存
 
+UI/CoreStrings@Button_StayOffline:
+オフライン維持
+
 UI/CoreStrings@Button_Upgrade:
 アップグレード
 
@@ -345,6 +348,12 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 本当に{0}を使用してもいいですか？
+
+UI/CoreStrings@DialogClearList_Message:
+このリストを消去してよろしいですか？
+
+UI/CoreStrings@DialogClearServerList_Title:
+サーバーリスト消去
 
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 同時に制御可能なドローン数
@@ -937,6 +946,9 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 UI/CoreStrings@ItemsContainer_TitleOutput:
 出力
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+推定容量
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 緩衝
 
@@ -960,6 +972,12 @@ UI/CoreStrings@ListFilters:
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 読み込み中
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+進行状況は自動的に（通常は1時間ごとに）保存され、ゲームを切断したり終了したりしたときにも保存されます（ゲームを閉じたりAlt+F4を押したりしても保存されます）。
+
+UI/CoreStrings@LocalServerSaveName_Format:
+ローカルゲーム—{0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 ログイン
@@ -987,6 +1005,9 @@ UI/CoreStrings@MainMenu_TabHome:
 
 UI/CoreStrings@MainMenu_TabOptions:
 オプション
+
+UI/CoreStrings@MainMenu_TabPlay:
+プレイ
 
 UI/CoreStrings@MainMenu_TabQuit:
 終了
@@ -1018,14 +1039,44 @@ UI/CoreStrings@MenuCharacterCreation_OriginSelection:
 UI/CoreStrings@MenuCharacterCreation_Title:
 キャラクターの外見を選ぶ
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+サーバー設定を見る
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 切断
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 ウェルカムメッセージを表示
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+現在のサーバー設定
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+切断原因：
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 接続されていません。
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+現在のゲームを続行します。
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+閉じて続ける
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+あとで決めます。
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+メインメニューに戻る
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+キャラクターはそのままで、新しくゲームを始めます。
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+ニューゲーム＋をスタート
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+キャラクターはそのままで、新しくゲームを始めてみませんか？ 今までの世界に代わって、新しい世界が始まります。
 
 UI/CoreStrings@MenuHome_Forums:
 フォーラム
@@ -1047,6 +1098,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 ソーシャル
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+セーブフォルダを開く
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+新ワールド作成
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+ワールド読み込み
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+ローカルサーバーが起動中です。[br]セーブデータリストを取得するには、まずローカルゲームを停止する必要があります。
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+ローカルサーバーをシャットダウンし、進行状況を保存しています。[br]実際のセーブデータリストを取得するには、終了するまでお待ちください。
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+現在、ローカルサーバーのセーブデータはありません。[br]新ワールドを作成することができます。
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+ローカルワールド
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+新ワールド
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 ゲームを終了し、Steamクライアントを再起動してからゲームを再起動してください。
 
@@ -1058,6 +1133,12 @@ UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Message:
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 変更を適用しませんでした
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+ローカルゲーム
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+マルチプレイヤー
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 終了してデスクトップに戻ってよろしいですか？
@@ -1244,6 +1325,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] その他のアプリケーションを[b]閉じる[/b]ことを検討してください（特にWebブラウザやTorrentクライアント、ダウンローダーなど）。
 [*] お使いのPCが現在Wi-Fiやモバイル接続で接続されている場合は、[b]有線接続[/b]に切り替えることも検討してください（無線接続は遅延の原因となる場合があります）。`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+サーバー設定カスタマイズ
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+カスタムシナリオ
+
+UI/CoreStrings@NewWorldControl_WorldName:
+ワールド名：
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+新ワールド
+
 UI/CoreStrings@NicknameOfflinePlayer:
 オフライン Zzz...
 
@@ -1267,6 +1360,9 @@ UI/CoreStrings@Notification_ObstaclesOnTheWay:
 
 UI/CoreStrings@Notification_TooFar:
 遠すぎます！
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+植物が枯れてしまいました。
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 現在のアクセスモード
@@ -1520,6 +1616,27 @@ UI/CoreStrings@Quest_Label_Ready:
 UI/CoreStrings@QuestionAreYouSure:
 よろしいですか？
 
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+詳細設定表示
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+デフォルト：{0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+全てのローカルサーバーのプリセットには、断続的に稼働するローカルサーバーに最適なゲームプレイができるようにカスタマイズされたレートが設定されています（常時稼働するマルチプレイヤーサーバーと比較して）。例えば、植物の成長が早くなったり、ソーラーパネルの発電量が増えたり、イベントが頻繁に行われるようになっています。
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+調整済み設定
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+適度な範囲にリセット
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+範囲拡張を解除
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+未調整設定
+
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 再バインドキー
 
@@ -1654,7 +1771,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 この所有地は、独自のシールド保護を提供する別の拠点内にあるため、オフライン中の襲撃保護シールドが利用できません。
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-シールドは中断（拠点の所有者によってキャンセルされたり、襲撃者によって襲撃保護が適用された場合）されない限り、{0}で有効化されます。
+シールドは、拠点の所有者がキャンセルしたり、襲撃者が建造物を破壊するなどして中断されない限り、{0}の間、有効です（襲撃者保護では不十分）。
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 この拠点はシールド保護を発動中です。
@@ -1821,8 +1938,14 @@ UI/CoreStrings@TitleConnecting:
 UI/CoreStrings@TitleDestructionTimeout:
 破壊タイムアウト
 
+UI/CoreStrings@TitleDisabled:
+無効
+
 UI/CoreStrings@TitleDurability:
 耐久度
+
+UI/CoreStrings@TitleEnabled:
+有効
 
 UI/CoreStrings@TitleEnergyCharge:
 充電
@@ -2065,6 +2188,9 @@ UI/CoreStrings@WindowCompletionist_ProgressLabel:
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 生物
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+イベント
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 魚
 
@@ -2201,6 +2327,24 @@ UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 必須
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+完了
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+ロケットを発射した後も、プレイを続けることができます。
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+完了済
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+発射！
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+発射台をリセット
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+ロケットは{0}によって打ち上げられました。
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 ベストマッチングレシピ
@@ -2428,7 +2572,16 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]LPの獲得量は、キャラクターの
 [br]スキル経験値に比例しています。`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+分解
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
+修理
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+分解
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
 修理
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
@@ -2493,9 +2646,6 @@ UI/CoreStrings@WipedDate_HoursAgo_Format:
 
 UI/CoreStrings@WipedDate_JustWiped:
 たった今ワイプ済み
-
-UI/CoreStrings@WipedDate_Yesterday:
-昨日
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `注意：ワイプは自動的に行われません！
@@ -2600,6 +2750,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 初めて殺しました。
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+初めて参加しました。
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 初めて釣りました。
@@ -2829,6 +2982,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+脱出
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 レベル{0}
 
@@ -2848,9 +3004,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessLis
 アクセス権
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
-`ご注意：この所有地は[b]体験版のプレイヤーによって製造されました[/b]。
-[br]劣化開始のカウントダウンと劣化カウントダウンの時間が[b]縮まれます[/b]。
-[br]体験版のプレイヤーがゲームを購入した後、これらのカウントダウンは標準値に戻ります。`
+`注意：この所有地は[b]体験版のプレイヤーの所有地です[/b]。
+[br]このため、劣化開始までのカウントダウン期間だけでなく、劣化期間も[b]短縮されます[/b]。
+[br]体験版のプレイヤーがゲームを購入すると、これらの期間は標準値に戻ります。`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `捨てられた建物はしばらく経つと劣化が始まり、
@@ -2900,6 +3056,12 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `現在の発電量：{0} EU/s。
 [br]最大出力：{1} EU/s。`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+変更はありません。
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+サーバー設定の変更を適用するには、サーバーを保存、停止、再起動する必要があります。サーバーの再起動には時間がかかる場合があります。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 キャラクターの外観をカスタマイズし、様々な装備と道具で自分を他人と差別化しましょう。
@@ -3106,12 +3268,6 @@ UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTi
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 サーバーオフライン
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-サーバーリストを消去してよろしいですか？
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-サーバーリストを消去する
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 サーバ情報が取得されるまでお待ちください。

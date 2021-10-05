@@ -40,7 +40,7 @@ Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUs
 
 Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
 `看起來你已經AFK了一段時間。
-[br]渴望和饑餓降低暫停。`
+[br]口渴度和飢餓度暫停降低了。`
 
 Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
 允許聊天，製造或使用消耗品。
@@ -439,9 +439,11 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 與另一個正處於護盾保護狀態下的領地交接。請先移除那裡的護盾。
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`你用完了你的佔領土地限額。
-[br]你可以通過研究新技術來增加這個額度。`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+你可以通過研究高級主權建築科技來提高此限制（最高 {0}）
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+你已經達到了所有個人主權建築數量上限 ({0}/{1})。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 你需要研究外星科技（T3）才能佔領原油/鋰礦，或在其附近放置佔領建築。
@@ -643,6 +645,21 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 歡迎來到{0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+伺服器維護。
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+伺服器倍率將被調整。
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+伺服器重啟
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+伺服器更新至最新版本。
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+伺服器資料抹除。
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `服務器將於{0}後關閉。
 [br]
@@ -700,6 +717,9 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInG
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 載具在車庫
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+無法維修此載具。
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 能量耗盡。
 
@@ -708,9 +728,6 @@ Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleF
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 已經澆水過了
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-該植物已可收穫。現在沒必要再澆水了。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 只有農場植物才能澆水。

@@ -310,7 +310,8 @@
             <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
 
             <!-- Text: HOME -->
-            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabHome}" IsSelected="True"
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabHome}"
+                     IsSelected="{Binding IsHomeTabSelected, Mode=TwoWay}"
                      Style="{StaticResource TabItemHeader}">
                 <home:MenuHome />
             </TabItem>

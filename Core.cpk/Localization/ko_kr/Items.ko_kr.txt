@@ -2629,3 +2629,15 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 에너지포
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+산성 물질과 독성 물질의 혼합제가 든 대형 폭파 캡슐을 발사하여 살아 있는 것들뿐만 아니라 구조물에까지 대미지를 줍니다.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+케이나이트 대포
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+표적에게 파고들어 추가 대미지를 주는, 곤충 같이 생긴 생명체를 대규모로 발사합니다.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+군집 발사기
+

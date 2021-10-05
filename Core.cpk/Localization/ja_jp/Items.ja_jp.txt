@@ -2629,3 +2629,15 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 エネルギー砲
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+生物だけでなく、建物にもダメージを与える酸と毒素の混合物が入った大型の爆発カプセルを発射します。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+ケイナイトキャノン
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+大きな昆虫のような生き物を発射し、命中するとターゲットに潜り込み、追加ダメージを与えます。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+ヘビースワームランチャー
+

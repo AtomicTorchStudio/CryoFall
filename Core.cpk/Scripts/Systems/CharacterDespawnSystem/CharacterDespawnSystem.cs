@@ -1,17 +1,18 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     /// <summary>
     /// Player characters should be despawned on PvE servers after some delay.
@@ -27,6 +28,77 @@
 
         [NotLocalizable]
         public override string Name => "Character despawn system";
+
+        /// <summary>
+        /// Moves the character to service area so a respawn will be required on login.
+        /// There will be no penalties (such as loot drop or "weakened" status effect).
+        /// </summary>
+        public static void DespawnCharacter(ICharacter character)
+        {
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            if (privateState.IsDespawned)
+            {
+                return;
+            }
+
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
+            CharacterDamageTrackingSystem.ServerClearStats(character);
+
+            ServerTeleportPlayerCharacterToServiceArea(character);
+
+            privateState.LastDeathPosition = Vector2Ushort.Zero;
+            privateState.LastDeathTime = null;
+        }
+
+        public static Vector2Ushort ServerGetServiceAreaPosition()
+        {
+            var worldBounds = Server.World.WorldBounds;
+
+            // teleport to bottom right corner of the map
+            var position = new Vector2Ushort((ushort)(worldBounds.Offset.X + worldBounds.Size.X - 1),
+                                             (ushort)(worldBounds.Offset.Y + 1));
+            return position;
+        }
+
+        /// <summary>
+        /// Service area (aka "graveyard") is an area in the bottom right corner of the map.
+        /// </summary>
+        public static void ServerTeleportPlayerCharacterToServiceArea(ICharacter character)
+        {
+            if (character.IsNpc)
+            {
+                return;
+            }
+
+            // disable the visual scope so the player cannot see anyone and nobody could see the player
+            Api.Server.Characters.SetViewScopeMode(character, isEnabled: false);
+
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            if (privateState.IsDespawned)
+            {
+                // already despawned, only fix the position
+                MoveToServiceArea();
+                return;
+            }
+
+            privateState.IsDespawned = true;
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
+            MoveToServiceArea();
+
+            Api.Logger.Important("Character despawned", character);
+
+            // recreate physics (as despawned character doesn't have any physics)
+            character.ProtoCharacter.SharedCreatePhysics(character);
+
+            void MoveToServiceArea()
+            {
+                var serviceAreaPosition = ServerGetServiceAreaPosition();
+                if (character.TilePosition != serviceAreaPosition)
+                {
+                    Server.World.SetPosition(character, (Vector2D)serviceAreaPosition);
+                }
+            }
+        }
 
         protected override void PrepareSystem()
         {
@@ -69,7 +141,7 @@
             {
                 if (ServerIsNeedDespawn(character, serverTime))
                 {
-                    ServerCharacterDeathMechanic.DespawnCharacter(character);
+                    DespawnCharacter(character);
                 }
             }
         }
@@ -99,16 +171,13 @@
 
         private static bool ServerIsNeedDespawn(ICharacter character, double serverTime)
         {
-            var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
             if (character.ServerIsOnline)
             {
                 return false;
             }
 
-            // player offline
-            var publicState = character.GetPublicState<PlayerCharacterPublicState>();
-            if (publicState.IsDead
-                || privateState.IsDespawned)
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            if (privateState.IsDespawned)
             {
                 return false;
             }

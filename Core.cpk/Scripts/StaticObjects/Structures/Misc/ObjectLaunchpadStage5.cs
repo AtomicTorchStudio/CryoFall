@@ -1,14 +1,21 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc
 {
     using System;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Achievements;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -25,6 +32,10 @@
 
         private const double FireRendererTextureCutOffset = 1.5;
 
+        private const double LightFadeInDelay = 3.2;
+
+        private const double LightFadeInDuration = 2.5;
+
         private const double Mast1MaxWorldOffsetX = 0.8;
 
         private const double Mast2MaxWorldOffsetX = 0.7;
@@ -34,6 +45,17 @@
         private const double RocketLaunchAnimationStartDelay = 3;
 
         private const double RocketLaunchFinalOffsetY = 24;
+
+        private const double ShakesTotalDuration = 8;
+
+        private static readonly IReadOnlyItemLightConfig EngineLightSourceConfig
+            = new ItemLightConfig()
+            {
+                Color = Color.FromArgb(0xFF, 0x99, 0xEE, 0xFF),
+                LogicalSize = (0, 0), // these lights don't act as logical lights
+                Size = (13, 25),
+                WorldOffset = Vector2D.Zero
+            };
 
         private static readonly Vector2Ushort FireRendererTextureCutSize = (327, 962);
 
@@ -48,7 +70,17 @@
             new(378 / 256.0, -732 / 256.0)
         };
 
+        private static readonly Vector2D[] RocketLightOffsets =
+        {
+            new(0.51 + 0, 0.26),
+            new(0.51 + 0.81, 0.26 - 0.29),
+            new(0.51 + 1.62, 0.26)
+        };
+
         private static readonly Vector2Ushort RocketTextureCutSize = (689, 1194);
+
+        private static readonly SoundResource SoundResourceRocketLaunch
+            = new("Objects/Structures/ObjectLaunchpad/RocketLaunch.ogg");
 
         private static readonly TextureAtlasResource TextureResourceRocketFireAnimation
             = new("FX/RocketFireAnimation",
@@ -62,20 +94,31 @@
 
         public static bool SharedCanResetLaunchpad(IStaticWorldObject objectLaunchpad)
         {
+            SharedGetRocketStatus(objectLaunchpad, out _, out var isRocketLaunchFinished);
+            return isRocketLaunchFinished;
+        }
+
+        public static void SharedGetRocketStatus(
+            IStaticWorldObject objectLaunchpad,
+            out bool isRocketLaunchStarted,
+            out bool isRocketLaunchFinished)
+        {
             var launchTime = GetPublicState(objectLaunchpad).LaunchServerFrameTime;
             if (launchTime <= 0)
             {
                 // not yet launched
-                return false;
+                isRocketLaunchStarted = isRocketLaunchFinished = false;
+                return;
             }
 
-            // ensure the launch animation has completed
+            isRocketLaunchStarted = true;
+
             var serverTime = IsServer
                                  ? Server.Game.FrameTime
                                  : Client.CurrentGame.ServerFrameTimeApproximated;
 
-            return serverTime
-                   > launchTime + RocketLaunchAnimationTotalDuration;
+            isRocketLaunchFinished = serverTime
+                                     > launchTime + RocketLaunchAnimationTotalDuration;
         }
 
         public void ClientLaunchRocket(IStaticWorldObject objectLaunchpad)
@@ -115,6 +158,41 @@
             this.CallServer(_ => _.ServerRemote_ResetLaunchpad(objectLaunchpad));
         }
 
+        public override bool SharedCanDeconstruct(IStaticWorldObject worldObject, ICharacter character)
+        {
+            SharedGetRocketStatus(worldObject, out var isRocketLaunchStarted, out var isRocketLaunchFinished);
+            return isRocketLaunchFinished || !isRocketLaunchStarted;
+        }
+
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            double damagePreMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            SharedGetRocketStatus(targetObject, out var isRocketLaunchStarted, out var isRocketLaunchFinished);
+
+            if (isRocketLaunchStarted && !isRocketLaunchFinished)
+            {
+                // cannot damage or deconstruct a launching rocket
+                obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
+                damageApplied = 0; // no damage
+                return true;       // hit
+            }
+
+            return base.SharedOnDamage(weaponCache,
+                                       targetObject,
+                                       damagePreMultiplier,
+                                       out obstacleBlockDamageCoef,
+                                       out damageApplied);
+        }
+
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return new TextureResource("StaticObjects/Structures/Misc/ObjectLaunchpad/Icon_Stage5.png");
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -125,6 +203,15 @@
             var mast2Renderer = this.ClientAddRenderer(worldObject,  TextureTowerMast2, TextureTowerMast2Offset);
             mast1Renderer.DrawOrder = mast2Renderer.DrawOrder = DrawOrder.Default + 1;
             this.ClientAddRenderer(worldObject, TextureTower, TextureTowerOffset);
+
+            var soundEmitter = Client.Audio.CreateSoundEmitter(worldObject,
+                                                               SoundResourceRocketLaunch,
+                                                               isLooped: false,
+                                                               isPlaying: false);
+            soundEmitter.CustomMinDistance = 13;
+            soundEmitter.CustomMaxDistance = 23;
+            soundEmitter.CustomMinDistance3DSpread = 13;
+            soundEmitter.CustomMaxDistance3DSpread = 23;
 
             data.PublicState.ClientSubscribe(_ => _.LaunchServerFrameTime,
                                              _ =>
@@ -153,6 +240,7 @@
                 rocketRenderer.IsEnabled = true;
                 mast1Renderer.IsEnabled = true;
                 mast2Renderer.IsEnabled = true;
+                soundEmitter.IsEnabled = false;
 
                 var launchTime = GetPublicState(worldObject).LaunchServerFrameTime;
                 if (launchTime <= 0)
@@ -170,6 +258,10 @@
                     mast2Renderer.IsEnabled = false;
                     return;
                 }
+
+                soundEmitter.IsEnabled = true;
+                soundEmitter.Seek(timePassedSinceLaunch);
+                soundEmitter.Play();
 
                 // setup the launch animation
                 worldObject.ClientSceneObject
@@ -221,9 +313,13 @@
             publicState.LaunchServerFrameTime = Server.Game.FrameTime;
             publicState.LaunchedByPlayerName = character.Name;
 
-            character.SharedGetAchievements()
-                     .ServerTryAddAchievement(Api.GetProtoEntity<AchievementCompleteTheGame>(),
-                                              isUnlocked: true);
+            ServerTimersSystem.AddAction(
+                RocketLaunchAnimationStartDelay + 5,
+                () => character.SharedGetAchievements()
+                               .ServerTryAddAchievement(Api.GetProtoEntity<AchievementCompleteTheGame>(),
+                                                        isUnlocked: true));
+
+            CharacterDespawnSystem.DespawnCharacter(character);
         }
 
         [RemoteCallSettings(timeInterval: 1)]
@@ -249,6 +345,8 @@
 
         public class ComponentRocketLaunchAnimation : ClientComponent
         {
+            private const float ShakesInterval = 0.1f;
+
             private Vector2D defaultMast1RendererPositionOffset;
 
             private Vector2D defaultMast2RendererPositionOffset;
@@ -260,6 +358,8 @@
             private ClientComponentSpriteSheetAnimator[] fireAnimators;
 
             private double lastProgress;
+
+            private BaseClientComponentLightSource[] lightRenderers;
 
             private IComponentSpriteRenderer mast1Renderer;
 
@@ -278,7 +378,7 @@
                 double timePassedSinceLaunch)
             {
                 this.rocketRenderer = rocketRenderer;
-                this.time = -RocketLaunchAnimationStartDelay + timePassedSinceLaunch;
+                this.time = timePassedSinceLaunch - RocketLaunchAnimationStartDelay;
                 this.mast1Renderer = mast1Renderer;
                 this.mast2Renderer = mast2Renderer;
 
@@ -291,6 +391,7 @@
                 var sceneObject = rocketRenderer.SceneObject;
 
                 this.fireAnimators = new ClientComponentSpriteSheetAnimator[RocketFireOffsets.Length];
+                this.lightRenderers = new BaseClientComponentLightSource[RocketFireOffsets.Length];
                 for (var index = 0; index < this.fireAnimators.Length; index++)
                 {
                     var fireRenderer = Client.Rendering.CreateSpriteRenderer(sceneObject,
@@ -303,6 +404,10 @@
                                                     isLooped: true,
                                                     frameDurationSeconds: 1 / 30.0,
                                                     randomizeInitialFrame: true);
+
+                    var lightRender = ClientLighting.CreateLightSourceSpot(sceneObject,
+                                                                           EngineLightSourceConfig);
+                    this.lightRenderers[index] = lightRender;
                 }
 
                 // toggle rocket renderer to ensure it's drawn on front
@@ -331,6 +436,9 @@
                 progress = ApplySineEasyIn(progress);
                 this.lastProgress = progress;
 
+                var lightProgress = Math.Min(Math.Max(this.time - LightFadeInDelay, 0) / LightFadeInDuration,
+                                             1);
+
                 var rocketOffsetY = progress * RocketLaunchFinalOffsetY;
 
                 this.rocketRenderer.PositionOffset = this.defaultRocketRendererPositionOffset + (0, rocketOffsetY);
@@ -342,11 +450,11 @@
 
                 for (var index = 0; index < this.fireAnimators.Length; index++)
                 {
-                    var offset = RocketFireOffsets[index];
+                    var fireOffset = RocketFireOffsets[index];
                     var fireRenderer = this.fireAnimators[index].SpriteRenderer;
-                    fireRenderer.PositionOffset = this.rocketRenderer.PositionOffset + offset;
-                    fireRenderer.DrawOrderOffsetY = this.rocketRenderer.DrawOrderOffsetY - offset.Y;
-                    var cutProgress = MathHelper.Clamp((rocketOffsetY + offset.Y + FireRendererTextureCutOffset)
+                    fireRenderer.PositionOffset = this.rocketRenderer.PositionOffset + fireOffset;
+                    fireRenderer.DrawOrderOffsetY = this.rocketRenderer.DrawOrderOffsetY - fireOffset.Y;
+                    var cutProgress = MathHelper.Clamp((rocketOffsetY + fireOffset.Y + FireRendererTextureCutOffset)
                                                        / (FireRendererTextureCutSize.Y / 256.0),
                                                        0,
                                                        1);
@@ -355,6 +463,11 @@
                         Vector2Ushort.Zero,
                         (FireRendererTextureCutSize.X,
                          (ushort)(FireRendererTextureCutSize.Y * cutProgress)));
+
+                    var lightOffset = RocketLightOffsets[index];
+                    var lightRenderer = this.lightRenderers[index];
+                    lightRenderer.PositionOffset = this.rocketRenderer.PositionOffset + lightOffset;
+                    lightRenderer.Opacity = lightProgress;
                 }
 
                 var mastProgress = (this.time + RocketLaunchAnimationStartDelay) / MastAnimationDuration;
@@ -385,8 +498,6 @@
             protected override void OnDisable()
             {
                 this.rocketRenderer.IsEnabled = false;
-                this.mast1Renderer.IsEnabled = false;
-                this.mast2Renderer.IsEnabled = false;
 
                 foreach (var fireAnimator in this.fireAnimators)
                 {
@@ -394,13 +505,18 @@
                     fireAnimator.Destroy();
                 }
 
+                foreach (var lightRenderer in this.lightRenderers)
+                {
+                    lightRenderer.Destroy();
+                }
+
                 this.fireAnimators = null;
+                this.lightRenderers = null;
             }
 
             protected override void OnEnable()
             {
-                this.lastProgress = 0;
-                this.ClientAddShakes();
+                ClientTimersSystem.AddAction(ShakesInterval, this.ClientAddShakes);
             }
 
             private static double ApplySineEasyIn(double x)
@@ -415,14 +531,28 @@
 
             private void ClientAddShakes()
             {
-                const float shakesInterval = 0.5f,
-                            shakesDuration = 1f,
-                            shakesDistanceMin = 0.2f,
+                if (!this.IsEnabled)
+                {
+                    return;
+                }
+
+                const float shakesDuration = 1.0f,
+                            shakesDistanceMin = 0.25f,
                             shakesDistanceMax = 0.25f;
 
                 var intensity = 0.3;
-
-                intensity *= Math.Max(0, 1 - this.lastProgress * 2.0);
+                if (this.time <= 0)
+                {
+                    intensity = 0.05; // low intensity to ensure some shakes initially when the masts are moving
+                }
+                else
+                {
+                    var progress = this.time / ShakesTotalDuration;
+                    progress = Math.Min(progress, 1);
+                    progress = Math.Pow(progress, 1.5);
+                    progress = ApplySineEasyIn(progress);
+                    intensity *= (1 - progress);
+                }
 
                 if (intensity > 0)
                 {
@@ -432,10 +562,7 @@
                         worldDistanceMax: (float)(intensity * shakesDistanceMax));
                 }
 
-                if (this.IsEnabled)
-                {
-                    ClientTimersSystem.AddAction(shakesInterval, this.ClientAddShakes);
-                }
+                ClientTimersSystem.AddAction(ShakesInterval, this.ClientAddShakes);
             }
         }
     }

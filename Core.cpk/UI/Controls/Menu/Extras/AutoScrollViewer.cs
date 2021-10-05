@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -22,15 +23,24 @@
 
         private int? pendingScrollWheelDelta;
 
-        public AutoScrollViewer(ScrollViewer scrollViewer, double autoScrollSpeed = 20)
+        public AutoScrollViewer(ScrollViewer scrollViewer, bool isLoopedScroll, double autoScrollSpeed = 40)
         {
             this.autoScrollSpeed = autoScrollSpeed;
             this.scrollViewer = scrollViewer;
+            this.IsLoopedScroll = isLoopedScroll;
 
             scrollViewer.IsEnabledChanged += this.IsEnabledChangedHandler;
             scrollViewer.Loaded += this.OnLoaded;
             scrollViewer.Unloaded += this.OnUnloaded;
         }
+
+        public event Action Finished;
+
+        public bool IsInputAllowed { get; set; } = true;
+
+        public bool IsLoopedScroll { get; set; }
+
+        public double SpeedMultiplier { get; set; } = 1.0;
 
         protected void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
@@ -69,7 +79,10 @@
 
         private void MouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
         {
-            this.lastMouseHeldPosition = this.GetCurrentMousePosition();
+            if (this.IsInputAllowed)
+            {
+                this.lastMouseHeldPosition = this.GetCurrentMousePosition();
+            }
         }
 
         private void MouseScrollWheelHandler(object sender, MouseWheelEventArgs e)
@@ -125,7 +138,11 @@
                 // calculate and use the mouse position delta
                 var delta = this.lastMouseHeldPosition.Value - position;
                 this.lastMouseHeldPosition = position;
-                verticalOffset += delta;
+
+                if (this.IsInputAllowed)
+                {
+                    verticalOffset += delta;
+                }
             }
             else
             {
@@ -149,7 +166,8 @@
                     return;
                 }
 
-                if (this.pendingScrollWheelDelta.HasValue)
+                if (this.pendingScrollWheelDelta.HasValue
+                    && this.IsInputAllowed)
                 {
                     // requested to scroll by mouse scroll wheel delta
                     verticalOffset -= this.pendingScrollWheelDelta.Value * MouseScrollWheelSpeed;
@@ -158,19 +176,35 @@
                 else
                 {
                     // auto scroll
-                    verticalOffset += Api.Client.Core.DeltaTime * this.autoScrollSpeed;
+                    verticalOffset += Api.Client.Core.DeltaTime * this.autoScrollSpeed * this.SpeedMultiplier;
                 }
             }
 
             if (verticalOffset >= this.scrollViewer.ScrollableHeight)
             {
-                // scroll overlap to beginning
-                verticalOffset = 0;
+                if (this.IsLoopedScroll)
+                {
+                    // scroll overlap to beginning
+                    verticalOffset = 0;
+                }
+                else
+                {
+                    verticalOffset = this.scrollViewer.ScrollableHeight;
+                }
+
+                this.Finished?.Invoke();
             }
             else if (verticalOffset < 0)
             {
-                // scroll overlap to end
-                verticalOffset = this.scrollViewer.ScrollableHeight - 1;
+                if (this.IsLoopedScroll)
+                {
+                    // scroll overlap to end
+                    verticalOffset = this.scrollViewer.ScrollableHeight - 1;
+                }
+                else
+                {
+                    verticalOffset = 0;
+                }
             }
 
             this.scrollViewer.ScrollToVerticalOffset(verticalOffset);

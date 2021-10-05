@@ -4,6 +4,7 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Home;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -71,6 +72,19 @@
                 }
 
                 IsHiddenChanged?.Invoke();
+
+                if (isHidden)
+                {
+                    return;
+                }
+
+                // hack to ensure that the home tab is properly displayed
+                // (otherwise after login player may end up on an empty screen)
+                if (ViewModelMainMenuOverlay.Instance.SelectedTab is null
+                    || ViewModelMainMenuOverlay.Instance.SelectedTab.Content is MenuHome)
+                {
+                    ViewModelMainMenuOverlay.Instance.IsHomeTabSelected = true;
+                }
             }
         }
 

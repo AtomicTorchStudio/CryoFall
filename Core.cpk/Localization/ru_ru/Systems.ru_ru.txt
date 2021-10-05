@@ -422,7 +422,7 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooClo
 Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
-Превышен размер базы. Максимальный размер базы во всех направлениях - {0} кл. (примерно {1} ТК, установленных в ряд).
+Превышен размер базы. Максимальный размер базы во всех направлениях — {0} кл. (примерно {1} ТК, установленных в ряд).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
 Нельзя объединить точки контроля. В целях предотвратить злоупотребление/экплойты, точки контроля, принадлежащие демоаккаунтам, нельзя объединять с точками контроля других игроков.
@@ -439,9 +439,11 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Пересекается с другой зоной контроля, на которой активирован щит. Сначала отключите ее щит.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Достигнут лимит числа зон контроля.
-[br]Повысить лимит можно, исследовав новые технологии.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Вы можете повысить лимит, изучив технологии точек контроля более высокого ранга (максимум {0}).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Вы использовали максимальное количество личных точек контроля ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Необходимо исследовать ксеногеологию (ранг 3), чтобы взять под контроль месторождения нефти/лития или разместить точку контроля рядом с ними.
@@ -644,6 +646,21 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Добро пожаловать, это {0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Обслуживание сервера.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+Настройки сервера будут изменены.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Перезапуск сервера
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Обновление сервера до последней версии.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Вайп сервера.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `Сервер отключится через {0}.
 [br]
@@ -701,6 +718,9 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInG
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Транспорт в гараже
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+Невозможно отремонтировать этот транспорт
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Нет энергии.
 
@@ -709,9 +729,6 @@ Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleF
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Уже полито
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-Пора собирать урожай. Нет смысла поливать сейчас.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 Поливать можно только сельскохозяйственные растения.

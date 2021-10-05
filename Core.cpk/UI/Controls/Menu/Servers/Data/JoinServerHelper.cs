@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Server;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Demo;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class JoinServerHelper
@@ -136,16 +137,7 @@
                 && !serverInfo.IsOfficial
                 && !serverInfo.IsFeatured)
             {
-                DialogWindow.ShowDialog(
-                    CoreStrings.Demo_Title,
-                    CoreStrings.Demo_OnlyOfficialServers,
-                    okText: CoreStrings.Demo_Button_BuyGameOnSteam,
-                    okAction: () => Api.Client.SteamApi.OpenBuyGamePage(),
-                    cancelText: CoreStrings.Button_Cancel,
-                    cancelAction: () => { },
-                    focusOnCancelButton: true,
-                    closeByEscapeKey: true,
-                    zIndexOffset: 100000);
+                DemoVersionDialogWindow.ShowDialog();
                 return;
             }
 

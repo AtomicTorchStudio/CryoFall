@@ -9,7 +9,7 @@
                     mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
                     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
-                    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+                    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="DefaultStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>

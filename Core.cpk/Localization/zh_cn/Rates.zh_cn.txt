@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+开采速度
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+伐木速度
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+额外领地建筑数量
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Boss难度：普拉格女皇
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Boss难度：沙漠暴君
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+制作速度
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+生物伤害
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+角色轰炸伤害
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+建筑轰炸伤害
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+友军伤害（PVP）
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+对生物与环境伤害
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Resources] 矿脉开采速度
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+门所有者最大数量
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Faction] 创建消耗(LP)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Faction] 加入冷却时间
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Faction] 重复加入冷却时间
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Faction] 每级派系所有主权建筑数
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Faction] 私人派系最大成员数
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Faction] 公开派系最大成员数
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Faction] [PvP] 允许联盟
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Faction] 每级升级消耗
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+农场植物成长速度
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+农作物寿命
+
+Scripts/Rates/RateHunger@Name:
+饥饿率
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+隐藏在线玩家列表
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+贸易聊天室
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+食物与消耗品保质期
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+物品堆叠数量
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+最大主权建筑所有人数量(非派系所有)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+学习点数
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+生产速度
+
+Scripts/Rates/RatePartyMembersMax@Name:
+队伍最大成员数
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] 玩家伤害
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] 死亡时掉落所有装备
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] 隐藏新资源点坐标
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] 新手保护持续时间
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] 掠夺保护持续时间
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] 主权建筑安全储存容量
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] 基地护盾保护激活持续时间
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] 基地护盾保护冷却时间
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] 基地护盾保护可用
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] 时间窗口
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Resources] 采集—基础采集
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Resources] 采集—箱子与货堆
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Resources] 采集—生物掉落
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Resources] 采集—陨石
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Resources] 采集—太空残骸
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Resources] 普拉格资源点数量
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Resources] [PvP] 资源点占领延迟
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Resources] [PvP] 锂矿数量
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Resources] [PvP] 油田数量
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+技能经验
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Decay] 废弃建筑腐朽
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Decay] 废弃主权建筑腐朽延迟
+
+Scripts/Rates/RateThirst@Name:
+口渴率
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+发电机效率
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+世界事件初始间隔
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+世界事件间隔—{0}
+

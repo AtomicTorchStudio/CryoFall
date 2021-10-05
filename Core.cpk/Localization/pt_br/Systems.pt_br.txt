@@ -439,9 +439,11 @@ Cruza com outra posse de terra
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Cruza com outra posse de terra que está sob proteção de um escudo ativo. Desative o escudo de lá primeiro.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Você esgotou sua quantidade de posse de terra.
-[br]É possível aumentar esse número pesquisando novas tecnologias.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Você pode aumentar o limite pesquisando tecnologias para posses de terra de nível mais alto (até {0} no total).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Você esgotou sua quantidade pessoal de posses de terra ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Você precisa pesquisar Xenogeologia (Nível 3) para reivindicar os depósitos de petróleo/lítio ou instalar uma posse de terra próxima.
@@ -644,6 +646,21 @@ Informações sobre limpeza
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Receba as boas-vindas a {0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Manutenção do servidor.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+As taxas do servidor serão alteradas.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Reinicialização do servidor
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Atualização do servidor para a versão mais recente.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Limpeza do servidor.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `O servidor desligará em {0}.
 [br]
@@ -700,6 +717,9 @@ Alguns dos seus veículos estão na garagem. Você pode acessá-los de qualquer 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Veículos na garagem
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+Não é possível reparar este veículo
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Energia esgotada.
 
@@ -709,11 +729,8 @@ Não é possível usar {0}
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Você já regou
 
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-A planta já está pronta para ser colhida. Não precisa regar agora.
-
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
-Apenas plantas cultivadas podem ser regadas.
+Apenas plantas de cultivo podem ser regadas.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
 Não é possível regar

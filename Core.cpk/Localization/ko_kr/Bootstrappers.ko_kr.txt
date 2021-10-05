@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+오프라인 상태라도 로컬 게임은 이용할 수 있습니다.
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `클라이언트가 마스터 서버에 연결할 수 없습니다.
 [br]인터넷 연결 상태와 방화벽,
 [br]또는 ISP가 연결을 차단하고 있는 건 아닌지 확인해주십시오.`

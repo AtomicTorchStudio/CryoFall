@@ -22,6 +22,12 @@ Scripts/Vehicles/VehicleMechManul@Description:
 Scripts/Vehicles/VehicleMechManul@Name:
 Манул
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+Экспериментальный дизайн механизированной боевой брони. Обладает автоматической регенерацией структурного урона. Мощное экзотическое оружие гарантирует уничтожение противников.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+Паразит
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 Легкий вариант механизированной боевой брони. Обладает относительно высокой скоростью, дополненной хорошей защитой и огневой мощью.
 
@@ -60,4 +66,7 @@ Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 Большой
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+Экзотический
 

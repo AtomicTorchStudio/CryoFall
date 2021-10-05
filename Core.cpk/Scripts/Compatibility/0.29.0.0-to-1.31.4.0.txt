@@ -10,3 +10,5 @@
    -> AtomicTorch.CBND.CoreMod.ItemContainers.ItemsContainerTinkerTableDisassemblyInput
  * AtomicTorch.CBND.CoreMod.Technologies.Tier5.ExoticWeapons.TechGroupExoticWeapons
    -> AtomicTorch.CBND.CoreMod.Technologies.Tier5.ExoticWeapons.TechGroupExoticWeaponsT5
+ * AtomicTorch.CBND.CoreMod.Technologies.Tier3.Medicine.TechNodeStrengthBoostBig
+   -> AtomicTorch.CBND.CoreMod.Technologies.Tier2.Medicine.TechNodeStrengthBoostBig

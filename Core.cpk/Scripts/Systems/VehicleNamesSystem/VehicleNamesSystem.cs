@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
+    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -45,6 +46,13 @@
                                         NameLengthMin,
                                         NameLengthMax),
                     closeByEscapeKey: true);
+                return;
+            }
+
+            if (vehicleName != ProfanityFilteringSystem.SharedApplyFilters(vehicleName)
+                || vehicleName != Client.SteamApi.FilterText(vehicleName))
+            {
+                Logger.Warning("Profanity detected: " + vehicleName);
                 return;
             }
 
@@ -118,8 +126,7 @@
                 return;
             }
 
-            if (name.Length < NameLengthMin
-                || name.Length > NameLengthMax)
+            if (name.Length is < NameLengthMin or > NameLengthMax)
             {
                 throw new Exception("Vehicle custom name length exceeded");
             }
@@ -261,6 +268,18 @@
             }
 
             SharedSanitizeAndValidateName(ref vehicleName);
+
+            if (string.IsNullOrEmpty(vehicleName))
+            {
+                Logger.Warning("Incorrect vehicle name: " + vehicleName);
+                return;
+            }
+
+            if (vehicleName != ProfanityFilteringSystem.SharedApplyFilters(vehicleName))
+            {
+                Logger.Warning("Profanity detected: " + vehicleName);
+                return;
+            }
 
             var vehicleId = vehicle.Id;
             if (!this.SharedIsVehicleNameChangeRequired(vehicleId, vehicleName))

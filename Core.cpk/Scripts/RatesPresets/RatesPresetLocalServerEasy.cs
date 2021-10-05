@@ -1,4 +1,4 @@
-namespace AtomicTorch.CBND.CoreMod.RatesPresets
+﻿namespace AtomicTorch.CBND.CoreMod.RatesPresets
 {
     using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.RatesPresets.Base;
@@ -6,7 +6,7 @@ namespace AtomicTorch.CBND.CoreMod.RatesPresets
     public class RatesPresetLocalServerEasy : BaseRatesPreset
     {
         public override string Description =>
-            "Enjoy your life in a paradise! Explore the world at your own pace and enjoy technology progression. Great for players who just want to see what the game has to offer without excessive challenges. Though, you will still have to fight your way through!";
+            "Live it up in paradise! Explore the world at your own pace and enjoy technology progression. Great for players who just want to see what the game has to offer without excessive challenges. Though, you will still have to fight your way through!";
 
         public override bool IsMultiplayerOnly => false;
 

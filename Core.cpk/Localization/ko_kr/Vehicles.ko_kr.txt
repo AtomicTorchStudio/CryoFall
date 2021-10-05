@@ -22,6 +22,12 @@ Scripts/Vehicles/VehicleMechManul@Description:
 Scripts/Vehicles/VehicleMechManul@Name:
 마눌
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+실험적 디자인의 기계화된 전투 갑옷. 구조물에 대한 대미지를 자동으로 복구하며, 강력한 신식 무기를 갖추었다는 것이 특징입니다.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+네메시스
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 기계화된 전투 장갑의 경량화된 디자인. 방어력이나 화력이 모자라지 않으면서도 비교적 빠른 속도를 자랑합니다.
 
@@ -60,4 +66,7 @@ Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 대형
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+신식
 

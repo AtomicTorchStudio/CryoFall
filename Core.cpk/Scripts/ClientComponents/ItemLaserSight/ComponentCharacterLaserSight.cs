@@ -215,7 +215,7 @@
                         continue;
                     }
 
-                    // don't allow damage is there is no direct line of sight on physical colliders layer between the two objects
+                    // don't allow damage if there is no direct line of sight on physical colliders layer between the two objects
                     if (WeaponSystem.SharedHasTileObstacle(character.Position,
                                                            characterTileHeight,
                                                            damagedObject,

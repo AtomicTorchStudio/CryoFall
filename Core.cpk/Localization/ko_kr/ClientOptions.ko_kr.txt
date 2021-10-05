@@ -104,9 +104,6 @@ Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI 크기
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-주변 폐색
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 없음
 

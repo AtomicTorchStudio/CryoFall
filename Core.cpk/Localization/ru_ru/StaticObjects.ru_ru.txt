@@ -941,6 +941,51 @@ Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooC
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Этот тип почвы не позволяет достать до грунтовых вод.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Построить корпус ракеты
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+Кульминация ваших действий на этой планете. Вы наконец можете начать задумываться о финальном побеге!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Стартовая площадка
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Собрать электронику управления
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Построить топливный бак
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+Построить реактивную систему
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Стартовая площадка — Этап 2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Построить систему обхода аномалий
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Построить систему жизнеобеспечения
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Построить систему навигации
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Стартовая площадка — Этап 3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Заправить ракету
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Подготовить припасы
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Стартовая площадка — Этап 4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Стартовая площадка — Этап 5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Специальная автоматическая медицинская станция, с помощью которой можно устанавливать и удалять разные кибернетические импланты.
 
@@ -971,6 +1016,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Требуется больше компонентов.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Поместите предметы для разборки.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Сначала заберите готовые предметы.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Для починки поместите два одинаковых предмета.
 
@@ -982,6 +1033,9 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Невозможно починить
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+Разборка невозможна
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 Вам повезло![br]Вы полностью починили предмет: {0}!

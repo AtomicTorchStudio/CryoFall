@@ -101,6 +101,9 @@ Wiederholen
 UI/CoreStrings@Button_Save:
 Speichern
 
+UI/CoreStrings@Button_StayOffline:
+Bleibe Offline
+
 UI/CoreStrings@Button_Upgrade:
 Erweitern
 
@@ -345,6 +348,12 @@ Der Zerstörungs-Timer beginnt, wenn der Land Claim zerstört wurde – und die 
 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Möchtest du {0} wirklich benutzen?
+
+UI/CoreStrings@DialogClearList_Message:
+Bist du sicher, dass du diese Liste leeren möchtest?
+
+UI/CoreStrings@DialogClearServerList_Title:
+Server-Liste leeren
 
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 Simultan gesteuerte Drohnen
@@ -937,6 +946,9 @@ Eingabe
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Ausgabe
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+Voraussichtliche Kapazität
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 Puffer
 
@@ -960,6 +972,12 @@ Filter
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 WIRD GELADEN
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+Dein Fortschritt speichert automatisch (für gewöhnlich jede Stunde) und wenn du die Verbindung trennst oder das Spiel beendest (sogar wenn du das Spiel einfach schließt oder Alt+F4 drückst).
+
+UI/CoreStrings@LocalServerSaveName_Format:
+Lokales Spiel—{0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 Einloggen
@@ -987,6 +1005,9 @@ STARTSEITE
 
 UI/CoreStrings@MainMenu_TabOptions:
 OPTIONEN
+
+UI/CoreStrings@MainMenu_TabPlay:
+SPIELEN
 
 UI/CoreStrings@MainMenu_TabQuit:
 BEENDEN
@@ -1018,14 +1039,44 @@ Wähle deinen Charakterhintergrund
 UI/CoreStrings@MenuCharacterCreation_Title:
 Charakteraussehen wählen
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+Server-Raten ansehen
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Verbindung trennen
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 Begrüßungstext anzeigen
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+Aktuelle Server-Raten
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+Grund für Verbindungsabbruch:
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 Nicht verbunden.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+Führe dein aktuelles Spiel fort.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+Schleudersitz betätigen und fortfahren
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+Entscheide später.
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+Zum Hauptmenü zurückkehren
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+Behalte deinen Charakter, aber starte ein neues Spiel.
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+Starte Neues Spiel +
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+Möchtest du ein neues Spiel mit deinem aktuellen Charakter starten? Die neue Welt wird deine derzeitige Welt ersetzen.
 
 UI/CoreStrings@MenuHome_Forums:
 Forum
@@ -1047,6 +1098,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 Social
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+Speicherordner ansehen
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+Neue Welt kreieren
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+Welt laden
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+Der lokale Server läuft nun.[br]Lokale Spiele müssen zunächst beendet werden, um eine Liste von Speicherständen zu erhalten.
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+Der lokale Server wird beendet und speichert deinen Fortschritt.[br]Bitte warte, bis dies abgeschlossen ist, um eine aktuelle Liste von Speicherständen zu erhalten.
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+Es gibt derzeit keine Speicherstände für den lokalen Server.[br]Du kannst eine neue Welt kreieren.
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+Lokale Welten
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+Neue Welt
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Bitte beende das Spiel, starte den Steam-Client neu und starte dann das Spiel erneut.
 
@@ -1058,6 +1133,12 @@ Möchtest du die Änderungen übernehmen?
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 Du hast die Änderungen nicht übernommen
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+LOKALES SPIEL
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+MULTIPLAYER
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 Bist du sicher, dass du das Spiel beenden und auf den Desktop zurückkehren möchtest?
@@ -1244,6 +1325,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] Erwäge das [b]Schließen[/b] anderer Anwendungen (insbesondere Web-Browser, Torrent-Clients und Downloader).
 [*] Erwäge den Wechsel hin zu einer [b]Leitungsverbindung[/b], sofern dein PC gegenwärtig per WLAN- oder Mobilfunk verbunden ist (kabellose Verbindungen gelten oft als Grund für erheblichen Jitter und Latenzschwankungen).`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+Server-Raten anpassen
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+Benutzerdefiniertes Szenario.
+
+UI/CoreStrings@NewWorldControl_WorldName:
+Weltname:
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+Neue Welt
+
 UI/CoreStrings@NicknameOfflinePlayer:
 Offline Zzz ...
 
@@ -1267,6 +1360,9 @@ Hindernisse im Weg!
 
 UI/CoreStrings@Notification_TooFar:
 Zu weit entfernt!
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+Diese Pflanze ist verdorben.
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Aktueller Zugriffsmodus
@@ -1520,6 +1616,27 @@ BEREIT
 UI/CoreStrings@QuestionAreYouSure:
 Bist du sicher?
 
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+Erweiterte Raten anzeigen
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+Standard: {0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+Alle lokalen Server-Presets besitzen benutzerdefinierte Raten, um ein optimales Gameplay auf den lokalen, mit Unterbrechungen laufenden Servern zu garantieren (im Gegensatz zu einem Multiplayer-Server, der rund um die Uhr läuft). Z.B. wachsen Pflanzen so schneller, Solarpanels erzeugen mehr Elektrizität, Events passieren häufiger, etc.
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+Modifizierte Raten
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+Auf angemessenen Wert resetten
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+Erweiterten Wert freischalten
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+Unmodifizierte Raten
+
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 Taste neu belegen
 
@@ -1654,7 +1771,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 Das Offline-Raid-Schutzschild steht diesem Land Claim nicht zur Verfügung, da es sich vollständig in einer anderen Basis befindet, die über ihr eigenes Schutzschild verfügt.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-Dieses Schild aktiviert sich in {0}, sofern der Vorgang nicht abgebrochen wird (beispielsweise durch den Besitzer der Basis oder indem Angreifer den Vorgang durch einen Raidblock unterbrechen).
+Dieses Schild aktiviert sich in {0}, sofern der Vorgang nicht unterbrochen wird—beispielsweise durch den Besitzer der Basis oder indem Angreifer ein Gebäude zerstören (ein Raidblock genügt nicht).
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 Diese Basis aktiviert gerade ein Schutzschild
@@ -1821,8 +1938,14 @@ Wird verbunden ...
 UI/CoreStrings@TitleDestructionTimeout:
 Zerstörungs-Timer
 
+UI/CoreStrings@TitleDisabled:
+Deaktiviert
+
 UI/CoreStrings@TitleDurability:
 Haltbarkeit
+
+UI/CoreStrings@TitleEnabled:
+Aktiviert
 
 UI/CoreStrings@TitleEnergyCharge:
 Ladung
@@ -2065,6 +2188,9 @@ Fortschritt:
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Kreaturen
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+Events
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 Fisch
 
@@ -2201,6 +2327,24 @@ Eine Erweiterung dieser Struktur erfordert das Erlernen relevanter Technologien.
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 Erforderlich
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+Fertigstellen
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+Wenn du möchtest, kannst du nach dem Raketenstart weiterspielen.
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+Abgeschlossen
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+Starten!
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+Startrampe resetten
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+Die Rakete wurde von {0} gestartet.
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 Ähnliche Rezeptur
@@ -2428,7 +2572,16 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]Der Gewinn von LP verhält sich direkt proportional
 [br]zum Erfahrungsgewinn deiner Charakterfähigkeiten.`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+Demontieren
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Reparieren
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+Demontage
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
 Reparieren
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
@@ -2493,9 +2646,6 @@ vor {0} Stunden
 
 UI/CoreStrings@WipedDate_JustWiped:
 Gerade gewiped
-
-UI/CoreStrings@WipedDate_Yesterday:
-Gestern
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `Achtung: Der Wipe wird nicht automatisch ausgeführt!
@@ -2599,6 +2749,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Zum ersten Mal getötet.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+Zum ersten Mal teilgenommen.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 Zum ersten Mal gefangen.
@@ -2828,6 +2981,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+Flucht
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 Rang {0}
 
@@ -2899,6 +3055,12 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Aktuelle Stromerzeugung {0} EE/s.
 [br]Maximale Leistung {1} EE/s.`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+Es wurden keine Änderungen vorgenommen.
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+Um Änderungen der Server-Raten vorzunehmen, muss der Server gespeichert, gestoppt und neu geladen werden. Der Server-Neustart kann einige Zeit in Anspruch nehmen.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 Individualisiere das Aussehen deines Charakters und verwende eine Vielzahl von verschiedenen Geräten und Werkzeugen, um dich von anderen abzuheben.
@@ -3105,12 +3267,6 @@ Auf diesen Server kann nicht zugegriffen werden.
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 Server offline
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-Bist du sicher, dass du diese Serverliste leeren möchtest?
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-Serverliste leeren
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 Bitte warte, bis die Server-Info abgerufen wird.

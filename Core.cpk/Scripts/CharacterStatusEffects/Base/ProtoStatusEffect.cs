@@ -426,7 +426,8 @@
                 return;
             }
 
-            if (effectData.CharacterPublicState.IsDead)
+            if (effectData.CharacterPublicState.IsDead
+                || !character.IsNpc && PlayerCharacter.GetPrivateState(character).IsDespawned)
             {
                 return;
             }

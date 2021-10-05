@@ -102,9 +102,6 @@ Retraso para consejo
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Tamaño interfaz
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Oclusión ambiental
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Nada
 

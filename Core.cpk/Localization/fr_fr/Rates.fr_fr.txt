@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+Vitesse d'extraction
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+Vitesse de coupe du bois
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+Nombre de revendications territoriales supplémentaires
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Difficulté de boss : Reine du pragmium
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Difficulté de boss : Tyran des sables
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+Vitesse de bricolage
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+Dégâts des bombes aux personnages
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+Dégâts des bombes aux personnages
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+Dégâts des bombes aux structures
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+Dégâts infligés par les joueurs alliés (JcJ)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+Dégâts infligés aux créatures et à l'environnement
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Resources] Vitesse d'extraction des gisements
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+Nombre max de propriétaires de porte
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Faction] Coût de création (PA)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Faction] Temps d'attente pour intégrer
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Faction] Temps d'attente pour rejoindre à nouveau
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Faction] Revendications territoriales de faction par niveau
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Faction] Membres max dans faction privée
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Faction] Membres max dans faction publique
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Faction] [JcJ] Alliances autorisées
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Faction] Coût d'amélioration de niveau (par niveau)
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+Vitesse de croissance des plantes cultivées
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+Durée de vie des plantes cultivées
+
+Scripts/Rates/RateHunger@Name:
+Aggravation de la faim
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+Cacher la liste des joueurs en ligne
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+Salon de discussions pour les échanges
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+Date d'expiration de la nourriture et des consommables
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+Taille max d'empilement d'objets
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+Propriétaires max de revendication territoriale (hors factions)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+Points d'Apprentissage
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+Vitesse de fabrication manufacturée
+
+Scripts/Rates/RatePartyMembersMax@Name:
+Nombre max de membres dans un groupe
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[JcJ] Dégâts joueurs à joueurs
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+JcJ
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[JcJ] Lâcher butin complet en cas de mort
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[JcJ] Cacher les coordonnées des nouveaux gisements de ressources
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[JcJ] Durée de la protection pour néophyte
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[JcJ] Durée du blocus de raid
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[JcJ] Capacité de stockage de la revendication territoriale
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[JcJ] Durée d'activation de la protection du bouclier de la base
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[JcJ] Durée de rechargement de la protection du bouclier de la base
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[JcJ] Protection du bouclier de la base disponible
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[JcJ] Temporisation
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Ressources] Récolte - Récoltes de base
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Ressources] Récolte - Caisses et tas
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Ressources] Récolte - Météorites
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Ressources] Récolte - Météorites
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Ressources] Récolte - Débris spatiaux
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Ressources] Nombre de sources de pragmium
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Resources] [PvP] Temporisation de revendication d'un gisement
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Resources] [PvP] Nombre de gisements de lithium
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Resources] [PvP] Nombre de gisements de pétrole
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+XP de compétences
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Délabrement] Délabrement des structures abandonnées
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Délabrement] Temporisation du délabrement des revendications territoriales abandonnées
+
+Scripts/Rates/RateThirst@Name:
+Aggravation de la soif
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+Vitesse des générateurs dépendants du temps
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+Temporisation initiale des évènements mondiaux
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+Intervalle d'évènements mondiaux — {0}
+

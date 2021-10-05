@@ -25,7 +25,7 @@
         {
             this.Entries = UpdatesHistoryEntries.Entries;
             var scrollViewer = this.GetByName<ScrollViewer>("ScrollViewer");
-            this.autoScrollViewer = new AutoScrollViewer(scrollViewer);
+            this.autoScrollViewer = new AutoScrollViewer(scrollViewer, isLoopedScroll: true);
         }
     }
 }

@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Systems.Faction;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.TeleportsSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -358,6 +359,12 @@
                 throw new Exception("Not a vehicle");
             }
 
+            var characterPublicState = PlayerCharacter.GetPublicState(character);
+            if (characterPublicState.CurrentPublicActionState is CharacterTeleportAction.PublicState)
+            {
+                throw new Exception("Cannot enter a vehicle while teleporting");
+            }
+
             if (!vehicle.ProtoWorldObject.SharedCanInteract(character,
                                                             vehicle,
                                                             writeToLog: true))
@@ -365,7 +372,6 @@
                 return;
             }
 
-            var characterPublicState = PlayerCharacter.GetPublicState(character);
             if (characterPublicState.CurrentVehicle is not null)
             {
                 Logger.Warning($"Player cannot enter vehicle: {vehicle} (already in a vehicle)", character);

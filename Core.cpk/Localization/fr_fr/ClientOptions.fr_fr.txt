@@ -102,9 +102,6 @@ Délai d'affichage[br]des bulles d'aide
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Échelle de l'interface
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Occlusion ambiante
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Aucun
 

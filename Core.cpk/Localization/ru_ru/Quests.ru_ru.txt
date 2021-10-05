@@ -550,7 +550,7 @@ Scripts/Quests/Tutorial/Stage3/QuestFishing@TaskCutAnyFish:
 Добыть филе любой рыбы
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@Description:
-Рыбалка - это не только приятное времяпрепровождение, но и отличный шанс добыть пищу. Попробуйте поймать рыбу!
+Рыбалка — это не только приятное времяпрепровождение, но и отличный шанс добыть пищу. Попробуйте поймать рыбу!
 
 Scripts/Quests/Tutorial/Stage3/QuestFishing@Name:
 Рыбалка!

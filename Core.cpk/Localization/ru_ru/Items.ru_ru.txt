@@ -290,7 +290,7 @@ Scripts/Items/Drones/DroneControls/ItemDroneControlStandard@Name:
 Пульт управления дроном
 
 Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Description:
-Улучшенная версия индустриального дрона с увеличенной скоростью добычи и радиусом, а также другими преимуществами.
+Улучшенная версия индустриального дрона с увеличенной скоростью добычи и радиусом действия, а также другими преимуществами.
 
 Scripts/Items/Drones/DroneItems/ItemDroneIndustrialAdvanced@Name:
 Улучшенный индустриальный дрон
@@ -2628,4 +2628,16 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Description:
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Энергетическая пушка
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Стреляет большими взрывными капсулами со смесью кислот и токсинов, которые наносят урон не только живым существам, но и строениям.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Кейнитовая пушка
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Выстреливает большими насекомообразными существами, которые вгрызаются в цель, нанося дополнительный урон.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+`Тяжелая пусковая установка "Рой"`
 

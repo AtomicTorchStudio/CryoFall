@@ -341,7 +341,6 @@
             var isDespawning = state == MobSpawnState.Despawning;
             ClientComponentTeleportationEffect.CreateEffect(
                 character,
-                character.TilePosition,
                 isDespawning
                     ? this.DespawnAnimationDuration
                     : this.SpawnAnimationDuration,

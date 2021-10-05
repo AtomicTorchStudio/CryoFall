@@ -780,7 +780,7 @@
         public const string LoadingSplashScreen_Title = "LOADING";
 
         public const string LocalServerAutosaveDescription =
-            "Your progress is saved automatically (usually every hour) and when you disconnect or quit the game (even if you do this by closing the game or pressing Alt+F4).";
+            "Your progress is saved automatically (usually every hour) and when you disconnect or quit the game (even if you do so by closing the game or pressing Alt+F4).";
 
         public const string LocalServerSaveName_Format = "Local game—{0}";
 
@@ -845,7 +845,7 @@
 
         public const string MenuGameFinished_ButtonMainMenu_Hint = "Decide later.";
 
-        public const string MenuGameFinished_ButtonMainMenu_Title = "Return to Main menu";
+        public const string MenuGameFinished_ButtonMainMenu_Title = "Return to Main Menu";
 
         public const string MenuGameFinished_ButtonNewGamePlus_Hint = "Keep your character, but start a new game.";
 
@@ -884,7 +884,7 @@
             = "The local server is shutting down and saving your progress.[br]Please wait until it finishes in order to obtain the actual saved games list.";
 
         public const string MenuLocalGame_NoSaves =
-            "Currently there are no saved games for local server.[br]You can create a new world.";
+            "There are currently no saved games for the local server.[br]You can create a new world.";
 
         public const string MenuLocalGame_TabLocalWorlds = "Local worlds";
 
@@ -1289,7 +1289,7 @@
         public const string RatesEditorControl_DefaultRateValueFormat = "Default: {0}";
 
         public const string RatesEditorControl_LocalServerRatesDescription =
-            "All local server presets have customized rates to ensure optimal gameplay for local server operating intermittently (compared to a multiplayer server which runs 24/7). E.g. plants grow faster, solar panels generate more electricity, events happen more often, etc.";
+            "All local server presets have customized rates to ensure optimal gameplay for a server operating intermittently (compared to a multiplayer server, which runs 24/7). E.g., plants grow faster, solar panels generate more electricity, events happen more often, etc.";
 
         public const string RatesEditorControl_ModifiedRates = "Modified rates";
 
@@ -1415,7 +1415,7 @@
             "Offline raiding protection shield is not available for this land claim, as it's completely inside another base that provides its own shield protection.";
 
         public const string ShieldProtection_NotificationBaseActivatingShield_Message_Format =
-            "Shield will become active in {0} unless interrupted—such as canceled by the base owner or disrupted by raiders destroying any structure (raid block is not enough).";
+            "Shield will become active in {0} unless interrupted—i.e., if it is canceled by the base owner or disrupted by raiders destroying any structure (raid block is not enough).";
 
         public const string ShieldProtection_NotificationBaseActivatingShield_Title =
             "This base is activating shield protection";
@@ -2095,7 +2095,7 @@
 
         // the game server was just wiped (less than 2 hours ago)
         public const string WipedDate_JustWiped = "Just wiped";
-        
+
         public const string WipeInfoEditor_WipeManual =
             @"Please note: The wipe is not performed automatically!
               [br]You have to manually stop the server and delete the savegame.

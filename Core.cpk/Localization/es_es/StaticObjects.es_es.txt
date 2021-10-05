@@ -941,6 +941,51 @@ Demasiado cerca de otra bomba de petróleo.
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Este terreno no ofrece acceso a la mesa de agua.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Construir armazón del cohete
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+La culminación de tus desventuras en este planeta. ¡Por fin te ves capaz de empezar a pensar en la fuga definitiva!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Plataforma
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Construir sistema electrónico
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Construir depósito
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+Construir sistema de propulsión
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Plataforma (fase 2)
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Construir sistema de prevención de anomalías
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Construir sistema de soporte vital
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Construir sistema de navegación
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Plataforma (fase 3)
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Echar combustible al cohete
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Preparar suministros
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Plataforma (fase 4)
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Plataforma (fase 5)
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Un puesto médico automatizado especial. Se puede usar para instalar o quitar todo tipo de implantes cibernéticos.
 
@@ -971,6 +1016,12 @@ Aspersor
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Se necesitan más componentes.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Poner objetos a desmontar.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Recoge primero los objetos generados.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Coloca dos objetos idénticos para repararlos.
 
@@ -982,6 +1033,9 @@ Antes de nada, quita el objeto de la ranura de resultado.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 No se puede reparar
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+No se puede desmontar
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 ¡Has tenido suerte![br]¡Se ha reparado completamente: {0}!

@@ -195,7 +195,7 @@
                 ICharacter enemy = null;
                 foreach (var playerCharacter in playersInView)
                 {
-                    if (playerCharacter.GetPublicState<ICharacterPublicState>().IsDead)
+                    if (PlayerCharacter.GetPublicState(playerCharacter).IsDead)
                     {
                         // do not pay attention to dead characters
                         continue;

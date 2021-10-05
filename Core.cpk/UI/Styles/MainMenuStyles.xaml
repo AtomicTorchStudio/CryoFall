@@ -78,8 +78,6 @@
                 TileMode="Tile"
                 Stretch="Uniform"
                 Viewport="0,0,4,4"
-                Viewbox="0,0,4,4"
-                ViewboxUnits="Absolute"
                 ViewportUnits="Absolute"
                 Opacity="1" />
 

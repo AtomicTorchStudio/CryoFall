@@ -152,7 +152,7 @@ Scripts/Items/Base/ItemHints@ClickToRepairVehicle:
 Clique em um veículo danificado para repará-lo.
 
 Scripts/Items/Base/ItemHints@ClickToWaterPlants:
-Clique numa planta de fazenda para regá-la.
+Clique numa planta de cultivo para regá-la.
 
 Scripts/Items/Base/ItemHints@CuttingFish:
 Você pode extrair filés de peixe com a ação de USAR (a mesma para usar os demais itens).
@@ -2628,4 +2628,16 @@ Canhão pesado que utiliza cargas coerentes de partículas aceleradas para causa
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Canhão de energia
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Lança grandes cápsulas explosivas contendo um coquetel de ácidos e toxinas que causarão dano não apenas aos seres vivos, mas até mesmo às estruturas.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Canhão de cainita
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Lança grandes criaturas semelhantes a insetos que se enterram no alvo ao serem atingidas, causando dano extra.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+Lança-enxames pesado
 

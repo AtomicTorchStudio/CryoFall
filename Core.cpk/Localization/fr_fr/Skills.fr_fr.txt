@@ -148,6 +148,9 @@ Fabriquer des objets de plus en plus complexes tout en comprenant leur structure
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Artisanat
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+Efficacité de base de la table de bricolage {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Probabilité de réparer complètement un objet
 

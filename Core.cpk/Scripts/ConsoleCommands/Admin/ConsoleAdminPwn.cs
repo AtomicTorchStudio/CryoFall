@@ -2,7 +2,6 @@
 
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
@@ -32,8 +31,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         public string Execute([CurrentCharacterIfNull] ICharacter player = null)
         {
-            var characterPrivateState = player.GetPrivateState<PlayerCharacterPrivateState>();
-            var characterPublicState = player.GetPublicState<PlayerCharacterPublicState>();
+            var characterPrivateState = PlayerCharacter.GetPrivateState(player);
+            var characterPublicState = PlayerCharacter.GetPublicState(player);
 
             var containerHotbar = characterPrivateState.ContainerHotbar;
             var containerEquipment = characterPublicState.ContainerEquipment;

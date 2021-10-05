@@ -2,16 +2,34 @@
 `プラグミウムクイーンが地上に現れました。
 [br]勝ち残った者には貴重な戦利品が待っています！`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+プラグミウムクイーン
+
 Scripts/Events/EventBossSandTyrant@Description:
 `サンドタイラントが地上に現れました。
 [br]勝ち残った者には貴重な戦利品が待っています！`
+
+Scripts/Events/EventBossSandTyrant@Name:
+サンドタイラント
+
+Scripts/Events/EventFishingBlueGlider@Name:
+ブルーグライダー
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `ハイライトされたマップエリアに隕石が降ってきました。
 [br]レアな鉱物を採掘しに行きましょう！`
 
-Scripts/Events/EventMigration@Description:
+Scripts/Events/EventMeteoriteDrop@Name:
+隕石
+
+Scripts/Events/EventMigrationFloater@Description:
 この世界に生殖していた生物は別の地域に移動しており、絶好の狩猟のチャンスが訪れました。
+
+Scripts/Events/EventMigrationFloater@Name:
+渡りフローター
+
+Scripts/Events/EventMigrationThumper@Name:
+渡りサンパー
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 重要：銃器は役に立たないので、近接武器や熱系の武器を使いましょう。
@@ -19,9 +37,15 @@ Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 山間部に奇妙な異星植物が出現しました。採取はほぼ不可能に近いですが、希少資源を手に入れる絶好のチャンスです。
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+感染サイグローブ
+
 Scripts/Events/EventSpaceDrop@Description:
 `ハイライトされたマップエリアに宇宙ごみが降ってきました。
 [br]貴重なジャンク品を集めに駆けつけましょう！`
+
+Scripts/Events/EventSpaceDrop@Name:
+宇宙ゴミ
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0}が次の者に倒されました：

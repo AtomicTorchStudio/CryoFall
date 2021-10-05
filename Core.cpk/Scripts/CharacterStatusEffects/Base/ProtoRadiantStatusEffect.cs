@@ -64,7 +64,7 @@
             foreach (var worldObject in TempResult)
             {
                 var environmentalIntensity = this.ServerCalculateObjectEnvironmentalIntensity(character,
-                                                                                              worldObject);
+                    worldObject);
 
                 if (result < environmentalIntensity)
                 {
@@ -99,8 +99,7 @@
             foreach (var character in tempListPlayers.AsList())
             {
                 if (!character.ServerIsOnline
-                    || character.GetPublicState<ICharacterPublicState>()
-                                .IsDead)
+                    || PlayerCharacter.GetPrivateState(character).IsDespawned)
                 {
                     continue;
                 }

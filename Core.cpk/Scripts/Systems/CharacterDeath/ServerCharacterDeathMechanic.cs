@@ -6,20 +6,19 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
-    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ServerCharacterDeathMechanic
     {
@@ -38,37 +37,6 @@
         public static event Action<ICharacter> CharacterDeath;
 
         public static event DelegateCharacterKilled CharacterKilled;
-
-        /// <summary>
-        /// Moves the character to the "graveyard" so a respawn will be required on login.
-        /// No penalty in items or "weakened" status effect.
-        /// </summary>
-        public static void DespawnCharacter(ICharacter character)
-        {
-            var publicState = character.GetPublicState<ICharacterPublicState>();
-            if (publicState.IsDead)
-            {
-                return;
-            }
-
-            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
-
-            var privateState = PlayerCharacter.GetPrivateState(character);
-            CharacterDamageTrackingSystem.ServerClearStats(character);
-            privateState.IsDespawned = true;
-            Api.Logger.Important("Character despawned", character);
-
-            // we have to set the dead flag to stop game mechanics from working
-            // but on the respawn player should not lose anything
-            publicState.IsDead = true;
-            // recreate physics (as dead/despawned character doesn't have any physics)
-            character.ProtoCharacter.SharedCreatePhysics(character);
-
-            TeleportDeadPlayerCharacterToGraveyard(character);
-
-            privateState.LastDeathPosition = Vector2Ushort.Zero;
-            privateState.LastDeathTime = null;
-        }
 
         public static void OnCharacterDeath(ICharacter deadCharacter)
         {
@@ -100,8 +68,19 @@
             var privateState = PlayerCharacter.GetPrivateState(deadCharacter);
             privateState.LastDeathPosition = deadCharacter.TilePosition;
             privateState.LastDeathTime = Api.Server.Game.FrameTime;
-            ServerTimersSystem.AddAction(delaySeconds: PlayerTeleportToGraveyardDelaySeconds,
-                                         () => TeleportDeadPlayerCharacterToGraveyard(deadCharacter));
+            ServerTimersSystem.AddAction(
+                delaySeconds: PlayerTeleportToGraveyardDelaySeconds,
+                () =>
+                {
+                    if (!publicState.IsDead)
+                    {
+                        // player has already respawned
+                        return;
+                    }
+                    
+                    CharacterDespawnSystem.ServerTeleportPlayerCharacterToServiceArea(deadCharacter);
+                    CharacterRespawnSystem.ServerRemoveStatusEffectsOnRespawn(deadCharacter);
+                });
 
             var isPvPdeath = CharacterDamageTrackingSystem.ServerGetPvPdamagePercent(deadCharacter)
                              >= 0.5;
@@ -134,18 +113,15 @@
                 return;
             }
 
-            var publicState = PlayerCharacter.GetPublicState(character);
-            if (publicState.IsDead)
+            if (PlayerCharacter.GetPublicState(character).IsDead)
             {
-                TeleportDeadPlayerCharacterToGraveyard(character);
-                return;
+                CharacterDespawnSystem.ServerTeleportPlayerCharacterToServiceArea(character);
+                CharacterRespawnSystem.ServerRemoveStatusEffectsOnRespawn(character);
+                
             }
-
-            var privateState = PlayerCharacter.GetPrivateState(character);
-            if (privateState.IsDespawned)
+            else if (PlayerCharacter.GetPrivateState(character).IsDespawned)
             {
-                // it will move character to the graveyard
-                DespawnCharacter(character);
+                CharacterDespawnSystem.ServerTeleportPlayerCharacterToServiceArea(character);
             }
         }
 
@@ -206,17 +182,6 @@
                     return;
                 }
             }
-        }
-
-        public static Vector2Ushort ServerGetGraveyardPosition()
-        {
-            var world = ServerWorld;
-            var worldBounds = world.WorldBounds;
-
-            // teleport to bottom right corner of the map
-            var position = new Vector2Ushort((ushort)(worldBounds.Offset.X + worldBounds.Size.X - 1),
-                                             (ushort)(worldBounds.Offset.Y + 1));
-            return position;
         }
 
         private static void DropPlayerLoot(ICharacter character)
@@ -336,35 +301,6 @@
                     ServerItems.MoveOrSwapItem(item, toContainer, out _);
                 }
             }
-        }
-
-        // "Graveyard" is a technical area in the bottom right corner of the map.
-        private static void TeleportDeadPlayerCharacterToGraveyard(ICharacter character)
-        {
-            if (character.IsNpc)
-            {
-                // only player characters are teleported to graveyard
-                return;
-            }
-
-            var publicState = character.GetPublicState<ICharacterPublicState>();
-            if (!publicState.IsDead)
-            {
-                // player has been respawned
-                return;
-            }
-
-            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
-
-            // disable the visual scope so the player cannot see anyone and nobody could see the player
-            Api.Server.Characters.SetViewScopeMode(character, isEnabled: false);
-            var graveyardPosition = ServerGetGraveyardPosition();
-            if (character.TilePosition != graveyardPosition)
-            {
-                ServerWorld.SetPosition(character, (Vector2D)graveyardPosition);
-            }
-
-            CharacterRespawnSystem.ServerRemoveInvalidStatusEffects(character);
         }
     }
 }

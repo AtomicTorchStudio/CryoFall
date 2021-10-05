@@ -41,10 +41,10 @@
             }
 
             FoodDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.2); // consume 100 food points in 1.2 hour(s).
-            FoodDecreasePerSecond *= RateHunger.SharedValue; // apply the multiplier
+            FoodDecreasePerSecond *= RateHunger.SharedValue;     // apply the multiplier
 
             WaterDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.0); // consume 100 water points in 1.0 hour(s)
-            WaterDecreasePerSecond *= RateThirst.SharedValue; // apply the multiplier
+            WaterDecreasePerSecond *= RateThirst.SharedValue;     // apply the multiplier
         }
 
         public override string Name => "Hunger and thirst system";
@@ -80,6 +80,12 @@
                 if (character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
                 {
                     // only characters of specific type (PlayerCharacter) are processed
+                    continue;
+                }
+
+                if (PlayerCharacter.GetPrivateState(character).IsDespawned)
+                {
+                    // despawned characters are not processed
                     continue;
                 }
 

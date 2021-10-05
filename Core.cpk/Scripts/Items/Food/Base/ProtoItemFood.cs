@@ -134,7 +134,11 @@
         protected override void PrepareHints(List<string> hints)
         {
             base.PrepareHints(hints);
-            hints.Add(ItemHints.AltClickToUseItem);
+
+            if (this.IsAvailableInCompletionist) // do not suggest to use unless it's "safe"
+            {
+                hints.Add(ItemHints.AltClickToUseItem);
+            }
         }
 
         protected virtual void PrepareProtoItemFood()

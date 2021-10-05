@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Drones;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -13,7 +12,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -273,7 +272,7 @@
             world.StopPhysicsBody(objectDrone.PhysicsBody);
             objectDrone.ProtoWorldObject.SharedCreatePhysics(objectDrone);
             world.SetPosition(objectDrone,
-                              ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
+                              CharacterDespawnSystem.ServerGetServiceAreaPosition().ToVector2D());
 
             try
             {
@@ -711,10 +710,10 @@
                 return;
             }
 
-            if (character.GetPublicState<ICharacterPublicState>()
-                         .IsDead)
+            if (PlayerCharacter.GetPrivateState(character).IsDespawned
+                || PlayerCharacter.GetPublicState(character).IsDead)
             {
-                // dead player cannot start a drone
+                // despawned/dead player cannot start a drone
                 return;
             }
 

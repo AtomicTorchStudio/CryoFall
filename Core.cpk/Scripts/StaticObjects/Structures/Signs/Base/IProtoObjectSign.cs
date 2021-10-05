@@ -4,6 +4,6 @@
 
     public interface IProtoObjectSign : IProtoObjectStructure
     {
-        void ClientSetSignText(IStaticWorldObject worldObjectSign, string signText);
+        void ClientSetSignText(IStaticWorldObject worldObjectSign, string text);
     }
 }

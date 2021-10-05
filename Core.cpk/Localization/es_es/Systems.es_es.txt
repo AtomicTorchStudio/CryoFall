@@ -439,9 +439,11 @@ Se cruza con otro terreno adjudicado
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Se cruza con otro terreno adjudicado que está bajo la protección de un escudo activo. Es preciso desactivar dicho escudo antes de nada.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Ya has usado todos los terrenos adjudicados que puedes tener.
-[br]Puedes investigar nuevas tecnologías para aumentar dicha cifra.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Puedes aumentar el límite si investigas tecnologías para adjudicaciones de terreno de rango superior (hasta {0} en total).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Has usado el número asignado de terrenos adjudicados personales ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Debes investigar la xenogeología de rango 3 para poder reclamar los depósitos de litio y petróleo o para adjudicarte un territorio cercano a ellos.
@@ -643,6 +645,21 @@ Información de borrado
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Te damos la bienvenida a {0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Mantenimiento del servidor.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+Se cambiarán las tasas del servidor.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Reinicio del servidor
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Actualización del servidor a la última versión.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Limpieza del servidor.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `El servidor se cerrará dentro de {0}.
 [br]
@@ -700,6 +717,9 @@ Algunos de tus vehículos están en el garaje. Puedes cogerlos en cualquier plat
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Vehículos en el garaje
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+No se puede reparar este vehículo
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Energía agotada.
 
@@ -708,9 +728,6 @@ No se puede usar {0}
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Ya se ha regado
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-La planta está lista para ser cosechada. No tiene sentido que la riegues.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 Tan solo se pueden regar las plantas de la granja.

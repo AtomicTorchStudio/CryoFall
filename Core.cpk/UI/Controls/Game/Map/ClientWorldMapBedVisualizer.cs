@@ -2,9 +2,9 @@
 {
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ClientWorldMapBedVisualizer : BaseWorldMapVisualizer
     {
@@ -18,8 +18,7 @@
             : base(worldMapController)
         {
             this.stateSubscriptionOwner = new StateSubscriptionStorage();
-            this.playerCharacterPrivateState = Api.Client.Characters.CurrentPlayerCharacter
-                                                  .GetPrivateState<PlayerCharacterPrivateState>();
+            this.playerCharacterPrivateState = ClientCurrentCharacterHelper.PrivateState;
 
             this.playerCharacterPrivateState.ClientSubscribe(
                 _ => _.CurrentBedObjectPosition,

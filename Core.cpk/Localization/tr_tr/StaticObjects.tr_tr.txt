@@ -941,6 +941,51 @@ Başka bir yakıt pompasına çok yakın.
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Bu tür zemin, su tabakasına erişim sağlamaz.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Roket iskeleti yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+Bu gezegendeki mücadelelerinin toplamı. Nihayet nihai kaçışı düşünmeye hazırsın!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Atış rampası
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Kontrol elektroniklerini yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Yakıt deposu yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+İtici sistemini yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Atış rampası - Aşama 2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Anomali kaçınma sistemini yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Yaşam desteği sistemini yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Navigasyon sistemini yap
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Atış rampası - Aşama 3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Rokete yakıt koy
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Malzemeleri hazırla
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Atış rampası - Aşama 4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Atış rampası - Aşama 5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Her türlü sibernatik implantı yüklemek veya kaldırmak için kullanılabilen özel, otomatikleştirilmiş tıbbi istasyon
 
@@ -971,6 +1016,12 @@ Sulama sistemi
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Daha fazla bileşen gerek.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Sökmek istediğin eşyaları yerleştir.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Önce çıktıdaki eşyaları al.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Tamir etmek için iki aynı eşyayı yerleştir.
 
@@ -982,6 +1033,9 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Tamir edilemez
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+Sökülemiyor
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 Şanslıydın![br]{0} tamamen onarıldı!

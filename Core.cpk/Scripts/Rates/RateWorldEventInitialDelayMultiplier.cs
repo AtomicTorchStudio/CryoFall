@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.GameApi;
 
     public class RateWorldEventInitialDelayMultiplier
@@ -32,6 +33,17 @@
 
         public override RateValueType ValueType => RateValueType.Multiplier;
 
-        public override RateVisibility Visibility => RateVisibility.Primary;
+        public override RateVisibility Visibility => RateVisibility.Advanced;
+
+        protected override double ServerReadValueWithRange()
+        {
+            var value = base.ServerReadValueWithRange();
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                value = 0.05; // enforce value for local server as larger value will cause issues
+            }
+
+            return value;
+        }
     }
 }

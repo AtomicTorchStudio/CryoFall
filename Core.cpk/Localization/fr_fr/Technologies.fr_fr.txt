@@ -58,6 +58,12 @@ Les armes à énergie représentent un nouveau bond technologique par rapport au
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Armes à énergie
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+Technologies nécessaires pour enfin réussir à décoller de cette planète.
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+Décollage !
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 Des armes expérimentales rarement utilisées en combat conventionnel, mais pouvant s'avérer utiles dans certains cas extrêmes.
 

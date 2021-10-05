@@ -14,6 +14,7 @@
         {
             this.RatesAll = RatesManager
                             .Rates
+                            .Where(r => r.Visibility != RateVisibility.Hidden)
                             .OrderBy(r => r.Visibility)
                             .ThenBy(r => r.OrderAfterRate is null)
                             .ThenBy(r => r.Name)

@@ -431,7 +431,7 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 出現したばかりの埋蔵地はまだ所有できません。周辺での建築は一時的に制限されています。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
-この所有地を建てるやアップグレードすると安全な備蓄量の上限を超えることになります。一部のアイテムを近くにいる安全倉庫から取り出し、再び試してください。
+この所有地を建設またはアップグレードすると、収納アイテム量合計が拠点の許容上限を超えることになります。隣の拠点にある収納からアイテムを取り除き、再び試してください。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 他の所有地との干渉
@@ -439,9 +439,11 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 シールド保護が発動中の別の所有地と交差しています。まずはそこのシールドを停止してください。
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`割り当てられた所有地数を使い果たしました。
-[br]新しい技術を研究することによってその数を増やすことができます。`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+より上位の所有地技術を研究することで、上限を増やすことができます（合計{0}まで）。
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+決められた数の所有地（{0}/{1}）を使い切りました。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 油田とリチウム埋蔵地を所有するか、その近くに所有地標を設置するには、異世界地質学 (レベル 3) を研究する必要があります。
@@ -644,6 +646,21 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@HeaderWipeInformation:
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}へようこそ
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+サーバーメンテナンス
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+サーバー設定が変更されます。
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+サーバー再起動
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+サーバーを最新のバージョンにアップデートします。
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+サーバーワイプ
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `サーバーは{0}後にシャットダウンします。
 [br]
@@ -701,6 +718,9 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInG
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 ガレージ内の乗り物
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+この車両は修理できません
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 エネルギーが枯渇しました。
 
@@ -709,9 +729,6 @@ Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleF
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 すでに水をやりました
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-収穫の準備ができています。もう水をやる必要はありません。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 農場の植物だけに水をやることができます。

@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data"
     xmlns:technologies="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DesignHeight="800" d:DesignWidth="850"

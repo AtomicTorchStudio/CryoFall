@@ -10,7 +10,7 @@
         {
         }
 
-        public override bool IsBlocksMovement => true;
+        public override bool IsBlockingMovement => true;
 
         public override IWorldObject TargetWorldObject => null;
 

@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.ClientMusic;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.EndGame;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -111,6 +112,12 @@
                     ClientMusicSystem.CurrentPlaylist = null;
                 }
 
+                return;
+            }
+
+            if (MenuEndGame.IsDisplayed)
+            {
+                ClientMusicSystem.CurrentPlaylist = Api.GetProtoEntity<PlaylistEndGame>();
                 return;
             }
 

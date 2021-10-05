@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+Gra lokalna jest dostępna nawet w trybie offline.
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `Klient nie może nawiązać połączenia z serwerem głównym.
 [br]Sprawdź połączenie z Internetem oraz czy zapora
 [br]lub dostawca Internetu nie blokują połączenia.`

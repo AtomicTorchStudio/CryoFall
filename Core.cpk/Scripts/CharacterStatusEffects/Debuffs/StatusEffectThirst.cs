@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs.Client;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class StatusEffectThirst : ProtoStatusEffect
@@ -69,6 +70,11 @@
             {
                 // not thirsty anymore
                 character.ServerRemoveStatusEffect(this);
+                return;
+            }
+
+            if (CharacterIdleSystem.ServerIsIdlePlayer(character))
+            {
                 return;
             }
 

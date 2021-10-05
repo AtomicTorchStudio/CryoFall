@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+開採速度
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+伐木速度
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+額外領地建築數量
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Boss難度：普拉格女皇
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Boss難度：沙漠暴君
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+製作速度
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+生物傷害
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+角色轟炸傷害
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+建築轟炸傷害
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+友軍傷害（PVP）
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+對生物與環境傷害
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Resources] 礦脈開採速度
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+門所有者最大數量
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Faction] 創建消耗(LP)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Faction] 加入冷卻時間
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Faction] 重複加入冷卻時間
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Faction] 每級派系所有主權建築數
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Faction] 私人派系最大成員數
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Faction] 公開派系最大成員數
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Faction] [PvP] 允許聯盟
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Faction] 每級升級消耗
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+農場植物成長速度
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+農作物壽命
+
+Scripts/Rates/RateHunger@Name:
+饑餓率
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+隱藏線上玩家列表
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+貿易聊天室
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+食物與消耗品保質期
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+物品堆疊數量
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+最大主權建築所有人數量(非派系所有)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+學習點數
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+生產速度
+
+Scripts/Rates/RatePartyMembersMax@Name:
+隊伍最大成員數
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] 玩家傷害
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] 死亡時掉落所有裝備
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] 隱藏新資源點座標
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] 新手保護持續時間
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] 掠奪保護持續時間
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] 主權建築安全儲存容量
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] 基地護盾保護啟動持續時間
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] 基地護盾保護冷卻時間
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] 基地護盾保護可用
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] 時間窗口
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Resources] 採集—基礎採集
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Resources] 採集—箱子與貨堆
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Resources] 採集—生物掉落
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Resources] 採集—隕石
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Resources] 採集—太空殘骸
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Resources] 普拉格資源點數量
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Resources] [PvP] 資源點佔領延遲
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Resources] [PvP] 鋰礦數量
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Resources] [PvP] 油田數量
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+技能經驗
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Decay] 廢棄建築腐朽
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Decay] 廢棄主權建築腐朽延遲
+
+Scripts/Rates/RateThirst@Name:
+口渴率
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+發電機效率
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+世界事件初始間隔
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+世界事件間隔—{0}
+

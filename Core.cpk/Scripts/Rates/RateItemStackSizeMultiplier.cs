@@ -25,6 +25,6 @@ namespace AtomicTorch.CBND.CoreMod.Rates
 
         public override RateValueType ValueType => RateValueType.Multiplier;
 
-        public override RateVisibility Visibility => RateVisibility.Primary;
+        public override RateVisibility Visibility => RateVisibility.Advanced;
     }
 }

@@ -2,16 +2,34 @@
 `La Reine du pragmium a fait surface !
 [br]Un précieux butin attend les survivants les plus courageux !`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+Reine du pragmium
+
 Scripts/Events/EventBossSandTyrant@Description:
 `Le Tyran des sables a fait surface !
 [br]Un précieux butin attend les survivants les plus courageux !`
+
+Scripts/Events/EventBossSandTyrant@Name:
+Tyran des sables
+
+Scripts/Events/EventFishingBlueGlider@Name:
+Glisseur bleu
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `Des météorites sont tombées dans la zone en surbrillance sur la carte.
 [br]Précipitez-vous pour récupérer des minerais rares !`
 
-Scripts/Events/EventMigration@Description:
-Des formes de vies indigènes semblent avoir entamé une migration vers un autre secteur. Voilà une belle opportunité pour la chasse !
+Scripts/Events/EventMeteoriteDrop@Name:
+Météorite
+
+Scripts/Events/EventMigrationFloater@Description:
+Des formes de vie natives de ce monde semblent migrer vers une nouvelle zone, ce qui offre de bonnes opportunités de chasse.
+
+Scripts/Events/EventMigrationFloater@Name:
+Migration de flotteurs
+
+Scripts/Events/EventMigrationThumper@Name:
+Migration de rosseurs
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Important : les armes à feu sont inefficaces. Utilisez des armes de corps-à-corps ou basées sur la chaleur.
@@ -19,9 +37,15 @@ Important : les armes à feu sont inefficaces. Utilisez des armes de corps-à-c
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Des pousses étranges ont fait leur apparition dans certaines zones montagneuses, ce qui y rend toute prospection impossible. Mais ceci constitue également une bonne opportunité d'obtenir des ressources rares.
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+Infestation de bosquets psi
+
 Scripts/Events/EventSpaceDrop@Description:
 `Des débris spatiaux sont tombés dans la zone en surbrillance sur la carte.
 [br]Précipitez-vous afin de récupérer de précieux composants !`
+
+Scripts/Events/EventSpaceDrop@Name:
+Débris spatiaux
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0} - Créature vaincue par :

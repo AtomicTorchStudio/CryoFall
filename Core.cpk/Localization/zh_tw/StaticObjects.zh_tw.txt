@@ -941,6 +941,51 @@ Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooC
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 這種地面類型無法挖掘地下水。
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+建造火箭外殼。
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+在這顆星球上掙扎許久之後，你終於準備好離開它了！
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+發射底座
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+建造操控系統
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+建造燃料箱
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+建造推進系統
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+發射底座-第二部分
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+建造異常回避系統
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+建造維生系統
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+建造導航系統
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+發射底座-第三部分
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+為火箭注入燃料
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+準備補給
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+發射底座-第四部分
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+發射底座-第五部分
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 特殊的自動醫療站，可用於安裝或移除所有類型的植入物。
 
@@ -971,6 +1016,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 需要更多元件。
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+放置要拆解的物品。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+請先取出輸出物品。
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 放入兩個相同物品以進行修復。
 
@@ -982,6 +1033,9 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 無法修理。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+無法拆解。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 你走運了！[br]{0}完全修復！

@@ -22,6 +22,12 @@ Mittleres Design einer mechanisierten Kampfrüstung. Besticht durch eine hohe Ve
 Scripts/Vehicles/VehicleMechManul@Name:
 Manul
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+Experimentelles Design für mechanisierte Kampfrüstung. Bietet automatische Regeneration von strukturellem Schaden und besitzt leistungsstarke exotische Waffen.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+Nemesis
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 Leichtes Design einer mechanisierten Kampfrüstung. Besticht durch relativ hohe Geschwindigkeit, ohne dabei auf Panzerung und Feuerkraft zu verzichten.
 
@@ -60,4 +66,7 @@ normal
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 groß
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+Exotisch
 

@@ -22,6 +22,12 @@ Armure de combat mécanisée intermédiaire. Offre des mesures de défense subst
 Scripts/Vehicles/VehicleMechManul@Name:
 Manul
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+Conception expérimentale d'armure de combat mécanisée. Propose une régénération automatique des dégâts structurels et de puissantes armes exotiques.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+Némésis
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 Armure de combat mécanisée légère. Assez rapide, elle offre un blindage et une puissance de feu acceptable.
 
@@ -60,4 +66,7 @@ Normal
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 Large
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+Exotique
 

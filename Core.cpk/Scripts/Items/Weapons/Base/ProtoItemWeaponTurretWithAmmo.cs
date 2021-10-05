@@ -71,11 +71,5 @@
             Server.Items.SetCount(ammoItem, ammoItem.Count - 1);
             return true;
         }
-
-        protected override void ServerUpdate(ServerUpdateData data)
-        {
-            base.ServerUpdate(data);
-            Logger.Dev("Server update: " + data.GameObject);
-        }
     }
 }

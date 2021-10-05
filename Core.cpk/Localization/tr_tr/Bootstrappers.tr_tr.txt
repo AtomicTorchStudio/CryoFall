@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+Çevrim dışı kalsanız bile yerel oyun oynanabilir.
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `İstemci, Ana Sunucu ile bağlantı kuramadı.
 [br]Lütfen internet bağlantınızın olduğundan ve güvenlik duvarınızın
 [br]veya ISS'nizin bağlantınızı engellemediğinden emin olun.`

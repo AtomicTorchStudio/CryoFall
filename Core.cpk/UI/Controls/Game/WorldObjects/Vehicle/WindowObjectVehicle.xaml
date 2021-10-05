@@ -11,7 +11,7 @@
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:electricityRequirements="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ElectricityRequirements"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     xmlns:vehicle="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">

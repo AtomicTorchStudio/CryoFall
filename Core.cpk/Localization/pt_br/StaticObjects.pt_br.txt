@@ -941,6 +941,51 @@ Perto demais de outra bomba de petróleo.
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Este tipo de solo não oferece acesso ao lençol freático.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Construir estrutura de foguete
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+O auge dos seus esforços neste planeta. Enfim está tudo pronto para você começar a pensar sobre a fuga derradeira!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Plataforma de lançamento
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Construir eletrônica de controle
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Construir tanque de combustível
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+Construir sistema de propulsão
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Plataforma de lançamento: Etapa 2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Construir sistema para evitar anomalias
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Construir sistema de suporte de vida
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Construir sistema de navegação
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Plataforma de lançamento: Etapa 3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Abastecer o foguete
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Preparar suprimentos
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Plataforma de lançamento: Etapa 4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Plataforma de lançamento: Etapa 5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Posto médico automatizado especial que pode ser usado para instalar ou remover todos os tipos de implantes cibernéticos.
 
@@ -971,6 +1016,12 @@ Aspersor de água
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Precisa de mais componentes.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Colocar itens a desmontar.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Recolher os itens gerados primeiro.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Coloque dois itens idênticos para reparar.
 
@@ -982,6 +1033,9 @@ Antes de nada, quita el objeto de la ranura de resultado.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Não é possível reparar
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+Não é possível desmontar
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 Você teve sorte![br]{0} reparado(a) por completo!

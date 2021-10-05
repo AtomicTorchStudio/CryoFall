@@ -1,52 +1,64 @@
 ﻿<!-- ReSharper disable CanExtractXamlLocalizableStringXaml -->
 <base:BaseUserControl
+    x:Name="UserControl"
     x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.Credits.MenuCredits"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    SnapsToDevicePixels="False">
+    SnapsToDevicePixels="False"
+    MaxHeight="500">
 
     <base:BaseUserControl.Resources>
+        <Brush x:Key="StrokeColor">#AA000000</Brush>
+        <Thickness x:Key="StrokeThickness">1</Thickness>
+
         <Style x:Key="Section" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="23" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="0,35,0,-3" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="{StaticResource StrokeThickness}" />
+            <Setter Property="noesis:Text.Stroke" Value="{StaticResource StrokeColor}" />
         </Style>
 
         <Style x:Key="MiniSection" TargetType="TextBlock" BasedOn="{StaticResource Section}">
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="Margin" Value="0,10,0,-3" />
         </Style>
 
         <Style x:Key="Name" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="Margin" Value="0,-1,0,0" />
+            <Setter Property="Margin" Value="0,0,0,0" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="LineHeight" Value="14" />
+            <Setter Property="LineHeight" Value="15" />
             <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="{StaticResource StrokeThickness}" />
+            <Setter Property="noesis:Text.Stroke" Value="{StaticResource StrokeColor}" />
         </Style>
 
         <Style x:Key="Title" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="Margin" Value="0,15,0,0" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="{StaticResource StrokeThickness}" />
+            <Setter Property="noesis:Text.Stroke" Value="{StaticResource StrokeColor}" />
         </Style>
     </base:BaseUserControl.Resources>
 
@@ -54,11 +66,11 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Top"
                     FontFamily="{StaticResource CondensedFontFamily}"
-                    FontSize="12"
-                    MaxHeight="500">
+                    FontSize="12">
         <ScrollViewer x:Name="ScrollViewer"
                       Margin="7"
-                      VerticalScrollBarVisibility="Hidden">
+                      VerticalScrollBarVisibility="Hidden"
+                      IsEnabled="{Binding IsEnabled, ElementName=UserControl}">
             <ScrollViewer.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="#00000000" Offset="0" />
@@ -69,8 +81,7 @@
             </ScrollViewer.OpacityMask>
 
             <StackPanel Width="300"
-                        Orientation="Vertical"
-                        TextOptions.TextHintingMode="Animated">
+                        Orientation="Vertical">
                 <Image x:Name="GameLogo"
                        Source="/UI/Images/Logo/logo_cryofall_128.png"
                        Stretch="Uniform"
@@ -79,7 +90,7 @@
                        Height="50"
                        Margin="0,0,0,225" />
 
-                <TextBlock Style="{StaticResource Section}" Margin="0">CryoFall &#x2014; Development</TextBlock>
+                <TextBlock Style="{StaticResource Section}" Margin="0">Development</TextBlock>
                 <TextBlock Style="{StaticResource MiniSection}">AtomicTorch Studio</TextBlock>
 
                 <TextBlock Style="{StaticResource Title}">Game Designer, Producer</TextBlock>
@@ -107,7 +118,7 @@
                 <TextBlock Style="{StaticResource Name}">Konstantin Lapenko</TextBlock>
 
 
-                <TextBlock Style="{StaticResource Section}">CryoFall &#x2014; Publishing</TextBlock>
+                <TextBlock Style="{StaticResource Section}">Publishing</TextBlock>
                 <TextBlock Style="{StaticResource MiniSection}">Daedalic Entertainment</TextBlock>
 
                 <TextBlock Style="{StaticResource Title}">Chief Executive Officer</TextBlock>
@@ -217,8 +228,8 @@
 
                 <TextBlock Style="{StaticResource Section}">Special thanks</TextBlock>
                 <TextBlock Style="{StaticResource Name}"
-                           FontSize="11"
-                           LineHeight="12.5"
+                           FontSize="12"
+                           LineHeight="13.5"
                            Margin="0,5,0,0">
                     Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth,
                     <LineBreak />David Parfitt aka Daitallica, Kane&#160;Hart, IndignoPlay,
@@ -232,7 +243,8 @@
                     <LineBreak />Wys, Skipper12, Prometheus, Gravitavis,
                     <LineBreak />moise, MilesD37, PCstrato, Zeor, Zaazaazuu,
                     <LineBreak />chuhe, shayebushi, Master,
-                    <LineBreak />Mars24, Space, AnDrew0o, alex111
+                    <LineBreak />Mars24, Space, AnDrew0o, alex111,
+                    <LineBreak />Salvick, J422, Euthonizer
                 </TextBlock>
 
 
@@ -273,7 +285,7 @@
 
                 <TextBlock Style="{StaticResource Title}">Fonts</TextBlock>
                 <TextBlock Style="{StaticResource Name}"
-                           LineHeight="12.5">
+                           LineHeight="13.5">
                     Amatic SC, Oswald, Roboto,
                     <LineBreak />Source Han Sans, Ubuntu Mono,
                     <LineBreak />Twemoji Mozilla
@@ -281,9 +293,14 @@
 
                 <TextBlock Style="{StaticResource Name}"
                            Margin="0,20,0,0"
-                           LineHeight="12.5">
+                           LineHeight="13.5">
                     All the license files could be found
                     <LineBreak />in the game installation folder
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource Name}"
+                           Margin="0,40,0,0">
+                    Thank you for playing!
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>

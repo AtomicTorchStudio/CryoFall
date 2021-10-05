@@ -228,11 +228,11 @@
             }
 
             // current character - use prediction system
-            if (currentCharacterPublicState.IsDead)
+            if (currentCharacterPublicState.IsDead
+                || PlayerCharacter.GetPrivateState(currentCharacter).IsDespawned)
             {
-                // don't use prediction system - player is dead
-                // don't change the position (don't move the corpse!)
-                //base.ClientOnServerPhysicsUpdate(worldObject, serverPosition, forceReset);
+                // don't use prediction system - player is dead or despawned
+                // don't change the position (don't move the corpse)
                 return;
             }
 
@@ -563,7 +563,7 @@
             double moveSpeed;
 
             if (characterIsOffline
-                || (characterPrivateState.CurrentActionState?.IsBlocksMovement ?? false)
+                || (characterPrivateState.CurrentActionState?.IsBlockingMovement ?? false)
                 || isDismountRequested)
             {
                 // offline or current action blocks movement

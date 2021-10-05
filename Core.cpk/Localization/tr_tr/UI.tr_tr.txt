@@ -101,6 +101,9 @@ Yeniden dene
 UI/CoreStrings@Button_Save:
 Kaydet
 
+UI/CoreStrings@Button_StayOffline:
+Çevrim dışı kal
+
 UI/CoreStrings@Button_Upgrade:
 Geliştirme
 
@@ -345,6 +348,12 @@ Patlama zamanlayıcısı alan tutucu yok edildiğinde, yapı puanı sıfıra ind
 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 {0} kullanmak istediğine emin misin?
+
+UI/CoreStrings@DialogClearList_Message:
+Bu listeyi temizlemek istediğinize emin misiniz?
+
+UI/CoreStrings@DialogClearServerList_Title:
+Sunucular listesini temizle
 
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 Aynı anda kullanılan dronlar
@@ -937,6 +946,9 @@ Giriş
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Çıkış
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+Tahmini kapasite
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 Tampon
 
@@ -950,7 +962,7 @@ UI/CoreStrings@LearningPointsAbbreviation:
 EP
 
 UI/CoreStrings@LearningPointsCost_Format:
-Bedel: [b]{0}[/b] LP
+Bedel: [b]{0}[/b] EP
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steam hesabını bağlamak için lütfen [url=atomictorch.com]AtomicTorch.com[/url] hesap detaylarınızı girin.
@@ -960,6 +972,12 @@ Filtreler
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 YÜKLENİYOR
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+İlerlemen otomatik olarak (genelde saat başı) kaydedilir. Oyun bağlantın koptuğunda veya oyundan çıktığında da (oyunu kapatarak veya Alt+F4 yaparak kapatsan bile) oyun kaydedilir.
+
+UI/CoreStrings@LocalServerSaveName_Format:
+Yeren oyun—{0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 Giriş yap
@@ -987,6 +1005,9 @@ ANA MENÜ
 
 UI/CoreStrings@MainMenu_TabOptions:
 SEÇENEKLER
+
+UI/CoreStrings@MainMenu_TabPlay:
+OYNA
 
 UI/CoreStrings@MainMenu_TabQuit:
 ÇIKIŞ YAP
@@ -1018,14 +1039,44 @@ Karakterinin kökenini seç
 UI/CoreStrings@MenuCharacterCreation_Title:
 Karakterinin görünüşünü değiştir
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+Sunucu oranlarını gör
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Çıkış yap
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 Hoş geldin mesajını göster
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+Mevcut sunucu oranları
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+Bağlantı kopma sebebi:
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 Bağlı değil.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+Mevcut oyununa devam et.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+Atla ve devam et
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+Sonra karar ver.
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+Ana menüye dön
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+Karakterini tut ama yeni bir oyuna başla.
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+Yeni Oyun Başlat +
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+Karakterini tutarak yeni bir oyuna başlamak istiyor musun? Yeni dünya, mevcut dünyanın yerini alacak.
 
 UI/CoreStrings@MenuHome_Forums:
 Forumlar
@@ -1047,6 +1098,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 Sosyal
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+Kayıt dosyasını görüntüle
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+Yeni dünya yarat
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+Dünya yükle
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+Yerel sunucu şu an çalışıyor.[br]Kaydedilen oyunlar listesini elde etmek için yerel oyun önce durdurulmalıdır.
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+Yerel sunucu kapanıyor ve ilerlemeni kaydediyor.[br]Asıl kaydedilen oyun listesini almak için lütfen bitene dek bekle.
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+Şu anda yerel sunucun için kayıtlı oyun yok.[br]Yeni bir dünya yaratabilirsin.
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+Yerel dünyalar
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+Yeni dünya
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Lütfen oyundan çıkın, Steam'i yeniden başlatın ve oyunu tekrar çalıştırın.
 
@@ -1058,6 +1133,12 @@ Değişiklikleri uygulamak istiyor musunuz?
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 Değişiklikleri uygulamadınız.
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+YEREL OYUN
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+ÇOKLU OYUN
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 Masaüstüne çıkmak istediğinize emin misiniz?
@@ -1114,7 +1195,7 @@ UI/CoreStrings@MenuServers_ListTitleModded:
 Modlanmış
 
 UI/CoreStrings@MenuServers_ListTitleRecent:
-Yakın zamandakiler
+Son sunucular
 
 UI/CoreStrings@MenuServers_NoServersInThisList:
 Bu listede sunucu yok
@@ -1246,6 +1327,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] Diğer uygulamaları (özellikle ağ tarayıcılarını, torrent hizmetlerini ve yüklemeleri) [b]kapatmayı[/b] düşünün.
 [*] Bilgisayarınız Wi-Fi veya mobil bağlantıyla bağlıysa [b]kablolu bağlantıya[/b] geçmeyi düşünün (yüksek titreme ve gecikme dalgalanmalarının en sık görülen nedeni kablosuz bağlantılardır).`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+Sunucu oranlarını özelleştir
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+Özel senaryo.
+
+UI/CoreStrings@NewWorldControl_WorldName:
+Dünya adı:
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+Yeni dünya
+
 UI/CoreStrings@NicknameOfflinePlayer:
 Çevrimdışı Zzz…
 
@@ -1269,6 +1362,9 @@ Engeller var!
 
 UI/CoreStrings@Notification_TooFar:
 Çok uzak!
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+Bitki bozulmuş.
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Güncel erişim modu
@@ -1522,6 +1618,27 @@ HAZIR
 UI/CoreStrings@QuestionAreYouSure:
 Emin misin?
 
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+Gelişmiş oranları göster
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+Varsayılan:{0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+Tüm yerel sunucu varsayılan ayarlarının oranları, kesintili çalışan yerel sunucuda ideal oynanışı sağlamak için özelleştirilmiştir (7/24 çalışan çoklu oyuncu sunucularına kıyasla). Örneğin bitkiler daha çabuk büyür, solar paneller daha çok elektrik üretir, etkinlikler daha çok olur vesaire.
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+Modifiyeli oranlar
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+Makul bir aralığa sıfırla
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+Genişletilmiş menzili aç
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+Modifiyesiz oranlar
+
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 Yeniden atama tuşu
 
@@ -1656,7 +1773,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 Çevrim dışı baskın koruma kalkanı bu alan tutucu için kullanılamaz. Çünkü bu alan tutucu, kendi kalkan korumasını sağlayan başka bir üssün içinde.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-Kalkan bir müdahale olmazsa {0} süre içinde aktif olacak (müdahaleler üs sahibinin iptal etmesi veya baskın engelleme uygulayan yağmacılar tarafından engellenmesi olabilir).
+Kalkan bir müdahale olmazsa - örneğin üs sahibi tarafından iptal edilmezse veya yapıları yok eden baskıncılar tarafından engellenmezse {0} süre içinde aktif olacak (baskın engellemesi yeterli değildir).
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 Bu üs kalkan korumasını aktif ediyor
@@ -1823,8 +1940,14 @@ Bağlanıyor…
 UI/CoreStrings@TitleDestructionTimeout:
 Yıkım arası
 
+UI/CoreStrings@TitleDisabled:
+Kapalı
+
 UI/CoreStrings@TitleDurability:
 Dayanıklılık
+
+UI/CoreStrings@TitleEnabled:
+Açık
 
 UI/CoreStrings@TitleEnergyCharge:
 Ücret
@@ -2067,6 +2190,9 @@ UI/CoreStrings@WindowCompletionist_ProgressLabel:
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Yaratıklar
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+Etkinlikler
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 Balık
 
@@ -2203,6 +2329,24 @@ Bu yapıyı geliştirmek için ilgili teknolojiyi öğrenmen gerekiyor.
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 Gerekli
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+Tamamla
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+İstersen roketi attıktan sonra oyunu oynamaya devam edebileceksin.
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+Tamamlandı
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+At!
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+Atış rampasını sıfırla
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+Roket {0} tarafından atıldı.
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 En iyi eşleştiren tarif
@@ -2430,8 +2574,17 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]EP kazancı doğrudan doğruya
 [br]karakter yetenek tecrübesi kazancınla orantılıdır.`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+Sök
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
 Tamir
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+Sökme
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
+Tamir et
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
 Yer yapılandır
@@ -2495,9 +2648,6 @@ UI/CoreStrings@WipedDate_HoursAgo_Format:
 
 UI/CoreStrings@WipedDate_JustWiped:
 Yeni temizlendi
-
-UI/CoreStrings@WipedDate_Yesterday:
-Dün
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `Not: Silinme otomatik olarak gerçekleştirilmez!
@@ -2601,6 +2751,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 İlk kez öldürüldü.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+İlk kez katılındı.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 İlk kez tutuldu.
@@ -2830,6 +2983,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+Kaç
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 Aşama {0}
 
@@ -2901,6 +3057,12 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Mevcut üretim {0} EB/s.
 [br]Maksimum çıktı {1} EB/s.`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+Değişiklik yapılmadı.
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+Sunucu oran değişikliklerini uygulamak için sunucunun kaydedilmesi, durdurulması ve tekrar başlatılması gerekir. Sunucu başlatılması biraz zaman alabilir.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 Karakterinin görünüşünü özelleştir ve çeşitli ekipmanlar ve aletler kullanarak kendini farklı kıl.
@@ -3107,12 +3269,6 @@ Sunucuya ulaşılamıyor.
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 Sunucu çevrimdışı
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-Bu sunucu listesini temizlemek istediğinize emin misiniz?
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-Sunucu listesini temizle
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 Lütfen sunucu bilgisi alınana kadar bekleyin.

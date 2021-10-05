@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Rates
 {
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi;
 
     public class RateDamageExplosivesToStructuresMultiplier
@@ -29,16 +28,5 @@
         public override RateValueType ValueType => RateValueType.Multiplier;
 
         public override RateVisibility Visibility => RateVisibility.Advanced;
-
-        protected override double ServerReadValueWithRange()
-        {
-            var result = base.ServerReadValueWithRange();
-            if (PveSystem.ServerIsPvE)
-            {
-                result = 0;
-            }
-
-            return result;
-        }
     }
 }

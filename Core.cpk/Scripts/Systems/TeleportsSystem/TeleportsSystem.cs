@@ -478,12 +478,30 @@
         {
             foreach (var entry in objectsToTeleport)
             {
+                var gameObject = ClientGetGameObjectByEntry(entry);
+                var delay = isTeleportationOut ? TeleportationDelay : 0;
+
                 ClientComponentTeleportationEffect.CreateEffect(
-                    ClientGetGameObjectByEntry(entry),
-                    entry.tilePosition,
+                    gameObject,
                     TeleportationAnimationDuration,
-                    isTeleportationOut ? TeleportationDelay : 0,
+                    delay,
                     isTeleportationOut);
+
+                if (gameObject is ICharacter { IsCurrentClientCharacter : true } character)
+                {
+                    var characterPrivateState = PlayerCharacter.GetPrivateState(character);
+                    characterPrivateState.SetCurrentActionState(new CharacterTeleportAction(character));
+
+                    ClientTimersSystem.AddAction(
+                        TeleportationAnimationDuration + delay,
+                        () =>
+                        {
+                            if (characterPrivateState.CurrentActionState is CharacterTeleportAction)
+                            {
+                                characterPrivateState.SetCurrentActionState(null);
+                            }
+                        });
+                }
             }
         }
 
@@ -619,16 +637,24 @@
                     }
 
                     characterPrivateState.SetCurrentActionState(null);
-
-                    if (character.GetPublicState<ICharacterPublicState>().IsDead)
+                    if (characterPublicState.IsDead)
                     {
-                        Logger.Warning("Cannot teleport a dead character (died during teleportation): " + character);
+                        Logger.Warning("Cannot teleport a dead character (died during teleportation): "
+                                       + character);
                         return;
                     }
 
-                    if (character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle is not null)
+                    if (characterPrivateState.IsDespawned)
                     {
-                        Logger.Warning("Cannot teleport a player in vehicle: " + character);
+                        Logger.Warning("Cannot teleport a despawned character: "
+                                       + character);
+                        return;
+                    }
+
+                    if (characterPublicState.CurrentVehicle is not null)
+                    {
+                        Logger.Warning("Cannot teleport a player in vehicle: "
+                                       + character);
                         return;
                     }
 

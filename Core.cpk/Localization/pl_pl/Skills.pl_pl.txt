@@ -148,6 +148,9 @@ Tworzenie skomplikowanych przedmiotów i rozumienie ich działania pozwala zrozu
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Wytwarzanie
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+Wydajność podstawowa stołu majsterkowicza {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Szansa na pełną naprawę przedmiotu
 

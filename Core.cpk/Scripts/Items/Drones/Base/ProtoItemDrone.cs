@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Drones;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -78,7 +78,7 @@
             var protoDrone = LazyProtoDrone.Value;
             var objectDrone = Server.World.CreateDynamicWorldObject(
                 protoDrone,
-                ServerCharacterDeathMechanic.ServerGetGraveyardPosition().ToVector2D());
+                CharacterDespawnSystem.ServerGetServiceAreaPosition().ToVector2D());
             protoDrone.ServerSetupAssociatedItem(objectDrone, itemDrone);
             data.PrivateState.WorldObjectDrone = objectDrone;
         }

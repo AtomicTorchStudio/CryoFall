@@ -13,7 +13,7 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelMenuHome, IsDesignTimeCreatable=True}"
     d:DesignWidth="1340" d:DesignHeight="630" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>

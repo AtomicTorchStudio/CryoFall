@@ -16,11 +16,11 @@ namespace AtomicTorch.CBND.CoreMod.Rates
 
         public override string Name => "[PvP] Damage player to player";
 
-        public override double ValueDefault => 0.5;
+        public override double ValueDefault => 1.0;
 
         public override double ValueMax => 5.0;
 
-        public override double ValueMaxReasonable => 2.0;
+        public override double ValueMaxReasonable => 1.0;
 
         public override double ValueMin => 0;
 

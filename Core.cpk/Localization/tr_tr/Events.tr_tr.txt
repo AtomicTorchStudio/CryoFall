@@ -2,16 +2,34 @@
 `Pragmium Kraliçesi yüzeyde belirdi.
 [br]En cesur kahramanları değerli yağma bekliyor!`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+Pragmium Kraliçesi
+
 Scripts/Events/EventBossSandTyrant@Description:
 `Kum Tiranı yüzeyde belirdi.
 [br]Cesur kahramanları değerli yağma bekliyor!`
+
+Scripts/Events/EventBossSandTyrant@Name:
+Kum Tiranı
+
+Scripts/Events/EventFishingBlueGlider@Name:
+Mavi Kayıcı
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `Meteoritler haritanın vurgulanmış alanına düştü.
 [br]Nadir mineraller için madene koş!`
 
-Scripts/Events/EventMigration@Description:
+Scripts/Events/EventMeteoriteDrop@Name:
+Meteorit
+
+Scripts/Events/EventMigrationFloater@Description:
 Bu dünyanın yerli yaşam formları farklı bir bölümden geliyormuş gibi duruyor. Bu avcılık için büyük fırsat sunuyor.
+
+Scripts/Events/EventMigrationFloater@Name:
+Uçan göçü
+
+Scripts/Events/EventMigrationThumper@Name:
+Çarpıcı göçü
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Önemli: Ateşli silahlar işe yaramaz; yakın saldırı veya ısı bazlı silahlar kullan.
@@ -19,9 +37,15 @@ Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Beliren tuhaf bir yabancı madde dağlık alanlarda gelişmeyi imkânsız kıldı ama nadir kaynaklar toplamak için de harika bir fırsat.
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+Psişik ağaç istilası
+
 Scripts/Events/EventSpaceDrop@Description:
 `Uzay enkazı haritada vurgulanan noktaya düştü.
 [br]Değerli malzemeler toplamak için koş!`
+
+Scripts/Events/EventSpaceDrop@Name:
+Uzay enkazı
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0} şu karakterce yenildi:

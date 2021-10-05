@@ -941,6 +941,51 @@ Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooC
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 이러한 지형에는 빗물막이에 접근할 수 없습니다.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+로켓 뼈대 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+이 행성에서의 투쟁으로 일구어낸 성취의 극치. 비로소 궁극적인 탈출에 대한 생각을 시작할 준비가 되었습니다!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+발사대
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+제어 전자 장치 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+연료 탱크 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+추진 장치 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+발사대—2단계
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+이상 회피 장치 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+생명 유지 장치 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+운행 장치 만들기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+발사대—3단계
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+로켓에 연료 주입하기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+물자 준비하기
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+발사대—4단계
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+발사대—5단계
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 모든 종류의 인공두뇌학적 임플란트를 설치하거나 제거할 수 있는 특수 자동화 의료소.
 
@@ -971,6 +1016,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectSprinkler@Name:
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 부품이 더 필요합니다.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+분해할 아이템을 놓으세요.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+나온 아이템을 먼저 꺼내세요.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 수리하려면 동일한 아이템 두 개를 놓으십시오.
 
@@ -982,6 +1033,9 @@ Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFul
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 수리 불가
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+분해할 수 없습니다
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 행운의 여신이 미소를 지었습니다![br]{0}이/가 완전히 수리되었습니다!

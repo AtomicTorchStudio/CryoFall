@@ -2629,3 +2629,15 @@ Hedefe hasar vermek için hızlandırılmış tanecik mermileri kullanın ağır
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Enerji topu
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Sadece canlılara değil yapılara da zarar veren, içinde asit ve toksin karışımı barındıran büyük, patlayıcı kapsüller atar.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Keinite topu
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Hedefe çarptıktan sonra içini oyarak ek hasar veren büyük, böceğimsi yaratıklar atar.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+Ağır sürü atıcı
+

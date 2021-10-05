@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+Velocidade de garimpo
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+Velocidade de cortar madeira
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+Quantidade extra de posses de terra
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Dificuldade de chefe: Rainha do Prágmio
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Dificuldade de chefe: Tirano da Areia
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+Velocidade de produção
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+Dano de criaturas
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+Dano de bombas a personagens
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+Dano de bombas a estruturas
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+Dano de jogadores aliados (fogo aliado no JvJ)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+Dano a criaturas e meio ambiente
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Recursos] Velocidade de extração dos depósitos
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+Quantidade máxima de donos de portas
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Facção] Custo de criação (PA)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Facção] Duração de tempo de espera para entrar
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Facção] Duração do tempo de espera para voltar a entrar
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Facção] Posses de terra de propriedade das facções por nível
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Facção] Máximo de membros em facção privada
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Facção] Máximo de membros em facção pública
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Facção] [JvJ] Alianças permitidas
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Facção] Custo de melhoria de nível por nível
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+Velocidade de crescimento de plantas de cultivo
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+Vida útil de plantas de cultivo
+
+Scripts/Rates/RateHunger@Name:
+Taxa de fome
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+Ocultar lista de jogadores online
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+Sala de bate-papo de negociação
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+Prazo de validade de alimentos e consumíveis
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+Tamanho da pilha de itens
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+Máximo de donos de posse de terra (propriedade não de facção)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+Pontos de aprendizagem
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+Velocidade de fabricação
+
+Scripts/Rates/RatePartyMembersMax@Name:
+Máximo de membros em um grupo
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[JvJ] Dano de jogador a jogador
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+JvJ
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[JvJ] Deixar cair todo o espólio ao morrer
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[JvJ] Ocultar coordenadas para novos depósitos de recursos
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[JvJ] Duração da proteção de novato
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[JvJ] Duração do bloqueio por invasão
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[JvJ] Capacidade de armazenamento seguro em posses de terra
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[JvJ] Duração da ativação da proteção da Base E.S.C.U.D.O
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[JvJ] Duração do tempo de espera da proteção da Base E.S.C.U.D.O.
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[JvJ] Proteção da Base E.S.C.U.D.O. disponível
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[JvJ] Esperas
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Recursos] Coleta: coleta básica
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Recursos] Coleta: caixotes e pilhas
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Recursos] Coleta: espólios de criaturas
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Recursos] Coleta: meteoritos
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Recursos] Coleta: lixo espacial
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Recursos] Quantidade de fontes de prágmio
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Recursos] [JvJ] Demora para surgir recursos em depósito
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Recursos] [JvJ] Quantidade de depósitos de lítio
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Recursos] [JvJ] Quantidade de depósitos de petróleo
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+EXP de habilidade
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Deterioração] Deterioração de estruturas abandonadas
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Deterioração] Duração do atraso de deterioração de posse de terra abandonada
+
+Scripts/Rates/RateThirst@Name:
+Taxa de sede
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+Taxa de geradores dependentes de tempo
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+Atraso inicial dos eventos mundiais
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+Intervalo de eventos mundiais: {0}
+

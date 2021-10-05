@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -62,8 +61,7 @@
             ICharacter character,
             CraftingQueueItem item)
         {
-            var craftingQueue = character.GetPrivateState<PlayerCharacterPrivateState>()
-                                         .CraftingQueue;
+            var craftingQueue = PlayerCharacter.GetPrivateState(character).CraftingQueue;
 
             IItemsContainer groundContainer = null;
             ServerCancelCraftingQueueItem(character,

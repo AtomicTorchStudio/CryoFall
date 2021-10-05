@@ -28,7 +28,7 @@
             => 1 / 2.5; // full recoil power will be gained on third shot
 
         public override string Description =>
-            "Launches large insect-like creatures which burrow into the target upon hit dealing additional damage.";
+            "Launches large insect-like creatures that burrow into the target upon a hit, dealing additional damage.";
 
         public override uint DurabilityMax => 2000;
 

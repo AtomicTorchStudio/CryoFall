@@ -22,6 +22,12 @@ Mekanize savaş zırhı için orta tasarım. Başka bölgelerden fedakârlık et
 Scripts/Vehicles/VehicleMechManul@Name:
 Manul
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+Mekanize savaş zırhı için deneysel bir tasarım. Yapısal hasarların otomatik yenilenmesi özelliği ve güçlü egzotik silahlar barındırıyor.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+Düşman
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 Mekanize savaş zırhı için hafif tasarım. Zırh veya silah gücünden fedakârlık etmeksizin hız ekler.
 
@@ -60,4 +66,7 @@ Normal
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 Büyük
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+Egzotik
 

@@ -22,6 +22,12 @@ Design médio para armadura de batalha mecanizada. Possui capacidades defensivas
 Scripts/Vehicles/VehicleMechManul@Name:
 Manul
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+Projeto experimental para armadura de batalha mecanizada. Apresenta regeneração automática de dano estrutural e armas exóticas potentes.
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+Nêmesis
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 Projeto de luz para armadura de batalha mecanizada. Apresenta velocidade relativamente alta, sem sacrificar armadura nem poder de fogo.
 
@@ -60,4 +66,7 @@ Normal
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 Grande
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+Exótico
 

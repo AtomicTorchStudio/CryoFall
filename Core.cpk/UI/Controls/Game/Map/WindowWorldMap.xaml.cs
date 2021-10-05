@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -163,8 +162,8 @@
 
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             if (character.ProtoCharacter is PlayerCharacterSpectator
-                || ServerOperatorSystem.SharedIsOperator(character)
-                || CreativeModeSystem.SharedIsInCreativeMode(character))
+                || CreativeModeSystem.SharedIsInCreativeMode(character)
+                || Api.IsEditor)
             {
                 var mapPositionWithoutOffset = controller.PointedMapWorldPositionAbsolute;
                 contextMenu.Items.Add(new MenuItem()
@@ -238,7 +237,8 @@
 
             var character = ClientCurrentCharacterHelper.Character;
             if (character.ProtoCharacter is PlayerCharacterSpectator
-                || CreativeModeSystem.SharedIsInCreativeMode(character))
+                || CreativeModeSystem.SharedIsInCreativeMode(character)
+                || Api.IsEditor)
             {
                 CallCreativeModeTeleport(worldPosition);
             }

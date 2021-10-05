@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+Скорость добычи минералов
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+Скорость рубки леса
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+Количество дополнительных точек контроля
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Сложность босса: прагмиевая королева
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Сложность босса: песчаный тиран
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+Скорость крафтинга
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+Урон от существ
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+Урон от бомб персонажам
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+Урон от бомб постройкам
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+Урон от дружественных игроков (огонь по своим в PvP)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+Урон существам и окружению
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Ресурсы] Скорость добычи из месторождений
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+Макс. количество владельцев дверей
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Фракция] Стоимость создания (ОТ)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Фракция] Длительность задержки на вступление
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Фракция] Длительность задержки на возвращение во фракцию
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Фракция] Точки контроля во владении фракции на уровне
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Фракция] Макс. членов в частной фракции
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Фракция] Макс. членов в публичной фракции
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Фракция] [PvP] Союзы разрешены
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Фракция] Стоимость повышения уровня (по уровням)
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+Скорость роста фермерских растений
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+Срок жизни фермерских растений
+
+Scripts/Rates/RateHunger@Name:
+Скорость накопления голода
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+Скрывать список онлайн-игроков
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+Торговый чат
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+Срок годности еды и расходников
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+Количество предметов в стопке
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+Макс. владельцев точки контроля (вне владения фракции)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+Очки технологий
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+Скорость производства
+
+Scripts/Rates/RatePartyMembersMax@Name:
+Макс. игроков в группе
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] Урон игрока игроку
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] Полный лут (потеря всех предметов в случае гибели)
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] Скрывать координаты новых месторождений ресурсов
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] Длительность защиты новичка
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] Длительность рейд-блокировки
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] Вместительность сейфа точки контроля
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] Длительность активации Щ.И.Т.а базы
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] Длительность перезарядки Щ.И.Т.а базы
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] Щ.И.Т. базы доступен
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] Временные ограничения
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Ресурсы] Собирательство — Базовые ресурсы
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Ресурсы] Собирательство — Ящики и кучи
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Ресурсы] Собирательство — Добыча с существ
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Ресурсы] Собирательство — Метеориты
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Ресурсы] Собирательство — Космический мусор
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Ресурсы] Количество источников прагмия
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Ресурсы] [PvP] Задержка захвата месторождения
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Ресурсы] [PvP] Количество месторождений лития
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Ресурсы] [PvP] Количество месторождений нефти
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+Опыт навыков
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Ветшание] Ветшание заброшенных построек
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Ветшание] Задержка ветшания заброшенной точки контроля
+
+Scripts/Rates/RateThirst@Name:
+Скорость накопления жажды
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+Скорость работы время-зависимых генераторов
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+Начальная задержка мировых событий
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+Интервал мирового события — {0}
+

@@ -29,7 +29,7 @@ Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
 Регенерация здоровья
 
 Scripts/Base/Stats/StatName@MiningSpeed:
-Скорость добычи
+Скорость добычи минералов
 
 Scripts/Base/Stats/StatName@WoodcuttingSpeed:
 Скорость рубки леса

@@ -131,7 +131,7 @@ Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
 Шанс найти самородки при добыче минералов
 
 Scripts/Skills/Skills/Production/SkillProspecting@Description:
-Чем больше вы знаете о месторождениях, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы.
+Чем больше вы знаете о горных породах, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы.
 
 Scripts/Skills/Skills/Production/SkillProspecting@Name:
 Горное дело
@@ -147,6 +147,9 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Крафтинг
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+Базовая эффективность стола мастера {0}%
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Шанс полностью починить предмет

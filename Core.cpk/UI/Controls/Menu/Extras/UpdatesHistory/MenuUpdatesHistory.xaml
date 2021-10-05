@@ -6,12 +6,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     SnapsToDevicePixels="False"
     x:Name="UserControl">
 
     <base:BaseUserControl.Resources>
+        <Brush x:Key="StrokeColor">#AA000000</Brush>
+        <Thickness x:Key="StrokeThickness">1</Thickness>
+
         <Style x:Key="Title" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
             <Setter Property="FontSize" Value="18" />
@@ -21,6 +25,8 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="{StaticResource StrokeThickness}" />
+            <Setter Property="noesis:Text.Stroke" Value="{StaticResource StrokeColor}" />
         </Style>
 
         <Style x:Key="Date" TargetType="TextBlock" BasedOn="{StaticResource Title}">
@@ -49,8 +55,7 @@
             </ScrollViewer.OpacityMask>
 
             <StackPanel Width="300"
-                        Orientation="Vertical"
-                        TextOptions.TextHintingMode="Animated">
+                        Orientation="Vertical">
                 <Image x:Name="GameLogo"
                        Source="/UI/Images/Logo/logo_cryofall_128.png"
                        Stretch="Uniform"

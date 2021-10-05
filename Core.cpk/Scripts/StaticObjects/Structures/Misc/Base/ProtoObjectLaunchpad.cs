@@ -3,11 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -104,12 +106,56 @@
             return WindowLaunchpad.Open((IStaticWorldObject)worldObject);
         }
 
+        public void ClientUpgradeToNextStage(IStaticWorldObject objectLaunchpad)
+        {
+            if (this.SharedValidateCanUpgradeToNextStage(objectLaunchpad,
+                                                         ClientCurrentCharacterHelper.Character,
+                                                         out _))
+            {
+                this.CallServer(_ => _.ServerRemote_UpgradeToNextStage(objectLaunchpad));
+            }
+        }
+
         public void ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
         public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            if (!base.SharedCanInteract(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
+            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                return true;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject,
+                                                                    character,
+                                                                    requireFactionPermission: true))
+            {
+                return true;
+            }
+
+            if (writeToLog)
+            {
+                if (IsServer)
+                {
+                    LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
+                }
+                else
+                {
+                    LandClaimSystem.ClientCannotInteractNotOwner(worldObject);
+                }
+            }
+
+            return false;
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
@@ -133,6 +179,7 @@
             this.ClientSetupRenderer(renderer);
             renderer.PositionOffset += positionOffset;
             renderer.DrawOrderOffsetY -= positionOffset.Y;
+            renderer.RenderingMaterial = RenderingMaterials.DefaultDrawEffectWithTransparentBorder;
             return renderer;
         }
 
@@ -141,6 +188,8 @@
             base.ClientInitialize(data);
             var frontRenderer = this.ClientAddRenderer(data.GameObject, TextureFront, Vector2D.Zero);
             frontRenderer.DrawOrderOffsetY -= 0.01; // draw on front
+
+            ClientPreloadTextures();
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
@@ -239,6 +288,19 @@
                                    group: CollisionGroups.ClickArea);
         }
 
+        private static void ClientPreloadTextures()
+        {
+            foreach (var texture in new[]
+            {
+                TextureBase, TextureFront, TextureStage2, TextureStage3,
+                TextureStage4, TextureStage5, TextureTower,
+                TextureTowerMast1, TextureTowerMast2
+            })
+            {
+                Client.Rendering.PreloadTextureAsync(texture);
+            }
+        }
+
         private void ServerRemote_CompleteTask(IStaticWorldObject objectLaunchpad, int taskIndex)
         {
             this.VerifyGameObject(objectLaunchpad);
@@ -272,17 +334,17 @@
             privateState.TaskCompletionState = taskCompletionState;
 
             Logger.Important(objectLaunchpad + " task completed: #" + taskIndex, character);
+        }
 
-            if (!taskCompletionState.All(flag => flag))
-            {
-                return;
-            }
+        private void ServerRemote_UpgradeToNextStage(IStaticWorldObject objectLaunchpad)
+        {
+            this.VerifyGameObject(objectLaunchpad);
+            var character = ServerRemoteContext.Character;
 
-            // all tasks completed, upgrade to the next tier
-            var upgradeStructure = this.ConfigUpgrade.Entries[0].ProtoStructure;
-            if (upgradeStructure is null)
+            if (!this.SharedValidateCanUpgradeToNextStage(objectLaunchpad,
+                                                          character,
+                                                          out var upgradeStructure))
             {
-                // cannot upgrade
                 return;
             }
 
@@ -335,6 +397,45 @@
             }
 
             return false;
+        }
+
+        private bool SharedValidateCanUpgradeToNextStage(
+            IStaticWorldObject objectLaunchpad,
+            ICharacter character,
+            out IProtoObjectStructure upgradeStructure)
+        {
+            if (!this.SharedCanInteract(character, objectLaunchpad, writeToLog: true))
+            {
+                // cannot interact
+                upgradeStructure = null;
+                return false;
+            }
+
+            upgradeStructure = this.ConfigUpgrade.Entries[0].ProtoStructure;
+            if (upgradeStructure is null)
+            {
+                // no upgrade exists
+                return false;
+            }
+
+            if (!upgradeStructure.ListedInTechNodes.Any(
+                    techNode => character.SharedGetTechnologies().SharedIsNodeUnlocked(techNode))
+                && !CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                // has not yet researched the relevant technology
+                return false;
+            }
+
+            var privateState = GetPrivateState(objectLaunchpad);
+            var taskCompletionState = privateState.TaskCompletionState;
+            if (!taskCompletionState.All(flag => flag))
+            {
+                Logger.Warning(character + " has not completed all the tasks yet - cannot upgrade: " + objectLaunchpad);
+                return false;
+            }
+
+            // all tasks completed
+            return true;
         }
 
         public readonly struct LaunchpadTask

@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterOrigins;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStyle;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -86,7 +87,7 @@
                         && !SharedIsCharacterCreated(character))
                     {
                         // despawn all invalid characters
-                        ServerCharacterDeathMechanic.DespawnCharacter(character);
+                        CharacterDespawnSystem.DespawnCharacter(character);
                     }
                 }
             }

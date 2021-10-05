@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+Madencilik hızı
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+Odun kesme hızı
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+Ek alan tutucu sayısı
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Boss zorluğu: Pragmimum Kraliçesi
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Boss zorluğu: Kum Tiranı
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+Üretim hızı
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+Yaratık hasarı
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+Bombaların karakterlere hasarı
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+Bombaların yapılara hasarı
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+Dost oyuncuların hasarı (PvP dost ateşi)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+Yaratıklara ve çevreye hasar
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Resources] Yatağı çıkarım hızı
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+Kapı sahipleri maks. sayısı
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Faction] Yaratım bedeli (EP)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Faction] Katılım bekleme süresi
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Faction] Dönüşü bekleme süresi
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Faction] Seviye başına grubun sahip olduğu alan tutucular
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Faction] Özel gruptaki Maks. üye
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Faction] Herkese açık gruptaki Maks. üye
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Faction][PvP] İttifak izni
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Faction] Seviye başına seviye yükseltme bedeli
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+Çiftlik bitkilerinin büyüme hızı
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+Çiftlik bitkilerinin ömrü
+
+Scripts/Rates/RateHunger@Name:
+Açlık oranı
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+Çevrim içi oyuncular listesini gizle
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+Ticaret sohbet odası
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+Yiyecek ve tüketilebilirlerin raf ömrü
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+Eşya yığın boyutu
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+Maks. alan tutucu sahipleri (grupsuz sahip)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+Eğitim puanları
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+Üretim hızı
+
+Scripts/Rates/RatePartyMembersMax@Name:
+Partideki Maks. üye
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] Oyuncunun oyuncuya hasarı
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] Ölünce her şeyi düşür
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] Yeni kaynak yataklarının koordinatlarını gizle
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] Acemi koruma süresi
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] Baskın engellemesi süresi
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] Alan tutucu güvenli depo kapasitesi
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] Üs K.A.L.K.A.N. koruması aktivasyon süresi
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] Üs K.A.L.K.A.N. koruması bekleme süresi
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] Üs K.A.L.K.A.N. koruması mümkün
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] Süre kapıları
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Resources] Toplama—Temel toplama
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Resources] Toplama—Kutular ve yığınlar
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Resources] Toplama—Yaratık yağması
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Resources] Toplama—Meteoritler
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Resources] Toplama—Uzay enkazı
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Resources] Pragmium kaynak numarası
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Resources][PvP] Yatak toplama gecikmesi
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Resources][PvP] Lityum yatağı numarası
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Resources][PvP] Petrol yatağı numarası
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+Yetenek TP
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Decay] Terk edilmiş yapı çürümesi
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Decay] Terk edilmiş alan tutucu çürüme gecikme süresi
+
+Scripts/Rates/RateThirst@Name:
+Susuzluk oranı
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+Zamana bağlı jeneratör oranı
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+Dünya etkinliklerinin başlangıç gecikmesi
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+Dünya etkinlik aralığı—{0}
+

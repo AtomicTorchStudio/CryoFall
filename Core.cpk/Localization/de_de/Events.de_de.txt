@@ -2,16 +2,34 @@
 `Die Pragmiumkönigin ist an der Oberfläche erschienen.
 [br]Wertvolle Beute erwartet die tapfersten Überlebenden!`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+Pragmiumkönigin
+
 Scripts/Events/EventBossSandTyrant@Description:
 `Ein Sandtyrann ist an der Oberfläche erschienen.
 [br]Wertvolle Beute erwartet die tapfersten Überlebenden!`
+
+Scripts/Events/EventBossSandTyrant@Name:
+Sandtyrann
+
+Scripts/Events/EventFishingBlueGlider@Name:
+Blauer Segler
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `Innerhalb des markierten Kartenbereichs gab es einen Meteoriteneinschlag.
 [br]Beeile dich, um nach seltenen Mineralien zu schürfen!`
 
-Scripts/Events/EventMigration@Description:
+Scripts/Events/EventMeteoriteDrop@Name:
+Meteorit
+
+Scripts/Events/EventMigrationFloater@Description:
 Die heimischen Lebensformen dieser Welt scheinen in ein anderes Gebiet abzuwandern und bieten so eine gute Gelegenheit zur Jagd.
+
+Scripts/Events/EventMigrationFloater@Name:
+Gleitling-Migration
+
+Scripts/Events/EventMigrationThumper@Name:
+Hammer-Migration
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Wichtig: Feuerwaffen sind nutzlos; benutze Nahkampf- oder auf Hitze basierende Waffen.
@@ -19,9 +37,15 @@ Wichtig: Feuerwaffen sind nutzlos; benutze Nahkampf- oder auf Hitze basierende W
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Seltsamer außerirdischer Bewuchs ist in den Bergregionen aufgetaucht. Obwohl es jegliche Prospektion nahezu unmöglich macht, bietet sich die einmalige Gelegenheit, an seltene Ressourcen zu gelangen.
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+PSI-Hain-Plage
+
 Scripts/Events/EventSpaceDrop@Description:
 `Innerhalb des markierten Kartenbereichs ist Weltraumschrott niedergegangen.
 [br]Beeile dich, um wertvollen Schrott zu sammeln!`
+
+Scripts/Events/EventSpaceDrop@Name:
+Weltraumschrott
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0} wurde besiegt von:

@@ -168,12 +168,14 @@
             this.VerifyGameObject(worldObject);
 
             if (character.GetPublicState<ICharacterPublicState>().IsDead
-                || IsServer && !character.ServerIsOnline)
+                || IsServer && !character.ServerIsOnline
+                || ((IsServer || character.IsCurrentClientCharacter)
+                    && PlayerCharacter.GetPrivateState(character).IsDespawned))
             {
                 if (writeToLog)
                 {
                     Logger.Warning(
-                        $"Character cannot interact with {worldObject} - character is dead or offline.",
+                        $"Character cannot interact with {worldObject} - character is offline/despawned/dead.",
                         character);
                 }
 
@@ -279,12 +281,14 @@
             }
 
             if (character.GetPublicState<ICharacterPublicState>().IsDead
-                || IsServer && !character.ServerIsOnline)
+                || IsServer && !character.ServerIsOnline
+                || ((IsServer || character.IsCurrentClientCharacter)
+                    && PlayerCharacter.GetPrivateState(character).IsDespawned))
             {
                 if (writeToLog)
                 {
                     Logger.Warning(
-                        $"Character cannot interact with {worldObject} - character is dead or offline.",
+                        $"Character cannot interact with {worldObject} - character is offline/despawned/dead.",
                         character);
                 }
 

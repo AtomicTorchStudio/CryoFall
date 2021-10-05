@@ -101,6 +101,9 @@ UI/CoreStrings@Button_Retry:
 UI/CoreStrings@Button_Save:
 Сохранить
 
+UI/CoreStrings@Button_StayOffline:
+Оставаться не в сети
+
 UI/CoreStrings@Button_Upgrade:
 Улучшить
 
@@ -345,6 +348,12 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Использовать предмет ({0})?
+
+UI/CoreStrings@DialogClearList_Message:
+Вы точно хотите очистить этот список?
+
+UI/CoreStrings@DialogClearServerList_Title:
+Очистить список серверов
 
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 Дроны под одновременным контролем:
@@ -937,6 +946,9 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Результат
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+Расчетная мощность
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 Буфер
 
@@ -960,6 +972,12 @@ UI/CoreStrings@ListFilters:
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 ЗАГРУЗКА
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+Ваш прогресс сохраняется автоматически (как правило, каждый час) во время игры и при выходе из игры (даже если вы просто закрыли клиент или нажали Alt+F4).
+
+UI/CoreStrings@LocalServerSaveName_Format:
+Локальная игра — {0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 Вход
@@ -987,6 +1005,9 @@ UI/CoreStrings@MainMenu_TabHome:
 
 UI/CoreStrings@MainMenu_TabOptions:
 НАСТРОЙКИ
+
+UI/CoreStrings@MainMenu_TabPlay:
+ИГРА
 
 UI/CoreStrings@MainMenu_TabQuit:
 ВЫХОД
@@ -1018,14 +1039,44 @@ UI/CoreStrings@MenuCharacterCreation_OriginSelection:
 UI/CoreStrings@MenuCharacterCreation_Title:
 Настройте внешний вид своего персонажа
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+Настройки сервера
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Отключиться
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 Показать приветствие
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+Текущие настройки сервера
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+Причина отключения:
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 Нет соединения.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+Продолжить текущую игру.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+Катапультироваться и продолжить
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+Решить позже.
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+Вернуться в главное меню
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+Сохранить персонажа, но начать новую игру.
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+Начать новую игру +
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+Начать новую игру с вашим текущим персонажем? Ваш текущий мир будет заменен на новый.
 
 UI/CoreStrings@MenuHome_Forums:
 Форумы
@@ -1047,6 +1098,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 Соцсети
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+Открыть папку сохранений
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+Создать новый мир
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+Загрузить мир
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+Сейчас запущен локальный сервер.[br]Чтобы отобразить актуальный список сохраненных игр, нужно остановить локальную игру.
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+Локальный сервер отключается и сохраняет ваш прогресс.[br]По окончании этого процесса будет получен актуальный список сохраненных игр.
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+На локальном сервере пока нет сохраненных игр.[br]Вы можете создать новый мир.
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+Локальные миры
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+Новый мир
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Пожалуйста, выйдите из игры, перезапустите клиент Steam и снова загрузите игру.
 
@@ -1058,6 +1133,12 @@ UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Message:
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 Вы не применили изменения
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+ЛОКАЛЬНАЯ ИГРА
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+МУЛЬТИПЛЕЕР
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 Вы действительно хотите выйти из игры?
@@ -1242,6 +1323,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] Попробуйте [b]закрыть[/b] другие приложения (особенно веб-браузеры, torrent-клиенты и программы загрузки).
 [*] Попробуйте переключиться на [b]проводное соединение[/b], если ваш ПК подключен через Wi-Fi, или мобильное соединение (беспроводные соединения часто являются причиной задержек и долгого ожидания ответа сервера).`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+Изменить настройки сервера
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+Свои настройки сценария.
+
+UI/CoreStrings@NewWorldControl_WorldName:
+Название мира:
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+Новый мир
+
 UI/CoreStrings@NicknameOfflinePlayer:
 Оффлайн, хр-р...
 
@@ -1265,6 +1358,9 @@ UI/CoreStrings@Notification_ObstaclesOnTheWay:
 
 UI/CoreStrings@Notification_TooFar:
 Слишком далеко!
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+Растение погибло.
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Текущий режим доступа
@@ -1350,7 +1446,7 @@ UI/CoreStrings@Performance_FramerateAverage:
 
 UI/CoreStrings@Performance_Perfect:
 `Похоже, с производительностью все в порядке.
-[br]Желаем успешной игры!`
+[br]Приятной игры!`
 
 UI/CoreStrings@Performance_Suggestions:
 `[b]Советы:[/b]
@@ -1514,6 +1610,27 @@ UI/CoreStrings@Quest_Label_Ready:
 UI/CoreStrings@QuestionAreYouSure:
 Вы уверены?
 
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+Показать дополнительные настройки
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+По умолчанию: {0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+Все сценарии локального сервера настроены таким образом, чтобы гарантировать оптимальный игровой опыт с учётом, что сервер работает с перерывами (по сравнению с многопользовательским сервером, работающим 24/7). К примеру, растения растут быстрее, солнечные панели генерируют больше электричества, события происходят чаще и т. д.
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+Измененные настройки
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+Сбросить до приемлемого значения
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+Разблокировать увеличенный диапазон
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+Неизмененные настройки
+
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 Повторная привязка
 
@@ -1648,7 +1765,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 Щит защиты от рейдов недоступен для этой точки контроля, так как она находится внутри другой базы, которая обеспечивает собственную защиту.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-Щит будет активирован через {0}, если активация не будет прервана (например, отменена хозяином или прервана рейдерами, применяющими рейд-блокировку).
+Щит будет активирован через {0}, если активация не будет отменена: например, владельцем базы, или прервана рейдерами, разрушившими любую постройку (рейд-блокировки не достаточно).
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 На этой базе активируется защита щитом
@@ -1815,8 +1932,14 @@ UI/CoreStrings@TitleConnecting:
 UI/CoreStrings@TitleDestructionTimeout:
 Задержка уничтожения
 
+UI/CoreStrings@TitleDisabled:
+Отключено
+
 UI/CoreStrings@TitleDurability:
 Прочность
+
+UI/CoreStrings@TitleEnabled:
+Включено
 
 UI/CoreStrings@TitleEnergyCharge:
 Заряд
@@ -2059,6 +2182,9 @@ UI/CoreStrings@WindowCompletionist_ProgressLabel:
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Существа
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+События
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 Рыба
 
@@ -2195,6 +2321,24 @@ UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 Требуется
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+Выполнить
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+Вы сможете продолжить игру после запуска ракеты, если захотите.
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+Выполнено
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+Пуск!
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+Сбросить стартовую площадку
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+Ракета запущена игроком {0}.
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 Подходящий рецепт
@@ -2421,7 +2565,16 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]Они прямо пропорциональны полученному 
 [br]опыту при использовании навыков.`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+Разобрать
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Починить
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+Разборка
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
 Починить
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
@@ -2486,9 +2639,6 @@ UI/CoreStrings@WipedDate_HoursAgo_Format:
 
 UI/CoreStrings@WipedDate_JustWiped:
 Только что
-
-UI/CoreStrings@WipedDate_Yesterday:
-Вчера
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `Внимание: вайп не производится автоматически!
@@ -2592,6 +2742,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Убито впервые.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+Впервые принято участие.
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 Поймано впервые.
@@ -2821,6 +2974,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+Спасение
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 Ранг {0}
 
@@ -2892,6 +3048,12 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Выработка электроэнергии: {0} ЭН/с.
 [br]Предельная мощность: {1} ЭН/с.`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+Изменений не обнаружено.
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+Чтобы применить изменения настроек, сервер должен сохраниться, остановиться и перезапуститься. Перезапуск сервера может занять некоторое время.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 Изменяйте внешний вид своего персонажа и используйте разнообразное снаряжение и инструменты, чтобы сделать его уникальным.
@@ -3098,12 +3260,6 @@ UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTi
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 Сервер не в сети
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-Вы действительно хотите очистить этот список серверов?
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-Очистить список серверов
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 Пожалуйста, подождите получения данных о сервере.

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -111,7 +112,7 @@
             else
             {
                 // first time spawn, requires character creation
-                ServerCharacterDeathMechanic.DespawnCharacter(character);
+                CharacterDespawnSystem.DespawnCharacter(character);
             }
         }
 

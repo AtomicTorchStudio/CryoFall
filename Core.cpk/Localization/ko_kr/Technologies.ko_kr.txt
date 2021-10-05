@@ -58,6 +58,12 @@ Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsDescription:
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 에너지 무기
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+비로소 이 세상에서 탈출하기 위해 필요한 기술들!
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+탈출!
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 재래식 전투에서는 거의 사용되지 않지만 극한의 상황에서는 유용하게 사용할 수 있는 실험 단계의 무기.
 

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Technologies
 {
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
@@ -88,12 +89,12 @@
                 }
 
                 var researchedCount = CurrentTechnologies.Nodes.Count;
-                int lpThreshhold = 100;
+                var lpThreshhold = (int)(100 * RateLearningPointsGainMultiplier.SharedValue);
                 if (researchedCount > 0
-                    && lp >= 100
+                    && lp >= lpThreshhold
                     && this.lastLearningPoints < lpThreshhold)
                 {
-                    // player has too much free LP
+                    // player has plenty of unspent LP
                     ShowNotificationLearnExtraTechnologies(lpThreshhold);
                 }
             }

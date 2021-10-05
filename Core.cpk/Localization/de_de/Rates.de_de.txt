@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+Abbaugeschwindigkeit
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+Holzfällgeschwindigkeit
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+Zusätzliche Anzahl von Land Claims
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Boss-Schwierigkeit: Pragmiumkönigin
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Boss-Schwierigkeit: Sandtyrann
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+Fertigungsgeschwindigkeit
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+Schaden durch Kreaturen
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+Schaden durch Bomben an Charaktere
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+Schaden durch Bomben an Gebäuden
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+Schaden durch verbündete Spieler (PvP-Freundbeschuss)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+Schaden an Kreaturen und Umgebung
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Ressourcen] Extraktionsgeschwindigkeit von Vorkommen
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+Max. Anzahl von Türbesitzern
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Fraktion] Kosten für Gründung (LP)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Fraktion] Abklingzeitsdauer für Beitritte
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Fraktion] Abklingzeitsdauer für Wiederbeitritt
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Fraktion] Land Claims in Fraktionsbesitz pro Level
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Fraktion] Max. Mitgliederzahl in privater Fraktion
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Fraktion] Max. Mitgliederzahl in öffentlicher Fraktion
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Fraktion] [PvP] Bündnisse erlaubt
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Fraktion] Kosten für Levelverbesserung pro Level
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+Wachstumsgeschw. von Nutzpflanzen
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+Lebensdauer von Nutzpflanzen
+
+Scripts/Rates/RateHunger@Name:
+Hungerrate
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+Verberge Liste von Online-Spielern
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+Tausch-Chatroom
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+Haltbarkeit von Nahrung u. Verbrauchsgegenständen
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+Stapelgröße von Gegenständen
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+Max. Anzahl von Land Claim-Besitzern (fraktionsfreies Eigentum)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+Lernpunkte
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+Fertigungsgeschwindigkeit
+
+Scripts/Rates/RatePartyMembersMax@Name:
+Max. Mitgliederzahl einer Gruppe
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] Schaden Spieler gegen Spieler
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] Bei Tod vollständiges Fallenlassen von Beute
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] Verberge Koordinaten neuer Ressourcenvorkommen
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] Dauer von Anfängerschutz
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] Dauer von Raidblock
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] Kapazität sicherer Aufbewahrung eines Land Claims
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] Schutzaktivierungsdauer des Basis-S.H.I.E.L.D.
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] Dauer der Schutzabklingzeit des Basis-S.H.I.E.L.D.
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] Basis-S.H.I.E.L.D.-Schutz verfügbar
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] Zeitfenster
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Ressourcen] Sammeln—Einfaches Sammeln
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Ressourcen] Sammeln—Kisten und Haufen
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Ressourcen] Sammeln—Beute von Kreaturen
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Ressourcen] Sammeln—Meteoriten
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Ressourcen] Sammeln—Weltraumschrott
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Ressourcen] Anzahl von Pragmiumquellen
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Ressourcen] [PvP] Verzögerung der Vorkommensbeanspruchung
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Ressourcen] [PvP] Anzahl von Lithiumvorkommen
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Ressourcen] [PvP] Anzahl von Ölvorkommen
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+Fähigkeits-XP
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Verfall] Verfall verlassener Gebäude
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Verfall] Dauer der Verfallsverzögerung verlassener Land Claims
+
+Scripts/Rates/RateThirst@Name:
+Durstrate
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+Rate zeitabhängiger Generatoren
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+Anfangsverzögerung von Welt-Events
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+Welt-Event Intervall—{0}
+

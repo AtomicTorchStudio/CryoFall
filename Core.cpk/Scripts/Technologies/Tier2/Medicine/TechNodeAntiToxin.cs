@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeAntiToxin>();
 
-            config.SetRequiredNode<TechNodeStrengthBoostSmall>();
+            config.SetRequiredNode<TechNodeEnergyTablets>();
         }
     }
 }

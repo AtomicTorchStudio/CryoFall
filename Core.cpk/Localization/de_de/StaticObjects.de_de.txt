@@ -941,6 +941,51 @@ Zu nah an einer anderen Ölpumpe gelegen.
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Dieser Bodentyp besitzt keinen Zugang zum Grundwasserspiegel.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Baue Raketengerüst
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+Der Höhepunkt deiner bisherigen Anstrengungen auf diesem Planeten. Endlich bist du dazu bereit, an die ultimative Flucht zu denken!
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Startrampe
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Baue Steuerelektronik
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Baue Treibstofftank
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+Baue Antriebssystem
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Startrampe—Stufe 2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Baue Anomalie-Vermeidungssystem
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Baue Lebenserhaltungs-System
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Baue Navigationssystem
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Startrampe—Stufe 3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Betanke die Rakete
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Bereite Vorräte vor
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Startrampe—Stufe 4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Startrampe—Stufe 5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Spezielle automatisierte Krankenstation, die zum Installieren oder Entfernen aller Arten von kybernetischen Implantaten verwendet werden kann.
 
@@ -971,6 +1016,12 @@ Sprinkleranlage
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 Mehr Komponenten benötigt.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Gegenstände zum Demontieren platzieren.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Fertige Gegenstände zuerst entfernen.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Zwei identische Gegenstände zum Reparieren platzieren.
 
@@ -982,6 +1033,9 @@ Gegenstand zunächst aus dem Ausgabe-Slot entfernen.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Keine Reparatur möglich
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+Nicht demontierbar
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 Glück gehabt![br]{0} vollständig repariert!

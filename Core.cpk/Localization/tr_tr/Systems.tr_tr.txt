@@ -440,9 +440,11 @@ Başka bir alan tutucuyla kesişiyor
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Aktif kalkan koruması altındaki bir başka alan tutucu bölgesiyle kesişiyor. Önce oradaki kalkanı etkisiz hâle getir.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Sana tahsis edilen alan tutucuları harcadın.
-[br]Yeni teknolojileri araştırarak bu sayıyı arttırabilirsin.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Daha yüksek kademedeki teknolojileri araştırarak sınırı artırabilirsin (toplam maksimum {0}).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Sana tahsis edilen kişisel alan tutucu sayısını kullandın ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Yakıt/Lityum yataklarını ele geçirmek veya yakınlarına alan tutucu yerleştirmek için Zenojeoloji (Aşama 3)'ü araştırman gerekiyor.
@@ -645,6 +647,21 @@ Bilgiyi sil
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}'a hoş geldiniz
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Sunucu bakımı.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+Sunucu oranları değiştirilecek.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Sunucu yeniden başlatması
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Sunucu son versiyona güncellenmesi.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Sunucu silimi.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `Sunucu {0} sonra kapanacak.
 [br]
@@ -702,6 +719,9 @@ Bazı araçların garajda. Onları Araç Birleştirme Sahalarından birinden ala
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Garajdaki araçlar
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+Bu araç tamir edilemiyor
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Enerji tükendi.
 
@@ -710,9 +730,6 @@ Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleF
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Zaten sulandı
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-Bitki, toplanmaya hazır. Artık sulamanın bir anlamı yok.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 Sadece tarla bitkileri sulanabilir.

@@ -438,9 +438,11 @@ Intersection avec une autre zone de revendication territoriale
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Intersection avec une autre revendication territoriale protégée par un bouclier actif. Vous devez d'abord désactiver le bouclier.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Vous avez épuisé le nombre de revendications territoriales qui vous est alloué.
-[br]Vous pouvez augmenter ce nombre en découvrant de nouvelles technologies.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Vous pouvez augmenter cette limite en étudiant les technologies de revendications territoriales de rangs plus élevés (jusqu'à {0} fois au total).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Vous avez atteint votre limite de revendications territoriales personnelles allouées ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Vous devez étudier la Xénogéologie (Rang 3) pour revendiquer les dépôts de Pétrole/Li, ou pour revendiquer un territoire situé à proximité.
@@ -643,6 +645,21 @@ Informations d'effacement du serveur
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Bienvenue sur {0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Maintenance du serveur
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+Les taux de paramétrage du serveur vont être modifiés.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Redémarrage du serveur
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Mise à jour du serveur vers la dernière version.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Effacement du serveur
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `Le serveur fermera dans {0}.
 [br]
@@ -700,6 +717,9 @@ Certains de vos véhicules sont au garage. Vous pouvez y accéder à partir de n
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Véhicules au garage
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+Impossible de réparer ce véhicule
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 À court d'énergie.
 
@@ -708,9 +728,6 @@ Impossible d'utiliser {0}
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Plante déjà arrosée.
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-La plante est prête pour la récolte. Inutile de l'arroser maintenant.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 Seules les plantes de ferme peuvent être arrosées.

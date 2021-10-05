@@ -102,9 +102,6 @@ Atraso na dica
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Escala da interface
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Oclusão de ambiente
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Nenhum
 

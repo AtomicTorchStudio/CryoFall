@@ -1,0 +1,165 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.EndGame.MenuEndGame"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:credits="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.Credits"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.EndGame.Data"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      Panel.ZIndex="8800"
+                      d:DataContext="{d:DesignInstance data:ViewModelMenuEndGame}">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <Storyboard x:Key="StoryboardCreditsStart"
+                        FillBehavior="HoldEnd">
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="RectangleFullBackground"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:7" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:12" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="MenuCredits"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:7" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:12" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="RectangleFooterBackground"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="GridButtons"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="MenuCredits"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:11" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:15" />
+                </DoubleAnimationUsingKeyFrames>
+                <BooleanAnimationUsingKeyFrames
+                    Storyboard.TargetName="MenuCredits"
+                    Storyboard.TargetProperty="IsEnabled">
+                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:11" />
+                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:11.1" />
+                </BooleanAnimationUsingKeyFrames>
+                <BooleanAnimationUsingKeyFrames
+                    Storyboard.TargetName="GridButtons"
+                    Storyboard.TargetProperty="IsEnabled">
+                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                </BooleanAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <Storyboard x:Key="StoryboardCreditsFinish"
+                        FillBehavior="HoldEnd">
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="MenuCredits"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:3" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="RectangleFullBackground"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:3" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="RectangleFooterBackground"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:3" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames
+                    Storyboard.TargetName="GridButtons"
+                    Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:3" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:6" />
+                </DoubleAnimationUsingKeyFrames>
+                <BooleanAnimationUsingKeyFrames
+                    Storyboard.TargetName="MenuCredits"
+                    Storyboard.TargetProperty="IsEnabled">
+                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                </BooleanAnimationUsingKeyFrames>
+                <BooleanAnimationUsingKeyFrames
+                    Storyboard.TargetName="GridButtons"
+                    Storyboard.TargetProperty="IsEnabled">
+                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                </BooleanAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
+
+        <Image Source="/UI/Images/Backgrounds/EndGameArt.jpg"
+               UseLayoutRounding="False"
+               Stretch="UniformToFill" />
+
+        <Rectangle x:Name="RectangleFullBackground"
+                   Fill="#99000000" />
+
+        <Rectangle x:Name="RectangleFooterBackground">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#00000000" Offset="0.65" />
+                    <GradientStop Color="#DD000000" Offset="0.9" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid x:Name="GridCredits"
+              Opacity="1">
+            <credits:MenuCredits x:Name="MenuCredits"
+                                 IsLoopedScroll="False"
+                                 IsInputAllowed="False"
+                                 MaxHeight="800" />
+        </Grid>
+
+        <Grid x:Name="GridButtons">
+            <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  Margin="0,0,0,40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="{x:Static loc:CoreStrings.MenuGameFinished_ButtonEject_Title}"
+                        Command="{Binding CommandEject}"
+                        base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuGameFinished_ButtonEject_Hint}"
+                        Focusable="False"
+                        HorizontalAlignment="Stretch" />
+
+                <Button Grid.Column="2"
+                        Content="{x:Static loc:CoreStrings.MenuGameFinished_ButtonNewGamePlus_Title}"
+                        Command="{Binding CommandNewGamePlus}"
+                        IsEnabled="{Binding IsEditor, Converter={StaticResource BoolReverseConverter}}"
+                        Visibility="{Binding IsMultiplayerServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuGameFinished_ButtonNewGamePlus_Hint}"
+                        Focusable="False"
+                        HorizontalAlignment="Stretch" />
+
+                <Button Grid.Column="4"
+                        Content="{x:Static loc:CoreStrings.MenuGameFinished_ButtonMainMenu_Title}"
+                        Command="{Binding CommandReturnToMainMenu}"
+                        IsEnabled="{Binding IsEditor, Converter={StaticResource BoolReverseConverter}}"
+                        base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuGameFinished_ButtonMainMenu_Hint}"
+                        Focusable="False"
+                        HorizontalAlignment="Stretch" />
+            </Grid>
+        </Grid>
+    </Grid>
+</base:BaseUserControl>

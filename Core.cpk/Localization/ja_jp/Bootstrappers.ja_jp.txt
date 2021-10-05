@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+オフラインにしていても、ローカルゲームは利用できます。
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `メインサーバーに接続できません。
 [br]インターネットに接続していること、ファイアウォールや
 [br]ISPが接続をブロックしていないことを確認してください。`

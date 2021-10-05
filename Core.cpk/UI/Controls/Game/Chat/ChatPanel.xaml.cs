@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
     using System.Windows.Input;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
@@ -356,10 +357,18 @@
 
             var tabItem = new TabItem()
             {
-                Header = chatRoom.ClientGetTitle(),
                 Content = chatRoomControl,
                 DataContext = viewModelChatRoom
             };
+
+            BindingOperations.SetBinding(
+                tabItem,
+                HeaderedContentControl.HeaderProperty,
+                new Binding(nameof(ViewModelChatRoom.Title))
+                {
+                    Source = viewModelChatRoom,
+                    Mode = BindingMode.OneWay
+                });
 
             this.chatRooms.Add(chatRoom,
                                new ChatRoomTab(chatRoom, chatRoomControl, tabItem, viewModelChatRoom));

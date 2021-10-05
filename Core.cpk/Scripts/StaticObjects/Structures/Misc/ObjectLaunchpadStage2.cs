@@ -8,15 +8,20 @@
 
     public class ObjectLaunchpadStage2 : ProtoObjectLaunchpad
     {
+        public const string TaskBuildControlElectronics = "Build control electronics";
+
         public const string TaskBuildFuelTank = "Build fuel tank";
 
         public const string TaskBuildPropulsionSystem = "Build propulsion system";
 
-        public const string TaskBuildControlElectronics = "Build control electronics";
-
         public override string Description => GetProtoEntity<ObjectLaunchpadStage1>().Description;
 
         public override string Name => "Launchpad—Stage 2";
+
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return new TextureResource("StaticObjects/Structures/Misc/ObjectLaunchpad/Icon_Stage2.png");
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

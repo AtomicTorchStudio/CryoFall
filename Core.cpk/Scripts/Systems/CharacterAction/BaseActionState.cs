@@ -43,7 +43,7 @@
         // ReSharper disable once InconsistentNaming
         private event Action<double> progressPercentsChanged;
 
-        public virtual bool IsBlocksMovement => false;
+        public virtual bool IsBlockingMovement => false;
 
         public bool IsCancelled { get; private set; }
 

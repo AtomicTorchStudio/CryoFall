@@ -36,6 +36,11 @@
 
             var viewModelsProvider = ServerViewModelsProvider.Instance;
 
+            this.LanServers =
+                new ViewModelServersList(
+                    new MultiplayerMenuServersLanController(viewModelsProvider),
+                    this.OnSelectedServerChanged);
+
             this.CustomServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersController(this.serversProvider.Custom, viewModelsProvider),
@@ -92,6 +97,7 @@
                 this.FeaturedServers,
                 this.CommunityServers,
                 this.ModdedServers,
+                this.LanServers,
                 this.CustomServers,
                 this.FavoriteServers,
                 this.HistoryServers
@@ -102,11 +108,15 @@
             this.serversProvider.ServerPingUpdated += this.ServerPingUpdatedHandled;
             this.serversProvider.ServerInfoReceived += this.ServerInfoReceivedHandler;
             Api.Client.MasterServer.ConnectionStateChanged += MasterServerConnectionStateChangedHandler;
+            Api.Client.MasterServer.DemoVersionInfoChanged += this.MasterServerDemoVersionInfoChangedHandler;
         }
 
         public static ViewModelMenuServers Instance { get; private set; }
 
         public BaseCommand CommandAddCustomServer => new ActionCommand(this.ExecuteCommandAddCustomServer);
+
+        public BaseCommand CommandBuyFullVersion
+            => new ActionCommand(Api.Client.SteamApi.OpenBuyGamePage);
 
         public BaseCommand CommandClearFavorites => new ActionCommand(
             () =>
@@ -145,6 +155,11 @@
         public ViewModelServersList FeaturedServers { get; }
 
         public ViewModelServersList HistoryServers { get; }
+
+        public bool IsDemoVersion
+            => Api.Client.MasterServer.IsDemoVersion;
+
+        public ViewModelServersList LanServers { get; }
 
         public ViewModelServersList ModdedServers { get; }
 
@@ -292,7 +307,10 @@
         {
             try
             {
+                this.serversProvider.ServerPingUpdated -= this.ServerPingUpdatedHandled;
+                this.serversProvider.ServerInfoReceived -= this.ServerInfoReceivedHandler;
                 Api.Client.MasterServer.ConnectionStateChanged -= MasterServerConnectionStateChangedHandler;
+                Api.Client.MasterServer.DemoVersionInfoChanged -= this.MasterServerDemoVersionInfoChangedHandler;
             }
             catch (Exception ex)
             {
@@ -420,6 +438,11 @@
                     serverInfo.CommandRefresh?.Execute(serverInfo);
                 }
             }
+        }
+
+        private void MasterServerDemoVersionInfoChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.IsDemoVersion));
         }
 
         private void OnSelectedServerChanged(ViewModelServerInfoListEntry viewModelServerInfoListEntry)

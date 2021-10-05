@@ -21,7 +21,7 @@
     public class BootstrapperClientCore : BaseBootstrapper
     {
         public const string DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message =
-            @"The local game is available even if you stay offline.";
+            "The local game is available even if you stay offline.";
 
         public const string DialogCannotConnectToTheMasterServer_Message =
             @"The client was unable to establish a connection to the Master Server.

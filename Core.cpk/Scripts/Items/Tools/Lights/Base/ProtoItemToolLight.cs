@@ -219,7 +219,7 @@
                     {
                         publicState.IsActive = false;
                         Logger.Info($"Fuel depleted, light turns off: {item}");
-                        this.ClientShowOutOfFuelNotification();
+                        this.ClientTryAutoRefill();
                     }
                 },
                 subscriptionOwner: data.ClientState);
@@ -276,7 +276,7 @@
                 }
                 else
                 {
-                    this.ClientShowOutOfFuelNotification();
+                    this.ClientTryAutoRefill();
                 }
             }
             else
@@ -433,6 +433,11 @@
             {
                 publicState.IsActive = false;
             }
+        }
+
+        private void ClientTryAutoRefill()
+        {
+            ItemFuelRefillSystem.Instance.ClientTryStartAction();
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.5, keyArgIndex: 0)]

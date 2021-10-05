@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction.Data;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -12,6 +13,8 @@
 
     public class ViewModelWindowLaunchpad : BaseViewModel
     {
+        private readonly ObjectLaunchpadPrivateState privateState;
+
         private readonly ProtoObjectLaunchpad protoObjectLaunchpad;
 
         private readonly ObjectLaunchpadPublicState publicState;
@@ -23,7 +26,7 @@
             this.worldObject = worldObject;
             this.protoObjectLaunchpad = (ProtoObjectLaunchpad)worldObject.ProtoGameObject;
 
-            var privateState = worldObject.GetPrivateState<ObjectLaunchpadPrivateState>();
+            this.privateState = worldObject.GetPrivateState<ObjectLaunchpadPrivateState>();
             this.publicState = worldObject.GetPublicState<ObjectLaunchpadPublicState>();
             this.publicState.ClientSubscribe(_ => _.LaunchServerFrameTime,
                                              _ => this.NotifyPropertyChanged(nameof(this.IsLaunched)),
@@ -36,12 +39,25 @@
             this.Tasks = this.protoObjectLaunchpad
                              .TasksList
                              .Select((task, taskIndex) =>
-                                         new ViewModelLaunchpadTask(worldObject, task, taskIndex, privateState))
+                                         new ViewModelLaunchpadTask(worldObject, task, taskIndex, this.privateState))
                              .ToArray();
+
+            this.privateState.ClientSubscribe(_ => _.TaskCompletionState,
+                                              _ => this.NotifyPropertyChanged(nameof(this.IsUpgradeAvailable)),
+                                              this);
+
+            if (this.protoObjectLaunchpad.ConfigUpgrade.Entries.Count > 0)
+            {
+                this.ViewModelStructureUpgrade =
+                    new ViewModelStructureUpgrade(this.protoObjectLaunchpad.ConfigUpgrade.Entries[0]);
+            }
         }
 
         public BaseCommand CommandLaunchRocket
             => new ActionCommand(this.ExecuteCommandLaunchRocket);
+
+        public BaseCommand CommandLaunchUpgradeToNextStage
+            => new ActionCommand(this.ExecuteCommandLaunchUpgradeToNextStage);
 
         public BaseCommand CommandResetLaunchpad
             => new ActionCommand(this.ExecuteCommandResetLaunchpad);
@@ -51,6 +67,10 @@
 
         public bool IsLaunched
             => this.publicState.LaunchServerFrameTime > 0;
+
+        public bool IsUpgradeAvailable
+            => this.privateState.TaskCompletionState.All(task => task)
+               && this.ViewModelStructureUpgrade is not null;
 
         public string LaunchedByPlayerName
             => this.publicState.LaunchedByPlayerName is not null
@@ -65,6 +85,8 @@
 
         public IReadOnlyList<ViewModelLaunchpadTask> Tasks { get; }
 
+        public ViewModelStructureUpgrade ViewModelStructureUpgrade { get; }
+
         private static byte GetStageIndex(ProtoObjectLaunchpad proto)
         {
             var name = proto.ShortId;
@@ -75,6 +97,12 @@
         {
             ((ObjectLaunchpadStage5)this.worldObject.ProtoGameObject)
                 .ClientLaunchRocket(this.worldObject);
+        }
+
+        private void ExecuteCommandLaunchUpgradeToNextStage()
+        {
+            ((ProtoObjectLaunchpad)this.worldObject.ProtoGameObject)
+                .ClientUpgradeToNextStage(this.worldObject);
         }
 
         private void ExecuteCommandResetLaunchpad()

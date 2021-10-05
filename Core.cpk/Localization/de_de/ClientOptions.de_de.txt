@@ -102,9 +102,6 @@ Tooltip-Verzögerung
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI-Skalierung
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Umgebungsverdeckung
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Keines
 

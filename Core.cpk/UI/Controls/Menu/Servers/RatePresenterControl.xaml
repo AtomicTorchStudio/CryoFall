@@ -6,8 +6,6 @@
                       xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                       xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
                       xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-                      xmlns:client="clr-namespace:AtomicTorch.CBND.CoreMod.Helpers.Client"
-                      xmlns:system="clr-namespace:System;assembly=System.Runtime"
                       mc:Ignorable="d"
                       d:DesignHeight="300" d:DesignWidth="300"
                       d:DataContext="{d:DesignInstance data:IViewModelRate}"
@@ -208,8 +206,8 @@
                         Foreground="{StaticResource BrushColor4}"
                         FontFamily="{StaticResource MonospacedFontFamily}"
                         FontSize="11"
-                        VerticalAlignment="Center"
-                        Margin="10,0,0,0" />
+                        VerticalAlignment="Top"
+                        Margin="10,2.5,0,0" />
                 </StackPanel>
             </StackPanel>
         </Grid>

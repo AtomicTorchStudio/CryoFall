@@ -102,9 +102,6 @@ Opóźnienie podpowiedzi
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Skalowanie interfejsu
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Ambient occlusion
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Brak
 

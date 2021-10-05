@@ -32,9 +32,9 @@
             this.RatesAll = RatesManager
                             .Rates
                             .Where(r => r.Visibility != RateVisibility.Hidden)
-                            .OrderBy(r => r.OrderAfterRate is null)
+                            .OrderBy(r => r.Visibility)
+                            .ThenBy(r => r.OrderAfterRate is null)
                             .ThenBy(r => r.Name)
-                            .ToList()
                             .TopologicalSort(GetRateOrder)
                             .Select(e => e.ClientCreateViewModel())
                             .ToList();

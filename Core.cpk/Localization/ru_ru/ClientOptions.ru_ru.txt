@@ -56,7 +56,7 @@ Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 Подсказки с[br]названием объекта
 
 Scripts/ClientOptions/General/GeneralOptionHideQuestsPanel@Dialog_Text:
-`Квесты являются важнейшей частью игры, особенно если вы играете впервые - тогда они служат путеводителем и обучением для новых игроков.
+`Квесты являются важнейшей частью игры, особенно если вы играете впервые — тогда они служат путеводителем и обучением для новых игроков.
 [br]
 [br]Вы уверены, что хотите отключить панель квестов?`
 
@@ -101,9 +101,6 @@ Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Размер интерфейса
-
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Дополнительное затенение
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Нет

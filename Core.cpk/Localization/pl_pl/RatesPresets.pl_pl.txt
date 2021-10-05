@@ -1,0 +1,24 @@
+﻿Scripts/RatesPresets/RatesPresetLocalServerEasy@Description:
+Ciesz się życiem w prawdziwym raju! Eksploruj świat we własnym tempie i rozwijaj swoje technologie. Tryb idealny dla graczy, którzy bez zbyt skomplikowanych wyzwań chcą po prostu cieszyć się grą. Choć i tak nie unikną oni walki o przetrwanie!
+
+Scripts/RatesPresets/RatesPresetLocalServerEasy@Name:
+Raj
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Description:
+Witaj w świecie, w którym wszystko chce cię zabić. Zasady w tym trybie są podobne do reguł obowiązujących w standardowym trybie przetrwania, ale wprowadziliśmy dodatkowe wyzwania dla doświadczonych graczy, którzy oczekują większych problemów i lepszych nagród, zwłaszcza w końcowej fazie gry.
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Name:
+Hardcore
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Description:
+Obowiązują standardowe zasady gry, a poziom trudności jest wyważony. Tryb odpowiedni do gry na lokalnym serwerze. Jeśli grasz w CryoFall po raz pierwszy – zalecamy wybranie tego trybu.
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Name:
+Przetrwanie
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Description:
+Standardowe ustawienia trybu wieloosobowego bez zmian współczynników. Tak powinno się grać w trybie wieloosobowym.
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Name:
+Zwykły tryb wieloosobowy
+

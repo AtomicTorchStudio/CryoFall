@@ -61,7 +61,6 @@
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="Padding" Value="0" />
                             <Setter Property="Width" Value="Auto" />
-                            <Setter Property="MinHeight" Value="Auto" />
                             <Setter Property="FontSize" Value="18" />
                             <Setter Property="FontWeight" Value="Normal" />
                             <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />

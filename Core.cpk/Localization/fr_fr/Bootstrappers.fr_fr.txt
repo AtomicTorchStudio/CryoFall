@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+La partie en local reste disponible même si vous n'êtes pas en ligne.
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `Le client n'a pas pu établir de connexion avec le Serveur Maître.
 [br]Assurez-vous d'être connecté à Internet et que votre pare-feu
 [br]ou votre fournisseur d'accès ne bloquent pas votre connexion.`

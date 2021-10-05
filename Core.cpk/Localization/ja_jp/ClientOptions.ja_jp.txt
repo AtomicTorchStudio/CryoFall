@@ -101,9 +101,6 @@ Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UIスケール
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-アンビエントオクルージョン
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 なし
 

@@ -1,0 +1,24 @@
+﻿Scripts/RatesPresets/RatesPresetLocalServerEasy@Description:
+Genieße dein Leben im Paradies! Erkunde die Welt in deinem eigenen Tempo und erfreue dich am Fortschritt von Technologien. Passend für Spieler, die herausfinden wollen, was das Spiel ohne übermäßige Herausforderungen zu bieten hat. Deinen Weg wirst du dir dennoch freikämpfen müssen!
+
+Scripts/RatesPresets/RatesPresetLocalServerEasy@Name:
+Paradies
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Description:
+Willkommen in einer Welt, in der dich alles töten will. Diese Option besitzt ähnliche Regeln wie der herkömmliche Überlebensmodus, bietet jedoch zusätzliche Herausforderungen für erfahrene Spieler, die insbesondere im Endgame viel riskieren und gewinnen möchten.
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Name:
+Hardcore
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Description:
+Standardmäßige Spielregeln mit ausgeglichener Schwierigkeit geeignet für Solo-Erfahrung auf einem lokalen Server. Solltest du CryoFall zum ersten Mal spielen, ist dieser Modus die empfohlene Wahl.
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Name:
+Überleben
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Description:
+Standardmäßiges Multiplayer-Setting ohne veränderte Raten. Bevorzugte Wahl für Multiplayer.
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Name:
+Regulärer Multiplayer
+

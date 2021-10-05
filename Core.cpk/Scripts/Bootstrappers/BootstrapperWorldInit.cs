@@ -51,8 +51,9 @@
 
             foreach (var character in playerCharacters.AsList())
             {
-                var publicState = PlayerCharacter.GetPublicState(character);
-                if (publicState.IsDead)
+                var privateState = PlayerCharacter.GetPrivateState(character);
+                if (privateState.IsDespawned
+                    || PlayerCharacter.GetPublicState(character).IsDead)
                 {
                     continue;
                 }
@@ -66,7 +67,6 @@
                     continue;
                 }
 
-                var privateState = PlayerCharacter.GetPrivateState(character);
                 var bedObject = privateState.CurrentBedObject;
                 if (bedObject is null)
                 {

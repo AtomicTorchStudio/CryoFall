@@ -2629,3 +2629,15 @@ Cañón pesado que usa cargas de partículas aceleradas para infligir daño al o
 Scripts/Items/Weapons/Vehicle/ItemVehicleCannonEnergy@Name:
 Cañón de energía
 
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
+Lanza grandes cápsulas explosivas que contienen un cóctel de ácidos y toxinas que infligirán daño no solo a las cosas vivas, sino también a las estructuras.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
+Cañón de keinita
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
+Lanza grandes criaturas similares a insectos que se meten en el objetivo al impactar e infligen daño adicional.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
+Lanzaenjambres pesado
+

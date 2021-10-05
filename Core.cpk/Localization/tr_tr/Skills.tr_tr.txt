@@ -148,6 +148,9 @@ Daha karmaşık eşyalar üretmek ve yapılarını anlamak, bu dünyanın teknol
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Üretim
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+Tamir masası temel verimliliği %{0}
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Eşyayı tamamen onarma ihtimali
 

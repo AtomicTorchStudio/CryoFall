@@ -941,6 +941,51 @@ Trop proche d'une autre pompe à pétrole.
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Ce type de sol ne permet pas d'accéder au niveau piézométrique.
 
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@TaskBuildRocketFrame:
+Construire une structure de fusée
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Description:
+L'apogée de vos efforts sur cette planète. Vous pouvez enfin commencer à préparer votre fuite ultime !
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage1@Name:
+Base de lancement
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildControlElectronics:
+Construire les composants de contrôle
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildFuelTank:
+Construire le réservoir de carburant
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@TaskBuildPropulsionSystem:
+Construire le système de propulsion
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage2@Name:
+Base de lancement - Étape 2
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildAnomalyAvoidanceSystem:
+Construire le système d'évitement des anomalies
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildLifeSupportSystem:
+Construire le système de survie
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@TaskBuildNavigationSystem:
+Construire le système de navigation
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage3@Name:
+Base de lancement - Étape 3
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskFuelTheRocket:
+Alimenter la fusée en carburant
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@TaskPrepareSupplies:
+Préparer les réserves
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage4@Name:
+Base de lancement - Étape 4
+
+Scripts/StaticObjects/Structures/Misc/ObjectLaunchpadStage5@Name:
+Base de lancement - Étape 5
+
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Une station médicale automatisée qui peut servir à poser ou à ôter tous types d'implants cybernétiques.
 
@@ -971,6 +1016,12 @@ Arrosage automatique
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
 D'autres composants sont nécessaires.
 
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_PlaceInput:
+Placez des objets à démonter.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Disassembly_RemoveOutput:
+Prenez d'abord les éléments récupérés.
+
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
 Placez deux objets identiques pour réparer.
 
@@ -982,6 +1033,9 @@ Enlevez d'abord l'objet de l'emplacement de sortie.
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 Réparation impossible.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitleCannotDisassemble:
+Impossible de démonter
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Notification_PerfectRepair_Format:
 Vous avez eu de la chance ![br]{0} est comme neuf !

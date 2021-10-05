@@ -612,7 +612,8 @@
             {
                 // should return to the player to despawn
                 if (characterOwner is null
-                    || characterOwner.GetPublicState<ICharacterPublicState>().IsDead
+                    || PlayerCharacter.GetPrivateState(characterOwner).IsDespawned
+                    || PlayerCharacter.GetPublicState(characterOwner).IsDead
                     || CharacterDroneControlSystem.SharedIsBeyondDroneAbandonDistance(
                         objectDrone.TilePosition,
                         characterOwner.TilePosition))

@@ -148,6 +148,9 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 製作
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+職人の作業台の基本効率 {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 アイテムを完全に修理するチャンス
 

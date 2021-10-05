@@ -27,7 +27,7 @@
             base.ClientOnMessageReceived(in chatEntry);
 
             // and display it over the speaking character
-            CharacterLocalChatMessageDisplay.ShowOn(characterInstance, chatEntry.Message);
+            CharacterLocalChatMessageDisplay.ShowOn(characterInstance, chatEntry.ClientGetFilteredMessage());
         }
 
         public override void ServerAddMessageToLog(in ChatEntry chatEntry)

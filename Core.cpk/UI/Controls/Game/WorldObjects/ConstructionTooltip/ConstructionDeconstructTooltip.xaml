@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-    xmlns:noesisGuiExtensions="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
@@ -71,8 +71,8 @@
                            LineStackingStrategy="BlockLineHeight"
                            FontWeight="Bold"
                            FontFamily="{StaticResource CondensedFontFamily}"
-                           noesisGuiExtensions:Text.Stroke="Black"
-                           noesisGuiExtensions:Text.StrokeThickness="3"
+                           noesis:Text.Stroke="Black"
+                           noesis:Text.StrokeThickness="3"
                            TextAlignment="Center"
                            VerticalAlignment="Center">
                     <i:Interaction.Triggers>

@@ -1,0 +1,177 @@
+﻿Scripts/Rates/RateActionMiningSpeedMultiplier@Name:
+Szybkość wydobycia
+
+Scripts/Rates/RateActionWoodcuttingSpeedMultiplier@Name:
+Szybkość ścinania drzew
+
+Scripts/Rates/RateAdditionalLandClaimsNumber@Name:
+Liczba dodatkowych działek
+
+Scripts/Rates/RateBossDifficultyPragmiumQueen@Name:
+Trudność bossa: Królowa pragmium
+
+Scripts/Rates/RateBossDifficultySandTyrant@Name:
+Trudność bossa: Piaskowy tyran
+
+Scripts/Rates/RateCraftingSpeedMultiplier@Name:
+Szybkość wytwarzania
+
+Scripts/Rates/RateDamageByCreaturesMultiplier@Name:
+Obrażenia od stworów
+
+Scripts/Rates/RateDamageExplosivesToCharactersMultiplier@Name:
+Obrażenia od bomb zadawane postaciom
+
+Scripts/Rates/RateDamageExplosivesToStructuresMultiplier@Name:
+Uszkodzenia budowli przez bomby
+
+Scripts/Rates/RateDamageFriendlyFireMultiplier@Name:
+Obrażenia od bratobójczego ognia (w PvP)
+
+Scripts/Rates/RateDamagePvEMultiplier@Name:
+Obrażenia zadane stworom i środowisku
+
+Scripts/Rates/RateDepositsExtractionSpeedMultiplier@Name:
+[Zasoby] Szybkość wydobycia złóż
+
+Scripts/Rates/RateDoorOwnersMax@Name:
+Maks. liczba właścicieli drzwi
+
+Scripts/Rates/RateFactionCreateCost@Name:
+[Frakcja] Koszt wytworzenia (PT)
+
+Scripts/Rates/RateFactionJoinCooldownDuration@Name:
+[Frakcja] Czas odnowienia – dołączenie
+
+Scripts/Rates/RateFactionJoinReturnCooldownDuration@Name:
+[Frakcja] Czas odnowienia – dołączenie powtórne
+
+Scripts/Rates/RateFactionLandClaimsPerLevel@Name:
+[Frakcja] Liczba działek frakcji na poziom
+
+Scripts/Rates/RateFactionMembersMaxPrivateFaction@Name:
+[Frakcja] Maks. liczba członków we frakcji prywatnej
+
+Scripts/Rates/RateFactionMembersMaxPublicFaction@Name:
+[Frakcja] Maks. liczba członków we frakcji publicznej
+
+Scripts/Rates/RateFactionPvPAlliancesEnabled@Name:
+[Frakcja] [PvP] Dozwolone sojusze
+
+Scripts/Rates/RateFactionUpgradeCostPerLevel@Name:
+[Frakcja] Koszt zwiększenia poziomu (za poziom)
+
+Scripts/Rates/RateFarmPlantsGrowthSpeedMultiplier@Name:
+Szybkość wzrostu roślin hodowlanych
+
+Scripts/Rates/RateFarmPlantsLifetimeMultiplier@Name:
+Żywotność roślin hodowlanych
+
+Scripts/Rates/RateHunger@Name:
+Głód
+
+Scripts/Rates/RateIsOnlinePlayersListHidden@Name:
+Ukryj listę graczy online
+
+Scripts/Rates/RateIsTradeChatRoomEnabled@Name:
+Czat handlowy
+
+Scripts/Rates/RateItemFoodAndConsumablesShelfLifeMultiplier@Name:
+Okres trwałości żywności i przedmiotów zużywalnych
+
+Scripts/Rates/RateItemStackSizeMultiplier@Name:
+Wielkość stosu przedmiotów
+
+Scripts/Rates/RateLandClaimOwnersMax@Name:
+Maks. liczba właścicieli działki (nie frakcja)
+
+Scripts/Rates/RateLearningPointsGainMultiplier@Name:
+Punkty technologii
+
+Scripts/Rates/RateManufacturingSpeedMultiplier@Name:
+Szybkość produkcji
+
+Scripts/Rates/RatePartyMembersMax@Name:
+Maks. liczba członków zespołu
+
+Scripts/Rates/RatePvPDamageMultiplier@Name:
+[PvP] Uszkodzenia między graczami
+
+Scripts/Rates/RatePvPIsEnabled@Name:
+PvP
+
+Scripts/Rates/RatePvPIsFullLootEnabled@Name:
+[PvP] Upuszczanie wszystkich łupów po śmierci
+
+Scripts/Rates/RatePvPIsResourceDepositCoordinatesHidden@Name:
+[PvP] Ukrywanie współrzędnych nowych złóż zasobów
+
+Scripts/Rates/RatePvPNewbieProtectionDuration@Name:
+[PvP] Czas ochrony nowego
+
+Scripts/Rates/RatePvPRaidBlockDuration@Name:
+[PvP] Czas blokady najazdów
+
+Scripts/Rates/RatePvPSafeStorageCapacity@Name:
+[PvP] Pojemność bezpiecznego przechowywania – działka
+
+Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
+[PvP] Czas aktywacji T.A.R.C.Z.Y.
+
+Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
+[PvP] Czas odnowienia T.A.R.C.Z.Y.
+
+Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
+[PvP] Dostępność T.A.R.C.Z.Y.
+
+Scripts/Rates/RatePvPTimeGates@Name:
+[PvP] Bramy czasowe
+
+Scripts/Rates/RateResourcesGatherBasic@Name:
+[Zasoby] Zbieranie – Zbieranie podstawowe
+
+Scripts/Rates/RateResourcesGatherCratesLoot@Name:
+[Zasoby] Zbieranie – Skrzynie i stosy
+
+Scripts/Rates/RateResourcesGatherCreaturesLoot@Name:
+[Zasoby] Zbieranie – Łupy ze stworów
+
+Scripts/Rates/RateResourcesGatherMeteorites@Name:
+[Zasoby] Zbieranie – Meteoryty
+
+Scripts/Rates/RateResourcesGatherSpaceDebris@Name:
+[Zasoby] Zbieranie – Kosmiczne śmieci
+
+Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
+[Zasoby] Liczba źródeł pragmium
+
+Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
+[Zasoby] [PvP] Opóźnienie przejmowania złóż
+
+Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
+[Zasoby] [PvP] Liczba złóż litu
+
+Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
+[Zasoby] [PvP] Liczba złóż ropy
+
+Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
+PD Umiejętności
+
+Scripts/Rates/RateStructuresDecayEnabled@Name:
+[Niszczenie] Niszczenie opuszczonych struktur
+
+Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
+[Niszczenie] Czas opóźnienia niszczenia opuszczonej działki
+
+Scripts/Rates/RateThirst@Name:
+Pragnienie
+
+Scripts/Rates/RateTimeDependentGeneratorsRate@Name:
+Współczynnik generatorów zależny od czasu
+
+Scripts/Rates/RateWorldEventInitialDelayMultiplier@Name:
+Początkowe opóźnienie wydarzeń na świecie
+
+Scripts/Rates/Base/BaseRateWorldEventInterval@Name_Format:
+Przedział zdarzeń na świecie – {0}
+

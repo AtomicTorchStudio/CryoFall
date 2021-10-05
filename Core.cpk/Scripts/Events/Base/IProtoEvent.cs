@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Events
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -10,6 +11,8 @@
         bool ConsolidateNotifications { get; }
 
         string Description { get; }
+
+        TimeSpan EventDuration { get; }
 
         ITextureResource Icon { get; }
 

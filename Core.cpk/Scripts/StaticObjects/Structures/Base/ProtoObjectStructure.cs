@@ -225,6 +225,12 @@
         {
         }
 
+        public virtual bool SharedCanDeconstruct(IStaticWorldObject worldObject, ICharacter character)
+        {
+            // don't perform any extra checks (the basic checks are still mandatory and performed automatically)
+            return true;
+        }
+
         public virtual void SharedCreatePhysicsConstructionBlueprint(IPhysicsBody physicsBody)
         {
             foreach (Vector2D tileOffset in this.Layout.TileOffsets)

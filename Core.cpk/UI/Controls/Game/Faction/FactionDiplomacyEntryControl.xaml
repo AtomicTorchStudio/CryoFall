@@ -6,7 +6,7 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                       xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction.Data"
-                      xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
                       mc:Ignorable="d"
                       d:DesignHeight="300" d:DesignWidth="300"
                       d:DataContext="{d:DesignInstance data:ViewModelFactionDiplomacyStatusEntry}">

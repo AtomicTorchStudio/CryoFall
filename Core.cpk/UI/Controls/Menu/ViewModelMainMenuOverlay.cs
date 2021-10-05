@@ -98,6 +98,8 @@
 
         public bool IsExtrasMenuSelected { get; set; }
 
+        public bool IsHomeTabSelected { get; set; } = true;
+
         public bool IsOptionsMenuSelected { get; set; }
 
         public bool IsPlayMenuVisible => !Api.IsEditor;

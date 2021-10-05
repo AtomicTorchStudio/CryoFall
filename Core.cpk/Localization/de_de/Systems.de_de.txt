@@ -439,9 +439,11 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Überschneidung mit einem anderen Land Claim-Bereich, der durch ein Schild geschützt wird. Deaktiviere zunächst das dortige Schild.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Du hast alle dir zugeteilten Land Claims aufgebraucht.
-[br]Du kannst diese Anzahl erhöhen, indem du neue Technologien erforschst.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Du kannst das Limit erhöhen, indem du Technologien für höherrangige Land Claims erforschst (insgesamt bis zu {0}).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Du hast die maximale Anzahl der dir zugewiesenen persönlichen Land Claims erreicht ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Du musst zunächst Xenogeologie (Rang 3) erforschen, um Öl-/Lithiumvorkommen zu beanspruchen oder einen Land Claim in der Nähe platzieren zu können.
@@ -644,6 +646,21 @@ Wipe-Informationen
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Willkommen bei {0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Serverwartung.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+Server-Raten werden geändert.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Server-Reboot
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Server-Update zur aktuellsten Version.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Server-Wipe.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `Server wird heruntergefahren in {0}.
 [br]
@@ -701,6 +718,9 @@ Einige deiner Fahrzeuge befinden sich in der Garage. Du kannst aus jeder Fahrzeu
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Fahrzeuge in Garage
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+Dieses Fahrzeug kann nicht repariert werden
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Energie aufgebraucht.
 
@@ -709,9 +729,6 @@ Nicht verwendbar: {0}
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Bereits gewässert
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-Diese Pflanze ist reif für die Ernte. Es hat keinen Zweck, sie jetzt noch zu gießen.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 Nur landwirtschaftliche Pflanzen können bewässert werden.

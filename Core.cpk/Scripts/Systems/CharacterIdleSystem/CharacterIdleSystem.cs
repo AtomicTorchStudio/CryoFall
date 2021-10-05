@@ -94,12 +94,13 @@
                     continue;
                 }
 
-                var publicState = PlayerCharacter.GetPublicState(character);
                 var privateState = PlayerCharacter.GetPrivateState(character);
+                var publicState = PlayerCharacter.GetPublicState(character);
 
-                if (publicState.IsDead)
+                if (privateState.IsDespawned
+                    || publicState.IsDead)
                 {
-                    // dead characters are not processed
+                    // despawned/dead characters are not processed
                     privateState.IsIdle = false;
                     continue;
                 }
@@ -108,8 +109,7 @@
                 if (character.ServerIsOnline)
                 {
                     var moveMode = publicState.AppliedInput.MoveModes;
-                    isIdlePlayer = (moveMode == CharacterMoveModes.None
-                                    || moveMode == CharacterMoveModes.ModifierRun)
+                    isIdlePlayer = moveMode is CharacterMoveModes.None or CharacterMoveModes.ModifierRun
                                    && privateState.CurrentActionState is null
                                    && !privateState.WeaponState.IsFiring;
                     // please note that crafting is not considered as an activity to prevent AFK crafting players from thirst/hunger

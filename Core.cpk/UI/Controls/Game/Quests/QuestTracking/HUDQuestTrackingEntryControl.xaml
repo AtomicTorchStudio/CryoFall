@@ -10,7 +10,7 @@
     d:DataContext="{d:DesignInstance data:ViewModelQuestEntry, d:IsDesignTimeCreatable=True}"
     Focusable="True"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 

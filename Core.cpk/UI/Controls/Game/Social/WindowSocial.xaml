@@ -9,7 +9,7 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:social="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social"
     xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="80"
     d:DesignWidth="850"

@@ -9,7 +9,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data"
-    xmlns:noesisGuiExtensions="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelHUDMiniMap}">
@@ -107,8 +107,8 @@
                        FontWeight="Bold"
                        FontSize="12"
                        FontFamily="{StaticResource CondensedFontFamily}"
-                       noesisGuiExtensions:Text.Stroke="Black"
-                       noesisGuiExtensions:Text.StrokeThickness="1"
+                       noesis:Text.Stroke="Black"
+                       noesis:Text.StrokeThickness="1"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Bottom"
                        Margin="3,0,0,1">

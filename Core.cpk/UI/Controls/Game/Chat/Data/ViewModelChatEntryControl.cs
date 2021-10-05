@@ -215,8 +215,8 @@
         {
             var name = this.chatEntry.From;
             var text = string.IsNullOrEmpty(name)
-                           ? this.chatEntry.Message
-                           : string.Format(ChatCopyMessageFormat, name, this.chatEntry.Message);
+                           ? this.chatEntry.ClientGetFilteredMessage()
+                           : string.Format(ChatCopyMessageFormat, name, this.chatEntry.ClientGetFilteredMessage());
 
             Api.Client.Core.CopyToClipboard(text);
         }
@@ -310,14 +310,10 @@
                 inlines.Add(new Run(dispayedName) { FontWeight = FontWeights.SemiBold });
             }
 
-            if (isServiceMessage)
-            {
-                inlines.Add(new Run(this.chatEntry.Message));
-            }
-            else
-            {
-                inlines.Add(new Run(":" + NoBreakSpace + this.chatEntry.Message));
-            }
+            var message = this.chatEntry.ClientGetFilteredMessage();
+            inlines.Add(new Run(isServiceMessage
+                                    ? message
+                                    : ":" + NoBreakSpace + message));
         }
     }
 }

@@ -148,6 +148,9 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 製造
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+修補桌效率 {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 完全修復物品的幾率
 

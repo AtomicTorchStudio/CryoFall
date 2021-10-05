@@ -37,6 +37,8 @@
 
         private bool inputIsUsingItem;
 
+        private PlayerCharacterPrivateState privateState;
+
         private PlayerCharacterPublicState publicState;
 
         public static bool IsMouseWheelReversedDirection { get; set; }
@@ -84,6 +86,7 @@
         protected override void OnEnable()
         {
             this.publicState = ClientCurrentCharacterHelper.PublicState;
+            this.privateState = ClientCurrentCharacterHelper.PrivateState;
             ClientHotbarSelectedItemManager.Init();
 
             this.clientInputContext =
@@ -116,7 +119,8 @@
 
         private void ProcessInputUpdate()
         {
-            if (this.publicState.IsDead)
+            if (this.publicState.IsDead
+                || this.privateState.IsDespawned)
             {
                 // cannot use hotbar items
                 this.InputIsUsingItem = false;

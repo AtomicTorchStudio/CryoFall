@@ -15,7 +15,8 @@
     x:Name="UserControl"
     d:DataContext="{d:DesignInstance data:ViewModelMenuServers, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -262,6 +263,41 @@
                 </Grid>
             </ControlTemplate>
 
+            <ControlTemplate x:Key="PanelDemoVersionNoticeTemplate">
+                <Grid Visibility="{Binding IsDemoVersion, Converter={StaticResource BoolToVisibilityConverter}}"
+                      Margin="-5,10,-5,0">
+                    <Control Style="{StaticResource ControlHorizontalSeparator}"
+                             VerticalAlignment="Top" />
+                    <Border CornerRadius="5"
+                            Background="#BB000000"
+                            Padding="10"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <core:FormattedTextBlock Text="{x:Static loc:CoreStrings.Demo_OnlyOfficialServers}"
+                                                     Foreground="{StaticResource BrushColor7}"
+                                                     FontFamily="{StaticResource CondensedFontFamily}"
+                                                     MaxWidth="400"
+                                                     TextWrapping="Wrap"
+                                                     noesis:Text.StrokeThickness="1"
+                                                     noesis:Text.Stroke="Black" />
+
+                            <Button Grid.Row="1"
+                                    Content="{x:Static loc:CoreStrings.Demo_Button_BuyGameOnSteam}"
+                                    Command="{Binding CommandBuyFullVersion}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,10,0,-5"
+                                    Focusable="False" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+
             <ControlTemplate x:Key="SelectedServerInfoControlTemplate" TargetType="ContentControl">
                 <Border Visibility="{Binding SelectedServerVisibility}">
                     <Grid DataContext="{Binding SelectedServer}"
@@ -463,7 +499,16 @@
                             ServersCount="{Binding ServersCount}"
                             MinWidth="110" />
                     </TabItem.Header>
-                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Control Template="{StaticResource ServersListDataTemplate}" />
+                        <Control Grid.Row="1"
+                                 Template="{StaticResource PanelDemoVersionNoticeTemplate}"
+                                 DataContext="{Binding DataContext, ElementName=UserControl}" />
+                    </Grid>
                 </TabItem>
 
                 <TabItem
@@ -477,7 +522,37 @@
                             ServersCount="{Binding ServersCount}"
                             MinWidth="110" />
                     </TabItem.Header>
-                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Control Template="{StaticResource ServersListDataTemplate}" />
+                        <Control Grid.Row="1"
+                                 Template="{StaticResource PanelDemoVersionNoticeTemplate}"
+                                 DataContext="{Binding DataContext, ElementName=UserControl}" />
+                    </Grid>
+                </TabItem>
+
+                <TabItem
+                    DataContext="{Binding LanServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <servers:ServerTabItemHeaderControl
+                            Text="LAN"
+                            IconImageSource="/UI/Images/Icons/MenuServers/LAN.png"
+                            ServersCount="{Binding ServersCount}" />
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Control Template="{StaticResource ServersListDataTemplate}" />
+                        <Control Grid.Row="1"
+                                 Template="{StaticResource PanelDemoVersionNoticeTemplate}"
+                                 DataContext="{Binding DataContext, ElementName=UserControl}" />
+                    </Grid>
                 </TabItem>
 
                 <TabItem
@@ -488,8 +563,7 @@
                         <servers:ServerTabItemHeaderControl
                             Text="{x:Static loc:CoreStrings.MenuServers_ListTitleRecent}"
                             IconImageSource="/UI/Images/Icons/MenuServers/History.png"
-                            ServersCount="{Binding ServersCount}"
-                            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuServers_ListTitleRecent}" />
+                            ServersCount="{Binding ServersCount}" />
                     </TabItem.Header>
                     <Control Template="{StaticResource ServersListDataTemplate}" />
                 </TabItem>
@@ -523,7 +597,16 @@
                             VisibilityDetails="Collapsed"
                             base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuServers_ListTitleCustom}" />
                     </TabItem.Header>
-                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Control Template="{StaticResource ServersListDataTemplate}" />
+                        <Control Grid.Row="1"
+                                 Template="{StaticResource PanelDemoVersionNoticeTemplate}"
+                                 DataContext="{Binding DataContext, ElementName=UserControl}" />
+                    </Grid>
                 </TabItem>
 
                 <!-- It's a spacer between the left and right parts of the dock panel tabs -->

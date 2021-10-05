@@ -32,6 +32,7 @@
             {
                 PveSystem.ClientIsPvEChanged += SharedRebuildAllNodes;
                 RatePvPTimeGates.ClientValueChanged += SharedRebuildAllNodes;
+                RateStructuresTextSignsAvailable.ClientValueChanged += SharedRebuildAllNodes;
             }
         }
 
@@ -190,7 +191,7 @@
             if (Api.IsClient
                 && !PveSystem.ClientIsPveFlagReceived)
             {
-                AvailableTechGroups = new TechGroup[0];
+                AvailableTechGroups = Array.Empty<TechGroup>();
                 return;
             }
 
@@ -210,7 +211,7 @@
                                         .ThenBy(n => n.Order)
                                         .ThenBy(n => n.ShortId)
                                         .ToList()
-                                      : new TechNode[0];
+                                      : Array.Empty<TechNode>();
 
                 var rootNodes = new List<TechNode>();
                 foreach (var node in techGroup.Nodes)

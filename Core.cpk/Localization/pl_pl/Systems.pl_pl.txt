@@ -439,9 +439,11 @@ Przecina się z inną posiadaną działką
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection:
 Przecina się z inną działką, która jest aktywnie chroniona tarczą. Wyłącz tam najpierw tarczę.
 
-Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Masz już maksymalną liczbę działek.
-[br]Aby uzyskać kolejne, musisz odkryć nowe technologie.`
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitCanIncrease_Format:
+Możesz zwiększyć to ograniczenie, odkrywając technologie dla wyższych poziomów działki (łącznie maks. {0}).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded_Format:
+Wykorzystano już przydzieloną liczbę działek własnych ({0}/{1}).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Musisz rozwinąć Ksenologię do poziomu 3., aby zawłaszczyć złoża ropy/litu lub móc posiadać działkę w ich pobliżu.
@@ -644,6 +646,21 @@ Czyszczenie - informacje
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Witaj na serwerze {0}
 
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerMaintenance:
+Konserwacja serwera.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerRatesChange:
+Wartości na serwerze ulegną zmianie.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerReboot:
+Ponowne uruchomienie serwera
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerUpdate:
+Aktualizacja serwera do najnowszej wersji.
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@Message_ServerWipe:
+Czyszczenie serwera.
+
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `Wyłączenie serwera za {0}.
 [br]
@@ -701,6 +718,9 @@ Niektóre pojazdy znajdują się w garażu. Możesz je pobrać z Fabryki samocho
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
 Pojazdy w garażu
 
+Scripts/Systems/VehicleRepairKitSystem/VehicleRepairKitSystem@NotificationErrorCannotRepairThisVehicle:
+Nie można naprawić tego pojazdu
+
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Brakuje energii.
 
@@ -709,9 +729,6 @@ Nie można użyć: {0}
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
 Już podlane
-
-Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-Roślina jest gotowa do zbioru. Nie ma sensu jej podlewać.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 Podlewać można tylko rośliny hodowlane.

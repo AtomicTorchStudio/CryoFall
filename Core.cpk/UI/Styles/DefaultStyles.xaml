@@ -4,7 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     xmlns:common="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
@@ -51,7 +51,11 @@
     </FontFamily>
 
     <FontFamily x:Key="MonospacedFontFamily">/UI/Fonts/#Ubuntu Mono</FontFamily>
-    <FontFamily x:Key="DigitsFontFamily">/UI/Fonts/#Oswald</FontFamily>
+    <FontFamily x:Key="DigitsFontFamily">
+        <FontFamily.FamilyNames>
+            <x:Static Member="loc:LanguageFonts.FontDigits" />
+        </FontFamily.FamilyNames>
+    </FontFamily>
     <FontFamily x:Key="AsianFontFamily">/UI/Fonts/#Source Han Sans</FontFamily>
     <FontFamily x:Key="WesternDefaultFontFamily">/UI/Fonts/#Roboto</FontFamily>
     <FontFamily x:Key="WesternCondensedFontFamily">/UI/Fonts/#Roboto Condensed</FontFamily>
@@ -362,10 +366,7 @@
     <ImageBrush x:Key="WidgetBackgroundImageTexture"
                 ImageSource="/UI/Images/Backgrounds/WidgetBackground.png"
                 TileMode="Tile"
-                Stretch="Uniform"
-                Viewport="0,0,8,8"
-                Viewbox="0,0,12,12"
-                ViewboxUnits="Absolute"
+                Viewport="6.75,4.75,5.5,5.5"
                 ViewportUnits="Absolute" />
 
     <Brush x:Key="MenuBackgroundBrush">#88000000</Brush>
@@ -2486,102 +2487,6 @@
         <Setter Property="MaxWidth" Value="385" />
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
-    </Style>
-
-    <Style TargetType="{x:Type core:LoadingDisplayControl}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type core:LoadingDisplayControl}">
-                    <Viewbox>
-                        <Viewbox.Resources>
-                            <Storyboard x:Key="StoryboardOnLoaded" RepeatBehavior="Forever">
-                                <DoubleAnimationUsingKeyFrames
-                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
-                                    Storyboard.TargetName="pathSpot">
-                                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
-                                    <EasingDoubleKeyFrame Value="360" KeyTime="0:0:0.75" />
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames
-                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
-                                    Storyboard.TargetName="pathTrail">
-                                    <EasingDoubleKeyFrame Value="0" KeyTime="0" />
-                                    <EasingDoubleKeyFrame Value="360" KeyTime="0:0:0.75" />
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </Viewbox.Resources>
-                        <Viewbox.Triggers>
-                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                                <BeginStoryboard Name="BeginStoryboardName"
-                                                 Storyboard="{StaticResource StoryboardOnLoaded}" />
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="FrameworkElement.Unloaded">
-                                <StopStoryboard BeginStoryboardName="BeginStoryboardName" />
-                            </EventTrigger>
-                        </Viewbox.Triggers>
-
-                        <Grid Width="64" Height="64">
-                            <Path x:Name="pathBg" RenderTransformOrigin="0.5,0.5" Stretch="Uniform">
-                                <Path.Fill>
-                                    <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.45" />
-                                </Path.Fill>
-                                <Path.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform />
-                                        <SkewTransform />
-                                        <RotateTransform Angle="-90" />
-                                        <TranslateTransform />
-                                    </TransformGroup>
-                                </Path.RenderTransform>
-                                <Path.Data>
-                                    <!-- ReSharper disable once ExtractLocalizableStringFromContent -->
-                                    <StreamGeometry>M50,15.5 C30.946177,15.5 15.5,30.946177 15.5,50 15.5,69.053825 30.946177,84.5 50,84.5 69.053825,84.5 84.5,69.053825 84.5,50 84.5,30.946177 69.053825,15.5 50,15.5 z M50,0.5 C77.338097,0.5 99.5,22.661905 99.5,50 99.5,77.338097 77.338097,99.5 50,99.5 22.661905,99.5 0.5,77.338097 0.5,50 0.5,22.661905 22.661905,0.5 50,0.5 z</StreamGeometry>
-                                </Path.Data>
-                            </Path>
-                            <Path x:Name="pathTrail"
-                                  Width="32"
-                                  HorizontalAlignment="Left"
-                                  Data="M32.000438,0 C37.109142,3.5527137E-15 32.384119,9.6643444 32.000587,9.6971674 20.717975,10.662743 10.8449,19.477208 10.408938,31.424923 L10.408938,32.551537 C11.146789,44.73354 19.935294,52.730597 32.000587,54.279289 32.382389,54.328297 37.109142,63.97646 32.000438,63.97646 14.60323,63.97646 0.44853802,50.093597 0.010451286,32.801964 L0.010451286,31.174492 C0.44853802,13.882861 14.60323,3.5527137E-15 32.000438,0 z"
-                                  RenderTransformOrigin="1,0.5" Stretch="Fill">
-                                <Path.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform />
-                                        <SkewTransform />
-                                        <RotateTransform />
-                                        <TranslateTransform />
-                                    </TransformGroup>
-                                </Path.RenderTransform>
-                                <Path.Fill>
-                                    <LinearGradientBrush StartPoint="1,0">
-                                        <GradientStop Offset="1" Color="#00002940" />
-                                        <GradientStop Color="#B233C7FF" />
-                                    </LinearGradientBrush>
-                                </Path.Fill>
-                            </Path>
-                            <Path x:Name="pathSpot"
-                                  Data="M50,15.5 C30.946177,15.5 15.5,30.946177 15.5,50 15.5,69.053825 30.946177,84.5 50,84.5 69.053825,84.5 84.5,69.053825 84.5,50 84.5,30.946177 69.053825,15.5 50,15.5 z M50,0.5 C77.338097,0.5 99.5,22.661905 99.5,50 99.5,77.338097 77.338097,99.5 50,99.5 22.661905,99.5 0.5,77.338097 0.5,50 0.5,22.661905 22.661905,0.5 50,0.5 z"
-                                  RenderTransformOrigin="0.5,0.5" Stretch="Uniform">
-                                <Path.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform />
-                                        <SkewTransform />
-                                        <RotateTransform />
-                                        <TranslateTransform />
-                                    </TransformGroup>
-                                </Path.RenderTransform>
-                                <Path.Fill>
-                                    <RadialGradientBrush GradientOrigin="0.48,0.045" Center="0,0" RadiusX="0.9"
-                                                         RadiusY="0.9">
-                                        <GradientStop Offset="0.138" Color="#000081CC" />
-                                        <GradientStop Color="White" />
-                                        <GradientStop Offset="0.039" Color="#FF80DCFF" />
-                                    </RadialGradientBrush>
-                                </Path.Fill>
-                            </Path>
-                        </Grid>
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="{x:Type core:PanningPanel}">

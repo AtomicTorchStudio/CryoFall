@@ -101,6 +101,9 @@ Réessayer
 UI/CoreStrings@Button_Save:
 Sauvegarder
 
+UI/CoreStrings@Button_StayOffline:
+Rester hors-ligne
+
 UI/CoreStrings@Button_Upgrade:
 Améliorer
 
@@ -344,6 +347,12 @@ Le minuteur de destruction est lancé lorsque la revendication territoriale est 
 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Voulez-vous vraiment utiliser {0} ?
+
+UI/CoreStrings@DialogClearList_Message:
+Souhaitez-vous vraiment effacer cette liste ?
+
+UI/CoreStrings@DialogClearServerList_Title:
+Effacer la liste des serveurs
 
 UI/CoreStrings@DroneControl_MaxSimultaneouslyControlledDrones:
 Drones contrôlés simultanément
@@ -935,6 +944,9 @@ Entrée
 UI/CoreStrings@ItemsContainer_TitleOutput:
 Sortie
 
+UI/CoreStrings@ItemTooltipSolarPanelControl_EstimatedCapacity:
+Capacité estimée
+
 UI/CoreStrings@LandClaimPlacementDisplayHelper_LabelBuffer:
 Zone tampon
 
@@ -958,6 +970,12 @@ Filtres
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 CHARGEMENT
+
+UI/CoreStrings@LocalServerAutosaveDescription:
+Votre progression sera sauvegardée automatiquement (généralement toutes les heures) ainsi que lorsque vous vous déconnectez ou que vous quittez la partie (même en fermant le jeu ou en appuyant sur Alt+F4).
+
+UI/CoreStrings@LocalServerSaveName_Format:
+Partie en local — {0}
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 Connexion
@@ -985,6 +1003,9 @@ ACCUEIL
 
 UI/CoreStrings@MainMenu_TabOptions:
 OPTIONS
+
+UI/CoreStrings@MainMenu_TabPlay:
+JOUER
 
 UI/CoreStrings@MainMenu_TabQuit:
 QUITTER
@@ -1016,14 +1037,44 @@ Choisissez l'origine de votre personnage
 UI/CoreStrings@MenuCharacterCreation_Title:
 Choisissez l'apparence de votre personnage
 
+UI/CoreStrings@MenuCurrentGame_Button_BrowseServerRates:
+Voir les taux de paramétrage
+
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 Déconnexion
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
 Message de bienvenue
 
+UI/CoreStrings@MenuCurrentGame_CurrentServerRates:
+Taux de paramétrage actuels du serveur
+
+UI/CoreStrings@MenuCurrentGame_DisconnectReason:
+Raison de déconnexion :
+
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 Non connecté.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Hint:
+Continuer votre partie en cours.
+
+UI/CoreStrings@MenuGameFinished_ButtonEject_Title:
+S'éjecter et continuer
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Hint:
+Décider plus tard.
+
+UI/CoreStrings@MenuGameFinished_ButtonMainMenu_Title:
+Retour au menu principal
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Hint:
+Garder votre personnage et commencer une nouvelle partie.
+
+UI/CoreStrings@MenuGameFinished_ButtonNewGamePlus_Title:
+Commencer une nouvelle partie +
+
+UI/CoreStrings@MenuGameFinished_DialogNewGamePlus:
+Souhaitez-vous commencer une nouvelle partie en gardant votre personnage existant ? Ce nouveau monde remplacera votre monde actuel.
 
 UI/CoreStrings@MenuHome_Forums:
 Forums
@@ -1045,6 +1096,30 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 UI/CoreStrings@MenuHome_Social:
 Social
 
+UI/CoreStrings@MenuLocalGame_BrowseSavesFolder:
+Parcourir le répertoire des sauvegardes
+
+UI/CoreStrings@MenuLocalGame_Button_CreateNewWorld:
+Créer un nouveau monde
+
+UI/CoreStrings@MenuLocalGame_Button_LoadWorld:
+Charger un monde
+
+UI/CoreStrings@MenuLocalGame_LocalServerRunning:
+Le serveur local est en cours d'utilisation.[br]La partie locale doit être interrompue avant de pouvoir consulter la liste des parties sauvegardées.
+
+UI/CoreStrings@MenuLocalGame_LocalServerShuttingDown:
+Le serveur local est en train de se fermer et de sauvegarder votre progression.[br]Veuillez attendre qu'il ait terminé pour consulter la liste des parties sauvegardées.
+
+UI/CoreStrings@MenuLocalGame_NoSaves:
+Il n'y a pas actuellement de partie sauvegardée pour le serveur local.[br]Vous pouvez créer un nouveau monde.
+
+UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
+Mondes locaux
+
+UI/CoreStrings@MenuLocalGame_TabNewWorld:
+Nouveau monde
+
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Veuillez quitter le jeu, relancer le client Steam, puis relancer le jeu.
 
@@ -1056,6 +1131,12 @@ Souhaitez-vous appliquer les modifications ?
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
 Vous n'avez pas appliqué les modifications
+
+UI/CoreStrings@MenuPlay_TabLocalGame:
+JEU EN LOCAL
+
+UI/CoreStrings@MenuPlay_TabMultiplayer:
+MULTIJOUEUR
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 Souhaitez-vous vraiment quitter ?
@@ -1238,6 +1319,18 @@ UI/CoreStrings@Network_Suggestions:
 [*] Pensez à [b]fermer[/b] les autres applications (en particulier les navigateurs Internet, les clients de torrents et les downloaders).
 [*] Envisagez de passer à une [b]connexion câblée[/b] si vous utilisez le Wi-Fi ou une connexion mobile (les connexions sans fil sont souvent responsables d'instabilités de connexion et de fluctuations de latence).`
 
+UI/CoreStrings@NewWorldControl_CustomizeServerRates:
+Modifier les taux de paramétrage du serveur
+
+UI/CoreStrings@NewWorldControl_CustomPresetDescription:
+Scénario personnalisé
+
+UI/CoreStrings@NewWorldControl_WorldName:
+Nom du monde :
+
+UI/CoreStrings@NewWorldControl_WorldName_Default:
+Nouveau monde
+
 UI/CoreStrings@NicknameOfflinePlayer:
 Hors ligne Zzz...
 
@@ -1261,6 +1354,9 @@ Obstacles !
 
 UI/CoreStrings@Notification_TooFar:
 Trop loin !
+
+UI/CoreStrings@NotificationPlantSpoiled_Message:
+La plante a pourri.
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 Mode d'accès actuel
@@ -1514,6 +1610,27 @@ PRÊT
 UI/CoreStrings@QuestionAreYouSure:
 Confirmer ?
 
+UI/CoreStrings@RatesEditorControl_AdvancedRatesVisibleCheckbox:
+Afficher les taux de paramétrage avancés
+
+UI/CoreStrings@RatesEditorControl_DefaultRateValueFormat:
+Par défaut : {0}
+
+UI/CoreStrings@RatesEditorControl_LocalServerRatesDescription:
+Tous les serveurs locaux proposent par défaut des taux de paramétrage adaptés pour offrir une jouabilité optimale sur un serveur qui ne fonctionne pas en continu (contrairement aux serveurs multijoueurs qui tournent 24/7). Par exemple, les plantes poussent plus vite, les panneaux solaires génèrent plus d'électricité, les évènements se déclenchent plus souvent, etc.
+
+UI/CoreStrings@RatesEditorControl_ModifiedRates:
+Taux de paramétrage modifiés
+
+UI/CoreStrings@RatesEditorControl_ResetRange:
+Revenir à des taux raisonnables
+
+UI/CoreStrings@RatesEditorControl_UnlockRange:
+Déverrouiller les taux étendus
+
+UI/CoreStrings@RatesEditorControl_UnmodifiedRates:
+Taux de paramétrage inchangés
+
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
 Réaffectation d'une touche
 
@@ -1648,7 +1765,7 @@ UI/CoreStrings@ShieldProtection_NotAvailableInsideAnotherBase:
 Le bouclier de protection contre les raids en période de hors-ligne n'est pas disponible pour cette revendication territoriale, car elle est pleinement à l'intérieur d'une autre base protégée par son propre bouclier.
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Message_Format:
-Le bouclier deviendra actif dans {0} si le processus n'est pas interrompu (annulation par le propriétaire de la base ou par un blocus de raid).
+Le bouclier deviendra actif dans {0} si le processus n'est pas interrompu, notamment par une annulation par le propriétaire de la base ou par la destruction d'une structure lors d'un raid (un blocus de raid ne suffit pas).
 
 UI/CoreStrings@ShieldProtection_NotificationBaseActivatingShield_Title:
 Cette base est en train d'activer un bouclier de protection.
@@ -1815,8 +1932,14 @@ Connexion...
 UI/CoreStrings@TitleDestructionTimeout:
 Délai de destruction
 
+UI/CoreStrings@TitleDisabled:
+Sans
+
 UI/CoreStrings@TitleDurability:
 Durabilité
+
+UI/CoreStrings@TitleEnabled:
+Avec
 
 UI/CoreStrings@TitleEnergyCharge:
 Charge
@@ -2059,6 +2182,9 @@ Progression :
 UI/CoreStrings@WindowCompletionist_TabCreatures:
 Créatures
 
+UI/CoreStrings@WindowCompletionist_TabEvents:
+Évènements
+
 UI/CoreStrings@WindowCompletionist_TabFish:
 Poissons
 
@@ -2195,6 +2321,24 @@ Améliorer cette structure nécessite d'apprendre la technologie adéquate.
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 Requis
+
+UI/CoreStrings@WindowLaunchpad_ButtonCompleteTask:
+Terminer
+
+UI/CoreStrings@WindowLaunchpad_CanContinuePlaying:
+Vous aurez la possibilité de continuer à jouer après avoir lancé la fusée si vous le souhaitez.
+
+UI/CoreStrings@WindowLaunchpad_CompletedTaskLabel:
+Terminé
+
+UI/CoreStrings@WindowLaunchpad_Launchpad:
+Lancement !
+
+UI/CoreStrings@WindowLaunchpad_ResetLaunchpad:
+Réinitialiser la base de lancement
+
+UI/CoreStrings@WindowLaunchpad_RocketLaunchedByPlayer_Format:
+La fusée a été lancée par {0}.
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
 Recette correspondant le mieux
@@ -2422,7 +2566,16 @@ UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 [br]Le gain de PA est directement proportionnel au
 [br]gain d'expérience dans chaque compétence.`
 
+UI/CoreStrings@WindowTinkerTable_Button_Disassemble:
+Démonter
+
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Réparer
+
+UI/CoreStrings@WindowTinkerTable_TabDisassembly:
+Démontage
+
+UI/CoreStrings@WindowTinkerTable_TabRepair:
 Réparer
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
@@ -2487,9 +2640,6 @@ Il y a {0} heures
 
 UI/CoreStrings@WipedDate_JustWiped:
 Récemment effacé
-
-UI/CoreStrings@WipedDate_Yesterday:
-Hier
 
 UI/CoreStrings@WipeInfoEditor_WipeManual:
 `Attention : l'effacement ne se fera pas automatiquement !
@@ -2590,6 +2740,9 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
 Tué pour la première fois
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_EventParticipated_MessageFormat:
+Première participation
 
 UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FishDiscovered_MessageFormat:
 Poisson attrapé pour la première fois.
@@ -2819,6 +2972,9 @@ IV
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierEscape:
+Décollage
+
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 Rang {0}
 
@@ -2890,6 +3046,12 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Génération de courant {0} UE/s.
 [br]Puissance maximale {1} UE/s.`
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogNoChangesMade:
+Aucune modification effectuée.
+
+UI/Controls/Menu/CurrentGame/Data/ClientCurrentGameServerRatesEditorHelper@DialogServerRebootNecessary:
+Pour appliquer les modifications de taux de paramétrage du serveur, il est nécessaire de sauvegarder le serveur, puis de l'arrêter et de le recharger. Le redémarrage du serveur peut prendre un certain temps.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
 Modifiez l'apparence de votre personnage et utilisez un vaste choix d'équipements et d'outils pour vous différencier des autres.
@@ -3096,12 +3258,6 @@ Le serveur n'est pas accessible.
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
 Serveur hors ligne
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-Souhaitez-vous vraiment effacer cette liste de serveurs ?
-
-UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-Effacer la liste de serveurs
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 Veuillez patienter pendant l'acquisition des infos du serveur.

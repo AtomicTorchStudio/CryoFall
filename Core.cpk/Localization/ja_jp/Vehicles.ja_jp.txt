@@ -22,6 +22,12 @@ Scripts/Vehicles/VehicleMechManul@Description:
 Scripts/Vehicles/VehicleMechManul@Name:
 マヌル
 
+Scripts/Vehicles/VehicleMechNemesis@Description:
+メカアーマーの実験的デザイン。構造物ダメージを自動的に修復する機能や、強力な新型武器を備えています。
+
+Scripts/Vehicles/VehicleMechNemesis@Name:
+ネメシス
+
 Scripts/Vehicles/VehicleMechSkipper@Description:
 軽量化したメカアーマー。防御力や火力に欠けることなく、比較的速い速度を誇ります。
 
@@ -60,4 +66,7 @@ Scripts/Vehicles/Base/VehicleWeaponHardpoint@Normal:
 
 Scripts/Vehicles/Base/VehicleWeaponHardpoint@Large:
 大型
+
+Scripts/Vehicles/Base/VehicleWeaponHardpoint@Exotic:
+新型
 

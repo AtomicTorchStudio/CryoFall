@@ -10,7 +10,7 @@
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:electricityRequirements="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ElectricityRequirements"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowSprinkler, IsDesignTimeCreatable=True}">

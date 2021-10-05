@@ -9,6 +9,7 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Launchpad.Data"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:launchpad="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Launchpad"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowLaunchpad, IsDesignTimeCreatable=True}">
@@ -35,21 +36,22 @@
                     Visibility="{Binding IsLaunched, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                     Orientation="Vertical">
                     <Button Command="{Binding CommandLaunchRocket}"
-                            IsEnabled="False"
                             Content="{x:Static loc:CoreStrings.WindowLaunchpad_Launchpad}"
+                            IsEnabled="False"
                             Focusable="False"
                             Padding="28,16"
                             FontSize="22" />
                     
-                    <TextBlock Text="The launch function is coming soon! (before R31 Update release)" 
+                    <TextBlock Text="The launch function is coming soon! (before R31 Update release)"
                                FontFamily="{StaticResource CondensedFontFamily}"
                                FontSize="13"
                                FontWeight="Bold"
                                Foreground="{StaticResource BrushColor6}"
                                TextWrapping="Wrap"
                                Margin="0,25,0,0" />
-                    
+
                     <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
                                 Margin="0,25,0,0">
                         <Control Style="{StaticResource ControlInfoPointStyle}"
                                  Width="11"
@@ -86,83 +88,161 @@
                 </StackPanel>
             </Grid>
 
-            <ItemsControl Grid.Row="1"
-                          ItemsSource="{Binding Tasks}"
-                          Visibility="{Binding Tasks, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
-                <ItemsControl.LayoutTransform>
-                    <ScaleTransform ScaleX="0.8"
-                                    ScaleY="0.8" />
-                </ItemsControl.LayoutTransform>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical"
-                                    Width="216">
-                            <TextBlock Text="{Binding Name}"
-                                       TextTrimming="None"
-                                       TextWrapping="Wrap"
-                                       FontSize="16"
-                                       LineHeight="16"
-                                       LineStackingStrategy="BlockLineHeight"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource BrushColor6}"
-                                       FontFamily="{StaticResource CondensedFontFamily}"
-                                       HorizontalAlignment="Center"
-                                       TextAlignment="Center" />
-
-                            <!-- Big icon (structure preview) -->
-                            <Rectangle
-                                Fill="{Binding Icon}"
-                                Width="180"
-                                Height="180"
-                                UseLayoutRounding="True"
-                                HorizontalAlignment="Center"
-                                Margin="0,15" />
-
-                            <Grid HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Margin="0,5">
-                                <TextBlock Text="{x:Static loc:CoreStrings.WindowLaunchpad_CompletedTaskLabel}"
-                                           Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}}"
-                                           Foreground="{StaticResource BrushColorGreen6}"
-                                           FontFamily="{StaticResource CondensedFontFamily}"
+            <ContentControl Grid.Row="1"
+                            Visibility="{Binding IsUpgradeAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                <ItemsControl ItemsSource="{Binding Tasks}"
+                              Visibility="{Binding Tasks, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                    <ItemsControl.LayoutTransform>
+                        <ScaleTransform ScaleX="0.8"
+                                        ScaleY="0.8" />
+                    </ItemsControl.LayoutTransform>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical"
+                                        Width="216">
+                                <TextBlock Text="{Binding Name}"
+                                           TextTrimming="None"
+                                           TextWrapping="Wrap"
                                            FontSize="16"
+                                           LineHeight="16"
+                                           LineStackingStrategy="BlockLineHeight"
                                            FontWeight="Bold"
+                                           Foreground="{StaticResource BrushColor6}"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
                                            HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
+                                           TextAlignment="Center" />
 
-                                <Button Content="{x:Static loc:CoreStrings.WindowLaunchpad_ButtonCompleteTask}"
-                                        Command="{Binding CommandComplete}"
-                                        Visibility="{Binding IsCompleted, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
-                                        Focusable="False"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-                                    <Button.LayoutTransform>
-                                        <ScaleTransform ScaleX="1.25"
-                                                        ScaleY="1.25" />
-                                    </Button.LayoutTransform>
-                                </Button>
-                            </Grid>
+                                <!-- Big icon (structure preview) -->
+                                <Rectangle
+                                    Fill="{Binding Icon}"
+                                    Width="180"
+                                    Height="180"
+                                    UseLayoutRounding="True"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,15" />
 
-                            <controls:RequiredItemsPanelControl
-                                MaxWidth="340"
-                                Items="{Binding InputItems}"
-                                Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                MinSlotsCount="1"
-                                IsChecksItemAvailability="True"
-                                FontSize="13"
-                                HorizontalAlignment="Center"
-                                Margin="0,10,0,0" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                <Grid HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Margin="0,5">
+                                    <TextBlock Text="{x:Static loc:CoreStrings.WindowLaunchpad_CompletedTaskLabel}"
+                                               Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}}"
+                                               Foreground="{StaticResource BrushColorGreen6}"
+                                               FontFamily="{StaticResource CondensedFontFamily}"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+
+                                    <Button Content="{x:Static loc:CoreStrings.WindowLaunchpad_ButtonCompleteTask}"
+                                            Command="{Binding CommandComplete}"
+                                            Visibility="{Binding IsCompleted, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
+                                            Focusable="False"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                        <Button.LayoutTransform>
+                                            <ScaleTransform ScaleX="1.25"
+                                                            ScaleY="1.25" />
+                                        </Button.LayoutTransform>
+                                    </Button>
+                                </Grid>
+
+                                <controls:RequiredItemsPanelControl
+                                    MaxWidth="340"
+                                    Items="{Binding InputItems}"
+                                    Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                    MinSlotsCount="1"
+                                    IsChecksItemAvailability="True"
+                                    FontSize="13"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,10,0,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ContentControl>
+
+            <Grid Grid.Row="1"
+                  Visibility="{Binding IsUpgradeAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Grid.Resources>
+                    <Style x:Key="TextBlockTitleStyle" TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="TextDecorations" Value="Underline" />
+                        <Setter Property="noesis:Text.Stroke" Value="#BB000000" />
+                        <Setter Property="noesis:Text.StrokeThickness" Value="1.5" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="Margin" Value="0,0,0,5" />
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <TextBlock Grid.Row="0"
+                           Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Title}"
+                           Style="{StaticResource TextBlockTitleStyle}"
+                           HorizontalAlignment="Center" />
+
+                <!-- Big icon (structure preview) -->
+                <Rectangle
+                    Grid.Row="1"
+                    Fill="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Icon}"
+                    Width="192"
+                    Height="192"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,5,0,10" />
+
+                <Border Grid.Row="2"
+                        Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Padding="2"
+                        CornerRadius="3"
+                        BorderThickness="1"
+                        HorizontalAlignment="Center"
+                        Margin="-10,0,-10,10">
+                    <Border.Background>
+                        <SolidColorBrush Color="{StaticResource Color1}" Opacity="0.3" />
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{StaticResource Color6}" Opacity="0.3" />
+                    </Border.BorderBrush>
+                    <!-- Text: Upgrading this structure requires learning relevant technology. -->
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingRequiresLearningTech}"
+                        Foreground="{StaticResource BrushColor6}"
+                        FontWeight="Bold"
+                        FontSize="11"
+                        HorizontalAlignment="Center"
+                        Margin="3,0"
+                        TextWrapping="Wrap"
+                        MaxWidth="200" />
+                </Border>
+
+                <Button Grid.Row="3"
+                        Command="{Binding CommandLaunchUpgradeToNextStage}"
+                        IsEnabled="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolReverseConverter}}"
+                        Content="{x:Static loc:CoreStrings.Button_Upgrade}"
+                        Focusable="False"
+                        Padding="20,8"
+                        FontSize="16" />
+            </Grid>
         </Grid>
     </core:GameWindow>
 </core:BaseUserControlWithWindow>

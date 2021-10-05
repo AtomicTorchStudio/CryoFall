@@ -102,9 +102,6 @@ Araç bilgisi gecikme
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI ölçeği
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-Ortam aydınlatması
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 Hiçbiri
 

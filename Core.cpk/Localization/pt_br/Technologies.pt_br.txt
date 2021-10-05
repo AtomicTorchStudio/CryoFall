@@ -58,6 +58,12 @@ As armas de energia representam um novo salto tecnológico em relação às arma
 Scripts/Technologies/Base/TechGroupsLocalization@EnergyWeaponsName:
 Armas de energia
 
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeDescription:
+As tecnologias necessárias para enfim fugir deste mundo!
+
+Scripts/Technologies/Base/TechGroupsLocalization@EscapeName:
+Fugir!
+
 Scripts/Technologies/Base/TechGroupsLocalization@ExoticWeaponsDescription:
 Armas experimentais raramente utilizadas em combate convencional, mas que podem se mostrar úteis em situações extremas.
 

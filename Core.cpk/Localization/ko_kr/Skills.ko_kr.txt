@@ -148,6 +148,9 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 제작
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+수리공 탁자 기본 효율성 {0}%
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 아이템 완전 수리 확률
 

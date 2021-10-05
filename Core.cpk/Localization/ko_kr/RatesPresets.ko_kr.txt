@@ -1,0 +1,24 @@
+﻿Scripts/RatesPresets/RatesPresetLocalServerEasy@Description:
+낙원에서 삶을 즐겨보십시오! 자신에게 맞는 속도로 세계를 탐험하고, 기술을 발전해 나아가십시오. 무리한 도전 없이 게임에 마련된 기능을 맛보고 싶은 플레이어에게 딱 맞습니다. 하지만 이곳이 아무리 낙원이더라도 전진하기 위해서는 여전히 투쟁이 필요합니다!
+
+Scripts/RatesPresets/RatesPresetLocalServerEasy@Name:
+낙원
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Description:
+사방 천지 만물이 플레이어의 목숨을 노리는 세상에 온 것을 환영합니다. 이 설정은 표준 생존 게임 모드와 유사한 규칙을 제공하지만, 특히 게임의 막바지에 더 큰 상금과 보상을 원하는, 경험이 풍부한 플레이어를 위해 추가적인 도전이 준비되어 있습니다.
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Name:
+하드코어
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Description:
+로컬 서버에서의 솔로 플레이에 적합한, 균형 잡힌 난이도의 표준 게임 규칙. CryoFall을 처음 플레이하신다면, 이 규칙으로 플레이하시는 것이 좋습니다.
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Name:
+생존
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Description:
+설정 변경이 적용되지 않는 표준 멀티플레이어 설정. 이것이 바로 멀티플레이에서 플레이하는 방법입니다.
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Name:
+표준 멀티플레이어
+

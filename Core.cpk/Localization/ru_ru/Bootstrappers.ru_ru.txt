@@ -1,4 +1,7 @@
-﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_CanPlayOnLocalServer_Message:
+Локальная игра доступна, даже если вы не в сети.
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
 `Не удалось подключиться к мастер-серверу.
 [br]Убедитесь, что вы подключены к сети и что ваш файервол
 [br]или провайдер не блокируют ваше подключение.`

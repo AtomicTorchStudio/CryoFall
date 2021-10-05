@@ -2,16 +2,34 @@
 `Na powierzchnię wyszła Królowa pragmium.
 [br]Na najdzielniejszych bohaterów czekają cenne łupy!`
 
+Scripts/Events/EventBossPragmiumQueen@Name:
+Królowa pragmium
+
 Scripts/Events/EventBossSandTyrant@Description:
 `Na powierzchni pojawił się Piaskowy tyran.
 [br]Cenny łup czeka na najodważniejszych ocalałych!`
+
+Scripts/Events/EventBossSandTyrant@Name:
+Piaskowy tyran
+
+Scripts/Events/EventFishingBlueGlider@Name:
+Niebieski pływacz
 
 Scripts/Events/EventMeteoriteDrop@Description:
 `Na zaznaczony obszar mapy spadł deszcz meteorów.
 [br]Biegnij tam i zdobądź rzadkie minerały!`
 
-Scripts/Events/EventMigration@Description:
+Scripts/Events/EventMeteoriteDrop@Name:
+Meteoryt
+
+Scripts/Events/EventMigrationFloater@Description:
 Rdzenne formy życia migrują do innych obszarów – to świetna okazja na polowanie.
+
+Scripts/Events/EventMigrationFloater@Name:
+Migracja Pływacza
+
+Scripts/Events/EventMigrationThumper@Name:
+Migracja Tratownika
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
 Ważne: broń palna jest bezużyteczna – użyj broni ręcznej lub termicznej.
@@ -19,9 +37,15 @@ Ważne: broń palna jest bezużyteczna – użyj broni ręcznej lub termicznej.
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Na terenach górskich pojawił się dziwny obcy twór, który spowodował, że poszukiwania są prawie niemożliwe, ale jest to też świetna okazja do pozyskania rzadkich zasobów.
 
+Scripts/Events/EventPsiGroveInfestation@Name:
+Zarażenie Drzew psi
+
 Scripts/Events/EventSpaceDrop@Description:
 `Na zaznaczony obszar mapy spadły kosmiczne śmieci.
 [br]Biegnij tam i zdobądź rzadkie przedmioty!`
+
+Scripts/Events/EventSpaceDrop@Name:
+Kosmiczne śmieci
 
 Scripts/Events/Base/ProtoEventBoss@Notification_VictoryAnnouncement_Format:
 {0} – pokonano przez:

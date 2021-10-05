@@ -102,9 +102,6 @@ Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI縮放
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
-環境光散射
-
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 無
 

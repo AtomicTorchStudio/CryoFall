@@ -16,8 +16,6 @@
 
     public class ComponentPlayerInputUpdater : ClientComponent
     {
-        private const bool IsAllowMovementWithOpenedWindow = true;
-
         private static readonly IClientStorage StorageRunMode
             = Client.Storage.GetStorage("Gameplay/RunToggle");
 
@@ -52,15 +50,19 @@
         [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
         private static bool CheckIsInputSuppressed()
         {
-            if (ClientCurrentCharacterHelper.PublicState?.IsDead ?? true)
+            var privateState = ClientCurrentCharacterHelper.PrivateState;
+            var publicState = ClientCurrentCharacterHelper.PublicState;
+
+            if (privateState is null
+                || publicState is null
+                || privateState.IsDespawned
+                || publicState.IsDead)
             {
-                // dead character
+                // despawned/dead character
                 return true;
             }
 
-            if (ClientCurrentCharacterHelper.PrivateState?
-                    .CurrentActionState?.IsBlocksMovement
-                ?? false)
+            if (privateState.CurrentActionState?.IsBlockingMovement ?? false)
             {
                 // current action blocks input
                 return true;
@@ -69,13 +71,6 @@
             if (!MainMenuOverlay.IsHidden)
             {
                 // main menu displayed - suppress input
-                return true;
-            }
-
-            if (!IsAllowMovementWithOpenedWindow
-                && WindowsManager.OpenedWindowsCount > 1)
-            {
-                // any window opened and we don't allow movement with the opened window
                 return true;
             }
 

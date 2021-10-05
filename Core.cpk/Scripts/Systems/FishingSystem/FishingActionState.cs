@@ -42,7 +42,7 @@
 
         public Vector2D FishingTargetPosition { get; }
 
-        public override bool IsBlocksMovement => true;
+        public override bool IsBlockingMovement => true;
 
         public override bool IsDisplayingProgress => false;
 

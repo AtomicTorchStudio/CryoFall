@@ -262,7 +262,7 @@
         public void Toggle()
         {
             if (this.state
-                    is GameWindowState.Opened 
+                    is GameWindowState.Opened
                     or GameWindowState.Opening)
             {
                 this.Close(DialogResult.Cancel);
@@ -283,8 +283,8 @@
             var templateRoot = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
             this.windowChrome = templateRoot.GetByName<FrameworkElement>("WindowChrome");
             this.layoutRoot = templateRoot.GetByName<Grid>("LayoutRoot");
-            this.storyboardOpen = (Storyboard)this.Template.Resources["StoryboardOpen"];
-            this.storyboardClose = (Storyboard)this.Template.Resources["StoryboardClose"];
+            this.storyboardOpen = ((Storyboard)this.Template.Resources["StoryboardOpen"]).Clone();
+            this.storyboardClose = ((Storyboard)this.Template.Resources["StoryboardClose"]).Clone();
 
             this.WindowName = this.Parent?.GetType().Name ?? "noname";
 

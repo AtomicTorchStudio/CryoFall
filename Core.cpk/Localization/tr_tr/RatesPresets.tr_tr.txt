@@ -1,0 +1,24 @@
+﻿Scripts/RatesPresets/RatesPresetLocalServerEasy@Description:
+Cennetteki hayatının tadını çıkar! Dünyayı dilediğin gibi keşfet ve teknolojik ilerlemenin tadını çıkar. Ciddi zorluklar olmadan oyunun nasıl olduğunu görmek isteyen oyunculara uygundur. Ama yine de belli miktarda mücadele gerektirir!
+
+Scripts/RatesPresets/RatesPresetLocalServerEasy@Name:
+Cennet
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Description:
+Her şeyin seni öldürmek istediği dünyaya hoş geldin. Bu seçenek, standart hayatta kalma moduyla benzer kurallar sunar ama daha yüksek risk, daha yüksek ödül seven tecrübeli oyunculara uygundur. Özellikle de oyun sonunda.
+
+Scripts/RatesPresets/RatesPresetLocalServerHardcore@Name:
+Aşırı
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Description:
+Yerel sunucuda tek oyunculu tecrübeye uygun, dengeli zorluğa sahip ve standart kurallara sahip seçenek. CryoFall'u ilk kez oynuyorsanız bu kural seçenekleri önerilen seçimlerdir.
+
+Scripts/RatesPresets/RatesPresetLocalServerNormal@Name:
+Hayatta Kalma
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Description:
+Hiçbir oranın değiştirilmediği standart çoklu oyuncu ayarları. Oyunun çoklu oyuncudaki standart ayarı budur.
+
+Scripts/RatesPresets/RatesPresetVanillaMultiplayer@Name:
+Sıradan çoklu oyuncu
+

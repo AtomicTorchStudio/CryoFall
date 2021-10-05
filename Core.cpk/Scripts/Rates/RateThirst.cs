@@ -5,7 +5,7 @@ namespace AtomicTorch.CBND.CoreMod.Rates
     public class RateThirst
         : BaseRateDouble<RateThirst>
     {
-        [NotLocalizable] 
+        [NotLocalizable]
         public override string Description =>
             @"Water consumption speed multiplier for thirst mechanic.
               By default the game will consume 100 water points in 1 hour,

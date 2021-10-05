@@ -148,6 +148,9 @@ Produzir itens cada vez mais complexos e entender a estrutura deles é uma boa m
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Produção
 
+Scripts/Skills/Skills/Technical/SkillMaintenance@BaseTinkerTableBonus_TextFormat:
+{0}% de eficácia base da bancada de trabalhos manuais
+
 Scripts/Skills/Skills/Technical/SkillMaintenance@Flags.ChanceToRepairCompletely:
 Chance de reparar item por completo
 
