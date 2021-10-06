@@ -568,6 +568,13 @@
                           && !isReloadingNow
                           && protoWeapon.SharedCanFire(character, state);
 
+            if (canFire
+                && !character.IsNpc
+                && (PlayerCharacter.GetPrivateState(character).CurrentActionState?.IsBlockingActions ?? false))
+            {
+                canFire = false;
+            }
+
             // perform the perk check to ensure scenarios when player cannot fire (such as a medical cooldown)
             if (canFire
                 && !character.IsNpc

@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data
+﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data
 {
     using System;
     using System.Windows.Media;

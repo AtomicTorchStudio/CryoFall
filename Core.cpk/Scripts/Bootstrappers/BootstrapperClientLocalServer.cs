@@ -20,8 +20,8 @@
             if (Client.LocalServer.Status
                     is LocalServerStatus.Stopped
                     or LocalServerStatus.Crashed
-                && Client.CurrentGame.ServerInfo is not null
-                && Client.CurrentGame.ServerInfo.ServerAddress.IsLocalServer)
+                && (Client.CurrentGame.ServerInfo is null
+                    || Client.CurrentGame.ServerInfo.ServerAddress.IsLocalServer))
             {
                 // stop connection attempts (to not stuck on the loading splash screen)
                 Client.CurrentGame.Disconnect();

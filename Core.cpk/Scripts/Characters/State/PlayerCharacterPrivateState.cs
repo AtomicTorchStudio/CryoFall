@@ -90,6 +90,13 @@
         public bool IsDespawned { get; set; }
 
         /// <summary>
+        /// This property determines whether the character is currently in outer space.
+        /// Used together with the IsDespawned property.
+        /// </summary>
+        [SyncToClient]
+        public bool IsEscapedOnRocket { get; set; }
+
+        /// <summary>
         /// This is an AFK Mode flag which is activated when player is inactive for a while.
         /// </summary>
         [SyncToClient]

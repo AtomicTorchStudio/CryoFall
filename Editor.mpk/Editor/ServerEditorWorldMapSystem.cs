@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.WorldDiscovery;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     /// <summary>

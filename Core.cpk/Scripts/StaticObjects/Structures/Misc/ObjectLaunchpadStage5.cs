@@ -10,11 +10,11 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.EndGame;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -121,7 +121,7 @@
                                      > launchTime + RocketLaunchAnimationTotalDuration;
         }
 
-        public void ClientLaunchRocket(IStaticWorldObject objectLaunchpad)
+        public async void ClientLaunchRocket(IStaticWorldObject objectLaunchpad)
         {
             this.VerifyGameObject(objectLaunchpad);
             var character = ClientCurrentCharacterHelper.Character;
@@ -137,7 +137,20 @@
             }
 
             Logger.Important("Launching the rocket: " + objectLaunchpad);
-            this.CallServer(_ => _.ServerRemote_LaunchRocket(objectLaunchpad));
+            var isLaunched = await this.CallServer(_ => _.ServerRemote_LaunchRocket(objectLaunchpad));
+
+            if (!isLaunched)
+            {
+                return;
+            }
+
+            PlayerCharacter.GetPrivateState(character)
+                           .SetCurrentActionState(new CharacterLaunchpadEscapeAction(character,
+                                                      RocketLaunchAnimationTotalDuration));
+
+            // show the menu a bit earlier (by fade in duration) than the character will be despawned by server
+            ClientTimersSystem.AddAction(RocketLaunchAnimationTotalDuration - 2.0,
+                                         () => MenuEndGame.IsDisplayed = true);
         }
 
         public void ClientResetLaunchpad(IStaticWorldObject objectLaunchpad)
@@ -293,33 +306,44 @@
         }
 
         [RemoteCallSettings(timeInterval: 1)]
-        private void ServerRemote_LaunchRocket(IStaticWorldObject objectLaunchpad)
+        private bool ServerRemote_LaunchRocket(IStaticWorldObject objectLaunchpad)
         {
             this.VerifyGameObject(objectLaunchpad);
             var character = ServerRemoteContext.Character;
             if (!this.SharedCanInteract(character, objectLaunchpad, writeToLog: true))
             {
-                return;
+                return false;
             }
 
-            var publicState = GetPublicState(objectLaunchpad);
-            if (publicState.LaunchServerFrameTime > 0)
+            var launchpadPublicState = GetPublicState(objectLaunchpad);
+            if (launchpadPublicState.LaunchServerFrameTime > 0)
             {
                 // already launched
-                return;
+                return false;
             }
 
             Logger.Important("Launching the rocket: " + objectLaunchpad, character);
-            publicState.LaunchServerFrameTime = Server.Game.FrameTime;
-            publicState.LaunchedByPlayerName = character.Name;
+            launchpadPublicState.LaunchServerFrameTime = Server.Game.FrameTime;
+            launchpadPublicState.LaunchedByPlayerName = character.Name;
 
+            var characterPrivateState = PlayerCharacter.GetPrivateState(character);
+            characterPrivateState.IsEscapedOnRocket = true;
+            characterPrivateState.SetCurrentActionState(
+                new CharacterLaunchpadEscapeAction(character,
+                                                   RocketLaunchAnimationTotalDuration));
+
+            // teleport the character in the center of the launchpad
+            Server.World.SetPosition(character,
+                                     objectLaunchpad.TilePosition.ToVector2D()
+                                     + this.Layout.Center);
+
+            // add achievement after the delay
             ServerTimersSystem.AddAction(
                 RocketLaunchAnimationStartDelay + 5,
                 () => character.SharedGetAchievements()
                                .ServerTryAddAchievement(Api.GetProtoEntity<AchievementCompleteTheGame>(),
                                                         isUnlocked: true));
-
-            CharacterDespawnSystem.DespawnCharacter(character);
+            return true;
         }
 
         [RemoteCallSettings(timeInterval: 1)]

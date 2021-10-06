@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.EndGame;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelWindowRespawn : BaseViewModel
@@ -68,6 +69,8 @@
         public bool IsRegularDeath { get; private set; }
 
         public bool IsRespawnButtonsEnabled { get; private set; }
+
+        public bool IsVisible { get; set; }
 
         public string Message { get; private set; } = CoreStrings.WindowRespawn_Message;
 
@@ -168,9 +171,18 @@
             this.callbackRefreshHeght();
         }
 
-        // should be called only when the damage sources list is processed
         private async void RefreshMessage()
         {
+            if (ClientCurrentCharacterHelper.PrivateState.IsEscapedOnRocket)
+            {
+                MenuEndGame.IsDisplayed = true;
+                this.IsDespawned = true;
+                this.IsVisible = false;
+                return;
+            }
+
+            this.IsVisible = true;
+
             if (CharacterDespawnSystem.ClientIsDespawned)
             {
                 this.IsDespawned = true;

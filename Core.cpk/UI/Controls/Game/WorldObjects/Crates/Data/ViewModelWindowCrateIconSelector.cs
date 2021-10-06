@@ -6,6 +6,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;

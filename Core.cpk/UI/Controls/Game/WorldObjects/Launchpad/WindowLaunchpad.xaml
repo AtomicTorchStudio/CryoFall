@@ -37,18 +37,9 @@
                     Orientation="Vertical">
                     <Button Command="{Binding CommandLaunchRocket}"
                             Content="{x:Static loc:CoreStrings.WindowLaunchpad_Launchpad}"
-                            IsEnabled="False"
                             Focusable="False"
                             Padding="28,16"
                             FontSize="22" />
-                    
-                    <TextBlock Text="The launch function is coming soon! (before R31 Update release)"
-                               FontFamily="{StaticResource CondensedFontFamily}"
-                               FontSize="13"
-                               FontWeight="Bold"
-                               Foreground="{StaticResource BrushColor6}"
-                               TextWrapping="Wrap"
-                               Margin="0,25,0,0" />
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"

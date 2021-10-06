@@ -7,7 +7,13 @@
     {
         event Action<double> ProgressPercentsChanged;
 
+        bool IsBlockingActions { get; }
+
         bool IsBlockingMovement { get; }
+
+        // For mods compatibility
+        [Obsolete("Use IsBlockingMovement instead")]
+        bool IsBlocksMovement { get; }
 
         bool IsCancelled { get; }
 

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Data.Items;

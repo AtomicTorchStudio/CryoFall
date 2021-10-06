@@ -18,8 +18,10 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
@@ -298,9 +300,14 @@
 
             if (character.IsCurrentClientCharacter)
             {
-                GetPrivateState(character).ClientSubscribe(_ => _.IsDespawned,
-                                                           DeathOrDespawnedStateChangedHandler,
-                                                           clientState);
+                var privateState = GetPrivateState(character);
+                privateState.ClientSubscribe(_ => _.IsDespawned,
+                                             DeathOrDespawnedStateChangedHandler,
+                                             clientState);
+
+                privateState.ClientSubscribe(_ => _.IsEscapedOnRocket,
+                                             DeathOrDespawnedStateChangedHandler,
+                                             clientState);
             }
 
             RefreshCurrentSelectedItem();
@@ -464,7 +471,14 @@
             // re-select hotbar slot
             SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
 
-            character.ProtoGameObject.ServerSetUpdateRate(character, isRare: !character.ServerIsOnline);
+            character.ProtoGameObject.ServerSetUpdateRate(character,
+                                                          isRare: !character.ServerIsOnline);
+
+            if (privateState.IsEscapedOnRocket)
+            {
+                // ensure the character is despawned
+                CharacterDespawnSystem.DespawnCharacter(character);
+            }
         }
 
         protected override void ServerInitializeCharacterFirstTime(ServerInitializeData data)
@@ -603,6 +617,12 @@
                     && GetPrivateState(character).IsDespawned))
             {
                 // do not create any physics for dead/despawned character
+                return;
+            }
+
+            if (publicState.CurrentPublicActionState is CharacterLaunchpadEscapeAction.PublicState)
+            {
+                // do not create any physics for the character with rocket escape animation
                 return;
             }
 

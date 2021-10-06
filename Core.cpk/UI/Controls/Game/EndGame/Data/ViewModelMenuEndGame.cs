@@ -26,6 +26,7 @@
 
         private static void ExecuteCommandEject()
         {
+            ToolTipServiceExtend.CloseOpenedTooltip();
             CharacterRespawnSystem.Instance.ClientRequestRespawnInWorld();
         }
 
@@ -38,6 +39,7 @@
         {
             Client.CurrentGame.Disconnect();
             ViewModelMainMenuOverlay.Instance.IsHomeTabSelected = true;
+            MenuEndGame.IsDisplayed = false;
         }
     }
 }

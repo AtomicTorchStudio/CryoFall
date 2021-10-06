@@ -235,8 +235,10 @@
 
             if (privateState.IsDespawned)
             {
-                // character was despawned (PvE)
+                // character was despawned
+                privateState.IsEscapedOnRocket = false; // reset the escaped flag
                 privateState.IsDespawned = false;
+
                 if (stats.HealthCurrent > 0)
                 {
                     publicState.IsDead = false;

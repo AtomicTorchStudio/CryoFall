@@ -16,7 +16,8 @@
     Opacity="1"
     Panel.ZIndex="1000"
     HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch">
+    VerticalAlignment="Stretch"
+    Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}">
 
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center"

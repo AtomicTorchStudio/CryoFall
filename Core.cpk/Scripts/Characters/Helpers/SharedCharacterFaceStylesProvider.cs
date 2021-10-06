@@ -19,8 +19,7 @@
 
         private const string HairRootFolderPath = ContentPaths.Textures + "Characters/Hair/";
 
-        private static readonly Dictionary<string, SharedCharacterFaceStylesProvider> Providers =
-            new();
+        private static readonly Dictionary<string, SharedCharacterFaceStylesProvider> Providers = new();
 
         private readonly string facesFolderPath;
 

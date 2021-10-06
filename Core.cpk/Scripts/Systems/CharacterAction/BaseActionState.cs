@@ -43,7 +43,13 @@
         // ReSharper disable once InconsistentNaming
         private event Action<double> progressPercentsChanged;
 
+        public virtual bool IsBlockingActions => false;
+
         public virtual bool IsBlockingMovement => false;
+
+        // For mods compatibility
+        [Obsolete("Use IsBlockingMovement instead")]
+        public bool IsBlocksMovement => this.IsBlockingMovement;
 
         public bool IsCancelled { get; private set; }
 
@@ -95,6 +101,7 @@
             };
             this.SetupPublicState(publicActionState);
             publicState.CurrentPublicActionState = publicActionState;
+            this.SharedOnStart();
         }
 
         public abstract void SharedUpdate(double deltaTime);
@@ -118,6 +125,10 @@
         }
 
         protected virtual void SetupPublicState(TPublicActionState state)
+        {
+        }
+
+        protected virtual void SharedOnStart()
         {
         }
 

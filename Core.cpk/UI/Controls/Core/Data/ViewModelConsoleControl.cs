@@ -28,8 +28,7 @@
 
         private string filterString;
 
-        private SuperObservableCollection<ViewModelLogEntry> logEntriesCollection =
-            new();
+        private SuperObservableCollection<ViewModelLogEntry> logEntriesCollection = new();
 
         private string suggestionsListPaddingText;
 
