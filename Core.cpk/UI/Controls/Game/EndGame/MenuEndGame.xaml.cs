@@ -81,7 +81,7 @@
 
             ClientUpdateHelper.UpdateCallback += this.Update;
             this.menuCredits.ScrollFinished += this.MenuCreditsScrollFinishedHandler;
-            this.storyboardFadeOut.Completed += StoryboardFadeOutCompletedHandler;
+            this.storyboardFadeOut.Completed += this.StoryboardFadeOutCompletedHandler;
             Api.Client.CurrentGame.ConnectionStateChanged += CurrentGameConnectionStateChangedHandler;
 
             if (LoadingSplashScreenManager.Instance.CurrentState == LoadingSplashScreenState.Hidden)
@@ -105,16 +105,11 @@
 
             ClientUpdateHelper.UpdateCallback -= this.Update;
             this.menuCredits.ScrollFinished -= this.MenuCreditsScrollFinishedHandler;
-            this.storyboardFadeOut.Completed -= StoryboardFadeOutCompletedHandler;
+            this.storyboardFadeOut.Completed -= this.StoryboardFadeOutCompletedHandler;
             Api.Client.CurrentGame.ConnectionStateChanged -= CurrentGameConnectionStateChangedHandler;
         }
 
         private static void CurrentGameConnectionStateChangedHandler()
-        {
-            IsDisplayed = false;
-        }
-
-        private static void StoryboardFadeOutCompletedHandler(object? sender, EventArgs e)
         {
             IsDisplayed = false;
         }
@@ -133,6 +128,11 @@
             ((Panel)this.menuCredits.Parent)?.Children.Remove(this.menuCredits);
             this.storyboardCreditsStart.Stop(this.layoutRoot);
             this.storyboardCreditsFinish.Begin(this.layoutRoot);
+        }
+
+        private void StoryboardFadeOutCompletedHandler(object? sender, EventArgs e)
+        {
+            IsDisplayed = false;
         }
 
         private void Update()
