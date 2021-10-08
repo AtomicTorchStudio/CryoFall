@@ -33,8 +33,6 @@
 
         private const int MaxItemsToConsumePerRefill = 1;
 
-        public override string Name => "Item fuel refill system";
-
         public static void ServerNotifyItemRefilled(IItem item)
         {
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();

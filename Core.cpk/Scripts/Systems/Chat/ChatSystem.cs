@@ -56,8 +56,6 @@
 
         public static event Action<BaseChatRoom> ClientChatRoomRemoved;
 
-        public override string Name => "Chat system";
-
         public static void ClientClosePrivateChat(ChatRoomPrivate privateChatRoom)
         {
             privateChatRoom.ClientSetOpenedOrClosedForCurrentCharacter(isClosed: true);

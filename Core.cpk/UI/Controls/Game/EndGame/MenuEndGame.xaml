@@ -178,14 +178,13 @@
                             Focusable="False"
                             HorizontalAlignment="Stretch" />
 
-                    <!--<Button Grid.Column="2"
+                    <Button Grid.Column="2"
                             Content="{x:Static loc:CoreStrings.MenuGameFinished_ButtonNewGamePlus_Title}"
                             Command="{Binding CommandNewGamePlus}"
-                            IsEnabled="{Binding IsEditor, Converter={StaticResource BoolReverseConverter}}"
-                            Visibility="{Binding IsMultiplayerServer, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            Visibility="{Binding CanStartNewGamePlus, Converter={StaticResource BoolToVisibilityConverter}}"
                             base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuGameFinished_ButtonNewGamePlus_Hint}"
                             Focusable="False"
-                            HorizontalAlignment="Stretch" />-->
+                            HorizontalAlignment="Stretch" />
 
                     <Button Grid.Column="4"
                             Content="{x:Static loc:CoreStrings.MenuGameFinished_ButtonMainMenu_Title}"

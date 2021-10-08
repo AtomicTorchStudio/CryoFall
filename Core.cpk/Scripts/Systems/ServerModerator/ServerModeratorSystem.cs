@@ -21,8 +21,6 @@
         public static IReadOnlyCollection<string> ServerModeratorsList
             => ServerModerators.Moderators;
 
-        public override string Name => "Server moderator system";
-
         public static bool ClientIsModerator()
         {
             return SharedIsModerator(

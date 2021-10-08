@@ -37,9 +37,6 @@
     [PrepareOrder(afterType: typeof(ServerTimersSystem))]
     public class LandClaimShieldProtectionSystem : ProtoSystem<LandClaimShieldProtectionSystem>
     {
-        [NotLocalizable]
-        public override string Name => "Land claim shield protection system";
-
         public static void ClientActivateShield(ILogicObject areasGroup)
         {
             var status = SharedGetShieldPublicStatus(areasGroup);

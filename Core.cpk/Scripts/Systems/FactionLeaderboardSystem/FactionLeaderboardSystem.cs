@@ -33,9 +33,6 @@
 
         public static double ClientNextLeaderboardUpdateTime { get; private set; }
 
-        [NotLocalizable]
-        public override string Name => "Faction leaderboard system";
-
         public static Task<IReadOnlyDictionary<ProtoFactionScoreMetric, uint>> ClientGetFactionScoreMetricsAsync(
             string clanTag)
         {

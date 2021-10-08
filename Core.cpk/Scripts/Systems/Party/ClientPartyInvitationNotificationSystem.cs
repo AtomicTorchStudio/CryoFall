@@ -32,8 +32,6 @@
             NotificationsFromInviteeDictionary
                 = new(StringComparer.Ordinal);
 
-        public override string Name => "Party invitations (client) system";
-
         public static void ShowNotificationInviteSent(string name)
         {
             NotificationSystem.ClientShowNotification(

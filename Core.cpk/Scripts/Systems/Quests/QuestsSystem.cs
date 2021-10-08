@@ -20,8 +20,6 @@
 
         public static event Action<ICharacter, IProtoQuest> ServerCharacterQuestCompleted;
 
-        public override string Name => "Quests system";
-
         public static void ClientClaimReward(IProtoQuest protoQuest)
         {
             Instance.CallServer(_ => _.ServerRemote_ClaimReward(protoQuest));
@@ -45,9 +43,10 @@
         public static void ServerCompleteQuest(
             PlayerCharacterQuests characterQuests,
             IProtoQuest questToComplete,
-            bool ignoreRequirements)
+            bool ignoreRequirements,
+            bool provideReward = true)
         {
-            characterQuests.ServerClaimReward(questToComplete, ignoreRequirements);
+            characterQuests.ServerClaimReward(questToComplete, ignoreRequirements, provideReward);
 
             var handler = ServerCharacterQuestCompleted;
             if (handler is not null)

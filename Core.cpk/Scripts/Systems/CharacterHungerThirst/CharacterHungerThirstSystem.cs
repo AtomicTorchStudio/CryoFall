@@ -47,8 +47,6 @@
             WaterDecreasePerSecond *= RateThirst.SharedValue;     // apply the multiplier
         }
 
-        public override string Name => "Hunger and thirst system";
-
         protected override void PrepareSystem()
         {
             if (IsClient)

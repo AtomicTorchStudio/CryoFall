@@ -59,8 +59,6 @@
             }
         }
 
-        public override string Name => "Construction placement system";
-
         public static void ClientDisableConstructionPlacement()
         {
             componentObjectPlacementHelper?.SceneObject.Destroy();

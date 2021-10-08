@@ -28,8 +28,6 @@
         // {0} is item name
         public const string NotificationCannotUse_Title = "Cannot use {0}";
 
-        public override string Name => "Character energy system";
-
         public static uint ClientCalculateTotalEnergyCapacity()
         {
             return SharedCalculateTotalEnergyCapacity(ClientCurrentCharacterHelper.Character);

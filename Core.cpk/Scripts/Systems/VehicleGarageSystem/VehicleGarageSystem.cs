@@ -49,8 +49,6 @@
         public static readonly SoundResource SoundResourceTakeVehicle
             = new("Objects/Structures/ObjectVehicleAssemblyBay/TakeVehicle");
 
-        public override string Name => "Vehicle garage system";
-
         public static Task<IReadOnlyList<GarageVehicleEntry>> ClientGetVehiclesListAsync()
         {
             return Instance.CallServer(_ => _.ServerRemote_GetVehiclesList());

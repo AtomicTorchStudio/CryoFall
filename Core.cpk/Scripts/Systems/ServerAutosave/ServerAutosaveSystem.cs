@@ -39,9 +39,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.ServerAutosave
         /// </summary>
         public static bool ServerIsAnnouncingSavegameCreation { get; set; } = true;
 
-        [NotLocalizable]
-        public override string Name => "Saver autosave system";
-
         public async void ServerExecuteAutosave()
         {
             if (serverIsSavingNow)

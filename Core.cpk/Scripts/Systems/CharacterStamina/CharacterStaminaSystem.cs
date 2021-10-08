@@ -17,8 +17,6 @@
     {
         private const double StaminaRegenerationWhenMovingMultiplier = 0.5;
 
-        public override string Name => "Character stamina system";
-
         public static void ServerNotifyClientStaminaChange(ICharacter character, float deltaStamina)
         {
             //Logger.Dev($"{character}: sending stamina change from server: {deltaStamina:F2}");

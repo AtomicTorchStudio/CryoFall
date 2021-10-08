@@ -22,8 +22,6 @@
 
         public static event Action<DeconstructionActionState> ServerStructureDeconstructed;
 
-        public override string Name => "Structures deconstruction system";
-
         public static bool ClientTryAbortAction()
         {
             var privateState = ClientCurrentCharacterHelper.PrivateState;

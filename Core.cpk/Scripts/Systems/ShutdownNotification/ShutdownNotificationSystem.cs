@@ -58,8 +58,6 @@
             }
         }
 
-        public override string Name => "Shutdown notification system";
-
         protected override void PrepareSystem()
         {
             base.PrepareSystem();

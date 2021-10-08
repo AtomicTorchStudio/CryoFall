@@ -10,8 +10,6 @@
     {
         public const string NotificationCannotUnlockTech = "Cannot unlock tech";
 
-        public override string Name => "Technologies system";
-
         public static void ClientUnlockGroup(TechGroup techGroup)
         {
             if (!ClientValidateCanUnlock(techGroup, showErrorNotification: true))

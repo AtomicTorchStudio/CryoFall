@@ -102,9 +102,6 @@
 
         public static ILogicObject ClientCurrentParty { get; private set; }
 
-        [NotLocalizable]
-        public override string Name => "Party system";
-
         public static bool ClientCanInvite(string name)
         {
             if (string.IsNullOrEmpty(name))

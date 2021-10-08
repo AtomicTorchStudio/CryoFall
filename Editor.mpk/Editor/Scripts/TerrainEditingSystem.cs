@@ -13,8 +13,6 @@
     [RemoteAuthorizeServerOperator]
     public class TerrainEditingSystem : ProtoSystem<TerrainEditingSystem>
     {
-        public override string Name => nameof(TerrainEditingSystem);
-
         public static void ClientModifyTerrain(List<TileModifyRequest> tilesToModify)
         {
             if (tilesToModify.Count == 0)

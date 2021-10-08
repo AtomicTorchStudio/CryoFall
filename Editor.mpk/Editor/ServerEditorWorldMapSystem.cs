@@ -11,8 +11,6 @@
     /// </summary>
     public class ServerEditorWorldMapSystem : ProtoSystem<ServerEditorWorldMapSystem>
     {
-        public override string Name => nameof(ServerEditorWorldMapSystem);
-
         protected override void PrepareSystem()
         {
             if (IsClient)

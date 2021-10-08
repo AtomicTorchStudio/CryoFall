@@ -23,8 +23,6 @@
 
         public static event ServerGatherDelegate ServerOnGather;
 
-        public override string Name => "Resource gathering system";
-
         protected override WorldActionRequest ClientTryCreateRequest(ICharacter character)
         {
             var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject;

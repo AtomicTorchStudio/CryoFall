@@ -18,8 +18,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
     {
         public const string NotificationDontHaveAccess = "You don't have access!";
 
-        public override string Name => "World object access system";
-
         public static void ClientSetDirectAccessMode(IStaticWorldObject worldObject, WorldObjectDirectAccessMode mode)
         {
             Instance.CallServer(_ => _.ServerRemote_SetDirectAccessMode(worldObject, mode));

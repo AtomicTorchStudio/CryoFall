@@ -55,8 +55,6 @@
             NotEnoughPower = 30
         }
 
-        public override string Name => "Power grid system";
-
         public static void ClientInitializeConsumerOrProducer(IStaticWorldObject worldObject)
         {
             if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer

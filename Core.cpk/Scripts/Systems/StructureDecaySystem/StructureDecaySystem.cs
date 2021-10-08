@@ -28,8 +28,6 @@
 
         private static IProtoObjectStructure[] serverListProtoStructuresToApplyDecay;
 
-        public override string Name => "Structure decay system";
-
         /// <summary>
         /// This method is usually used when a land claim building is destroyed
         /// - to force all the buildings to start decay almost immediately.

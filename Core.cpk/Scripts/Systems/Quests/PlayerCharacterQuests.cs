@@ -39,7 +39,7 @@
         /// <summary>
         /// Please note - it will throw an exception if the reward cannot be claimed or the quest is already completed.
         /// </summary>
-        public void ServerClaimReward(IProtoQuest quest, bool ignoreTasks)
+        public void ServerClaimReward(IProtoQuest quest, bool ignoreTasks, bool provideReward)
         {
             var questEntry = this.SharedFindQuestEntry(quest, out bool questEntryIsUnlocked);
             if (questEntry is null)
@@ -65,16 +65,19 @@
 
             questEntry.ServerSetCompleted();
 
-            var rewardLearningPoints = quest.RewardLearningPoints;
-            rewardLearningPoints = (ushort)Math.Round(
-                rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
-                MidpointRounding.AwayFromZero);
-            this.Character.SharedGetTechnologies()
-                .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStatsAndRates: false);
+            if (provideReward)
+            {
+                var rewardLearningPoints = quest.RewardLearningPoints;
+                rewardLearningPoints = (ushort)Math.Round(
+                    rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
+                    MidpointRounding.AwayFromZero);
+                this.Character.SharedGetTechnologies()
+                    .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStatsAndRates: false);
 
-            Api.Logger.Important(
-                $"Quest completed and reward claimed: {quest.ShortId}. Learning points added: {rewardLearningPoints}",
-                this.Character);
+                Api.Logger.Info(
+                    $"Quest completed and reward claimed: {quest.ShortId}. Learning points added: {rewardLearningPoints}",
+                    this.Character);
+            }
         }
 
         public void ServerInit()

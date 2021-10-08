@@ -18,9 +18,6 @@
         private static readonly IWorldServerService ServerWorld
             = Api.IsServer ? Server.World : null;
 
-        [NotLocalizable]
-        public override string Name => "World events system";
-
         public static void ServerAddWorldEventToPlayerScope(ICharacter character, ILogicObject worldEvent)
         {
             if (character.ServerIsOnline)

@@ -14,8 +14,6 @@
 
     public class HackingSystem : ProtoSystem<HackingSystem>
     {
-        public override string Name => "Hacking system";
-
         public static bool ClientTryAbortAction()
         {
             var privateState = ClientCurrentCharacterHelper.PrivateState;

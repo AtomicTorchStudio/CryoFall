@@ -12,8 +12,6 @@
     {
         public static event Action<ICharacter> ServerCharacterAppearanceSelected;
 
-        public override string Name => "Character style system";
-
         public static void ClientChangeStyle(CharacterHumanFaceStyle style, bool isMale)
         {
             Instance.CallServer(_ => _.ServerRemote_ChangeStyle(style, isMale));
@@ -28,8 +26,11 @@
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 5)]
         private void ServerRemote_ChangeStyle(CharacterHumanFaceStyle style, bool isMale)
         {
-            var character = ServerRemoteContext.Character;
+            ServerSetStyle(ServerRemoteContext.Character, style, isMale);
+        }
 
+        public static void ServerSetStyle(ICharacter character, CharacterHumanFaceStyle style, bool isMale)
+        {
             style = style.EmptyStringsToNulls();
             if (!SharedCharacterFaceStylesProvider.GetForGender(isMale)
                                                   .SharedIsValidFaceStyle(style))

@@ -29,9 +29,6 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
         /// </summary>
         public static readonly (double min, double max) DisassemblyOutputRange = (0.2, 0.5);
 
-        [NotLocalizable]
-        public override string Name => "Item disassembly system";
-
         public static void ServerDisassemble(
             ICharacter character,
             IItemsContainer containerInput,

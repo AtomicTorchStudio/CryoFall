@@ -25,8 +25,6 @@
         public static IWorldObject ClientCurrentInteraction
             => SharedGetCurrentInteraction(ClientCurrentCharacterHelper.Character);
 
-        public override string Name => "Interaction checker system";
-
         public static void ClientOnServerForceFinishInteraction(IWorldObject worldObject)
         {
             var pair = new Pair(ClientCurrentCharacterHelper.Character, worldObject);

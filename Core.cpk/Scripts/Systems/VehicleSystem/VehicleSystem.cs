@@ -37,8 +37,6 @@
         private static readonly Dictionary<ICharacter, IDynamicWorldObject> ServerVehicleQuitRequests
             = IsServer ? new Dictionary<ICharacter, IDynamicWorldObject>() : null;
 
-        public override string Name => "Vehicle system";
-
         public static void ClientOnVehicleEnterOrExitRequest()
         {
             Instance.ClientOnVehicleEnterExitButtonPress();

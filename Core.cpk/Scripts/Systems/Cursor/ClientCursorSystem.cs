@@ -33,8 +33,6 @@
             }
         }
 
-        public override string Name => "Client cursor system";
-
         protected override void PrepareSystem()
         {
             if (IsClient)

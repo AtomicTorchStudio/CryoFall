@@ -28,8 +28,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         private class ConsoleAdminNotifySystem : ProtoSystem<ConsoleAdminNotifySystem>
         {
-            public override string Name => nameof(ConsoleAdminNotifySystem);
-
             public void ClientRemote_ShowNotification(string message)
             {
                 NotificationSystem.ClientShowNotification(

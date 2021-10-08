@@ -22,9 +22,6 @@
         public static readonly SoundResource SoundResourceNoEnergy
             = new("Objects/Vehicles/NoEnergy");
 
-        [NotLocalizable]
-        public override string Name => "Vehicle energy consumption system";
-
         public static void ClientShowNotificationNotEnoughEnergy(IProtoVehicle protoVehicle)
         {
             Client.Audio.PlayOneShot(SoundResourceNoEnergy, volume: 0.4f);

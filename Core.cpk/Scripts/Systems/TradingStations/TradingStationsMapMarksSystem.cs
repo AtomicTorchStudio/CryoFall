@@ -26,8 +26,6 @@
                   ? new HashSet<IStaticWorldObject>()
                   : null;
 
-        public override string Name => "Trading stations map marks system";
-
         public static Task<TradingStationInfo> ClientRequestTradingStationInfo(uint tradingStationId)
         {
             return Instance.CallServer(_ => _.ServerRemote_GetTradingStationInfo(tradingStationId));

@@ -17,7 +17,7 @@ namespace AtomicTorch.CBND.CoreMod.Rates
 
         public override string Name => "[PvP] Hide coordinates for new resource deposits";
 
-        public override bool ValueDefault => !Api.IsEditor; // hide except in Editor
+        public override bool ValueDefault => false;
 
         public override RateVisibility Visibility => RateVisibility.Advanced;
     }

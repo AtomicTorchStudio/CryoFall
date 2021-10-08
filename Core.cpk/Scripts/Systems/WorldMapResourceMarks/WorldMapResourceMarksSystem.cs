@@ -27,8 +27,6 @@
 
         public static event Action<WorldMapResourceMark> ClientMarkRemoved;
 
-        public override string Name => "World map resource marks system";
-
         public static void ServerAddMark(IStaticWorldObject staticWorldObject, double serverSpawnTime)
         {
             Api.ValidateIsServer();

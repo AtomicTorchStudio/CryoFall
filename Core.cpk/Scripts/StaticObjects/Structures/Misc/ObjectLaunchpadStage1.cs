@@ -24,6 +24,7 @@
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 5);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 1);
+            build.AddStageRequiredItem<ItemCement>(count: 10);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.VeryLong;

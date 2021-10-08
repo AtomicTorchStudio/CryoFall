@@ -10,8 +10,6 @@
     {
         private const double TimeIntervalSeconds = 10.0;
 
-        public override string Name => "Character energy regeneration system";
-
         protected override void PrepareSystem()
         {
             if (IsClient)

@@ -39,8 +39,6 @@
 
         private const double MaxDistanceForBuildRepairAction = 2.24;
 
-        public override string Name => "Construction build/repair system";
-
         public static bool CheckCanInteractForConstruction(
             ICharacter character,
             IStaticWorldObject worldObject,

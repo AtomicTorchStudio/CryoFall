@@ -13,8 +13,6 @@
 
         private static HashSet<string> serverInvicibleCharactersList;
 
-        public override string Name => "Server character invincibility system";
-
         public static void ServerAdd(ICharacter character)
         {
             if (character.IsNpc)

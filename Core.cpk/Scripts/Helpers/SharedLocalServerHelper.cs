@@ -32,8 +32,6 @@
         /// </summary>
         public static bool IsLocalServer { get; private set; }
 
-        public override string Name => nameof(SharedLocalServerHelper);
-
         protected override void PrepareSystem()
         {
             if (IsServer)

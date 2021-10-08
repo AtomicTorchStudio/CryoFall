@@ -39,8 +39,6 @@
 
         public static ClientSuggestionsCallbackDelegate ClientSuggestionsCallback { get; set; }
 
-        public override string Name => "Console commands system";
-
         public static void ClientSuggestAutocomplete(string text, ushort textPosition, byte requestId)
         {
             if (string.IsNullOrEmpty(text))

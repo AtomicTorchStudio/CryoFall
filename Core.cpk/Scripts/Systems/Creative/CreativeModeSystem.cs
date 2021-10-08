@@ -26,8 +26,6 @@
             }
         }
 
-        public override string Name => "Creative mode system";
-
         public static bool ClientIsInCreativeMode()
         {
             return SharedIsInCreativeMode(

@@ -22,8 +22,6 @@
         // if durability is >= than this threshold, it's displayed as yellow
         public const double ThresholdFractionYellowStatus = 0.2;
 
-        public override string Name => "Item durability system";
-
         /// <summary>
         /// An item with durability can be broken by using this method.
         /// (item that has unlimited durability will be ignored)

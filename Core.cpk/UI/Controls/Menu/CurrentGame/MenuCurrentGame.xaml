@@ -236,7 +236,8 @@
                 <!-- Autosave description -->
                 <ContentControl
                     Visibility="{Binding IsLocalServer, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Margin="0,10,0,0">
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal"
                                 Visibility="{Binding IsEditor, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                         <ContentControl Style="{StaticResource ControlInfoPointStyle}"

@@ -57,9 +57,6 @@
 
         public static IReadOnlyList<IProtoItemFish> AllFishList { get; private set; }
 
-        [NotLocalizable]
-        public override string Name => "Fishing system";
-
         public static void ClientPullFish()
         {
             Instance.CallServer(_ => _.ServerRemote_PullFish());

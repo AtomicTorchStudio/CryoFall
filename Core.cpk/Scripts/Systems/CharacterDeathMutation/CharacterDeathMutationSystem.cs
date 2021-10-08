@@ -11,8 +11,6 @@
     /// </summary>
     public class CharacterDeathMutationSystem : ProtoSystem<CharacterDeathMutationSystem>
     {
-        public override string Name => "Character death mutation system";
-
         protected override void PrepareSystem()
         {
             base.PrepareSystem();

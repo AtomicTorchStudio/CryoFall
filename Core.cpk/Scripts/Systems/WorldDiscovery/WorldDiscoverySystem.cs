@@ -19,8 +19,6 @@
 
         private static Dictionary<ICharacter, HashSet<Vector2Ushort>> serverPlayerDiscoveredChunkTiles;
 
-        public override string Name => "World discovery system";
-
         /// <summary>
         /// Returns true if the location is used for the player corpses.
         /// </summary>

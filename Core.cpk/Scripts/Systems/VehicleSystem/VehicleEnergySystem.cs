@@ -16,8 +16,6 @@
     /// </summary>
     public class VehicleEnergySystem : ProtoSystem<VehicleEnergySystem>
     {
-        public override string Name => "Vehicle energy system";
-
         public static uint ClientCalculateCurrentVehicleTotalEnergyCharge()
         {
             var currentVehicle = ClientCurrentCharacterHelper.Character.SharedGetCurrentVehicle();

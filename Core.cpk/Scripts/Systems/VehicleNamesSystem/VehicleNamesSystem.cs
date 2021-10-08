@@ -30,8 +30,6 @@
 
         public static event ClientVehicleNameChangedDelegate ClientVehicleNameChanged;
 
-        public override string Name => "Vehicle names system";
-
         public static void ClientSetVehicleName(IDynamicWorldObject vehicle, string vehicleName)
         {
             try

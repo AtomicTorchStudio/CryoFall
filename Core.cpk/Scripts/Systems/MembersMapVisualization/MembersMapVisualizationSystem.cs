@@ -33,9 +33,6 @@
 
         public static event Action<IReadOnlyList<ClientPartyMemberData>> ClientUpdateReceived;
 
-        [NotLocalizable]
-        public override string Name => "Party members visualization system";
-
         private static bool ClientIsEnabled
         {
             get => clientIsEnabled;

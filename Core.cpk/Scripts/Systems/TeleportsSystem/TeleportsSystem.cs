@@ -72,9 +72,6 @@
 
         public static IReadOnlyCollection<IStaticWorldObject> ServerAllTeleports => ServerTeleports;
 
-        [NotLocalizable]
-        public override string Name => "Teleport system";
-
         public static Task<bool> ClientIsTeleportHasUnfriendlyPlayersNearby(Vector2Ushort targetTeleportPosition)
         {
             return Instance.CallServer(

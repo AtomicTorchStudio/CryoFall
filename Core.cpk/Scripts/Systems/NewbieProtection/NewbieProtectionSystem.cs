@@ -73,9 +73,6 @@
 
         public static double ClientNewbieProtectionTimeRemaining { get; private set; }
 
-        [NotLocalizable]
-        public override string Name => "Newbie protection system";
-
         public static void ClientDisableNewbieProtection()
         {
             Instance.CallServer(_ => _.ServerRemote_ServerDisableNewbieProtection());

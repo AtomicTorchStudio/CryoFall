@@ -39,8 +39,6 @@
 
         public static IReadOnlyCollection<IProtoCharacterMob> CompletionistAllMobs { get; private set; }
 
-        public override string Name => "Completionist system";
-
         public static void ClientClaimReward(IProtoEntity prototype)
         {
             Client.Audio.PlayOneShot(RewardClaimedSoundResource, 0.5f);

@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.CharacterCreation
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.CharacterCreation.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
@@ -17,6 +19,15 @@
         private static bool isClosed = true;
 
         private ViewModelMenuCharacterCreation viewModel;
+
+        public static void HideIfCharacterCreated()
+        {
+            if (instance is not null
+                && CharacterCreationSystem.SharedIsCharacterCreated(ClientCurrentCharacterHelper.Character))
+            {
+                instance.RemoveControl();
+            }
+        }
 
         public static void Open()
         {

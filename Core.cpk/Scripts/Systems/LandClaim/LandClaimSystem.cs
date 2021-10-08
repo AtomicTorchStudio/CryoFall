@@ -888,8 +888,6 @@
 
         public static event DelegateServerRaidBlockStartedOrExtended ServerRaidBlockStartedOrExtended;
 
-        public override string Name => "Land claim system";
-
         public static void ClientCannotInteractNotOwner(IStaticWorldObject worldObject)
         {
             CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,

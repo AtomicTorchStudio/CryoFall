@@ -9,8 +9,6 @@
     [RemoteAuthorizeServerOperator]
     public class EditorSystem : ProtoSystem<EditorSystem>
     {
-        public override string Name => "Editor system";
-
         public static void ClientTeleport(Vector2D worldPosition)
         {
             Client.World.SetPosition(Client.Characters.CurrentPlayerCharacter, worldPosition, forceReset: true);

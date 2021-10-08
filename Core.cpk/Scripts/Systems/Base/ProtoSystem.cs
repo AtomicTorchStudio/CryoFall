@@ -11,6 +11,8 @@
     {
         public static TSystem Instance { get; private set; }
 
+        public override string Name => this.ShortId;
+
         protected sealed override void PrepareProto()
         {
             Instance = (TSystem)this;

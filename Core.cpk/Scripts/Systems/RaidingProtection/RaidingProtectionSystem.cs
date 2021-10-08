@@ -70,9 +70,6 @@
             }
         }
 
-        [NotLocalizable]
-        public override string Name => "Raiding protection system";
-
         public static void ClientShowNotificationRaidingNotAvailableIfNecessary()
         {
             if (SharedIsRaidingWindowNow)

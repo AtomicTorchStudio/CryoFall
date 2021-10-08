@@ -29,8 +29,6 @@
 
         private const double MaxDistanceForRepairAction = 2.24;
 
-        public override string Name => "Vehicle repair kit system";
-
         public static IDynamicWorldObject ClientGetObjectToRepairAtCurrentMousePosition(
             bool showErrorIfNoCompatibleVehicle)
         {

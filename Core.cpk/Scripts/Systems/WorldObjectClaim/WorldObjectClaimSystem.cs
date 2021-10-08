@@ -27,9 +27,6 @@
         // this system is available only in PvE
         public static bool SharedIsEnabled => PveSystem.SharedIsPve(false);
 
-        [NotLocalizable]
-        public override string Name => "World object claim system";
-
         public static ICharacter ServerGetCharacterByClaim(ILogicObject objectClaim)
         {
             if (!SharedIsEnabled)

@@ -38,8 +38,6 @@
 
         private static readonly ISharedApi Shared = Api.Shared;
 
-        public override string Name => "Weapon system logic.";
-
         public static void ClientChangeWeaponFiringMode(bool isFiring)
         {
             var character = Client.Characters.CurrentPlayerCharacter;

@@ -50,9 +50,6 @@
 
         public class Helper : ProtoSystem<Helper>
         {
-            [NotLocalizable]
-            public override string Name => "Sort items helper";
-
             public static void ClientOnItemsContainerSorted()
             {
                 var character = ClientCurrentCharacterHelper.Character;

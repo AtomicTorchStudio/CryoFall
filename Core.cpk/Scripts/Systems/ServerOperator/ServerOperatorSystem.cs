@@ -20,8 +20,6 @@
         public static IReadOnlyCollection<string> ServerOperatorsList
             => ServerOperators.Operators;
 
-        public override string Name => "Server operator system";
-
         public static bool ClientIsOperator()
         {
             return SharedIsOperator(

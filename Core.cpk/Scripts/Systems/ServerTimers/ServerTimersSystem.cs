@@ -34,8 +34,6 @@
 
         private bool isEnumerating;
 
-        public override string Name => "Server timers system";
-
         public static void AddAction(double delaySeconds, Action action)
         {
             Api.ValidateIsServer();

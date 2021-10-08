@@ -52,8 +52,6 @@
 
         private static readonly IItemsServerService ServerItems = IsServer ? Server.Items : null;
 
-        public override string Name => "Trading stations system";
-
         public static async void ClientRequestExecuteTrade(
             IStaticWorldObject tradingStation,
             TradingStationLot lot,

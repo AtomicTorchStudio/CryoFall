@@ -32,8 +32,6 @@
 
         public const string NotificationCannotWater_Title = "Cannot water";
 
-        public override string Name => "Watering system";
-
         public static bool ServerIsWateringRequired(
             IWorldObject objectPlant,
             ICharacter character,

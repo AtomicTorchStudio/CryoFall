@@ -32,8 +32,6 @@
                       ? new Dictionary<ServerAllyBaseUnderRaidMark, List<ICharacter>>()
                       : null;
 
-        public override string Name => "Ally base raiding notification system";
-
         protected override void PrepareSystem()
         {
             if (IsClient

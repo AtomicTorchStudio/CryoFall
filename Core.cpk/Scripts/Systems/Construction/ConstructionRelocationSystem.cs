@@ -50,9 +50,6 @@
 
         public static bool IsInObjectPlacementMode => componentObjectPlacementHelper?.IsEnabled ?? false;
 
-        [NotLocalizable]
-        public override string Name => "Construction relocation system";
-
         public static void ClientDisableConstructionRelocation()
         {
             componentObjectPlacementHelper?.SceneObject.Destroy();

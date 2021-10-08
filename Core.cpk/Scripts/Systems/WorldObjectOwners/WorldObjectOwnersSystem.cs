@@ -68,8 +68,6 @@
             ErrorAccessListSizeLimitExceeded
         }
 
-        public override string Name => "World object owners system";
-
         public static void ClientOnCannotInteractNotOwner(IWorldObject worldObject, bool isFactionAccess)
         {
             var message = isFactionAccess

@@ -23,8 +23,6 @@
 
         public const string NotificationNoAmmo_Title = "No ammo";
 
-        public override string Name => "Weapon ammo system";
-
         public static void ClientTryAbortReloading()
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;

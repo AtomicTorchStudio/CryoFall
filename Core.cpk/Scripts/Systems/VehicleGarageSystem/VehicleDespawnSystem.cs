@@ -21,9 +21,6 @@
         private static readonly Lazy<IProtoVehicle[]> LazyAllProtoVehicles
             = new(() => Api.FindProtoEntities<IProtoVehicle>().ToArray());
 
-        [NotLocalizable]
-        public override string Name => "Vehicle despawn system";
-
         public static bool ServerIsVehicleInsideOwnerBase(IDynamicWorldObject vehicle)
         {
             return ServerIsVehicleInsideOwnerBase(vehicle, out _);

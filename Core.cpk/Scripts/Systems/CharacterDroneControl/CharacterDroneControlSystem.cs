@@ -84,9 +84,6 @@
                   ? new Dictionary<Vector2Ushort, IDynamicWorldObject>()
                   : null;
 
-        [NotLocalizable]
-        public override string Name => "Character drone control system";
-
         public static IItem ClientSelectNextDrone(List<IItem> exceptItems)
         {
             IItem selectedItem = null;

@@ -8,8 +8,6 @@
 
     public class ClientSkillsDisplaySystem : ProtoSystem<ClientSkillsDisplaySystem>
     {
-        public override string Name => "Skill display system";
-
         public static Task<double> ClientGetSkillExperience(IProtoSkill skill)
         {
             return Instance.CallServer(

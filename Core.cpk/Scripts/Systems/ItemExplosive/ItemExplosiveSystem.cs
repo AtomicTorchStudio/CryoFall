@@ -16,8 +16,6 @@
             ItemExplosiveActionState,
             ItemExplosiveActionPublicState>
     {
-        public override string Name => "Explosive Items System";
-
         public void ClientTryStartAction(Vector2Ushort targetPosition)
         {
             var request = this.ClientTryCreateRequest(Client.Characters.CurrentPlayerCharacter, targetPosition);

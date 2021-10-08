@@ -81,8 +81,6 @@
 
         public static DateTime? ServerScheduledWipeDateUtc { get; private set; }
 
-        public override string Name => "Welcome message system";
-
         public static async void ClientEditDescription()
         {
             var originalText = await Instance.CallServer(_ => _.ServerRemote_GetDescriptionMessage());

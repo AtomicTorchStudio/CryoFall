@@ -29,8 +29,6 @@
         private static readonly Lazy<IProtoItem> ProtoItemBottleEmpty
             = new(GetProtoEntity<ItemBottleEmpty>);
 
-        public override string Name => "Bottle refill system";
-
         protected override BottleRefillRequest ClientTryCreateRequest(ICharacter character)
         {
             var item = character.SharedGetPlayerSelectedHotbarItem();

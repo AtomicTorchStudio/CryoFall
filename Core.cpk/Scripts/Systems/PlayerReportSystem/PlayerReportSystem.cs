@@ -28,9 +28,6 @@
 
         private static List<ReportedChatEntry> serverReportedChatEntries;
 
-        [NotLocalizable]
-        public override string Name => "Player report system";
-
         public static void ClientReportChatEntry(ChatEntry chatEntry)
         {
             var name = chatEntry.From;

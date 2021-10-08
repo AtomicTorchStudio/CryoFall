@@ -25,8 +25,6 @@
         public static ushort ClientCurrentMaxCraftingQueueEntriesCount
             => SharedGetMaxCraftingQueueEntriesCount(Client.Characters.CurrentPlayerCharacter);
 
-        public override string Name => "Crafting system";
-
         public static void ClientDeleteQueueItem(CraftingQueueItem craftingQueueItem)
         {
             Instance.CallServer(_ => _.ServerRemote_CancelQueueItem(craftingQueueItem.LocalId));

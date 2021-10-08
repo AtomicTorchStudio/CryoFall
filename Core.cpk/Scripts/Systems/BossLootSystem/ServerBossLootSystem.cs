@@ -37,9 +37,6 @@
 
         public static event BossDefeatedDelegate BossDefeated;
 
-        [NotLocalizable]
-        public override string Name => "Boss loot system";
-
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         public static void ServerCreateBossLoot(
             Vector2Ushort bossPosition,

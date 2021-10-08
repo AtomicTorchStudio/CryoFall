@@ -18,8 +18,6 @@
 
         private static IProtoItem serverProtoItemRottenFood;
 
-        public override string Name => "Food spoilage system";
-
         public static void ServerInitializeItem(IItemWithFreshnessPrivateState privateState, bool isFirstTimeInit)
         {
             var item = (IItem)privateState.GameObject;

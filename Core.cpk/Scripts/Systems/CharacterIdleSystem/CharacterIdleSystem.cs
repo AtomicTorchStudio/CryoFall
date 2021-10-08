@@ -52,8 +52,6 @@
             }
         }
 
-        public override string Name => "Character idle system";
-
         public static bool ServerIsIdlePlayer(ICharacter character)
         {
             return PlayerCharacter.GetPrivateState(character).IsIdle;

@@ -67,8 +67,6 @@
 
         private static HudNotificationControl ClientCurrentUnstuckNotification;
 
-        public override string Name => "Character unstuck system";
-
         public static void ClientCreateUnstuckRequest()
         {
             if (!SharedValidateCanUnstuck(ClientCurrentCharacterHelper.Character))

@@ -42,9 +42,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
               .Add(Metal,       "Hit/Ranged/Metal")
               .Add(Glass,       "Hit/Ranged/Glass");
 
-        [NotLocalizable]
-        public override string Name => "Weapon explosion system";
-
         /// <summary>
         /// Bomberman-style explosion penetrating the walls in a cross.
         /// </summary>

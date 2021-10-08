@@ -53,8 +53,6 @@
         public static bool SharedIsListHidden
             => RateIsOnlinePlayersListHidden.SharedValue;
 
-        public override string Name => "Online players system";
-
         public static IEnumerable<Entry> ClientEnumerateOnlinePlayers()
         {
             return ClientOnlinePlayersList;

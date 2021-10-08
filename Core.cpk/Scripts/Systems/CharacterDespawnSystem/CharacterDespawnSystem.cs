@@ -26,9 +26,6 @@
 
         public static bool ClientIsDespawned => ClientCurrentCharacterHelper.PrivateState.IsDespawned;
 
-        [NotLocalizable]
-        public override string Name => "Character despawn system";
-
         /// <summary>
         /// Moves the character to service area so a respawn will be required on login.
         /// There will be no penalties (such as loot drop or "weakened" status effect).

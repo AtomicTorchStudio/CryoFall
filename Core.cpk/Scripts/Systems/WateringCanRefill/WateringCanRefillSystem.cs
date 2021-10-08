@@ -38,8 +38,6 @@
         /// </summary>
         private const int MaxBottlesToConsumePerRefill = 100;
 
-        public override string Name => "Watering can refill system";
-
         protected override WateringCanRefillRequest ClientTryCreateRequest(ICharacter character)
         {
             var item = character.SharedGetPlayerSelectedHotbarItem();

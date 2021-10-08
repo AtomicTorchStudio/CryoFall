@@ -17,8 +17,6 @@
     {
         public static IReadOnlyList<IProtoAchievement> AllAchievements;
 
-        public override string Name => "Achievements system";
-
         public static void ServerInitCharacterAchievements(PlayerCharacterAchievements characterAchievements)
         {
             // add all achievements as locked

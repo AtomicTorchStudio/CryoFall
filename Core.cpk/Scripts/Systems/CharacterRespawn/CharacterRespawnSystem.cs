@@ -51,8 +51,6 @@
                   ? new Dictionary<string, double>()
                   : null;
 
-        public override string Name => "Character respawn system";
-
         public static void ServerOnCharacterCreated(ICharacter character)
         {
             ServerPlayerSpawnManager.SpawnPlayer(character, isRespawn: false);

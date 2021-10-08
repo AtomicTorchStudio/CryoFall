@@ -25,9 +25,6 @@
         private static readonly Lazy<IReadOnlyCollection<IProtoItemFishingBait>> AllBaitProtos
             = new(() => new HashSet<IProtoItemFishingBait>(Api.FindProtoEntities<IProtoItemFishingBait>()));
 
-        [NotLocalizable]
-        public override string Name => "Fishing bait refill system";
-
         public static void ClientTrySwitchBaitType()
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;

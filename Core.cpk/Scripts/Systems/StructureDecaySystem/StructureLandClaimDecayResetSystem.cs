@@ -19,8 +19,6 @@
         private static readonly ICharactersServerService ServerCharacters
             = IsServer ? Server.Characters : null;
 
-        public override string Name => "Structure land claim reset system";
-
         protected override void PrepareSystem()
         {
             if (IsClient

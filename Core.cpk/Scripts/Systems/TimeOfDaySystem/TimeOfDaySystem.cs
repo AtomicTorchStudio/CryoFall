@@ -85,8 +85,6 @@
 
         public static double ServerTimeOfDayOffsetSeconds => serverTimeOfDayOffsetSeconds;
 
-        public override string Name => "Day-night cycle system";
-
         public static void ServerResetTimeOfDayOffset()
         {
             ServerSetCurrentTimeOfDay(

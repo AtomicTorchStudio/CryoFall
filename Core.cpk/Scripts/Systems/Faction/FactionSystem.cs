@@ -143,9 +143,6 @@
 
         public static bool ClientHasFaction => ClientCurrentFaction is not null;
 
-        [NotLocalizable]
-        public override string Name => "Faction system";
-
         private static Faction ProtoFaction => LazyProtoFaction.Value;
 
         public static bool ClientCheckIsUnderJoinCooldown(bool showErrorNotification)

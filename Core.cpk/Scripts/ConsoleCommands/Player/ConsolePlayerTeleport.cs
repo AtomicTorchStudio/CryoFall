@@ -127,8 +127,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
         private class ConsolePlayerTeleportSystem : ProtoSystem<ConsolePlayerTeleportSystem>
         {
-            public override string Name => nameof(ConsolePlayerTeleportSystem);
-
             [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
             public string ServerRemote_Teleport(Vector2D worldPosition)
             {

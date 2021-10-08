@@ -9,8 +9,6 @@
     [RemoteAuthorizeServerOperator]
     public class WorldObjectsEditingSystem : ProtoSystem<WorldObjectsEditingSystem>
     {
-        public override string Name => nameof(WorldObjectsEditingSystem);
-
         [RemoteCallSettings(DeliveryMode.Default,
                             timeInterval: 0,
                             clientMaxSendQueueSize: byte.MaxValue)]

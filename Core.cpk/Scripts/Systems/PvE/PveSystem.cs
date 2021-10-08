@@ -80,9 +80,6 @@
 
         public static bool ServerIsPvE => !RatePvPIsEnabled.SharedValue;
 
-        [NotLocalizable]
-        public override string Name => "PvE system";
-
         public static Task ClientAwaitPvEModeFromServer()
         {
             return clientPvErequestTask.Task;

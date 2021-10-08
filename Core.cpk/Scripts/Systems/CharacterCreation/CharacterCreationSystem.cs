@@ -3,7 +3,6 @@
     using System;
     using AtomicTorch.CBND.CoreMod.CharacterOrigins;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStyle;
@@ -16,8 +15,6 @@
         public static event Action<ICharacter> ServerCharacterCreated;
 
         public static bool SharedIsEnabled => !Api.IsEditor;
-
-        public override string Name => nameof(CharacterCreationSystem);
 
         public static void ClientSelectOrigin(ProtoCharacterOrigin origin)
         {
@@ -46,7 +43,10 @@
             ServerSpawnIfReady(character);
         }
 
-        private static void ServerSpawnIfReady(ICharacter character)
+        /// <summary>
+        /// Please do not invoke for the already spawned character.
+        /// </summary>
+        public static void ServerSpawnIfReady(ICharacter character)
         {
             if (!SharedIsCharacterCreated(character))
             {
@@ -65,10 +65,15 @@
             var privateState = PlayerCharacter.GetPrivateState(character);
             Api.Assert(privateState.Origin is null, "Origin already selected, cannot change it");
 
+            ServerSetOrigin(character, origin);
+            ServerSpawnIfReady(character);
+        }
+
+        public static void ServerSetOrigin(ICharacter character, ProtoCharacterOrigin origin)
+        {
+            var privateState = PlayerCharacter.GetPrivateState(character);
             privateState.Origin = origin;
             privateState.SetFinalStatsCacheIsDirty();
-
-            ServerSpawnIfReady(character);
         }
 
         private class Bootstrappper : BaseBootstrapper

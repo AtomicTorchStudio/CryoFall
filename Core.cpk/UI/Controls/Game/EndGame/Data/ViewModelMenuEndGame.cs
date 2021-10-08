@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.EndGame.Data
 {
-    using System;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
+    using AtomicTorch.CBND.CoreMod.Systems.NewGamePlus;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -9,6 +9,10 @@
 
     public class ViewModelMenuEndGame : BaseViewModel
     {
+        public bool CanStartNewGamePlus
+            => !Api.IsEditor
+               && Client.CurrentGame.ServerInfo.ServerAddress.IsLocalServer;
+
         public BaseCommand CommandEject
             => new ActionCommand(ExecuteCommandEject);
 
@@ -20,10 +24,6 @@
 
         public bool IsEditor => Api.IsEditor;
 
-        public bool IsMultiplayerServer
-            => !Api.IsEditor
-               && !(Api.Client.CurrentGame.ServerInfo?.ServerAddress.IsLocalServer ?? false);
-
         private static void ExecuteCommandEject()
         {
             ToolTipServiceExtend.CloseOpenedTooltip();
@@ -32,14 +32,13 @@
 
         private static void ExecuteCommandNewGamePlus()
         {
-            throw new NotImplementedException();
+            NewGamePlusSystem.ClientStartNewGamePlus();
         }
 
         private static void ExecuteCommandReturnToMainMenu()
         {
             Client.CurrentGame.Disconnect();
             ViewModelMainMenuOverlay.Instance.IsHomeTabSelected = true;
-            MenuEndGame.IsDisplayed = false;
         }
     }
 }

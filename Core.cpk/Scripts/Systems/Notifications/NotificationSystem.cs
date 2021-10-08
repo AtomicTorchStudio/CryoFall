@@ -35,8 +35,6 @@
 
         public static event Action<HudNotificationControl> ClientNotificationDisplayed;
 
-        public override string Name => "Notification system";
-
         public static CreateItemResult CalculateItemsResultExceptContainer(
             CreateItemResult result,
             IItemsContainer itemsContainer)

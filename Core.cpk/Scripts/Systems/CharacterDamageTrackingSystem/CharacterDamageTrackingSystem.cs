@@ -24,9 +24,6 @@
         private static Dictionary<ICharacter, ServerCharacterDamageSourcesStats>
             serverPlayerCharacterDamageSourcesStats;
 
-        [NotLocalizable]
-        public override string Name => "Damage tracking system";
-
         [ItemCanBeNull]
         public static async Task<List<DamageSourceRemoteEntry>> ClientGetDamageTrackingStatsAsync()
         {

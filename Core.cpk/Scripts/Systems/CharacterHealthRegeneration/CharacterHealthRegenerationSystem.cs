@@ -8,9 +8,6 @@
 
     public class CharacterHealthRegenerationSystem : ProtoSystem<CharacterHealthRegenerationSystem>
     {
-        [NotLocalizable]
-        public override string Name => "Health regeneration system";
-
         protected override void PrepareSystem()
         {
             if (IsClient)

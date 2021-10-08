@@ -63,9 +63,6 @@
 
         private static double serverLastUpdateTime;
 
-        [NotLocalizable]
-        public override string Name => "Faction karma system";
-
         protected override void PrepareSystem()
         {
             if (IsClient)
