@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Tiles
 {
     using AtomicTorch.CBND.CoreMod.Noise;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -19,6 +20,8 @@
         public override byte BlendOrder => 20;
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Vegetation;
+
+        public override bool IsRestrictingConstruction => !RateStructuresCanBuildOnMeadows.SharedValue;
 
         public bool IsStaleWellWater => false;
 

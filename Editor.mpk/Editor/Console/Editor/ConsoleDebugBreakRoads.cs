@@ -18,7 +18,7 @@ namespace AtomicTorch.CBND.CoreMod.Editor.Console.Editor
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 
-        public override string Name => "debug.breakRoads";
+        public override string Name => "editor.breakRoads";
 
         public string Execute()
         {

@@ -11,7 +11,7 @@
     [NotPersistent]
     public class SharedLocalServerHelper : ProtoSystem<SharedLocalServerHelper>
     {
-        private static TaskCompletionSource<bool> ClientTaskIsLocalServerPropertyReceivedCompletionSource;
+        private static TaskCompletionSource<bool> ClientTaskIsLocalServerPropertyReceivedCompletionSource = new();
 
         static SharedLocalServerHelper()
         {
@@ -43,8 +43,9 @@
         private void ClientRemote_SetIsLocalServer(bool isLocalServer)
         {
             IsLocalServer = isLocalServer;
+            Logger.Info("Is local server flag received: isLocalServer=" + isLocalServer);
             Api.SafeInvoke(IsLocalServerPropertyChanged);
-            ClientTaskIsLocalServerPropertyReceivedCompletionSource.TrySetResult(true);
+            ClientTaskIsLocalServerPropertyReceivedCompletionSource.SetResult(true);
         }
 
         private void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
@@ -65,7 +66,19 @@
 
                 static void Reset()
                 {
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
+                    {
+                        return;
+                    }
+
                     IsLocalServer = false;
+                    Logger.Info("Is local server flag reset");
+
+                    if (!ClientTaskIsLocalServerPropertyReceivedCompletionSource.Task.IsCompleted)
+                    {
+                        ClientTaskIsLocalServerPropertyReceivedCompletionSource.SetCanceled();
+                    }
+
                     ClientTaskIsLocalServerPropertyReceivedCompletionSource = new TaskCompletionSource<bool>();
                 }
             }

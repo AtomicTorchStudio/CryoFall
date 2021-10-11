@@ -57,11 +57,25 @@ namespace AtomicTorch.CBND.CoreMod.Rates
                                                       .GetJoinedString());
             }
 
+            var notFoundRates = Rates.ToDictionary(r => r.Id);
             foreach (var serverRate in Rates)
             {
                 if (dictionary.TryGetValue(serverRate.Id, out var entry))
                 {
+                    notFoundRates.Remove(serverRate.Id);
                     serverRate.ClientSetAbstractValue(entry.AbstractValue);
+                }
+            }
+
+            if (notFoundRates.Count > 0)
+            {
+                Api.Logger.Warning("Received server rates, but some rates are missing - will use default values:"
+                                   + Environment.NewLine
+                                   + notFoundRates.Select(r => r.Key + ": " + r.Value.AbstractValueDefault)
+                                                  .GetJoinedString(Environment.NewLine));
+                foreach (var entry in notFoundRates)
+                {
+                    entry.Value.ClientSetAbstractValue(entry.Value.AbstractValueDefault);
                 }
             }
 

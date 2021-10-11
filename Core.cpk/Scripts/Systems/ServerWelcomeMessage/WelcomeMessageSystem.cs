@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
@@ -17,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame.Data;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -169,36 +171,28 @@
 
         protected override void PrepareSystem()
         {
-            if (IsServer)
+            if (IsClient)
             {
-                serverWelcomeMessageText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.WelcomeMessageText);
-                serverDescriptionText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.DescriptionMessageText);
-                Server.Database.TryGet(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
-                                       ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
-                                       out DateTime? wipeDateUtc);
-
-                if (wipeDateUtc.HasValue
-                    && wipeDateUtc.Value < DateTime.Now)
-                {
-                    // the scheduled wipe date is in the past and no longer valid
-                    wipeDateUtc = null;
-                }
-
-                ServerScheduledWipeDateUtc = wipeDateUtc;
-
-                NextWipeDateServerTagHelper.ServerRefreshServerInfoTagForNextWipeDate();
+                BootstrapperClientGame.InitCallback += _ => RefreshWelcomeMessage();
                 return;
             }
 
-            Client.Characters.CurrentPlayerCharacterChanged += Refresh;
+            serverWelcomeMessageText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.WelcomeMessageText);
+            serverDescriptionText = SharedTextHelper.TrimAndFilterProfanity(Api.Server.Core.DescriptionMessageText);
+            Server.Database.TryGet(ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
+                                   ServerDatabaseScheduledWipeDateUtcPrefixAndKey,
+                                   out DateTime? wipeDateUtc);
 
-            void Refresh()
+            if (wipeDateUtc.HasValue
+                && wipeDateUtc.Value < DateTime.Now)
             {
-                if (Api.Client.Characters.CurrentPlayerCharacter is not null)
-                {
-                    RefreshWelcomeMessage();
-                }
+                // the scheduled wipe date is in the past and no longer valid
+                wipeDateUtc = null;
             }
+
+            ServerScheduledWipeDateUtc = wipeDateUtc;
+
+            NextWipeDateServerTagHelper.ServerRefreshServerInfoTagForNextWipeDate();
         }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]

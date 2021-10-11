@@ -37,6 +37,14 @@
         }
 
         public static TaskGather Require(
+            IProtoObjectGatherable protoObjectGatherable,
+            ushort count = 1,
+            string description = null)
+        {
+            return Require(new[] { protoObjectGatherable }, count, description);
+        }
+
+        public static TaskGather Require(
             IReadOnlyList<IProtoObjectGatherable> list,
             ushort count,
             string description)

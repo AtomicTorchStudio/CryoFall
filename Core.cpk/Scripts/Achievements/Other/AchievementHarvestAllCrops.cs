@@ -2,6 +2,7 @@ namespace AtomicTorch.CBND.CoreMod.Achievements
 {
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class AchievementHarvestAllCrops : ProtoAchievement
     {
@@ -9,8 +10,10 @@ namespace AtomicTorch.CBND.CoreMod.Achievements
 
         protected override void PrepareAchievement(TasksList tasks)
         {
-            tasks
-                .Add(TaskGather.Require<IProtoObjectPlant>()); // all farm plants
+            foreach (var protoPlant in Api.FindProtoEntities<IProtoObjectPlant>())
+            {
+                tasks.Add(TaskGather.Require(protoPlant));
+            }
         }
     }
 }
