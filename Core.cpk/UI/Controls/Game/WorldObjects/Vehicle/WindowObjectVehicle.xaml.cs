@@ -51,8 +51,6 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
-
             this.DataContext
                 = this.ViewModel =
                       new ViewModelWindowObjectVehicle(this.objectVehicle,
@@ -62,8 +60,6 @@
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
-
             this.DataContext = null;
             this.ViewModel.Dispose();
             this.ViewModel = null;

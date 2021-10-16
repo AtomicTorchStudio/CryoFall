@@ -165,7 +165,15 @@
                 return false;
             }
 
-            this.VerifyGameObject(worldObject);
+            try
+            {
+                this.VerifyGameObject(worldObject);
+            }
+            catch (Exception ex)
+            {
+                Logger.Warning($"Interaction check failed: {ex.GetType().FullName}: {ex.Message}");
+                return false;
+            }
 
             if (character.GetPublicState<ICharacterPublicState>().IsDead
                 || IsServer && !character.ServerIsOnline

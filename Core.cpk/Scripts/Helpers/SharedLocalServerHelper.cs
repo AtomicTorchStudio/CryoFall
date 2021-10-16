@@ -44,8 +44,8 @@
         {
             IsLocalServer = isLocalServer;
             Logger.Info("Is local server flag received: isLocalServer=" + isLocalServer);
-            Api.SafeInvoke(IsLocalServerPropertyChanged);
             ClientTaskIsLocalServerPropertyReceivedCompletionSource.SetResult(true);
+            Api.SafeInvoke(IsLocalServerPropertyChanged);
         }
 
         private void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)

@@ -250,7 +250,8 @@
 
         <ContentControl Style="{StaticResource MainMenuWidgetStyle}">
             <core:TabControlCached Margin="0,3,0,0">
-                <TabItem Margin="-5,0,0,0">
+                <TabItem Margin="-5,0,0,0"
+                         IsSelected="{Binding IsTabNewWorldSelected, Converter={StaticResource BoolReverseConverter}}">
                     <TabItem.Header>
                         <localGame:MenuLocalGameTabHeader
                             Text="{x:Static loc:CoreStrings.MenuLocalGame_TabLocalWorlds}"

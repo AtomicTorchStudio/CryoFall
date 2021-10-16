@@ -6,16 +6,45 @@
     using AtomicTorch.CBND.CoreMod.Achievements;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     [PrepareOrder(afterType: typeof(IProtoAchievement))]
     public class AchievementsSystem : ProtoSystem<AchievementsSystem>
     {
         public static IReadOnlyList<IProtoAchievement> AllAchievements;
+
+        public static bool CanUnlockAchievements
+        {
+            get
+            {
+                var game = Client.CurrentGame;
+                if (game.ConnectionState != ConnectionState.Connected
+                    || game.ServerInfo is null)
+                {
+                    return false;
+                }
+
+                if (!game.ServerInfo.IsModded
+                    || game.IsConnectedToOfficialServer
+                    || game.IsConnectedToFeaturedServer
+                    || game.ServerInfo.ServerAddress.IsLocalServer
+                    || (SharedLocalServerHelper.ClientTaskIsLocalServerPropertyReceived.IsCompleted
+                        && SharedLocalServerHelper.IsLocalServer))
+                {
+                    return true;
+                }
+
+                Api.Logger.Important(
+                    "The client will not accept the achievements while playing on a modded server that is not official, featured, or local");
+                return false;
+            }
+        }
 
         public static void ServerInitCharacterAchievements(PlayerCharacterAchievements characterAchievements)
         {
@@ -39,8 +68,9 @@
             public override void ClientInitialize()
             {
                 BootstrapperClientGame.InitCallback += Refresh;
+                SharedLocalServerHelper.IsLocalServerPropertyChanged += IsLocalServerPropertyChangedHandler;
 
-                void Refresh(ICharacter character)
+                static void Refresh(ICharacter character)
                 {
                     var newAchievements = PlayerCharacter.GetPrivateState(character)?.Achievements;
                     if (newAchievements is null
@@ -63,6 +93,17 @@
                         list.ClientElementInserted += ClientUnlockedAchievementAdded;
                     }
 
+                    Logger.Important("Achievements received from the server: "
+                                     + Environment.NewLine
+                                     + clientCurrentAchievements.UnlockedAchievements
+                                                                .Select(a => a.Achievement.AchievementId)
+                                                                .Select(a => "* " + a)
+                                                                .GetJoinedString(Environment.NewLine));
+                    ClientSyncAchievements();
+                }
+
+                static void IsLocalServerPropertyChangedHandler()
+                {
                     ClientSyncAchievements();
                 }
             }
@@ -78,11 +119,12 @@
                 var achievementIds = clientCurrentAchievements.UnlockedAchievements
                                                               .Select(a => a.Achievement.AchievementId)
                                                               .ToArray();
-                Client.SteamApi.UnlockAchievements(achievementIds);
-                Logger.Important("Achievements received from the server: "
-                                 + Environment.NewLine
-                                 + achievementIds.Select(a => "* " + a)
-                                                 .GetJoinedString(Environment.NewLine));
+
+                if (CanUnlockAchievements)
+                {
+                    Logger.Important("Synchronizing Steam achievements: " + achievementIds.Length);
+                    Client.SteamApi.UnlockAchievements(achievementIds);
+                }
             }
 
             private static void ClientUnlockedAchievementAdded(
@@ -91,8 +133,12 @@
                 PlayerCharacterAchievements.CharacterAchievementEntry value)
             {
                 var achievementId = value.Achievement.AchievementId;
-                Client.SteamApi.UnlockAchievement(achievementId);
                 Logger.Important("Achievement added: " + achievementId);
+
+                if (CanUnlockAchievements)
+                {
+                    Client.SteamApi.UnlockAchievement(achievementId);
+                }
             }
         }
     }
