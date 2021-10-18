@@ -18,6 +18,7 @@ namespace AtomicTorch.CBND.CoreMod.Rates
 
             if (Api.IsClient)
             {
+                Api.Client.CurrentGame.ConnectionStateChanged += () => ClientHasRatesReceived = false;
                 return;
             }
 
@@ -35,6 +36,8 @@ namespace AtomicTorch.CBND.CoreMod.Rates
         }
 
         public static event Action ClientRatesReceived;
+
+        public static bool ClientHasRatesReceived { get; private set; }
 
         public static IReadOnlyList<IRate> Rates { get; }
 
@@ -79,6 +82,7 @@ namespace AtomicTorch.CBND.CoreMod.Rates
                 }
             }
 
+            ClientHasRatesReceived = true;
             Api.SafeInvoke(ClientRatesReceived);
         }
 

@@ -424,13 +424,9 @@
                 }
 
                 // extractor in PvP
-                if (objectDeposit is null)
-                {
-                    return ExtractorPvpWithoutDeposit;
-                }
-
-                var protoObjectDeposit = (IProtoObjectDeposit)objectDeposit.ProtoStaticWorldObject;
-                return ExtractorPvpWithDeposit;
+                return objectDeposit is not null
+                           ? ExtractorPvpWithDeposit
+                           : ExtractorPvpWithoutDeposit;
             }
         }
     }

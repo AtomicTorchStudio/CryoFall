@@ -20,94 +20,111 @@
 
         public ViewModelNetworkPerformanceStats()
         {
-            if (IsDesignTime)
-            {
-                return;
-            }
-
+            Client.CurrentGame.ConnectionStateChanged += this.CurrentGameConnectionStateChangedHandler;
             this.RefreshCallback();
+        }
+
+        public bool IsVisible
+        {
+            get
+            {
+                var isLocalServer = Client.CurrentGame.ServerInfo?.ServerAddress.IsLocalServer
+                                    ?? false;
+                return !isLocalServer || Api.IsEditor;
+            }
         }
 
         public ViewModelPerformanceMetric PacketLoss { get; }
             = new(CoreStrings.Network_PacketLoss,
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                "%",
-                new PerformanceMetricCondition(
-                    range => range > PacketLossSeverePercent,
-                    metricSeverity: Red,
-                    indicatorSeverity: Red,
-                    description:
-                    CoreStrings.Network_PacketLoss_Description),
-                new PerformanceMetricCondition(
-                    range => range > PacketLossSubstantialPercent,
-                    metricSeverity: Yellow,
-                    indicatorSeverity: Yellow,
-                    description:
-                    CoreStrings.Network_PacketLoss_Description));
+                  // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                  "%",
+                  new PerformanceMetricCondition(
+                      range => range > PacketLossSeverePercent,
+                      metricSeverity: Red,
+                      indicatorSeverity: Red,
+                      description:
+                      CoreStrings.Network_PacketLoss_Description),
+                  new PerformanceMetricCondition(
+                      range => range > PacketLossSubstantialPercent,
+                      metricSeverity: Yellow,
+                      indicatorSeverity: Yellow,
+                      description:
+                      CoreStrings.Network_PacketLoss_Description));
 
         public ViewModelPerformanceMetric PingAverage { get; }
             = new(CoreStrings.Network_PingAverage,
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                "ms",
-                new PerformanceMetricCondition(
-                    ping => ping > PingSevereValue,
-                    metricSeverity: Red,
-                    indicatorSeverity: Red,
-                    description:
-                    CoreStrings.Network_PingAverage_SeverityRed),
-                new PerformanceMetricCondition(
-                    ping => ping > PingSubstantialValue,
-                    metricSeverity: Yellow,
-                    indicatorSeverity: Yellow,
-                    description:
-                    CoreStrings.Network_PingAverage_SeverityYellow));
+                  // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                  "ms",
+                  new PerformanceMetricCondition(
+                      ping => ping > PingSevereValue,
+                      metricSeverity: Red,
+                      indicatorSeverity: Red,
+                      description:
+                      CoreStrings.Network_PingAverage_SeverityRed),
+                  new PerformanceMetricCondition(
+                      ping => ping > PingSubstantialValue,
+                      metricSeverity: Yellow,
+                      indicatorSeverity: Yellow,
+                      description:
+                      CoreStrings.Network_PingAverage_SeverityYellow));
 
         public ViewModelPerformanceMetric PingFluctuationRange { get; }
             = new(CoreStrings.Network_PingFluctuationRange,
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                "ms",
-                new PerformanceMetricCondition(
-                    range => range > 100,
-                    metricSeverity: Red,
-                    indicatorSeverity: Yellow,
-                    description:
-                    CoreStrings.Network_PingFluctuationRange_SeverityRed),
-                new PerformanceMetricCondition(
-                    range => range > 50,
-                    metricSeverity: Yellow,
-                    indicatorSeverity: None,
-                    description:
-                    CoreStrings.Network_PingFluctuationRange_SeverityYellow));
+                  // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                  "ms",
+                  new PerformanceMetricCondition(
+                      range => range > 100,
+                      metricSeverity: Red,
+                      indicatorSeverity: Yellow,
+                      description:
+                      CoreStrings.Network_PingFluctuationRange_SeverityRed),
+                  new PerformanceMetricCondition(
+                      range => range > 50,
+                      metricSeverity: Yellow,
+                      indicatorSeverity: None,
+                      description:
+                      CoreStrings.Network_PingFluctuationRange_SeverityYellow));
 
         public ViewModelPerformanceMetric PingGame { get; }
             = new(CoreStrings.Network_PingGame,
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                "ms",
-                new PerformanceMetricCondition(
-                    ping => ping > PingSevereValue,
-                    metricSeverity: Red,
-                    indicatorSeverity: Red,
-                    description: null), // nothing here as we're using PingAverage as the primary metric of ping quality
-                new PerformanceMetricCondition(
-                    ping => ping > PingSubstantialValue,
-                    metricSeverity: Yellow,
-                    indicatorSeverity: Yellow,
-                    description: null));
+                  // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                  "ms",
+                  new PerformanceMetricCondition(
+                      ping => ping > PingSevereValue,
+                      metricSeverity: Red,
+                      indicatorSeverity: Red,
+                      description: null), // nothing here as we're using PingAverage as the primary metric of ping quality
+                  new PerformanceMetricCondition(
+                      ping => ping > PingSubstantialValue,
+                      metricSeverity: Yellow,
+                      indicatorSeverity: Yellow,
+                      description: null));
 
         public ViewModelPerformanceMetric PingJitter { get; }
             = new(CoreStrings.Network_Jitter,
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                "ms",
-                new PerformanceMetricCondition(
-                    jitter => jitter > 50,
-                    metricSeverity: Red,
-                    indicatorSeverity: Yellow,
-                    description: CoreStrings.Network_Jitter_SeverityRed),
-                new PerformanceMetricCondition(
-                    jitter => jitter > 25,
-                    metricSeverity: Yellow,
-                    indicatorSeverity: None,
-                    description: CoreStrings.Network_Jitter_SeverityYellow));
+                  // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                  "ms",
+                  new PerformanceMetricCondition(
+                      jitter => jitter > 50,
+                      metricSeverity: Red,
+                      indicatorSeverity: Yellow,
+                      description: CoreStrings.Network_Jitter_SeverityRed),
+                  new PerformanceMetricCondition(
+                      jitter => jitter > 25,
+                      metricSeverity: Yellow,
+                      indicatorSeverity: None,
+                      description: CoreStrings.Network_Jitter_SeverityYellow));
+
+        protected override void DisposeViewModel()
+        {
+            Client.CurrentGame.ConnectionStateChanged -= this.CurrentGameConnectionStateChangedHandler;
+            base.DisposeViewModel();
+        }
+
+        private void CurrentGameConnectionStateChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.IsVisible));
+        }
 
         private void RefreshCallback()
         {

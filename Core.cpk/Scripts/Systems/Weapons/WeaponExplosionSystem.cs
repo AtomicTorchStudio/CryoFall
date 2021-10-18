@@ -10,7 +10,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -607,6 +606,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     }
 
                     var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                    if (testWorldObject is null)
+                    {
+                        // unknown obstacle (such as boss event barrier that is used during the boss spawn delay in PvE)
+                        return true;
+                    }
+
                     if (ReferenceEquals(testWorldObject, targetWorldObject))
                     {
                         // not an obstacle - it's the target object itself
@@ -620,15 +625,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                         continue;
                     }
 
-                    // no need for this check anymore as we're checking for general "is ICharacter" above
-                    //if (ReferenceEquals(testWorldObject, character))
-                    //{
-                    //    // not an obstacle - it's the player's character itself
-                    //    continue;
-                    //}
-
-                    if (testWorldObject.ProtoWorldObject is IDamageableProtoWorldObject damageableProtoWorldObject
-                        && damageableProtoWorldObject.ObstacleBlockDamageCoef < 1)
+                    if (testWorldObject.ProtoWorldObject
+                            is IDamageableProtoWorldObject { ObstacleBlockDamageCoef: < 1 })
                     {
                         // damage goes through
                         continue;

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Droplists
 {
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Special;
 
     public static class ItemDroplistPresets
     {
@@ -32,5 +33,13 @@
                     useGuaranteedProbabilityAlgorithm: true,
                     storageKey: "GoldNuggetsRare")
                 .Add<ItemGoldNugget>(1, countRandom: 3);
+
+        public static readonly IReadOnlyDropItemsListPreset TeleportLocationData
+            = new DropItemsListPreset(
+                    outputs: 1,
+                    probability: 1 / 80.0,
+                    useGuaranteedProbabilityAlgorithm: true,
+                    storageKey: "TeleportLocationData")
+                .Add<ItemTeleportLocationData>();
     }
 }

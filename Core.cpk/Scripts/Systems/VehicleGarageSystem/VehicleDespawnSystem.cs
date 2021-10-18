@@ -72,9 +72,10 @@
                 return;
             }
 
-            if (SharedLocalServerHelper.IsLocalServer)
+            if (SharedLocalServerHelper.IsLocalServer
+                || Api.IsEditor)
             {
-                // don't despawn abandoned vehicles on the local server
+                // don't despawn abandoned vehicles on the local server and in Editor
                 return;
             }
 

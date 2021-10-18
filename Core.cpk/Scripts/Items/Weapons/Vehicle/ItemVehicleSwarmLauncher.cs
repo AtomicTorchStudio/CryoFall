@@ -83,7 +83,7 @@
 
             overrideDamageDescription = new DamageDescription(
                 damageValue: 30,
-                armorPiercingCoef: 0.45,
+                armorPiercingCoef: 0.4,
                 finalDamageMultiplier: 1.25,
                 rangeMax: 10,
                 new DamageDistribution(DamageType.Chemical, 1));

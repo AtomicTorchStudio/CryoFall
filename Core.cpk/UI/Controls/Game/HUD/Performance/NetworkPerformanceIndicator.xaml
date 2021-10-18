@@ -11,7 +11,9 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelNetworkPerformanceStats, IsDesignTimeCreatable=True}"
-    Background="Transparent" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    Background="Transparent"
+    Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
     <base:BaseUserControl.Resources>
         <Geometry x:Key="PathCompleteFill">M 234,237 V 57 h 43 V 237 Z M 167,117 h 43 v 120 h -43 z m -66,60 h 43 v 60 h -43 z</Geometry>

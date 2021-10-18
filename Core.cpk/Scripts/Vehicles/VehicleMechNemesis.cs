@@ -103,8 +103,8 @@
                 impact: 0.50,
                 kinetic: 0.50,
                 explosion: 0.50,
-                heat: 0.40,
-                cold: 0.40,
+                heat: 0.35,
+                cold: 0.35,
                 chemical: 0.50,
                 radiation: 0.0,
                 psi: 0.0);
@@ -128,7 +128,8 @@
             out int repairStagesCount)
         {
             buildRequiredItems
-                .Add<ItemKeinite>(100)
+                .Add<ItemKeinite>(120)
+                .Add<ItemToxin>(120)
                 .Add<ItemPragmiumHeart>(3)
                 .Add<ItemTyrantHeart>(3)
                 .Add<ItemVialBiomaterial>(50);

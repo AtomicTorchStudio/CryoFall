@@ -80,7 +80,7 @@
             {
                 this.IsTabNewWorldSelected = false;
             }
-            
+
             var isLocalServerRunning = Client.LocalServer.Status
                                            is LocalServerStatus.Running
                                            or LocalServerStatus.Loading;

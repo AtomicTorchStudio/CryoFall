@@ -21,7 +21,9 @@
         public override float StructurePointsMax => 1200;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.725);
+        {
+            return (0.5, 0.725);
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -43,7 +45,7 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            category = GetCategory<StructureCategoryOther>();
+            category = GetCategory<StructureCategoryDecorations>();
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Medium;

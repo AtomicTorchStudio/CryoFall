@@ -812,7 +812,7 @@
             // check that there are no other objects on the way between them (defined by default layer)
             var physicsSpace = character.PhysicsBody.PhysicsSpace;
             var characterCenter = character.Position + character.PhysicsBody.CenterOffset;
-            var worldObjectCenter = (Vector2D)tilePosition + new Vector2D(0.5, 0.5);
+            var worldObjectCenter = (Vector2D)tilePosition + (0.5, 0.5);
             var worldObjectPointClosestToCharacter = new BoundsInt(tilePosition, Vector2Int.One)
                 .ClampInside(characterCenter);
 
@@ -820,8 +820,7 @@
                                                                               physicsSpace,
                                                                               worldObjectCenter,
                                                                               worldObjectPointClosestToCharacter,
-                                                                              sendDebugEvents: false);
-
+                                                                              sendDebugEvents: true);
             return !obstaclesInTheWay;
         }
 

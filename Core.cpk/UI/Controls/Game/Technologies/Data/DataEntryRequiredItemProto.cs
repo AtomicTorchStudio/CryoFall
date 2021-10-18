@@ -127,12 +127,12 @@
                         return true;
                     }
 
+                    // the recipe is locked
                     if (availableRecipe.ListedInTechNodes.Count == 0)
                     {
                         continue;
                     }
 
-                    // the recipe is locked
                     var minTechNode = availableRecipe.ListedInTechNodes
                                                      .MinimumOrDefault(t => (byte)t.Group.Tier);
 
@@ -140,7 +140,6 @@
                         || minTechNode.Group.Tier < techNodeUnlockRequired.Group.Tier)
                     {
                         // remember this tech group as it's required
-
                         techNodeUnlockRequired = minTechNode;
                     }
                 }

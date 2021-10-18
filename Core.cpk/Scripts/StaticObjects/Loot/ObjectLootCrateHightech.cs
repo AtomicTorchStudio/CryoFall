@@ -72,9 +72,9 @@
                         // devices
                         .Add<ItemPowerBankStandard>(count: 1, weight: 1 / 50.0)
                         .Add<ItemPowerBankLarge>(count: 1,    weight: 1 / 100.0)
-                        // misc
-                        .Add<ItemTeleportLocationData>(count: 1, weight: 1 / 10.0)
                 );
+
+            droplist.Add(ItemDroplistPresets.TeleportLocationData);
 
             // extra loot from skill
             droplist.Add(

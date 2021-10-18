@@ -21,6 +21,27 @@
             Instance.CallServer(_ => _.ServerRemote_SelectOrigin(origin));
         }
 
+        public static void ServerSetOrigin(ICharacter character, ProtoCharacterOrigin origin)
+        {
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            privateState.Origin = origin;
+            privateState.SetFinalStatsCacheIsDirty();
+        }
+
+        /// <summary>
+        /// Please do not invoke for the already spawned character.
+        /// </summary>
+        public static void ServerSpawnIfReady(ICharacter character)
+        {
+            if (!SharedIsCharacterCreated(character))
+            {
+                return;
+            }
+
+            Api.SafeInvoke(() => ServerCharacterCreated?.Invoke(character));
+            CharacterRespawnSystem.ServerOnCharacterCreated(character);
+        }
+
         public static bool SharedIsCharacterCreated(ICharacter character)
         {
             var privateState = PlayerCharacter.GetPrivateState(character);
@@ -43,20 +64,6 @@
             ServerSpawnIfReady(character);
         }
 
-        /// <summary>
-        /// Please do not invoke for the already spawned character.
-        /// </summary>
-        public static void ServerSpawnIfReady(ICharacter character)
-        {
-            if (!SharedIsCharacterCreated(character))
-            {
-                return;
-            }
-
-            Api.SafeInvoke(() => ServerCharacterCreated?.Invoke(character));
-            CharacterRespawnSystem.ServerOnCharacterCreated(character);
-        }
-
         private void ServerRemote_SelectOrigin(ProtoCharacterOrigin origin)
         {
             Api.Assert(origin is not null, "No origin provided");
@@ -67,13 +74,6 @@
 
             ServerSetOrigin(character, origin);
             ServerSpawnIfReady(character);
-        }
-
-        public static void ServerSetOrigin(ICharacter character, ProtoCharacterOrigin origin)
-        {
-            var privateState = PlayerCharacter.GetPrivateState(character);
-            privateState.Origin = origin;
-            privateState.SetFinalStatsCacheIsDirty();
         }
 
         private class Bootstrappper : BaseBootstrapper

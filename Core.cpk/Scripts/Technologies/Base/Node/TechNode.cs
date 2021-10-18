@@ -184,7 +184,6 @@
             this.RequiredNode?.PrepareRegisterDependentNode(this);
 
             if (effects is not null)
-                //&& effects.Count > 0)
             {
                 this.NodeEffects = effects;
             }
@@ -193,12 +192,9 @@
                 throw new Exception("No effects provided");
             }
 
-            if (this.AvailableIn != FeatureAvailability.None)
+            foreach (var effect in effects)
             {
-                foreach (var effect in effects)
-                {
-                    effect.PrepareEffect(this);
-                }
+                effect.PrepareEffect(this);
             }
 
             this.lazyHierarchyLevel = new Lazy<byte>(

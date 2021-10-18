@@ -15,6 +15,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
 
     [PrepareOrder(afterType: typeof(TechNode))]
+    [PrepareOrder(afterType: typeof(RatesSynchronizationSystem))]
     public abstract class TechGroup : ProtoEntity
     {
         public const string ErrorNotEnoughLearningPoints = "Not enough learning points";
@@ -23,16 +24,17 @@
 
         public const string ErrorTechIsAlreadyUnlocked = "The tech is already unlocked";
 
-        private static readonly Lazy<List<TechNode>> LazyAllNodesWithoutFiltering
+        private static readonly Lazy<IReadOnlyList<TechNode>> LazyAllNodesWithoutFiltering
             = new(FindProtoEntities<TechNode>);
+
+        private static bool ServerHasBuiltTechGroups;
 
         static TechGroup()
         {
             if (IsClient)
             {
-                PveSystem.ClientIsPvEChanged += SharedRebuildAllNodes;
-                RatePvPTimeGates.ClientValueChanged += SharedRebuildAllNodes;
-                RateStructuresTextSignsAvailable.ClientValueChanged += SharedRebuildAllNodes;
+                PveSystem.ClientIsPvEChanged += SharedRebuildAllTechGroups;
+                RatesManager.ClientRatesReceived += SharedRebuildAllTechGroups;
             }
         }
 
@@ -181,18 +183,30 @@
             }
 
             this.LearningPointsPrice = this.CalculateLearningPointsPrice();
-            SharedRebuildAllNodes();
+
+            if (IsServer
+                && !ServerHasBuiltTechGroups)
+            {
+                SharedRebuildAllTechGroups();
+            }
         }
 
         protected abstract void PrepareTechGroup(Requirements requirements);
 
-        private static void SharedRebuildAllNodes()
+        private static void SharedRebuildAllTechGroups()
         {
             if (Api.IsClient
-                && !PveSystem.ClientIsPveFlagReceived)
+                && (!PveSystem.ClientIsPveFlagReceived
+                    || !RatesManager.ClientHasRatesReceived))
             {
+                // client must wait until the PvE flag and server rates are received
                 AvailableTechGroups = Array.Empty<TechGroup>();
                 return;
+            }
+
+            if (IsServer)
+            {
+                ServerHasBuiltTechGroups = true;
             }
 
             var isPvE = PveSystem.SharedIsPve(false);
@@ -202,16 +216,21 @@
             {
                 SetupTimeGate(techGroup);
 
-                techGroup.Nodes = techGroup.IsAvailable
-                                      ? LazyAllNodesWithoutFiltering
-                                        .Value
-                                        .Where(n => n.Group == techGroup
-                                                    && n.IsAvailable)
-                                        .OrderBy(n => n.HierarchyLevel)
-                                        .ThenBy(n => n.Order)
-                                        .ThenBy(n => n.ShortId)
-                                        .ToList()
-                                      : Array.Empty<TechNode>();
+                if (!techGroup.IsAvailable)
+                {
+                    techGroup.Nodes = Array.Empty<TechNode>();
+                }
+                else
+                {
+                    techGroup.Nodes = LazyAllNodesWithoutFiltering
+                                      .Value
+                                      .Where(n => ReferenceEquals(n.Group, techGroup)
+                                                  && n.IsAvailable)
+                                      .OrderBy(n => n.HierarchyLevel)
+                                      .ThenBy(n => n.Order)
+                                      .ThenBy(n => n.ShortId)
+                                      .ToList();
+                }
 
                 var rootNodes = new List<TechNode>();
                 foreach (var node in techGroup.Nodes)

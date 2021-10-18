@@ -95,9 +95,9 @@
                         .Add<ItemStrengthBoostSmall>(count: 3, countRandom: 2, weight: 1 / 5.0)
                         .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
                         .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0)
-                        // misc
-                        .Add<ItemTeleportLocationData>(count: 1, weight: 1 / 4.0)
                 );
+            
+            droplist.Add(ItemDroplistPresets.TeleportLocationData);
 
             // extra loot from skill
             droplist.Add(

@@ -23,12 +23,6 @@
                                     isHeadEquipmentHiddenForSelfAndPartyMembers));
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 5)]
-        private void ServerRemote_ChangeStyle(CharacterHumanFaceStyle style, bool isMale)
-        {
-            ServerSetStyle(ServerRemoteContext.Character, style, isMale);
-        }
-
         public static void ServerSetStyle(ICharacter character, CharacterHumanFaceStyle style, bool isMale)
         {
             style = style.EmptyStringsToNulls();
@@ -44,6 +38,12 @@
             publicState.FaceStyle = style;
 
             Api.SafeInvoke(() => ServerCharacterAppearanceSelected?.Invoke(character));
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 5)]
+        private void ServerRemote_ChangeStyle(CharacterHumanFaceStyle style, bool isMale)
+        {
+            ServerSetStyle(ServerRemoteContext.Character, style, isMale);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 0.667)]

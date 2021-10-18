@@ -4,6 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
@@ -12,7 +13,6 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -74,6 +74,11 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
                     return;
                 }
 
+                // the recipe may produce a stack of items (e.g. 20 ammo)
+                // adjust the output count depending on how many items are disassembled
+                var recipeCountMultiplier = itemToDisassemble.Count
+                                            / (double)recipe.OutputItems.Items[0].Count;
+
                 Server.Items.DestroyItem(itemToDisassemble);
                 itemsDisassembled++;
 
@@ -83,11 +88,14 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
                 {
                     var outputCountMultipier = range.min + RandomHelper.NextDouble() * (range.max - range.min);
                     var probability = Math.Min(1, durabilityFraction * outputCountMultipier);
-                    var countToRecover = itemToRecover.Count * probability;
+
+                    var countToRecover = recipeCountMultiplier * (double)itemToRecover.Count;
+                    countToRecover *= probability;
+
                     if (countToRecover < 1)
                     {
                         // try to roll at least one item 
-                        if (!RandomHelper.RollWithProbability(probability))
+                        if (!RandomHelper.RollWithProbability(probability * recipeCountMultiplier))
                         {
                             // cannot recover this item
                             continue;
@@ -118,12 +126,14 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
             return Recipe.AllRecipes.SingleOrDefault(
                 r => r.OutputItems.Count == 1
                      && r.OutputItems.Items[0].ProtoItem == protoItem
-                     && r.OutputItems.Items[0].Count == 1
                      && r.OutputItems.Items[0].CountRandom == 0
                      // ensure that items such as gold-plated pistol cannot be disassembled
-                     // and there are no original ingredients that have a durability property
-                     && r.InputItems.All(i => i.ProtoItem is not IProtoItemWithDurability
-                                              && !SharedIsCompatibleProtoItem(i.ProtoItem)));
+                     // there should be no original ingredients that have a durability/freshness property
+                     && r.InputItems.All(
+                         i => (i.ProtoItem is not IProtoItemWithDurability protoItemWithDurability
+                               || protoItemWithDurability.DurabilityMax == 0)
+                              && (i.ProtoItem is not IProtoItemWithFreshness protoItemWithFreshness
+                                  || protoItemWithFreshness.FreshnessMaxValue == 0)));
         }
 
         private static bool SharedIsCompatibleProtoItem(IProtoItem protoItem)
@@ -133,6 +143,7 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
                 IProtoItemEquipment    => true,
                 IProtoItemTool         => true,
                 IProtoItemWeapon       => true,
+                IProtoItemAmmo         => true,
                 IProtoItemDrone        => true,
                 IProtoItemDroneControl => true,
                 _                      => false

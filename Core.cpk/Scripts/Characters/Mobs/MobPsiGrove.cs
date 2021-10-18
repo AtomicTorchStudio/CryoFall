@@ -19,6 +19,8 @@
     {
         public override bool AiIsRunAwayFromHeavyVehicles => false;
 
+        public override double BiomaterialValueMultiplier => 0.5;
+
         public override float CharacterWorldHeight => 1.5f;
 
         public override double MobKillExperienceMultiplier => 1.0;

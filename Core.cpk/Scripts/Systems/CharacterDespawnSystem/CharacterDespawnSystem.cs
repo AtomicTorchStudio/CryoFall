@@ -109,9 +109,10 @@
                 return;
             }
 
-            if (SharedLocalServerHelper.IsLocalServer)
+            if (SharedLocalServerHelper.IsLocalServer
+                || Api.IsEditor)
             {
-                // don't despawn offline players on the local server
+                // don't despawn offline players on the local server and in Editor
                 return;
             }
 

@@ -83,9 +83,9 @@
                         .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
                         // equipment
                         .Add<ItemHelmetSafety>(count: 1, weight: 1 / 15.0)
-                        // misc
-                        .Add<ItemTeleportLocationData>(count: 1, weight: 1 / 15.0)
                 );
+            
+            droplist.Add(ItemDroplistPresets.TeleportLocationData);
 
             // extra loot from skill
             droplist.Add(

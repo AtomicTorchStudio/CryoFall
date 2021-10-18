@@ -52,6 +52,12 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
                     }
 
                     var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                    if (testWorldObject is null)
+                    {
+                        // unknown obstacle (such as boss event barrier that is used during the boss spawn delay in PvE)
+                        return true;
+                    }
+
                     if (ReferenceEquals(testWorldObject, worldObject))
                     {
                         // not an obstacle - it's the target object itself
@@ -64,13 +70,6 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
                         // dynamic world objects are not assumed as an obstacle
                         continue;
                     }
-
-                    // no need for this check anymore as we're checking for general "is ICharacter" above
-                    //if (ReferenceEquals(testWorldObject, character))
-                    //{
-                    //    // not an obstacle - it's the player's character itself
-                    //    continue;
-                    //}
 
                     if (!testWorldObject.ProtoWorldObject
                                         .SharedIsAllowedObjectToInteractThrough(testWorldObject))

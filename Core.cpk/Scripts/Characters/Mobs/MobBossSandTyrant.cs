@@ -316,7 +316,7 @@
             effects.AddValue(this, StatName.DefenseImpact, 0.6)
                    .AddValue(this, StatName.DefenseKinetic,   0.95)
                    .AddValue(this, StatName.DefenseExplosion, 0.5)
-                   .AddValue(this, StatName.DefenseHeat,      0.75)
+                   .AddValue(this, StatName.DefenseHeat,      0.7)
                    .AddValue(this, StatName.DefenseCold,      0.7)
                    .AddValue(this, StatName.DefenseChemical,  0.7)
                    .AddValue(this, StatName.DefensePsi,       1.0)

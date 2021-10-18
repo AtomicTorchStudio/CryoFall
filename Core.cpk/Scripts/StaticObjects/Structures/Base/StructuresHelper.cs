@@ -52,21 +52,19 @@
                                                  n => n.AvailableIn == FeatureAvailability.All))))
                          .ToArray());
 
-            allConstructableStructuresIncludingUpgrades = new(
-                () => Api.FindProtoEntities<IProtoObjectStructure>()
-                         .Where(s => s.IsAutoUnlocked
-                                     || (s.IsListedInTechNodes
-                                         && s.ListedInTechNodes.Any(
-                                             n => n.IsAvailable)))
-                         .ToArray());
-
             allConstructableStructures = new(
                 () => Api.FindProtoEntities<IProtoObjectStructure>()
                          .Where(s => s.ConfigBuild.IsAllowed
                                      && (s.IsAutoUnlocked
                                          || (s.IsListedInTechNodes
-                                             && s.ListedInTechNodes.Any(
-                                                 n => n.IsAvailable))))
+                                             && s.ListedInTechNodes.Any(n => n.IsAvailable))))
+                         .ToArray());
+
+            allConstructableStructuresIncludingUpgrades = new(
+                () => Api.FindProtoEntities<IProtoObjectStructure>()
+                         .Where(s => s.IsAutoUnlocked
+                                     || (s.IsListedInTechNodes
+                                         && s.ListedInTechNodes.Any(n => n.IsAvailable)))
                          .ToArray());
         }
 

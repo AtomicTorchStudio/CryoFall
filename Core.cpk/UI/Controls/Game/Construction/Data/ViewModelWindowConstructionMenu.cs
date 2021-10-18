@@ -171,11 +171,11 @@
         {
             var result = StructuresHelper.ClientGetAvailableToBuildStructures();
             // update categories
-            var grouppedByCategory = result.GroupBy(r => r.Category)
-                                           .ToDictionary(r => r.Key);
+            var groupedByCategory = result.GroupBy(r => r.Category)
+                                          .ToDictionary(r => r.Key);
             foreach (var viewModelCategory in this.Categories)
             {
-                var isAvailable = grouppedByCategory.ContainsKey(viewModelCategory.Category);
+                var isAvailable = groupedByCategory.ContainsKey(viewModelCategory.Category);
                 viewModelCategory.IsEnabled = isAvailable;
             }
 
