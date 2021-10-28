@@ -64,8 +64,8 @@ Emplacement 8
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Emplacement 9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Emplacement 10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Emplacement 0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Zoom avant caméra

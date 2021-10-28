@@ -37,7 +37,7 @@
         public static readonly IReadOnlyDropItemsListPreset TeleportLocationData
             = new DropItemsListPreset(
                     outputs: 1,
-                    probability: 1 / 80.0,
+                    probability: 1 / 40.0,
                     useGuaranteedProbabilityAlgorithm: true,
                     storageKey: "TeleportLocationData")
                 .Add<ItemTeleportLocationData>();

@@ -19,7 +19,7 @@
 
         public override double DamageMultiplier => 1.25; // higher damage
 
-        public override string Description => "Heavy anti-material rifle developed for high-power .300 rounds.";
+        public override string Description => "Heavy anti-materiel rifle developed for high-power .300 rounds."; // yes Anti-materiel is the correct spelling 
 
         public override uint DurabilityMax => 720;
 

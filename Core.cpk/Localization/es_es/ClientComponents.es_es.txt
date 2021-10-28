@@ -64,8 +64,8 @@ Ranura 8
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Ranura 9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Ranura 10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Ranura 0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Acercar cámara

@@ -479,7 +479,8 @@
                     }
 
                     var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                    if (ReferenceEquals(testWorldObject,    character)
+                    if (testWorldObject is null
+                        || ReferenceEquals(testWorldObject,    character)
                         || ReferenceEquals(testWorldObject, forStructureRelocation))
                     {
                         // not an obstacle - it's the character or world object itself

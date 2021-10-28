@@ -65,8 +65,8 @@ Gniazdo 8
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Gniazdo 9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Gniazdo 10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Gniazdo 0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Powiększenie widoku

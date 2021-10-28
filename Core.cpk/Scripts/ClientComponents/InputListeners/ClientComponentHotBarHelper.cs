@@ -16,9 +16,22 @@
 
     public class ClientComponentHotbarHelper : ClientComponent
     {
-        private static readonly IInputClientService Input = Client.Input;
+        private static readonly Dictionary<GameButton, byte> ButtonMappingQuickUseSlot
+            = new()
+            {
+                { GameButton.HotbarQuickUseSlot1, 0 },
+                { GameButton.HotbarQuickUseSlot2, 1 },
+                { GameButton.HotbarQuickUseSlot3, 2 },
+                { GameButton.HotbarQuickUseSlot4, 3 },
+                { GameButton.HotbarQuickUseSlot5, 4 },
+                { GameButton.HotbarQuickUseSlot6, 5 },
+                { GameButton.HotbarQuickUseSlot7, 6 },
+                { GameButton.HotbarQuickUseSlot8, 7 },
+                { GameButton.HotbarQuickUseSlot9, 8 },
+                { GameButton.HotbarQuickUseSlot0, 9 }
+            };
 
-        private static readonly Dictionary<GameButton, byte> KeysMapping
+        private static readonly Dictionary<GameButton, byte> ButtonMappingSelectSlot
             = new()
             {
                 { GameButton.HotbarSelectSlot1, 0 },
@@ -30,8 +43,10 @@
                 { GameButton.HotbarSelectSlot7, 6 },
                 { GameButton.HotbarSelectSlot8, 7 },
                 { GameButton.HotbarSelectSlot9, 8 },
-                { GameButton.HotbarSelectSlot10, 9 }
+                { GameButton.HotbarSelectSlot0, 9 }
             };
+
+        private static readonly IInputClientService Input = Client.Input;
 
         private ClientInputContext clientInputContext;
 
@@ -134,7 +149,18 @@
                 return;
             }
 
-            foreach (var pair in KeysMapping)
+            foreach (var pair in ButtonMappingQuickUseSlot)
+            {
+                if (ClientInputManager.IsButtonDown(pair.Key))
+                {
+                    // the key was pressed
+                    var hotbarSlotId = pair.Value;
+                    var item = ClientHotbarSelectedItemManager.ContainerHotbar.GetItemAtSlot(hotbarSlotId);
+                    ClientItemManagementCases.TryUseItem(item);
+                }
+            }
+
+            foreach (var pair in ButtonMappingSelectSlot)
             {
                 if (!ClientInputManager.IsButtonDown(pair.Key))
                 {

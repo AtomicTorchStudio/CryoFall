@@ -141,6 +141,9 @@
         [SyncToClient]
         public PlayerCharacterSkills Skills { get; private set; }
 
+        // Currently it's not synchronized to the client.
+        public PlayerCharacterStatistics Statistics { get; private set; }
+
         [SyncToClient]
         public PlayerCharacterTechnologies Technologies { get; private set; }
 
@@ -180,6 +183,7 @@
             this.CompletionistData ??= new PlayerCharacterCompletionistData();
             this.CompletionistData.ServerInitState();
             this.DroneController ??= CharacterDroneControlSystem.ServerCreateCharacterDroneController();
+            this.Statistics ??= new PlayerCharacterStatistics();
 
             if (this.ServerLastActiveTime <= 0)
             {

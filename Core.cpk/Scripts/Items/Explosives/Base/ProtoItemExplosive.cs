@@ -178,6 +178,12 @@
                     }
 
                     var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                    if (testWorldObject is null)
+                    {
+                        // some barrier on the way
+                        return true;
+                    }
+                    
                     if (testWorldObject == character)
                     {
                         // not an obstacle - it's the character or world object itself

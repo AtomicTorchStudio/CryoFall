@@ -123,7 +123,7 @@
                                  ?? throw new Exception("Unable to pick an event position");
 
                 // pick up a valid position inside the zone
-                var maxAttempts = 350;
+                var maxAttempts = 800;
                 attempts = maxAttempts;
                 do
                 {

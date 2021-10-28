@@ -5,7 +5,7 @@
     {
         public const double None = 0;
 
-        public static double Long => 7;
+        public static double Long => 8;
 
         /// <summary>
         /// This is just a synonym for the most long value.
@@ -14,10 +14,10 @@
         /// </summary>
         public static double Maximum => VeryLong;
 
-        public static double Medium => 5;
+        public static double Medium => 6;
 
-        public static double Short => 3;
+        public static double Short => 4;
 
-        public static double VeryLong => 10;
+        public static double VeryLong => 11;
     }
 }

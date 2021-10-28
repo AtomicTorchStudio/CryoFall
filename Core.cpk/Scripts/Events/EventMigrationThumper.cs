@@ -79,7 +79,7 @@
             if (PveSystem.ServerIsPvE
                 && !Server.Core.IsLocalServer)
             {
-                locationsCount = Api.Server.Characters.OnlinePlayersCount >= 100 ? 3 : 2;
+                locationsCount = Api.Server.Characters.OnlinePlayersCount >= 20 ? 3 : 2;
             }
             else
             {
@@ -126,7 +126,7 @@
                                  ?? throw new Exception("Unable to pick an event position");
 
                 // pick up a valid position inside the zone
-                var maxAttempts = 350;
+                var maxAttempts = 800;
                 attempts = maxAttempts;
                 do
                 {

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
@@ -181,10 +182,11 @@
             // play death animation
             skeletonRenderer.SetAnimation(AnimationTrackIndexes.Primary, "Death", isLooped: false);
 
-            if (Client.CurrentGame.ServerFrameTimeRounded - publicState.DeathTime > 5)
+            var timeSinceDeath = Math.Max(0, Client.CurrentGame.ServerFrameTimeRounded - publicState.DeathTime);
+            if (timeSinceDeath > 0.333 + Client.CurrentGame.PingGameSeconds / 2.0)
             {
-                // the corpse was spawned more than 5 seconds ago so let's skip the animation
-                skeletonRenderer.SetAnimationTime(AnimationTrackIndexes.Primary, 10000);
+                // seek the animation to match the actual timing
+                skeletonRenderer.SetAnimationTime(AnimationTrackIndexes.Primary, (float)timeSinceDeath);
             }
 
             skeletonRenderer.DrawMode = publicState.IsFlippedHorizontally

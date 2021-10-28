@@ -1157,6 +1157,12 @@
                         // ignore collision with self
                         continue;
                     }
+                    
+                    if (damagedObject is null)
+                    {
+                        // ignore collision with any barrier
+                        continue;
+                    }
 
                     if (damagedObject.ProtoGameObject is not IDamageableProtoWorldObject damageableProto)
                     {

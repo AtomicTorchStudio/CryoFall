@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.Perks.Base;
@@ -438,6 +439,12 @@
                       if (!Api.IsEditor
                           && CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
                       {
+                          return true;
+                      }
+
+                      if (SharedLocalServerHelper.IsLocalServer)
+                      {
+                          // don't limit the base size on local server
                           return true;
                       }
 
@@ -2700,6 +2707,12 @@
 
         private static int SharedGetMaxBaseSizeTiles()
         {
+            if (SharedLocalServerHelper.IsLocalServer)
+            {
+                // no limit for local servers
+                return ushort.MaxValue;
+            }
+
             // 2 tiles - represents an extra 1 tile padding around every side of the base with all T5 land claims
             return 2 + MaxLandClaimSize.Value * MaxNumberOfLandClaimsInRow;
         }

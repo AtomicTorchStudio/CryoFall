@@ -65,8 +65,8 @@ Yuva #8
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Yuva #9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Yuva #10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Yuva #0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Kamera yakınlaştırma

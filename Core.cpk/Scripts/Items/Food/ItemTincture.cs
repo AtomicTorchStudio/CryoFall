@@ -28,7 +28,7 @@
         {
             effects
                 .WillAddEffect<StatusEffectDrunk>(intensity: 0.20)
-                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.25)
+                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.20)
                 .WillRemoveEffect<StatusEffectToxins>(intensityToRemove: 0.10)
                 .WillRemoveEffect<StatusEffectRadiationPoisoning>(intensityToRemove: 0.10);
         }

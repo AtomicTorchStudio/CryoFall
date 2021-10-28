@@ -41,14 +41,13 @@
 
         protected override void PrepareProtoItemFish(FishingBaitWeightList baitWeightList, DropItemsList dropItemsList)
         {
-            var weightMultiplier = 5.0;
-            baitWeightList.Add<ItemFishingBaitInsect>(weight: 30 * weightMultiplier)
-                          .Add<ItemFishingBaitMix>(weight: 40 * weightMultiplier)
-                          .Add<ItemFishingBaitFish>(weight: 30 * weightMultiplier);
+            baitWeightList.Add<ItemFishingBaitInsect>(weight: 150)
+                          .Add<ItemFishingBaitMix>(weight: 200)
+                          .Add<ItemFishingBaitFish>(weight: 150);
 
             dropItemsList.Add<ItemOrePragmium>(count: 2, countRandom: 1)
-                         .Add<ItemSlime>(count: 3,         countRandom: 2)
-                         .Add<ItemSulfurPowder>(count: 25, countRandom: 25);
+                         .Add<ItemSlime>(count: 1,        countRandom: 1)
+                         .Add<ItemSulfurPowder>(count: 5, countRandom: 5);
         }
     }
 }

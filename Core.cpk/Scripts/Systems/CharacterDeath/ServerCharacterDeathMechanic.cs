@@ -50,15 +50,9 @@
             // recreate physics (as dead character doesn't have any physics)
             deadCharacter.ProtoCharacter.SharedCreatePhysics(deadCharacter);
 
-            Action<ICharacter> onCharacterDeath;
             if (deadCharacter.ProtoCharacter is IProtoCharacterMob protoCharacterMob)
             {
-                onCharacterDeath = CharacterDeath;
-                if (onCharacterDeath is not null)
-                {
-                    Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
-                }
-
+                Api.SafeInvoke(() => CharacterDeath?.Invoke(deadCharacter));
                 protoCharacterMob.ServerOnDeath(deadCharacter);
                 return;
             }
@@ -77,7 +71,7 @@
                         // player has already respawned
                         return;
                     }
-                    
+
                     CharacterDespawnSystem.ServerTeleportPlayerCharacterToServiceArea(deadCharacter);
                     CharacterRespawnSystem.ServerRemoveStatusEffectsOnRespawn(deadCharacter);
                 });
@@ -99,11 +93,7 @@
                                      deadCharacter);
             }
 
-            onCharacterDeath = CharacterDeath;
-            if (onCharacterDeath is not null)
-            {
-                Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
-            }
+            Api.SafeInvoke(() => CharacterDeath?.Invoke(deadCharacter));
         }
 
         public static void OnCharacterInitialize(ICharacter character)
@@ -117,7 +107,6 @@
             {
                 CharacterDespawnSystem.ServerTeleportPlayerCharacterToServiceArea(character);
                 CharacterRespawnSystem.ServerRemoveStatusEffectsOnRespawn(character);
-                
             }
             else if (PlayerCharacter.GetPrivateState(character).IsDespawned)
             {

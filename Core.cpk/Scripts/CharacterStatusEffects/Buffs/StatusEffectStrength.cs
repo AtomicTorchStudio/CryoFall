@@ -21,7 +21,7 @@
                    .AddPercent(this, StatName.WoodcuttingSpeed, 50);
 
             // increase combat effectiveness
-            effects.AddPercent(this, StatName.WeaponMeleeDamageBonusMultiplier, 10)
+            effects.AddPercent(this, StatName.WeaponMeleeDamageBonusMultiplier, 25)
                    .AddPercent(this, StatName.WeaponMeleeSpecialEffectChanceMultiplier, 100);
         }
     }

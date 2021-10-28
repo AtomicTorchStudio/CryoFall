@@ -14,6 +14,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -58,6 +59,16 @@
         public virtual float StaminaRestore => 0;
 
         public virtual float WaterRestore => 0;
+
+        public override void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
+        {
+            base.ClientCreateItemSlotOverlayControls(item, controls);
+
+            if (this.CooldownDuration > 0)
+            {
+                controls.Add(new ItemSlotMedicineCooldownOverlayControl());
+            }
+        }
 
         protected override bool ClientItemUseFinish(ClientItemData data)
         {

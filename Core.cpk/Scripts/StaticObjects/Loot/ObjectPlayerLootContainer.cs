@@ -438,8 +438,8 @@
                 foreach (var testResult in testResults.AsList())
                 {
                     var associatedWorldObject = testResult.PhysicsBody.AssociatedWorldObject;
-                    if (associatedWorldObject is not null
-                        && associatedWorldObject.IsStatic
+                    if ((associatedWorldObject is not null
+                        && associatedWorldObject.IsStatic)
                         || testResult.PhysicsBody.AssociatedProtoTile is not null)
                     {
                         isValidTile = false;

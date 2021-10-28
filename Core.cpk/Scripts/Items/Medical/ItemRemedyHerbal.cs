@@ -7,7 +7,7 @@
 
     public class ItemRemedyHerbal : ProtoItemMedical
     {
-        public override double CooldownDuration => MedicineCooldownDuration.Long;
+        public override double CooldownDuration => MedicineCooldownDuration.VeryLong;
 
         public override string Description =>
             "Homebrewed herbal remedy. Restores some health overtime and removes nausea. Probably doesn't have any side effects.";

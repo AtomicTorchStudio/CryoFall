@@ -393,7 +393,7 @@
 
             CurrentInputMappingSnapshot.Update(snapshot);
             SetMapping(
-                CurrentInputMappingSnapshot.GetMapping(RegisteredButtonEnums, RegisteredButtons),
+                CurrentInputMappingSnapshot.GetMapping(RegisteredButtons),
                 writeToLog: false);
 
             Freeze();

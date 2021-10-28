@@ -40,8 +40,6 @@
             NotificationSystem.ClientShowNotification(
                 proto.Name,
                 message: "[*]"
-                         + StatName.PerkCannotAttack.GetDescription()
-                         + "[*]"
                          + StatName.PerkCannotUseMedicalItems.GetDescription()
                          + "[br]"
                          + "[br]"
@@ -52,7 +50,6 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPerk(this, StatName.PerkCannotAttack);
             effects.AddPerk(this, StatName.PerkCannotUseMedicalItems);
         }
     }

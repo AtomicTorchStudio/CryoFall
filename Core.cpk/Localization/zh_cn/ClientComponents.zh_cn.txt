@@ -64,8 +64,8 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 栏位 9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-栏位 10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+栏位 0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 摄像机缩进

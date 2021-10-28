@@ -16,11 +16,11 @@
             Visibility="{Binding IsVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
             CornerRadius="3,3,0,0">
         <Border.Background>
-            <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.075" />
+            <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.3" />
         </Border.Background>
         <Rectangle Clip="{Binding StreamGeometry}">
             <Rectangle.Fill>
-                <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.2" />
+                <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.35" />
             </Rectangle.Fill>
         </Rectangle>
     </Border>

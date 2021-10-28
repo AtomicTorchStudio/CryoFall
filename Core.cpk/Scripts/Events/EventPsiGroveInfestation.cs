@@ -19,7 +19,7 @@
             EmptyClientState>
     {
         public const string Description_FirearmsUseless
-            = "Important: Firearms are useless; use melee or heat-based weapons.";
+            = "Important: Firearms are ineffective; use melee weapons.";
 
         public const string Description_Primary
             = "A strange alien growth has appeared in the mountainous areas making prospecting near impossible, but it is a great opportunity to obtain rare resources.";

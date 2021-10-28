@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
@@ -19,25 +20,10 @@
             ObjectDecorationBannerFaction.PublicState,
             StaticObjectClientState>
     {
-        private static readonly RenderingMaterial RenderingMaterialEmblem;
-
-        static ObjectDecorationBannerFaction()
-        {
-            if (IsServer)
-            {
-                return;
-            }
-
-            RenderingMaterialEmblem = RenderingMaterial.Create(
-                new EffectResource("DrawWithMask"));
-
-            var maskTextureResource = new TextureResource(
-                GenerateTexturePath(typeof(ObjectDecorationBannerFaction)) + "_Mask",
-                qualityOffset: ClientFactionEmblemTextureProvider.SpriteQualityOffset);
-
-            RenderingMaterialEmblem.EffectParameters
-                                   .Set("MaskTextureArray", maskTextureResource);
-        }
+        private static readonly Lazy<RenderingMaterial> LazyRenderingMaterialEmblem
+            = IsClient
+                  ? new Lazy<RenderingMaterial>(CreateRenderingMaterialEmblem)
+                  : null;
 
         public override string Description =>
             "Unique banner that will display your faction emblem.";
@@ -84,7 +70,7 @@
             emblemRenderer.PositionOffset = (0.5, renderer.PositionOffset.Y + offsetY);
             emblemRenderer.DrawOrderOffsetY = renderer.DrawOrderOffsetY - offsetY;
             emblemRenderer.SpritePivotPoint = (0.5, 0);
-            emblemRenderer.RenderingMaterial = RenderingMaterialEmblem;
+            emblemRenderer.RenderingMaterial = LazyRenderingMaterialEmblem.Value;
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -120,6 +106,19 @@
                 .AddShapeRectangle((0.5, 0.4), offset: (0.25, 0.3))
                 .AddShapeRectangle((0.5, 0.4), offset: (0.25, 0.9), group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((0.5, 0.3), offset: (0.25, 1.0), group: CollisionGroups.HitboxRanged);
+        }
+
+        private static RenderingMaterial CreateRenderingMaterialEmblem()
+        {
+            var maskTextureResource = new TextureResource(
+                GenerateTexturePath(typeof(ObjectDecorationBannerFaction)) + "_Mask",
+                qualityOffset: ClientFactionEmblemTextureProvider.SpriteQualityOffset);
+
+            var material = RenderingMaterial.Create(
+                new EffectResource("DrawWithMask"));
+            material.EffectParameters
+                    .Set("MaskTextureArray", maskTextureResource);
+            return material;
         }
 
         public class PublicState : StaticObjectPublicState

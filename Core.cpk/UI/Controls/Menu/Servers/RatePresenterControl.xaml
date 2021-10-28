@@ -127,11 +127,12 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top" />
 
-            <StackPanel Grid.Column="2"
-                        Orientation="Horizontal">
+            <WrapPanel Grid.Column="2"
+                       Orientation="Horizontal">
                 <ContentControl Content="{Binding}"
                                 Foreground="{StaticResource BrushColorAltLabelForeground}"
-                                VerticalAlignment="Top">
+                                VerticalAlignment="Top"
+                                Margin="0,0,10,0">
                     <ContentControl.ContentTemplateSelector>
                         <data:RatePresenterControlDataTemplateSelector>
                             <data:RatePresenterControlDataTemplateSelector.TemplateDefault>
@@ -199,17 +200,18 @@
                         </data:RatePresenterControlDataTemplateSelector>
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
-                <StackPanel Orientation="Horizontal"
-                            Visibility="{Binding IsDefaultValue, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                <ContentControl
+                    Visibility="{Binding IsDefaultValue, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                     <TextBlock
                         Text="{Binding ValueDefaultText, StringFormat={x:Static loc:CoreStrings.RatesEditorControl_DefaultRateValueFormat}}"
                         Foreground="{StaticResource BrushColor4}"
                         FontFamily="{StaticResource MonospacedFontFamily}"
                         FontSize="11"
                         VerticalAlignment="Top"
-                        Margin="10,2.5,0,0" />
-                </StackPanel>
-            </StackPanel>
+                        TextWrapping="Wrap"
+                        Margin="0,2.5,0,0" />
+                </ContentControl>
+            </WrapPanel>
         </Grid>
     </Border>
 </base:BaseUserControl>

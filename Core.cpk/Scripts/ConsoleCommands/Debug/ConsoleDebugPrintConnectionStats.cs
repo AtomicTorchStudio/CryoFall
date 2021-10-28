@@ -10,7 +10,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
     public class ConsoleDebugPrintConnectionStats : BaseConsoleCommand
     {
-        public override string Description => "Print network stats for all the connected clients";
+        public override string Description => "Prints network stats for all the connected clients.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 

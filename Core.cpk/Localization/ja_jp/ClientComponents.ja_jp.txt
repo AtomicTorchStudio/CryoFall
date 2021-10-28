@@ -65,8 +65,8 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 スロット＃9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-スロット＃10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+スロット＃0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 ズームイン

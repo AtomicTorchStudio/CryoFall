@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.DataStructures;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     // TODO: don't require IRemoteCallParameter when [Serializable] is present
     [Serializable]
@@ -86,6 +87,7 @@
                                                          fraction: (float)fraction));
                 }
 
+                list.SortByDesc(l => l.Fraction);
                 return list;
             }
             finally

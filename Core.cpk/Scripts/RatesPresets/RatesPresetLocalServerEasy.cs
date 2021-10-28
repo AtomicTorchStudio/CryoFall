@@ -20,6 +20,7 @@
             rates.Set<RateIsTradeChatRoomEnabled, bool>(false);
             rates.Set<RateFactionMembersMaxPublicFaction, ushort>(0); // disable public factions
             rates.Set<RateFactionCreateCost, ushort>(10);             // cheap private faction cost
+            rates.Set<RatePvPTimeGates, string>(RatePvPTimeGates.ValueNoTimeGates);
 
             // progression
             rates.Set<RateLearningPointsGainMultiplier, double>(2.0);

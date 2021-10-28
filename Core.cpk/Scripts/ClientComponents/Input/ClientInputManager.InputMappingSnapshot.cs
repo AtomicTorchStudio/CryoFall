@@ -15,7 +15,6 @@
             private readonly HashSet<string> knownEnumTypeNames = new();
 
             public Dictionary<IWrappedButton, ButtonMapping> GetMapping(
-                IReadOnlyCollection<Type> buttonEnumTypes,
                 IReadOnlyDictionary<IWrappedButton, ButtonInfoAttribute> buttons)
             {
                 // map all button enums

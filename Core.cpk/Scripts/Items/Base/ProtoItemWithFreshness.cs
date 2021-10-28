@@ -38,7 +38,7 @@
         // It also reduces the server load as there are a lot of items with freshness (food, etc).
         public sealed override double ServerUpdateIntervalSeconds => 60;
 
-        public void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
+        public virtual void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
         {
             if (this.FreshnessMaxValue > 0)
             {

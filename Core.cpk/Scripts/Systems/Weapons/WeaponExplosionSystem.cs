@@ -178,6 +178,10 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 {
                     var testResultPhysicsBody = testResult.PhysicsBody;
                     var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
+                    if (damagedObject is null)
+                    {
+                        continue;
+                    }
 
                     if (damageOnlyDynamicObjects
                         && damagedObject is IStaticWorldObject)

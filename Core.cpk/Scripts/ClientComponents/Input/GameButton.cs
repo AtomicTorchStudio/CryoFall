@@ -102,9 +102,49 @@
         [ButtonInfo(InputKey.D9)]
         HotbarSelectSlot9,
 
-        [Description("Slot #10")]
+        [Description("Slot #0")]
         [ButtonInfo(InputKey.D0)]
-        HotbarSelectSlot10,
+        HotbarSelectSlot0,
+
+        [Description("Quick use—Slot #1")]
+        [ButtonInfo]
+        HotbarQuickUseSlot1,
+
+        [Description("Quick use—Slot #2")]
+        [ButtonInfo]
+        HotbarQuickUseSlot2,
+
+        [Description("Quick use—Slot #3")]
+        [ButtonInfo]
+        HotbarQuickUseSlot3,
+
+        [Description("Quick use—Slot #4")]
+        [ButtonInfo]
+        HotbarQuickUseSlot4,
+
+        [Description("Quick use—Slot #5")]
+        [ButtonInfo]
+        HotbarQuickUseSlot5,
+
+        [Description("Quick use—Slot #6")]
+        [ButtonInfo]
+        HotbarQuickUseSlot6,
+
+        [Description("Quick use—Slot #7")]
+        [ButtonInfo]
+        HotbarQuickUseSlot7,
+
+        [Description("Quick use—Slot #8")]
+        [ButtonInfo]
+        HotbarQuickUseSlot8,
+
+        [Description("Quick use—Slot #9")]
+        [ButtonInfo]
+        HotbarQuickUseSlot9,
+
+        [Description("Quick use—Slot #0")]
+        [ButtonInfo]
+        HotbarQuickUseSlot0,
 
         [Description("Camera zoom in")]
         [ButtonInfo(InputKey.PageDown, InputKey.OemPlus)]

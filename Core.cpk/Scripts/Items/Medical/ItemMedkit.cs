@@ -7,7 +7,7 @@
 
     public class ItemMedkit : ProtoItemMedical
     {
-        public override double CooldownDuration => MedicineCooldownDuration.Long;
+        public override double CooldownDuration => MedicineCooldownDuration.VeryLong;
 
         public override string Description =>
             "All-in-one medical kit. Restores health over time, removes nausea and bleeding, even contains a splint for broken bones.";
@@ -19,8 +19,8 @@
         protected override void PrepareEffects(EffectActionsList effects)
         {
             effects
-                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.80) // 80 seconds (80hp)
-                .WillAddEffect<StatusEffectHealingFast>(intensity: 0.10) // 1 seconds (+10 HP each second)
+                .WillAddEffect<StatusEffectHealingSlow>(intensity: 0.80) // 80 seconds (80 HP)
+                .WillAddEffect<StatusEffectHealingFast>(intensity: 0.10) // 1 second   (+10 HP each second)
                 .WillRemoveEffect<StatusEffectBleeding>()
                 .WillRemoveEffect<StatusEffectLaceration>()
                 .WillRemoveEffect<StatusEffectNausea>()

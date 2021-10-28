@@ -64,8 +64,8 @@ Slot #8
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Slot #9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Slot #10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Slot #0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Kamera heranzoomen

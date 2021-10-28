@@ -11,6 +11,8 @@
     public class RatePvPTimeGates
         : BaseRate<RatePvPTimeGates, string>
     {
+        public const string ValueNoTimeGates = "0,0,0,0,0,0,0,0";
+
         // This constant contains the total number of time gates
         // (depends on what are the max and min tiers for time gating).
         private const byte PvPTimeGatesCount

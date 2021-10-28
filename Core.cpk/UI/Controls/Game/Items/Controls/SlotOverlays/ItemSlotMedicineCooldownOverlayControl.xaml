@@ -1,0 +1,17 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays.ItemSlotMedicineCooldownOverlayControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:cooldownIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.CooldownIndicator"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelItemSlotMedicineCooldownOverlayControl, IsDesignTimeCreatable=True}"
+    IsHitTestVisible="False">
+    <Grid Margin="1">
+        <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding MedicalCooldownDuration}" />
+    </Grid>
+</base:BaseUserControl>

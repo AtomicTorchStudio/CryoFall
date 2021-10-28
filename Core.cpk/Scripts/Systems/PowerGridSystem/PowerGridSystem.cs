@@ -35,7 +35,12 @@
 
         public const double PowerGridEfficiencyDropPercentPerExtraLandClaim = 2.0;
 
-        public const double PowerGridMinEfficiencyPercents = 50.0;
+        /// <summary>
+        /// The min bound for power grid efficiency is calculated for the base containing 3*3 land claims.
+        /// (it's possible to build larger bases only on the local server)
+        /// </summary>
+        public const double PowerGridMinEfficiencyPercents = 100.0
+                                                             - 8 * PowerGridEfficiencyDropPercentPerExtraLandClaim;
 
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
@@ -57,10 +62,12 @@
 
         public static void ClientInitializeConsumerOrProducer(IStaticWorldObject worldObject)
         {
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer
-                    { ElectricityConsumptionPerSecondWhenActive: > 0 }
+            if ((worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer consumer
+                 && consumer.ElectricityConsumptionPerSecondWhenActive > 0)
                 || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer
-                    { IsGeneratorAlwaysOn: false })
+                {
+                    IsGeneratorAlwaysOn: false
+                })
             {
                 ObjectPowerStateOverlay.CreateFor(worldObject);
             }
@@ -104,10 +111,10 @@
             IStaticWorldObject worldObject,
             BaseUserControlWithWindow window)
         {
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer
-                    { ElectricityConsumptionPerSecondWhenActive: > 0 }
-                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer
-                    { IsGeneratorAlwaysOn: false })
+            if ((worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer consumer
+                 && consumer.ElectricityConsumptionPerSecondWhenActive > 0)
+                || (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer producer
+                    && !producer.IsGeneratorAlwaysOn))
             {
                 // proper consumer or producer object
             }

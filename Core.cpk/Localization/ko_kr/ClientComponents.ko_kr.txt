@@ -64,8 +64,8 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 슬롯 #9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-슬롯 #10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+슬롯 #0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 카메라 확대

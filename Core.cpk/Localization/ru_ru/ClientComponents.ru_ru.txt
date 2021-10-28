@@ -66,8 +66,8 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Слот 9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Слот 10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Слот 0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Приблизить камеру

@@ -6,6 +6,11 @@
     {
         public static void SharedSetFinalStatsCacheDirty(this ICharacter character)
         {
+            if (character is null)
+            {
+                return;
+            }
+
             if (!character.IsInitialized)
             {
                 return;

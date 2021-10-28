@@ -64,8 +64,8 @@ Espaço nº 8
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Espaço nº 9
 
-Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-Espaço nº 10
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
+Espaço nº 0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Aumentar zoom da câmera
