@@ -40,6 +40,8 @@
 
         public override bool IsFuelProduceByproducts => false;
 
+        public LiquidContainerConfig LiquidContainerConfig { get; private set; }
+
         public override double ServerUpdateIntervalSeconds => 0.25;
 
         public override double ServerUpdateRareIntervalSeconds => 2;
@@ -47,8 +49,6 @@
         public abstract double WaterCapacity { get; }
 
         public abstract double WaterProductionAmountPerSecond { get; }
-
-        protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
 
         public static bool SharedIsProvidingStaleWater(IStaticWorldObject objectWell)
         {

@@ -15,7 +15,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
         public string Execute()
         {
-            return PvpScoreSystem.ServerGetPvpLeaderboardReport();
+            return PvpScoreSystem.ServerGetPvpLeaderboardReport(sortByKillDeathRatio: false, minKills: 0);
         }
     }
 }

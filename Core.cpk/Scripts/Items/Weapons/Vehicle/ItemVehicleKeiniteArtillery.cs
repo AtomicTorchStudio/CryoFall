@@ -66,7 +66,7 @@
 
         public override VehicleWeaponHardpoint WeaponHardpoint => VehicleWeaponHardpoint.Exotic;
 
-        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsExotic>();
+        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillVehicles>();
 
         public virtual double ServerCalculateTotalDamageByExplosive(
             ICharacter byCharacter,

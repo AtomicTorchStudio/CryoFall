@@ -7,10 +7,13 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data
 
     public readonly struct DataEntryRatesPreset : IEquatable<DataEntryRatesPreset>
     {
-        public DataEntryRatesPreset(BaseRatesPreset preset)
+        public DataEntryRatesPreset(BaseRatesPreset preset, bool compactSize)
         {
             this.Preset = preset;
+            this.CompactSize = compactSize;
         }
+
+        public bool CompactSize { get; }
 
         public string Description => this.Preset.Description;
 

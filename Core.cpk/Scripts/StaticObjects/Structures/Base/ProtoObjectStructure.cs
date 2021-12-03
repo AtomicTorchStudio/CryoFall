@@ -59,6 +59,8 @@
             this.ShortId = name;
         }
 
+        public virtual double BuildingSkillExperienceMultiplier => 1.0;
+
         public ProtoStructureCategory Category { get; private set; }
 
         public IConstructionStageConfigReadOnly ConfigBuild { get; private set; }

@@ -2,15 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -89,6 +92,17 @@
             void RefreshNightVision()
             {
                 componentNightVision.IsEnabled = publicState.IsLightsEnabled;
+            }
+        }
+
+        public override void ServerOnCharacterEnterVehicle(IDynamicWorldObject vehicle, ICharacter character)
+        {
+            if (TimeOfDaySystem.IsNight
+                && !character.SharedGetPlayerContainerEquipment()
+                             .ContainsItemsOfType(GetProtoEntity<ItemImplantArtificialRetina>(), 1))
+            {
+                // enable Nemesis night vision only when it's night time and has no artificial retina implant 
+                GetPublicState(vehicle).IsLightsEnabled = true;
             }
         }
 

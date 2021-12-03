@@ -14,9 +14,9 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -83,7 +83,9 @@
             return Instance.CallServer(_ => _.ServerRemote_ServerGetLatestDeathIsNewbiePvP());
         }
 
-        public static void ClientNotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
+        public static void ClientNotifyNewbieCannotPerformAction(
+            IProtoGameObject iconSource,
+            bool notLandClaimOwner = false)
         {
             var icon = iconSource switch
             {
@@ -93,9 +95,14 @@
             };
 
             NotificationSystem.ClientShowNotification(
-                title: Notification_CannotPerformActionWhileUnderProtection
-                       + "[br]"
-                       + Notification_CanCancelProtection,
+                title: notLandClaimOwner
+                           ? (LandClaimSystem.ErrorNotLandOwner_Message
+                              + "[br]"
+                              + CoreStrings.Notification_ActionForbidden)
+                           : CoreStrings.Notification_ActionForbidden,
+                message: Notification_CannotPerformActionWhileUnderProtection
+                         + "[br]"
+                         + Notification_CanCancelProtection,
                 icon: icon,
                 onClick: Menu.Open<WindowSocial>,
                 color: NotificationColor.Bad);
@@ -291,16 +298,17 @@
 
         public static void SharedNotifyNewbieCannotPerformAction(
             ICharacter character,
-            IProtoGameObject iconSource)
+            IProtoGameObject iconSource,
+            bool notLandClaimOwner = false)
         {
             if (IsClient)
             {
-                ClientNotifyNewbieCannotPerformAction(iconSource);
+                ClientNotifyNewbieCannotPerformAction(iconSource, notLandClaimOwner);
                 return;
             }
 
             Instance.CallClient(character,
-                                _ => _.ClientRemote_NotifyNewbieCannotPerformAction(iconSource));
+                                _ => _.ClientRemote_NotifyNewbieCannotPerformAction(iconSource, notLandClaimOwner));
         }
 
         public static void SharedShowNewbieCannotDamageOtherPlayersOrLootBags(ICharacter character, bool isLootBag)
@@ -342,18 +350,14 @@
                         continue;
                     }
 
-                    // Please note: this check will not work on client for other players areas
-                    // as player doesn't have their private state info.
-                    // Anyway, it's not a big deal as the check could be done on the server side.
-                    if (LandClaimSystem.SharedIsAreaUnderRaid(area)
-                        && !LandClaimSystem.SharedIsOwnedArea(area,
-                                                              character,
-                                                              requireFactionPermission: false))
+                    if (!LandClaimSystem.SharedIsOwnedArea(area,
+                                                           character,
+                                                           requireFactionPermission: false))
                     {
                         // cannot pickup - there is an area under raid and current player is not the area owner
                         if (writeToLog)
                         {
-                            SharedNotifyNewbieCannotPerformAction(character, iconSource: null);
+                            SharedNotifyNewbieCannotPerformAction(character, iconSource: null, notLandClaimOwner: true);
                         }
 
                         return false;
@@ -447,9 +451,9 @@
             ClientShowNewbieCannotDamageOtherPlayersOrLootBags(isLootBag);
         }
 
-        private void ClientRemote_NotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
+        private void ClientRemote_NotifyNewbieCannotPerformAction(IProtoGameObject iconSource, bool notLandClaimOwner)
         {
-            ClientNotifyNewbieCannotPerformAction(iconSource);
+            ClientNotifyNewbieCannotPerformAction(iconSource, notLandClaimOwner);
         }
 
         private void ClientRemote_SetNewbieProtectionDuration(double timeRemaining)

@@ -123,7 +123,10 @@
 
         private void CurrentGameConnectionStateChangedHandler()
         {
-            this.NotifyPropertyChanged(nameof(this.IsVisible));
+            if (!this.IsDisposed)
+            {
+                this.NotifyPropertyChanged(nameof(this.IsVisible));
+            }
         }
 
         private void RefreshCallback()

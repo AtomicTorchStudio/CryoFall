@@ -19,6 +19,7 @@
         public static void OpenEditorWindow()
         {
             var editor = new CurrentServerRatesEditorControl();
+            editor.CompactTiles = true;
             editor.Loaded += RatesEditorControlLoadedHandler;
 
             var dialogWindow = DialogWindow.ShowDialog(

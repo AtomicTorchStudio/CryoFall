@@ -295,6 +295,11 @@
         public const string Dialog_AreYouSureWantToUse_Format =
             "Are you sure want to use {0}?";
 
+        public const string DialogCannotLoadSavegame_MessageCorrupted =
+            "The savegame file is corrupted. You can try rollback to the latest backup version. Please navigate to the saved games folder and check backups for this file:";
+
+        public const string DialogCannotLoadSavegame_Title = "Cannot load saved game";
+
         public const string DialogClearList_Message = "Are you sure you want to clear this list?";
 
         public const string DialogClearServerList_Title = "Clear servers list";

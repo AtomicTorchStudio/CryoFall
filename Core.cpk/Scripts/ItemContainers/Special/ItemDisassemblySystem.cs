@@ -43,7 +43,7 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
 
             Server.Items.SetSlotsCount(containerOutput, byte.MaxValue);
 
-            var itemsDisassembled = 0;
+            var skillExperienceMultiplier = 0.0;
             foreach (var item in Api.Shared
                                     .WrapInTempList(containerInput.Items)
                                     .EnumerateAndDispose())
@@ -56,10 +56,10 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
                 Disassemble(item);
             }
 
-            if (itemsDisassembled > 0)
+            if (skillExperienceMultiplier > 0)
             {
                 character.ServerAddSkillExperience<SkillMaintenance>(
-                    SkillMaintenance.ExperiencePerItemDisassembled * itemsDisassembled);
+                    SkillMaintenance.ExperiencePerItemDisassembled * skillExperienceMultiplier);
             }
 
             Server.Items.SetSlotsCount(containerOutput,
@@ -79,8 +79,8 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
                 var recipeCountMultiplier = itemToDisassemble.Count
                                             / (double)recipe.OutputItems.Items[0].Count;
 
+                skillExperienceMultiplier += recipeCountMultiplier;
                 Server.Items.DestroyItem(itemToDisassemble);
-                itemsDisassembled++;
 
                 var range = DisassemblyOutputRange;
                 var durabilityFraction = ItemDurabilitySystem.SharedGetDurabilityFraction(itemToDisassemble);

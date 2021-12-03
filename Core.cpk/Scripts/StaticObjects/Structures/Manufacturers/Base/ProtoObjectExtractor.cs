@@ -74,9 +74,9 @@
 
         public abstract double LiquidCapacity { get; }
 
-        public abstract double LiquidProductionAmountPerSecond { get; }
+        public LiquidContainerConfig LiquidContainerConfig { get; private set; }
 
-        protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
+        public abstract double LiquidProductionAmountPerSecond { get; }
 
         public override void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime)
         {
@@ -395,6 +395,11 @@
                 isActive = isFuelBurning;
             }
 
+            /*if (data.PublicState.IsActive != isActive)
+            {
+                Logger.Dev($"Changing active state for {data.GameObject}: {data.PublicState.IsActive} -> {isActive}");
+            }*/
+            
             data.PublicState.IsActive = isActive;
 
             LiquidContainerSystem.UpdateWithManufacturing(
@@ -404,7 +409,6 @@
                 data.PrivateState.ManufacturingState,
                 this.ManufacturingConfig,
                 data.DeltaTime * SharedGetSpeedMultiplier(objectDeposit),
-                // the pump produce petroleum only when active
                 isProduceLiquid: data.PublicState.IsActive,
                 forceUpdateRecipe: true);
         }

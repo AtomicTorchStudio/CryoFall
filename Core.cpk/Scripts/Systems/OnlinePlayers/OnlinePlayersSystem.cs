@@ -51,7 +51,19 @@
         public static int ClientTotalServerPlayersCount { get; private set; }
 
         public static bool SharedIsListHidden
-            => RateIsOnlinePlayersListHidden.SharedValue;
+        {
+            get
+            {
+                if (IsServer)
+                {
+                    return RateIsOnlinePlayersListHidden.SharedValue;
+                }
+
+                return RateIsOnlinePlayersListHidden.SharedValue
+                       && !ServerOperatorSystem.ClientIsOperator()
+                       && !ServerModeratorSystem.ClientIsModerator();
+            }
+        }
 
         public static IEnumerable<Entry> ClientEnumerateOnlinePlayers()
         {

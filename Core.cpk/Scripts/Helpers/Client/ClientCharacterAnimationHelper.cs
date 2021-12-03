@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -42,6 +43,22 @@
 
             var protoSkeleton = clientState.CurrentProtoSkeleton;
             var rendererShadow = clientState.RendererShadow;
+
+            if (publicState is PlayerCharacterPublicState
+            {
+                CurrentPublicActionState: CharacterLaunchpadEscapeAction.PublicState
+            })
+            {
+                // disable rendering as this character is launching on a rocket TODO: find a better way to do this
+                skeletonRenderer.IsEnabled = false;
+                if (rendererShadow is not null)
+                {
+                    rendererShadow.IsEnabled = false;
+                }
+
+                return;
+            }
+
             var wasDead = clientState.IsDead;
 
             clientState.IsDead = publicState.IsDead;
@@ -119,8 +136,7 @@
                                                                           appliedInput);
 
             var moveModes = appliedInput.MoveModes;
-            if (publicState is PlayerCharacterPublicState playerCharacterPublicState
-                && playerCharacterPublicState.CurrentVehicle is { } vehicle)
+            if (publicState is PlayerCharacterPublicState { CurrentVehicle: { } vehicle })
             {
                 var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
                 protoVehicle.SharedGetSkeletonProto(vehicle, out var vehicleSkeleton, out _);

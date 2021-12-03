@@ -32,10 +32,19 @@
                            HorizontalAlignment="Center" />
 
                 <StackPanel Orientation="Horizontal">
-                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Center"
-                                                    DesignTimeSlotsCount="1" />
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidWater}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
+                        <controls:ItemsContainerControl
+                            Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                            HorizontalAlignment="Center"
+                            DesignTimeSlotsCount="1"
+                            MaxWidth="80" />
+                    </StackPanel>
 
                     <core:ValueBarControl
                         Value="{Binding WaterAmount}"
@@ -44,11 +53,20 @@
                         Style="{StaticResource LiquidMediumValueBar}"
                         Foreground="{StaticResource LiquidBrushWater}" />
 
-                    <controls:ItemsContainerControl
-                        Container="{Binding ViewModelManufacturingState.ContainerOutput}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        DesignTimeSlotsCount="1" />
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <!-- Text: Empty -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
+                        <controls:ItemsContainerControl
+                            Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                            HorizontalAlignment="Center"
+                            DesignTimeSlotsCount="1" 
+                            MaxWidth="80" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
 

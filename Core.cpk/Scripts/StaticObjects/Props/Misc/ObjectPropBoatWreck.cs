@@ -8,6 +8,8 @@
 
     public class ObjectPropBoatWreck : ProtoObjectProp
     {
+        public override bool HasIncreasedScopeSize => true;
+
         public override ObjectMaterial ObjectMaterial
             => ObjectMaterial.Metal;
 

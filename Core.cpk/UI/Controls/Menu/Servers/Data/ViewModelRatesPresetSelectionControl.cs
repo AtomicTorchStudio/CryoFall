@@ -12,7 +12,10 @@
 
         private DataEntryRatesPreset? selectedPreset;
 
-        public ViewModelRatesPresetSelectionControl(bool onlyLocalServerPresets, Action selectedPresetChanged)
+        public ViewModelRatesPresetSelectionControl(
+            bool onlyLocalServerPresets,
+            bool compactTileSize,
+            Action selectedPresetChanged)
         {
             this.selectedPresetChanged = selectedPresetChanged;
 
@@ -23,7 +26,7 @@
             }
 
             this.RatesPresets = ratesPresets
-                                .Select(p => new DataEntryRatesPreset(p))
+                                .Select(p => new DataEntryRatesPreset(p, compactTileSize))
                                 .ToArray();
         }
 

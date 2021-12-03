@@ -46,8 +46,11 @@
 
         public void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)
         {
-            // place a broken solar panel in the released container slot
-            Server.Items.CreateItem<ItemSolarPanelBroken>(container, slotId: slotId);
+            if (container.ProtoItemsContainer is ItemsContainerGeneratorSolar)
+            {
+                // place a broken solar panel in the released container slot
+                Server.Items.CreateItem<ItemSolarPanelBroken>(container, slotId: slotId);
+            }
         }
 
         public void ServerOnItemDamaged(IItem item, double damageApplied)

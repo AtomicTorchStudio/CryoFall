@@ -24,6 +24,8 @@
 
             var isUseRequested = manufacturingState.HasActiveRecipe;
 
+            var wasFull = liquidContainerState.Amount >= liquidContainerConfig.Capacity;
+
             UpdateWithoutManufacturing(
                 liquidContainerState,
                 liquidContainerConfig,
@@ -31,6 +33,25 @@
                 isProduceLiquid,
                 isUseRequested,
                 out var wasUsed);
+
+            if (!wasFull
+                && liquidContainerState.Amount >= liquidContainerConfig.Capacity)
+            {
+                /* Note: This is a special workaround for oil pump.
+                The problem with it is that it becomes inactive (IsActive set to false) for single server update
+                once the full capacity is reached. With this workaround we're forcing it to refresh the recipe
+                that will in turn update the crafting queue and produce the output without interruption. */
+                
+                // became full, update the recipe
+                ManufacturingMechanic.UpdateRecipeOnly(
+                    worldObject,
+                    manufacturingState,
+                    manufacturingConfig,
+                    force: forceUpdateRecipe);
+                
+                // force crafting system update
+                wasUsed = true;
+            }
 
             if (wasUsed)
             {

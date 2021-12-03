@@ -64,7 +64,7 @@
                                                  .FirstOrDefault(p => p.GetType()
                                                                       == typeof(RatesPresetLocalServerNormal));
                                              this.ratesPresetSelectionControl.SelectedPreset
-                                                 = new DataEntryRatesPreset(presetNormal);
+                                                 = new DataEntryRatesPreset(presetNormal, compactSize: false);
                                          });
         }
 

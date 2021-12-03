@@ -154,7 +154,8 @@
                             Value="{Binding ViewModelLiquidContainerState.Amount}"
                             MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
                             Foreground="{StaticResource LiquidBrushPetroleum}"
-                            Style="{StaticResource LiquidMediumValueBar}" />
+                            Style="{StaticResource LiquidMediumValueBar}"
+                            TooltipFormat=" {0}% " />
                     </Grid>
 
 

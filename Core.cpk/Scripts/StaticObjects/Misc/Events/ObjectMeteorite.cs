@@ -49,7 +49,6 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.PositionOffset = (211 / 256.0, WorldOffsetY + 130 / 256.0);
-            renderer.DrawOrderOffsetY += WorldOffsetY;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
@@ -127,7 +126,9 @@
                 .AddShapeRectangle(size: (1, 0.5),    offset: (1.0, y + 0.65))
                 .AddShapeRectangle(size: (0.9, 0.8),  offset: (1.05, y + 0.6), group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (0.8, 0.15), offset: (1.1, y + 1.35), group: CollisionGroups.HitboxRanged)
-                .AddShapeLineSegment(point1: (1.5, 0.7), point2: (1.5, y + 1.35), group: CollisionGroups.HitboxRanged)
+                .AddShapeLineSegment(point1: (1.5, y + 0.7),
+                                     point2: (1.5, y + 1.35),
+                                     group: CollisionGroups.HitboxRanged)
                 // click area is necessary to display the message on mouse hover
                 .AddShapeRectangle(size: (0.9, 0.8), offset: (1.05, y + 0.6), group: CollisionGroups.ClickArea);
         }

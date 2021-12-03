@@ -367,7 +367,7 @@ Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintLPGain:
 Os pontos de aprendizagem são obtidos a partir de qualquer atividade significativa, sendo diretamente proporcionais ao seu ganho de experiência em habilidades.
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechMenu:
-Você pode acessar rapidamente o menu de tecnologias pressionando a tecla [[b]\[{0}\][/b].
+Você pode acessar rapidamente o menu de tecnologias pressionando a tecla [b]\[{0}\][/b].
 
 Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@HintTechUnlock:
 Desbloquear qualquer nó de tecnologia requer [b]PA[/b] (pontos de aprendizagem).

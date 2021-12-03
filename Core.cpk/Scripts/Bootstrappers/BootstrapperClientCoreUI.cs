@@ -4,12 +4,12 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.InputListeners;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.UI;
     using AtomicTorch.CBND.CoreMod.ClientOptions;
     using AtomicTorch.CBND.CoreMod.ClientOptions.Video;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.DebugTools;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -27,9 +27,6 @@
             ClientComponentDebugGrid.Instance.Refresh();
             ClientDebugGuidesManager.Instance.Refresh();
             ClientComponentPhysicsSpaceVisualizer.Init();
-
-            scene.CreateSceneObject("FPS Counter")
-                 .AddComponent<ClientComponentPerformanceIndicatorsManager>();
 
             scene.CreateSceneObject("Console manager")
                  .AddComponent<ClientComponentConsoleErrorsWatcher>();

@@ -33,26 +33,84 @@
         private const double MinTotalPvpDamageFractionToCountPvpKill = 0.1;
 
         /// <summary>
-        /// Players are loosing half of their PvP score on death.
+        /// Players are loosing 20% of their PvP score on death (but not less than 1 point, if has at least 1 point).
         /// </summary>
-        private const double PvpScoreLossOnDeathFraction = 0.5;
+        private const double PvpScoreLossOnDeathFraction = 0.2; // ensure the value is in range from >0 to <1
 
-        private const double PvpScoreRestoreDuration = 60 * 60; // 1 hour
+        private const double PvpScoreRestoreDuration = 24 * 60; // 24 hours
 
-        public static string ServerGetPvpLeaderboardReport()
+        public static string ServerGetPvpLeaderboardReport(bool sortByKillDeathRatio, int minKills)
         {
-            var playersByScore = ServerGetPvpLeaderboard();
-            var sb = new StringBuilder("PvP leaderboard:");
-            for (var index = 0; index < playersByScore.Count; index++)
+            var sorted = sortByKillDeathRatio
+                             ? ServerGetPvpLeaderboardByKillDeathRatio(minKills)
+                             : ServerGetPvpLeaderboard();
+            var sb = new StringBuilder();
+
+            if (sortByKillDeathRatio)
             {
-                var entry = playersByScore[index];
+                sb.AppendLine("PvP leaderboard, top-100, sorted by KD with min " + minKills + " kills:")
+                  .Append("(format: K/D | kills | deaths | total LP | PvP score)");
+            }
+            else
+            {
+                sb.AppendLine("PvP leaderboard, top-100:")
+                  .Append("(format: PvP score | K/D | kills | deaths | total LP)");
+            }
+
+            if (sorted.Count == 0)
+            {
+                sb.AppendLine()
+                  .Append("<the leaderboard is empty>");
+                return sb.ToString();
+            }
+
+            for (var index = 0; index < sorted.Count; index++)
+            {
+                var entry = sorted[index];
                 sb.AppendLine()
                   .Append("#")
                   .Append(index + 1)
-                  .Append(" ")
-                  .Append(entry.Character.Name)
-                  .Append(" - ")
-                  .Append((uint)entry.Score);
+                  .Append(" ");
+
+                var clanTag = FactionSystem.SharedGetClanTag(entry.Character);
+                if (!string.IsNullOrEmpty(clanTag))
+                {
+                    sb.Append("[")
+                      .Append(clanTag)
+                      .Append("] ");
+                }
+
+                var characterPrivateState = PlayerCharacter.GetPrivateState(entry.Character);
+                var statistics = characterPrivateState.Statistics;
+                if (sortByKillDeathRatio)
+                {
+                    sb.Append(entry.Character.Name)
+                      .Append(" - KD: ")
+                      .Append(statistics.PvpKillDeathRatio.ToString("0.00"))
+                      .Append(", K: ")
+                      .Append(statistics.PvpKills)
+                      .Append(", D: ")
+                      .Append(statistics.Deaths)
+                      .Append(", LP: ")
+                      .Append(characterPrivateState.Technologies.LearningPointsAccumulatedTotal)
+                      .Append(", Score: ")
+                      .Append((uint)entry.Score)
+                      .Append(" points");
+                }
+                else
+                {
+                    sb.Append(entry.Character.Name)
+                      .Append(" - ")
+                      .Append((uint)entry.Score)
+                      .Append(" points, KD: ")
+                      .Append(statistics.PvpKillDeathRatio.ToString("0.00"))
+                      .Append(", K: ")
+                      .Append(statistics.PvpKills)
+                      .Append(", D: ")
+                      .Append(statistics.Deaths)
+                      .Append(", LP: ")
+                      .Append(characterPrivateState.Technologies.LearningPointsAccumulatedTotal);
+                }
             }
 
             return sb.ToString();
@@ -284,8 +342,21 @@
                                                     exceptSpectators: false)
                       .Select(c => (Character: c,
                                     Score: PlayerCharacter.GetPrivateState(c).Statistics.PvpScore))
-                      .Where(c => c.Score > 0)
+                      .Where(c => c.Score > 1)
                       .OrderByDescending(c => c.Score)
+                      .Take(100)
+                      .ToList();
+        }
+
+        private static List<(ICharacter Character, double Score)> ServerGetPvpLeaderboardByKillDeathRatio(int minKills)
+        {
+            return Api.Server.Characters
+                      .EnumerateAllPlayerCharacters(onlyOnline: false,
+                                                    exceptSpectators: false)
+                      .Where(c => PlayerCharacter.GetPrivateState(c).Statistics.PvpKills >= minKills)
+                      .Select(c => (Character: c,
+                                    Score: PlayerCharacter.GetPrivateState(c).Statistics.PvpScore))
+                      .OrderByDescending(c => PlayerCharacter.GetPrivateState(c.Character).Statistics.PvpKillDeathRatio)
                       .Take(100)
                       .ToList();
         }
@@ -294,7 +365,8 @@
         {
             try
             {
-                Logger.Important(ServerGetPvpLeaderboardReport());
+                Logger.Important(ServerGetPvpLeaderboardReport(sortByKillDeathRatio: false, minKills: 0));
+                Logger.Important(ServerGetPvpLeaderboardReport(sortByKillDeathRatio: true,  minKills: 10));
             }
             finally
             {

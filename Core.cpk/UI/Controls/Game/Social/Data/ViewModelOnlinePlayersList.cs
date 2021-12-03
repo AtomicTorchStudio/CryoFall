@@ -4,6 +4,8 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.GameEngine.Common.Extensions;
@@ -29,6 +31,8 @@
                     OnlinePlayersSystem.ClientTotalServerPlayersCountChanged -= this.TotalPlayersCountChangedHandler;
                     OnlinePlayersSystem.ClientOnlinePlayersCountChanged -= this.OnlinePlayersCountChangedHandler;
                     ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
+                    ServerOperatorSystem.ClientIsOperatorChanged -= this.IsOperatorOrModeratorChangedHandler;
+                    ServerModeratorSystem.ClientIsModeratorChanged -= this.IsOperatorOrModeratorChangedHandler;
                 }
 
                 this.isActive = value;
@@ -47,6 +51,8 @@
                 OnlinePlayersSystem.ClientTotalServerPlayersCountChanged += this.TotalPlayersCountChangedHandler;
                 OnlinePlayersSystem.ClientOnlinePlayersCountChanged += this.OnlinePlayersCountChangedHandler;
                 ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
+                ServerOperatorSystem.ClientIsOperatorChanged += this.IsOperatorOrModeratorChangedHandler;
+                ServerModeratorSystem.ClientIsModeratorChanged += this.IsOperatorOrModeratorChangedHandler;
 
                 var currentCharacterName = Client.Characters.CurrentPlayerCharacter?.Name;
                 var onlinePlayers = OnlinePlayersSystem.ClientEnumerateOnlinePlayers();
@@ -117,6 +123,11 @@
             }
         }
 
+        private void IsOperatorOrModeratorChangedHandler()
+        {
+            this.RefreshDisplay();
+        }
+
         private void OnlinePlayerClanTagChangedHandler(OnlinePlayersSystem.Entry entry)
         {
             this.PlayerAddedOrRemovedHandler(entry, isOnline: false);
@@ -179,17 +190,22 @@
                 }
             }
             finally
-
             {
                 this.NotifyPropertyChanged(nameof(this.PlayersOnlineCount));
             }
         }
 
-        private void TotalPlayersCountChangedHandler(int obj)
+        private void RefreshDisplay()
         {
+            this.NotifyPropertyChanged(nameof(this.PlayersOnlineCount));
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCount));
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCountVisibility));
             this.NotifyPropertyChanged(nameof(this.IsListHidden));
+        }
+
+        private void TotalPlayersCountChangedHandler(int obj)
+        {
+            this.RefreshDisplay();
         }
     }
 }

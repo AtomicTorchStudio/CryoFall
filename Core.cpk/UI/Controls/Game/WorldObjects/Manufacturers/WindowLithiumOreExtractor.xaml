@@ -81,7 +81,8 @@
                         <core:ValueBarControl
                             Value="{Binding ViewModelLiquidContainerState.Amount}"
                             MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
-                            Style="{StaticResource LiquidMediumValueBar}">
+                            Style="{StaticResource LiquidMediumValueBar}"
+                            TooltipFormat=" {0}% ">
                             <core:ValueBarControl.Foreground>
                                 <SolidColorBrush Color="#FFCCDDEE" />
                             </core:ValueBarControl.Foreground>

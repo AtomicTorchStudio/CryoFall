@@ -292,16 +292,19 @@
                 if (this.ObjectPublicState is ConstructionSitePublicState constructionSiteState)
                 {
                     constructionSiteState.LastBuildActionDoneByCharacter = this.Character;
+                    var constructionProto = ProtoObjectConstructionSite.SharedGetConstructionProto(this.WorldObject);
 
                     // add skill experience for building
                     this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
-                        SkillBuilding.ExperienceAddWhenBuildingFinished);
+                        SkillBuilding.ExperienceAddWhenBuildingFinished
+                        * constructionProto.BuildingSkillExperienceMultiplier);
                 }
                 else
                 {
                     // add skill experience for repair
                     this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
-                        SkillBuilding.ExperienceAddWhenRepairFinished);
+                        SkillBuilding.ExperienceAddWhenRepairFinished
+                        * ((IProtoObjectStructure)this.WorldObject.ProtoGameObject).BuildingSkillExperienceMultiplier);
                 }
             }
 

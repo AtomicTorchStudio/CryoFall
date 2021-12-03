@@ -12,6 +12,8 @@
 
     public interface IProtoObjectStructure : IProtoStaticWorldObject, IDamageableProtoWorldObject
     {
+        double BuildingSkillExperienceMultiplier { get; }
+
         ProtoStructureCategory Category { get; }
 
         IConstructionStageConfigReadOnly ConfigBuild { get; }

@@ -42,7 +42,7 @@
 
         public override VehicleWeaponHardpoint WeaponHardpoint => VehicleWeaponHardpoint.Exotic;
 
-        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsExotic>();
+        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillVehicles>();
 
         public override ushort AmmoConsumptionPerShot => 2;
 

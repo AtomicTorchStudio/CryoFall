@@ -2089,7 +2089,7 @@ UI/CoreStrings@VehicleNameEditor_EnterName:
 Digite o nome:
 
 UI/CoreStrings@VehicleNameEditor_NameRequirements_Format:
-Requisitos de nome personalizado: de [[b]{0} a {1}[/b] caracteres.
+Requisitos de nome personalizado: de [b]{0} a {1}[/b] caracteres.
 
 UI/CoreStrings@VehicleNameEditor_VisibleToVehicleOwnersOnly:
 Visível apenas para os proprietários de veículo.

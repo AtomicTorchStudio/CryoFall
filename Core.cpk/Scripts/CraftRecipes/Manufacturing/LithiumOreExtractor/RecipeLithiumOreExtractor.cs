@@ -21,7 +21,11 @@
         [NotLocalizable]
         public override string Name => "Lithium salts from lithium ore extractor";
 
-        protected TimeSpan CraftDuration => CraftingDuration.Instant;
+        /// <summary>
+        /// We don't want any interruption of lithium extractor (otherwise its IsActive state will become off for a fraction of a
+        /// second)
+        /// </summary>
+        protected TimeSpan CraftDuration => TimeSpan.Zero;
 
         public sealed override void ServerOnManufacturingCompleted(
             IStaticWorldObject objectManufacturer,

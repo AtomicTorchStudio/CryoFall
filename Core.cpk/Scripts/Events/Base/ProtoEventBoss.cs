@@ -10,10 +10,8 @@
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleGarageSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -52,7 +50,7 @@
                 });
         }
 
-        public virtual ushort AreaBarrierRadiusPvE => 24;
+        public virtual ushort AreaBarrierRadius => 24;
 
         public override ushort AreaRadius => 55;
 
@@ -117,8 +115,7 @@
         {
             base.ClientUpdate(data);
 
-            if (PveSystem.ClientIsPve(false)
-                && this.SharedGetTimeRemainsToEventStart(data.PublicState) > 0)
+            if (this.SharedGetTimeRemainsToEventStart(data.PublicState) > 0)
             {
                 this.ClientCreateBossAreaBarrier(data.GameObject);
             }
@@ -397,12 +394,8 @@
             if (timeRemainsToEventStart > 0)
             {
                 // the boss event is not yet started
-                if (PveSystem.ServerIsPvE)
-                {
-                    // ensure the barrier exist
-                    this.ServerCreateBossAreaBarrier(data.GameObject);
-                }
-
+                // ensure the barrier exist
+                this.ServerCreateBossAreaBarrier(data.GameObject);
                 return;
             }
 
@@ -459,8 +452,8 @@
             var position = publicState.AreaCirclePosition;
             var ellipse = new Ellipse()
             {
-                Width = 2 * this.AreaBarrierRadiusPvE * ScriptingConstants.TileSizeVirtualPixels,
-                Height = 2 * this.AreaBarrierRadiusPvE * ScriptingConstants.TileSizeVirtualPixels,
+                Width = 2 * this.AreaBarrierRadius * ScriptingConstants.TileSizeVirtualPixels,
+                Height = 2 * this.AreaBarrierRadius * ScriptingConstants.TileSizeVirtualPixels,
                 StrokeThickness = 6,
                 Stroke = new SolidColorBrush(Api.Client.UI.GetApplicationResource<Color>("ColorAlt5").WithAlpha(0xEE)),
                 Fill = new RadialGradientBrush()
@@ -544,7 +537,7 @@
             publicState.ServerBarrierPhysicsBody = this.SharedCreateBarrierPhysicsBody(worldEvent);
 
             var activeEventPosition = publicState.AreaCirclePosition;
-            var barrierRadius = this.AreaBarrierRadiusPvE + 1;
+            var barrierRadius = this.AreaBarrierRadius + 1;
             if (barrierRadius > byte.MaxValue)
             {
                 Logger.Error(
@@ -604,7 +597,7 @@
             var publicState = GetPublicState(worldEvent);
             var physicsBody = world.CreateStandalonePhysicsBody(publicState.AreaCirclePosition.ToVector2D()
                                                                 + (0.5, 0.5));
-            physicsBody.AddShapeCircle(this.AreaBarrierRadiusPvE);
+            physicsBody.AddShapeCircle(this.AreaBarrierRadius);
             world.AddStandalonePhysicsBody(physicsBody, world.GetPhysicsSpace());
             return physicsBody;
         }

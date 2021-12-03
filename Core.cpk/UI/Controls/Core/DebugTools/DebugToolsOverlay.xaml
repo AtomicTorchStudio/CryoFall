@@ -38,9 +38,6 @@
                 CornerRadius="5"
                 Padding="5">
             <StackPanel Orientation="Vertical">
-                <CheckBox Content="Stats overlay"
-                          IsChecked="{Binding IsStatsOverlayEnabled}" />
-
                 <Control Style="{StaticResource ControlHorizontalSeparator}" />
 
                 <CheckBox Content="Grid"

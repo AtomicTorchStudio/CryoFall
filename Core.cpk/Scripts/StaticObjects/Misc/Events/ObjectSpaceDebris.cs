@@ -65,7 +65,7 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.PositionOffset = (211 / 256.0, WorldOffsetY + 130 / 256.0);
-            renderer.DrawOrderOffsetY = 0.5 + WorldOffsetY;
+            renderer.DrawOrderOffsetY += 0.5;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
@@ -85,152 +85,19 @@
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
-            DropItemConditionDelegate onlyBeforeT3SpecializedOrPvE = OnlyBeforeT3SpecializedOrPvE;
-            DropItemConditionDelegate onlyBeforeT3SpecializedPvP = OnlyBeforeT3SpecializedAndPvP;
-            DropItemConditionDelegate onlyBeforeT4SpecializedOrPvE = OnlyBeforeT4SpecializedOrPvE;
-            DropItemConditionDelegate T3Specialized = IsAvailableT3Specialized;
-            DropItemConditionDelegate T4Basic = IsAvailableT4Basic;
-            DropItemConditionDelegate T4Specialized = IsAvailableT4Specialized;
-            DropItemConditionDelegate T5Specialized = IsAvailableT5Specialized;
+            if (IsClient)
+            {
+                return;
+            }
 
-            droplist.Outputs = 3;
-
-            // loot groups are sorted in the order of rarity (more common first)
-            // ammo
-            droplist.Add(
-                    weight: 1,
-                    nestedList:
-                    new DropItemsList(outputs: 2)
-                        .Add<ItemAmmo8mmStandard>(count: 50,          weight: 1, condition: onlyBeforeT3SpecializedPvP)
-                        .Add<ItemAmmo8mmToxic>(count: 50,             weight: 1, condition: onlyBeforeT3SpecializedPvP)
-                        .Add<ItemAmmo12gaBuckshot>(count: 50,         weight: 1, condition: onlyBeforeT3SpecializedPvP)
-                        .Add<ItemAmmo10mmStandard>(count: 50,         weight: 1, condition: T3Specialized)
-                        .Add<ItemAmmo10mmHollowPoint>(count: 50,      weight: 1, condition: T3Specialized)
-                        .Add<ItemAmmo10mmArmorPiercing>(count: 50,    weight: 1, condition: T3Specialized)
-                        .Add<ItemAmmo12gaPellets>(count: 40,          weight: 1, condition: T3Specialized)
-                        .Add<ItemAmmo12gaSlugs>(count: 40,            weight: 1, condition: T3Specialized)
-                        .Add<ItemAmmo300ArmorPiercing>(count: 30,     weight: 1, condition: T4Specialized)
-                        .Add<ItemAmmo300Incendiary>(count: 30,        weight: 1, condition: T4Specialized)
-                        .Add<ItemAmmo50SH>(count: 40,                 weight: 1, condition: T4Specialized)
-                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1 / 2.0, condition: T3Specialized)
-                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1 / 3.0, condition: T5Specialized)
-                );
-
-            // components and high value items
-            droplist.Add(
-                    weight: 1,
-                    nestedList:
-                    new DropItemsList(outputs: 1)
-                        // components
-                        .Add<ItemComponentsElectronic>(count: 10, weight: 1)
-                        .Add<ItemComponentsHighTech>(count: 10,   weight: 1)
-                        .Add<ItemComponentsMechanical>(count: 10, weight: 1)
-                        .Add<ItemComponentsOptical>(count: 10,    weight: 1)
-                        .Add<ItemComponentsWeapon>(count: 10,     weight: 1)
-                        // high value items
-                        .Add<ItemFuelCellGasoline>(count: 1, weight: 1)
-                        .Add<ItemFuelCellPragmium>(count: 1, weight: 1 / 2.0)
-                        .Add<ItemSolarPanel>(count: 1,       weight: 1 / 2.0)
-                );
-
-            // misc
-            droplist.Add(
-                    weight: 1,
-                    nestedList:
-                    new DropItemsList(outputs: 2)
-                        // resources / misc
-                        .Add<ItemCanisterGasoline>(count: 10,   weight: 1)
-                        .Add<ItemCanisterMineralOil>(count: 10, weight: 1)
-                        .Add<ItemFirelog>(count: 20,            countRandom: 20, weight: 1)
-                        .Add<ItemBatteryHeavyDuty>(count: 5,    weight: 1)
-                        .Add<ItemPlastic>(count: 10,            weight: 1)
-                        .Add<ItemRubberVulcanized>(count: 10,   weight: 1)
-                        // food
-                        .Add<ItemMRE>(count: 10, weight: 1)
-                        // explosives
-                        .Add<ItemBombMining>(count: 20, weight: 1 / 2.0, condition: T3Specialized)
-                        // medical
-                        .Add<ItemHeatPreExposure>(count: 3,  weight: 1)
-                        .Add<ItemStrengthBoostBig>(count: 5, weight: 1)
-                        .Add<ItemMedkit>(count: 3,           weight: 1, condition: T3Specialized)
-                        .Add<ItemStimpack>(count: 3,         weight: 1, condition: T4Specialized)
-                        .Add<ItemPeredozin>(count: 2,        weight: 1, condition: T4Specialized)
-                        .Add<ItemNeuralEnhancer>(count: 1,   weight: 1, condition: T4Specialized)
-                        // misc
-                        .Add<ItemCigarettes>(count: 5, weight: 5, condition: T3Specialized)
-                );
-
-            // weapons
-            droplist.Add(
-                    weight: 1 / 2.0,
-                    // require reaching particular tier before the weapon could be acquired there
-                    condition: T3Specialized,
-                    nestedList:
-                    new DropItemsList(outputs: 1)
-                        // melee
-                        .Add<ItemStunBaton>(count: 1, weight: 1 / 2.0, condition: T3Specialized)
-                        // ranged
-                        .Add<ItemSubmachinegun10mm>(count: 1,    weight: 1,       condition: T3Specialized)
-                        .Add<ItemRifle10mm>(count: 1,            weight: 1,       condition: T3Specialized)
-                        .Add<ItemShotgunMilitary>(count: 1,      weight: 1,       condition: T3Specialized)
-                        .Add<ItemSteppenHawk>(count: 1,          weight: 1,       condition: T4Specialized)
-                        .Add<ItemGrenadeLauncher>(count: 1,      weight: 1 / 2.0, condition: T3Specialized)
-                        .Add<ItemMachinegun300>(count: 1,        weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemRifle300>(count: 1,             weight: 1 / 2.0, condition: T5Specialized)
-                        .Add<ItemGrenadeLauncherMulti>(count: 1, weight: 1 / 4.0, condition: T5Specialized)
-                );
-
-            // equipment
-            droplist.Add(
-                    weight: 1 / 2.0,
-                    nestedList:
-                    new DropItemsList(outputs: 1)
-                        .Add<ItemHelmetMiner>(count: 1,       weight: 1, condition: onlyBeforeT3SpecializedOrPvE)
-                        .Add<ItemHelmetRespirator>(count: 1,  weight: 1, condition: onlyBeforeT4SpecializedOrPvE)
-                        .Add<ItemHelmetNightVision>(count: 1, weight: 1, condition: onlyBeforeT4SpecializedOrPvE)
-                        .Add<ItemMilitaryHelmet>(count: 1,    weight: 1, condition: T3Specialized)
-                        .Add<ItemMilitaryArmor>(count: 1,     weight: 1, condition: T3Specialized)
-                        // advanced stuff
-                        .Add<ItemHelmetNightVisionAdvanced>(count: 1, weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemAssaultHelmet>(count: 1,             weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemAssaultArmor>(count: 1,              weight: 1 / 2.0, condition: T4Specialized)
-                        .Add<ItemApartSuit>(count: 1,                 weight: 1 / 3.0, condition: T4Specialized)
-                        .Add<ItemSuperHeavySuit>(count: 1,            weight: 1 / 3.0, condition: T5Specialized)
-                );
-
-            // devices & drones
-            droplist.Add(
-                    weight: 1 / 10.0,
-                    condition: T3Specialized,
-                    nestedList:
-                    new DropItemsList(outputs: 1)
-                        // devices
-                        .Add<ItemPowerBankStandard>(count: 1, weight: 1)
-                        .Add<ItemPowerBankLarge>(count: 1,    weight: 1)
-                        .Add<ItemPragmiumSensor>(count: 1,    weight: 1 / 5.0, condition: T4Specialized)
-                        // drones
-                        .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1,       condition: T4Basic)
-                        .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 2.0, condition: T4Basic)
-                );
-
-            // implants
-            droplist.Add(
-                    weight: 1 / 20.0,
-                    // drop it a tier earlier (useful as a bonus)
-                    condition: T3Specialized,
-                    nestedList:
-                    new DropItemsList(outputs: 1)
-                        .Add<ItemImplantArtificialLiver>(count: 1,     weight: 1)
-                        .Add<ItemImplantArtificialRetina>(count: 1,    weight: 1)
-                        .Add<ItemImplantArtificialStomach>(count: 1,   weight: 1)
-                        .Add<ItemImplantATPEnergyExtractor>(count: 1,  weight: 1)
-                        .Add<ItemImplantHealingGland>(count: 1,        weight: 1)
-                        .Add<ItemImplantMetabolismModulator>(count: 1, weight: 1)
-                        .Add<ItemImplantNanofiberSkin>(count: 1,       weight: 1)
-                        .Add<ItemImplantReinforcedBones>(count: 1,     weight: 1)
-                );
+            if (PveSystem.ServerIsPvE)
+            {
+                PrepareDroplistPvE(droplist);
+            }
+            else
+            {
+                PrepareDroplistPvP(droplist);
+            }
         }
 
         protected override double ServerGetDropListProbabilityMultiplier(IStaticWorldObject staticWorldObject)
@@ -266,6 +133,329 @@
                 .AddShapeRectangle(size: (0.8, 0.4),  offset: (1 + 0.1, y + 0.65), group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (0.6, 0.15), offset: (1 + 0.2, y + 1.3),  group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle(size: (0.8, 0.9),  offset: (1 + 0.1, y + 0.6),  group: CollisionGroups.ClickArea);
+        }
+
+        private static void PrepareDroplistPvE(DropItemsList droplist)
+        {
+            droplist.Outputs = 3;
+
+            // loot groups are sorted in the order of rarity (more common first)
+            // ammo
+            droplist.Add(
+                    weight: 1,
+                    nestedList:
+                    new DropItemsList(outputs: 2)
+                        .Add<ItemAmmo8mmStandard>(count: 50,          weight: 1)
+                        .Add<ItemAmmo8mmToxic>(count: 50,             weight: 1)
+                        .Add<ItemAmmo12gaBuckshot>(count: 50,         weight: 1)
+                        .Add<ItemAmmo10mmStandard>(count: 50,         weight: 1)
+                        .Add<ItemAmmo10mmHollowPoint>(count: 50,      weight: 1)
+                        .Add<ItemAmmo10mmArmorPiercing>(count: 50,    weight: 1)
+                        .Add<ItemAmmo12gaPellets>(count: 40,          weight: 1)
+                        .Add<ItemAmmo12gaSlugs>(count: 40,            weight: 1)
+                        .Add<ItemAmmo300ArmorPiercing>(count: 30,     weight: 1)
+                        .Add<ItemAmmo300Incendiary>(count: 30,        weight: 1)
+                        .Add<ItemAmmo50SH>(count: 40,                 weight: 1)
+                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1 / 2.0)
+                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1 / 2.0)
+                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1 / 2.0)
+                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1 / 3.0)
+                );
+
+            // components and high value items
+            droplist.Add(
+                    weight: 1,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // components
+                        .Add<ItemComponentsElectronic>(count: 10, weight: 1)
+                        .Add<ItemComponentsHighTech>(count: 10,   weight: 1)
+                        .Add<ItemComponentsMechanical>(count: 10, weight: 1)
+                        .Add<ItemComponentsOptical>(count: 10,    weight: 1)
+                        .Add<ItemComponentsWeapon>(count: 10,     weight: 1)
+                        // high value items
+                        .Add<ItemFuelCellGasoline>(count: 1, weight: 1)
+                        .Add<ItemSolarPanel>(count: 1,       weight: 1 / 2.0)
+                );
+
+            // misc
+            droplist.Add(
+                    weight: 1,
+                    nestedList:
+                    new DropItemsList(outputs: 2)
+                        // resources / misc
+                        .Add<ItemCanisterGasoline>(count: 10,   weight: 1)
+                        .Add<ItemCanisterMineralOil>(count: 10, weight: 1)
+                        .Add<ItemFirelog>(count: 20,            countRandom: 20, weight: 1)
+                        .Add<ItemBatteryHeavyDuty>(count: 5,    weight: 1)
+                        .Add<ItemPlastic>(count: 10,            weight: 1)
+                        .Add<ItemRubberVulcanized>(count: 10,   weight: 1)
+                        // food
+                        .Add<ItemMRE>(count: 10, weight: 1)
+                        // medical
+                        .Add<ItemHeatPreExposure>(count: 3,  weight: 1)
+                        .Add<ItemStrengthBoostBig>(count: 5, weight: 1)
+                        .Add<ItemMedkit>(count: 3,           weight: 1)
+                        .Add<ItemStimpack>(count: 3,         weight: 1)
+                        .Add<ItemPeredozin>(count: 2,        weight: 1)
+                        .Add<ItemNeuralEnhancer>(count: 1,   weight: 1)
+                        // misc
+                        .Add<ItemCigarettes>(count: 5,  weight: 5)
+                        .Add<ItemBombMining>(count: 20, weight: 1 / 2.0)
+                );
+
+            // weapons
+            droplist.Add(
+                    weight: 1 / 2.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // melee
+                        .Add<ItemStunBaton>(count: 1, weight: 1 / 2.0)
+                        // ranged
+                        .Add<ItemSubmachinegun10mm>(count: 1,    weight: 1)
+                        .Add<ItemRifle10mm>(count: 1,            weight: 1)
+                        .Add<ItemShotgunMilitary>(count: 1,      weight: 1)
+                        .Add<ItemSteppenHawk>(count: 1,          weight: 1)
+                        .Add<ItemGrenadeLauncher>(count: 1,      weight: 1 / 2.0)
+                        .Add<ItemMachinegun300>(count: 1,        weight: 1 / 2.0)
+                        .Add<ItemRifle300>(count: 1,             weight: 1 / 2.0)
+                        .Add<ItemGrenadeLauncherMulti>(count: 1, weight: 1 / 4.0)
+                );
+
+            // equipment
+            droplist.Add(
+                    weight: 1 / 2.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        .Add<ItemHelmetMiner>(count: 1,       weight: 1)
+                        .Add<ItemHelmetRespirator>(count: 1,  weight: 1)
+                        .Add<ItemHelmetNightVision>(count: 1, weight: 1)
+                        .Add<ItemMilitaryHelmet>(count: 1,    weight: 1)
+                        .Add<ItemMilitaryArmor>(count: 1,     weight: 1)
+                        // advanced stuff
+                        .Add<ItemHelmetNightVisionAdvanced>(count: 1, weight: 1 / 2.0)
+                        .Add<ItemAssaultHelmet>(count: 1,             weight: 1 / 2.0)
+                        .Add<ItemAssaultArmor>(count: 1,              weight: 1 / 2.0)
+                        .Add<ItemApartSuit>(count: 1,                 weight: 1 / 3.0)
+                        .Add<ItemSuperHeavySuit>(count: 1,            weight: 1 / 3.0)
+                );
+
+            // devices & drones
+            droplist.Add(
+                    weight: 1 / 10.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // devices
+                        .Add<ItemPowerBankStandard>(count: 1, weight: 1)
+                        .Add<ItemPowerBankLarge>(count: 1,    weight: 1)
+                        .Add<ItemPragmiumSensor>(count: 1,    weight: 1 / 5.0)
+                        // drones
+                        .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1)
+                        .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 2.0)
+                );
+
+            // implants
+            droplist.Add(
+                    weight: 1 / 20.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        .Add<ItemImplantArtificialLiver>()
+                        .Add<ItemImplantArtificialRetina>()
+                        .Add<ItemImplantArtificialStomach>()
+                        .Add<ItemImplantATPEnergyExtractor>()
+                        .Add<ItemImplantHealingGland>()
+                        .Add<ItemImplantMetabolismModulator>()
+                        .Add<ItemImplantNanofiberSkin>()
+                        .Add<ItemImplantReinforcedBones>()
+                        .Add<ItemImplantToxinFiltration>()
+                );
+        }
+
+        private static void PrepareDroplistPvP(DropItemsList droplist)
+        {
+            // tech tier filters
+            DropItemConditionDelegate beforeT3
+                = context => !IsAvailableT3Specialized(context);
+
+            DropItemConditionDelegate T3Only
+                = context => IsAvailableT3Specialized(context)
+                             && !IsAvailableT4Specialized(context);
+
+            DropItemConditionDelegate T3Plus = IsAvailableT3Specialized;
+
+            DropItemConditionDelegate T3BeforeT5
+                = context => IsAvailableT3Specialized(context)
+                             && !IsAvailableT5Specialized(context);
+
+            DropItemConditionDelegate beforeT4
+                = context => !IsAvailableT4Specialized(context);
+
+            DropItemConditionDelegate T4Basic = IsAvailableT4Basic;
+
+            DropItemConditionDelegate T4Only
+                = context => IsAvailableT4Specialized(context)
+                             && !IsAvailableT5Specialized(context);
+
+            DropItemConditionDelegate T4Plus = IsAvailableT4Specialized;
+
+            DropItemConditionDelegate T5 = IsAvailableT5Specialized;
+
+            droplist.Outputs = 3;
+
+            // loot groups are sorted in the order of rarity (more common first)
+            // ammo
+            droplist.Add(
+                    weight: 1,
+                    nestedList:
+                    new DropItemsList(outputs: 2)
+                        .Add<ItemAmmo8mmStandard>(count: 50,          weight: 1,       condition: beforeT3)
+                        .Add<ItemAmmo8mmToxic>(count: 50,             weight: 1,       condition: beforeT3)
+                        .Add<ItemAmmo12gaBuckshot>(count: 50,         weight: 1,       condition: beforeT3)
+                        .Add<ItemAmmo10mmStandard>(count: 100,        weight: 1,       condition: T3Only)
+                        .Add<ItemAmmo10mmHollowPoint>(count: 100,     weight: 1,       condition: T3Only)
+                        .Add<ItemAmmo10mmArmorPiercing>(count: 100,   weight: 1,       condition: T3Only)
+                        .Add<ItemAmmo12gaPellets>(count: 50,          weight: 1,       condition: T3Only)
+                        .Add<ItemAmmo12gaSlugs>(count: 50,            weight: 1,       condition: T3Only)
+                        .Add<ItemAmmo300ArmorPiercing>(count: 100,    weight: 1,       condition: T4Plus)
+                        .Add<ItemAmmo300Incendiary>(count: 100,       weight: 1,       condition: T4Plus)
+                        .Add<ItemAmmoGrenadeHE>(count: 10,            weight: 1 / 2.0, condition: T3Plus)
+                        .Add<ItemAmmoGrenadeIncendiary>(count: 10,    weight: 1 / 2.0, condition: T4Plus)
+                        .Add<ItemAmmoGrenadeFragmentation>(count: 10, weight: 1 / 2.0, condition: T4Plus)
+                        .Add<ItemAmmoGrenadeFreeze>(count: 10,        weight: 1 / 2.0, condition: T5)
+                );
+
+            // components and high value items
+            droplist.Add(
+                    weight: 1,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // components
+                        .Add<ItemComponentsElectronic>(count: 10, weight: 1)
+                        .Add<ItemComponentsHighTech>(count: 10,   weight: 1)
+                        .Add<ItemComponentsMechanical>(count: 10, weight: 1)
+                        .Add<ItemComponentsOptical>(count: 10,    weight: 1)
+                        .Add<ItemComponentsWeapon>(count: 10,     weight: 1)
+                        // high value items
+                        .Add<ItemFuelCellGasoline>(count: 1, weight: 1,       condition: T3Plus)
+                        .Add<ItemSolarPanel>(count: 1,       weight: 1 / 2.0, condition: T4Plus)
+                );
+
+            // misc
+            droplist.Add(
+                    weight: 1,
+                    nestedList:
+                    new DropItemsList(outputs: 2)
+                        // resources / misc
+                        .Add<ItemCanisterGasoline>(count: 10,   weight: 1,       condition: T3Plus)
+                        .Add<ItemCanisterMineralOil>(count: 10, weight: 1,       condition: T3Plus)
+                        .Add<ItemFirelog>(count: 20,            countRandom: 20, weight: 1)
+                        .Add<ItemBatteryHeavyDuty>(count: 5,    weight: 1,       condition: T3Plus)
+                        .Add<ItemPlastic>(count: 10,            weight: 1)
+                        .Add<ItemRubberVulcanized>(count: 20,   weight: 1)
+                        // food
+                        .Add<ItemMRE>(count: 10, weight: 1)
+                        // medical
+                        .Add<ItemHeatPreExposure>(count: 3,  weight: 1, condition: T3Plus)
+                        .Add<ItemStrengthBoostBig>(count: 5, weight: 1)
+                        .Add<ItemMedkit>(count: 3,           weight: 1, condition: T3Plus)
+                        .Add<ItemStimpack>(count: 3,         weight: 1, condition: T4Plus)
+                        .Add<ItemPeredozin>(count: 2,        weight: 1, condition: T4Plus)
+                        .Add<ItemNeuralEnhancer>(count: 1,   weight: 1, condition: T4Plus)
+                        // misc
+                        .Add<ItemCigarettes>(count: 5,  weight: 5,       condition: T3Plus)
+                        .Add<ItemBombMining>(count: 20, weight: 1 / 2.0, condition: T3Plus)
+                );
+
+            // weapons
+            droplist.Add(
+                    weight: 1 / 2.0,
+                    // require reaching particular tier before the weapon could be acquired there
+                    condition: T3Plus,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // melee
+                        .Add<ItemStunBaton>(count: 1, weight: 1 / 2.0, condition: T3BeforeT5)
+                        // ranged
+                        .Add<ItemSubmachinegun10mm>(count: 1,    weight: 1,       condition: T3Only)
+                        .Add<ItemRifle10mm>(count: 1,            weight: 1,       condition: T3Only)
+                        .Add<ItemShotgunMilitary>(count: 1,      weight: 1,       condition: T3Only)
+                        .Add<ItemMachinegun300>(count: 1,        weight: 1,       condition: T4Plus)
+                        .Add<ItemLaserRifle>(count: 1,           weight: 1 / 1.5, condition: T4Plus)
+                        .Add<ItemGrenadeLauncher>(count: 1,      weight: 1,       condition: T3BeforeT5)
+                        .Add<ItemRifle300>(count: 1,             weight: 1 / 2.0, condition: T5)
+                        .Add<ItemGrenadeLauncherMulti>(count: 1, weight: 1 / 2.0, condition: T5)
+                );
+
+            // equipment
+            droplist.Add(
+                    weight: 1 / 2.0,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        .Add<ItemLeatherArmor>(count: 1,              condition: beforeT3)
+                        .Add<ItemFurArmor>(count: 1,                  condition: beforeT3)
+                        .Add<ItemHelmetMiner>(count: 1,               condition: beforeT3)
+                        .Add<ItemHelmetRespirator>(count: 1,          condition: beforeT4)
+                        .Add<ItemHelmetNightVision>(count: 1,         condition: T3Only)
+                        .Add<ItemMetalHelmetClosed>(count: 1,         condition: T3Only, weight: 1 / 2.0)
+                        .Add<ItemMetalHelmetSkull>(count: 1,          condition: T3Only, weight: 1 / 2.0)
+                        .Add<ItemMetalArmor>(count: 1,                condition: T3Only)
+                        .Add<ItemMilitaryHelmet>(count: 1,            condition: T3Only)
+                        .Add<ItemMilitaryArmor>(count: 1,             condition: T3Only)
+                        .Add<ItemHelmetNightVisionAdvanced>(count: 1, condition: T4Plus)
+                        .Add<ItemAssaultHelmet>(count: 1,             condition: T4Plus)
+                        .Add<ItemAssaultArmor>(count: 1,              condition: T4Plus)
+                        .Add<ItemApartSuit>(count: 1,                 condition: T4Plus)
+                        .Add<ItemSuperHeavySuit>(count: 1,            condition: T5, weight: 1 / 2.0)
+                );
+
+            // devices, drones, mech parts
+            droplist.Add(
+                    weight: 1 / 10.0,
+                    condition: T3Plus,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        // devices
+                        .Add<ItemPowerBankStandard>(count: 1, weight: 1)
+                        .Add<ItemPowerBankLarge>(count: 1,    weight: 1)
+                        .Add<ItemPragmiumSensor>(count: 1,    weight: 1 / 5.0, condition: T4Basic)
+                        // drones
+                        .Add<ItemDroneIndustrialStandard>(count: 1, weight: 1,       condition: T3Only)
+                        .Add<ItemDroneControlStandard>(count: 1,    weight: 1 / 2.0, condition: T3Only)
+                        .Add<ItemDroneIndustrialAdvanced>(count: 1, weight: 1,       condition: T4Basic)
+                        .Add<ItemDroneControlAdvanced>(count: 1,    weight: 1 / 2.0, condition: T4Basic)
+                        // mech parts
+                        .Add<ItemStructuralPlating>(count: 2, countRandom: 1, weight: 2, condition: T5)
+                        .Add<ItemUniversalActuator>(count: 1, weight: 2,      condition: T5)
+                        .Add<ItemImpulseEngine>(count: 1,     weight: 2,      condition: T5)
+                );
+
+            // bombs starting from T3 (please note: this is a droplist for PvP)
+            droplist.Add(
+                    weight: 1 / 25.0,
+                    condition: T3Plus,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        .Add<ItemBombPrimitive>(count: 1, condition: T3Only)
+                        .Add<ItemBombModern>(count: 1,    condition: T4Plus)
+                );
+
+            // implants
+            droplist.Add(
+                    weight: 1 / 20.0,
+                    // drop it a tier earlier (useful as a bonus)
+                    condition: T3Plus,
+                    nestedList:
+                    new DropItemsList(outputs: 1)
+                        .Add<ItemImplantArtificialLiver>()
+                        .Add<ItemImplantArtificialRetina>()
+                        .Add<ItemImplantArtificialStomach>()
+                        .Add<ItemImplantATPEnergyExtractor>()
+                        .Add<ItemImplantHealingGland>()
+                        .Add<ItemImplantMetabolismModulator>()
+                        .Add<ItemImplantNanofiberSkin>()
+                        .Add<ItemImplantReinforcedBones>()
+                        .Add<ItemImplantToxinFiltration>()
+                );
         }
     }
 }

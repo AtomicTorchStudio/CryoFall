@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision;
+    using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
@@ -118,6 +119,14 @@
             effects.AddPercent(this, StatName.MoveSpeed, -10);
         }
 
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+
+            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
+            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
+        }
+
         private static void ClientAutoLightToggle(IItem item)
         {
             if (!item.IsInitialized)
@@ -137,8 +146,10 @@
             }
 
             // the item is put into the player equipment container
-            // enable the light automatically during the night
-            var isLightRequired = TimeOfDaySystem.IsNight;
+            // enable the light automatically during the night (when has no retina implant)
+            var isLightRequired = TimeOfDaySystem.IsNight
+                                  && !character.SharedGetPlayerContainerEquipment()
+                                               .ContainsItemsOfType(GetProtoEntity<ItemImplantArtificialRetina>(), 1);
 
             if (clientState.IsNightVisionActive == isLightRequired)
             {
@@ -201,14 +212,6 @@
         public class ClientState : BaseClientState
         {
             public bool IsNightVisionActive { get; set; }
-        }
-
-        protected override void PrepareHints(List<string> hints)
-        {
-            base.PrepareHints(hints);
-
-            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
-            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
         }
     }
 }

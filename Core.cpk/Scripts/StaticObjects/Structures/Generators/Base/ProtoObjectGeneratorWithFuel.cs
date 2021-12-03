@@ -38,9 +38,9 @@
 
         public abstract double LiquidConsumptionAmountPerSecond { get; }
 
-        public abstract LiquidType LiquidType { get; }
+        public LiquidContainerConfig LiquidContainerConfig { get; private set; }
 
-        protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
+        public abstract LiquidType LiquidType { get; }
 
         public abstract void SharedGetElectricityProduction(
             IStaticWorldObject worldObject,

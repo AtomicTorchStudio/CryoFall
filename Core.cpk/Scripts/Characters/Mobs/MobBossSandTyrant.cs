@@ -218,7 +218,7 @@
 
             ServerBossMinionHelper.ServerSpawnMinions(
                 characterBoss,
-                characterBossCenterPosition: characterBoss.Position + (0, 1.0),
+                characterBossCenterPosition: characterBoss.Position + characterBoss.PhysicsBody.CenterOffset,
                 protoMinion: ProtoMinionObjectLazy.Value,
                 minionsList: privateState.SpawnedMinionsList,
                 spawnCheckDistanceSqr: SpawnMinionsCheckDistance * SpawnMinionsCheckDistance,
@@ -232,7 +232,7 @@
                 baseMinionsNumber: 0,
                 spawnNoObstaclesCircleRadius: MinionSpawnNoObstaclesCircleRadius,
                 spawnDistanceMin: 2.0,
-                spawnDistanceMax: 2.0);
+                spawnDistanceMax: 2.5);
         }
 
         public override bool SharedOnDamage(

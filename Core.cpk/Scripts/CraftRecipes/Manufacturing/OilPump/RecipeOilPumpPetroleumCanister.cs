@@ -16,7 +16,10 @@
 
         public override string Name => "Fill canister with raw petroleum oil from oil pump";
 
-        protected override TimeSpan CraftDuration => CraftingDuration.Instant;
+        /// <summary>
+        /// We don't want any interruption of oil pump (otherwise its IsActive state will become off for a fraction of a second)
+        /// </summary>
+        protected override TimeSpan CraftDuration => TimeSpan.Zero;
 
         protected override LiquidContainerState GetLiquidState(IStaticWorldObject staticWorldObject)
         {

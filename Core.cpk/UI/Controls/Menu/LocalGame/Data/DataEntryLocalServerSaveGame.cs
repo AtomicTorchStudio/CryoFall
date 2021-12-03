@@ -1,7 +1,9 @@
 namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.Data
 {
     using System;
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -30,6 +32,19 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.Data
 
         private void ExecuteCommandLoad()
         {
+            if (this.Name.Contains("[CORRUPTED SAVEGAME]"))
+            {
+                DialogWindow.ShowDialog(CoreStrings.DialogCannotLoadSavegame_Title,
+                                        CoreStrings.DialogCannotLoadSavegame_MessageCorrupted
+                                        + "[br][b]"
+                                        + this.FileName
+                                        + "[/b]",
+                                        closeByEscapeKey: true,
+                                        textAlignment: TextAlignment.Left,
+                                        okAction: () => Api.Client.LocalServer.BrowseSavesFolder());
+                return;
+            }
+
             Api.Logger.Important("Load savegame: " + this.Name + " SlotID=" + this.SlotId);
             Api.Client.LocalServer.Load(this.SlotId);
         }

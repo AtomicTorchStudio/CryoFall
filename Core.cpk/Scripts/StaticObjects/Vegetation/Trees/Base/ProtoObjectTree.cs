@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees
 {
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
@@ -10,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -115,6 +117,20 @@
 
             renderer.Scale = 1.6f;
             renderer.DrawOrderOffsetY = 0.4;
+        }
+
+        protected override void ServerOnStaticObjectDestroyedByCharacter(
+            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject)
+        {
+            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, weaponCache, targetObject);
+
+            if (byCharacter is not null
+                && !byCharacter.IsNpc)
+            {
+                PlayerCharacter.GetPrivateState(byCharacter).Statistics.TreesCut++;
+            }
         }
 
         protected override double SharedCalculateDamageByWeapon(

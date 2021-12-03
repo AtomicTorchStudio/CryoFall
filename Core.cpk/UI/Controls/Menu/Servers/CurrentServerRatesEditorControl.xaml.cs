@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers
 {
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -7,11 +8,23 @@
 
     public partial class CurrentServerRatesEditorControl : BaseUserControl
     {
+        public static readonly DependencyProperty CompactTilesProperty
+            = DependencyProperty.Register("CompactTiles",
+                                          typeof(bool),
+                                          typeof(CurrentServerRatesEditorControl),
+                                          new PropertyMetadata(default(bool)));
+
         private Grid layoutRoot;
 
         private RatesEditorControl ratesEditorControl;
 
         private RatesPresetSelectionControl ratesPresetSelectionControl;
+
+        public bool CompactTiles
+        {
+            get => (bool)this.GetValue(CompactTilesProperty);
+            set => this.SetValue(CompactTilesProperty, value);
+        }
 
         public RatesEditorControl RatesEditor => this.ratesEditorControl;
 
@@ -29,6 +42,7 @@
 
         protected override void OnLoaded()
         {
+            this.ratesPresetSelectionControl.CompactTiles = this.CompactTiles;
             this.ratesEditorControl.AnyRateChanged += this.RatesEditorControlAnyRateChangedHandler;
         }
 

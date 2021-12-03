@@ -35,6 +35,10 @@
         /// </summary>
         public abstract double LiquidCapacityMineralOil { get; }
 
+        public LiquidContainerConfig LiquidConfigGasoline { get; private set; }
+
+        public LiquidContainerConfig LiquidConfigMineralOil { get; private set; }
+
         /// <summary>
         /// Gasoline production amount per second.
         /// </summary>
@@ -45,11 +49,7 @@
         /// </summary>
         public abstract double LiquidMineralOilConsumptionPerSecond { get; }
 
-        protected LiquidContainerConfig LiquidConfigGasoline { get; private set; }
-
-        protected LiquidContainerConfig LiquidConfigMineralOil { get; private set; }
-
-        protected ManufacturingConfig ManufacturingConfigGasoline { get; private set; }
+        public ManufacturingConfig ManufacturingConfigGasoline { get; private set; }
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {

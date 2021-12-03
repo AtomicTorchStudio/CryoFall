@@ -31,12 +31,16 @@
 
         private static void CurrentGameConnectionStateChangedHandler()
         {
-            Logger.Important("Status changed: " + Client.CurrentGame.ConnectionState);
-
             if (Client.LocalServer.Status != LocalServerStatus.Stopped
                 && Client.CurrentGame.ConnectionState == ConnectionState.Disconnected)
             {
                 // disconnected or connected to another server
+                if (Client.Core.IsCompiling)
+                {
+                    // currently recompiling the core/mods for the local server, do not stop it
+                    return;
+                }
+
                 Logger.Important("Stopping local server as disconnected from it");
                 Client.LocalServer.Stop();
             }

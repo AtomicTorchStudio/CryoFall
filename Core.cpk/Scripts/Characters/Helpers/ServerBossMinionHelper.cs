@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -118,10 +119,9 @@
                 var spawnDistance = spawnDistanceMin
                                     + RandomHelper.NextDouble() * (spawnDistanceMax - spawnDistanceMin);
                 var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-                var spawnPosition = new Vector2Ushort(
-                    (ushort)(characterBossCenterPosition.X + spawnDistance * Math.Cos(angle)),
-                    (ushort)(characterBossCenterPosition.Y + spawnDistance * Math.Sin(angle)));
-
+                var spawnPosition = new Vector2D(
+                    characterBossCenterPosition.X + spawnDistance * Math.Cos(angle),
+                    characterBossCenterPosition.Y + spawnDistance * Math.Sin(angle));
                 if (ServerTrySpawnMinion(spawnPosition) is { } spawnedMinion)
                 {
                     // spawned successfully!
@@ -130,10 +130,9 @@
                 }
             }
 
-            ICharacter ServerTrySpawnMinion(Vector2Ushort spawnPosition)
+            ICharacter ServerTrySpawnMinion(Vector2D spawnPosition)
             {
-                var worldPosition = spawnPosition.ToVector2D();
-                if (physicsSpace.TestCircle(worldPosition,
+                if (physicsSpace.TestCircle(spawnPosition,
                                             spawnNoObstaclesCircleRadius,
                                             CollisionGroups.Default,
                                             sendDebugEvent: true).EnumerateAndDispose().Any())
@@ -142,7 +141,7 @@
                     return null;
                 }
 
-                var spawnedCharacter = Api.Server.Characters.SpawnCharacter(protoMinion, worldPosition);
+                var spawnedCharacter = Api.Server.Characters.SpawnCharacter(protoMinion, spawnPosition);
                 if (spawnedCharacter is null)
                 {
                     return null;

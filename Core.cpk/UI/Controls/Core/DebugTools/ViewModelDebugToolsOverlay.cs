@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Characters.Input.ClientPrediction;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.UI;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.Tiles;
@@ -25,9 +24,6 @@
             {
                 throw new Exception("Instance already created");
             }
-
-            ClientComponentPerformanceIndicatorsManager.IsDisplayedChanged
-                += () => this.NotifyPropertyChanged(nameof(this.IsStatsOverlayEnabled));
 
             ClientComponentDebugGrid.IsDrawingChanged
                 += () => this.NotifyPropertyChanged(nameof(this.IsGridEnabled));
@@ -101,12 +97,6 @@
         public bool IsServerOperator
             => Api.IsEditor
                || ServerOperatorSystem.ClientIsOperator();
-
-        public bool IsStatsOverlayEnabled
-        {
-            get => ClientComponentPerformanceIndicatorsManager.IsDisplayed;
-            set => ClientComponentPerformanceIndicatorsManager.IsDisplayed = value;
-        }
 
         public bool IsTerrainBlendingEnabled
         {

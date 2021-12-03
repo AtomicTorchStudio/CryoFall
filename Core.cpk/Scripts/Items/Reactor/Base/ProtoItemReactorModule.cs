@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -26,8 +27,11 @@
 
         public override void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)
         {
-            // place a broken part to the released container slot
-            Server.Items.CreateItem<ItemReactorBrokenModule>(container, slotId: slotId);
+            if (container.ProtoItemsContainer is ItemsContainerGeneratorPragmium)
+            {
+                // place a broken part to the released container slot
+                Server.Items.CreateItem<ItemReactorBrokenModule>(container, slotId: slotId);
+            }
         }
 
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)

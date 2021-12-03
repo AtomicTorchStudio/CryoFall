@@ -27,11 +27,6 @@
 
         public override void SharedUpdate(double deltaTime)
         {
-            if (Api.IsClient)
-            {
-                ClientTryDisableRendering(this.Character);
-            }
-
             this.timeRemains -= deltaTime;
             if (this.timeRemains > 0)
             {
@@ -56,28 +51,6 @@
             this.Character.ProtoCharacter.SharedCreatePhysics(this.Character);
         }
 
-        private static void ClientTryDisableRendering(ICharacter character)
-        {
-            if (!character.IsInitialized)
-            {
-                return;
-            }
-
-            var clientState = PlayerCharacter.GetClientState(character);
-
-            var skeletonRenderer = clientState.SkeletonRenderer;
-            if (skeletonRenderer is not null)
-            {
-                skeletonRenderer.IsEnabled = false;
-            }
-
-            var rendererShadow = clientState.RendererShadow;
-            if (rendererShadow is not null)
-            {
-                rendererShadow.IsEnabled = false;
-            }
-        }
-
         public class PublicState : BasePublicActionState
         {
             protected override void ClientOnCompleted()
@@ -88,8 +61,6 @@
 
             protected override void ClientOnStart()
             {
-                ClientTryDisableRendering(this.Character);
-
                 // recreate physics (as despawned character doesn't have any physics)
                 this.Character.ProtoCharacter.SharedCreatePhysics(this.Character);
             }

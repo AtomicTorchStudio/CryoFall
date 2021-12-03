@@ -26,7 +26,7 @@
 
         public override double WaterCapacity => 8 * this.WaterConsumptionPerWatering; // 8 waterings
 
-        public override double WaterConsumptionPerWatering => 30; // 3 bottles per watering
+        public override double WaterConsumptionPerWatering => 10; // 1 bottle per watering
 
         public override byte WateringDistance => 2;
 

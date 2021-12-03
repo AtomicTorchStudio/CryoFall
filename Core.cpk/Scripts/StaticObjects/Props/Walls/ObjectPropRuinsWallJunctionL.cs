@@ -6,8 +6,8 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (0.7, 1), offset: (0.15, 0))
-                .AddShapeRectangle(size: (0.15, 0.65));
-            AddFullHeightWallHitboxes(data, width: 0.85, offsetX: 0);
+                .AddShapeRectangle(size: (0.15, 0.75));
+            AddFullHeightWallHitboxes(data, width: 0.85, offsetX: 0, offsetY: -0.15);
         }
     }
 }

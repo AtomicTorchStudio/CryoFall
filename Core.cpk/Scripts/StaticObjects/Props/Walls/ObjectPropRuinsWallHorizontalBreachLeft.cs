@@ -5,7 +5,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.65));
+                .AddShapeRectangle(size: (1, 0.75));
         }
     }
 }

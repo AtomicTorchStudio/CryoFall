@@ -19,11 +19,10 @@
               [br]Valuable loot awaits the bravest survivors!";
 
         public override TimeSpan EventDurationWithoutDelay { get; }
-            = TimeSpan.FromHours(1);
+            = TimeSpan.FromMinutes(30);
 
         public override TimeSpan EventStartDelayDuration
-            => PveSystem.SharedIsPve(true)
-               && !SharedLocalServerHelper.IsLocalServer
+            => !SharedLocalServerHelper.IsLocalServer
                    ? TimeSpan.FromMinutes(20)
                    : TimeSpan.Zero;
 

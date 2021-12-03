@@ -211,6 +211,20 @@
             }
         }
 
+        protected override void ServerOnStaticObjectDestroyedByCharacter(
+            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject)
+        {
+            base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, weaponCache, targetObject);
+
+            if (byCharacter is not null
+                && !byCharacter.IsNpc)
+            {
+                PlayerCharacter.GetPrivateState(byCharacter).Statistics.MineralsMined++;
+            }
+        }
+
         protected override double SharedCalculateDamageByWeapon(
             WeaponFinalCache weaponCache,
             double damagePreMultiplier,
@@ -295,7 +309,7 @@
             Logger.Info(
                 $"{mineralObject} current damage stage changed to {damageStage}. Dropping items for that stage",
                 byCharacter);
-
+ 
             try
             {
                 var dropItemsList = this.DropItemsConfig.GetForStage(damageStage);

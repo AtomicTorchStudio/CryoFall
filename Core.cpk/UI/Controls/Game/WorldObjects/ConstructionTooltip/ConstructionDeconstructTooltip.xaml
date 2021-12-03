@@ -7,7 +7,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     VerticalAlignment="Top"
@@ -29,7 +28,7 @@
     </i:Interaction.Triggers>
 
     <Grid MinWidth="128">
-        <Grid Margin="0,32,0,0"
+        <Grid Margin="0,52,0,0"
               HorizontalAlignment="Center"
               IsHitTestVisible="False">
             <StackPanel Orientation="Horizontal"

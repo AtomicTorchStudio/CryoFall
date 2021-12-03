@@ -6,6 +6,8 @@
 
     public class ObjectWallWood : ProtoObjectWall
     {
+        public override double BuildingSkillExperienceMultiplier => 1 / 5.0; // these walls are too easy to build
+
         public override string Description =>
             "Your basic protection against the local fauna and...locals, in general. Doesn't really protect against anything more than the most basic weapons.";
 

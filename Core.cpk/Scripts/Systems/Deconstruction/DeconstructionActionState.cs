@@ -224,7 +224,8 @@
                 if (this.protoStructure is not ProtoObjectConstructionSite)
                 {
                     this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
-                        SkillBuilding.ExperienceAddWhenDeconstructionFinished);
+                        SkillBuilding.ExperienceAddWhenDeconstructionFinished
+                        * this.protoStructure.BuildingSkillExperienceMultiplier);
                 }
 
                 Logger.Important(
