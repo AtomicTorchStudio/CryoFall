@@ -2,6 +2,7 @@
 {
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class HudNotificationsPanelControl : BaseUserControl
@@ -19,6 +20,13 @@
             where TNotificationControl : UIElement, IHudNotificationControl
         {
             var panelControl = instance;
+            if (panelControl is null)
+            {
+                Api.Logger.Error(
+                    "Cannot display a notification because the notifications panel is not available (probably player is still in main menu)");
+                return;
+            }
+
             if (notificationControl.IsAutoHide)
             {
                 panelControl.HideSimilarNotifications(notificationControl);

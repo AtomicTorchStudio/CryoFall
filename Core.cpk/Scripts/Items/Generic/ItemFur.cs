@@ -7,6 +7,6 @@
 
         public override string Name => "Fur";
 
-        public ushort OrganicValue => 5;
+        public ushort OrganicValue => 10;
     }
 }

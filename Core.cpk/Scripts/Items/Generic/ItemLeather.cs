@@ -6,6 +6,6 @@
 
         public override string Name => "Leather";
 
-        public ushort OrganicValue => 5;
+        public ushort OrganicValue => 10;
     }
 }

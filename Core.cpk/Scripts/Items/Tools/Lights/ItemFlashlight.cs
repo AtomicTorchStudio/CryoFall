@@ -16,7 +16,7 @@
         protected override void PrepareProtoItemLight(ItemLightConfig lightConfig, ItemFuelConfig fuelConfig)
         {
             lightConfig.Color = LightColors.Flashlight;
-            lightConfig.ScreenOffset = (3, -1);
+            lightConfig.ScreenOffset = (16, 102);
             lightConfig.Size = 18;
 
             fuelConfig.FuelCapacity = 1000; // >10 minutes

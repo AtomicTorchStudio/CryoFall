@@ -295,8 +295,20 @@
         public const string Dialog_AreYouSureWantToUse_Format =
             "Are you sure want to use {0}?";
 
-        public const string DialogCannotLoadSavegame_MessageCorrupted =
-            "The savegame file is corrupted. You can try rollback to the latest backup version. Please navigate to the saved games folder and check backups for this file:";
+        public const string DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback =
+            "You can try to rollback to the latest backup version.";
+
+        public const string DialogCannotLoadSavegame_MessageCorrupted_Detected =
+            "CryoFall has detected saved game data corruption.";
+
+        public const string DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups =
+            "Please navigate to the saved games folder and check backups for this file:";
+
+        public const string DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses =
+            @"Possible causes:
+              [*] Hard drive failure
+              [*] OS file read/write access error
+              [*] etc.";
 
         public const string DialogCannotLoadSavegame_Title = "Cannot load saved game";
 
@@ -340,6 +352,9 @@
             "You dealt {0}% total damage! Your share of the loot is {1}/{2}.";
 
         public const string Extras_DiscordTooltip = "Official CryoFall Discord server (English only)";
+
+        // Game features overview slideshow is displayed when clicking on this button.
+        public const string Extras_Features_Title = "Features";
 
         public const string Extras_FeaturesTooltip = "CryoFall features slideshow";
 
@@ -741,6 +756,18 @@
 
         // used as, for example: "Implant requires: 5 biomaterial"
         public const string ImplantSlotOnStation_Requirement = "Requires";
+
+        // {0} is the name of the tech tier 
+        public const string Item_AvailableInTechTier = "Available for crafting in {0}";
+
+        // this error message is displayed when player attempts to sell an item that has too low durability 
+        public const string Item_CheckTooLowDurability = "Item durability is too low (minimum of {0}% required).";
+
+        // this error message is displayed when player attempts to sell an item that has too low freshness
+        public const string Item_CheckTooLowFreshness = "Item freshness is too low (minimum of {0}% required).";
+
+        // it's "Crafted by: <player name>"
+        public const string Item_CreatedBy_Format = "Created by: {0}";
 
         public const string Item_SpoiledIn_Format = "Spoiled in: {0}";
 
@@ -1452,7 +1479,89 @@
 
         public const string Skill = "Skill";
 
+        public const string Skin_AccessLimitedEdition = "Limited edition skin (cannot be obtained currently).";
+
+        public const string Skin_AccessSupporterPack = "Available as a part of the Supporter Pack.";
+
+        public const string Skin_AccessUnlockByPlaying = "Unlock by playing the game.";
+
+        public const string Skin_Default = "Default";
+
+        public const string Skin_NotOwned = "You don't own this skin.";
+
+        public const string Skins_Button_BrowseSkins = "Browse skins";
+
+        public const string Skins_Button_Buy = "Buy";
+
+        public const string Skins_ClaimUnlockedSkin = "Claim";
+
+        public const string Skins_EmptyList = "There are no skins available in this list.";
+
+        public const string Skins_FeaturedSkins_Title = "Featured skins";
+
+        public const string Skins_FreeSkinProgress_Format = "Log in for {0} more day(s) to receive a free skin.";
+
+        public const string Skins_FreeSkinProgress_Title = "Free skin progress";
+
+        public const string Skins_InfoSkinsAllServersSupported =
+            "Skins can be used on any server (official, community, private or local).";
+
+        public const string Skins_InfoSkinsCanShare =
+            "You can craft and share skinned items with your friends even if they don't own a particular skin.";
+
+        public const string Skins_InfoSkinsHowToUse =
+            "Skins can be applied to certain items you craft in the game (weapons and equipment).";
+
+        public const string Skins_InfoSkinsRegionalPricing =
+            "* All prices are adjusted according to Steam regional pricing.";
+
+        public const string Skins_InfoSkinsSupportingDevelopers =
+            "Purchasing skins goes toward supporting the developers. Thank you!";
+
+        public const string Skins_SelectSkin = "Select skin:";
+
+        // {0} is the skin name, {1} is the base item name  
+        public const string Skins_SkinNameFormat = "{0} (skin for {1})";
+
+        public const string Skins_SkinOwned = "Owned";
+
+        // displayed when a skin is available for claim
+        public const string Skins_SkinUnlocked = "Skin unlocked";
+
+        public const string Skins_Tab_Equipment = "EQUIPMENT";
+
+        // this is the first tab, it contains the list of featured skins as well as the free skin unlock progress
+        public const string Skins_Tab_First = "FEATURED";
+
+        public const string Skins_Tab_Owned = "OWNED";
+
+        public const string Skins_Tab_Weapons = "WEAPONS";
+
+        public const string Skins_Title = "Skins";
+
         public const string SortBy = "Sort by";
+
+        public const string StatisticsDeaths = "Deaths";
+
+        public const string StatisticsFarmPlantsHarvested = "Farm plants harvested";
+
+        public const string StatisticsMineralsMined = "Minerals mined";
+
+        public const string StatisticsPvpAssists = "Assists";
+
+        public const string StatisticsPvpKillDeathRatio = "K/D";
+
+        public const string StatisticsPvpKills = "Kills";
+
+        public const string StatisticsPvpLeaderboard = "PvP Leaderboard";
+
+        public const string StatisticsPvpScore = "PvP score";
+
+        public const string StatisticsTitle = "Personal statistics";
+
+        public const string StatisticsTotalLearningPoints = "Total LP gained";
+
+        public const string StatisticsTreesCut = "Trees cut";
 
         public const string StatusEffect_TitleIntensity = "Intensity";
 
@@ -1480,7 +1589,14 @@
             @"AtomicTorch.com account registration
               [br](for your Steam ID).";
 
+        public const string SteamOverlayDisabled_Message =
+            "Please enable Steam Overlay in the game properties in Steam Client and restart the game.";
+
+        public const string SteamOverlayDisabled_Title = "Steam Overlay is not available";
+
         public const string SupporterPack_Badge = "Supporter badge";
+
+        public const string SupporterPack_Button_NavigateToSupporterPackPage = "Open the store page";
 
         public const string SupporterPack_Description
             = @"Supporter Pack is a collection of bonus goodies for those who wish to go the extra mile to support the developers of CryoFall. As a sign of appreciation, the game will display a special supporter's badge in the game chat.

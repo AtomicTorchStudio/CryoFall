@@ -7,6 +7,7 @@
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -17,6 +18,8 @@
         private ViewModelInventorySkeletonViewData inventorySkeletonViewData;
 
         private bool isActive;
+
+        private IProtoItem overrideProtoItem;
 
         public FrameworkElement Control
         {
@@ -99,10 +102,27 @@
 
                 if (this.inventorySkeletonViewData is not null)
                 {
+                    this.inventorySkeletonViewData.SetFrontView();
                     this.inventorySkeletonViewData.IsActive = this.isActive;
                 }
 
                 this.NotifyThisPropertyChanged();
+            }
+        }
+
+        public IProtoItem OverrideProtoItem
+        {
+            get => this.overrideProtoItem;
+            set
+            {
+                if (this.overrideProtoItem == value)
+                {
+                    return;
+                }
+
+                this.overrideProtoItem = value;
+                this.inventorySkeletonViewData.SetFrontView();
+                this.RefreshOverrideProtoItem();
             }
         }
 
@@ -159,6 +179,7 @@
                 textureWidth: (ushort)Math.Ceiling(renderingSize.X),
                 textureHeight: (ushort)Math.Ceiling(renderingSize.Y));
 
+            this.RefreshOverrideProtoItem();
             this.inventorySkeletonViewData.IsActive = this.isActive;
 
             switch (this.control)
@@ -197,6 +218,14 @@
 
             this.inventorySkeletonViewData.Dispose();
             this.inventorySkeletonViewData = null;
+        }
+
+        private void RefreshOverrideProtoItem()
+        {
+            if (this.inventorySkeletonViewData is not null)
+            {
+                this.inventorySkeletonViewData.OverrideProtoItem = this.overrideProtoItem;
+            }
         }
 
         private void UISizeHelperScreenSizeChangedHandler()

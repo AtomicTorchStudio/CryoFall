@@ -5,10 +5,6 @@
 
     public class OutputItem : ProtoItemWithCount
     {
-        public readonly ushort CountRandom;
-
-        public readonly double Probability;
-
         public OutputItem(
             IProtoItem protoItem,
             ushort count,
@@ -26,6 +22,10 @@
             this.CountRandom = countRandom;
             this.Probability = probability;
         }
+
+        public ushort CountRandom { get; }
+
+        public double Probability { get; }
 
         public override string ToString()
         {

@@ -34,6 +34,8 @@
             this.SharedTryClaimObject();
         }
 
+        public override bool IsDisplayingProgress => true;
+
         public override IWorldObject TargetWorldObject => this.WorldObject;
 
         public bool CheckIsNeeded()

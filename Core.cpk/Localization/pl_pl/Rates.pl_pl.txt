@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 PD Umiejętności
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Struktury] Można budować na łąkach
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Niszczenie] Niszczenie opuszczonych struktur
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Niszczenie] Czas opóźnienia niszczenia opuszczonej działki
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+Dostępne znaki tekstowe
 
 Scripts/Rates/RateThirst@Name:
 Pragnienie

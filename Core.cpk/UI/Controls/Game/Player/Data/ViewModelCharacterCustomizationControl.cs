@@ -197,7 +197,8 @@
         {
             var headSpriteData = new CharacterHeadSpriteData(
                 faceStyle: this.CurrentFaceStyleCustomizer.CurrentStyle,
-                headEquipment: null,
+                headEquipmentItem: null,
+                headEquipmentItemProto: null,
                 skeletonResource: null);
 
             var imageLoadingId = ++this.lastImageLoadingId;
@@ -210,6 +211,7 @@
                         request: request,
                         isMale: this.IsMale,
                         headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.Front,
+                        isPreview: true,
                         customTextureSize: HeadPreviewSpriteTextureSize,
                         spriteQualityOffset: -100),
                     isUseCache: false,

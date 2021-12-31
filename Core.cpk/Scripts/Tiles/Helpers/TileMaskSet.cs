@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Tiles
 {
-    public struct TileMaskSet
+    public readonly struct TileMaskSet
     {
         public readonly bool IsFlipHorizontally;
 

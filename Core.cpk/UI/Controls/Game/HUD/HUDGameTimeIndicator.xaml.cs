@@ -6,24 +6,28 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class HUDGameTimeIndicator : BaseUserControl
     {
-        public static readonly DependencyProperty CurrentTimeTextProperty =
-            DependencyProperty.Register(nameof(CurrentTimeText),
-                                        typeof(string),
-                                        typeof(HUDGameTimeIndicator),
-                                        new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty CurrentTimeTextProperty
+            = DependencyProperty.Register(nameof(CurrentTimeText),
+                                          typeof(string),
+                                          typeof(HUDGameTimeIndicator),
+                                          new PropertyMetadata(default(string)));
 
-        public static readonly DependencyProperty TextBrushProperty =
-            DependencyProperty.Register("TextBrush",
-                                        typeof(Brush),
-                                        typeof(HUDGameTimeIndicator),
-                                        new PropertyMetadata(default(Brush)));
+        public static readonly DependencyProperty TextBrushProperty
+            = DependencyProperty.Register("TextBrush",
+                                          typeof(Brush),
+                                          typeof(HUDGameTimeIndicator),
+                                          new PropertyMetadata(default(Brush)));
 
-        // To easily determine the PvP/PvE server on a Twitch stream or let's play video,
+        // To easily determine the PvP/PvE/local server on a Twitch stream or let's play video,
         // we give a bit different tint to the time indicator.
+        private static readonly Brush BrushLocalServer = new SolidColorBrush(Color.FromArgb(0xAA, 0xCC, 0xCC, 0xCC));
+
         private static readonly Brush BrushPvE = new SolidColorBrush(Color.FromArgb(0xAA, 0xBB, 0xCC, 0xFF));
 
         private static readonly Brush BrushPvP = new SolidColorBrush(Color.FromArgb(0xAA, 0xFF, 0xBB, 0xBB));
@@ -49,6 +53,8 @@
         protected override void OnLoaded()
         {
             ClientUpdateHelper.UpdateCallback += this.Update;
+            Api.Client.LocalServer.StatusChanged += this.RefreshTextBrush;
+            Api.Client.CurrentGame.ConnectionStateChanged += this.RefreshTextBrush;
             PveSystem.ClientIsPvEChanged += this.RefreshTextBrush;
             this.RefreshTextBrush();
         }
@@ -56,11 +62,21 @@
         protected override void OnUnloaded()
         {
             ClientUpdateHelper.UpdateCallback -= this.Update;
+            Api.Client.LocalServer.StatusChanged -= this.RefreshTextBrush;
+            Api.Client.CurrentGame.ConnectionStateChanged -= this.RefreshTextBrush;
             PveSystem.ClientIsPvEChanged -= this.RefreshTextBrush;
         }
 
         private void RefreshTextBrush()
         {
+            if (!Api.IsEditor
+                && Api.Client.CurrentGame.ConnectionState is ConnectionState.Connected
+                && Api.Client.CurrentGame.ServerInfo.ServerAddress.IsLocalServer)
+            {
+                this.TextBrush = BrushLocalServer;
+                return;
+            }
+
             this.TextBrush = PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
                                  ? BrushPvE
                                  : BrushPvP;

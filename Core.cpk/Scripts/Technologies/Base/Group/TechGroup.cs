@@ -56,12 +56,13 @@
                                    .Substring(protoTechGroup.FullName.Length - protoTechGroup.Name.Length);
             iconPath = iconPath.Substring(0, iconPath.Length - thisType.Name.Length);
             iconPath = iconPath.TrimEnd('.');
-            var icon = new TextureResource("Technologies/" + iconPath.Replace(".", "/"));
+            var icon = new TextureResource("Technologies/" + iconPath.Replace(".", "/"),
+                                           qualityOffset: this.IconQualityOffset);
             if (!Api.Shared.IsFileExists(icon))
             {
                 Api.Logger.Warning("Icon not found: " + icon.FullPath + ", using default generic icon.");
                 // icon not found - fallback to default texture
-                icon = new TextureResource("Technologies/GenericGroupIcon.png");
+                icon = new TextureResource("Technologies/GenericGroupIcon.png", qualityOffset: -1);
             }
 
             this.Icon = icon;
@@ -80,6 +81,8 @@
         public IReadOnlyTechGroupRequirements GroupRequirements { get; private set; }
 
         public ITextureResource Icon { get; }
+
+        public virtual sbyte IconQualityOffset => -1; // to make most icons sharper with lower textures quality
 
         public bool IsAvailable
         {

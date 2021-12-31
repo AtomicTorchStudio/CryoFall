@@ -409,7 +409,7 @@
                            Stretch="Uniform"
                            Width="40" />
                     <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
-                    <TextBlock Text="Features" />
+                    <TextBlock Text="{x:Static loc:CoreStrings.Extras_Features_Title}" />
                 </StackPanel>
             </core:HyperlinkControl>
 
@@ -425,8 +425,9 @@
                     <TextBlock Text="Roadmap" />
                 </StackPanel>
             </core:HyperlinkControl>-->
-
-            <core:HyperlinkControl Url="http://forums.atomictorch.com/index.php?board=2.0"
+            
+            <!-- Patchnotes button (no longer useful; we post patchnotes in Steam and they appear in News section) -->
+            <!--<core:HyperlinkControl Url="http://forums.atomictorch.com/index.php?board=2.0"
                                    Margin="15,0,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_PatchnotesTooltip}">
                 <StackPanel Orientation="Horizontal"
@@ -434,11 +435,24 @@
                     <Image Source="/UI/Images/Icons/Social/btn_patchnotes.png"
                            Stretch="Uniform"
                            Width="40" />
-                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
                     <TextBlock Text="Patchnotes" />
                 </StackPanel>
+            </core:HyperlinkControl>-->
+            
+            <core:HyperlinkControl Command="{Binding ShowSkinsOverlay}"
+                                   Margin="15,0,0,0"
+                                   base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Skins_Button_BrowseSkins}"
+                                   Visibility="{Binding AreSkinsSupported, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent">
+                    <Image Source="/UI/Images/Icons/Social/btn_skins.png"
+                           Stretch="Uniform"
+                           Width="40" />
+                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.Skins_Title}" />
+                </StackPanel>
             </core:HyperlinkControl>
-
+            
             <core:HyperlinkControl Url="https://discord.gg/pRMGjRz"
                                    Margin="15,0,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_DiscordTooltip}">

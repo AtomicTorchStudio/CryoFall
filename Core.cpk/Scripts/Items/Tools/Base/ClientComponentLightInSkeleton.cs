@@ -60,7 +60,9 @@
             var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(
                 this.skeletonSlotName);
 
-            var screenOffset = this.lightConfig.ScreenOffset;
+            var screenOffset = this.lightConfig.ScreenOffset
+                               / (-this.skeletonRenderer.GetSlotScreenScale(this.skeletonSlotName));
+            screenOffset = (screenOffset.Y, -screenOffset.X);
             var slotWorldPosition = this.skeletonRenderer.TransformSlotPosition(
                 this.skeletonSlotName,
                 weaponSlotScreenOffset + (Vector2F)screenOffset,

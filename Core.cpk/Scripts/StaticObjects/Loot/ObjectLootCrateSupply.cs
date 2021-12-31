@@ -68,11 +68,7 @@
                              new DropItemsList(outputs: 1)
                                  // equipment
                                  .Add<ItemLeatherArmor>(count: 1, weight: 1 / 3.0)
-                                 .Add(new DropItemsList(outputs: 1)
-                                      .Add<ItemLeatherHelmetCowboy>(count: 1)
-                                      .Add<ItemLeatherHelmetPilot>(count: 1)
-                                      .Add<ItemLeatherHelmetTricorne>(count: 1),
-                                      weight: 1 / 3.0)
+                                 .Add<ItemLeatherHelmet>(count: 1, weight: 1 / 3.0)
                                  // tools
                                  .Add<ItemAxeIron>(count: 1,            weight: 1 / 5.0)
                                  .Add<ItemPickaxeIron>(count: 1,        weight: 1 / 5.0)

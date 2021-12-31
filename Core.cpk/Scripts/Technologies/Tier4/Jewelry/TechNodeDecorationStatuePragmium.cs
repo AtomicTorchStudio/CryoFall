@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationStatuePragmium>();
 
-            config.SetRequiredNode<TechNodeDecorationStatueGold>();
+            config.SetRequiredNode<TechNodeDecorationThrone>();
         }
     }
 }

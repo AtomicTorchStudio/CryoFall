@@ -178,7 +178,7 @@
             lootDroplist
                 .Add<ItemFuelSack>(count: 5, countRandom: 5)
                 .Add<ItemCoal>(count: 2,     countRandom: 2)
-                .Add<ItemKeinite>(count: 4,  countRandom: 2);
+                .Add<ItemKeinite>(count: 5,  countRandom: 3);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,

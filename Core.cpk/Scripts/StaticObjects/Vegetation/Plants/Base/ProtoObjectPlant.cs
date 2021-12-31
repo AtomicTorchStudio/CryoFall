@@ -435,6 +435,7 @@
         protected override void ServerOnGathered(IStaticWorldObject worldObject, ICharacter byCharacter)
         {
             byCharacter.ServerAddSkillExperience<SkillFarming>(SkillFarming.ExperienceForHarvesting);
+            PlayerCharacter.GetPrivateState(byCharacter).Statistics.FarmPlantsHarvested++;
         }
 
         protected override void ServerOnGrowthStageUpdated(

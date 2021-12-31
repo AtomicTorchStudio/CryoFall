@@ -71,6 +71,10 @@
                                             IsChecksItemAvailability="False"
                                             FontSize="13" />
 
+        <crafting:CraftingSkinNotOwnedControl Grid.Row="0"
+                                              Grid.RowSpan="3"
+                                              ProtoItemSkin="{Binding SelectedSkin}"
+                                              Margin="-6,0,0,0" />
 
     </Grid>
 </base:BaseUserControl>

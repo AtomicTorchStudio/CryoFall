@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemBlackpowder>(count: 250);
+            inputItems.Add<ItemBlackpowder>(count: 200);
             inputItems.Add<ItemIngotCopper>(count: 25);
             inputItems.Add<ItemPaper>(count: 50);
             inputItems.Add<ItemOilpod>(count: 10);

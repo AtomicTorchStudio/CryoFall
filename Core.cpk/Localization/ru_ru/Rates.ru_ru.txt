@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 Опыт навыков
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Постройки] Можно строить на лугах
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Ветшание] Ветшание заброшенных построек
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Ветшание] Задержка ветшания заброшенной точки контроля
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+Доступны таблички с текстом
 
 Scripts/Rates/RateThirst@Name:
 Скорость накопления жажды

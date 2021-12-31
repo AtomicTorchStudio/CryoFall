@@ -19,7 +19,11 @@
     // not localized as not used in the game yet
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public abstract class ProtoItemDataLogUnknown
-        : ProtoItem<EmptyPrivateState, EmptyPublicState, EmptyClientState>, IProtoItemUsableFromContainer
+        : ProtoItem
+          <ItemPrivateState,
+              EmptyPublicState,
+              EmptyClientState>,
+          IProtoItemUsableFromContainer
     {
         private static bool isAwaitingResponse;
 

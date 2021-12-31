@@ -19,7 +19,7 @@
                                         typeof(WorldMapMarkTradingTerminal),
                                         new PropertyMetadata(default(Control)));
 
-        private uint tradingStationId;
+        private readonly uint tradingStationId;
 
         public WorldMapMarkTradingTerminal(uint tradingStationId, bool isOwner)
         {

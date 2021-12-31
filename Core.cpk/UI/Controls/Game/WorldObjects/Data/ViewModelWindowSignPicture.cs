@@ -56,7 +56,7 @@
                 i => i.FilePath == this.publicState.Text);
         }
 
-        public struct SignPictureData
+        public readonly struct SignPictureData
         {
             public SignPictureData(string filePath)
             {

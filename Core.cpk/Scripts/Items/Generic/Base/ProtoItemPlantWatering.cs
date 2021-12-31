@@ -23,7 +23,7 @@
             <TPrivateState,
                 TPublicState,
                 TClientState>
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -132,7 +132,7 @@
             return true;
         }
 
-        private struct GetPlantResult : IRemoteCallParameter
+        private readonly struct GetPlantResult : IRemoteCallParameter
         {
             public readonly string ErrorMessage;
 
@@ -169,7 +169,7 @@
 
     public abstract class ProtoItemPlantWatering
         : ProtoItemPlantWatering
-            <EmptyPrivateState,
+            <ItemPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {

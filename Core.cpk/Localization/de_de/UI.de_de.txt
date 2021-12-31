@@ -349,6 +349,24 @@ Der Zerstörungs-Timer beginnt, wenn der Land Claim zerstört wurde – und die 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Möchtest du {0} wirklich benutzen?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+Du kannst versuchen, zur letzten Backup-Version zurückzukehren.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall hat einen fehlerhaften Spielstand erkannt.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+Bitte öffne den Spielstandordner und überprüfe die Backups für folgende Datei:
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`Mögliche Gründe:
+[*] ein Festplattendefekt
+[*] Zugriffsfehler beim Lesen/Schreiben einer Systemdatei
+[*] etc.`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+Spielstand kann nicht geladen werden
+
 UI/CoreStrings@DialogClearList_Message:
 Bist du sicher, dass du diese Liste leeren möchtest?
 
@@ -402,6 +420,9 @@ Du hast {0}% Gesamtschaden verursacht! Dein Beuteanteil ist {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Offizieller CryoFall Discord-Server (nur auf Englisch)
+
+UI/CoreStrings@Extras_Features_Title:
+Features
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 CryoFall Feature-Slideshow
@@ -915,6 +936,18 @@ Implantat zum Installieren platzieren
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Erfordert
+
+UI/CoreStrings@Item_AvailableInTechTier:
+Zur Herstellung verfügbar in {0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+Haltbarkeit des Gegenstands zu niedrig (benötigt mindestens {0}%).
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+Frische des Gegenstands zu niedrig (benötigt mindestens {0}%).
+
+UI/CoreStrings@Item_CreatedBy_Format:
+Hergestellt von: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 Verdorben in: {0}
@@ -1809,8 +1842,119 @@ Das Offline-Raid-Schutzschild steht Land Claim-Gebäuden höherer Ränge zur Ver
 UI/CoreStrings@Skill:
 Fähigkeit
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+Limited Edition Skin (derzeit nicht erhältlich).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+Verfügbar als Teil des Unterstützerpakets.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+Im Spiel freischaltbar.
+
+UI/CoreStrings@Skin_Default:
+Standard
+
+UI/CoreStrings@Skin_NotOwned:
+Du besitzt diesen Skin nicht.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+Skins browsen
+
+UI/CoreStrings@Skins_Button_Buy:
+Kaufen
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+Annehmen
+
+UI/CoreStrings@Skins_EmptyList:
+Es sind keine Skins in dieser Liste verfügbar.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+Vorgestellte Skins
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+Logge dich für {0} Tag(e) mehr ein, um einen kostenlosen Skin zu erhalten.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+Fortschritt für kostenlosen Skin
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+Skins können auf jedem Server benutzt werden (offiziell, Community, privat oder lokal).
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+Du kannst Skins für Gegenstände herstellen und mit Freunden teilen, auch wenn sie den jeweiligen Skin nicht besitzen.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+Skins können auf bestimmte Gegenstände angewendet werden, die du im Spiel herstellst (Waffen und Ausrüstung).
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* Alle Preise basieren auf Steams regionaler Preisgestaltung.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+Der Kauf von Skins unterstützt die Entwickler. Vielen Dank!
+
+UI/CoreStrings@Skins_SelectSkin:
+Skin auswählen:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} (Skin für {1})
+
+UI/CoreStrings@Skins_SkinOwned:
+Eigene
+
+UI/CoreStrings@Skins_SkinUnlocked:
+Skin freigeschaltet
+
+UI/CoreStrings@Skins_Tab_Equipment:
+AUSRÜSTUNG
+
+UI/CoreStrings@Skins_Tab_First:
+VORGESTELLT
+
+UI/CoreStrings@Skins_Tab_Owned:
+EIGENE
+
+UI/CoreStrings@Skins_Tab_Weapons:
+WAFFEN
+
+UI/CoreStrings@Skins_Title:
+Skins
+
 UI/CoreStrings@SortBy:
 Sortieren nach
+
+UI/CoreStrings@StatisticsDeaths:
+Gestorben
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+Geerntete Nutzpflanzen
+
+UI/CoreStrings@StatisticsMineralsMined:
+Geförderte Mineralvorkommen
+
+UI/CoreStrings@StatisticsPvpAssists:
+Assists
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+K/D
+
+UI/CoreStrings@StatisticsPvpKills:
+Getötet
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+PvP Rangliste
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP Punktestand
+
+UI/CoreStrings@StatisticsTitle:
+Persönliche Statistik
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+Insgesamt erhaltene LP
+
+UI/CoreStrings@StatisticsTreesCut:
+Gefällte Bäume
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Intensität
@@ -1842,6 +1986,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 Supporter Abzeichen
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+Öffne die Shop-Seite
 
 UI/CoreStrings@SupporterPack_Description:
 `Das Supporter Paket ist eine Sammlung von Bonus-Goodies für all diejenigen, die die Entwickler von CryoFall zusätzlich unterstützen möchten. Als Zeichen der Wertschätzung zeigt das Spiel im Chat ein spezielles Supporter Abzeichen an.

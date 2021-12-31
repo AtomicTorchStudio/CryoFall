@@ -141,7 +141,7 @@
         [SyncToClient]
         public PlayerCharacterSkills Skills { get; private set; }
 
-        // Currently it's not synchronized to the client.
+        [SyncToClient]
         public PlayerCharacterStatistics Statistics { get; private set; }
 
         [SyncToClient]

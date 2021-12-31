@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.VeryLong;
+            duration = CraftingDuration.Long;
 
             inputItems.Add<ItemIngotSteel>(count: 35);
             inputItems.Add<ItemPlastic>(count: 12);

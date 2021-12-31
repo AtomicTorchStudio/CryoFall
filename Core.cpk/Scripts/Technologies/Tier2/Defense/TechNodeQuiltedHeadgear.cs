@@ -4,13 +4,10 @@
 
     public class TechNodeQuiltedHeadgear : TechNode<TechGroupDefenseT2>
     {
-        public override string Name => "Quilted headgear";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeQuiltedHelmetHat>()
-                  .AddRecipe<RecipeQuiltedHelmetPadded>();
+                  .AddRecipe<RecipeQuiltedHelmet>();
 
             config.SetRequiredNode<TechNodeQuiltedArmor>();
         }

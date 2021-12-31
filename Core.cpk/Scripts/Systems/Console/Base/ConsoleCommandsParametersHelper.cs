@@ -307,7 +307,7 @@
             return sb.ToString();
         }
 
-        public struct TextSegment
+        public readonly struct TextSegment
         {
             public readonly int Index;
 

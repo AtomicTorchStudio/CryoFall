@@ -5,7 +5,7 @@
 
     public partial class PlayerCharacter
     {
-        private class Bootstrapper : BaseBootstrapper
+        private class BootstrapperUpdateRates : BaseBootstrapper
         {
             public override void ServerInitialize(IServerConfiguration serverConfiguration)
             {

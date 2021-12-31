@@ -48,7 +48,7 @@
                 .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
                 .Add<ItemSlime>(count: 2,         countRandom: 1)
                 // requires device
-                .Add<ItemKeiniteRaw>(count: 1,
+                .Add<ItemKeiniteRaw>(count: 1, countRandom: 1,
                                      condition: ItemKeiniteCollector.ConditionHasDeviceEquipped);
 
             // extra loot

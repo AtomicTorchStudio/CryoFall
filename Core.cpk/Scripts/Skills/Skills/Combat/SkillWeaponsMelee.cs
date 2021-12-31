@@ -9,7 +9,7 @@
 
         public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.5;
 
-        public override double ExperienceAddedPerDamageDoneMultiplier => 1.5;
+        public override double ExperienceAddedPerDamageDoneMultiplier => 2.0;
 
         // since melee doesn't use any ammo we don't want any exp for just waving your knife around :)
         public override double ExperienceAddedPerShot => 0;

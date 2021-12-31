@@ -148,7 +148,7 @@
             Server.World.FixMapTilesRecentlyModified();
         }
 
-        protected struct ProtoTileForHeight : IRemoteCallParameter
+        protected readonly struct ProtoTileForHeight : IRemoteCallParameter
         {
             public readonly double Limit;
 
@@ -161,7 +161,7 @@
             }
         }
 
-        private struct TileModifyRequest : IRemoteCallParameter
+        private readonly struct TileModifyRequest : IRemoteCallParameter
         {
             public readonly byte ProtoTileSessionIndex;
 

@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
-    public struct ButtonMapping
+    public readonly struct ButtonMapping
     {
         public static readonly ButtonMapping None = default;
 

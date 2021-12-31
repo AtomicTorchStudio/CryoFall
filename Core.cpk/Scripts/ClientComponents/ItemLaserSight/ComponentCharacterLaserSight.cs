@@ -114,7 +114,6 @@
             this.componentBeam.IsEnabled = true;
             this.componentBeam.Refresh(
                 sourcePosition: sourcePosition,
-                sourcePositionOffset: 0.1,
                 targetPosition: beamEndPosition,
                 beamWidth: BeamWidth,
                 beamColor: color,
@@ -256,8 +255,11 @@
             var clientState = this.currentCharacter.GetClientState<BaseCharacterClientState>();
             var skeletonRenderer = clientState.SkeletonRenderer;
             var slotName = clientState.CurrentProtoSkeleton.SlotNameItemInHand;
-            var weaponSlotScreenOffset = skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
-            var muzzleFlashTextureOffset = protoWeapon.MuzzleFlashDescription.TextureScreenOffset;
+            var weaponSlotScreenOffset = skeletonRenderer.GetSlotScreenOffset(slotName);
+            
+            var muzzleFlashTextureOffset = protoWeapon.MuzzleFlashDescription.TextureScreenOffset
+                                           / skeletonRenderer.GetSlotScreenScale(slotName);
+
             return skeletonRenderer.TransformSlotPosition(
                 slotName,
                 weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
@@ -286,7 +288,6 @@
 
             public void Refresh(
                 Vector2D sourcePosition,
-                double sourcePositionOffset,
                 Vector2D targetPosition,
                 double beamWidth,
                 Color beamColor,
@@ -308,7 +309,6 @@
                 ComponentWeaponTrace.CalculateAngleAndDirection(deltaPos,
                                                                 out var angleRad,
                                                                 out var normalizedRay);
-                sourcePosition += normalizedRay * sourcePositionOffset;
                 deltaPos = targetPosition - sourcePosition;
 
                 var sceneObjectPosition = this.spriteRendererLine.SceneObject.Position;

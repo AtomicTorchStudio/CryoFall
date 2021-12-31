@@ -821,6 +821,12 @@ Prägt Münzen aus verschiedenen Metallen. Kann Münzen wieder zu Barren schmelz
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Münzprägungsstätte
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Ermöglicht das effektive Kompostieren von organischem Material in einer kontrollierten Umgebung zur schnellen Herstellung von Dünger.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Trommelkomposter
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 Mit diesem Schrank lassen sich bestimmte Arten von Lebensmitteln herstellen, darunter getrocknete Pilze oder Dörrfleisch.
 

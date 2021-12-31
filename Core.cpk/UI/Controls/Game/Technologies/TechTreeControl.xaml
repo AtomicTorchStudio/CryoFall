@@ -89,6 +89,15 @@
                                                    Margin="2"
                                                    IsHitTestVisible="False" />
 
+                                        <Image Source="/UI/Images/Icons/TechNodePlus.png"
+                                               Visibility="{Binding IsNodeHasSeveralEffects, Converter={StaticResource BoolToVisibilityConverter}}"
+                                               Width="10"
+                                               Height="10"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Bottom"
+                                               Margin="0,0,5,5"
+                                               IsHitTestVisible="False" />
+
                                         <Rectangle x:Name="IconOverlayNodeLocked"
                                                    Fill="{StaticResource BrushLockedNodeOverlayBrush}"
                                                    RadiusX="{StaticResource NodeCornerRadiusNumber}"

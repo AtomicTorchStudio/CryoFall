@@ -25,6 +25,13 @@
             }
 
             var originalMessage = message;
+
+            if (Api.IsClient
+                && Api.Client.SteamApi.IsSteamClient)
+            {
+                message = Api.Client.SteamApi.FilterText(message);
+            }
+
             foreach (var test in FilterBlacklist)
             {
                 var startIndex = 0;
@@ -188,7 +195,7 @@
         }
 
         [NotPersistent]
-        private struct FilterEntry
+        private readonly struct FilterEntry
         {
             public readonly bool AllowsPrefix;
 

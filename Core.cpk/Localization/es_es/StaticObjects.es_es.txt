@@ -821,6 +821,12 @@ Se usa para acuñar monedas a partir de distintos materiales. También se pueden
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Ceca
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Permite la descomposición eficiente de la materia orgánica en un entorno controlado, para crear fertilizante más rápido.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Secadora de abono
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 Este mueble se puede usar para obtener comida o productos específicos, tales como carne o champiñones deshidratados.
 

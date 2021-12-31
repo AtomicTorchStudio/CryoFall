@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolWorldSize
 {
-    public struct EditorToolWorldSizeTileSize
+    public readonly struct EditorToolWorldSizeTileSize
     {
         public EditorToolWorldSizeTileSize(ushort value)
         {

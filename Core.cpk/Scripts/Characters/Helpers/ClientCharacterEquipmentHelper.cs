@@ -274,7 +274,8 @@
             IComponentSkeleton skeletonRenderer,
             ProtoCharacterSkeleton skeleton,
             List<IClientComponent> skeletonComponents,
-            bool isPreview = false)
+            bool isPreview = false,
+            IProtoItemEquipment overrideProtoItemEquipment = null)
         {
             if (skeleton is not SkeletonHumanMale
                 && skeleton is not SkeletonHumanFemale)
@@ -353,7 +354,10 @@
                 containerEquipment.GetItemsOfProto<IProtoItemEquipment>());
             if (!IsAllowNakedHumans)
             {
-                if (!equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentArmor))
+                if ((overrideProtoItemEquipment is null
+                     && !equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentArmor))
+                    || (overrideProtoItemEquipment is not null
+                            and not IProtoItemEquipmentArmor))
                 {
                     // no armor equipped - apply generic one
                     var pants = GenericPantsAttachments.Value;
@@ -376,21 +380,46 @@
             }
 
             IItem headEquipmentForFaceSprite = null;
-            foreach (var item in equipmentItems.AsList())
+            IProtoItemEquipmentHead headEquipmentForFaceSpriteProto = null;
+            
+            if (overrideProtoItemEquipment is not null)
             {
-                var proto = (IProtoItemEquipment)item.ProtoGameObject;
-                proto.ClientSetupSkeleton(item,
-                                          character,
-                                          skeletonRenderer,
-                                          skeletonComponents,
-                                          isPreview);
+                overrideProtoItemEquipment.ClientSetupSkeleton(null,
+                                                               character,
+                                                               skeletonRenderer,
+                                                               skeletonComponents,
+                                                               isPreview);
 
-                if (item.ProtoItem is IProtoItemEquipmentHead
+                if (overrideProtoItemEquipment is IProtoItemEquipmentHead protoItemEquipmentHead
                     && headEquipmentForFaceSprite is null)
                 {
-                    headEquipmentForFaceSprite = item;
+                    headEquipmentForFaceSpriteProto = protoItemEquipmentHead;
                 }
             }
+            
+                foreach (var item in equipmentItems.AsList())
+                {
+                    var proto = (IProtoItemEquipment)item.ProtoGameObject;
+                    if (overrideProtoItemEquipment is not null 
+                        && IsOverridden(proto, overrideProtoItemEquipment))
+                    {
+                        // don't apply this item to skeleton as it's overridden
+                        continue;
+                    }
+                    
+                    proto.ClientSetupSkeleton(item,
+                                              character,
+                                              skeletonRenderer,
+                                              skeletonComponents,
+                                              isPreview);
+
+                    if (proto is IProtoItemEquipmentHead protoItemEquipmentHead
+                        && headEquipmentForFaceSprite is null)
+                    {
+                        headEquipmentForFaceSprite = item;
+                        headEquipmentForFaceSpriteProto = protoItemEquipmentHead;
+                    }
+                }
 
             if (isHeadEquipmentHiddenForSelfAndPartyMembers
                 && (character.IsCurrentClientCharacter
@@ -399,6 +428,7 @@
                     || PveSystem.ClientIsPve(false)))
             {
                 headEquipmentForFaceSprite = null;
+                headEquipmentForFaceSpriteProto = null;
             }
 
             // generate head sprites for human players
@@ -418,10 +448,12 @@
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
                             new CharacterHeadSpriteData(faceStyle,
                                                         headEquipmentForFaceSprite,
+                                                        headEquipmentForFaceSpriteProto,
                                                         skeleton.SkeletonResourceFront),
                             proceduralTextureRequest,
                             isMale,
                             headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.Front,
+                            isPreview,
                             spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
@@ -436,10 +468,12 @@
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
                             new CharacterHeadSpriteData(faceStyle,
                                                         headEquipmentForFaceSprite,
+                                                        headEquipmentForFaceSpriteProto,
                                                         skeleton.SkeletonResourceBack),
                             proceduralTextureRequest,
                             isMale,
                             headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.Back,
+                            isPreview,
                             spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
@@ -454,13 +488,29 @@
                         ClientCharacterHeadSpriteComposer.GenerateHeadSprite(
                             new CharacterHeadSpriteData(faceStyle,
                                                         headEquipmentForFaceSprite,
+                                                        headEquipmentForFaceSpriteProto,
                                                         skeleton.SkeletonResourceBack),
                             proceduralTextureRequest,
                             isMale,
                             headSpriteType: ClientCharacterHeadSpriteComposer.HeadSpriteType.BackOverlay,
+                            isPreview,
                             spriteQualityOffset: spriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
+        }
+
+        private static bool IsOverridden(IProtoItemEquipment protoItem,
+                                         IProtoItemEquipment overrideProtoItem)
+        {
+            switch (overrideProtoItem)
+            {
+                case IProtoItemEquipmentFullBody:
+                case IProtoItemEquipmentHead when protoItem is IProtoItemEquipmentHead:
+                case IProtoItemEquipmentArmor when protoItem is IProtoItemEquipmentArmor:
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         private static PlaceholderAttachments GetAttachments(

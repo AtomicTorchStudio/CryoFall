@@ -30,7 +30,7 @@
               TPublicState,
               TClientState>,
           IProtoItemToolFishing
-        where TPrivateState : BasePrivateState, IItemWithDurabilityPrivateState, new()
+        where TPrivateState : ItemPrivateState, IItemWithDurabilityPrivateState, new()
         where TPublicState : ItemFishingRodPublicState, new()
         where TClientState : BaseClientState, new()
     {

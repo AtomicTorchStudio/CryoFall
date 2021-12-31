@@ -25,7 +25,7 @@
               TPublicState,
               TClientState>,
           IProtoItemAmmo
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -163,7 +163,10 @@
     }
 
     public abstract class ProtoItemAmmo
-        : ProtoItemAmmo<EmptyPrivateState, EmptyPublicState, EmptyClientState>
+        : ProtoItemAmmo
+            <ItemPrivateState,
+                EmptyPublicState,
+                EmptyClientState>
     {
     }
 }

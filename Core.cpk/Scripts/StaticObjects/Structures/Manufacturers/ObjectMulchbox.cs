@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectMulchbox : ProtoObjectMulchbox
@@ -21,6 +22,8 @@
         public override ushort OrganicCapacity => 250;
 
         public override float StructurePointsMax => 1000;
+
+        protected override TextureResource InfoTexture => new("Misc/UI/MulchboxInfo");
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

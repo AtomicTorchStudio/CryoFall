@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 蠻獸大遷徙
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-重要：火器無效；請使用近戰或熱能武器。
+重要：火器低效；請使用近戰武器。
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 一種奇異的靈能植物出現在了山區，令開發變得困難，但同時這也是獲得稀有資源的好機會。

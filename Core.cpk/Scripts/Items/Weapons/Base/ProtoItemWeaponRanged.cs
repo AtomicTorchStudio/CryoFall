@@ -14,6 +14,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemWeaponRanged
         <TPrivateState,
@@ -59,9 +60,14 @@
 
         public override double ReadyDelayDuration => WeaponReadyDelays.DefaultRanged;
 
+        public virtual double SkeletonPreviewOffsetX 
+            => this.MuzzleFlashDescription.TextureScreenOffset.X; // use the muzzle flash location as the barrel length
+
         public override (float min, float max) SoundPresetWeaponDistance
             => (SoundConstants.AudioListenerMinDistanceRangedShot,
                 SoundConstants.AudioListenerMaxDistanceRangedShotFirearms);
+
+        protected virtual Vector2D? MuzzleFlashTextureOffset => null;
 
         public override void ClientOnWeaponShot(ICharacter character)
         {
@@ -105,6 +111,11 @@
                 var description = new MuzzleFlashDescription();
                 description.Set(MuzzleFlashPresets.Default);
                 this.PrepareMuzzleFlashDescription(description);
+                if (this.MuzzleFlashTextureOffset.HasValue)
+                {
+                    description.Set(textureScreenOffset: this.MuzzleFlashTextureOffset.Value);
+                }
+
                 this.MuzzleFlashDescription = description;
             }
 

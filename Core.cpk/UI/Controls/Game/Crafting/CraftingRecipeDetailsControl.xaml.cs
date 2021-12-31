@@ -9,7 +9,6 @@
 
     public partial class CraftingRecipeDetailsControl : BaseUserControl
     {
-        // Using a DependencyProperty as the backing store for ViewModelRecipe.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ViewModelRecipeProperty =
             DependencyProperty.Register(
                 nameof(ViewModelRecipe),
@@ -17,18 +16,32 @@
                 typeof(CraftingRecipeDetailsControl),
                 new PropertyMetadata(null, RecipeChangedHandler));
 
+        public static readonly DependencyProperty ViewModelRecipeDetailsProperty
+            = DependencyProperty.Register("ViewModelRecipeDetails",
+                                          typeof(ViewModelCraftingMenuRecipeDetails),
+                                          typeof(CraftingRecipeDetailsControl),
+                                          new PropertyMetadata(null, RecipeChangedHandler));
+
+        private bool isOwnedViewModel;
+
         private Grid layoutRoot;
+
+        private ViewModelCraftingMenuRecipeDetails viewModel;
 
         public static event Action<CraftingRecipeDetailsControl, IViewModelWithRecipe> ControlLoaded;
 
         public static event Action<CraftingRecipeDetailsControl> ControlUnloaded;
 
-        public ViewModelCraftingMenuRecipeDetails ViewModel { get; private set; }
-
         public ViewModelCraftingRecipe ViewModelRecipe
         {
             get => (ViewModelCraftingRecipe)this.GetValue(ViewModelRecipeProperty);
             set => this.SetValue(ViewModelRecipeProperty, value);
+        }
+
+        public ViewModelCraftingMenuRecipeDetails ViewModelRecipeDetails
+        {
+            get => (ViewModelCraftingMenuRecipeDetails)this.GetValue(ViewModelRecipeDetailsProperty);
+            set => this.SetValue(ViewModelRecipeDetailsProperty, value);
         }
 
         protected override void InitControl()
@@ -38,26 +51,18 @@
 
         protected override void OnLoaded()
         {
-            this.ViewModel = new ViewModelCraftingMenuRecipeDetails(validateItemsAvailabilityInPlayerInventory: true);
-            this.layoutRoot.DataContext = this.ViewModel;
-
-            if (IsDesignTime)
-            {
-                return;
-            }
-
             this.RefreshViewModel();
-
-            Api.SafeInvoke(() => ControlLoaded?.Invoke(this, this.ViewModel));
         }
 
         protected override void OnUnloaded()
         {
-            Api.SafeInvoke(() => ControlUnloaded?.Invoke(this));
+            if (this.ViewModelRecipeDetails is not null)
+            {
+                Api.SafeInvoke(() => ControlUnloaded?.Invoke(this));
+            }
 
-            this.DataContext = null;
-            this.ViewModel.Dispose();
-            this.ViewModel = null;
+            this.layoutRoot.DataContext = null;
+            this.DestroyOwnedViewModel();
         }
 
         private static void RecipeChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -66,16 +71,54 @@
             control.RefreshViewModel();
         }
 
-        private void RefreshViewModel()
+        private void DestroyOwnedViewModel()
         {
-            if (IsDesignTime
-                || !this.IsLoaded)
+            if (!this.isOwnedViewModel)
             {
                 return;
             }
 
-            //Api.Logger.Write($"Recipe changed to {this.Recipe.Recipe}, updating view model for {this}");
-            this.ViewModel.ViewModelRecipe = this.ViewModelRecipe;
+            this.layoutRoot.DataContext = null;
+            this.viewModel.Dispose();
+            this.viewModel = null;
+            this.isOwnedViewModel = false;
+            Api.SafeInvoke(() => ControlUnloaded?.Invoke(this));
+        }
+
+        private void RefreshViewModel()
+        {
+            if (!this.isLoaded)
+            {
+                return;
+            }
+            
+            if (this.ViewModelRecipeDetails is not null)
+            {
+                this.DestroyOwnedViewModel();
+                
+                if (this.layoutRoot.DataContext is not null)
+                {
+                    Api.SafeInvoke(() => ControlUnloaded?.Invoke(this));
+                }
+
+                this.layoutRoot.DataContext = this.ViewModelRecipeDetails;
+                Api.SafeInvoke(() => ControlLoaded?.Invoke(this, this.ViewModelRecipeDetails));
+                return;
+            }
+
+            if (this.ViewModelRecipe is not null)
+            {
+                if (this.viewModel is null)
+                {
+                    this.viewModel = new ViewModelCraftingMenuRecipeDetails(
+                        validateItemsAvailabilityInPlayerInventory: true);
+                    this.isOwnedViewModel = true;
+                    this.layoutRoot.DataContext = this.viewModel;
+                    Api.SafeInvoke(() => ControlLoaded?.Invoke(this, this.viewModel));
+                }
+
+                this.viewModel.ViewModelRecipe = this.ViewModelRecipe;
+            }
         }
     }
 }

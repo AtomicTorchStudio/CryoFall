@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.Long;
+            duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemIngotIron>(count: 15);
             inputItems.Add<ItemIngotCopper>(count: 5);

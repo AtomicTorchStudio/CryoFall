@@ -54,7 +54,7 @@
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.ModernSubmachinegun)
-                       .Set(textureScreenOffset: (34, 7), textureScale: 1.5);
+                       .Set(textureScreenOffset: (90, -65), textureScale: 1.5);
         }
 
         protected override void PrepareProtoWeaponRanged(

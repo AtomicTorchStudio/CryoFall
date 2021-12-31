@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
+    using JetBrains.Annotations;
 
     public interface IProtoItemEquipmentHead : IProtoItemEquipment
     {
@@ -17,10 +18,11 @@
         ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; }
 
         void ClientGetHeadSlotSprites(
-            IItem item,
+            [CanBeNull] IItem item,
             bool isMale,
             SkeletonResource skeletonResource,
             bool isFrontFace,
+            bool isPreview,
             out string spriteFront,
             out string spriteBehind);
     }

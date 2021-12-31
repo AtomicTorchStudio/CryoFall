@@ -30,7 +30,7 @@
 
         public override ushort OrganicCapacity => 500;
 
-        public override double OrganicDecreasePerSecondWhenActive => 0.1;
+        public override double OrganicDecreasePerSecondWhenActive => 0.05;
 
         public override float StructurePointsMax => 3000;
 
@@ -39,7 +39,7 @@
             out double currentProduction,
             out double maxProduction)
         {
-            maxProduction = 2;
+            maxProduction = 3;
 
             var publicState = GetPublicState(worldObject);
             currentProduction = publicState.IsActive

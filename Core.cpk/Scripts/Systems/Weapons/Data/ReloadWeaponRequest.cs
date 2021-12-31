@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
-    public struct ReloadWeaponRequest : IRemoteCallParameter
+    public readonly struct ReloadWeaponRequest : IRemoteCallParameter
     {
         public ReloadWeaponRequest(
             IItem item,

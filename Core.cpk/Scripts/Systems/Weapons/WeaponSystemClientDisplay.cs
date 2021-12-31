@@ -603,13 +603,14 @@
                 {
                     var protoSkeleton = character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;
                     var slotName = protoSkeleton.SlotNameItemInHand;
-                    var slotOffset = skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
+                    var slotOffset = skeletonRenderer.GetSlotScreenOffset(slotName);
                     var muzzleFlashTextureOffset = Vector2F.Zero;
 
                     if (protoWeapon is IProtoItemWeaponRanged protoItemWeaponRanged)
                     {
                         muzzleFlashTextureOffset =
-                            protoItemWeaponRanged.MuzzleFlashDescription.TextureScreenOffset.ToVector2F();
+                            (protoItemWeaponRanged.MuzzleFlashDescription.TextureScreenOffset
+                             / skeletonRenderer.GetSlotScreenScale(slotName)).ToVector2F();
                     }
 
                     var boneWorldPosition = skeletonRenderer.TransformSlotPosition(

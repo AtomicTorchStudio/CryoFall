@@ -80,7 +80,8 @@
                 viewModelEditor.SelectedProtoItem,
                 viewModelEditor.LotQuantity,
                 (ushort)Math.Min(TradingStationLot.MaxPrice, viewModelEditor.PriceCoinPenny),
-                (ushort)Math.Min(TradingStationLot.MaxPrice, viewModelEditor.PriceCoinShiny));
+                (ushort)Math.Min(TradingStationLot.MaxPrice, viewModelEditor.PriceCoinShiny),
+                viewModelEditor.MinQualityPercent);
         }
     }
 }

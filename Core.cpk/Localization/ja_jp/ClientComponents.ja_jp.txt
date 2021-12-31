@@ -68,6 +68,36 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 スロット＃0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+クイック使用—スロット＃1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+クイック使用—スロット＃2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+クイック使用—スロット＃3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+クイック使用—スロット＃4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+クイック使用—スロット＃5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+クイック使用—スロット＃6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+クイック使用—スロット＃7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+クイック使用—スロット＃8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+クイック使用—スロット＃9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+クイック使用—スロット＃0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 ズームイン
 

@@ -4,14 +4,10 @@
 
     public class TechNodeLeatherHeadgear : TechNode<TechGroupDefenseT2>
     {
-        public override string Name => "Leather headgear";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeLeatherHelmetCowboy>()
-                  .AddRecipe<RecipeLeatherHelmetPilot>()
-                  .AddRecipe<RecipeLeatherHelmetTricorne>();
+                  .AddRecipe<RecipeLeatherHelmet>();
 
             config.SetRequiredNode<TechNodeLeatherArmor>();
         }

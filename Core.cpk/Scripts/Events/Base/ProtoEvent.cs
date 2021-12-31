@@ -38,7 +38,7 @@
             }
 
             this.ShortId = name;
-            this.Icon = new TextureResource($"Events/{name}.png");
+            this.Icon = new TextureResource($"Events/{name}.png", qualityOffset: -1);
         }
 
         public override double ClientUpdateIntervalSeconds => double.MaxValue;

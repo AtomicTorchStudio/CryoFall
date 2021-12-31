@@ -12,6 +12,8 @@
 
         public override bool IsBlockingMovement => true;
 
+        public override bool IsDisplayingProgress => false;
+
         public override IWorldObject TargetWorldObject => null;
 
         public override void SharedUpdate(double deltaTime)

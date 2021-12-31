@@ -11,28 +11,30 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowTradingStationUser, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:player="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
     <tradingStations:WindowTradingStationUserBase.Resources>
         <ResourceDictionary Source="TradingStationResources.xaml" />
     </tradingStations:WindowTradingStationUserBase.Resources>
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-        <Grid>
-
+        <Grid VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="78" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
             <Grid HorizontalAlignment="Center"
-                  VerticalAlignment="Bottom">
+                  Margin="0,0,0,10">
                 <StackPanel Orientation="Vertical"
                             Visibility="{Binding IsStationSellingMode, Converter={StaticResource BoolToVisibilityConverter}}">
                     <!-- Text: For sale -->
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_SellingMode_Title}"
                                FontSize="17"
                                FontWeight="Bold"
-                               Foreground="{StaticResource BrushColor7}" />
+                               Foreground="{StaticResource BrushColor7}"
+                               Margin="0,0,0,2" />
                     <!-- Text: This trading station is selling the following items: -->
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_SellingMode_Message}"
                                FontSize="12"
@@ -46,7 +48,8 @@
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_BuyingMode_Title}"
                                FontSize="17"
                                FontWeight="Bold"
-                               Foreground="{StaticResource BrushColor7}" />
+                               Foreground="{StaticResource BrushColor7}"
+                               Margin="0,0,0,2" />
                     <!-- Text: This trading station is buying the following items: -->
                     <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_BuyingMode_Message}"
                                FontSize="12"
@@ -62,8 +65,7 @@
                 <ItemsControl HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               x:Name="ItemsControl"
-                              ItemsSource="{Binding Lots}"
-                              MaxHeight="150">
+                              ItemsSource="{Binding Lots}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel IsItemsHost="True" Orientation="Horizontal" />
@@ -77,6 +79,9 @@
                                     Padding="3"
                                     Margin="5"
                                     Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.2" />
+                                </Border.Background>
                                 <StackPanel Orientation="Vertical"
                                             HorizontalAlignment="Stretch">
                                     <Control Template="{StaticResource TradingLotIconWithTooltip}" />
@@ -105,27 +110,45 @@
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <!-- Text: Buy -->
+                                    <!-- Buy button -->
                                     <Button Content="{x:Static loc:CoreStrings.WindowTradingStationUser_Button_Buy}"
                                             Command="{Binding CommandBuy}"
                                             Visibility="{Binding DataContext.IsStationSellingMode, ElementName=ItemsControl, Converter={StaticResource BoolToVisibilityConverter}}"
                                             FontSize="11"
                                             Padding="0,1"
+                                            Margin="0,5,0,0"
                                             MinWidth="0"
-                                            MinHeight="0"
+                                            MinHeight="32"
                                             HorizontalAlignment="Stretch"
                                             Focusable="False" />
 
-                                    <!-- Text: Sell -->
-                                    <Button Content="{x:Static loc:CoreStrings.WindowTradingStationUser_Button_Sell}"
-                                            Command="{Binding CommandSell}"
-                                            Visibility="{Binding DataContext.IsStationSellingMode, ElementName=ItemsControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                            FontSize="11"
-                                            Padding="0,1"
-                                            MinWidth="0"
-                                            MinHeight="0"
-                                            HorizontalAlignment="Stretch"
-                                            Focusable="False" />
+                                    <!-- Sell slot -->
+                                    <Grid
+                                        Visibility="{Binding DataContext.IsStationSellingMode, ElementName=ItemsControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                                        <player:DropItemToUseControl
+                                            Caption="{x:Static loc:CoreStrings.WindowTradingStationUser_Button_Sell}"
+                                            CommandUseItem="{Binding CommandSellItem}"
+                                            IsEnabled="{Binding IsSellSlotHighlighted}"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,5,0,0">
+                                            <player:DropItemToUseControl.LayoutTransform>
+                                                <ScaleTransform ScaleX="0.833" ScaleY="0.833" />
+                                            </player:DropItemToUseControl.LayoutTransform>
+                                            <b:Interaction.Triggers>
+                                                <b:DataTrigger
+                                                    Binding="{Binding IsSellSlotHighlighted}"
+                                                    Value="False">
+                                                    <b:ChangePropertyAction PropertyName="Opacity" Value="0.333" />
+                                                </b:DataTrigger>
+                                                <b:DataTrigger
+                                                    Binding="{Binding IsSellSlotHighlighted}"
+                                                    Value="True">
+                                                    <b:ChangePropertyAction PropertyName="Opacity" Value="1.0" />
+                                                </b:DataTrigger>
+                                            </b:Interaction.Triggers>
+                                        </player:DropItemToUseControl>
+                                    </Grid>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

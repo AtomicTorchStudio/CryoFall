@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
 
-    public struct ObjectStructurePointsData
+    public readonly struct ObjectStructurePointsData
     {
         public readonly IPublicStateWithStructurePoints State;
 

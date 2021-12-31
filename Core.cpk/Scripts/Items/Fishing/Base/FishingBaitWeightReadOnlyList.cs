@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public struct FishingBaitWeightReadOnlyList
+    public readonly struct FishingBaitWeightReadOnlyList
     {
         public FishingBaitWeightReadOnlyList(IReadOnlyList<ValueWithWeight<IProtoItemFishingBait>> entries)
         {

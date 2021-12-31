@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public struct ViewModelLogEntry
+    public readonly struct ViewModelLogEntry
     {
         // collapse server log when it's not available
         private static readonly byte CachedColumnSpan = Api.IsEditor ? (byte)1 : (byte)3;

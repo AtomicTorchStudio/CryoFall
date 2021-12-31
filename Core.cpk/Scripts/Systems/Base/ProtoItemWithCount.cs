@@ -5,15 +5,15 @@
 
     public class ProtoItemWithCount : IEquatable<ProtoItemWithCount>
     {
-        public readonly ushort Count;
-
-        public readonly IProtoItem ProtoItem;
-
         public ProtoItemWithCount(IProtoItem protoItem, ushort count)
         {
             this.ProtoItem = protoItem;
             this.Count = count;
         }
+
+        public ushort Count { get; }
+
+        public IProtoItem ProtoItem { get; }
 
         public override bool Equals(object obj)
         {

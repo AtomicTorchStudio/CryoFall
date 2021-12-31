@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 EXP de habilidade
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Structures] Pode-se construir sobre prados
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Deterioração] Deterioração de estruturas abandonadas
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Deterioração] Duração do atraso de deterioração de posse de terra abandonada
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+Sinais de texto disponíveis
 
 Scripts/Rates/RateThirst@Name:
 Taxa de sede

@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 Çarpıcı göçü
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Önemli: Ateşli silahlar işe yaramaz; yakın saldırı veya ısı bazlı silahlar kullan.
+Önemli: Ateşli silahlar etkisizdir; yakın saldırı silahlarını kullan.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Beliren tuhaf bir yabancı madde dağlık alanlarda gelişmeyi imkânsız kıldı ama nadir kaynaklar toplamak için de harika bir fırsat.

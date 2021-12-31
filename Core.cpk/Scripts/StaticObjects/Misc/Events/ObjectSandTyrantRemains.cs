@@ -93,7 +93,7 @@
             config.Stage4
                   .Add<ItemFuelSack>(count: 5,             countRandom: 5)
                   .Add<ItemNitrocellulosePowder>(count: 10, countRandom: 10)
-                  .Add<ItemOreIronConcentrate>(count: 5, countRandom: 5)
+                  .Add<ItemOreIronConcentrate>(count: 10, countRandom: 10)
                   .Add<ItemKeinite>(count: 4, countRandom: 2)
                   .Add<ItemTyrantHeart>(count: 3);
         }

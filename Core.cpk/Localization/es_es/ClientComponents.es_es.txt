@@ -67,6 +67,36 @@ Ranura 9
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 Ranura 0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+Uso rápido: Ranura 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+Uso rápido: Ranura 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+Uso rápido: Ranura 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+Uso rápido: Ranura 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+Uso rápido: Ranura 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+Uso rápido: Ranura 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+Uso rápido: Ranura 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+Uso rápido: Ranura 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+Uso rápido: Ranura 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+Uso rápido: Ranura 0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Acercar cámara
 

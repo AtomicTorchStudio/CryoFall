@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skins;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Login;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -43,9 +44,15 @@
 
         public static void DisconnectMasterServerIfNotNecessary()
         {
+            if (Api.IsEditor)
+            {
+                return;
+            }
+            
             if (Client.CurrentGame.ConnectionState == ConnectionState.Connected
                 && Client.MasterServer.MasterServerConnectionState != ConnectionState.Disconnected
-                && MainMenuOverlay.IsHidden)
+                && MainMenuOverlay.IsHidden
+                && !SkinsMenuOverlay.IsDisplayed)
             {
                 Logger.Important(
                     "Disconnecting from MasterServer as it's not necessary now (client is connected to the game server and main menu overlay is hidden)");
@@ -124,8 +131,8 @@
 
             // selects "Current game" tab when connected
             if (Client.CurrentGame.ConnectionState
-                    is ConnectionState.Connecting
-                    or ConnectionState.Connected)
+                is ConnectionState.Connecting
+                or ConnectionState.Connected)
             {
                 ViewModelMainMenuOverlay.Instance.IsCurrentGameTabSelected = true;
             }
@@ -175,7 +182,11 @@
             if (Client.MasterServer.CurrentPlayerIsLoggedIn)
             {
                 cancelText = CoreStrings.Button_StayOffline;
-                cancelAction = () => { };
+                cancelAction = () =>
+                               {
+                                   // do nothing, though if Skins menu is opened we must close it
+                                   SkinsMenuOverlay.IsDisplayed = false;
+                               };
             }
             else
             {

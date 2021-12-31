@@ -14,7 +14,7 @@
 
     public class ItemDroneReservedSlot
         : ProtoItem
-            <EmptyPrivateState,
+            <ItemPrivateState,
                 ItemDroneReservedSlot.PublicState,
                 EmptyClientState>
     {

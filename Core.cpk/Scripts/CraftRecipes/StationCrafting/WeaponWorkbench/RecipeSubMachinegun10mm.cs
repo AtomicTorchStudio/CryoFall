@@ -17,13 +17,13 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.VeryLong;
+            duration = CraftingDuration.Long;
 
             inputItems.Add<ItemIngotSteel>(count: 30);
             inputItems.Add<ItemPlastic>(count: 15);
             inputItems.Add<ItemComponentsWeapon>(count: 4);
 
-            outputItems.Add<ItemSubmachinegun10mm>();
+            outputItems.Add<ItemSubMachinegun10mm>();
         }
     }
 }

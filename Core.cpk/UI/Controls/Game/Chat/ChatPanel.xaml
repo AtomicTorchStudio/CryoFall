@@ -39,7 +39,7 @@
                         <ControlTemplate TargetType="TabControl">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="100" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
@@ -89,6 +89,7 @@
                         <Setter Property="BorderThickness" Value="0,0,0,2" />
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <!-- The extra padding on the left side is used for the "unread" dot indicator -->
                         <Setter Property="Padding" Value="9,3,5,3" />
                         <Setter Property="Width" Value="Auto" />
                         <Setter Property="FontSize" Value="11" />

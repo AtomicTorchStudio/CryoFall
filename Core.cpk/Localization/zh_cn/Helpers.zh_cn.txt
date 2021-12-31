@@ -1,5 +1,5 @@
 ﻿Scripts/Helpers/Client/ClientListFormatHelper@Format_ListEntrySeparator:
-,
+，
 
 Scripts/Helpers/Client/ClientListFormatHelper@Format_LongListLastEntry_Format:
 ,以及{0}

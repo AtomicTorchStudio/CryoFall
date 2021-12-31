@@ -36,7 +36,7 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPercent(this, StatName.HuntingLootingSpeed, 30);
+            effects.AddPercent(this, StatName.HuntingLootingSpeed, 50);
         }
 
         protected override void PrepareProtoItemEquipment()

@@ -1,0 +1,291 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skins.SkinsListControl"
+                      x:Name="UserControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skins.Data"
+                      xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ContentControl MinHeight="100"
+                        Visibility="{Binding Skins, ElementName=UserControl, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}">
+            <TextBlock Text="{x:Static loc:CoreStrings.Skins_EmptyList}"
+                       Foreground="{StaticResource BrushColorLabelForeground}"
+                       FontFamily="{StaticResource DefaultFontFamily}"
+                       FontSize="13"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+        </ContentControl>
+
+        <ItemsControl ItemsSource="{Binding Skins, ElementName=UserControl}"
+                      Visibility="{Binding Skins, ElementName=UserControl, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"
+                               HorizontalAlignment="Center"
+                               MaxWidth="600" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="110"
+                          Margin="5,10"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="3,3,0,0"
+                                Padding="2,1,2,0"
+                                Margin="5,0"
+                                d:DataContext="{d:DesignInstance data:ViewModelSkin}">
+                            <Rectangle
+                                Fill="{Binding IconSkin}"
+                                Width="96"
+                                Height="96">
+                                <Rectangle.Effect>
+                                    <!-- Glow effect -->
+                                    <DropShadowEffect
+                                        BlurRadius="40"
+                                        Direction="0"
+                                        ShadowDepth="0"
+                                        Opacity="0.2"
+                                        Color="White" />
+                                </Rectangle.Effect>
+                            </Rectangle>
+
+                            <base:ToolTipServiceExtend.ToolTip>
+                                <Grid Margin="0,2,0,4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="7" />
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding BaseItemName}"
+                                               FontWeight="Bold"
+                                               FontSize="15"
+                                               TextWrapping="Wrap"
+                                               Grid.ColumnSpan="3"
+                                               HorizontalAlignment="Center" />
+
+                                    <Rectangle Grid.Row="2"
+                                               Grid.Column="0"
+                                               Fill="{Binding IconBaseItem}"
+                                               Width="192"
+                                               Height="192"
+                                               Margin="3">
+                                        <Rectangle.Effect>
+                                            <!-- Glow effect -->
+                                            <DropShadowEffect
+                                                BlurRadius="40"
+                                                Direction="0"
+                                                ShadowDepth="0"
+                                                Opacity="0.2"
+                                                Color="White" />
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+
+                                    <Control Grid.Row="2"
+                                             Grid.Column="1"
+                                             Template="{StaticResource ControlTemplateArrow}"
+                                             Width="40"
+                                             Height="40"
+                                             VerticalAlignment="Center"
+                                             Margin="10,0">
+                                        <Control.LayoutTransform>
+                                            <RotateTransform Angle="-90" />
+                                        </Control.LayoutTransform>
+                                    </Control>
+
+                                    <Rectangle Grid.Row="2"
+                                               Grid.Column="2"
+                                               Fill="{Binding IconSkin}"
+                                               Width="192"
+                                               Height="192"
+                                               Margin="3">
+                                        <Rectangle.Effect>
+                                            <!-- Glow effect -->
+                                            <DropShadowEffect
+                                                BlurRadius="40"
+                                                Direction="0"
+                                                ShadowDepth="0"
+                                                Opacity="0.2"
+                                                Color="White" />
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+
+                                    <TextBlock Grid.Row="3"
+                                               Grid.Column="0"
+                                               Text="{x:Static loc:CoreStrings.Skin_Default}"
+                                               FontWeight="Bold"
+                                               FontSize="13.5"
+                                               TextWrapping="Wrap"
+                                               Foreground="{StaticResource BrushColor6}"
+                                               HorizontalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="3"
+                                               Grid.Column="2"
+                                               Text="{Binding SkinName}"
+                                               FontWeight="Bold"
+                                               FontSize="13.5"
+                                               TextWrapping="Wrap"
+                                               Foreground="{StaticResource BrushColor6}"
+                                               HorizontalAlignment="Center" />
+
+                                    <StackPanel Grid.Row="4"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                Margin="0,5,0,0">
+                                        <Control Style="{StaticResource ControlInfoPointStyle}" />
+                                        <TextBlock Text="{Binding AvailableToCraftIn}"
+                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                   FontWeight="Normal"
+                                                   FontSize="12.5"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{StaticResource BrushColorAlt7}"
+                                                   Margin="4,0,0,0" />
+                                    </StackPanel>
+                                </Grid>
+                            </base:ToolTipServiceExtend.ToolTip>
+                        </Border>
+
+                        <Border Grid.Row="0"
+                                Visibility="{Binding DiscountText, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                                IsHitTestVisible="False"
+                                Background="{StaticResource BrushColorAlt6}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Padding="3,0"
+                                Margin="10,3,0,0"
+                                CornerRadius="4"
+                                BorderBrush="Black"
+                                BorderThickness="0,0,1.5,1.5">
+                            <TextBlock Text="{Binding DiscountText}"
+                                       Foreground="Black"
+                                       FontFamily="{StaticResource CondensedFontFamily}"
+                                       FontSize="15"
+                                       FontWeight="Bold" />
+                        </Border>
+
+                        <StackPanel Grid.Row="1"
+                                    Visibility="{Binding IsOwned, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                    Orientation="Vertical"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,5,0,0">
+                            <StackPanel Orientation="Vertical"
+                                        HorizontalAlignment="Center">
+                                <Grid Margin="0,0,5,0"
+                                      Visibility="{Binding DiscountText, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                                      HorizontalAlignment="Center">
+                                    <TextBlock x:Name="TextBlockOriginalPrice"
+                                               Text="{Binding PriceOriginalInPlayerCurrencyText}"
+                                               Foreground="#FF777777"
+                                               FontFamily="{StaticResource CondensedFontFamily}"
+                                               FontSize="12"
+                                               FontWeight="Bold"
+                                               VerticalAlignment="Top"
+                                               Margin="0,1,0,0" />
+                                    <Line Stroke="{StaticResource BrushColorRed6}"
+                                          StrokeThickness="0.75"
+                                          Width="{Binding ActualWidth, ElementName=TextBlockOriginalPrice}"
+                                          X1="0"
+                                          X2="1"
+                                          Stretch="Fill"
+                                          VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{Binding PriceWithDiscountInPlayerCurrencyText}"
+                                           Foreground="{StaticResource BrushColor7}"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           FontSize="15"
+                                           FontWeight="Bold" />
+                            </StackPanel>
+
+                            <Button x:Name="ButtonBuy"
+                                    Command="{Binding CommandBuy}"
+                                    Focusable="False"
+                                    Padding="4,2,5,3"
+                                    Margin="5,3,0,0"
+                                    MinWidth="24"
+                                    MinHeight="10"
+                                    HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Width="13"
+                                          Height="13"
+                                          Data="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+                                          Stretch="Uniform"
+                                          VerticalAlignment="Center"
+                                          Fill="{Binding Foreground, ElementName=ButtonBuy}" />
+                                    <TextBlock Text="{x:Static loc:CoreStrings.Skins_Button_Buy}"
+                                               VerticalAlignment="Center"
+                                               Margin="3,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <ContentControl Grid.Row="1"
+                                        Visibility="{Binding IsOwnedLabelDisplayed, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel
+                                Visibility="{Binding IsOwned, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="0,5,0,0">
+                                <TextBlock Text="{x:Static loc:CoreStrings.Skins_SkinUnlocked}"
+                                           Foreground="{StaticResource BrushColor7}"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           FontSize="13"
+                                           FontWeight="Bold" />
+                            </StackPanel>
+                        </ContentControl>
+
+                        <ContentControl Grid.Row="2"
+                                        Visibility="{Binding IsSkinNameDisplayed, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Margin="0,5,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="1"
+                                           Text="{Binding SkinName}"
+                                           Foreground="#FFE3E3E3"
+                                           FontWeight="Bold"
+                                           FontSize="11"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,3,0,0"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Center" />
+                                <TextBlock Grid.Row="2"
+                                           Text="{Binding BaseItemName}"
+                                           Foreground="#FFE3E3E3"
+                                           FontSize="10"
+                                           HorizontalAlignment="Center"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Center" />
+                            </Grid>
+                        </ContentControl>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</base:BaseUserControl>

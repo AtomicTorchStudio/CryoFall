@@ -27,7 +27,7 @@
                 <ListBox VerticalAlignment="Stretch"
                          HorizontalAlignment="Stretch"
                          ItemsSource="{Binding RecipesList}"
-                         SelectedItem="{Binding SelectedRecipeDetails}">
+                         SelectedItem="{Binding SelectedListEntryDetails}">
                     <ListBox.Template>
                         <ControlTemplate TargetType="{x:Type ListBox}">
                             <ItemsPresenter />

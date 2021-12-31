@@ -463,7 +463,7 @@
             }
         }
 
-        private struct MaterialCacheKey : IEquatable<MaterialCacheKey>
+        private readonly struct MaterialCacheKey : IEquatable<MaterialCacheKey>
         {
             public readonly TileBlendSides BlendSides;
 

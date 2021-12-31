@@ -2,7 +2,6 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Tools;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -28,6 +27,8 @@
             this.ItemWateringCan = itemWateringCan;
         }
 
+        public override bool IsDisplayingProgress => true;
+
         public class PublicState : BasePublicActionState
         {
             protected override void ClientOnCompleted()
@@ -38,7 +39,7 @@
                 }
 
                 if (this.Character.SharedGetPlayerSelectedHotbarItemProto()
-                        is IProtoItemToolWateringCan protoWateringCan)
+                    is IProtoItemToolWateringCan protoWateringCan)
                 {
                     protoWateringCan.SharedGetItemSoundPreset()
                                     .PlaySound(ItemSound.Use,
@@ -49,7 +50,6 @@
 
             protected override void ClientOnStart()
             {
-                // TODO: play animation
             }
         }
     }

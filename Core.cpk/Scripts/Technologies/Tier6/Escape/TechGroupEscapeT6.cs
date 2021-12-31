@@ -11,6 +11,8 @@
     {
         public override string Description => TechGroupsLocalization.EscapeDescription;
 
+        public override sbyte IconQualityOffset => -2; // to make most icons sharper with lower textures quality
+
         public override string Name => TechGroupsLocalization.EscapeName;
 
         public override TechTier Tier => TechTier.Tier6;

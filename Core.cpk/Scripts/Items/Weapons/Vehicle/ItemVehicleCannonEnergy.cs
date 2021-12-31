@@ -49,7 +49,7 @@
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.EnergyPlasmaWeapon)
-                       .Set(textureScreenOffset: (15, 0), textureScale: 1.5);
+                       .Set(textureScreenOffset: (100, -71), textureScale: 1.25);
         }
 
         protected override void PrepareProtoWeaponRangedEnergy(ref DamageDescription damageDescription)

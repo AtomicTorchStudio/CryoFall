@@ -76,13 +76,13 @@
 
         private ClientComponentWorldMapCurrentCharacterUpdater componentCurrentCharacterUpdater;
 
-        private ControlTemplate customControlTemplatePlayerMark;
+        private readonly ControlTemplate customControlTemplatePlayerMark;
 
         private bool isActive;
 
         private bool isAutocenterOnPlayer = true;
 
-        private bool isCurrentCameraViewDisplayed;
+        private readonly bool isCurrentCameraViewDisplayed;
 
         private bool isDisposed;
 
@@ -100,7 +100,7 @@
 
         private IClientSceneObject sceneObject;
 
-        private WorldMapSectorProvider sectorProvider;
+        private readonly WorldMapSectorProvider sectorProvider;
 
         private BoundsUshort worldBounds;
 

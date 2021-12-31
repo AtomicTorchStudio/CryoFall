@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeLaserPistol>();
-
-            //config.SetRequiredNode<TechNodeLaserWeapons>();
         }
     }
 }

@@ -128,7 +128,7 @@
             frameworkElement.MouseLeftButtonUp -= FrameworkElementMouseLeftButtonUpHandler;
         }
 
-        private struct ElementLastClickTime
+        private readonly struct ElementLastClickTime
         {
             public readonly FrameworkElement FrameworkElement;
 

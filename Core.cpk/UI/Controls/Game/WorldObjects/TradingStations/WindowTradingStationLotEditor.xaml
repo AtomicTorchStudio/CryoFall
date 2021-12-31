@@ -76,15 +76,13 @@
                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                     <Grid>
                                         <Border x:Name="Border"
-                                                CornerRadius="3"
-                                                Background="#FF262626"
                                                 base:ToolTipServiceExtend.ToolTip="{Binding Name}">
                                             <ContentPresenter />
                                         </Border>
 
                                         <Border x:Name="BorderSelected"
                                                 BorderBrush="{StaticResource BrushColor7}"
-                                                BorderThickness="1.5"
+                                                BorderThickness="1"
                                                 CornerRadius="3" />
                                     </Grid>
 
@@ -216,6 +214,7 @@
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <!-- Text: Quantity -->
@@ -224,8 +223,15 @@
                                Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_Quantity}" />
                     <TextBox Grid.Row="0"
                              Grid.Column="2"
-                             Text="{Binding LotQuantity,UpdateSourceTrigger=PropertyChanged}"
-                             MaxLength="4" />
+                             Text="{Binding LotQuantity, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="4"
+                             Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2"
+                               Text="{Binding LotQuantity}"
+                               Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
+                               VerticalAlignment="Center"
+                               Margin="7,0,0,0" />
 
                     <StackPanel Grid.Row="1"
                                 Grid.Column="0"
@@ -239,7 +245,7 @@
                     </StackPanel>
                     <TextBox Grid.Row="1"
                              Grid.Column="2"
-                             Text="{Binding PriceCoinShiny,UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding PriceCoinShiny, UpdateSourceTrigger=PropertyChanged}"
                              MaxLength="3" />
 
                     <StackPanel Grid.Row="2"
@@ -254,8 +260,56 @@
                     </StackPanel>
                     <TextBox Grid.Row="2"
                              Grid.Column="2"
-                             Text="{Binding PriceCoinPenny,UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding PriceCoinPenny, UpdateSourceTrigger=PropertyChanged}"
                              MaxLength="3" />
+
+                    <ContentControl
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Visibility="{Binding IsStationBuying, Converter={StaticResource BoolToVisibilityConverter}}"
+                        HorizontalAlignment="Left"
+                        Margin="0,5,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.Visibility>
+                                <MultiBinding Converter="{StaticResource AnyBoolToVisibilityMultiConverter}">
+                                    <Binding Path="IsProtoItemWithDurability" FallbackValue="False" />
+                                    <Binding Path="IsProtoItemWithFreshness" FallbackValue="False" />
+                                </MultiBinding>
+                            </Grid.Visibility>
+
+                            <!-- Text: Durability -->
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="{x:Static loc:CoreStrings.TitleDurability}"
+                                           Visibility="{Binding IsProtoItemWithDurability, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
+                                <!-- Text: Freshness -->
+                                <TextBlock Text="{x:Static loc:CoreStrings.TitleFreshness}"
+                                           Visibility="{Binding IsProtoItemWithFreshness, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
+                            </Grid>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding MinQualityPercent, UpdateSourceTrigger=PropertyChanged, StringFormat={}≥{0}%}"
+                                       Margin="7,0,0,0" />
+
+                            <Slider Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Value="{Binding MinQualityPercent}"
+                                    Minimum="1"
+                                    Maximum="100"
+                                    Margin="-15,-3,-8,0" />
+                        </Grid>
+                    </ContentControl>
                 </Grid>
 
             </StackPanel>

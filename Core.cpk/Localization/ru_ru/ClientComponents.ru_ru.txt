@@ -69,6 +69,36 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 Слот 0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+Быстрое использование - Слот 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+Быстрое использование - Слот 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+Быстрое использование - Слот 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+Быстрое использование - Слот 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+Быстрое использование - Слот 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+Быстрое использование - Слот 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+Быстрое использование - Слот 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+Быстрое использование - Слот 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+Быстрое использование - Слот 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+Быстрое использование - Слот 0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Приблизить камеру
 

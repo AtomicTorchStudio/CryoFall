@@ -1068,7 +1068,7 @@
             }
         }
 
-        private struct CurrentlyExecutingTaskKey : IEquatable<CurrentlyExecutingTaskKey>
+        private readonly struct CurrentlyExecutingTaskKey : IEquatable<CurrentlyExecutingTaskKey>
         {
             private readonly SpawnConfig config;
 

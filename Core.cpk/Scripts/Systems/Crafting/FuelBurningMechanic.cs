@@ -91,7 +91,7 @@
                 return;
             }
 
-            var currentByproductRecipe = byproductsCraftQueue.QueueItems.FirstOrDefault()?.Recipe
+            var currentByproductRecipe = byproductsCraftQueue.QueueItems.FirstOrDefault()?.RecipeEntry.Recipe
                                              as Recipe.RecipeForManufacturingByproduct;
             var newByproductRecipe = config.MatchRecipeForByproduct(state.CurrentFuelItemType);
             if (currentByproductRecipe == newByproductRecipe)
@@ -107,7 +107,7 @@
                     objectManufacturer,
                     null,
                     byproductsCraftQueue,
-                    newByproductRecipe,
+                    new RecipeWithSkin(newByproductRecipe),
                     // unlimited count
                     countToCraft: ushort.MaxValue);
             }

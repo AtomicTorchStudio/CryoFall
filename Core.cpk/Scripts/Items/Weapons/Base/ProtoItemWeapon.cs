@@ -104,6 +104,8 @@
 
         public virtual bool IsRepairable => true;
 
+        public override bool IsSkinnable => true;
+
         public sealed override ushort MaxItemsPerStack => 1;
 
         public DamageDescription OverrideDamageDescription { get; private set; }
@@ -131,6 +133,8 @@
 
         public virtual float ShotVolumeMultiplier => 1.0f;
 
+        public virtual double SkeletonPreviewOffsetX => 0;
+
         /// <inheritdoc />
         public ReadOnlySoundPreset<ObjectMaterial> SoundPresetHit { get; private set; }
 
@@ -155,8 +159,30 @@
         protected abstract ProtoSkillWeapons WeaponSkill { get; }
 
         protected virtual TextureResource WeaponTextureResource
-            => new("Characters/Weapons/" + this.GetType().Name,
-                   isProvidesMagentaPixelPosition: true);
+        {
+            get
+            {
+                var type = this.GetType();
+                var folderPath = SharedGetRelativeFolderPath(type, typeof(ProtoItem<,,>));
+                var baseProtoItem = this.BaseProtoItem;
+                if (baseProtoItem is not null)
+                {
+                    var baseName = baseProtoItem.GetType().Name;
+                    return new(
+                        $"Characters/{folderPath}/{baseName}/{this.ShortId.Substring(baseName.Length - 4)}.png",
+                        isProvidesMagentaPixelPosition: true);
+                }
+
+                var path = $"Characters/{folderPath}/{type.Name}/Default.png";
+                if (Api.Shared.IsFileExists(ContentPaths.Textures + path))
+                {
+                    return new(path, isProvidesMagentaPixelPosition: true);
+                }
+
+                return new($"Characters/{folderPath}/{type.Name}.png",
+                           isProvidesMagentaPixelPosition: true);
+            }
+        }
 
         public Control ClientCreateHotbarOverlayControl(IItem item)
         {

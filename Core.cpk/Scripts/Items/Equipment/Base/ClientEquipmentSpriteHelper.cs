@@ -208,7 +208,7 @@
             }
         }
 
-        public struct FilePathsList
+        public readonly struct FilePathsList
         {
             public readonly string SourceFolderPath;
 

@@ -58,8 +58,7 @@
             {
                 metric.ServerInitialize();
 
-                if (metric.PowerCoefficient <= 0
-                    || metric.PowerCoefficient > 1)
+                if (metric.PowerCoefficient is <= 0 or > 1)
                 {
                     Logger.Error("Incorrect value of "
                                  + nameof(ProtoFactionScoreMetric.PowerCoefficient)
@@ -127,8 +126,7 @@
                     var value = metric.ServerGetCurrentValue(faction);
                     value *= metric.FinalScoreCoefficient;
 
-                    if (metric.PowerCoefficient > 0
-                        && metric.PowerCoefficient < 1)
+                    if (metric.PowerCoefficient is > 0 and < 1)
                     {
                         value = Math.Pow(value, metric.PowerCoefficient);
                     }

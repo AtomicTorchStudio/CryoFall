@@ -5,7 +5,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -37,6 +36,7 @@
             ProceduralTextureRequest request,
             bool isMale,
             HeadSpriteType headSpriteType,
+            bool isPreview,
             Vector2Ushort? customTextureSize = null,
             sbyte spriteQualityOffset = 0)
         {
@@ -95,8 +95,7 @@
                 }
             }
 
-            var itemHeadEquipment = data.HeadEquipment;
-            var protoItemHeadEquipment = (IProtoItemEquipmentHead)itemHeadEquipment?.ProtoItem;
+            var protoItemHeadEquipment = data.HeadEquipmentItemProto;
             var isHairVisible = protoItemHeadEquipment?.IsHairVisible ?? true;
             isHairVisible &= style.HairId is not null;
 
@@ -122,19 +121,33 @@
             }
 
             string helmetFront = null, helmetBehind = null;
+            TextureResource helmetFrontMaskTextureResource = null;
+
             if (protoItemHeadEquipment is not null)
             {
-                protoItemHeadEquipment.ClientGetHeadSlotSprites(
-                    itemHeadEquipment,
-                    isMale,
-                    data.SkeletonResource,
-                    isFrontFace,
-                    out helmetFront,
-                    out helmetBehind);
+                protoItemHeadEquipment.ClientGetHeadSlotSprites(data.HeadEquipmentItem,
+                                                                isMale,
+                                                                data.SkeletonResource,
+                                                                isFrontFace,
+                                                                isPreview,
+                                                                out helmetFront,
+                                                                out helmetBehind);
 
                 if (helmetFront is null)
                 {
                     throw new Exception("Helmet attachment is not available for " + protoItemHeadEquipment);
+                }
+
+                if (isFrontFace)
+                {
+                    helmetFrontMaskTextureResource = new TextureResource(
+                        helmetFront.Substring(0, helmetFront.Length - ".png".Length) + "Mask.png",
+                        qualityOffset: spriteQualityOffset);
+
+                    if (!Api.Shared.IsFileExists(helmetFrontMaskTextureResource.FullPath))
+                    {
+                        helmetFrontMaskTextureResource = null;
+                    }
                 }
             }
 
@@ -149,11 +162,12 @@
                                     customTextureSize,
                                     new List<ComposeLayer>()
                                     {
-                                        new(faceShapePath,  spriteQualityOffset),
-                                        new(faceTopPath,    spriteQualityOffset),
+                                        new(faceShapePath, spriteQualityOffset),
+                                        new(faceTopPath, spriteQualityOffset),
                                         new(faceBottomPath, spriteQualityOffset)
                                     },
-                                    skinTone);
+                                    skinTone,
+                                    helmetFrontMaskTextureResource);
 
                 layers = new List<ComposeLayer>();
 
@@ -207,7 +221,7 @@
                 layers = new List<ComposeLayer>()
                 {
                     new(helmetBehind, spriteQualityOffset),
-                    new(helmetFront,  spriteQualityOffset)
+                    new(helmetFront, spriteQualityOffset)
                 };
             }
 
@@ -241,7 +255,8 @@
             string renderingTag,
             Vector2Ushort? customTextureSize,
             List<ComposeLayer> layers,
-            string skinToneTextureFilePath)
+            string skinToneTextureFilePath,
+            TextureResource helmetMaskTextureResource)
         {
             RemoveMissingLayers(layers);
             if (layers.Count == 0)
@@ -262,16 +277,38 @@
 
             request.ThrowIfCancelled();
 
+            if (helmetMaskTextureResource is not null)
+            {
+                // apply mask
+                var renderTargetForCut = renderTexture;
+                try
+                {
+                    renderTexture = await ClientTextureMaskHelper.ApplyMaskToRenderTargetAsync(request,
+                                        renderTexture,
+                                        helmetMaskTextureResource);
+                }
+                finally
+                {
+                    renderTargetForCut.Dispose();
+                }
+            }
+
             if (skinToneTextureFilePath is null)
             {
                 return new ComposeLayer(renderTexture);
             }
 
-            var colorizedRenderTexture = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,
-                                             renderTexture,
-                                             skinToneTextureFilePath);
-            renderTexture.Dispose();
-            return new ComposeLayer(colorizedRenderTexture);
+            try
+            {
+                var colorizedRenderTexture = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLutAsync(request,
+                                                 renderTexture,
+                                                 skinToneTextureFilePath);
+                return new ComposeLayer(colorizedRenderTexture);
+            }
+            finally
+            {
+                renderTexture.Dispose();
+            }
         }
 
         private static async Task<IRenderTarget2D> DrawAndDisposeLayers(
@@ -368,11 +405,28 @@
                 var textureResource = new TextureResource(filePath,
                                                           isProvidesMagentaPixelPosition: true,
                                                           qualityOffset: spriteQualityOffset);
-                var renderTarget2D = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLut(request,
-                                         textureResource,
-                                         hairColor);
+                var renderTarget = await ClientSpriteLutColorRemappingHelper.ApplyColorizerLutAsync(request,
+                                       textureResource,
+                                       hairColor);
                 var pivotPos = await Rendering.GetTextureSizeWithMagentaPixelPosition(textureResource);
-                return new ComposeLayer(renderTarget2D,
+
+                // mask for hair is not supported yet
+                /*if (helmetMaskTextureResource is not null)
+                {
+                    var renderTargetForCut = renderTarget;
+                    try
+                    {
+                        renderTarget = await ClientTextureMaskHelper.ApplyMaskToRenderTargetAsync(request,
+                                           renderTargetForCut,
+                                           helmetMaskTextureResource);
+                    }
+                    finally
+                    {
+                        renderTargetForCut.Dispose();
+                    }
+                }*/
+
+                return new ComposeLayer(renderTarget,
                                         (pivotPos.MagentaPixelPosition.X,
                                          pivotPos.MagentaPixelPosition.Y));
             }

@@ -349,6 +349,24 @@ O cronômetro de destruição é iniciado quando a posse de terra é destruída 
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Quer mesmo usar {0}?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+Você pode tentar retornar ao último backup feito.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall detectou arquivos salvos corrompidos.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+Abra a pasta de jogos salvos e procure por backups deste arquivo:
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`Causas possíveis:
+[*] Falha no disco rígido
+[*] Erro no acesso de leitura/escrita do Sistema Operacional
+[*] etc.`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+Não é possível carregar o jogo salvo
+
 UI/CoreStrings@DialogClearList_Message:
 Quer mesmo limpar esta lista?
 
@@ -402,6 +420,9 @@ Você causou {0}% de dano total! Sua parte nos espólios é de {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Servidor oficial Discord de CryoFall (apenas em inglês)
+
+UI/CoreStrings@Extras_Features_Title:
+Características
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 Apresentação das características de CryoFall
@@ -915,6 +936,18 @@ Posicionar um implante para instalar
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Requer
+
+UI/CoreStrings@Item_AvailableInTechTier:
+Disponível para produção em {0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+A durabilidade do item é baixa demais (requer no mínimo {0}%).
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+O frescor do item é baixo demais (requer no mínimo de {0}%).
+
+UI/CoreStrings@Item_CreatedBy_Format:
+Feito por: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 Apodrecerá em: {0}
@@ -1809,8 +1842,119 @@ A proteção contra invasão offline está disponível para níveis maiores de p
 UI/CoreStrings@Skill:
 Habilidade
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+Visual de edição limitada (indisponível atualmente).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+Disponível como parte do pacote de apoiador.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+Libera ao jogar o jogo.
+
+UI/CoreStrings@Skin_Default:
+Padrão
+
+UI/CoreStrings@Skin_NotOwned:
+Você não tem esse visual.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+Procurar visuais
+
+UI/CoreStrings@Skins_Button_Buy:
+Comprar
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+Resgatar
+
+UI/CoreStrings@Skins_EmptyList:
+Não há visuais disponíveis nesta lista.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+Visuais em destaque
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+Faça login por mais {0} dia(s) para receber um visual gratuito.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+Progresso de visual gratuito
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+Os visuais podem ser utilizados em qualquer servidor (oficial, público, privado ou local).
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+Você pode produzir e compartilhar itens com visual entre seus amigos mesmo que eles não possuam o visual específico.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+Visuais podem ser aplicados em itens específicos que você produz no jogo (armas e equipamentos).
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* Todos os valores são ajustados de acordo com a tabela regional da Steam.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+Ao comprar visuais, você apoia diretamente os desenvolvedores. A gente agradece!
+
+UI/CoreStrings@Skins_SelectSkin:
+Selecionar visual:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} (visual para {1})
+
+UI/CoreStrings@Skins_SkinOwned:
+Você já tem
+
+UI/CoreStrings@Skins_SkinUnlocked:
+Visual liberado
+
+UI/CoreStrings@Skins_Tab_Equipment:
+EQUIPAMENTO
+
+UI/CoreStrings@Skins_Tab_First:
+EM DESTAQUE
+
+UI/CoreStrings@Skins_Tab_Owned:
+VOCÊ JÁ TEM
+
+UI/CoreStrings@Skins_Tab_Weapons:
+ARMAS
+
+UI/CoreStrings@Skins_Title:
+Visuais
+
 UI/CoreStrings@SortBy:
 Filtrar por
+
+UI/CoreStrings@StatisticsDeaths:
+Mortes
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+Plantas agrícolas colhidas
+
+UI/CoreStrings@StatisticsMineralsMined:
+Minerais extraídos
+
+UI/CoreStrings@StatisticsPvpAssists:
+Assistências
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+A/M
+
+UI/CoreStrings@StatisticsPvpKills:
+Abates
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+Classificação de JvJ
+
+UI/CoreStrings@StatisticsPvpScore:
+Pontuação JvJ
+
+UI/CoreStrings@StatisticsTitle:
+Estatísticas pessoais
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+PAs ganhos totais
+
+UI/CoreStrings@StatisticsTreesCut:
+Árvores cortadas
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Intensidade
@@ -1842,6 +1986,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 Insígnia de apoiador
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+Abrir página da loja
 
 UI/CoreStrings@SupporterPack_Description:
 `O Supporter Pack é uma coleção de itens bônus quem deseja dar um passo além e apoiar os desenvolvedores de CryoFall. Para demonstrar nossa gratidão, o jogo exibirá uma insígnia de apoiador especial no bate-papo do jogo.
@@ -2523,7 +2670,7 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 Link para minha conta AtomicTorch existente
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-Ninguém é obrigado a fazer isso. Você pode continuar usando a sua conta Steam existente para jogar, se preferir. Porém, vincular o jogo a uma conta AtomicTorch.com traz alguns benefícios.
+Você não é obrigado a fazer isso. Você pode continuar usando a sua conta Steam existente para jogar, se preferir. Porém, vincular o jogo a uma conta AtomicTorch.com traz alguns benefícios.
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
 Você não é obrigado a fazer isso e pode simplesmente usar a sua conta Steam para jogar. Porém, vincular traz alguns benefícios.

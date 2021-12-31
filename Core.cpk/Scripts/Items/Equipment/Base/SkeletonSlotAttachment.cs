@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.GameApi.Resources;
 
-    public struct SkeletonSlotAttachment
+    public readonly struct SkeletonSlotAttachment
     {
         public readonly string AttachmentName;
 

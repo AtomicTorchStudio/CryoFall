@@ -10,8 +10,7 @@
 
         public override uint DurabilityMax => 100;
 
-        public override Vector2F FishingLineStartScreenOffset { get; }
-            = (83, -16);
+        public override Vector2F FishingLineStartScreenOffset => (47, 283);
 
         public override double FishingSpeedMultiplier => 1.0;
 

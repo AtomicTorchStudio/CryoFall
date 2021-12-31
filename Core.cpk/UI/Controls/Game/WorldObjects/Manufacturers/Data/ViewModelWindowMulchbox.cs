@@ -4,9 +4,14 @@
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelWindowMulchbox : ViewModelWindowManufacturer
     {
+        private readonly TextureResource infoTextureResource;
+
         private readonly ObjectMulchboxPrivateState privateState;
 
         private readonly IProtoObjectMulchbox protoMulchbox;
@@ -18,12 +23,14 @@
         public ViewModelWindowMulchbox(
             IStaticWorldObject worldObjectManufacturer,
             ObjectMulchboxPrivateState privateState,
-            ManufacturingConfig manufacturingConfig)
+            ManufacturingConfig manufacturingConfig,
+            TextureResource infoTextureResource)
             : base(
                 worldObjectManufacturer,
                 privateState,
                 manufacturingConfig)
         {
+            this.infoTextureResource = infoTextureResource;
             this.protoMulchbox = (IProtoObjectMulchbox)worldObjectManufacturer.ProtoStaticWorldObject;
             this.privateState = privateState;
 
@@ -32,6 +39,8 @@
                 _ => this.NotifyPropertyChanged(nameof(this.OrganicAmount)),
                 this);
         }
+
+        public TextureBrush InfoTextureBrush => Api.Client.UI.GetTextureBrush(this.infoTextureResource);
 
         public ushort OrganicAmount => this.privateState.OrganicAmount;
 

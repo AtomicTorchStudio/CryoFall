@@ -22,6 +22,8 @@
 
         public override double AmmoReloadDuration => 0;
 
+        public override IProtoItem BaseProtoItem => null;
+
         public override bool CanDamageStructures => false;
 
         public override CollisionGroup CollisionGroup => CollisionGroups.HitboxRanged;
@@ -33,6 +35,8 @@
         public override uint DurabilityMax => 0;
 
         public override bool IsLoopedAttackAnimation => false;
+
+        public sealed override bool IsSkinnable => false;
 
         public override string Name => this.ShortId;
 

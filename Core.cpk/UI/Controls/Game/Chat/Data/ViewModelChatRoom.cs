@@ -43,12 +43,22 @@
                         _ => _.IsClosedByCharacterA,
                         _ => this.RefreshTabVisibility(),
                         this);
+
+                    privateChat.ClientSubscribe(
+                        _ => _.ClanTagCharacterB,
+                        _ => this.NotifyPropertyChanged(nameof(this.Title)),
+                        this);
                 }
                 else
                 {
                     privateChat.ClientSubscribe(
                         _ => _.IsClosedByCharacterB,
                         _ => this.RefreshTabVisibility(),
+                        this);
+
+                    privateChat.ClientSubscribe(
+                        _ => _.ClanTagCharacterA,
+                        _ => this.NotifyPropertyChanged(nameof(this.Title)),
                         this);
                 }
 

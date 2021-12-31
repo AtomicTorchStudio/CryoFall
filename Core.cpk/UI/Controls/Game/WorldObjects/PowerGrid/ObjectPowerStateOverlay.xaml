@@ -49,7 +49,5 @@
               Fill="#FFFF4400"
               Width="38"
               Height="38" />
-
     </Grid>
-
 </base:BaseUserControl>

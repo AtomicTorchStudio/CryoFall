@@ -14,6 +14,8 @@
     {
         public override ushort AmmoCapacity => 100;
 
+        public override ushort AmmoConsumptionPerShot => 2;
+
         public override double AmmoReloadDuration => 4;
 
         public override string CharacterAnimationAimingName => "WeaponAiming1Hand";
@@ -44,17 +46,9 @@
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillVehicles>();
 
-        public override ushort AmmoConsumptionPerShot => 2;
-
         protected override string GenerateIconPath()
         {
-            return "Items/Weapons/Ranged/" + this.GetType().Name;
-        }
-
-        protected override WeaponFireScatterPreset PrepareFireScatterPreset()
-        {
-            return new(
-                new[] { -3.0, -1.5, 0.0, 1.5, 3.0 });
+            return "Items/Weapons/Vehicle/" + this.GetType().Name;
         }
 
         protected override WeaponFirePatternPreset PrepareFirePatternPreset()
@@ -62,6 +56,12 @@
             return new(
                 initialSequence: new[] { 0.0, 1.0, 1.5 },
                 cycledSequence: new[] { 2.0 });
+        }
+
+        protected override WeaponFireScatterPreset PrepareFireScatterPreset()
+        {
+            return new(
+                new[] { -3.0, -1.5, 0.0, 1.5, 3.0 });
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()
@@ -72,7 +72,7 @@
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.None)
-                       .Set(textureScreenOffset: (14, 9));
+                       .Set(textureScreenOffset: (125, -67));
         }
 
         protected override void PrepareProtoWeaponRanged(

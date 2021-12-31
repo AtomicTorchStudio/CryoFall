@@ -198,11 +198,15 @@
 
             var protoSkeleton = clientState.CurrentProtoSkeleton;
             var slotName = protoSkeleton.SlotNameItemInHand;
-            var slotOffset = skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
+            var slotOffset = skeletonRenderer.GetSlotScreenOffset(slotName);
 
+            var offset = protoItemToolFishing?.FishingLineStartScreenOffset ?? Vector2F.Zero;
+            offset = (offset.Y, -offset.X);
+            
             var boneWorldPosition = skeletonRenderer.TransformSlotPosition(
                 slotName,
-                slotOffset + protoItemToolFishing?.FishingLineStartScreenOffset,
+                slotOffset
+                + (offset / skeletonRenderer.GetSlotScreenScale(slotName)),
                 out _);
 
             return boneWorldPosition;

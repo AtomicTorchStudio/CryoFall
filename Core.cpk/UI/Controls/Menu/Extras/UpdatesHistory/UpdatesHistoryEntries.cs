@@ -12,6 +12,10 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
+            new Entry("R32—Customizations Update",
+                      new DateTime(2022, month: 1, day: 1),
+                      "Updates/R32.jpg"),
+            
             new Entry("R31—Singleplayer Update",
                       new DateTime(2021, month: 8, day: 25),
                       "Updates/R31.jpg"),
@@ -28,10 +32,9 @@
                       new DateTime(2020, month: 12, day: 1),
                       "Updates/A29.jpg"),
 
-            new Entry("Halloween Event",
+            /*new Entry("Halloween Event",
                       new DateTime(2020, month: 10, day: 28),
-                      // we're officially reusing the assets from the last year's event
-                      "Updates/A23-halloween.jpg"),
+                      "Updates/A23-halloween.jpg"),*/
 
             new Entry("A28—Justice Update",
                       new DateTime(2020, month: 9, day: 25),
@@ -53,9 +56,9 @@
                       new DateTime(2019, month: 11, day: 25),
                       "Updates/A24.jpg"),
 
-            new Entry("Halloween Event",
+            /*new Entry("Halloween Event",
                       new DateTime(2019, month: 10, day: 25),
-                      "Updates/A23-halloween.jpg"),
+                      "Updates/A23-halloween.jpg"),*/
 
             new Entry("A23—Electricity Update",
                       new DateTime(2019, month: 8, day: 12),

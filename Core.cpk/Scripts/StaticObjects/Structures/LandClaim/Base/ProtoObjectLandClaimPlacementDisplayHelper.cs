@@ -77,8 +77,8 @@
 
             // additionally highlight the restricted tiles
             var halfSize = sizeWithGraceArea / 2;
-            for (var x = 1 - halfSize; x <= halfSize; x++)
-            for (var y = 1 - halfSize; y <= halfSize; y++)
+            for (var x = -halfSize; x < halfSize; x++)
+            for (var y = -halfSize; y < halfSize; y++)
             {
                 var checkTile = world.GetTile(startTilePosition.X + x,
                                               startTilePosition.Y + y,

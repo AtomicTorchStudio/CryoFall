@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.GameApi.Data.State;
 
-    public class ItemWithDurabilityPrivateState : BasePrivateState, IItemWithDurabilityPrivateState
+    public class ItemWithDurabilityPrivateState : ItemPrivateState, IItemWithDurabilityPrivateState
     {
         /// <summary>
         /// Current value of durability. Should never exceed the according item max durability.

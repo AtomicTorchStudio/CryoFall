@@ -80,12 +80,12 @@
 
         private void DeleteCraftingQueueItemHandler(CraftingQueueItem craftingQueueItem)
         {
-            if (!craftingQueueItem.Recipe.IsCancellable)
+            if (!craftingQueueItem.RecipeEntry.Recipe.IsCancellable)
             {
                 NotificationSystem.ClientShowNotification(
                     NotificationCannotDegradeableCraftItem_Title,
                     NotificationCannotDegradeableCraftItem_Message,
-                    icon: craftingQueueItem.Recipe.Icon);
+                    icon: craftingQueueItem.RecipeEntry.Recipe.Icon);
                 return;
             }
 

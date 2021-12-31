@@ -821,6 +821,12 @@ Produkuje monety z różnych metali. Może również służyć do przetapiania m
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Wybijarka monet
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Umożliwia wydajny rozkład materii organicznej w kontrolowanym środowisku w celu szybkiego wytworzenia nawozu.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Kompostownik
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 W suszarni można produkować pewne rodzaje żywności, np. suszone grzyby lub mięso.
 

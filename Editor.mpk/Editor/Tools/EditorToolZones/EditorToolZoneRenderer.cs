@@ -263,7 +263,7 @@
             this.RebuildAllRenderers();
         }
 
-        private struct QuadTreeNodeKey : IEquatable<QuadTreeNodeKey>
+        private readonly struct QuadTreeNodeKey : IEquatable<QuadTreeNodeKey>
         {
             public readonly Vector2Ushort Position;
 

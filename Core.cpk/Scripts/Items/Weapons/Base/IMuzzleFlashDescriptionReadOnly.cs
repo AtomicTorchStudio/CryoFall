@@ -18,6 +18,8 @@
 
         TextureAtlasResource TextureAtlas { get; }
 
+        double TextureOriginX { get; }
+
         double TextureScale { get; }
 
         Vector2D TextureScreenOffset { get; }

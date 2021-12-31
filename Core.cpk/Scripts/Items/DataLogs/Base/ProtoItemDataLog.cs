@@ -13,7 +13,7 @@
               TPublicState,
               TClientState>,
           IProtoItemDataLog
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -49,7 +49,10 @@
     }
 
     public abstract class ProtoItemDataLog
-        : ProtoItemDataLog<EmptyPrivateState, EmptyPublicState, EmptyClientState>
+        : ProtoItemDataLog
+            <ItemPrivateState,
+                EmptyPublicState,
+                EmptyClientState>
     {
     }
 }

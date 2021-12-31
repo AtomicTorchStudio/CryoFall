@@ -70,17 +70,17 @@
         {
             config.Stage1
                   .Add<ItemOrePragmium>(count: 3, countRandom: 2)
-                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 2,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage2
                   .Add<ItemOrePragmium>(count: 3, countRandom: 2)
-                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 2,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage3
                   .Add<ItemOrePragmium>(count: 3, countRandom: 2)
-                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 2,  countRandom: 1)
                   .Add<ItemOreLithium>(count: 5,  countRandom: 1);
 
             config.Stage4

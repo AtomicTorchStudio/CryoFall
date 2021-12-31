@@ -30,16 +30,16 @@ namespace AtomicTorch.CBND.CoreMod.Editor.Console.Debug
         {
             var invalidList = Api.FindProtoEntities<IProtoEntity>()
                                  .Where(p => p is IProtoCharacter
-                                             || p is IProtoStatusEffect
-                                             || p is Recipe
-                                             || p is IProtoItem
-                                             || p is IProtoPerk
-                                             || p is IProtoQuest
-                                             || p is IProtoSkill
-                                             || p is IProtoStaticWorldObject
-                                             || p is TechNode
-                                             || p is TechGroup
-                                             || p is IProtoTile)
+                                                 or IProtoStatusEffect
+                                                 or Recipe
+                                                 or IProtoItem
+                                                 or IProtoPerk
+                                                 or IProtoQuest
+                                                 or IProtoSkill
+                                                 or IProtoStaticWorldObject
+                                                 or TechNode
+                                                 or TechGroup
+                                                 or IProtoTile)
                                  .Where(p => !IsValidName(p.Name))
                                  .OrderBy(p => p.Id)
                                  .ToList();

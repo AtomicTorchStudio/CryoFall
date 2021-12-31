@@ -45,7 +45,7 @@
             controlRecipeBreakdown.InheritedViewModel = viewModel;
 
             InjectedControls.Add(control, controlRecipeBreakdown);
-            window.AddExtensionControl(controlRecipeBreakdown);
+            window.AddExtensionControl(controlRecipeBreakdown, leftPanel: true);
         }
 
         private static void RemoveControl(Control control)

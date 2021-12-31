@@ -12,6 +12,8 @@
         : ProtoItemWeaponGrenadeLauncher,
           IProtoItemVehicleWeapon
     {
+        public override bool IsSkinnable => false;
+
         public abstract VehicleWeaponHardpoint WeaponHardpoint { get; }
 
         public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)

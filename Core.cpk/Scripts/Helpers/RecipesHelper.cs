@@ -32,8 +32,8 @@ namespace AtomicTorch.CBND.CoreMod.Helpers
                     continue;
                 }
 
-                if (recipe is IRecipeBarrelAddLiquid
-                    || recipe is IRecipeBarrelRemoveLiquid)
+                if (recipe is IRecipeBarrelAddLiquid 
+                        or IRecipeBarrelRemoveLiquid)
                 {
                     continue;
                 }

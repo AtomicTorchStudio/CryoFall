@@ -30,7 +30,6 @@
                     $"Organic amount of mulchbox after crafting mulch become negative: {organicAmount}. {objectMulchbox}");
                 organicAmount = 0;
             }
-
             privateState.OrganicAmount = (ushort)organicAmount;
         }
 
@@ -49,7 +48,7 @@
             InputItems inputItems,
             OutputItems outputItems)
         {
-            stations.Add<ObjectMulchbox>();
+            stations.AddAll<IProtoObjectMulchbox>();
 
             duration = CraftingDuration.VeryLong;
 

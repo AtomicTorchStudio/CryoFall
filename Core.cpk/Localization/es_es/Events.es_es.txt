@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 Migración de aporreadores
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Importante: Las armas de fuego no sirven para nada. Usa armas cuerpo o a cuerpo o basadas en el calor.
+Importante: Las armas de fuego no son efectivas. Usa armas cuerpo a cuerpo.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 En las zonas montañosas ha aparecido una extraña especie de planta alienígena que hace casi imposible la prospección. No obstante, es una gran oportunidad para obtener recursos raros.

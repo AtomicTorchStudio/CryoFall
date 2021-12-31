@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Item prototype for head equipment.
@@ -21,7 +22,7 @@
               TPublicState,
               TClientState>,
           IProtoItemEquipmentHead
-        where TPrivateState : BasePrivateState, IItemWithDurabilityPrivateState, new()
+        where TPrivateState : ItemPrivateState, IItemWithDurabilityPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -31,9 +32,11 @@
 
         public virtual bool IsHeadVisible => true;
 
-        public override bool RequireEquipmentTexturesMale => true;
-        
+        public override bool IsSkinnable => true;
+
         public override bool RequireEquipmentTexturesFemale => false;
+
+        public override bool RequireEquipmentTexturesMale => true;
 
         /// <inheritdoc />
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; private set; }
@@ -41,17 +44,28 @@
         protected override double DefenseMultiplier => DefaultDefenseMultipliers.Head;
 
         public virtual void ClientGetHeadSlotSprites(
-            IItem item,
+            [CanBeNull] IItem item,
             bool isMale,
             SkeletonResource skeletonResource,
             bool isFrontFace,
+            bool isPreview,
             out string spriteFront,
             out string spriteBehind)
         {
-            this.VerifyGameObject(item);
-            var slotAttachments = isMale
+            IReadOnlyList<SkeletonSlotAttachment> slotAttachments;
+            if (this.ClientIsMustUseDefaultAppearance(item?.Container.OwnerAsCharacter,
+                                                      isPreview))
+            {
+                slotAttachments = isMale
+                                      ? ((IProtoItemEquipment)this.BaseProtoItem).SlotAttachmentsMale
+                                      : ((IProtoItemEquipment)this.BaseProtoItem).SlotAttachmentsFemale;
+            }
+            else
+            {
+                slotAttachments = isMale
                                       ? this.SlotAttachmentsMale
                                       : this.SlotAttachmentsFemale;
+            }
 
             ProtoItemEquipmentHeadHelper.ClientFindDefaultHeadSprites(
                 slotAttachments,

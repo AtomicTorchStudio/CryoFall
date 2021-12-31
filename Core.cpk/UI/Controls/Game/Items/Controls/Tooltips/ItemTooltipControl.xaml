@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelItemTooltip, IsDesignTimeCreatable=True}"
@@ -26,10 +27,39 @@
 
         <StackPanel Grid.Column="0"
                     Orientation="Vertical">
+            <!-- Name display (for a non-skinned item) -->
             <TextBlock Text="{Binding Name}"
+                       Visibility="{Binding BaseProtoItemName, Converter={StaticResource EmptyStringToVisibilityConverter}}"
                        FontWeight="Bold"
-                       FontSize="13"
+                       FontSize="13.5"
                        TextWrapping="Wrap" />
+
+            <!-- Name display (for skinned item) -->
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding BaseProtoItemName, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}">
+                <WrapPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding BaseProtoItemName}"
+                               FontWeight="Bold"
+                               FontSize="13.5"
+                               TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name, StringFormat={} ({0})}"
+                                   FontWeight="Bold"
+                                   FontSize="13.5"
+                                   TextWrapping="Wrap"
+                                   Foreground="{StaticResource BrushColor6}" />
+                    </StackPanel>
+                </WrapPanel>
+                <Grid
+                    Visibility="{Binding CreatedByPlayerName, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Margin="0,-1,0,2">
+                    <TextBlock Text="{Binding CreatedByPlayerName, StringFormat={x:Static loc:CoreStrings.Item_CreatedBy_Format}}"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushColorGreen5}"
+                               FontSize="11" 
+                               TextWrapping="Wrap" />
+                </Grid>
+            </StackPanel>
 
             <TextBlock Text="{Binding Description}"
                        TextWrapping="Wrap"

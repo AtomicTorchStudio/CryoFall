@@ -25,7 +25,7 @@
     </core:BaseUserControlWithWindow.Resources>
 
     <core:GameWindow x:Name="GameWindow"
-                     Width="312"
+                     Width="NaN"
                      CloseByEscapeKey="True"
                      ZIndexOffset="100000"
                      FocusOnControl="{Binding ElementName=ButtonCancel}">

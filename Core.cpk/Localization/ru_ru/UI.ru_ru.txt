@@ -349,6 +349,24 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Использовать предмет ({0})?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+Вы можете попробовать откатиться к последней сохраненной версии.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall обнаружил повреждение сохраненных данных.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+Пожалуйста, перейдите в папку сохраненных игр и поищите резервные версии этого файла:
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`Возможные причины:
+[*] Неполадки на жестком диске
+[*] Ошибка доступа к чтению/записи файлов ОС
+[*] и т. д.`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+Не удается загрузить сохраненную игру
+
 UI/CoreStrings@DialogClearList_Message:
 Вы точно хотите очистить этот список?
 
@@ -402,6 +420,9 @@ UI/CoreStrings@EventDamage_SuccessMessage_Format:
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Официальный сервер Discord для CryoFall (только на английском)
+
+UI/CoreStrings@Extras_Features_Title:
+Особенности
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 Cлайд-шоу особенностей CryoFall
@@ -915,6 +936,18 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Требуется
+
+UI/CoreStrings@Item_AvailableInTechTier:
+Доступно для крафта: {0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+Недостаточная долговечность предмета (требуется минимум {0}%).
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+Недостаточная свежесть предмета (требуется минимум {0}%).
+
+UI/CoreStrings@Item_CreatedBy_Format:
+Создано: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 Испортится через: {0}
@@ -1803,8 +1836,119 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 Навык
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+Скин ограниченного издания (нельзя получить в данный момент).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+Доступно в Наборе поддержки.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+Можно открыть в игре.
+
+UI/CoreStrings@Skin_Default:
+По умолчанию
+
+UI/CoreStrings@Skin_NotOwned:
+У вас нет этого скина.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+Посмотреть скины
+
+UI/CoreStrings@Skins_Button_Buy:
+Купить
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+Получить
+
+UI/CoreStrings@Skins_EmptyList:
+В этом списке нет доступных скинов.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+Рекомендуемые скины
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+Входите в игру еще {0} дн., чтобы получить скин бесплатно.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+Прогресс до бесплатного скина
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+Скины можно использовать на любых серверах (официальных, серверах сообщества, частных или локальных).
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+Вы можете создавать и делиться предметами со скинами со своими друзьями, даже если у них нет этого скина.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+Скины можно применять к некоторым предметам, которые вы создаете в игре (оружие и снаряжение).
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* Все цены отрегулированы согласно региональным ценам сервиса Steam.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+Покупая скины, вы поддерживаете разработчиков. Спасибо!
+
+UI/CoreStrings@Skins_SelectSkin:
+Выберите скин:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} (скин для {1})
+
+UI/CoreStrings@Skins_SkinOwned:
+Приобретено
+
+UI/CoreStrings@Skins_SkinUnlocked:
+Скин открыт
+
+UI/CoreStrings@Skins_Tab_Equipment:
+СНАРЯЖЕНИЕ
+
+UI/CoreStrings@Skins_Tab_First:
+ПОДБОРКА
+
+UI/CoreStrings@Skins_Tab_Owned:
+МОИ СКИНЫ
+
+UI/CoreStrings@Skins_Tab_Weapons:
+ОРУЖИЕ
+
+UI/CoreStrings@Skins_Title:
+Скины
+
 UI/CoreStrings@SortBy:
 Сортировка
+
+UI/CoreStrings@StatisticsDeaths:
+Смерти
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+Растения, собранные с фермы
+
+UI/CoreStrings@StatisticsMineralsMined:
+Добытые минералы
+
+UI/CoreStrings@StatisticsPvpAssists:
+Ассисты
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+У/С
+
+UI/CoreStrings@StatisticsPvpKills:
+Убийств
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+Таблица лидеров PvP
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP-счет
+
+UI/CoreStrings@StatisticsTitle:
+Личная статистика
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+Заработанные ОТ
+
+UI/CoreStrings@StatisticsTreesCut:
+Срубленные деревья
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Интенсивность
@@ -1836,6 +1980,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 Значок фаната
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+Открыть магазин
 
 UI/CoreStrings@SupporterPack_Description:
 `Набор поддержки — это коллекция приятных бонусов для тех, кто хочет поддержать разработчиков CryoFall. В знак благодарности в чате игры будет отображаться особый значок фаната.
@@ -2520,7 +2667,7 @@ UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccou
 Это не обязательно. Если хотите, вы можете продолжить играть со своей имеющейся учетной записью Steam. Но за привязку к учетной записи AtomicTorch.com вас ждут дополнительные преимущества.
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-Это делать необязательно, вы можете продолжить играть с учетной записью Steam. Однако привязка даст вам дополнительные возможности.
+Это делать необязательно, вы можете продолжить играть со своей имеющейся учетной записью Steam. Но за это вас ждут дополнительные преимущества.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Вы можете связать свою учетную запись Steam с учетной записью AtomicTorch.com или создать новую.

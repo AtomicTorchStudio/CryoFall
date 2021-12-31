@@ -21,6 +21,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Item prototype for head equipment with light.
@@ -91,19 +92,31 @@
         }
 
         public override void ClientGetHeadSlotSprites(
-            IItem item,
+            [CanBeNull] IItem item,
             bool isMale,
             SkeletonResource skeletonResource,
             bool isFrontFace,
+            bool isPreview,
             out string spriteFront,
             out string spriteBehind)
         {
-            this.VerifyGameObject(item);
-            var slotAttachments = isMale
+            IReadOnlyList<SkeletonSlotAttachment> slotAttachments;
+            if (this.ClientIsMustUseDefaultAppearance(item?.Container.OwnerAsCharacter,
+                                                      isPreview))
+            {
+                slotAttachments = isMale
+                                      ? ((IProtoItemEquipment)this.BaseProtoItem).SlotAttachmentsMale
+                                      : ((IProtoItemEquipment)this.BaseProtoItem).SlotAttachmentsFemale;
+            }
+            else
+            {
+                slotAttachments = isMale
                                       ? this.SlotAttachmentsMale
                                       : this.SlotAttachmentsFemale;
+            }
 
-            var isActive = GetPublicState(item).IsActive;
+            var isActive = item is null // in case of preview we want to display the active sprite
+                           || GetPublicState(item).IsActive;
 
             ProtoItemEquipmentHeadHelper.ClientFindDefaultHeadSprites(
                 slotAttachments,
@@ -123,6 +136,7 @@
                                               isMale,
                                               skeletonResource,
                                               isFrontFace,
+                                              isPreview,
                                               out spriteFront,
                                               out spriteBehind);
             }
@@ -140,8 +154,12 @@
             List<IClientComponent> skeletonComponents,
             bool isPreview)
         {
-            var isActive = GetPublicState(item).IsActive;
+            if (item is null)
+            {
+                return;
+            }
 
+            var isActive = GetPublicState(item).IsActive;
             if (!isActive)
             {
                 // not active light
@@ -251,14 +269,14 @@
 
             var playerCharacter = Client.Characters.CurrentPlayerCharacter;
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(playerCharacter)
-                    is not null)
+                is not null)
             {
                 return;
             }
 
             ClientTryRefill(item);
             if (ItemFuelRefillSystem.Instance.SharedGetCurrentActionState(playerCharacter)
-                    is not null)
+                is not null)
             {
                 return;
             }

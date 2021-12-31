@@ -20,12 +20,7 @@
             duration = CraftingDuration.VeryLong;
 
             inputItems.Add<ItemIngotGold>(count: 20);
-            inputItems.Add<ItemGemDiamond>(count: 1);
-            inputItems.Add<ItemGemEmerald>(count: 1);
-            inputItems.Add<ItemGemRuby>(count: 1);
-            inputItems.Add<ItemGemSapphire>(count: 1);
-            inputItems.Add<ItemGemTopaz>(count: 1);
-            inputItems.Add<ItemGemTourmaline>(count: 1);
+            inputItems.Add<ItemGemstones>(count: 5);
 
             outputItems.Add<ItemGoldHelmet>();
         }

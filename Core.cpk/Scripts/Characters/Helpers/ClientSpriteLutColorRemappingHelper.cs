@@ -12,7 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.Characters
     {
         private static readonly IRenderingClientService Renderer = Api.Client.Rendering;
 
-        public static async Task<IRenderTarget2D> ApplyColorizerLut(
+        public static async Task<IRenderTarget2D> ApplyColorizerLutAsync(
             ProceduralTextureRequest request,
             ITextureResource sourceTextureResource,
             string lutTextureFilePath)
@@ -60,7 +60,7 @@ namespace AtomicTorch.CBND.CoreMod.Characters
             string lutTextureFilePath,
             sbyte spriteQualityOffset)
         {
-            var renderTarget2D = await ApplyColorizerLut(request,
+            var renderTarget2D = await ApplyColorizerLutAsync(request,
                                                          textureResource,
                                                          lutTextureFilePath);
 

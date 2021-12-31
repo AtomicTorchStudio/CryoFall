@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 XP de compétences
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Structures] Possibilité de construire sur les prairies
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Délabrement] Délabrement des structures abandonnées
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Délabrement] Temporisation du délabrement des revendications territoriales abandonnées
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+Panneaux textuels disponibles
 
 Scripts/Rates/RateThirst@Name:
 Aggravation de la soif

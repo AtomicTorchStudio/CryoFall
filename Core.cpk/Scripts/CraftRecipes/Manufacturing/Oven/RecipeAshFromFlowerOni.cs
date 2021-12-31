@@ -23,7 +23,7 @@
 
             inputItems.Add<ItemFlowerOni>(count: 1);
 
-            outputItems.Add<ItemAsh>(count: 5);
+            outputItems.Add<ItemAsh>(count: 10);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",

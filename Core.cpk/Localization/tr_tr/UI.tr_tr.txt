@@ -349,6 +349,24 @@ Patlama zamanlayıcısı alan tutucu yok edildiğinde, yapı puanı sıfıra ind
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 {0} kullanmak istediğine emin misin?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+Son yedek versiyona dönmeyi deneyebilirsin.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall kayıtlı oyun veri bozukluğu tespit etti.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+Lütfen kayıtlı dosyalar arasında dolaşıp bu dosya için yedek var mı kontrol edin:
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`Olası sebepler:
+[*] Hard disk hatası
+[*] Sistem dosyası okuma/yazma erişim hatası
+[*] vb.`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+Kayıtlı oyun yüklenemiyor
+
 UI/CoreStrings@DialogClearList_Message:
 Bu listeyi temizlemek istediğinize emin misiniz?
 
@@ -402,6 +420,9 @@ Toplamda {0}% hasar verdin. Yağmadan payın {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Resmî CryoFall Discord sunucusu (Sadece İngilizce)
+
+UI/CoreStrings@Extras_Features_Title:
+Özellikler
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 CryoFall özellikleri slayt gösterisi
@@ -915,6 +936,18 @@ Yüklemek için bir implant yerleştir
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Gereksinimler
+
+UI/CoreStrings@Item_AvailableInTechTier:
+{0} üretim için uygun
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+Eşya dayanıklılığı fazla düşük (minimum %{0} gerekli).
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+Eşya tazeliği fazla düşük (minimum %{0} gerekli).
+
+UI/CoreStrings@Item_CreatedBy_Format:
+Yaratan: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 Bozulma süresi: {0}
@@ -1811,8 +1844,119 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 Yetenek
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+Sınırlı basım skin (şu an elde edilemez).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+Destekçi Paketi'nin parçası olarak bulunmaktadır.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+Oyunu oynayarak kilidini aç.
+
+UI/CoreStrings@Skin_Default:
+Olağan
+
+UI/CoreStrings@Skin_NotOwned:
+Bu skine sahip değilsin.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+Skinler arasında gez
+
+UI/CoreStrings@Skins_Button_Buy:
+Satın al
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+Al
+
+UI/CoreStrings@Skins_EmptyList:
+Bu listede müsait skin yok.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+Öne çıkan skinler
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+Bedava skin almak için {0} gün daha giriş yap.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+Bedava skin ilerlemesi
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+Skinler her sunucuda kullanılabilir (resmî, topluluk, özel veya yerel).
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+Belli bir skine sahip olmasalar bile skinli eşyaları üretebilir ve arkadaşlarınla paylaşabilirsin.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+Skinler oyunda ürettiğin belli başlı eşyalara  uygulanabilir (silah ve ekipman).
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* Tüm fiyatlar Steam'in bölgesel fiyatlandırmasına göre yapılır.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+Skin satın alarak geliştiricileri destekleyebilirsiniz. Teşekkürler!
+
+UI/CoreStrings@Skins_SelectSkin:
+Skin seç:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} ({1} skini)
+
+UI/CoreStrings@Skins_SkinOwned:
+Sahip Olunan
+
+UI/CoreStrings@Skins_SkinUnlocked:
+Açılan Skin
+
+UI/CoreStrings@Skins_Tab_Equipment:
+EKİPMAN
+
+UI/CoreStrings@Skins_Tab_First:
+ÖNE ÇIKAN
+
+UI/CoreStrings@Skins_Tab_Owned:
+SAHİP OLUNAN
+
+UI/CoreStrings@Skins_Tab_Weapons:
+SİLAHLAR
+
+UI/CoreStrings@Skins_Title:
+Skinler
+
 UI/CoreStrings@SortBy:
 Sırala
+
+UI/CoreStrings@StatisticsDeaths:
+Ölümler
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+Hasat edilen çiftlik bitkileri
+
+UI/CoreStrings@StatisticsMineralsMined:
+Çıkarılan mineraller
+
+UI/CoreStrings@StatisticsPvpAssists:
+Asistler
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+K/D
+
+UI/CoreStrings@StatisticsPvpKills:
+Öldürmeler
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+PvP Lider Tablosu
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP skoru
+
+UI/CoreStrings@StatisticsTitle:
+Kişisel istatistikler
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+Kazanılan toplam öğrenme puanı
+
+UI/CoreStrings@StatisticsTreesCut:
+Kesilen ağaçlar
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Yoğunluk
@@ -1844,6 +1988,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 Destekçi rozeti
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+Mağaza sayfasını aç
 
 UI/CoreStrings@SupporterPack_Description:
 `Destekçi Paketi, CryoFall geliştiricilerini desteklemek için ek bir adım atmak isteyenlere verilen ekstra eşyalar koleksiyonudur. Minnettarlığımızın bir göstergesi olarak, oyun sohbetinde, özel destekçi rozeti görünecektir.

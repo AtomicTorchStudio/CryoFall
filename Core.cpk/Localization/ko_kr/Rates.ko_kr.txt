@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 스킬 XP
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Structures] 초원에 건설 가능
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Decay] 버려진 구조물 부식
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Decay] 버려진 토지 점유소 부식 지연 지속 시간
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+문자 표지판 이용 가능
 
 Scripts/Rates/RateThirst@Name:
 갈증률

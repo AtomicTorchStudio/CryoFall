@@ -67,6 +67,36 @@ Emplacement 9
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 Emplacement 0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+Utilisation rapide - Emplacement 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+Utilisation rapide - Emplacement 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+Utilisation rapide - Emplacement 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+Utilisation rapide - Emplacement 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+Utilisation rapide - Emplacement 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+Utilisation rapide - Emplacement 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+Utilisation rapide - Emplacement 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+Utilisation rapide - Emplacement 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+Utilisation rapide - Emplacement 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+Utilisation rapide - Emplacement 0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Zoom avant caméra
 

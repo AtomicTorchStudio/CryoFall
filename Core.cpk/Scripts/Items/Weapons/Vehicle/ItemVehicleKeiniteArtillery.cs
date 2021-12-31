@@ -160,7 +160,7 @@
 
         protected override string GenerateIconPath()
         {
-            return "Items/Weapons/Ranged/" + this.GetType().Name;
+            return "Items/Weapons/Vehicle/" + this.GetType().Name;
         }
 
         protected void PrepareDamageDescriptionStructures(
@@ -186,7 +186,7 @@
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.None)
-                       .Set(textureScreenOffset: (14, 9));
+                       .Set(textureScreenOffset: (100, -89));
         }
 
         protected override void PrepareProtoGrenadeLauncher(out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos)

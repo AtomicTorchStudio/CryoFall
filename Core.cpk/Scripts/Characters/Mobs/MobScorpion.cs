@@ -69,7 +69,7 @@
                 .Add<ItemSlime>(count: 2,         countRandom: 2)
                 // requires device
                 .Add<ItemKeiniteRaw>(count: 2,
-                                     countRandom: 1,
+                                     countRandom: 2,
                                      condition: ItemKeiniteCollector.ConditionHasDeviceEquipped);
 
             // extra loot

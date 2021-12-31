@@ -20,9 +20,9 @@
             duration = CraftingDuration.Short;
 
             inputItems.Add<ItemExplosives>(count: 150);
-            inputItems.Add<ItemIngotSteel>(count: 25);
-            inputItems.Add<ItemIngotLithium>(count: 25);
-            inputItems.Add<ItemOrePragmium>(count: 25);
+            inputItems.Add<ItemIngotSteel>(count: 20);
+            inputItems.Add<ItemIngotLithium>(count: 20);
+            inputItems.Add<ItemOrePragmium>(count: 20);
             inputItems.Add<ItemBatteryDisposable>(count: 10);
             inputItems.Add<ItemComponentsElectronic>(count: 10);
 

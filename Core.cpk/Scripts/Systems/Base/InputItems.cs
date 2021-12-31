@@ -51,9 +51,10 @@
             return this.items;
         }
 
-        public List<ProtoItemWithCount> GetInternalList()
+        public InputItems Clear()
         {
-            return this.items;
+            this.items.Clear();
+            return this;
         }
     }
 }

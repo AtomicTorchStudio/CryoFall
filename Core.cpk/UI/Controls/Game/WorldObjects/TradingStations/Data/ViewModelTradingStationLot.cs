@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -20,6 +21,8 @@
         private readonly Action<TradingStationLot, ViewModelTradingStationLotEditor> callbackSaveHandler;
 
         private readonly TradingStationLot lot;
+
+        private readonly IClientItemsContainer handItemsContainer = ClientItemsManager.HandContainer;
 
         public ViewModelTradingStationLot(
             TradingStationLot lot,
@@ -40,6 +43,7 @@
                                      _ =>
                                      {
                                          this.NotifyPropertyChanged(nameof(this.ItemOnSaleInstance));
+                                         this.NotifyPropertyChanged(nameof(this.Icon));
                                          this.RefreshOverlayControls();
                                      },
                                      this);
@@ -66,21 +70,52 @@
                                          this.NotifyPropertyChanged(nameof(this.ProblemText));
                                      },
                                      this);
+            
+            handItemsContainer.StateHashChanged += this.HandItemsContainerItemsChanged;
+        }
+
+        private void HandItemsContainerItemsChanged()
+        {
+            NotifyPropertyChanged(nameof(this.IsSellSlotHighlighted));
         }
 
         public BaseCommand CommandBuy => new ActionCommand(this.ExecuteCommandBuy);
 
         public BaseCommand CommandConfigure => new ActionCommand(this.ExecuteCommandConfigure);
 
-        public BaseCommand CommandSell => new ActionCommand(this.ExecuteCommandSell);
+        public BaseCommand CommandSellItem
+            => new ActionCommandWithParameter(item => this.ExecuteCommandSell((IItem)item));
 
-        public Brush Icon => Api.Client.UI.GetTextureBrush(this.lot.ProtoItem?.Icon);
+        public Brush Icon
+            => Api.Client.UI.GetTextureBrush(
+                (this.lot.ItemOnSale?.ProtoItem ?? this.lot.ProtoItem)
+                ?.Icon);
 
         public Brush IconCoinPenny => UITradingIcons.LazyIconCoinPenny.Value;
 
         public Brush IconCoinShiny => UITradingIcons.LazyIconCoinShiny.Value;
 
         public bool IsAvailable => this.lot.State == TradingStationLotState.Available;
+
+        public bool IsSellSlotHighlighted
+        {
+            get
+            {
+                var itemInHand = this.handItemsContainer.GetItemAtSlot(0);
+                if (itemInHand is null
+                    || this.lot.ProtoItem is null)
+                {
+                    // don't handle this case
+                    return true;
+                }
+
+                return TradingStationsSystem.SharedIsValidItemForTradeOperation(
+                           itemInHand,
+                           this.lot.ProtoItem,
+                           this.lot.MinQualityPercent)
+                       != TradingStationsSystem.TradeErrorCode.ItemPrototypeMismatch;
+            }
+        }
 
         public bool IsEnabled => this.lot.State != TradingStationLotState.Disabled;
 
@@ -100,16 +135,16 @@
 
         protected override void DisposeViewModel()
         {
+            handItemsContainer.StateHashChanged -= this.HandItemsContainerItemsChanged;
             WindowTradingStationLotEditor.CloseWindowIfOpened();
             base.DisposeViewModel();
         }
 
         private void ExecuteCommandBuy()
         {
-            TradingStationsSystem.ClientRequestExecuteTrade(
+            TradingStationsSystem.ClientRequestExecuteBuy(
                 (IStaticWorldObject)this.lot.GameObject,
-                this.lot,
-                isPlayerBuying: true);
+                this.lot);
         }
 
         private void ExecuteCommandConfigure()
@@ -128,12 +163,12 @@
             }
         }
 
-        private void ExecuteCommandSell()
+        private void ExecuteCommandSell(IItem item)
         {
-            TradingStationsSystem.ClientRequestExecuteTrade(
+            TradingStationsSystem.ClientRequestExecuteSell(
                 (IStaticWorldObject)this.lot.GameObject,
                 this.lot,
-                isPlayerBuying: false);
+                item);
         }
 
         private string GetProblemText()

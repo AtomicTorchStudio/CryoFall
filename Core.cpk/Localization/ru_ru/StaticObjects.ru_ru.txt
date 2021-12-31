@@ -821,6 +821,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Пресс для чеканки монет
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Обеспечивает эффективное разложение органических веществ в контролируемой среде для ускоренного получения удобрений.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Барабан для удобрений
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 С помощью этого шкафа можно готовить особые виды продовольствия, например, сушеные грибы и мясо.
 

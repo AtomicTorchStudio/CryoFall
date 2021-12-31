@@ -232,6 +232,183 @@ Usar
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 Este item não pode ser usado enquanto você estiver dirigindo um veículo.
 
+Scripts/Items/Base/SkinName@Alien:
+Alienígena
+
+Scripts/Items/Base/SkinName@Aquamarine:
+Água-marinha
+
+Scripts/Items/Base/SkinName@Aviator:
+Aviador
+
+Scripts/Items/Base/SkinName@Biker:
+Ciclista
+
+Scripts/Items/Base/SkinName@Buccaneer:
+Bucaneiro
+
+Scripts/Items/Base/SkinName@Commando:
+Comando
+
+Scripts/Items/Base/SkinName@Contagion:
+Contágio
+
+Scripts/Items/Base/SkinName@Cork:
+Rolha
+
+Scripts/Items/Base/SkinName@Cossack:
+Cossaco
+
+Scripts/Items/Base/SkinName@Cowboy:
+Caubói
+
+Scripts/Items/Base/SkinName@DesertCamo:
+Camuflagem de deserto
+
+Scripts/Items/Base/SkinName@Elite:
+Elite
+
+Scripts/Items/Base/SkinName@Emerald:
+Esmeralda
+
+Scripts/Items/Base/SkinName@Emperor:
+Imperador
+
+Scripts/Items/Base/SkinName@Executioner:
+Executor
+
+Scripts/Items/Base/SkinName@Explorer:
+Explorador
+
+Scripts/Items/Base/SkinName@Fancy:
+Elegante
+
+Scripts/Items/Base/SkinName@ForestCamo:
+Camuflagem de floresta
+
+Scripts/Items/Base/SkinName@Graphene:
+Grafeno
+
+Scripts/Items/Base/SkinName@Hardened:
+Endurecido
+
+Scripts/Items/Base/SkinName@Halloween:
+Halloween
+
+Scripts/Items/Base/SkinName@Holidays:
+Natal
+
+Scripts/Items/Base/SkinName@Hunter:
+Caçador
+
+Scripts/Items/Base/SkinName@Iridium:
+Irídio
+
+Scripts/Items/Base/SkinName@Italian:
+Italiano
+
+Scripts/Items/Base/SkinName@Knight:
+Cavaleiro
+
+Scripts/Items/Base/SkinName@Lamellar:
+Lamelar
+
+Scripts/Items/Base/SkinName@Lightning:
+Relâmpago
+
+Scripts/Items/Base/SkinName@Lumen:
+Lúmen
+
+Scripts/Items/Base/SkinName@Magma:
+Magma
+
+Scripts/Items/Base/SkinName@Marauder:
+Saqueador
+
+Scripts/Items/Base/SkinName@Mercenary:
+Mercenário
+
+Scripts/Items/Base/SkinName@Modern:
+Moderno
+
+Scripts/Items/Base/SkinName@Necromancer:
+Necromante
+
+Scripts/Items/Base/SkinName@Noble:
+Nobre
+
+Scripts/Items/Base/SkinName@Nomad:
+Nômade
+
+Scripts/Items/Base/SkinName@Pantheon:
+Panteão
+
+Scripts/Items/Base/SkinName@Phoenix:
+Fênix
+
+Scripts/Items/Base/SkinName@Pirate:
+Pirata
+
+Scripts/Items/Base/SkinName@Primitive:
+Primitivo
+
+Scripts/Items/Base/SkinName@Puffer:
+Acolchoado
+
+Scripts/Items/Base/SkinName@RedMarble:
+Mármore escarlate
+
+Scripts/Items/Base/SkinName@Redwood:
+Sequoia
+
+Scripts/Items/Base/SkinName@Revolutionary:
+Revolucionário
+
+Scripts/Items/Base/SkinName@Roots:
+Raízes
+
+Scripts/Items/Base/SkinName@Ruby:
+Rubi
+
+Scripts/Items/Base/SkinName@Sapphire:
+Safira
+
+Scripts/Items/Base/SkinName@Shaman:
+Xamã
+
+Scripts/Items/Base/SkinName@Sheriff:
+Xerife
+
+Scripts/Items/Base/SkinName@Ski:
+Esqui
+
+Scripts/Items/Base/SkinName@Skull:
+Caveira
+
+Scripts/Items/Base/SkinName@Snake:
+Cobra
+
+Scripts/Items/Base/SkinName@Straw:
+Palha
+
+Scripts/Items/Base/SkinName@Topaz:
+Topázio
+
+Scripts/Items/Base/SkinName@Tourmaline:
+Turmalina
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+Camuflagem urbana
+
+Scripts/Items/Base/SkinName@Ushanka:
+Ushanka
+
+Scripts/Items/Base/SkinName@Voodoo:
+Vodu
+
+Scripts/Items/Base/SkinName@Wasp:
+Vespa
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Registro de dados (criptografado)
 
@@ -307,13 +484,13 @@ Armadura de proteção ambiental avançada que oferece a combinação ideal de c
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 Traje A.P.A.R.T.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
 Esta armadura de ataque especial oferece surpreendente proteção contra fogo inimigo sem comprometer outras áreas.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
 Armadura de assalto
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 Capacete de armadura de assalto
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Sem combustível
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 Para ativar a luz do capacete, equipe este item e pressione a tecla \[{0}\].
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 A armadura de osso oferece uma boa proteção, pelo preço, sendo uma ótima opção inicial.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
 Armadura de osso
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-Capacete de osso fechado
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+Capacete de osso
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-Capacete de osso com chifre
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 Não é a coisa mais bonita do mundo, mas, na falta de algo melhor, protege. Oferece proteção ambiental melhor do que as alternativas equivalentes.
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
 Armadura trançada
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 Capacete trançado
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-Capacete improvisado com lâmpada
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
+Não oferece proteção nenhuma. Talvez contra mosquito, no máximo.
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
-Não oferece proteção nenhuma. Talvez contra mosquito, no máximo?
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 Camisa de pano
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 Chapéu de pano
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
-Boa armadura inicial, principalmente para se proteger do frio. Não é muito cara e é confortável!
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
+Uma boa armadura inicial, principalmente para se proteger do frio. Não é muito cara e é confortável!
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 Casaco de pele
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-Chapéu de pele com rabo
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+Chapéu felpudo
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-Chapéu cossaco
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
+Um traje luxuoso de ouro. Digno de grandes soberanos.
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-Chapéu ushanka
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
-Traje luxuoso de ouro. Digno de grandes soberanos.
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 Armadura de ouro
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 Coroa de ouro
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 Traje criado especialmente para proteger o usuário de grande parte dos riscos ambientais. Não deve ser usado em combate, por ser muito frágil.
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 Traje de proteção
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
-A armadura de couro oferece uma boa proteção geral, sendo ideal para os primeiros estágios de desenvolvimento.
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
+A armadura de couro oferece uma boa proteção geral e é ideal para os primeiros estágios de desenvolvimento.
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Armadura de couro
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-Chapéu de vaqueiro
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+Chapéu de couro
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-Chapéu de piloto
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
+A armadura de metal oferece uma ótima proteção contra ataques físicos, mas praticamente não protege contra riscos ambientais.
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-Chapéu de pirata
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
-A armadura de metal oferece uma ótima proteção contra ataques físicos, mas quase não protege contra riscos ambientais.
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
 Armadura de metal
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-Capacete de metal fechado
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+Capacete de metal
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-Capacete de crânio de metal
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
 O material avançado usado na fabricação dessa armadura oferece proteção contra pequenas armas de fogo e outras armas comuns.
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
 Armadura militar
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 Capacete militar
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+Capacete improvisado com lâmpada
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 Colete especial repleto de explosivos. Explode automaticamente quando seu usuário morre para que ele possa se vingar.
@@ -469,43 +628,34 @@ Máscara de oxigênio padrão que filtra partículas radioativas e gases nocivos
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 Máscara de oxigênio
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-Os capacetes de segurança oferecem proteção básica para a cabeça contra contusões, escombros, choques elétricos e outros perigos.
-
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-Capacete de segurança
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
 Armadura experimental com estrutura formada por uma malha de prágmio e finas placas de metal. É muito leve e resistente.
 
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
 Armadura de prágmio
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
-A malha grossa acolchoada oferece um nível bom e inesperado de proteção contra todos os tipos de dano e efeitos ambientais.
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
+A malha grossa acolchoada oferece um bom e inesperado nível de proteção contra todos os tipos de dano e efeitos ambientais.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 Armadura acolchoada
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-Chapéu acolchoado
-
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
 Capacete acolchoado
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
 A defesa suprema. Esta armadura de batalha protegerá você contra tudo o que te atingir, ao custo de reduzir sua mobilidade.
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 Armadura superpesada
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
 A necessidade é a mãe da invenção. Não é muito confortável, mas é uma proteção inicial muito boa.
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 Armadura de madeira
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 Capacete de madeira
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Pele animal. Pode ser usada para criar roupa quente para o inverno.
 Scripts/Items/Generic/ItemFur@Name:
 Pele
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-Um diamante branco e brilhante!
+Scripts/Items/Generic/ItemGemstones@Description:
+Pedras preciosas brilhantes!
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-Diamante
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-Uma esmeralda verde e brilhante!
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-Esmeralda
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-Um rubi vermelho e brilhante!
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-Rubi
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-Uma safira azul e brilhante!
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-Safira
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-Um topázio amarelo e brilhante!
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-Topázio
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-Uma turmalina roxa e brilhante!
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-Turmalina
+Scripts/Items/Generic/ItemGemstones@Name:
+Pedras preciosas
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 Vidro puro que pode ser usado para criar itens de vidro, como garrafas.
@@ -2434,24 +2554,6 @@ Facão
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Sem arma
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-Espada-laser (azul)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-Espada-laser (verde)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-Espada-laser (roxa)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-Espada-laser (vermelha)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-Espada-laser (branca)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-Espada-laser (amarela)
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 Utiliza a eletricidade de baterias internas para atordoar oponentes.
 
@@ -2461,149 +2563,134 @@ Bastão de choque
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Arma de curto alcance extremamente poderosa. Requer energia para ser operada.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+Florete laser
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 Tecnologia de antigamente. Ainda funciona tão bem quanto antes.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 Balestra
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 Arma rústica. Usa cartucho de papel como munição. Acomoda duas cargas que podem ser disparadas com muita rapidez.
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 Pistola de pederneira
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
-Lançador de granadas simples que dispara munição de calibre grosso concebida especialmente para explodir no momento do impacto, provocando muito dano.
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
+Lançador de granadas simples que dispara munição de grande calibre especialmente concebida para explodir no momento do impacto, provocando muito dano.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 Lança-granadas
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 Lançador de granadas do tipo revólver. Ideal para missões de assalto ou para confrontar alvos fortemente blindados.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 Lança-granadas múltiplo
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Pistola criada para utilizar cartuchos de 10 mm.
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-Pistola
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+Pistola 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 A pistola laser dispara rápidos pulsos de luz de alta energia que queimam o alvo.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 Pistola laser
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 O fuzil laser dispara fortes pulsos de luz de alta energia, predominantemente infravermelha, que queimam o alvo. Oferece um alcance de tiro muito maior do que a da pistola laser.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 Fuzil laser
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-Pistola semiautomática simples. Relativamente barata de produzir, se comparada às armas de fogo modernas.
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-Luger
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-Metralhadora pesada criada para utilizar poderosos cartuchos de calibre .300.
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-Metralhadora pesada
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-Pistola-metralhadora leve criada para utilizar cartuchos de 8 mm.
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-Pistola-metralhadora
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-Mosquete estilo antigo. Usa cartucho de papel. Oferece dano e alcance superiores aos da pistola de pederneira.
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-Mosquete
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-A pistola de plasma forma e dispara pequenas concentrações de plasma que queimam o alvo, causando dano pesado. Alto consumo de energia.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-Pistola de plasma
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 O fuzil de plasma forma e dispara grandes concentrações de plasma que queimam gravemente o alvo, causando muito dano. Consumo de energia muito alto.
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 Fuzil de plasma
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-Uma arma de fogo de repetição simples com um cilindro giratório que acomoda a munição.
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-Revólver
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-Fuzil de precisão leve automático desenvolvido para projéteis de 10 mm.
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-Fuzil leve
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-Fuzil pesado criado para utilizar poderosos cartuchos de calibre .300.
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-Fuzil pesado
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-Fuzil primitivo de ação de ferrolho desenvolvido para projéteis de uso comum de 8 mm.
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-Fuzil de ação de ferrolho
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-Espingarda das antigas. Usa munição calibre 12.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-Espingarda de cano duplo
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-Espingarda militar com grande capacidade de munição. Usa munição calibre 12.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-Espingarda militar
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-Pistola semiautomática com grande potência de saída.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-Steppen Hawk
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-Edição limitada na versão dourada da pistola Steppen Hawk.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-Steppen Hawk Dourada
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-Submetralhadora criada para utilizar cartuchos de 10 mm.
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-Submetralhadora
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 Arma exótica que lança criaturinhas semelhantes a insetos nos inimigos em vez de balas.
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 Lança-enxames
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 Arma exótica que usa a cainita liquefeita para criar e lançar uma toxina potente nos inimigos.
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 Proliferador de toxinas
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+Metralhadora pesada criada para utilizar poderosos cartuchos de calibre .300.
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+Metralhadora pesada
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+Pistola-metralhadora leve criada para utilizar cartuchos de 8 mm.
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+Pistola-metralhadora
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+Mosquete estilo antigo. Usa cartucho de papel. Oferece dano e alcance superiores aos da pistola de pederneira.
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+Mosquete
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+Uma arma de fogo de repetição simples com um cilindro giratório que acomoda a munição.
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+Revólver 8mm
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+Fuzil de precisão automático leve desenvolvido para projéteis de 10 mm.
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+Fuzil leve
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+Fuzil pesado antimatéria desenvolvido para cartuchos .300 de alta potência.
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+Fuzil pesado
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+Fuzil primitivo de ação de ferrolho desenvolvido para projéteis de uso comum de 8 mm.
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+Fuzil de ação de ferrolho
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+Espingarda das antigas. Usa munição calibre 12.
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+Espingarda de cano duplo
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+Espingarda militar com grande capacidade de munição. Usa munição calibre 12.
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+Espingarda militar
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+Pistola semiautomática com grande potência de saída.
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+Submetralhadora criada para utilizar cartuchos de 10 mm.
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+Submetralhadora
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Canhão automático pesado desenvolvido para ser montado nos acoplamentos da armadura de combate mecanizada. Usa munição de calibre grosso e antimaterial.

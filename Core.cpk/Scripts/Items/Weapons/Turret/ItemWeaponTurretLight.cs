@@ -32,7 +32,7 @@
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.ModernRifle)
-                       .Set(textureScreenOffset: (20, -1), textureScale: 1.25);
+                       .Set(textureScreenOffset: (75, -17), textureScale: 1.25);
         }
 
         protected override void PrepareProtoWeaponRanged(

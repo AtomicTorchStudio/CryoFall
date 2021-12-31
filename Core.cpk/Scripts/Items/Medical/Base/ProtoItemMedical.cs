@@ -34,7 +34,7 @@
               TPublicState,
               TClientState>,
           IProtoItemMedical
-        where TPrivateState : BasePrivateState, IItemWithFreshnessPrivateState, new()
+        where TPrivateState : ItemPrivateState, IItemWithFreshnessPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {

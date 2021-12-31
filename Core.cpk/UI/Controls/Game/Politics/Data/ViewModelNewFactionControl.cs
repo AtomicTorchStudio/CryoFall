@@ -29,6 +29,9 @@
 
         public string ClanTag { get; set; }
 
+        public BaseCommand CommandCancelNewbieProtection
+            => new ActionCommand(this.ExecuteCommandCancelNewbieProtection);
+
         public BaseCommand CommandCreateFaction
             => new ActionCommand(this.ExecuteCommandCreateFaction);
 
@@ -66,6 +69,16 @@
         private void CurrentFactionChangedHandler()
         {
             this.NotifyPropertyChanged(nameof(this.HasFaction));
+        }
+
+        private void ExecuteCommandCancelNewbieProtection()
+        {
+            DialogWindow.ShowDialog(
+                CoreStrings.QuestionAreYouSure,
+                NewbieProtectionSystem.Dialog_CancelNewbieProtection,
+                okAction: NewbieProtectionSystem.ClientDisableNewbieProtection,
+                cancelAction: () => { },
+                focusOnCancelButton: true);
         }
 
         private void ExecuteCommandCreateFaction()

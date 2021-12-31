@@ -120,7 +120,7 @@
                 return;
             }
 
-            if (!this.List.Contains(craftingQueueItem.Recipe))
+            if (!this.List.Contains(craftingQueueItem.RecipeEntry.Recipe))
             {
                 return;
             }

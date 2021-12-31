@@ -210,7 +210,7 @@
         {
             public TradingStationLotInfo(TradingStationLot lot)
             {
-                this.ProtoItem = lot.ProtoItem;
+                this.ProtoItem = lot.ItemOnSale?.ProtoItem ?? lot.ProtoItem;
                 this.State = lot.State;
                 this.LotQuantity = lot.LotQuantity;
                 this.CountAvailable = lot.CountAvailable;
@@ -231,7 +231,7 @@
             public TradingStationLotState State { get; }
         }
 
-        public struct TradingStationMark : IRemoteCallParameter
+        public readonly struct TradingStationMark : IRemoteCallParameter
         {
             public readonly bool IsOwner;
 

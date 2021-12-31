@@ -232,6 +232,183 @@ Scripts/Items/Base/ItemUseCaptions@Use:
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 이 아이템은 탈것을 타고 있는 중에는 사용할 수 없습니다.
 
+Scripts/Items/Base/SkinName@Alien:
+외계
+
+Scripts/Items/Base/SkinName@Aquamarine:
+아콰마린
+
+Scripts/Items/Base/SkinName@Aviator:
+비행사
+
+Scripts/Items/Base/SkinName@Biker:
+바이커
+
+Scripts/Items/Base/SkinName@Buccaneer:
+부카니에
+
+Scripts/Items/Base/SkinName@Commando:
+특공대원
+
+Scripts/Items/Base/SkinName@Contagion:
+감염
+
+Scripts/Items/Base/SkinName@Cork:
+코르크
+
+Scripts/Items/Base/SkinName@Cossack:
+카자크
+
+Scripts/Items/Base/SkinName@Cowboy:
+카우보이
+
+Scripts/Items/Base/SkinName@DesertCamo:
+사막 위장
+
+Scripts/Items/Base/SkinName@Elite:
+정예
+
+Scripts/Items/Base/SkinName@Emerald:
+에메랄드
+
+Scripts/Items/Base/SkinName@Emperor:
+황제
+
+Scripts/Items/Base/SkinName@Executioner:
+집행자
+
+Scripts/Items/Base/SkinName@Explorer:
+탐험가
+
+Scripts/Items/Base/SkinName@Fancy:
+화려
+
+Scripts/Items/Base/SkinName@ForestCamo:
+숲 위장
+
+Scripts/Items/Base/SkinName@Graphene:
+그래핀
+
+Scripts/Items/Base/SkinName@Hardened:
+견고
+
+Scripts/Items/Base/SkinName@Halloween:
+핼러윈
+
+Scripts/Items/Base/SkinName@Holidays:
+휴일
+
+Scripts/Items/Base/SkinName@Hunter:
+사냥꾼
+
+Scripts/Items/Base/SkinName@Iridium:
+이리듐
+
+Scripts/Items/Base/SkinName@Italian:
+이탈리아풍
+
+Scripts/Items/Base/SkinName@Knight:
+기사
+
+Scripts/Items/Base/SkinName@Lamellar:
+찰갑
+
+Scripts/Items/Base/SkinName@Lightning:
+번개
+
+Scripts/Items/Base/SkinName@Lumen:
+루멘
+
+Scripts/Items/Base/SkinName@Magma:
+마그마
+
+Scripts/Items/Base/SkinName@Marauder:
+약탈자
+
+Scripts/Items/Base/SkinName@Mercenary:
+용병
+
+Scripts/Items/Base/SkinName@Modern:
+현대
+
+Scripts/Items/Base/SkinName@Necromancer:
+강령술사
+
+Scripts/Items/Base/SkinName@Noble:
+귀족
+
+Scripts/Items/Base/SkinName@Nomad:
+유목민
+
+Scripts/Items/Base/SkinName@Pantheon:
+판테온
+
+Scripts/Items/Base/SkinName@Phoenix:
+불사조
+
+Scripts/Items/Base/SkinName@Pirate:
+해적
+
+Scripts/Items/Base/SkinName@Primitive:
+구식
+
+Scripts/Items/Base/SkinName@Puffer:
+패딩
+
+Scripts/Items/Base/SkinName@RedMarble:
+붉은 대리석
+
+Scripts/Items/Base/SkinName@Redwood:
+붉은 삼나무
+
+Scripts/Items/Base/SkinName@Revolutionary:
+혁명
+
+Scripts/Items/Base/SkinName@Roots:
+뿌리
+
+Scripts/Items/Base/SkinName@Ruby:
+루비
+
+Scripts/Items/Base/SkinName@Sapphire:
+사파이어
+
+Scripts/Items/Base/SkinName@Shaman:
+주술사
+
+Scripts/Items/Base/SkinName@Sheriff:
+보안관
+
+Scripts/Items/Base/SkinName@Ski:
+스키
+
+Scripts/Items/Base/SkinName@Skull:
+해골
+
+Scripts/Items/Base/SkinName@Snake:
+스네이크
+
+Scripts/Items/Base/SkinName@Straw:
+밀짚
+
+Scripts/Items/Base/SkinName@Topaz:
+토파즈
+
+Scripts/Items/Base/SkinName@Tourmaline:
+투르말린
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+도시 위장
+
+Scripts/Items/Base/SkinName@Ushanka:
+우샨카
+
+Scripts/Items/Base/SkinName@Voodoo:
+부두교
+
+Scripts/Items/Base/SkinName@Wasp:
+말벌
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 데이터 기록 (암호화)
 
@@ -307,13 +484,13 @@ Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T. 슈트
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
-이 특수 전투복은 어디에서나 적의 사격으로부터 착용자를 놀라울 정도로 잘 보호해줍니다.
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
+이 특수 돌격 방어구는 다른 무엇보다도 적의 사격에 대해 놀라운 방어력을 제공합니다.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
-전투복
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
+돌격용 방어구
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 돌격 방어 헬멧
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 헬멧 전등을 켜려면, 해당 아이템을 장비하고 \[{0}\] 키를 누르십시오.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 뼈 방어구는 가격이 적당하고, 적당한 방어력을 제공하여 초기에 매우 유용합니다.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
 뼈 방어구
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-밀폐 뼈 헬멧
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+뼈 헬멧
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-뿔 뼈 헬멧
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 외관이 아주 멋지진 않지만, 만약의 경우에는 당신을 보호해 줄 겁니다. 가장 가까운 대안보다는 더 나은 환경 방호를 제공해 줍니다.
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
 편조 방어구
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 편조 헬멧
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-임시 램프 헬멧
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
+실질적인 방어력을 제공하진 않습니다. 어쩌면 모기는 막아 줄지도 모르죠.
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
-실질적인 방어력을 제공하진 않습니다. 그래도 모기 정도는 막아주지 않겠어요?
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 천 셔츠
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 천 모자
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
-초기에 쓸 만한 갑옷. 특히 추위를 막는 데 적합합니다. 아주 비싸지도 않으면서, 편안한 착용감을 선사합니다!
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
+쓸만한 초기의 갑옷. 특히 감기를 막는 데 적합합니다. 아주 비싸지도 않으며, 편안한 착용감을 선사합니다!
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 모피 코트
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-꼬리 달린 모피 모자
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+털모자
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-코사크 모자
-
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-우샨카 모자
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 아주 화려한 황금 복장. 진정한 통치자에게 적합합니다.
 
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 황금 갑옷
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 황금 왕관
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 대부분의 환경적 위험으로부터 착용자를 보호하도록 특수 디자인된 옷. 전투에서 사용하면 금방 원래의 형태를 잃게 됩니다.
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 방호복
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
-가죽 방어구는 전반적인 방어 기능이 뛰어나며, 발전 초기 단계에 이상적입니다.
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
+가죽 방어구는 전반적인 방어 기능이 뛰어나며, 초기의 발전 단계에 이상적입니다.
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 가죽 방어구
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-카우보이모자
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+가죽 모자
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-조종사 모자
-
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-해적 모자
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 금속 방어구는 물리적인 공격에는 큰 방어력을 제공해주지만, 환경적 위험에 대한 보호는 거의 제공하지 않습니다.
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
 금속 방어구
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-밀폐 금속 헬멧
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+금속 헬멧
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-금속 해골 헬멧
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
+이 방어구의 제조에 사용되는 고급 소재는 소형 및 기본 무기에 대항하기에 이상적입니다.
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
-이 방어구의 제조에 사용되는 고급 소재는 소형 및 기본 무기에 대한 피해를 이상적 막아줍니다.
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
 군용 방어구
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 군용 헬멧
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+임시 램프 헬멧
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 폭발물이 장착된 특수 조끼. 착용자가 사망한 뒤, 자동으로 폭발합니다. 복수의 수단입니다.
@@ -469,43 +628,34 @@ Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 방독면
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-안전 헬멧은 충격, 파편, 감전 및 기타 위험으로부터 머리를 보호해 줍니다.
-
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-안전 헬멧
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
 기본 틀인 얇은 금속판을 프라그뮴 격자에 결합한 시험용 방어구. 매우 가볍고 내구성이 뛰어납니다.
 
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
 프라그뮴 갑옷
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
 모든 종류의 대미지 및 환경적 영향으로부터 놀라울 정도로 좋은 보호 수준을 제공하는 두껍게 덧댄 천.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 누비 방어구
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-누비 모자
-
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
 누비 헬멧
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
-최강의 보호구. 이 전투 장갑은 어떠한 상황에서도 착용자를 보호해줍니다. 하지만 기동성이 좋지는 않습니다.
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
+최강의 보호구. 이 전투용 갑옷은 어떠한 상황에서도 착용자를 보호해줍니다. 하지만 기동성이 좋지는 않습니다.
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 초중갑
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
-필요는 발명의 어머니입니다. 그다지 편하지는 않지만, 초기의 방어구 중에서 괜찮은 방어력을 제공합니다.
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
+필요는 발명의 어머니입니다. 편안하면서도 초기의 방어구 중 괜찮은 방어력을 제공합니다.
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 나무 방어구
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 나무 헬멧
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Scripts/Items/Generic/ItemFur@Description:
 Scripts/Items/Generic/ItemFur@Name:
 모피
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-반짝이는 순백의 다이아몬드!
+Scripts/Items/Generic/ItemGemstones@Description:
+반짝이는 원석 몇 조각!
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-다이아몬드
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-반짝이는 초록의 에메랄드!
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-에메랄드
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-반짝이는 붉은 루비!
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-루비
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-반짝이는 푸른 사파이어!
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-사파이어
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-반짝이는 노란 토파즈!
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-토파즈
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-반짝이는 보랏빛 투르말린!
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-투르말린
+Scripts/Items/Generic/ItemGemstones@Name:
+원석
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 가공되지 않은 유리는 병과 같은 다양한 유리 제품을 만드는 데 사용됩니다.
@@ -2434,24 +2554,6 @@ Scripts/Items/Weapons/Melee/ItemMachete@Name:
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 무기 없음
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-레이저 레이피어 (파란색)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-레이저 레이피어 (초록색)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-레이저 레이피어 (보라색)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-레이저 레이피어 (빨간색)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-레이저 레이피어 (하얀색)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-레이저 레이피어 (노란색)
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 내장된 배터리의 전기로 상대를 기절시킵니다.
 
@@ -2461,149 +2563,134 @@ Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 엄청나게 강력한 단거리 무기. 작동시키려면 에너지가 필요합니다.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+레이저 레이피어
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 구시대의 기술. 하지만 여전히 그때처럼 잘 작동합니다.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 석궁
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 초창기 권총. 페이퍼 카트리지 방식을 사용합니다. 한 번에 2발이 장전되어 있어, 매우 빨리 발사됩니다.
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 수발권총
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
 충격 시, 폭발하여 막대한 대미지를 주는 유탄을 발사하도록 특수 설계된 대구경 단발식 유탄 발사기.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 유탄 발사기
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 리볼버형 유탄 발사기. 공격 임무나 중무장 표적에 맞설 때 이상적이다.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 연발식 유탄 발사기
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 10mm 탄용으로 개발된 권총.
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-권총
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+10mm 권총
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 레이저권총은 표적을 태워 버리는 고에너지 광선의 펄스를 빠르게 방출합니다.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 레이저권총
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 레이저소총은 주로 적외선 스펙트럼과 같은 고에너지 광선을 빠르게 방출하여 표적을 태웁니다. 레이저권총보다 훨씬 넓은 사정 거리를 제공합니다.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 레이저소총
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-단순한 디자인의 반자동 권총. 현대의 총기에 비해 상대적으로 생산 비용이 저렴합니다.
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-루거
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-.300 탄용으로 개발된 중기관총.
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-중기관총
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-8mm 탄용으로 개발된 경기관권총.
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-기관권총
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-전통적인 스타일의 머스킷. 페이퍼 카트리지 방식을 사용합니다. 수발권총보다 더 나은 사거리와 대미지를 자랑합니다.
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-머스킷
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-플라스마권총은 충격 시, 표적을 태우는 응집 플라스마 덩어리를 형성하고 투사하여 큰 대미지를 줍니다. 높은 전력을 소모합니다.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-플라스마권총
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 플라스마소총은 충격 시, 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 플라스마소총
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-탄약이 든 회전식 실린더를 가진 단순한 연발 권총.
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-리볼버
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-10mm 탄약을 위해 개발된 경량 자동 저격소총.
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-경량소총
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-고성능 .300 탄용으로 개발된 대물 중소총.
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-중소총
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-흔히 사용되는 8mm 탄약을 위해 개발된 구식 볼트 액션소총.
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-볼트 액션소총
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-연로하신 할아버지의 산탄총. 12구경 탄약을 사용합니다.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-쌍열식 산탄총
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-큰 탄창 용량을 지닌 군용 산탄총. 12구경 탄약을 사용합니다.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-군용 산탄총
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-엄청난 총구 에너지를 가진 반자동 권총.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-스테픈 호크
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-스테픈 호크 권총의 금색 한정판.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-스테픈 호크 골드
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-10mm 탄용으로 개발된 기관단총.
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-기관단총
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 총알 대신 작은 곤충 같은 생물체를 적에게 발사하는 신식 무기.
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 군체 발사기
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 액화 케이나이트로 강력한 독소를 만들어 적에게 발사하는 신식 무기.
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 독소 증식체
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+.300 탄용으로 개발된 중기관총.
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+중기관총
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+8mm 탄용으로 개발된 경기관권총.
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+기관권총
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+전통적인 스타일의 머스킷. 페이퍼 카트리지 방식을 사용합니다. 수발권총 보다 더 나은 사거리와 대미지를 자랑합니다.
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+머스킷
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+탄약이 든 회전식 실린더를 가진 단순한 리볼버.
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+8mm 리볼버
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+10mm 탄약을 위해 개발된 경량 자동 저격소총.
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+경량소총
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+고성능 .300 탄용으로 개발된 대물 중소총.
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+중소총
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+흔히 사용되는 8mm 탄약을 위해 개발된 구식 볼트 액션소총.
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+볼트 액션소총
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+연로하신 할아버지의 산탄총. 12구경 탄약을 사용합니다.
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+쌍열식 산탄총
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+큰 탄창 용량을 지닌 군용 산탄총. 12구경 탄약을 사용합니다.
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+군용 산탄총
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+엄청난 총구 에너지를 가진 반자동 권총.
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+스테픈 호크
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+10mm 탄용으로 개발된 기관단총.
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+기관단총
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 기계화된 전투 장갑의 손 위치에 고정할 수 있도록 고안된 중기관포. 대구경 및 대물 탄약을 사용합니다.

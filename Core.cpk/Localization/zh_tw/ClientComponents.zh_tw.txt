@@ -65,7 +65,37 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 欄位 9
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
-欄位 0
+欄位 #0
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+快速保存 - 欄位1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+快速保存 - 欄位2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+快速保存 - 欄位3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+快速保存 - 欄位4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+快速保存 - 欄位5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+快速保存 - 欄位6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+快速保存 - 欄位7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+快速保存 - 欄位8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+快速保存 - 欄位9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+快速保存 - 欄位0
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 攝像機縮進

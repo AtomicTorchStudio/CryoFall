@@ -30,6 +30,8 @@
 
         public override bool IsBlockingMovement => true;
 
+        public override bool IsDisplayingProgress => true;
+
         public override void SharedUpdate(double deltaTime)
         {
             base.SharedUpdate(deltaTime);

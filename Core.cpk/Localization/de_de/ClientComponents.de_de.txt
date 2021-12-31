@@ -67,6 +67,36 @@ Slot #9
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 Slot #0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+Schnellauswahl—Slot #1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+Schnellauswahl—Slot #2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+Schnellauswahl—Slot #3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+Schnellauswahl—Slot #4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+Schnellauswahl—Slot #5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+Schnellauswahl—Slot #6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+Schnellauswahl—Slot #7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+Schnellauswahl—Slot #8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+Schnellauswahl—Slot #9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+Schnellauswahl—Slot #0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Kamera heranzoomen
 

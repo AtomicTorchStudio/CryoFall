@@ -34,14 +34,21 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.LocalGame.Data
         {
             if (this.Name.Contains("[CORRUPTED SAVEGAME]"))
             {
-                DialogWindow.ShowDialog(CoreStrings.DialogCannotLoadSavegame_Title,
-                                        CoreStrings.DialogCannotLoadSavegame_MessageCorrupted
-                                        + "[br][b]"
-                                        + this.FileName
-                                        + "[/b]",
-                                        closeByEscapeKey: true,
-                                        textAlignment: TextAlignment.Left,
-                                        okAction: () => Api.Client.LocalServer.BrowseSavesFolder());
+                DialogWindow.ShowDialog(
+                    CoreStrings.DialogCannotLoadSavegame_Title,
+                    CoreStrings.DialogCannotLoadSavegame_MessageCorrupted_Detected
+                    + "[br][br]"
+                    + CoreStrings.DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses
+                    + "[br][br]"
+                    + CoreStrings.DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback
+                    + "[br]"
+                    + CoreStrings.DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups
+                    + " [b]"
+                    + this.FileName
+                    + "[/b]",
+                    closeByEscapeKey: true,
+                    textAlignment: TextAlignment.Left,
+                    okAction: () => Api.Client.LocalServer.BrowseSavesFolder());
                 return;
             }
 

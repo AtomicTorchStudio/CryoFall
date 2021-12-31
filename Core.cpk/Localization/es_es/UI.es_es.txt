@@ -349,6 +349,24 @@ La cuenta atrás de la destrucción comenzará cuando se destruya la adjudicaci�
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 ¿Seguro que quieres usar {0}?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+Puedes probar a restablecer la última versión guardada.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall ha detectado que una partida guardada está dañada.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+Revisa la carpeta de partidas guardadas y busca versiones anteriores de este archivo:
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`Posibles causas:
+[*] Fallo del disco duro.
+[*] Error de lectura o escritura del archivo por el SO.
+[*] Etc.`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+No se pudo cargar la partida guardada
+
 UI/CoreStrings@DialogClearList_Message:
 ¿Seguro que quieres borrar esta lista?
 
@@ -402,6 +420,9 @@ UI/CoreStrings@EventDamage_SuccessMessage_Format:
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Servidor oficial de CryoFall en Discord (solo en inglés)
+
+UI/CoreStrings@Extras_Features_Title:
+Características
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 Presentación de las características de CryoFall
@@ -915,6 +936,18 @@ Coloca el implante a instalar
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Se necesita
+
+UI/CoreStrings@Item_AvailableInTechTier:
+Disponible para su fabricación en {0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+La durabilidad del objeto es demasiado baja (se necesita, como mínimo, un {0}%)
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+La frescura del objeto es demasiado baja (se necesita, como mínimo, un {0}%)
+
+UI/CoreStrings@Item_CreatedBy_Format:
+Una creación de: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 Se estropeará en: {0}
@@ -1811,8 +1844,119 @@ En los rangos más elevados de la construcción de terrenos adjudicados, se pued
 UI/CoreStrings@Skill:
 Habilidad
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+Aspecto de edición limitada (no se puede obtener en estos momentos).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+Disponible dentro del paquete de apoyo.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+Se desbloquea jugando.
+
+UI/CoreStrings@Skin_Default:
+Por defecto
+
+UI/CoreStrings@Skin_NotOwned:
+No tienes este aspecto.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+Revisar aspectos
+
+UI/CoreStrings@Skins_Button_Buy:
+Comprar
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+Obtener
+
+UI/CoreStrings@Skins_EmptyList:
+No hay aspectos disponibles en esta lista.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+Aspectos destacados
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+Inicia sesión {0} día(s) más para recibir un aspecto gratuito.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+Progreso del aspecto gratuito
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+Los aspectos se pueden usar en cualquier servidor (oficiales, de la comunidad, privados o locales).
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+Puedes crear y compartir con tus amigos objetos con aspectos, incluso si no poseen un aspecto concreto.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+Los aspectos se pueden aplicar a determinados objetos que creas en el juego (armas y equipo).
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* Todos los precios se ajustan según los precios de Steam en cada región.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+Al comprar aspectos, estás apoyando a los desarrolladores. ¡Gracias!
+
+UI/CoreStrings@Skins_SelectSkin:
+Elige un aspecto:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} (aspecto para {1})
+
+UI/CoreStrings@Skins_SkinOwned:
+Ya lo tienes
+
+UI/CoreStrings@Skins_SkinUnlocked:
+Aspecto desbloqueado
+
+UI/CoreStrings@Skins_Tab_Equipment:
+EQUIPO
+
+UI/CoreStrings@Skins_Tab_First:
+DESTACADO
+
+UI/CoreStrings@Skins_Tab_Owned:
+YA LO TIENES
+
+UI/CoreStrings@Skins_Tab_Weapons:
+ARMAS
+
+UI/CoreStrings@Skins_Title:
+Aspectos
+
 UI/CoreStrings@SortBy:
 Ordenar por
+
+UI/CoreStrings@StatisticsDeaths:
+Muertes
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+Plantas de la granja cosechadas
+
+UI/CoreStrings@StatisticsMineralsMined:
+Minerales obtenidos
+
+UI/CoreStrings@StatisticsPvpAssists:
+Ayudas
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+E/M
+
+UI/CoreStrings@StatisticsPvpKills:
+Muertes
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+Marcador JcJ
+
+UI/CoreStrings@StatisticsPvpScore:
+Puntuación JcJ
+
+UI/CoreStrings@StatisticsTitle:
+Estadísticas personales
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+Total de PA obtenidos
+
+UI/CoreStrings@StatisticsTreesCut:
+Árboles cortados
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Intesidad
@@ -1844,6 +1988,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 Insignia de patrocinador
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+Abrir la página de la tienda
 
 UI/CoreStrings@SupporterPack_Description:
 `El paquete para patrocinadores contiene una serie de objetos adicionales para quienes quieren ir un paso más allá y apoyar a los desarrolladores de CryoFall. Como muestra de agradecimiento, el juego mostrará una insignia de patrocinador en el chat.

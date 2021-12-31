@@ -4,8 +4,6 @@
 
     public class TechNodeAssaultHeadgear : TechNode<TechGroupDefenseT4>
     {
-        public override string Name => "Assault headgear";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

@@ -1,10 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -25,15 +30,9 @@
 
         private readonly string renderingTag;
 
-        private readonly IClientSceneObject sceneObjectCamera;
-
-        private readonly IClientSceneObject sceneObjectSkeleton;
-
         private readonly float textureHeight;
 
         private readonly float textureWidth;
-
-        private IComponentSkeleton currentSkeleton;
 
         private IClientItemsContainer equipmentContainer;
 
@@ -41,9 +40,17 @@
 
         private bool isNeedRefreshEquipment;
 
+        private IProtoItem overrideProtoItem;
+
         private ProtoCharacterSkeleton protoCharacterSkeleton;
 
         private IRenderTarget2D renderTarget2D;
+
+        private IClientSceneObject sceneObjectCamera;
+
+        private IClientSceneObject sceneObjectSkeleton;
+
+        private IComponentSkeleton skeletonRenderer;
 
         public ViewModelInventorySkeletonViewData(
             ICharacter character,
@@ -97,13 +104,14 @@
                 _ => this.OnNeedRefreshEquipment(),
                 this);
 
-            this.RefreshEquipment();
+            //this.RefreshEquipment();
+            this.OnNeedRefreshEquipment();
         }
 
         public SkeletonResource CurrentSkeletonResource
         {
-            get => this.currentSkeleton.CurrentSkeleton;
-            set => this.currentSkeleton.SelectCurrentSkeleton(value, "Idle", true);
+            get => this.skeletonRenderer.CurrentSkeleton;
+            set => this.skeletonRenderer.SelectCurrentSkeleton(value, "Idle", true);
         }
 
         public bool IsActive
@@ -120,13 +128,47 @@
                 this.camera.DrawMode = value
                                            ? CameraDrawMode.Auto
                                            : CameraDrawMode.Manual;
+
+                if (this.isActive == true
+                    && this.isNeedRefreshEquipment)
+                {
+                    this.isNeedRefreshEquipment = false;
+                    this.OnNeedRefreshEquipment();
+                }
+            }
+        }
+
+        public IProtoItem OverrideProtoItem
+        {
+            get => this.overrideProtoItem;
+            set
+            {
+                if (this.overrideProtoItem == value)
+                {
+                    return;
+                }
+
+                this.overrideProtoItem = value;
+                this.OnNeedRefreshEquipment();
             }
         }
 
         public void RefreshEquipment()
         {
-            this.isNeedRefreshEquipment = false;
+            if (this.IsDisposed)
+            {
+                return;
+            }
 
+            if (!this.IsActive)
+            {
+                // cannot refresh now as not active
+                // please note that isNeedRefreshEquipment remains true and
+                // on next IsActive=true refresh will be triggered
+                return;
+            }
+
+            this.isNeedRefreshEquipment = false;
             this.character.ProtoCharacter.SharedGetSkeletonProto(this.character,
                                                                  out var currentProtoCharacterSkeleton,
                                                                  out _);
@@ -140,47 +182,91 @@
 
                 // proto skeleton changed - destroy current skeleton
                 this.protoCharacterSkeleton = (ProtoCharacterSkeleton)currentProtoCharacterSkeleton;
-                if (this.currentSkeleton is not null)
+                if (this.skeletonRenderer is not null)
                 {
-                    this.currentSkeleton.Destroy();
-                    this.currentSkeleton = null;
+                    this.skeletonRenderer.Destroy();
+                    this.skeletonRenderer = null;
                 }
             }
 
-            if (this.currentSkeleton is null)
+            if (this.skeletonRenderer is null)
             {
-                var scale = this.textureWidth / 128;
-                this.currentSkeleton = ClientCharacterEquipmentHelper.CreateCharacterSkeleton(
+                var scale = Math.Min(0.125 * this.textureWidth / 128.0,
+                                     0.085 * this.textureHeight / 128.0);
+                this.skeletonRenderer = ClientCharacterEquipmentHelper.CreateCharacterSkeleton(
                     this.sceneObjectSkeleton,
                     this.protoCharacterSkeleton,
-                    worldScale: 0.125 * scale * this.protoCharacterSkeleton.InventoryScale,
+                    worldScale: scale * this.protoCharacterSkeleton.InventoryScale,
                     spriteQualityOffset: -1);
 
-                if (this.currentSkeleton is null)
+                if (this.skeletonRenderer is null)
                 {
                     // failed to create the skeleton renderer (spectator?)
                     return;
                 }
 
-                this.currentSkeleton.PositionOffset = (this.textureWidth / 2.0, -this.textureHeight * 0.925)
-                                                      + this.protoCharacterSkeleton.InventoryOffset;
-                this.currentSkeleton.RenderingTag = this.renderingTag;
+                this.skeletonRenderer.RenderingTag = this.renderingTag;
             }
+
+            this.skeletonRenderer.PositionOffset = (this.textureWidth / 2.0, -this.textureHeight * 0.925)
+                                                   + this.protoCharacterSkeleton.InventoryOffset;
+
+            /*if (this.overrideProtoItem is null
+                    or (not IProtoItemWeaponRanged and not IProtoItemVehicleWeapon))
+            {
+                this.skeletonRenderer.RemoveAnimationTrack(trackIndex: AnimationTrackIndexes.ItemAiming);
+            }*/
+            
+            // a better approach is to simply reset the skeleton as it will ensure proper active attachments
+            this.skeletonRenderer.ResetSkeleton();
 
             var skeletonComponents = new List<IClientComponent>();
             ClientCharacterEquipmentHelper.SetupSkeletonEquipmentForCharacter(
                 this.character,
                 this.equipmentContainer,
-                this.currentSkeleton,
+                this.skeletonRenderer,
                 this.protoCharacterSkeleton,
                 skeletonComponents,
-                isPreview: true);
+                isPreview: true,
+                overrideProtoItemEquipment: this.overrideProtoItem as IProtoItemEquipment);
+
+            if (this.overrideProtoItem
+                    is IProtoItemWithCharacterAppearance overrideProtoItemInHand
+                    and not IProtoItemVehicleWeapon)
+            {
+                // add visuals for skinned weapon or tool
+                overrideProtoItemInHand.ClientSetupSkeleton(null,
+                                                            this.character,
+                                                            this.protoCharacterSkeleton,
+                                                            this.skeletonRenderer,
+                                                            skeletonComponents);
+
+                if (overrideProtoItemInHand is IProtoItemWeapon protoItemWeapon)
+                {
+                    // offset the character preview to right in order to give enough space for the weapon
+                    var scale = this.textureWidth / 128.0;
+                    this.skeletonRenderer.PositionOffset
+                        += (scale * protoItemWeapon.SkeletonPreviewOffsetX / 9.0, 0);
+                    this.RefreshAnimationTrack();
+                }
+            } 
 
             // we don't need these extra components in inventory view
             foreach (var skeletonComponent in skeletonComponents)
             {
                 skeletonComponent.Destroy();
             }
+        }
+
+        public void SetFrontView()
+        {
+            if (this.protoCharacterSkeleton?.SkeletonResourceFront is null)
+            {
+                return;
+            }
+
+            this.CurrentSkeletonResource = this.protoCharacterSkeleton.SkeletonResourceFront;
+            this.RefreshAnimationTrack();
         }
 
         public void ToggleView()
@@ -194,6 +280,7 @@
                 this.CurrentSkeletonResource != this.protoCharacterSkeleton.SkeletonResourceFront
                     ? this.protoCharacterSkeleton.SkeletonResourceFront
                     : this.protoCharacterSkeleton.SkeletonResourceBack;
+            this.RefreshAnimationTrack();
         }
 
         protected override void DisposeViewModel()
@@ -205,8 +292,10 @@
             this.renderTarget2D.Dispose();
             this.renderTarget2D = null;
             this.sceneObjectCamera.Destroy();
+            this.sceneObjectCamera = null;
             this.sceneObjectSkeleton.Destroy();
-            this.currentSkeleton = null;
+            this.sceneObjectSkeleton = null;
+            this.skeletonRenderer = null;
         }
 
         private void EquipmentContainerStateHashChangedHandler()
@@ -232,6 +321,23 @@
                         this.RefreshEquipment();
                     }
                 });
+        }
+
+        private void RefreshAnimationTrack()
+        {
+            if (this.overrideProtoItem
+                    is IProtoItemWeaponRanged protoItemWeaponRanged
+                    and not IProtoItemVehicleWeapon
+                && protoItemWeaponRanged.CharacterAnimationAimingName is { } aimingAnimationName)
+            {
+                this.skeletonRenderer.SetAnimationFrame(
+                    trackIndex: AnimationTrackIndexes.ItemAiming,
+                    animationName: aimingAnimationName,
+                    timePositionFraction: this.skeletonRenderer.CurrentSkeleton
+                                          == this.protoCharacterSkeleton.SkeletonResourceFront
+                                              ? 0.75f
+                                              : 0.25f);
+            }
         }
     }
 }

@@ -348,6 +348,24 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 您确定要使用{0}吗？
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+你可以尝试回滚到最新备份版本。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall已发现存档损坏问题。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+请前往存档文件夹并检查此文件的备份版本：
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`可能原因:
+[*] 硬盘损坏
+[*] 系统文件读写错误
+[*] 其他`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+无法加载已保存游戏
+
 UI/CoreStrings@DialogClearList_Message:
 确定要清空此列表？
 
@@ -401,6 +419,9 @@ UI/CoreStrings@EventDamage_SuccessMessage_Format:
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall的官方Discord服务器(仅限英文)
+
+UI/CoreStrings@Extras_Features_Title:
+特性
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 CryoFall功能集锦
@@ -914,6 +935,18 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 需要
+
+UI/CoreStrings@Item_AvailableInTechTier:
+科技解锁于{0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+物品耐久过低(最少需要{0}%)
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+物品鲜度过低(最少需要{0}%)
+
+UI/CoreStrings@Item_CreatedBy_Format:
+由{0}制造
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 腐败倒计时：{0}
@@ -1810,8 +1843,119 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 技能
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+限量版皮肤（当前无法获得）
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+众筹支持者内容。
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+通过进行游戏解锁。
+
+UI/CoreStrings@Skin_Default:
+默认
+
+UI/CoreStrings@Skin_NotOwned:
+您尚未拥有此皮肤。
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+浏览皮肤
+
+UI/CoreStrings@Skins_Button_Buy:
+购买
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+获取
+
+UI/CoreStrings@Skins_EmptyList:
+列表中皮肤为空。
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+顶置皮肤
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+再登陆{0}以获得一份免费皮肤。
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+免费皮肤进度
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+皮肤可以在任何服务器使用（官方，社区，私服或本地）
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+您可以将您拥有皮肤的物品制作出来并分享给未拥有皮肤的朋友使用。
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+皮肤可以被应用至您在游戏中制造的部分物品，例如武器和装备。
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+*所有价格皆已根据Steam地区价格调整。
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+通过购买皮肤来支持开发者！
+
+UI/CoreStrings@Skins_SelectSkin:
+选择皮肤：
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} ({1}的皮肤)
+
+UI/CoreStrings@Skins_SkinOwned:
+已拥有
+
+UI/CoreStrings@Skins_SkinUnlocked:
+皮肤已解锁
+
+UI/CoreStrings@Skins_Tab_Equipment:
+装备
+
+UI/CoreStrings@Skins_Tab_First:
+顶置
+
+UI/CoreStrings@Skins_Tab_Owned:
+已拥有
+
+UI/CoreStrings@Skins_Tab_Weapons:
+武器
+
+UI/CoreStrings@Skins_Title:
+皮肤
+
 UI/CoreStrings@SortBy:
 排序：
+
+UI/CoreStrings@StatisticsDeaths:
+死亡
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+农作物已收割
+
+UI/CoreStrings@StatisticsMineralsMined:
+矿物已采集
+
+UI/CoreStrings@StatisticsPvpAssists:
+辅助
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+K/D
+
+UI/CoreStrings@StatisticsPvpKills:
+击杀
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+PvP排行榜
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP分数
+
+UI/CoreStrings@StatisticsTitle:
+个人数据
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+总学习点
+
+UI/CoreStrings@StatisticsTreesCut:
+已砍伐树木
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 强度
@@ -1843,6 +1987,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 支援徽章
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+打开商店页面
 
 UI/CoreStrings@SupporterPack_Description:
 `支援包裹是给予那些特别支持了CryoFall的玩家们的一系列奖励物品。作为感谢，游戏将在聊天区域内为这些玩家加入支援徽章。

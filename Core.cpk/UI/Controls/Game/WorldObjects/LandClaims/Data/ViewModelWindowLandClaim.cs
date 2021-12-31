@@ -138,8 +138,11 @@
 
         public string FounderName => this.privateState.LandClaimFounder;
 
+        public bool IsDecayEnabled => RateStructuresDecayEnabled.SharedValue;
+
         public bool IsLandClaimDecayInfoConfirmed
-            => LandClaimDecayInfoConfirmationHelper.IsConfirmedForCurrentServer;
+            => !this.IsDecayEnabled
+               || LandClaimDecayInfoConfirmationHelper.IsConfirmedForCurrentServer;
 
         public bool IsMaxFactionSizeLargerThanSinglePlayer
             => FactionConstants.SharedMembersMaxPrivateFaction > 1;
@@ -325,6 +328,11 @@
 
         private async void RequestDecayInfoTextAsync()
         {
+            if (!this.IsDecayEnabled)
+            {
+                return;
+            }
+
             var result = await LandClaimSystem.ClientGetDecayInfoText(this.landClaimWorldObject);
             if (this.IsDisposed)
             {

@@ -349,6 +349,24 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 本当に{0}を使用してもいいですか？
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+最新のバックアップバージョンにロールバックすることができます。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+セーブデータの破損が検出されました。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+セーブデータフォルダに移動して、このファイルのバックアップを確認してください。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`考えられる原因：
+[*] ハードドライブの故障
+[*] OSのファイル読取/書込アクセスエラー
+[*] その他`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+セーブデータ読み込み不可
+
 UI/CoreStrings@DialogClearList_Message:
 このリストを消去してよろしいですか？
 
@@ -402,6 +420,9 @@ UI/CoreStrings@EventDamage_SuccessMessage_Format:
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFallの公式Discordサーバー(英語のみ)
+
+UI/CoreStrings@Extras_Features_Title:
+新機能
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 CryoFallの特徴のスライドショー
@@ -915,6 +936,18 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 必要
+
+UI/CoreStrings@Item_AvailableInTechTier:
+{0}で製作可能
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+アイテムの耐久度が低すぎます（最低 {0}% 必要）。
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+アイテムの鮮度が低すぎます（最低 {0}% 必要）。
+
+UI/CoreStrings@Item_CreatedBy_Format:
+製作者：{0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 腐敗するまで：{0}
@@ -1809,8 +1842,119 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 スキル
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+限定版スキン（現在は入手不可）
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+サポーターパックに含まれています。
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+ゲームをプレイすることで解除されます。
+
+UI/CoreStrings@Skin_Default:
+基本
+
+UI/CoreStrings@Skin_NotOwned:
+このスキンを所有していません。
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+スキン閲覧
+
+UI/CoreStrings@Skins_Button_Buy:
+購入
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+獲得
+
+UI/CoreStrings@Skins_EmptyList:
+このリストに利用可能なスキンはありません。
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+オススメスキン
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+あと{0}日ログインすると、無料スキンを入手できます。
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+無料スキン進捗状況
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+スキンはどのサーバー（公式、コミュニティ、プライベート、ローカル）でも使用できます。
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+フレンドがスキンを持っていなくても、スキン付きアイテムを製作して共有することができます。
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+スキンはゲーム内で製作する特定のアイテム（武器や装備）に適用することができます。
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+※価格はSteamの地域別価格設定に応じて調整されます。
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+スキンの購入は、開発者の支援につながります。ありがとうございます！
+
+UI/CoreStrings@Skins_SelectSkin:
+スキン選択：
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0}（{1}のスキン）
+
+UI/CoreStrings@Skins_SkinOwned:
+所有済
+
+UI/CoreStrings@Skins_SkinUnlocked:
+アンロック済スキン
+
+UI/CoreStrings@Skins_Tab_Equipment:
+装備
+
+UI/CoreStrings@Skins_Tab_First:
+オススメ
+
+UI/CoreStrings@Skins_Tab_Owned:
+所有済
+
+UI/CoreStrings@Skins_Tab_Weapons:
+武器
+
+UI/CoreStrings@Skins_Title:
+スキン
+
 UI/CoreStrings@SortBy:
 ソート条件
+
+UI/CoreStrings@StatisticsDeaths:
+死亡
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+収穫した農作物
+
+UI/CoreStrings@StatisticsMineralsMined:
+採掘した鉱物
+
+UI/CoreStrings@StatisticsPvpAssists:
+アシスト
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+K/D
+
+UI/CoreStrings@StatisticsPvpKills:
+キル
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+PvP ランキング
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP スコア
+
+UI/CoreStrings@StatisticsTitle:
+個人スタッツ
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+獲得した総LP
+
+UI/CoreStrings@StatisticsTreesCut:
+伐採した木
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 強度
@@ -1842,6 +1986,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 サポーターバッジ
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+ストアページを開く
 
 UI/CoreStrings@SupporterPack_Description:
 `サポーターパックはCryoFallの開発者を支援していただいた方へのボーナスコレクションです。ご購入いただいた方には感謝の気持ちとして、ゲーム内のチャットに表示される特別なスポンサーバッジを差し上げます。

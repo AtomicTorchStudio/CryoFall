@@ -15,10 +15,12 @@
               TPublicState,
               TClientState>,
           IProtoItemEquipmentArmor
-        where TPrivateState : BasePrivateState, IItemWithDurabilityPrivateState, new()
+        where TPrivateState : ItemPrivateState, IItemWithDurabilityPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        public override bool IsSkinnable => true;
+        
         public sealed override EquipmentType EquipmentType => EquipmentType.Armor;
 
         public abstract ObjectMaterial Material { get; }

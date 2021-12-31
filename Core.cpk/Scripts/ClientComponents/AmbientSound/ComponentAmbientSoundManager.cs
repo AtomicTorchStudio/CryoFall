@@ -164,7 +164,7 @@
             Instance = this;
         }
 
-        private struct AmbientSoundPresetByDistance : IComparable<AmbientSoundPresetByDistance>, IComparable
+        private readonly struct AmbientSoundPresetByDistance : IComparable<AmbientSoundPresetByDistance>, IComparable
         {
             public static readonly Comparer<AmbientSoundPresetByDistance> Comparer
                 = Comparer<AmbientSoundPresetByDistance>.Default;

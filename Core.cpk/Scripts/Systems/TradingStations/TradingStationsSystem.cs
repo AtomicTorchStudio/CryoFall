@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
@@ -14,6 +15,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -26,6 +28,8 @@
 
     public class TradingStationsSystem : ProtoSystem<TradingStationsSystem>
     {
+        public const byte DefaultMinQualityFractionWhenStationBuying = 50;
+
         public const string NotificationBoughtTitle = "Bought";
 
         public const string NotificationNeedMorePennyCoins = "Need {0} more penny coins.";
@@ -37,8 +41,6 @@
         public const string NotiticationCannotBuy_Title = "Cannot buy";
 
         public const string NotiticationCannotSell_Title = "Cannot sell";
-
-        private const double MinQualityFractionWhenStationBuying = 0.95;
 
         // how long the items dropped on the ground from the destroyed trading station should remain there
         private static readonly TimeSpan DestroyedTradingStationDroppedItemsDestructionTimeout
@@ -52,38 +54,99 @@
 
         private static readonly IItemsServerService ServerItems = IsServer ? Server.Items : null;
 
-        public static async void ClientRequestExecuteTrade(
-            IStaticWorldObject tradingStation,
-            TradingStationLot lot,
-            bool isPlayerBuying)
+        public enum TradeErrorCode : byte
         {
-            var mode = isPlayerBuying
-                           ? TradingStationMode.StationSelling
-                           : TradingStationMode.StationBuying;
+            NoErrors = 0,
 
-            if (!Instance.SharedValidateCanTrade(tradingStation,
-                                                 lot,
-                                                 mode,
-                                                 Client.Characters.CurrentPlayerCharacter,
-                                                 out var checkResult))
+            ItemPrototypeMismatch = 10,
+
+            [Description(CoreStrings.Item_CheckTooLowDurability)]
+            TooLowDurability = 20,
+
+            [Description(CoreStrings.Item_CheckTooLowFreshness)]
+            TooLowFreshness = 30,
+
+            UnknownError = byte.MaxValue
+        }
+
+        public static async void ClientRequestExecuteBuy(
+            IStaticWorldObject tradingStation,
+            TradingStationLot lot)
+        {
+            const bool isPlayerBuying = true;
+            var mode = TradingStationMode.StationSelling;
+            if (!SharedValidateCanTrade(tradingStation,
+                                        lot,
+                                        mode,
+                                        itemToSellToStation: null,
+                                        Client.Characters.CurrentPlayerCharacter,
+                                        out var checkResult))
             {
-                ClientShowErrorNotification(lot, checkResult, isPlayerBuying);
+                ClientShowErrorNotification(lot, checkResult, isPlayerBuying: isPlayerBuying);
                 return;
             }
 
             var publicState = GetPublicState(tradingStation);
             var lotIndex = publicState.Lots.IndexOf(lot);
+            var protoItemOnSale = lot.ItemOnSale.ProtoItem;
             checkResult = await Instance.CallServer(
                               _ => _.ServerRemote_ExecuteTrade(tradingStation,
                                                                (byte)lotIndex,
-                                                               mode));
+                                                               mode,
+                                                               null));
             if (checkResult != TradingResult.Success)
             {
-                ClientShowErrorNotification(lot, checkResult, isPlayerBuying);
+                ClientShowErrorNotification(lot, checkResult, isPlayerBuying: isPlayerBuying);
             }
             else
             {
-                ClientShowSuccessNotification(lot, isPlayerBuying);
+                ClientShowSuccessNotification(protoItemOnSale,
+                                              lot.LotQuantity,
+                                              isPlayerBuying: isPlayerBuying);
+            }
+        }
+
+        public static async void ClientRequestExecuteSell(
+            IStaticWorldObject tradingStation,
+            TradingStationLot lot,
+            IItem item)
+        {
+            const bool isPlayerBuying = false;
+            var mode = TradingStationMode.StationBuying;
+            if (!SharedValidateCanTrade(tradingStation,
+                                        lot,
+                                        mode,
+                                        item,
+                                        Client.Characters.CurrentPlayerCharacter,
+                                        out var checkResult))
+            {
+                if (checkResult == TradingResult.ErrorItemPrototypeMismatch)
+                {
+                    // don't display any error in this case
+                    return;
+                }
+
+                ClientShowErrorNotification(lot, checkResult, isPlayerBuying: isPlayerBuying);
+                return;
+            }
+
+            var publicState = GetPublicState(tradingStation);
+            var lotIndex = publicState.Lots.IndexOf(lot);
+            var protoItemToSell = item.ProtoItem;
+            checkResult = await Instance.CallServer(
+                              _ => _.ServerRemote_ExecuteTrade(tradingStation,
+                                                               (byte)lotIndex,
+                                                               mode,
+                                                               item));
+            if (checkResult != TradingResult.Success)
+            {
+                ClientShowErrorNotification(lot, checkResult, isPlayerBuying: isPlayerBuying);
+            }
+            else
+            {
+                ClientShowSuccessNotification(protoItemToSell,
+                                              lot.LotQuantity,
+                                              isPlayerBuying: isPlayerBuying);
             }
         }
 
@@ -99,7 +162,8 @@
             IProtoItem protoItem,
             ushort lotQuantity,
             ushort priceCoinPenny,
-            ushort priceCoinShiny)
+            ushort priceCoinShiny,
+            byte minQualityPercent)
         {
             var tradingStation = lot.GameObject as IStaticWorldObject;
             var publicState = GetPublicState(tradingStation);
@@ -111,7 +175,8 @@
                                                   protoItem,
                                                   lotQuantity,
                                                   priceCoinPenny,
-                                                  priceCoinShiny));
+                                                  priceCoinShiny,
+                                                  minQualityPercent));
         }
 
         public static void ServerInitialize(IStaticWorldObject tradingStation)
@@ -190,12 +255,47 @@
                                             publicState);
         }
 
+        public static TradeErrorCode SharedIsValidItemForTradeOperation(
+            IItem item,
+            IProtoItem requiredProtoItem,
+            byte minQualityPercent)
+        {
+            if (item.ProtoItem != requiredProtoItem
+                && !((IProtoItemWithSkinData)item.ProtoItem).IsSkinOrVariant(requiredProtoItem))
+            {
+                return TradeErrorCode.ItemPrototypeMismatch;
+            }
+
+            var minQualityFraction = minQualityPercent / 100.0;
+            if (requiredProtoItem is IProtoItemWithDurability
+                && ItemDurabilitySystem.SharedGetDurabilityFraction(item) < minQualityFraction)
+            {
+                return TradeErrorCode.TooLowDurability;
+            }
+
+            if (requiredProtoItem is IProtoItemWithFreshness
+                && ItemFreshnessSystem.SharedGetFreshnessFraction(item) < minQualityFraction)
+            {
+                return TradeErrorCode.TooLowFreshness;
+            }
+
+            return TradeErrorCode.NoErrors;
+        }
+
         private static void ClientShowErrorNotification(
             TradingStationLot lot,
             TradingResult error,
             bool isPlayerBuying)
         {
             var message = error.GetDescription();
+
+            switch (error)
+            {
+                case TradingResult.ErrorTooLowDurability:
+                case TradingResult.ErrorTooLowFreshness:
+                    message = string.Format(message, lot.MinQualityPercent);
+                    break;
+            }
 
             if (error == TradingResult.ErrorNotEnoughMoneyOnPlayer)
             {
@@ -241,22 +341,37 @@
                     : NotiticationCannotSell_Title,
                 message,
                 NotificationColor.Bad,
-                icon: lot.ProtoItem.Icon);
+                icon: (lot.ItemOnSale?.ProtoItem ?? lot.ProtoItem).Icon);
         }
 
         private static void ClientShowSuccessNotification(
-            TradingStationLot lot,
+            IProtoItem protoItem,
+            ushort quantity,
             bool isPlayerBuying)
         {
             Client.Audio.PlayOneShot(new SoundResource("UI/Notifications/ItemTradeSuccess"));
+
+            string itemName;
+            if (protoItem is IProtoItemWithSkinData protoItemWithSkinData
+                && protoItemWithSkinData.IsSkin)
+            {
+                itemName = string.Format("{0} ({1})",
+                                         protoItemWithSkinData.BaseProtoItem.Name,
+                                         protoItemWithSkinData.Name);
+            }
+            else
+            {
+                itemName = protoItem.Name;
+            }
+
             NotificationSystem.ClientShowNotification(
                 title: isPlayerBuying
                            ? NotificationBoughtTitle
                            : NotificationSoldTitle,
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                message: $"{lot.ProtoItem.Name} ({lot.LotQuantity}).",
+                message: $"{itemName} (x{quantity}).",
                 color: NotificationColor.Good,
-                icon: lot.ProtoItem.Icon,
+                icon: protoItem.Icon,
                 playSound: false);
         }
 
@@ -274,20 +389,45 @@
             TradingStationLot lot,
             IItemsContainerProvider sellerContainers,
             IItemsContainerProvider buyerContainers,
-            bool isPlayerBuying)
+            bool isPlayerBuying,
+            IItem itemToSellToStation)
         {
+            List<IItem> itemsToExchange;
+
             // find items to buy by other party
-            if (!SharedTryFindItemsOfType(sellerContainers,
-                                          lot.ProtoItem,
-                                          lot.LotQuantity,
-                                          out var itemsToSell,
-                                          minQualityFraction: isPlayerBuying
-                                                                  ? 0
-                                                                  : MinQualityFractionWhenStationBuying))
+            if (isPlayerBuying)
             {
-                return isPlayerBuying
-                           ? TradingResult.ErrorNotEnoughItemsOnStation
-                           : TradingResult.ErrorNotEnoughItemsOnPlayer;
+                if (!SharedTryFindItemsOfType(sellerContainers,
+                                              lot.ProtoItem,
+                                              lot.LotQuantity,
+                                              out itemsToExchange,
+                                              minQualityPercent: 0))
+                {
+                    return TradingResult.ErrorNotEnoughItemsOnStation;
+                }
+            }
+            else // player selling
+            {
+                var errorCode = SharedIsValidItemForTradeOperation(itemToSellToStation,
+                                                                   lot.ProtoItem,
+                                                                   lot.MinQualityPercent);
+                if (errorCode != TradeErrorCode.NoErrors)
+                {
+                    return errorCode switch
+                    {
+                        TradeErrorCode.ItemPrototypeMismatch => TradingResult.ErrorItemPrototypeMismatch,
+                        TradeErrorCode.TooLowDurability      => TradingResult.ErrorTooLowDurability,
+                        TradeErrorCode.TooLowFreshness       => TradingResult.ErrorTooLowFreshness,
+                        _                                    => TradingResult.ErrorNotEnoughItemsOnPlayer
+                    };
+                }
+
+                if (itemToSellToStation.Count < lot.LotQuantity)
+                {
+                    return TradingResult.ErrorNotEnoughItemsOnPlayer;
+                }
+
+                itemsToExchange = new List<IItem>() { itemToSellToStation };
             }
 
             // try to find money to pay to other party
@@ -297,12 +437,12 @@
                                           ProtoItemCoinPenny.Value,
                                           countCoinPenny,
                                           out _,
-                                          minQualityFraction: 0)
+                                          minQualityPercent: 0)
                 || !SharedTryFindItemsOfType(buyerContainers,
                                              ProtoItemCoinShiny.Value,
                                              countCoinShiny,
                                              out _,
-                                             minQualityFraction: 0))
+                                             minQualityPercent: 0))
             {
                 return isPlayerBuying
                            ? TradingResult.ErrorNotEnoughMoneyOnStation
@@ -346,7 +486,7 @@
 
             // try moving (bought) items
             var itemsCountToDestroyRemains = (int)lot.LotQuantity;
-            foreach (var item in itemsToSell)
+            foreach (var item in itemsToExchange)
             {
                 if (itemsCountToDestroyRemains <= 0)
                 {
@@ -419,9 +559,16 @@
                 {
                     // calculate how much items the station can sell
                     countAvailable = (uint)stockContainer.CountItemsOfType(lot.ProtoItem);
+                    foreach (var protoSkin in ((IProtoItemWithSkinData)lot.ProtoItem).Skins)
+                    {
+                        countAvailable += (uint)stockContainer.CountItemsOfType(protoSkin);
+                    }
+
                     if (countAvailable > 0)
                     {
-                        lot.ItemOnSale = stockContainer.Items.FirstOrDefault(i => i.ProtoItem == lot.ProtoItem);
+                        lot.ItemOnSale = stockContainer.Items.FirstOrDefault(
+                            i => ((IProtoItemWithSkinData)i.ProtoItem)
+                                .IsSkinOrVariant(lot.ProtoItem));
 
                         // it can accomodate at least one item
                         // check that there is enough space to accomodate money
@@ -500,7 +647,7 @@
             IProtoItem requiredProtoItem,
             uint count,
             out List<IItem> result,
-            double minQualityFraction)
+            byte minQualityPercent)
         {
             var countToFindRemains = (int)count;
 
@@ -509,22 +656,9 @@
             {
                 foreach (var item in container.Items)
                 {
-                    if (item.ProtoItem != requiredProtoItem)
+                    if (SharedIsValidItemForTradeOperation(item, requiredProtoItem, minQualityPercent)
+                        != TradeErrorCode.NoErrors)
                     {
-                        continue;
-                    }
-
-                    if (requiredProtoItem is IProtoItemWithDurability
-                        && ItemDurabilitySystem.SharedGetDurabilityFraction(item) < minQualityFraction)
-                    {
-                        // not enough durability
-                        continue;
-                    }
-
-                    if (requiredProtoItem is IProtoItemWithFreshness
-                        && ItemFreshnessSystem.SharedGetFreshnessFraction(item) < minQualityFraction)
-                    {
-                        // not enough durability
                         continue;
                     }
 
@@ -545,104 +679,11 @@
             return countToFindRemains <= 0;
         }
 
-        private static void ValidateCanAdminAndInteract(ICharacter character, IStaticWorldObject tradingStation)
-        {
-            if (!tradingStation.ProtoStaticWorldObject
-                               .SharedCanInteract(character, tradingStation, writeToLog: true))
-            {
-                throw new Exception($"{character} cannot interact with {tradingStation}");
-            }
-
-            if (!WorldObjectOwnersSystem.SharedIsOwner(character, tradingStation)
-                && !CreativeModeSystem.SharedIsInCreativeMode(character))
-            {
-                throw new Exception($"{character} is not owner of {tradingStation}");
-            }
-        }
-
-        private TradingResult ServerRemote_ExecuteTrade(
-            IStaticWorldObject tradingStation,
-            byte lotIndex,
-            TradingStationMode mode)
-        {
-            var character = ServerRemoteContext.Character;
-            var lot = GetPublicState(tradingStation).Lots[lotIndex];
-            if (!this.SharedValidateCanTrade(tradingStation, lot, mode, character, out var error))
-            {
-                return error;
-            }
-
-            Logger.Important($"Processing trading transaction: {lot}, mode={mode}", character);
-
-            var tradingStationPrivateState = GetPrivateState(tradingStation);
-            var tradingStationItemsContainer = tradingStationPrivateState.StockItemsContainer;
-
-            if (mode == TradingStationMode.StationSelling)
-            {
-                return ServerExecuteTrade(
-                    lot,
-                    sellerContainers: new AggregatedItemsContainers(tradingStationItemsContainer),
-                    buyerContainers: new CharacterContainersProvider(character, includeEquipmentContainer: false),
-                    isPlayerBuying: true);
-            }
-
-            // station buying
-            return ServerExecuteTrade(
-                lot,
-                sellerContainers: new CharacterContainersProvider(character, includeEquipmentContainer: false),
-                buyerContainers: new AggregatedItemsContainers(tradingStationItemsContainer),
-                isPlayerBuying: false);
-        }
-
-        private void ServerRemote_SetTradingLot(
-            IStaticWorldObject tradingStation,
-            byte lotIndex,
-            IProtoItem protoItem,
-            ushort lotQuantity,
-            ushort priceCoinPenny,
-            ushort priceCoinShiny)
-        {
-            var character = ServerRemoteContext.Character;
-            ValidateCanAdminAndInteract(character, tradingStation);
-
-            var publicState = GetPublicState(tradingStation);
-            var lot = publicState.Lots[lotIndex];
-
-            lot.ProtoItem = protoItem;
-            lot.SetLotQuantity(lotQuantity);
-            lot.SetPrices(priceCoinPenny, priceCoinShiny);
-            // the state will be set automatically during the refresh
-            lot.State = TradingStationLotState.Available;
-
-            Logger.Important($"Successfully modified trading lot #{lotIndex} on {tradingStation}", character);
-            ServerRefreshTradingStationLots(tradingStation,
-                                            GetPrivateState(tradingStation),
-                                            publicState);
-        }
-
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1, keyArgIndex: 0)]
-        private void ServerRemote_StationSetMode(IStaticWorldObject tradingStation, TradingStationMode mode)
-        {
-            ValidateCanAdminAndInteract(ServerRemoteContext.Character, tradingStation);
-
-            var publicState = GetPublicState(tradingStation);
-            publicState.Mode = mode;
-
-            foreach (var lot in publicState.Lots)
-            {
-                lot.State = TradingStationLotState.Disabled;
-            }
-
-            Logger.Important($"{tradingStation} mode switched to {mode}");
-            ServerRefreshTradingStationLots(tradingStation,
-                                            GetPrivateState(tradingStation),
-                                            publicState);
-        }
-
-        private bool SharedValidateCanTrade(
+        private static bool SharedValidateCanTrade(
             IStaticWorldObject tradingStation,
             TradingStationLot lot,
             TradingStationMode mode,
+            IItem itemToSellToStation,
             ICharacter character,
             out TradingResult error)
         {
@@ -688,8 +729,24 @@
 
             if (mode == TradingStationMode.StationBuying)
             {
-                // ensure that the character has required item count to sell
-                if (lot.LotQuantity > character.CountItemsOfType(lot.ProtoItem))
+                // ensure that the character has the required number of items to sell
+                var errorCode = SharedIsValidItemForTradeOperation(itemToSellToStation,
+                                                                   lot.ProtoItem,
+                                                                   lot.MinQualityPercent);
+                if (errorCode != TradeErrorCode.NoErrors)
+                {
+                    error = errorCode switch
+                    {
+                        TradeErrorCode.ItemPrototypeMismatch => TradingResult.ErrorItemPrototypeMismatch,
+                        TradeErrorCode.TooLowDurability      => TradingResult.ErrorTooLowDurability,
+                        TradeErrorCode.TooLowFreshness       => TradingResult.ErrorTooLowFreshness,
+                        _                                    => TradingResult.ErrorNotEnoughItemsOnPlayer
+                    };
+
+                    return false;
+                }
+
+                if (itemToSellToStation.Count < lot.LotQuantity)
                 {
                     error = TradingResult.ErrorNotEnoughItemsOnPlayer;
                     return false;
@@ -735,6 +792,117 @@
             // no error
             error = TradingResult.Success;
             return true;
+        }
+
+        private static void ValidateCanAdminAndInteract(ICharacter character, IStaticWorldObject tradingStation)
+        {
+            if (!tradingStation.ProtoStaticWorldObject
+                               .SharedCanInteract(character, tradingStation, writeToLog: true))
+            {
+                throw new Exception($"{character} cannot interact with {tradingStation}");
+            }
+
+            if (!WorldObjectOwnersSystem.SharedIsOwner(character, tradingStation)
+                && !CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                throw new Exception($"{character} is not owner of {tradingStation}");
+            }
+        }
+
+        private TradingResult ServerRemote_ExecuteTrade(
+            IStaticWorldObject tradingStation,
+            byte lotIndex,
+            TradingStationMode mode,
+            IItem itemToSellToStation)
+        {
+            if (mode == TradingStationMode.StationSelling
+                && itemToSellToStation is not null)
+            {
+                throw new Exception("Incorrect operation");
+            }
+
+            var character = ServerRemoteContext.Character;
+            var lot = GetPublicState(tradingStation).Lots[lotIndex];
+            if (!SharedValidateCanTrade(tradingStation,
+                                        lot,
+                                        mode,
+                                        itemToSellToStation,
+                                        character,
+                                        out var error))
+            {
+                return error;
+            }
+
+            Logger.Important($"Processing trading transaction: {lot}, mode={mode}", character);
+
+            var tradingStationPrivateState = GetPrivateState(tradingStation);
+            var tradingStationItemsContainer = tradingStationPrivateState.StockItemsContainer;
+
+            if (mode == TradingStationMode.StationSelling)
+            {
+                return ServerExecuteTrade(
+                    lot,
+                    sellerContainers: new AggregatedItemsContainers(tradingStationItemsContainer),
+                    buyerContainers: new CharacterContainersProvider(character, includeEquipmentContainer: false),
+                    isPlayerBuying: true,
+                    itemToSellToStation: null);
+            }
+            else // station buying
+            {
+                return ServerExecuteTrade(
+                    lot,
+                    sellerContainers: new CharacterContainersProvider(character, includeEquipmentContainer: false),
+                    buyerContainers: new AggregatedItemsContainers(tradingStationItemsContainer),
+                    isPlayerBuying: false,
+                    itemToSellToStation: itemToSellToStation);
+            }
+        }
+
+        private void ServerRemote_SetTradingLot(
+            IStaticWorldObject tradingStation,
+            byte lotIndex,
+            IProtoItem protoItem,
+            ushort lotQuantity,
+            ushort priceCoinPenny,
+            ushort priceCoinShiny,
+            byte minQualityPercent)
+        {
+            var character = ServerRemoteContext.Character;
+            ValidateCanAdminAndInteract(character, tradingStation);
+
+            var publicState = GetPublicState(tradingStation);
+            var lot = publicState.Lots[lotIndex];
+
+            lot.ProtoItem = protoItem;
+            lot.SetLotQuantity(lotQuantity);
+            lot.SetPrices(priceCoinPenny, priceCoinShiny);
+            lot.MinQualityPercent = minQualityPercent;
+            // the state will be set automatically during the refresh
+            lot.State = TradingStationLotState.Available;
+
+            Logger.Important($"Successfully modified trading lot #{lotIndex} on {tradingStation}", character);
+            ServerRefreshTradingStationLots(tradingStation,
+                                            GetPrivateState(tradingStation),
+                                            publicState);
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, timeInterval: 1, keyArgIndex: 0)]
+        private void ServerRemote_StationSetMode(IStaticWorldObject tradingStation, TradingStationMode mode)
+        {
+            ValidateCanAdminAndInteract(ServerRemoteContext.Character, tradingStation);
+
+            var publicState = GetPublicState(tradingStation);
+            publicState.Mode = mode;
+
+            foreach (var lot in publicState.Lots)
+            {
+                lot.State = TradingStationLotState.Disabled;
+            }
+
+            Logger.Important($"{tradingStation} mode switched to {mode}");
+            ServerRefreshTradingStationLots(tradingStation,
+                                            GetPrivateState(tradingStation),
+                                            publicState);
         }
     }
 }

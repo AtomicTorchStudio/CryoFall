@@ -25,19 +25,35 @@
     [PrepareOrder(afterType: typeof(IProtoItem))]
     public abstract class Recipe : ProtoEntity
     {
-        private static readonly IReadOnlyList<TechNode> EmptyList = new TechNode[0];
-
         private static IReadOnlyList<Recipe> allRecipes;
+
+        private readonly Lazy<Recipe> lazyBaseRecipe;
 
         private ITextureResource customIcon;
 
         private List<TechNode> listedInTechNodes;
+
+        private Dictionary<IProtoItem, IReadOnlyOutputItems> skinOutputItems;
 
         /// <summary>
         /// Please use specific recipes abstract types. You cannot create instances of this type yourself.
         /// </summary>
         private Recipe()
         {
+            this.lazyBaseRecipe = new Lazy<Recipe>(
+                () =>
+                {
+                    var baseType = this.GetType().BaseType;
+                    if (baseType.IsAbstract)
+                    {
+                        // not inherited from any recipe
+                        return null;
+                    }
+
+                    // this type is inherited from another recipe
+                    // (consider it as the base recipe, and the current recipe is a "skin" recipe) 
+                    return (Recipe)Api.Shared.GetProtoEntityAbstract(baseType);
+                });
         }
 
         public static IReadOnlyList<Recipe> AllRecipes
@@ -55,6 +71,8 @@
                 return allRecipes;
             }
         }
+
+        public Recipe BaseRecipe => this.lazyBaseRecipe.Value;
 
         public virtual ITextureResource Icon
         {
@@ -102,7 +120,14 @@
         /// </summary>
         public virtual bool IsEnabled => true;
 
-        public IReadOnlyList<TechNode> ListedInTechNodes => this.listedInTechNodes ?? EmptyList;
+        public bool IsSkinnable
+            => this.OutputItems.Count == 1
+               && this.OutputItems.Items[0].Count == 1
+               && ((IProtoItemWithSkinData)this.OutputItems.Items[0].ProtoItem).IsSkinnable;
+
+        public IReadOnlyList<TechNode> ListedInTechNodes
+            => this.listedInTechNodes
+               ?? (IReadOnlyList<TechNode>)Array.Empty<TechNode>();
 
         public override string Name => this.OutputItems.Items[0].ProtoItem.Name;
 
@@ -161,6 +186,36 @@
             return true;
         }
 
+        public IReadOnlyOutputItems GetOutputItems(IProtoItem protoItemSkinOverride)
+        {
+            IReadOnlyOutputItems outputItems;
+            if (protoItemSkinOverride is null)
+            {
+                outputItems = this.OutputItems;
+            }
+            else
+            {
+                if (this.skinOutputItems is null)
+                {
+                    this.skinOutputItems = new();
+                    outputItems = null;
+                }
+                else
+                {
+                    this.skinOutputItems.TryGetValue(protoItemSkinOverride, out outputItems);
+                }
+
+                if (outputItems is null)
+                {
+                    this.ValidateSkin(protoItemSkinOverride);
+                    outputItems = new OutputItems().Add(protoItemSkinOverride);
+                    this.skinOutputItems[protoItemSkinOverride] = outputItems;
+                }
+            }
+
+            return outputItems;
+        }
+
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
         {
             if (this.listedInTechNodes is null)
@@ -213,9 +268,16 @@
 
         public bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true)
         {
-            if (this.listedInTechNodes is null
-                || this.listedInTechNodes.Count == 0)
+            var techNodes = this.listedInTechNodes;
+            if (techNodes is null
+                || techNodes.Count == 0)
             {
+                var baseRecipe = this.BaseRecipe;
+                if (baseRecipe is not null)
+                {
+                    return baseRecipe.SharedIsTechUnlocked(character, allowIfAdmin);
+                }
+
                 return this.IsAutoUnlocked;
             }
 
@@ -226,7 +288,7 @@
             }
 
             var techs = character.SharedGetTechnologies();
-            foreach (var node in this.listedInTechNodes)
+            foreach (var node in techNodes)
             {
                 if (techs.SharedIsNodeUnlocked(node))
                 {
@@ -237,10 +299,65 @@
             return false;
         }
 
+        public void ValidateSkin(IProtoItem protoItemSkinOverride)
+        {
+            if (protoItemSkinOverride is null)
+            {
+                return;
+            }
+
+            if (!this.IsSkinnable)
+            {
+                throw new Exception("The recipe has more than a single item output - cannot have skins for it. "
+                                    + this.Id);
+            }
+
+            var properBaseType = this.OutputItems.Items[0].ProtoItem;
+            if (((IProtoItemWithSkinData)protoItemSkinOverride).BaseProtoItem != properBaseType)
+            {
+                throw new Exception("Wrong skin: the base type doesn't match."
+                                    + Environment.NewLine
+                                    + "Skin prototype: "
+                                    + protoItemSkinOverride.Id
+                                    + " has base prototype "
+                                    + (((IProtoItemWithSkinData)protoItemSkinOverride).BaseProtoItem?.Id ?? "<none>")
+                                    + " when the recipe "
+                                    + this.Id
+                                    + " expects that its output will be an item inherited from "
+                                    + properBaseType.Id);
+            }
+
+            if (!((IProtoItemWithSkinData)properBaseType)
+                 .Skins.Contains(protoItemSkinOverride))
+            {
+                throw new Exception("Wrong skin: the skin is not registered"
+                                    + Environment.NewLine
+                                    + "Skin prototype: "
+                                    + protoItemSkinOverride.Id);
+            }
+        }
+
         protected static T GetItem<T>()
             where T : IProtoEntity, new()
         {
             return Api.GetProtoEntity<T>();
+        }
+
+        protected static TProtoItem GetProtoItem<TProtoItem>()
+            where TProtoItem : IProtoItem, new()
+        {
+            return Api.GetProtoEntity<TProtoItem>();
+        }
+
+        protected Recipe GetRecipe<TRecipe>()
+            where TRecipe : Recipe, new()
+        {
+            return GetProtoEntity<TRecipe>();
+        }
+
+        protected virtual IProtoItem OverrideOutput()
+        {
+            return null;
         }
 
         protected sealed override void PrepareProto()
@@ -257,6 +374,13 @@
 
             Api.Assert(outputItems.Count > 0, "Crafting recipe requires at least one output item.");
 
+            var overrideOutputProtoItem = this.OverrideOutput();
+            if (overrideOutputProtoItem is not null)
+            {
+                outputItems.Clear()
+                           .Add(overrideOutputProtoItem);
+            }
+
             this.OriginalDuration = craftDuration.TotalSeconds;
 
             inputItems.ApplyRates(RecipeConstants.InputItemsCountMultiplier);
@@ -264,6 +388,13 @@
 
             this.InputItems = inputItems.AsReadOnly().ToArray();
             this.OutputItems = outputItems.AsReadOnly();
+
+            // link the output items to this recipe
+            foreach (var entry in this.OutputItems.Items)
+            {
+                var protoItem = (((IProtoItemWithRecipeData)entry.ProtoItem));
+                protoItem.PrepareProtoItemLinkRecipe(this);
+            }
         }
 
         protected abstract void SetupRecipe(

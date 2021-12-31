@@ -348,6 +348,24 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 您確定要使用{0}嗎？
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+你可以嘗試回滾到最新備份版本。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall已發現存檔損壞問題。
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+請前往存檔資料夾並檢查此檔的備份版本：
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`可能原因:
+[*] 硬碟損壞
+[*] 系統檔讀寫錯誤
+[*] 其他`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+無法載入已保存遊戲
+
 UI/CoreStrings@DialogClearList_Message:
 確定要清空此列表？
 
@@ -401,6 +419,9 @@ UI/CoreStrings@EventDamage_SuccessMessage_Format:
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall的官方Discord伺服器(僅限英文)
+
+UI/CoreStrings@Extras_Features_Title:
+特性
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 CryoFall功能集錦
@@ -914,6 +935,18 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 需要
+
+UI/CoreStrings@Item_AvailableInTechTier:
+科技解鎖於{0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+物品耐久過低(最少需要{0}%)
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+物品鮮度過低(最少需要{0}%)
+
+UI/CoreStrings@Item_CreatedBy_Format:
+由{0}製造
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 腐敗倒計時：{0}
@@ -1810,8 +1843,119 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 技能
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+限量版皮膚（當前無法獲得）
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+眾籌支持者內容。
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+通過進行遊戲解鎖。
+
+UI/CoreStrings@Skin_Default:
+默認
+
+UI/CoreStrings@Skin_NotOwned:
+您尚未擁有此皮膚。
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+流覽皮膚
+
+UI/CoreStrings@Skins_Button_Buy:
+購買
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+獲取
+
+UI/CoreStrings@Skins_EmptyList:
+列表中皮膚為空。
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+頂置皮膚
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+再登陸{0}以獲得一份免費皮膚。
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+免費皮膚進度
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+皮膚可以在任何伺服器使用（官方，社區，私服或本地）
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+您可以將您擁有皮膚的物品製作出來並分享給未擁有皮膚的朋友使用。
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+皮膚可以被應用至您在遊戲中製造的部分物品，例如武器和裝備。
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+*所有價格皆已根據Steam地區價格調整。
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+通過購買皮膚來支持開發者！
+
+UI/CoreStrings@Skins_SelectSkin:
+選擇皮膚：
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} ({1}的皮膚)
+
+UI/CoreStrings@Skins_SkinOwned:
+已擁有
+
+UI/CoreStrings@Skins_SkinUnlocked:
+皮膚已解鎖
+
+UI/CoreStrings@Skins_Tab_Equipment:
+裝備
+
+UI/CoreStrings@Skins_Tab_First:
+頂置
+
+UI/CoreStrings@Skins_Tab_Owned:
+已擁有
+
+UI/CoreStrings@Skins_Tab_Weapons:
+武器
+
+UI/CoreStrings@Skins_Title:
+皮膚
+
 UI/CoreStrings@SortBy:
 排序：
+
+UI/CoreStrings@StatisticsDeaths:
+死亡
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+農作物已收割
+
+UI/CoreStrings@StatisticsMineralsMined:
+礦物已採集
+
+UI/CoreStrings@StatisticsPvpAssists:
+輔助
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+K/D
+
+UI/CoreStrings@StatisticsPvpKills:
+擊殺
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+PvP排行榜
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP分數
+
+UI/CoreStrings@StatisticsTitle:
+個人資料
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+總學習點
+
+UI/CoreStrings@StatisticsTreesCut:
+已砍伐樹木
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 強度
@@ -1843,6 +1987,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 支援徽章
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+打開商店頁面
 
 UI/CoreStrings@SupporterPack_Description:
 `支援包裹是給予那些特別支持了CryoFall的玩家們的一系列獎勵物品。作為感謝，遊戲將在聊天區域內為這些玩家加入支援徽章。
@@ -3313,5 +3460,5 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsO
 你必須接受服務條款才能繼續。
 
 UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-看起來您正嘗試使用Microsoft旗下服務器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。
+看起來您正嘗試使用Microsoft旗下伺服器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。
 

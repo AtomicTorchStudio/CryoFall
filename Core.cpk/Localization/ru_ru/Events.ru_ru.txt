@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 Миграция крушителей
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Внимание: огнестрельное оружие бесполезно; используйте оружие ближнего боя или оружие с тепловым уроном.
+Внимание: огнестрельное оружие неэффективно; используйте оружие ближнего боя.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 В горных районах появились странные инопланетные поросли, поэтому добыча минералов там почти невозможна, но это шанс добыть редкие ресурсы.

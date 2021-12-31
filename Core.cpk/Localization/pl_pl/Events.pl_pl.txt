@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 Migracja Tratownika
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Ważne: broń palna jest bezużyteczna – użyj broni ręcznej lub termicznej.
+Ważne: broń palna jest bezużyteczna, użyj broni ręcznej.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Na terenach górskich pojawił się dziwny obcy twór, który spowodował, że poszukiwania są prawie niemożliwe, ale jest to też świetna okazja do pozyskania rzadkich zasobów.

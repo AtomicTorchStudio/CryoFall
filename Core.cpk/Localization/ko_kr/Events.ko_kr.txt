@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 썸퍼 이동
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-중요: 화기는 유효하지 않으니 근거리 또는 열 기반 무기를 사용하세요.
+중요: 화기는 효과적이지 않으니 근접 무기를 사용하세요.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 산악 지역에 기이한 외계 식물이 나타났습니다. 덕분에 탐사는 불가능해졌지만, 희귀한 자원을 얻을 수 있는 좋은 기회입니다.

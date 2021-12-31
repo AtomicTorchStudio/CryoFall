@@ -33,7 +33,7 @@
         protected override void PrepareProtoItemLight(ItemLightConfig lightConfig, ItemFuelConfig fuelConfig)
         {
             lightConfig.Color = LightColors.OilLamp;
-            lightConfig.ScreenOffset = (-28, -17);
+            lightConfig.ScreenOffset = (42, 60);
             lightConfig.Size = 18;
 
             fuelConfig.FuelCapacity = 750; // about 12.5 minutes

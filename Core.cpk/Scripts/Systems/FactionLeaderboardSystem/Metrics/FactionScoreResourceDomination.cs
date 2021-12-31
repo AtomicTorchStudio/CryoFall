@@ -13,7 +13,7 @@
     /// </summary>
     public class FactionScoreResourceDomination : ProtoFactionScoreMetric
     {
-        private const double ScorePerControlledDepositPerMetricRefresh = 1.0;
+        private const double ScorePerControlledDepositPerMetricRefresh = 3.0;
 
         public override string Description =>
             "Awarded for captured oil and lithium deposits every hour (the land claim must be transferred to the faction ownership).";

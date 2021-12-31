@@ -130,7 +130,7 @@
         protected override void PrepareProtoItemLight(ItemLightConfig lightConfig, ItemFuelConfig fuelConfig)
         {
             lightConfig.Color = LightColors.Torch;
-            lightConfig.ScreenOffset = (10, 2);
+            lightConfig.ScreenOffset = (17, 147);
             lightConfig.Size = 16;
 
             fuelConfig.FuelCustomIcon = new TextureResource("Icons/IconFire");

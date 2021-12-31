@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -21,6 +22,15 @@
         [SyncToClient]
         public ushort LotQuantity { get; private set; } = 1;
 
+        /// <summary>
+        /// Minimum durability/freshness percent. Used only when the station is buying.
+        /// The station will check whether the item is above the threshold before purchasing it from player.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        [SyncToClient]
+        public byte MinQualityPercent { get; set; }
+            = TradingStationsSystem.DefaultMinQualityFractionWhenStationBuying;
+
         [SyncToClient]
         public ushort PriceCoinPenny { get; private set; }
 
@@ -35,6 +45,13 @@
 
         public void SetLotQuantity(ushort lotQuantity)
         {
+            if (this.ProtoItem is null 
+                || !this.ProtoItem.IsStackable)
+            {
+                this.LotQuantity = 1;
+                return;
+            }
+                
             this.LotQuantity = MathHelper.Clamp(lotQuantity, 1, MaxLotQuantity);
         }
 

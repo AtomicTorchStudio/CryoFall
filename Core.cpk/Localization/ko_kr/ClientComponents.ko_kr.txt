@@ -67,6 +67,36 @@ Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 슬롯 #0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+빠른 사용—슬롯#1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+빠른 사용—슬롯#2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+빠른 사용—슬롯#3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+빠른 사용—슬롯#4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+빠른 사용—슬롯#5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+빠른 사용—슬롯#6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+빠른 사용—슬롯#7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+빠른 사용—슬롯#8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+빠른 사용—슬롯#9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+빠른 사용—슬롯#0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 카메라 확대
 

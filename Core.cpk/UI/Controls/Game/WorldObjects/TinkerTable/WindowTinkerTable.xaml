@@ -85,6 +85,7 @@
 
                         <Grid Grid.Column="0">
                             <Rectangle Fill="{Binding SelectedProtoItemIcon}"
+                                       Visibility="{Binding HasInputItem1, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                        Margin="0,-1,0,0"
                                        Opacity="0.75"
                                        Width="{StaticResource IconItemSize}"
@@ -109,6 +110,7 @@
 
                         <Grid Grid.Column="2">
                             <Rectangle Fill="{Binding SelectedProtoItemIcon}"
+                                       Visibility="{Binding HasInputItem2, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                        Margin="0,-1,0,0"
                                        Opacity="0.75"
                                        Width="{StaticResource IconItemSize}"

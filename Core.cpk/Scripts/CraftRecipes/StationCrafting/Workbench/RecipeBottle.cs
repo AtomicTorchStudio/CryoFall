@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemGlassRaw>(count: 10);
 

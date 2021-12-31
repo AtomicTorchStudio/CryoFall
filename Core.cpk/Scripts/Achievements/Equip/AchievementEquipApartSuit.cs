@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Achievements
 {
-    using AtomicTorch.CBND.CoreMod.Items.Equipment.ApartSuit;
+    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class AchievementEquipApartSuit : ProtoAchievement

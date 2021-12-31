@@ -20,7 +20,7 @@
 
         public override double StructureExplosiveDefenseCoef => 0.4;
 
-        public override float StructurePointsMax => 3000;
+        public override float StructurePointsMax => 2500;
 
         protected override void PrepareConstructionConfigTurret(
             ConstructionTileRequirements tileRequirements,

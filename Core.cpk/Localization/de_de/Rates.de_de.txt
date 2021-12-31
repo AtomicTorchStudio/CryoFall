@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 Fähigkeits-XP
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Konstruktionen] Baubar auf Wiesen
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Verfall] Verfall verlassener Gebäude
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Verfall] Dauer der Verfallsverzögerung verlassener Land Claims
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+Textschilder verfügbar
 
 Scripts/Rates/RateThirst@Name:
 Durstrate

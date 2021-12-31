@@ -80,6 +80,9 @@
         [SyncToClient]
         public bool IsPveDuelModeEnabled { get; set; }
 
+        [SyncToClient]
+        public bool IsSupporterPackOwner { get; set; }
+
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
         public IItem SelectedItem { get; private set; }

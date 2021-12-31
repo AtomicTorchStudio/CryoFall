@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 Hammer-Migration
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Wichtig: Feuerwaffen sind nutzlos; benutze Nahkampf- oder auf Hitze basierende Waffen.
+Wichtig: Schusswaffen sind wirkungslos; benutze Nahkampfwaffen.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Seltsamer außerirdischer Bewuchs ist in den Bergregionen aufgetaucht. Obwohl es jegliche Prospektion nahezu unmöglich macht, bietet sich die einmalige Gelegenheit, an seltene Ressourcen zu gelangen.

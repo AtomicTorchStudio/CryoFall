@@ -11,6 +11,7 @@
     public class RatePvPTimeGates
         : BaseRate<RatePvPTimeGates, string>
     {
+        [NotLocalizable]
         public const string ValueNoTimeGates = "0,0,0,0,0,0,0,0";
 
         // This constant contains the total number of time gates

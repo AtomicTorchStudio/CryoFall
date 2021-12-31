@@ -821,6 +821,12 @@ Utilisé pour frapper des pièces dans différents métaux. Permet également de
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Coin à monnaie
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Permet la décomposition de matières organiques dans un environnement contrôlé pour créer rapidement de l'engrais.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Composteur rotatif
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 Grâce à ce cabinet, il est possible de produire des produits ou de la nourriture spécifiques, comme la viande ou les champignons séchés.
 

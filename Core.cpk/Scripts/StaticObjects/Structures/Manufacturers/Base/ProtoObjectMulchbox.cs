@@ -1,12 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
     using System;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
 
     public abstract class ProtoObjectMulchbox
         <TPrivateState,
@@ -38,6 +41,8 @@
 
         public override double ServerUpdateRareIntervalSeconds => 2;
 
+        protected abstract TextureResource InfoTexture { get; }
+
         public ObjectMulchboxPrivateState GetMulchboxPrivateState(IStaticWorldObject objectMulchbox)
         {
             return GetPrivateState(objectMulchbox);
@@ -49,7 +54,8 @@
                 new ViewModelWindowMulchbox(
                     data.GameObject,
                     data.PrivateState,
-                    this.ManufacturingConfig));
+                    this.ManufacturingConfig,
+                    this.InfoTexture));
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -71,7 +77,13 @@
             var organicAmount = privateState.OrganicAmount;
 
             // try consume input item and add it's organic value into the mulchbox organic amount
-            var inputItem = privateState.ManufacturingState.ContainerInput.GetItemAtSlot(0);
+            IItem inputItem = null;
+            foreach (var item in privateState.ManufacturingState.ContainerInput.Items)
+            {
+                inputItem = item;
+                break;
+            }
+
             if (inputItem?.ProtoItem is not IProtoItemOrganic protoItemOrganic)
             {
                 return;

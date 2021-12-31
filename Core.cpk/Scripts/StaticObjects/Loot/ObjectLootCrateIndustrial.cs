@@ -81,8 +81,6 @@
                         .Add<ItemPickaxeSteel>(count: 1, weight: 1 / 50.0)
                         .Add<ItemToolboxT3>(count: 1,    weight: 1 / 50.0)
                         .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
-                        // equipment
-                        .Add<ItemHelmetSafety>(count: 1, weight: 1 / 15.0)
                 );
             
             droplist.Add(ItemDroplistPresets.TeleportLocationData);

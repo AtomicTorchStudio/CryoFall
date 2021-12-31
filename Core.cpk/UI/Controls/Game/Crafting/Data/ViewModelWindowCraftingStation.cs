@@ -33,7 +33,7 @@
 
         protected override void DisposeViewModel()
         {
-            lastSelectedRecipe = this.ViewModelCraftingMenu.SelectedRecipe?.Recipe;
+            lastSelectedRecipe = this.ViewModelCraftingMenu.SelectedListEntry?.Recipe;
         }
     }
 }

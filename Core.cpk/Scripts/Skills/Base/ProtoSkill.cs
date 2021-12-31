@@ -300,7 +300,7 @@
             return result;
         }
 
-        public struct FlagEffect : IFlagEffect
+        public readonly struct FlagEffect : IFlagEffect
         {
             public FlagEffect(TFlagEffectsEnum flag, byte level, string description)
             {

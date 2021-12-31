@@ -137,9 +137,11 @@
             // calculate sprite position offset
             var protoSkeleton = this.character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;
             var slotName = protoSkeleton.SlotNameItemInHand;
-            var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
+            var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(slotName);
 
-            var muzzleFlashTextureOffset = this.description.TextureScreenOffset;
+            var muzzleFlashTextureOffset = (this.description.TextureScreenOffset - (this.description.TextureOriginX, 0))
+                                           / this.skeletonRenderer.GetSlotScreenScale(slotName);
+
             var boneWorldPosition = this.skeletonRenderer.TransformSlotPosition(
                 slotName,
                 weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
@@ -175,7 +177,7 @@
 
             this.componentAnimatorFlash.ForceUpdate(deltaTime);
             this.componentAnimatorSmoke.ForceUpdate(deltaTime);
-            
+
             // visualize muzzle flash position
             //ClientComponentPhysicsSpaceVisualizer.ProcessServerDebugPhysicsTesting(
             //    new CircleShape(boneWorldPosition, radius: 0.3, collisionGroup: CollisionGroups.Default));

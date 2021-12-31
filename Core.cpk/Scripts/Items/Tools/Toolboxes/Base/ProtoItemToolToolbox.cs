@@ -23,7 +23,7 @@
               TPublicState,
               TClientState>,
           IProtoItemToolToolbox
-        where TPrivateState : BasePrivateState, IItemWithDurabilityPrivateState, new()
+        where TPrivateState : ItemPrivateState, IItemWithDurabilityPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {

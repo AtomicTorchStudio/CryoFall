@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeRifleBoltAction>();
 
-            config.SetRequiredNode<TechNodeLuger>();
+            config.SetRequiredNode<TechNodeRevolver8mm>();
         }
     }
 }

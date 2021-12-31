@@ -68,6 +68,36 @@ Gniazdo 9
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 Gniazdo 0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+Szybkie użycie – gniazdo 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+Szybkie użycie – gniazdo 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+Szybkie użycie – gniazdo 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+Szybkie użycie – gniazdo 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+Szybkie użycie – gniazdo 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+Szybkie użycie – gniazdo 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+Szybkie użycie – gniazdo 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+Szybkie użycie – gniazdo 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+Szybkie użycie – gniazdo 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+Szybkie użycie – gniazdo 0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Powiększenie widoku
 

@@ -7,14 +7,17 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.StatModificationDisplay;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.DataStructures;
 
@@ -30,7 +33,7 @@
               TPublicState,
               TClientState>,
           IProtoItemEquipment
-        where TPrivateState : BasePrivateState, IItemWithDurabilityPrivateState, new()
+        where TPrivateState : ItemPrivateState, IItemWithDurabilityPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -76,6 +79,18 @@
             List<IClientComponent> skeletonComponents,
             bool isPreview)
         {
+            if (this.ClientIsMustUseDefaultAppearance(character, isPreview))
+            {
+                // the skin is not owned, apply base proto item's appearance instead
+                ((IProtoItemEquipment)this.BaseProtoItem)
+                    .ClientSetupSkeleton(item,
+                                         character,
+                                         skeletonRenderer,
+                                         skeletonComponents,
+                                         isPreview: false);
+                return;
+            }
+
             var isMale = PlayerCharacter.GetPublicState(character).IsMale;
             var slotAttachments = isMale
                                       ? this.SlotAttachmentsMale
@@ -100,7 +115,33 @@
 
         protected virtual void ClientFillSlotAttachmentSources(ITempList<string> folders)
         {
-            folders.Add("Characters/Equipment/" + this.ShortId);
+            var baseProtoItem = this.BaseProtoItem;
+            if (baseProtoItem is not null)
+            {
+                folders.Add(
+                    $"Characters/Equipment/{baseProtoItem.ShortId}/{this.ShortId.Substring(baseProtoItem.ShortId.Length)}");
+                return;
+            }
+
+            var path = $"Characters/Equipment/{this.ShortId}/Default";
+            if (Api.Shared.IsFolderExists(ContentPaths.Textures + path))
+            {
+                folders.Add(path);
+                return;
+            }
+
+            folders.Add($"Characters/Equipment/{this.ShortId}");
+        }
+
+        protected bool ClientIsMustUseDefaultAppearance(ICharacter character, bool isPreview)
+        {
+            // currently the game will not apply Supporter Pack skins for players that don't own Supporter Pack
+            return this.IsSkin
+                   && (!isPreview || !CraftingSkinPreviewControl.IsDisplayed)
+                   && character is not null
+                   && !character.IsNpc
+                   && Client.Microtransactions.GetSkinData((ushort)this.SkinId).Pool == SkinsPool.SupporterPack
+                   && !PlayerCharacter.GetPublicState(character).IsSupporterPackOwner;
         }
 
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
@@ -120,7 +161,20 @@
 
         protected override string GenerateIconPath()
         {
-            return "Items/Equipment/" + this.GetType().Name;
+            var baseProtoItem = this.BaseProtoItem;
+            if (baseProtoItem is not null)
+            {
+                return
+                    $"Items/Equipment/Item{baseProtoItem.ShortId}/{this.ShortId.Substring(baseProtoItem.ShortId.Length)}";
+            }
+
+            var path = $"Items/Equipment/Item{this.ShortId}/Default";
+            if (Api.Shared.IsFolderExists(ContentPaths.Textures + path))
+            {
+                return path;
+            }
+
+            return $"Items/Equipment/{this.GetType().Name}";
         }
 
         protected abstract void PrepareDefense(DefenseDescription defense);

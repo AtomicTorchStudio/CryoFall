@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelTechNode, IsDesignTimeCreatable=True}"
-    MaxWidth="300"
+    MaxWidth="600"
     MinWidth="120"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:technologies="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies">
@@ -21,12 +21,14 @@
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
             </Style>
 
             <Style x:Key="RecipeStationNameTextStyle" TargetType="TextBlock"
                    BasedOn="{StaticResource RecipeNameTextStyle}">
                 <Setter Property="Foreground" Value="{StaticResource TooltipForegroundBrushDark2}" />
-                <Setter Property="FontSize" Value="10" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontWeight" Value="Normal" />
             </Style>
 
             <Style TargetType="TextBlock" BasedOn="{StaticResource RecipeNameTextStyle}" />
@@ -39,8 +41,8 @@
                         CornerRadius="3"
                         VerticalAlignment="Top">
                     <Rectangle Fill="{Binding Icon}"
-                               Width="48"
-                               Height="48"
+                               Width="64"
+                               Height="64"
                                UseLayoutRounding="True" />
                 </Border>
             </ControlTemplate>
@@ -66,7 +68,8 @@
 
                         <technologies:TechRequiredProtoItemsControl
                             TechNode="{Binding Path=DataContext.TechNode, RelativeSource={RelativeSource AncestorType={x:Type technologies:TechNodeTooltipControl}}}"
-                            RequiredProtoItems="{Binding RequiredProtoItems}" />
+                            RequiredProtoItems="{Binding RequiredProtoItems}"
+                            Margin="0,2,0,0" />
                     </StackPanel>
                 </Grid>
             </DataTemplate>

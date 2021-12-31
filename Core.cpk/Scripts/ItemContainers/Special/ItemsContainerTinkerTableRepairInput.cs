@@ -16,7 +16,8 @@
                 return true;
             }
 
-            if (context.Item.ProtoItem
+            var item = context.Item;
+            if (item.ProtoItem
                     is not IProtoItemWithDurability { DurabilityMax: > 0, IsRepairable: true })
             {
                 // not a repairable item
@@ -39,7 +40,7 @@
                 return true;
             }
 
-            if (context.Item.ProtoItem == otherItem.ProtoItem)
+            if (ObjectTinkerTable.IsCompatibleRepairPair(item, otherItem))
             {
                 // a matching item is placed in the other slot - repair allowed
                 return true;

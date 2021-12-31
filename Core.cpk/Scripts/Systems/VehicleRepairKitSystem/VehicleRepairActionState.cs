@@ -51,6 +51,8 @@
             this.stageStructureAddValue = this.structurePointsMax / protoVehicle.RepairStagesCount;
         }
 
+        public override bool IsDisplayingProgress => true;
+
         public double StructurePointsMax => this.structurePointsMax;
 
         public override IWorldObject TargetWorldObject => this.Vehicle;

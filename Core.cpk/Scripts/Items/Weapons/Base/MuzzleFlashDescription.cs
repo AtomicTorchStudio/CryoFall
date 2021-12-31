@@ -18,6 +18,8 @@
 
         public TextureAtlasResource TextureAtlas { get; set; }
 
+        public double TextureOriginX { get; set; }
+
         public double TextureScale { get; set; }
 
         public Vector2D TextureScreenOffset { get; set; }
@@ -33,7 +35,8 @@
                 TextureAnimationDurationSeconds = this.TextureAnimationDurationSeconds,
                 TextureAtlas = this.TextureAtlas,
                 TextureScale = this.TextureScale,
-                TextureScreenOffset = this.TextureScreenOffset
+                TextureScreenOffset = this.TextureScreenOffset,
+                TextureOriginX = this.TextureOriginX
             };
         }
 
@@ -47,6 +50,7 @@
             this.TextureAtlas = preset.TextureAtlas;
             this.TextureScale = preset.TextureScale;
             this.TextureScreenOffset = preset.TextureScreenOffset;
+            this.TextureOriginX = preset.TextureOriginX;
             return this;
         }
 
@@ -58,7 +62,8 @@
             double? textureAnimationDurationSeconds = null,
             TextureAtlasResource textureAtlas = null,
             double? textureScale = null,
-            Vector2D? textureScreenOffset = null)
+            Vector2D? textureScreenOffset = null,
+            double? textureOriginX = null)
         {
             if (lightColor.HasValue)
             {
@@ -98,6 +103,11 @@
             if (textureScreenOffset is not null)
             {
                 this.TextureScreenOffset = textureScreenOffset.Value;
+            }
+
+            if (textureOriginX is not null)
+            {
+                this.TextureOriginX = textureOriginX.Value;
             }
 
             return this;

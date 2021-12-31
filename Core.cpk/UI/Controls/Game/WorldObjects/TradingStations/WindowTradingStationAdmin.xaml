@@ -88,6 +88,9 @@
                                         CornerRadius="3"
                                         Padding="3"
                                         Margin="5">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.2" />
+                                    </Border.Background>
                                     <StackPanel Orientation="Vertical"
                                                 HorizontalAlignment="Stretch">
                                         <Control Template="{StaticResource TradingLotIconWithTooltip}" />
@@ -117,8 +120,9 @@
                                                 Command="{Binding CommandConfigure}"
                                                 FontSize="11"
                                                 Padding="0,1"
+                                                Margin="0,5,0,0"
                                                 MinWidth="0"
-                                                MinHeight="0"
+                                                MinHeight="28"
                                                 HorizontalAlignment="Stretch"
                                                 Focusable="False" />
                                     </StackPanel>

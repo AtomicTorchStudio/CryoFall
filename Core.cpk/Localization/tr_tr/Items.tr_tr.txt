@@ -232,6 +232,183 @@ Kullan
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 Araç sürerken bu eşya kullanılamaz.
 
+Scripts/Items/Base/SkinName@Alien:
+Uzaylı
+
+Scripts/Items/Base/SkinName@Aquamarine:
+Akuamarin
+
+Scripts/Items/Base/SkinName@Aviator:
+Havacı
+
+Scripts/Items/Base/SkinName@Biker:
+Motorcu
+
+Scripts/Items/Base/SkinName@Buccaneer:
+Korsan
+
+Scripts/Items/Base/SkinName@Commando:
+Komando
+
+Scripts/Items/Base/SkinName@Contagion:
+Sirayet
+
+Scripts/Items/Base/SkinName@Cork:
+Mantar
+
+Scripts/Items/Base/SkinName@Cossack:
+Kazak
+
+Scripts/Items/Base/SkinName@Cowboy:
+Kovboy
+
+Scripts/Items/Base/SkinName@DesertCamo:
+Çöl kamuflajı
+
+Scripts/Items/Base/SkinName@Elite:
+Seçkin
+
+Scripts/Items/Base/SkinName@Emerald:
+Zümrüt
+
+Scripts/Items/Base/SkinName@Emperor:
+İmparator
+
+Scripts/Items/Base/SkinName@Executioner:
+Cellat
+
+Scripts/Items/Base/SkinName@Explorer:
+Kâşif
+
+Scripts/Items/Base/SkinName@Fancy:
+Süslü
+
+Scripts/Items/Base/SkinName@ForestCamo:
+Orman kamuflajı
+
+Scripts/Items/Base/SkinName@Graphene:
+Grafen
+
+Scripts/Items/Base/SkinName@Hardened:
+Yıpranmış
+
+Scripts/Items/Base/SkinName@Halloween:
+Cadılar Bayramı
+
+Scripts/Items/Base/SkinName@Holidays:
+Tatiller
+
+Scripts/Items/Base/SkinName@Hunter:
+Avcı
+
+Scripts/Items/Base/SkinName@Iridium:
+İridyum
+
+Scripts/Items/Base/SkinName@Italian:
+İtalyan
+
+Scripts/Items/Base/SkinName@Knight:
+Şovalye
+
+Scripts/Items/Base/SkinName@Lamellar:
+Pullu
+
+Scripts/Items/Base/SkinName@Lightning:
+Yıldırım
+
+Scripts/Items/Base/SkinName@Lumen:
+Lümen
+
+Scripts/Items/Base/SkinName@Magma:
+Magma
+
+Scripts/Items/Base/SkinName@Marauder:
+Yağmacı
+
+Scripts/Items/Base/SkinName@Mercenary:
+Paralı Asker
+
+Scripts/Items/Base/SkinName@Modern:
+Modern
+
+Scripts/Items/Base/SkinName@Necromancer:
+Ruh Çağıran
+
+Scripts/Items/Base/SkinName@Noble:
+Asil
+
+Scripts/Items/Base/SkinName@Nomad:
+Göçebe
+
+Scripts/Items/Base/SkinName@Pantheon:
+Panteon
+
+Scripts/Items/Base/SkinName@Phoenix:
+Anka Kuşu
+
+Scripts/Items/Base/SkinName@Pirate:
+Korsan
+
+Scripts/Items/Base/SkinName@Primitive:
+İlkel
+
+Scripts/Items/Base/SkinName@Puffer:
+Balon
+
+Scripts/Items/Base/SkinName@RedMarble:
+Kırmızı mermer
+
+Scripts/Items/Base/SkinName@Redwood:
+Redwood
+
+Scripts/Items/Base/SkinName@Revolutionary:
+Devrimsel
+
+Scripts/Items/Base/SkinName@Roots:
+Kökler
+
+Scripts/Items/Base/SkinName@Ruby:
+Yakut
+
+Scripts/Items/Base/SkinName@Sapphire:
+Safir
+
+Scripts/Items/Base/SkinName@Shaman:
+Şaman
+
+Scripts/Items/Base/SkinName@Sheriff:
+Şerif
+
+Scripts/Items/Base/SkinName@Ski:
+Kayak
+
+Scripts/Items/Base/SkinName@Skull:
+Kafatası
+
+Scripts/Items/Base/SkinName@Snake:
+Yılan
+
+Scripts/Items/Base/SkinName@Straw:
+Hasır
+
+Scripts/Items/Base/SkinName@Topaz:
+Topaz
+
+Scripts/Items/Base/SkinName@Tourmaline:
+Turmalin
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+Kentsel kamuflaj
+
+Scripts/Items/Base/SkinName@Ushanka:
+Rus Kalpağı
+
+Scripts/Items/Base/SkinName@Voodoo:
+Voodoo
+
+Scripts/Items/Base/SkinName@Wasp:
+Eşek arısı
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Veri Günlüğü (şifreli)
 
@@ -307,13 +484,13 @@ Savaş ve çevresel koruma arasında ideal bir denge sunan gelişmiş çevresel 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T zırhı
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
-Bu özel saldırı zırhı diğer bölgelerden fedakârlık yapmadan düşman ateşine karşı mükemmel korunma sağlar.
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
+Bu özel saldırı zırhı, diğer kullanım amaçlarından ödün vermeden düşman ateşine karşı inanılmaz bir koruma sağlar.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
 Saldırı zırhı
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 Saldırı zırhı kaskı
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Yakıt bitti
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 Kask ışığını etkinleştirmek için lütfen bu eşyayı kuşan ve \[{0}\] tuşuna bas.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 Kemik zırh, fiyatı göz önüne alındığında iyi bir koruma sağlar ve ilk zamanlar için oldukça kullanışlı olabilir.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
 Kemik zırh
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-Kapalı kemik kask
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+Kemik kaskı
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-Boynuzlu kemik kask
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 Süslü bir kıyafet sayılmaz, fakat başınız sıkıştığında sizi koruyabilir. En yakın alternatiflerinden daha iyi bir çevresel koruma sağlar.
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
 Örgü zırh
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 Örgü kask
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-Geçici lambalı kask
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
+Herhangi bir koruma sağlamaz. Belki bir sivrisineği durdurabilir.
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
-Herhangi bir koruma sağlamaz. Belki bir sivrisineği durdurabilir?
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 Bez gömlek
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 Bez şapka
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
-Başlangıç için uygun bir zırh; özellikle soğuğa karşı iyi bir koruma sağlar. Çok pahalı değil ve rahat!
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
+Başlangıç için uygun bir zırh; özellikle soğuğa karşı iyi bir koruma sağlar. Çok pahalı değil ve rahat.
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 Kürk manto
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-Kuyruklu kürk şapka
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+Kürk şapka
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-Kazak şapkası
-
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-Rus şapkası
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 Gösterişli altın giysi. Yalnızca gerçek hükümdarlara yakışır.
 
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 Altın zırh
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 Altın taç
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 Kullananları bir çok çevresel tehlikeye karşı koruyan özel tasarım kıyafet. Bütünlüğünü hızlı bir şekilde kaybedeceği için savaşta kullanılmamalıdır.
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 Tehlikeli madde zırhı
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
 Deri zırh iyi bir genel koruma sağlar ve gelişimin ilk aşamaları için idealdir.
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Deri zırh
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-Kovboy şapkası
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+Deri şapka
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-Pilot şapkası
-
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-Korsan şapkası
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Metal zırh, fiziksel saldırıları karşı büyük bir koruma sağlar, fakat çevresel tehlikelere karşı neredeyse etkisizdir.
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
 Metal zırh
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-Kapalı metal kask
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+Metal miğfer
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-Metal kurukafa kaskı
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
 Bu zırhın yapımında kullanılan gelişmiş malzemeler onu küçük ve temel silahlara karşı ideal bir koruma haline getiriyor.
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
 Askerî zırh
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 Askeri kask
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+Geçici lambalı kask
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 Patlayıcılarla dolu özel bir yelek. Giyen kişi öldükten sonra intikamını almak amacıyla otomatik olarak patlar.
@@ -469,43 +628,34 @@ Radyoaktif partikülleri ve zararlı gazları filtreleyen basit solunum cihazı.
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 Solunum cihazı
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-Baret, kafaya gelen darbelere, molozlara ve elektrik çarpmalarına karşı temel bir koruma sağlar.
-
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-Baret
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
 Yapısal temelinde ince metal plakalara yerleştirilen pragmium kafes bulunan deneysel zırh. Çok hafif ve dayanıklı.
 
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
 Pragmium zırh
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
 Her türlü çevresel ve fiziksel hasara karşı şaşırtıcı derecede iyi bir koruma sağlayan kalın pamuklu dolgulu kumaş.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 Kapitone zırh
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-Dolgulu şapka
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
+Dolgulu kask
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
-Kapitone yastıklı miğfer
-
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
 Nihai savunma. Bu savaş zırhı seni üstüne gelen her şeye karşı korur ama mobiliteyi düşürür.
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 Süper ağır zırh
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
 Gereksinimler icatların anasıdır. Hiç rahat değil, fakat ilk başlarda iyi bir koruma sağlar.
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 Ahşap zırh
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 Ahşap kask
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Kürk. Sıcak tutan kış kıyafetlerinin yapımında kullanılabilir.
 Scripts/Items/Generic/ItemFur@Name:
 Kürk
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-Parlak beyaz elmas!
+Scripts/Items/Generic/ItemGemstones@Description:
+Bazı parlak taşlar!
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-Elmas
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-Parlak yeşil zümrüt!
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-Zümrüt
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-Parlak kırmızı yakut!
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-Yakut
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-Parlak mavi safir!
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-Safir
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-Parlak sarı topaz!
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-Topaz
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-Parlak mor turmalin!
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-Turmalin
+Scripts/Items/Generic/ItemGemstones@Name:
+Kıymetli Taşlar
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 Ham cam, şişe gibi bir çok cam eşyayı oluşturmak için kullanılabilir.
@@ -1890,7 +2010,7 @@ Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 İçiskeletsel güçlendirme implantı
 
 Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
-Büyük bir damara bağlanan ve kandan çeşitli toksinleri ve zehirleri temizleyen özel bir organ.
+Büyük bir damara bağlanan ve kandan çeşitli toksinleri ve zehirleri temizleyen özel bir alet.
 
 Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
 Toksin filtre implantı
@@ -2434,24 +2554,6 @@ Pala
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Silah yok
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-Lazer kılıç (mavi)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-Lazer kılıç (yeşil)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-Lazer kılıç (mor)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-Lazer kılıç (kırmızı)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-Lazer kılıç (beyaz)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-Lazer kılıç (sarı)
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 Rakipleri sersemletmek için içindeki bataryaların elektriğini kullanır.
 
@@ -2461,149 +2563,134 @@ Elektroşok cihazı
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 İnanılmaz derecede güçlü kısa menzilli silah. Çalıştırmak için enerji gereklidir.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+Lazer kılıç
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 Eski zamanlardan kalma teknoloji. Hâlâ eskisi gibi çalışıyor.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 Arbalet
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 İlkel tabanca. Cephane olarak kağıt kovanları kullanır. Çok hızlı bir şekilde iki el ateş edilebilir.
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 Çakmaklı tabanca
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
 Özellikle yüksek kalibreli mühimmatlar için üretilmiş, isabet ettikten sonra patlayarak büyük hasar veren tekli bomba atar.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 Bomba atar
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 Altıpatlar tarzı bomba atar. Saldırı görevleri için ve ağır zırhlı hedeflerle savaşırken ideal.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 Çoklu bomba atar
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 10mm mermi için geliştirilen tabanca.
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-Tabanca
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+Tabanca 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 Lazer silahı hedefi yakmak için gereken yüksek enerjili ışığı hızla üretir.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 Lazer tabanca
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 Lazer tüfek kızılötesi spektrumda güçlü bir yüksek enerjili ışık yayarak hedefi yakar. Lazer tabancaya göre daha yüksek menzil olanağı sunar.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 Lazer tüfek
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-Basit bir tasarıma sahip yarı otomatik tabanca. Modern silahlarla kıyaslandığında üretimi biraz daha ucuzdur.
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-Luger
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-Yüksek enerjili .300 mermi için geliştirilmiş ağır makineli tüfek.
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-Ağır makineli tüfek
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-8mm mermi için geliştirilmiş hafif makineli tabanca.
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-Makineli tabanca
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-Eski usül tüfek. Kağıt kovan kullanır. Çakmaklı tabanca ile kıyaslandığında menzili ve verdiği hasar daha yüksektir.
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-Tüfek
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-Plazma tabancası çarpma anında hedefi yakarak ağır hasara yol açan konsantre plazma paketleri oluşturur ve ateşler. Güç tüketimi yüksektir.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-Plazma tabancası
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 Plazma tüfeği çarpma anında hedefi şiddetli bir şekilde yakarak çok ağır hasara yol açan plazma paketleri oluşturur ve ateşler. Güç tüketimi çok yüksektir.
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 Plazma tüfeği
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-Cephaneyi tutan döner bir silindire sahip basit bir tabanca.
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-Altıpatlar
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-10mm mermi için geliştirilmiş hafif otomatik keskin nişancı tüfeği.
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-Hafif tüfek
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-Yüksek enerjili .300 mermi için geliştirilmiş ağır materyalsavar tüfek.
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-Ağır tüfek
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-Genelde 8mm mermiyle kullanılan ilkel mekanizmaları tüfek.
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-Mekanizmalı tüfek
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-Dedenin eski av tüfeği. 12 kalibre mühimmat kullanır.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-Çift namlulu av tüfeği
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-Büyük cephane kapasitesine sahip askeri pompalı tüfek. 12 kalibre mermi kullanır.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-Askeri pompalı tüfek
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-Aşırı namlu enerjisi olan yarı otomatik tabanca.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-Steppen Hawk
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-Steppen Hawk tabancasının sınırlı üretim altın versiyonu.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-Steppen Hawk Altın
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-10mm mermi için geliştirilmiş hafif makineli tüfek.
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-Hafif makineli tüfek
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 Mermi yerine düşmanların üstüne küçük böcek gibi yaratıklar ateşleyen egzotik silah.
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 Sürü atıcı
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 Düşmana toksin atmak için sıvı keinite kullanan egzotik silah.
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 Toksin kümesi
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+Yüksek enerjili .300 mermi için geliştirilmiş ağır makineli tüfek.
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+Ağır makineli tüfek
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+8mm mermi için geliştirilmiş hafif makineli tabanca.
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+Makineli tabanca
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+Eski usül tüfek. Kağıt kovan kullanır. Çakmaklı tabanca ile kıyaslandığında menzili ve verdiği hasar daha yüksektir.
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+Tüfek
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+Cephaneyi tutan döner bir silindire sahip basit bir tabanca.
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+Revolver 8mm
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+10mm mermi için geliştirilmiş hafif otomatik keskin nişancı tüfeği.
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+Hafif tüfek
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+Yüksek enerjili .300 mermi için geliştirilmiş ağır materyalsavar tüfek.
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+Ağır tüfek
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+Genelde 8mm mermiyle kullanılan ilkel mekanizmaları tüfek.
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+Mekanizmalı tüfek
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+Dedenin eski av tüfeği. 12 kalibre mühimmat kullanır.
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+Çift namlulu av tüfeği
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+Büyük cephane kapasitesine sahip askeri pompalı tüfek. 12 kalibre mermi kullanır.
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+Askeri pompalı tüfek
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+Aşırı namlu enerjisi olan yarı otomatik tabanca.
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+10mm mermi için geliştirilmiş hafif makineli tüfek.
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+Hafif makineli tüfek
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Mekanize savaş zırhlarında kullanılması için yapılmış ağır otomatik top. Yüksek kalibreli, anti-materyal mermisi kullanır.

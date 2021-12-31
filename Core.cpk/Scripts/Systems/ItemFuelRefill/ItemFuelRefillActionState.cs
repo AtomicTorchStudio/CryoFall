@@ -29,6 +29,8 @@
             this.ItemsToConsumeForRefill = itemsToConsumeForRefill;
         }
 
+        public override bool IsDisplayingProgress => true;
+
         protected override void OnCompletedOrCancelled()
         {
             base.OnCompletedOrCancelled();

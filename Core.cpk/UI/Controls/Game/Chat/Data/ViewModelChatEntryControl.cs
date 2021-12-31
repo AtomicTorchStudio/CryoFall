@@ -299,6 +299,13 @@
 
             var isServiceMessage = this.chatEntry.IsService;
 
+            var hasClanTag = !string.IsNullOrEmpty(this.chatEntry.ClanTag);
+            if (hasClanTag 
+                && !DevelopersListHelper.IsDeveloper(name))
+            {
+                inlines.Add(new Run("[" + this.chatEntry.ClanTag + "]" + NoBreakSpace));
+            }
+
             if (!isServiceMessage)
             {
                 var dispayedName = name;

@@ -14,8 +14,8 @@
     <base:BaseUserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource TooltipForegroundBrushDark2}" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
@@ -32,9 +32,11 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <TextBlock Text="{x:Static loc:CoreStrings.ImplantSlotOnStation_Requirement}"
-                       Style="{StaticResource TextBlockStyle}" />
-            <TextBlock Text=": "
-                       Style="{StaticResource TextBlockStyle}" />
+                       Style="{StaticResource TextBlockStyle}"
+                       FontWeight="Bold" />
+            <TextBlock Text=":  "
+                       Style="{StaticResource TextBlockStyle}"
+                       FontWeight="Bold" />
         </StackPanel>
 
         <TextBlock Grid.Column="1"

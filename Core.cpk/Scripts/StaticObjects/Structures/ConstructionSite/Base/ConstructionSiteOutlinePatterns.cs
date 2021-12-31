@@ -49,7 +49,7 @@
             return null;
         }
 
-        public struct Chunks
+        public readonly struct Chunks
         {
             public readonly byte? BackColumn;
 

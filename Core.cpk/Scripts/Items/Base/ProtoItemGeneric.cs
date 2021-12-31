@@ -13,7 +13,7 @@
             <TPrivateState,
                 TPublicState,
                 TClientState>
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -33,7 +33,7 @@
     /// </summary>
     public abstract class ProtoItemGeneric
         : ProtoItemGeneric
-            <EmptyPrivateState,
+            <ItemPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {

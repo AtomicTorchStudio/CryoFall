@@ -35,9 +35,10 @@
             this.craftingQueue = craftingQueue;
             this.craftingQueueItem = craftingQueueItem;
             this.countToCraftChangedCallback = countToCraftChangedCallback;
-            var outputProtoItem = this.craftingQueueItem.Recipe.OutputItems.Items.First().ProtoItem;
+            var outputProtoItem = this.craftingQueueItem.RecipeEntry.ProtoItemSkinOverride 
+                                  ?? this.craftingQueueItem.RecipeEntry.Recipe.OutputItems.Items.First().ProtoItem;
 
-            this.RecipeViewModel = new ViewModelCraftingRecipe(this.craftingQueueItem.Recipe);
+            this.RecipeViewModel = new ViewModelCraftingRecipe(this.craftingQueueItem.RecipeEntry.Recipe);
 
             // TODO: it's not a great idea to always send this info from the server,
             // it could be calculated on Client-side with custom component (updates every frame)
@@ -97,7 +98,7 @@
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             this.TextCountToCraftRemains =
                 this.craftingQueueItem.CountToCraftRemains > 1
-                || this.craftingQueueItem.Recipe.OutputItems.Items[0].ProtoItem.IsStackable
+                || this.craftingQueueItem.RecipeEntry.Recipe.OutputItems.Items[0].ProtoItem.IsStackable
                     ? this.craftingQueueItem.CountToCraftRemains + "x"
                     : string.Empty;
         }
@@ -111,7 +112,7 @@
                 return;
             }
 
-            var durationSeconds = this.craftingQueueItem.Recipe.SharedGetDurationForPlayer(
+            var durationSeconds = this.craftingQueueItem.RecipeEntry.Recipe.SharedGetDurationForPlayer(
                 ClientCurrentCharacterHelper.Character);
             var timeRemainsSeconds = this.craftingQueue.TimeRemainsToComplete;
             timeRemainsSeconds = MathHelper.Clamp(timeRemainsSeconds, 0, durationSeconds);

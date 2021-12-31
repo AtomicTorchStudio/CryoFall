@@ -91,7 +91,7 @@
                 lastProgressRemains = 1;
             }
 
-            var duration = queue[0].Recipe.SharedGetDurationForPlayer(character);
+            var duration = queue[0].RecipeEntry.Recipe.SharedGetDurationForPlayer(character);
             this.ServerLastDuration = duration;
             this.TimeRemainsToComplete = lastProgressRemains * duration;
             //Api.Logger.Dev("Recalculated time to complete the crafting: " + this.TimeRemainsToComplete.ToString("F3"));
@@ -107,14 +107,18 @@
                 return;
             }
 
-            var recipe = craftingQueueItem.Recipe;
+            var recipeEntry = craftingQueueItem.RecipeEntry;
             if (this.GameObject is ICharacter character)
             {
-                this.TimeRemainsToComplete = this.ServerLastDuration = recipe.SharedGetDurationForPlayer(character);
+                this.TimeRemainsToComplete
+                    = this.ServerLastDuration
+                          = recipeEntry.Recipe.SharedGetDurationForPlayer(character);
                 return;
             }
 
-            this.TimeRemainsToComplete = this.ServerLastDuration = recipe.OriginalDuration;
+            this.TimeRemainsToComplete
+                = this.ServerLastDuration
+                      = recipeEntry.Recipe.OriginalDuration;
         }
 
         protected virtual IItemsContainer[] CreateInputContainersArray()
@@ -129,7 +133,7 @@
             for (var index = 0; index < items.Count; index++)
             {
                 var entry = items[index];
-                if (entry.Recipe is null)
+                if (entry.RecipeEntry?.Recipe is null)
                 {
                     // the recipe was not found (probably due to the game update)
                     items.RemoveAt(index--);

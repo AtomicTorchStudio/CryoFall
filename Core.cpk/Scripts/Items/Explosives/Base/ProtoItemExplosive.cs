@@ -32,7 +32,7 @@
               TPublicState,
               TClientState>,
           IProtoItemExplosive
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -319,7 +319,7 @@
     /// </summary>
     public abstract class ProtoItemExplosive
         : ProtoItemExplosive
-            <EmptyPrivateState,
+            <ItemPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {

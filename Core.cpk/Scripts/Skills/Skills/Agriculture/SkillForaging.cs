@@ -6,7 +6,7 @@
 
     public class SkillForaging : ProtoSkill<SkillForaging.Flags>
     {
-        public const double ExperienceAddWhenGatheringFinished = 125.0;
+        public const double ExperienceAddWhenGatheringFinished = 150.0;
 
         public static readonly DropItemConditionDelegate ConditionAdditionalYield
             = Flags.AdditionalYield.ToCondition();

@@ -232,6 +232,183 @@ Użyj
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 Tego przedmiotu nie można używać podczas jazdy pojazdem.
 
+Scripts/Items/Base/SkinName@Alien:
+Obcy
+
+Scripts/Items/Base/SkinName@Aquamarine:
+Akwamaryna
+
+Scripts/Items/Base/SkinName@Aviator:
+Awiator
+
+Scripts/Items/Base/SkinName@Biker:
+Motocyklista
+
+Scripts/Items/Base/SkinName@Buccaneer:
+Korsarz
+
+Scripts/Items/Base/SkinName@Commando:
+Komandos
+
+Scripts/Items/Base/SkinName@Contagion:
+Epidemia
+
+Scripts/Items/Base/SkinName@Cork:
+Hełm korkowy
+
+Scripts/Items/Base/SkinName@Cossack:
+Kozak
+
+Scripts/Items/Base/SkinName@Cowboy:
+Kowboj
+
+Scripts/Items/Base/SkinName@DesertCamo:
+Kamu pustynny
+
+Scripts/Items/Base/SkinName@Elite:
+Elitarny
+
+Scripts/Items/Base/SkinName@Emerald:
+Szmaragd
+
+Scripts/Items/Base/SkinName@Emperor:
+Imperator
+
+Scripts/Items/Base/SkinName@Executioner:
+Kat
+
+Scripts/Items/Base/SkinName@Explorer:
+Eksplorator
+
+Scripts/Items/Base/SkinName@Fancy:
+Modniś
+
+Scripts/Items/Base/SkinName@ForestCamo:
+Kamu leśny
+
+Scripts/Items/Base/SkinName@Graphene:
+Grafen
+
+Scripts/Items/Base/SkinName@Hardened:
+Utwardzony
+
+Scripts/Items/Base/SkinName@Halloween:
+Halloween
+
+Scripts/Items/Base/SkinName@Holidays:
+Gwiazdka
+
+Scripts/Items/Base/SkinName@Hunter:
+Łowca
+
+Scripts/Items/Base/SkinName@Iridium:
+Irydium
+
+Scripts/Items/Base/SkinName@Italian:
+Włoski
+
+Scripts/Items/Base/SkinName@Knight:
+Rycerz
+
+Scripts/Items/Base/SkinName@Lamellar:
+Lamelkowa
+
+Scripts/Items/Base/SkinName@Lightning:
+Błyskawica
+
+Scripts/Items/Base/SkinName@Lumen:
+Świetlisty
+
+Scripts/Items/Base/SkinName@Magma:
+Magma
+
+Scripts/Items/Base/SkinName@Marauder:
+Maruder
+
+Scripts/Items/Base/SkinName@Mercenary:
+Najemnik
+
+Scripts/Items/Base/SkinName@Modern:
+Nowoczesna
+
+Scripts/Items/Base/SkinName@Necromancer:
+Nekromancer
+
+Scripts/Items/Base/SkinName@Noble:
+Szlachta
+
+Scripts/Items/Base/SkinName@Nomad:
+Nomada
+
+Scripts/Items/Base/SkinName@Pantheon:
+Pantheon
+
+Scripts/Items/Base/SkinName@Phoenix:
+Feniks
+
+Scripts/Items/Base/SkinName@Pirate:
+Pirat
+
+Scripts/Items/Base/SkinName@Primitive:
+Prymitywne
+
+Scripts/Items/Base/SkinName@Puffer:
+Puchówka
+
+Scripts/Items/Base/SkinName@RedMarble:
+Czerwony marmur
+
+Scripts/Items/Base/SkinName@Redwood:
+Sekwoja
+
+Scripts/Items/Base/SkinName@Revolutionary:
+Rewolucja
+
+Scripts/Items/Base/SkinName@Roots:
+Korzenie
+
+Scripts/Items/Base/SkinName@Ruby:
+Rubin
+
+Scripts/Items/Base/SkinName@Sapphire:
+Szafir
+
+Scripts/Items/Base/SkinName@Shaman:
+Szaman
+
+Scripts/Items/Base/SkinName@Sheriff:
+Szeryf
+
+Scripts/Items/Base/SkinName@Ski:
+Narty
+
+Scripts/Items/Base/SkinName@Skull:
+Czaszka
+
+Scripts/Items/Base/SkinName@Snake:
+Wąż
+
+Scripts/Items/Base/SkinName@Straw:
+Słoma
+
+Scripts/Items/Base/SkinName@Topaz:
+Topaz
+
+Scripts/Items/Base/SkinName@Tourmaline:
+Turmalin
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+Kamu miejski
+
+Scripts/Items/Base/SkinName@Ushanka:
+Uszanka
+
+Scripts/Items/Base/SkinName@Voodoo:
+Voodoo
+
+Scripts/Items/Base/SkinName@Wasp:
+Osa
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Dziennik danych (zaszyfrowany)
 
@@ -307,13 +484,13 @@ Zaawansowany pancerz chroniący przed czynnikami środowiskowymi. Zapewnia obron
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 Pancerz A.P.A.R.T
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
 Ten specjalny pancerz szturmowy zapewnia nadzwyczajną ochronę przed ostrzałem wroga i nie ma słabych stron.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
 Pancerz szturmowy
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 Hełm – pancerz szturmowy
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Brak paliwa
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 Aby włączyć czołówkę, należy wyposaż ten przedmiot i naciśnij klawisz \[{0}\].
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 Pancerz kostny zapewnia przyzwoitą ochronę, zważywszy jego cenę, i jest użyteczny na wczesnych etapach gry.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
 Pancerz kostny
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-Zamknięty hełm kostny
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+Kościany hełm
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-Rogaty hełm kostny
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 Niezbyt wymyślny ubiór, ale zapewnia lepszą ochronę przed czynnikami środowiskowymi niż podobne pancerze.
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
 Pleciony pancerz
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 Pleciony hełm
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-Kask z lampą – samoróbka
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
 Nie zapewnia żadnej ochrony. Może powstrzyma komara?
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 Koszula płócienna
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 Czapka płócienna
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
-Przyzwoity pancerz na początek; szczególnie dobrze chroni przed zimnem. Niezbyt drogi i wygodny!
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
+Przyzwoita zbroja na początek; szczególnie dobrze chroni przed zimnem. Niezbyt droga i wygodna!
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
-Płaszcz futrzany
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
+Kurtka futrzana
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-Czapka futrzana z ogonem
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+Czapa futrzana
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-Czapka kozacka
-
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-Uszatka
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 Luksusowy złoty strój. Pasuje do prawdziwych władców.
 
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 Złoty pancerz
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 Złota korona
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 Specjalny strój, który chroni właściciela przed większością zagrożeń środowiskowych. Nie powinien być stosowany w walce, ponieważ szybko utraci swoje zalety.
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 Kombinezon ochronny
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
 Skórzany pancerz zapewnia dobrą ogólną ochronę i jest idealny na początku gry.
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Skórzany pancerz
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-Kapelusz kowbojski
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+Czapka skórzana
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-Czapka pilota
-
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-Czapka pirata
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Metalowy pancerz zapewnia doskonałą ochronę przed atakami fizycznymi, ale prawie nie chroni przed zagrożeniami środowiskowymi.
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
 Pancerz metalowy
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-Zamknięty hełm metalowy
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+Hełm metalowy
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-Metalowy hełm – czaszka
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
+Zaawansowane materiały użyte do produkcji tego pancerza powodują, że idealnie zabezpiecza on przed ostrzałem z małej broni palnej i innych podstawowych rodzajów broni.
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
-Zaawansowane materiały użyte do produkcji tego pancerza powodują, że idealnie zabezpiecza on przed ostrzałem z małokalibrowej broni palnej i innych podstawowych rodzajów broni.
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
 Pancerz wojskowy
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 Hełm wojskowy
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+Kask z lampą – samoróbka
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 Specjalna kamizelka z materiałami wybuchowymi. W ramach zemsty automatycznie wybucha po śmierci właściciela.
@@ -469,43 +628,34 @@ Podstawowa maska filtrująca cząsteczki radioaktywne i niebezpieczne gazy. Nie 
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 Maksa ochronna
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-Kask ochronny zapewniający podstawową ochronę głowy przed uderzeniami, odłamkami, porażeniem prądem i innymi zagrożeniami.
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
+Eksperymentalna zbroja cienkich metalowych płyt wzmacnianych włóknami pragmium. Bardzo lekka i trwała.
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-Kask ochronny
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
-Eksperymentalny pancerz z cienkich metalowych płyt wzmacnianych włóknami pragmium. Bardzo lekki i trwały.
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
 Pancerz z pragmium
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
 Gruba tkanina zapewniająca zaskakująco dobrą ochronę przed różnorodnymi obrażeniami i czynnikami środowiskowymi.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 Pikowany pancerz
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-Pikowany kapelusz
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
+Pikowany hełm
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
-Pikowany hełm z wyściółką
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
+Najlepsza ochrona. Ta zbroja bojowa ochroni cię przed wszystkim, jednak twoja mobilność zostanie obniżona.
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
-Ten pancerz bojowy ochroni przed absolutnie każdym zagrożeniem. Jednak bezpieczeństwo jest zapewniane kosztem ograniczonej mobilności.
-
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 Superciężki pancerz
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
 Potrzeba jest matką wynalazku. Niezbyt wygodna, ale całkiem przyzwoita ochrona na wczesnym etapie gry.
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 Pancerz drewniany
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 Drewniany hełm
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Futro zwierzęce. Służy do szycia ciepłej odzieży zimowej.
 Scripts/Items/Generic/ItemFur@Name:
 Futro
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-Błyszczący biały brylant!
+Scripts/Items/Generic/ItemGemstones@Description:
+Błyszczące klejnoty!
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-Brylant
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-Błyszczący zielony szmaragd!
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-Szmaragd
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-Błyszczący czerwony rubin!
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-Rubin
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-Błyszczący niebieski szafir!
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-Szafir
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-Błyszczący żółty topaz!
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-Topaz
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-Błyszczący fioletowy turmalin!
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-Turmalin
+Scripts/Items/Generic/ItemGemstones@Name:
+Klejnoty
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 Nieobrobione szkło można wykorzystać do tworzenia wielu innych przedmiotów szklanych, np. butelek.
@@ -2434,24 +2554,6 @@ Maczeta
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Brak broni
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-Rapier laserowy (niebieski)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-Rapier laserowy (zielony)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-Rapier laserowy (fioletowy)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-Rapier laserowy (czerwony)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-Rapier laserowy (biały)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-Rapier laserowy (żółty)
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 Dzięki wbudowanym akumulatorom pozwala ogłuszać przeciwników.
 
@@ -2461,149 +2563,134 @@ Pałka paraliżująca
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Niesamowicie potężna broń krótkiego zasięgu. Wymaga energii do działania.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+Rapier laserowy
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 Technologia z przeszłości; nadal nieźle działa.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 Kusza
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 Prymitywny pistolet na ładunki papierowe. Mieści dwa ładunki, które można bardzo szybko odpalić.
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 Pistolet skałkowy
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
 Granatnik strzela wielkokalibrowymi pociskami, które eksplodują po trafieniu, zadając poważane obrażenia.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 Granatnik
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 Granatnik rewolwerowy doskonale sprawdzający się podczas ataku lub walk z ciężko opancerzonymi wrogami.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 Granatnik wielokrotny
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Pistolet przystosowany do amunicji 10 mm.
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-Pistolet
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+Pistolet 10 mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 Pistolet laserowy emituje bardzo częste, wysokoenergetyczne impulsy świetlne, które potrafią spopielić cel.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 Pistolet laserowy
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 Karabin laserowy emituje potężne, wysokoenergetyczne impulsy świetlne, głównie w zakresie podczerwieni, które potrafią spopielić cel. Zapewnia znacznie większy zasięg niż pistolet laserowy.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 Karabin laserowy
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-Prosty pistolet półautomatyczny. Stosunkowo tani w produkcji w porównaniu z nowoczesną bronią palną.
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-Luger
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-Ciężki karabin maszynowy przystosowany do amunicji .300.
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-Ciężki karabin maszynowy
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-Lekki pistolet automatyczny przystosowany do amunicji 8 mm.
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-Pistolet automatyczny
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-Staroświecki muszkiet na ładunki papierowe. Zapewnia większy zasięg i obrażenia niż pistolet skałkowy.
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-Muszkiet
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-Pistolet plazmowy strzela skoncentrowanymi ładunkami plazmowymi, które spalają cel po trafieniu, zadając poważne obrażenia. Wysoki pobór mocy.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-Pistolet plazmowy
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 Karabin plazmowy strzela dużymi skoncentrowanymi ładunkami plazmowymi, które poważnie spalają cel po trafieniu, zadając olbrzymie obrażenia. Bardzo wysoki pobór mocy.
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 Karabin plazmowy
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-Prosty pistolet powtarzalny z obrotowym magazynkiem na amunicję.
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-Rewolwer
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-Lekki karabin automatyczny na amunicję 10 mm.
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-Karabin lekki
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-Ciężki karabin przeciwpancerny przystosowany do amunicji .300 o dużej mocy.
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-Ciężki karabin
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-Prymitywny karabin na popularną amunicję 8 mm.
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-Karabin strzelecki
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-Stara strzelba dziadka na amunicję o kalibrze 12.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-Dwururka
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-Strzelba wojskowa o dużym magazynku. Przystosowana do amunicji o kalibrze 12.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-Strzelba wojskowa
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-Pistolet półautomatyczny; ma wielkiego kopa.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-Steppen Hawk
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-Edycja limitowana Steppena Hawka.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-Złoty Steppen Hawk
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-Pistolet maszynowy przystosowany do amunicji 10 mm.
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-Pistolet maszynowy
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 Egzotyczna broń, która zamiast pocisków wystrzeliwuje małe owadopodobne stworzenia.
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 Miotacz roju
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 Egzotyczna broń, która wystrzeliwuje silną truciznę produkowaną na bazie upłynnionego kainitu.
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 Proliferator toksyn
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+Ciężki karabin maszynowy przystosowany do amunicji .300.
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+Ciężki karabin maszynowy
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+Lekki pistolet automatyczny przystosowany do amunicji 8 mm.
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+Pistolet automatyczny
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+Staroświecki muszkiet na ładunki papierowe. Zapewnia większy zasięg i obrażenia niż pistolet skałkowy.
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+Muszkiet
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+Prosty pistolet powtarzalny z obrotowym magazynkiem na amunicję.
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+Rewolwer 8 mm
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+Lekki karabin automatyczny na amunicję 10 mm.
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+Karabin lekki
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+Ciężki karabin przeciwpancerny przystosowany do amunicji .300 o dużej mocy.
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+Ciężki karabin
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+Prymitywny karabin na popularną amunicję 8 mm.
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+Karabin strzelecki
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+Stara strzelba dziadka na amunicję o kalibrze 12.
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+Dwururka
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+Strzelba wojskowa o dużym magazynku. Przystosowana do amunicji o kalibrze 12.
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+Strzelba wojskowa
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+Pistolet półautomatyczny; ma wielkiego kopa.
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+Pistolet maszynowy przystosowany do amunicji 10 mm.
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+Pistolet maszynowy
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Ciężkie działko automatyczne przeznaczone do montażu węźle uzbrojenia na bojowych pancerzach wspomaganych. Wykorzystuje wielkokalibrową amunicję przeciwpancerną.
@@ -2633,7 +2720,7 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Description:
 Wystrzeliwuje wielkie wybuchowe pojemniki z mieszaniną kwasów i toksyn, które ranią nie tylko istoty żywe, ale i niszczą budowle.
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleKeiniteArtillery@Name:
-Działo kainitow
+Działo kainitowe
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
 Wystrzeliwuje duże owadopodobne stwory, które po trafieniu wgryzają się w cel, zadając dodatkowe obrażenia.

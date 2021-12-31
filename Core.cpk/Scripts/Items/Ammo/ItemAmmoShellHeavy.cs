@@ -39,7 +39,7 @@
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            damageValue = 600;
+            damageValue = 800;
             defencePenetrationCoef = 0;
         }
 

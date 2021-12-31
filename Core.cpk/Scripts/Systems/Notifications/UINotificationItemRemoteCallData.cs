@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
-    public struct UINotificationItemRemoteCallData : IRemoteCallParameter
+    public readonly struct UINotificationItemRemoteCallData : IRemoteCallParameter
     {
         public readonly Dictionary<IProtoItem, int> ItemsChangedCount;
 

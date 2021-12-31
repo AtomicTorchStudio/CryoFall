@@ -349,6 +349,24 @@ Zegar zniszczenia zaczyna odliczać w momencie, gdy działka zostanie zniszczona
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 Czy na pewno użyć: {0}?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+Można spróbować cofnąć się do najnowszej wersji kopii zapasowej.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+Wykryto uszkodzenie zapisu gry.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+Przejdź do folderu z zapisami gier i znajdź kopie zapasowe tego pliku:
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`Możliwe przyczyny:
+[*] Awaria dysku twardego
+[*] Błąd zapisu/odczytu w systemie operacyjnym
+[*] itp.`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+Nie można wczytać zapisanej gry
+
 UI/CoreStrings@DialogClearList_Message:
 Czy na pewno wyczyścić tę listę?
 
@@ -402,6 +420,9 @@ Zadano {0}% obrażeń łącznie! Twój łup: {1}/{2}.
 
 UI/CoreStrings@Extras_DiscordTooltip:
 Oficjalny serwer Discord CryoFall (tylko w języku angielskim)
+
+UI/CoreStrings@Extras_Features_Title:
+Cechy
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 Funkcje CryoFall
@@ -915,6 +936,18 @@ Dodaj implant do zainstalowania
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 Wymaga
+
+UI/CoreStrings@Item_AvailableInTechTier:
+Można wytworzyć za: {0}
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+Za mała trwałość przedmiotu (wymagana min. {0}%).
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+Za mała świeżość przedmiotu (wymagana min. {0}%).
+
+UI/CoreStrings@Item_CreatedBy_Format:
+Twórca: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 Zepsucie za: {0}
@@ -1809,8 +1842,119 @@ Ochrona przed najazdem w trybie offline jest dostępna dla działek na wyższych
 UI/CoreStrings@Skill:
 Umiejętność
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+Skórka limitowana (obecnie nie do zdobycia).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+Dostępna w ramach Pakietu fana.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+Odblokuj, grając.
+
+UI/CoreStrings@Skin_Default:
+Domyśl.
+
+UI/CoreStrings@Skin_NotOwned:
+Nie masz tej skórki.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+Przeglądaj skórki
+
+UI/CoreStrings@Skins_Button_Buy:
+Kup
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+Odbierz
+
+UI/CoreStrings@Skins_EmptyList:
+Brak skórek na tej liście.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+Polecane skórki
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+Loguj się jeszcze przez {0} dni, aby otrzymać darmową skórkę.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+Zdobywanie darmowej skórki
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+Skórek można używać na dowolnym serwerze (oficjalnym, społecznościowym, prywatnym lub lokalnym).
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+Możesz tworzyć i udostępniać znajomym przedmioty ze skórkami, nawet jeśli nie posiadają oni danej skórki.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+Skórki można nakładać na określone przedmioty wytwarzane w grze (broń i wyposażenie).
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* Wszystkie ceny są dostosowane do cen regionalnych Steam.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+Kupując skórki wspierasz twórców. Dziękujemy!
+
+UI/CoreStrings@Skins_SelectSkin:
+Wybierz skórę:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} (skórka dla {1})
+
+UI/CoreStrings@Skins_SkinOwned:
+Posiadane
+
+UI/CoreStrings@Skins_SkinUnlocked:
+Skórki odblokowane
+
+UI/CoreStrings@Skins_Tab_Equipment:
+WYPOSAŻENIE
+
+UI/CoreStrings@Skins_Tab_First:
+PROMOWANE
+
+UI/CoreStrings@Skins_Tab_Owned:
+POSIADANE
+
+UI/CoreStrings@Skins_Tab_Weapons:
+BROŃ
+
+UI/CoreStrings@Skins_Title:
+Skórki
+
 UI/CoreStrings@SortBy:
 Sortuj wg
+
+UI/CoreStrings@StatisticsDeaths:
+Śmierci
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+Zebrane rośliny hodowlane
+
+UI/CoreStrings@StatisticsMineralsMined:
+Wydobyte minerały
+
+UI/CoreStrings@StatisticsPvpAssists:
+Asysty
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+Z/Ś
+
+UI/CoreStrings@StatisticsPvpKills:
+Zabójstwa
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+Tabela liderów PvP
+
+UI/CoreStrings@StatisticsPvpScore:
+Wynik PvP
+
+UI/CoreStrings@StatisticsTitle:
+Statystyki osobiste
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+PT zebrane łącznie
+
+UI/CoreStrings@StatisticsTreesCut:
+Wycięte drzewa
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Wartość
@@ -1842,6 +1986,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 Odznaka fana
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+Otwórz stronę magazynu
 
 UI/CoreStrings@SupporterPack_Description:
 `Pakiet fana to zestaw dodatków dla osób, które chcą wspierać twórców CryoFall. W dowód uznania przy ich awatarach na czacie wyświetlana będzie specjalną odznaka.

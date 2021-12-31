@@ -22,7 +22,7 @@
 
     <Style x:Key="TextBlockUnavailableLotStateStyle" TargetType="TextBlock">
         <Setter Property="IsHitTestVisible" Value="False" />
-        <Setter Property="Foreground" Value="{StaticResource BrushColorRed7}" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColorRed6}" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="11" />
@@ -38,17 +38,28 @@
     </Style>
 
     <ControlTemplate x:Key="TradingLotIconWithTooltip">
-        <Border Background="#AA222222"
-                BorderBrush="#33BBBBBB"
-                BorderThickness="0"
-                Padding="3"
-                CornerRadius="3"
-                d:DataContext="{d:DesignInstance data:ViewModelTradingStationLot, IsDesignTimeCreatable=True}">
+        <Border
+            Padding="3"
+            CornerRadius="3"
+            d:DataContext="{d:DesignInstance data:ViewModelTradingStationLot, IsDesignTimeCreatable=True}">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.6" />
+            </Border.Background>
             <Grid>
                 <Rectangle Fill="{Binding Icon}"
                            Width="48"
                            Height="48"
-                           UseLayoutRounding="True" />
+                           UseLayoutRounding="True">
+                    <Rectangle.Effect>
+                        <!-- Glow effect -->
+                        <DropShadowEffect
+                            BlurRadius="40"
+                            Direction="0"
+                            ShadowDepth="0"
+                            Opacity="0.3"
+                            Color="White" />
+                    </Rectangle.Effect>
+                </Rectangle>
 
                 <TextBlock Text="{Binding LotQuantity}"
                            Style="{StaticResource ItemCountTextBlockStyle}" />

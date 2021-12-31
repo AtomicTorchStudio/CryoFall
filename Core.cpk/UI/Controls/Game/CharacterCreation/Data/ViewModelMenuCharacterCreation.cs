@@ -22,9 +22,9 @@
         private readonly Action closeCallback;
 
         [ViewModelNotAutoDisposeField]
-        private CharacterCustomizationControl characterCustomizationControl;
+        private readonly CharacterCustomizationControl characterCustomizationControl;
 
-        private bool isAppearanceSelected;
+        private readonly bool isAppearanceSelected;
 
         private int lastNextButtonEnableRequestId;
 

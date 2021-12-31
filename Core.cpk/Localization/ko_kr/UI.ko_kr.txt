@@ -349,6 +349,24 @@ UI/CoreStrings@DestructionTimeout_Tooltip:
 UI/CoreStrings@Dialog_AreYouSureWantToUse_Format:
 {0}을/를 사용하시겠습니까?
 
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_CanTryRollback:
+최신 백업 버전으로 롤백을 시도할 수 있습니다.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_Detected:
+CryoFall이 저장된 게임 데이터의 손상을 감지했습니다.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_NavigateToFolderWithBackups:
+저장된 게임 폴더로 이동하여 해당 파일이 백업되어 있는지 확인하십시오.
+
+UI/CoreStrings@DialogCannotLoadSavegame_MessageCorrupted_PossibleCauses:
+`예상 원인:
+[*] 하드 드라이브 고장
+[*] OS 파일 읽기/쓰기 액세스 오류
+[*] 기타 등등`
+
+UI/CoreStrings@DialogCannotLoadSavegame_Title:
+저장된 게임 불러오기 불가
+
 UI/CoreStrings@DialogClearList_Message:
 이 목록을 지우시겠습니까?
 
@@ -402,6 +420,9 @@ UI/CoreStrings@EventDamage_SuccessMessage_Format:
 
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall 공식 디스코드 서버 (영어)
+
+UI/CoreStrings@Extras_Features_Title:
+특징
 
 UI/CoreStrings@Extras_FeaturesTooltip:
 CryoFall의 특징 슬라이드쇼
@@ -914,6 +935,18 @@ UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 필요
+
+UI/CoreStrings@Item_AvailableInTechTier:
+{0}에서 제작 가능
+
+UI/CoreStrings@Item_CheckTooLowDurability:
+아이템 내구도가 너무 낮습니다 (최소 {0}% 필요).
+
+UI/CoreStrings@Item_CheckTooLowFreshness:
+아이템 신선도가 너무 낮습니다 (최소 {0}% 필요).
+
+UI/CoreStrings@Item_CreatedBy_Format:
+제작자: {0}
 
 UI/CoreStrings@Item_SpoiledIn_Format:
 부패하기까지 남은 시간：{0}
@@ -1808,8 +1841,119 @@ UI/CoreStrings@ShieldProtection_UpgradeToUnlock:
 UI/CoreStrings@Skill:
 기술
 
+UI/CoreStrings@Skin_AccessLimitedEdition:
+한정판 스킨 (현재 획득 불가).
+
+UI/CoreStrings@Skin_AccessSupporterPack:
+후원자 팩의 구성품 중 하나입니다.
+
+UI/CoreStrings@Skin_AccessUnlockByPlaying:
+게임을 플레이하여 잠금 해제할 수 있습니다.
+
+UI/CoreStrings@Skin_Default:
+기본
+
+UI/CoreStrings@Skin_NotOwned:
+이 스킨을 보유하고 있지 않습니다.
+
+UI/CoreStrings@Skins_Button_BrowseSkins:
+스킨 검색
+
+UI/CoreStrings@Skins_Button_Buy:
+구매
+
+UI/CoreStrings@Skins_ClaimUnlockedSkin:
+받기
+
+UI/CoreStrings@Skins_EmptyList:
+이 목록에서 사용 가능한 스킨이 없습니다.
+
+UI/CoreStrings@Skins_FeaturedSkins_Title:
+추천 스킨
+
+UI/CoreStrings@Skins_FreeSkinProgress_Format:
+{0}일 더 로그인하여 무료 스킨을 얻으세요.
+
+UI/CoreStrings@Skins_FreeSkinProgress_Title:
+무료 스킨 진행 상황
+
+UI/CoreStrings@Skins_InfoSkinsAllServersSupported:
+스킨은 모든 서버 (공식, 커뮤니티, 비공개, 로컬)에서 사용할 수 있습니다.
+
+UI/CoreStrings@Skins_InfoSkinsCanShare:
+특정 스킨이 없더라도 친구들과 스킨 아이템을 제작하고 공유할 수 있습니다.
+
+UI/CoreStrings@Skins_InfoSkinsHowToUse:
+스킨은 게임에서 제작하는 일부 아이템 (무기와 장비)에 적용할 수 있습니다.
+
+UI/CoreStrings@Skins_InfoSkinsRegionalPricing:
+* 모든 가격은 Steam 지역별 가격에 따라 조정됩니다.
+
+UI/CoreStrings@Skins_InfoSkinsSupportingDevelopers:
+구매하신 스킨은 개발자들에게 큰 도움이 됩니다. 감사합니다!
+
+UI/CoreStrings@Skins_SelectSkin:
+스킨 선택:
+
+UI/CoreStrings@Skins_SkinNameFormat:
+{0} ({1}의 스킨)
+
+UI/CoreStrings@Skins_SkinOwned:
+보유 중
+
+UI/CoreStrings@Skins_SkinUnlocked:
+잠금 해제된 스킨
+
+UI/CoreStrings@Skins_Tab_Equipment:
+장비
+
+UI/CoreStrings@Skins_Tab_First:
+추천
+
+UI/CoreStrings@Skins_Tab_Owned:
+보유 스킨
+
+UI/CoreStrings@Skins_Tab_Weapons:
+무기
+
+UI/CoreStrings@Skins_Title:
+스킨
+
 UI/CoreStrings@SortBy:
 정렬 기준
+
+UI/CoreStrings@StatisticsDeaths:
+사망
+
+UI/CoreStrings@StatisticsFarmPlantsHarvested:
+수확한 농작물
+
+UI/CoreStrings@StatisticsMineralsMined:
+채굴한 광물
+
+UI/CoreStrings@StatisticsPvpAssists:
+도움
+
+UI/CoreStrings@StatisticsPvpKillDeathRatio:
+K/D
+
+UI/CoreStrings@StatisticsPvpKills:
+사살 수
+
+UI/CoreStrings@StatisticsPvpLeaderboard:
+PvP 점수판
+
+UI/CoreStrings@StatisticsPvpScore:
+PvP 점수
+
+UI/CoreStrings@StatisticsTitle:
+개인 통계
+
+UI/CoreStrings@StatisticsTotalLearningPoints:
+획득한 총 LP
+
+UI/CoreStrings@StatisticsTreesCut:
+벌목한 나무
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 정도
@@ -1841,6 +1985,9 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 
 UI/CoreStrings@SupporterPack_Badge:
 후원자 배지
+
+UI/CoreStrings@SupporterPack_Button_NavigateToSupporterPackPage:
+스토어 페이지 열기
 
 UI/CoreStrings@SupporterPack_Description:
 `후원자 팩은 CryoFall의 개발자들을 후원하고 싶은 분들께 드리는 보너스 모음집입니다. 구매하신 분들께는 감사의 표시로 게임 내 채팅에 표시될 특별한 후원자 배지를 드립니다.

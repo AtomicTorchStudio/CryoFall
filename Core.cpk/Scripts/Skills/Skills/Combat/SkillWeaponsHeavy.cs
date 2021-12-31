@@ -18,7 +18,7 @@
         /// <summary>
         /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.
         /// </summary>
-        public override double ExperienceAddedPerShot => 15;
+        public override double ExperienceAddedPerShot => 25;
 
         public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 

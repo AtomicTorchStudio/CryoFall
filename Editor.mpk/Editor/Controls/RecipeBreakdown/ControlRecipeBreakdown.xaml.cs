@@ -12,13 +12,11 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
             this.DataContext = this.viewModel = new ViewModelControlRecipeBreakdown(this.InheritedViewModel);
         }
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
             this.DataContext = null;
             this.viewModel.InheritedViewModel = null;
             this.viewModel.Dispose();

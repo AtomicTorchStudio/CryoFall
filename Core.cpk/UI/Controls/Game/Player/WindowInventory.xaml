@@ -89,6 +89,7 @@
 
                     <player:DropItemToUseControl
                         Visibility="{Binding ItemInHandUseText, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                        CommandUseItem="{Binding CommandQuickUseItem}"
                         Caption="{Binding ItemInHandUseText}"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Center"
@@ -203,6 +204,15 @@
                                         Content="{x:Static player:WindowCharacterUnstuckHelper.DialogUnstuck_Message}" />
                                 </StackPanel>
                             </ui:ToolTipServiceExtend.ToolTip>
+                        </Button>
+
+                        <Button Command="{Binding CommandOpenStatisticsMenu}"
+                                Style="{StaticResource InventoryExtraButton}"
+                                ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.StatisticsTitle}"
+                                Margin="0,5,0,0">
+                            <Image Source="/UI/Images/Icons/icon_statistics.png"
+                                   Width="22"
+                                   Height="22" />
                         </Button>
 
                         <Button Command="{Binding CommandOpenHelpMenu}"

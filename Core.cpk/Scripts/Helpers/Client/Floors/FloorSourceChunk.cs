@@ -2,7 +2,7 @@
 {
     using System;
 
-    public struct FloorSourceChunk : IEquatable<FloorSourceChunk>
+    public readonly struct FloorSourceChunk : IEquatable<FloorSourceChunk>
     {
         public readonly byte Column;
 

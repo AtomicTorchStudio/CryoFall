@@ -123,6 +123,11 @@ namespace AtomicTorch.CBND.CoreMod.ItemContainers
 
         private static Recipe SharedGetSingleRecipe(IProtoItem protoItem)
         {
+            if (((IProtoItemWithSkinData)protoItem).BaseProtoItem is {} baseProtoItem)
+            {
+                protoItem = baseProtoItem;
+            }
+            
             return Recipe.AllRecipes.SingleOrDefault(
                 r => r.OutputItems.Count == 1
                      && r.OutputItems.Items[0].ProtoItem == protoItem

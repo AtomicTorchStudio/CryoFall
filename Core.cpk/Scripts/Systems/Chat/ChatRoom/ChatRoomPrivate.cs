@@ -3,16 +3,19 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ChatRoomPrivate : BaseChatRoom
     {
-        public ChatRoomPrivate(string characterA, string characterB)
+        public ChatRoomPrivate(string characterA, string characterB, string clanTagCharacterA, string clanTagCharacterB)
         {
             this.CharacterA = characterA;
             this.CharacterB = characterB;
+            this.ClanTagCharacterA = clanTagCharacterA;
+            this.ClanTagCharacterB = clanTagCharacterB;
         }
 
         [SyncToClient]
@@ -20,6 +23,12 @@
 
         [SyncToClient]
         public string CharacterB { get; private set; }
+
+        [SyncToClient]
+        public string ClanTagCharacterA { get; private set; }
+
+        [SyncToClient]
+        public string ClanTagCharacterB { get; private set; }
 
         [SyncToClient(isAllowClientSideModification: true)]
         public bool IsClosedByCharacterA { get; set; } = true;
@@ -39,6 +48,18 @@
             var otherCharacterName = isCurrentCharacterA
                                          ? this.CharacterB
                                          : this.CharacterA;
+
+            var otherCharacterClanTag = isCurrentCharacterA
+                                            ? this.ClanTagCharacterB
+                                            : this.ClanTagCharacterA;
+
+            if (!string.IsNullOrEmpty(otherCharacterClanTag))
+            {
+                return string.Format(CoreStrings.ClanTag_FormatWithName,
+                                     otherCharacterClanTag, 
+                                     "@" + otherCharacterName);
+            }
+
             return "@" + otherCharacterName;
         }
 
@@ -86,10 +107,12 @@
                 if (chatEntry.From == this.CharacterA)
                 {
                     this.IsReadByCharacterB = false;
+                    this.ClanTagCharacterA = chatEntry.ClanTag;
                 }
                 else
                 {
                     this.IsReadByCharacterA = false;
+                    this.ClanTagCharacterB = chatEntry.ClanTag;
                 }
             }
 
@@ -159,6 +182,23 @@
 
             throw new Exception(
                 $"{character} is not available in chat room {this} with characters {this.CharacterA} and {this.CharacterB}");
+        }
+
+        public void UpdateClanTag(string name, string clanTag)
+        {
+            if (this.CharacterA == name)
+            {
+                this.ClanTagCharacterA = clanTag;
+            }
+            else if (this.CharacterB == name)
+            {
+                this.ClanTagCharacterB = clanTag;
+            }
+            else
+            {
+                Api.Logger.Error(
+                    $"This character is not a participant in private chat: {name} in private chat where only {this.CharacterA} and {this.CharacterB} are present");
+            }
         }
     }
 }

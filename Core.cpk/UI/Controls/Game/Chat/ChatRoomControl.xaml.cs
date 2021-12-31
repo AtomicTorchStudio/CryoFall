@@ -577,11 +577,10 @@
                .PlayOneShot(SoundResourceMessageSend,
                             volume: SoundConstants.VolumeUIChat);
 
-            this.AddChatEntry(new ChatEntry(ClientCurrentCharacterHelper.Character.Name,
-                                            message,
-                                            isService: false,
-                                            DateTime.Now,
-                                            hasSupporterPack: Api.Client.MasterServer.IsSupporterPackOwner));
+            this.AddChatEntry(
+                ChatEntry.CreatePlayerMessage(
+                    ClientCurrentCharacterHelper.Character,
+                    message));
 
             ChatSystem.ClientSendMessageToRoom(this.ViewModelChatRoom.ChatRoom, message);
         }

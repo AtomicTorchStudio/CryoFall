@@ -129,6 +129,13 @@
 
         public Brush Icon => Api.Client.UI.GetTextureBrush(this.TechNode?.Icon);
 
+        public bool IsNodeHasSeveralEffects
+            => this.EffectsPerks.Count
+               + this.EffectsRecipes.Count
+               + this.EffectsStructures.Count
+               + this.EffectsVehicles.Count
+               > 1;
+
         public bool IsUnlocked
         {
             get => this.isUnlocked;

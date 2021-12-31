@@ -38,6 +38,9 @@
 
         public override void ClientInitialize()
         {
+            // ensure the master server is connected (to pull the skins data)
+            Client.MasterServer.Connect();
+            
             ClientInputManager.RegisterButtonsEnum<EditorButton>();
 
             ClientUpdateHelper.UpdateCallback += ClientUpdateCallback;

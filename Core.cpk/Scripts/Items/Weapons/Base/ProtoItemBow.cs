@@ -35,8 +35,15 @@
         protected TextureResource CachedWeaponTextureResourceReady { get; private set; }
 
         protected virtual TextureResource WeaponReadyTextureResource
-            => new("Characters/Weapons/" + this.GetType().Name + "Ready",
-                   isProvidesMagentaPixelPosition: true);
+        {
+            get
+            {
+                var path = this.WeaponTextureResource.LocalPath;
+                path = path.Substring(0, path.Length - 4); // remove .png
+                return new(path + "Ready.png",
+                           isProvidesMagentaPixelPosition: true);
+            }
+        }
 
         public override void ClientSetupSkeleton(
             IItem item,
@@ -50,7 +57,10 @@
                                      protoCharacterSkeleton,
                                      skeletonRenderer,
                                      skeletonComponents);
-            this.ClientRefreshWeaponInHandSprite(item);
+            if (item is not null)
+            {
+                this.ClientRefreshWeaponInHandSprite(item);
+            }
         }
 
         public override void SharedOnHit(

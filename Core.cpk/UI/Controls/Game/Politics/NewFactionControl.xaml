@@ -9,6 +9,7 @@
                       xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                       xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
                       xmlns:faction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Faction"
+                      xmlns:newbieProtection="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.NewbieProtection"
                       mc:Ignorable="d"
                       d:DesignHeight="300" d:DesignWidth="300"
                       d:DataContext="{d:DesignInstance data:ViewModelNewFactionControl, IsDesignTimeCreatable=True}"
@@ -77,9 +78,9 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsEnabled}" Value="False">
-                                            <Setter Property="IsHitTestVisible" Value="False"/>
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Opacity" Value="0.667"/>
+                                            <Setter Property="IsHitTestVisible" Value="False" />
+                                            <Setter Property="IsEnabled" Value="False" />
+                                            <Setter Property="Opacity" Value="0.667" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -103,7 +104,7 @@
                                                      Focusable="False"
                                                      GroupName="FactionKind"
                                                      Margin="0" />
-                                        
+
                                         <StackPanel Orientation="Vertical"
                                                     Margin="24,-2,0,0">
 
@@ -114,15 +115,16 @@
                                                 LineHeight="12"
                                                 LineStackingStrategy="BlockLineHeight"
                                                 TextWrapping="Wrap" />
-                                            
-                                            <core:FormattedTextBlock Text="{x:Static loc:CoreStrings.FeatureDisabledForCurrentServer}"
-                                                                     Foreground="{StaticResource BrushColorRed6}"
-                                                                     Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                                                     FontSize="11"
-                                                                     LineHeight="12"
-                                                                     LineStackingStrategy="BlockLineHeight"
-                                                                     TextWrapping="Wrap" 
-                                                                     Margin="0,2,0,0" />
+
+                                            <core:FormattedTextBlock
+                                                Text="{x:Static loc:CoreStrings.FeatureDisabledForCurrentServer}"
+                                                Foreground="{StaticResource BrushColorRed6}"
+                                                Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                                FontSize="11"
+                                                LineHeight="12"
+                                                LineStackingStrategy="BlockLineHeight"
+                                                TextWrapping="Wrap"
+                                                Margin="0,2,0,0" />
 
                                             <core:FormattedTextBlock
                                                 Content="{Binding MembersListText}"
@@ -195,11 +197,28 @@
                     VerticalAlignment="Center"
                     Background="{StaticResource BrushColorRed0}"
                     BorderBrush="{StaticResource BrushColorRed4}">
-                <core:FormattedTextBlock Content="{Binding UnderNewbieProtectionText}"
-                                         FontSize="10"
-                                         FontWeight="Normal"
-                                         HorizontalAlignment="Center"
-                                         VerticalAlignment="Center" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <core:FormattedTextBlock Content="{Binding UnderNewbieProtectionText}"
+                                             FontSize="10"
+                                             FontWeight="Normal"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                    <Button Grid.Row="1"
+                            Command="{Binding CommandCancelNewbieProtection}"
+                            Focusable="False"
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,0">
+                        <Button.Content>
+                            <TextBlock
+                                Text="{x:Static newbieProtection:NewbieProtectionSystem.Button_CancelNewbieProtection}"
+                                TextWrapping="Wrap" />
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </Border>
         </Border>
     </Grid>

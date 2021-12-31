@@ -1,14 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
-    using System.Linq;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
 
     public class CraftingQueueItem : BaseNetObject
     {
-        public CraftingQueueItem(Recipe recipe, ushort countToCraft, ushort localId)
+        public CraftingQueueItem(RecipeWithSkin recipeEntry, ushort countToCraft, ushort localId)
         {
-            this.Recipe = recipe;
+            this.RecipeEntry = recipeEntry;
             this.CountToCraftRemains = countToCraft;
             this.LocalId = localId;
         }
@@ -20,18 +19,32 @@
         public ushort LocalId { get; }
 
         [SyncToClient]
-        public Recipe Recipe { get; }
+        public RecipeWithSkin RecipeEntry { get; }
 
-        public bool CanCombineWith(Recipe recipe)
+        public bool CanCombineWith(RecipeWithSkin recipeEntry)
         {
-            return recipe == this.Recipe
-                   && this.Recipe.OutputItems.Items.All(i => i.ProtoItem.IsStackable);
+            if (recipeEntry.Recipe != this.RecipeEntry.Recipe
+                || recipeEntry.ProtoItemSkinOverride is not null
+                || this.RecipeEntry.ProtoItemSkinOverride is not null)
+            {
+                return false;
+            }
+
+            foreach (var outputItem in this.RecipeEntry.Recipe.OutputItems.Items)
+            {
+                if (!outputItem.ProtoItem.IsStackable)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public override string ToString()
         {
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            return "Craft queue item for " + this.Recipe.ShortId;
+            return "Craft queue item for " + this.RecipeEntry;
         }
     }
 }

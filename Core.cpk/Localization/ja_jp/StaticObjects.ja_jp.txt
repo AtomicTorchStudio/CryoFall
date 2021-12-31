@@ -821,6 +821,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 貨幣鋳造機
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+制御された環境で有機物を効率的に分解し、素早く肥料を作ることができます。
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+堆肥製造機
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 このキャビネットを使って、乾燥キノコやジャーキーなどの特定の種類の製品や食品を作ることができます。
 

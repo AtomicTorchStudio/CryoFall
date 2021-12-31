@@ -9,11 +9,11 @@
     xmlns:recipeBreakdown="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Controls.RecipeBreakdown"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;assembly=Core"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
-    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;assembly=Core"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;assembly=Core"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelControlRecipeBreakdown, IsDesignTimeCreatable=True}"
-    Visibility="{Binding ViewModelRecipeBreakdown, Converter={StaticResource NullToVisibilityConverter}}">
+    Visibility="{Binding ViewModelRecipeBreakdown, Converter={StaticResource NullToVisibilityConverter}}"
+    HorizontalAlignment="Right">
 
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
@@ -29,13 +29,13 @@
             </Style>
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
+    
+    <base:BaseUserControl.LayoutTransform>
+        <ScaleTransform ScaleX="0.85" ScaleY="0.85" />
+    </base:BaseUserControl.LayoutTransform>
 
-    <Grid HorizontalAlignment="Stretch"
+    <Grid HorizontalAlignment="Right"
           Width="296">
-        <Grid.LayoutTransform>
-            <ScaleTransform ScaleX="0.85" ScaleY="0.85" />
-        </Grid.LayoutTransform>
-
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -45,7 +45,8 @@
                           InnerGlowSize="7"
                           VisibilityBackgroundImage="Collapsed" />
 
-        <TextBlock Text="Recipe breakdown (Editor)"
+        <TextBlock Grid.Row="0"
+                   Text="Recipe breakdown (Editor)"
                    Margin="10,5,10,3" />
 
         <ContentControl Grid.Row="1"

@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationStatueGold>();
 
-            config.SetRequiredNode<TechNodeSteppenHawkGold>();
+            config.SetRequiredNode<TechNodeDecorationGoldPileLarge>();
         }
     }
 }

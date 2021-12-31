@@ -232,6 +232,183 @@ Scripts/Items/Base/ItemUseCaptions@Use:
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 このアイテムは乗り物に乗っている間は使用できません。
 
+Scripts/Items/Base/SkinName@Alien:
+エイリアン
+
+Scripts/Items/Base/SkinName@Aquamarine:
+アクアマリン
+
+Scripts/Items/Base/SkinName@Aviator:
+アビエーター
+
+Scripts/Items/Base/SkinName@Biker:
+バイカー
+
+Scripts/Items/Base/SkinName@Buccaneer:
+バッカニアー
+
+Scripts/Items/Base/SkinName@Commando:
+コマンドー
+
+Scripts/Items/Base/SkinName@Contagion:
+コンタギオン
+
+Scripts/Items/Base/SkinName@Cork:
+コルク
+
+Scripts/Items/Base/SkinName@Cossack:
+コサック
+
+Scripts/Items/Base/SkinName@Cowboy:
+カウボーイ
+
+Scripts/Items/Base/SkinName@DesertCamo:
+デザートカモ
+
+Scripts/Items/Base/SkinName@Elite:
+エリート
+
+Scripts/Items/Base/SkinName@Emerald:
+エメラルド
+
+Scripts/Items/Base/SkinName@Emperor:
+エンペラー
+
+Scripts/Items/Base/SkinName@Executioner:
+エクセキューショナー
+
+Scripts/Items/Base/SkinName@Explorer:
+エクスプローラー
+
+Scripts/Items/Base/SkinName@Fancy:
+ファンシー
+
+Scripts/Items/Base/SkinName@ForestCamo:
+フォレストカモ
+
+Scripts/Items/Base/SkinName@Graphene:
+グラフェン
+
+Scripts/Items/Base/SkinName@Hardened:
+ハードエンド
+
+Scripts/Items/Base/SkinName@Halloween:
+ハロウィーン
+
+Scripts/Items/Base/SkinName@Holidays:
+ホリデイ
+
+Scripts/Items/Base/SkinName@Hunter:
+ハンター
+
+Scripts/Items/Base/SkinName@Iridium:
+イリジウム
+
+Scripts/Items/Base/SkinName@Italian:
+イタリアン
+
+Scripts/Items/Base/SkinName@Knight:
+ナイト
+
+Scripts/Items/Base/SkinName@Lamellar:
+ラメラー
+
+Scripts/Items/Base/SkinName@Lightning:
+ライトニング
+
+Scripts/Items/Base/SkinName@Lumen:
+ルーメン
+
+Scripts/Items/Base/SkinName@Magma:
+マグマ
+
+Scripts/Items/Base/SkinName@Marauder:
+マローダー
+
+Scripts/Items/Base/SkinName@Mercenary:
+マーセナリー
+
+Scripts/Items/Base/SkinName@Modern:
+モダン
+
+Scripts/Items/Base/SkinName@Necromancer:
+ネクロマンサー
+
+Scripts/Items/Base/SkinName@Noble:
+ノーブル
+
+Scripts/Items/Base/SkinName@Nomad:
+ノマド
+
+Scripts/Items/Base/SkinName@Pantheon:
+パンテオン
+
+Scripts/Items/Base/SkinName@Phoenix:
+フェニックス
+
+Scripts/Items/Base/SkinName@Pirate:
+パイレーツ
+
+Scripts/Items/Base/SkinName@Primitive:
+プリミティヴ
+
+Scripts/Items/Base/SkinName@Puffer:
+パファー
+
+Scripts/Items/Base/SkinName@RedMarble:
+レッドマーブル
+
+Scripts/Items/Base/SkinName@Redwood:
+レッドウッド
+
+Scripts/Items/Base/SkinName@Revolutionary:
+レボリューション
+
+Scripts/Items/Base/SkinName@Roots:
+ルーツ
+
+Scripts/Items/Base/SkinName@Ruby:
+ルビー
+
+Scripts/Items/Base/SkinName@Sapphire:
+サファイア
+
+Scripts/Items/Base/SkinName@Shaman:
+シャーマン
+
+Scripts/Items/Base/SkinName@Sheriff:
+シェリフ
+
+Scripts/Items/Base/SkinName@Ski:
+スキー
+
+Scripts/Items/Base/SkinName@Skull:
+スカル
+
+Scripts/Items/Base/SkinName@Snake:
+スネーク
+
+Scripts/Items/Base/SkinName@Straw:
+ストロー
+
+Scripts/Items/Base/SkinName@Topaz:
+トパーズ
+
+Scripts/Items/Base/SkinName@Tourmaline:
+トルマリン
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+アーバンカモ
+
+Scripts/Items/Base/SkinName@Ushanka:
+ウシャンカ
+
+Scripts/Items/Base/SkinName@Voodoo:
+ブードゥー
+
+Scripts/Items/Base/SkinName@Wasp:
+ワスプ
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 データログ（暗号化）
 
@@ -307,13 +484,13 @@ Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T.スーツ
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
-この特殊なアサルトアーマーは、他の部分で妥協することなく、敵の攻撃に対して驚くほどの防御力を発揮します。
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
+この特殊なアサルトアーマーは、妥協することなく、敵の砲火に対して驚くべき防御力を提供します。
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
 アサルトアーマー
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 アサルトアーマー・ヘルメット
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 ヘッドライトを有効にするには、アイテムを装備して\[{0}\]キーを押してください。
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 骨の防具は、その価格に見合う防御力を提供し、序盤では非常に役に立ちます。
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
-骨の防具
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
+ボーンアーマー
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-骨のヘルメット
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+ボーンヘルメット
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-角のヘルメット
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 派手な装いではありませんが、ピンチの時には守ってくれます。優れた環境防御を提供します。
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
-編組の防具
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
+ブライドアーマー
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 編組ヘルメット
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-臨時ランプヘルメット
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
 実質的な防御力はありません。蚊を避けるくらいならできるかも？
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 布のシャツ
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 布の帽子
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
-初期の防具としてはまともで、特に寒さをしのぐには適しています。高価でない上に快適です！
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
+それなりの防具。寒さをしのぐには適しています。高価でないうえに快適です！
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 毛皮のコート
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-尻尾付きの毛皮の帽子
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+毛皮の帽子
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-コサック帽子
-
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-ウシャンカ帽子
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 豪華な黄金の服装。真の支配者にふさわしい。
 
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 黄金の防具
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 黄金の冠
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 危険な環境から身体を守ってくれる特別設計のスーツ。少しでも傷がつくと気密性を失ってしまうため、戦闘での使用は避けましょう。
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 防護服
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
-革の防具は全体的に優れた防御力を提供し、序盤ステージに最適です。
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
+革の防具は全体的に優れた防御力を提供し、開拓し始めたばかりの序盤ステージにおいて理想的です。
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 革の防具
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-カウボーイハット
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+革の帽子
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-パイロット帽
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
+メタル防具は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-パイレーツハット
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
+メタルの防具
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
-金属の防具は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+メタルヘルメット
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
-金属の防具
-
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-密閉型メタルヘルメット
-
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-メタルスカルヘルメット
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
 この防具の製造には高度な材料が使用されており、小型武器やその他の一般的な武器に対して理想的な防御力を発揮します。
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
 ミリタリー防具
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 ミリタリーヘルメット
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+臨時ランプヘルメット
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 爆発物を装備した特殊なベスト。復讐の手段として着用者の死後に自動的に爆発します。
@@ -469,43 +628,34 @@ Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 防毒マスク
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-安全ヘルメットは、衝撃、破片、感電、その他の危険から頭部を防御するための一般的な手段です。
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
+プラグミウム格子を構造的に薄い金属板に組み込んだ試験用防具。とても軽くて丈夫。
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-安全ヘルメット
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
+プラグアーマー
 
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
-プラグミウム格子を構造的に薄い金属板に組み込んだ実験的な防具。非常に軽く、耐久性に優れています。
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
+あらゆる種類の損傷や環境への影響から驚くほどまともなレベルの防御を提供する厚いパッド入り生地。
 
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
-プラグミウムアーマー
-
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
-あらゆる種類のダメージや周辺環境から十分なレベルの防御力を提供する厚手のパッド入り生地。
-
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 キルトの防具
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-キルトの帽子
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
+キルトのヘルメット
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
-キルトパッド入りヘルメット
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
+最強のガード。この戦闘アーマーは君をあらゆるダメージから守れることができるが、一部の機動性を失わせます。
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
-最強の防具。この戦闘アーマーはあらゆるダメージから守ってくれますが、その代償として機動力が低下します。
-
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 スーパーヘビーアーマー
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
-必要性は発明の母である！まったく快適ではありませんが、初期段階ではかなりまともな防御力を提供してくれます。
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
+必要は発明の母！まったく快適ではありませんが、初期段階でかなりまともな防御力を提供してくれます。
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 ウッドアーマー
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 木のヘルメット
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Scripts/Items/Generic/ItemFur@Description:
 Scripts/Items/Generic/ItemFur@Name:
 毛皮
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-白く輝くダイヤモンド！
+Scripts/Items/Generic/ItemGemstones@Description:
+輝く宝石！
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-ダイヤモンド
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-緑色に輝くエメラルド！
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-エメラルド
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-真っ赤に輝くルビー！
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-ルビー
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-青く輝くサファイア！
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-サファイア
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-黄金色に輝くトパーズ！
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-トパーズ
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-紫色に輝くトルマリン！
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-トルマリン
+Scripts/Items/Generic/ItemGemstones@Name:
+宝石
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 ガラスチップは、ボトルなど多くのガラスアイテムの材料として利用できます。
@@ -2434,24 +2554,6 @@ Scripts/Items/Weapons/Melee/ItemMachete@Name:
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 武器なし
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-レーザーレイピア（青）
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-レーザーレイピア（緑）
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-レーザーレイピア（紫）
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-レーザーレイピア（赤）
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-レーザーレイピア（白）
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-レーザーレイピア（黄）
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 内蔵バッテリーの電気を利用して相手を気絶させます。
 
@@ -2461,149 +2563,134 @@ Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 信じられないほど強力な短距離武器。作動するのにエネルギーが必要です。
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+レーザーレイピア
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 昔からの技術。今でも昔と同じように機能しています。
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 クロスボウ
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 原始的なピストル。弾薬に紙薬莢を使用しています。一度に2発装填され、すぐに発砲することができます。
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 フリントロックピストル
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
 シングルグレネードランチャーは、着弾時に爆発し、大ダメージを与える特別に設計された大口径弾を発射します。
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 グレネードランチャー
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 リボルバータイプのグレネードランチャー。アサルトミッションや重装甲の敵との戦闘に最適。
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 マルチグレネードランチャー
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 10mm弾用に開発された拳銃。
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-拳銃
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+ハンドガン 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 レーザーピストルは、高エネルギー光線を放出して標的を燃やします。
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 レーザーピストル
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 レーザーライフルは、赤外線スペクトルの強力な高エネルギー光線を放出して標的を燃やします。レーザーピストルよりもはるかに長い射程距離を誇ります。
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 レーザーライフル
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-シンプルなデザインの半自動ピストル。現代の銃器と比べて比較的安価に製造できます。
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-ルガー
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-ハイパワーの30口径弾用に開発された重機関銃。
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-重機関銃
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-8mm弾用に開発された軽量マシンピストル。
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-マシンピストル
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-伝統的スタイルのマスケット銃。紙薬莢を使用します。フリントロックピストルと比較して、より優れた射程とダメージを誇ります。
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-マスケット
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-プラズマピストルは、衝突時に標的を燃やす集中型プラズマパケットを形成して投射し、大きなダメージを与えます。多くの電力を消耗します。
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-プラズマピストル
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し、とても大きなダメージを与えます。非常に多くの電力を消耗します。
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 プラズマライフル
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-弾薬が入る回転シリンダー付きのシンプルな連射拳銃。
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-リボルバー
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-10mm弾用に開発された軽量オートマチックスナイパーライフル。
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-ライトライフル
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-ハイパワーの30口径弾用に開発された対重装甲用ライフル。
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-ヘビーライフル
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-一般的に使用されている8mm弾用に開発された旧式のボルトアクションライフル。
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-ボルトアクションライフル
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-旧式のショットガン。12ゲージの弾薬を使用します。
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-ダブルバレルショットガン
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-装弾数の多い軍用ショットガン。12ゲージの弾薬を使用します。
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-ミリタリーショットガン
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-非常に大きな銃口エネルギーを持つ半自動拳銃。
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-ステッペンホーク
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-ステッペンホーク拳銃のゴールド限定版
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-ステッペンホーク・ゴールド
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-10mm弾用に開発された小型機関銃。
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-サブマシンガン
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 弾丸の代わりに小さな虫のようなものを敵に向けて発射する新型武器。
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 スワームランチャー
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 液体化ケイナイトを使って強力な毒物を作り、敵に向けて発射する新型武器。
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 毒素増殖銃
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+ハイパワーの30口径弾用に開発された重機関銃。
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+重機関銃
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+8mm弾用に開発された軽量マシンピストル。
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+マシンピストル
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+伝統的スタイルのマスケット銃。紙薬莢を使用します。フリントロックピストルと比較して、より優れた射程とダメージを誇ります。
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+マスケット
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+弾薬が入る回転シリンダー付きのシンプルな連射拳銃。
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+リボルバー 8mm
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+10mm弾用に開発された軽量オートマチックスナイパーライフル。
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+ライトライフル
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+ハイパワーの30口径弾用に開発された反物質重機関銃
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+ヘビーライフル
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+一般的に使用されている8mm弾用に開発された旧式のボルトアクションライフル。
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+ボルトアクションライフル
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+旧式のショットガン。12ゲージの弾薬を使用します。
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+ダブルバレルショットガン
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+装弾数の多い軍用ショットガン。12ゲージの弾薬を使用します。
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+ミリタリーショットガン
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+非常に大きな銃口エネルギーを持つ半自動拳銃。
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+ステッペンホーク
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+10mm弾用に開発された小型機関銃。
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+サブマシンガン
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 メカアーマーに搭載されたハードポイント用に設計された重機関砲。 大口径および対物弾薬を使用します。

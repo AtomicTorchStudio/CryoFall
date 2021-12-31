@@ -2,9 +2,12 @@
 {
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
+    using AtomicTorch.CBND.GameApi.Data.Items;
 
     public class ItemPlasterCast : ItemSplint
     {
+        public override IProtoItem BaseProtoItem => null; // this is not a skin
+
         public override string Description => "Plaster cast is used to set a broken bone and allow it to heal quickly.";
 
         public override string Name => "Plaster cast";

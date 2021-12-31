@@ -17,5 +17,7 @@
             : base(character, targetWorldObject, durationSeconds)
         {
         }
+
+        public override bool IsDisplayingProgress => true;
     }
 }

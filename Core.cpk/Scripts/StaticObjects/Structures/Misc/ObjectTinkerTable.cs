@@ -115,6 +115,12 @@
                 icon: instance.Icon);
         }
 
+        public static bool IsCompatibleRepairPair(IItem item, IItem otherItem)
+        {
+            return item.ProtoItem == otherItem.ProtoItem
+                   || ((IProtoItemWithSkinData)item.ProtoItem).IsSkinOrVariant(otherItem.ProtoItem);
+        }
+
         public static double SharedCalculateResultDurabilityFraction(
             IItem inputItem1,
             IItem inputItem2,
@@ -164,7 +170,7 @@
 
             if (inputItem1 is null
                 || inputItem2 is null
-                || inputItem1.ProtoItem != inputItem2.ProtoItem)
+                || !IsCompatibleRepairPair(inputItem1, inputItem2))
             {
                 errorMessage = ErrorMessage_Input;
                 return false;

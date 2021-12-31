@@ -62,6 +62,8 @@
             this.stageStructureAddValue = this.structurePointsMax / this.Config.StagesCount;
         }
 
+        public override bool IsDisplayingProgress => true;
+
         public bool IsRepair => this.WorldObject.ProtoGameObject is not ProtoObjectConstructionSite;
 
         public double StructurePointsMax => this.structurePointsMax;
@@ -71,11 +73,11 @@
         public bool CheckIsAllowed(bool showClientNotification = false)
         {
             if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(
-                this.WorldObject,
-                this.Character,
-                // faction permission for faction-owned land claims required only to build, repair is always allowed
-                requireFactionPermission: !this.IsRepair,
-                out var hasNoFactionPermission))
+                    this.WorldObject,
+                    this.Character,
+                    // faction permission for faction-owned land claims required only to build, repair is always allowed
+                    requireFactionPermission: !this.IsRepair,
+                    out var hasNoFactionPermission))
             {
                 return true;
             }

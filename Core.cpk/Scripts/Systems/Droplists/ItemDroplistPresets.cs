@@ -5,18 +5,14 @@
 
     public static class ItemDroplistPresets
     {
+
         public static readonly IReadOnlyDropItemsListPreset Gemstones
             = new DropItemsListPreset(
-                  outputs: 1,
-                  probability: 1 / 1000.0,
-                  useGuaranteedProbabilityAlgorithm: true,
-                  storageKey: "Gemstones")
-              .Add<ItemGemDiamond>()
-              .Add<ItemGemEmerald>()
-              .Add<ItemGemRuby>()
-              .Add<ItemGemSapphire>()
-              .Add<ItemGemTopaz>()
-              .Add<ItemGemTourmaline>();
+                    outputs: 1,
+                    probability: 1 / 1000.0,
+                    useGuaranteedProbabilityAlgorithm: true,
+                    storageKey: "Gemstones")
+                .Add<ItemGemstones>();
 
         public static readonly IReadOnlyDropItemsListPreset GoldNuggets
             = new DropItemsListPreset(

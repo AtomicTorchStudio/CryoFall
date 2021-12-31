@@ -159,6 +159,10 @@
                                     },
                                     data.ClientState);
 
+                lot.ClientSubscribe(_ => _.ItemOnSale,
+                                    _ => RefreshAppearance(),
+                                    data.ClientState);
+                
                 lot.ClientSubscribe(_ => _.ProtoItem,
                                     _ => RefreshAppearance(),
                                     data.ClientState);
@@ -209,8 +213,7 @@
             if (publicState.Lots.Any(l => l.State != TradingStationLotState.Disabled))
             {
                 return WindowTradingStationUser.Open(
-                    new ViewModelWindowTradingStationUser(worldObject,
-                                                          publicState));
+                    new ViewModelWindowTradingStationUser(publicState));
             }
 
             CannotInteractMessageDisplay.ShowOn(worldObject,

@@ -158,12 +158,9 @@
             Logger.Important("Chat message sent: " + chatRoom + ": " + message);
 
             chatRoom.ClientOnMessageReceived(
-                new ChatEntry(
-                    ClientCurrentCharacterHelper.Character.Name,
-                    message,
-                    isService: false,
-                    DateTime.Now,
-                    hasSupporterPack: Api.Client.MasterServer.IsSupporterPackOwner));
+                ChatEntry.CreatePlayerMessage(
+                    ClientCurrentCharacterHelper.Character,
+                    message));
 
             if (Api.Client.SteamApi.IsSteamClient)
             {
@@ -248,11 +245,9 @@
                                                 .ServerEnumerateMessageRecepients(forPlayer: null)
                                             : new[] { customDestinationCharacter };
 
-            var chatEntry = new ChatEntry(from: forCharacterName,
-                                          message,
-                                          isService: true,
-                                          DateTime.Now,
-                                          hasSupporterPack: false);
+            var chatEntry = ChatEntry.CreateServiceMessage(
+                message,
+                sourceCharacterName: forCharacterName);
 
             Instance.ServerSendMessage(chatRoomHolderObject: chatRoomHolder,
                                        chatEntry,
@@ -294,7 +289,9 @@
             // create chat room
             var chatRoomHolder = ServerCreateChatRoom(
                 new ChatRoomPrivate(characterA: currentCharacterName,
-                                    characterB: inviteeName)
+                                    characterB: inviteeName,
+                                    clanTagCharacterA: FactionSystem.SharedGetClanTag(currentCharacter),
+                                    clanTagCharacterB: FactionSystem.SharedGetClanTag(inviteeCharacter))
                     { IsClosedByCharacterA = false });
 
             // register chat room for current character
@@ -332,8 +329,8 @@
                 return;
             }
 
-            var name = entry.Name;
-            if (name == Client.Characters.CurrentPlayerCharacter.Name)
+            var characterName = entry.Name;
+            if (characterName == Client.Characters.CurrentPlayerCharacter.Name)
             {
                 return;
             }
@@ -341,18 +338,16 @@
             var message = string.Format(isOnline
                                             ? PlayerWentOnlineChatMessageFormat
                                             : PlayerWentOfflineChatMessageFormat,
-                                        name);
+                                        characterName);
 
-            var chatEntry = new ChatEntry(name,
-                                          message,
-                                          isService: true,
-                                          DateTime.Now,
-                                          hasSupporterPack: false);
+            var chatEntry = ChatEntry.CreateServiceMessage(message,
+                                                           sourceCharacterName: characterName)
+                                     .WithClanTag(entry.ClanTag);
 
             // display player joined/left notification in global chat only for the party/faction members
             // or on local server
-            if (PartySystem.ClientIsPartyMember(name)
-                || (FactionSystem.ClientIsFactionMember(name)
+            if (PartySystem.ClientIsPartyMember(characterName)
+                || (FactionSystem.ClientIsFactionMember(characterName)
                     && FactionSystem.ClientCurrentFactionKind != FactionKind.Public)
                 || SharedLocalServerHelper.IsLocalServer)
             {
@@ -367,8 +362,8 @@
                 switch (SharedGetChatRoom(chatRoomHolder))
                 {
                     case ChatRoomPrivate privateChatRoom:
-                        if (privateChatRoom.CharacterA == name
-                            || privateChatRoom.CharacterB == name)
+                        if (privateChatRoom.CharacterA == characterName
+                            || privateChatRoom.CharacterB == characterName)
                         {
                             // found a local private chat instance with this character
                             ClientReceiveChatEntry(
@@ -379,7 +374,7 @@
                         break;
 
                     case ChatRoomParty partyChatRoom:
-                        if (PartySystem.ClientIsPartyMember(name))
+                        if (PartySystem.ClientIsPartyMember(characterName))
                         {
                             ClientReceiveChatEntry(
                                 chatRoomHolderObject: (ILogicObject)partyChatRoom.GameObject,
@@ -389,7 +384,7 @@
                         break;
 
                     case ChatRoomFaction factionChatRoom:
-                        if (FactionSystem.ClientIsFactionMember(name)
+                        if (FactionSystem.ClientIsFactionMember(characterName)
                             && FactionSystem.ClientCurrentFactionKind != FactionKind.Public)
                         {
                             ClientReceiveChatEntry(
@@ -399,6 +394,32 @@
 
                         break;
                 }
+            }
+        }
+
+        protected override void PrepareSystem()
+        {
+            if (IsServer)
+            {
+                FactionSystem.ServerCharacterJoinedOrLeftFaction
+                    += (character, faction, isJoined) =>
+                       {
+                           var name = character.Name;
+                           var clanTag = isJoined
+                                             ? FactionSystem.SharedGetClanTag(faction) 
+                                             : null;
+                           if (!ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
+                           {
+                               return;
+                           }
+
+                           // update private chats to reflect actual clantag for this character
+                           foreach (var chatRoomHolder in characterPrivateChatRooms)
+                           {
+                               var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(chatRoomHolder);
+                               chatRoom.UpdateClanTag(name, clanTag);
+                           }
+                       };
             }
         }
 
@@ -497,13 +518,10 @@
         {
             ClientReceiveChatEntry(
                 chatRoomHolder,
-                new ChatEntry(from: null,
-                              message: string.Format(NotificationCurrentPlayerMuted,
-                                                     ClientTimeFormatHelper.FormatTimeDuration(
-                                                         secondsRemains)),
-                              isService: true,
-                              DateTime.Now,
-                              hasSupporterPack: false));
+                ChatEntry.CreateServiceMessage(
+                    message: string.Format(NotificationCurrentPlayerMuted,
+                                           ClientTimeFormatHelper.FormatTimeDuration(
+                                               secondsRemains))));
         }
 
         private void ClientRemote_ReceiveMessage(
@@ -588,14 +606,8 @@
 
             message = ProfanityFilteringSystem.SharedApplyFilters(message);
 
+            var chatEntry = ChatEntry.CreatePlayerMessage(character, message);
             var chatRoom = SharedGetChatRoom(chatRoomHolder);
-
-            var chatEntry = new ChatEntry(characterName,
-                                          message,
-                                          isService: false,
-                                          DateTime.Now,
-                                          hasSupporterPack: Server.Characters.IsSupporterPackOwner(character));
-
             chatRoom.ServerAddMessageToLog(chatEntry);
 
             using var tempDestination = Api.Shared.WrapInTempList(

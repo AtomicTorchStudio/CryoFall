@@ -127,8 +127,7 @@
 
                     var characterClientState = character.GetClientState<BaseCharacterClientState>();
                     var skeletonRenderer = characterClientState.SkeletonRenderer;
-                    var protoSkeleton = characterClientState.CurrentProtoSkeleton;
-
+                    
                     var headWorldPosition = skeletonRenderer.TransformSlotPosition("ProjectilesOrigin", default, out _)
                                             + (0, ClientLaunchOffsetY);
 

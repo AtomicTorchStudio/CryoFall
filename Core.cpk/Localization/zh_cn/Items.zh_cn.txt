@@ -232,6 +232,183 @@ Scripts/Items/Base/ItemUseCaptions@Use:
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 驾驶载具时无法使用此物品。
 
+Scripts/Items/Base/SkinName@Alien:
+异星
+
+Scripts/Items/Base/SkinName@Aquamarine:
+海蓝宝石
+
+Scripts/Items/Base/SkinName@Aviator:
+飞行员皮帽
+
+Scripts/Items/Base/SkinName@Biker:
+骑行者
+
+Scripts/Items/Base/SkinName@Buccaneer:
+海盗
+
+Scripts/Items/Base/SkinName@Commando:
+敢死队
+
+Scripts/Items/Base/SkinName@Contagion:
+生化
+
+Scripts/Items/Base/SkinName@Cork:
+木帽
+
+Scripts/Items/Base/SkinName@Cossack:
+哥萨克帽
+
+Scripts/Items/Base/SkinName@Cowboy:
+牛仔
+
+Scripts/Items/Base/SkinName@DesertCamo:
+沙漠迷彩
+
+Scripts/Items/Base/SkinName@Elite:
+精英
+
+Scripts/Items/Base/SkinName@Emerald:
+翡翠
+
+Scripts/Items/Base/SkinName@Emperor:
+帝王
+
+Scripts/Items/Base/SkinName@Executioner:
+处刑者
+
+Scripts/Items/Base/SkinName@Explorer:
+探索者
+
+Scripts/Items/Base/SkinName@Fancy:
+华丽
+
+Scripts/Items/Base/SkinName@ForestCamo:
+森林迷彩
+
+Scripts/Items/Base/SkinName@Graphene:
+石墨烯
+
+Scripts/Items/Base/SkinName@Hardened:
+硬化
+
+Scripts/Items/Base/SkinName@Halloween:
+万圣节
+
+Scripts/Items/Base/SkinName@Holidays:
+节日
+
+Scripts/Items/Base/SkinName@Hunter:
+猎人
+
+Scripts/Items/Base/SkinName@Iridium:
+铱元素
+
+Scripts/Items/Base/SkinName@Italian:
+意大利风
+
+Scripts/Items/Base/SkinName@Knight:
+骑士
+
+Scripts/Items/Base/SkinName@Lamellar:
+鳞甲
+
+Scripts/Items/Base/SkinName@Lightning:
+闪电
+
+Scripts/Items/Base/SkinName@Lumen:
+流明
+
+Scripts/Items/Base/SkinName@Magma:
+熔岩
+
+Scripts/Items/Base/SkinName@Marauder:
+掠夺者
+
+Scripts/Items/Base/SkinName@Mercenary:
+雇佣兵
+
+Scripts/Items/Base/SkinName@Modern:
+现代
+
+Scripts/Items/Base/SkinName@Necromancer:
+死灵法师
+
+Scripts/Items/Base/SkinName@Noble:
+贵族
+
+Scripts/Items/Base/SkinName@Nomad:
+流浪者
+
+Scripts/Items/Base/SkinName@Pantheon:
+万神殿
+
+Scripts/Items/Base/SkinName@Phoenix:
+凤凰
+
+Scripts/Items/Base/SkinName@Pirate:
+海盗
+
+Scripts/Items/Base/SkinName@Primitive:
+原始
+
+Scripts/Items/Base/SkinName@Puffer:
+河豚
+
+Scripts/Items/Base/SkinName@RedMarble:
+红大理石
+
+Scripts/Items/Base/SkinName@Redwood:
+红木
+
+Scripts/Items/Base/SkinName@Revolutionary:
+革命家
+
+Scripts/Items/Base/SkinName@Roots:
+根须
+
+Scripts/Items/Base/SkinName@Ruby:
+红宝石
+
+Scripts/Items/Base/SkinName@Sapphire:
+蓝宝石
+
+Scripts/Items/Base/SkinName@Shaman:
+萨满
+
+Scripts/Items/Base/SkinName@Sheriff:
+警长
+
+Scripts/Items/Base/SkinName@Ski:
+滑雪
+
+Scripts/Items/Base/SkinName@Skull:
+骷髅
+
+Scripts/Items/Base/SkinName@Snake:
+蛇
+
+Scripts/Items/Base/SkinName@Straw:
+稻草
+
+Scripts/Items/Base/SkinName@Topaz:
+黄宝石
+
+Scripts/Items/Base/SkinName@Tourmaline:
+碧玺
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+都市迷彩
+
+Scripts/Items/Base/SkinName@Ushanka:
+乌山卡帽
+
+Scripts/Items/Base/SkinName@Voodoo:
+巫毒
+
+Scripts/Items/Base/SkinName@Wasp:
+黄蜂
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 数据记录(加密)
 
@@ -307,13 +484,13 @@ Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 A.P.A.R.T.防护服
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
 这套特别的突击装甲提供极高的防弹能力。
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
 突击装甲
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 突击装甲头盔
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 要激活头盔灯，请装备此物品并按下\[{0}\] 键。
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 骨质头盔提供廉价的防御性能，在早期很有用。
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
 骨甲
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-封闭骨头盔
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+骸骨头盔
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-长角骨头盔
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 并不潇洒，但是危急时刻能救命。提供比其他替代品更好的环境防护效果。
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
 编织盔甲
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 饰带头盔
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-临时照明头盔
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
 不提供任何防护效果。可能能防蚊虫叮咬吧。
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 布衬衫
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 布帽
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
 不错的早期护甲；其御寒能力出色。 不会非常昂贵，而且很舒适！
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 皮大衣
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-皮帽子
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+皮毛帽
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-哥萨克帽
-
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-乌山卡帽
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 豪华的金衣。配得上真正的统治者。
 
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 金甲
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 金冠
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 专为保护用户免受大多数类型的环境危害而设计的套装。不应该在战斗中使用, 因为它很快就会破损。
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 防护服
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
 皮革盔甲提供良好的整体保护, 是早期发展的理想选择。
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 皮革盔甲
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-牛仔帽
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+皮帽
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-飞行员帽
-
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-海盗帽
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 金属盔甲提供高物理防御力， 但几乎没有任何环境保护能力。
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
 金属盔甲
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-封闭金属盔
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+金属头盔
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-金属骷髅头盔
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
 制造这种装甲的先进材料使其成为防范小武器和其他弱效武器的理想护甲。
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
-军用装甲
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
+军装甲
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 军用头盔
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+临时照明头盔
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 装有炸药的特殊战术背心。会在穿戴者死亡时自动引爆以进行复仇。
@@ -469,43 +628,34 @@ Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 呼吸器
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-安全帽为头部提供了基本保护, 使其免受撞击、破片、电击和其他危险伤害。
-
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-安全帽
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
 实验装甲, 其中含有嵌入薄普拉格金属板的格架作为其结构基础。非常轻, 经久耐用。
 
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
 普拉格装甲
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
 厚实的填充织物, 提供了令人惊讶的防护能力, 能够抵抗所有类型的伤害和环境影响。
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 缝制盔甲
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-缝制帽
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
+缝制头盔
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
-缝制衬垫头盔
-
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
 最强防护。这套战斗护甲能够保护你不受各种伤害，但是会牺牲部分机动性。
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 超重型护甲
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
 需要是发明之母。并不舒适, 但能在早期获得较高防御力。
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 木制盔甲
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 木头盔
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Scripts/Items/Generic/ItemFur@Description:
 Scripts/Items/Generic/ItemFur@Name:
 皮毛
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-闪亮的白钻！
+Scripts/Items/Generic/ItemGemstones@Description:
+闪亮的宝石！
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-钻石
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-闪亮的绿宝石！
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-绿宝石
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-闪亮的红宝石！
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-红宝石
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-闪亮的蓝宝石！
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-蓝宝石
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-闪亮的黄宝石！
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-黄宝石
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-闪亮的紫碧玺！
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-碧玺
+Scripts/Items/Generic/ItemGemstones@Name:
+宝石
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 毛坯玻璃可以用来制作各种玻璃物品，例如瓶子。
@@ -2434,24 +2554,6 @@ Scripts/Items/Weapons/Melee/ItemMachete@Name:
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 无武器
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-激光刺剑(蓝)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-激光刺剑(绿)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-激光刺剑(紫)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-激光刺剑(红)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-激光刺剑(白)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-激光刺剑(黄)
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 使用内置电源击晕敌人。
 
@@ -2461,149 +2563,134 @@ Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 非常强大的近距离武器。需要能量才能开火。
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+激光刺剑
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 旧时代传承的技术。依然有效。
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 弩
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 原始的手枪。使用纸包弹作为弹药。能够装填两发并快速连续射击。
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 燧发手枪
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
 单发榴弹发射器，能够发射大口径榴弹并对目标范围造成大量伤害。
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 榴弹发射器
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 左轮式榴弹发射器。适合突击任务或者应对重甲敌人。
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 多管榴弹发射器
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 使用10mm弹药的手枪。
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-手枪
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+手枪 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 激光手枪能射出高能射线并灼烧目标。
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 激光手枪
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 激光步枪能够射出高能射线并灼烧目标。比激光手枪距离更远。
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 激光步枪
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-设计精简的半自动手枪。相比现代武器生产简单。
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-鲁格手枪
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-使用.300弹药的重型机枪。
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-重机枪
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-使用8mm弹药的轻型冲锋手枪
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-冲锋手枪
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-老式火枪。使用纸包弹。相比燧发手枪距离和伤害都更高。
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-火枪
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-电浆手枪能够射出电浆团并灼烧目标造成大量伤害。高能量消耗。
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-电浆手枪
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 电浆步枪能够射出电浆团并灼烧目标造成大量伤害。超高能量消耗。
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 电浆步枪
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-简单的连发手枪，拥有转轮结构承载多发弹药。
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-左轮手枪
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-轻型自动狙击枪，使用10mm弹药。
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-轻型步枪
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-使用.300弹药的重型反器材步枪。
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-重型步枪
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-原始的栓动步枪，使用常见的8mm弹药。
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-栓动步枪
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-老式霰弹枪。使用12号弹药。
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-双管霰弹枪
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-拥有大弹容的军用霰弹枪。使用12号弹药。
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-军用霰弹枪
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-半自动手枪，出膛动能极高。
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-霍金沙鹰
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-金色限量版霍金沙鹰
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-金色霍金沙鹰
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-使用10mm弹药的冲锋枪。
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-冲锋枪
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 向敌人发射昆虫弹药的异星武器。
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 虫群发射器
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 将液态翠铜转化为强力毒素并向敌人射出的异星武器。
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 剧毒增生
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+使用.300弹药的重型机枪。
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+重机枪
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+使用8mm弹药的轻型冲锋手枪
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+冲锋手枪
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+老式火枪。使用纸包弹。相比燧发手枪距离和伤害都更高。
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+火枪
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+简单的连发手枪，拥有转轮结构承载多发弹药。
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+左轮手枪 8mm
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+轻型自动狙击枪，使用10mm弹药。
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+轻型步枪
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+使用.300弹药的重型反器材步枪。
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+重型步枪
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+原始的栓动步枪，使用常见的8mm弹药。
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+栓动步枪
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+老式霰弹枪。使用12号弹药。
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+双管霰弹枪
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+拥有大弹容的军用霰弹枪。使用12号弹药。
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+军用霰弹枪
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+半自动手枪，出膛动能极高。
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+霍金沙鹰
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+使用10mm弹药的冲锋枪。
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+冲锋枪
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 为战斗装甲设计的手持重型自动加农炮。使用大口径反器材弹药。

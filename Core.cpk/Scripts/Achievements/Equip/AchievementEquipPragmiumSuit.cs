@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Achievements
 {
-    using AtomicTorch.CBND.CoreMod.Items.Equipment.PragmiumArmor;
+    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class AchievementEquipPragmiumSuit : ProtoAchievement

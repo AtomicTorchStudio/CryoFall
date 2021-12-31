@@ -69,7 +69,7 @@
             return true;
         }
 
-        private struct Token
+        private readonly struct Token
         {
             public readonly Action Handler;
 

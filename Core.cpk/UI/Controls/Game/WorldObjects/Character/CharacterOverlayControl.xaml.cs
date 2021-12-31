@@ -45,7 +45,7 @@
             // (e.g. a creature enters the scope during the night, there should be no visible->collapsed animation)
             this.RefreshVisualState(useTransitions: false);
 
-            if (this.character.ProtoGameObject.GetType() == typeof(PlayerCharacter))
+            if (!this.character.IsNpc)
             {
                 ClientUpdateHelper.UpdateCallback += this.UpdateForPlayerCharacter;
                 this.isUpdateSubscribed = true;
@@ -82,6 +82,7 @@
         {
             var visibility = this.isCurrentPlayerCharacter
                                  ? GeneralOptionDisplayHealthbarAboveCurrentCharacter.IsDisplay
+                                   && this.character.ProtoGameObject.GetType() == typeof(PlayerCharacter)
                                        ? Visibility.Visible
                                        : Visibility.Collapsed
                                  : Visibility.Visible;

@@ -2,7 +2,6 @@
 {
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
-    using AtomicTorch.CBND.CoreMod.Items.Equipment.Assault;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
@@ -74,12 +73,11 @@
                         // weapons
                         .Add<ItemKnifeIron>(weight: 1 / 1.0)
                         .Add<ItemRevolver8mm>(weight: 1 / 1.0)
-                        .Add<ItemLuger>(weight: 1 / 1.0)
                         .Add<ItemMachinePistol>(weight: 1 / 1.0)
                         .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
                         .Add<ItemRifleBoltAction>(weight: 1 / 1.0)
                         .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
-                        .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
+                        .Add<ItemSubMachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
                         .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
                         .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
                         .Add<ItemGrenadeLauncher>(weight: 1 / 4.0,   condition: T3Specialized)

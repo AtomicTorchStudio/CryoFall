@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 スキル経験値
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Structures] 牧草地に建築可能
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [劣化] 放置建築物の劣化
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [劣化] 放置所有地の劣化カウントダウン時間
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+文字表示可能
 
 Scripts/Rates/RateThirst@Name:
 脱水率

@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 技能经验
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Structures] 可建筑于草甸
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Decay] 废弃建筑腐朽
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Decay] 废弃主权建筑腐朽延迟
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+标牌可用
 
 Scripts/Rates/RateThirst@Name:
 口渴率

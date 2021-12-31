@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.ItemsBrowser;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.NoiseView;
+    using AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.SkinsBrowser;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -11,7 +12,7 @@
         public BaseCommand CommandOpenItemsBrowserWindow { get; }
             = new ActionCommand(
                 () => Api.Client.UI.LayoutRootChildren
-                         .Add(new WindowEditorItemsBrowserWindow()));
+                         .Add(new WindowEditorItemsBrowser()));
 
         public BaseCommand CommandOpenNoiseComposerWindow { get; }
             = new ActionCommand(
@@ -22,5 +23,10 @@
             = new ActionCommand(
                 () => Api.Client.UI.LayoutRootChildren
                          .Add(new WindowEditorNoiseForGround()));
+
+        public BaseCommand CommandOpenSkinsBrowserWindow { get; }
+            = new ActionCommand(
+                () => Api.Client.UI.LayoutRootChildren
+                         .Add(new WindowEditorSkinsBrowser()));
     }
 }

@@ -8,8 +8,7 @@
         {
             config.Effects
                   .AddRecipe<RecipeBoneArmor>()
-                  .AddRecipe<RecipeBoneHelmetHorned>()
-                  .AddRecipe<RecipeBoneHelmetClosed>();
+                  .AddRecipe<RecipeBoneHelmet>();
 
             config.SetRequiredNode<TechNodeWoodArmor>();
         }

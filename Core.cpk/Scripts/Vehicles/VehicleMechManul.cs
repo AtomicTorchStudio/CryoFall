@@ -104,7 +104,6 @@
         protected override void PrepareProtoVehicleLightConfig(ItemLightConfig lightConfig)
         {
             lightConfig.Color = LightColors.Flashlight;
-            lightConfig.ScreenOffset = (3, -2);
             lightConfig.WorldOffset = (0, -0.5);
             lightConfig.Size = 18;
         }

@@ -68,6 +68,36 @@ Yuva #9
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot0:
 Yuva #0
 
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot1:
+Hızlı kullanım—Yuva #1
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot2:
+Hızlı kullanım—Yuva #2
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot3:
+Hızlı kullanım—Yuva #3
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot4:
+Hızlı kullanım—Yuva #4
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot5:
+Hızlı kullanım—Yuva #5
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot6:
+Hızlı kullanım—Yuva #6
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot7:
+Hızlı kullanım—Yuva #7
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot8:
+Hızlı kullanım—Yuva #8
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot9:
+Hızlı kullanım—Yuva #9
+
+Scripts/ClientComponents/Input/GameButton@HotbarQuickUseSlot0:
+Hızlı kullanım—Yuva #0
+
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
 Kamera yakınlaştırma
 

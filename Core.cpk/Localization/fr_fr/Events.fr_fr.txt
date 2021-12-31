@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 Migration de rosseurs
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-Important : les armes à feu sont inefficaces. Utilisez des armes de corps-à-corps ou basées sur la chaleur.
+Important : les armes à feu sont inefficaces, utilisez des armes de combat au corps à corps.
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 Des pousses étranges ont fait leur apparition dans certaines zones montagneuses, ce qui y rend toute prospection impossible. Mais ceci constitue également une bonne opportunité d'obtenir des ressources rares.

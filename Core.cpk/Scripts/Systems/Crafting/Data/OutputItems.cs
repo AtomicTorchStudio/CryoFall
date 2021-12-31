@@ -119,6 +119,12 @@
             return this;
         }
 
+        public OutputItems Clear()
+        {
+            this.items.Clear();
+            return this;
+        }
+
         public CreateItemResult TrySpawnToContainer(IItemsContainer toContainer)
         {
             return TrySpawnToContainer(this, toContainer);

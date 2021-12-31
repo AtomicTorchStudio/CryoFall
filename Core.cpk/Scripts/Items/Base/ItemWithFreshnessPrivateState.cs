@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.GameApi.Data.State;
 
-    public class ItemWithFreshnessPrivateState : BasePrivateState, IItemWithFreshnessPrivateState
+    public class ItemWithFreshnessPrivateState : ItemPrivateState, IItemWithFreshnessPrivateState
     {
         /// <summary>
         /// Current value of freshness. Should never exceed the according item max freshness.

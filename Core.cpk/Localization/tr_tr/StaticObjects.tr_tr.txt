@@ -821,6 +821,12 @@ Farklı metallerden yapılan sikkeleri kullanır. Ayrıca sikkeleri eriterek kü
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Sikke
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Hızlıca gübre yaratmak için kontrollü bir çevrede etkili organik madde çürümesine müsaade eder.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Kompost hazne
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 Bu dolabı kullanarak kişi, özel ürün türleri veya kurutulmuş mantar veya et gibi yiyecekler üretebilir.
 

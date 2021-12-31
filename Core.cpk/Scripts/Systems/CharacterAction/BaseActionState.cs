@@ -57,7 +57,7 @@
 
         public bool IsCompleted { get; private set; }
 
-        public virtual bool IsDisplayingProgress => true;
+        public abstract bool IsDisplayingProgress { get; }
 
         public double ProgressPercents
         {

@@ -77,7 +77,7 @@
 
             // add experience according to the crafted recipe's original duration
             var exp = ExperienceForCraftingPerSecond
-                      * craftingQueueItem.Recipe.OriginalDuration;
+                      * craftingQueueItem.RecipeEntry.Recipe.OriginalDuration;
             character.ServerAddSkillExperience<SkillCrafting>(exp);
         }
     }

@@ -34,7 +34,7 @@
               TPublicState,
               TClientState>,
           IProtoItemSeed
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -262,7 +262,7 @@
     /// </summary>
     public abstract class ProtoItemSeed
         : ProtoItemSeed
-            <EmptyPrivateState,
+            <ItemPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {

@@ -81,7 +81,7 @@
             }
         }
 
-        private struct Key : IEquatable<Key>
+        private readonly struct Key : IEquatable<Key>
         {
             private readonly object repetitionProtectionKey;
 

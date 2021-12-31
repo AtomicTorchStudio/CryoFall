@@ -4,8 +4,6 @@
 
     public class TechNodeClothArmor : TechNode<TechGroupDefenseT1>
     {
-        public override string Name => "Cloth armor";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

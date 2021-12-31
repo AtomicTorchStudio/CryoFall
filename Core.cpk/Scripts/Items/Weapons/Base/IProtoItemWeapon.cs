@@ -85,6 +85,8 @@
 
         float ShotVolumeMultiplier { get; }
 
+        double SkeletonPreviewOffsetX { get; }
+
         /// <summary>
         /// Sound preset defining hit sounds upon various materials.
         /// </summary>

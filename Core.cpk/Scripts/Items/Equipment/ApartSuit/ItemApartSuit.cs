@@ -1,4 +1,4 @@
-﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.ApartSuit
+﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
     using AtomicTorch.CBND.CoreMod.SoundPresets;
 
@@ -11,8 +11,7 @@
 
         public override bool IsHairVisible => false;
 
-        // TODO: there is an issue with long beard, add sprite mask clipping and restore this to true
-        public override bool IsHeadVisible => false;
+        public override bool IsHeadVisible => true;
 
         public override ObjectMaterial Material => ObjectMaterial.HardTissues;
 

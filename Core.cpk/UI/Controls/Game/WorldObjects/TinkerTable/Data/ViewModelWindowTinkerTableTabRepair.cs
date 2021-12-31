@@ -157,6 +157,10 @@
 
         public string SkillName => this.skill.Name;
 
+        public bool HasInputItem2 { get; private set; }
+        
+        public bool HasInputItem1 { get; private set; }
+
         protected override void DisposeViewModel()
         {
             this.IsActive = false;
@@ -218,6 +222,9 @@
             this.PercentInput2Text = GetDurabilityPercentText(inputItem2);
 
             this.SelectedProtoItem = inputItem1?.ProtoItem ?? inputItem2?.ProtoItem;
+            
+            HasInputItem1 = inputItem1 is not null;
+            HasInputItem2 = inputItem2 is not null;
 
             var outputItem = this.privateState.ContainerOutput.GetItemAtSlot(0);
             if (outputItem is not null)

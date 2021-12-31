@@ -32,7 +32,7 @@ Scripts/Events/EventMigrationThumper@Name:
 渡りサンパー
 
 Scripts/Events/EventPsiGroveInfestation@Description_FirearmsUseless:
-重要：銃器は役に立たないので、近接武器や熱系の武器を使いましょう。
+重要：銃器は効果がないので、近接武器を使いましょう。
 
 Scripts/Events/EventPsiGroveInfestation@Description_Primary:
 山間部に奇妙な異星植物が出現しました。採取はほぼ不可能に近いですが、希少資源を手に入れる絶好のチャンスです。

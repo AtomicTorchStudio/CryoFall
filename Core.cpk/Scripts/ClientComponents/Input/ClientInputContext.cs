@@ -131,7 +131,7 @@
             this.isCallbacksValidated = true;
         }
 
-        private struct ButtonCallback
+        private readonly struct ButtonCallback
         {
             public readonly Action Callback;
 

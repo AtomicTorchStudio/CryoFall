@@ -62,7 +62,7 @@
                 {
                     ClientContainersExchangeManager.Unregister(this);
                     var viewModelCraftingMenu = this.ViewModelCraftingMenu;
-                    this.lastSelectedRecipe = viewModelCraftingMenu.SelectedRecipe?.Recipe;
+                    this.lastSelectedRecipe = viewModelCraftingMenu.SelectedListEntry?.Recipe;
                     this.ViewModelCraftingMenu = null;
                     viewModelCraftingMenu.Dispose();
                 }

@@ -1174,10 +1174,39 @@
                                 </Grid>
                             </Border>
 
+                            <Canvas HorizontalAlignment="Left"
+                                    Margin="-306,0,0,0">
+                                <StackPanel Orientation="Vertical"
+                                            HorizontalAlignment="Right"
+                                            Width="300">
+                                    <ItemsControl ItemsSource="{TemplateBinding ExtensionPanelLeftItems}"
+                                                  HorizontalAlignment="Right">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel IsItemsHost="True" Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                    <StackPanel x:Name="ExtensionsPanelLeft"
+                                                HorizontalAlignment="Right" />
+                                </StackPanel>
+                            </Canvas>
+
                             <Canvas HorizontalAlignment="Right"
                                     Margin="0,0,-6,0">
-                                <StackPanel x:Name="ExtensionsPanel"
-                                            Orientation="Vertical" />
+                                <StackPanel Orientation="Vertical"
+                                            HorizontalAlignment="Left">
+                                    <ItemsControl ItemsSource="{TemplateBinding ExtensionPanelRightItems}"
+                                                  HorizontalAlignment="Left">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel IsItemsHost="True" Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                    <StackPanel x:Name="ExtensionsPanelRight"
+                                                HorizontalAlignment="Left" />
+                                </StackPanel>
                             </Canvas>
                         </Grid>
                     </ContentControl>

@@ -14,9 +14,12 @@
 
         public void ResetControlForCache()
         {
-            this.viewModel.ObjectStructurePointsData
-                = this.objectStructurePointsData
-                      = default;
+            this.objectStructurePointsData = default;
+
+            if (this.viewModel is not null)
+            {
+                this.viewModel.ObjectStructurePointsData = default;
+            }
         }
 
         public void Setup(

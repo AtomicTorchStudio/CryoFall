@@ -14,7 +14,7 @@
     public abstract class ProtoItemSapling
         <TPrivateState, TPublicState, TClientState>
         : ProtoItemSeed<TPrivateState, TPublicState, TClientState>, IProtoItemSapling
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -61,7 +61,7 @@
 
     public abstract class ProtoItemSapling
         : ProtoItemSapling
-            <EmptyPrivateState,
+            <ItemPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {

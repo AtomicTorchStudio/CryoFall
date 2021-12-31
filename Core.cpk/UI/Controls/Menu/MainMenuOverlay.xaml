@@ -130,7 +130,7 @@
                                                     ToS.
                                                 </Hyperlink>
                                                 <LineBreak />
-                                                <Run>&#x00A9; 2019-2021 Daedalic Entertainment GmbH. All rights reserved.</Run>
+                                                <Run>&#x00A9; 2019-2022 Daedalic Entertainment GmbH. All rights reserved.</Run>
                                                 <Hyperlink Foreground="#99FFFFFF"
                                                            Command="{Binding CommandOpenDaedalicPrivacyPolicy}">
                                                     Privacy Policy.
@@ -368,7 +368,6 @@
             <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
 
         </core:TabControlCached>
-
     </Grid>
 
 </base:BaseUserControl>

@@ -232,6 +232,183 @@ Scripts/Items/Base/ItemUseCaptions@Use:
 Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
 Этот предмет нельзя использовать на транспортном средстве.
 
+Scripts/Items/Base/SkinName@Alien:
+Пришелец
+
+Scripts/Items/Base/SkinName@Aquamarine:
+Аквамарин
+
+Scripts/Items/Base/SkinName@Aviator:
+Авиатор
+
+Scripts/Items/Base/SkinName@Biker:
+Байкер
+
+Scripts/Items/Base/SkinName@Buccaneer:
+Флибустьер
+
+Scripts/Items/Base/SkinName@Commando:
+Спецназовец
+
+Scripts/Items/Base/SkinName@Contagion:
+Заражение
+
+Scripts/Items/Base/SkinName@Cork:
+Пробка
+
+Scripts/Items/Base/SkinName@Cossack:
+Казак
+
+Scripts/Items/Base/SkinName@Cowboy:
+Ковбой
+
+Scripts/Items/Base/SkinName@DesertCamo:
+Пустынный камуфляж
+
+Scripts/Items/Base/SkinName@Elite:
+Элита
+
+Scripts/Items/Base/SkinName@Emerald:
+Изумруд
+
+Scripts/Items/Base/SkinName@Emperor:
+Император
+
+Scripts/Items/Base/SkinName@Executioner:
+Палач
+
+Scripts/Items/Base/SkinName@Explorer:
+Исследователь
+
+Scripts/Items/Base/SkinName@Fancy:
+Щеголь
+
+Scripts/Items/Base/SkinName@ForestCamo:
+Лесной камуфляж
+
+Scripts/Items/Base/SkinName@Graphene:
+Графен
+
+Scripts/Items/Base/SkinName@Hardened:
+Поверхностная закалка
+
+Scripts/Items/Base/SkinName@Halloween:
+Хэллоуин
+
+Scripts/Items/Base/SkinName@Holidays:
+Праздники
+
+Scripts/Items/Base/SkinName@Hunter:
+Охотник
+
+Scripts/Items/Base/SkinName@Iridium:
+Иридий
+
+Scripts/Items/Base/SkinName@Italian:
+Итальянец
+
+Scripts/Items/Base/SkinName@Knight:
+Рыцарь
+
+Scripts/Items/Base/SkinName@Lamellar:
+Ламелляр
+
+Scripts/Items/Base/SkinName@Lightning:
+Молния
+
+Scripts/Items/Base/SkinName@Lumen:
+Люмен
+
+Scripts/Items/Base/SkinName@Magma:
+Магма
+
+Scripts/Items/Base/SkinName@Marauder:
+Мародёр
+
+Scripts/Items/Base/SkinName@Mercenary:
+Наёмник
+
+Scripts/Items/Base/SkinName@Modern:
+Современный
+
+Scripts/Items/Base/SkinName@Necromancer:
+Некромант
+
+Scripts/Items/Base/SkinName@Noble:
+Благородный
+
+Scripts/Items/Base/SkinName@Nomad:
+Бродяга
+
+Scripts/Items/Base/SkinName@Pantheon:
+Пантеон
+
+Scripts/Items/Base/SkinName@Phoenix:
+Феникс
+
+Scripts/Items/Base/SkinName@Pirate:
+Пират
+
+Scripts/Items/Base/SkinName@Primitive:
+Примитивный
+
+Scripts/Items/Base/SkinName@Puffer:
+Пуховик
+
+Scripts/Items/Base/SkinName@RedMarble:
+Красный мрамор
+
+Scripts/Items/Base/SkinName@Redwood:
+Красное дерево
+
+Scripts/Items/Base/SkinName@Revolutionary:
+Революционер
+
+Scripts/Items/Base/SkinName@Roots:
+Корни
+
+Scripts/Items/Base/SkinName@Ruby:
+Рубин
+
+Scripts/Items/Base/SkinName@Sapphire:
+Сапфир
+
+Scripts/Items/Base/SkinName@Shaman:
+Шаман
+
+Scripts/Items/Base/SkinName@Sheriff:
+Шериф
+
+Scripts/Items/Base/SkinName@Ski:
+Лыжник
+
+Scripts/Items/Base/SkinName@Skull:
+Череп
+
+Scripts/Items/Base/SkinName@Snake:
+Снейк
+
+Scripts/Items/Base/SkinName@Straw:
+Солома
+
+Scripts/Items/Base/SkinName@Topaz:
+Топаз
+
+Scripts/Items/Base/SkinName@Tourmaline:
+Турмалин
+
+Scripts/Items/Base/SkinName@UrbanCamo:
+Городской камуфляж
+
+Scripts/Items/Base/SkinName@Ushanka:
+Ушанка
+
+Scripts/Items/Base/SkinName@Voodoo:
+Вуду
+
+Scripts/Items/Base/SkinName@Wasp:
+Оса
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Журнал данных (зашифрованный)
 
@@ -307,13 +484,13 @@ Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
 Броня A.P.A.R.T.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Description:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Description:
 Специальная штурмовая броня, обеспечивающая надежную защиту от вражеского огня, не в ущерб другим своим качествам.
 
-Scripts/Items/Equipment/Assault/ItemAssaultArmor@Name:
+Scripts/Items/Equipment/AssaultArmor/ItemAssaultArmor@Name:
 Штурмовая броня
 
-Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Scripts/Items/Equipment/AssaultHelmet/ItemAssaultHelmet@Name:
 Штурмовой шлем
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
@@ -340,104 +517,86 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
 Чтобы включить фонарь на шлеме, наденьте этот предмет и нажмите \[{0}\].
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Description:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Description:
 Костяная броня дает неплохую защиту, имея невысокую стоимость, и может быть полезна на начальном этапе.
 
-Scripts/Items/Equipment/Bone/ItemBoneArmor@Name:
+Scripts/Items/Equipment/BoneArmor/ItemBoneArmor@Name:
 Костяная броня
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-Закрытый костяной шлем
+Scripts/Items/Equipment/BoneHelmet/ItemBoneHelmet@Name:
+Костяной шлем
 
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
-Рогатый костяной шлем
-
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Description:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Description:
 Не самый привлекательный наряд, зато он спасет вас в трудную минуту. Защищает от окружающей среды лучше, чем ближайшие альтернативы.
 
-Scripts/Items/Equipment/Braided/ItemBraidedArmor@Name:
+Scripts/Items/Equipment/BraidedArmor/ItemBraidedArmor@Name:
 Плетеная броня
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Scripts/Items/Equipment/BraidedHelmet/ItemBraidedHelmet@Name:
 Плетеный шлем
 
-Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-Импровизированный шлем с фонарем
-
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Description:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Description:
 На самом деле не дает никакой защиты. Может, хотя бы спасает от комаров?
 
-Scripts/Items/Equipment/Cloth/ItemClothArmor@Name:
+Scripts/Items/Equipment/ClothArmor/ItemClothArmor@Name:
 Тканевая рубашка
 
-Scripts/Items/Equipment/Cloth/ItemClothHelmet@Name:
+Scripts/Items/Equipment/ClothHelmet/ItemClothHelmet@Name:
 Тканевая шапка
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Description:
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Description:
 Неплохая защита на раннем этапе, особенно хорошо укрывает от холода. И недорогая, и удобная!
 
-Scripts/Items/Equipment/Fur/ItemFurArmor@Name:
-Дубленка
+Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
+Меховая броня
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCanadian@Name:
-Меховая шапка с хвостом
+Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
+Меховая шапка
 
-Scripts/Items/Equipment/Fur/ItemFurHelmetCossak@Name:
-Папаха
-
-Scripts/Items/Equipment/Fur/ItemFurHelmetUshanka@Name:
-Шапка-ушанка
-
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Description:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 Роскошное золотое убранство. Для истинных правителей.
 
-Scripts/Items/Equipment/Gold/ItemGoldArmor@Name:
+Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Name:
 Золотая броня
 
-Scripts/Items/Equipment/Gold/ItemGoldHelmet@Name:
+Scripts/Items/Equipment/GoldHelmet/ItemGoldHelmet@Name:
 Золотая корона
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Description:
 Специально разработанный костюм, защищающий от всех видов агрессивной окружающей среды. Не стоит использовать в бою, так как он быстро потеряет герметичность.
 
-Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Scripts/Items/Equipment/HazmatSuit/ItemHazmatSuit@Name:
 Костюм химзащиты
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Description:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Description:
 Кожаная броня дает хорошую общую защиту и незаменима на ранних этапах исследований.
 
-Scripts/Items/Equipment/Leather/ItemLeatherArmor@Name:
+Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Кожаная броня
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetCowboy@Name:
-Ковбойская шляпа
+Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
+Кожаный шлем
 
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetPilot@Name:
-Шлем пилота
-
-Scripts/Items/Equipment/Leather/ItemLeatherHelmetTricorne@Name:
-Пиратская шляпа
-
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Description:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Металлическая броня хорошо защищает от физических атак, но почти бесполезна против агрессивной окружающей среды.
 
-Scripts/Items/Equipment/Metal/ItemMetalArmor@Name:
+Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Name:
 Металлическая броня
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-Закрытый металлический шлем
+Scripts/Items/Equipment/MetalHelmet/ItemMetalHelmet@Name:
+Металлический шлем
 
-Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
-Металлический шлем с черепом
-
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Description:
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Description:
 Эта броня изготовлена из усовершенствованных материалов, поэтому она прекрасно защищает от стрелкового оружия малого калибра и других не высокотехнологичных видов оружия.
 
-Scripts/Items/Equipment/Military/ItemMilitaryArmor@Name:
-Военная броня
+Scripts/Items/Equipment/MilitaryArmor/ItemMilitaryArmor@Name:
+Армейская броня
 
-Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Scripts/Items/Equipment/MilitaryHelmet/ItemMilitaryHelmet@Name:
 Армейский шлем
+
+Scripts/Items/Equipment/Misc/ItemBraidedHelmetLamp@Name:
+Импровизированный шлем с фонарем
 
 Scripts/Items/Equipment/Misc/ItemExplosivesArmor@Description:
 Специальный жилет, напичканный взрывчаткой. Автоматически взрывается в случае смерти владельца, чтобы отомстить врагам.
@@ -469,43 +628,34 @@ Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
 Респиратор
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
-Каска защищает голову от простых ударов, обломков, электрошока и других опасностей.
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
+Экспериментальная броня, состоящая из прагмиевой кристаллической решетки на основе из тонких металлических пластин. Очень легкая и долговечная.
 
-Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
-Каска
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Description:
-Экспериментальная броня, состоящая из прагмиевой кристаллической решётки на основе из тонких металлических пластин. Очень легкая и долговечная.
-
-Scripts/Items/Equipment/Pragmium/ItemPragmiumSuit@Name:
+Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Name:
 Прагмиевая броня
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Description:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Description:
 Плотная подбитая ткань, которая на удивление неплохо защищает от всех видов урона и воздействий окружающей среды.
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedArmor@Name:
+Scripts/Items/Equipment/QuiltedArmor/ItemQuiltedArmor@Name:
 Стеганая броня
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetHat@Name:
-Стеганая шапка
+Scripts/Items/Equipment/QuiltedHelmet/ItemQuiltedHelmet@Name:
+Стеганый шлем
 
-Scripts/Items/Equipment/Quilted/ItemQuiltedHelmetPadded@Name:
-Стеганый подбитый шлем
-
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Description:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Description:
 Самая лучшая защита. Эта боевая броня защитит вас от любых опасностей, однако ваша скорость передвижения будет ограничена.
 
-Scripts/Items/Equipment/SuperHeavy/ItemSuperHeavySuit@Name:
+Scripts/Items/Equipment/SuperHeavySuit/ItemSuperHeavySuit@Name:
 Сверхтяжелая броня
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Description:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Description:
 Голь на выдумки хитра. Не самый удобный предмет облачения, зато неплохо защищающий на ранних этапах.
 
-Scripts/Items/Equipment/Wood/ItemWoodArmor@Name:
+Scripts/Items/Equipment/WoodArmor/ItemWoodArmor@Name:
 Деревянная броня
 
-Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Scripts/Items/Equipment/WoodHelmet/ItemWoodHelmet@Name:
 Деревянный шлем
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
@@ -1415,41 +1565,11 @@ Scripts/Items/Generic/ItemFur@Description:
 Scripts/Items/Generic/ItemFur@Name:
 Мех
 
-Scripts/Items/Generic/ItemGemDiamond@Description:
-Сверкающий белый алмаз!
+Scripts/Items/Generic/ItemGemstones@Description:
+Сверкающие драгоценные камни!
 
-Scripts/Items/Generic/ItemGemDiamond@Name:
-Алмаз
-
-Scripts/Items/Generic/ItemGemEmerald@Description:
-Сверкающий зеленый изумруд!
-
-Scripts/Items/Generic/ItemGemEmerald@Name:
-Изумруд
-
-Scripts/Items/Generic/ItemGemRuby@Description:
-Сверкающий красный рубин!
-
-Scripts/Items/Generic/ItemGemRuby@Name:
-Рубин
-
-Scripts/Items/Generic/ItemGemSapphire@Description:
-Сверкающий синий сапфир!
-
-Scripts/Items/Generic/ItemGemSapphire@Name:
-Сапфир
-
-Scripts/Items/Generic/ItemGemTopaz@Description:
-Сверкающий желтый топаз!
-
-Scripts/Items/Generic/ItemGemTopaz@Name:
-Топаз
-
-Scripts/Items/Generic/ItemGemTourmaline@Description:
-Сверкающий фиолетовый турмалин!
-
-Scripts/Items/Generic/ItemGemTourmaline@Name:
-Турмалин
+Scripts/Items/Generic/ItemGemstones@Name:
+Драгоценные камни
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
 Из необработанного стекла можно изготавливать различные стеклянные предметы, например бутылки.
@@ -1890,7 +2010,7 @@ Scripts/Items/Implants/ItemImplantReinforcedBones@Name:
 Имплант эндоскелетного укрепления
 
 Scripts/Items/Implants/ItemImplantToxinFiltration@Description:
-Особый орган, который соединен с крупной артерией и помогает очищать кровь от различных токсинов и ядов.
+Особый орган, который соединяется с крупной артерией и помогает очищать кровь от различных токсинов и ядов.
 
 Scripts/Items/Implants/ItemImplantToxinFiltration@Name:
 Имплант фильтрации токсинов
@@ -2434,24 +2554,6 @@ Scripts/Items/Weapons/Melee/ItemMachete@Name:
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Нет оружия
 
-Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-Лазерная рапира (синяя)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-Лазерная рапира (зеленая)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-Лазерная рапира (фиолетовая)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-Лазерная рапира (красная)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-Лазерная рапира (белая)
-
-Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-Лазерная рапира (желтая)
-
 Scripts/Items/Weapons/Melee/ItemStunBaton@Description:
 Работает на встроенных батарейках. Используется для оглушения противника.
 
@@ -2461,149 +2563,134 @@ Scripts/Items/Weapons/Melee/ItemStunBaton@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Невероятно мощное оружие ближнего боя. Для его работы нужна энергия.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Scripts/Items/Weapons/Melee/RapierLaser/ItemRapierLaser@Name:
+Лазерная рапира
+
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Description:
 Технология древних времен. Все еще работает на высоте.
 
-Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Scripts/Items/Weapons/Ranged/Crossbow/ItemCrossbow@Name:
 Арбалет
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Description:
 Примитивный пистолет. Использует бумажные гильзы для патронов. Имеет два заряда, которые можно выпустить очень быстро.
 
-Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Scripts/Items/Weapons/Ranged/FlintlockPistol/ItemFlintlockPistol@Name:
 Кремневый пистолет
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Description:
 Однозарядный гранатомет стреляет специально разработанными снарядами крупного калибра, которые взрываются при ударе, нанося мощный урон.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncher/ItemGrenadeLauncher@Name:
 Гранатомет
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Description:
 Гранатомет револьверного типа. Идеален во время штурма или в борьбе с хорошо защищённой целью.
 
-Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Scripts/Items/Weapons/Ranged/GrenadeLauncherMulti/ItemGrenadeLauncherMulti@Name:
 Многозарядный гранатомет
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Пистолет, использующий боеприпасы 10 мм.
 
-Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
-Пистолет
+Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
+Пистолет 10 мм
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
 Лазерный пистолет стреляет быстрыми импульсами высокоэнергетического света, который сжигает цель.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
 Лазерный пистолет
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
 Лазерная винтовка, сжигающая цель мощным импульсом света, в основном в инфракрасном спектре. Радиус атаки ее намного выше, чем у лазерного пистолета.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
 Лазерная винтовка
 
-Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-Простой полуавтоматический пистолет. Более дешевое оружие по сравнению с современными видами вооружения.
-
-Scripts/Items/Weapons/Ranged/ItemLuger@Name:
-Люгер
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-Тяжелый пулемет, использующий мощные боеприпасы калибра .300.
-
-Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
-Тяжелый пулемет
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-Легкий автоматический пистолет, использующий боеприпасы 8 мм.
-
-Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
-Автоматический пистолет
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-Старый добрый мушкет. Использует бумажные патроны. Более дальнобойный и смертоносный, чем кремневый пистолет.
-
-Scripts/Items/Weapons/Ranged/ItemMusket@Name:
-Мушкет
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-Плазменный пистолет, выпускающий сгустки плазмы, которые поджигают цель при попадании и наносят ей серьезный урон. Обладает высоким энергопотреблением.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
-Плазменный пистолет
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
 Плазменная винтовка, выпускающая большие сгустки плазмы, которые поджигают цель при попадании и наносят ей обширный урон. Обладает очень высоким энергопотреблением.
 
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
 Плазменная винтовка
 
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-Простое самозарядное стрелковое оружие с вращающимся барабаном, где находятся боеприпасы.
-
-Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
-Револьвер
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
-Легкая автоматическая снайперская винтовка для 10-мм патронов.
-
-Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
-Легкая автоматическая винтовка
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-Тяжелая крупнокалиберная винтовка, использующая мощные боеприпасы калибра .300.
-
-Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
-Тяжелая винтовка
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
-Примитивная винтовка со скользящим затвором, в которой используются 8-мм патроны.
-
-Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
-Винтовка
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-Старая верная двустволка. Использует боеприпасы 12-го калибра.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
-Двуствольное ружье
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-Дробовик с большим боезапасом. Использует боеприпасы 12-го калибра.
-
-Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
-Дробовик
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-Полуавтоматический пистолет с высокой мощностью выстрела.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
-Степной сокол
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
-Эксклюзивная золотая версия пистолета Степной сокол.
-
-Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
-Золотой Степной сокол
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-Пистолет-пулемет, использующий боеприпасы 10 мм.
-
-Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-Пистолет-пулемет
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Description:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
 Экзотическое оружие, которое запускает во врагов небольших насекомоподобных существ вместо пуль.
 
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher@Name:
+Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
 `Пусковая установка "Рой"`
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Description:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
 Экзотическое оружие, которое использует жидкий кейнит, чтобы создать и выпустить сильный токсин во врагов.
 
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator@Name:
+Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
 Эвапоратор токсинов
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
+Тяжелый пулемет, использующий мощные боеприпасы калибра .300.
+
+Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Name:
+Тяжелый пулемет
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Description:
+Легкий автоматический пистолет, использующий боеприпасы 8 мм.
+
+Scripts/Items/Weapons/Ranged/MachinePistol/ItemMachinePistol@Name:
+Автоматический пистолет
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
+Старый добрый мушкет. Использует бумажные патроны. Более дальнобойный и смертоносный, чем кремневый пистолет.
+
+Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
+Мушкет
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
+Простое самозарядное стрелковое оружие с вращающимся барабаном, где находятся боеприпасы.
+
+Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Name:
+Револьвер 8 мм
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Description:
+Легкая автоматическая снайперская винтовка для 10-мм патронов.
+
+Scripts/Items/Weapons/Ranged/Rifle10mm/ItemRifle10mm@Name:
+Легкая автоматическая винтовка
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Description:
+Тяжелая крупнокалиберная винтовка, использующая мощные боеприпасы калибра .300.
+
+Scripts/Items/Weapons/Ranged/Rifle300/ItemRifle300@Name:
+Тяжелая винтовка
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Description:
+Примитивная винтовка со скользящим затвором, в которой используются 8-мм патроны.
+
+Scripts/Items/Weapons/Ranged/RifleBoltAction/ItemRifleBoltAction@Name:
+Винтовка
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Description:
+Старая верная двустволка. Использует боеприпасы 12-го калибра.
+
+Scripts/Items/Weapons/Ranged/ShotgunDoublebarreled/ItemShotgunDoublebarreled@Name:
+Двуствольное ружье
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Description:
+Дробовик с большим боезапасом. Использует боеприпасы 12-го калибра.
+
+Scripts/Items/Weapons/Ranged/ShotgunMilitary/ItemShotgunMilitary@Name:
+Дробовик
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Description:
+Полуавтоматический пистолет с высокой мощностью выстрела.
+
+Scripts/Items/Weapons/Ranged/SteppenHawk/ItemSteppenHawk@Name:
+Степной сокол
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description:
+Пистолет-пулемет, использующий боеприпасы 10 мм.
+
+Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
+Пистолет-пулемет
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Тяжелая автоматическая пушка, разработанная для установки на руку в механизированной боевой броне. Использует боеприпасы крупного калибра.

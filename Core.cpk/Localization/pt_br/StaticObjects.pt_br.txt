@@ -821,6 +821,12 @@ Usada para cunhar moedas de diferentes metais. Também pode fundir moedas para v
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 Casa da moeda
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+Permite uma rápida decomposição de matéria orgânica em ambiente controlado para produzir fertilizantes com rapidez.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+Tambor de compostagem
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 Usando este armário, é possível produzir tipos específicos de produtos ou alimentos, como cogumelos secos e carne.
 

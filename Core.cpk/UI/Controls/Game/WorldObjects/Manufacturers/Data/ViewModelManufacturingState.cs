@@ -252,7 +252,7 @@
 
                     if (this.selectedRecipe is not null)
                     {
-                        this.RecipesBrowserViewModel.SelectedRecipe =
+                        this.RecipesBrowserViewModel.SelectedListEntry =
                             this.RecipesBrowserViewModel.RecipesList.FirstOrDefault(
                                 r => r.ViewModelRecipe.Recipe == this.selectedRecipe)?.ViewModelRecipe;
                     }
@@ -391,9 +391,8 @@
 
         private void ExecuteCommandSelectRecipeFromBrowser(object arg)
         {
-            var recipe = (Recipe)arg;
             this.CloseRecipesBrowser();
-            this.SelectRecipe(recipe);
+            this.SelectRecipe((Recipe)arg);
         }
 
         private List<Recipe> GetAllRecipes()
@@ -420,13 +419,13 @@
         {
             var craftingQueue = this.ManufacturingState.CraftingQueue;
             var item = craftingQueue.QueueItems.FirstOrDefault();
-            if (item?.Recipe is null)
+            if (item?.RecipeEntry is null)
             {
                 this.CraftingProgressPercents = 0;
                 return;
             }
 
-            var totalDuration = item.Recipe.OriginalDuration;
+            var totalDuration = item.RecipeEntry.Recipe.OriginalDuration;
             this.CraftingProgressPercents = (float)(100
                                                     * (totalDuration - craftingQueue.TimeRemainsToComplete)
                                                     / totalDuration);

@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -35,15 +36,25 @@
             Instance.CallServer(_ => _.ServerRemote_MakeFirstInQueue(craftingQueueItem.LocalId));
         }
 
-        public static async Task ClientStartCrafting(Recipe recipe, ushort countToCraft)
+        public static async Task ClientStartCrafting(RecipeWithSkin recipeEntry, ushort countToCraft)
         {
+            recipeEntry.Validate();
+
+            if (recipeEntry.ProtoItemSkinOverride is IProtoItemWithSkinData protoItemSkin)
+            {
+                if (!Client.Microtransactions.IsSkinOwned((ushort)protoItemSkin.SkinId))
+                {
+                    throw new Exception("The skin is not owned: " + protoItemSkin);
+                }
+            }
+
             if (SharedValidateQueueIsNotFull(Client.Characters.CurrentPlayerCharacter,
-                                             recipe,
+                                             recipeEntry,
                                              countToCraft,
                                              maxCraftingQueueEntriesCount:
                                              ClientCurrentMaxCraftingQueueEntriesCount))
             {
-                await Instance.CallServer(_ => _.ServerRemote_CraftRecipe(recipe, countToCraft));
+                await Instance.CallServer(_ => _.ServerRemote_CraftRecipe(recipeEntry, countToCraft));
             }
         }
 
@@ -87,15 +98,24 @@
             return maxCraftingQueueEntriesCount;
         }
 
-        public bool ServerRemote_CraftRecipe(Recipe recipe, ushort countToCraft)
+        public bool ServerRemote_CraftRecipe(RecipeWithSkin recipeEntry, ushort countToCraft)
         {
+            recipeEntry.Validate();
             var character = ServerRemoteContext.Character;
             var characterServerState = PlayerCharacter.GetPrivateState(character);
+
+            if (recipeEntry.ProtoItemSkinOverride is IProtoItemWithSkinData protoItemSkin)
+            {
+                if (!Server.Items.IsSkinOwned(character, (ushort)protoItemSkin.SkinId))
+                {
+                    throw new Exception("The skin is not owned: " + protoItemSkin + " for " + character);
+                }
+            }
 
             IStaticWorldObject station;
             var craftingQueue = characterServerState.CraftingQueue;
 
-            switch (recipe)
+            switch (recipeEntry.Recipe)
             {
                 case Recipe.RecipeForHandCrafting:
                     // simply craft by character
@@ -114,11 +134,11 @@
                     break;
 
                 default:
-                    throw new Exception("Incorrect recipe for in-hand or station crafting: " + recipe);
+                    throw new Exception("Incorrect recipe for in-hand or station crafting: " + recipeEntry);
             }
 
             // extra check (it's also done in the recipe itself)
-            if (!recipe.SharedIsTechUnlocked(character))
+            if (!recipeEntry.Recipe.SharedIsTechUnlocked(character))
             {
                 // locked recipe
                 return false;
@@ -126,10 +146,10 @@
 
             var maxCraftingQueueEntriesCount = SharedGetMaxCraftingQueueEntriesCount(character);
 
-            if (recipe.OutputItems.Items[0].ProtoItem.IsStackable)
+            if (recipeEntry.Recipe.OutputItems.Items[0].ProtoItem.IsStackable)
             {
                 // stackable items
-                if (!SharedValidateQueueIsNotFull(character, recipe, countToCraft, maxCraftingQueueEntriesCount))
+                if (!SharedValidateQueueIsNotFull(character, recipeEntry, countToCraft, maxCraftingQueueEntriesCount))
                 {
                     return false;
                 }
@@ -137,7 +157,7 @@
                 CraftingMechanics.ServerStartCrafting(station,
                                                       character,
                                                       craftingQueue,
-                                                      recipe,
+                                                      recipeEntry,
                                                       countToCraft,
                                                       maxQueueSize: maxCraftingQueueEntriesCount);
             }
@@ -150,7 +170,7 @@
                 for (var i = 0; i < countToCraft; i++)
                 {
                     if (!SharedValidateQueueIsNotFull(character,
-                                                      recipe,
+                                                      recipeEntry,
                                                       countToCraft: 1,
                                                       maxCraftingQueueEntriesCount))
                     {
@@ -160,7 +180,7 @@
                     CraftingMechanics.ServerStartCrafting(station,
                                                           character,
                                                           craftingQueue,
-                                                          recipe,
+                                                          recipeEntry,
                                                           countToCraft: 1,
                                                           maxQueueSize: maxCraftingQueueEntriesCount);
                 }
@@ -179,7 +199,7 @@
 
         private static bool SharedValidateQueueIsNotFull(
             ICharacter character,
-            Recipe recipe,
+            RecipeWithSkin recipeEntry,
             ushort countToCraft,
             ushort maxCraftingQueueEntriesCount)
         {
@@ -193,8 +213,8 @@
 
             foreach (var scheduledQueueItem in craftingQueueItems)
             {
-                var macCountToCraft = recipe.OutputItems.Items[0].ProtoItem.MaxItemsPerStack;
-                if (scheduledQueueItem.CanCombineWith(recipe)
+                var macCountToCraft = recipeEntry.Recipe.OutputItems.Items[0].ProtoItem.MaxItemsPerStack;
+                if (scheduledQueueItem.CanCombineWith(recipeEntry)
                     && (int)scheduledQueueItem.CountToCraftRemains + (int)countToCraft <= macCountToCraft)
                 {
                     // allow to increase already queued recipe's count

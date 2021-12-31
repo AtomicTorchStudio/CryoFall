@@ -39,7 +39,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
             // Hotbar items
             Server.Items.CreateItem<ItemKnifeIron>(container: containerHotbar, count: 1);
-            Server.Items.CreateItem<ItemSubmachinegun10mm>(container: containerHotbar, count: 1);
+            Server.Items.CreateItem<ItemSubMachinegun10mm>(container: containerHotbar, count: 1);
             Server.Items.CreateItem<ItemPickaxeSteel>(container: containerHotbar, count: 1);
             Server.Items.CreateItem<ItemAxeSteel>(container: containerHotbar, count: 1);
             Server.Items.CreateItem<ItemToolboxT3>(container: containerHotbar, count: 1);
@@ -52,7 +52,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
             CreateItem(player, GetProtoEntity<ItemAmmo10mmArmorPiercing>());
             CreateItem(player, GetProtoEntity<ItemAmmo10mmHollowPoint>());
             CreateItem(player, GetProtoEntity<ItemBatteryDisposable>(), 10);
-            CreateItem(player, GetProtoEntity<ItemRapierLaserBlue>());
             CreateItem(player, GetProtoEntity<ItemBombModern>(),       10);
             CreateItem(player, GetProtoEntity<ItemPlanks>(),           200);
             CreateItem(player, GetProtoEntity<ItemCanisterGasoline>(), 100);

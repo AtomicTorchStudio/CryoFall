@@ -19,6 +19,10 @@
         <Button Content="Items browser"
                 Command="{Binding CommandOpenItemsBrowserWindow}"
                 Style="{StaticResource EditorButtonStyle}" />
+        
+        <Button Content="Skins browser"
+                Command="{Binding CommandOpenSkinsBrowserWindow}"
+                Style="{StaticResource EditorButtonStyle}" />
 
         <Button Content="Noise composer"
                 Command="{Binding CommandOpenNoiseComposerWindow}"

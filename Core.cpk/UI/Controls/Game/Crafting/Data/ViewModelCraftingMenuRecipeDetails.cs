@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -11,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ViewModelCraftingMenuRecipeDetails : BaseViewModel, IViewModelWithRecipe
@@ -22,7 +25,9 @@
 
         private readonly ICharacter character;
 
-        private readonly Action<Recipe> customCallbackOnRecipeSelect;
+        private readonly Action<RecipeWithSkin> customCallbackOnRecipeSelect;
+
+        private readonly bool isUnlocked = true;
 
         private readonly bool validateItemsAvailabilityInPlayerInventory;
 
@@ -32,13 +37,13 @@
 
         private bool isCanCraft;
 
-        private bool isUnlocked = true;
+        private IProtoItem selectedSkin;
 
         private ViewModelCraftingRecipe viewModelRecipe;
 
         public ViewModelCraftingMenuRecipeDetails(
             bool validateItemsAvailabilityInPlayerInventory,
-            Action<Recipe> customCallbackOnRecipeSelect = null)
+            Action<RecipeWithSkin> customCallbackOnRecipeSelect = null)
         {
             this.validateItemsAvailabilityInPlayerInventory = validateItemsAvailabilityInPlayerInventory;
             this.customCallbackOnRecipeSelect = customCallbackOnRecipeSelect;
@@ -225,6 +230,26 @@
 
         public IReadOnlyList<ProtoItemWithCount> OutputItems { get; set; } = EmptyItemsList;
 
+        public IProtoItem SelectedSkin
+        {
+            get => this.selectedSkin;
+            set
+            {
+                if (value is not null
+                    && ((IProtoItemWithSkinData)value).BaseProtoItem is null)
+                {
+                    value = null;
+                }
+
+                this.selectedSkin = value;
+                this.NotifyThisPropertyChanged();
+
+                this.RefreshOutputItems();
+            }
+        }
+
+        public IReadOnlyList<IProtoItem> Skins { get; private set; }
+
         public ViewModelCraftingRecipe ViewModelRecipe
         {
             get => this.viewModelRecipe;
@@ -241,8 +266,40 @@
                 this.viewModelRecipe = value;
 
                 var recipe = value?.Recipe;
-                this.InputItems = recipe?.InputItems ?? EmptyItemsList;
-                this.OutputItems = recipe?.OutputItems.Items ?? EmptyItemsList;
+                if (recipe is not null)
+                {
+                    var baseProtoItem = (IProtoItemWithSkinData)recipe.OutputItems.Items[0].ProtoItem;
+                    var skins = new List<IProtoItem>();
+
+                    if (recipe.IsSkinnable)
+                    {
+                        var availableSkins = baseProtoItem.Skins.ToList();
+                        availableSkins.RemoveAll(s =>
+                                                 {
+                                                     // remove all unavailable skins
+                                                     var skinId = (ushort)((IProtoItemWithSkinData)s).SkinId;
+                                                     var skinData = Client.Microtransactions.GetSkinData(skinId);
+                                                     return skinData.Pool == SkinsPool.NotAvailable
+                                                            && !skinData.IsOwned;
+                                                 });
+
+                        if (availableSkins.Count > 0)
+                        {
+                            skins.Add(baseProtoItem);
+                            skins.AddRange(availableSkins);
+                        }
+                    }
+
+                    skins.SortBy(s => (ushort)((IProtoItemWithSkinData)s).SkinId);
+                    this.Skins = skins;
+                    this.InputItems = recipe.InputItems;
+                    this.SelectedSkin = null;
+                }
+                else
+                {
+                    this.InputItems = EmptyItemsList;
+                    this.OutputItems = EmptyItemsList;
+                }
 
                 // ensure the property will be set
                 this.countToCraft = 0;
@@ -292,13 +349,16 @@
             }
 
             Client.UI.BlurFocus();
+            var recipeWithSkin = new RecipeWithSkin(this.viewModelRecipe.Recipe,
+                                                    this.SelectedSkin);
             if (this.customCallbackOnRecipeSelect is not null)
             {
-                this.customCallbackOnRecipeSelect.Invoke(this.viewModelRecipe.Recipe);
+                this.customCallbackOnRecipeSelect.Invoke(recipeWithSkin);
             }
             else
             {
-                await CraftingSystem.ClientStartCrafting(this.viewModelRecipe.Recipe, this.countToCraft);
+                await CraftingSystem.ClientStartCrafting(recipeWithSkin,
+                                                         this.countToCraft);
             }
 
             // after starting craft - automatically limit count to craft to the maximum value
@@ -376,6 +436,18 @@
 
             // but need to check if it's unlocked
             this.IsCanCraft = this.isUnlocked;
+        }
+
+        private void RefreshOutputItems()
+        {
+            var recipe = this.viewModelRecipe?.Recipe;
+            if (recipe is null)
+            {
+                this.OutputItems = EmptyItemsList;
+                return;
+            }
+
+            this.OutputItems = recipe.GetOutputItems(this.selectedSkin).Items;
         }
 
         private void SetMaximumCraftingCount()

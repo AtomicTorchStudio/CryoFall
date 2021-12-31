@@ -171,7 +171,7 @@
             {
                 var currentCraftingRecipe = state.CraftingQueue.QueueItems.FirstOrDefault();
                 if (currentCraftingRecipe is null
-                    || currentCraftingRecipe.Recipe != selectedRecipe)
+                    || currentCraftingRecipe.RecipeEntry?.Recipe != selectedRecipe)
                 {
                     // there is nothing crafting or something different is crafting - start crafting the new selected recipe
                     Logger.Info($"Manufacturing of recipe {selectedRecipe} started at {objectManufacturer}");
@@ -179,7 +179,7 @@
                         objectManufacturer,
                         null,
                         state.CraftingQueue,
-                        selectedRecipe,
+                        new RecipeWithSkin(selectedRecipe),
                         countToCraft: ushort.MaxValue);
                 }
             }

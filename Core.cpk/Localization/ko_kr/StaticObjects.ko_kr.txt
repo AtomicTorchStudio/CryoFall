@@ -821,6 +821,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 주화 주조
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+통제괸 환경에서 유기물을 효율적으로 분해하여 신속하게 비료를 만들 수 있게 해줍니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+퇴비 제조기
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 말린 버섯이나 고기와 같은 특정한 제품이나 음식을 만들 수 있습니다.
 

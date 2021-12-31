@@ -63,8 +63,8 @@
         private List<Recipe> GetAllRecipes()
         {
             return Recipe.AllRecipes
-                         .Where(r => r is Recipe.RecipeForStationCrafting stationRecipe1
-                                     && stationRecipe1.StationTypes.Contains(this.protoObjectCraftStation))
+                         .Where(r => r is Recipe.RecipeForStationCrafting stationRecipe
+                                     && stationRecipe.StationTypes.Contains(this.protoObjectCraftStation))
                          .ToList();
         }
     }

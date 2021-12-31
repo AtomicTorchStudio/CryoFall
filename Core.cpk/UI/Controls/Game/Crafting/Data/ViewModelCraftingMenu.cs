@@ -10,19 +10,24 @@
 
     public class ViewModelCraftingMenu : BaseViewModel
     {
-        private ViewModelCraftingRecipe selectedRecipe;
+        private readonly List<ViewModelCraftingMenuRecipeDetails> allRecipes;
 
-        private ViewModelCraftingMenuRecipeDetails selectedRecipeDetails;
+        private ViewModelCraftingRecipe selectedListEntry;
+
+        private ViewModelCraftingMenuRecipeDetails selectedListEntryDetails;
+
+        private Recipe selectedRecipe;
 
         public ViewModelCraftingMenu(
             IReadOnlyCollection<Recipe> recipes,
             int recipesCountTotal,
             bool validateItemsAvailabilityInPlayerInventory,
-            Action<Recipe> customCallbackOnRecipeSelect = null)
+            Action<RecipeWithSkin> customCallbackOnRecipeSelect = null)
         {
             this.RecipesCountTotal = recipesCountTotal;
             this.ValidateItemsAvailabilityInPlayerInventory = validateItemsAvailabilityInPlayerInventory;
-            this.RecipesList = recipes.Select(
+
+            this.allRecipes = recipes.Select(
                     recipe => new ViewModelCraftingMenuRecipeDetails(
                             validateItemsAvailabilityInPlayerInventory,
                             customCallbackOnRecipeSelect)
@@ -31,15 +36,18 @@
                         }
                 ).ToList();
 
-            this.SelectedRecipeDetails = this.RecipesList.FirstOrDefault();
+            var allRecipesWithoutSkins = this.allRecipes.ToList();
+            allRecipesWithoutSkins.RemoveAll(r => r.ViewModelRecipe.Recipe.BaseRecipe is not null);
+            this.RecipesList = allRecipesWithoutSkins;
+
+            this.SelectedListEntry = this.RecipesList.FirstOrDefault()?.ViewModelRecipe;
         }
 
         // for design-time only
         public ViewModelCraftingMenu(bool validateItemsAvailabilityInPlayerInventory)
             : this(CreateTestRecipesList(),
                    CreateTestRecipesList().Count,
-                   validateItemsAvailabilityInPlayerInventory,
-                   customCallbackOnRecipeSelect: null)
+                   validateItemsAvailabilityInPlayerInventory)
         {
             if (!IsDesignTime)
             {
@@ -58,7 +66,45 @@
                    ? Visibility.Visible
                    : Visibility.Collapsed;
 
-        public ViewModelCraftingRecipe SelectedRecipe
+        public ViewModelCraftingRecipe SelectedListEntry
+        {
+            get => this.selectedListEntry;
+            set
+            {
+                if (this.selectedListEntry == value)
+                {
+                    return;
+                }
+
+                this.selectedListEntry = value;
+                this.NotifyThisPropertyChanged();
+                this.SelectedRecipe = value?.Recipe;
+
+                this.SelectedListEntryDetails =
+                    this.selectedListEntry is not null
+                        ? this.allRecipes.FirstOrDefault(r => r.ViewModelRecipe == this.selectedListEntry)
+                        : null;
+            }
+        }
+
+        public ViewModelCraftingMenuRecipeDetails SelectedListEntryDetails
+        {
+            get => this.selectedListEntryDetails;
+            set
+            {
+                if (this.selectedListEntryDetails == value)
+                {
+                    return;
+                }
+
+                this.selectedListEntryDetails = value;
+                this.NotifyThisPropertyChanged();
+
+                this.SelectedListEntry = value?.ViewModelRecipe;
+            }
+        }
+
+        public Recipe SelectedRecipe
         {
             get => this.selectedRecipe;
             set
@@ -71,33 +117,15 @@
                 this.selectedRecipe = value;
                 this.NotifyThisPropertyChanged();
 
-                if (value is null)
-                {
-                    this.SelectedRecipeDetails = null;
-                    return;
-                }
-
-                this.SelectedRecipeDetails =
-                    this.RecipesList.FirstOrDefault(r => r.ViewModelRecipe == this.selectedRecipe);
+                this.SelectedRecipeDetails
+                    = this.selectedRecipe is not null
+                          ? this.allRecipes.FirstOrDefault(
+                              r => r.ViewModelRecipe.Recipe == this.selectedRecipe)
+                          : null;
             }
         }
 
-        public ViewModelCraftingMenuRecipeDetails SelectedRecipeDetails
-        {
-            get => this.selectedRecipeDetails;
-            set
-            {
-                if (this.selectedRecipeDetails == value)
-                {
-                    return;
-                }
-
-                this.selectedRecipeDetails = value;
-                this.NotifyThisPropertyChanged();
-
-                this.SelectedRecipe = value?.ViewModelRecipe;
-            }
-        }
+        public ViewModelCraftingMenuRecipeDetails SelectedRecipeDetails { get; set; }
 
         public bool ValidateItemsAvailabilityInPlayerInventory { get; }
 
@@ -113,7 +141,7 @@
                 if (recipe == vm.ViewModelRecipe.Recipe)
                 {
                     // found the view model for this recipe
-                    this.SelectedRecipe = vm.ViewModelRecipe;
+                    this.SelectedListEntry = vm.ViewModelRecipe;
                     return;
                 }
             }
@@ -121,12 +149,13 @@
 
         protected override void DisposeViewModel()
         {
-            base.DisposeViewModel();
-            foreach (var viewModelCraftingMenuRecipeDetails in this.RecipesList)
+            foreach (var viewModelCraftingMenuRecipeDetails in this.allRecipes)
             {
                 viewModelCraftingMenuRecipeDetails.ViewModelRecipe.Dispose();
                 viewModelCraftingMenuRecipeDetails.Dispose();
             }
+
+            base.DisposeViewModel();
         }
 
         /// <summary>

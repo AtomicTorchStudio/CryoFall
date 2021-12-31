@@ -2,7 +2,7 @@
 Tenez-vous près de l'eau pour remplir la bouteille, ou mettez-la dans un puits.
 
 Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_CannotMineThat:
-Impossible de miner ceci !
+Impossible d'extraire ceci !
 
 Scripts/Systems/CharacterDroneControl/CharacterDroneControlSystem@Notification_DroneAlreadySent:
 Un drone a déjà été envoyé là-bas !

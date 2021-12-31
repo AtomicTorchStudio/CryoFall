@@ -102,7 +102,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     return "Added T1 arms and ammo.";
 
                 case KitCategory.w8mm:
-                    CreateItem<ItemLuger>();
                     CreateItem<ItemRevolver8mm>();
                     CreateItem<ItemMachinePistol>();
                     CreateItem<ItemRifleBoltAction>();
@@ -112,7 +111,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
 
                 case KitCategory.w10mm:
                     CreateItem<ItemHandgun10mm>();
-                    CreateItem<ItemSubmachinegun10mm>();
+                    CreateItem<ItemSubMachinegun10mm>();
                     CreateItem<ItemRifle10mm>();
                     CreateItem<ItemAmmo10mmStandard>();
                     CreateItem<ItemAmmo10mmArmorPiercing>();
@@ -152,7 +151,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                 case KitCategory.wEnergy:
                     CreateItem<ItemLaserPistol>();
                     CreateItem<ItemLaserRifle>();
-                    CreateItem<ItemPlasmaPistol>();
                     CreateItem<ItemPlasmaRifle>();
                     CreateItem<ItemPowerBankLarge>();
                     CreateItem<ItemBatteryDisposable>(amount: 100);
@@ -171,12 +169,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemMaceCopper>();
                     CreateItem<ItemMaceIron>();
                     CreateItem<ItemMachete>();
-                    CreateItem<ItemRapierLaserBlue>();
-                    CreateItem<ItemRapierLaserGreen>();
-                    CreateItem<ItemRapierLaserPurple>();
-                    CreateItem<ItemRapierLaserRed>();
-                    CreateItem<ItemRapierLaserWhite>();
-                    CreateItem<ItemRapierLaserYellow>();
+                    CreateItem<ItemRapierLaser>();
                     CreateItem<ItemPowerBankLarge>();
                     CreateItem<ItemBatteryDisposable>();
                     return "Added melee weapons and some batteries for laser rapier.";

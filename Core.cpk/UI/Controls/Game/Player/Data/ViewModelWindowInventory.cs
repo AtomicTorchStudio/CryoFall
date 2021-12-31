@@ -41,8 +41,8 @@
             this.ContainerEquipment = (IClientItemsContainer)this.character.SharedGetPlayerContainerEquipment();
             this.containerHand = (IClientItemsContainer)this.character.SharedGetPlayerContainerHand();
 
-            this.InventorySkeleton.Control = controlSkeletonView;
             this.InventorySkeleton.CurrentCharacter = this.character;
+            this.InventorySkeleton.Control = controlSkeletonView;
 
             this.DefenseStats.CurrentCharacter = this.character;
 
@@ -68,6 +68,11 @@
         public BaseCommand CommandOpenHelpMenu
             => WindowContainerHelp.CommandOpenMenu;
 
+        public BaseCommand CommandOpenStatisticsMenu
+            => new ActionCommand(
+                () => Api.Client.UI.LayoutRootChildren.Add(
+                    new WindowPersonalStatistics()));
+
         public BaseCommand CommandOpenStyleMenu
             => new ActionCommand(
                 () => Client.UI.LayoutRootChildren.Add(
@@ -76,6 +81,10 @@
         public BaseCommand CommandOpenUnstuckMenu
             => new ActionCommand(
                 WindowCharacterUnstuckHelper.ShowWindow);
+
+        public BaseCommand CommandQuickUseItem
+            => new ActionCommandWithParameter(
+                item => ClientItemManagementCases.TryUseItem((IItem)item));
 
         public IClientItemsContainer ContainerEquipment { get; }
 

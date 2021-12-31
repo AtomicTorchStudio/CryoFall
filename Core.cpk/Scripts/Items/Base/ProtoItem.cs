@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
@@ -40,8 +41,10 @@
               TPublicState,
               TClientState>,
           IProtoItem,
-          IProtoItemWithSoundPreset
-        where TPrivateState : BasePrivateState, new()
+          IProtoItemWithSoundPreset,
+          IProtoItemWithRecipeData,
+          IProtoItemWithSkinData
+        where TPrivateState : ItemPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -50,23 +53,50 @@
 
         private const double DurabilityFractionReduceOnDeath = 0.15;
 
+        private readonly Lazy<IProtoItem> lazyBaseProtoItem;
+
         /// <summary>
         /// This flag will be true only in case the method <see cref="ClientItemUseStart" /> or <see cref="ClientItemUseFinish" />
         /// has override.
         /// </summary>
         private bool isUsableItem;
 
+        private List<Recipe> listedInRecipes;
+
+        private List<IProtoItem> skins;
+
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         protected ProtoItem()
         {
             var name = this.GetType().Name;
-            if (!name.StartsWith("Item", StringComparison.Ordinal))
+            if (name.StartsWith("Item", StringComparison.Ordinal))
             {
-                throw new Exception("Item class name must start with \"Item\": " + this.GetType().Name);
+                this.ShortId = name.Substring("Item".Length);
+            }
+            else if (name.StartsWith("Skin", StringComparison.Ordinal))
+            {
+                this.ShortId = name.Substring("Skin".Length);
+            }
+            else
+            {
+                throw new Exception("Item class name must start with \"Item\" or \"Skin\": " + this.GetType().Name);
             }
 
-            this.ShortId = name.Substring("Item".Length);
+            this.lazyBaseProtoItem = new Lazy<IProtoItem>(
+                () =>
+                {
+                    var baseType = this.GetType().BaseType;
+                    if (baseType is null
+                        || baseType.IsAbstract)
+                    {
+                        return null;
+                    }
+
+                    return (IProtoItem)Api.Shared.GetProtoEntityAbstract(baseType);
+                });
         }
+
+        public virtual IProtoItem BaseProtoItem => this.lazyBaseProtoItem.Value;
 
         public virtual bool CanBeSelectedInVehicle => false;
 
@@ -106,10 +136,20 @@
         /// </summary>
         public ITextureResource Icon { get; private set; }
 
+        public virtual bool IsModSkin => false;
+
+        public bool IsSkin => this.BaseProtoItem is not null;
+
+        public virtual bool IsSkinnable => false;
+
         /// <summary>
         /// Returns true if this item could be stacked (has count more than 1 per item slot).
         /// </summary>
         public bool IsStackable => this.MaxItemsPerStack > 1;
+
+        public IReadOnlyList<Recipe> ListedInRecipes
+            => this.listedInRecipes
+               ?? (IReadOnlyList<Recipe>)Array.Empty<Recipe>();
 
         /// <summary>
         /// Gets how many items could be stored in one stack (item slot). For non-stackable items this will be 1.
@@ -119,6 +159,12 @@
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         public override string ShortId { get; }
+
+        public SkinId SkinId { get; private set; }
+
+        public IReadOnlyList<IProtoItem> Skins
+            => this.skins
+               ?? (IReadOnlyList<IProtoItem>)Array.Empty<IProtoItem>();
 
         public ReadOnlySoundPreset<ItemSound> SoundPresetItem { get; private set; }
 
@@ -212,7 +258,8 @@
         {
             this.ClientTooltipCreateControlsInternal(item, controls);
 
-            if (this.DescriptionHints.Count == 0)
+            if (item is null
+                || this.DescriptionHints.Count == 0)
             {
                 return;
             }
@@ -222,6 +269,52 @@
             {
                 controls.Add(new ItemTooltipHintControl() { Text = hint });
             }
+        }
+
+        public bool IsSkinOrVariant(IProtoItem protoItem)
+        {
+            if (this == protoItem)
+            {
+                // same prototype - assume it's a skin
+                return true;
+            }
+
+            if (this.IsSkin)
+            {
+                // a skin itself - ask its base item (skins holder) whether the provided item is a skin
+                return ((IProtoItemWithSkinData)this.BaseProtoItem)
+                    .IsSkinOrVariant(protoItem);
+            }
+
+            // not a skin - determine whether the provided item is its inheritor
+            return ((IProtoItemWithSkinData)protoItem).BaseProtoItem == this;
+        }
+
+        public void PrepareProtoItemLinkRecipe(Recipe recipe)
+        {
+            this.listedInRecipes ??= new List<Recipe>();
+            this.listedInRecipes.Add(recipe);
+        }
+
+        public void PrepareProtoItemLinkSkin(IProtoItem protoItem)
+        {
+            if (((IProtoItemWithSkinData)protoItem).BaseProtoItem != this)
+            {
+                throw new InvalidOperationException();
+            }
+
+            if (!this.IsSkinnable)
+            {
+                return;
+            }
+
+            if (this.IsStackable)
+            {
+                throw new Exception($"The item is not skinnable: {this.Id}. Cannot register skin: {protoItem.Id}");
+            }
+
+            this.skins ??= new List<IProtoItem>();
+            this.skins.Add(protoItem);
         }
 
         public virtual void ServerItemHotbarSelectionChanged(
@@ -391,7 +484,20 @@
         {
             var type = this.GetType();
             var folderPath = SharedGetRelativeFolderPath(type, typeof(ProtoItem<,,>));
-            return $"Items/{folderPath}/{type.Name}";
+            var baseProtoItem = this.BaseProtoItem;
+            if (baseProtoItem is not null)
+            {
+                var baseName = baseProtoItem.GetType().Name;
+                return $"Items/{folderPath}/{baseName}/{this.ShortId.Substring(baseName.Length - 4)}.png";
+            }
+
+            var path = $"Items/{folderPath}/{type.Name}/Default.png";
+            if (Api.Shared.IsFileExists(ContentPaths.Textures + path))
+            {
+                return path;
+            }
+
+            return $"Items/{folderPath}/{type.Name}.png";
         }
 
         protected virtual void PrepareHints(List<string> hints)
@@ -400,7 +506,7 @@
 
         protected virtual ITextureResource PrepareIcon()
         {
-            return new TextureResource(this.GenerateIconPath());
+            return new TextureResource(this.GenerateIconPath(), qualityOffset: -1);
         }
 
         /// <summary>
@@ -410,9 +516,21 @@
         /// </summary>
         protected sealed override void PrepareProto()
         {
+            if (this.IsSkin)
+            {
+                if (!this.GetType().Name.StartsWith("Skin", StringComparison.Ordinal))
+                {
+                    throw new Exception(this.Id + " is a skin - its class name must start with \"Skin\"");
+                }
+
+                this.SkinId = SkinBinding.BindSkin(this);
+            }
+
+            // Please note: the icon is required on the server side as well e.g. to use for console commands
+            // autocomplete (as it should not provide items that don't have icons).
             var icon = this.PrepareIcon();
             if (icon is ITextureAtlasResource iconAtlas
-                && icon is not ITextureAtlasChunkResource)
+                and not ITextureAtlasChunkResource)
             {
                 // use the first chunk of the atlas texture
                 icon = iconAtlas.Chunk(0, 0);
@@ -425,6 +543,8 @@
                                 || type.HasOverride(nameof(ClientItemUseFinish), isPublic: false);
 
             this.SoundPresetItem = this.PrepareSoundPresetItem();
+
+            ((IProtoItemWithSkinData)this.BaseProtoItem)?.PrepareProtoItemLinkSkin(this);
 
             this.PrepareProtoItem();
         }
@@ -586,7 +706,7 @@
         /// <summary>
         /// Data for ServerOnSplitItem() method.
         /// </summary>
-        protected struct ServerOnSplitItemData
+        protected readonly struct ServerOnSplitItemData
         {
             /// <summary>
             /// Count subtracted from itemFrom and added to newItem.
@@ -614,7 +734,7 @@
         /// <summary>
         /// Data for ServerOnStackItem() method.
         /// </summary>
-        protected struct ServerOnStackItemData
+        protected readonly struct ServerOnStackItemData
         {
             /// <summary>
             /// Count subtracted from itemFrom and added to itemTo.

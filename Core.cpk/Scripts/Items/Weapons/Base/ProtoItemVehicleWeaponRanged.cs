@@ -15,6 +15,8 @@
         // need to be installed on a mech in order to use it
         public sealed override bool CanBeSelectedInVehicle => false;
 
+        public override bool IsSkinnable => false;
+
         public abstract VehicleWeaponHardpoint WeaponHardpoint { get; }
 
         public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
@@ -35,7 +37,7 @@
 
         protected override string GenerateIconPath()
         {
-            return "Items/Weapons/Ranged/" + this.GetType().Name;
+            return "Items/Weapons/Vehicle/" + this.GetType().Name;
         }
 
         protected override void PrepareHints(List<string> hints)

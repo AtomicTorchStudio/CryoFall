@@ -821,6 +821,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 铸币台
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Description:
+使有机物在受控环境下快速分解，高效制造肥料。
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCompostTumbler@Name:
+堆肥箱
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
 可以使用这个柜子生产特定种类的产品或食物，如干蘑菇或肉类。
 

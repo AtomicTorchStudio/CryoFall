@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Achievements
 {
-    using AtomicTorch.CBND.CoreMod.Items.Equipment.SuperHeavyArmor;
+    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class AchievementEquipSuperHeavySuit : ProtoAchievement

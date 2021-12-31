@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Core
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
@@ -21,6 +22,18 @@
                 typeof(bool),
                 typeof(GameWindow),
                 new PropertyMetadata(true));
+
+        public static readonly DependencyProperty ExtensionPanelLeftItemsProperty =
+            DependencyProperty.Register("ExtensionPanelLeftItems",
+                                        typeof(ObservableCollection<FrameworkElement>),
+                                        typeof(GameWindow),
+                                        new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ExtensionPanelRightItemsProperty =
+            DependencyProperty.Register(nameof(ExtensionPanelRightItems),
+                                        typeof(ObservableCollection<FrameworkElement>),
+                                        typeof(GameWindow),
+                                        new PropertyMetadata(default(ObservableCollection<FrameworkElement>)));
 
         public static readonly DependencyProperty FocusOnControlProperty =
             DependencyProperty.Register(
@@ -92,6 +105,18 @@
 
         public DialogResult DialogResult { get; private set; }
 
+        public ObservableCollection<FrameworkElement> ExtensionPanelLeftItems
+        {
+            get => (ObservableCollection<FrameworkElement>)this.GetValue(ExtensionPanelLeftItemsProperty);
+            set => this.SetValue(ExtensionPanelLeftItemsProperty, value);
+        }
+
+        public ObservableCollection<FrameworkElement> ExtensionPanelRightItems
+        {
+            get => (ObservableCollection<FrameworkElement>)this.GetValue(ExtensionPanelRightItemsProperty);
+            set => this.SetValue(ExtensionPanelRightItemsProperty, value);
+        }
+
         public FrameworkElement FocusOnControl
         {
             get => (FrameworkElement)this.GetValue(FocusOnControlProperty);
@@ -160,10 +185,16 @@
             set => this.SetValue(ZIndexOffsetProperty, value);
         }
 
-        public void AddExtensionControl(Control controlToInject)
+        public void AddExtensionControl(Control controlToInject, bool leftPanel = false)
         {
             var firstChild = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
-            var panel = firstChild.FindName<Panel>("ExtensionsPanel");
+            var panel = firstChild.FindName<Panel>(leftPanel
+                                                       ? "ExtensionsPanelLeft"
+                                                       : "ExtensionsPanelRight");
+
+            controlToInject.HorizontalAlignment = leftPanel
+                                                      ? HorizontalAlignment.Right
+                                                      : HorizontalAlignment.Left;
 
             if (panel.Children.Count > 0)
             {
@@ -171,7 +202,6 @@
                 controlToInject.Margin = new Thickness(0, 6, 0, 0);
             }
 
-            controlToInject.HorizontalAlignment = HorizontalAlignment.Left;
             panel.Children.Add(controlToInject);
         }
 

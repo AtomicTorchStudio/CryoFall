@@ -157,11 +157,17 @@ Scripts/Rates/RateResourcesPvPDepositOilMultiplier@Name:
 Scripts/Rates/RateSkillExperienceGainMultiplier@Name:
 Yetenek TP
 
+Scripts/Rates/RateStructuresCanBuildOnMeadows@Name:
+[Structures] Çayırlar üstüne kurulabilir
+
 Scripts/Rates/RateStructuresDecayEnabled@Name:
 [Decay] Terk edilmiş yapı çürümesi
 
 Scripts/Rates/RateStructuresLandClaimDecayDelayDurationMultiplier@Name:
 [Decay] Terk edilmiş alan tutucu çürüme gecikme süresi
+
+Scripts/Rates/RateStructuresTextSignsAvailable@Name:
+Metin tabelaları açık
 
 Scripts/Rates/RateThirst@Name:
 Susuzluk oranı
