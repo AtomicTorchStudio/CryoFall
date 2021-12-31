@@ -33,7 +33,7 @@
             => LazyFridgeContainer.Value;
 
         protected override ITextureResource TextureResourceIconPlate { get; }
-            = new TextureResource("StaticObjects/Structures/Crates/ObjectCrate_Plate2");
+            = new TextureResource("StaticObjects/Structures/Crates/ObjectCrate_Plate2", qualityOffset: -1);
 
         public virtual double ServerGetCurrentFreshnessDurationMultiplier(IStaticWorldObject worldObject)
         {

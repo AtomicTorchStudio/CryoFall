@@ -62,28 +62,13 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
 
         public static ITextureResource GetOriginalIcon(IProtoEntity protoEntity)
         {
-            switch (protoEntity)
+            return protoEntity switch
             {
-                case IProtoItem protoItem:
-                {
-                    return protoItem.Icon;
-                }
-
-                case IProtoCharacterMob protoCharacterMob:
-                {
-                    return protoCharacterMob.Icon;
-                }
-
-                case TechGroup techGroup:
-                {
-                    return techGroup.Icon;
-                }
-
-                default:
-                {
-                    return null;
-                }
-            }
+                IProtoItem protoItem                 => protoItem.Icon,
+                IProtoCharacterMob protoCharacterMob => protoCharacterMob.Icon,
+                TechGroup techGroup                  => techGroup.Icon,
+                _                                    => null
+            };
         }
 
         private static async Task<ITextureResource> GenerateIcon(
@@ -91,6 +76,10 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
             ITextureResource originalIcon)
         {
             Vector2Ushort size = (128, 128);
+            var scaleQuality = (int)Api.Client.Rendering.SpriteQualitySizeMultiplierReverse;
+            scaleQuality = Math.Max(1, scaleQuality / 2);
+            size = ((ushort)(size.X / scaleQuality),
+                    (ushort)(size.Y / scaleQuality));
 
             // expand size a bit to fit the outline
             request.ThrowIfCancelled();
@@ -107,6 +96,8 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
             camera.RenderTarget = renderTexture;
             camera.SetOrthographicProjection(size.X, size.Y);
 
+            var originalIconSize = await Rendering.GetTextureSize(originalIcon);
+
             var spriteRenderer = Rendering.CreateSpriteRenderer(
                 cameraObject,
                 originalIcon,
@@ -114,8 +105,7 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
                 positionOffset: (size.X / 2, -size.Y / 2),
                 spritePivotPoint: (0.5, 0.5),
                 renderingTag: renderingTag,
-                // as most icons are 256x256 and we need a 128x128 icon scale it this way
-                scale: 0.5);
+                scale: size.X / (double)originalIconSize.X);
 
             spriteRenderer.RenderingMaterial = RenderingMaterialCrateIcon;
 

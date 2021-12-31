@@ -90,25 +90,26 @@
         protected override void DisposeViewModel()
         {
             this.Skins = null;
-            
+
             this.ViewModelSelectedSkin?.Dispose();
             this.ViewModelSelectedSkin = null;
-                
+
             base.DisposeViewModel();
         }
 
         private void RefreshSkinsList()
         {
-            if (this.selectedRecipeDetails.Skins?.Count == 0)
+            var skins = this.selectedRecipeDetails.Skins;
+            if (skins is null
+                || skins.Count == 0)
             {
                 this.Skins = null;
                 this.SelectedSkin = null;
                 return;
             }
 
-            this.Skins = this.selectedRecipeDetails.Skins
-                             .Select(p => new ViewModelSkinForCrafting(p))
-                             .ToList();
+            this.Skins = skins.Select(p => new ViewModelSkinForCrafting(p))
+                              .ToList();
 
             this.SelectedSkin = this.Skins[0].ProtoItemSkin;
         }

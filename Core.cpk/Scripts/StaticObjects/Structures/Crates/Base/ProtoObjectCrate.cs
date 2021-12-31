@@ -71,7 +71,7 @@
             => Api.GetProtoEntity<ItemsContainerDefault>();
 
         protected virtual ITextureResource TextureResourceIconPlate { get; }
-            = new TextureResource("StaticObjects/Structures/Crates/ObjectCrate_Plate");
+            = new TextureResource("StaticObjects/Structures/Crates/ObjectCrate_Plate", qualityOffset: -1);
 
         public void ClientSetIconSource(IStaticWorldObject worldObjectCrate, IProtoEntity iconSource)
         {
@@ -165,6 +165,11 @@
             spriteRenderIconPlate.Scale = 4.0 * this.ItemIconScale;
             spriteRenderIcon.Scale = 1.95 * this.ItemIconScale;
 
+            if (Client.Rendering.SpriteQualitySizeMultiplierReverse > 1)
+            {
+                spriteRenderIcon.Scale *= 0.5; // fix for the rendering size
+            }
+
             this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIconPlate);
             this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIcon);
 
@@ -176,7 +181,6 @@
 
             UpdateIcon();
 
-            // local method for updating public liquid state
             void UpdateIcon()
             {
                 var icon = ClientCrateIconHelper.GetIcon(publicState.IconSource);
