@@ -33,6 +33,10 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
 
         public static ITextureResource GetIcon(IProtoEntity protoEntity)
         {
+            // currently we're not using the CrateIcon rendering effect (the black outline)
+            // as it's doesn't look good especially with lower texture quality
+            return GetOriginalIcon(protoEntity);
+            
             if (protoEntity is null)
             {
                 return null;
@@ -114,7 +118,8 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
 
             request.ThrowIfCancelled();
 
-            var generatedTexture = await renderTexture.SaveToTexture(isTransparent: true);
+            var generatedTexture = await renderTexture.SaveToTexture(isTransparent: true,
+                                                                     qualityScaleCoef: (byte)scaleQuality);
             renderTexture.Dispose();
             request.ThrowIfCancelled();
             return generatedTexture;

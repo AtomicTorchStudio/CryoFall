@@ -60,7 +60,7 @@
 
             lightConfig.IsLightEnabled = true;
             lightConfig.Color = this.LightColor;
-            lightConfig.ScreenOffset = (20, 140);
+            lightConfig.ScreenOffset = (-20, -140);
             lightConfig.Size = 2;
             // we want to make it lighting objects around much better even though the rendering size is small
             lightConfig.LogicalSize = 8;

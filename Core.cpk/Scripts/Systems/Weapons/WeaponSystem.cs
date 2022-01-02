@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Helpers.Physics;
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
@@ -104,14 +105,23 @@
             ViewOrientation viewOrientation,
             double currentRotationAngleRad)
         {
+            // TODO: Sadly, this method doesn't work well so we've disabled it.
+            // The problem is that in order to correct the character orientation we must use its current orientation
+            // to determine the weapon muzzle flash position (laser origin). This recursion will produce
+            // unaccurate and glitchy results.
+            // A proper way to do this would be to use a second invisible skeleton only for the purpose of knowing
+            // the original (unadjusted) character orientation and the muzzle flash position with it.
+            return null;
+            
             if (character.IsNpc)
             {
                 return null;
             }
 
             var clientState = character.GetClientState<BaseCharacterClientState>();
-            if (clientState.SkeletonRenderer is null
-                || !clientState.SkeletonRenderer.IsReady)
+            var skeletonRenderer = clientState.SkeletonRenderer;
+            if (skeletonRenderer is null
+                || !skeletonRenderer.IsReady)
             {
                 return null;
             }
@@ -158,54 +168,66 @@
                      out var toPosition,
                      out var hitPosition);
 
-            toPosition = hitPosition ?? toPosition;
+            if (!hitPosition.HasValue)
+            {
+                return null;
+            }
 
-            var originalSourcePosition = ((IProtoCharacterCore)character.ProtoCharacter)
-                .SharedGetWeaponFireWorldPosition(character, isMeleeWeapon: false);
-            var adjustedSourcePosition = originalSourcePosition + GetSourcePositionOffset();
+            /*var originalSourcePosition = ((IProtoCharacterCore)character.ProtoCharacter)
+                .SharedGetWeaponFireWorldPosition(character, isMeleeWeapon: false);*/
+            var originalSourcePosition = GetSourcePositionOffset();
+            
+            ClientComponentPhysicsSpaceVisualizer.DrawGizmo(
+                new LineSegmentShape(originalSourcePosition, toPosition),
+                lifetime: 0.05);
+            
+            ClientComponentPhysicsSpaceVisualizer.DrawGizmo(
+                new LineSegmentShape(originalSourcePosition, hitPosition.Value),
+                lifetime: 0.05);
 
-            //ClientComponentPhysicsSpaceVisualizer.DrawGizmo(
-            //    new LineSegmentShape(adjustedSourcePosition, toPosition),
-            //    lifetime: 0.05);
-
-            var vectorSourceToTarget = originalSourcePosition - toPosition;
-            var vectorAdjustedSourceToTarget = adjustedSourcePosition - toPosition;
-            if (vectorSourceToTarget.Length < 0.5
-                || vectorAdjustedSourceToTarget.Length < 0.5)
+            var vectorOriginal = originalSourcePosition - toPosition;
+            var vectorAdjusted = originalSourcePosition - hitPosition.Value;
+            if (vectorOriginal.Length < 0.5
+                || vectorAdjusted.Length < 0.5) 
             {
                 // too close
                 return null;
             }
 
-            var adjustedRotationAngleRad = Math.Abs(Math.PI
-                                                    + Math.Atan2(vectorAdjustedSourceToTarget.Y,
-                                                                 vectorAdjustedSourceToTarget.X));
-
             // for testing purposes this code could be uncommented to disable the feature when Ctrl key is held
-            if (character.IsCurrentClientCharacter
+            if (Api.Shared.IsDebug 
+                && character.IsCurrentClientCharacter
                 && Client.Input.IsKeyHeld(InputKey.Control))
             {
                 return null;
             }
 
-            return adjustedRotationAngleRad;
+            var angleBetweenVectors = Vector2D.AngleRad(vectorOriginal, vectorAdjusted);
+            //Logger.Dev("Angle deg: " + MathConstants.RadToDeg * angleBetweenVectors);
+
+            if (!viewOrientation.IsLeft)
+            {
+                angleBetweenVectors = -angleBetweenVectors;
+            }
+            
+            return currentRotationAngleRad + angleBetweenVectors;
 
             Vector2D GetSourcePositionOffset()
             {
-                // we cannot use current animation state here as it's not reliable
-                // and animation doesn't support inverse kinematics for aiming
-                // so let's just approximate the muzzle position, it should be good enough
+                var protoSkeleton = clientState.CurrentProtoSkeleton;
+                var slotName = protoSkeleton.SlotNameItemInHand;
+                var weaponSlotScreenOffset = skeletonRenderer.GetSlotScreenOffset(slotName);
 
-                var muzzleWorldOffset = protoWeaponRanged.MuzzleFlashDescription.TextureScreenOffset
-                                        / ScriptingConstants.TileSizeVirtualPixels;
+                var description = protoWeaponRanged.MuzzleFlashDescription;
+                var muzzleFlashTextureOffset = (description.TextureScreenOffset - (description.TextureOriginX, 0))
+                                               / skeletonRenderer.GetSlotScreenScale(slotName);
 
-                if (viewOrientation.IsLeft)
-                {
-                    // flip Y axis
-                    muzzleWorldOffset = (muzzleWorldOffset.X, -muzzleWorldOffset.Y);
-                }
+                var boneWorldPosition = skeletonRenderer.TransformSlotPosition(
+                    slotName,
+                    weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
+                    out _);
 
-                return muzzleWorldOffset.RotateRad(currentRotationAngleRad);
+                return boneWorldPosition;
             }
 
             static void CastLine(

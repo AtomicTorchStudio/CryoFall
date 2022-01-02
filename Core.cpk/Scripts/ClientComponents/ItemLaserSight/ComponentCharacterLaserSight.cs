@@ -24,6 +24,13 @@
     {
         private const double BeamWidth = 0.1;
 
+        /// <summary>
+        /// If the end point is closer than this distance, the laser beam will be not rendered.
+        /// This is intended to prevent visual glitches (not matching weapon and laser beam's angle)
+        /// when the player is too close to the target.
+        /// </summary>
+        private const double MinDistance = 1.0;
+
         private static readonly Color RayColorCurrentPlayerCharacter
             = Color.FromArgb(0x44, 0x00, 0xFF, 0x00);
 
@@ -107,7 +114,7 @@
 
             // fade-out if too close to prevent visual glitches
             var distance = (beamEndPosition - sourcePosition).Length;
-            var beamOpacity = MathHelper.Clamp(distance - 0.5, min: 0, max: 1);
+            var beamOpacity = MathHelper.Clamp(distance - MinDistance, min: 0, max: 1);
             beamOpacity = beamOpacity * beamOpacity * beamOpacity;
 
             var color = this.GetColor();
@@ -256,7 +263,7 @@
             var skeletonRenderer = clientState.SkeletonRenderer;
             var slotName = clientState.CurrentProtoSkeleton.SlotNameItemInHand;
             var weaponSlotScreenOffset = skeletonRenderer.GetSlotScreenOffset(slotName);
-            
+
             var muzzleFlashTextureOffset = protoWeapon.MuzzleFlashDescription.TextureScreenOffset
                                            / skeletonRenderer.GetSlotScreenScale(slotName);
 

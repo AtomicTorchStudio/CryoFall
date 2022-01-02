@@ -67,6 +67,13 @@
         protected override string ServerReadValue()
         {
             var currentValue = ServerRatesApi.Get(this.Id, this.ValueDefault, this.Description);
+            if (string.IsNullOrEmpty(currentValue)
+                || currentValue == "0")
+            {
+                // most server owners will likely configure this setting to empty string or simple "0"
+                // with intent to disable the time gates
+                currentValue = ValueNoTimeGates;
+            }
 
             try
             {

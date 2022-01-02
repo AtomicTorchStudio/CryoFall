@@ -64,7 +64,7 @@
         {
             get
             {
-                var icon = ClientCrateIconHelper.GetOriginalIcon(this.selectedProtoEntity);
+                var icon = ClientCrateIconHelper.GetIcon(this.selectedProtoEntity);
                 return icon is null
                            ? null
                            : Api.Client.UI.GetTextureBrush(icon);

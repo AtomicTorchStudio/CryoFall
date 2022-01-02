@@ -25,6 +25,9 @@
             => this.DaysToUnlockRemains == 0
                && this.DaysToUnlockRequired > 0;
 
+        public BaseCommand CommandClaimEarnedSkin
+            => new ActionCommand(ExecuteCommandClaimEarnedSkin);
+
         public int DaysToUnlockPassed { get; private set; }
 
         public int DaysToUnlockRemains => this.DaysToUnlockRequired - this.DaysToUnlockPassed;
@@ -32,7 +35,7 @@
         public int DaysToUnlockRequired { get; private set; }
 
         /// <summary>
-        /// Skin earning progress is displayed only if there are skins to earn. 
+        /// Skin earning progress is displayed only if there are skins to earn.
         /// </summary>
         public bool IsVisible => this.DaysToUnlockRequired > 0;
 
@@ -44,19 +47,11 @@
             => string.Format(CoreStrings.Skins_FreeSkinProgress_Format,
                              this.DaysToUnlockRemains);
 
-        public BaseCommand CommandClaimEarnedSkin
-            => new ActionCommand(ExecuteCommandClaimEarnedSkin);
+        public int TicksCount => this.DaysToUnlockRequired;
 
-        public int TicksCount => DaysToUnlockRequired;
-        
         public IReadOnlyList<int> TicksEnumeration => Enumerable.Range(0,
                                                                        count: Math.Max(this.TicksCount - 1, 1))
                                                                 .ToList();
-
-        private void ExecuteCommandClaimEarnedSkin()
-        {
-            Client.Microtransactions.ClaimEarnedSkin();
-        }
 
         public void ResetProgressBar()
         {
@@ -71,6 +66,12 @@
             Client.Microtransactions.SkinsDataReceived -= this.SkinsDataReceivedHandler;
             ClientUpdateHelper.UpdateCallback -= this.Update;
             base.DisposeViewModel();
+        }
+
+        private static void ExecuteCommandClaimEarnedSkin()
+        {
+            Client.Microtransactions.ClaimEarnedSkin();
+            SkinsMenuOverlay.IsDisplayed = true;
         }
 
         private void Reset()

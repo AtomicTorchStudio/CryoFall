@@ -27,7 +27,7 @@
             object sender,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            ((SkinEarningProgressControl)sender).viewModel?.ResetProgressBar();
+            //((SkinEarningProgressControl)sender).viewModel?.ResetProgressBar();
         }
     }
 }

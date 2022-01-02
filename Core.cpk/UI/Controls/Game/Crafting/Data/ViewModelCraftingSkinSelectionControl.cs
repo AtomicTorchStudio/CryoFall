@@ -99,7 +99,9 @@
 
         private void RefreshSkinsList()
         {
-            var skins = this.selectedRecipeDetails.Skins;
+            this.DisposeCollection(this.skins);
+
+            var skins = this.selectedRecipeDetails?.Skins;
             if (skins is null
                 || skins.Count == 0)
             {

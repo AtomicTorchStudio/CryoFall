@@ -163,12 +163,7 @@
                 spritePivotPoint: (0.5, 0.5));
 
             spriteRenderIconPlate.Scale = 4.0 * this.ItemIconScale;
-            spriteRenderIcon.Scale = 1.95 * this.ItemIconScale;
-
-            if (Client.Rendering.SpriteQualitySizeMultiplierReverse > 1)
-            {
-                spriteRenderIcon.Scale *= 0.5; // fix for the rendering size
-            }
+            spriteRenderIcon.Scale = 1.95 * this.ItemIconScale * 0.5;
 
             this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIconPlate);
             this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIcon);

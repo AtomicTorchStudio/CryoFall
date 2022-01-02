@@ -273,6 +273,9 @@
 
                     if (recipe.IsSkinnable)
                     {
+                        // always show the "default" skin (even if there are no custom skins for this item)
+                        skins.Add(baseProtoItem);
+
                         var availableSkins = baseProtoItem.Skins.ToList();
                         availableSkins.RemoveAll(s =>
                                                  {
@@ -285,7 +288,6 @@
 
                         if (availableSkins.Count > 0)
                         {
-                            skins.Add(baseProtoItem);
                             skins.AddRange(availableSkins);
                         }
                     }
